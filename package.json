@@ -1,0 +1,36 @@
+{
+  "name": "dndtools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevins2024/dndtools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevins2024/dndtools/issues"
+  },
+  "homepage": "https://github.com/kevins2024/dndtools#readme",
+  "dependencies": {
+    "vue": "^2.7.16",
+    "vue-template-compiler": "^2.7.16"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@vue/cli-service": "^5.0.9",
+    "babel-loader": "^10.1.1",
+    "css-loader": "^7.1.4",
+    "file-loader": "^6.2.0",
+    "vue-loader": "^17.4.2",
+    "vue-style-loader": "^4.1.3"
+  }
+}
