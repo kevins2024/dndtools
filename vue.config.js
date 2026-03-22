@@ -4,4 +4,4 @@ module.exports = {
   assetsDir: '',
   productionSourceMap: false,
   filenameHashing: false,
-};
+}
