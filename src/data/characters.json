@@ -7,6 +7,7 @@
     "subclass": "Battle Master",
     "level": 7,
     "appearance": "silver dragonborn, lean athletic build, deliberate grace, purple eyes. Wyvern Scale Coat catches light distinctively.",
+    "image": "https://iili.io/q8iJoiv.jpg",
     "stats": {
       "str": 10,
       "dex": 20,
@@ -193,6 +194,7 @@
     "subclass": "Berserker",
     "level": 7,
     "appearance": "half-orc woman, powerfully built, greenish-brown skin, dark hair kept practically short, brown eyes, lower jaw tusks (modest, not dramatic). Scars she doesn't explain.",
+    "image": "https://iili.io/qgnHUXa.png",
     "stats": {
       "str": 20,
       "dex": 14,
@@ -299,6 +301,7 @@
     "subclass": "Assassin",
     "level": 7,
     "appearance": "olive skin, medium build, forgettable by design, brown hair, neutral features, clothes chosen for function.",
+    "image": "https://iili.io/q8iHiKl.jpg",
     "stats": {
       "str": 10,
       "dex": 20,
@@ -421,6 +424,7 @@
     "subclass": "Alchemist",
     "level": 7,
     "appearance": "gnome, compact, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
+    "image": "https://iili.io/q8iHsl2.jpg",
     "stats": {
       "str": 8,
       "dex": 12,
@@ -529,6 +533,7 @@
     "subclass": "Evocation",
     "level": 7,
     "appearance": "human man, late thirties, amber robes with darker trim, simple cut. Looks like a traveler, life has shown on his face. Carries himself better than he used to but the wear is still visible.",
+    "image": "https://iili.io/q8iHyVj.jpg",
     "stats": {
       "str": 10,
       "dex": 12,
@@ -639,7 +644,8 @@
     "class": "Wizard",
     "subclass": "Bladesinger",
     "level": 7,
-    "appearance": "two forms. Worn appearance: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True appearance: simply radiant — light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it — it's a distraction and she knows it.",
+    "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant — light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it — it's a distraction and she knows it.",
+    "image": "https://iili.io/q8iHZH7.jpg",
     "stats": {
       "str": 10,
       "dex": 18,
@@ -760,6 +766,7 @@
     "subclass": "Life Domain",
     "level": 7,
     "appearance": "small human woman, curly brown hair with flowers in it, unrealistically green eyes, moves like water, expressions change faster than conversations.",
+    "image": "https://iili.io/q8iJ2UB.jpg",
     "stats": {
       "str": 10,
       "dex": 10,
@@ -874,6 +881,7 @@
     "subclass": null,
     "level": 7,
     "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood — the resemblance is purely in the intelligence and awareness.",
+    "image": "https://iili.io/q8iJqDg.jpg",
     "stats": {
       "str": 8,
       "dex": 20,
@@ -966,6 +974,7 @@
     "subclass": "Great Old One / Champion",
     "level": 7,
     "appearance": "human woman with distant orcish heritage — quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
+    "image": "https://iili.io/q8iHLSS.jpg",
     "stats": {
       "str": 20,
       "dex": 12,
@@ -1059,6 +1068,7 @@
     "subclass": "Champion",
     "level": 7,
     "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
+    "image": "https://iili.io/q8iJnWJ.jpg",
     "stats": {
       "str": 12,
       "dex": 20,
@@ -1146,7 +1156,8 @@
     "class": "Bard",
     "subclass": "College of Lore",
     "level": 7,
-    "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't — can command a room when she chooses, possibly through minor adjustment of appearance or cantrip. The shift is deliberate and controlled.",
+    "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't — can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
+    "image": "https://iili.io/q8iJ9ix.jpg",
     "stats": {
       "str": 8,
       "dex": 14,
@@ -1273,6 +1284,7 @@
     "subclass": "Abjuration",
     "level": 7,
     "appearance": "human woman, early thirties, very fair skin, pretty but doesn't invest time in accentuating it. Slight build, dark circles under watchful eyes from years of research and worry.",
+    "image": "https://iili.io/q8iJJKQ.jpg",
     "stats": {
       "str": 8,
       "dex": 14,
