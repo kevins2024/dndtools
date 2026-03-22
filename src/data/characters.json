@@ -1,10 +1,1522 @@
 [
   {
-    "id": 1,
-    "name": "Arin",
-    "stats": {"str": 12, "dex": 14, "con": 10, "int": 16, "wis": 13, "cha": 11},
-    "inventory": ["Sword", "Potion"],
-    "backstory": "A wandering scholar.",
-    "personality": "Curious"
+    "name": "Vaz",
+    "full_name": "Vazseslaad Thrazak",
+    "race": "Silver Dragonborn",
+    "class": "Fighter",
+    "subclass": "Battle Master",
+    "level": 7,
+    "appearance": "silver dragonborn, lean athletic build, deliberate grace, purple eyes. Wyvern Scale Coat catches light distinctively.",
+    "stats": {
+      "str": 10,
+      "dex": 20,
+      "con": 16,
+      "int": 12,
+      "wis": 10,
+      "cha": 14
+    },
+    "hp": {
+      "max": 57,
+      "current": 57
+    },
+    "ac_base": {
+      "armor": "Wyvern Scale Coat +1",
+      "armor_type": "medium",
+      "armor_base_ac": 14,
+      "shield": false,
+      "magic_bonus": 1
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Perception",
+      "Sleight of Hand"
+    ],
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
+    "spellcasting_ability": null,
+    "features": [
+      "Extra Attack",
+      "Action Surge",
+      "Second Wind",
+      "Lucky 3/day",
+      "Dual Wielder",
+      "Superiority Dice 4d10"
+    ],
+    "maneuvers": [
+      "Disarming Attack",
+      "Precision Attack",
+      "Riposte",
+      "Menacing Attack"
+    ],
+    "items": [
+      {
+        "name": "Veilstrike Rapier +2",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d8",
+        "magic_bonus": 2,
+        "notes": "Main hand. +9 to hit, 1d8+7 damage."
+      },
+      {
+        "name": "Echo Dagger +2",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d4",
+        "magic_bonus": 2,
+        "notes": "Off-hand. +9 to hit, 1d4+7 damage."
+      },
+      {
+        "name": "Warden Dagger",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d4",
+        "magic_bonus": 1,
+        "notes": "Boot dagger. +1 to attack and damage vs fiends and aberrations."
+      },
+      {
+        "name": "Hand Crossbow +2",
+        "type": "weapon",
+        "weapon_type": "ranged",
+        "finesse": false,
+        "damage_dice": "1d6",
+        "magic_bonus": 2,
+        "notes": "Primary ranged option."
+      },
+      {
+        "name": "Hand Crossbow (standard)",
+        "type": "weapon",
+        "weapon_type": "ranged",
+        "finesse": false,
+        "damage_dice": "1d6",
+        "magic_bonus": 0
+      },
+      {
+        "name": "Wyvern Scale Coat +1",
+        "type": "armor",
+        "notes": "Medium armor. AC 14 base + DEX (max 2) + 1."
+      },
+      {
+        "name": "Bracer of Swift Strikes",
+        "type": "wondrous",
+        "notes": "Reaction: off-hand attack on main hand hit. Frees bonus action."
+      },
+      {
+        "name": "Amulet of Proof against Detection",
+        "type": "wondrous"
+      },
+      {
+        "name": "Helm of Comprehending Languages",
+        "type": "wondrous"
+      },
+      {
+        "name": "Boots of Speed",
+        "type": "wondrous"
+      },
+      {
+        "name": "Ring of Mind Shielding",
+        "type": "wondrous"
+      },
+      {
+        "name": "Hat of Disguise",
+        "type": "wondrous"
+      },
+      {
+        "name": "Vest of Resistance (Cold)",
+        "type": "wondrous"
+      },
+      {
+        "name": "Stone Disc",
+        "type": "witness",
+        "notes": "Witness item. Perceives concealment — sees what is hidden."
+      },
+      {
+        "name": "The Book",
+        "type": "misc",
+        "notes": "Witness texts. Still being read."
+      },
+      {
+        "name": "Superior Healing Potion",
+        "type": "consumable"
+      },
+      {
+        "name": "Masterwork Lockpicks",
+        "type": "tool"
+      },
+      {
+        "name": "Spyglass",
+        "type": "tool"
+      }
+    ],
+    "personality": {
+      "traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
+      "quirks": "Cannot pronounce Nalfeshnee and doesn't try. Learning Thorne's handwriting."
+    },
+    "relationships": [
+      {
+        "character": "Rhuna",
+        "type": "sibling-bond",
+        "notes": "Communicate without words."
+      },
+      {
+        "character": "Denna",
+        "type": "unaddressed",
+        "notes": "Something unaddressed between them."
+      },
+      {
+        "character": "Petra",
+        "type": "warm-complicated",
+        "notes": ""
+      },
+      {
+        "character": "Kessara",
+        "type": "loyalty-forming",
+        "notes": "Fast-forming loyalty."
+      },
+      {
+        "character": "Galealzre",
+        "type": "warm-distant",
+        "notes": "His brother."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Rhuna",
+    "full_name": "Rhuna Stonebreaker",
+    "race": "Half-Orc",
+    "class": "Barbarian",
+    "subclass": "Berserker",
+    "level": 7,
+    "appearance": "half-orc woman, powerfully built, greenish-brown skin, dark hair kept practically short, brown eyes, lower jaw tusks (modest, not dramatic). Scars she doesn't explain.",
+    "stats": {
+      "str": 20,
+      "dex": 14,
+      "con": 16,
+      "int": 10,
+      "wis": 10,
+      "cha": 8
+    },
+    "hp": {
+      "max": 79,
+      "current": 79
+    },
+    "ac_base": {
+      "armor": "Bracers of Defense",
+      "armor_type": "unarmored",
+      "armor_base_ac": 10,
+      "shield": false,
+      "magic_bonus": 2,
+      "notes": "Bracers of Defense add +2 to unarmored AC. Ring of Protection adds +1 — apply in computed or notes."
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Perception",
+      "Survival"
+    ],
+    "languages": [
+      "Common",
+      "Orc"
+    ],
+    "spellcasting_ability": null,
+    "features": [
+      "Rage 3/day",
+      "Reckless Attack",
+      "Danger Sense",
+      "Extra Attack",
+      "Frenzy",
+      "Mindless Rage",
+      "Feral Instinct (advantage on initiative, can act when surprised)"
+    ],
+    "items": [
+      {
+        "name": "Berserker's Fang +1",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": false,
+        "damage_dice": "1d12",
+        "magic_bonus": 1,
+        "notes": "Greataxe. 1d12+7 while raging (STR mod + rage bonus + magic)."
+      },
+      {
+        "name": "Bracers of Defense",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ac": 2
+        },
+        "notes": "+2 AC when not wearing armor or using a shield."
+      },
+      {
+        "name": "Ring of Protection +1",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ac": 1,
+          "saving_throws": 1
+        },
+        "notes": "+1 AC and saving throws."
+      },
+      {
+        "name": "Cloak of Displacement",
+        "type": "wondrous",
+        "notes": "Attackers have disadvantage until she takes damage each round."
+      },
+      {
+        "name": "Vest of Resistance (Cold)",
+        "type": "wondrous"
+      },
+      {
+        "name": "Superior Healing Potion",
+        "type": "consumable"
+      }
+    ],
+    "personality": {
+      "traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
+      "quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it."
+    },
+    "relationships": [
+      {
+        "character": "Vaz",
+        "type": "sibling-bond",
+        "notes": "Communicate without words."
+      },
+      {
+        "character": "Jaygar",
+        "type": "unexpected-friendship",
+        "notes": "Watches him work with genuine fascination."
+      }
+    ],
+    "notes": "AC 18 accounts for Bracers of Defense (+2 unarmored) + Ring of Protection (+1) + DEX mod (+2). Verify in computed."
+  },
+  {
+    "name": "Denna",
+    "full_name": "Denna Shadowstep",
+    "race": "Human",
+    "class": "Rogue",
+    "subclass": "Assassin",
+    "level": 7,
+    "appearance": "olive skin, medium build, forgettable by design, brown hair, neutral features, clothes chosen for function.",
+    "stats": {
+      "str": 10,
+      "dex": 20,
+      "con": 12,
+      "int": 12,
+      "wis": 14,
+      "cha": 10
+    },
+    "hp": {
+      "max": 46,
+      "current": 46
+    },
+    "ac_base": {
+      "armor": "Leather Armor +2",
+      "armor_type": "light",
+      "armor_base_ac": 11,
+      "shield": false,
+      "magic_bonus": 2
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
+    "skill_proficiencies": [
+      "Stealth",
+      "Perception",
+      "Acrobatics",
+      "Sleight of Hand",
+      "Deception",
+      "Investigation"
+    ],
+    "expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Thieves Cant"
+    ],
+    "spellcasting_ability": null,
+    "features": [
+      "Sneak Attack 4d6",
+      "Cunning Action",
+      "Uncanny Dodge",
+      "Evasion",
+      "Assassinate"
+    ],
+    "items": [
+      {
+        "name": "Paired Shortsword",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d6",
+        "magic_bonus": 1,
+        "notes": "Main hand. Resonance with Pirra's paired shortsword — both gain advantage on first attack each round when within 30ft of each other."
+      },
+      {
+        "name": "Swift Strike Dagger +1",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d4",
+        "magic_bonus": 1,
+        "notes": "Off-hand. Named privately — hasn't told anyone."
+      },
+      {
+        "name": "Ring of Watchful Eye",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "skill_Perception": 1
+        },
+        "notes": "+1 Perception, Darkvision, Detect Magic 1/day."
+      },
+      {
+        "name": "Boots of Elvenkind",
+        "type": "wondrous",
+        "notes": "Advantage on Stealth checks to move silently."
+      },
+      {
+        "name": "Gloves of Thievery",
+        "type": "wondrous",
+        "notes": "+5 to Sleight of Hand and to pick locks."
+      },
+      {
+        "name": "Ring of Stilled Breath",
+        "type": "wondrous",
+        "notes": "Severin's effects. Non-Witness item."
+      },
+      {
+        "name": "Obsidian Stone",
+        "type": "witness",
+        "notes": "Witness item. Shows all exits and entrances simultaneously."
+      },
+      {
+        "name": "Leather Armor +2",
+        "type": "armor"
+      }
+    ],
+    "personality": {
+      "traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
+      "quirks": "Was gone before anyone saw her leave. Private relationship with her blades."
+    },
+    "relationships": [
+      {
+        "character": "Vaz",
+        "type": "unaddressed",
+        "notes": "Something unaddressed between them."
+      },
+      {
+        "character": "Pirra",
+        "type": "instant-recognition",
+        "notes": "Resonance beyond the paired blades."
+      },
+      {
+        "character": "Sarith",
+        "type": "complicated-history",
+        "notes": "Sarith ran her network when she was sixteen."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Jaygar",
+    "full_name": "Jaygar Waxystache",
+    "race": "Gnome",
+    "class": "Artificer",
+    "subclass": "Alchemist",
+    "level": 7,
+    "appearance": "gnome, compact, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
+    "stats": {
+      "str": 8,
+      "dex": 12,
+      "con": 19,
+      "int": 20,
+      "wis": 12,
+      "cha": 10
+    },
+    "hp": {
+      "max": 46,
+      "current": 46
+    },
+    "ac_base": {
+      "armor": "Studded Leather",
+      "armor_type": "light",
+      "armor_base_ac": 12,
+      "shield": false,
+      "magic_bonus": 0,
+      "notes": "AC 15 per sheet — may include additional item bonuses. CON 19 from Amulet of Health."
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "con",
+      "int"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "Investigation",
+      "Medicine",
+      "Perception",
+      "Sleight of Hand"
+    ],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Elvish"
+    ],
+    "spellcasting_ability": "int",
+    "features": [
+      "Tool Expertise",
+      "War Caster",
+      "Alchemical Savant",
+      "Experimental Elixir",
+      "Flash of Genius (reaction: add INT mod to nearby save or ability check)"
+    ],
+    "items": [
+      {
+        "name": "Alchemical Dagger",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d4",
+        "magic_bonus": 0,
+        "notes": "Passive: proficiency extension on alchemical checks, substance detection on touch."
+      },
+      {
+        "name": "Web Bomb",
+        "type": "consumable"
+      },
+      {
+        "name": "Smoke Bomb",
+        "type": "consumable"
+      },
+      {
+        "name": "Flash Bomb",
+        "type": "consumable"
+      },
+      {
+        "name": "Clockwork Distraction Device",
+        "type": "tool"
+      },
+      {
+        "name": "Magnetic Lock Disruptor",
+        "type": "tool"
+      },
+      {
+        "name": "Magical Aura Detector",
+        "type": "tool",
+        "notes": "30ft range."
+      },
+      {
+        "name": "Amulet of Health",
+        "type": "wondrous",
+        "stat_overrides": {
+          "con": 19
+        },
+        "notes": "Sets CON to 19."
+      },
+      {
+        "name": "Dark Lens",
+        "type": "witness",
+        "notes": "Witness item. Sees through fabrication — constructed falsehoods show their true structure."
+      }
+    ],
+    "personality": {
+      "traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
+      "quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity."
+    },
+    "relationships": [
+      {
+        "character": "Rhuna",
+        "type": "unexpected-friendship",
+        "notes": "She watches him work with genuine fascination."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Lenn",
+    "full_name": "Lenn Ashford",
+    "race": "Human",
+    "class": "Wizard",
+    "subclass": "Evocation",
+    "level": 7,
+    "appearance": "human man, late thirties, amber robes with darker trim, simple cut. Looks like a traveler, life has shown on his face. Carries himself better than he used to but the wear is still visible.",
+    "stats": {
+      "str": 10,
+      "dex": 12,
+      "con": 13,
+      "int": 18,
+      "wis": 12,
+      "cha": 12
+    },
+    "hp": {
+      "max": 38,
+      "current": 38
+    },
+    "ac_base": {
+      "armor": "Mage Armor",
+      "armor_type": "unarmored",
+      "armor_base_ac": 13,
+      "shield": false,
+      "magic_bonus": 0,
+      "notes": "Mage Armor sets base AC to 13 + DEX. Active by default before encounters."
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Investigation",
+      "Insight",
+      "Persuasion"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
+    "spellcasting_ability": "int",
+    "features": [
+      "Arcane Recovery",
+      "Potent Cantrip (cantrip saves deal half on success)"
+    ],
+    "spells": {
+      "1": [
+        "Mage Armor",
+        "Shield",
+        "Disguise Self",
+        "Silvery Barbs",
+        "Absorb Elements",
+        "Identify"
+      ],
+      "2": [
+        "Scorching Ray",
+        "Misty Step",
+        "Web",
+        "Knock",
+        "See Invisibility"
+      ],
+      "3": [
+        "Fireball",
+        "Hypnotic Pattern",
+        "Counterspell",
+        "Dispel Magic"
+      ],
+      "4": [
+        "Stoneskin",
+        "Sickening Radiance",
+        "Vitriolic Sphere"
+      ],
+      "5": [
+        "Bigby's Hand",
+        "Synaptic Static",
+        "Wall of Force"
+      ],
+      "cantrips": [
+        "Fire Bolt",
+        "Mage Hand",
+        "Mind Sliver",
+        "Prestidigitation",
+        "Message"
+      ]
+    },
+    "items": [
+      {
+        "name": "Warding Vambrace",
+        "type": "wondrous",
+        "notes": "Reaction 1/day: reduce incoming damage by 1d10+3."
+      },
+      {
+        "name": "Ring of Feather Falling",
+        "type": "wondrous"
+      },
+      {
+        "name": "Pearl of Power",
+        "type": "wondrous",
+        "notes": "Recover one expended spell slot up to 3rd level. 1/day."
+      },
+      {
+        "name": "Silvered Shortsword",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d6",
+        "magic_bonus": 0,
+        "notes": "Backup. +1 to attack and damage vs fiends and lycanthropes (silvered)."
+      },
+      {
+        "name": "Travelling Flute",
+        "type": "misc"
+      },
+      {
+        "name": "Hourglass",
+        "type": "witness",
+        "notes": "Witness item. Affects time perception or probability — still being processed."
+      }
+    ],
+    "personality": {
+      "traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
+      "quirks": "Reviews spellbook before significant encounters. Reformed gambling addict."
+    },
+    "relationships": [
+      {
+        "character": "Kessara",
+        "type": "collegial-warmth",
+        "notes": ""
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Kessara",
+    "full_name": "Kessara Nightwind",
+    "race": "Elf",
+    "class": "Wizard",
+    "subclass": "Bladesinger",
+    "level": 7,
+    "appearance": "two forms. Worn appearance: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True appearance: simply radiant — light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it — it's a distraction and she knows it.",
+    "stats": {
+      "str": 10,
+      "dex": 18,
+      "con": 13,
+      "int": 20,
+      "wis": 12,
+      "cha": 12
+    },
+    "hp": {
+      "max": 42,
+      "current": 42
+    },
+    "ac_base": {
+      "armor": "Bracers of Defense",
+      "armor_type": "unarmored",
+      "armor_base_ac": 10,
+      "shield": false,
+      "magic_bonus": 2,
+      "notes": "AC 20 with Bladesong active: 10 (base) + DEX mod (4) + INT mod (5) + Bracers (2) - 1 rounding = confirm exact. Mithral Chain Shirt available as backup."
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "Acrobatics",
+      "Perception",
+      "Athletics",
+      "History"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
+    "spellcasting_ability": "int",
+    "features": [
+      "Extra Attack",
+      "Bladesong (bonus action: +INT mod to AC, +10 speed, advantage on CON saves while active)",
+      "Fey Ancestry (advantage vs charm, immune to magical sleep)"
+    ],
+    "spells": {
+      "cantrips": [
+        "Ray of Frost",
+        "Shocking Grasp",
+        "Fire Bolt"
+      ],
+      "prepared": [
+        "Shield",
+        "Blur",
+        "Mirror Image",
+        "Misty Step",
+        "Haste",
+        "Counterspell",
+        "Shadow Blade",
+        "Silvery Barbs",
+        "Dimension Door",
+        "Greater Invisibility"
+      ]
+    },
+    "items": [
+      {
+        "name": "Frost Shortsword +1",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d6",
+        "magic_bonus": 1,
+        "notes": "Frost-touched damage."
+      },
+      {
+        "name": "Bracers of Defense",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ac": 2
+        },
+        "notes": "+2 AC when not wearing armor or shield."
+      },
+      {
+        "name": "Mithral Chain Shirt",
+        "type": "armor",
+        "notes": "Backup. No stealth disadvantage."
+      },
+      {
+        "name": "Vest of Resistance (Cold)",
+        "type": "wondrous"
+      }
+    ],
+    "personality": {
+      "traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
+      "quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked."
+    },
+    "relationships": [
+      {
+        "character": "Lenn",
+        "type": "collegial-warmth",
+        "notes": ""
+      },
+      {
+        "character": "Petra",
+        "type": "careful-fascination",
+        "notes": "Finds her oddly reassuring."
+      },
+      {
+        "character": "Rhuna",
+        "type": "mutual-respect",
+        "notes": "Immediate."
+      },
+      {
+        "character": "Vaz",
+        "type": "loyalty-forming",
+        "notes": ""
+      },
+      {
+        "character": "Galealzre",
+        "type": "sent-by",
+        "notes": "Sent by Galealzre — relationship not yet detailed."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Petra",
+    "full_name": "Petra Lightwhisper",
+    "race": "Human",
+    "class": "Cleric",
+    "subclass": "Life Domain",
+    "level": 7,
+    "appearance": "small human woman, curly brown hair with flowers in it, unrealistically green eyes, moves like water, expressions change faster than conversations.",
+    "stats": {
+      "str": 10,
+      "dex": 10,
+      "con": 14,
+      "int": 12,
+      "wis": 20,
+      "cha": 16
+    },
+    "hp": {
+      "max": 53,
+      "current": 53
+    },
+    "ac_base": {
+      "armor": "Half Plate +1",
+      "armor_type": "heavy",
+      "armor_base_ac": 16,
+      "shield": true,
+      "magic_bonus": 1,
+      "notes": "AC 19: Half Plate +1 (15 base + 1 magic = 16) + shield (2) + Bracers +1 AC (1). Verify in computed."
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Medicine",
+      "Insight",
+      "Persuasion",
+      "Religion",
+      "History"
+    ],
+    "languages": [
+      "Common",
+      "Celestial",
+      "partial Southern (Sovi's language)"
+    ],
+    "spellcasting_ability": "wis",
+    "features": [
+      "Channel Divinity",
+      "Preserve Life",
+      "Blessed Healer",
+      "Inspiring Leader"
+    ],
+    "spells": {
+      "cantrips": [],
+      "prepared": [
+        "Cure Wounds",
+        "Healing Word",
+        "Bless",
+        "Guiding Bolt",
+        "Magic Weapon",
+        "Revivify",
+        "Spirit Guardians",
+        "Hold Person",
+        "Silence",
+        "Sanctuary",
+        "Thunderwave",
+        "Blindness/Deafness",
+        "Death Ward",
+        "Freedom of Movement"
+      ]
+    },
+    "items": [
+      {
+        "name": "Enchanted Mace",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": false,
+        "damage_dice": "1d6",
+        "magic_bonus": 0,
+        "notes": "Command word: Calm Light — penetrates magical darkness. Sanctuary Trigger 1/day as bonus action without expending a spell slot. Named by Petra."
+      },
+      {
+        "name": "Half Plate +1",
+        "type": "armor"
+      },
+      {
+        "name": "Bracers +1 AC",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ac": 1
+        },
+        "notes": "+1 to AC."
+      },
+      {
+        "name": "Shield",
+        "type": "armor"
+      }
+    ],
+    "personality": {
+      "traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
+      "quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace."
+    },
+    "relationships": [
+      {
+        "character": "Vaz",
+        "type": "warm-complicated",
+        "notes": ""
+      },
+      {
+        "character": "Kessara",
+        "type": "careful-fascination",
+        "notes": "Kessara finds her oddly reassuring."
+      },
+      {
+        "character": "Marcus",
+        "type": "protective-warmth",
+        "notes": ""
+      }
+    ],
+    "notes": "Partial fluency in Sovi's southern language — historically significant."
+  },
+  {
+    "name": "Pirra",
+    "full_name": "Pirra",
+    "race": "Halfling",
+    "class": "Rogue",
+    "subclass": null,
+    "level": 7,
+    "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood — the resemblance is purely in the intelligence and awareness.",
+    "stats": {
+      "str": 8,
+      "dex": 20,
+      "con": 12,
+      "int": 13,
+      "wis": 14,
+      "cha": 12
+    },
+    "hp": {
+      "max": 38,
+      "current": 38
+    },
+    "ac_base": {
+      "armor": "Studded Leather +1",
+      "armor_type": "light",
+      "armor_base_ac": 12,
+      "shield": false,
+      "magic_bonus": 1
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
+    "skill_proficiencies": [
+      "Stealth",
+      "Sleight of Hand",
+      "Perception",
+      "Acrobatics",
+      "Deception"
+    ],
+    "expertise": [
+      "Stealth",
+      "Sleight of Hand"
+    ],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
+    "spellcasting_ability": null,
+    "features": [
+      "Sneak Attack 4d6",
+      "Cunning Action",
+      "Uncanny Dodge"
+    ],
+    "items": [
+      {
+        "name": "Paired Shortsword",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d6",
+        "magic_bonus": 1,
+        "notes": "Main hand. Resonance with Denna's paired shortsword — both gain advantage on first attack each round when within 30ft of each other."
+      },
+      {
+        "name": "Silvered Shortsword",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d6",
+        "magic_bonus": 0,
+        "notes": "Off-hand. +1 to attack and damage vs fiends and lycanthropes (silvered)."
+      },
+      {
+        "name": "Boots of Elvenkind",
+        "type": "wondrous",
+        "notes": "Advantage on Stealth checks to move silently."
+      },
+      {
+        "name": "Studded Leather +1",
+        "type": "armor"
+      },
+      {
+        "name": "Abyssal Hide Leather Armor",
+        "type": "armor",
+        "notes": "Incoming — from Calla Denn. Not yet received."
+      }
+    ],
+    "personality": {
+      "traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
+      "quirks": "Helena's niece — the family resemblance is in the intelligence, not the features."
+    },
+    "relationships": [
+      {
+        "character": "Denna",
+        "type": "instant-recognition",
+        "notes": "Resonance beyond the paired blades."
+      },
+      {
+        "character": "Helena",
+        "type": "family",
+        "notes": "Her aunt."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Kerra",
+    "full_name": "Kerra Flint",
+    "race": "Human",
+    "class": "Warlock/Fighter",
+    "subclass": "Great Old One / Champion",
+    "level": 7,
+    "appearance": "human woman with distant orcish heritage — quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
+    "stats": {
+      "str": 20,
+      "dex": 12,
+      "con": 14,
+      "int": 12,
+      "wis": 10,
+      "cha": 14
+    },
+    "hp": {
+      "max": 52,
+      "current": 52
+    },
+    "ac_base": {
+      "armor": "Leather",
+      "armor_type": "light",
+      "armor_base_ac": 11,
+      "shield": false,
+      "magic_bonus": 0
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Arcana",
+      "Deception"
+    ],
+    "languages": [
+      "Common"
+    ],
+    "spellcasting_ability": "cha",
+    "features": [
+      "Pact of the Blade",
+      "Extra Attack (via Thirsting Blade)",
+      "Agonizing Blast",
+      "Eldritch Smite",
+      "Thirsting Blade",
+      "Eyes of the Rune Keeper (reads any written language — has been doing so quietly for years, never mentioned it)"
+    ],
+    "spells": {
+      "patron": [
+        "Dissonant Whispers",
+        "Tasha's Hideous Laughter",
+        "Detect Thoughts",
+        "Phantasmal Force",
+        "Clairvoyance",
+        "Sending"
+      ],
+      "chosen": [
+        "Eldritch Blast",
+        "Hex",
+        "Hunger of Hadar",
+        "Shadow of Moil",
+        "Banishment",
+        "Misty Step",
+        "Armor of Agathys",
+        "Hold Monster"
+      ]
+    },
+    "items": [
+      {
+        "name": "Longsword +2",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": false,
+        "damage_dice": "1d8",
+        "magic_bonus": 2,
+        "notes": "Pact weapon."
+      },
+      {
+        "name": "Leather Armor",
+        "type": "armor"
+      },
+      {
+        "name": "Gauntlet",
+        "type": "witness",
+        "notes": "Witness item. Completes the pact begun three years ago in the Millhaven mines. Different in nature from all other Witness items."
+      }
+    ],
+    "personality": {
+      "traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
+      "quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years."
+    },
+    "relationships": [
+      {
+        "character": "group",
+        "type": "integrating",
+        "notes": "Still integrating with group, professional composure."
+      }
+    ],
+    "notes": "Millhaven connection is the unspoken thread. She hasn't told anyone what happened in the mines."
+  },
+  {
+    "name": "Siv",
+    "full_name": "Siv Ravencroft",
+    "race": "Human",
+    "class": "Fighter",
+    "subclass": "Champion",
+    "level": 7,
+    "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
+    "stats": {
+      "str": 12,
+      "dex": 20,
+      "con": 14,
+      "int": 10,
+      "wis": 12,
+      "cha": 10
+    },
+    "hp": {
+      "max": 52,
+      "current": 52
+    },
+    "ac_base": {
+      "armor": "Leather",
+      "armor_type": "light",
+      "armor_base_ac": 11,
+      "shield": false,
+      "magic_bonus": 0
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Perception",
+      "Survival",
+      "Acrobatics"
+    ],
+    "languages": [
+      "Common"
+    ],
+    "spellcasting_ability": null,
+    "features": [
+      "Extra Attack",
+      "Sharpshooter (ignore cover, -5/+10 option)",
+      "Archery Fighting Style (+2 to ranged attack rolls)",
+      "Remarkable Athlete"
+    ],
+    "items": [
+      {
+        "name": "Whisper Longbow +2",
+        "type": "weapon",
+        "weapon_type": "ranged",
+        "finesse": false,
+        "damage_dice": "1d8",
+        "magic_bonus": 2,
+        "notes": "+10 to hit, 1d8+6 damage. Two attacks."
+      },
+      {
+        "name": "Short Sword",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d6",
+        "magic_bonus": 0,
+        "notes": "Backup melee."
+      },
+      {
+        "name": "Bracers of Archery",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ranged_damage": 2
+        },
+        "notes": "+2 damage on ranged attacks with longbows and shortbows."
+      },
+      {
+        "name": "Leather Armor",
+        "type": "armor"
+      }
+    ],
+    "personality": {
+      "traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
+      "quirks": "Equal shares per job — a principle, not a preference."
+    },
+    "relationships": [
+      {
+        "character": "group",
+        "type": "professional",
+        "notes": "Reliable, independent."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Lexica",
+    "full_name": "Lexica Molerna",
+    "race": "Half-Elf",
+    "class": "Bard",
+    "subclass": "College of Lore",
+    "level": 7,
+    "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't — can command a room when she chooses, possibly through minor adjustment of appearance or cantrip. The shift is deliberate and controlled.",
+    "stats": {
+      "str": 8,
+      "dex": 14,
+      "con": 12,
+      "int": 19,
+      "wis": 12,
+      "cha": 20
+    },
+    "hp": {
+      "max": 44,
+      "current": 44
+    },
+    "ac_base": {
+      "armor": "Leather",
+      "armor_type": "light",
+      "armor_base_ac": 11,
+      "shield": false,
+      "magic_bonus": 0
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Perception",
+      "Persuasion",
+      "Deception",
+      "Insight",
+      "History",
+      "Arcana",
+      "Performance"
+    ],
+    "expertise": [
+      "Perception",
+      "Persuasion"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "two others (half-elf bonus)"
+    ],
+    "spellcasting_ability": "cha",
+    "features": [
+      "Bardic Inspiration d8 (5/long rest)",
+      "Jack of All Trades",
+      "Song of Rest d8",
+      "Cutting Words (reaction: subtract Inspiration die from enemy attack/damage/check)",
+      "Countercharm",
+      "Magical Secrets",
+      "Font of Inspiration",
+      "Fey Ancestry (advantage vs charm, immune to magical sleep)"
+    ],
+    "spells": {
+      "1": [
+        "Healing Word",
+        "Dissonant Whispers",
+        "Detect Magic",
+        "Unseen Servant"
+      ],
+      "2": [
+        "Invisibility",
+        "Suggestion",
+        "Silence",
+        "Locate Object"
+      ],
+      "3": [
+        "Hypnotic Pattern",
+        "Dispel Magic",
+        "Speak with Dead"
+      ],
+      "4": [
+        "Dimension Door",
+        "Locate Creature"
+      ],
+      "cantrips": [
+        "Vicious Mockery",
+        "Minor Illusion",
+        "Mage Hand"
+      ],
+      "magical_secrets": [
+        "Counterspell",
+        "Scrying"
+      ]
+    },
+    "items": [
+      {
+        "name": "Rapier",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": true,
+        "damage_dice": "1d8",
+        "magic_bonus": 0,
+        "notes": "Backup."
+      },
+      {
+        "name": "Hand Crossbow +1",
+        "type": "weapon",
+        "weapon_type": "ranged",
+        "finesse": false,
+        "damage_dice": "1d6",
+        "magic_bonus": 1
+      },
+      {
+        "name": "Boots of Elvenkind",
+        "type": "wondrous",
+        "notes": "Advantage on Stealth checks to move silently."
+      },
+      {
+        "name": "Bracers of Archery",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ranged_damage": 2
+        },
+        "notes": "+2 damage on ranged attacks."
+      },
+      {
+        "name": "Headband of Intellect",
+        "type": "wondrous",
+        "stat_overrides": {
+          "int": 19
+        },
+        "notes": "Sets INT to 19."
+      },
+      {
+        "name": "Leather Armor",
+        "type": "armor"
+      },
+      {
+        "name": "Plain Band Ring",
+        "type": "witness",
+        "notes": "Witness item. Remembers every voice ever heard."
+      }
+    ],
+    "personality": {
+      "traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
+      "quirks": "Her lute is named but she hasn't told anyone yet."
+    },
+    "relationships": [
+      {
+        "character": "group",
+        "type": "new",
+        "notes": "New to group, still establishing."
+      }
+    ],
+    "notes": "INT 19 from Headband of Intellect."
+  },
+  {
+    "name": "Lyria",
+    "full_name": "Lyria Moonwhisper",
+    "race": "Human",
+    "class": "Wizard",
+    "subclass": "Abjuration",
+    "level": 7,
+    "appearance": "human woman, early thirties, very fair skin, pretty but doesn't invest time in accentuating it. Slight build, dark circles under watchful eyes from years of research and worry.",
+    "stats": {
+      "str": 8,
+      "dex": 14,
+      "con": 12,
+      "int": 18,
+      "wis": 14,
+      "cha": 10
+    },
+    "hp": {
+      "max": 38,
+      "current": 38
+    },
+    "ac_base": {
+      "armor": "Mage Armor",
+      "armor_type": "unarmored",
+      "armor_base_ac": 13,
+      "shield": false,
+      "magic_bonus": 0,
+      "notes": "Mage Armor: 13 + DEX mod. Cloak of Protection adds +1 to AC and saves."
+    },
+    "proficiency_bonus": 3,
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Investigation",
+      "Insight",
+      "Medicine"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
+    "spellcasting_ability": "int",
+    "features": [
+      "Arcane Ward ~14HP (recharges when casting abjuration spells)",
+      "Projected Ward (reaction: extend ward to a nearby ally)",
+      "Improved Abjuration (add proficiency bonus to counterspell and dispel magic checks)",
+      "Spell Resistance (advantage on saves vs spells, resistance to spell damage)"
+    ],
+    "spells": {
+      "1": [
+        "Mage Armor",
+        "Shield",
+        "Alarm",
+        "Protection from Evil and Good"
+      ],
+      "2": [
+        "Arcane Lock",
+        "Blur",
+        "Misty Step",
+        "Pass Without Trace"
+      ],
+      "3": [
+        "Counterspell",
+        "Dispel Magic",
+        "Slow",
+        "Remove Curse",
+        "Magic Circle"
+      ],
+      "4": [
+        "Arcane Eye",
+        "Banishment",
+        "Wall of Force",
+        "Otiluke's Resilient Sphere",
+        "Evard's Black Tentacles",
+        "Phantasmal Killer"
+      ],
+      "5": [
+        "Telekinesis",
+        "Modify Memory",
+        "Danse Macabre"
+      ],
+      "cantrips": [
+        "Mage Hand",
+        "Blade Ward",
+        "Minor Illusion"
+      ]
+    },
+    "items": [
+      {
+        "name": "Cloak of Protection",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ac": 1,
+          "saving_throws": 1
+        },
+        "notes": "+1 to AC and saving throws."
+      },
+      {
+        "name": "Leather Armor",
+        "type": "armor",
+        "notes": "Worn under Mage Armor."
+      },
+      {
+        "name": "Plain Band Ring",
+        "type": "witness",
+        "notes": "Witness item. Sees multiple layers of truth simultaneously."
+      }
+    ],
+    "personality": {
+      "traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
+      "quirks": "Three years hunting answers about her brother Aldren."
+    },
+    "relationships": [
+      {
+        "character": "Aldren",
+        "type": "missing-family",
+        "notes": "Brother taken by false contract three years ago. Connected to Holvaine Dusk's operation and likely the Millhaven chamber. She doesn't know the full picture yet."
+      }
+    ],
+    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws."
   }
 ]

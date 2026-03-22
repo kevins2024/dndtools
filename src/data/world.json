@@ -1,0 +1,148 @@
+[{
+  "name": "Aethermoor",
+  "continents": [
+    {
+      "name": "Aethermoor",
+      "description": "Large continental landmass divided into five regions.",
+      "regions": [
+        {
+          "name": "The Western Reach",
+          "status": "current_campaign_region",
+          "climate": "Temperate maritime overall, distinct microclimates city to city.",
+          "shape_note": "Wide and shallow — twice as far east-west as north-south.",
+          "player_knowledge": "full",
+          "notes": "The Syndicate operates here and nowhere else. Eight sealed demon chambers distributed across this region."
+        },
+        {
+          "name": "The Northern Reaches",
+          "status": "known",
+          "climate": "Colder, harder, shorter growing seasons.",
+          "player_knowledge": "limited",
+          "notes": "Begins immediately north of Cindermarch. No merchant-council structure. Cindermarch exists specifically because of active conflict with whatever comes from here. Raiding culture implied."
+        },
+        {
+          "name": "The Eastern Interior",
+          "status": "known",
+          "climate": "Drier, more extreme temperature swings between seasons.",
+          "player_knowledge": "limited",
+          "notes": "Begins past Valdmere and the mountains. City-states rather than merchant-council model. Valdmere's frontier feeling comes partly from proximity to this region."
+        },
+        {
+          "name": "The Southern Reach",
+          "status": "known",
+          "climate": "Warmer.",
+          "player_knowledge": "limited",
+          "notes": "Distinct language entirely unrelated to Western Reach tongues. Sovi comes from here. Petra has partial fluency in Sovi's language suggesting some historical contact between regions."
+        },
+        {
+          "name": "The Deep Interior",
+          "status": "known",
+          "climate": "Mountainous.",
+          "player_knowledge": "limited",
+          "notes": "Heartland connecting all other regions, belonging to none. Largely unmapped. Dwarven presence suggested by Tormund Coalbeard's background. No roads established, no cities known."
+        }
+      ]
+    },
+    {
+      "name": "Yetgrese",
+      "description": "Second continent. Seven to eight days sailing from Aethermoor's western coast.",
+      "climate": "Warmer overall than Aethermoor based on position.",
+      "player_knowledge": "rumor",
+      "notes": "Dangerous crossing — weather, distance, and navigation all factors. Small enough that most Aethermoor residents have never met anyone from there. Occasional traders make the crossing. No cities, factions, or geography established."
+    }
+  ]
+},
+{
+  "name": "The Western Reach",
+  "continent": "Aethermoor",
+  "cities": [
+    {
+      "name": "Valdmere",
+      "coords": { "x": 0, "y": 10 },
+      "type": "city",
+      "description": "Northwest coast, faces south. Frontier port.",
+      "notes": "Two weeks sail to Khemrise."
+    },
+    {
+      "name": "Cindermarch",
+      "coords": { "x": 7.6, "y": 8 },
+      "type": "fortress",
+      "description": "Military fortress on the Northern Reaches border.",
+      "notes": "1 day north of Millhaven, 3 days northeast of Khemrise, 4-5 days ride from Ravenquay."
+    },
+    {
+      "name": "Millhaven",
+      "coords": { "x": 6.5, "y": 6.5 },
+      "type": "town",
+      "description": "Mining town, inland.",
+      "notes": "2 days northeast of Khemrise, 1 day south of Cindermarch, 4 days north of Ravenquay."
+    },
+    {
+      "name": "Khemrise",
+      "coords": { "x": 4.5, "y": 5.5 },
+      "type": "city",
+      "description": "Major coastal city, vineyards. Pivot point where the coast turns north-south.",
+      "notes": "2 days sail north of Trevash, 3 days sail north of Ravenquay."
+    },
+    {
+      "name": "Brennswick",
+      "coords": { "x": 5.5, "y": 5 },
+      "type": "village",
+      "description": "Farming village.",
+      "notes": "Half day east of Khemrise."
+    },
+    {
+      "name": "Trevash",
+      "coords": { "x": 4.7, "y": 2.7 },
+      "type": "port",
+      "description": "Small working port.",
+      "notes": "2 days sail south of Khemrise, 1 day sail north of Ravenquay."
+    },
+    {
+      "name": "Ravenquay",
+      "coords": { "x": 5.2, "y": 1.8 },
+      "type": "city",
+      "description": "River delta. Dawn Blades home base.",
+      "notes": "1 day sail south of Trevash, 3 days sail south of Khemrise."
+    },
+    {
+      "name": "Argentveil",
+      "coords": { "x": 9.1, "y": 1.1 },
+      "type": "city",
+      "description": "Southern coast after eastward bend. Warmest, most cosmopolitan.",
+      "notes": "4-5 days sail east of Ravenquay."
+    }
+  ],
+  "wilderness": [
+    {
+      "name": "Crossroads Rest",
+      "coords": { "x": 5.8, "y": 3.4 },
+      "type": "waystation",
+      "description": "Waystation on main road. 2 days north of Ravenquay toward Millhaven."
+    },
+    {
+      "name": "Sealed Chamber (Coastal)",
+      "coords": { "x": 4.9, "y": 2.2 },
+      "type": "sealed_chamber",
+      "description": "Between Trevash and Ravenquay, remote."
+    },
+    {
+      "name": "Sealed Chamber (Deep Interior)",
+      "coords": { "x": 8, "y": 7 },
+      "type": "sealed_chamber",
+      "description": "No settlement nearby."
+    },
+    {
+      "name": "Sealed Chamber (Northeast)",
+      "coords": { "x": 7, "y": 9.5 },
+      "type": "sealed_chamber",
+      "description": "Past Cindermarch into Northern Reaches."
+    },
+    {
+      "name": "Verath Ohn",
+      "coords": { "x": 3, "y": 0.5 },
+      "type": "island_or_landmark",
+      "description": "Off southern coast, in the water."
+    }
+  ]
+}]

@@ -1,8 +1,1247 @@
 [
   {
-    "id": 1,
-    "name": "Innkeeper",
-    "role": "Innkeeper",
-    "location": "Tavern"
+    "name": "Helena Sable",
+    "location": "Ravenquay",
+    "faction": "Independent / Long Arm Trading",
+    "role": "Info broker, runs the Gilt Rose",
+    "status": "ally",
+    "appearance": "Human woman, ~55. Composed, controlled.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Extraordinarily capable. Works when frightened.",
+      "quirks": "Cried once privately at Pirra's return, composed completely afterward. Reveals nothing she doesn't choose to."
+    },
+    "relationships": [
+      {
+        "character": "Pirra",
+        "type": "family",
+        "notes": "Her niece."
+      }
+    ],
+    "notes": "16% Long Arm Trading partner. Access to Casvath coastal relay via Morrow and Selt."
+  },
+  {
+    "name": "Captain Crane",
+    "location": "Ravenquay",
+    "faction": "Ravenquay Guard",
+    "role": "Guard Captain",
+    "status": "ally",
+    "appearance": "Human man, fifties. Practical uniform, nothing decorative.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Formerly corrupt, genuinely flipped. Trustworthy within his authority. Practical.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Manages Thorne, Roct, and Kael Voss custody."
+  },
+  {
+    "name": "Jessyl Denmar",
+    "location": "Ravenquay",
+    "faction": "River Quarter",
+    "role": "River Quarter leader, runs Loan Dragon",
+    "status": "ally",
+    "appearance": "Human woman.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable, pragmatic, excellent field contacts.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Managing Pip situation. Arranged Tormund Coalbeard meeting for Rhuna."
+  },
+  {
+    "name": "Aldous Marre",
+    "location": "Ravenquay",
+    "faction": "Independent",
+    "role": "Retired solicitor",
+    "status": "ally",
+    "appearance": "Older human man. Precise in movement and dress.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Precise, methodical.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Drafted Dawn Blades charter. Charter complete, council vote in 5 days. 100g owed on completion."
+  },
+  {
+    "name": "Magistrate Orvyn",
+    "location": "Ravenquay",
+    "faction": "City Government",
+    "role": "Magistrate",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Supportive, discreet.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Handling overflow warehouse title search and ship registration papers (Dawn Rose, Gilt Blades, Sovi — 3 days out)."
+  },
+  {
+    "name": "Councillor Adara Voss",
+    "location": "Ravenquay",
+    "faction": "City Government",
+    "role": "City Councillor",
+    "status": "uncertain",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Not corrupt. Opposed to Dawn Blades as potential private army.",
+      "quirks": "Morning tea, Crestfall Street, eighth bell daily."
+    },
+    "relationships": [],
+    "notes": "Uncertain charter vote. Needs to meet Vaz personally. Revivify tour suggested."
+  },
+  {
+    "name": "Big Tam",
+    "location": "Ravenquay",
+    "faction": "Loan Dragon",
+    "role": "Enforcer",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable muscle.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Jessyl Denmar",
+        "type": "works-for",
+        "notes": ""
+      }
+    ],
+    "notes": "Flipped early campaign."
+  },
+  {
+    "name": "Gritch",
+    "location": "Ravenquay",
+    "faction": "Loan Dragon",
+    "role": "Enforcer",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable muscle.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Jessyl Denmar",
+        "type": "works-for",
+        "notes": ""
+      }
+    ],
+    "notes": "Flipped early campaign."
+  },
+  {
+    "name": "Torvald Ironwood",
+    "location": "Ravenquay",
+    "faction": "Independent",
+    "role": "Weaponsmith, Trade District",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Reliable contact for weapon and armor work."
+  },
+  {
+    "name": "Calla Denn",
+    "location": "Ravenquay",
+    "faction": "Independent",
+    "role": "Leatherworker (needle and hide sign)",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Crafting: abyssal hide leather armor for Denna and Pirra, abyssal pauldron left shoulder for Lenn. 95g paid. 10 days remaining."
+  },
+  {
+    "name": "Ossivane Relk",
+    "location": "Ravenquay / Argentveil",
+    "faction": "Independent",
+    "role": "Enchanted communication dealer",
+    "status": "ally",
+    "appearance": "Sixties, slight, unremarkable face, clever eyes.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Anti-Syndicate motivated. Criteria-based client selection.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Departed for Argentveil. Find him Linden Street antiquities market, Tuesdays. Third sending stone pair and compass available when ready."
+  },
+  {
+    "name": "Tarn",
+    "location": "Ravenquay",
+    "faction": "Smoke Vipers",
+    "role": "Smoke Vipers leader, Docks Ward",
+    "status": "uncertain",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Stalling on legitimacy.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Knowingly managed Pip as Syndicate spy. Warning given. Decision on consequences pending."
+  },
+  {
+    "name": "Pip",
+    "location": "Ravenquay",
+    "faction": "Smoke Vipers (former)",
+    "role": "Former courier/spy",
+    "status": "ally",
+    "appearance": "17 years old.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Helping unravel Viper network.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Rhuna",
+        "type": "ward",
+        "notes": "In Rhuna's care."
+      }
+    ],
+    "notes": "Mother's debt cleared (Rhuna paid 50g). Father gone to Syndicate debt."
+  },
+  {
+    "name": "Tormund Coalbeard",
+    "location": "Ravenquay",
+    "faction": "Independent",
+    "role": "Retired mining ethics consultant",
+    "status": "ally",
+    "appearance": "Dwarf.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Rhuna",
+        "type": "meeting-arranged",
+        "notes": "Millhaven approach planning. Jessyl arranged."
+      }
+    ],
+    "notes": "Millhaven approach planning with Rhuna."
+  },
+  {
+    "name": "Morrow",
+    "location": "Ravenquay",
+    "faction": "Casvath Network",
+    "role": "Chandler's shop, harbor front",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Selt",
+        "type": "business-partner",
+        "notes": ""
+      }
+    ],
+    "notes": "Casvath coastal relay. Say 'grey tide is running' — sends messages within the hour along coastal road north."
+  },
+  {
+    "name": "Selt",
+    "location": "Ravenquay",
+    "faction": "Casvath Network",
+    "role": "Chandler's shop, harbor front",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Morrow",
+        "type": "business-partner",
+        "notes": ""
+      }
+    ],
+    "notes": "Casvath coastal relay. Say 'grey tide is running' — sends messages within the hour along coastal road north."
+  },
+  {
+    "name": "Idy Rossel",
+    "location": "Ravenquay",
+    "faction": "Independent",
+    "role": "Tavern owner, Shrike's Perch",
+    "status": "neutral",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Ex-smuggler.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Owns Shrike's Perch neutral ground tavern with private Rookery meeting rooms. Near the Gilt Rose."
+  },
+  {
+    "name": "Darius Rent",
+    "location": "Ravenquay",
+    "faction": "Independent",
+    "role": "Runs Wayward Warehouse job board, Trade District",
+    "status": "ally",
+    "appearance": "Scarred veteran.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Legitimate. Good standing with Dawn Blades.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Legitimate mercenary work source."
+  },
+  {
+    "name": "Aldric Thorne",
+    "location": "Ravenquay (custody)",
+    "faction": "Syndicate (former council)",
+    "role": "Former Syndicate regional council member",
+    "status": "prisoner",
+    "appearance": "Distinguished bearing. Impeccably dressed even in custody.",
+    "stats": null,
+    "items": [
+      {
+        "name": "Orvath Account Ring",
+        "type": "misc",
+        "notes": "Ring plus passphrase accesses ~180k account. No appearance needed."
+      },
+      {
+        "name": "Argentveil Account Ring",
+        "type": "misc",
+        "notes": "Ring plus passphrase plus handwritten withdrawal document accesses ~90k account."
+      },
+      {
+        "name": "Valdmere Signet",
+        "type": "misc",
+        "notes": "Flags to Veth within a day if used. Touch last or use as bait."
+      }
+    ],
+    "personality": {
+      "traits": "Composed. Cooperative under deal terms.",
+      "quirks": "Skimmed hundreds of thousands from council for years."
+    },
+    "relationships": [
+      {
+        "character": "Veth",
+        "type": "personal-arrangement",
+        "notes": "Personal arrangement with Veth older than normal council reporting."
+      }
+    ],
+    "notes": "4-month cooperation deal. Full intelligence given. Writing misdirection letter to Veth via backup channel sealed with Valdmere signet — goal is drawing Veth to Ravenquay instead of Khemrise. Comfortable custody."
+  },
+  {
+    "name": "Roct",
+    "location": "Ravenquay (custody)",
+    "faction": "Syndicate (former)",
+    "role": "Thorne's personal guard",
+    "status": "prisoner",
+    "appearance": "Large, quiet. Dead expression of someone paid for difficult situations.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Professional. Observant.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Aldric Thorne",
+        "type": "guard",
+        "notes": "Personal guard."
+      }
+    ],
+    "notes": "Same custody deal as Thorne. Watching arena for tactical Veth assessment. Described Veth as faster than he looks, fights like it's personal."
+  },
+  {
+    "name": "Kael Voss",
+    "location": "Valdmere (inserted)",
+    "faction": "Syndicate (double agent)",
+    "role": "Former elite Syndicate guard, now double agent",
+    "status": "asset",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Volunteered intelligence.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Dispatched to Valdmere with escape cover story to reinsert into Syndicate and feed intelligence back. No contact method established."
+  },
+  {
+    "name": "Sal",
+    "location": "Ravenquay (custody)",
+    "faction": "Syndicate",
+    "role": "Syndicate courier",
+    "status": "prisoner",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Guard custody. Status unclear — probably safe to release or use."
+  },
+  {
+    "name": "Marcus Freeborn",
+    "location": "Ravenquay",
+    "faction": "Dawn Blades adjacent",
+    "role": "Managing Revivify",
+    "status": "ally",
+    "appearance": "Human man, late twenties. Formerly enslaved. Wears Egarryn's red masterwork leather armor deliberately — nobody has asked why yet.",
+    "stats": {
+      "str": 20,
+      "dex": null,
+      "con": null,
+      "int": null,
+      "wis": null,
+      "cha": null
+    },
+    "combat": {
+      "class": "Fighter",
+      "level": 5,
+      "notes": "NPC-lite."
+    },
+    "items": [
+      {
+        "name": "Egarryn's Red Masterwork Leather Armor",
+        "type": "armor",
+        "notes": "Worn deliberately. Nobody has asked why yet."
+      }
+    ],
+    "personality": {
+      "traits": "Quiet in the way of someone still finding his voice.",
+      "quirks": "Gravitating toward leadership naturally, hasn't noticed."
+    },
+    "relationships": [
+      {
+        "character": "Petra",
+        "type": "protective-warmth",
+        "notes": "Petra's protective warmth toward him."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Corwin Drake",
+    "location": "Ravenquay",
+    "faction": "Ravenquay Guard / Dawn Blades adjacent",
+    "role": "Guard liaison",
+    "status": "ally",
+    "appearance": "Human man, thirties. Guard bearing.",
+    "stats": {
+      "str": 16,
+      "dex": null,
+      "con": 20,
+      "int": null,
+      "wis": null,
+      "cha": null
+    },
+    "combat": {
+      "class": "Fighter",
+      "level": 7
+    },
+    "items": [
+      {
+        "name": "Plate +1",
+        "type": "armor",
+        "stat_bonuses": {
+          "ac": 1
+        }
+      },
+      {
+        "name": "Greatsword +2",
+        "type": "weapon",
+        "weapon_type": "melee",
+        "finesse": false,
+        "damage_dice": "2d6",
+        "magic_bonus": 2
+      },
+      {
+        "name": "Gauntlets of Ogre Power",
+        "type": "wondrous",
+        "stat_overrides": {
+          "str": 19
+        },
+        "notes": "Sets STR to 19."
+      },
+      {
+        "name": "Cloak of Protection +1",
+        "type": "wondrous",
+        "stat_bonuses": {
+          "ac": 1,
+          "saving_throws": 1
+        },
+        "notes": "+1 AC and saving throws."
+      }
+    ],
+    "personality": {
+      "traits": "Knows everyone in Ravenquay who owes favors.",
+      "quirks": "Walks patrol routes even off duty."
+    },
+    "relationships": [],
+    "notes": "Holds Ravenquay sending stone."
+  },
+  {
+    "name": "Sarith Vex",
+    "location": "Ravenquay",
+    "faction": "Dawn Blades (formal member)",
+    "role": "Runs parallel solutions network",
+    "status": "ally",
+    "appearance": "Human woman, approaching 40. Capable bearing.",
+    "stats": null,
+    "combat": {
+      "class": "Rogue",
+      "level": 7,
+      "features": [
+        "Alert feat"
+      ]
+    },
+    "items": [
+      {
+        "name": "Leather Armor",
+        "type": "armor"
+      }
+    ],
+    "personality": {
+      "traits": "Has been running dangerous operations since sixteen. Captain's awareness of every person in a room.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Denna",
+        "type": "complicated-history",
+        "notes": "Ran Denna's network when Denna was sixteen. Professional respect."
+      }
+    ],
+    "notes": "Formal Dawn Blades member, no conflicting contracts."
+  },
+  {
+    "name": "Ledwent",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate",
+    "role": "Estate head butler",
+    "status": "ally",
+    "appearance": "Human man, older. Dark complexion. Impeccable bearing and timing.",
+    "stats": null,
+    "items": [
+      {
+        "name": "Khemrise Sending Stone",
+        "type": "misc",
+        "notes": "No attunement yet."
+      }
+    ],
+    "personality": {
+      "traits": "Completely reliable. 11 years in post.",
+      "quirks": "Reveals nothing he doesn't choose to."
+    },
+    "relationships": [],
+    "notes": ""
+  },
+  {
+    "name": "Cruze",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate",
+    "role": "Estate guard",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable security.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Torsten",
+        "type": "sibling",
+        "notes": "Guard brothers."
+      },
+      {
+        "character": "Gunner",
+        "type": "sibling",
+        "notes": "Guard brothers."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Torsten",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate",
+    "role": "Estate guard",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable security.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Cruze",
+        "type": "sibling",
+        "notes": "Guard brothers."
+      },
+      {
+        "character": "Gunner",
+        "type": "sibling",
+        "notes": "Guard brothers."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Gunner",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate",
+    "role": "Estate guard",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Reliable security.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Cruze",
+        "type": "sibling",
+        "notes": "Guard brothers."
+      },
+      {
+        "character": "Torsten",
+        "type": "sibling",
+        "notes": "Guard brothers."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Crispin",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate",
+    "role": "Estate guard",
+    "status": "ally",
+    "appearance": "Young guard.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Family debt being resolved via Rendwick."
+  },
+  {
+    "name": "Tova",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate",
+    "role": "Analyst — ledgers and shell company thread",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Precise, careful. Extraordinary with numbers and patterns. Not a fighter, entirely invaluable.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Seris",
+        "type": "sibling",
+        "notes": "Sisters."
+      }
+    ],
+    "notes": "Working ledgers and shell company thread with Lenn."
+  },
+  {
+    "name": "Drev",
+    "location": "Khemrise",
+    "faction": "Syndicate (flipped)",
+    "role": "Former Syndicate Khemrise coordinator, now informant",
+    "status": "ally",
+    "appearance": "Human man, forties. Lean, sharp-featured.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Careful tidiness of a man demonstrating reliability through his surroundings.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Spice import business, northern market, Thorngate Row. Going dark until further notice. Knows council structure and Veth personally. Daughter in Trevash boarding school under assumed name — Veth doesn't know about her."
+  },
+  {
+    "name": "Rendall",
+    "location": "Khemrise",
+    "faction": "City Government",
+    "role": "Acting harbormaster",
+    "status": "ally",
+    "appearance": "Human man, thirties. Slight, ink on fingers. Clean, competent.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Clean, competent. Reorganized Glicken's desk immediately.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Harbor watch on all three Dawn Blades ships."
+  },
+  {
+    "name": "Harwick",
+    "location": "Khemrise",
+    "faction": "Long Arm Trading",
+    "role": "Logistics manager (joining Long Arm Trading)",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Careful tidiness of a man demonstrating reliability through his surroundings.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Former Syndicate adjacent. Signed confession leverage. Building relay network with rotating 7-day cipher (Lenn improved it). Wool business selling to Argentveil consortium — half proceeds to Dawn Blades, approximately 2 weeks out."
+  },
+  {
+    "name": "Toreval Caine",
+    "location": "Khemrise",
+    "faction": "Independent / Syndicate adjacent (wants out)",
+    "role": "Copper Wheel barkeep, harbor district",
+    "status": "potential-asset",
+    "appearance": "Late twenties, lean, capable hands. Takes genuine pride in the Copper Wheel's appearance.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Self-contained composure of someone who learned to keep his face neutral around dangerous people.",
+      "quirks": "Denna may have made him during reconnaissance."
+    },
+    "relationships": [
+      {
+        "character": "Holvaine Dusk",
+        "type": "family",
+        "notes": "Her son. Wants out."
+      }
+    ],
+    "notes": "One week window — full intelligence on mother's operation offered in exchange for exit solution."
+  },
+  {
+    "name": "Fennick",
+    "location": "Khemrise",
+    "faction": "Dawn Blades",
+    "role": "Cargo handler, Dawn Blades ships",
+    "status": "ally",
+    "appearance": "Broad-shouldered, weathered. Longshoreman's build with guard's eyes.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Twelve years moving cargo, asking no questions. Now asking them.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Former Thorne cargo handler. Revealed fourth warehouse location to Vaz."
+  },
+  {
+    "name": "Aldric Foss",
+    "location": "Khemrise",
+    "faction": "Independent",
+    "role": "Cooper",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Staying at estate. Supplying barrels for winery operation."
+  },
+  {
+    "name": "Sovi",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate (guest)",
+    "role": "Refugee child",
+    "status": "ward",
+    "appearance": "Girl, approximately ten. Small, serious assessment eyes. Dark hair. Carries notebook always.",
+    "stats": null,
+    "items": [
+      {
+        "name": "Drawing Notebook",
+        "type": "misc",
+        "notes": "Always on her person."
+      }
+    ],
+    "personality": {
+      "traits": "Drawing prodigy. Serious, assessing.",
+      "quirks": "Doesn't cry easily. Speaks only a southern language — Petra has partial fluency."
+    },
+    "relationships": [
+      {
+        "character": "Petra",
+        "type": "communication",
+        "notes": "Petra has partial fluency in her language."
+      },
+      {
+        "character": "Vaz",
+        "type": "promise",
+        "notes": "Vaz promised return in 7 suns."
+      }
+    ],
+    "notes": "Dusken Coast origin. Staying at Khemrise estate."
+  },
+  {
+    "name": "Davoreen",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate (freed captive)",
+    "role": "Natural organizer among refugees",
+    "status": "ally",
+    "appearance": "Human woman, forties.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Careful stillness of someone who survived by becoming invisible, now discovering she doesn't need to.",
+      "quirks": "Conducting one-on-ones with refugees. Finding her voice."
+    },
+    "relationships": [],
+    "notes": "Sister somewhere in Khemrise — finding her is on the list."
+  },
+  {
+    "name": "Legend",
+    "location": "Khemrise",
+    "faction": "Dawn Blades estate (voluntary)",
+    "role": "Physician",
+    "status": "ally",
+    "appearance": "Sixties, lean, precise hands. Medical bag always on hook by door out of long habit.",
+    "stats": null,
+    "items": [
+      {
+        "name": "Medical Bag",
+        "type": "tool",
+        "notes": "Always on hook by door."
+      }
+    ],
+    "personality": {
+      "traits": "Precise. Works freely now.",
+      "quirks": "Medical bag always on hook by the door — long habit."
+    },
+    "relationships": [],
+    "notes": "Removes collars. Syndicate threatened him into compliance for years. Staying at estate voluntarily. Daughter safely in Argentveil."
+  },
+  {
+    "name": "Aldric",
+    "location": "Khemrise / coastal road",
+    "faction": "Dawn Blades informant",
+    "role": "Fisherman, freed from ship",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Pell",
+        "type": "sibling",
+        "notes": "Brothers."
+      }
+    ],
+    "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road. Briefed on Veth's ship — sabotage if opportunity arises, fully informed choice."
+  },
+  {
+    "name": "Pell",
+    "location": "Khemrise / coastal road",
+    "faction": "Dawn Blades informant",
+    "role": "Fisherman, freed from ship",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Aldric",
+        "type": "sibling",
+        "notes": "Brothers."
+      }
+    ],
+    "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road. Briefed on Veth's ship — sabotage if opportunity arises."
+  },
+  {
+    "name": "Rosten Alurath",
+    "location": "Khemrise",
+    "faction": "Independent",
+    "role": "Antiquities dealer",
+    "status": "neutral",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Antiquities shop, Merchant Quarter. Worth a visit."
+  },
+  {
+    "name": "Seris",
+    "location": "Khemrise",
+    "faction": "Dawn Blades adjacent",
+    "role": "Operative (trust-building)",
+    "status": "ally",
+    "appearance": "Assassin-type.",
+    "stats": null,
+    "combat": {
+      "class": "Rogue",
+      "level": 7,
+      "features": [
+        "Expertise: Stealth",
+        "Expertise: Deception"
+      ]
+    },
+    "items": [
+      {
+        "name": "Locket",
+        "type": "misc",
+        "notes": "Returned by Vaz as trust gesture."
+      }
+    ],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Tova",
+        "type": "sibling",
+        "notes": "Sisters."
+      }
+    ],
+    "notes": "Not yet full member. Currently surveilling Drev in Khemrise."
+  },
+  {
+    "name": "Lord Belverbridge",
+    "location": "Khemrise",
+    "faction": "Syndicate",
+    "role": "City councillor",
+    "status": "enemy",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "On Syndicate payroll.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Untouched. Proof needed for removal — payment schedule letter found in strongbox needs combining with ledger entries. Helena would know what to do with it."
+  },
+  {
+    "name": "Aunt Blaise",
+    "location": "Khemrise",
+    "faction": "Syndicate",
+    "role": "Debt collection, harbor district",
+    "status": "enemy",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "Cruel, effective.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Untouched."
+  },
+  {
+    "name": "Merren",
+    "location": "Ravenquay (came south)",
+    "faction": "Independent",
+    "role": "Harbor worker",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Aldric",
+        "type": "traveled-with",
+        "notes": ""
+      },
+      {
+        "character": "Pell",
+        "type": "traveled-with",
+        "notes": ""
+      }
+    ],
+    "notes": "Witnessed Veth's ship in Trevash. Now in Ravenquay."
+  },
+  {
+    "name": "Drev's Daughter",
+    "location": "Trevash",
+    "faction": "Independent",
+    "role": "Student",
+    "status": "civilian",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Drev",
+        "type": "family",
+        "notes": "His daughter."
+      }
+    ],
+    "notes": "Boarding school under assumed name. Veth doesn't know about her."
+  },
+  {
+    "name": "Aldren Casvath",
+    "location": "Varies",
+    "faction": "Independent / Long Arm Trading",
+    "role": "Merchant consortium, funder",
+    "status": "ally",
+    "appearance": "Sixties, silver at temples. Weathered from sea time without being a sailor.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Funded Dawn Blades 15,000g. Coastal relay network via Morrow and Selt — grey tide running. Second payment on Khemrise confirmed clean. Contact through Morrow and Selt."
+  },
+  {
+    "name": "Rendwick Pendwick",
+    "location": "Varies",
+    "faction": "Independent",
+    "role": "Freed merchant",
+    "status": "ally",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": "\"When you need wool moved, find me.\""
+    },
+    "relationships": [],
+    "notes": "Freed, reunited with family. Selling wool business to Argentveil consortium. Available for wool logistics."
+  },
+  {
+    "name": "Galealzre",
+    "location": "Argentveil",
+    "faction": "Argentveil City Council",
+    "role": "City councillor",
+    "status": "ally",
+    "appearance": "Vaz's brother.",
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Vaz",
+        "type": "family",
+        "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so."
+      },
+      {
+        "character": "Kessara",
+        "type": "sent",
+        "notes": "Sent Kessara to the party."
+      },
+      {
+        "character": "Serath Calvane",
+        "type": "dangerous-proximity",
+        "notes": "On same council. Warned about Calvane."
+      }
+    ],
+    "notes": "Receiving sending stone pair and full intelligence letter. Dangerous proximity to Serath Calvane on same council."
+  },
+  {
+    "name": "Salla Kern",
+    "location": "Cindermarch",
+    "faction": "Cindermarch Military",
+    "role": "Master-at-Arms",
+    "status": "neutral",
+    "appearance": null,
+    "stats": null,
+    "items": [],
+    "personality": {
+      "traits": "",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Sent job offer regarding Kerra. Follow-up pending."
+  },
+  {
+    "name": "Erasmus",
+    "location": "Ravenquay (probably)",
+    "faction": "Independent",
+    "role": "Battle mage for hire",
+    "status": "potential-hire",
+    "appearance": null,
+    "stats": null,
+    "combat": {
+      "notes": "300g per job, purely transactional, no loyalty."
+    },
+    "items": [],
+    "personality": {
+      "traits": "Purely transactional, no loyalty.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "Probably checks Wayward Warehouse. Still available."
+  },
+  {
+    "name": "Veth",
+    "location": "Valdmere (base)",
+    "faction": "Syndicate Council",
+    "role": "Syndicate council member",
+    "status": "enemy",
+    "appearance": "Unknown. Faster than he looks, fights like it's personal.",
+    "stats": null,
+    "combat": {
+      "notes": "Never been beaten in 15 years per Roct. Faster than he looks, fights like it's personal. Travels light — max 6 exceptional people."
+    },
+    "items": [],
+    "personality": {
+      "traits": "True believer.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Aldric Thorne",
+        "type": "personal-arrangement",
+        "notes": "Personal arrangement older than normal council reporting structure."
+      }
+    ],
+    "notes": "Valdmere base, appearance unknown. Ship with 12 armed men already sent toward Khemrise. Holds sending stone — attempting contact with Dawn Blades repeatedly. Receiving misdirection letter from Thorne."
+  },
+  {
+    "name": "Serath Calvane",
+    "location": "Argentveil",
+    "faction": "Syndicate Council",
+    "role": "Syndicate financial architect / city council trade committee",
+    "status": "enemy",
+    "appearance": null,
+    "stats": null,
+    "combat": {
+      "notes": "Not a fighter."
+    },
+    "items": [],
+    "personality": {
+      "traits": "Cautious, profit motivated. Moves slowly and carefully.",
+      "quirks": "Doesn't know Relk has left Argentveil."
+    },
+    "relationships": [
+      {
+        "character": "Galealzre",
+        "type": "same-council",
+        "notes": "On Argentveil city council together. Dangerous proximity."
+      }
+    ],
+    "notes": "On Argentveil city council trade committee for 6 years. Financial architect of Syndicate operations."
+  },
+  {
+    "name": "Holvaine Dusk",
+    "location": "Varies (moves constantly)",
+    "faction": "Syndicate Council",
+    "role": "Syndicate recruitment operations manager",
+    "status": "enemy",
+    "appearance": null,
+    "stats": null,
+    "combat": {
+      "notes": "Hard to pin down — moves constantly between cities."
+    },
+    "items": [],
+    "personality": {
+      "traits": "Manages recruitment operations across entire region — false contracts, young people funneled to labor.",
+      "quirks": ""
+    },
+    "relationships": [
+      {
+        "character": "Toreval Caine",
+        "type": "family",
+        "notes": "Her son. He wants out."
+      },
+      {
+        "character": "Lyria",
+        "type": "antagonist",
+        "notes": "Her operation took Lyria's brother Aldren three years ago."
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "name": "Garrick Ironvein",
+    "location": "Millhaven",
+    "faction": "Syndicate adjacent",
+    "role": "Mine owner",
+    "status": "enemy",
+    "appearance": null,
+    "stats": null,
+    "combat": {
+      "notes": "8 competent ex-military guards. Single road in, good sight lines. Gotten comfortable, never been challenged."
+    },
+    "items": [],
+    "personality": {
+      "traits": "Gotten comfortable, never been challenged.",
+      "quirks": ""
+    },
+    "relationships": [],
+    "notes": "40-50 collared workers in deep tunnels. Free workers complication — decent pay, don't ask questions."
   }
 ]
