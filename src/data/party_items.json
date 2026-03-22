@@ -1,0 +1,216 @@
+[
+  {
+    "name": "Sealwalker's Pendant",
+    "type": "witness",
+    "carried_by": "Lenn",
+    "attuned": false,
+    "description": "Carved from the Deepwalker's shed tooth. Script on surface readable only by Kerra. Warms when held near an unrecognized Witness.",
+    "effect": "Pass between companions in populated areas — it will find who it's looking for.",
+    "notes": ""
+  },
+  {
+    "name": "The Impossible Flower",
+    "type": "consumable",
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "quantity": 1,
+    "description": "Pressed between glass, sealed with wax. Grows only below, near the Verath Ohn chamber. Pulled up in a fishing net years ago.",
+    "effect": "Heals damage that cannot otherwise be healed. One use, then gone.",
+    "notes": "Keep until absolutely certain."
+  },
+  {
+    "name": "The Glass Sphere",
+    "type": "wondrous",
+    "carried_by": "Lenn",
+    "attuned": false,
+    "description": "Left by the Observatory presence in Mast's locked chest. Finds things that actively avoid observation, but only through peripheral vision.",
+    "effect": "Reveals things that avoid observation — peripheral vision only.",
+    "notes": "Lenn has already developed an intuitive relationship with it."
+  },
+  {
+    "name": "The Measuring Rods",
+    "type": "wondrous",
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "description": "Cuppin Tevoulle's instrument. Measures something called presence depth.",
+    "effect": "Bearing consistently northeast — toward the Eldest's valley.",
+    "notes": "Jaygar developing intuition for them without fully understanding them."
+  },
+  {
+    "name": "Greyback Hide",
+    "type": "material",
+    "carried_by": null,
+    "attuned": false,
+    "description": "Raw hide from the Greyback. The below confirmed it carries below-substance and will accept influence.",
+    "effect": "Being worked into armor or items.",
+    "notes": "In progress — not yet a finished item."
+  },
+  {
+    "name": "Greyback Claws",
+    "type": "material",
+    "carried_by": null,
+    "attuned": false,
+    "description": "Claws from the Greyback.",
+    "effect": "Useful to northern smiths.",
+    "notes": ""
+  },
+  {
+    "name": "Varath Salve",
+    "type": "consumable",
+    "carried_by": "Vrethka",
+    "attuned": false,
+    "quantity": 3,
+    "description": "Three vials of rendered Greyback fat.",
+    "effect": "Grants resistance to cold damage for one hour per vial.",
+    "notes": ""
+  },
+  {
+    "name": "Mast's Research Documents",
+    "type": "document",
+    "carried_by": "Lenn",
+    "attuned": false,
+    "description": "Eleven years of boundary work. Chamber locations including four previously unknown, approach maps for the north, correspondence connecting Calvane to Argentveil operations.",
+    "effect": "Intelligence asset. Four new chamber locations.",
+    "notes": "Lyria has reviewed."
+  },
+  {
+    "name": "Third Orvath Account Documents",
+    "type": "document",
+    "carried_by": null,
+    "attuned": false,
+    "description": "Found in Mast's research. A third Syndicate account in Orvath beyond the two Thorne disclosed. Different account structure, different access method.",
+    "effect": "Unknown — needs investigation.",
+    "notes": "Different from the Thorne accounts. Access method not yet determined."
+  },
+  {
+    "name": "Ring of Necrotic Resistance",
+    "type": "wondrous",
+    "carried_by": "Vaz",
+    "attuned": true,
+    "description": "Simple ring.",
+    "effect": "Resistance to necrotic damage while attuned.",
+    "notes": ""
+  },
+  {
+    "name": "Vessel of Stolen Years",
+    "type": "wondrous",
+    "carried_by": "Petra",
+    "attuned": false,
+    "charges": { "current": 3, "max": 3 },
+    "description": "",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "Hendvar's Enchanting Tools",
+    "type": "tool",
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "description": "Portable enchanting station — a toolkit rather than a fixed station.",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "Laboratory Diagram",
+    "type": "document",
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "description": "Self-sustaining power source research.",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "First Breath Vial",
+    "type": "consumable",
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "quantity": 1,
+    "description": "Unknown purpose.",
+    "effect": "Unknown.",
+    "notes": "Handle carefully."
+  },
+  {
+    "name": "Blackwood Wand Focus",
+    "type": "focus",
+    "carried_by": "Lenn",
+    "attuned": true,
+    "description": "Blackwood wand usable as a spellcasting focus.",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "Hendvar's Spellbook (Lenn's copy)",
+    "type": "document",
+    "carried_by": "Lenn",
+    "attuned": false,
+    "description": "Hendvar's personal spellbook. Shared with Lyria for spell extraction.",
+    "effect": "Spell extraction.",
+    "notes": ""
+  },
+  {
+    "name": "Hendvar's Spellbook (Lyria's copy)",
+    "type": "document",
+    "carried_by": "Lyria",
+    "attuned": false,
+    "description": "Hendvar's personal spellbook. Shared with Lenn for spell extraction.",
+    "effect": "Spell extraction.",
+    "notes": ""
+  },
+  {
+    "name": "Lyria's Contract",
+    "type": "document",
+    "carried_by": "Lyria",
+    "attuned": false,
+    "description": "Lyria keeps this.",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "Whetstone of Keen Edge",
+    "type": "wondrous",
+    "carried_by": "party",
+    "attuned": false,
+    "description": "Sharpening whetstone.",
+    "effect": "1/rest.",
+    "notes": ""
+  },
+  {
+    "name": "Oil of Sharpness",
+    "type": "consumable",
+    "carried_by": "party",
+    "attuned": false,
+    "quantity": 3,
+    "description": "",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "Everlasting Blue Candles",
+    "type": "wondrous",
+    "carried_by": "party",
+    "attuned": false,
+    "quantity": 6,
+    "description": "Candles that do not burn down.",
+    "effect": "",
+    "notes": ""
+  },
+  {
+    "name": "Regional Maps",
+    "type": "document",
+    "carried_by": "party",
+    "attuned": false,
+    "description": "Northern Reaches and campaign region.",
+    "effect": "Valuable for northern campaign.",
+    "notes": ""
+  },
+  {
+    "name": "Necrotic Essence Containers",
+    "type": "consumable",
+    "carried_by": "Millhaven",
+    "attuned": false,
+    "quantity": 4,
+    "description": "Sealed necrotic essence containers.",
+    "effect": "Unknown.",
+    "notes": "Left in Millhaven. Find a responsible institution when relevant. Do not open."
+  }
+]

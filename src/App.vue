@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import dataService from '@/dataService'
+import dataService from '@/utils/dataService'
 import AppLayout from '@/AppLayout.vue'
 
 export default {
@@ -15,11 +15,6 @@ export default {
       npcs: [],
       locations: [],
     }
-  },
-  async created() {
-    this.characters = await dataService.get('characters')
-    this.npcs = await dataService.get('npcs')
-    this.locations = await dataService.get('locations')
   },
 }
 </script>

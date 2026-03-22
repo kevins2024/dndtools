@@ -18,23 +18,27 @@
 
       <!-- Dynamic Component Area -->
       <div class="panel-content">
-        <component :is="activeComponent" />
+        <component :is="activeSidebarComponent" />
       </div>
     </aside>
 
     <!-- Main Content Area -->
     <main class="main-content">
-      <slot />
+      <component :is="activeDetailComponent" />
     </main>
   </div>
 </template>
 
 <script>
-import PlayerCharacterSelect from './PlayerCharacterSelect.vue'
-import NPCSelect from './NPCSelect.vue'
-import Locations from './Locations.vue'
-import Items from './Items.vue'
-import Placeholder from './Placeholder.vue'
+import PlayerCharacterSelect from './components/PlayerCharacterSelect.vue'
+import NPCSelect from './components/NPCSelect.vue'
+import Locations from './components/Locations.vue'
+import Items from './components/Items.vue'
+import Placeholder from './components/Placeholder.vue'
+import CharacterDetails from './components/CharacterDetails.vue'
+import ItemDetails from './components/ItemDetails.vue'
+import LocationDetails from './components/LocationDetails.vue'
+import dataService from '@/utils/dataService'
 
 export default {
   name: 'AppLayout',
@@ -45,11 +49,15 @@ export default {
     Locations,
     Items,
     Placeholder,
+    CharacterDetails,
+    ItemDetails,
+    LocationDetails,
   },
 
   data() {
     return {
       activeTab: 'players',
+      activeDetail: null,
       tabs: [
         {
           id: 'players',
@@ -82,14 +90,33 @@ export default {
           component: 'Placeholder',
         },
       ],
+      details: [
+        {
+          id: 'character',
+          title: 'Character',
+          component: 'CharacterDetails',
+        },
+        { id: 'item', title: 'Item', component: 'ItemDetails' },
+        { id: 'location', title: 'Location', component: 'LocationDetails' },
+      ],
     }
   },
-
   computed: {
-    activeComponent() {
+    activeSidebarComponent() {
       const tab = this.tabs.find((t) => t.id === this.activeTab)
       return tab ? tab.component : null
     },
+    activeDetailComponent() {
+      const detail = this.details.find((d) => d.id === this.activeDetail)
+      return detail ? detail.component : null
+    },
+  },
+  async created() {
+    this.characters = await dataService.get('characters')
+    this.locations = await dataService.get('locations')
+    this.npcs = await dataService.get('npcs')
+    this.partyItems = await dataService.get('party_items')
+    this.world = await dataService.get('world')
   },
 }
 </script>

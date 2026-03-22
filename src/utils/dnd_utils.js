@@ -53,11 +53,10 @@ export const dnd = {
   // stats:   raw ability scores after overrides (e.g. Amulet of Health sets CON 19)
   // bonuses: flat additive bonuses from items keyed by stat name
   //          (e.g. { ac: 2, saving_throws: 1, skill_Perception: 1, ranged_damage: 2 })
-  resolveStats(character) {
+  resolveStats(character, carriedPartyItems = []) {
+    const items = [...(character.items ?? []), ...carriedPartyItems]
     const stats = { ...character.stats }
     const bonuses = {}
-
-    const items = character.items ?? []
 
     // Pass 1 — stat_overrides set a stat to a fixed value
     for (const item of items) {
@@ -299,7 +298,7 @@ export const dnd = {
     const magic = weapon.magic_bonus ?? 0
     // Bracers of Archery apply only to ranged weapons
     const rangedBonus =
-      weapon.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
+      weapon.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
     return statMod + magic + rangedBonus
   },
 
