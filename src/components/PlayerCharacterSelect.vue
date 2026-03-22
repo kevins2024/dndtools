@@ -1,12 +1,12 @@
 <template>
   <div class="player-select">
-    <!-- <img
-      class="player-img"
-      src="https://iili.io/q8iJoiv.jpg"
-      alt="q8iJoiv.jpg"
-      border="0"
-    /> -->
-    <div v-for="player in players" :key="player.name" class="player-card">
+    <div
+      v-for="player in players"
+      :key="player.name"
+      class="player-card"
+      :class="{ selected: isSelected(player) }"
+      @click="toggleSelect(player)"
+    >
       <div
         class="player-img"
         :style="{ backgroundImage: `url(${player.image})` }"
@@ -25,8 +25,23 @@ export default {
   data() {
     return {
       players,
-      selected: [],
     }
+  },
+  computed: {
+    selected() {
+      return this.$store.state.selectedPlayers
+    },
+  },
+  methods: {
+    toggleSelect(player) {
+      const updated = this.isSelected(player)
+        ? this.selected.filter((p) => p !== player)
+        : [...this.selected, player]
+      this.$store.commit('SET_SELECTED_PLAYERS', updated)
+    },
+    isSelected(player) {
+      return this.selected.includes(player)
+    },
   },
 }
 </script>
@@ -44,6 +59,9 @@ export default {
   border: solid gray 1px;
   border-radius: 6px;
 }
+.player-card.selected {
+  border: solid gold 1px;
+}
 
 .player-card h3 {
   margin: 8px;
@@ -55,7 +73,6 @@ export default {
   aspect-ratio: 13 / 16;
   background-position: 50% 0%;
   background-repeat: no-repeat;
-  border: solid gray 1px;
-  border-radius: 6px;
+  border-bottom: solid gray 1px;
 }
 </style>

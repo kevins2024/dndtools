@@ -22,6 +22,10 @@ export const dnd = {
   // CORE PRIMITIVES
   // ─────────────────────────────────────────────
 
+  roll() {
+    return Math.floor(Math.random() * 20) + 1
+  },
+
   // Ability score → modifier
   mod(score) {
     return Math.floor((score - 10) / 2)
@@ -298,7 +302,7 @@ export const dnd = {
     const magic = weapon.magic_bonus ?? 0
     // Bracers of Archery apply only to ranged weapons
     const rangedBonus =
-      weapon.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
+      weapon.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
     return statMod + magic + rangedBonus
   },
 
