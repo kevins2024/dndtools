@@ -37,35 +37,6 @@
     "notes": "Jaygar developing intuition for them without fully understanding them."
   },
   {
-    "name": "Greyback Hide",
-    "type": "material",
-    "carried_by": null,
-    "attuned": true,
-    "description": "Raw hide from the Greyback. The below confirmed it carries below-substance and will accept influence.",
-    "effect": "Being worked into armor or items.",
-    "notes": "In progress — not yet a finished item."
-  },
-  {
-    "name": "Greyback Claws",
-    "type": "material",
-    "carried_by": null,
-    "attuned": true,
-    "description": "Claws from the Greyback.",
-    "effect": "Useful to northern smiths.",
-    "notes": ""
-  },
-  {
-    "name": "Varath Salve",
-    "type": "consumable",
-    "carried_by": "Vrethka",
-    "attuned": true,
-    "quantity": 3,
-    "description": "Three vials of rendered Greyback fat.",
-    "effect": "Grants resistance to cold damage for one hour per vial.",
-    "notes": "",
-    "equipped_by": "Vrethka"
-  },
-  {
     "name": "Mast's Research Documents",
     "type": "document",
     "carried_by": "Lenn",
@@ -260,55 +231,6 @@
     "description": "Blackwood wand usable as a spellcasting focus.",
     "effect": "+1 to spell attack rolls and spell save DC.",
     "notes": ""
-  },
-  {
-    "name": "Ravine Stalker Hide",
-    "type": "material",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "quantity": 3,
-    "description": "Darker and denser than Greyback hide. Likely carries below-substance given the boundary thinness at the kill site.",
-    "effect": "Priority material for crafting. Below-substance properties probable.",
-    "notes": ""
-  },
-  {
-    "name": "Ravine Stalker Claws",
-    "type": "material",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "quantity": 6,
-    "description": "Cutting claws — sharper than Greyback, better quality. Vrethka said these cut rather than grip.",
-    "effect": "Superior to Greyback claws as tool material for northern smiths.",
-    "notes": ""
-  },
-  {
-    "name": "Ravine Stalker Jaw Bones",
-    "type": "material",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "quantity": 3,
-    "description": "Unusual wide crushing jaw configuration.",
-    "effect": "Unknown. Jaygar has a theory, not sharing yet.",
-    "notes": ""
-  },
-  {
-    "name": "Ravine Stalker Rendered Fat",
-    "type": "material",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "description": "Less yield than the Greybacks but present.",
-    "effect": "Cold resistance properties probable — similar to Varath Salve.",
-    "notes": ""
-  },
-  {
-    "name": "Ravine Stalker Eyes",
-    "type": "material",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "quantity": 1,
-    "description": "One set of eyes from the largest Stalker. Absorbs light rather than reflects it.",
-    "effect": "Unknown. Jaygar specifically requested these and is not ready to explain yet.",
-    "notes": "Set of two eyes, from the largest individual."
   },
   {
     "name": "Helm of Brilliance Buckle",
