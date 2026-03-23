@@ -62,7 +62,8 @@
     "quantity": 3,
     "description": "Three vials of rendered Greyback fat.",
     "effect": "Grants resistance to cold damage for one hour per vial.",
-    "notes": ""
+    "notes": "",
+    "equipped_by": "Vrethka"
   },
   {
     "name": "Mast's Research Documents",
@@ -96,7 +97,10 @@
     "type": "wondrous",
     "carried_by": "Petra",
     "attuned": true,
-    "charges": { "current": 3, "max": 3 },
+    "charges": {
+      "current": 3,
+      "max": 3
+    },
     "description": "",
     "effect": "",
     "notes": ""
@@ -215,7 +219,7 @@
   },
   {
     "name": "Boots of the Tireless North",
-    "type": "wondrous",
+    "type": "armor",
     "carried_by": "Pirra",
     "attuned": true,
     "description": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet.",
@@ -249,7 +253,10 @@
     "type": "focus",
     "carried_by": "Lenn",
     "attuned": true,
-    "stat_bonuses": { "spell_attack": 1, "spell_save_dc": 1 },
+    "stat_bonuses": {
+      "spell_attack": 1,
+      "spell_save_dc": 1
+    },
     "description": "Blackwood wand usable as a spellcasting focus.",
     "effect": "+1 to spell attack rolls and spell save DC.",
     "notes": ""
@@ -325,7 +332,10 @@
     "name": "Sending Stones — Vaz / Tielle",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Vaz", "b": "Tielle" },
+    "held_by": {
+      "a": "Vaz",
+      "b": "Tielle"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -335,7 +345,10 @@
     "name": "Sending Stones — Vaz / Vrethka",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Vaz", "b": "Vrethka" },
+    "held_by": {
+      "a": "Vaz",
+      "b": "Vrethka"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -345,7 +358,10 @@
     "name": "Sending Stones — Vaz / Kern",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Vaz", "b": "Kern" },
+    "held_by": {
+      "a": "Vaz",
+      "b": "Kern"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -355,7 +371,10 @@
     "name": "Sending Stones — Tielle / Marcus",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Tielle", "b": "Marcus" },
+    "held_by": {
+      "a": "Tielle",
+      "b": "Marcus"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -365,7 +384,10 @@
     "name": "Sending Stones — Tielle / Ledwent",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Tielle", "b": "Ledwent" },
+    "held_by": {
+      "a": "Tielle",
+      "b": "Ledwent"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -375,7 +397,10 @@
     "name": "Sending Stones — Tielle / Gaelestrasz",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Tielle", "b": "Gaelestrasz" },
+    "held_by": {
+      "a": "Tielle",
+      "b": "Gaelestrasz"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -385,7 +410,10 @@
     "name": "Sending Stones — Tielle / Casvath",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Tielle", "b": "Casvath" },
+    "held_by": {
+      "a": "Tielle",
+      "b": "Casvath"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -395,7 +423,10 @@
     "name": "Sending Stones — Tielle / Coalbeard",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Tielle", "b": "Coalbeard" },
+    "held_by": {
+      "a": "Tielle",
+      "b": "Coalbeard"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -405,7 +436,10 @@
     "name": "Sending Stones — Tielle / Harwick",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Tielle", "b": "Harwick" },
+    "held_by": {
+      "a": "Tielle",
+      "b": "Harwick"
+    },
     "attuned": true,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
@@ -431,5 +465,716 @@
     "description": "Paired mirrors for short-distance communication.",
     "effect": "Visual communication only — no audio.",
     "notes": ""
+  },
+  {
+    "name": "Veilstrike Rapier +2",
+    "type": "weapon",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "notes": "Main hand. +9 to hit, 1d8+7 damage."
+  },
+  {
+    "name": "Echo Dagger +2",
+    "type": "weapon",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d4",
+    "magic_bonus": 2,
+    "notes": "Off-hand. +9 to hit, 1d4+7 damage."
+  },
+  {
+    "name": "Warden Dagger",
+    "type": "weapon",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d4",
+    "magic_bonus": 1,
+    "notes": "Boot dagger. +1 to attack and damage vs fiends and aberrations."
+  },
+  {
+    "name": "Hand Crossbow +2",
+    "type": "weapon",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "ranged",
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 2,
+    "notes": "Primary ranged option."
+  },
+  {
+    "name": "Hand Crossbow (standard)",
+    "type": "weapon",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "ranged",
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 0
+  },
+  {
+    "name": "Wyvern Scale Coat +1",
+    "type": "armor",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Medium armor. AC 14 base + DEX (max 2) + 1."
+  },
+  {
+    "name": "Bracer of Swift Strikes",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Reaction: off-hand attack on main hand hit. Frees bonus action."
+  },
+  {
+    "name": "Amulet of Proof against Detection",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Helm of Comprehending Languages",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Boots of Speed",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Ring of Mind Shielding",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Hat of Disguise",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Vest of Resistance (Cold)",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Vest of Resistance (Cold)",
+    "type": "wondrous",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Stone Disc",
+    "type": "witness",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness item. Perceives concealment — sees what is hidden."
+  },
+  {
+    "name": "The Book",
+    "type": "misc",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness texts. Still being read."
+  },
+  {
+    "name": "Superior Healing Potion",
+    "type": "consumable",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Superior Healing Potion",
+    "type": "consumable",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Masterwork Lockpicks",
+    "type": "tool",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Spyglass",
+    "type": "tool",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Berserker's Fang +1",
+    "type": "weapon",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": false,
+    "damage_dice": "1d12",
+    "magic_bonus": 1,
+    "notes": "Greataxe. 1d12+7 while raging (STR mod + rage bonus + magic)."
+  },
+  {
+    "name": "Bracers of Defense",
+    "type": "armor",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ac": 2
+    },
+    "notes": "+2 AC when not wearing armor or using a shield."
+  },
+  {
+    "name": "Bracers of Defense",
+    "type": "armor",
+    "equipped_by": "Kessara",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ac": 2
+    },
+    "notes": "+2 AC when not wearing armor or using a shield."
+  },
+  {
+    "name": "Ring of Protection +1",
+    "type": "wondrous",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ac": 1,
+      "saving_throws": 1
+    },
+    "notes": "+1 AC and saving throws."
+  },
+  {
+    "name": "Cloak of Displacement",
+    "type": "wondrous",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Attackers have disadvantage until she takes damage each round."
+  },
+  {
+    "name": "Paired Shortsword",
+    "type": "weapon",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d6",
+    "magic_bonus": 1,
+    "notes": "Main hand. Resonance with Pirra's paired shortsword — both gain advantage on first attack each round when within 30ft of each other."
+  },
+  {
+    "name": "Paired Shortsword",
+    "type": "weapon",
+    "equipped_by": "Pirra",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d6",
+    "magic_bonus": 1,
+    "notes": "Main hand. Resonance with Pirra's paired shortsword — both gain advantage on first attack each round when within 30ft of each other."
+  },
+  {
+    "name": "Dagger of Swift Strike +1",
+    "type": "weapon",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d4",
+    "magic_bonus": 1,
+    "effect": "Once per turn on a hit: immediately make a second strike with this dagger as part of the same attack, without using a bonus action.",
+    "flavor": "The iridescence pulses faintly when it connects — like something eager being satisfied.",
+    "notes": "Named privately. Hasn't told anyone."
+  },
+  {
+    "name": "Ring of Watchful Eye",
+    "type": "wondrous",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "skill_Perception": 1
+    },
+    "notes": "+1 Perception, Darkvision, Detect Magic 1/day."
+  },
+  {
+    "name": "Boots of Elvenkind",
+    "type": "armor",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Advantage on Stealth checks to move silently."
+  },
+  {
+    "name": "Boots of Elvenkind",
+    "type": "armor",
+    "equipped_by": "Siv",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Advantage on Stealth checks to move silently."
+  },
+  {
+    "name": "Gloves of Thievery",
+    "type": "wondrous",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "+5 to Sleight of Hand and to pick locks."
+  },
+  {
+    "name": "Ring of Stilled Breath",
+    "type": "wondrous",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Severin's effects. Non-Witness item."
+  },
+  {
+    "name": "Obsidian Stone",
+    "type": "witness",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness item. Shows all exits and entrances simultaneously."
+  },
+  {
+    "name": "Leather Armor +2",
+    "type": "armor",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Alchemical Dagger",
+    "type": "weapon",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d4",
+    "magic_bonus": 0,
+    "notes": "Passive: proficiency extension on alchemical checks, substance detection on touch."
+  },
+  {
+    "name": "Web Bomb",
+    "type": "consumable",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Smoke Bomb",
+    "type": "consumable",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Flash Bomb",
+    "type": "consumable",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Clockwork Distraction Device",
+    "type": "tool",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Magnetic Lock Disruptor",
+    "type": "tool",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Magical Aura Detector",
+    "type": "tool",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "30ft range."
+  },
+  {
+    "name": "Amulet of Health",
+    "type": "wondrous",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false,
+    "stat_overrides": {
+      "con": 19
+    },
+    "notes": "Sets CON to 19."
+  },
+  {
+    "name": "Dark Lens",
+    "type": "witness",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness item. Sees through fabrication — constructed falsehoods show their true structure."
+  },
+  {
+    "name": "Warding Vambrace",
+    "type": "wondrous",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Reaction 1/day: reduce incoming damage by 1d10+3."
+  },
+  {
+    "name": "Ring of Feather Falling",
+    "type": "wondrous",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Pearl of Power",
+    "type": "wondrous",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Recover one expended spell slot up to 3rd level. 1/day."
+  },
+  {
+    "name": "Silvered Shortsword",
+    "type": "weapon",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "notes": "Backup. +1 to attack and damage vs fiends and lycanthropes (silvered)."
+  },
+  {
+    "name": "Silvered Shortsword",
+    "type": "weapon",
+    "equipped_by": "Pirra",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "notes": "Backup. +1 to attack and damage vs fiends and lycanthropes (silvered)."
+  },
+  {
+    "name": "Travelling Flute",
+    "type": "misc",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Hourglass",
+    "type": "witness",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness item. Affects time perception or probability — still being processed."
+  },
+  {
+    "name": "Frost Shortsword +1",
+    "type": "weapon",
+    "equipped_by": "Kessara",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d6",
+    "magic_bonus": 1,
+    "notes": "Frost-touched damage."
+  },
+  {
+    "name": "Mithral Chain Shirt",
+    "type": "armor",
+    "equipped_by": "Kessara",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Backup. No stealth disadvantage."
+  },
+  {
+    "name": "Enchanted Mace",
+    "type": "weapon",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "notes": "Command word: Calm Light — penetrates magical darkness. Sanctuary Trigger 1/day as bonus action without expending a spell slot. Named by Petra."
+  },
+  {
+    "name": "Half Plate +1",
+    "type": "armor",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Bracers +1 AC",
+    "type": "wondrous",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ac": 1
+    },
+    "notes": "+1 to AC."
+  },
+  {
+    "name": "Shield",
+    "type": "armor",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Studded Leather +1",
+    "type": "armor",
+    "equipped_by": "Pirra",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Abyssal Hide Leather Armor",
+    "type": "armor",
+    "equipped_by": "Pirra",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Incoming — from Calla Denn. Not yet received."
+  },
+  {
+    "name": "Longsword +2",
+    "type": "weapon",
+    "equipped_by": "Kerra",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": false,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "notes": "Pact weapon."
+  },
+  {
+    "name": "Leather Armor",
+    "type": "armor",
+    "equipped_by": "Kerra",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Leather Armor",
+    "type": "armor",
+    "equipped_by": "Siv",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Leather Armor",
+    "type": "armor",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
+    "name": "Gauntlet",
+    "type": "witness",
+    "equipped_by": "Kerra",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness item. Completes the pact begun three years ago in the Millhaven mines. Different in nature from all other Witness items."
+  },
+  {
+    "name": "Whisper Longbow +2",
+    "type": "weapon",
+    "equipped_by": "Siv",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "ranged",
+    "finesse": false,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "notes": "+10 to hit, 1d8+6 damage. Two attacks."
+  },
+  {
+    "name": "Short Sword",
+    "type": "weapon",
+    "equipped_by": "Siv",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "notes": "Backup melee."
+  },
+  {
+    "name": "Bracers of Archery",
+    "type": "armor",
+    "equipped_by": "Siv",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ranged_damage": 2
+    },
+    "notes": "+2 damage on ranged attacks with longbows and shortbows."
+  },
+  {
+    "name": "Bracers of Archery",
+    "type": "armor",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ranged_damage": 2
+    },
+    "notes": "+2 damage on ranged attacks with longbows and shortbows."
+  },
+  {
+    "name": "Rapier",
+    "type": "weapon",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": true,
+    "damage_dice": "1d8",
+    "magic_bonus": 0,
+    "notes": "Backup."
+  },
+  {
+    "name": "Hand Crossbow +1",
+    "type": "weapon",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "ranged",
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 1
+  },
+  {
+    "name": "Headband of Intellect",
+    "type": "wondrous",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "attuned": false,
+    "stat_overrides": {
+      "int": 19
+    },
+    "notes": "Sets INT to 19."
+  },
+  {
+    "name": "Plain Band Ring",
+    "type": "witness",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Witness item. Remembers every voice ever heard."
+  },
+  {
+    "name": "Cloak of Protection",
+    "type": "wondrous",
+    "equipped_by": "Lyria",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "ac": 1,
+      "saving_throws": 1
+    },
+    "notes": "+1 to AC and saving throws."
+  },
+  {
+    "name": "Sealwalker's Cloak",
+    "type": "wondrous",
+    "equipped_by": "Vrethka",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "The item. Movement between chambers requires Vrethka's intention and below's participation. Action to concentrate on a known chamber — the below parts the boundary and the company passes through. Short rest to reuse. Carries companions holding her in a connected line. Maximum companions: WIS modifier (5). Party members with active Witness items are anchored; uncertain travelers risk disorientation."
+  },
+  {
+    "name": "Carved Bone Totem",
+    "type": "focus",
+    "equipped_by": "Vrethka",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Spellcasting focus. Thirty years old. Has opinions."
+  },
+  {
+    "name": "Hide Armor",
+    "type": "armor",
+    "equipped_by": "Vrethka",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Worn and repaired many times."
+  },
+  {
+    "name": "Simple Spear",
+    "type": "weapon",
+    "equipped_by": "Vrethka",
+    "carried_by": null,
+    "attuned": false,
+    "weapon_type": "melee",
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "notes": "Hasn't used offensively in fifteen years. Carries from habit."
+  },
+  {
+    "name": "Grandmother's Compass",
+    "type": "misc",
+    "equipped_by": "Vrethka",
+    "carried_by": null,
+    "attuned": false,
+    "notes": "Small carved disc of northern stone. Always points toward the nearest place her family has tended. Not magical in the traditional sense — very old and very attentive. Vrethka treats it with honest companionship."
   }
 ]

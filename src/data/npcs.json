@@ -4,7 +4,9 @@
     "location": "Ravenquay",
     "faction": "Independent / Long Arm Trading",
     "role": "Info broker, runs the Gilt Rose",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human woman, ~55. Composed, controlled.",
     "stats": null,
     "items": [],
@@ -26,7 +28,9 @@
     "location": "Ravenquay",
     "faction": "Ravenquay Guard",
     "role": "Guard Captain",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human man, fifties. Practical uniform, nothing decorative.",
     "stats": null,
     "items": [],
@@ -42,7 +46,9 @@
     "location": "Ravenquay",
     "faction": "River Quarter",
     "role": "River Quarter leader, runs Loan Dragon",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human woman.",
     "stats": null,
     "items": [],
@@ -58,7 +64,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Retired solicitor",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Older human man. Precise in movement and dress.",
     "stats": null,
     "items": [],
@@ -74,7 +82,9 @@
     "location": "Ravenquay",
     "faction": "City Government",
     "role": "Magistrate",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -90,7 +100,9 @@
     "location": "Ravenquay",
     "faction": "City Government",
     "role": "City Councillor",
-    "status": "uncertain",
+    "status": [
+      "uncertain"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -106,7 +118,9 @@
     "location": "Ravenquay",
     "faction": "Loan Dragon",
     "role": "Enforcer",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -128,7 +142,9 @@
     "location": "Ravenquay",
     "faction": "Loan Dragon",
     "role": "Enforcer",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -150,7 +166,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Weaponsmith, Trade District",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -166,7 +184,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Leatherworker (needle and hide sign)",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -182,7 +202,9 @@
     "location": "Ravenquay / Argentveil",
     "faction": "Independent",
     "role": "Enchanted communication dealer",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Sixties, slight, unremarkable face, clever eyes.",
     "stats": null,
     "items": [],
@@ -198,7 +220,9 @@
     "location": "Ravenquay",
     "faction": "Smoke Vipers",
     "role": "Smoke Vipers leader, Docks Ward",
-    "status": "uncertain",
+    "status": [
+      "uncertain"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -214,7 +238,9 @@
     "location": "Ravenquay",
     "faction": "Smoke Vipers (former)",
     "role": "Former courier/spy",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "17 years old.",
     "stats": null,
     "items": [],
@@ -236,7 +262,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Retired mining ethics consultant",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Dwarf.",
     "stats": null,
     "items": [],
@@ -258,7 +286,9 @@
     "location": "Ravenquay",
     "faction": "Casvath Network",
     "role": "Chandler's shop, harbor front",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -280,7 +310,9 @@
     "location": "Ravenquay",
     "faction": "Casvath Network",
     "role": "Chandler's shop, harbor front",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -302,7 +334,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Tavern owner, Shrike's Perch",
-    "status": "neutral",
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -318,7 +352,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Runs Wayward Warehouse job board, Trade District",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Scarred veteran.",
     "stats": null,
     "items": [],
@@ -334,7 +370,9 @@
     "location": "Ravenquay (custody)",
     "faction": "Syndicate (former council)",
     "role": "Former Syndicate regional council member",
-    "status": "prisoner",
+    "status": [
+      "prisoner"
+    ],
     "appearance": "Distinguished bearing. Impeccably dressed even in custody.",
     "stats": null,
     "items": [
@@ -372,7 +410,9 @@
     "location": "Ravenquay (custody)",
     "faction": "Syndicate (former)",
     "role": "Thorne's personal guard",
-    "status": "prisoner",
+    "status": [
+      "prisoner"
+    ],
     "appearance": "Large, quiet. Dead expression of someone paid for difficult situations.",
     "stats": null,
     "items": [],
@@ -394,7 +434,9 @@
     "location": "Valdmere (inserted)",
     "faction": "Syndicate (double agent)",
     "role": "Former elite Syndicate guard, now double agent",
-    "status": "asset",
+    "status": [
+      "asset"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -410,7 +452,9 @@
     "location": "Ravenquay (custody)",
     "faction": "Syndicate",
     "role": "Syndicate courier",
-    "status": "prisoner",
+    "status": [
+      "prisoner"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -426,7 +470,9 @@
     "location": "Ravenquay",
     "faction": "Dawn Blades adjacent",
     "role": "Managing Revivify",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human man, late twenties. Formerly enslaved. Wears Egarryn's red masterwork leather armor deliberately — nobody has asked why yet.",
     "stats": {
       "str": 20,
@@ -466,7 +512,9 @@
     "location": "Ravenquay",
     "faction": "Ravenquay Guard / Dawn Blades adjacent",
     "role": "Guard liaison",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human man, thirties. Guard bearing.",
     "stats": {
       "str": 16,
@@ -526,13 +574,17 @@
     "location": "Ravenquay",
     "faction": "Dawn Blades (formal member)",
     "role": "Runs parallel solutions network",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human woman, approaching 40. Capable bearing.",
     "stats": null,
     "combat": {
       "class": "Rogue",
       "level": 7,
-      "features": ["Alert feat"]
+      "features": [
+        "Alert feat"
+      ]
     },
     "items": [
       {
@@ -558,7 +610,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate",
     "role": "Estate head butler",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human man, older. Dark complexion. Impeccable bearing and timing.",
     "stats": null,
     "items": [
@@ -580,7 +634,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -607,7 +663,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -634,7 +692,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -661,7 +721,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Young guard.",
     "stats": null,
     "items": [],
@@ -677,7 +739,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate",
     "role": "Analyst — ledgers and shell company thread",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -699,7 +763,9 @@
     "location": "Khemrise",
     "faction": "Syndicate (flipped)",
     "role": "Former Syndicate Khemrise coordinator, now informant",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human man, forties. Lean, sharp-featured.",
     "stats": null,
     "items": [],
@@ -715,7 +781,9 @@
     "location": "Khemrise",
     "faction": "City Government",
     "role": "Acting harbormaster",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human man, thirties. Slight, ink on fingers. Clean, competent.",
     "stats": null,
     "items": [],
@@ -731,7 +799,9 @@
     "location": "Khemrise",
     "faction": "Long Arm Trading",
     "role": "Logistics manager (joining Long Arm Trading)",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -747,7 +817,9 @@
     "location": "Khemrise",
     "faction": "Independent / Syndicate adjacent (wants out)",
     "role": "Copper Wheel barkeep, harbor district",
-    "status": "potential-asset",
+    "status": [
+      "potential-asset"
+    ],
     "appearance": "Late twenties, lean, capable hands. Takes genuine pride in the Copper Wheel's appearance.",
     "stats": null,
     "items": [],
@@ -769,7 +841,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades",
     "role": "Cargo handler, Dawn Blades ships",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Broad-shouldered, weathered. Longshoreman's build with guard's eyes.",
     "stats": null,
     "items": [],
@@ -785,7 +859,9 @@
     "location": "Khemrise",
     "faction": "Independent",
     "role": "Cooper",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -801,7 +877,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate (guest)",
     "role": "Refugee child",
-    "status": "ward",
+    "status": [
+      "ward"
+    ],
     "appearance": "Girl, approximately ten. Small, serious assessment eyes. Dark hair. Carries notebook always.",
     "stats": null,
     "items": [
@@ -834,7 +912,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate (freed captive)",
     "role": "Natural organizer among refugees",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Human woman, forties.",
     "stats": null,
     "items": [],
@@ -850,7 +930,9 @@
     "location": "Khemrise",
     "faction": "Dawn Blades estate (voluntary)",
     "role": "Physician",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Sixties, lean, precise hands. Medical bag always on hook by door out of long habit.",
     "stats": null,
     "items": [
@@ -872,7 +954,9 @@
     "location": "Khemrise / coastal road",
     "faction": "Dawn Blades informant",
     "role": "Fisherman, freed from ship",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -894,7 +978,9 @@
     "location": "Khemrise / coastal road",
     "faction": "Dawn Blades informant",
     "role": "Fisherman, freed from ship",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -916,7 +1002,9 @@
     "location": "Khemrise",
     "faction": "Independent",
     "role": "Antiquities dealer",
-    "status": "neutral",
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -932,13 +1020,18 @@
     "location": "Khemrise",
     "faction": "Dawn Blades adjacent",
     "role": "Operative (trust-building)",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Assassin-type.",
     "stats": null,
     "combat": {
       "class": "Rogue",
       "level": 7,
-      "features": ["Expertise: Stealth", "Expertise: Deception"]
+      "features": [
+        "Expertise: Stealth",
+        "Expertise: Deception"
+      ]
     },
     "items": [
       {
@@ -965,7 +1058,9 @@
     "location": "Khemrise",
     "faction": "Syndicate",
     "role": "City councillor",
-    "status": "enemy",
+    "status": [
+      "enemy"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -981,7 +1076,9 @@
     "location": "Khemrise",
     "faction": "Syndicate",
     "role": "Debt collection, harbor district",
-    "status": "enemy",
+    "status": [
+      "enemy"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -997,7 +1094,9 @@
     "location": "Ravenquay (came south)",
     "faction": "Independent",
     "role": "Harbor worker",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -1024,7 +1123,9 @@
     "location": "Trevash",
     "faction": "Independent",
     "role": "Student",
-    "status": "civilian",
+    "status": [
+      "civilian"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -1046,7 +1147,9 @@
     "location": "Varies",
     "faction": "Independent / Long Arm Trading",
     "role": "Merchant consortium, funder",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Sixties, silver at temples. Weathered from sea time without being a sailor.",
     "stats": null,
     "items": [],
@@ -1062,7 +1165,9 @@
     "location": "Varies",
     "faction": "Independent",
     "role": "Freed merchant",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -1078,7 +1183,9 @@
     "location": "Argentveil",
     "faction": "Argentveil City Council",
     "role": "City councillor",
-    "status": "ally",
+    "status": [
+      "ally"
+    ],
     "appearance": "Vaz's brother.",
     "stats": null,
     "items": [],
@@ -1110,7 +1217,9 @@
     "location": "Cindermarch",
     "faction": "Cindermarch Military",
     "role": "Master-at-Arms",
-    "status": "neutral",
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "stats": null,
     "items": [],
@@ -1126,7 +1235,9 @@
     "location": "Ravenquay (probably)",
     "faction": "Independent",
     "role": "Battle mage for hire",
-    "status": "potential-hire",
+    "status": [
+      "potential-hire"
+    ],
     "appearance": null,
     "stats": null,
     "combat": {
@@ -1145,7 +1256,9 @@
     "location": "Valdmere (base)",
     "faction": "Syndicate Council",
     "role": "Syndicate council member",
-    "status": "enemy",
+    "status": [
+      "enemy"
+    ],
     "appearance": "Unknown. Faster than he looks, fights like it's personal.",
     "stats": null,
     "combat": {
@@ -1170,7 +1283,9 @@
     "location": "Argentveil",
     "faction": "Syndicate Council",
     "role": "Syndicate financial architect / city council trade committee",
-    "status": "enemy",
+    "status": [
+      "enemy"
+    ],
     "appearance": null,
     "stats": null,
     "combat": {
@@ -1195,7 +1310,9 @@
     "location": "Varies (moves constantly)",
     "faction": "Syndicate Council",
     "role": "Syndicate recruitment operations manager",
-    "status": "enemy",
+    "status": [
+      "enemy"
+    ],
     "appearance": null,
     "stats": null,
     "combat": {
@@ -1225,7 +1342,9 @@
     "location": "Millhaven",
     "faction": "Syndicate adjacent",
     "role": "Mine owner",
-    "status": "enemy",
+    "status": [
+      "enemy"
+    ],
     "appearance": null,
     "stats": null,
     "combat": {
@@ -1243,36 +1362,42 @@
     "name": "Vrethka",
     "location": "traveling_south",
     "role": "Sealwalker — first of new agreement",
-    "notes": "Vethara's mother. Sealwalker's Cloak. Shaman level 7. New Witness — two days perception. Northern clan elder. Grandmother was Witness, mother was Witness, Vrethka learning. Bow of the Returning Three recovered from Ravine Stalker site — her weapon now. Traveling south with Dawn Blades."
+    "notes": "Vethara's mother. Sealwalker's Cloak. Shaman level 7. New Witness — two days perception. Northern clan elder. Grandmother was Witness, mother was Witness, Vrethka learning. Bow of the Returning Three recovered from Ravine Stalker site — her weapon now. Traveling south with Dawn Blades.",
+    "status": []
   },
   {
     "name": "Vethara",
     "location": "clan_winter_camp",
     "role": "Clan leader",
-    "notes": "Vrethka's daughter. War ending — given two weeks before approaching Cindermarch. Proud, practical, afraid of being wrong and learning to survive it. Possible Witness — names weapons in the Witness way. Northern metalwork trade contact."
+    "notes": "Vrethka's daughter. War ending — given two weeks before approaching Cindermarch. Proud, practical, afraid of being wrong and learning to survive it. Possible Witness — names weapons in the Witness way. Northern metalwork trade contact.",
+    "status": []
   },
   {
     "name": "Varath Ichta",
     "location": "traveling_to_cindermarch",
     "role": "Firstwalker emissary",
-    "notes": "Elder's daughter. Wanted to go south her entire life. First Varath to leave the valley. Heading to Cindermarch to meet Kern. Dawn Blades contact. Will report back to her people about the south."
+    "notes": "Elder's daughter. Wanted to go south her entire life. First Varath to leave the valley. Heading to Cindermarch to meet Kern. Dawn Blades contact. Will report back to her people about the south.",
+    "status": []
   },
   {
     "name": "Tessaly",
     "location": "traveling_south_with_dawn_blades",
     "role": "Firstwalker settlement leader",
-    "notes": "Three generations of between-existence ended. Grandmother reunited — below for three generations, returned when door closed. Seventeen adults and six children traveling south. No clan, no current territory. Dawn Blades offering orientation and welcome. Tessaly's unnamed daughter — strong Witness perception, identified by Yungkin."
+    "notes": "Three generations of between-existence ended. Grandmother reunited — below for three generations, returned when door closed. Seventeen adults and six children traveling south. No clan, no current territory. Dawn Blades offering orientation and welcome. Tessaly's unnamed daughter — strong Witness perception, identified by Yungkin.",
+    "status": []
   },
   {
     "name": "Vrethka's Grandmother",
     "location": "traveling_south_with_dawn_blades",
     "role": "Returned below-tender",
-    "notes": "Went below voluntarily three generations ago to tend from underneath. Returned when door closed. Tessaly's grandmother. Below preserved her beyond normal lifespan. Adjusting to above."
+    "notes": "Went below voluntarily three generations ago to tend from underneath. Returned when door closed. Tessaly's grandmother. Below preserved her beyond normal lifespan. Adjusting to above.",
+    "status": []
   },
   {
     "name": "Yungkin",
     "location": "traveling_south_with_dawn_blades",
     "role": "Child of the Eldest",
-    "notes": "Named by Vaz. Child of the Eldest — exists comfortably in boundary bleed between above and below. Followed company since blank space. Tended boundary alongside Witnesses unprompted. Made itself smaller out of courtesy for above travelers. Patient with children. Not threatening. Unique — no precedent for above travel by Eldest's children."
+    "notes": "Named by Vaz. Child of the Eldest — exists comfortably in boundary bleed between above and below. Followed company since blank space. Tended boundary alongside Witnesses unprompted. Made itself smaller out of courtesy for above travelers. Patient with children. Not threatening. Unique — no precedent for above travel by Eldest's children.",
+    "status": []
   }
 ]
