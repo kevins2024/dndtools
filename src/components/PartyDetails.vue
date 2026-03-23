@@ -1,19 +1,29 @@
 <template>
   <div class="stub-panel">
-    <!-- <div v-for="player in this.selectedPlayers" :key="player.name">
-      <h3>{{ player.name }}</h3>
-      <p>Level: {{ player.level }}</p>
-      <p>Class: {{ player.class }}</p>
-    </div> -->
-    <button @click="rollInitiative">Roll Initiative</button>
-    <button @click="temp">run the script</button>
-    <div v-if="initiativeOrder.length">
-      <h4>Initiative Order:</h4>
-      <ol>
-        <li v-for="entry in initiativeOrder" :key="entry.name">
-          {{ entry.name }} - Initiative: {{ entry.initiative }}
-        </li>
-      </ol>
+    <button
+      class="toggle-combat"
+      :class="{ active: inCombat }"
+      @click="toggleCombat"
+    >
+      {{ inCombat ? 'Exit Combat' : 'Enter Combat' }}
+    </button>
+    <div v-if="inCombat">
+      <button @click="rollInitiative">Roll Initiative</button>
+      <div v-if="initiativeOrder.length">
+        <h4>Initiative Order:</h4>
+        <ol>
+          <li v-for="entry in initiativeOrder" :key="entry.name">
+            {{ entry.name }} - Initiative: {{ entry.initiative }}
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div v-else>
+      <div v-for="player in this.selectedPlayers" :key="player.name">
+        <h3>{{ player.name }}</h3>
+        <p>Level: {{ player.level }}</p>
+        <p>Class: {{ player.class }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +34,7 @@ export default {
   data() {
     return {
       initiativeOrder: [],
+      inCombat: false,
     }
   },
   computed: {
@@ -43,6 +54,21 @@ export default {
         })
         .sort((a, b) => b.initiative - a.initiative)
     },
+    toggleCombat() {
+      this.inCombat = !this.inCombat
+    },
   },
 }
 </script>
+<style scoped>
+.toggle-combat {
+  background: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.toggle-combat.active {
+  background: #4a90d9;
+  border-color: #4a90d9;
+  color: white;
+}
+</style>
