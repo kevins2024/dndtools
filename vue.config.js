@@ -12,4 +12,9 @@ module.exports = {
       return args
     })
   },
+  configureWebpack: {
+    watchOptions: {
+      ignored: [path.resolve(__dirname, 'src/data')],
+    },
+  },
 }

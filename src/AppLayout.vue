@@ -39,7 +39,6 @@ import CharacterDetails from './components/CharacterDetails.vue'
 import ItemDetails from './components/ItemDetails.vue'
 import LocationDetails from './components/LocationDetails.vue'
 import PartyDetails from './components/PartyDetails.vue'
-import dataService from '@/utils/dataService'
 
 export default {
   name: 'AppLayout',
@@ -117,6 +116,7 @@ export default {
         return 'character'
       if (this.activeTab === 'players' && this.selectedPlayers.length > 1)
         return 'party'
+      if (this.activeTab === 'items') return 'item'
 
       return null
     },
@@ -124,13 +124,7 @@ export default {
       return this.$store.state.selectedPlayers
     },
   },
-  async created() {
-    this.characters = await dataService.get('characters')
-    this.locations = await dataService.get('locations')
-    this.npcs = await dataService.get('npcs')
-    this.partyItems = await dataService.get('party_items')
-    this.world = await dataService.get('world')
-  },
+  async created() {},
 }
 </script>
 

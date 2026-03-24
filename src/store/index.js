@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     selectedPlayers: [],
+    selectedItem: null,
     characters: [],
     npcs: [],
     locations: [],
@@ -21,11 +22,21 @@ export default new Vuex.Store({
     SET_SELECTED_PLAYERS(state, players) {
       state.selectedPlayers = players
     },
+    SET_SELECTED_ITEM(state, item) {
+      state.selectedItem = item
+    },
     SET_TABLE(state, { table, data }) {
       state[table] = data
     },
     SET_LOADED(state, value) {
       state.loaded = value
+    },
+    ADD_PARTY_ITEM(state, item) {
+      const nextId =
+        state.party_items.length > 0
+          ? Math.max(...state.party_items.map((i) => i.id)) + 1
+          : 0
+      state.party_items.push({ ...item, id: nextId })
     },
   },
 

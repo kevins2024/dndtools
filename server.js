@@ -22,6 +22,7 @@ const ALLOWED_TABLES = [
   'homebrew',
   'factions',
   'quests',
+  'finances',
 ]
 
 app.use(cors({ origin: 'http://localhost:8080' }))
@@ -85,8 +86,33 @@ app.post('/api/:table', (req, res) => {
   }
 })
 
+// ── Startup Scripts ───────────────────────────────────────
+// Add one-off data migration functions here, then clear them out when done.
+// Each function receives DATA_DIR and should log what it did.
+
+function addIndexToFile(filename) {
+  const file = path.join(DATA_DIR, filename)
+  if (!fs.existsSync(file)) {
+    console.log(`[startup] Skipping ${filename} — file not found`)
+    return
+  }
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+  if (!Array.isArray(data)) {
+    console.log(`[startup] Skipping ${filename} — not an array`)
+    return
+  }
+  const updated = data.map((obj, i) => ({ ...obj, id: i }))
+  fs.writeFileSync(file, JSON.stringify(updated, null, 2), 'utf8')
+  console.log(`[startup] Indexed ${updated.length} entries in ${filename}`)
+}
+
+function startupScripts() {
+  // addIndexToFile('party_items.json')
+}
+
 // ── Start ─────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`Data server running on http://localhost:${PORT}`)
   console.log(`Serving files from: ${DATA_DIR}`)
+  startupScripts()
 })
