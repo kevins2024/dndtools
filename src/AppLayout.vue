@@ -208,7 +208,6 @@ export default {
 .panel-content {
   flex: 1;
   overflow-y: auto;
-  padding: 1.2vh 0.8vw;
   scrollbar-width: thin;
   scrollbar-color: #3a2e22 transparent;
 }
@@ -227,6 +226,5 @@ export default {
   flex: 1;
   height: 100vh;
   overflow-y: auto;
-  padding: 2vh 2vw;
 }
 </style>

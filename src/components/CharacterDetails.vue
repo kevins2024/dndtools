@@ -13,11 +13,11 @@ export default {
   },
   computed: {
     selected() {
-      return this.$store.state.selectedPlayers
-        ? length > 1
-          ? false
-          : this.$store.state.selectedPlayers[0]
-        : null
+      if (this.$store.state.selectedPlayers.length === 1) {
+        const name = this.$store.state.selectedPlayers[0]
+        return this.$store.state.characters.find((c) => c.name === name)
+      }
+      return null
     },
   },
 }

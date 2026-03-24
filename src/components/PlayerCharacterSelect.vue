@@ -1,17 +1,18 @@
 <template>
   <div class="player-select">
-    <div
-      v-for="player in players"
-      :key="player.name"
-      class="player-card"
-      :class="{ selected: isSelected(player) }"
-      @click="toggleSelect(player)"
-    >
+    <div v-for="player in players" :key="player.name" class="player-card">
       <div
         class="player-img"
         :style="{ backgroundImage: `url(${player.image})` }"
       ></div>
       <h3>{{ player.name }}</h3>
+      <input
+        type="checkbox"
+        class="player-checkbox"
+        :checked="isSelected(player)"
+        @click.stop
+        @change="toggleSelect(player)"
+      />
     </div>
   </div>
 </template>
@@ -35,12 +36,12 @@ export default {
   methods: {
     toggleSelect(player) {
       const updated = this.isSelected(player)
-        ? this.selected.filter((p) => p !== player)
-        : [...this.selected, player]
+        ? this.selected.filter((name) => name !== player.name)
+        : [...this.selected, player.name]
       this.$store.commit('SET_SELECTED_PLAYERS', updated)
     },
     isSelected(player) {
-      return this.selected.includes(player)
+      return this.selected.includes(player.name)
     },
   },
 }
@@ -58,7 +59,19 @@ export default {
   width: 84%;
   border: solid gray 1px;
   border-radius: 6px;
+  position: relative;
 }
+
+.player-checkbox {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: gold; /* matches your selected border color */
+}
+
 .player-card.selected {
   border: solid gold 1px;
 }

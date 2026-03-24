@@ -19,6 +19,7 @@
       </div>
     </div>
     <div v-else>
+      <button @click="saveParty">Save as Party</button>
       <div v-for="player in this.selectedPlayers" :key="player.name">
         <h3>{{ player.name }}</h3>
         <p>Level: {{ player.level }}</p>
@@ -29,6 +30,7 @@
 </template>
 <script>
 import { dnd } from '../utils/dnd_utils'
+import dataService from '../utils/dataService'
 
 export default {
   name: 'PartyDetails',
@@ -40,10 +42,15 @@ export default {
   },
   computed: {
     selectedPlayers() {
-      return this.$store.state.selectedPlayers
+      return this.$store.state.characters.filter((char) =>
+        this.$store.state.selectedPlayers.includes(char.name)
+      )
     },
   },
   methods: {
+    saveParty() {
+      dataService.saveSelectedPlayers(this.selectedPlayers.map((p) => p.name))
+    },
     rollInitiative() {
       this.initiativeOrder = this.selectedPlayers
         .map((player) => {

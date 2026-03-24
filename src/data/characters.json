@@ -8,53 +8,118 @@
     "level": 7,
     "appearance": "silver dragonborn, lean athletic build, deliberate grace, purple eyes. Wyvern Scale Coat catches light distinctively.",
     "image": "https://iili.io/q8iJoiv.jpg",
-    "stats": {
-      "str": 10,
-      "dex": 20,
-      "con": 16,
-      "int": 12,
-      "wis": 10,
-      "cha": 14
-    },
-    "hp": {
-      "max": 57,
-      "current": 57
-    },
-    "ac_base": {
-      "armor": "Wyvern Scale Coat +1",
-      "armor_type": "medium",
-      "armor_base_ac": 14,
-      "shield": false,
-      "magic_bonus": 1
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "con"],
+    "spellcasting_ability": null,
+    "notes": "",
+    "stat_str": 10,
+    "stat_dex": 20,
+    "stat_con": 16,
+    "stat_int": 12,
+    "stat_wis": 10,
+    "stat_cha": 14,
+    "hp_max": 57,
+    "hp_current": 57,
+    "personality_traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
+    "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try. Learning Thorne's handwriting.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Sleight of Hand"
     ],
-    "languages": ["Common", "Draconic"],
-    "spellcasting_ability": null,
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
     "features": [
-      "Extra Attack",
-      "Action Surge",
-      "Second Wind",
-      "Lucky 3/day",
-      "Dual Wielder",
-      "Superiority Dice 4d10"
+      {
+        "name": "Extra Attack",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Action Surge",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Second Wind",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Lucky 3/day",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Dual Wielder",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Superiority Dice 4d10",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Disarming Attack",
+        "type": "maneuver",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Precision Attack",
+        "type": "maneuver",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Riposte",
+        "type": "maneuver",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Menacing Attack",
+        "type": "maneuver",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
     ],
-    "maneuvers": [
-      "Disarming Attack",
-      "Precision Attack",
-      "Riposte",
-      "Menacing Attack"
-    ],
-    "personality": {
-      "traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
-      "quirks": "Cannot pronounce Nalfeshnee and doesn't try. Learning Thorne's handwriting."
-    },
+    "spells": [],
     "relationships": [
       {
         "character": "Rhuna",
@@ -82,7 +147,6 @@
         "notes": "His brother."
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -94,48 +158,94 @@
     "level": 7,
     "appearance": "half-orc woman, powerfully built, greenish-brown skin, dark hair kept practically short, brown eyes, lower jaw tusks (modest, not dramatic). Scars she doesn't explain.",
     "image": "https://iili.io/qgnHUXa.png",
-    "stats": {
-      "str": 20,
-      "dex": 14,
-      "con": 16,
-      "int": 10,
-      "wis": 10,
-      "cha": 8
-    },
-    "hp": {
-      "max": 79,
-      "current": 79
-    },
-    "ac_base": {
-      "armor": "Bracers of Defense",
-      "armor_type": "unarmored",
-      "armor_base_ac": 10,
-      "shield": false,
-      "magic_bonus": 2
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "con"],
+    "spellcasting_ability": null,
+    "notes": "AC 18 accounts for Bracers of Defense (+2 unarmored) + Ring of Protection (+1) + DEX mod (+2). Verify in computed.",
+    "stat_str": 20,
+    "stat_dex": 14,
+    "stat_con": 16,
+    "stat_int": 10,
+    "stat_wis": 10,
+    "stat_cha": 8,
+    "hp_max": 79,
+    "hp_current": 79,
+    "personality_traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
+    "personality_quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": ["Common", "Orc"],
-    "spellcasting_ability": null,
-    "features": [
-      "Rage 3/day",
-      "Reckless Attack",
-      "Danger Sense",
-      "Extra Attack",
-      "Frenzy",
-      "Mindless Rage",
-      "Feral Instinct (advantage on initiative, can act when surprised)"
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Orc"
     ],
-    "personality": {
-      "traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
-      "quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it."
-    },
+    "features": [
+      {
+        "name": "Rage 3/day",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Reckless Attack",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Danger Sense",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Extra Attack",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Frenzy",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Mindless Rage",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Feral Instinct (advantage on initiative, can act when surprised)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [],
     "relationships": [
       {
         "character": "Vaz",
@@ -148,7 +258,6 @@
         "notes": "Watches him work with genuine fascination."
       }
     ],
-    "notes": "AC 18 accounts for Bracers of Defense (+2 unarmored) + Ring of Protection (+1) + DEX mod (+2). Verify in computed.",
     "active_effects": []
   },
   {
@@ -160,27 +269,24 @@
     "level": 7,
     "appearance": "olive skin, medium build, forgettable by design, brown hair, neutral features, clothes chosen for function.",
     "image": "https://iili.io/q8iHiKl.jpg",
-    "stats": {
-      "str": 10,
-      "dex": 20,
-      "con": 12,
-      "int": 12,
-      "wis": 14,
-      "cha": 10
-    },
-    "hp": {
-      "max": 46,
-      "current": 46
-    },
-    "ac_base": {
-      "armor": "Leather Armor +2",
-      "armor_type": "light",
-      "armor_base_ac": 11,
-      "shield": false,
-      "magic_bonus": 2
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["dex", "int"],
+    "spellcasting_ability": null,
+    "notes": "",
+    "stat_str": 10,
+    "stat_dex": 20,
+    "stat_con": 12,
+    "stat_int": 12,
+    "stat_wis": 14,
+    "stat_cha": 10,
+    "hp_max": 46,
+    "hp_current": 46,
+    "personality_traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
+    "personality_quirks": "Was gone before anyone saw her leave. Private relationship with her blades.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -189,20 +295,57 @@
       "Deception",
       "Investigation"
     ],
-    "expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Thieves Cant"],
-    "spellcasting_ability": null,
-    "features": [
-      "Sneak Attack 4d6",
-      "Cunning Action",
-      "Uncanny Dodge",
-      "Evasion",
-      "Assassinate"
+    "expertise": [
+      "Stealth",
+      "Perception"
     ],
-    "personality": {
-      "traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
-      "quirks": "Was gone before anyone saw her leave. Private relationship with her blades."
-    },
+    "languages": [
+      "Common",
+      "Thieves Cant"
+    ],
+    "features": [
+      {
+        "name": "Sneak Attack 4d6",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Cunning Action",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Uncanny Dodge",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Evasion",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Assassinate",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [],
     "relationships": [
       {
         "character": "Vaz",
@@ -220,7 +363,6 @@
         "notes": "Sarith ran her network when she was sixteen."
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -232,27 +374,24 @@
     "level": 7,
     "appearance": "gnome, compact, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
     "image": "https://iili.io/qguKsjf.jpg",
-    "stats": {
-      "str": 8,
-      "dex": 12,
-      "con": 19,
-      "int": 20,
-      "wis": 12,
-      "cha": 10
-    },
-    "hp": {
-      "max": 46,
-      "current": 46
-    },
-    "ac_base": {
-      "armor": "Studded Leather",
-      "armor_type": "light",
-      "armor_base_ac": 12,
-      "shield": false,
-      "magic_bonus": 0
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["con", "int"],
+    "spellcasting_ability": "int",
+    "notes": "",
+    "stat_str": 8,
+    "stat_dex": 12,
+    "stat_con": 19,
+    "stat_int": 20,
+    "stat_wis": 12,
+    "stat_cha": 10,
+    "hp_max": 46,
+    "hp_current": 46,
+    "personality_traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
+    "personality_quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "con",
+      "int"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -260,19 +399,55 @@
       "Perception",
       "Sleight of Hand"
     ],
-    "languages": ["Common", "Gnomish", "Elvish"],
-    "spellcasting_ability": "int",
-    "features": [
-      "Tool Expertise",
-      "War Caster",
-      "Alchemical Savant",
-      "Experimental Elixir",
-      "Flash of Genius (reaction: add INT mod to nearby save or ability check)"
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Elvish"
     ],
-    "personality": {
-      "traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
-      "quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity."
-    },
+    "features": [
+      {
+        "name": "Tool Expertise",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "War Caster",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Alchemical Savant",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Experimental Elixir",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Flash of Genius (reaction: add INT mod to nearby save or ability check)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [],
     "relationships": [
       {
         "character": "Rhuna",
@@ -280,7 +455,6 @@
         "notes": "She watches him work with genuine fascination."
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -292,27 +466,24 @@
     "level": 7,
     "appearance": "human man, late thirties, amber robes with darker trim, simple cut. Looks like a traveler, life has shown on his face. Carries himself better than he used to but the wear is still visible.",
     "image": "https://iili.io/q8iHyVj.jpg",
-    "stats": {
-      "str": 10,
-      "dex": 12,
-      "con": 13,
-      "int": 18,
-      "wis": 12,
-      "cha": 12
-    },
-    "hp": {
-      "max": 38,
-      "current": 38
-    },
-    "ac_base": {
-      "armor": "Mage Armor",
-      "armor_type": "unarmored",
-      "armor_base_ac": 13,
-      "shield": false,
-      "magic_bonus": 0
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["int", "wis"],
+    "spellcasting_ability": "int",
+    "notes": "",
+    "stat_str": 10,
+    "stat_dex": 12,
+    "stat_con": 13,
+    "stat_int": 18,
+    "stat_wis": 12,
+    "stat_cha": 12,
+    "hp_max": 38,
+    "hp_current": 38,
+    "personality_traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
+    "personality_quirks": "Reviews spellbook before significant encounters. Reformed gambling addict.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -320,43 +491,194 @@
       "Insight",
       "Persuasion"
     ],
-    "languages": ["Common", "Elvish", "Draconic"],
-    "spellcasting_ability": "int",
-    "features": [
-      "Arcane Recovery",
-      "Potent Cantrip (cantrip saves deal half on success)"
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
     ],
-    "spells": {
-      "1": [
-        "Mage Armor",
-        "Shield",
-        "Disguise Self",
-        "Silvery Barbs",
-        "Absorb Elements",
-        "Identify"
-      ],
-      "2": ["Scorching Ray", "Misty Step", "Web", "Knock", "See Invisibility"],
-      "3": [
-        "Fireball",
-        "Hypnotic Pattern",
-        "Counterspell",
-        "Dispel Magic",
-        "Speak with Dead"
-      ],
-      "4": ["Stoneskin", "Sickening Radiance", "Vitriolic Sphere"],
-      "5": ["Bigby's Hand", "Synaptic Static", "Wall of Force"],
-      "cantrips": [
-        "Fire Bolt",
-        "Mage Hand",
-        "Mind Sliver",
-        "Prestidigitation",
-        "Message"
-      ]
-    },
-    "personality": {
-      "traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
-      "quirks": "Reviews spellbook before significant encounters. Reformed gambling addict."
-    },
+    "features": [
+      {
+        "name": "Arcane Recovery",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Potent Cantrip (cantrip saves deal half on success)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Mage Armor",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Shield",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Disguise Self",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silvery Barbs",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Absorb Elements",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Identify",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Scorching Ray",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Web",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Knock",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "See Invisibility",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Fireball",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Counterspell",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Speak with Dead",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Stoneskin",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Sickening Radiance",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Vitriolic Sphere",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Bigby's Hand",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Synaptic Static",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Wall of Force",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Prestidigitation",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
+    ],
     "relationships": [
       {
         "character": "Kessara",
@@ -364,7 +686,6 @@
         "notes": ""
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -376,27 +697,24 @@
     "level": 7,
     "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant — light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it — it's a distraction and she knows it.",
     "image": "https://iili.io/q8iHZH7.jpg",
-    "stats": {
-      "str": 10,
-      "dex": 18,
-      "con": 13,
-      "int": 20,
-      "wis": 12,
-      "cha": 12
-    },
-    "hp": {
-      "max": 42,
-      "current": 42
-    },
-    "ac_base": {
-      "armor": "Bracers of Defense",
-      "armor_type": "unarmored",
-      "armor_base_ac": 10,
-      "shield": false,
-      "magic_bonus": 2
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["int", "wis"],
+    "spellcasting_ability": "int",
+    "notes": "",
+    "stat_str": 10,
+    "stat_dex": 18,
+    "stat_con": 13,
+    "stat_int": 20,
+    "stat_wis": 12,
+    "stat_cha": 12,
+    "hp_max": 42,
+    "hp_current": 42,
+    "personality_traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
+    "personality_quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -404,32 +722,118 @@
       "Athletics",
       "History"
     ],
-    "languages": ["Common", "Elvish", "Draconic"],
-    "spellcasting_ability": "int",
-    "features": [
-      "Extra Attack",
-      "Bladesong (bonus action: +INT mod to AC, +10 speed, advantage on CON saves while active)",
-      "Fey Ancestry (advantage vs charm, immune to magical sleep)"
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
     ],
-    "spells": {
-      "cantrips": ["Ray of Frost", "Shocking Grasp", "Fire Bolt"],
-      "prepared": [
-        "Shield",
-        "Blur",
-        "Mirror Image",
-        "Misty Step",
-        "Haste",
-        "Counterspell",
-        "Shadow Blade",
-        "Silvery Barbs",
-        "Dimension Door",
-        "Greater Invisibility"
-      ]
-    },
-    "personality": {
-      "traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
-      "quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked."
-    },
+    "features": [
+      {
+        "name": "Extra Attack",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Bladesong (bonus action: +INT mod to AC, +10 speed, advantage on CON saves while active)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Fey Ancestry (advantage vs charm, immune to magical sleep)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Ray of Frost",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Shocking Grasp",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Shield",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Blur",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mirror Image",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Haste",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Counterspell",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Shadow Blade",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silvery Barbs",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dimension Door",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Greater Invisibility",
+        "level": null,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
     "relationships": [
       {
         "character": "Lenn",
@@ -457,7 +861,6 @@
         "notes": "Sent by Galealzre — relationship not yet detailed."
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -469,27 +872,24 @@
     "level": 7,
     "appearance": "small human woman, curly brown hair with flowers in it, unrealistically green eyes, moves like water, expressions change faster than conversations.",
     "image": "https://iili.io/q8iJ2UB.jpg",
-    "stats": {
-      "str": 10,
-      "dex": 10,
-      "con": 14,
-      "int": 12,
-      "wis": 20,
-      "cha": 16
-    },
-    "hp": {
-      "max": 53,
-      "current": 53
-    },
-    "ac_base": {
-      "armor": "Half Plate +1",
-      "armor_type": "heavy",
-      "armor_base_ac": 16,
-      "shield": true,
-      "magic_bonus": 1
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["wis", "cha"],
+    "spellcasting_ability": "wis",
+    "notes": "Partial fluency in Sovi's southern language — historically significant.",
+    "stat_str": 10,
+    "stat_dex": 10,
+    "stat_con": 14,
+    "stat_int": 12,
+    "stat_wis": 20,
+    "stat_cha": 16,
+    "hp_max": 53,
+    "hp_current": 53,
+    "personality_traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
+    "personality_quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -497,49 +897,72 @@
       "Religion",
       "History"
     ],
-    "languages": ["Common", "Celestial", "partial Southern (Sovi's language)"],
-    "spellcasting_ability": "wis",
-    "features": [
-      "Channel Divinity",
-      "Preserve Life",
-      "Blessed Healer",
-      "Inspiring Leader"
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Celestial",
+      "partial Southern (Sovi's language)"
     ],
-    "spells": {
-      "cantrips": [
-        "Sacred Flame",
-        "Guidance",
-        "Spare the Dying",
-        "Thaumaturgy"
-      ],
-      "domain_spells": {
-        "notes": "Always prepared, don't count against prepared spell limit.",
-        "1st": ["Bless", "Cure Wounds"],
-        "2nd": ["Lesser Restoration", "Spiritual Weapon"],
-        "3rd": ["Beacon of Hope", "Revivify"],
-        "4th": ["Death Ward", "Guardian of Faith"]
+    "features": [
+      {
+        "name": "Channel Divinity",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       },
-      "prepared": {
-        "1st": ["Healing Word", "Guiding Bolt", "Sanctuary", "Shield of Faith"],
-        "2nd": [
-          "Silence",
-          "Blindness/Deafness",
-          "Prayer of Healing",
-          "Magic Weapon"
-        ],
-        "3rd": [
-          "Spirit Guardians",
-          "Mass Healing Word",
-          "Magic Circle",
-          "Hold Person"
-        ],
-        "4th": ["Freedom of Movement"]
+      {
+        "name": "Preserve Life",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Blessed Healer",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Inspiring Leader",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
-    },
-    "personality": {
-      "traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
-      "quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace."
-    },
+    ],
+    "spells": [
+      {
+        "name": "Sacred Flame",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Spare the Dying",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Thaumaturgy",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
+    ],
     "relationships": [
       {
         "character": "Vaz",
@@ -557,7 +980,6 @@
         "notes": ""
       }
     ],
-    "notes": "Partial fluency in Sovi's southern language — historically significant.",
     "active_effects": []
   },
   {
@@ -569,27 +991,24 @@
     "level": 7,
     "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood — the resemblance is purely in the intelligence and awareness.",
     "image": "https://iili.io/q8iJqDg.jpg",
-    "stats": {
-      "str": 8,
-      "dex": 20,
-      "con": 12,
-      "int": 13,
-      "wis": 14,
-      "cha": 12
-    },
-    "hp": {
-      "max": 38,
-      "current": 38
-    },
-    "ac_base": {
-      "armor": "Studded Leather +1",
-      "armor_type": "light",
-      "armor_base_ac": 12,
-      "shield": false,
-      "magic_bonus": 1
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["dex", "int"],
+    "spellcasting_ability": null,
+    "notes": "",
+    "stat_str": 8,
+    "stat_dex": 20,
+    "stat_con": 12,
+    "stat_int": 13,
+    "stat_wis": 14,
+    "stat_cha": 12,
+    "hp_max": 38,
+    "hp_current": 38,
+    "personality_traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
+    "personality_quirks": "Helena's niece — the family resemblance is in the intelligence, not the features.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Sleight of Hand",
@@ -597,14 +1016,41 @@
       "Acrobatics",
       "Deception"
     ],
-    "expertise": ["Stealth", "Sleight of Hand"],
-    "languages": ["Common", "Halfling"],
-    "spellcasting_ability": null,
-    "features": ["Sneak Attack 4d6", "Cunning Action", "Uncanny Dodge"],
-    "personality": {
-      "traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
-      "quirks": "Helena's niece — the family resemblance is in the intelligence, not the features."
-    },
+    "expertise": [
+      "Stealth",
+      "Sleight of Hand"
+    ],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
+    "features": [
+      {
+        "name": "Sneak Attack 4d6",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Cunning Action",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Uncanny Dodge",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [],
     "relationships": [
       {
         "character": "Denna",
@@ -617,7 +1063,6 @@
         "notes": "Her aunt."
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -629,62 +1074,170 @@
     "level": 7,
     "appearance": "human woman with distant orcish heritage — quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
     "image": "https://iili.io/q8iHLSS.jpg",
-    "stats": {
-      "str": 20,
-      "dex": 12,
-      "con": 14,
-      "int": 12,
-      "wis": 10,
-      "cha": 14
-    },
-    "hp": {
-      "max": 52,
-      "current": 52
-    },
-    "ac_base": {
-      "armor": "Leather",
-      "armor_type": "light",
-      "armor_base_ac": 11,
-      "shield": false,
-      "magic_bonus": 0
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Athletics", "Intimidation", "Arcana", "Deception"],
-    "languages": ["Common"],
     "spellcasting_ability": "cha",
-    "features": [
-      "Pact of the Blade",
-      "Extra Attack (via Thirsting Blade)",
-      "Agonizing Blast",
-      "Eldritch Smite",
-      "Thirsting Blade",
-      "Eyes of the Rune Keeper (reads any written language — has been doing so quietly for years, never mentioned it)"
+    "notes": "Millhaven connection is the unspoken thread. She hasn't told anyone what happened in the mines.",
+    "stat_str": 20,
+    "stat_dex": 12,
+    "stat_con": 14,
+    "stat_int": 12,
+    "stat_wis": 10,
+    "stat_cha": 14,
+    "hp_max": 52,
+    "hp_current": 52,
+    "personality_traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
+    "personality_quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "wis",
+      "cha"
     ],
-    "spells": {
-      "patron": [
-        "Dissonant Whispers",
-        "Tasha's Hideous Laughter",
-        "Detect Thoughts",
-        "Phantasmal Force",
-        "Clairvoyance",
-        "Sending"
-      ],
-      "chosen": [
-        "Eldritch Blast",
-        "Hex",
-        "Hunger of Hadar",
-        "Shadow of Moil",
-        "Banishment",
-        "Misty Step",
-        "Armor of Agathys",
-        "Hold Monster"
-      ]
-    },
-    "personality": {
-      "traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
-      "quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years."
-    },
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Arcana",
+      "Deception"
+    ],
+    "expertise": [],
+    "languages": [
+      "Common"
+    ],
+    "features": [
+      {
+        "name": "Pact of the Blade",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Extra Attack (via Thirsting Blade)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Agonizing Blast",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Eldritch Smite",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Thirsting Blade",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Eyes of the Rune Keeper (reads any written language — has been doing so quietly for years, never mentioned it)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Dissonant Whispers",
+        "level": null,
+        "prepared": true,
+        "type": "patron"
+      },
+      {
+        "name": "Tasha's Hideous Laughter",
+        "level": null,
+        "prepared": true,
+        "type": "patron"
+      },
+      {
+        "name": "Detect Thoughts",
+        "level": null,
+        "prepared": true,
+        "type": "patron"
+      },
+      {
+        "name": "Phantasmal Force",
+        "level": null,
+        "prepared": true,
+        "type": "patron"
+      },
+      {
+        "name": "Clairvoyance",
+        "level": null,
+        "prepared": true,
+        "type": "patron"
+      },
+      {
+        "name": "Sending",
+        "level": null,
+        "prepared": true,
+        "type": "patron"
+      },
+      {
+        "name": "Eldritch Blast",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Hex",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Hunger of Hadar",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Shadow of Moil",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Banishment",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Misty Step",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Armor of Agathys",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Hold Monster",
+        "level": null,
+        "prepared": true,
+        "type": "chosen"
+      }
+    ],
     "relationships": [
       {
         "character": "group",
@@ -692,7 +1245,6 @@
         "notes": "Still integrating with group, professional composure."
       }
     ],
-    "notes": "Millhaven connection is the unspoken thread. She hasn't told anyone what happened in the mines.",
     "active_effects": []
   },
   {
@@ -704,45 +1256,69 @@
     "level": 7,
     "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
     "image": "https://iili.io/q8iJnWJ.jpg",
-    "stats": {
-      "str": 12,
-      "dex": 20,
-      "con": 14,
-      "int": 10,
-      "wis": 12,
-      "cha": 10
-    },
-    "hp": {
-      "max": 52,
-      "current": 52
-    },
-    "ac_base": {
-      "armor": "Leather",
-      "armor_type": "light",
-      "armor_base_ac": 11,
-      "shield": false,
-      "magic_bonus": 0
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "con"],
+    "spellcasting_ability": null,
+    "notes": "",
+    "stat_str": 12,
+    "stat_dex": 20,
+    "stat_con": 14,
+    "stat_int": 10,
+    "stat_wis": 12,
+    "stat_cha": 10,
+    "hp_max": 52,
+    "hp_current": 52,
+    "personality_traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
+    "personality_quirks": "Equal shares per job — a principle, not a preference.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
       "Survival",
       "Acrobatics"
     ],
-    "languages": ["Common"],
-    "spellcasting_ability": null,
-    "features": [
-      "Extra Attack",
-      "Sharpshooter (ignore cover, -5/+10 option)",
-      "Archery Fighting Style (+2 to ranged attack rolls)",
-      "Remarkable Athlete"
+    "expertise": [],
+    "languages": [
+      "Common"
     ],
-    "personality": {
-      "traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
-      "quirks": "Equal shares per job — a principle, not a preference."
-    },
+    "features": [
+      {
+        "name": "Extra Attack",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Sharpshooter (ignore cover, -5/+10 option)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Archery Fighting Style (+2 to ranged attack rolls)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Remarkable Athlete",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [],
     "relationships": [
       {
         "character": "group",
@@ -750,7 +1326,6 @@
         "notes": "Reliable, independent."
       }
     ],
-    "notes": "",
     "active_effects": []
   },
   {
@@ -762,27 +1337,24 @@
     "level": 7,
     "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't — can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
     "image": "https://iili.io/q8iJ9ix.jpg",
-    "stats": {
-      "str": 8,
-      "dex": 14,
-      "con": 12,
-      "int": 19,
-      "wis": 12,
-      "cha": 20
-    },
-    "hp": {
-      "max": 44,
-      "current": 44
-    },
-    "ac_base": {
-      "armor": "Leather",
-      "armor_type": "light",
-      "armor_base_ac": 11,
-      "shield": false,
-      "magic_bonus": 0
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["dex", "cha"],
+    "spellcasting_ability": "cha",
+    "notes": "INT 19 from Headband of Intellect.",
+    "stat_str": 8,
+    "stat_dex": 14,
+    "stat_con": 12,
+    "stat_int": 19,
+    "stat_wis": 12,
+    "stat_cha": 20,
+    "hp_max": 44,
+    "hp_current": 44,
+    "personality_traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
+    "personality_quirks": "Her lute is named but she hasn't told anyone yet.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -792,36 +1364,191 @@
       "Arcana",
       "Performance"
     ],
-    "expertise": ["Perception", "Persuasion"],
-    "languages": ["Common", "Elvish", "two others (half-elf bonus)"],
-    "spellcasting_ability": "cha",
-    "features": [
-      "Bardic Inspiration d8 (5/long rest)",
-      "Jack of All Trades",
-      "Song of Rest d8",
-      "Cutting Words (reaction: subtract Inspiration die from enemy attack/damage/check)",
-      "Countercharm",
-      "Magical Secrets",
-      "Font of Inspiration",
-      "Fey Ancestry (advantage vs charm, immune to magical sleep)"
+    "expertise": [
+      "Perception",
+      "Persuasion"
     ],
-    "spells": {
-      "1": [
-        "Healing Word",
-        "Dissonant Whispers",
-        "Detect Magic",
-        "Unseen Servant"
-      ],
-      "2": ["Invisibility", "Suggestion", "Silence", "Locate Object"],
-      "3": ["Hypnotic Pattern", "Dispel Magic", "Speak with Dead"],
-      "4": ["Dimension Door", "Locate Creature"],
-      "cantrips": ["Vicious Mockery", "Minor Illusion", "Mage Hand"],
-      "magical_secrets": ["Counterspell", "Scrying"]
-    },
-    "personality": {
-      "traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
-      "quirks": "Her lute is named but she hasn't told anyone yet."
-    },
+    "languages": [
+      "Common",
+      "Elvish",
+      "two others (half-elf bonus)"
+    ],
+    "features": [
+      {
+        "name": "Bardic Inspiration d8 (5/long rest)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Jack of All Trades",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Song of Rest d8",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Cutting Words (reaction: subtract Inspiration die from enemy attack/damage/check)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Countercharm",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Magical Secrets",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Font of Inspiration",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Fey Ancestry (advantage vs charm, immune to magical sleep)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dissonant Whispers",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Detect Magic",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Unseen Servant",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Invisibility",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Suggestion",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silence",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Locate Object",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Speak with Dead",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dimension Door",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Locate Creature",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Vicious Mockery",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Counterspell",
+        "level": null,
+        "prepared": true,
+        "type": "magical_secret"
+      },
+      {
+        "name": "Scrying",
+        "level": null,
+        "prepared": true,
+        "type": "magical_secret"
+      }
+    ],
     "relationships": [
       {
         "character": "group",
@@ -829,7 +1556,6 @@
         "notes": "New to group, still establishing."
       }
     ],
-    "notes": "INT 19 from Headband of Intellect.",
     "active_effects": []
   },
   {
@@ -841,27 +1567,24 @@
     "level": 7,
     "appearance": "human woman, early thirties, very fair skin, pretty but doesn't invest time in accentuating it. Slight build, dark circles under watchful eyes from years of research and worry.",
     "image": "https://iili.io/q8iJJKQ.jpg",
-    "stats": {
-      "str": 8,
-      "dex": 14,
-      "con": 12,
-      "int": 18,
-      "wis": 14,
-      "cha": 10
-    },
-    "hp": {
-      "max": 38,
-      "current": 38
-    },
-    "ac_base": {
-      "armor": "Mage Armor",
-      "armor_type": "unarmored",
-      "armor_base_ac": 13,
-      "shield": false,
-      "magic_bonus": 0
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["int", "wis"],
+    "spellcasting_ability": "int",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws.",
+    "stat_str": 8,
+    "stat_dex": 14,
+    "stat_con": 12,
+    "stat_int": 18,
+    "stat_wis": 14,
+    "stat_cha": 10,
+    "hp_max": 38,
+    "hp_current": 38,
+    "personality_traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
+    "personality_quirks": "Three years hunting answers about her brother Aldren.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -869,51 +1592,216 @@
       "Insight",
       "Medicine"
     ],
-    "languages": ["Common", "Elvish", "Draconic"],
-    "spellcasting_ability": "int",
-    "features": [
-      "Arcane Ward ~14HP (recharges when casting abjuration spells)",
-      "Projected Ward (reaction: extend ward to a nearby ally)",
-      "Improved Abjuration (add proficiency bonus to counterspell and dispel magic checks)",
-      "Spell Resistance (advantage on saves vs spells, resistance to spell damage)"
+    "expertise": [],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
     ],
-    "spells": {
-      "1": [
-        "Mage Armor",
-        "Shield",
-        "Alarm",
-        "Protection from Evil and Good",
-        "Silvery Barbs"
-      ],
-      "2": ["Arcane Lock", "Blur", "Misty Step", "Pass Without Trace"],
-      "3": [
-        "Counterspell",
-        "Dispel Magic",
-        "Slow",
-        "Remove Curse",
-        "Magic Circle",
-        "Speak with Dead"
-      ],
-      "4": [
-        "Arcane Eye",
-        "Banishment",
-        "Wall of Force",
-        "Otiluke's Resilient Sphere",
-        "Evard's Black Tentacles",
-        "Phantasmal Killer"
-      ],
-      "5": [
-        "Telekinesis",
-        "Modify Memory",
-        "Danse Macabre",
-        "Negative Energy Flood (homebrew spell from necromancer's spellbook)"
-      ],
-      "cantrips": ["Mage Hand", "Blade Ward", "Minor Illusion"]
-    },
-    "personality": {
-      "traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
-      "quirks": "Three years hunting answers about her brother Aldren."
-    },
+    "features": [
+      {
+        "name": "Arcane Ward ~14HP (recharges when casting abjuration spells)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Projected Ward (reaction: extend ward to a nearby ally)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Improved Abjuration (add proficiency bonus to counterspell and dispel magic checks)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Spell Resistance (advantage on saves vs spells, resistance to spell damage)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Mage Armor",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Shield",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Alarm",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Protection from Evil and Good",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silvery Barbs",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Arcane Lock",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Blur",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Pass Without Trace",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Counterspell",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Slow",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Remove Curse",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Magic Circle",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Speak with Dead",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Arcane Eye",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Banishment",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Wall of Force",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Otiluke's Resilient Sphere",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Evard's Black Tentacles",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Phantasmal Killer",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Telekinesis",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Modify Memory",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Danse Macabre",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Blade Ward",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
+    ],
     "relationships": [
       {
         "character": "Aldren",
@@ -921,7 +1809,6 @@
         "notes": "Brother taken by false contract three years ago. Connected to Holvaine Dusk's operation and likely the Millhaven chamber. She doesn't know the full picture yet."
       }
     ],
-    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws.",
     "active_effects": []
   },
   {
@@ -933,28 +1820,27 @@
     "level": 7,
     "appearance": "Human woman, sixties. Northern clan markings covering most visible skin — more than Vethara, a lifetime written in ink. Compact and economical. Moves like someone who has never wasted a step in her life.",
     "image": "https://iili.io/qgWIf7R.jpg",
-    "stats": {
-      "str": 10,
-      "dex": 12,
-      "con": 14,
-      "int": 13,
-      "wis": 20,
-      "cha": 14
-    },
-    "hp": {
-      "max": 46,
-      "current": 46
-    },
-    "ac_base": {
-      "armor": "Hide Armor",
-      "armor_type": "custom",
-      "armor_base_ac": 12,
-      "shield": false,
-      "magic_bonus": 0,
-      "ac_override": 14
-    },
     "proficiency_bonus": 3,
-    "saving_throws": ["wis", "con"],
+    "spellcasting_ability": "wis",
+    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery. Spirit Communion is her natural Witness perception formalized into a mechanical feature.",
+    "spell_save_dc": 16,
+    "spell_attack_bonus": 8,
+    "spell_recovery": "Short rest (communes with place spirits)",
+    "stat_str": 10,
+    "stat_dex": 12,
+    "stat_con": 14,
+    "stat_int": 13,
+    "stat_wis": 20,
+    "stat_cha": 14,
+    "hp_max": 46,
+    "hp_current": 46,
+    "personality_traits": "Economical in the way her daughter isn't quite yet. Doesn't explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
+    "personality_quirks": "The clan markings tell stories she'll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "wis",
+      "con"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -969,19 +1855,73 @@
       "Common (fluent)",
       "Northern dialect (additional)"
     ],
-    "spellcasting_ability": "wis",
-    "spell_save_dc": 16,
-    "spell_attack_bonus": 8,
-    "spell_slots": {
-      "4th": 2
-    },
-    "spell_recovery": "Short rest (communes with place spirits)",
     "features": [
-      "Sacred Focus: Mind (add WIS modifier to INT and CHA checks and saving throws)",
-      "Totemic Assault (on hit with weapon or cantrip: 1d8 lightning or cold damage)",
-      "Life Bearer (when casting a healing spell: add WIS modifier to healing done)",
-      "Totemic Blessing (bind a totem and use its effect as bonus action when healing an ally)",
-      "Spirit Communion 1/long rest (speak with any spirit within one mile, ask three questions)"
+      {
+        "name": "Sacred Focus: Mind (add WIS modifier to INT and CHA checks and saving throws)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Totemic Assault (on hit with weapon or cantrip: 1d8 lightning or cold damage)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Life Bearer (when casting a healing spell: add WIS modifier to healing done)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Totemic Blessing (bind a totem and use its effect as bonus action when healing an ally)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Spirit Communion 1/long rest (speak with any spirit within one mile, ask three questions)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Resistance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Spare the Dying",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Toll the Dead",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
     ],
     "totem_spirits": [
       {
@@ -1001,43 +1941,8 @@
         "recharge": "long_rest"
       }
     ],
-    "spells": {
-      "cantrips": [
-        "Guidance",
-        "Resistance",
-        "Spare the Dying",
-        "Toll the Dead"
-      ],
-      "prepared": {
-        "1st": [
-          "Healing Word",
-          "Cure Wounds",
-          "Detect Magic",
-          "Speak with Animals"
-        ],
-        "2nd": [
-          "Prayer of Healing",
-          "Augury",
-          "Enhance Ability",
-          "Spiritual Weapon"
-        ],
-        "3rd": [
-          "Mass Healing Word",
-          "Speak with Dead",
-          "Spirit Guardians",
-          "Dispel Magic"
-        ],
-        "4th": ["Death Ward", "Divination"]
-      }
-    },
-    "spell_flavor": {
-      "Speak with Animals": "Reskinned — she speaks with place spirits, not animals.",
-      "Spiritual Weapon": "Manifests as a northern ancestor figure.",
-      "Spirit Guardians": "Manifests as Varath ancestors, not generic spirits."
-    },
-    "personality": {
-      "traits": "Economical in the way her daughter isn't quite yet. Doesn't explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
-      "quirks": "The clan markings tell stories she'll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction."
+    "spell_slots": {
+      "4th": 2
     },
     "relationships": [
       {
@@ -1066,12 +1971,19 @@
         "notes": "Recognized each other immediately. Haven't discussed it yet."
       }
     ],
-    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery. Spirit Communion is her natural Witness perception formalized into a mechanical feature.",
     "active_effects": []
   },
   {
     "name": "Corwin",
     "image": "https://iili.io/qgWY8Dx.jpg",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [],
+    "skill_proficiencies": [],
+    "expertise": [],
+    "languages": [],
+    "features": [],
+    "spells": [],
+    "relationships": [],
     "active_effects": []
   },
   {
@@ -1083,24 +1995,25 @@
     "level": 7,
     "alignment": "Chaotic Neutral",
     "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
-    "stats": {
-      "str": 14,
-      "dex": 20,
-      "con": 16,
-      "int": 20,
-      "wis": 10,
-      "cha": 20
-    },
-    "hp": { "max": 129, "current": 129 },
-    "ac_base": {
-      "armor": "Unknown",
-      "armor_type": "light",
-      "armor_base_ac": 11,
-      "shield": false,
-      "magic_bonus": 0
-    },
+    "image": "https://iili.io/qtjjK5N.jpg",
     "proficiency_bonus": null,
-    "saving_throws": ["dex", "int"],
+    "spellcasting_ability": null,
+    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses.",
+    "stat_str": 14,
+    "stat_dex": 20,
+    "stat_con": 16,
+    "stat_int": 20,
+    "stat_wis": 10,
+    "stat_cha": 20,
+    "hp_max": 129,
+    "hp_current": 129,
+    "personality_traits": "Legendary rogue, now retired. Applies 156 years of tactical memory to leatherworking.",
+    "personality_quirks": "Grumbles 'kids these days not watching their footing' when saving allies. Shouts perfect tactical advice while working leather.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -1109,24 +2022,66 @@
       "History",
       "Persuasion"
     ],
-    "expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Dwarvish"],
-    "spellcasting_ability": null,
-    "active_effects": [],
-    "features": [
-      "Psychic Blades (Soulknife)",
-      "Psi-Bolstered Knack (Soulknife)",
-      "Master of Tactics — Help action as bonus action, range 30ft (Mastermind)",
-      "Tactical Foresight — Help targets two allies, each gains bonus to next saving throw equal to INT modifier (Mastermind/Awl synergy)",
-      "Commander's Presence — allies within 30ft gain AC or saving throw bonus from constant tactical advice (Legendary)",
-      "The Retired Special — once per day reaction: toss a psychic thread when an ally is hit, pull them up to 15ft to potentially cause the attack to miss"
+    "expertise": [
+      "Stealth",
+      "Perception"
     ],
-    "personality": {
-      "traits": "Legendary rogue, now retired. Applies 156 years of tactical memory to leatherworking.",
-      "quirks": "Grumbles 'kids these days not watching their footing' when saving allies. Shouts perfect tactical advice while working leather."
-    },
-    "image": "https://iili.io/qtjjK5N.jpg",
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
+    "features": [
+      {
+        "name": "Psychic Blades (Soulknife)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Psi-Bolstered Knack (Soulknife)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Master of Tactics — Help action as bonus action, range 30ft (Mastermind)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Tactical Foresight — Help targets two allies, each gains bonus to next saving throw equal to INT modifier (Mastermind/Awl synergy)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Commander's Presence — allies within 30ft gain AC or saving throw bonus from constant tactical advice (Legendary)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "The Retired Special — once per day reaction: toss a psychic thread when an ally is hit, pull them up to 15ft to potentially cause the attack to miss",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [],
     "relationships": [],
-    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses."
+    "active_effects": []
   }
 ]

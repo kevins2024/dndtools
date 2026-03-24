@@ -75,15 +75,14 @@
     "type": "wondrous",
     "carried_by": "Petra",
     "attuned": true,
+    "charges": {
+      "current": 3,
+      "max": 3
+    },
     "description": "",
     "effect": "",
     "notes": "",
-    "id": 7,
-    "charges_current": 3,
-    "charges_max": 3,
-    "charges_recharge": null,
-    "charges_label": null,
-    "charges_unit": null
+    "id": 7
   },
   {
     "name": "Hendvar's Enchanting Tools",
@@ -1250,14 +1249,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": true,
+    "charges": {
+      "current": 0,
+      "max": 5,
+      "unit": "spell_levels"
+    },
     "effect": "Holds up to 5 levels worth of spells. Any creature can cast a stored spell using the ring.",
     "notes": "",
-    "id": 117,
-    "charges_current": 0,
-    "charges_max": 5,
-    "charges_recharge": null,
-    "charges_label": null,
-    "charges_unit": "spell_levels"
+    "id": 117
   },
   {
     "name": "Ring of Spell Storing (3rd level)",
@@ -1265,14 +1264,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": true,
+    "charges": {
+      "current": 0,
+      "max": 3,
+      "unit": "spell_levels"
+    },
     "effect": "Holds one spell up to 3rd level. Releases on wearer's command.",
     "notes": "",
-    "id": 118,
-    "charges_current": 0,
-    "charges_max": 3,
-    "charges_recharge": null,
-    "charges_label": null,
-    "charges_unit": "spell_levels"
+    "id": 118
   },
   {
     "name": "Ring of Impact",
@@ -1280,14 +1279,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": false,
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "daily"
+    },
     "effect": "Stops a harsh impact once per day.",
     "notes": "",
-    "id": 119,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "charges_label": null,
-    "charges_unit": null
+    "id": 119
   },
   {
     "name": "Leather Armor +2 (Southern)",
@@ -1459,14 +1458,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": false,
+    "charges": {
+      "current": 7,
+      "max": 7,
+      "recharge": "1d6+1 at dawn"
+    },
     "effect": "Cast Magic Missile using charges.",
     "notes": "600g.",
-    "id": 134,
-    "charges_current": 7,
-    "charges_max": 7,
-    "charges_recharge": "1d6+1 at dawn",
-    "charges_label": null,
-    "charges_unit": null
+    "id": 134
   },
   {
     "name": "Belt of Constitution",
@@ -1504,14 +1503,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": false,
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "daily"
+    },
     "effect": "Cast Scorching Ray once per day.",
     "notes": "",
-    "id": 138,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "charges_label": null,
-    "charges_unit": null
+    "id": 138
   },
   {
     "name": "Helmet of Proof",
@@ -1529,14 +1528,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": true,
+    "charges": {
+      "current": 0,
+      "max": 5,
+      "unit": "spell_levels"
+    },
     "effect": "Holds spells up to 5th level.",
     "notes": "",
-    "id": 140,
-    "charges_current": 0,
-    "charges_max": 5,
-    "charges_recharge": null,
-    "charges_label": null,
-    "charges_unit": "spell_levels"
+    "id": 140
   },
   {
     "name": "Ring of Flexible Action",
@@ -1544,14 +1543,14 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": false,
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "daily"
+    },
     "effect": "Once per day: one action becomes a bonus action.",
     "notes": "",
-    "id": 141,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "charges_label": null,
-    "charges_unit": null
+    "id": 141
   },
   {
     "name": "Amulet of Poison Immunity",
@@ -1603,18 +1602,17 @@
     "armor_type": "light",
     "armor_base_ac": 11,
     "magic_bonus": 2,
-    "stat_bonuses": {
-      "hp_max": 10
-    },
+    "stat_bonuses": { "hp_max": 10 },
     "effect": "Three properties: (1) Hit point maximum increased by 10 — permanent, not temporary. (2) Once per long rest: when the wearer drops to 0 HP, drop to 1 instead. (3) Advantage on saving throws against being charmed, frightened, or possessed.",
     "flavor": "As she puts it on, the vest-shape forms to fit her exactly and a shimmering dark blue set of sleeves and a sort of skirt-with-4-slits extends downward.",
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "long_rest",
+      "label": "Drop to 1 instead of 0"
+    },
     "notes": "hp_max bonus requires dnd_utils to add stat_bonuses.hp_max to character hp.max in resolution. Advantage on charm/fear/possession saves needs active_effects or separate handling — cannot be expressed as a flat stat_bonus.",
-    "id": 146,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "long_rest",
-    "charges_label": "Drop to 1 instead of 0",
-    "charges_unit": null
+    "id": 146
   },
   {
     "name": "The Weaver's Master-Awl",
@@ -1624,12 +1622,13 @@
     "attuned": true,
     "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue. Hums with the collective tactical memories of 156 years when held.",
     "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades gain +2 to attack and damage rolls; Psi-Bolstered Knack successes do not expend the Psionic Energy die. (2) Tactical Foresight — Master of Tactics Help action targets two allies instead of one; each gains a bonus to their next saving throw equal to INT modifier. (3) Grandmaster's Stitch — during a long rest, touch leather armor or a leather item to infuse it for 24 hours: wearer gains resistance to Psychic damage and advantage on saves against Charmed and Frightened. (4) The Retired Special — once per day reaction when an ally is hit: pull them up to 15ft to an unoccupied space, potentially causing the attack to miss.",
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "daily",
+      "label": "The Retired Special"
+    },
     "notes": "Requires attunement by a Rogue.",
-    "id": 147,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "charges_label": "The Retired Special",
-    "charges_unit": null
+    "id": 147
   }
 ]
