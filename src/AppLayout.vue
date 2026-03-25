@@ -38,6 +38,7 @@ import Placeholder from './components/Placeholder.vue'
 import CharacterDetails from './components/CharacterDetails.vue'
 import ItemDetails from './components/ItemDetails.vue'
 import LocationDetails from './components/LocationDetails.vue'
+import PartyDetails from './components/PartyDetails.vue'
 import dataService from '@/utils/dataService'
 
 export default {
@@ -52,12 +53,12 @@ export default {
     CharacterDetails,
     ItemDetails,
     LocationDetails,
+    PartyDetails,
   },
 
   data() {
     return {
       activeTab: 'players',
-      activeDetail: null,
       tabs: [
         {
           id: 'players',
@@ -98,6 +99,7 @@ export default {
         },
         { id: 'item', title: 'Item', component: 'ItemDetails' },
         { id: 'location', title: 'Location', component: 'LocationDetails' },
+        { id: 'party', title: 'Party Overview', component: 'PartyDetails' },
       ],
     }
   },
@@ -109,6 +111,17 @@ export default {
     activeDetailComponent() {
       const detail = this.details.find((d) => d.id === this.activeDetail)
       return detail ? detail.component : null
+    },
+    activeDetail() {
+      if (this.activeTab === 'players' && this.selectedPlayers.length === 1)
+        return 'character'
+      if (this.activeTab === 'players' && this.selectedPlayers.length > 1)
+        return 'party'
+
+      return null
+    },
+    selectedPlayers() {
+      return this.$store.state.selectedPlayers
     },
   },
   async created() {

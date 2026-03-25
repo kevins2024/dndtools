@@ -1417,6 +1417,7 @@
     "subclass": "Witch Doctor",
     "level": 7,
     "appearance": "Human woman, sixties. Northern clan markings covering most visible skin — more than Vethara, a lifetime written in ink. Compact and economical. Moves like someone who has never wasted a step in her life.",
+    "image": "https://iili.io/qgWIf7R.jpg",
     "stats": {
       "str": 10,
       "dex": 12,
@@ -1584,5 +1585,9 @@
       }
     ],
     "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery. Spirit Communion is her natural Witness perception formalized into a mechanical feature."
+  },
+  {
+    "name": "Corwin",
+    "image": "https://iili.io/qgWY8Dx.jpg"
   }
 ]
