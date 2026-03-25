@@ -532,9 +532,7 @@
     "combat": {
       "class": "Rogue",
       "level": 7,
-      "features": [
-        "Alert feat"
-      ]
+      "features": ["Alert feat"]
     },
     "items": [
       {
@@ -940,10 +938,7 @@
     "combat": {
       "class": "Rogue",
       "level": 7,
-      "features": [
-        "Expertise: Stealth",
-        "Expertise: Deception"
-      ]
+      "features": ["Expertise: Stealth", "Expertise: Deception"]
     },
     "items": [
       {
@@ -1243,5 +1238,41 @@
     },
     "relationships": [],
     "notes": "40-50 collared workers in deep tunnels. Free workers complication — decent pay, don't ask questions."
+  },
+  {
+    "name": "Vrethka",
+    "location": "traveling_south",
+    "role": "Sealwalker — first of new agreement",
+    "notes": "Vethara's mother. Sealwalker's Cloak. Shaman level 7. New Witness — two days perception. Northern clan elder. Grandmother was Witness, mother was Witness, Vrethka learning. Bow of the Returning Three recovered from Ravine Stalker site — her weapon now. Traveling south with Dawn Blades."
+  },
+  {
+    "name": "Vethara",
+    "location": "clan_winter_camp",
+    "role": "Clan leader",
+    "notes": "Vrethka's daughter. War ending — given two weeks before approaching Cindermarch. Proud, practical, afraid of being wrong and learning to survive it. Possible Witness — names weapons in the Witness way. Northern metalwork trade contact."
+  },
+  {
+    "name": "Varath Ichta",
+    "location": "traveling_to_cindermarch",
+    "role": "Firstwalker emissary",
+    "notes": "Elder's daughter. Wanted to go south her entire life. First Varath to leave the valley. Heading to Cindermarch to meet Kern. Dawn Blades contact. Will report back to her people about the south."
+  },
+  {
+    "name": "Tessaly",
+    "location": "traveling_south_with_dawn_blades",
+    "role": "Firstwalker settlement leader",
+    "notes": "Three generations of between-existence ended. Grandmother reunited — below for three generations, returned when door closed. Seventeen adults and six children traveling south. No clan, no current territory. Dawn Blades offering orientation and welcome. Tessaly's unnamed daughter — strong Witness perception, identified by Yungkin."
+  },
+  {
+    "name": "Vrethka's Grandmother",
+    "location": "traveling_south_with_dawn_blades",
+    "role": "Returned below-tender",
+    "notes": "Went below voluntarily three generations ago to tend from underneath. Returned when door closed. Tessaly's grandmother. Below preserved her beyond normal lifespan. Adjusting to above."
+  },
+  {
+    "name": "Yungkin",
+    "location": "traveling_south_with_dawn_blades",
+    "role": "Child of the Eldest",
+    "notes": "Named by Vaz. Child of the Eldest — exists comfortably in boundary bleed between above and below. Followed company since blank space. Tended boundary alongside Witnesses unprompted. Made itself smaller out of courtesy for above travelers. Patient with children. Not threatening. Unique — no precedent for above travel by Eldest's children."
   }
 ]

@@ -352,13 +352,15 @@
         "notes": "Main hand. Resonance with Pirra's paired shortsword — both gain advantage on first attack each round when within 30ft of each other."
       },
       {
-        "name": "Swift Strike Dagger +1",
+        "name": "Dagger of Swift Strike +1",
         "type": "weapon",
         "weapon_type": "melee",
         "finesse": true,
         "damage_dice": "1d4",
         "magic_bonus": 1,
-        "notes": "Off-hand. Named privately — hasn't told anyone."
+        "effect": "Once per turn on a hit: immediately make a second strike with this dagger as part of the same attack, without using a bonus action.",
+        "flavor": "The iridescence pulses faintly when it connects — like something eager being satisfied.",
+        "notes": "Named privately. Hasn't told anyone."
       },
       {
         "name": "Ring of Watchful Eye",
@@ -579,7 +581,13 @@
         "Identify"
       ],
       "2": ["Scorching Ray", "Misty Step", "Web", "Knock", "See Invisibility"],
-      "3": ["Fireball", "Hypnotic Pattern", "Counterspell", "Dispel Magic"],
+      "3": [
+        "Fireball",
+        "Hypnotic Pattern",
+        "Counterspell",
+        "Dispel Magic",
+        "Speak with Dead"
+      ],
       "4": ["Stoneskin", "Sickening Radiance", "Vitriolic Sphere"],
       "5": ["Bigby's Hand", "Synaptic Static", "Wall of Force"],
       "cantrips": [
@@ -805,23 +813,35 @@
       "Inspiring Leader"
     ],
     "spells": {
-      "cantrips": [],
-      "prepared": [
-        "Cure Wounds",
-        "Healing Word",
-        "Bless",
-        "Guiding Bolt",
-        "Magic Weapon",
-        "Revivify",
-        "Spirit Guardians",
-        "Hold Person",
-        "Silence",
-        "Sanctuary",
-        "Thunderwave",
-        "Blindness/Deafness",
-        "Death Ward",
-        "Freedom of Movement"
-      ]
+      "cantrips": [
+        "Sacred Flame",
+        "Guidance",
+        "Spare the Dying",
+        "Thaumaturgy"
+      ],
+      "domain_spells": {
+        "notes": "Always prepared, don't count against prepared spell limit.",
+        "1st": ["Bless", "Cure Wounds"],
+        "2nd": ["Lesser Restoration", "Spiritual Weapon"],
+        "3rd": ["Beacon of Hope", "Revivify"],
+        "4th": ["Death Ward", "Guardian of Faith"]
+      },
+      "prepared": {
+        "1st": ["Healing Word", "Guiding Bolt", "Sanctuary", "Shield of Faith"],
+        "2nd": [
+          "Silence",
+          "Blindness/Deafness",
+          "Prayer of Healing",
+          "Magic Weapon"
+        ],
+        "3rd": [
+          "Spirit Guardians",
+          "Mass Healing Word",
+          "Magic Circle",
+          "Hold Person"
+        ],
+        "4th": ["Freedom of Movement"]
+      }
     },
     "items": [
       {
@@ -1323,14 +1343,21 @@
       "Spell Resistance (advantage on saves vs spells, resistance to spell damage)"
     ],
     "spells": {
-      "1": ["Mage Armor", "Shield", "Alarm", "Protection from Evil and Good"],
+      "1": [
+        "Mage Armor",
+        "Shield",
+        "Alarm",
+        "Protection from Evil and Good",
+        "Silvery Barbs"
+      ],
       "2": ["Arcane Lock", "Blur", "Misty Step", "Pass Without Trace"],
       "3": [
         "Counterspell",
         "Dispel Magic",
         "Slow",
         "Remove Curse",
-        "Magic Circle"
+        "Magic Circle",
+        "Speak with Dead"
       ],
       "4": [
         "Arcane Eye",
@@ -1340,7 +1367,12 @@
         "Evard's Black Tentacles",
         "Phantasmal Killer"
       ],
-      "5": ["Telekinesis", "Modify Memory", "Danse Macabre"],
+      "5": [
+        "Telekinesis",
+        "Modify Memory",
+        "Danse Macabre",
+        "Negative Energy Flood (homebrew spell from necromancer's spellbook)"
+      ],
       "cantrips": ["Mage Hand", "Blade Ward", "Minor Illusion"]
     },
     "items": [

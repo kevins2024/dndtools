@@ -3,7 +3,7 @@
     "name": "Sealwalker's Pendant",
     "type": "witness",
     "carried_by": "Lenn",
-    "attuned": false,
+    "attuned": true,
     "description": "Carved from the Deepwalker's shed tooth. Script on surface readable only by Kerra. Warms when held near an unrecognized Witness.",
     "effect": "Pass between companions in populated areas — it will find who it's looking for.",
     "notes": ""
@@ -12,7 +12,7 @@
     "name": "The Impossible Flower",
     "type": "consumable",
     "carried_by": "Jaygar",
-    "attuned": false,
+    "attuned": true,
     "quantity": 1,
     "description": "Pressed between glass, sealed with wax. Grows only below, near the Verath Ohn chamber. Pulled up in a fishing net years ago.",
     "effect": "Heals damage that cannot otherwise be healed. One use, then gone.",
@@ -22,7 +22,7 @@
     "name": "The Glass Sphere",
     "type": "wondrous",
     "carried_by": "Lenn",
-    "attuned": false,
+    "attuned": true,
     "description": "Left by the Observatory presence in Mast's locked chest. Finds things that actively avoid observation, but only through peripheral vision.",
     "effect": "Reveals things that avoid observation — peripheral vision only.",
     "notes": "Lenn has already developed an intuitive relationship with it."
@@ -31,7 +31,7 @@
     "name": "The Measuring Rods",
     "type": "wondrous",
     "carried_by": "Jaygar",
-    "attuned": false,
+    "attuned": true,
     "description": "Cuppin Tevoulle's instrument. Measures something called presence depth.",
     "effect": "Bearing consistently northeast — toward the Eldest's valley.",
     "notes": "Jaygar developing intuition for them without fully understanding them."
@@ -40,7 +40,7 @@
     "name": "Greyback Hide",
     "type": "material",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "description": "Raw hide from the Greyback. The below confirmed it carries below-substance and will accept influence.",
     "effect": "Being worked into armor or items.",
     "notes": "In progress — not yet a finished item."
@@ -49,7 +49,7 @@
     "name": "Greyback Claws",
     "type": "material",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "description": "Claws from the Greyback.",
     "effect": "Useful to northern smiths.",
     "notes": ""
@@ -58,7 +58,7 @@
     "name": "Varath Salve",
     "type": "consumable",
     "carried_by": "Vrethka",
-    "attuned": false,
+    "attuned": true,
     "quantity": 3,
     "description": "Three vials of rendered Greyback fat.",
     "effect": "Grants resistance to cold damage for one hour per vial.",
@@ -68,7 +68,7 @@
     "name": "Mast's Research Documents",
     "type": "document",
     "carried_by": "Lenn",
-    "attuned": false,
+    "attuned": true,
     "description": "Eleven years of boundary work. Chamber locations including four previously unknown, approach maps for the north, correspondence connecting Calvane to Argentveil operations.",
     "effect": "Intelligence asset. Four new chamber locations.",
     "notes": "Lyria has reviewed."
@@ -77,7 +77,7 @@
     "name": "Third Orvath Account Documents",
     "type": "document",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "description": "Found in Mast's research. A third Syndicate account in Orvath beyond the two Thorne disclosed. Different account structure, different access method.",
     "effect": "Unknown — needs investigation.",
     "notes": "Different from the Thorne accounts. Access method not yet determined."
@@ -95,7 +95,7 @@
     "name": "Vessel of Stolen Years",
     "type": "wondrous",
     "carried_by": "Petra",
-    "attuned": false,
+    "attuned": true,
     "charges": { "current": 3, "max": 3 },
     "description": "",
     "effect": "",
@@ -105,7 +105,7 @@
     "name": "Hendvar's Enchanting Tools",
     "type": "tool",
     "carried_by": "Jaygar",
-    "attuned": false,
+    "attuned": true,
     "description": "Portable enchanting station — a toolkit rather than a fixed station.",
     "effect": "",
     "notes": ""
@@ -114,7 +114,7 @@
     "name": "Laboratory Diagram",
     "type": "document",
     "carried_by": "Jaygar",
-    "attuned": false,
+    "attuned": true,
     "description": "Self-sustaining power source research.",
     "effect": "",
     "notes": ""
@@ -123,26 +123,17 @@
     "name": "First Breath Vial",
     "type": "consumable",
     "carried_by": "Jaygar",
-    "attuned": false,
+    "attuned": true,
     "quantity": 1,
     "description": "Unknown purpose.",
     "effect": "Unknown.",
     "notes": "Handle carefully."
   },
   {
-    "name": "Blackwood Wand Focus",
-    "type": "focus",
-    "carried_by": "Lenn",
-    "attuned": true,
-    "description": "Blackwood wand usable as a spellcasting focus.",
-    "effect": "",
-    "notes": ""
-  },
-  {
     "name": "Hendvar's Spellbook (Lenn's copy)",
     "type": "document",
     "carried_by": "Lenn",
-    "attuned": false,
+    "attuned": true,
     "description": "Hendvar's personal spellbook. Shared with Lyria for spell extraction.",
     "effect": "Spell extraction.",
     "notes": ""
@@ -151,7 +142,7 @@
     "name": "Hendvar's Spellbook (Lyria's copy)",
     "type": "document",
     "carried_by": "Lyria",
-    "attuned": false,
+    "attuned": true,
     "description": "Hendvar's personal spellbook. Shared with Lenn for spell extraction.",
     "effect": "Spell extraction.",
     "notes": ""
@@ -160,7 +151,7 @@
     "name": "Lyria's Contract",
     "type": "document",
     "carried_by": "Lyria",
-    "attuned": false,
+    "attuned": true,
     "description": "Lyria keeps this.",
     "effect": "",
     "notes": ""
@@ -169,7 +160,7 @@
     "name": "Whetstone of Keen Edge",
     "type": "wondrous",
     "carried_by": "party",
-    "attuned": false,
+    "attuned": true,
     "description": "Sharpening whetstone.",
     "effect": "1/rest.",
     "notes": ""
@@ -178,7 +169,7 @@
     "name": "Oil of Sharpness",
     "type": "consumable",
     "carried_by": "party",
-    "attuned": false,
+    "attuned": true,
     "quantity": 3,
     "description": "",
     "effect": "",
@@ -188,7 +179,7 @@
     "name": "Everlasting Blue Candles",
     "type": "wondrous",
     "carried_by": "party",
-    "attuned": false,
+    "attuned": true,
     "quantity": 6,
     "description": "Candles that do not burn down.",
     "effect": "",
@@ -198,7 +189,7 @@
     "name": "Regional Maps",
     "type": "document",
     "carried_by": "party",
-    "attuned": false,
+    "attuned": true,
     "description": "Northern Reaches and campaign region.",
     "effect": "Valuable for northern campaign.",
     "notes": ""
@@ -207,10 +198,238 @@
     "name": "Necrotic Essence Containers",
     "type": "consumable",
     "carried_by": "Millhaven",
-    "attuned": false,
+    "attuned": true,
     "quantity": 4,
     "description": "Sealed necrotic essence containers.",
     "effect": "Unknown.",
     "notes": "Left in Millhaven. Find a responsible institution when relevant. Do not open."
+  },
+  {
+    "name": "Seal Compass",
+    "type": "wondrous",
+    "carried_by": "Vaz",
+    "attuned": true,
+    "description": "Small circular compass-shaped object with 8 points, each filled with a kind of vapor.",
+    "effect": "Allows perceptualization of all eight seals across the continent and remote tending. Quality of remote tending is meaningful but not equivalent to physical presence.",
+    "notes": ""
+  },
+  {
+    "name": "Boots of the Tireless North",
+    "type": "wondrous",
+    "carried_by": "Pirra",
+    "attuned": true,
+    "description": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet.",
+    "effect": "No movement penalties in difficult terrain (snow, ice, mud, rubble). Travel pace never causes exhaustion regardless of distance covered in a day.",
+    "notes": ""
+  },
+  {
+    "name": "Northern Recurve Bow",
+    "type": "weapon",
+    "weapon_type": "ranged",
+    "carried_by": "Vrethka",
+    "attuned": true,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "description": "Compact recurve hunting bow, northern construction. Viable from horseback or tight terrain. Luminescent bowstring, pulls smooth and silent.",
+    "effect": "Three accompanying arrows of dark dense northern metal (same as the elder's axe). Arrows return to quiver after a successful hit only — not after a miss.",
+    "notes": "Siv recognized immediately it wasn't for her. Vrethka's spear now feels transitional rather than permanent."
+  },
+  {
+    "name": "True Journal",
+    "type": "wondrous",
+    "carried_by": "Kerra",
+    "attuned": true,
+    "description": "Blank pages — cannot be written in deliberately. Cover worked with a pattern Kerra read immediately without being asked.",
+    "effect": "Records automatically whatever the bearer witnesses that is genuinely true — not believed to be true, actually true. Only truth gets in.",
+    "notes": "No one else in the party has processed what this means for someone with Kerra's history, her patron, and her years of reading things she shouldn't."
+  },
+  {
+    "name": "Blackwood Wand Focus",
+    "type": "focus",
+    "carried_by": "Lenn",
+    "attuned": true,
+    "stat_bonuses": { "spell_attack": 1, "spell_save_dc": 1 },
+    "description": "Blackwood wand usable as a spellcasting focus.",
+    "effect": "+1 to spell attack rolls and spell save DC.",
+    "notes": ""
+  },
+  {
+    "name": "Ravine Stalker Hide",
+    "type": "material",
+    "carried_by": "Jaygar",
+    "attuned": true,
+    "quantity": 3,
+    "description": "Darker and denser than Greyback hide. Likely carries below-substance given the boundary thinness at the kill site.",
+    "effect": "Priority material for crafting. Below-substance properties probable.",
+    "notes": ""
+  },
+  {
+    "name": "Ravine Stalker Claws",
+    "type": "material",
+    "carried_by": "Jaygar",
+    "attuned": true,
+    "quantity": 6,
+    "description": "Cutting claws — sharper than Greyback, better quality. Vrethka said these cut rather than grip.",
+    "effect": "Superior to Greyback claws as tool material for northern smiths.",
+    "notes": ""
+  },
+  {
+    "name": "Ravine Stalker Jaw Bones",
+    "type": "material",
+    "carried_by": "Jaygar",
+    "attuned": true,
+    "quantity": 3,
+    "description": "Unusual wide crushing jaw configuration.",
+    "effect": "Unknown. Jaygar has a theory, not sharing yet.",
+    "notes": ""
+  },
+  {
+    "name": "Ravine Stalker Rendered Fat",
+    "type": "material",
+    "carried_by": "Jaygar",
+    "attuned": true,
+    "description": "Less yield than the Greybacks but present.",
+    "effect": "Cold resistance properties probable — similar to Varath Salve.",
+    "notes": ""
+  },
+  {
+    "name": "Ravine Stalker Eyes",
+    "type": "material",
+    "carried_by": "Jaygar",
+    "attuned": true,
+    "quantity": 1,
+    "description": "One set of eyes from the largest Stalker. Absorbs light rather than reflects it.",
+    "effect": "Unknown. Jaygar specifically requested these and is not ready to explain yet.",
+    "notes": "Set of two eyes, from the largest individual."
+  },
+  {
+    "name": "Helm of Brilliance Buckle",
+    "type": "material",
+    "carried_by": "party",
+    "attuned": true,
+    "description": "Chinstrap buckle from a Helm of Brilliance.",
+    "effect": "Can be reconstructed into a functional Helm of Brilliance with the right smith.",
+    "notes": ""
+  },
+  {
+    "name": "Fabrication Project — Missing Components",
+    "type": "misc",
+    "carried_by": "Jaygar",
+    "attuned": true,
+    "description": "Outstanding sourcing requirement to complete dismantling of a 40-year-old self-sustaining magical automation system.",
+    "effect": "60% of required tools already in hand. Missing: copper grounding coil (minimum 18 inches), two ceramic insulating brackets, one resonance dampener.",
+    "notes": "None of these are exotic. Sourceable in any city with a decent artificer supply or engineering merchant. Argentveil or Khemrise most likely."
+  },
+  {
+    "name": "Sending Stones — Vaz / Tielle",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Vaz", "b": "Tielle" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Vaz / Vrethka",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Vaz", "b": "Vrethka" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Vaz / Kern",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Vaz", "b": "Kern" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Tielle / Marcus",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Tielle", "b": "Marcus" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Tielle / Ledwent",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Tielle", "b": "Ledwent" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Tielle / Gaelestrasz",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Tielle", "b": "Gaelestrasz" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Tielle / Casvath",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Tielle", "b": "Casvath" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Tielle / Coalbeard",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Tielle", "b": "Coalbeard" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Tielle / Harwick",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Tielle", "b": "Harwick" },
+    "attuned": true,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stones — Unpaired (x2)",
+    "type": "communication",
+    "carried_by": "Vaz",
+    "held_by": null,
+    "attuned": true,
+    "quantity": 2,
+    "description": "Two unpaired short-distance sending stones.",
+    "effect": "Short distance only. No paired counterpart yet.",
+    "notes": ""
+  },
+  {
+    "name": "Short-Distance Mirror Set",
+    "type": "communication",
+    "carried_by": "Denna",
+    "held_by": null,
+    "attuned": true,
+    "description": "Paired mirrors for short-distance communication.",
+    "effect": "Visual communication only — no audio.",
+    "notes": ""
   }
 ]
