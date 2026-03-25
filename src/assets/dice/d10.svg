@@ -1,0 +1,23 @@
+<svg width="100%" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    
+  </defs>
+
+  <!-- T=150,50  A=25,125  B=275,125  C=25,175  D=275,175
+       E=75,175  F=225,175 G=150,200  H=150,250 -->
+
+  <!-- Primary face: T-E-G-F -->
+  <polygon points="150,50 75,175 150,200 225,175" style="fill:rgb(200, 169, 110);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Face 1: A-C-E-T -->
+  <polygon points="25,125 25,175 75,175 150,50" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Face 2: C-E-G-H -->
+  <polygon points="25,175 75,175 150,200 150,250" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Face 3: G-H-D-F -->
+  <polygon points="150,200 150,250 275,175 225,175" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Face 4: F-D-B-T -->
+  <polygon points="225,175 275,175 275,125 150,50" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+</svg>
