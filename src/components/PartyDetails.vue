@@ -6,6 +6,7 @@
       <p>Class: {{ player.class }}</p>
     </div> -->
     <button @click="rollInitiative">Roll Initiative</button>
+    <button @click="temp">run the script</button>
     <div v-if="initiativeOrder.length">
       <h4>Initiative Order:</h4>
       <ol>
@@ -31,6 +32,7 @@ export default {
     },
   },
   methods: {
+    temp() {},
     rollInitiative() {
       this.initiativeOrder = this.selectedPlayers
         .map((player) => {

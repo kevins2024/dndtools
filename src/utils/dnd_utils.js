@@ -302,7 +302,7 @@ export const dnd = {
     const magic = weapon.magic_bonus ?? 0
     // Bracers of Archery apply only to ranged weapons
     const rangedBonus =
-      weapon.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
+      weapon.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
     return statMod + magic + rangedBonus
   },
 
@@ -394,6 +394,18 @@ export const dnd = {
   // Find an NPC by name
   findNPC(npcs, name) {
     return npcs.find((n) => n.name.toLowerCase() === name.toLowerCase()) ?? null
+  },
+
+  itemsFor(character, partyItems, { equippedOnly = false } = {}) {
+    return partyItems.filter(
+      (i) =>
+        i.equipped_by === character.name ||
+        (!equippedOnly && i.attuned && i.carried_by === character.name)
+    )
+  },
+
+  lookupSpell(spellName) {
+    return homebrew.spells.find((s) => s.name === spellName) ?? null
   },
 
   // Get all witness items across a character's inventory
