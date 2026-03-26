@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import dataService from '@/services/dataService'
+import dataService from '@/utils/dataService'
 
 Vue.use(Vuex)
 
