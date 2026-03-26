@@ -11,6 +11,9 @@ export default {
   data() {
     return {}
   },
+  async created() {
+    await this.$store.dispatch('loadAll')
+  },
 }
 </script>
 
