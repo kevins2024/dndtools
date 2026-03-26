@@ -16,6 +16,7 @@ import locations from '@/data/locations.json'
 import party_items from '@/data/party_items.json'
 import world from '@/data/world.json'
 import homebrew from '@/data/homebrew.json'
+import finances from '@/data/finances.json'
 
 const SERVER_URL = 'http://localhost:3001'
 
@@ -29,6 +30,7 @@ const staticTables = {
   party_items,
   world,
   homebrew,
+  finances,
 }
 
 // In-memory cache — populated on first get() call

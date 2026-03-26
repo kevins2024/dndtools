@@ -929,13 +929,6 @@
   {
     "name": "Leather Armor",
     "type": "armor",
-    "equipped_by": "Kerra",
-    "carried_by": null,
-    "attuned": false
-  },
-  {
-    "name": "Leather Armor",
-    "type": "armor",
     "equipped_by": "Siv",
     "carried_by": null,
     "attuned": false
@@ -1098,5 +1091,344 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Small carved disc of northern stone. Always points toward the nearest place her family has tended. Not magical in the traditional sense — very old and very attentive. Vrethka treats it with honest companionship."
+  },
+
+  {
+    "name": "Longbow +2 (Force)",
+    "type": "weapon",
+    "weapon_type": "ranged",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "effect": "Deals force damage instead of piercing.",
+    "notes": "800g minus material trade discount."
+  },
+  {
+    "name": "Bracer of Steady Aim",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": { "ranged_attack": 1 },
+    "effect": "Advantage on concentration saving throws after taking damage.",
+    "notes": "Both concentration and +1 hit bonus"
+  },
+  {
+    "name": "Resonance Dampener",
+    "type": "tool",
+    "equipped_by": null,
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "effect": "Final component for Jaygar's fabrication project.",
+    "notes": "80g."
+  },
+  {
+    "name": "Ring of Spell Storing (5 levels)",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "charges": { "current": 0, "max": 5, "unit": "spell_levels" },
+    "effect": "Holds up to 5 levels worth of spells. Any creature can cast a stored spell using the ring.",
+    "notes": ""
+  },
+  {
+    "name": "Ring of Spell Storing (3rd level)",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "charges": { "current": 0, "max": 3, "unit": "spell_levels" },
+    "effect": "Holds one spell up to 3rd level. Releases on wearer's command.",
+    "notes": ""
+  },
+  {
+    "name": "Ring of Impact",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "charges": { "current": 1, "max": 1, "recharge": "daily" },
+    "effect": "Stops a harsh impact once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Leather Armor +2 (Southern)",
+    "type": "armor",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "armor_type": "light",
+    "armor_base_ac": 14,
+    "magic_bonus": 2,
+    "effect": "Light as cloth, southern make.",
+    "notes": "AC 14 + DEX mod + 2."
+  },
+  {
+    "name": "Staff of Evocation",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "effect": "Adds bonus damage to evocation spells.",
+    "notes": ""
+  },
+  {
+    "name": "Two Rubies",
+    "type": "material",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "quantity": 2,
+    "effect": "For Helm of Brilliance reconstruction.",
+    "notes": ""
+  },
+  {
+    "name": "Concentration Robes",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Easier concentration checks — something in the weave.",
+    "notes": ""
+  },
+  {
+    "name": "Elemental Resistance Robes",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Resistance to one element, chosen on attunement.",
+    "notes": ""
+  },
+  {
+    "name": "Green Cloak of Presence",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": { "skill_Persuasion": 0, "skill_Performance": 0 },
+    "effect": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
+    "notes": "stat_bonuses are advantage not flat — handle in dnd_utils separately."
+  },
+  {
+    "name": "Grip Wrap +1",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "quantity": 1,
+    "stat_bonuses": { "melee_attack": 1 },
+    "effect": "+1 to hit with the wrapped weapon.",
+    "notes": "In stock."
+  },
+  {
+    "name": "Bow Grip",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Reduces moving shot penalty. Fits longbow or recurve.",
+    "notes": ""
+  },
+  {
+    "name": "Bone Ring of Weapon Retention",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Cannot be disarmed.",
+    "notes": ""
+  },
+  {
+    "name": "Grip Wraps +1 (commissioned)",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "quantity": 3,
+    "stat_bonuses": { "melee_attack": 1 },
+    "effect": "+1 to hit with the wrapped weapon.",
+    "notes": "Commissioned from Greyback claw materials. Ready in 4 days."
+  },
+  {
+    "name": "Ravine Stalker Crossbow (commissioned, at least 2-4 items)",
+    "type": "weapon",
+    "weapon_type": "ranged",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 0,
+    "effect": "Exceptional force, quieter release than standard hand crossbow.",
+    "notes": "Hand crossbow size. Built from Ravine Stalker jaw construction. Ready in 3 weeks."
+  },
+  {
+    "name": "Ceremonial Clan Collar",
+    "type": "material",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "To be dismantled for Helm of Brilliance reconstruction. Metal to be examined separately.",
+    "notes": "Four opals, two spinels, one diamond. Exceptional dark metal of unknown origin. 800g."
+  },
+  {
+    "name": "Cloak Pin of Waterproofing",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Rain moves around the wearer.",
+    "notes": "30g."
+  },
+  {
+    "name": "Battle Spellbook",
+    "type": "document",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Contains: Blight, Fire Shield, Ice Storm, Otiluke's Resilient Sphere, Cone of Cold, Destructive Wave, Immolation, Cloudkill.",
+    "notes": "1,200g."
+  },
+  {
+    "name": "Wand of Magic Missiles",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "charges": { "current": 7, "max": 7, "recharge": "1d6+1 at dawn" },
+    "effect": "Cast Magic Missile using charges.",
+    "notes": "600g."
+  },
+  {
+    "name": "Belt of Constitution",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "CON enhancement. Harder to kill.",
+    "notes": "Abjuration. 400g. CON bonus amount not specified — update stat_bonuses or stat_overrides when known."
+  },
+  {
+    "name": "Cloak of the Manta Ray",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Breathe underwater. Swim speed 60.",
+    "notes": ""
+  },
+  {
+    "name": "Cloak of Elvenkind",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Advantage on Stealth checks outdoors. Color shifting.",
+    "notes": ""
+  },
+  {
+    "name": "Circlet of Blasting",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "charges": { "current": 1, "max": 1, "recharge": "daily" },
+    "effect": "Cast Scorching Ray once per day.",
+    "notes": ""
+  },
+  {
+    "name": "Helmet of Proof",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Immunity to charm and fear.",
+    "notes": ""
+  },
+  {
+    "name": "Bracers of Spell Storing",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "charges": { "current": 0, "max": 5, "unit": "spell_levels" },
+    "effect": "Holds spells up to 5th level.",
+    "notes": ""
+  },
+  {
+    "name": "Ring of Flexible Action",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "charges": { "current": 1, "max": 1, "recharge": "daily" },
+    "effect": "Once per day: one action becomes a bonus action.",
+    "notes": ""
+  },
+  {
+    "name": "Amulet of Poison Immunity",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Complete immunity to poison while worn.",
+    "notes": ""
+  },
+  {
+    "name": "Cloak of Displacement",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Attackers have disadvantage on attack rolls until she takes damage each round.",
+    "notes": "Rhuna already has one — confirm this is a second copy or update her entry."
+  },
+  {
+    "name": "Potion of Greater Healing",
+    "type": "consumable",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": false,
+    "quantity": 2,
+    "effect": "Restores 4d4+4 HP.",
+    "notes": "Well made, reliable."
+  },
+  {
+    "name": "Medallion of Concentration",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Advantage on all concentration checks.",
+    "notes": ""
+  },
+  {
+    "name": "Leather Armor of the Covenant",
+    "type": "armor",
+    "equipped_by": "Kerra",
+    "carried_by": "Kerra",
+    "attuned": true,
+    "armor_type": "light",
+    "armor_base_ac": 11,
+    "magic_bonus": 1,
+    "stat_bonuses": { "hp_max": 10 },
+    "effect": "Three properties: (1) Hit point maximum increased by 10 — permanent, not temporary. (2) Once per long rest: when the wearer drops to 0 HP, drop to 1 instead. (3) Advantage on saving throws against being charmed, frightened, or possessed.",
+    "flavor": "As she puts it on, the vest-shape forms to fit her exactly and a shimmering dark blue set of sleeves and a sort of skirt-with-4-slits extends downward.",
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "long_rest",
+      "label": "Drop to 1 instead of 0"
+    },
+    "notes": "hp_max bonus requires dnd_utils to add stat_bonuses.hp_max to character hp.max in resolution. Advantage on charm/fear/possession saves needs active_effects or separate handling — cannot be expressed as a flat stat_bonus."
   }
 ]

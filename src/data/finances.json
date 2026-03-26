@@ -1,0 +1,79 @@
+{
+  "party_purse": {
+    "gold": 42590,
+    "notes": "On hand, accessible immediately."
+  },
+  "reserves": [
+    {
+      "name": "Orvath Account",
+      "amount": 180000,
+      "access": "Ring plus passphrase. No personal appearance required. Easiest extraction.",
+      "risk": "low"
+    },
+    {
+      "name": "Argentveil Account",
+      "amount": 90000,
+      "access": "Ring plus passphrase plus Thorne's handwritten withdrawal document.",
+      "risk": "medium"
+    },
+    {
+      "name": "Khemrise Strongbox",
+      "amount": null,
+      "access": "Salt Hook Tavern key. Registered under assumed name.",
+      "contents": "~39,000g negotiable notes plus documents.",
+      "risk": "low"
+    }
+  ],
+  "income": [
+    {
+      "source": "Millhaven Mine",
+      "amount": 4000,
+      "frequency": "monthly",
+      "notes": "Pending full operation — confirm timing."
+    },
+    {
+      "source": "Long Arm Trading",
+      "amount_min": 300,
+      "amount_max": 500,
+      "frequency": "monthly",
+      "notes": "Can grow if trading/sourcing or import/export change in the story. Owns 4 ships."
+    },
+    {
+      "source": "Loan Dragon",
+      "amount_min": 25,
+      "amount_max": 30,
+      "frequency": "monthly",
+      "notes": "70/30 split favoring Dawn Blades."
+    }
+  ],
+  "expenses": [
+    {
+      "name": "Revivify Upkeep",
+      "amount_min": 25,
+      "amount_max": 30,
+      "frequency": "monthly",
+      "notes": ""
+    },
+    {
+      "name": "Khemrise Estate",
+      "amount_min": 150,
+      "amount_max": 200,
+      "frequency": "monthly",
+      "notes": ""
+    },
+    {
+      "name": "Long Arm Trading",
+      "amount": null,
+      "frequency": "monthly",
+      "rate": 0.16,
+      "notes": "Helena's Cut - 16% of Dawn Blades Long Arm Trading profits."
+    },
+    {
+      "name": "Operational Travel and Incidentals",
+      "amount_min": 300,
+      "amount_max": 500,
+      "frequency": "monthly",
+      "notes": "Variable estimate."
+    }
+  ]
+}
