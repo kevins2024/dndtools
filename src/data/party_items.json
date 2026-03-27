@@ -1601,10 +1601,8 @@
     "attuned": true,
     "armor_type": "light",
     "armor_base_ac": 11,
-    "magic_bonus": 1,
-    "stat_bonuses": {
-      "hp_max": 10
-    },
+    "magic_bonus": 2,
+    "stat_bonuses": { "hp_max": 10 },
     "effect": "Three properties: (1) Hit point maximum increased by 10 — permanent, not temporary. (2) Once per long rest: when the wearer drops to 0 HP, drop to 1 instead. (3) Advantage on saving throws against being charmed, frightened, or possessed.",
     "flavor": "As she puts it on, the vest-shape forms to fit her exactly and a shimmering dark blue set of sleeves and a sort of skirt-with-4-slits extends downward.",
     "charges": {
@@ -1615,5 +1613,22 @@
     },
     "notes": "hp_max bonus requires dnd_utils to add stat_bonuses.hp_max to character hp.max in resolution. Advantage on charm/fear/possession saves needs active_effects or separate handling — cannot be expressed as a flat stat_bonus.",
     "id": 146
+  },
+  {
+    "name": "The Weaver's Master-Awl",
+    "type": "wondrous",
+    "equipped_by": "Torrin",
+    "carried_by": null,
+    "attuned": true,
+    "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue. Hums with the collective tactical memories of 156 years when held.",
+    "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades gain +2 to attack and damage rolls; Psi-Bolstered Knack successes do not expend the Psionic Energy die. (2) Tactical Foresight — Master of Tactics Help action targets two allies instead of one; each gains a bonus to their next saving throw equal to INT modifier. (3) Grandmaster's Stitch — during a long rest, touch leather armor or a leather item to infuse it for 24 hours: wearer gains resistance to Psychic damage and advantage on saves against Charmed and Frightened. (4) The Retired Special — once per day reaction when an ally is hit: pull them up to 15ft to an unoccupied space, potentially causing the attack to miss.",
+    "charges": {
+      "current": 1,
+      "max": 1,
+      "recharge": "daily",
+      "label": "The Retired Special"
+    },
+    "notes": "Requires attunement by a Rogue.",
+    "id": 147
   }
 ]

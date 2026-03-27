@@ -54,6 +54,31 @@
       "description": "Once per turn on a hit with this dagger, immediately make a second strike with it as part of the same attack. No bonus action required.",
       "known_by": ["Denna"],
       "note": "Item feature, not a class feature — stored here because it has a rules definition that needs to be referenced."
+    },
+    {
+      "name": "Tactical Foresight",
+      "class": "Rogue (Mastermind / Weaver's Master-Awl synergy)",
+      "description": "When using Master of Tactics Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier.",
+      "known_by": ["Torrin"]
+    },
+    {
+      "name": "Commander's Presence",
+      "class": "Rogue (Legendary)",
+      "description": "Allies within 30ft gain a bonus to AC or saving throws from constant tactical advice.",
+      "known_by": ["Torrin"]
+    },
+    {
+      "name": "The Retired Special",
+      "class": "Rogue (Legendary)",
+      "description": "Once per day, reaction when an ally is hit: toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss.",
+      "recharge": "daily",
+      "known_by": ["Torrin"]
+    },
+    {
+      "name": "Grandmaster's Stitch",
+      "class": "Rogue (Legendary — Weaver's Master-Awl)",
+      "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours — wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened.",
+      "known_by": ["Torrin"]
     }
   ]
 }

@@ -28,20 +28,14 @@
       "magic_bonus": 1
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Sleight of Hand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "spellcasting_ability": null,
     "features": [
       "Extra Attack",
@@ -120,20 +114,14 @@
       "magic_bonus": 2
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "spellcasting_ability": null,
     "features": [
       "Rage 3/day",
@@ -192,10 +180,7 @@
       "magic_bonus": 2
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -204,14 +189,8 @@
       "Deception",
       "Investigation"
     ],
-    "expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Thieves Cant"
-    ],
+    "expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Thieves Cant"],
     "spellcasting_ability": null,
     "features": [
       "Sneak Attack 4d6",
@@ -273,10 +252,7 @@
       "magic_bonus": 0
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "con",
-      "int"
-    ],
+    "saving_throws": ["con", "int"],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -284,11 +260,7 @@
       "Perception",
       "Sleight of Hand"
     ],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish"],
     "spellcasting_ability": "int",
     "features": [
       "Tool Expertise",
@@ -340,10 +312,7 @@
       "magic_bonus": 0
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -351,11 +320,7 @@
       "Insight",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "spellcasting_ability": "int",
     "features": [
       "Arcane Recovery",
@@ -370,13 +335,7 @@
         "Absorb Elements",
         "Identify"
       ],
-      "2": [
-        "Scorching Ray",
-        "Misty Step",
-        "Web",
-        "Knock",
-        "See Invisibility"
-      ],
+      "2": ["Scorching Ray", "Misty Step", "Web", "Knock", "See Invisibility"],
       "3": [
         "Fireball",
         "Hypnotic Pattern",
@@ -384,16 +343,8 @@
         "Dispel Magic",
         "Speak with Dead"
       ],
-      "4": [
-        "Stoneskin",
-        "Sickening Radiance",
-        "Vitriolic Sphere"
-      ],
-      "5": [
-        "Bigby's Hand",
-        "Synaptic Static",
-        "Wall of Force"
-      ],
+      "4": ["Stoneskin", "Sickening Radiance", "Vitriolic Sphere"],
+      "5": ["Bigby's Hand", "Synaptic Static", "Wall of Force"],
       "cantrips": [
         "Fire Bolt",
         "Mage Hand",
@@ -445,10 +396,7 @@
       "magic_bonus": 2
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -456,11 +404,7 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "spellcasting_ability": "int",
     "features": [
       "Extra Attack",
@@ -468,11 +412,7 @@
       "Fey Ancestry (advantage vs charm, immune to magical sleep)"
     ],
     "spells": {
-      "cantrips": [
-        "Ray of Frost",
-        "Shocking Grasp",
-        "Fire Bolt"
-      ],
+      "cantrips": ["Ray of Frost", "Shocking Grasp", "Fire Bolt"],
       "prepared": [
         "Shield",
         "Blur",
@@ -549,10 +489,7 @@
       "magic_bonus": 1
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -560,11 +497,7 @@
       "Religion",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "partial Southern (Sovi's language)"
-    ],
+    "languages": ["Common", "Celestial", "partial Southern (Sovi's language)"],
     "spellcasting_ability": "wis",
     "features": [
       "Channel Divinity",
@@ -581,30 +514,13 @@
       ],
       "domain_spells": {
         "notes": "Always prepared, don't count against prepared spell limit.",
-        "1st": [
-          "Bless",
-          "Cure Wounds"
-        ],
-        "2nd": [
-          "Lesser Restoration",
-          "Spiritual Weapon"
-        ],
-        "3rd": [
-          "Beacon of Hope",
-          "Revivify"
-        ],
-        "4th": [
-          "Death Ward",
-          "Guardian of Faith"
-        ]
+        "1st": ["Bless", "Cure Wounds"],
+        "2nd": ["Lesser Restoration", "Spiritual Weapon"],
+        "3rd": ["Beacon of Hope", "Revivify"],
+        "4th": ["Death Ward", "Guardian of Faith"]
       },
       "prepared": {
-        "1st": [
-          "Healing Word",
-          "Guiding Bolt",
-          "Sanctuary",
-          "Shield of Faith"
-        ],
+        "1st": ["Healing Word", "Guiding Bolt", "Sanctuary", "Shield of Faith"],
         "2nd": [
           "Silence",
           "Blindness/Deafness",
@@ -617,9 +533,7 @@
           "Magic Circle",
           "Hold Person"
         ],
-        "4th": [
-          "Freedom of Movement"
-        ]
+        "4th": ["Freedom of Movement"]
       }
     },
     "personality": {
@@ -675,10 +589,7 @@
       "magic_bonus": 1
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Sleight of Hand",
@@ -686,20 +597,10 @@
       "Acrobatics",
       "Deception"
     ],
-    "expertise": [
-      "Stealth",
-      "Sleight of Hand"
-    ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "expertise": ["Stealth", "Sleight of Hand"],
+    "languages": ["Common", "Halfling"],
     "spellcasting_ability": null,
-    "features": [
-      "Sneak Attack 4d6",
-      "Cunning Action",
-      "Uncanny Dodge"
-    ],
+    "features": ["Sneak Attack 4d6", "Cunning Action", "Uncanny Dodge"],
     "personality": {
       "traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
       "quirks": "Helena's niece — the family resemblance is in the intelligence, not the features."
@@ -748,19 +649,9 @@
       "magic_bonus": 0
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Intimidation",
-      "Arcana",
-      "Deception"
-    ],
-    "languages": [
-      "Common"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Intimidation", "Arcana", "Deception"],
+    "languages": ["Common"],
     "spellcasting_ability": "cha",
     "features": [
       "Pact of the Blade",
@@ -833,19 +724,14 @@
       "magic_bonus": 0
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
       "Survival",
       "Acrobatics"
     ],
-    "languages": [
-      "Common"
-    ],
+    "languages": ["Common"],
     "spellcasting_ability": null,
     "features": [
       "Extra Attack",
@@ -896,10 +782,7 @@
       "magic_bonus": 0
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -909,15 +792,8 @@
       "Arcana",
       "Performance"
     ],
-    "expertise": [
-      "Perception",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "two others (half-elf bonus)"
-    ],
+    "expertise": ["Perception", "Persuasion"],
+    "languages": ["Common", "Elvish", "two others (half-elf bonus)"],
     "spellcasting_ability": "cha",
     "features": [
       "Bardic Inspiration d8 (5/long rest)",
@@ -936,30 +812,11 @@
         "Detect Magic",
         "Unseen Servant"
       ],
-      "2": [
-        "Invisibility",
-        "Suggestion",
-        "Silence",
-        "Locate Object"
-      ],
-      "3": [
-        "Hypnotic Pattern",
-        "Dispel Magic",
-        "Speak with Dead"
-      ],
-      "4": [
-        "Dimension Door",
-        "Locate Creature"
-      ],
-      "cantrips": [
-        "Vicious Mockery",
-        "Minor Illusion",
-        "Mage Hand"
-      ],
-      "magical_secrets": [
-        "Counterspell",
-        "Scrying"
-      ]
+      "2": ["Invisibility", "Suggestion", "Silence", "Locate Object"],
+      "3": ["Hypnotic Pattern", "Dispel Magic", "Speak with Dead"],
+      "4": ["Dimension Door", "Locate Creature"],
+      "cantrips": ["Vicious Mockery", "Minor Illusion", "Mage Hand"],
+      "magical_secrets": ["Counterspell", "Scrying"]
     },
     "personality": {
       "traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
@@ -1004,10 +861,7 @@
       "magic_bonus": 0
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -1015,11 +869,7 @@
       "Insight",
       "Medicine"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "spellcasting_ability": "int",
     "features": [
       "Arcane Ward ~14HP (recharges when casting abjuration spells)",
@@ -1035,12 +885,7 @@
         "Protection from Evil and Good",
         "Silvery Barbs"
       ],
-      "2": [
-        "Arcane Lock",
-        "Blur",
-        "Misty Step",
-        "Pass Without Trace"
-      ],
+      "2": ["Arcane Lock", "Blur", "Misty Step", "Pass Without Trace"],
       "3": [
         "Counterspell",
         "Dispel Magic",
@@ -1063,11 +908,7 @@
         "Danse Macabre",
         "Negative Energy Flood (homebrew spell from necromancer's spellbook)"
       ],
-      "cantrips": [
-        "Mage Hand",
-        "Blade Ward",
-        "Minor Illusion"
-      ]
+      "cantrips": ["Mage Hand", "Blade Ward", "Minor Illusion"]
     },
     "personality": {
       "traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
@@ -1113,10 +954,7 @@
       "ac_override": 14
     },
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "wis",
-      "con"
-    ],
+    "saving_throws": ["wis", "con"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -1189,10 +1027,7 @@
           "Spirit Guardians",
           "Dispel Magic"
         ],
-        "4th": [
-          "Death Ward",
-          "Divination"
-        ]
+        "4th": ["Death Ward", "Divination"]
       }
     },
     "spell_flavor": {
@@ -1238,5 +1073,60 @@
     "name": "Corwin",
     "image": "https://iili.io/qgWY8Dx.jpg",
     "active_effects": []
+  },
+  {
+    "name": "Torrin",
+    "full_name": "Torrin Gallowglass",
+    "race": "Dwarf",
+    "class": "Rogue",
+    "subclass": "Soulknife / Mastermind",
+    "level": 7,
+    "alignment": "Chaotic Neutral",
+    "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
+    "stats": {
+      "str": 14,
+      "dex": 20,
+      "con": 16,
+      "int": 20,
+      "wis": 10,
+      "cha": 20
+    },
+    "hp": { "max": 129, "current": 129 },
+    "ac_base": {
+      "armor": "Unknown",
+      "armor_type": "light",
+      "armor_base_ac": 11,
+      "shield": false,
+      "magic_bonus": 0
+    },
+    "proficiency_bonus": null,
+    "saving_throws": ["dex", "int"],
+    "skill_proficiencies": [
+      "Insight",
+      "Stealth",
+      "Perception",
+      "Investigation",
+      "History",
+      "Persuasion"
+    ],
+    "expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
+    "spellcasting_ability": null,
+    "active_effects": [],
+    "features": [
+      "Psychic Blades (Soulknife)",
+      "Psi-Bolstered Knack (Soulknife)",
+      "Master of Tactics — Help action as bonus action, range 30ft (Mastermind)",
+      "Tactical Foresight — Help targets two allies, each gains bonus to next saving throw equal to INT modifier (Mastermind/Awl synergy)",
+      "Commander's Presence — allies within 30ft gain AC or saving throw bonus from constant tactical advice (Legendary)",
+      "The Retired Special — once per day reaction: toss a psychic thread when an ally is hit, pull them up to 15ft to potentially cause the attack to miss"
+    ],
+    "personality": {
+      "traits": "Legendary rogue, now retired. Applies 156 years of tactical memory to leatherworking.",
+      "quirks": "Grumbles 'kids these days not watching their footing' when saving allies. Shouts perfect tactical advice while working leather."
+    },
+    "image": "https://iili.io/qtjjK5N.jpg",
+    "relationships": [],
+    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses."
   }
 ]
