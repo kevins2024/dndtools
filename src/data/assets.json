@@ -1,0 +1,76 @@
+{
+  "ships": [
+    {
+      "name": "Dawn Rose",
+      "type": "converted fishing vessel",
+      "captain": null,
+      "crew_full": 4,
+      "crew_current": 4,
+      "passengers": "small number",
+      "cargo": "converted for cargo",
+      "home_port": "Ravenquay",
+      "current_location": null,
+      "armament": null,
+      "condition": null,
+      "notes": "Originally a fishing vessel, converted to cargo use."
+    },
+    {
+      "name": "Gilt Blades",
+      "type": "carrack",
+      "captain": null,
+      "crew_full": 10,
+      "crew_current": 5,
+      "passengers": null,
+      "cargo": null,
+      "home_port": "Ravenquay",
+      "current_location": null,
+      "armament": null,
+      "condition": null,
+      "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5."
+    },
+    {
+      "name": "Wold Anchor",
+      "type": "cargo vessel",
+      "captain": null,
+      "crew_full": 4,
+      "crew_current": 4,
+      "passengers": null,
+      "cargo": null,
+      "home_port": "Ravenquay",
+      "current_location": null,
+      "armament": null,
+      "condition": null,
+      "hidden_compartment": "Can conceal up to 8 people.",
+      "notes": "Similar to Gilt Blades but less refined. Hidden compartment."
+    },
+    {
+      "name": "Sovi",
+      "type": "transport",
+      "captain": null,
+      "crew_full": 5,
+      "crew_current": 5,
+      "passengers": 23,
+      "cargo": null,
+      "home_port": "Ravenquay",
+      "current_location": null,
+      "armament": null,
+      "condition": null,
+      "notes": "Likely former slaver vessel. Large enough for 23 passengers plus crew. No luxury fittings."
+    },
+    {
+      "name": "Shalindra",
+      "type": "caravel",
+      "captain": "Essavane",
+      "crew_full": 8,
+      "crew_current": null,
+      "passengers": null,
+      "cargo": null,
+      "home_port": null,
+      "current_location": "Valdmere run",
+      "armament": null,
+      "condition": null,
+      "owned_by": "allied",
+      "notes": "Not Dawn Blades property. Allied vessel. Essavane captaining."
+    }
+  ]
+}
