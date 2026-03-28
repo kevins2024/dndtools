@@ -700,6 +700,26 @@
     "id": 63
   },
   {
+    "name": "The Farreach (A)",
+    "type": "wondrous",
+    "equipped_by": "Siv",
+    "carried_by": null,
+    "attuned": true,
+    "paired_with": "The Farreach (B)",
+    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to an ability or skill check. Always warm.",
+    "notes": ""
+  },
+  {
+    "name": "The Farreach (B)",
+    "type": "wondrous",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "attuned": true,
+    "paired_with": "The Farreach (A)",
+    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to an ability or skill check. Always warm.",
+    "notes": ""
+  },
+  {
     "name": "Dagger of Swift Strike +1",
     "type": "weapon",
     "equipped_by": "Denna",
