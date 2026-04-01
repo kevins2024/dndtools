@@ -99,19 +99,20 @@
     "subtype": "warehouse",
     "location": "Ravenquay",
     "district": "Docks Ward",
-    "status": "pending",
-    "ownership": "seized Syndicate front, title search pending with Magistrate Orvyn",
+    "status": "operational",
+    "ownership": "seized Syndicate front, deeded to Dawn Blades",
     "notes": "Potential Long Arm Trading property."
   },
   {
     "id": 3,
-    "name": "Vineyard Estate",
+    "name": "The Winery at Fogstone Hill",
     "type": "real_estate",
     "subtype": "estate",
     "location": "Khemrise",
     "district": "Vineyard Road",
     "status": "operational",
     "ownership": "owned, acquired from Ostwick family",
+    "furnishings_notes": "Furs: bearskin (80g), 2x wolf (50g each), seal fur for Sovi already delivered (40g). 15x pillows held until estate visit to match colors. Study renovation 9 days out (370g): floor-to-ceiling shelving, three lockable dual-key cabinets, new desk, two visitor chairs, curtains, rugs, cushioning, reading lamp, few considered objects. Beds pending carpenter assessment on estate visit. Upstairs and outbuilding assessment pending follow-up, options at different price points.",
     "acquisition_cost": 6000,
     "notes": "3 miles northeast of Khemrise. Main house, east outbuilding, stable, courtyard, vineyard rows. Ledwent managing. Primary base of operations."
   },
@@ -128,36 +129,29 @@
   },
   {
     "id": 5,
-    "name": "Shell Property One",
-    "type": "real_estate",
-    "subtype": "unknown",
+    "name": "Marchant Wool Imports",
+    "type": "business",
+    "subtype": "import_export",
     "location": "Khemrise",
-    "district": "unknown",
-    "status": "under_investigation",
-    "ownership": "deed in strongbox",
-    "notes": "One of three shell properties on Tova's memory map. One likely active Syndicate operation."
+    "district": null,
+    "status": "operational",
+    "ownership": "acquired from Syndicate shell, legitimate operation retained",
+    "monthly_income_min": null,
+    "monthly_income_max": null,
+    "notes": "Real wool trading operation with genuine clients and good regional reputation. Syndicate used as money laundering pass-through only — the wool business itself is legitimate and profitable. Rendwick Pendwick being approached as operator."
   },
   {
     "id": 6,
-    "name": "Shell Property Two",
-    "type": "real_estate",
-    "subtype": "unknown",
+    "name": "Filas Apothecary",
+    "type": "business",
+    "subtype": "apothecary",
     "location": "Khemrise",
-    "district": "unknown",
-    "status": "under_investigation",
-    "ownership": "deed in strongbox",
-    "notes": "One of three shell properties on Tova's memory map."
-  },
-  {
-    "id": 7,
-    "name": "Shell Property Three",
-    "type": "real_estate",
-    "subtype": "unknown",
-    "location": "Khemrise",
-    "district": "unknown",
-    "status": "under_investigation",
-    "ownership": "deed in strongbox",
-    "notes": "One of three shell properties on Tova's memory map."
+    "district": null,
+    "status": "operational",
+    "ownership": "Dawn Blades own the building, Prestiria Filas operates",
+    "monthly_income_min": null,
+    "monthly_income_max": null,
+    "notes": "Real apothecary, legitimate pharmacist Prestiria Filas who didn't know Syndicate owned the building. Solid client base, real medicines. Tova handling ownership transition professionally. Supplier relationship with Trevash herb merchant worth monitoring — Aldric and Pell checking for Syndicate ties."
   },
   {
     "id": 8,
@@ -212,9 +206,40 @@
     "subtype": "mining",
     "location": "Millhaven",
     "district": null,
-    "status": "pending",
-    "ownership": "formerly Garrick Ironvein, Syndicate adjacent",
+    "status": "operational",
+    "ownership": "Dawn Blades",
     "monthly_income": 4000,
-    "notes": "40-50 collared workers in deep tunnels. 8 ex-military guards. Income pending full operation and liberation."
+    "notes": "operated by Coalbeard"
+  },
+  {
+    "name": "Farendale House",
+    "type": "real_estate",
+    "subtype": "estate",
+    "location": "Ravenquay",
+    "district": "Merchant Quarter",
+    "status": "owned",
+    "ownership": "acquired from Farendale estate sale",
+    "acquisition_cost": 4000,
+    "notes": "Title transfers eighth bell tomorrow. Not completely furnished. Two minute walk from Revivify."
+  },
+  {
+    "name": "Trevash Warehouse",
+    "type": "real_estate",
+    "subtype": "warehouse",
+    "location": "Trevash",
+    "district": null,
+    "status": "acquired",
+    "ownership": "deed acquired from Farendale estate",
+    "notes": ""
+  },
+  {
+    "name": "Brennswick Land Parcel",
+    "type": "real_estate",
+    "subtype": "land",
+    "location": "Brennswick",
+    "district": null,
+    "status": "acquired",
+    "ownership": "deed acquired from Farendale estate",
+    "notes": ""
   }
 ]

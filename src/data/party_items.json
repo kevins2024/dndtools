@@ -1521,7 +1521,7 @@
   {
     "name": "Circlet of Blasting",
     "type": "wondrous",
-    "equipped_by": null,
+    "equipped_by": "Lyria",
     "carried_by": null,
     "attuned": false,
     "effect": "Cast Scorching Ray once per day.",
@@ -1651,5 +1651,257 @@
     "charges_recharge": "daily",
     "charges_label": "The Retired Special",
     "charges_unit": null
+  },
+  {
+    "name": "Plate +1",
+    "type": "armor",
+    "equipped_by": "Corwin",
+    "carried_by": null,
+    "attuned": false,
+    "armor_type": "heavy",
+    "armor_base_ac": 18,
+    "magic_bonus": 1,
+    "effect": null,
+    "notes": ""
+  },
+  {
+    "name": "Greatsword +2",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": "Corwin",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "2d6",
+    "magic_bonus": 2,
+    "effect": null,
+    "notes": ""
+  },
+  {
+    "name": "Gauntlets of Ogre Power",
+    "type": "wondrous",
+    "equipped_by": "Corwin",
+    "carried_by": null,
+    "attuned": true,
+    "stat_overrides": { "stat_str": 19 },
+    "effect": "Sets STR to 19.",
+    "notes": ""
+  },
+  {
+    "name": "Belt of Constitution (Corwin)",
+    "type": "wondrous",
+    "equipped_by": "Corwin",
+    "carried_by": null,
+    "attuned": true,
+    "stat_overrides": { "stat_con": 18 },
+    "effect": "Sets CON to 18.",
+    "notes": "Named to distinguish from any other Belt of Constitution in party_items."
+  },
+  {
+    "name": "Cloak of Protection +1 (Corwin)",
+    "type": "wondrous",
+    "equipped_by": "Corwin",
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "ac": 1, "saving_throws": 1 },
+    "effect": "+1 AC and saving throws.",
+    "notes": ""
+  },
+  {
+    "name": "Collapsible Shield +2",
+    "type": "armor",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "armor_type": "shield",
+    "magic_bonus": 2,
+    "effect": "Caster friendly, lightweight. Collapsible.",
+    "notes": ""
+  },
+  {
+    "name": "Scroll of Thunderstorm",
+    "type": "consumable",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "quantity": 1,
+    "effect": "Single use. Large area lightning damage.",
+    "notes": ""
+  },
+  {
+    "name": "Wand of Web",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Lyria",
+    "attuned": false,
+    "charges_current": 7,
+    "charges_max": 7,
+    "charges_recharge": "daily",
+    "effect": "Cast Web using charges.",
+    "notes": ""
+  },
+  {
+    "name": "Wand of Wonder",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "charges_current": 7,
+    "charges_max": 7,
+    "charges_recharge": "daily",
+    "effect": "Cast random magical effect using charges.",
+    "notes": ""
+  },
+  {
+    "name": "Wand of Secrets",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Vaz",
+    "attuned": false,
+    "charges_current": 3,
+    "charges_max": 3,
+    "charges_recharge": "daily",
+    "effect": "Detects secret doors and traps within 30ft.",
+    "notes": ""
+  },
+  {
+    "name": "Cloak of Invisibility",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Become invisible for up to 1 hour per day. Concentration.",
+    "notes": "Unassigned."
+  },
+  {
+    "name": "Cloak of Arachnida",
+    "type": "wondrous",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Spider climb. Immunity to web. Cast Web 1/day.",
+    "notes": ""
+  },
+  {
+    "name": "Rope of Climbing and Entanglement",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Lexica",
+    "attuned": false,
+    "effect": "60ft rope, animates on command. Restrain target 1/day.",
+    "notes": ""
+  },
+  {
+    "name": "Circlet of Scorching Ray 3",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Lyria",
+    "attuned": false,
+    "charges_current": 3,
+    "charges_max": 3,
+    "charges_recharge": "daily",
+    "effect": "Cast Scorching Ray 3 times per day.",
+    "notes": ""
+  },
+  {
+    "name": "Circlet of Mental Fortress",
+    "type": "wondrous",
+    "equipped_by": "Corwin",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Advantage on INT, WIS, and CHA saving throws. Resistance to psychic damage.",
+    "notes": ""
+  },
+  {
+    "name": "Belt of Giant Strength",
+    "type": "wondrous",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": true,
+    "stat_overrides": { "stat_str": 27 },
+    "effect": "Sets STR to 27.",
+    "notes": ""
+  },
+  {
+    "name": "Telescope",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Shows locations as they were in the past.",
+    "notes": ""
+  },
+  {
+    "name": "Coin of Truth",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Vaz",
+    "attuned": false,
+    "effect": "Ask yes/no questions. Always truthful.",
+    "notes": ""
+  },
+  {
+    "name": "Three Unidentified Potions",
+    "type": "consumable",
+    "equipped_by": null,
+    "carried_by": "Jaygar",
+    "attuned": false,
+    "quantity": 3,
+    "effect": "Unknown — unidentified.",
+    "notes": ""
+  },
+  {
+    "name": "Gemstones",
+    "type": "material",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": false,
+    "effect": null,
+    "notes": "2 rubies from brooch, 1 opal from pendant, 1 spinel from ring, 1 sapphire from small box, small diamond cluster from small box."
+  },
+  {
+    "name": "Unmarked Ring",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Detects scrying attempts.",
+    "notes": "Vaz wearing."
+  },
+  {
+    "name": "Sword of Sharpness",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "finesse": false,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "effect": "On a roll of 20: severs a limb and deals an extra 14 damage on that hit.",
+    "notes": "Northern metal. Whoever made this knew what they were doing."
+  },
+  {
+    "name": "Halberd of Warning",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d10",
+    "magic_bonus": 2,
+    "effect": "While carrying — even collapsed — wielder cannot be surprised and has advantage on initiative rolls. Wakes wielder if danger approaches during sleep. Warning properties require no attunement. Attunement required for +2 attack and damage bonus.",
+    "notes": ""
+  },
+  {
+    "name": "Eight Unknown Coins",
+    "type": "misc",
+    "equipped_by": null,
+    "carried_by": "Vaz",
+    "attuned": false,
+    "quantity": 8,
+    "effect": null,
+    "notes": "Large gold coins, unfamiliar crest. Not Western Reach minting. Not any region Vaz immediately recognizes. Found with Ring of Mind Shielding."
   }
 ]

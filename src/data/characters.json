@@ -1880,19 +1880,48 @@
     ],
     "active_effects": []
   },
-  {
-    "name": "Corwin",
-    "image": "https://iili.io/qgWY8Dx.jpg",
-    "unarmored_ac_formula": "default",
-    "saving_throws": [],
-    "skill_proficiencies": [],
-    "expertise": [],
-    "languages": [],
-    "features": [],
-    "spells": [],
-    "relationships": [],
-    "active_effects": []
-  },
+{
+  "name": "Corwin",
+  "full_name": "Corwin Drake",
+  "race": "Human",
+  "class": "Fighter",
+  "subclass": "Champion",
+  "level": 7,
+  "alignment": "Lawful Neutral",
+  "appearance": "Human man, thirties. Guard bearing. Weathered, solid build.",
+  "stat_str": 16,
+  "stat_dex": 14,
+  "stat_con": 16,
+  "stat_int": 12,
+  "stat_wis": 14,
+  "stat_cha": 12,
+  "hp_max": 76,
+  "hp_current": 76,
+  "unarmored_ac_formula": "default",
+  "proficiency_bonus": 3,
+  "saving_throws": ["str", "con"],
+  "skill_proficiencies": ["Athletics", "Intimidation", "Perception", "Insight"],
+  "expertise": [],
+  "languages": ["Common"],
+  "spellcasting_ability": null,
+  "personality_traits": "Reliable, professional. Not a decision maker — executes well, asks good questions, steady presence.",
+  "personality_quirks": "Walks patrol routes even off duty. Knows everyone in Ravenquay who owes favors.",
+  "features": [
+    { "name": "Extra Attack", "type": "feature", "action_type": "action", "recharge": null, "uses_max": null, "uses_current": null },
+    { "name": "Improved Critical", "type": "feature", "action_type": null, "recharge": null, "uses_max": null, "uses_current": null },
+    { "name": "Remarkable Athlete", "type": "feature", "action_type": null, "recharge": null, "uses_max": null, "uses_current": null },
+    { "name": "Second Wind", "type": "feature", "action_type": "bonus_action", "recharge": "short_rest", "uses_max": 1, "uses_current": 1 },
+    { "name": "Action Surge", "type": "feature", "action_type": "action", "recharge": "short_rest", "uses_max": 1, "uses_current": 1 }
+  ],
+  "spells": [],
+  "relationships": [
+    { "character": "Marcus", "type": "colleague", "notes": "Marcus holds the sending stone, Corwin holds the relationships." }
+  ],
+  "active_effects": [],
+  "notes": "STR 19 from Gauntlets of Ogre Power. CON 18 from Belt of Constitution. Improved Critical — crits on 19-20. Corwin holds the Ravenquay relationship network.",
+  "image": "https://iili.io/qgWY8Dx.jpg"
+}
+
   {
     "name": "Torrin",
     "full_name": "Torrin Gallowglass",

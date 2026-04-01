@@ -26,7 +26,7 @@
             "status": "known",
             "climate": "Drier, more extreme temperature swings between seasons.",
             "player_knowledge": "limited",
-            "notes": "Begins past Valdmere and the mountains. City-states rather than merchant-council model. Valdmere's frontier feeling comes partly from proximity to this region."
+            "notes": "City-states rather than merchant-council model. Valdmere's frontier feeling comes partly from proximity to this region."
           },
           {
             "name": "The Southern Reach",
@@ -148,131 +148,76 @@
     ]
   },
   {
-    "name": "The Northern Reaches",
-    "continent": "Aethermoor",
-    "notes": "Colder, harder, shorter seasons, less politically organized. Active conflict with Western Reach border at Cindermarch. Clan-based society. Six major clans plus smaller ones. Firstwalker presence predates all current clan organization.",
-
-    "border_settlements": [
+    "name": "Northern Reaches",
+    "grid": { "width": 40, "height": 40 },
+    "shape": "pentagon",
+    "shape_notes": "Top point (20,40) — furthest north. Top left coast (20,40) to (0,20). Top right coast (20,40) to (40,20). Bottom left border (0,20) to (8,0). Bottom right border (40,20) to (32,0). Bottom edge (8,0) to (32,0) — Western Reach border.",
+    "locations": [
       {
         "name": "Cindermarch",
-        "coords": { "x": 6, "y": 10 },
-        "type": "military_fortress",
-        "description": "Western Reach military fortress at Northern Reaches border. Coldest settled point in the Western Reach.",
-        "notes": "Commander Salla Kern. Dawn Blades ally. One day north of Millhaven. Three days northeast of Khemrise. Active war with northern clans — now ending due to Mast's manipulation being exposed. Thirty battle-hardened soldiers promised to Dawn Blades when war ends."
-      }
-    ],
-
-    "clan_territories": [
-      {
-        "name": "Vethara Clan Winter Camp",
-        "coords": { "x": 7, "y": 13 },
-        "type": "clan_camp",
-        "description": "Winter encampment of the Vethara clan. Fortified, forty warriors present during Dawn Blades visit.",
-        "notes": "Vethara — clan leader, Vrethka's daughter. War ending. Trade negotiations begun with Dawn Blades. Vethara holding two weeks before approaching Cindermarch. Northern metalwork potentially superior to dwarven goods — significant trade opportunity."
-      },
-      {
-        "name": "Varath Valley",
-        "coords": { "x": 8, "y": 16 },
-        "type": "settlement_chamber",
-        "description": "Hidden valley, fourth-generation Firstwalker descendant settlement. Ancient chamber at center. Boundary almost entirely absent — above and below coexist here.",
-        "notes": "Varath elder — four generations of tending. Varath Ichta — his daughter, sent south to Cindermarch as first emissary. New agreement between above and below made here. Sealwalker cloak created here. Mast buried here. Settlement can now be vacated — tending no longer required. Most significant boundary location in Western Reach network."
-      },
-      {
-        "name": "Sixth Clan Territory",
-        "coords": { "x": 7.5, "y": 15 },
-        "type": "clan_territory",
-        "description": "Territory of the sixth unnamed clan. Gone quiet two years ago. Borders blank space to the north.",
-        "notes": "Clan stopped responding to council two years ago. Seventeen scouts sent — ten chose to stay below, seven returned. Connected to blank space activity. No longer hostile — war context removed."
-      }
-    ],
-
-    "waystations": [
-      {
-        "name": "Frostmark",
-        "coords": { "x": 7, "y": 14 },
-        "type": "waystation",
-        "description": "Clan neutral trading waystation. Stone construction, main hall, fire pit. Neutral ground by tradition — no blood spilled in four generations.",
-        "notes": "Meeting point with Vethara. Can house large groups. Forty warriors present during Dawn Blades visit without incident. Clan tradition of neutral ground strictly observed."
+        "coords": { "x": 20, "y": 2 },
+        "type": "fortress",
+        "description": "Bottom center on border line. Military fortress, Western Reach side."
       },
       {
         "name": "Harrow's Rest",
-        "coords": { "x": 7.5, "y": 11 },
+        "coords": { "x": 22, "y": 4 },
         "type": "waystation",
-        "description": "Small waystation three hours east of Cindermarch on the eastern fork road.",
-        "notes": "Used by Mast's courier network. Mast's research documents retrieved here. Unremarkable but reliable."
+        "description": "Three hours east of Cindermarch."
       },
       {
         "name": "Northern Rock Waystation",
-        "coords": { "x": 6.5, "y": 12 },
+        "coords": { "x": 19, "y": 6 },
         "type": "waystation",
-        "description": "Unnamed waystation with rock overhang shelter. Used by company during whiteout storm.",
-        "notes": "Firstwalker origin — crack in the hearthstone remembers Firstwalker songs. Lenn played a melody the stone recognized. Ancient gathering place for seasonal meetings. Lenn's flute carried Firstwalker melody without knowing it. Safe shelter, reliable."
+        "description": "Rock overhang shelter. Firstwalker songs carved in hearthstone."
       },
       {
-        "name": "Vrethka's Grandmother's Path Junction",
-        "coords": { "x": 7.2, "y": 14.5 },
-        "type": "landmark",
-        "description": "Junction where Deepwalker fixed broken river ice. Left bank path leads to Frostmark significantly faster than main route.",
-        "notes": "Deepwalker — the Eldest in courtesy form — fixed river ice here. Kerra's pact completed nearby. Vrethka's grandmother used this path. Follow left bank to two dead pines then cut inland."
-      }
-    ],
-
-    "wilderness": [
-      {
-        "name": "The Blank Space",
-        "coords": { "x": 8, "y": 18 },
-        "type": "boundary_site",
-        "description": "Uncategorized on all maps. Original conversation place between above and below. First opening between the two worlds — left ajar for thousands of years.",
-        "notes": "Firstwalker settlement present — thirty to forty between-people now freed. Door closed by Vaz and Witnesses with below's cooperation. Unorganized remnant contained. Standing stone circle records all Witnesses who ever visited — updated by company. Map room contained complete two-continent chamber records. Four Firstwalkers chose to remain. Eleven sleeping for weeks before traveling south. Seventeen adults and six children traveling south with Dawn Blades. Not dangerous now that door is closed but boundary still very thin."
+        "name": "Vethara Winter Camp",
+        "coords": { "x": 26, "y": 8 },
+        "type": "settlement",
+        "description": "Northeast of Cindermarch. Firstwalker winter camp."
       },
       {
-        "name": "The Greyspine Passage",
-        "coords": { "x": 6.5, "y": 13 },
-        "type": "passage",
-        "description": "Narrow mountain passage. Only practical winter route through the ridge between Frostmark and open northern territory. 15ft wide, narrows to single file for 30ft at center.",
-        "notes": "Four Greyback cave hunters cleared by Dawn Blades — matriarch and three others. Previously blocked for six weeks. Now passable. Vethara waiting at east exit after passage cleared. Greyback materials harvested — hide carries below-substance, useful for item crafting."
+        "name": "Greyspine Passage",
+        "coords": { "x": 21, "y": 8 },
+        "type": "wilderness",
+        "description": "Narrow mountain passage. Only winter route through the ridge."
       },
       {
-        "name": "Greyback Ravine",
-        "coords": { "x": 6.8, "y": 13.5 },
-        "type": "encounter_site",
-        "description": "Narrow ravine on road south from blank space. Ravine Stalker territory — three cleared by Dawn Blades.",
-        "notes": "Three Ravine Stalkers killed. Materials harvested — hide, claws, rendered fat. Ornate buckle recovered — chin strap from Helm of Brilliance, reconstructable with sufficient gems. Ravine Stalkers: territorial, drop from above, grapple and crush. Family groups of three. Solitary between groups."
+        "name": "Frostmark Waystation",
+        "coords": { "x": 24, "y": 10 },
+        "type": "waystation",
+        "description": "Neutral trading waystation."
       },
       {
-        "name": "The Observatory",
-        "coords": { "x": 6, "y": 17 },
+        "name": "Observatory",
+        "coords": { "x": 18, "y": 16 },
         "type": "ancient_structure",
-        "description": "Ancient pre-settlement structure. Older than anything currently standing in the Northern Reaches. Used by Mast as primary research base for eleven years.",
-        "notes": "Agreement renegotiated here. Shape from below maintained it for three years before Dawn Blades arrived. Five recovered Witness items retrieved. Mast's research documents, eleven years of boundary work. Cuppin Tevoulle's locked chest recovered — contained glass sphere, measuring rods, impossible flower, Deepwalker's tooth. Calder's three stolen items returned to below. Tevoulle's notes about the Eldest still here — worth retrieving. Shape that maintained Observatory has returned below."
+        "description": "Ancient pre-settlement structure. Mast's research base."
+      },
+      {
+        "name": "Varath Valley",
+        "coords": { "x": 28, "y": 14 },
+        "type": "settlement",
+        "description": "Hidden valley. Firstwalker settlement. Sealed chamber at center."
       },
       {
         "name": "Eldest's Valley",
-        "coords": { "x": 8.5, "y": 17 },
-        "type": "boundary_site",
-        "description": "Wide protected valley on three sides by ridgeline. Warm quality — below tending from underneath for unknown time. Where Deepwalker/Eldest is most concentrated above.",
-        "notes": "Lenn pointed to this location from the glass sphere vision. Measuring rods pointed here constantly. Yungkin — child of the Eldest — encountered near here and joined company. Boundary thin but healthy due to sustained below tending. No chamber — just a place the Eldest attends most completely."
+        "coords": { "x": 30, "y": 16 },
+        "type": "wilderness",
+        "description": "Wide protected valley. Warm quality."
       },
       {
-        "name": "Vrethka's Thin Place",
-        "coords": { "x": 6.3, "y": 12.5 },
-        "type": "boundary_site",
-        "description": "Thin boundary place on road north of Cindermarch. One of three locations Mast stopped maintaining eight months ago.",
-        "notes": "Tended by full Witness group on northward journey. Boundary stabilized — not healed but acknowledged. Road itself recognized Vaz here. First time Vrethka reached toward the boundary and it reached back."
+        "name": "Sixth Clan Territory",
+        "coords": { "x": 28, "y": 18 },
+        "type": "territory",
+        "description": "Gone quiet two years ago."
       },
       {
-        "name": "The Place of First Hello",
-        "coords": { "x": 7.8, "y": 16.5 },
-        "type": "ancient_structure_chamber",
-        "description": "Chamber pushed up from below — built by below as a greeting room for above visitors. Depression in floor center, script on walls. Exposed by door closing reverberating through network.",
-        "notes": "Emits sustained greeting note whenever entered — opened perception briefly in all present regardless of Witness status. Siv's perception opened here. Built from below, not by Firstwalkers. Been saying hello into empty chamber for three thousand years. Kerra copied all wall script. Location not on any map including Firstwalker map room — predates them."
-      },
-      {
-        "name": "Mast's Secondary Cache Location",
-        "coords": { "x": 7.3, "y": 11.5 },
-        "type": "waystation",
-        "description": "Location east of Cindermarch where Mast's courier delivered documents.",
-        "notes": "Yoly the courier — Orvath based, small operator. Documents retrieved. Research on northern chamber approach routes, boundary readings, Calvane correspondence. Secondary to Harrow's Rest in importance."
+        "name": "Place of First Hello",
+        "coords": { "x": 27, "y": 20 },
+        "type": "sealed_chamber",
+        "description": "Chamber pushed up from below."
       }
     ]
   }
