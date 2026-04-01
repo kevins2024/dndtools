@@ -2,7 +2,6 @@
   <div class="app-layout">
     <!-- Side Panel -->
     <aside class="side-panel">
-      <!-- Icon Tab Buttons -->
       <nav class="side-nav">
         <button
           v-for="tab in tabs"
@@ -15,8 +14,6 @@
           <span class="nav-icon" v-html="tab.icon"></span>
         </button>
       </nav>
-
-      <!-- Dynamic Component Area -->
       <div class="panel-content">
         <component :is="activeSidebarComponent" />
       </div>
@@ -26,6 +23,23 @@
     <main class="main-content">
       <component :is="activeDetailComponent" />
     </main>
+
+    <!-- Drawer -->
+    <transition name="drawer">
+      <div v-if="drawerOpen" class="drawer">
+        <DiceRoller />
+      </div>
+    </transition>
+
+    <!-- Drawer Toggle Button -->
+    <button
+      class="drawer-toggle"
+      :class="{ open: drawerOpen }"
+      @click="drawerOpen = !drawerOpen"
+      title="Toggle dice roller"
+    >
+      &#9776;
+    </button>
   </div>
 </template>
 
@@ -39,6 +53,7 @@ import CharacterDetails from './components/CharacterDetails.vue'
 import ItemDetails from './components/ItemDetails.vue'
 import LocationDetails from './components/LocationDetails.vue'
 import PartyDetails from './components/PartyDetails.vue'
+import DiceRoller from './components/DiceRoller.vue'
 
 export default {
   name: 'AppLayout',
@@ -53,55 +68,49 @@ export default {
     ItemDetails,
     LocationDetails,
     PartyDetails,
+    DiceRoller,
   },
 
   data() {
     return {
       activeTab: 'players',
+      drawerOpen: false,
       tabs: [
         {
           id: 'players',
           label: 'Player Characters',
-          icon: '&#9876;', // ⚔
+          icon: '&#9876;',
           component: 'PlayerCharacterSelect',
         },
         {
           id: 'npcs',
           label: 'NPCs',
-          icon: '&#128100;', // 👤
+          icon: '&#128100;',
           component: 'NPCSelect',
         },
         {
           id: 'locations',
           label: 'Locations',
-          icon: '&#127956;', // 🏔
+          icon: '&#127956;',
           component: 'Locations',
         },
-        {
-          id: 'items',
-          label: 'Items',
-          icon: '&#128188;', // 💼
-          component: 'Items',
-        },
+        { id: 'items', label: 'Items', icon: '&#128188;', component: 'Items' },
         {
           id: 'placeholder',
           label: 'More',
-          icon: '&#8230;', // …
+          icon: '&#8230;',
           component: 'Placeholder',
         },
       ],
       details: [
-        {
-          id: 'character',
-          title: 'Character',
-          component: 'CharacterDetails',
-        },
+        { id: 'character', title: 'Character', component: 'CharacterDetails' },
         { id: 'item', title: 'Item', component: 'ItemDetails' },
         { id: 'location', title: 'Location', component: 'LocationDetails' },
         { id: 'party', title: 'Party Overview', component: 'PartyDetails' },
       ],
     }
   },
+
   computed: {
     activeSidebarComponent() {
       const tab = this.tabs.find((t) => t.id === this.activeTab)
@@ -117,13 +126,13 @@ export default {
       if (this.activeTab === 'players' && this.selectedPlayers.length > 1)
         return 'party'
       if (this.activeTab === 'items') return 'item'
-
       return null
     },
     selectedPlayers() {
       return this.$store.state.selectedPlayers
     },
   },
+
   async created() {},
 }
 </script>
@@ -140,6 +149,7 @@ export default {
   background-color: #1a1612;
   font-family: 'Crimson Text', Georgia, serif;
   color: #e8dcc8;
+  position: relative;
 }
 
 /* ── Side Panel ── */
@@ -215,7 +225,6 @@ export default {
 .panel-content::-webkit-scrollbar {
   width: 4px;
 }
-
 .panel-content::-webkit-scrollbar-thumb {
   background: #3a2e22;
   border-radius: 2px;
@@ -226,5 +235,58 @@ export default {
   flex: 1;
   height: 100vh;
   overflow-y: auto;
+}
+
+/* ── Drawer ── */
+.drawer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 80vw;
+  max-width: 80vw;
+  height: 25vh;
+  background-color: #13100d;
+  border-left: 1px solid #3a2e22;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+/* ── Drawer Toggle Button ── */
+.drawer-toggle {
+  position: fixed;
+  bottom: 2vh;
+  right: 1vw;
+  width: 42px;
+  height: 42px;
+  background: #1e1a14;
+  border: 1px solid #3a2e22;
+  border-radius: 4px;
+  color: #8a7a60;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  z-index: 101;
+}
+
+.drawer-toggle:hover,
+.drawer-toggle.open {
+  border-color: #c8a96e;
+  color: #c8a96e;
+  box-shadow: 0 0 8px rgba(200, 169, 110, 0.2);
+}
+
+/* ── Drawer Transition ── */
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: transform 0.25s ease;
+}
+.drawer-enter,
+.drawer-leave-to {
+  transform: translateX(100%);
 }
 </style>

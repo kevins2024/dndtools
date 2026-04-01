@@ -1,0 +1,34 @@
+<svg width="100%" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    
+  </defs>
+
+  <!-- Pentagon r=95, centered at 150,150, every 72deg from -90
+    A: 150, 150-95 = 150,55
+    B: 150+95*cos(-18)=150+90.4=240, 150+95*sin(-18)=150-29.4=121
+    C: 150+95*cos(54)=150+55.8=206, 150+95*sin(54)=150+76.9=227
+    D: 150-55.8=94, 227
+    E: 150-90.4=60, 121
+
+  Decagon r=130, every 36deg from -90
+    1=150,20  2=227,45  3=274,110  4=274,190  5=227,255
+    6=150,280 7=73,255  8=26,190   9=26,110   10=73,45  -->
+
+  <!-- Center pentagon -->
+  <polygon points="150,55 240,121 206,227 94,227 60,121" style="fill:rgb(200, 169, 110);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- A-B-3-2-1 -->
+  <polygon points="150,55 240,121 274,110 227,45 150,20" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- B-C-5-4-3 -->
+  <polygon points="240,121 206,227 227,255 274,190 274,110" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- C-D-7-6-5 -->
+  <polygon points="206,227 94,227 73,255 150,280 227,255" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- D-E-9-8-7 -->
+  <polygon points="94,227 60,121 26,110 26,190 73,255" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- A-E-9-10-1 -->
+  <polygon points="150,55 60,121 26,110 73,45 150,20" style="fill:rgb(138, 104, 48);stroke:rgb(26, 22, 18);color:rgb(255, 255, 255);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+</svg>

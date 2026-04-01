@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <style>
+    .face-center { fill: #c8a96e; stroke: #1a1612; stroke-width: 3; }
+  </style>
+  <polygon class="face-center" points="150,20 263,215 37,215"/>
+</svg>
