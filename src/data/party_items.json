@@ -1045,7 +1045,7 @@
     "id": 96
   },
   {
-    "name": "Leather Armor",
+    "name": "Studded Leather Armor +2",
     "type": "armor",
     "equipped_by": "Siv",
     "carried_by": null,
@@ -1053,7 +1053,7 @@
     "id": 97
   },
   {
-    "name": "Leather Armor",
+    "name": "Leather Armor +2",
     "type": "armor",
     "equipped_by": "Lexica",
     "carried_by": null,
@@ -1885,7 +1885,7 @@
     "name": "Halberd of Warning",
     "type": "weapon",
     "weapon_type": "melee",
-    "equipped_by": null,
+    "equipped_by": "Corwin",
     "carried_by": null,
     "attuned": false,
     "finesse": false,
@@ -1903,5 +1903,54 @@
     "quantity": 8,
     "effect": null,
     "notes": "Large gold coins, unfamiliar crest. Not Western Reach minting. Not any region Vaz immediately recognizes. Found with Ring of Mind Shielding."
+  },
+  {
+    "name": "Gloves of Spellcasting",
+    "type": "wondrous",
+    "equipped_by": "Lenn",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Every spell cast is treated as one level higher automatically. Cantrips become 1st level, 1st level becomes 2nd, and so on. No limit on uses.",
+    "notes": ""
+  },
+  {
+    "name": "Staff of Power",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": "Lyria",
+    "attuned": true,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 2,
+    "stat_bonuses": { "spell_attack": 2, "spell_save_dc": 2 },
+    "charges_current": 20,
+    "charges_max": 20,
+    "charges_recharge": "some daily",
+    "effect": "Cast from charges: Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. Functions as +2 quarterstaff. If wielder drops to 0hp: may choose to retributively break it, releasing all remaining charges in a catastrophic explosion.",
+    "notes": "Do not break it."
+  },
+  {
+    "name": "Returning Spear +2",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 2,
+    "effect": "Returns to hand immediately after being thrown. On a critical hit: target is knocked prone regardless of size.",
+    "notes": ""
+  },
+  {
+    "name": "Cloak of the Deep",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {},
+    "effect": "Resistance to cold damage. Breathe water permanently, no spell required. Move through water at full speed without penalty. Advantage on Stealth checks underwater.",
+    "notes": ""
   }
 ]
