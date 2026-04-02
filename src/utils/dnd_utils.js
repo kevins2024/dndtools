@@ -59,7 +59,14 @@ export const dnd = {
   //          (e.g. { ac: 2, saving_throws: 1, skill_Perception: 1, ranged_damage: 2 })
   resolveStats(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
-    const stats = { ...character.stats }
+    const stats = {
+      str: character.stat_str,
+      dex: character.stat_dex,
+      con: character.stat_con,
+      int: character.stat_int,
+      wis: character.stat_wis,
+      cha: character.stat_cha,
+    }
     const bonuses = {}
 
     // Pass 1 — stat_overrides set a stat to a fixed value
@@ -302,7 +309,7 @@ export const dnd = {
     const magic = weapon.magic_bonus ?? 0
     // Bracers of Archery apply only to ranged weapons
     const rangedBonus =
-      weapon.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
+      weapon.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
     return statMod + magic + rangedBonus
   },
 
