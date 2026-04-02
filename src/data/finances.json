@@ -6,15 +6,15 @@
   "reserves": [
     {
       "name": "Orvath Account",
-      "amount": 180000,
-      "access": "Ring plus passphrase. No personal appearance required. Easiest extraction.",
+      "amount": 0,
+      "access": "closed.",
       "risk": "low"
     },
     {
       "name": "Argentveil Account",
-      "amount": 90000,
-      "access": "Ring plus passphrase plus Thorne's handwritten withdrawal document.",
-      "risk": "medium"
+      "amount": 270000,
+      "access": "Handled.",
+      "risk": "low"
     },
     {
       "name": "Khemrise Strongbox",
