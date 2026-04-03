@@ -1732,7 +1732,7 @@
     "image": "https://iili.io/qgWIf7R.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "wis",
-    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery. Spirit Communion is her natural Witness perception formalized into a mechanical feature.",
+    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery.",
     "spell_save_dc": 16,
     "spell_attack_bonus": 8,
     "spell_recovery": "Short rest (communes with place spirits)",

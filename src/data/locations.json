@@ -8,12 +8,7 @@
     },
     "description": "River delta city. Dawn Blades home base. 1 day sail south of Trevash, 3 days sail south of Khemrise.",
     "climate": null,
-    "faction_presence": [
-      "Dawn Blades",
-      "Syndicate (diminished)",
-      "Smoke Vipers",
-      "Long Arm Trading"
-    ],
+    "faction_presence": ["Dawn Blades", "Smoke Vipers", "Long Arm Trading"],
     "notes": "",
     "districts": [
       {
@@ -121,7 +116,7 @@
         "name": "Overflow Warehouse",
         "district": "Docks Ward",
         "type": "property",
-        "description": "Seized Syndicate front.",
+        "description": "Wooden warehouse, medium sized, had a small stone basement with cells in it that is magically reinforced to be waterproofed, necessary for the water table.",
         "npcs_present": [],
         "notes": "Title search pending with Magistrate Orvyn. Potential Long Arm Trading property."
       },
@@ -161,7 +156,7 @@
         "name": "Black Anchor Tavern",
         "district": "Docks Ward",
         "type": "tavern",
-        "description": "Criminal and Syndicate-adjacent coded job postings. Hostile territory.",
+        "description": "Pretty rough and tumble place",
         "npcs_present": [],
         "notes": "Disrupted after Dren's death."
       },
@@ -171,7 +166,7 @@
         "type": "guild",
         "description": "Run by Finwick Gearspring, elderly gnome. Exploration and ruins work.",
         "npcs_present": [],
-        "notes": "Archive beneath Cartographer's Hall is the Witness chamber index — built to look like something else."
+        "notes": ""
       },
       {
         "name": "Harrow House Inn",
@@ -191,7 +186,7 @@
         },
         "description": "Beneath the city in the sewers, south/east of city center.",
         "npcs_present": [],
-        "notes": "Reinforced by Dawn Blades. Nalfeshnee banished back inside. Seven Witness items distributed here. The Book recovered. Sealed room opened by Vaz using Stone Disc."
+        "notes": "Reinforced by Dawn Blades. Magical vault holding back some inter-planar fiend of great power."
       }
     ]
   },
@@ -204,11 +199,7 @@
     },
     "description": "Major coastal city, vineyards, pivot point where coast turns north-south. 2 days sail north of Trevash, 3 days sail north of Ravenquay.",
     "climate": "Temperate maritime. Fog burns off by midmorning every day without exception — locals treat this as a moral certainty.",
-    "faction_presence": [
-      "Dawn Blades",
-      "Syndicate (active)",
-      "Long Arm Trading"
-    ],
+    "faction_presence": ["Dawn Blades", "Long Arm Trading"],
     "notes": "Harvest festival approximately 12 days out from current story position.",
     "features": [
       {
@@ -313,9 +304,8 @@
         "name": "Copper Wheel",
         "district": "Harbor District",
         "type": "tavern",
-        "description": "Syndicate contact point, but a real and well-kept tavern. Sign freshly painted, windows clean. Better maintained than surroundings suggest it should be.",
-        "npcs_present": ["Toreval Caine"],
-        "notes": "Denna may have made Toreval during reconnaissance."
+        "description": "Well-kept tavern. Sign freshly painted, windows clean. Better maintained than surroundings suggest it should be.",
+        "notes": "Used to be Toreval Caine's place"
       },
       {
         "name": "Legend's Clinic",
@@ -369,7 +359,7 @@
         "name": "Corryn Mast",
         "district": "Harbor District",
         "type": "workshop",
-        "description": "Sailmaker. No Syndicate ties.",
+        "description": "Sailmaker.",
         "npcs_present": [],
         "notes": "Three sets Dawn Blades flags made here."
       },
@@ -380,42 +370,6 @@
         "description": "Antiquities dealer.",
         "npcs_present": ["Rosten Alurath"],
         "notes": "Worth a visit."
-      },
-      {
-        "name": "Fogstone Hill Sealed Chamber",
-        "district": "Northeast of city",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 4.9,
-          "y": 6
-        },
-        "description": "Beneath Fogstone Hill, northeast of the city.",
-        "npcs_present": [],
-        "notes": ""
-      },
-      {
-        "name": "Three Shell Properties",
-        "district": "Various",
-        "type": "syndicate_property",
-        "description": "Locations on Tova's memory map. Deeds in strongbox.",
-        "npcs_present": [],
-        "notes": "One likely an active Syndicate operation."
-      },
-      {
-        "name": "Fourth Warehouse",
-        "district": "Unknown",
-        "type": "syndicate_property",
-        "description": "Revealed by Fennick.",
-        "npcs_present": [],
-        "notes": "Location known to Vaz specifically."
-      },
-      {
-        "name": "Two Syndicate Safe Houses",
-        "district": "Unknown",
-        "type": "syndicate_property",
-        "description": "Known locations from Tova's memory map.",
-        "npcs_present": [],
-        "notes": "Possibly compromised."
       }
     ]
   },
@@ -428,7 +382,6 @@
     },
     "description": "Small coastal port, halfway between Ravenquay and Khemrise by sea. Rougher weather than Khemrise, more wind. Working port that doesn't attract leisure.",
     "climate": "Rougher weather, more wind.",
-    "faction_presence": ["Syndicate (presence)"],
     "notes": "",
     "districts": [],
     "locations": [
@@ -471,29 +424,9 @@
     },
     "description": "Mining town, 4 days north of Ravenquay inland. Significantly colder, real winters. Single road in and out, good natural sight lines from approaches.",
     "climate": "Significantly colder. Real winters.",
-    "faction_presence": ["Syndicate (Ironvein operation)"],
     "notes": "Something in the deep tunnels connected to Kerra's patron three years ago. Kerra has tactical intelligence from a contract two years ago — approach roads, mine operation, and sight lines mapped in her memory.",
     "districts": [],
-    "locations": [
-      {
-        "name": "Ironvein Mine Shafts",
-        "type": "syndicate_operation",
-        "description": "Garrick Ironvein's operation. Three mine shafts. 40-50 collared workers in deep tunnels, free workers above ground.",
-        "npcs_present": ["Garrick Ironvein"],
-        "notes": "8 guards on rotation, ex-military, competent. Free workers complication — decent pay, don't ask questions. Disruption threatens wages."
-      },
-      {
-        "name": "Millhaven Sealed Chamber",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 6.5,
-          "y": 6.5
-        },
-        "description": "Strongly implied by Severin's watch mark. In or near the deep mine tunnels.",
-        "npcs_present": [],
-        "notes": "Connected to Lyria's brother — Aldren almost certainly being kept alive because of this Witness connection."
-      }
-    ]
+    "locations": []
   },
   {
     "name": "Brennswick",
@@ -514,17 +447,6 @@
         "description": "Ostwick family farm.",
         "npcs_present": [],
         "notes": "Dawn Blades acquired the Khemrise vineyard estate from this family. Petyr based here."
-      },
-      {
-        "name": "Brennswick Valley Sealed Chamber",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 5.5,
-          "y": 5
-        },
-        "description": "Valley near Brennswick. Confirmed sealed chamber location per Severin's watch.",
-        "npcs_present": [],
-        "notes": ""
       }
     ]
   },
@@ -537,10 +459,7 @@
     },
     "description": "Southernmost city on the western coast. Warmest and driest. Mediterranean feel — olive trees, stone architecture built for heat. Most cosmopolitan city in the region. 4-5 days sail east of Ravenquay.",
     "climate": "Warmest and driest. Mediterranean feel.",
-    "faction_presence": [
-      "Syndicate (Calvane financial operation)",
-      "Argentveil City Council"
-    ],
+    "faction_presence": ["Argentveil City Council"],
     "notes": "Chartered Investigators Act 15 years old, functioning, respected — model for Ravenquay charter.",
     "districts": [],
     "locations": [
@@ -557,13 +476,6 @@
         "description": "Where Ossivane Relk operates.",
         "npcs_present": ["Ossivane Relk"],
         "notes": "Find him Tuesdays. Third sending stone pair and compass available when Dawn Blades are ready."
-      },
-      {
-        "name": "Syndicate Banking (Calvane)",
-        "type": "syndicate_operation",
-        "description": "Serath Calvane's financial architecture. Shell companies, merchant accounts.",
-        "npcs_present": [],
-        "notes": "Thorne's Argentveil account ~90k here. Ring plus passphrase plus Thorne's handwritten withdrawal document required."
       }
     ]
   },
@@ -576,22 +488,14 @@
     },
     "description": "Frontier city, northwest coast. Coast faces south. Wilderness to the north. Two weeks sail from Khemrise. Drier, more extreme temperature swings. Less forgiving than the coast.",
     "climate": "Drier, more extreme temperature swings. Frontier feeling.",
-    "faction_presence": ["Syndicate (Veth's base)"],
     "notes": "",
     "districts": [],
     "locations": [
       {
         "name": "Valdmere Banking Institution",
         "type": "bank",
-        "description": "Holds Thorne's Valdmere account. Veth has personal connections here.",
+        "description": "",
         "npcs_present": [],
-        "notes": "Any withdrawal flagged to Veth within a day. Touch last or use as bait."
-      },
-      {
-        "name": "Veth's Base of Operations",
-        "type": "syndicate_operation",
-        "description": "Veth's base. Specific location not established.",
-        "npcs_present": ["Veth"],
         "notes": ""
       }
     ]
@@ -656,7 +560,7 @@
         },
         "description": "Waystation approximately 2 days north of Ravenquay on the main road.",
         "npcs_present": [],
-        "notes": "Where Seris intercepted Syndicate cleaners Malrik and Vess. Fed them false information. Seris barely escaped via river crossing, injured."
+        "notes": ""
       },
       {
         "name": "Valley Ambush Site",
@@ -673,47 +577,6 @@
         "description": "Runs between Ravenquay and Khemrise along the coast.",
         "npcs_present": [],
         "notes": "Casvath relay network operates along it. Harwick relay network being built alongside it with staging points."
-      },
-      {
-        "name": "Abyssal Drake Kill Site",
-        "type": "wilderness",
-        "coords": null,
-        "description": "Hours from Ravenquay, near the Sealed Chambers.",
-        "npcs_present": [],
-        "notes": "Hide became armor for Denna, Pirra, and Lenn's pauldron."
-      },
-      {
-        "name": "Sealed Chamber (Coastal)",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 4.9,
-          "y": 2.2
-        },
-        "description": "Between Trevash and Ravenquay, remote. Coastal location.",
-        "npcs_present": [],
-        "notes": ""
-      },
-      {
-        "name": "Sealed Chamber (Deep Interior)",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 8,
-          "y": 7
-        },
-        "description": "No settlement nearby.",
-        "npcs_present": [],
-        "notes": ""
-      },
-      {
-        "name": "Sealed Chamber (Northeast)",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 7,
-          "y": 9.5
-        },
-        "description": "Past Cindermarch into the Northern Reaches.",
-        "npcs_present": [],
-        "notes": ""
       },
       {
         "name": "Verath Ohn",

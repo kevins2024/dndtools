@@ -12,7 +12,7 @@
             "climate": "Temperate maritime overall, distinct microclimates city to city.",
             "shape_note": "Wide and shallow — twice as far east-west as north-south.",
             "player_knowledge": "full",
-            "notes": "The Syndicate operates here and nowhere else. Eight sealed demon chambers distributed across this region."
+            "notes": ""
           },
           {
             "name": "The Northern Reaches",
@@ -122,24 +122,6 @@
         "description": "Waystation on main road. 2 days north of Ravenquay toward Millhaven."
       },
       {
-        "name": "Sealed Chamber (Coastal)",
-        "coords": { "x": 4.9, "y": 2.2 },
-        "type": "sealed_chamber",
-        "description": "Between Trevash and Ravenquay, remote."
-      },
-      {
-        "name": "Sealed Chamber (Deep Interior)",
-        "coords": { "x": 8, "y": 7 },
-        "type": "sealed_chamber",
-        "description": "No settlement nearby."
-      },
-      {
-        "name": "Sealed Chamber (Northeast)",
-        "coords": { "x": 7, "y": 9.5 },
-        "type": "sealed_chamber",
-        "description": "Past Cindermarch into Northern Reaches."
-      },
-      {
         "name": "Verath Ohn",
         "coords": { "x": 3, "y": 0.5 },
         "type": "island_or_landmark",
@@ -199,7 +181,7 @@
         "name": "Varath Valley",
         "coords": { "x": 28, "y": 14 },
         "type": "settlement",
-        "description": "Hidden valley. Firstwalker settlement. Sealed chamber at center."
+        "description": "Hidden valley."
       },
       {
         "name": "Eldest's Valley",
@@ -212,12 +194,6 @@
         "coords": { "x": 28, "y": 18 },
         "type": "territory",
         "description": "Gone quiet two years ago."
-      },
-      {
-        "name": "Place of First Hello",
-        "coords": { "x": 27, "y": 20 },
-        "type": "sealed_chamber",
-        "description": "Chamber pushed up from below."
       }
     ]
   }

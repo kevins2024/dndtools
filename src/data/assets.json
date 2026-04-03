@@ -241,5 +241,29 @@
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
     "notes": ""
+  },
+  {
+    "id": 14,
+    "name": "Crestgate Townhouse",
+    "type": "real_estate",
+    "subtype": "townhouse",
+    "location": "Khemrise",
+    "district": "Merchant Quarter",
+    "status": "acquired",
+    "ownership": "Dawn Blades",
+    "acquisition_cost": null,
+    "notes": "End of row, two levels, side garden. Two minutes from main market square. Comfortable, formerly wealthy owner. Good access, central location."
+  },
+  {
+    "id": 15,
+    "name": "Arrenway Townhouse",
+    "type": "real_estate",
+    "subtype": "townhouse",
+    "location": "Khemrise",
+    "district": "Residential",
+    "status": "acquired",
+    "ownership": "Dawn Blades",
+    "acquisition_cost": null,
+    "notes": "Middle of row, modest neighborhood. Area doesn't see people come and go often — difficult to visit unnoticed. Small cellar. Comfortable, formerly wealthy owner. Better suited for discreet use than public-facing operations."
   }
 ]
