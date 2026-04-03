@@ -1,6 +1,6 @@
 [
   {
-    "id": 17,
+    "id": "assets_0",
     "name": "Dawn Rose",
     "subtype": "converted fishing vessel",
     "captain": null,
@@ -16,7 +16,7 @@
     "type": "ship"
   },
   {
-    "id": 16,
+    "id": "assets_1",
     "name": "Gilt Blades",
     "subtype": "carrack",
     "captain": null,
@@ -32,7 +32,7 @@
     "type": "ship"
   },
   {
-    "id": 15,
+    "id": "assets_2",
     "name": "Wold Anchor",
     "subtype": "cargo vessel",
     "captain": null,
@@ -49,7 +49,7 @@
     "type": "ship"
   },
   {
-    "id": 14,
+    "id": "assets_3",
     "name": "Sovi",
     "subtype": "transport",
     "captain": null,
@@ -65,7 +65,7 @@
     "type": "ship"
   },
   {
-    "id": 13,
+    "id": "assets_4",
     "name": "Shalindra",
     "subtype": "caravel",
     "captain": "Essavane",
@@ -82,7 +82,7 @@
     "type": "ship"
   },
   {
-    "id": 1,
+    "id": "assets_5",
     "name": "Revivify",
     "type": "real_estate",
     "subtype": "refuge",
@@ -93,7 +93,7 @@
     "notes": "Former Kreel residence. Marcus managing, Miren and Dav assisting. Common room, kitchen, multiple sleeping areas. Workshop space still needed."
   },
   {
-    "id": 2,
+    "id": "assets_6",
     "name": "Overflow Warehouse",
     "type": "real_estate",
     "subtype": "warehouse",
@@ -104,7 +104,7 @@
     "notes": "Potential Long Arm Trading property."
   },
   {
-    "id": 3,
+    "id": "assets_7",
     "name": "The Winery at Fogstone Hill",
     "type": "real_estate",
     "subtype": "estate",
@@ -117,7 +117,7 @@
     "notes": "3 miles northeast of Khemrise. Main house, east outbuilding, stable, courtyard, vineyard rows. Ledwent managing. Primary base of operations."
   },
   {
-    "id": 4,
+    "id": "assets_8",
     "name": "Khemrise Strongbox",
     "type": "real_estate",
     "subtype": "strongbox",
@@ -128,7 +128,7 @@
     "notes": "Merchant's Bank of Khemrise. Contains ~39,000g negotiable notes, three property deeds, correspondence files, Harwick's signed confession, Belverbridge payment schedule letter."
   },
   {
-    "id": 5,
+    "id": "assets_9",
     "name": "Marchant Wool Imports",
     "type": "business",
     "subtype": "import_export",
@@ -141,7 +141,7 @@
     "notes": "Real wool trading operation with genuine clients and good regional reputation. Syndicate used as money laundering pass-through only — the wool business itself is legitimate and profitable. Rendwick Pendwick being approached as operator."
   },
   {
-    "id": 6,
+    "id": "assets_10",
     "name": "Filas Apothecary",
     "type": "business",
     "subtype": "apothecary",
@@ -154,7 +154,7 @@
     "notes": "Real apothecary, legitimate pharmacist Prestiria Filas who didn't know Syndicate owned the building. Solid client base, real medicines. Tova handling ownership transition professionally. Supplier relationship with Trevash herb merchant worth monitoring — Aldric and Pell checking for Syndicate ties."
   },
   {
-    "id": 8,
+    "id": "assets_11",
     "name": "Fourth Warehouse",
     "type": "real_estate",
     "subtype": "warehouse",
@@ -165,7 +165,7 @@
     "notes": "Location known to Vaz specifically. Revealed by Fennick."
   },
   {
-    "id": 9,
+    "id": "assets_12",
     "name": "Loan Dragon",
     "type": "business",
     "subtype": "loan_operation",
@@ -178,7 +178,7 @@
     "notes": "Reformed loan shark operation. Jessyl Denmar manages, Big Tam and Gritch enforce."
   },
   {
-    "id": 10,
+    "id": "assets_13",
     "name": "Long Arm Trading",
     "type": "business",
     "subtype": "trading_partnership",
@@ -189,7 +189,7 @@
     "notes": "Aldren Casvath funded 15,000g. Helena Sable 16% partner. Overflow warehouse potential LA Trading property."
   },
   {
-    "id": 11,
+    "id": "assets_14",
     "name": "Khemrise Winery",
     "type": "business",
     "subtype": "production",
@@ -200,7 +200,7 @@
     "notes": "East outbuilding converting for wine aging long term. Aldric Foss supplying barrels."
   },
   {
-    "id": 12,
+    "id": "assets_15",
     "name": "Millhaven Mine",
     "type": "business",
     "subtype": "mining",
@@ -220,7 +220,8 @@
     "status": "owned",
     "ownership": "acquired from Farendale estate sale",
     "acquisition_cost": 4000,
-    "notes": "Title transfers eighth bell tomorrow. Not completely furnished. Two minute walk from Revivify."
+    "notes": "Title transfers eighth bell tomorrow. Not completely furnished. Two minute walk from Revivify.",
+    "id": "assets_16"
   },
   {
     "name": "Trevash Warehouse",
@@ -230,7 +231,8 @@
     "district": null,
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
-    "notes": ""
+    "notes": "",
+    "id": "assets_17"
   },
   {
     "name": "Brennswick Land Parcel",
@@ -240,10 +242,11 @@
     "district": null,
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
-    "notes": ""
+    "notes": "",
+    "id": "assets_18"
   },
   {
-    "id": 14,
+    "id": "assets_19",
     "name": "Crestgate Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",
@@ -255,7 +258,7 @@
     "notes": "End of row, two levels, side garden. Two minutes from main market square. Comfortable, formerly wealthy owner. Good access, central location."
   },
   {
-    "id": 15,
+    "id": "assets_20",
     "name": "Arrenway Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",
