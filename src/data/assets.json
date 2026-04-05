@@ -100,7 +100,7 @@
     "location": "Ravenquay",
     "district": "Docks Ward",
     "status": "operational",
-    "ownership": "seized Syndicate front, deeded to Dawn Blades",
+    "ownership": "Dawn Blades",
     "notes": "Potential Long Arm Trading property."
   },
   {
@@ -135,10 +135,10 @@
     "location": "Khemrise",
     "district": null,
     "status": "operational",
-    "ownership": "acquired from Syndicate shell, legitimate operation retained",
+    "ownership": "Dawn Blades",
     "monthly_income_min": null,
     "monthly_income_max": null,
-    "notes": "Real wool trading operation with genuine clients and good regional reputation. Syndicate used as money laundering pass-through only — the wool business itself is legitimate and profitable. Rendwick Pendwick being approached as operator."
+    "notes": "Real wool trading operation with genuine clients and good regional reputation."
   },
   {
     "id": "assets_10",
@@ -152,17 +152,6 @@
     "monthly_income_min": null,
     "monthly_income_max": null,
     "notes": "Real apothecary, legitimate pharmacist Prestiria Filas who didn't know Syndicate owned the building. Solid client base, real medicines. Tova handling ownership transition professionally. Supplier relationship with Trevash herb merchant worth monitoring — Aldric and Pell checking for Syndicate ties."
-  },
-  {
-    "id": "assets_11",
-    "name": "Fourth Warehouse",
-    "type": "real_estate",
-    "subtype": "warehouse",
-    "location": "Khemrise",
-    "district": "unknown",
-    "status": "known",
-    "ownership": "formerly Syndicate",
-    "notes": "Location known to Vaz specifically. Revealed by Fennick."
   },
   {
     "id": "assets_12",
@@ -220,7 +209,7 @@
     "status": "owned",
     "ownership": "acquired from Farendale estate sale",
     "acquisition_cost": 4000,
-    "notes": "Title transfers eighth bell tomorrow. Not completely furnished. Two minute walk from Revivify.",
+    "notes": "Two minute walk from Revivify.",
     "id": "assets_16"
   },
   {

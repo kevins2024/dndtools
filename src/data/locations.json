@@ -100,9 +100,9 @@
         "name": "Calla Denn's Workshop",
         "district": "Docks Ward",
         "type": "workshop",
-        "description": "Leatherworker. Needle and hide sign above door. Smells of leather, oil, and something harder to place underneath — the abyssal hide.",
+        "description": "Leatherworker. Needle and hide sign above door. Smells of leather, oil, and something harder to place underneath.",
         "npcs_present": ["Calla Denn"],
-        "notes": "Abyssal armor in progress for Denna, Pirra, and Lenn."
+        "notes": ""
       },
       {
         "name": "Torvald Ironwood's Workshop",
@@ -118,7 +118,7 @@
         "type": "property",
         "description": "Wooden warehouse, medium sized, had a small stone basement with cells in it that is magically reinforced to be waterproofed, necessary for the water table.",
         "npcs_present": [],
-        "notes": "Title search pending with Magistrate Orvyn. Potential Long Arm Trading property."
+        "notes": "Long Arm Trading property."
       },
       {
         "name": "Guard HQ",
@@ -175,18 +175,6 @@
         "description": "Cut above typical inn. Quiet. Three streets from the Gilt Rose.",
         "npcs_present": [],
         "notes": "Ossivane Relk stayed here before departing for Argentveil."
-      },
-      {
-        "name": "Ravenquay Sealed Chamber",
-        "district": "Sewers",
-        "type": "sealed_chamber",
-        "coords": {
-          "x": 5.2,
-          "y": 1.8
-        },
-        "description": "Beneath the city in the sewers, south/east of city center.",
-        "npcs_present": [],
-        "notes": "Reinforced by Dawn Blades. Magical vault holding back some inter-planar fiend of great power."
       }
     ]
   },
@@ -343,9 +331,9 @@
         "name": "Drev's Office",
         "district": "Northern Market",
         "type": "business",
-        "description": "Thorngate Row. Ground floor warehouse, office above. Guard outside doing poor impression of someone just standing around. Two interior guards, one stair guard (elite).",
-        "npcs_present": ["Drev"],
-        "notes": "Going dark."
+        "description": "Thorngate Row. Ground floor warehouse, office above.",
+        "npcs_present": [],
+        "notes": "Went dark. Unoccupied now."
       },
       {
         "name": "Harwick's House",
@@ -405,13 +393,6 @@
         "description": "On the road north of Trevash.",
         "npcs_present": [],
         "notes": "Wanted poster for Vaz posted here — 400g reward, Meridian Trading House contact. Road guard encounter happened here."
-      },
-      {
-        "name": "Drev's Daughter's Boarding School",
-        "type": "school",
-        "description": "Location in Trevash.",
-        "npcs_present": [],
-        "notes": "Student registered under assumed name. Veth doesn't know about her."
       }
     ]
   },
@@ -460,7 +441,7 @@
     "description": "Southernmost city on the western coast. Warmest and driest. Mediterranean feel — olive trees, stone architecture built for heat. Most cosmopolitan city in the region. 4-5 days sail east of Ravenquay.",
     "climate": "Warmest and driest. Mediterranean feel.",
     "faction_presence": ["Argentveil City Council"],
-    "notes": "Chartered Investigators Act 15 years old, functioning, respected — model for Ravenquay charter.",
+    "notes": "Chartered Investigators Act 15 years old, functioning, respected — model for Ravenquay charter. Beyond just being mediterranean style, Argentveil is also very magic-heavy. Dragonborn make up 40% of the population, many elves have found homes here along with plenty of others. Dwarves and orc-kin are now super rare. Various teiflings can be seen from time to time as well.  There are tall spires unlike any other city and a few districts have an abundance of wealth while others fill in the middle classes and the struggling. The docks are the safest in Aethermoor, crime finds its place elsewhere. Orvath lies a 6 day journed north/northeast over land into the drier climes, a fairly mild desert region.",
     "districts": [],
     "locations": [
       {
@@ -537,7 +518,7 @@
         "type": "bank",
         "description": "Anonymous deposits, no personal appearance required for withdrawal.",
         "npcs_present": [],
-        "notes": "Thorne's account ~180k here. Ring plus passphrase only — easiest of the three hidden accounts to extract."
+        "notes": ""
       }
     ]
   },

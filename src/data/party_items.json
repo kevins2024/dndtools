@@ -1025,15 +1025,6 @@
     "id": "items_96"
   },
   {
-    "name": "Abyssal Hide Leather Armor",
-    "type": "armor",
-    "equipped_by": "Pirra",
-    "carried_by": null,
-    "attuned": false,
-    "notes": "Incoming — from Calla Denn. Not yet received.",
-    "id": "items_97"
-  },
-  {
     "name": "Longsword +2",
     "type": "weapon",
     "equipped_by": "Kerra",
