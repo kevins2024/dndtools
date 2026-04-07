@@ -154,7 +154,7 @@
     "notes": "Real apothecary, legitimate pharmacist Prestiria Filas who didn't know Syndicate owned the building. Solid client base, real medicines. Tova handling ownership transition professionally. Supplier relationship with Trevash herb merchant worth monitoring — Aldric and Pell checking for Syndicate ties."
   },
   {
-    "id": "assets_12",
+    "id": "assets_11",
     "name": "Loan Dragon",
     "type": "business",
     "subtype": "loan_operation",
@@ -167,7 +167,7 @@
     "notes": "Reformed loan shark operation. Jessyl Denmar manages, Big Tam and Gritch enforce."
   },
   {
-    "id": "assets_13",
+    "id": "assets_12",
     "name": "Long Arm Trading",
     "type": "business",
     "subtype": "trading_partnership",
@@ -178,7 +178,7 @@
     "notes": "Aldren Casvath funded 15,000g. Helena Sable 16% partner. Overflow warehouse potential LA Trading property."
   },
   {
-    "id": "assets_14",
+    "id": "assets_13",
     "name": "Khemrise Winery",
     "type": "business",
     "subtype": "production",
@@ -189,7 +189,7 @@
     "notes": "East outbuilding converting for wine aging long term. Aldric Foss supplying barrels."
   },
   {
-    "id": "assets_15",
+    "id": "assets_14",
     "name": "Millhaven Mine",
     "type": "business",
     "subtype": "mining",
@@ -210,7 +210,7 @@
     "ownership": "acquired from Farendale estate sale",
     "acquisition_cost": 4000,
     "notes": "Two minute walk from Revivify.",
-    "id": "assets_16"
+    "id": "assets_15"
   },
   {
     "name": "Trevash Warehouse",
@@ -221,7 +221,7 @@
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
     "notes": "",
-    "id": "assets_17"
+    "id": "assets_16"
   },
   {
     "name": "Brennswick Land Parcel",
@@ -232,10 +232,10 @@
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
     "notes": "",
-    "id": "assets_18"
+    "id": "assets_17"
   },
   {
-    "id": "assets_19",
+    "id": "assets_18",
     "name": "Crestgate Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",
@@ -247,7 +247,7 @@
     "notes": "End of row, two levels, side garden. Two minutes from main market square. Comfortable, formerly wealthy owner. Good access, central location."
   },
   {
-    "id": "assets_20",
+    "id": "assets_19",
     "name": "Arrenway Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",

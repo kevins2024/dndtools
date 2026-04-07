@@ -7,7 +7,7 @@
     "description": "Simple ring.",
     "effect": "Resistance to necrotic damage while attuned.",
     "notes": "",
-    "id": "items_6"
+    "id": "items_0"
   },
   {
     "name": "Vessel of Stolen Years",
@@ -17,7 +17,7 @@
     "description": "",
     "effect": "",
     "notes": "",
-    "id": "items_7",
+    "id": "items_1",
     "charges_current": 3,
     "charges_max": 3,
     "charges_recharge": null,
@@ -32,7 +32,7 @@
     "description": "Portable enchanting station — a toolkit rather than a fixed station.",
     "effect": "",
     "notes": "",
-    "id": "items_8"
+    "id": "items_2"
   },
   {
     "name": "Whetstone of Keen Edge",
@@ -42,7 +42,7 @@
     "description": "Sharpening whetstone.",
     "effect": "1/rest.",
     "notes": "",
-    "id": "items_14"
+    "id": "items_3"
   },
   {
     "name": "Oil of Sharpness",
@@ -53,7 +53,7 @@
     "description": "",
     "effect": "",
     "notes": "",
-    "id": "items_15"
+    "id": "items_4"
   },
   {
     "name": "Everlasting Blue Candles",
@@ -64,7 +64,7 @@
     "description": "Candles that do not burn down.",
     "effect": "",
     "notes": "",
-    "id": "items_16"
+    "id": "items_5"
   },
   {
     "name": "Boots of the Tireless North",
@@ -74,7 +74,7 @@
     "description": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet.",
     "effect": "No movement penalties in difficult terrain (snow, ice, mud, rubble). Travel pace never causes exhaustion regardless of distance covered in a day.",
     "notes": "",
-    "id": "items_20"
+    "id": "items_6"
   },
   {
     "name": "Northern Recurve Bow",
@@ -88,7 +88,7 @@
     "description": "Compact recurve hunting bow, northern construction. Viable from horseback or tight terrain. Luminescent bowstring, pulls smooth and silent.",
     "effect": "",
     "notes": "",
-    "id": "items_21"
+    "id": "items_7"
   },
   {
     "name": "True Journal",
@@ -98,7 +98,7 @@
     "description": "Blank pages — cannot be written in deliberately. Cover worked with a pattern Kerra read immediately without being asked.",
     "effect": "Records automatically whatever the bearer witnesses that is genuinely true — not believed to be true, actually true. Only truth gets in.",
     "notes": "No one else in the party has processed what this means for someone with Kerra's history, her patron, and her years of reading things she shouldn't.",
-    "id": "items_22"
+    "id": "items_8"
   },
   {
     "name": "Blackwood Wand Focus",
@@ -112,7 +112,7 @@
     "description": "Blackwood wand usable as a spellcasting focus.",
     "effect": "+1 to spell attack rolls and spell save DC.",
     "notes": "",
-    "id": "items_23"
+    "id": "items_9"
   },
   {
     "name": "Helm of Brilliance Buckle",
@@ -122,7 +122,7 @@
     "description": "Chinstrap buckle from a Helm of Brilliance.",
     "effect": "Can be reconstructed into a functional Helm of Brilliance with the right smith.",
     "notes": "",
-    "id": "items_24"
+    "id": "items_10"
   },
   {
     "name": "Sending Stones — Vaz / Tielle",
@@ -136,7 +136,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_26"
+    "id": "items_11"
   },
   {
     "name": "Sending Stones — Vaz / Vrethka",
@@ -150,7 +150,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_27"
+    "id": "items_12"
   },
   {
     "name": "Sending Stones — Vaz / Kern",
@@ -164,7 +164,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_28"
+    "id": "items_13"
   },
   {
     "name": "Sending Stones — Tielle / Marcus",
@@ -178,7 +178,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_29"
+    "id": "items_14"
   },
   {
     "name": "Sending Stones — Tielle / Ledwent",
@@ -192,7 +192,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_30"
+    "id": "items_15"
   },
   {
     "name": "Sending Stones — Tielle / Gaelestrasz",
@@ -206,7 +206,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_31"
+    "id": "items_16"
   },
   {
     "name": "Sending Stones — Tielle / Casvath",
@@ -220,7 +220,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_32"
+    "id": "items_17"
   },
   {
     "name": "Sending Stones — Tielle / Coalbeard",
@@ -234,7 +234,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_33"
+    "id": "items_18"
   },
   {
     "name": "Sending Stones — Tielle / Harwick",
@@ -248,7 +248,7 @@
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
     "notes": "",
-    "id": "items_34"
+    "id": "items_19"
   },
   {
     "name": "Sending Stones — Unpaired (x2)",
@@ -260,7 +260,7 @@
     "description": "Two unpaired short-distance sending stones.",
     "effect": "Short distance only. No paired counterpart yet.",
     "notes": "",
-    "id": "items_35"
+    "id": "items_20"
   },
   {
     "name": "Veilstrike Rapier +2",
@@ -273,7 +273,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "notes": "Main hand. +9 to hit, 1d8+7 damage.",
-    "id": "items_37"
+    "id": "items_21"
   },
   {
     "name": "Echo Dagger +2",
@@ -286,7 +286,7 @@
     "damage_dice": "1d4",
     "magic_bonus": 2,
     "notes": "Off-hand. +9 to hit, 1d4+7 damage.",
-    "id": "items_38"
+    "id": "items_22"
   },
   {
     "name": "Warden Dagger",
@@ -299,7 +299,7 @@
     "damage_dice": "1d4",
     "magic_bonus": 1,
     "notes": "Boot dagger. +1 to attack and damage vs fiends and aberrations.",
-    "id": "items_39"
+    "id": "items_23"
   },
   {
     "name": "Hand Crossbow +2",
@@ -312,7 +312,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 2,
     "notes": "Primary ranged option.",
-    "id": "items_40"
+    "id": "items_24"
   },
   {
     "name": "Hand Crossbow (standard)",
@@ -324,7 +324,7 @@
     "finesse": false,
     "damage_dice": "1d6",
     "magic_bonus": 0,
-    "id": "items_41"
+    "id": "items_25"
   },
   {
     "name": "Wyvern Scale Coat +2",
@@ -333,7 +333,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Vaz' signature look.",
-    "id": "items_42"
+    "id": "items_26"
   },
   {
     "name": "Bracer of Swift Strikes",
@@ -342,7 +342,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Reaction: off-hand attack on main hand hit. Frees bonus action.",
-    "id": "items_43"
+    "id": "items_27"
   },
   {
     "name": "Amulet of Proof against Detection",
@@ -350,7 +350,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_44"
+    "id": "items_28"
   },
   {
     "name": "Helm of Comprehending Languages",
@@ -358,7 +358,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_45"
+    "id": "items_29"
   },
   {
     "name": "Boots of Speed",
@@ -366,7 +366,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_46"
+    "id": "items_30"
   },
   {
     "name": "Ring of Mind Shielding",
@@ -374,7 +374,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_47"
+    "id": "items_31"
   },
   {
     "name": "Hat of Disguise",
@@ -382,7 +382,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_48"
+    "id": "items_32"
   },
   {
     "name": "Vest of Resistance (Cold)",
@@ -390,7 +390,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_49"
+    "id": "items_33"
   },
   {
     "name": "Vest of Resistance (Cold)",
@@ -398,7 +398,7 @@
     "equipped_by": "Rhuna",
     "carried_by": null,
     "attuned": false,
-    "id": "items_50"
+    "id": "items_34"
   },
   {
     "name": "Stone Disc",
@@ -407,7 +407,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness item. Perceives concealment — sees what is hidden.",
-    "id": "items_51"
+    "id": "items_35"
   },
   {
     "name": "The Book",
@@ -416,7 +416,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness texts. Still being read.",
-    "id": "items_52"
+    "id": "items_36"
   },
   {
     "name": "Superior Healing Potion",
@@ -424,7 +424,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_53"
+    "id": "items_37"
   },
   {
     "name": "Superior Healing Potion",
@@ -432,7 +432,7 @@
     "equipped_by": "Rhuna",
     "carried_by": null,
     "attuned": false,
-    "id": "items_54"
+    "id": "items_38"
   },
   {
     "name": "Masterwork Lockpicks",
@@ -440,7 +440,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_55"
+    "id": "items_39"
   },
   {
     "name": "Spyglass",
@@ -448,7 +448,7 @@
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "id": "items_56"
+    "id": "items_40"
   },
   {
     "name": "Berserker's Fang +1",
@@ -461,7 +461,7 @@
     "damage_dice": "1d12",
     "magic_bonus": 1,
     "notes": "Greataxe. 1d12+7 while raging (STR mod + rage bonus + magic).",
-    "id": "items_57"
+    "id": "items_41"
   },
   {
     "name": "Bracers of Defense",
@@ -473,7 +473,7 @@
       "ac": 2
     },
     "notes": "+2 AC when not wearing armor or using a shield.",
-    "id": "items_58"
+    "id": "items_42"
   },
   {
     "name": "Bracers of Defense",
@@ -485,7 +485,7 @@
       "ac": 2
     },
     "notes": "+2 AC when not wearing armor or using a shield.",
-    "id": "items_59"
+    "id": "items_43"
   },
   {
     "name": "Ring of Protection +1",
@@ -498,7 +498,7 @@
       "saving_throws": 1
     },
     "notes": "+1 AC and saving throws.",
-    "id": "items_60"
+    "id": "items_44"
   },
   {
     "name": "Cloak of Displacement",
@@ -507,7 +507,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Attackers have disadvantage until she takes damage each round.",
-    "id": "items_61"
+    "id": "items_45"
   },
   {
     "name": "Paired Shortsword",
@@ -520,7 +520,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 1,
     "notes": "Main hand. Resonance with Pirra's paired shortsword — both gain advantage on first attack each round when within 30ft of each other.",
-    "id": "items_62"
+    "id": "items_46"
   },
   {
     "name": "Paired Shortsword",
@@ -533,7 +533,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 1,
     "notes": "Main hand. Resonance with Pirra's paired shortsword — both gain advantage on first attack each round when within 30ft of each other.",
-    "id": "items_63"
+    "id": "items_47"
   },
   {
     "name": "The Farreach (A)",
@@ -544,7 +544,7 @@
     "paired_with": "The Farreach (B)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to an ability or skill check. Always warm.",
     "notes": "",
-    "id": "items_64"
+    "id": "items_48"
   },
   {
     "name": "The Farreach (B)",
@@ -555,7 +555,7 @@
     "paired_with": "The Farreach (A)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to an ability or skill check. Always warm.",
     "notes": "",
-    "id": "items_65"
+    "id": "items_49"
   },
   {
     "name": "Dagger of Swift Strike +1",
@@ -570,7 +570,7 @@
     "effect": "Once per turn on a hit: immediately make a second strike with this dagger as part of the same attack, without using a bonus action.",
     "flavor": "The iridescence pulses faintly when it connects — like something eager being satisfied.",
     "notes": "Named privately. Hasn't told anyone.",
-    "id": "items_66"
+    "id": "items_50"
   },
   {
     "name": "Ring of Watchful Eye",
@@ -582,7 +582,7 @@
       "skill_Perception": 1
     },
     "notes": "+1 Perception, Darkvision, Detect Magic 1/day.",
-    "id": "items_67"
+    "id": "items_51"
   },
   {
     "name": "Boots of Elvenkind",
@@ -591,7 +591,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Advantage on Stealth checks to move silently.",
-    "id": "items_68"
+    "id": "items_52"
   },
   {
     "name": "Boots of Elvenkind",
@@ -600,7 +600,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Advantage on Stealth checks to move silently.",
-    "id": "items_69"
+    "id": "items_53"
   },
   {
     "name": "Gloves of Thievery",
@@ -609,7 +609,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "+5 to Sleight of Hand and to pick locks.",
-    "id": "items_70"
+    "id": "items_54"
   },
   {
     "name": "Ring of Stilled Breath",
@@ -618,7 +618,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "",
-    "id": "items_71"
+    "id": "items_55"
   },
   {
     "name": "Obsidian Stone",
@@ -627,7 +627,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness item. Shows all exits and entrances simultaneously.",
-    "id": "items_72"
+    "id": "items_56"
   },
   {
     "name": "Leather Armor +2",
@@ -635,7 +635,7 @@
     "equipped_by": "Denna",
     "carried_by": null,
     "attuned": false,
-    "id": "items_73"
+    "id": "items_57"
   },
   {
     "name": "Alchemical Dagger",
@@ -648,7 +648,7 @@
     "damage_dice": "1d4",
     "magic_bonus": 0,
     "notes": "Passive: proficiency extension on alchemical checks, substance detection on touch.",
-    "id": "items_74"
+    "id": "items_58"
   },
   {
     "name": "Web Bomb",
@@ -656,7 +656,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "attuned": false,
-    "id": "items_75"
+    "id": "items_59"
   },
   {
     "name": "Smoke Bomb",
@@ -664,7 +664,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "attuned": false,
-    "id": "items_76"
+    "id": "items_60"
   },
   {
     "name": "Flash Bomb",
@@ -672,7 +672,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "attuned": false,
-    "id": "items_77"
+    "id": "items_61"
   },
   {
     "name": "Clockwork Distraction Device",
@@ -680,7 +680,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "attuned": false,
-    "id": "items_78"
+    "id": "items_62"
   },
   {
     "name": "Magnetic Lock Disruptor",
@@ -688,7 +688,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "attuned": false,
-    "id": "items_79"
+    "id": "items_63"
   },
   {
     "name": "Magical Aura Detector",
@@ -697,7 +697,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "30ft range.",
-    "id": "items_80"
+    "id": "items_64"
   },
   {
     "name": "Amulet of Health",
@@ -709,7 +709,7 @@
       "con": 19
     },
     "notes": "Sets CON to 19.",
-    "id": "items_81"
+    "id": "items_65"
   },
   {
     "name": "Dark Lens",
@@ -718,7 +718,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness item. Sees through fabrication — constructed falsehoods show their true structure.",
-    "id": "items_82"
+    "id": "items_66"
   },
   {
     "name": "Warding Vambrace",
@@ -727,7 +727,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Reaction 1/day: reduce incoming damage by 1d10+3.",
-    "id": "items_83"
+    "id": "items_67"
   },
   {
     "name": "Ring of Feather Falling",
@@ -735,7 +735,7 @@
     "equipped_by": "Lenn",
     "carried_by": null,
     "attuned": false,
-    "id": "items_84"
+    "id": "items_68"
   },
   {
     "name": "Pearl of Power",
@@ -744,7 +744,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Recover one expended spell slot up to 3rd level. 1/day.",
-    "id": "items_85"
+    "id": "items_69"
   },
   {
     "name": "Silvered Shortsword",
@@ -757,7 +757,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "notes": "Backup. +1 to attack and damage vs fiends and lycanthropes (silvered).",
-    "id": "items_86"
+    "id": "items_70"
   },
   {
     "name": "Silvered Shortsword",
@@ -770,7 +770,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "notes": "Backup. +1 to attack and damage vs fiends and lycanthropes (silvered).",
-    "id": "items_87"
+    "id": "items_71"
   },
   {
     "name": "Travelling Flute",
@@ -778,7 +778,7 @@
     "equipped_by": "Lenn",
     "carried_by": null,
     "attuned": false,
-    "id": "items_88"
+    "id": "items_72"
   },
   {
     "name": "Hourglass",
@@ -787,7 +787,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness item. Affects time perception or probability — still being processed.",
-    "id": "items_89"
+    "id": "items_73"
   },
   {
     "name": "Frost Shortsword +1",
@@ -800,7 +800,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 1,
     "notes": "Frost-touched damage.",
-    "id": "items_90"
+    "id": "items_74"
   },
   {
     "name": "Mithral Chain Shirt",
@@ -809,7 +809,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Backup. No stealth disadvantage.",
-    "id": "items_91"
+    "id": "items_75"
   },
   {
     "name": "Enchanted Mace",
@@ -822,7 +822,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "notes": "Command word: Calm Light — penetrates magical darkness. Sanctuary Trigger 1/day as bonus action without expending a spell slot. Named by Petra.",
-    "id": "items_92"
+    "id": "items_76"
   },
   {
     "name": "Half Plate +1",
@@ -830,7 +830,7 @@
     "equipped_by": "Petra",
     "carried_by": null,
     "attuned": false,
-    "id": "items_93"
+    "id": "items_77"
   },
   {
     "name": "Bracers +1 AC",
@@ -842,7 +842,7 @@
       "ac": 1
     },
     "notes": "+1 to AC.",
-    "id": "items_94"
+    "id": "items_78"
   },
   {
     "name": "Shield",
@@ -850,7 +850,7 @@
     "equipped_by": "Petra",
     "carried_by": null,
     "attuned": false,
-    "id": "items_95"
+    "id": "items_79"
   },
   {
     "name": "Studded Leather +1",
@@ -858,7 +858,7 @@
     "equipped_by": "Pirra",
     "carried_by": null,
     "attuned": false,
-    "id": "items_96"
+    "id": "items_80"
   },
   {
     "name": "Longsword +2",
@@ -871,7 +871,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "notes": "Pact weapon.",
-    "id": "items_98"
+    "id": "items_81"
   },
   {
     "name": "Studded Leather Armor +2",
@@ -879,7 +879,7 @@
     "equipped_by": "Siv",
     "carried_by": null,
     "attuned": false,
-    "id": "items_99"
+    "id": "items_82"
   },
   {
     "name": "Leather Armor +2",
@@ -887,14 +887,15 @@
     "equipped_by": "Lexica",
     "carried_by": null,
     "attuned": false,
-    "id": "items_100"
+    "id": "items_83"
   },
   {
     "name": "Leather Armor +2",
     "type": "armor",
     "equipped_by": "Jaygar",
     "carried_by": null,
-    "attuned": false
+    "attuned": false,
+    "id": "items_84"
   },
   {
     "name": "Gauntlet",
@@ -903,7 +904,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness item. Completes the pact begun three years ago in the Millhaven mines. Different in nature from all other Witness items.",
-    "id": "items_101"
+    "id": "items_85"
   },
   {
     "name": "Whisper Longbow +2",
@@ -916,7 +917,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "notes": "+10 to hit, 1d8+6 damage. Two attacks.",
-    "id": "items_102"
+    "id": "items_86"
   },
   {
     "name": "Short Sword",
@@ -929,7 +930,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "notes": "Backup melee.",
-    "id": "items_103"
+    "id": "items_87"
   },
   {
     "name": "Bracers of Archery",
@@ -941,7 +942,7 @@
       "ranged_damage": 2
     },
     "notes": "+2 damage on ranged attacks with longbows and shortbows.",
-    "id": "items_104"
+    "id": "items_88"
   },
   {
     "name": "Gloves of Dueling",
@@ -952,7 +953,8 @@
     "stat_bonuses": {
       "hit_chance": 2
     },
-    "notes": "Applies when using a single one-handed weapon."
+    "notes": "Applies when using a single one-handed weapon.",
+    "id": "items_89"
   },
   {
     "name": "Bracers of Archery",
@@ -964,7 +966,7 @@
       "ranged_damage": 2
     },
     "notes": "+2 damage on ranged attacks with longbows and shortbows.",
-    "id": "items_105"
+    "id": "items_90"
   },
   {
     "name": "Rapier",
@@ -977,7 +979,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 0,
     "notes": "Backup.",
-    "id": "items_106"
+    "id": "items_91"
   },
   {
     "name": "Hand Crossbow +1",
@@ -989,7 +991,7 @@
     "finesse": false,
     "damage_dice": "1d6",
     "magic_bonus": 1,
-    "id": "items_107"
+    "id": "items_92"
   },
   {
     "name": "Headband of Intellect",
@@ -1001,7 +1003,7 @@
       "int": 19
     },
     "notes": "Sets INT to 19.",
-    "id": "items_108"
+    "id": "items_93"
   },
   {
     "name": "Plain Band Ring",
@@ -1010,7 +1012,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Witness item. Remembers every voice ever heard.",
-    "id": "items_109"
+    "id": "items_94"
   },
   {
     "name": "Cloak of Protection",
@@ -1023,7 +1025,7 @@
       "saving_throws": 1
     },
     "notes": "+1 to AC and saving throws.",
-    "id": "items_110"
+    "id": "items_95"
   },
   {
     "name": "Carved Bone Totem",
@@ -1032,7 +1034,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Spellcasting focus. Thirty years old. Has opinions.",
-    "id": "items_112"
+    "id": "items_96"
   },
   {
     "name": "Hide Armor",
@@ -1041,7 +1043,7 @@
     "carried_by": null,
     "attuned": false,
     "notes": "Worn and repaired many times.",
-    "id": "items_113"
+    "id": "items_97"
   },
   {
     "name": "Simple Spear",
@@ -1054,7 +1056,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "notes": "Hasn't used offensively in fifteen years. Carries from habit.",
-    "id": "items_114"
+    "id": "items_98"
   },
   {
     "name": "Longbow +2 (Force)",
@@ -1068,7 +1070,7 @@
     "magic_bonus": 2,
     "effect": "Deals force damage instead of piercing.",
     "notes": "800g minus material trade discount.",
-    "id": "items_116"
+    "id": "items_99"
   },
   {
     "name": "Bracer of Steady Aim",
@@ -1081,7 +1083,7 @@
     },
     "effect": "Advantage on concentration saving throws after taking damage.",
     "notes": "Both concentration and +1 hit bonus",
-    "id": "items_117"
+    "id": "items_100"
   },
   {
     "name": "Ring of Spell Storing (5 levels)",
@@ -1091,7 +1093,7 @@
     "attuned": true,
     "effect": "Holds up to 5 levels worth of spells. Any creature can cast a stored spell using the ring.",
     "notes": "",
-    "id": "items_119",
+    "id": "items_101",
     "charges_current": 0,
     "charges_max": 5,
     "charges_recharge": null,
@@ -1106,7 +1108,7 @@
     "attuned": true,
     "effect": "Holds one spell up to 3rd level. Releases on wearer's command.",
     "notes": "",
-    "id": "items_120",
+    "id": "items_102",
     "charges_current": 0,
     "charges_max": 3,
     "charges_recharge": null,
@@ -1121,7 +1123,7 @@
     "attuned": false,
     "effect": "Stops a harsh impact once per day.",
     "notes": "",
-    "id": "items_121",
+    "id": "items_103",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "daily",
@@ -1139,7 +1141,7 @@
     "magic_bonus": 2,
     "effect": "Light as cloth, southern make.",
     "notes": "AC 14 + DEX mod + 2.",
-    "id": "items_122"
+    "id": "items_104"
   },
   {
     "name": "Staff of Evocation",
@@ -1153,7 +1155,7 @@
     "magic_bonus": 0,
     "effect": "Adds bonus damage to evocation spells.",
     "notes": "",
-    "id": "items_123"
+    "id": "items_105"
   },
   {
     "name": "Two Rubies",
@@ -1164,7 +1166,7 @@
     "quantity": 2,
     "effect": "For Helm of Brilliance reconstruction.",
     "notes": "",
-    "id": "items_124"
+    "id": "items_106"
   },
   {
     "name": "Concentration Robes",
@@ -1174,7 +1176,7 @@
     "attuned": false,
     "effect": "Easier concentration checks — something in the weave.",
     "notes": "",
-    "id": "items_125"
+    "id": "items_107"
   },
   {
     "name": "Elemental Resistance Robes",
@@ -1184,7 +1186,7 @@
     "attuned": true,
     "effect": "Resistance to one element, chosen on attunement.",
     "notes": "",
-    "id": "items_126"
+    "id": "items_108"
   },
   {
     "name": "Green Cloak of Presence",
@@ -1198,7 +1200,7 @@
     },
     "effect": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
     "notes": "stat_bonuses are advantage not flat — handle in dnd_utils separately.",
-    "id": "items_127"
+    "id": "items_109"
   },
   {
     "name": "Grip Wrap +1",
@@ -1212,7 +1214,7 @@
     },
     "effect": "+1 to hit with the wrapped weapon.",
     "notes": "In stock.",
-    "id": "items_128"
+    "id": "items_110"
   },
   {
     "name": "Bow Grip",
@@ -1222,7 +1224,7 @@
     "attuned": false,
     "effect": "Reduces moving shot penalty. Fits longbow or recurve.",
     "notes": "",
-    "id": "items_129"
+    "id": "items_111"
   },
   {
     "name": "Bone Ring of Weapon Retention",
@@ -1232,7 +1234,7 @@
     "attuned": false,
     "effect": "Cannot be disarmed.",
     "notes": "",
-    "id": "items_130"
+    "id": "items_112"
   },
   {
     "name": "Grip Wraps +1 (commissioned)",
@@ -1246,7 +1248,7 @@
     },
     "effect": "+1 to hit with the wrapped weapon.",
     "notes": "Commissioned from Greyback claw materials. Ready in 4 days.",
-    "id": "items_131"
+    "id": "items_113"
   },
   {
     "name": "Ravine Stalker Crossbow (commissioned, at least 2-4 items)",
@@ -1260,7 +1262,7 @@
     "magic_bonus": 0,
     "effect": "Exceptional force, quieter release than standard hand crossbow.",
     "notes": "Hand crossbow size. Built from Ravine Stalker jaw construction. Ready in 3 weeks.",
-    "id": "items_132"
+    "id": "items_114"
   },
   {
     "name": "Ceremonial Clan Collar",
@@ -1270,7 +1272,7 @@
     "attuned": false,
     "effect": "To be dismantled for Helm of Brilliance reconstruction. Metal to be examined separately.",
     "notes": "Four opals, two spinels, one diamond. Exceptional dark metal of unknown origin. 800g.",
-    "id": "items_133"
+    "id": "items_115"
   },
   {
     "name": "Cloak Pin of Waterproofing",
@@ -1280,7 +1282,7 @@
     "attuned": false,
     "effect": "Rain moves around the wearer.",
     "notes": "30g.",
-    "id": "items_134"
+    "id": "items_116"
   },
   {
     "name": "Battle Spellbook",
@@ -1290,7 +1292,7 @@
     "attuned": false,
     "effect": "Contains: Blight, Fire Shield, Ice Storm, Otiluke's Resilient Sphere, Cone of Cold, Destructive Wave, Immolation, Cloudkill.",
     "notes": "1,200g.",
-    "id": "items_135"
+    "id": "items_117"
   },
   {
     "name": "Wand of Magic Missiles",
@@ -1300,7 +1302,7 @@
     "attuned": false,
     "effect": "Cast Magic Missile using charges.",
     "notes": "600g.",
-    "id": "items_136",
+    "id": "items_118",
     "charges_current": 7,
     "charges_max": 7,
     "charges_recharge": "1d6+1 at dawn",
@@ -1315,7 +1317,7 @@
     "attuned": true,
     "effect": "CON enhancement. Harder to kill.",
     "notes": "Abjuration. 400g. CON bonus amount not specified — update stat_bonuses or stat_overrides when known.",
-    "id": "items_137"
+    "id": "items_119"
   },
   {
     "name": "Cloak of the Manta Ray",
@@ -1325,7 +1327,7 @@
     "attuned": false,
     "effect": "Breathe underwater. Swim speed 60.",
     "notes": "",
-    "id": "items_138"
+    "id": "items_120"
   },
   {
     "name": "Cloak of Elvenkind",
@@ -1335,7 +1337,7 @@
     "attuned": true,
     "effect": "Advantage on Stealth checks outdoors. Color shifting.",
     "notes": "",
-    "id": "items_139"
+    "id": "items_121"
   },
   {
     "name": "Circlet of Blasting",
@@ -1345,7 +1347,7 @@
     "attuned": false,
     "effect": "Cast Scorching Ray once per day.",
     "notes": "",
-    "id": "items_140",
+    "id": "items_122",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "daily",
@@ -1360,7 +1362,7 @@
     "attuned": false,
     "effect": "Immunity to charm and fear.",
     "notes": "",
-    "id": "items_141"
+    "id": "items_123"
   },
   {
     "name": "Bracers of Spell Storing",
@@ -1370,7 +1372,7 @@
     "attuned": true,
     "effect": "Holds spells up to 5th level.",
     "notes": "",
-    "id": "items_142",
+    "id": "items_124",
     "charges_current": 0,
     "charges_max": 5,
     "charges_recharge": null,
@@ -1385,7 +1387,7 @@
     "attuned": false,
     "effect": "Once per day: one action becomes a bonus action.",
     "notes": "",
-    "id": "items_143",
+    "id": "items_125",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "daily",
@@ -1400,7 +1402,7 @@
     "attuned": true,
     "effect": "Complete immunity to poison while worn.",
     "notes": "",
-    "id": "items_144"
+    "id": "items_126"
   },
   {
     "name": "Cloak of Displacement",
@@ -1410,7 +1412,7 @@
     "attuned": true,
     "effect": "Attackers have disadvantage on attack rolls until she takes damage each round.",
     "notes": "Rhuna already has one — confirm this is a second copy or update her entry.",
-    "id": "items_145"
+    "id": "items_127"
   },
   {
     "name": "Potion of Greater Healing",
@@ -1421,7 +1423,7 @@
     "quantity": 2,
     "effect": "Restores 4d4+4 HP.",
     "notes": "Well made, reliable.",
-    "id": "items_146"
+    "id": "items_128"
   },
   {
     "name": "Medallion of Concentration",
@@ -1431,7 +1433,7 @@
     "attuned": false,
     "effect": "Advantage on all concentration checks.",
     "notes": "",
-    "id": "items_147"
+    "id": "items_129"
   },
   {
     "name": "Leather Armor of the Covenant",
@@ -1448,7 +1450,7 @@
     "effect": "Three properties: (1) Hit point maximum increased by 10 — permanent, not temporary. (2) Once per long rest: when the wearer drops to 0 HP, drop to 1 instead. (3) Advantage on saving throws against being charmed, frightened, or possessed.",
     "flavor": "As she puts it on, the vest-shape forms to fit her exactly and a shimmering dark blue set of sleeves and a sort of skirt-with-4-slits extends downward.",
     "notes": "hp_max bonus requires dnd_utils to add stat_bonuses.hp_max to character hp.max in resolution. Advantage on charm/fear/possession saves needs active_effects or separate handling — cannot be expressed as a flat stat_bonus.",
-    "id": "items_148",
+    "id": "items_130",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "long_rest",
@@ -1464,7 +1466,7 @@
     "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue. Hums with the collective tactical memories of 156 years when held.",
     "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades gain +2 to attack and damage rolls; Psi-Bolstered Knack successes do not expend the Psionic Energy die. (2) Tactical Foresight — Master of Tactics Help action targets two allies instead of one; each gains a bonus to their next saving throw equal to INT modifier. (3) Grandmaster's Stitch — during a long rest, touch leather armor or a leather item to infuse it for 24 hours: wearer gains resistance to Psychic damage and advantage on saves against Charmed and Frightened. (4) The Retired Special — once per day reaction when an ally is hit: pull them up to 15ft to an unoccupied space, potentially causing the attack to miss.",
     "notes": "Requires attunement by a Rogue.",
-    "id": "items_149",
+    "id": "items_131",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "daily",
@@ -1482,7 +1484,7 @@
     "magic_bonus": 1,
     "effect": null,
     "notes": "",
-    "id": "items_150"
+    "id": "items_132"
   },
   {
     "name": "Greatsword +2",
@@ -1496,7 +1498,7 @@
     "magic_bonus": 2,
     "effect": null,
     "notes": "",
-    "id": "items_151"
+    "id": "items_133"
   },
   {
     "name": "Gauntlets of Ogre Power",
@@ -1509,7 +1511,7 @@
     },
     "effect": "Sets STR to 19.",
     "notes": "",
-    "id": "items_152"
+    "id": "items_134"
   },
   {
     "name": "Belt of Constitution (Corwin)",
@@ -1522,7 +1524,7 @@
     },
     "effect": "Sets CON to 18.",
     "notes": "Named to distinguish from any other Belt of Constitution in party_items.",
-    "id": "items_153"
+    "id": "items_135"
   },
   {
     "name": "Cloak of Protection +1 (Corwin)",
@@ -1536,7 +1538,7 @@
     },
     "effect": "+1 AC and saving throws.",
     "notes": "",
-    "id": "items_154"
+    "id": "items_136"
   },
   {
     "name": "Collapsible Shield +2",
@@ -1548,7 +1550,7 @@
     "magic_bonus": 2,
     "effect": "Caster friendly, lightweight. Collapsible.",
     "notes": "",
-    "id": "items_155"
+    "id": "items_137"
   },
   {
     "name": "Scroll of Thunderstorm",
@@ -1559,7 +1561,7 @@
     "quantity": 1,
     "effect": "Single use. Large area lightning damage.",
     "notes": "",
-    "id": "items_156"
+    "id": "items_138"
   },
   {
     "name": "Wand of Web",
@@ -1572,7 +1574,7 @@
     "charges_recharge": "daily",
     "effect": "Cast Web using charges.",
     "notes": "",
-    "id": "items_157"
+    "id": "items_139"
   },
   {
     "name": "Wand of Wonder",
@@ -1585,7 +1587,7 @@
     "charges_recharge": "daily",
     "effect": "Cast random magical effect using charges.",
     "notes": "",
-    "id": "items_158"
+    "id": "items_140"
   },
   {
     "name": "Wand of Secrets",
@@ -1598,7 +1600,7 @@
     "charges_recharge": "daily",
     "effect": "Detects secret doors and traps within 30ft.",
     "notes": "",
-    "id": "items_159"
+    "id": "items_141"
   },
   {
     "name": "Cloak of Invisibility",
@@ -1608,7 +1610,7 @@
     "attuned": true,
     "effect": "Become invisible for up to 1 hour per day. Concentration.",
     "notes": "Unassigned.",
-    "id": "items_160"
+    "id": "items_142"
   },
   {
     "name": "Cloak of Arachnida",
@@ -1618,7 +1620,7 @@
     "attuned": true,
     "effect": "Spider climb. Immunity to web. Cast Web 1/day.",
     "notes": "",
-    "id": "items_161"
+    "id": "items_143"
   },
   {
     "name": "Rope of Climbing and Entanglement",
@@ -1628,7 +1630,7 @@
     "attuned": false,
     "effect": "60ft rope, animates on command. Restrain target 1/day.",
     "notes": "",
-    "id": "items_162"
+    "id": "items_144"
   },
   {
     "name": "Circlet of Scorching Ray 3",
@@ -1641,7 +1643,7 @@
     "charges_recharge": "daily",
     "effect": "Cast Scorching Ray 3 times per day.",
     "notes": "",
-    "id": "items_163"
+    "id": "items_145"
   },
   {
     "name": "Circlet of Mental Fortress",
@@ -1651,7 +1653,7 @@
     "attuned": true,
     "effect": "Advantage on INT, WIS, and CHA saving throws. Resistance to psychic damage.",
     "notes": "",
-    "id": "items_164"
+    "id": "items_146"
   },
   {
     "name": "Belt of Giant Strength",
@@ -1664,7 +1666,7 @@
     },
     "effect": "Sets STR to 27.",
     "notes": "",
-    "id": "items_165"
+    "id": "items_147"
   },
   {
     "name": "Telescope",
@@ -1674,7 +1676,7 @@
     "attuned": false,
     "effect": "Shows locations as they were in the past.",
     "notes": "",
-    "id": "items_166"
+    "id": "items_148"
   },
   {
     "name": "Coin of Truth",
@@ -1684,7 +1686,7 @@
     "attuned": false,
     "effect": "Ask yes/no questions. Always truthful.",
     "notes": "",
-    "id": "items_167"
+    "id": "items_149"
   },
   {
     "name": "Gemstones",
@@ -1694,7 +1696,7 @@
     "attuned": false,
     "effect": null,
     "notes": "2 rubies from brooch, 1 opal from pendant, 1 spinel from ring, 1 sapphire from small box, small diamond cluster from small box.",
-    "id": "items_169"
+    "id": "items_150"
   },
   {
     "name": "Unmarked Ring",
@@ -1704,7 +1706,7 @@
     "attuned": false,
     "effect": "Detects scrying attempts.",
     "notes": "Vaz wearing.",
-    "id": "items_170"
+    "id": "items_151"
   },
   {
     "name": "Sword of Sharpness",
@@ -1718,7 +1720,7 @@
     "magic_bonus": 2,
     "effect": "On a roll of 20: severs a limb and deals an extra 14 damage on that hit.",
     "notes": "Northern metal. Whoever made this knew what they were doing.",
-    "id": "items_171"
+    "id": "items_152"
   },
   {
     "name": "Halberd of Warning",
@@ -1732,7 +1734,7 @@
     "magic_bonus": 2,
     "effect": "While carrying — even collapsed — wielder cannot be surprised and has advantage on initiative rolls. Wakes wielder if danger approaches during sleep. Warning properties require no attunement. Attunement required for +2 attack and damage bonus.",
     "notes": "",
-    "id": "items_172"
+    "id": "items_153"
   },
   {
     "name": "Eight Unknown Coins",
@@ -1743,7 +1745,7 @@
     "quantity": 8,
     "effect": null,
     "notes": "Large gold coins, unfamiliar crest. Not Western Reach minting. Not any region Vaz immediately recognizes. Found with Ring of Mind Shielding.",
-    "id": "items_173"
+    "id": "items_154"
   },
   {
     "name": "Gloves of Spellcasting",
@@ -1753,7 +1755,7 @@
     "attuned": false,
     "effect": "Every spell cast is treated as one level higher automatically. Cantrips become 1st level, 1st level becomes 2nd, and so on. No limit on uses.",
     "notes": "",
-    "id": "items_174"
+    "id": "items_155"
   },
   {
     "name": "Staff of Power",
@@ -1774,7 +1776,7 @@
     "charges_recharge": "some daily",
     "effect": "Cast from charges: Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. Functions as +2 quarterstaff. If wielder drops to 0hp: may choose to retributively break it, releasing all remaining charges in a catastrophic explosion.",
     "notes": "Do not break it.",
-    "id": "items_175"
+    "id": "items_156"
   },
   {
     "name": "Returning Spear +2",
@@ -1788,7 +1790,7 @@
     "magic_bonus": 2,
     "effect": "Returns to hand immediately after being thrown. On a critical hit: target is knocked prone regardless of size.",
     "notes": "",
-    "id": "items_176"
+    "id": "items_157"
   },
   {
     "name": "Cloak of the Deep",
@@ -1799,7 +1801,7 @@
     "stat_bonuses": {},
     "effect": "Resistance to cold damage. Breathe water permanently, no spell required. Move through water at full speed without penalty. Advantage on Stealth checks underwater.",
     "notes": "",
-    "id": "items_177"
+    "id": "items_158"
   },
   {
     "name": "Ceremonial Horn",
@@ -1808,17 +1810,22 @@
     "carried_by": "Rhuna",
     "attuned": false,
     "effect": "Functions as both drinking vessel and musical instrument. Tip opens via hidden clasp concealed within scrollwork — appears purely decorative. Seal is watertight and airtight, preserves both liquid and tone.",
-    "notes": "Pre-clan-separation northern craftsmanship, believed lost. Metalwork band contains pre-separation clan markings identified by Vrethka."
+    "notes": "Pre-clan-separation northern craftsmanship, believed lost. Metalwork band contains pre-separation clan markings identified by Vrethka.",
+    "id": "items_159"
   },
   {
     "name": "Sending Stones — Vaz / Relk",
     "type": "communication",
     "carried_by": null,
-    "held_by": { "a": "Vaz", "b": "Relk" },
+    "held_by": {
+      "a": "Vaz",
+      "b": "Relk"
+    },
     "attuned": false,
     "description": "Paired sending stones.",
     "effect": "Cast Sending between holders once per day.",
-    "notes": "Vaz's half transfers to Tielle when ready."
+    "notes": "Vaz's half transfers to Tielle when ready.",
+    "id": "items_160"
   },
   {
     "name": "Sending Stones — Unpaired (x3)",
@@ -1829,7 +1836,8 @@
     "quantity": 3,
     "description": "Unpaired sending stones.",
     "effect": "Short distance only. No paired counterpart yet.",
-    "notes": ""
+    "notes": "",
+    "id": "items_161"
   },
   {
     "name": "Sending Stone — Relk (goodwill)",
@@ -1839,7 +1847,8 @@
     "attuned": false,
     "description": "Single sending stone left with Relk as goodwill gesture.",
     "effect": "Unpaired.",
-    "notes": "Left as contact gesture, not part of the network."
+    "notes": "Left as contact gesture, not part of the network.",
+    "id": "items_162"
   },
   {
     "name": "Cloak of Protection +2",
@@ -1847,9 +1856,13 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": true,
-    "stat_bonuses": { "ac": 2, "saving_throws": 2 },
+    "stat_bonuses": {
+      "ac": 2,
+      "saving_throws": 2
+    },
     "effect": "+2 to AC and saving throws.",
-    "notes": "4,250g."
+    "notes": "4,250g.",
+    "id": "items_163"
   },
   {
     "name": "Bracers of Defense +2",
@@ -1857,9 +1870,12 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": true,
-    "stat_bonuses": { "ac": 2 },
+    "stat_bonuses": {
+      "ac": 2
+    },
     "effect": "+2 AC when not wearing armor or shield.",
-    "notes": "4,250g."
+    "notes": "4,250g.",
+    "id": "items_164"
   },
   {
     "name": "Tome of Clear Thought",
@@ -1868,7 +1884,8 @@
     "carried_by": null,
     "attuned": false,
     "effect": "Reading takes 48 hours over 6 days. INT score and maximum increase by 2. Becomes mundane afterward for 100 years before recharged.",
-    "notes": "Read on day 121."
+    "notes": "Read on day 121.",
+    "id": "items_165"
   },
   {
     "name": "Bottled Daylight",
@@ -1878,7 +1895,8 @@
     "attuned": false,
     "quantity": 1,
     "effect": "Releases daylight equivalent illumination when opened.",
-    "notes": "800g."
+    "notes": "800g.",
+    "id": "items_166"
   },
   {
     "name": "Greatsword +3",
@@ -1891,7 +1909,8 @@
     "damage_dice": "2d6",
     "magic_bonus": 3,
     "effect": "On a critical hit: target makes a STR saving throw or is knocked prone.",
-    "notes": ""
+    "notes": "",
+    "id": "items_167"
   },
   {
     "name": "Belt of Giant Strength",
@@ -1899,9 +1918,12 @@
     "equipped_by": "Petra",
     "carried_by": null,
     "attuned": true,
-    "stat_overrides": { "stat_str": 21 },
+    "stat_overrides": {
+      "stat_str": 21
+    },
     "effect": "Sets STR to 21.",
-    "notes": ""
+    "notes": "",
+    "id": "items_168"
   },
   {
     "name": "Bracers of Swiftness",
@@ -1909,9 +1931,12 @@
     "equipped_by": null,
     "carried_by": null,
     "attuned": false,
-    "stat_bonuses": { "speed": 10 },
+    "stat_bonuses": {
+      "speed": 10
+    },
     "effect": "+10ft movement speed. Dash as bonus action once per short rest.",
-    "notes": ""
+    "notes": "",
+    "id": "items_169"
   },
   {
     "name": "Hand Crossbow +2 (Rooting)",
@@ -1924,7 +1949,8 @@
     "damage_dice": "1d6",
     "magic_bonus": 2,
     "effect": "Once per turn on a hit: choose to deal damage as normal OR root target in place until end of their next turn.",
-    "notes": ""
+    "notes": "",
+    "id": "items_170"
   },
   {
     "name": "Rapier +2 (Psychic)",
@@ -1937,7 +1963,8 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "On a hit: choose to deal psychic damage instead of piercing.",
-    "notes": ""
+    "notes": "",
+    "id": "items_171"
   },
   {
     "name": "Wellspring",
@@ -1950,7 +1977,8 @@
     "damage_dice": "1d6",
     "magic_bonus": 1,
     "effect": "When bearer casts a healing spell, all creatures within 5ft automatically regain 2hp. No action required.",
-    "notes": ""
+    "notes": "",
+    "id": "items_172"
   },
   {
     "name": "Shield of Expression",
@@ -1960,7 +1988,8 @@
     "carried_by": null,
     "attuned": false,
     "effect": "Bearer concentrates to display any image or symbol on the shield face. Utility and signaling.",
-    "notes": ""
+    "notes": "",
+    "id": "items_173"
   },
   {
     "name": "Shield of Retribution",
@@ -1970,6 +1999,7 @@
     "carried_by": null,
     "attuned": false,
     "effect": "When bearer is hit by a melee attack, attacker automatically takes 1d6 force damage.",
-    "notes": ""
+    "notes": "",
+    "id": "items_174"
   }
 ]
