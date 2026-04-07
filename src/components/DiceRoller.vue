@@ -9,8 +9,11 @@
           class="die-btn"
           @click="roll(die)"
         >
-          <img :src="diceImages[die]" class="die-btn-icon" />
-          d{{ die }}
+          <img
+            :src="die === 2 ? coin_heads : diceImages[die]"
+            class="die-btn-icon"
+          />
+          {{ die === 2 ? 'coin' : `d${die}` }}
         </button>
         <label class="advantage-label">
           <input type="checkbox" v-model="advantage" />
@@ -26,7 +29,7 @@
         <transition-group name="slide" tag="div" class="history-track">
           <div v-for="roll in history" :key="roll.id" class="history-die">
             <div class="die-icon-wrap">
-              <img :src="diceImages[roll.sides]" class="die-bg-img dimmed" />
+              <img :src="roll.image" class="die-bg-img dimmed" />
               <span class="die-result">{{ roll.display }}</span>
             </div>
             <div class="die-label">{{ roll.die }}</div>
@@ -39,7 +42,7 @@
         <transition name="pop">
           <div v-if="current" :key="current.id" class="current-die">
             <div class="die-icon-wrap">
-              <img :src="diceImages[current.sides]" class="die-bg-img" />
+              <img :src="current.image" class="die-bg-img" />
               <div class="die-overlay">
                 <div class="die-result">{{ current.display }}</div>
                 <div v-if="current.advantage" class="die-sub">
@@ -58,6 +61,8 @@
 </template>
 
 <script>
+import coin_heads from '@/assets/dice/coin_heads.svg'
+import coin_tails from '@/assets/dice/coin_tails.svg'
 import d4 from '@/assets/dice/d4.svg'
 import d6 from '@/assets/dice/d6.svg'
 import d8 from '@/assets/dice/d8.svg'
@@ -72,8 +77,17 @@ export default {
 
   data() {
     return {
-      dice: [4, 6, 8, 10, 12, 20],
-      diceImages: { 4: d4, 6: d6, 8: d8, 10: d10, 12: d12, 20: d20 },
+      dice: [2, 4, 6, 8, 10, 12, 20],
+      diceImages: {
+        4: d4,
+        6: d6,
+        8: d8,
+        10: d10,
+        12: d12,
+        20: d20,
+      },
+      coin_heads,
+      coin_tails,
       advantage: false,
       current: null,
       history: [],
@@ -84,25 +98,33 @@ export default {
     roll(sides) {
       const rand = () => Math.floor(Math.random() * sides) + 1
 
-      let rolls, result, display
+      let rolls, result, display, image
 
       if (this.advantage && sides === 20) {
         rolls = [rand(), rand()]
         result = Math.max(...rolls)
         display = `${result} ↑`
+        image = this.diceImages[sides]
       } else {
         rolls = [rand()]
         result = rolls[0]
-        display = `${result}`
+        if (sides === 2) {
+          display = result === 1 ? 'Heads' : 'Tails'
+          image = result === 1 ? this.coin_heads : this.coin_tails
+        } else {
+          display = `${result}`
+          image = this.diceImages[sides]
+        }
       }
 
       const entry = {
         id: rollId++,
-        die: `d${sides}`,
+        die: sides === 2 ? 'coin' : `d${sides}`,
         sides,
         rolls,
         result,
         display,
+        image,
         advantage: this.advantage && sides === 20,
       }
 
