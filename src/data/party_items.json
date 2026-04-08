@@ -125,16 +125,6 @@
     "id": "items_24"
   },
   {
-    "name": "Fabrication Project — Missing Components",
-    "type": "misc",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "description": "Outstanding sourcing requirement to complete dismantling of a 40-year-old self-sustaining magical automation system.",
-    "effect": "60% of required tools already in hand. Missing: copper grounding coil (minimum 18 inches), two ceramic insulating brackets, one resonance dampener.",
-    "notes": "None of these are exotic. Sourceable in any city with a decent artificer supply or engineering merchant. Argentveil or Khemrise most likely.",
-    "id": "items_25"
-  },
-  {
     "name": "Sending Stones — Vaz / Tielle",
     "type": "communication",
     "carried_by": null,
@@ -337,12 +327,12 @@
     "id": "items_41"
   },
   {
-    "name": "Wyvern Scale Coat +1",
+    "name": "Wyvern Scale Coat +2",
     "type": "armor",
     "equipped_by": "Vaz",
     "carried_by": null,
     "attuned": false,
-    "notes": "Medium armor. AC 14 base + DEX (max 2) + 1.",
+    "notes": "Vaz' signature look.",
     "id": "items_42"
   },
   {
@@ -463,7 +453,7 @@
   {
     "name": "Berserker's Fang +1",
     "type": "weapon",
-    "equipped_by": "Rhuna",
+    "equipped_by": null,
     "carried_by": null,
     "attuned": false,
     "weapon_type": "melee",
@@ -824,7 +814,7 @@
   {
     "name": "Enchanted Mace",
     "type": "weapon",
-    "equipped_by": "Petra",
+    "equipped_by": null,
     "carried_by": null,
     "attuned": false,
     "weapon_type": "melee",
@@ -900,6 +890,13 @@
     "id": "items_100"
   },
   {
+    "name": "Leather Armor +2",
+    "type": "armor",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false
+  },
+  {
     "name": "Gauntlet",
     "type": "witness",
     "equipped_by": "Kerra",
@@ -945,6 +942,17 @@
     },
     "notes": "+2 damage on ranged attacks with longbows and shortbows.",
     "id": "items_104"
+  },
+  {
+    "name": "Gloves of Dueling",
+    "type": "armor",
+    "equipped_by": "Kerra",
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": {
+      "hit_chance": 2
+    },
+    "notes": "Applies when using a single one-handed weapon."
   },
   {
     "name": "Bracers of Archery",
@@ -1074,16 +1082,6 @@
     "effect": "Advantage on concentration saving throws after taking damage.",
     "notes": "Both concentration and +1 hit bonus",
     "id": "items_117"
-  },
-  {
-    "name": "Resonance Dampener",
-    "type": "tool",
-    "equipped_by": null,
-    "carried_by": "Jaygar",
-    "attuned": false,
-    "effect": "Final component for Jaygar's fabrication project.",
-    "notes": "80g.",
-    "id": "items_118"
   },
   {
     "name": "Ring of Spell Storing (5 levels)",
@@ -1689,17 +1687,6 @@
     "id": "items_167"
   },
   {
-    "name": "Three Unidentified Potions",
-    "type": "consumable",
-    "equipped_by": null,
-    "carried_by": "Jaygar",
-    "attuned": false,
-    "quantity": 3,
-    "effect": "Unknown — unidentified.",
-    "notes": "",
-    "id": "items_168"
-  },
-  {
     "name": "Gemstones",
     "type": "material",
     "equipped_by": null,
@@ -1892,5 +1879,97 @@
     "quantity": 1,
     "effect": "Releases daylight equivalent illumination when opened.",
     "notes": "800g."
+  },
+  {
+    "name": "Greatsword +3",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "2d6",
+    "magic_bonus": 3,
+    "effect": "On a critical hit: target makes a STR saving throw or is knocked prone.",
+    "notes": ""
+  },
+  {
+    "name": "Belt of Giant Strength",
+    "type": "wondrous",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": true,
+    "stat_overrides": { "stat_str": 21 },
+    "effect": "Sets STR to 21.",
+    "notes": ""
+  },
+  {
+    "name": "Bracers of Swiftness",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": { "speed": 10 },
+    "effect": "+10ft movement speed. Dash as bonus action once per short rest.",
+    "notes": ""
+  },
+  {
+    "name": "Hand Crossbow +2 (Rooting)",
+    "type": "weapon",
+    "weapon_type": "ranged",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 2,
+    "effect": "Once per turn on a hit: choose to deal damage as normal OR root target in place until end of their next turn.",
+    "notes": ""
+  },
+  {
+    "name": "Rapier +2 (Psychic)",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "finesse": true,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "effect": "On a hit: choose to deal psychic damage instead of piercing.",
+    "notes": ""
+  },
+  {
+    "name": "Wellspring",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 1,
+    "effect": "When bearer casts a healing spell, all creatures within 5ft automatically regain 2hp. No action required.",
+    "notes": ""
+  },
+  {
+    "name": "Shield of Expression",
+    "type": "armor",
+    "armor_type": "shield",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Bearer concentrates to display any image or symbol on the shield face. Utility and signaling.",
+    "notes": ""
+  },
+  {
+    "name": "Shield of Retribution",
+    "type": "armor",
+    "armor_type": "shield",
+    "equipped_by": "Jaygar",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "When bearer is hit by a melee attack, attacker automatically takes 1d6 force damage.",
+    "notes": ""
   }
 ]

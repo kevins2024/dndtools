@@ -1,0 +1,15 @@
+{
+  "one_shots": [],
+  "yearly": [
+    {
+      "name": "Halfweek Festival",
+      "description": "Celebration of the four extra days of the year, with feasts, games, and fireworks. Observed between winter and spring, ending the last day of winter. Not observed everywhere, requires the 8-day-week calendar.",
+      "date_start": 48,
+      "date_end": 51
+    }
+  ],
+  "seasonal": [],
+  "sub_weekly": [],
+  "weekly": [],
+  "daily": []
+}

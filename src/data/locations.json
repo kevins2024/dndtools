@@ -479,7 +479,14 @@
         "name": "Vethran & Son",
         "type": "armorer",
         "district": "Commerce District",
-        "npcs_present": [""]
+        "npcs_present": ["the son"]
+      },
+      {
+        "name": "",
+        "type": "weapons",
+        "district": "Commerce District",
+        "npcs_present": ["Torvaine"],
+        "notes": "By referral only"
       }
     ]
   },
