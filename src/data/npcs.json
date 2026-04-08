@@ -24,7 +24,7 @@
     "faction": "Ravenquay Guard",
     "role": "Guard Captain",
     "appearance": "Human man, fifties. Practical uniform, nothing decorative.",
-    "notes": "Manages Thorne, Roct, and Kael Voss custody.",
+    "notes": "",
     "status": ["ally"],
     "personality_traits": "Formerly corrupt, genuinely flipped. Trustworthy within his authority. Practical.",
     "personality_quirks": "",
@@ -658,7 +658,7 @@
     "faction": "Dawn Blades informant",
     "role": "Fisherman, freed from ship",
     "appearance": null,
-    "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road. Briefed on Veth's ship — sabotage if opportunity arises, fully informed choice.",
+    "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road. ",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -677,7 +677,7 @@
     "faction": "Dawn Blades informant",
     "role": "Fisherman, freed from ship",
     "appearance": null,
-    "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road. Briefed on Veth's ship — sabotage if opportunity arises.",
+    "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road.",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -739,7 +739,7 @@
     "faction": "Independent",
     "role": "Harbor worker",
     "appearance": null,
-    "notes": "Witnessed Veth's ship in Trevash. Now in Ravenquay.",
+    "notes": "Now in Ravenquay.",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -789,7 +789,7 @@
     "faction": "Argentveil City Council",
     "role": "City councillor",
     "appearance": "Vaz's brother.",
-    "notes": "Receiving sending stone pair and full intelligence letter. Dangerous proximity to Serath Calvane on same council.",
+    "notes": "Receiving sending stone pair and full intelligence letter.",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -803,11 +803,6 @@
         "character": "Kessara",
         "type": "sent",
         "notes": "Sent Kessara to the party."
-      },
-      {
-        "character": "Serath Calvane",
-        "type": "dangerous-proximity",
-        "notes": "On same council. Warned about Calvane."
       }
     ],
     "id": "npcs_50"
@@ -818,7 +813,7 @@
     "faction": "Cindermarch Military",
     "role": "Master-at-Arms",
     "appearance": null,
-    "notes": "Sent job offer regarding Kerra. Follow-up pending.",
+    "notes": "",
     "status": ["neutral"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -867,19 +862,8 @@
     "status": ["ally"],
     "appearance": "Sharp, organized, emotionally contained.",
     "personality_traits": "Methodical, emotionally contained about personal losses.",
-    "personality_quirks": "Operating as Sella Vorn — took dead sister's name as cover. Husband in Valdmere believes she's dead.",
-    "relationships": [
-      {
-        "character": "Severin",
-        "type": "complicated",
-        "notes": "Severin saved her life 14 months ago, told Holvaine to leave her alone. Reason unknown."
-      },
-      {
-        "character": "Oswin Belverbridge",
-        "type": "working",
-        "notes": "Difficult but productive first conversation about Valdmere property and Sella's history."
-      }
-    ],
+    "personality_quirks": "",
+    "relationships": [],
     "notes": "Holds and manages every sending stone in the network so Vaz can communicate with everyone through her.",
     "id": "npcs_63"
   },
@@ -955,7 +939,7 @@
     "personality_traits": "Clean, fully cooperative post-charter. Professional.",
     "personality_quirks": "",
     "relationships": [],
-    "notes": "Running arrests efficiently — Holst, Severin, Torreval, crew all in his cells. Similar profile to Corwin in Ravenquay.",
+    "notes": ".",
     "id": "npcs_68"
   },
   {
@@ -1028,19 +1012,6 @@
     "relationships": [],
     "notes": "Found at harbor authority office. Terms: captaincy, Dawn Blades eyes and ears in Valdmere, home port Valdmere. Sending stone paired to Tielle's network.",
     "id": "npcs_73"
-  },
-  {
-    "name": "Tielle's Forger",
-    "location": "Khemrise",
-    "faction": "Independent (held under duress)",
-    "role": "Documents forger",
-    "status": ["civilian"],
-    "appearance": null,
-    "personality_traits": "Skilled enough Severin kept her under duress rather than hiring.",
-    "personality_quirks": "",
-    "relationships": [],
-    "notes": "Held at Severin's Khemrise house three weeks. Daughter Fen (9) held by Stocca in Valdmere tannery as leverage. Severin arranged letter for girl's safety. Marcus handling situation.",
-    "id": "npcs_74"
   },
   {
     "name": "Fora Withers",
