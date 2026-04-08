@@ -1,66 +1,5 @@
 [
   {
-    "name": "Sealwalker's Pendant",
-    "type": "witness",
-    "carried_by": "Lenn",
-    "attuned": true,
-    "description": "Carved from the Deepwalker's shed tooth. Script on surface readable only by Kerra. Warms when held near an unrecognized Witness.",
-    "effect": "Pass between companions in populated areas — it will find who it's looking for.",
-    "notes": "",
-    "id": "items_0"
-  },
-  {
-    "name": "The Impossible Flower",
-    "type": "consumable",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "quantity": 1,
-    "description": "Pressed between glass, sealed with wax. Grows only below, near the Verath Ohn chamber. Pulled up in a fishing net years ago.",
-    "effect": "Heals damage that cannot otherwise be healed. One use, then gone.",
-    "notes": "Keep until absolutely certain.",
-    "id": "items_1"
-  },
-  {
-    "name": "The Glass Sphere",
-    "type": "wondrous",
-    "carried_by": "Lenn",
-    "attuned": true,
-    "description": "Left by the Observatory presence in Mast's locked chest. Finds things that actively avoid observation, but only through peripheral vision.",
-    "effect": "Reveals things that avoid observation — peripheral vision only.",
-    "notes": "Lenn has already developed an intuitive relationship with it.",
-    "id": "items_2"
-  },
-  {
-    "name": "The Measuring Rods",
-    "type": "wondrous",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "description": "Cuppin Tevoulle's instrument. Measures something called presence depth.",
-    "effect": "Bearing consistently northeast — toward the Eldest's valley.",
-    "notes": "Jaygar developing intuition for them without fully understanding them.",
-    "id": "items_3"
-  },
-  {
-    "name": "Mast's Research Documents",
-    "type": "document",
-    "carried_by": "Lenn",
-    "attuned": true,
-    "description": "Eleven years of boundary work. Chamber locations including four previously unknown, approach maps for the north, correspondence connecting Calvane to Argentveil operations.",
-    "effect": "Intelligence asset. Four new chamber locations.",
-    "notes": "Lyria has reviewed.",
-    "id": "items_4"
-  },
-  {
-    "name": "Third Orvath Account Documents",
-    "type": "document",
-    "carried_by": null,
-    "attuned": true,
-    "description": "Found in Mast's research. A third Syndicate account in Orvath beyond the two Thorne disclosed. Different account structure, different access method.",
-    "effect": "Unknown — needs investigation.",
-    "notes": "Different from the Thorne accounts. Access method not yet determined.",
-    "id": "items_5"
-  },
-  {
     "name": "Ring of Necrotic Resistance",
     "type": "wondrous",
     "carried_by": "Vaz",
@@ -96,57 +35,6 @@
     "id": "items_8"
   },
   {
-    "name": "Laboratory Diagram",
-    "type": "document",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "description": "Self-sustaining power source research.",
-    "effect": "",
-    "notes": "",
-    "id": "items_9"
-  },
-  {
-    "name": "First Breath Vial",
-    "type": "consumable",
-    "carried_by": "Jaygar",
-    "attuned": true,
-    "quantity": 1,
-    "description": "Unknown purpose.",
-    "effect": "Unknown.",
-    "notes": "Handle carefully.",
-    "id": "items_10"
-  },
-  {
-    "name": "Hendvar's Spellbook (Lenn's copy)",
-    "type": "document",
-    "carried_by": "Lenn",
-    "attuned": true,
-    "description": "Hendvar's personal spellbook. Shared with Lyria for spell extraction.",
-    "effect": "Spell extraction.",
-    "notes": "",
-    "id": "items_11"
-  },
-  {
-    "name": "Hendvar's Spellbook (Lyria's copy)",
-    "type": "document",
-    "carried_by": "Lyria",
-    "attuned": true,
-    "description": "Hendvar's personal spellbook. Shared with Lenn for spell extraction.",
-    "effect": "Spell extraction.",
-    "notes": "",
-    "id": "items_12"
-  },
-  {
-    "name": "Lyria's Contract",
-    "type": "document",
-    "carried_by": "Lyria",
-    "attuned": true,
-    "description": "Lyria keeps this.",
-    "effect": "",
-    "notes": "",
-    "id": "items_13"
-  },
-  {
     "name": "Whetstone of Keen Edge",
     "type": "wondrous",
     "carried_by": "party",
@@ -179,37 +67,6 @@
     "id": "items_16"
   },
   {
-    "name": "Regional Maps",
-    "type": "document",
-    "carried_by": "party",
-    "attuned": true,
-    "description": "Northern Reaches and campaign region.",
-    "effect": "Valuable for northern campaign.",
-    "notes": "",
-    "id": "items_17"
-  },
-  {
-    "name": "Necrotic Essence Containers",
-    "type": "consumable",
-    "carried_by": "Millhaven",
-    "attuned": true,
-    "quantity": 4,
-    "description": "Sealed necrotic essence containers.",
-    "effect": "Unknown.",
-    "notes": "Left in Millhaven. Find a responsible institution when relevant. Do not open.",
-    "id": "items_18"
-  },
-  {
-    "name": "Seal Compass",
-    "type": "wondrous",
-    "carried_by": "Vaz",
-    "attuned": true,
-    "description": "Small circular compass-shaped object with 8 points, each filled with a kind of vapor.",
-    "effect": "Allows perceptualization of all eight seals across the continent and remote tending. Quality of remote tending is meaningful but not equivalent to physical presence.",
-    "notes": "",
-    "id": "items_19"
-  },
-  {
     "name": "Boots of the Tireless North",
     "type": "armor",
     "carried_by": "Pirra",
@@ -229,8 +86,8 @@
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "description": "Compact recurve hunting bow, northern construction. Viable from horseback or tight terrain. Luminescent bowstring, pulls smooth and silent.",
-    "effect": "Three accompanying arrows of dark dense northern metal (same as the elder's axe). Arrows return to quiver after a successful hit only — not after a miss.",
-    "notes": "Siv recognized immediately it wasn't for her. Vrethka's spear now feels transitional rather than permanent.",
+    "effect": "",
+    "notes": "",
     "id": "items_21"
   },
   {
@@ -414,17 +271,6 @@
     "effect": "Short distance only. No paired counterpart yet.",
     "notes": "",
     "id": "items_35"
-  },
-  {
-    "name": "Short-Distance Mirror Set",
-    "type": "communication",
-    "carried_by": "Denna",
-    "held_by": null,
-    "attuned": true,
-    "description": "Paired mirrors for short-distance communication.",
-    "effect": "Visual communication only — no audio.",
-    "notes": "",
-    "id": "items_36"
   },
   {
     "name": "Veilstrike Rapier +2",
@@ -781,7 +627,7 @@
     "equipped_by": "Denna",
     "carried_by": null,
     "attuned": false,
-    "notes": "Severin's effects. Non-Witness item.",
+    "notes": "",
     "id": "items_71"
   },
   {
@@ -1172,15 +1018,6 @@
     "id": "items_110"
   },
   {
-    "name": "Sealwalker's Cloak",
-    "type": "wondrous",
-    "equipped_by": "Vrethka",
-    "carried_by": null,
-    "attuned": false,
-    "notes": "The item. Movement between chambers requires Vrethka's intention and below's participation. Action to concentrate on a known chamber — the below parts the boundary and the company passes through. Short rest to reuse. Carries companions holding her in a connected line. Maximum companions: WIS modifier (5). Party members with active Witness items are anchored; uncertain travelers risk disorientation.",
-    "id": "items_111"
-  },
-  {
     "name": "Carved Bone Totem",
     "type": "focus",
     "equipped_by": "Vrethka",
@@ -1210,15 +1047,6 @@
     "magic_bonus": 0,
     "notes": "Hasn't used offensively in fifteen years. Carries from habit.",
     "id": "items_114"
-  },
-  {
-    "name": "Grandmother's Compass",
-    "type": "misc",
-    "equipped_by": "Vrethka",
-    "carried_by": null,
-    "attuned": false,
-    "notes": "Small carved disc of northern stone. Always points toward the nearest place her family has tended. Not magical in the traditional sense — very old and very attentive. Vrethka treats it with honest companionship.",
-    "id": "items_115"
   },
   {
     "name": "Longbow +2 (Force)",
@@ -1994,5 +1822,75 @@
     "attuned": false,
     "effect": "Functions as both drinking vessel and musical instrument. Tip opens via hidden clasp concealed within scrollwork — appears purely decorative. Seal is watertight and airtight, preserves both liquid and tone.",
     "notes": "Pre-clan-separation northern craftsmanship, believed lost. Metalwork band contains pre-separation clan markings identified by Vrethka."
+  },
+  {
+    "name": "Sending Stones — Vaz / Relk",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": { "a": "Vaz", "b": "Relk" },
+    "attuned": false,
+    "description": "Paired sending stones.",
+    "effect": "Cast Sending between holders once per day.",
+    "notes": "Vaz's half transfers to Tielle when ready."
+  },
+  {
+    "name": "Sending Stones — Unpaired (x3)",
+    "type": "communication",
+    "carried_by": null,
+    "held_by": null,
+    "attuned": false,
+    "quantity": 3,
+    "description": "Unpaired sending stones.",
+    "effect": "Short distance only. No paired counterpart yet.",
+    "notes": ""
+  },
+  {
+    "name": "Sending Stone — Relk (goodwill)",
+    "type": "communication",
+    "carried_by": "Relk",
+    "held_by": null,
+    "attuned": false,
+    "description": "Single sending stone left with Relk as goodwill gesture.",
+    "effect": "Unpaired.",
+    "notes": "Left as contact gesture, not part of the network."
+  },
+  {
+    "name": "Cloak of Protection +2",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "ac": 2, "saving_throws": 2 },
+    "effect": "+2 to AC and saving throws.",
+    "notes": "4,250g."
+  },
+  {
+    "name": "Bracers of Defense +2",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "ac": 2 },
+    "effect": "+2 AC when not wearing armor or shield.",
+    "notes": "4,250g."
+  },
+  {
+    "name": "Tome of Clear Thought",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Reading takes 48 hours over 6 days. INT score and maximum increase by 2. Becomes mundane afterward for 100 years before recharged.",
+    "notes": "Read on day 121."
+  },
+  {
+    "name": "Bottled Daylight",
+    "type": "consumable",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "quantity": 1,
+    "effect": "Releases daylight equivalent illumination when opened.",
+    "notes": "800g."
   }
 ]

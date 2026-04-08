@@ -20,7 +20,7 @@
     "hp_max": 57,
     "hp_current": 57,
     "personality_traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
-    "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try. Learning Thorne's handwriting.",
+    "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try.",
     "unarmored_ac_formula": "default",
     "saving_throws": ["str", "con"],
     "skill_proficiencies": [
@@ -448,7 +448,7 @@
     "stat_str": 10,
     "stat_dex": 12,
     "stat_con": 13,
-    "stat_int": 18,
+    "stat_int": 20,
     "stat_wis": 12,
     "stat_cha": 12,
     "hp_max": 38,

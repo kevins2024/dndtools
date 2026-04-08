@@ -1,6 +1,6 @@
 {
   "party_purse": {
-    "gold": 128205,
+    "gold": 98505,
     "notes": "On hand, accessible immediately."
   },
   "reserves": [
@@ -18,9 +18,9 @@
     },
     {
       "name": "Khemrise Strongbox",
-      "amount": null,
+      "amount": 39000,
       "access": "Salt Hook Tavern key. Registered under assumed name.",
-      "contents": "~39,000g negotiable notes plus documents.",
+      "contents": "",
       "risk": "low"
     }
   ],

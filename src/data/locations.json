@@ -126,7 +126,7 @@
         "type": "government",
         "description": "Captain Crane's domain. Holding cells inside.",
         "npcs_present": ["Captain Crane"],
-        "notes": "Thorne, Roct, and Kael Voss held here. Duty sergeant recognizes Vaz on sight."
+        "notes": "Duty sergeant recognizes Vaz on sight."
       },
       {
         "name": "The Arena",
@@ -134,7 +134,7 @@
         "type": "venue",
         "description": "Copper, Silver, and Gold tiers. Morning sessions start eighth bell. Betting available.",
         "npcs_present": [],
-        "notes": "Dawn Blades registered as 'A Slice of Pie', Silver tier, record 2-0. Roct watching for tactical Veth assessment."
+        "notes": "Dawn Blades registered a handful of teams."
       },
       {
         "name": "Morrow and Selt",
@@ -227,7 +227,7 @@
         "name": "Vineyard Estate",
         "district": "Vineyard Road (3 miles northeast)",
         "type": "dawn_blades_base",
-        "description": "On a vineyard hill. Private road connecting to coastal route, bypasses main harbor fees. Formerly Thorne's. Acquired from Ostwick family for 6,000g.",
+        "description": "On a vineyard hill. Private road connecting to coastal route, bypasses main harbor fees. Acquired from Ostwick family for 6,000g.",
         "areas": [
           {
             "name": "Main House",
@@ -315,7 +315,7 @@
         "name": "Salt Hook Tavern",
         "district": "Harbor District",
         "type": "tavern",
-        "description": "Harbor area. Bren the proprietor, no questions asked. Thorne connection, discreet.",
+        "description": "Harbor area. Bren the proprietor, no questions asked.",
         "npcs_present": [],
         "notes": "Vaz has room paid week upfront. Two keys to bank strongbox held by Vaz."
       },
@@ -325,7 +325,7 @@
         "type": "bank",
         "description": "Solid stone, brass fittings, cool interior, wood paneled. Long counter with clerk. Strongbox room private, small, unremarkable.",
         "npcs_present": [],
-        "notes": "Dawn Blades strongbox registered under assumed name, Salt Hook address. Contains: Thorne's false ledger, three property deeds, correspondence files, Harwick's signed confession, Belverbridge payment schedule letter, remaining Thorne negotiable notes (~39,000g)."
+        "notes": "Dawn Blades strongbox registered under assumed name, Salt Hook address. Contains: negotiable notes (~39,000g)."
       },
       {
         "name": "Drev's Office",
@@ -344,7 +344,7 @@
         "notes": "Relay network documents on table."
       },
       {
-        "name": "Corryn Mast",
+        "name": "Corryn's Mast",
         "district": "Harbor District",
         "type": "workshop",
         "description": "Sailmaker.",
@@ -376,7 +376,7 @@
       {
         "name": "Trevash Harbor",
         "type": "harbor",
-        "description": "Where Thorne's ship was spotted and captured. Fisherman's moorings. Where Veth's scout ship docked recently.",
+        "description": "Fisherman's moorings.",
         "npcs_present": [],
         "notes": "Aldric and Pell tie up at fisherman's moorings."
       },
@@ -447,8 +447,8 @@
       {
         "name": "Argentveil City Council",
         "type": "government",
-        "description": "Sitting members include Galealzre and Serath Calvane. Trade committee where Calvane operates.",
-        "npcs_present": ["Galealzre", "Serath Calvane"],
+        "description": "Sitting members include Galealzre.",
+        "npcs_present": [],
         "notes": ""
       },
       {
@@ -463,18 +463,23 @@
         "type": "market",
         "description": "Where Ossivane Relk operates.",
         "npcs_present": ["Ossivane Relk"],
-        "notes": "Find him Tuesdays. Third sending stone pair and compass available when Dawn Blades are ready."
+        "notes": ""
       },
       {
         "name": "Crestline & Vane",
         "type": "real_estate",
         "subtype": "rented_rooms",
-        "location": "Argentveil",
         "district": "Merchant Quarter",
         "status": "operational",
         "ownership": "rented — Dawn Blades occupy upper floor",
         "acquisition_cost": null,
         "notes": "Trading house on main floor, unaffiliated. Dawn Blades rent 3 rooms upstairs. Merchant district location gives good cover and access. Handblown glass vase in the center of the commonroom table, won by Kerra in the halfweek festival games."
+      },
+      {
+        "name": "Vethran & Son",
+        "type": "armorer",
+        "district": "Commerce District",
+        "npcs_present": [""]
       }
     ]
   },
