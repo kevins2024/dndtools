@@ -187,7 +187,7 @@
       {
         "character": "Rhuna",
         "type": "ward",
-        "notes": "In Rhuna's care."
+        "notes": "He's in Rhuna's care."
       }
     ],
     "id": "npcs_12"
@@ -607,7 +607,7 @@
       {
         "character": "Vaz",
         "type": "promise",
-        "notes": "Vaz promised return in 7 suns."
+        "notes": "These two have a great connection."
       }
     ],
     "items": [
@@ -1137,5 +1137,29 @@
     "relationships": [],
     "notes": "Went by Farendale for a time. Previous owner of the Merchant Quarter estate acquired by Dawn Blades. Ring of Mind Shielding (inhabited) returned to him — contains one of his relatives.",
     "id": "npcs_82"
+  },
+  {
+    "name": "Wren",
+    "location": "Argentveil",
+    "faction": "Independent",
+    "role": "Beer hall worker, cliff hill establishment",
+    "status": ["neutral"],
+    "appearance": "From the coast originally, moved to Argentveil eight years ago.",
+    "personality_traits": "Warm, genuine, professional without being impersonal. Knows everyone on the hill.",
+    "personality_quirks": "",
+    "relationships": [],
+    "notes": "Lives twenty minutes from Dawn Blades rental at Crestline and Vane. Chosen for personality as much as appearance."
+  },
+  {
+    "name": "Saev",
+    "location": "Argentveil",
+    "faction": "Independent",
+    "role": "Kite operator, cliff hill",
+    "status": ["neutral"],
+    "appearance": null,
+    "personality_traits": "Straightforwardly kind with no angle to it. Finds what he has sufficient, no apparent desire for more.",
+    "personality_quirks": "Has a small sailing boat, fishes when he feels like it, takes people out sometimes. Nothing that requires him to be somewhere specific.",
+    "relationships": [],
+    "notes": ""
   }
 ]

@@ -68,13 +68,13 @@ app.post('/api/:table', (req, res) => {
   const file = path.join(DATA_DIR, `${table}.json`)
 
   // Write a timestamped backup before overwriting
-  if (fs.existsSync(file)) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-    const backupDir = path.join(DATA_DIR, '.backups')
-    if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir)
-    const backup = path.join(backupDir, `${table}.${timestamp}.json`)
-    fs.copyFileSync(file, backup)
-  }
+  // if (fs.existsSync(file)) {
+  //   const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+  //   const backupDir = path.join(DATA_DIR, '.backups')
+  //   if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir)
+  //   const backup = path.join(backupDir, `${table}.${timestamp}.json`)
+  //   fs.copyFileSync(file, backup)
+  // }
 
   try {
     fs.writeFileSync(file, JSON.stringify(req.body, null, 2), 'utf8')

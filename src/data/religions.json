@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Solmir",
+    "type": "deity",
+    "domain": ["Life", "Peace"],
+    "alignment": "Lawful Good",
+    "symbol": "A pair of hands cradling a small flame",
+    "description": "God of healing, companionship, and refuge. Solmir's followers believe care for others is the highest calling — not heroism, not power, but showing up for people who need it. Particular emphasis on refugees, the displaced, and those rebuilding after loss.",
+    "worship_notes": "Order of Solmir operates refuges and healing houses. Revivify in Ravenquay deeded to the Order. Clerics tend to be found wherever people are struggling rather than wherever power is concentrated.",
+    "known_followers": ["Petra"],
+    "notes": "Clergy take vows of service/poverty (monetary rewards go to charity)"
+  },
+  {
+    "name": "Ghorrakh",
+    "type": "deity",
+    "domain": ["Endurance", "Survival", "Continuation"],
+    "alignment": "Neutral",
+    "symbol": null,
+    "description": "Not a god of war. A god of endurance and continuation — the specific quality of still being here when you weren't supposed to be. The god of surviving things that should have finished you. Ghorrakh doesn't promise victory. Ghorrakh promises that if you're still standing, that means something.",
+    "worship_notes": "Common among orc-kin and half-orcs though not exclusively. Not celebrated loudly — Ghorrakh's followers tend to mark survival quietly, privately. The acknowledgment is internal.",
+    "known_followers": ["Rhuna"],
+    "notes": "Distinct from typical orc war god traditions found elsewhere. Endurance over aggression."
+  },
+  {
+    "name": "Aethros",
+    "type": "deity",
+    "domain": ["Law", "Order", "Justice", "Protection"],
+    "alignment": "Lawful Neutral?",
+    "symbol": "sword crossed with a gavel",
+    "description": "*Law shields the weak. Order guards the innocent. Justice illuminates the truth.* Law exists to protect the innocent and punish the guilty. Oaths and promises are sacred - breaking them is grave sin. Justice must be balanced with mercy, but never compromised. Authority comes with responsibility to those you protect. Evil must be opposed actively, not passively tolerated",
+    "worship_notes": "Formal prayers and structured rituals. Oath-taking ceremonies (very serious, magically binding). Trials and judgments blessed by clergy. Exorcisms and banishment rituals (as Thane performed). Maintaining ancient wards and seals (like the giant chambers)",
+    "known_followers": ["Justicar Thane"],
+    "notes": ""
+  }
+]

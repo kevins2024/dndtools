@@ -1,0 +1,11 @@
+{
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  }
+}

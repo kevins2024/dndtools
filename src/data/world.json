@@ -1,10 +1,23 @@
 [
   {
     "name": "Aethermoor",
+    "calendar_constants": {
+      "days_per_year": 204,
+      "seasons": [
+        { "name": "Winter", "length": 51 },
+        { "name": "Spring", "length": 51 },
+        { "name": "Summer", "length": 51 },
+        { "name": "Autumn", "length": 51 }
+      ]
+    },
     "continents": [
       {
         "name": "Aethermoor",
-        "description": "Large continental landmass divided into five regions.",
+        "calendar_system": {
+          "notes": "The 8 day weeks leave 4 days leftover, which is called the Spring Festival halfweek. This is regionally celebrated as a time of renewal and community gathering, with various local traditions. The Spring Festival halfweek is not considered part of any season, but rather a transition period between Winter and Spring.",
+          "days_per_week": 8
+        },
+        "description": "Large continental landmass divided into five regions. note: needs updating.",
         "regions": [
           {
             "name": "The Western Reach",

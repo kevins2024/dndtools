@@ -122,13 +122,13 @@
       },
       {
         "character": "Denna",
-        "type": "unaddressed",
-        "notes": "Something unaddressed between them."
+        "type": "growing-complicated",
+        "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly."
       },
       {
         "character": "Petra",
         "type": "warm-complicated",
-        "notes": ""
+        "notes": "Turns sexual as companionship from time-to-time. No jealousy or expectations."
       },
       {
         "character": "Kessara",
@@ -653,6 +653,11 @@
         "character": "Kessara",
         "type": "collegial-warmth",
         "notes": ""
+      },
+      {
+        "character": "Lyria",
+        "type": "affectionate-partnership",
+        "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic."
       }
     ],
     "active_effects": [],
@@ -1286,7 +1291,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "personality_traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
-    "personality_quirks": "Her lute is named but she hasn't told anyone yet.",
+    "personality_quirks": "",
     "unarmored_ac_formula": "default",
     "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
@@ -1728,6 +1733,11 @@
         "character": "Aldren",
         "type": "family",
         "notes": "Brother"
+      },
+      {
+        "character": "Lenn",
+        "type": "affectionate-partnership",
+        "notes": "Magical commonality and complementary personalities, it just fell into place."
       }
     ],
     "active_effects": [],
@@ -1895,7 +1905,7 @@
     "subclass": "Champion",
     "level": 7,
     "alignment": "Lawful Neutral",
-    "appearance": "Human man, thirties. Guard bearing. Weathered, solid build.",
+    "appearance": "Human man, late thirties. Guard bearing. Weathered, solid build.",
     "stat_str": 16,
     "stat_dex": 14,
     "stat_con": 16,

@@ -452,11 +452,29 @@
         "notes": ""
       },
       {
+        "name": "The Glass Sipper",
+        "type": "tea_house",
+        "description": "Next door to a glassblower, all their pots and cups are hand-blown and unique. Some of them supposedly make the tea taste different and you never know what you'll get. The glassblower refuses to make anything he finds ugly, so it has a stamp of his personality inside as well.",
+        "npcs_present": [],
+        "notes": ""
+      },
+      {
         "name": "Linden Street Antiquities Market",
         "type": "market",
         "description": "Where Ossivane Relk operates.",
         "npcs_present": ["Ossivane Relk"],
         "notes": "Find him Tuesdays. Third sending stone pair and compass available when Dawn Blades are ready."
+      },
+      {
+        "name": "Crestline & Vane",
+        "type": "real_estate",
+        "subtype": "rented_rooms",
+        "location": "Argentveil",
+        "district": "Merchant Quarter",
+        "status": "operational",
+        "ownership": "rented — Dawn Blades occupy upper floor",
+        "acquisition_cost": null,
+        "notes": "Trading house on main floor, unaffiliated. Dawn Blades rent 3 rooms upstairs. Merchant district location gives good cover and access. Handblown glass vase in the center of the commonroom table, won by Kerra in the halfweek festival games."
       }
     ]
   },

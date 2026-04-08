@@ -8,10 +8,6 @@ node_modules/
 .env.local
 .env.*.local
 
-# Editor
-.vscode/
-.idea/
-
 # OS
 .DS_Store
 Thumbs.db

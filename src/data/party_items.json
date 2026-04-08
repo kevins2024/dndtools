@@ -1985,5 +1985,14 @@
     "effect": "Resistance to cold damage. Breathe water permanently, no spell required. Move through water at full speed without penalty. Advantage on Stealth checks underwater.",
     "notes": "",
     "id": "items_177"
+  },
+  {
+    "name": "Ceremonial Horn",
+    "type": "misc",
+    "equipped_by": null,
+    "carried_by": "Rhuna",
+    "attuned": false,
+    "effect": "Functions as both drinking vessel and musical instrument. Tip opens via hidden clasp concealed within scrollwork — appears purely decorative. Seal is watertight and airtight, preserves both liquid and tone.",
+    "notes": "Pre-clan-separation northern craftsmanship, believed lost. Metalwork band contains pre-separation clan markings identified by Vrethka."
   }
 ]
