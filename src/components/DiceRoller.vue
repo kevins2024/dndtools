@@ -152,8 +152,8 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0.6vh 0.8vw;
-  border-bottom: 1px solid #3a2e22;
-  background-color: #0e0c09;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-panel-dark);
 }
 
 .dice-buttons {
@@ -166,21 +166,21 @@ export default {
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #1e1a14;
-  border: 1px solid #3a2e22;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  color: #8a7a60;
+  color: var(--color-text-muted);
   cursor: pointer;
-  font-family: 'Crimson Text', Georgia, serif;
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-text);
   padding: 3px 10px;
   transition: all 0.15s ease;
 }
 
 .die-btn:hover {
-  border-color: #c8a96e;
-  color: #c8a96e;
-  box-shadow: 0 0 8px rgba(200, 169, 110, 0.2);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
 }
 
 .die-btn-icon {
@@ -197,15 +197,15 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.3vw;
-  color: #8a7a60;
-  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-label);
   cursor: pointer;
   margin-left: 0.4vw;
   user-select: none;
 }
 
 .advantage-label input {
-  accent-color: #c8a96e;
+  accent-color: var(--color-accent);
   cursor: pointer;
 }
 
@@ -276,21 +276,21 @@ export default {
   justify-content: center;
   width: 52px;
   height: 52px;
-  border: 1px solid #3a2e22;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #1a1612;
+  background: var(--color-bg);
   flex-shrink: 0;
 }
 
 .history-die .die-label {
-  font-size: 0.6rem;
-  color: #4a3a22;
+  font-size: var(--font-size-xxxs);
+  color: var(--color-die);
 }
 
 .history-die .die-result {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   font-weight: 600;
-  color: #5a4a30;
+  color: var(--color-text-low);
   position: relative;
   z-index: 1;
 }
@@ -311,33 +311,34 @@ export default {
   width: 100px;
   height: 100px;
   border-radius: 10px;
-  border: 2px solid #e8841a;
-  background: #1e1a14;
-  box-shadow: 0 0 20px rgba(232, 132, 26, 0.35), 0 0 6px rgba(232, 132, 26, 0.2);
-  color: #f0a830;
+  border: 2px solid var(--color-highlight);
+  background: var(--color-bg-surface);
+  box-shadow: 0 0 20px rgba(var(--color-highlight-rgb), 0.35),
+    0 0 6px rgba(var(--color-highlight-rgb), 0.2);
+  color: var(--color-warning);
 }
 
 .current-die.empty {
-  border-color: #3a2e22;
+  border-color: var(--color-border);
   box-shadow: none;
-  color: #4a3a22;
+  color: var(--color-die);
 }
 
 .current-die .die-result {
-  font-size: 2.2rem;
+  font-size: var(--font-size-huge);
   font-weight: 700;
   line-height: 1;
-  color: #f0a830;
+  color: var(--color-warning);
 }
 
 .current-die.empty .die-label {
-  font-size: 0.75rem;
-  color: #4a3a22;
+  font-size: var(--font-size-tiny);
+  color: var(--color-die);
 }
 
 .die-sub {
-  font-size: 0.65rem;
-  color: #a06820;
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-low);
   margin-top: 2px;
 }
 

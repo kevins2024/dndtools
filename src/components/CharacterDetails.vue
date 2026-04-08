@@ -21,11 +21,7 @@
     <!-- Content -->
     <div class="tab-content">
       <template v-if="selected">
-        <Editor
-          v-if="activeTab === 'sheet'"
-          :item="selected"
-          store-name="characters"
-        />
+        <CharacterSheet v-if="activeTab === 'sheet'" :character="selected" />
         <Editor
           v-if="activeTab === 'equipment'"
           :item="selected"
@@ -38,11 +34,12 @@
 </template>
 
 <script>
+import CharacterSheet from './CharacterSheet.vue'
 import Editor from './Editor.vue'
 
 export default {
   name: 'CharacterDetails',
-  components: { Editor },
+  components: { CharacterSheet, Editor },
 
   data() {
     return {
@@ -72,8 +69,8 @@ export default {
 /* ── Tabs ── */
 .tab-bar {
   display: flex;
-  border-bottom: 1px solid #3a2e22;
-  background-color: #0e0c09;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-panel-dark);
   flex-shrink: 0;
 }
 
@@ -82,20 +79,20 @@ export default {
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  color: #8a7a60;
+  color: var(--color-text-muted);
   cursor: pointer;
-  font-family: 'Crimson Text', Georgia, serif;
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-text);
   transition: all 0.15s ease;
 }
 
 .tab-btn:hover {
-  color: #c8a96e;
+  color: var(--color-accent);
 }
 
 .tab-btn.active {
-  color: #e8c87a;
-  border-bottom-color: #c8a96e;
+  color: var(--color-accent-strong);
+  border-bottom-color: var(--color-accent);
 }
 
 /* ── Content ── */
@@ -106,7 +103,7 @@ export default {
 }
 
 .empty-state {
-  color: #4a3a22;
+  color: var(--color-die);
   font-style: italic;
   margin-top: 2vh;
   text-align: center;

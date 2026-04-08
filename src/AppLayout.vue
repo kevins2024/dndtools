@@ -138,17 +138,15 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-
 /* ── Layout ── */
 .app-layout {
   display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #1a1612;
-  font-family: 'Crimson Text', Georgia, serif;
-  color: #e8dcc8;
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-text);
   position: relative;
 }
 
@@ -159,8 +157,8 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #13100d;
-  border-right: 1px solid #3a2e22;
+  background-color: var(--color-bg-panel);
+  border-right: 1px solid var(--color-border);
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.6);
   flex-shrink: 0;
 }
@@ -172,8 +170,8 @@ export default {
   justify-content: space-around;
   align-items: center;
   padding: 0.6vh 0.4vw;
-  border-bottom: 1px solid #3a2e22;
-  background-color: #0e0c09;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-panel-dark);
   gap: 0.3vw;
 }
 
@@ -185,28 +183,28 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1e1a14;
-  border: 1px solid #3a2e22;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   cursor: pointer;
-  color: #8a7a60;
-  font-size: 1.1vw;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-nav);
   transition: all 0.15s ease;
   padding: 0;
 }
 
 .nav-btn:hover {
-  background: #2a2318;
-  border-color: #c8a96e;
-  color: #c8a96e;
-  box-shadow: 0 0 8px rgba(200, 169, 110, 0.2);
+  background: var(--color-bg-surface-alt);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
 }
 
-.nav-btn.active {
-  background: #2a2318;
-  border-color: #c8a96e;
-  color: #e8c87a;
-  box-shadow: 0 0 10px rgba(200, 169, 110, 0.3);
+..nav-btn.active {
+  background: var(--color-bg-surface-alt);
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.3);
 }
 
 .nav-icon {
@@ -219,14 +217,14 @@ export default {
   flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #3a2e22 transparent;
+  scrollbar-color: var(--color-scrollbar) transparent;
 }
 
 .panel-content::-webkit-scrollbar {
   width: 4px;
 }
 .panel-content::-webkit-scrollbar-thumb {
-  background: #3a2e22;
+  background: var(--color-scrollbar);
   border-radius: 2px;
 }
 
@@ -245,8 +243,8 @@ export default {
   width: 80vw;
   max-width: 80vw;
   height: 25vh;
-  background-color: #13100d;
-  border-left: 1px solid #3a2e22;
+  background-color: var(--color-bg-panel);
+  border-left: 1px solid var(--color-border);
   box-shadow: -4px 0 24px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
@@ -260,11 +258,11 @@ export default {
   right: 1vw;
   width: 42px;
   height: 42px;
-  background: #1e1a14;
-  border: 1px solid #3a2e22;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  color: #8a7a60;
-  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-toggle);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -275,9 +273,9 @@ export default {
 
 .drawer-toggle:hover,
 .drawer-toggle.open {
-  border-color: #c8a96e;
-  color: #c8a96e;
-  box-shadow: 0 0 8px rgba(200, 169, 110, 0.2);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
 }
 
 /* ── Drawer Transition ── */

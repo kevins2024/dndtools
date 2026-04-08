@@ -69,13 +69,13 @@ export default {
 </script>
 <style scoped>
 .toggle-combat {
-  background: white;
-  border: 1px solid #ccc;
+  background: var(--color-white);
+  border: 1px solid var(--color-neutral);
   cursor: pointer;
 }
 .toggle-combat.active {
-  background: #4a90d9;
-  border-color: #4a90d9;
-  color: white;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
 }
 </style>

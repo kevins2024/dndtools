@@ -57,7 +57,7 @@ export default {
 
 .player-card {
   width: 84%;
-  border: solid gray 1px;
+  border: solid var(--color-neutral) 1px;
   border-radius: 6px;
   position: relative;
 }
@@ -69,11 +69,11 @@ export default {
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: gold; /* matches your selected border color */
+  accent-color: var(--color-selected); /* matches your selected border color */
 }
 
 .player-card.selected {
-  border: solid gold 1px;
+  border: solid var(--color-selected) 1px;
 }
 
 .player-card h3 {
@@ -86,6 +86,6 @@ export default {
   aspect-ratio: 13 / 16;
   background-position: 50% 0%;
   background-repeat: no-repeat;
-  border-bottom: solid gray 1px;
+  border-bottom: solid var(--color-neutral) 1px;
 }
 </style>
