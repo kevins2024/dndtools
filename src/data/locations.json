@@ -487,6 +487,20 @@
         "district": "Commerce District",
         "npcs_present": ["Torvaine"],
         "notes": "By referral only"
+      },
+      {
+        "name": "Forged & Found",
+        "type": "weapons",
+        "district": "Commerce District",
+        "npcs_present": ["Kovran"],
+        "notes": "Red awning"
+      },
+      {
+        "name": "DUVRAK",
+        "type": "enchanter",
+        "district": "Upper Merchant Quarter",
+        "npcs_present": ["Duvrak"],
+        "notes": "referral only"
       }
     ]
   },
