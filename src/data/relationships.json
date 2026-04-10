@@ -1,0 +1,506 @@
+[
+  {
+    "id": "rel_0",
+    "people": [
+      "rhuna",
+      "vaz"
+    ],
+    "type": "sibling-bond",
+    "notes": "Communicate without words."
+  },
+  {
+    "id": "rel_1",
+    "people": [
+      "denna",
+      "vaz"
+    ],
+    "type": "growing-complicated",
+    "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly."
+  },
+  {
+    "id": "rel_2",
+    "people": [
+      "petra",
+      "vaz"
+    ],
+    "type": "warm-complicated",
+    "notes": "Turns sexual as companionship from time-to-time. No jealousy or expectations."
+  },
+  {
+    "id": "rel_3",
+    "people": [
+      "kessara",
+      "vaz"
+    ],
+    "type": "loyalty-forming",
+    "notes": "Fast-forming loyalty."
+  },
+  {
+    "id": "rel_4",
+    "people": [
+      "galealzre",
+      "vaz"
+    ],
+    "type": "warm-distant",
+    "notes": "His brother."
+  },
+  {
+    "id": "rel_5",
+    "people": [
+      "rhuna",
+      "vaz"
+    ],
+    "type": "sibling-bond",
+    "notes": "Communicate without words."
+  },
+  {
+    "id": "rel_6",
+    "people": [
+      "jaygar",
+      "rhuna"
+    ],
+    "type": "unexpected-friendship",
+    "notes": "Watches him work with genuine fascination."
+  },
+  {
+    "id": "rel_7",
+    "people": [
+      "denna",
+      "vaz"
+    ],
+    "type": "unaddressed",
+    "notes": "Something unaddressed between them."
+  },
+  {
+    "id": "rel_8",
+    "people": [
+      "denna",
+      "pirra"
+    ],
+    "type": "instant-recognition",
+    "notes": "Resonance beyond the paired blades."
+  },
+  {
+    "id": "rel_9",
+    "people": [
+      "jaygar",
+      "rhuna"
+    ],
+    "type": "unexpected-friendship",
+    "notes": "She watches him work with genuine fascination."
+  },
+  {
+    "id": "rel_10",
+    "people": [
+      "kessara",
+      "lenn"
+    ],
+    "type": "collegial-warmth",
+    "notes": ""
+  },
+  {
+    "id": "rel_11",
+    "people": [
+      "lenn",
+      "lyria"
+    ],
+    "type": "affectionate-partnership",
+    "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic."
+  },
+  {
+    "id": "rel_12",
+    "people": [
+      "kessara",
+      "lenn"
+    ],
+    "type": "collegial-warmth",
+    "notes": ""
+  },
+  {
+    "id": "rel_13",
+    "people": [
+      "kessara",
+      "petra"
+    ],
+    "type": "careful-fascination",
+    "notes": "Finds her oddly reassuring."
+  },
+  {
+    "id": "rel_14",
+    "people": [
+      "kessara",
+      "rhuna"
+    ],
+    "type": "mutual-respect",
+    "notes": "Immediate."
+  },
+  {
+    "id": "rel_15",
+    "people": [
+      "kessara",
+      "vaz"
+    ],
+    "type": "loyalty-forming",
+    "notes": ""
+  },
+  {
+    "id": "rel_16",
+    "people": [
+      "galealzre",
+      "kessara"
+    ],
+    "type": "sent-by",
+    "notes": "Sent by Galealzre — relationship not yet detailed."
+  },
+  {
+    "id": "rel_17",
+    "people": [
+      "petra",
+      "vaz"
+    ],
+    "type": "warm-complicated",
+    "notes": ""
+  },
+  {
+    "id": "rel_18",
+    "people": [
+      "kessara",
+      "petra"
+    ],
+    "type": "careful-fascination",
+    "notes": "Kessara finds her oddly reassuring."
+  },
+  {
+    "id": "rel_19",
+    "people": [
+      "denna",
+      "pirra"
+    ],
+    "type": "instant-recognition",
+    "notes": "Resonance beyond the paired blades."
+  },
+  {
+    "id": "rel_20",
+    "people": [
+      "lenn",
+      "lyria"
+    ],
+    "type": "affectionate-partnership",
+    "notes": "Magical commonality and complementary personalities, it just fell into place."
+  },
+  {
+    "id": "rel_21",
+    "people": [
+      "vethara",
+      "vrethka"
+    ],
+    "type": "family",
+    "notes": "Her daughter. Twenty years of complicated and fond. The war was between them before it was between clans."
+  },
+  {
+    "id": "rel_22",
+    "people": [
+      "varath ichta",
+      "vrethka"
+    ],
+    "type": "family-clan",
+    "notes": "Niece by clan rather than blood. The daughter who always wanted to leave, sent south with more hope than Vrethka shows."
+  },
+  {
+    "id": "rel_23",
+    "people": [
+      "vaz",
+      "vrethka"
+    ],
+    "type": "new-significant",
+    "notes": "Two days old and already the relationship that will define the next chapter."
+  },
+  {
+    "id": "rel_24",
+    "people": [
+      "petra",
+      "vrethka"
+    ],
+    "type": "recognition",
+    "notes": "Recognized each other immediately. Haven't discussed it yet."
+  },
+  {
+    "id": "rel_25",
+    "people": [
+      "corwin",
+      "wren"
+    ],
+    "type": "growing-romance",
+    "notes": "Met her at the first halfweek festival attended in Argentveil. Mutual attraction, still in early stages but promising."
+  },
+  {
+    "id": "rel_26",
+    "people": [
+      "helena sable",
+      "pirra"
+    ],
+    "type": "family",
+    "notes": "Her niece."
+  },
+  {
+    "id": "rel_27",
+    "people": [
+      "big tam",
+      "jessyl denmar"
+    ],
+    "type": "works-for",
+    "notes": ""
+  },
+  {
+    "id": "rel_28",
+    "people": [
+      "gritch",
+      "jessyl denmar"
+    ],
+    "type": "works-for",
+    "notes": ""
+  },
+  {
+    "id": "rel_29",
+    "people": [
+      "pip",
+      "rhuna"
+    ],
+    "type": "ward",
+    "notes": "He's in Rhuna's care."
+  },
+  {
+    "id": "rel_30",
+    "people": [
+      "rhuna",
+      "tormund coalbeard"
+    ],
+    "type": "meeting-arranged",
+    "notes": "Millhaven approach planning. Jessyl arranged."
+  },
+  {
+    "id": "rel_31",
+    "people": [
+      "morrow",
+      "selt"
+    ],
+    "type": "business-partner",
+    "notes": ""
+  },
+  {
+    "id": "rel_32",
+    "people": [
+      "morrow",
+      "selt"
+    ],
+    "type": "business-partner",
+    "notes": ""
+  },
+  {
+    "id": "rel_33",
+    "people": [
+      "marcus freeborn",
+      "petra"
+    ],
+    "type": "protective-warmth",
+    "notes": "Petra's protective warmth toward him."
+  },
+  {
+    "id": "rel_34",
+    "people": [
+      "denna",
+      "sarith vex"
+    ],
+    "type": "complicated-history",
+    "notes": "Ran Denna's network when Denna was sixteen. Professional respect."
+  },
+  {
+    "id": "rel_35",
+    "people": [
+      "cruze",
+      "torsten"
+    ],
+    "type": "sibling",
+    "notes": "Guard brothers."
+  },
+  {
+    "id": "rel_36",
+    "people": [
+      "cruze",
+      "gunner"
+    ],
+    "type": "sibling",
+    "notes": "Guard brothers."
+  },
+  {
+    "id": "rel_37",
+    "people": [
+      "cruze",
+      "torsten"
+    ],
+    "type": "sibling",
+    "notes": "Guard brothers."
+  },
+  {
+    "id": "rel_38",
+    "people": [
+      "gunner",
+      "torsten"
+    ],
+    "type": "sibling",
+    "notes": "Guard brothers."
+  },
+  {
+    "id": "rel_39",
+    "people": [
+      "cruze",
+      "gunner"
+    ],
+    "type": "sibling",
+    "notes": "Guard brothers."
+  },
+  {
+    "id": "rel_40",
+    "people": [
+      "gunner",
+      "torsten"
+    ],
+    "type": "sibling",
+    "notes": "Guard brothers."
+  },
+  {
+    "id": "rel_41",
+    "people": [
+      "seris",
+      "tova"
+    ],
+    "type": "sibling",
+    "notes": "Sisters."
+  },
+  {
+    "id": "rel_42",
+    "people": [
+      "petra",
+      "sovi"
+    ],
+    "type": "communication",
+    "notes": "Petra has partial fluency in her language."
+  },
+  {
+    "id": "rel_43",
+    "people": [
+      "sovi",
+      "vaz"
+    ],
+    "type": "promise",
+    "notes": "These two have a great connection."
+  },
+  {
+    "id": "rel_44",
+    "people": [
+      "aldric",
+      "pell"
+    ],
+    "type": "sibling",
+    "notes": "Brothers."
+  },
+  {
+    "id": "rel_45",
+    "people": [
+      "aldric",
+      "pell"
+    ],
+    "type": "sibling",
+    "notes": "Brothers."
+  },
+  {
+    "id": "rel_46",
+    "people": [
+      "seris",
+      "tova"
+    ],
+    "type": "sibling",
+    "notes": "Sisters."
+  },
+  {
+    "id": "rel_47",
+    "people": [
+      "aldric",
+      "merren"
+    ],
+    "type": "traveled-with",
+    "notes": ""
+  },
+  {
+    "id": "rel_48",
+    "people": [
+      "merren",
+      "pell"
+    ],
+    "type": "traveled-with",
+    "notes": ""
+  },
+  {
+    "id": "rel_49",
+    "people": [
+      "galealzre",
+      "vaz"
+    ],
+    "type": "family",
+    "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so."
+  },
+  {
+    "id": "rel_50",
+    "people": [
+      "galealzre",
+      "kessara"
+    ],
+    "type": "sent",
+    "notes": "Sent Kessara to the party."
+  },
+  {
+    "id": "rel_51",
+    "people": [
+      "aldous fenn",
+      "oswin belverbridge"
+    ],
+    "type": "colleague",
+    "notes": "Coordinating on council matters."
+  },
+  {
+    "id": "rel_52",
+    "people": [
+      "oswin belverbridge",
+      "sona belverbridge"
+    ],
+    "type": "family",
+    "notes": "His older daughter."
+  },
+  {
+    "id": "rel_53",
+    "people": [
+      "aldous fenn",
+      "oswin belverbridge"
+    ],
+    "type": "colleague",
+    "notes": "Coordinating on council matters."
+  },
+  {
+    "id": "rel_54",
+    "people": [
+      "dov carren",
+      "vaz"
+    ],
+    "type": "warm",
+    "notes": "Vaz pressed coins into his hand. If Vaz comes to Valdmere, Dov knows where to find him."
+  },
+  {
+    "id": "rel_55",
+    "people": [
+      "aldren caluverath",
+      "lyria"
+    ],
+    "type": "family",
+    "notes": "Her brother. Three years apart."
+  }
+]

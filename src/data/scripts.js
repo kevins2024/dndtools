@@ -1,3 +1,4 @@
+/* --------------------------- script to update IDs on fields
 const fs = require('fs')
 const path = require('path')
 
@@ -29,3 +30,85 @@ for (const [fileId, filePath] of Object.entries(config)) {
 
   console.log(`Updated ${filePath}`)
 }
+----------------------------------------- */
+
+const fs = require('fs')
+const path = require('path')
+
+// ---- CONFIG ----
+const characterFile = './characters.json'
+const npcFile = './npcs.json'
+const outputFile = './relationships.json'
+
+// ---- LOAD ----
+const characters = JSON.parse(
+  fs.readFileSync(path.join(__dirname, characterFile))
+)
+const npcs = JSON.parse(fs.readFileSync(path.join(__dirname, npcFile)))
+
+const allEntities = [...characters, ...npcs]
+
+// ---- BUILD NAME → ID MAP ----
+const nameToId = {}
+for (const e of allEntities) {
+  nameToId[e.name.toLowerCase()] = e.id
+}
+
+// ---- HELPERS ----
+const normalizePair = (a, b) => {
+  return [a, b].sort() // ensures A-B == B-A
+}
+
+const makeKey = (a, b) => normalizePair(a, b).join('|')
+
+// ---- COLLECT RELATIONSHIPS ----
+const relMap = {}
+
+for (const entity of allEntities) {
+  if (!entity.relationships) continue
+
+  for (const rel of entity.relationships) {
+    const targetName = rel.character?.toLowerCase()
+    const targetId = nameToId[targetName]
+
+    if (!targetId) continue // skip unknowns
+
+    const clean = (str) => str.trim().toLowerCase()
+
+    const pair = normalizePair(clean(entity.name), clean(rel.character))
+    const key = makeKey(entity.name, clean(rel.character))
+
+    if (!relMap[key]) {
+      relMap[key] = {
+        people: pair,
+        type: rel.type || '',
+        notes: rel.notes || '',
+      }
+    } else {
+      // merge logic
+
+      // prefer longer type
+      if ((rel.type || '').length > relMap[key].type.length) {
+        relMap[key].type = rel.type
+      }
+
+      // prefer longer notes
+      if ((rel.notes || '').length > relMap[key].notes.length) {
+        relMap[key].notes = rel.notes
+      }
+    }
+  }
+}
+
+// ---- OUTPUT ----
+const relationships = Object.values(relMap).map((r, i) => ({
+  id: `rel_${i}`,
+  ...r,
+}))
+
+fs.writeFileSync(
+  path.join(__dirname, outputFile),
+  JSON.stringify(relationships, null, 2)
+)
+
+console.log('relationships.json created!')
