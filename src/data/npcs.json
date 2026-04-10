@@ -9,13 +9,6 @@
     "status": ["ally"],
     "personality_traits": "Extraordinarily capable. Works when frightened.",
     "personality_quirks": "Cried once privately at Pirra's return, composed completely afterward. Reveals nothing she doesn't choose to.",
-    "relationships": [
-      {
-        "character": "Pirra",
-        "type": "family",
-        "notes": "Her niece."
-      }
-    ],
     "id": "npcs_0"
   },
   {
@@ -28,7 +21,6 @@
     "status": ["ally"],
     "personality_traits": "Formerly corrupt, genuinely flipped. Trustworthy within his authority. Practical.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_1"
   },
   {
@@ -41,7 +33,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable, pragmatic, excellent field contacts.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_2"
   },
   {
@@ -54,7 +45,6 @@
     "status": ["ally"],
     "personality_traits": "Precise, methodical.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_3"
   },
   {
@@ -67,7 +57,6 @@
     "status": ["ally"],
     "personality_traits": "Supportive, discreet.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_4"
   },
   {
@@ -80,7 +69,6 @@
     "status": ["uncertain"],
     "personality_traits": "Not corrupt. Opposed to Dawn Blades as potential private army.",
     "personality_quirks": "Morning tea, Crestfall Street, eighth bell daily.",
-    "relationships": [],
     "id": "npcs_5"
   },
   {
@@ -93,13 +81,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable muscle.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Jessyl Denmar",
-        "type": "works-for",
-        "notes": ""
-      }
-    ],
     "id": "npcs_6"
   },
   {
@@ -112,13 +93,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable muscle.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Jessyl Denmar",
-        "type": "works-for",
-        "notes": ""
-      }
-    ],
     "id": "npcs_7"
   },
   {
@@ -131,7 +105,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_8"
   },
   {
@@ -144,7 +117,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_9"
   },
   {
@@ -157,7 +129,6 @@
     "status": ["ally"],
     "personality_traits": "Criteria-based client selection.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_10"
   },
   {
@@ -170,7 +141,6 @@
     "status": ["uncertain"],
     "personality_traits": "Stalling on legitimacy.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_11"
   },
   {
@@ -183,13 +153,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Rhuna",
-        "type": "ward",
-        "notes": "He's in Rhuna's care."
-      }
-    ],
     "id": "npcs_12"
   },
   {
@@ -202,13 +165,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Rhuna",
-        "type": "meeting-arranged",
-        "notes": "Millhaven approach planning. Jessyl arranged."
-      }
-    ],
     "id": "npcs_13"
   },
   {
@@ -221,13 +177,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Selt",
-        "type": "business-partner",
-        "notes": ""
-      }
-    ],
     "id": "npcs_14"
   },
   {
@@ -240,13 +189,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Morrow",
-        "type": "business-partner",
-        "notes": ""
-      }
-    ],
     "id": "npcs_15"
   },
   {
@@ -259,7 +201,6 @@
     "status": ["neutral"],
     "personality_traits": "Ex-smuggler.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_16"
   },
   {
@@ -272,7 +213,6 @@
     "status": ["ally"],
     "personality_traits": "Legitimate. Good standing with Dawn Blades.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_17"
   },
   {
@@ -289,13 +229,6 @@
     "combat_class": "Fighter",
     "combat_level": 5,
     "combat_notes": "NPC-lite.",
-    "relationships": [
-      {
-        "character": "Petra",
-        "type": "protective-warmth",
-        "notes": "Petra's protective warmth toward him."
-      }
-    ],
     "items": [
       {
         "name": "Egarryn's Red Masterwork Leather Armor",
@@ -320,7 +253,6 @@
     "combat_class": "Fighter",
     "combat_level": 7,
     "combat_notes": null,
-    "relationships": [],
     "items": [
       {
         "name": "Plate +1",
@@ -371,13 +303,6 @@
     "combat_level": 7,
     "combat_notes": null,
     "combat_features": ["Alert feat"],
-    "relationships": [
-      {
-        "character": "Denna",
-        "type": "complicated-history",
-        "notes": "Ran Denna's network when Denna was sixteen. Professional respect."
-      }
-    ],
     "items": [
       {
         "name": "Leather Armor",
@@ -396,7 +321,6 @@
     "status": ["ally"],
     "personality_traits": "Completely reliable. 11 years in post.",
     "personality_quirks": "Reveals nothing he doesn't choose to.",
-    "relationships": [],
     "items": [
       {
         "name": "Khemrise Sending Stone",
@@ -416,18 +340,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable security.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Torsten",
-        "type": "sibling",
-        "notes": "Guard brothers."
-      },
-      {
-        "character": "Gunner",
-        "type": "sibling",
-        "notes": "Guard brothers."
-      }
-    ],
     "id": "npcs_26"
   },
   {
@@ -440,18 +352,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable security.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Cruze",
-        "type": "sibling",
-        "notes": "Guard brothers."
-      },
-      {
-        "character": "Gunner",
-        "type": "sibling",
-        "notes": "Guard brothers."
-      }
-    ],
     "id": "npcs_27"
   },
   {
@@ -464,18 +364,6 @@
     "status": ["ally"],
     "personality_traits": "Reliable security.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Cruze",
-        "type": "sibling",
-        "notes": "Guard brothers."
-      },
-      {
-        "character": "Torsten",
-        "type": "sibling",
-        "notes": "Guard brothers."
-      }
-    ],
     "id": "npcs_28"
   },
   {
@@ -488,7 +376,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_29"
   },
   {
@@ -501,13 +388,6 @@
     "status": ["ally"],
     "personality_traits": "Precise, careful. Extraordinary with numbers and patterns. Not a fighter, entirely invaluable.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Seris",
-        "type": "sibling",
-        "notes": "Sisters."
-      }
-    ],
     "id": "npcs_30"
   },
   {
@@ -520,7 +400,6 @@
     "status": ["ally"],
     "personality_traits": "Careful tidiness of a man demonstrating reliability through his surroundings.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_31"
   },
   {
@@ -533,7 +412,6 @@
     "status": ["ally"],
     "personality_traits": "Clean, competent. Reorganized Glicken's desk immediately.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_32"
   },
   {
@@ -546,7 +424,6 @@
     "status": ["ally"],
     "personality_traits": "Careful tidiness of a man demonstrating reliability through his surroundings.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_33"
   },
   {
@@ -559,7 +436,6 @@
     "status": [],
     "personality_traits": "Self-contained composure of someone who learned to keep his face neutral around dangerous people.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_34"
   },
   {
@@ -572,7 +448,6 @@
     "status": ["ally"],
     "personality_traits": "Twelve years moving cargo, asking no questions. Now asking them.",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_35"
   },
   {
@@ -585,7 +460,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_36"
   },
   {
@@ -598,18 +472,6 @@
     "status": ["ward"],
     "personality_traits": "Drawing prodigy. Serious, assessing.",
     "personality_quirks": "Doesn't cry easily. Speaks a southern language — Petra has partial fluency. Learning common quickly.",
-    "relationships": [
-      {
-        "character": "Petra",
-        "type": "communication",
-        "notes": "Petra has partial fluency in her language."
-      },
-      {
-        "character": "Vaz",
-        "type": "promise",
-        "notes": "These two have a great connection."
-      }
-    ],
     "items": [
       {
         "name": "Drawing Notebook",
@@ -629,7 +491,6 @@
     "status": ["ally"],
     "personality_traits": "Careful stillness of someone who survived by becoming invisible, now discovering she doesn't need to.",
     "personality_quirks": "Conducting one-on-ones with refugees. Finding her voice.",
-    "relationships": [],
     "id": "npcs_38"
   },
   {
@@ -642,7 +503,6 @@
     "status": ["ally"],
     "personality_traits": "Precise. Works freely now.",
     "personality_quirks": "Medical bag always on hook by the door — long habit.",
-    "relationships": [],
     "items": [
       {
         "name": "Medical Bag",
@@ -662,13 +522,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Pell",
-        "type": "sibling",
-        "notes": "Brothers."
-      }
-    ],
     "id": "npcs_40"
   },
   {
@@ -681,13 +534,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Aldric",
-        "type": "sibling",
-        "notes": "Brothers."
-      }
-    ],
     "id": "npcs_41"
   },
   {
@@ -700,7 +546,6 @@
     "status": ["neutral"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_42"
   },
   {
@@ -717,13 +562,6 @@
     "combat_level": 7,
     "combat_notes": null,
     "combat_features": ["Expertise: Stealth", "Expertise: Deception"],
-    "relationships": [
-      {
-        "character": "Tova",
-        "type": "sibling",
-        "notes": "Sisters."
-      }
-    ],
     "items": [
       {
         "name": "Locket",
@@ -743,18 +581,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Aldric",
-        "type": "traveled-with",
-        "notes": ""
-      },
-      {
-        "character": "Pell",
-        "type": "traveled-with",
-        "notes": ""
-      }
-    ],
     "id": "npcs_46"
   },
   {
@@ -767,7 +593,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_48"
   },
   {
@@ -780,7 +605,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "\"When you need wool moved, find me.\"",
-    "relationships": [],
     "id": "npcs_49"
   },
   {
@@ -793,18 +617,6 @@
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Vaz",
-        "type": "family",
-        "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so."
-      },
-      {
-        "character": "Kessara",
-        "type": "sent",
-        "notes": "Sent Kessara to the party."
-      }
-    ],
     "id": "npcs_50"
   },
   {
@@ -817,7 +629,6 @@
     "status": ["neutral"],
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "id": "npcs_51"
   },
   {
@@ -833,7 +644,6 @@
     "combat_class": null,
     "combat_level": null,
     "combat_notes": "300g per job, purely transactional, no loyalty.",
-    "relationships": [],
     "id": "npcs_52"
   },
   {
@@ -842,7 +652,6 @@
     "role": "Clan leader",
     "notes": "Vrethka's daughter. War ending — given two weeks before approaching Cindermarch. Proud, practical, afraid of being wrong and learning to survive it. Northern metalwork trade contact.",
     "status": [],
-    "relationships": [],
     "id": "npcs_58"
   },
   {
@@ -851,7 +660,6 @@
     "role": "Firstwalker emissary",
     "notes": "Dawn Blades and Long Arm Trading Ambassador to the North. She is a northerner that always wanted to venture south.",
     "status": [],
-    "relationships": [],
     "id": "npcs_59"
   },
   {
@@ -863,7 +671,6 @@
     "appearance": "Sharp, organized, emotionally contained.",
     "personality_traits": "Methodical, emotionally contained about personal losses.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Holds and manages every sending stone in the network so Vaz can communicate with everyone through her.",
     "id": "npcs_63"
   },
@@ -876,18 +683,6 @@
     "appearance": "Forty years in Khemrise.",
     "personality_traits": "Principled, moved by what's happening.",
     "personality_quirks": "",
-    "relationships": [
-      {
-        "character": "Tielle",
-        "type": "working",
-        "notes": "Not forgiveness — a working direction."
-      },
-      {
-        "character": "Aldous Fenn",
-        "type": "colleague",
-        "notes": "Coordinating on council matters."
-      }
-    ],
     "notes": "Bought Fogstone Estate for 10,000g as decoy — Vaz buys it back for 10,500g when threat passes. Called emergency council session, charter passed unanimously. Family dinner at Fogstone established genuine alliance.",
     "id": "npcs_65"
   },
@@ -900,13 +695,6 @@
     "appearance": "16 years old.",
     "personality_traits": "Immediately operational. Strong instincts, organizational mind.",
     "personality_quirks": "Corrected Ledwent's supply manifest within hours and was right. Ledwent noticed and chose not to point it out — highest possible compliment.",
-    "relationships": [
-      {
-        "character": "Oswin Belverbridge",
-        "type": "family",
-        "notes": "His older daughter."
-      }
-    ],
     "notes": "Not yet tested under pressure but showing significant promise.",
     "id": "npcs_66"
   },
@@ -919,13 +707,6 @@
     "appearance": "30 years in the city.",
     "personality_traits": "Clean, reliable, principled, not corrupt.",
     "personality_quirks": "Moved by Dov speaking at the charter session.",
-    "relationships": [
-      {
-        "character": "Oswin Belverbridge",
-        "type": "colleague",
-        "notes": "Coordinating on council matters."
-      }
-    ],
     "notes": "Presented evidence at charter session including Holst evidence. Dawn Blades' man on the Khemrise council alongside Oswin.",
     "id": "npcs_67"
   },
@@ -938,7 +719,6 @@
     "appearance": null,
     "personality_traits": "Clean, fully cooperative post-charter. Professional.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": ".",
     "id": "npcs_68"
   },
@@ -951,7 +731,6 @@
     "appearance": null,
     "personality_traits": "Professional, experienced with unusual cargo arrangements.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Yetgrese trading experience. Handled weapons sale negotiation — opened 35,000g, floor 26,000g. Outcome not fully confirmed.",
     "id": "npcs_69"
   },
@@ -964,7 +743,6 @@
     "appearance": null,
     "personality_traits": "Precise, professional.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Handled Merchant's Guild counterfeit note presentation to Corev Aldrath. Invaluable on document authentication and forgery detection.",
     "id": "npcs_71"
   },
@@ -977,13 +755,6 @@
     "appearance": "15 years old, from Valdmere.",
     "personality_traits": "Nervous but spoke at charter session anyway. Left without asking to stay — showed character.",
     "personality_quirks": "Vaz tousled his hair which he hated with the full dignity of a 15-year-old.",
-    "relationships": [
-      {
-        "character": "Vaz",
-        "type": "warm",
-        "notes": "Vaz pressed coins into his hand. If Vaz comes to Valdmere, Dov knows where to find him."
-      }
-    ],
     "notes": "Family: mother and sister Bren (9). Father didn't know about false mill work promise. Spoke at charter session, moved two council members. Sent back to Valdmere on Shalindra.",
     "id": "npcs_72"
   },
@@ -996,7 +767,6 @@
     "appearance": "Experienced captain, lost her ship to a storm two years ago.",
     "personality_traits": "Professional, decisive. Doesn't need things explained twice.",
     "personality_quirks": "Accepted the name Shalindra seriously because sailors take ship names seriously.",
-    "relationships": [],
     "notes": "Found at harbor authority office. Terms: captaincy, Dawn Blades eyes and ears in Valdmere, home port Valdmere. Sending stone paired to Tielle's network.",
     "id": "npcs_73"
   },
@@ -1008,7 +778,6 @@
     "status": ["neutral"],
     "personality_traits": "Ran neutral ground waystation 20 years.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Held Kern's message for Vaz, gave it on the road rather than waiting. Road contact.",
     "id": "npcs_75"
   },
@@ -1021,7 +790,6 @@
     "appearance": "Eleven years in post.",
     "personality_traits": "Quietly reliable. Was waiting for someone to do something about Ironvein the whole time.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Wrote character letter for Brennswick notary. Took three surviving guards without ceremony.",
     "id": "npcs_76"
   },
@@ -1034,7 +802,6 @@
     "appearance": null,
     "personality_traits": "Clean, professional. Stayed voluntarily.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Eight years in Millhaven, never trusted by Ironvein. Came immediately when Kerra fetched him. Helping with collar removal and worker recovery. Potential permanent Dawn Blades asset.",
     "id": "npcs_77"
   },
@@ -1047,13 +814,6 @@
     "appearance": "Late thirties, thin from three years of hard labor adequately fed.",
     "personality_traits": "",
     "personality_quirks": "Sleeping outside because he needed to feel the air.",
-    "relationships": [
-      {
-        "character": "Lyria",
-        "type": "family",
-        "notes": "Her brother. Three years apart."
-      }
-    ],
     "notes": "",
     "id": "npcs_78"
   },
@@ -1066,7 +826,6 @@
     "appearance": null,
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Harwick vouched for her, expecting future contact. Jaygar's crystal components request being routed through her. First name not established.",
     "id": "npcs_79"
   },
@@ -1079,7 +838,6 @@
     "appearance": null,
     "personality_traits": "Particular about who she works with. Drinks tea at Meridian House every morning.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Established three permanent Teleportation Circles in her career, all still active. Alurath's referral will get a conversation. Potential Argentveil teleportation anchor.",
     "id": "npcs_80"
   },
@@ -1092,7 +850,6 @@
     "appearance": null,
     "personality_traits": "",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Went by Farendale for a time. Previous owner of the Merchant Quarter estate acquired by Dawn Blades. Ring of Mind Shielding (inhabited) returned to him — contains one of his relatives.",
     "id": "npcs_82"
   },
@@ -1105,7 +862,6 @@
     "appearance": "From the coast originally, moved to Argentveil eight years ago.",
     "personality_traits": "Warm, genuine, professional without being impersonal. Knows everyone on the hill.",
     "personality_quirks": "",
-    "relationships": [],
     "notes": "Lives twenty minutes from Dawn Blades rental at Crestline and Vane. Chosen for personality as much as appearance.",
     "id": "npcs_83"
   },
@@ -1118,7 +874,6 @@
     "appearance": null,
     "personality_traits": "Straightforwardly kind with no angle to it. Finds what he has sufficient, no apparent desire for more.",
     "personality_quirks": "Has a small sailing boat, fishes when he feels like it, takes people out sometimes. Nothing that requires him to be somewhere specific.",
-    "relationships": [],
     "notes": "",
     "id": "npcs_84"
   }

@@ -22,10 +22,7 @@
     "personality_traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
     "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -33,10 +30,7 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -120,33 +114,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "Rhuna",
-        "type": "sibling-bond",
-        "notes": "Communicate without words."
-      },
-      {
-        "character": "Denna",
-        "type": "growing-complicated",
-        "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly."
-      },
-      {
-        "character": "Petra",
-        "type": "warm-complicated",
-        "notes": "Turns sexual as companionship from time-to-time. No jealousy or expectations."
-      },
-      {
-        "character": "Kessara",
-        "type": "loyalty-forming",
-        "notes": "Fast-forming loyalty."
-      },
-      {
-        "character": "Galealzre",
-        "type": "warm-distant",
-        "notes": "His brother."
-      }
-    ],
     "active_effects": [],
     "id": "characters_0"
   },
@@ -173,10 +140,7 @@
     "personality_traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
     "personality_quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -184,10 +148,7 @@
       "Survival"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage 3/day",
@@ -247,18 +208,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "Vaz",
-        "type": "sibling-bond",
-        "notes": "Communicate without words."
-      },
-      {
-        "character": "Jaygar",
-        "type": "unexpected-friendship",
-        "notes": "Watches him work with genuine fascination."
-      }
-    ],
     "active_effects": [],
     "id": "characters_1"
   },
@@ -285,10 +234,7 @@
     "personality_traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
     "personality_quirks": "Was gone before anyone saw her leave. Private relationship with her blades.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -297,14 +243,8 @@
       "Deception",
       "Investigation"
     ],
-    "expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Thieves Cant"
-    ],
+    "expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Thieves Cant"],
     "features": [
       {
         "name": "Sneak Attack 4d6",
@@ -348,23 +288,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "Vaz",
-        "type": "unaddressed",
-        "notes": "Something unaddressed between them."
-      },
-      {
-        "character": "Pirra",
-        "type": "instant-recognition",
-        "notes": "Resonance beyond the paired blades."
-      },
-      {
-        "character": "Sarith",
-        "type": "complicated-history",
-        "notes": "Sarith ran her network when she was sixteen."
-      }
-    ],
     "active_effects": [],
     "id": "characters_2"
   },
@@ -391,10 +314,7 @@
     "personality_traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
     "personality_quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int"
-    ],
+    "saving_throws": ["con", "int"],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -403,11 +323,7 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish"],
     "features": [
       {
         "name": "Tool Expertise",
@@ -451,13 +367,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "Rhuna",
-        "type": "unexpected-friendship",
-        "notes": "She watches him work with genuine fascination."
-      }
-    ],
     "active_effects": [],
     "id": "characters_3"
   },
@@ -484,10 +393,7 @@
     "personality_traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
     "personality_quirks": "Reviews spellbook before significant encounters. Reformed gambling addict.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -496,11 +402,7 @@
       "Persuasion"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -683,18 +585,6 @@
         "type": "cantrip"
       }
     ],
-    "relationships": [
-      {
-        "character": "Kessara",
-        "type": "collegial-warmth",
-        "notes": ""
-      },
-      {
-        "character": "Lyria",
-        "type": "affectionate-partnership",
-        "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic."
-      }
-    ],
     "active_effects": [],
     "id": "characters_4"
   },
@@ -721,10 +611,7 @@
     "personality_traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
     "personality_quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -733,11 +620,7 @@
       "History"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -844,33 +727,6 @@
         "type": "prepared"
       }
     ],
-    "relationships": [
-      {
-        "character": "Lenn",
-        "type": "collegial-warmth",
-        "notes": ""
-      },
-      {
-        "character": "Petra",
-        "type": "careful-fascination",
-        "notes": "Finds her oddly reassuring."
-      },
-      {
-        "character": "Rhuna",
-        "type": "mutual-respect",
-        "notes": "Immediate."
-      },
-      {
-        "character": "Vaz",
-        "type": "loyalty-forming",
-        "notes": ""
-      },
-      {
-        "character": "Galealzre",
-        "type": "sent-by",
-        "notes": "Sent by Galealzre — relationship not yet detailed."
-      }
-    ],
     "active_effects": [],
     "id": "characters_5"
   },
@@ -897,10 +753,7 @@
     "personality_traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
     "personality_quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -909,11 +762,7 @@
       "History"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "partial Southern (Sovi's language)"
-    ],
+    "languages": ["Common", "Celestial", "partial Southern (Sovi's language)"],
     "features": [
       {
         "name": "Channel Divinity",
@@ -974,23 +823,6 @@
         "type": "cantrip"
       }
     ],
-    "relationships": [
-      {
-        "character": "Vaz",
-        "type": "warm-complicated",
-        "notes": ""
-      },
-      {
-        "character": "Kessara",
-        "type": "careful-fascination",
-        "notes": "Kessara finds her oddly reassuring."
-      },
-      {
-        "character": "Marcus",
-        "type": "protective-warmth",
-        "notes": ""
-      }
-    ],
     "active_effects": [],
     "id": "characters_6"
   },
@@ -1017,10 +849,7 @@
     "personality_traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
     "personality_quirks": "Helena's niece — the family resemblance is in the intelligence, not the features.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Sleight of Hand",
@@ -1028,14 +857,8 @@
       "Acrobatics",
       "Deception"
     ],
-    "expertise": [
-      "Stealth",
-      "Sleight of Hand"
-    ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "expertise": ["Stealth", "Sleight of Hand"],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Sneak Attack 4d6",
@@ -1063,18 +886,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "Denna",
-        "type": "instant-recognition",
-        "notes": "Resonance beyond the paired blades."
-      },
-      {
-        "character": "Helena",
-        "type": "family",
-        "notes": "Her aunt."
-      }
-    ],
     "active_effects": [],
     "id": "characters_7"
   },
@@ -1101,20 +912,10 @@
     "personality_traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
     "personality_quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Intimidation",
-      "Arcana",
-      "Deception"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Intimidation", "Arcana", "Deception"],
     "expertise": [],
-    "languages": [
-      "Common"
-    ],
+    "languages": ["Common"],
     "features": [
       {
         "name": "Pact of the Blade",
@@ -1251,13 +1052,6 @@
         "type": "chosen"
       }
     ],
-    "relationships": [
-      {
-        "character": "group",
-        "type": "integrating",
-        "notes": "Still integrating with group, professional composure."
-      }
-    ],
     "active_effects": [],
     "id": "characters_8"
   },
@@ -1284,10 +1078,7 @@
     "personality_traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
     "personality_quirks": "Equal shares per job — a principle, not a preference.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -1295,9 +1086,7 @@
       "Acrobatics"
     ],
     "expertise": [],
-    "languages": [
-      "Common"
-    ],
+    "languages": ["Common"],
     "features": [
       {
         "name": "Extra Attack",
@@ -1333,13 +1122,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "group",
-        "type": "professional",
-        "notes": "Reliable, independent."
-      }
-    ],
     "active_effects": [],
     "id": "characters_9"
   },
@@ -1366,10 +1148,7 @@
     "personality_traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
     "personality_quirks": "",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -1379,15 +1158,8 @@
       "Arcana",
       "Performance"
     ],
-    "expertise": [
-      "Perception",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "two others (half-elf bonus)"
-    ],
+    "expertise": ["Perception", "Persuasion"],
+    "languages": ["Common", "Elvish", "two others (half-elf bonus)"],
     "features": [
       {
         "name": "Bardic Inspiration d8 (5/long rest)",
@@ -1564,13 +1336,6 @@
         "type": "magical_secret"
       }
     ],
-    "relationships": [
-      {
-        "character": "group",
-        "type": "new",
-        "notes": "New to group, still establishing."
-      }
-    ],
     "active_effects": [],
     "id": "characters_10"
   },
@@ -1597,10 +1362,7 @@
     "personality_traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
     "personality_quirks": "Three years hunting answers about her brother Aldren.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -1609,11 +1371,7 @@
       "Medicine"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Ward ~14HP (recharges when casting abjuration spells)",
@@ -1818,18 +1576,6 @@
         "type": "cantrip"
       }
     ],
-    "relationships": [
-      {
-        "character": "Aldren",
-        "type": "family",
-        "notes": "Brother"
-      },
-      {
-        "character": "Lenn",
-        "type": "affectionate-partnership",
-        "notes": "Magical commonality and complementary personalities, it just fell into place."
-      }
-    ],
     "active_effects": [],
     "id": "characters_11"
   },
@@ -1859,10 +1605,7 @@
     "personality_traits": "Economical in the way her daughter isn't quite yet. Doesn't explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
     "personality_quirks": "The clan markings tell stories she'll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "con"
-    ],
+    "saving_throws": ["wis", "con"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -1960,33 +1703,6 @@
     "spell_slots": {
       "4th": 2
     },
-    "relationships": [
-      {
-        "character": "Vethara",
-        "type": "family",
-        "notes": "Her daughter. Twenty years of complicated and fond. The war was between them before it was between clans."
-      },
-      {
-        "character": "Varath Ichta",
-        "type": "family-clan",
-        "notes": "Niece by clan rather than blood. The daughter who always wanted to leave, sent south with more hope than Vrethka shows."
-      },
-      {
-        "character": "Varath Elder",
-        "type": "peer",
-        "notes": "Her contemporary, her counterpart. Four generations of parallel tending."
-      },
-      {
-        "character": "Vaz",
-        "type": "new-significant",
-        "notes": "Two days old and already the relationship that will define the next chapter."
-      },
-      {
-        "character": "Petra",
-        "type": "recognition",
-        "notes": "Recognized each other immediately. Haven't discussed it yet."
-      }
-    ],
     "active_effects": [],
     "id": "characters_12"
   },
@@ -2009,10 +1725,7 @@
     "hp_current": 76,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -2020,9 +1733,7 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": [
-      "Common"
-    ],
+    "languages": ["Common"],
     "spellcasting_ability": null,
     "personality_traits": "Reliable, professional. Not a decision maker — executes well, asks good questions, steady presence.",
     "personality_quirks": "Walks patrol routes even off duty. Knows everyone in Ravenquay who owes favors.",
@@ -2069,13 +1780,6 @@
       }
     ],
     "spells": [],
-    "relationships": [
-      {
-        "character": "Wren",
-        "type": "growing-romance",
-        "notes": "Met her at the first halfweek festival attended in Argentveil. Mutual attraction, still in early stages but promising."
-      }
-    ],
     "active_effects": [],
     "notes": "STR 19 from Gauntlets of Ogre Power. CON 18 from Belt of Constitution. Improved Critical — crits on 19-20. Corwin holds the Ravenquay relationship network.",
     "image": "https://iili.io/qgWY8Dx.jpg",
@@ -2106,10 +1810,7 @@
     "personality_traits": "Legendary rogue, now retired. Applies 156 years of tactical memory to leatherworking.",
     "personality_quirks": "",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -2118,14 +1819,8 @@
       "History",
       "Persuasion"
     ],
-    "expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
     "features": [
       {
         "name": "Psychic Blades (Soulknife)",
@@ -2177,7 +1872,6 @@
       }
     ],
     "spells": [],
-    "relationships": [],
     "active_effects": [],
     "id": "characters_14"
   }

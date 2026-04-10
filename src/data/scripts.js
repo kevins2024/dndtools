@@ -32,6 +32,7 @@ for (const [fileId, filePath] of Object.entries(config)) {
 }
 ----------------------------------------- */
 
+/* --------------------------- script to build relationships.json from character/npc data
 const fs = require('fs')
 const path = require('path')
 
@@ -112,3 +113,25 @@ fs.writeFileSync(
 )
 
 console.log('relationships.json created!')
+----------------------------------------- */
+
+const fs = require('fs')
+const path = require('path')
+
+// ---- CONFIG ----
+const files = ['./characters.json', './npcs.json']
+
+for (const file of files) {
+  const fullPath = path.join(__dirname, file)
+
+  const data = JSON.parse(fs.readFileSync(fullPath, 'utf-8'))
+
+  const cleaned = data.map((obj) => {
+    const { relationships, ...rest } = obj
+    return rest
+  })
+
+  fs.writeFileSync(fullPath, JSON.stringify(cleaned, null, 2))
+
+  console.log(`Cleaned ${file}`)
+}
