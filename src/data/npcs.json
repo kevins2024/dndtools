@@ -956,19 +956,6 @@
     "id": "npcs_69"
   },
   {
-    "name": "Seb Torreval",
-    "location": "Khemrise (Brennan's cells)",
-    "faction": "Merrath Coastal Trading",
-    "role": "Captain, Ardent Crossing",
-    "status": ["prisoner"],
-    "appearance": "Merrath Coastal Trading tattoo — member not just employee.",
-    "personality_traits": "Cooperative after arrest.",
-    "personality_quirks": "",
-    "relationships": [],
-    "notes": "Conducted Drest check-in successfully. Stone contact with Drest in Valdmere, morning window check-ins. Knows Mast's ship — fast, private, unregistered, six days Valdmere to Khemrise in good wind.",
-    "id": "npcs_70"
-  },
-  {
     "name": "Yasmina",
     "location": "Khemrise",
     "faction": "Dawn Blades",

@@ -2001,5 +2001,47 @@
     "effect": "When bearer is hit by a melee attack, attacker automatically takes 1d6 force damage.",
     "notes": "",
     "id": "items_174"
+  },
+  {
+    "name": "Robe of Stars",
+    "type": "wondrous",
+    "equipped_by": "Lyria",
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "saving_throws": 1 },
+    "charges_current": 6,
+    "charges_max": 6,
+    "charges_recharge": "daily",
+    "effect": "Cast Magic Missile at 5th level using charges. +1 to all saving throws. Can planewalk to the Astral Plane and back as an action.",
+    "notes": "Is actually a cloak"
+  },
+  {
+    "name": "Ioun Stone of Mastery",
+    "type": "wondrous",
+    "equipped_by": "Vaz",
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "proficiency_bonus": 1 },
+    "effect": "Proficiency bonus increases by 1 while attuned.",
+    "notes": "Orbits the attuned creature's head."
+  },
+  {
+    "name": "Amulet of the Devout +2",
+    "type": "wondrous",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "spell_attack": 2, "spell_save_dc": 2 },
+    "effect": "+2 to spell attack rolls and spell save DC. Must be a cleric or paladin to attune.",
+    "notes": ""
+  },
+  {
+    "name": "Necklace of Prayer Beads",
+    "type": "wondrous",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Each bead cast once per day. Rolled spells: Bless, Greater Restoration, Cure Wounds, Wind Walk.",
+    "notes": "Must be a cleric, druid, or paladin to attune."
   }
 ]
