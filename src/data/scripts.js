@@ -115,6 +115,7 @@ fs.writeFileSync(
 console.log('relationships.json created!')
 ----------------------------------------- */
 
+/* --------------------------- script to remove relationships field from characters/npcs after building relationships.json
 const fs = require('fs')
 const path = require('path')
 
@@ -135,3 +136,4 @@ for (const file of files) {
 
   console.log(`Cleaned ${file}`)
 }
+----------------------------------------- */
