@@ -22,10 +22,9 @@
     <div class="tab-content">
       <template v-if="selected">
         <CharacterSheet v-if="activeTab === 'sheet'" :character="selected" />
-        <Editor
-          v-if="activeTab === 'equipment'"
-          :item="selected"
-          store-name="characters"
+        <CharacterInventory
+          v-else-if="activeTab === 'equipment'"
+          :character="selected"
         />
       </template>
       <div v-else class="empty-state">No character selected.</div>
@@ -34,12 +33,13 @@
 </template>
 
 <script>
+import CharacterInventory from './CharacterInventory.vue'
 import CharacterSheet from './CharacterSheet.vue'
 import Editor from './Editor.vue'
 
 export default {
   name: 'CharacterDetails',
-  components: { CharacterSheet, Editor },
+  components: { CharacterInventory, CharacterSheet, Editor },
 
   data() {
     return {

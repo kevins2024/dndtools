@@ -38,6 +38,12 @@ export default new Vuex.Store({
           : 0
       state.party_items.push({ ...item, id: nextId })
     },
+    UPDATE_ITEM(state, updatedItem) {
+      const idx = state.party_items.findIndex((i) => i.id === updatedItem.id)
+      if (idx !== -1) {
+        state.party_items.splice(idx, 1, updatedItem)
+      }
+    },
   },
 
   actions: {
