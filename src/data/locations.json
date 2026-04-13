@@ -479,10 +479,10 @@
         "name": "Vethran & Son",
         "type": "armorer",
         "district": "Commerce District",
-        "npcs_present": ["the son"]
+        "npcs_present": ["Wainkur (the son)"]
       },
       {
-        "name": "",
+        "name": "Torvaine's Steel",
         "type": "weapons",
         "district": "Commerce District",
         "npcs_present": ["Torvaine"],
@@ -501,6 +501,13 @@
         "district": "Upper Merchant Quarter",
         "npcs_present": ["Duvrak"],
         "notes": "referral only"
+      },
+      {
+        "name": "The Folded Page",
+        "type": "antiquities_shop",
+        "description": "Harbor end of the merchant quarter, Argentveil. Older than its neighbors, single room, shelves floor to ceiling on every wall. Stock is curated rather than comprehensive — nothing arrives here accidentally. The owner is an elderly man of indeterminate age.",
+        "npcs_present": [],
+        "notes": "Vaz has an open account of sorts — proprietor will contact when something relevant arrives."
       }
     ]
   },

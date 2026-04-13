@@ -18,7 +18,7 @@
   {
     "id": "assets_1",
     "name": "Gilt Blades",
-    "subtype": "carrack",
+    "subtype": "caravel",
     "captain": null,
     "crew_full": 10,
     "crew_current": 5,
@@ -90,7 +90,7 @@
     "district": "Merchant Quarter",
     "status": "operational",
     "ownership": "deeded to Order of Solmir, Dawn Blades occupy",
-    "notes": "Former Kreel residence. Marcus managing, Miren and Dav assisting. Common room, kitchen, multiple sleeping areas. Workshop space still needed."
+    "notes": "Former Kreel residence. Marcus managing, Miren and Dav assisting. Common room, kitchen, multiple sleeping areas. Workshop space still needed. Brings in 1d4 + 3 refugees per week, plus occasional donations. Refugees often stay for months or longer, so turnover is low. Refugees are people in crisis — fleeing abuse, escaping trafficking, rebuilding after loss. Not a hotel or hostel — more of a sanctuary and support center. Refugees receive care and support to get back on their feet, but not long-term housing or job placement. The goal is to help them get to a place where they can thrive independently, we even offer trades."
   },
   {
     "id": "assets_6",
@@ -112,20 +112,9 @@
     "district": "Vineyard Road",
     "status": "operational",
     "ownership": "owned, acquired from Ostwick family",
-    "furnishings_notes": "Furs: bearskin (80g), 2x wolf (50g each), seal fur for Sovi already delivered (40g). 15x pillows held until estate visit to match colors. Study renovation 9 days out (370g): floor-to-ceiling shelving, three lockable dual-key cabinets, new desk, two visitor chairs, curtains, rugs, cushioning, reading lamp, few considered objects. Beds pending carpenter assessment on estate visit. Upstairs and outbuilding assessment pending follow-up, options at different price points.",
+    "furnishings_notes": "Furs: bearskin, 2x wolf, seal fur for Sovi already delivered. 15x pillows in one room with a couple furs. Study renovated: floor-to-ceiling shelving, three lockable dual-key cabinets, new desk, two visitor chairs, curtains, rugs, cushioning, reading lamp, few considered objects. Plenty of beds and bedding. Upstairs and outbuildings well furnished.",
     "acquisition_cost": 6000,
-    "notes": "3 miles northeast of Khemrise. Main house, east outbuilding, stable, courtyard, vineyard rows. Ledwent managing. Primary base of operations."
-  },
-  {
-    "id": "assets_8",
-    "name": "Khemrise Strongbox",
-    "type": "real_estate",
-    "subtype": "strongbox",
-    "location": "Khemrise",
-    "district": "Merchant Quarter",
-    "status": "operational",
-    "ownership": "registered under assumed name, Salt Hook address",
-    "notes": "Merchant's Bank of Khemrise. Contains ~39,000g negotiable notes, three property deeds, correspondence files, Harwick's signed confession, Belverbridge payment schedule letter."
+    "notes": "3/4 miles southeast of Khemrise. Main house, east outbuilding, stable, courtyard, vineyard rows. Ledwent managing.."
   },
   {
     "id": "assets_9",
@@ -136,9 +125,9 @@
     "district": null,
     "status": "operational",
     "ownership": "Dawn Blades",
-    "monthly_income_min": null,
-    "monthly_income_max": null,
-    "notes": "Real wool trading operation with genuine clients and good regional reputation."
+    "weekly_income_min": 15,
+    "weekly_income_max": 25,
+    "notes": "Real wool trading operation with genuine clients and good regional reputation. Just getting rebuilt as a new brand, will increase as it grows. Harwick managing with Rendwick offering contacts."
   },
   {
     "id": "assets_10",
@@ -149,9 +138,9 @@
     "district": null,
     "status": "operational",
     "ownership": "Dawn Blades own the building, Prestiria Filas operates",
-    "monthly_income_min": null,
-    "monthly_income_max": null,
-    "notes": "Real apothecary, legitimate pharmacist Prestiria Filas who didn't know Syndicate owned the building. Solid client base, real medicines. Tova handling ownership transition professionally. Supplier relationship with Trevash herb merchant worth monitoring — Aldric and Pell checking for Syndicate ties."
+    "weekly_income_min": 24,
+    "weekly_income_max": 24,
+    "notes": "Real apothecary, legitimate pharmacist Prestiria Filas. Solid client base, real medicines. Tova handled ownership transition professionally. Supplier relationship with Trevash herb merchant."
   },
   {
     "id": "assets_11",
@@ -162,8 +151,6 @@
     "district": "Docks Ward",
     "status": "operational",
     "ownership": "70/30 split favoring Dawn Blades",
-    "monthly_income_min": 25,
-    "monthly_income_max": 30,
     "notes": "Reformed loan shark operation. Jessyl Denmar manages, Big Tam and Gritch enforce."
   },
   {
@@ -178,17 +165,6 @@
     "notes": "Aldren Casvath funded 15,000g. Helena Sable 16% partner. Overflow warehouse potential LA Trading property."
   },
   {
-    "id": "assets_13",
-    "name": "Khemrise Winery",
-    "type": "business",
-    "subtype": "production",
-    "location": "Khemrise",
-    "district": "Vineyard Road",
-    "status": "developing",
-    "ownership": "Dawn Blades, operates from Vineyard Estate",
-    "notes": "East outbuilding converting for wine aging long term. Aldric Foss supplying barrels."
-  },
-  {
     "id": "assets_14",
     "name": "Millhaven Mine",
     "type": "business",
@@ -197,7 +173,6 @@
     "district": null,
     "status": "operational",
     "ownership": "Dawn Blades",
-    "monthly_income": 4000,
     "notes": "operated by Coalbeard"
   },
   {
@@ -257,5 +232,21 @@
     "ownership": "Dawn Blades",
     "acquisition_cost": null,
     "notes": "Middle of row, modest neighborhood. Area doesn't see people come and go often — difficult to visit unnoticed. Small cellar. Comfortable, formerly wealthy owner. Better suited for discreet use than public-facing operations."
+  },
+  {
+    "id": "assets_20",
+    "name": "Warm Water",
+    "subtype": "caravel",
+    "captain": "Maeris",
+    "crew_full": 10,
+    "crew_current": 5,
+    "passengers": null,
+    "cargo": null,
+    "home_port": "Ravenquay",
+    "current_location": null,
+    "armament": null,
+    "condition": null,
+    "notes": "Manageable with reduced crew of 5. Very dark hull and signs of repairs. Some sections of wood are double-thick.",
+    "type": "ship"
   }
 ]

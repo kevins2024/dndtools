@@ -80,12 +80,12 @@
     "name": "Northern Recurve Bow",
     "type": "weapon",
     "weapon_type": "ranged",
-    "carried_by": "Vrethka",
+    "carried_by": null,
     "attuned": true,
     "finesse": false,
     "damage_dice": "1d6",
     "magic_bonus": 0,
-    "description": "Compact recurve hunting bow, northern construction. Viable from horseback or tight terrain. Luminescent bowstring, pulls smooth and silent.",
+    "description": "Short recurve hunting bow, northern construction. Viable from horseback or tight terrain. Luminescent bowstring, pulls smooth and silent.",
     "effect": "",
     "notes": "",
     "id": "items_7"
@@ -113,16 +113,6 @@
     "effect": "+1 to spell attack rolls and spell save DC.",
     "notes": "",
     "id": "items_9"
-  },
-  {
-    "name": "Helm of Brilliance Buckle",
-    "type": "material",
-    "carried_by": "party",
-    "attuned": true,
-    "description": "Chinstrap buckle from a Helm of Brilliance.",
-    "effect": "Can be reconstructed into a functional Helm of Brilliance with the right smith.",
-    "notes": "",
-    "id": "items_10"
   },
   {
     "name": "Sending Stones — Vaz / Tielle",
@@ -1033,7 +1023,7 @@
     "equipped_by": "Vrethka",
     "carried_by": null,
     "attuned": false,
-    "notes": "Spellcasting focus. Thirty years old. Has opinions.",
+    "notes": "Spellcasting focus. Thirty years old.",
     "id": "items_96"
   },
   {
@@ -1263,16 +1253,6 @@
     "effect": "Exceptional force, quieter release than standard hand crossbow.",
     "notes": "Hand crossbow size. Built from Ravine Stalker jaw construction. Ready in 3 weeks.",
     "id": "items_114"
-  },
-  {
-    "name": "Ceremonial Clan Collar",
-    "type": "material",
-    "equipped_by": null,
-    "carried_by": null,
-    "attuned": false,
-    "effect": "To be dismantled for Helm of Brilliance reconstruction. Metal to be examined separately.",
-    "notes": "Four opals, two spinels, one diamond. Exceptional dark metal of unknown origin. 800g.",
-    "id": "items_115"
   },
   {
     "name": "Cloak Pin of Waterproofing",
@@ -1695,7 +1675,7 @@
     "carried_by": "party",
     "attuned": false,
     "effect": null,
-    "notes": "2 rubies from brooch, 1 opal from pendant, 1 spinel from ring, 1 sapphire from small box, small diamond cluster from small box.",
+    "notes": "7 rubies, 6 opals, 4 spinel, 2 sapphire, 5 diamonds.",
     "id": "items_150"
   },
   {
@@ -1810,7 +1790,7 @@
     "carried_by": "Rhuna",
     "attuned": false,
     "effect": "Functions as both drinking vessel and musical instrument. Tip opens via hidden clasp concealed within scrollwork — appears purely decorative. Seal is watertight and airtight, preserves both liquid and tone.",
-    "notes": "Pre-clan-separation northern craftsmanship, believed lost. Metalwork band contains pre-separation clan markings identified by Vrethka.",
+    "notes": "Pre-clan-separation northern craftsmanship, believed lost. Metalwork band contains pre-separation clan markings.",
     "id": "items_159"
   },
   {
@@ -2043,5 +2023,75 @@
     "attuned": true,
     "effect": "Each bead cast once per day. Rolled spells: Bless, Greater Restoration, Cure Wounds, Wind Walk.",
     "notes": "Must be a cleric, druid, or paladin to attune."
+  },
+  {
+    "name": "Waive",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": "Petra",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "magic_bonus": 1,
+    "effect": "Whenever bearer casts a healing spell, all other creatures within 15ft are healed for 2hp.",
+    "notes": ""
+  },
+  {
+    "name": "Hat of Perception",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": { "skill_Perception": 1 },
+    "effect": "+1 passive perception. Advantage on Perception checks in dim light or darkness.",
+    "notes": ""
+  },
+  {
+    "name": "Cloak of Unremarkability",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Wearer becomes visually uncompelling — the eye slides past without focusing.",
+    "notes": ""
+  },
+  {
+    "name": "Gloves of Thievery",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "stat_bonuses": { "skill_SleightOfHand": 5 },
+    "effect": "Invisible while worn. +5 to Sleight of Hand and lockpicking checks.",
+    "notes": "Denna already has a pair — confirm if this is a second copy or a replacement entry."
+  },
+  {
+    "name": "Ring of Free Action",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Unaffected by difficult terrain, movement speed reduction, and paralysis.",
+    "notes": ""
+  },
+  {
+    "name": "Ring of Jumping",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Jump distance tripled.",
+    "notes": ""
+  },
+  {
+    "name": "Amulet of Health",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "stat_overrides": { "stat_con": 19 },
+    "effect": "Sets CON to 19.",
+    "notes": "Jaygar already has one equipped. Confirm if this is a second copy."
   }
 ]

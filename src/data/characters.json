@@ -2,6 +2,7 @@
   {
     "name": "Vaz",
     "full_name": "Vazseslaad Thrazak",
+    "campaign_start": "Year 467, day 137",
     "race": "Silver Dragonborn",
     "class": "Fighter",
     "subclass": "Battle Master",
@@ -298,7 +299,7 @@
     "class": "Artificer",
     "subclass": "Alchemist",
     "level": 7,
-    "appearance": "gnome, compact, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
+    "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
     "image": "https://iili.io/qguKsjf.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
@@ -1580,133 +1581,6 @@
     "id": "characters_11"
   },
   {
-    "name": "Vrethka",
-    "full_name": "Vrethka",
-    "race": "Human",
-    "class": "Shaman",
-    "subclass": "Witch Doctor",
-    "level": 7,
-    "appearance": "Human woman, sixties. Northern clan markings covering most visible skin — more than Vethara, a lifetime written in ink. Compact and economical. Moves like someone who has never wasted a step in her life.",
-    "image": "https://iili.io/qgWIf7R.jpg",
-    "proficiency_bonus": 3,
-    "spellcasting_ability": "wis",
-    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery.",
-    "spell_save_dc": 16,
-    "spell_attack_bonus": 8,
-    "spell_recovery": "Short rest (communes with place spirits)",
-    "stat_str": 10,
-    "stat_dex": 12,
-    "stat_con": 14,
-    "stat_int": 13,
-    "stat_wis": 20,
-    "stat_cha": 14,
-    "hp_max": 46,
-    "hp_current": 46,
-    "personality_traits": "Economical in the way her daughter isn't quite yet. Doesn't explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
-    "personality_quirks": "The clan markings tell stories she'll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction.",
-    "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "con"],
-    "skill_proficiencies": [
-      "Insight",
-      "Medicine",
-      "Nature",
-      "Perception",
-      "Survival",
-      "History"
-    ],
-    "expertise": [],
-    "languages": [
-      "Clan tongue (native)",
-      "Common (fluent)",
-      "Northern dialect (additional)"
-    ],
-    "features": [
-      {
-        "name": "Sacred Focus: Mind (add WIS modifier to INT and CHA checks and saving throws)",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Totemic Assault (on hit with weapon or cantrip: 1d8 lightning or cold damage)",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Life Bearer (when casting a healing spell: add WIS modifier to healing done)",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Totemic Blessing (bind a totem and use its effect as bonus action when healing an ally)",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Spirit Communion 1/long rest (speak with any spirit within one mile, ask three questions)",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      }
-    ],
-    "spells": [
-      {
-        "name": "Guidance",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Resistance",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Spare the Dying",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Toll the Dead",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      }
-    ],
-    "totem_spirits": [
-      {
-        "name": "Spirit of the Ancient Stone",
-        "effect": "Allies within 10ft gain +1 AC while she concentrates.",
-        "flavor": "The valley floor remembering its own endurance."
-      },
-      {
-        "name": "Spirit of the Ancestors",
-        "effect": "Once per short rest: grant an ally advantage on a WIS or CON saving throw as a reaction.",
-        "flavor": ""
-      }
-    ],
-    "spell_slots": {
-      "4th": 2
-    },
-    "active_effects": [],
-    "id": "characters_12"
-  },
-  {
     "name": "Corwin",
     "full_name": "Corwin Drake",
     "race": "Human",
@@ -1874,5 +1748,424 @@
     "spells": [],
     "active_effects": [],
     "id": "characters_14"
+  },
+  {
+    "name": "Chuknora",
+    "full_name": "Chuknora",
+    "race": "Goliath",
+    "class": "Monk",
+    "subclass": "Way of the Open Hand",
+    "level": 7,
+    "alignment": null,
+    "appearance": "Female goliath.",
+    "stat_str": 14,
+    "stat_dex": 20,
+    "stat_con": 16,
+    "stat_int": 10,
+    "stat_wis": 18,
+    "stat_cha": 8,
+    "hp_max": 63,
+    "hp_current": 63,
+    "unarmored_ac_formula": "monk",
+    "proficiency_bonus": 3,
+    "saving_throws": ["str", "dex"],
+    "skill_proficiencies": ["Acrobatics", "Athletics", "Perception", "Stealth"],
+    "expertise": [],
+    "languages": ["Common", "Giant"],
+    "spellcasting_ability": null,
+    "personality_traits": null,
+    "personality_quirks": null,
+    "features": [
+      {
+        "name": "Flurry of Blows",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Patient Defense",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Step of the Wind",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Stunning Strike",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Open Hand Technique",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Wholeness of Body",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Deflect Missiles",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Slow Fall",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Extra Attack",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Evasion",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Stillness of Mind",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Stone's Endurance (Goliath)",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      }
+    ],
+    "ki_points": { "max": 7, "current": 7 },
+    "martial_arts_die": "1d8",
+    "spells": [],
+    "active_effects": [],
+    "notes": "Unarmored AC = 10 + DEX mod + WIS mod. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 3x monk level (21hp) once per long rest. Stone's Endurance — reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
+  },
+  {
+    "name": "Perch",
+    "type": "companion",
+    "owner": "Tackett",
+    "species": "Falcon",
+    "ac": 14,
+    "hp_max": 38,
+    "hp_current": 38,
+    "speed": "80ft flying",
+    "stat_str": 6,
+    "stat_dex": 18,
+    "stat_con": 12,
+    "stat_int": 8,
+    "stat_wis": 14,
+    "stat_cha": 8,
+    "proficiency_bonus": 3,
+    "attacks": [
+      {
+        "name": "Talon Strike",
+        "type": "melee",
+        "attack_bonus": 7,
+        "damage_dice": "1d6",
+        "damage_bonus": 4,
+        "damage_type": "slashing",
+        "effect": "Standard attack."
+      },
+      {
+        "name": "Raking Strike",
+        "type": "melee",
+        "attack_bonus": 7,
+        "damage_dice": "1d4",
+        "damage_bonus": 2,
+        "damage_type": "slashing",
+        "effect": "On hit: target makes DEX save DC 14 or is blinded until end of their next turn."
+      }
+    ],
+    "features": [
+      {
+        "name": "Flyby",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Independent",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Keen Sight",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "notes": "Acts on its own initiative. Does not require Tackett's action or bonus action. Does not require concentration. Summoned once per day — when not present is hunting independently. Flyby: does not provoke opportunity attacks. Keen Sight: advantage on Perception checks using sight. Raking Strike targeting spellcasters forces concentration save on top of the blind save if it hits.",
+    "id": "characters_99"
+  },
+  {
+    "name": "Tackett",
+    "full_name": "Tackett",
+    "race": "Halfling",
+    "class": "Druid",
+    "subclass": "Circle of Stars",
+    "level": 7,
+    "alignment": null,
+    "appearance": "Male halfling.",
+    "stat_str": 10,
+    "stat_dex": 14,
+    "stat_con": 16,
+    "stat_int": 12,
+    "stat_wis": 22,
+    "stat_cha": 12,
+    "hp_max": 63,
+    "hp_current": 63,
+    "unarmored_ac_formula": "default",
+    "proficiency_bonus": 3,
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": [
+      "Nature",
+      "Perception",
+      "Survival",
+      "Medicine",
+      "Insight"
+    ],
+    "expertise": [],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
+    "spellcasting_ability": "wis",
+    "personality_traits": null,
+    "personality_quirks": null,
+    "features": [
+      {
+        "name": "Starry Form — Archer",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Starry Form — Chalice",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Starry Form — Dragon",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Starry Form — Unbroken (Legendary)",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Cosmic Omen",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Full of Stars",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Wild Shape",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Timeless Body",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Lucky (Halfling)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Brave (Halfling)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Naturally Stealthy (Halfling)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Primal Companion — Perch",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "daily",
+        "uses_max": 1,
+        "uses_current": 1
+      }
+    ],
+    "spells": [
+      { "name": "Shillelagh", "level": 0, "prepared": true, "type": "cantrip" },
+      { "name": "Guidance", "level": 0, "prepared": true, "type": "cantrip" },
+      { "name": "Druidcraft", "level": 0, "prepared": true, "type": "cantrip" },
+      { "name": "Thorn Whip", "level": 0, "prepared": true, "type": "cantrip" },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      { "name": "Entangle", "level": 1, "prepared": true, "type": "prepared" },
+      { "name": "Ice Knife", "level": 1, "prepared": true, "type": "prepared" },
+      { "name": "Moonbeam", "level": 2, "prepared": true, "type": "prepared" },
+      {
+        "name": "Lesser Restoration",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Spike Growth",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Flaming Sphere",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Call Lightning",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mass Healing Word",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Erupting Earth",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Conjure Animals",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      { "name": "Blight", "level": 4, "prepared": true, "type": "prepared" },
+      { "name": "Polymorph", "level": 4, "prepared": true, "type": "prepared" },
+      {
+        "name": "Conjure Woodland Beings",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Wall of Fire",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Conjure Elemental",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mass Cure Wounds",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
+    "relationships": [],
+    "active_effects": [],
+    "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form — Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required.",
+    "id": "characters_15"
   }
 ]

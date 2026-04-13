@@ -876,5 +876,203 @@
     "personality_quirks": "Has a small sailing boat, fishes when he feels like it, takes people out sometimes. Nothing that requires him to be somewhere specific.",
     "notes": "",
     "id": "npcs_84"
+  },
+  {
+    "name": "Hallan",
+    "location": "Argentveil",
+    "faction": "Independent",
+    "role": "property agent",
+    "status": ["neutral"],
+    "appearance": null,
+    "notes": "Merchant Quarter at the end of Silverline Court.",
+    "id": "npcs_85"
+  },
+  {
+    "name": "Selvra",
+    "location": "Argentveil",
+    "faction": "Independent",
+    "role": "architect",
+    "status": ["neutral"],
+    "appearance": null,
+    "id": "npcs_86"
+  },
+  {
+    "name": "Vrethka",
+    "full_name": "Vrethka",
+    "race": "Human",
+    "class": "Shaman",
+    "subclass": "Witch Doctor",
+    "level": 7,
+    "appearance": "Human woman, sixties. Northern clan markings covering most visible skin — more than Vethara, a lifetime written in ink. Moves like someone who has never wasted a step in her life.",
+    "image": "https://iili.io/qgWIf7R.jpg",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": "wis",
+    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery.",
+    "spell_save_dc": 16,
+    "spell_attack_bonus": 8,
+    "spell_recovery": "Short rest (communes with place spirits)",
+    "stat_str": 10,
+    "stat_dex": 12,
+    "stat_con": 14,
+    "stat_int": 13,
+    "stat_wis": 20,
+    "stat_cha": 14,
+    "hp_max": 46,
+    "hp_current": 46,
+    "personality_traits": "Economical in the way her daughter isn't quite yet. Doesn't explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
+    "personality_quirks": "The clan markings tell stories she'll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["wis", "con"],
+    "skill_proficiencies": [
+      "Insight",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Survival",
+      "History"
+    ],
+    "expertise": [],
+    "languages": [
+      "Clan tongue (native)",
+      "Common (fluent)",
+      "Northern dialect (additional)"
+    ],
+    "features": [
+      {
+        "name": "Sacred Focus: Mind (add WIS modifier to INT and CHA checks and saving throws)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Totemic Assault (on hit with weapon or cantrip: 1d8 lightning or cold damage)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Life Bearer (when casting a healing spell: add WIS modifier to healing done)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Totemic Blessing (bind a totem and use its effect as bonus action when healing an ally)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Spirit Communion 1/long rest (speak with any spirit within one mile, ask three questions)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Resistance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Spare the Dying",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Toll the Dead",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
+    ],
+    "totem_spirits": [
+      {
+        "name": "Spirit of the Ancient Stone",
+        "effect": "Allies within 10ft gain +1 AC while she concentrates.",
+        "flavor": "The valley floor remembering its own endurance."
+      },
+      {
+        "name": "Spirit of the Ancestors",
+        "effect": "Once per short rest: grant an ally advantage on a WIS or CON saving throw as a reaction.",
+        "flavor": ""
+      }
+    ],
+    "spell_slots": {
+      "4th": 2
+    },
+    "active_effects": [],
+    "id": "npcs_87"
+  },
+  {
+    "name": "Maeris",
+    "location": "Argentveil",
+    "faction": "Dawn Blades",
+    "role": "Ship captain",
+    "appearance": "Wizened older human woman",
+    "notes": "Captained the ship for forty years holding something powerful under a shielding bubble. Dawn Blades freed the entity and returned it to its plane. Sailing is all she knows and has little experience with even other humanoids.",
+    "id": "npcs_88"
+  },
+  {
+    "name": "Sevrath",
+    "location": "Argentveil",
+    "faction": "Independent",
+    "role": "Mapmaker and transmutation mage",
+    "appearance": "half-elf male, young",
+    "description": "A transmutation mage with a side skill of making maps that magically update in real time. He has a studio in the transmutation tower in Argentveil and established a teleportation circle there. Originally from Valdmere, still has family there.",
+    "id": "npcs_89"
+  },
+  {
+    "name": "Orvha",
+    "location": "Argentveil",
+    "faction": "Orc Neighborhood / Independent Trade",
+    "role": "External commerce handler for the orc neighborhood",
+    "appearance": "Orc woman, fifties, broad and capable, dark hair streaked with grey, calm steady eyes that have been reading people across a trading table for twenty years",
+    "description": "Handles all external commercial relationships for the Argentveil orc neighborhood. Twenty years experience navigating the city's merchant quarter on behalf of her community. Strong opinions about pricing transparency and has built a reliable detector for the difference between partners and exploiters. Not easily impressed but moves decisively when she decides to trust someone. Agreed to a Long Arm Trading partnership with full pricing transparency as a condition.",
+    "id": "npcs_90"
+  },
+  {
+    "name": "Thorvane",
+    "location": "Argentveil",
+    "faction": "Independent",
+    "role": "navigator",
+    "appearance": "human man, late forties",
+    "description": "has done a Yetgrese crossing twice",
+    "id": "npcs_91"
+  },
+  {
+    "name": "Sivenne",
+    "location": "Argentveil",
+    "faction": "Dawn Blades adjacent",
+    "role": "steward",
+    "appearance": "half-elf woman, young",
+    "description": "Experienced steward, managing the Cliff House in Argentveil.",
+    "id": "npcs_92"
+  },
+  {
+    "name": "Orvek",
+    "location": "Argentveil",
+    "faction": "Dawn Blades adjacent",
+    "role": "Ship rigger",
+    "id": "npcs_93"
   }
 ]

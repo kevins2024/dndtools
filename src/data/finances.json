@@ -1,18 +1,12 @@
 {
   "party_purse": {
-    "gold": 67405,
+    "gold": 82465,
     "notes": "On hand, accessible immediately."
   },
   "reserves": [
     {
-      "name": "Orvath Account",
-      "amount": 0,
-      "access": "closed.",
-      "risk": "low"
-    },
-    {
       "name": "Argentveil Account",
-      "amount": 270000,
+      "amount": 178000,
       "access": "Handled.",
       "risk": "low"
     },
@@ -27,23 +21,45 @@
   "income": [
     {
       "source": "Millhaven Mine",
-      "amount": 4000,
-      "frequency": "monthly",
+      "amount_min": 1350,
+      "amount_max": 1350,
+      "frequency": "weekly",
       "notes": "Pending full operation — confirm timing."
     },
     {
       "source": "Long Arm Trading",
-      "amount_min": 300,
-      "amount_max": 500,
-      "frequency": "monthly",
+      "amount_min": 900,
+      "amount_max": 1200,
+      "frequency": "weekly",
       "notes": "Can grow if trading/sourcing or import/export change in the story. Owns 4 ships."
     },
     {
       "source": "Loan Dragon",
       "amount_min": 25,
       "amount_max": 30,
-      "frequency": "monthly",
+      "frequency": "weekly",
       "notes": "70/30 split favoring Dawn Blades."
+    },
+    {
+      "source": "Marchant Wool Imports",
+      "amount_min": 15,
+      "amount_max": 25,
+      "frequency": "weekly",
+      "notes": "Just getting rebuilt as a new brand, will increase as it grows. Harwick managing with Rendwick offering contacts."
+    },
+    {
+      "source": "Filas Apothecary",
+      "amount_min": 24,
+      "amount_max": 24,
+      "frequency": "weekly",
+      "notes": "Real apothecary, legitimate pharmacist Prestiria Filas. Solid client base, real medicines. Tova handled ownership transition professionally. Supplier relationship with Trevash herb merchant."
+    },
+    {
+      "source": "Fogstone Winery",
+      "amount_min": 200,
+      "amount_max": 350,
+      "frequency": "weekly",
+      "notes": ""
     }
   ],
   "expenses": [
@@ -55,24 +71,10 @@
       "notes": ""
     },
     {
-      "name": "Khemrise Estate",
-      "amount_min": 150,
-      "amount_max": 200,
-      "frequency": "monthly",
-      "notes": ""
-    },
-    {
-      "name": "Long Arm Trading",
-      "amount": null,
-      "frequency": "monthly",
-      "rate": 0.16,
-      "notes": "Helena's Cut - 16% of Dawn Blades Long Arm Trading profits."
-    },
-    {
       "name": "Operational Travel and Incidentals",
-      "amount_min": 300,
-      "amount_max": 500,
-      "frequency": "monthly",
+      "amount_min": 80,
+      "amount_max": 110,
+      "frequency": "weekly",
       "notes": "Variable estimate."
     }
   ]

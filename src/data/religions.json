@@ -31,5 +31,16 @@
     "worship_notes": "Formal prayers and structured rituals. Oath-taking ceremonies (very serious, magically binding). Trials and judgments blessed by clergy. Exorcisms and banishment rituals (as Thane performed). Maintaining ancient wards and seals (like the giant chambers)",
     "known_followers": ["Justicar Thane"],
     "notes": ""
+  },
+  {
+    "name": "Torven",
+    "type": "deity",
+    "domain": ["commerce", "crossroads"],
+    "alignment": "Neutral",
+    "symbol": "two roads crossing with a small hand encircled at the intersection",
+    "description": "",
+    "worship_notes": "",
+    "known_followers": ["Dovan"],
+    "notes": ""
   }
 ]
