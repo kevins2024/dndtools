@@ -61,8 +61,7 @@ export default {
     },
 
     getMutationName() {
-      const singular = this.storeName.replace(/_?s$/, '')
-      return `EDIT_${singular.toUpperCase()}`
+      return 'UPDATE_TABLE_ITEM'
     },
 
     startEdit() {
@@ -96,7 +95,10 @@ export default {
           return
         }
       }
-      this.$store.commit(this.getMutationName(), merged)
+      this.$store.commit(this.getMutationName(), {
+        table: this.storeName,
+        updatedItem: merged,
+      })
       this.editing = false
       this.jsonError = null
     },
