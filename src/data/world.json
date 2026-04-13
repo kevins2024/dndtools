@@ -4,10 +4,22 @@
     "calendar_constants": {
       "days_per_year": 204,
       "seasons": [
-        { "name": "Winter", "length": 51 },
-        { "name": "Spring", "length": 51 },
-        { "name": "Summer", "length": 51 },
-        { "name": "Autumn", "length": 51 }
+        {
+          "name": "Winter",
+          "length": 51
+        },
+        {
+          "name": "Spring",
+          "length": 51
+        },
+        {
+          "name": "Summer",
+          "length": 51
+        },
+        {
+          "name": "Autumn",
+          "length": 51
+        }
       ]
     },
     "continents": [
@@ -72,56 +84,80 @@
     "cities": [
       {
         "name": "Valdmere",
-        "coords": { "x": 0, "y": 10 },
+        "coords": {
+          "x": 0,
+          "y": 10
+        },
         "type": "city",
         "description": "Northwest coast, faces south. Frontier port.",
         "notes": "Two weeks sail to Khemrise."
       },
       {
         "name": "Cindermarch",
-        "coords": { "x": 7.6, "y": 8 },
+        "coords": {
+          "x": 7.6,
+          "y": 8
+        },
         "type": "fortress",
         "description": "Military fortress on the Northern Reaches border.",
         "notes": "1 day north of Millhaven, 3 days northeast of Khemrise, 4-5 days ride from Ravenquay."
       },
       {
         "name": "Millhaven",
-        "coords": { "x": 6.5, "y": 6.5 },
+        "coords": {
+          "x": 6.5,
+          "y": 6.5
+        },
         "type": "town",
         "description": "Mining town, inland.",
         "notes": "2 days northeast of Khemrise, 1 day south of Cindermarch, 4 days north of Ravenquay."
       },
       {
         "name": "Khemrise",
-        "coords": { "x": 4.5, "y": 5.5 },
+        "coords": {
+          "x": 4.5,
+          "y": 5.5
+        },
         "type": "city",
         "description": "Major coastal city, vineyards. Pivot point where the coast turns north-south.",
         "notes": "2 days sail north of Trevash, 3 days sail north of Ravenquay."
       },
       {
         "name": "Brennswick",
-        "coords": { "x": 5.5, "y": 5 },
+        "coords": {
+          "x": 5.5,
+          "y": 5
+        },
         "type": "village",
         "description": "Farming village.",
         "notes": "Half day east of Khemrise."
       },
       {
         "name": "Trevash",
-        "coords": { "x": 4.7, "y": 2.7 },
+        "coords": {
+          "x": 4.7,
+          "y": 2.7
+        },
         "type": "port",
         "description": "Small working port.",
         "notes": "2 days sail south of Khemrise, 1 day sail north of Ravenquay."
       },
       {
         "name": "Ravenquay",
-        "coords": { "x": 5.2, "y": 1.8 },
+        "coords": {
+          "x": 5.2,
+          "y": 1.8
+        },
         "type": "city",
         "description": "River delta. Dawn Blades home base.",
         "notes": "1 day sail south of Trevash, 3 days sail south of Khemrise."
       },
       {
         "name": "Argentveil",
-        "coords": { "x": 9.1, "y": 1.1 },
+        "coords": {
+          "x": 9.1,
+          "y": 1.1
+        },
         "type": "city",
         "description": "Southern coast after eastward bend. Warmest, most cosmopolitan.",
         "notes": "4-5 days sail east of Ravenquay."
@@ -130,13 +166,19 @@
     "wilderness": [
       {
         "name": "Crossroads Rest",
-        "coords": { "x": 5.8, "y": 3.4 },
+        "coords": {
+          "x": 5.8,
+          "y": 3.4
+        },
         "type": "waystation",
         "description": "Waystation on main road. 2 days north of Ravenquay toward Millhaven."
       },
       {
         "name": "Verath Ohn",
-        "coords": { "x": 3, "y": 0.5 },
+        "coords": {
+          "x": 3,
+          "y": 0.5
+        },
         "type": "island_or_landmark",
         "description": "Off southern coast, in the water."
       }
@@ -144,67 +186,100 @@
   },
   {
     "name": "Northern Reaches",
-    "grid": { "width": 40, "height": 40 },
+    "grid": {
+      "width": 40,
+      "height": 40
+    },
     "shape": "pentagon",
     "shape_notes": "Top point (20,40) — furthest north. Top left coast (20,40) to (0,20). Top right coast (20,40) to (40,20). Bottom left border (0,20) to (8,0). Bottom right border (40,20) to (32,0). Bottom edge (8,0) to (32,0) — Western Reach border.",
     "locations": [
       {
         "name": "Cindermarch",
-        "coords": { "x": 20, "y": 2 },
+        "coords": {
+          "x": 20,
+          "y": 2
+        },
         "type": "fortress",
         "description": "Bottom center on border line. Military fortress, Western Reach side."
       },
       {
         "name": "Harrow's Rest",
-        "coords": { "x": 22, "y": 4 },
+        "coords": {
+          "x": 22,
+          "y": 4
+        },
         "type": "waystation",
         "description": "Three hours east of Cindermarch."
       },
       {
         "name": "Northern Rock Waystation",
-        "coords": { "x": 19, "y": 6 },
+        "coords": {
+          "x": 19,
+          "y": 6
+        },
         "type": "waystation",
         "description": "Rock overhang shelter. Firstwalker songs carved in hearthstone."
       },
       {
         "name": "Vethara Winter Camp",
-        "coords": { "x": 26, "y": 8 },
+        "coords": {
+          "x": 26,
+          "y": 8
+        },
         "type": "settlement",
         "description": "Northeast of Cindermarch. Firstwalker winter camp."
       },
       {
         "name": "Greyspine Passage",
-        "coords": { "x": 21, "y": 8 },
+        "coords": {
+          "x": 21,
+          "y": 8
+        },
         "type": "wilderness",
         "description": "Narrow mountain passage. Only winter route through the ridge."
       },
       {
         "name": "Frostmark Waystation",
-        "coords": { "x": 24, "y": 10 },
+        "coords": {
+          "x": 24,
+          "y": 10
+        },
         "type": "waystation",
         "description": "Neutral trading waystation."
       },
       {
         "name": "Observatory",
-        "coords": { "x": 18, "y": 16 },
+        "coords": {
+          "x": 18,
+          "y": 16
+        },
         "type": "ancient_structure",
         "description": "Ancient pre-settlement structure. Mast's research base."
       },
       {
         "name": "Varath Valley",
-        "coords": { "x": 28, "y": 14 },
+        "coords": {
+          "x": 28,
+          "y": 14
+        },
         "type": "settlement",
         "description": "Hidden valley."
       },
       {
         "name": "Eldest's Valley",
-        "coords": { "x": 30, "y": 16 },
+        "coords": {
+          "x": 30,
+          "y": 16
+        },
         "type": "wilderness",
         "description": "Wide protected valley. Warm quality."
       },
       {
         "name": "Sixth Clan Territory",
-        "coords": { "x": 28, "y": 18 },
+        "coords": {
+          "x": 28,
+          "y": 18
+        },
         "type": "territory",
         "description": "Gone quiet two years ago."
       }

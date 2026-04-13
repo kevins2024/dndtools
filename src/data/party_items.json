@@ -2,8 +2,8 @@
   {
     "name": "Vessel of Stolen Years",
     "type": "wondrous",
-    "equipped_by": "Petra",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Petra",
     "needs_attunement": true,
     "attuned": true,
     "description": "",
@@ -134,8 +134,8 @@
   {
     "name": "Warden Dagger",
     "type": "weapon",
-    "equipped_by": "Vaz",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Vaz",
     "needs_attunement": false,
     "attuned": false,
     "weapon_type": "melee",
@@ -224,8 +224,8 @@
   {
     "name": "Boots of Speed",
     "type": "wondrous",
-    "equipped_by": "Vaz",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
@@ -258,8 +258,8 @@
   {
     "name": "Vest of Resistance (Cold)",
     "type": "wondrous",
-    "equipped_by": "Kerra",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Kerra",
     "needs_attunement": false,
     "attuned": false,
     "notes": "Single elemental resistance — no attunement required. Superseded by Mithral Half Plate — should be stored.",
@@ -281,8 +281,8 @@
   {
     "name": "Ioun Stone of Mastery",
     "type": "wondrous",
-    "equipped_by": "Vaz",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": true,
     "stat_bonuses": {
@@ -361,8 +361,8 @@
   {
     "name": "Ring of Protection +1",
     "type": "wondrous",
-    "equipped_by": "Rhuna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Rhuna",
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
@@ -376,8 +376,8 @@
   {
     "name": "Cloak of Displacement",
     "type": "wondrous",
-    "equipped_by": "Rhuna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Rhuna",
     "needs_attunement": true,
     "attuned": true,
     "notes": "Disadvantage on all attacks until damage taken — very powerful — attunement required.",
@@ -387,8 +387,8 @@
   {
     "name": "Ring of Free Action",
     "type": "wondrous",
-    "equipped_by": "Rhuna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Rhuna",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Unaffected by difficult terrain, movement speed reduction, and paralysis.",
@@ -542,8 +542,8 @@
   {
     "name": "Cloak of Arachnida",
     "type": "wondrous",
-    "equipped_by": "Denna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Denna",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Spider climb. Immunity to web. Cast Web 1/day.",
@@ -555,8 +555,8 @@
     "name": "Cold Dagger +2",
     "type": "weapon",
     "weapon_type": "melee",
-    "equipped_by": "Denna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Denna",
     "needs_attunement": false,
     "attuned": false,
     "finesse": true,
@@ -570,8 +570,8 @@
   {
     "name": "Gloves of Missile Snaring",
     "type": "wondrous",
-    "equipped_by": "Denna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Denna",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Reaction when hit by ranged attack: reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
@@ -924,8 +924,8 @@
   {
     "name": "The Lexicon",
     "type": "focus",
-    "equipped_by": "Kessara",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Kessara",
     "needs_attunement": true,
     "attuned": true,
     "finesse": true,
@@ -957,7 +957,7 @@
     "name": "Half Plate +1",
     "type": "armor",
     "equipped_by": "Petra",
-    "carried_by": null,
+    "carried_by": "Petra",
     "needs_attunement": false,
     "attuned": false,
     "notes": "+1 armor only — no attunement required.",
@@ -996,8 +996,8 @@
   {
     "name": "Amulet of the Devout +2",
     "type": "wondrous",
-    "equipped_by": "Petra",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Petra",
     "needs_attunement": true,
     "attuned": true,
     "stat_bonuses": {
@@ -1080,7 +1080,7 @@
   {
     "name": "Cloak of the Manta Ray",
     "type": "wondrous",
-    "equipped_by": null,
+    "equipped_by": "Pirra",
     "carried_by": "Pirra",
     "needs_attunement": false,
     "attuned": false,
@@ -1123,8 +1123,8 @@
   {
     "name": "Gloves of Dueling",
     "type": "wondrous",
-    "equipped_by": "Kerra",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Kerra",
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
@@ -1231,8 +1231,8 @@
   {
     "name": "Bracers of Archery",
     "type": "armor",
-    "equipped_by": "Siv",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
@@ -1338,8 +1338,8 @@
   {
     "name": "Cloak of Protection",
     "type": "wondrous",
-    "equipped_by": "Lyria",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": true,
     "stat_bonuses": {
@@ -1367,8 +1367,8 @@
   {
     "name": "Belt of Constitution",
     "type": "wondrous",
-    "equipped_by": "Lyria",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Sets CON to 18.",
@@ -1398,7 +1398,7 @@
     "name": "Staff of Power",
     "type": "weapon",
     "weapon_type": "melee",
-    "equipped_by": null,
+    "equipped_by": "Lyria",
     "carried_by": "Lyria",
     "needs_attunement": true,
     "attuned": true,
@@ -1420,7 +1420,7 @@
   {
     "name": "Wand of Web",
     "type": "wondrous",
-    "equipped_by": null,
+    "equipped_by": "Lyria",
     "carried_by": "Lyria",
     "needs_attunement": false,
     "attuned": false,
@@ -1435,7 +1435,7 @@
   {
     "name": "Circlet of Scorching Ray 3",
     "type": "wondrous",
-    "equipped_by": null,
+    "equipped_by": "Lyria",
     "carried_by": "Lyria",
     "needs_attunement": false,
     "attuned": false,
@@ -1481,8 +1481,8 @@
     "name": "Longsword +2 (Bronze Flame)",
     "type": "weapon",
     "weapon_type": "melee",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": false,
     "finesse": false,
@@ -1496,8 +1496,8 @@
   {
     "name": "Collapsible Shield +2",
     "type": "armor",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": false,
     "armor_type": "shield",
@@ -1540,8 +1540,8 @@
   {
     "name": "Circlet of Mental Fortress",
     "type": "wondrous",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Advantage on INT, WIS, CHA saving throws. Resistance to psychic damage.",
@@ -1552,8 +1552,8 @@
   {
     "name": "Amulet of Health",
     "type": "wondrous",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": true,
     "stat_overrides": {
@@ -1579,8 +1579,8 @@
   {
     "name": "Bracers of Defense +2",
     "type": "wondrous",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": true,
     "stat_bonuses": {
@@ -1705,8 +1705,8 @@
   {
     "name": "Trident",
     "type": "weapon",
-    "equipped_by": "Elucyne",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Elucyne",
     "needs_attunement": false,
     "attuned": false,
     "weapon_type": "melee",
@@ -1817,8 +1817,8 @@
   {
     "name": "The Steadfast",
     "type": "wondrous",
-    "equipped_by": "Sorra",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Sorra",
     "needs_attunement": true,
     "attuned": true,
     "charges_current": 1,
@@ -1887,8 +1887,8 @@
   {
     "name": "Cloak of Invisibility",
     "type": "wondrous",
-    "equipped_by": "Ferghus",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Ferghus",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Become invisible for up to 1 hour per day.",
@@ -1923,8 +1923,8 @@
   {
     "name": "Amulet of Poison Immunity",
     "type": "wondrous",
-    "equipped_by": "Ferghus",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Ferghus",
     "needs_attunement": true,
     "attuned": true,
     "effect": "Complete immunity to poison while worn.",
@@ -1966,8 +1966,8 @@
   {
     "name": "Bracers of Swiftness",
     "type": "wondrous",
-    "equipped_by": "Ferghus",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Ferghus",
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
@@ -2268,7 +2268,9 @@
     "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
-    "stat_bonuses": { "stat_con": 2 },
+    "stat_bonuses": {
+      "stat_con": 2
+    },
     "effect": "+2 CON. Advantage on CHA checks with dwarves. Darkvision 60ft. Resistance to poison, advantage on poison saves.",
     "notes": "Multiple significant benefits — attunement required. Unassigned.",
     "id": "items_belt_dwarvenkind"
@@ -2293,7 +2295,9 @@
     "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
-    "stat_overrides": { "stat_str": 19 },
+    "stat_overrides": {
+      "stat_str": 19
+    },
     "effect": "Sets STR to 19.",
     "notes": "Stat override — attunement required. Unassigned. Corwin already has a pair.",
     "id": "items_gauntlets_ogre_power"
@@ -2302,8 +2306,8 @@
     "name": "Gloves of Soul Catching",
     "type": "wondrous",
     "slot": "hands",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": true,
     "effect": "On unarmed strike hit: deal extra 2d10 psychic damage. Choose to regain HP equal to psychic damage dealt OR gain advantage on one roll.",
@@ -2330,7 +2334,9 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": { "ac_unarmored_con": 1 },
+    "stat_bonuses": {
+      "ac_unarmored_con": 1
+    },
     "effect": "Adds CON modifier to unarmored AC in addition to DEX and WIS.",
     "notes": "Changes AC formula — significant — attunement required.",
     "id": "items_monks_belt"

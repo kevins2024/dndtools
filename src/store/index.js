@@ -16,6 +16,7 @@ export default new Vuex.Store({
     homebrew: {},
     finances: {},
     loaded: false,
+    originals: {},
   },
 
   mutations: {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     SET_TABLE(state, { table, data }) {
       state[table] = data
+    },
+    SET_ORIGINALS(state, originals) {
+      state.originals = originals
     },
     SET_LOADED(state, value) {
       state.loaded = value
@@ -69,10 +73,13 @@ export default new Vuex.Store({
         'homebrew',
         'finances',
       ]
+      const originals = {}
       for (const table of tables) {
         const data = await dataService.get(table)
+        originals[table] = JSON.parse(JSON.stringify(data)) // deep copy
         commit('SET_TABLE', { table, data })
       }
+      commit('SET_ORIGINALS', originals)
       commit('SET_LOADED', true)
     },
 
@@ -80,7 +87,7 @@ export default new Vuex.Store({
       await dataService.save(table, state[table])
     },
 
-    async saveAll({ dispatch }) {
+    async saveAll({ dispatch, commit, state }) {
       const tables = [
         'characters',
         'npcs',
@@ -93,6 +100,55 @@ export default new Vuex.Store({
       for (const table of tables) {
         await dispatch('save', table)
       }
+      // Update originals to current state
+      const newOriginals = {}
+      tables.forEach((table) => {
+        newOriginals[table] = JSON.parse(JSON.stringify(state[table]))
+      })
+      commit('SET_ORIGINALS', newOriginals)
+    },
+  },
+
+  getters: {
+    hasChanges: (state) => {
+      const tables = [
+        'characters',
+        'npcs',
+        'locations',
+        'party_items',
+        'world',
+        'homebrew',
+        'finances',
+      ]
+      return tables.some(
+        (table) =>
+          JSON.stringify(state[table]) !==
+          JSON.stringify(state.originals[table])
+      )
+    },
+    changes: (state) => {
+      const tables = [
+        'characters',
+        'npcs',
+        'locations',
+        'party_items',
+        'world',
+        'homebrew',
+        'finances',
+      ]
+      const changes = {}
+      tables.forEach((table) => {
+        if (
+          JSON.stringify(state[table]) !==
+          JSON.stringify(state.originals[table])
+        ) {
+          changes[table] = {
+            original: state.originals[table],
+            current: state[table],
+          }
+        }
+      })
+      return changes
     },
   },
 })

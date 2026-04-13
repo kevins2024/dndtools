@@ -15,6 +15,13 @@
           >
             {{ summary.slot }} {{ summary.count }}/{{ summary.cap }}
           </span>
+          <span
+            class="slot-chip"
+            :class="{ over: attunedCount > 3 }"
+            title="Attuned items equipped"
+          >
+            attunement {{ attunedCount }}/3
+          </span>
         </div>
         <div v-if="equippedItems.length === 0" class="empty">
           Nothing equipped
@@ -24,12 +31,24 @@
           :key="item.id"
           class="inv-item equipped"
           :class="{ overloaded: isSlotOverfilled(item.slot || item.type) }"
-          @click="unequip(item)"
           title="Click to unequip"
         >
-          <span class="item-name">{{ item.name }}</span>
+          <span class="item-name" @click="unequip(item)">{{ item.name }}</span>
           <span class="item-slot">{{ item.slot || item.type }}</span>
           <span class="item-tag">{{ item.type }}</span>
+          <span
+            v-if="item.needs_attunement"
+            class="attunement-indicator"
+            title="Requires attunement"
+            >⚡</span
+          >
+          <button
+            class="act-btn inspect-btn"
+            @click.stop="inspectItem(item)"
+            title="View item details"
+          >
+            🔍
+          </button>
           <span class="item-action">↓</span>
         </div>
       </div>
@@ -47,17 +66,30 @@
           <span
             class="item-name"
             @click="canEquip(item) && equip(item)"
-            :title="canEquip(item) ? 'Click to equip' : 'Slot full'"
+            :title="canEquip(item) ? 'Click to equip' : cannotEquipReason(item)"
           >
             {{ item.name }}
           </span>
           <span class="item-tag">{{ item.type }}</span>
+          <span
+            v-if="item.needs_attunement"
+            class="attunement-indicator"
+            title="Requires attunement"
+            >⚡</span
+          >
           <div class="item-actions">
+            <button
+              class="act-btn inspect-btn"
+              @click.stop="inspectItem(item)"
+              title="View item details"
+            >
+              🔍
+            </button>
             <button
               class="act-btn"
               @click="equip(item)"
               :disabled="!canEquip(item)"
-              :title="canEquip(item) ? 'Equip' : 'Slot full'"
+              :title="canEquip(item) ? 'Equip' : cannotEquipReason(item)"
             >
               ↑
             </button>
@@ -90,6 +122,19 @@
         >
           <span class="item-name">{{ item.name }}</span>
           <span class="item-tag">{{ item.type }}</span>
+          <span
+            v-if="item.needs_attunement"
+            class="attunement-indicator"
+            title="Requires attunement"
+            >⚡</span
+          >
+          <button
+            class="act-btn inspect-btn"
+            @click.stop="inspectItem(item)"
+            title="View item details"
+          >
+            🔍
+          </button>
           <span class="item-action">→</span>
           <button
             class="act-btn dim delete-btn"
@@ -128,6 +173,106 @@
           <button class="act-btn" @click="deleteConfirmed">
             Delete and add gold
           </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="inspectionOpen"
+      class="dialog-backdrop"
+      @click.self="closeInspection"
+    >
+      <div class="dialog-panel inspection-panel">
+        <div class="dialog-title">
+          {{ inspectedItem ? inspectedItem.name : '' }}
+        </div>
+        <div v-if="inspectedItem" class="inspection-content">
+          <div class="inspection-meta">
+            <div class="meta-row">
+              <span class="meta-label">Type:</span>
+              <span class="meta-value">{{ inspectedItem.type }}</span>
+            </div>
+            <div v-if="inspectedItem.equipment_state" class="meta-row">
+              <span class="meta-label">State:</span>
+              <span class="meta-value">{{
+                inspectedItem.equipment_state
+              }}</span>
+            </div>
+            <div
+              v-if="inspectedItem.slot && inspectedItem.slot !== 'none'"
+              class="meta-row"
+            >
+              <span class="meta-label">Slot:</span>
+              <span class="meta-value">{{ inspectedItem.slot }}</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Requires Attunement:</span>
+              <span class="meta-value">{{
+                inspectedItem.needs_attunement ? 'Yes' : 'No'
+              }}</span>
+            </div>
+            <div v-if="inspectedItem.needs_attunement" class="meta-row">
+              <span class="meta-label">Attuned:</span>
+              <span class="meta-value">{{
+                inspectedItem.attuned ? 'Yes' : 'No'
+              }}</span>
+            </div>
+            <div v-if="inspectedItem.quantity" class="meta-row">
+              <span class="meta-label">Quantity:</span>
+              <span class="meta-value">{{ inspectedItem.quantity }}</span>
+            </div>
+            <div v-if="inspectedItem.equipped_by" class="meta-row">
+              <span class="meta-label">Equipped by:</span>
+              <span class="meta-value">{{ inspectedItem.equipped_by }}</span>
+            </div>
+            <div v-if="inspectedItem.carried_by" class="meta-row">
+              <span class="meta-label">Carried by:</span>
+              <span class="meta-value">{{ inspectedItem.carried_by }}</span>
+            </div>
+            <div v-if="inspectedItem.charges_max" class="meta-row">
+              <span class="meta-label">Charges:</span>
+              <span class="meta-value"
+                >{{ inspectedItem.charges_current }} /
+                {{ inspectedItem.charges_max }}</span
+              >
+            </div>
+            <div v-if="inspectedItem.stat_bonuses" class="meta-row">
+              <span class="meta-label">Bonuses:</span>
+              <span class="meta-value">
+                <span
+                  v-for="(val, key) in inspectedItem.stat_bonuses"
+                  :key="key"
+                  class="bonus-tag"
+                >
+                  {{ key }}: +{{ val }}
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div v-if="inspectedItem.description" class="inspection-section">
+            <div class="section-label">Description</div>
+            <div class="section-content">{{ inspectedItem.description }}</div>
+          </div>
+
+          <div v-if="inspectedItem.effect" class="inspection-section">
+            <div class="section-label">Effect</div>
+            <div class="section-content">{{ inspectedItem.effect }}</div>
+          </div>
+
+          <div v-if="inspectedItem.notes" class="inspection-section">
+            <div class="section-label">Notes</div>
+            <div class="section-content">{{ inspectedItem.notes }}</div>
+          </div>
+
+          <div class="inspection-section id-section">
+            <div class="section-label">Item ID</div>
+            <div class="section-content id-content">{{ inspectedItem.id }}</div>
+          </div>
+        </div>
+
+        <div class="dialog-actions">
+          <button class="act-btn" @click="closeInspection">Close</button>
         </div>
       </div>
     </div>
@@ -178,6 +323,12 @@ export default {
         }
       })
     },
+    attunedItems() {
+      return this.equippedItems.filter((i) => i.needs_attunement)
+    },
+    attunedCount() {
+      return this.attunedItems.length
+    },
   },
 
   data() {
@@ -185,6 +336,8 @@ export default {
       deleteDialogOpen: false,
       deleteCandidate: null,
       deleteSaleValue: '',
+      inspectionOpen: false,
+      inspectedItem: null,
     }
   },
 
@@ -205,7 +358,19 @@ export default {
       if (item.equipped_by === 'disallowed') return false
       const slot = item.slot || item.type || 'unknown'
       const count = this.slotCounts[slot] || 0
-      return count < this.slotCapacity(slot)
+      if (count >= this.slotCapacity(slot)) return false
+      // Check attunement limit: max 3 attuned items per character
+      if (item.needs_attunement && this.attunedCount >= 3) return false
+      return true
+    },
+    cannotEquipReason(item) {
+      if (item.equipped_by === 'disallowed') return 'Item cannot be equipped'
+      const slot = item.slot || item.type || 'unknown'
+      const count = this.slotCounts[slot] || 0
+      if (count >= this.slotCapacity(slot)) return `${slot} slot full`
+      if (item.needs_attunement && this.attunedCount >= 3)
+        return 'Attunement limit (3/3)'
+      return null
     },
     equip(item) {
       if (!this.canEquip(item)) return
@@ -255,6 +420,14 @@ export default {
         this.$store.commit('ADJUST_PARTY_GOLD', gold)
       }
       this.cancelDelete()
+    },
+    inspectItem(item) {
+      this.inspectedItem = item
+      this.inspectionOpen = true
+    },
+    closeInspection() {
+      this.inspectionOpen = false
+      this.inspectedItem = null
     },
   },
 }
@@ -376,6 +549,13 @@ export default {
   color: var(--color-text-low);
 }
 
+.attunement-indicator {
+  font-size: var(--font-size-tiny);
+  color: var(--color-accent);
+  margin-left: 2px;
+  opacity: 0.8;
+}
+
 .item-action {
   font-size: var(--font-size-tiny);
   color: var(--color-text-muted);
@@ -467,5 +647,104 @@ export default {
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+/* ── Item Inspection ── */
+.inspect-btn {
+  font-size: var(--font-size-small) !important;
+  color: var(--color-accent-muted) !important;
+  padding: 0 4px !important;
+}
+
+.inspect-btn:hover {
+  color: var(--color-accent) !important;
+}
+
+.inspection-panel {
+  width: min(92vw, 540px);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.inspection-content {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 0.6rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar) transparent;
+}
+
+.inspection-meta {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+  padding: 0.8rem;
+  background: var(--color-bg-panel);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
+  font-size: var(--font-size-small);
+  align-items: start;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.meta-value {
+  color: var(--color-text);
+}
+
+.bonus-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: var(--font-size-xxs);
+  color: var(--color-accent);
+  margin-right: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.inspection-section {
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: var(--color-bg-panel);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.inspection-section.id-section {
+  background: rgba(100, 100, 130, 0.08);
+}
+
+.section-label {
+  font-size: var(--font-size-xxs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.section-content {
+  font-size: var(--font-size-small);
+  color: var(--color-text);
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.id-content {
+  font-family: monospace;
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-muted);
 }
 </style>

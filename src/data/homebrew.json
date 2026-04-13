@@ -8,10 +8,18 @@
       "range": "Self",
       "area": "10ft radius",
       "duration": "Concentration, up to 10 minutes",
-      "components": ["V", "S"],
+      "components": [
+        "V",
+        "S"
+      ],
       "description": "Creates a 10ft radius ward around the caster. Undead must make a WIS saving throw against the caster's spell save DC or be unable to enter the warded area. Does not destroy or turn undead — only prevents entry.",
-      "save": { "stat": "wis", "dc": "spell_save_dc" },
-      "known_by": ["Lyria"],
+      "save": {
+        "stat": "wis",
+        "dc": "spell_save_dc"
+      },
+      "known_by": [
+        "Lyria"
+      ],
       "source": "Hendvar's Spellbook — author's original creation",
       "author_note": "Fifteen years perfecting it. It worked perfectly and solved nothing — his companions were already inside the ward when they became undead."
     }
@@ -21,64 +29,84 @@
       "name": "Totemic Assault",
       "class": "Shaman",
       "description": "When hitting with a weapon or cantrip, channel spirit energy for 1d8 lightning or cold damage.",
-      "known_by": ["Vrethka"]
+      "known_by": [
+        "Vrethka"
+      ]
     },
     {
       "name": "Life Bearer",
       "class": "Shaman (Witch Doctor)",
       "description": "When casting a healing spell, add WIS modifier to the healing done.",
-      "known_by": ["Vrethka"]
+      "known_by": [
+        "Vrethka"
+      ]
     },
     {
       "name": "Totemic Blessing",
       "class": "Shaman (Witch Doctor)",
       "description": "Bind any totem and use its effect as a bonus action when healing an ally.",
-      "known_by": ["Vrethka"]
+      "known_by": [
+        "Vrethka"
+      ]
     },
     {
       "name": "Spirit Communion",
       "class": "Shaman (Witch Doctor)",
       "recharge": "long_rest",
       "description": "Once per long rest, speak directly with any spirit within one mile, asking three questions.",
-      "known_by": ["Vrethka"]
+      "known_by": [
+        "Vrethka"
+      ]
     },
     {
       "name": "Sacred Focus: Mind",
       "class": "Shaman",
       "description": "Add WIS modifier to Intelligence and Charisma checks and saving throws.",
-      "known_by": ["Vrethka"]
+      "known_by": [
+        "Vrethka"
+      ]
     },
     {
       "name": "Dagger of Swift Strike",
       "class": null,
       "description": "Once per turn on a hit with this dagger, immediately make a second strike with it as part of the same attack. No bonus action required.",
-      "known_by": ["Denna"],
+      "known_by": [
+        "Denna"
+      ],
       "note": "Item feature, not a class feature — stored here because it has a rules definition that needs to be referenced."
     },
     {
       "name": "Tactical Foresight",
       "class": "Rogue (Mastermind / Weaver's Master-Awl synergy)",
       "description": "When using Master of Tactics Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier.",
-      "known_by": ["Torrin"]
+      "known_by": [
+        "Torrin"
+      ]
     },
     {
       "name": "Commander's Presence",
       "class": "Rogue (Legendary)",
       "description": "Allies within 30ft gain a bonus to AC or saving throws from constant tactical advice.",
-      "known_by": ["Torrin"]
+      "known_by": [
+        "Torrin"
+      ]
     },
     {
       "name": "The Retired Special",
       "class": "Rogue (Legendary)",
       "description": "Once per day, reaction when an ally is hit: toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss.",
       "recharge": "daily",
-      "known_by": ["Torrin"]
+      "known_by": [
+        "Torrin"
+      ]
     },
     {
       "name": "Grandmaster's Stitch",
       "class": "Rogue (Legendary — Weaver's Master-Awl)",
       "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours — wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened.",
-      "known_by": ["Torrin"]
+      "known_by": [
+        "Torrin"
+      ]
     }
   ]
 }

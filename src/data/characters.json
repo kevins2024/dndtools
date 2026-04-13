@@ -23,7 +23,10 @@
     "personality_traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
     "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -31,7 +34,10 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": ["Common", "Draconic"],
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -149,7 +155,10 @@
     "personality_traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
     "personality_quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -157,7 +166,10 @@
       "Survival"
     ],
     "expertise": [],
-    "languages": ["Common", "Orc"],
+    "languages": [
+      "Common",
+      "Orc"
+    ],
     "features": [
       {
         "name": "Rage 4/day",
@@ -251,7 +263,10 @@
     "personality_traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
     "personality_quirks": "Was gone before anyone saw her leave. Private relationship with her blades.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -260,8 +275,14 @@
       "Deception",
       "Investigation"
     ],
-    "expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Thieves Cant"],
+    "expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Thieves Cant"
+    ],
     "features": [
       {
         "name": "Sneak Attack 5d6",
@@ -339,7 +360,10 @@
     "personality_traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
     "personality_quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "int"],
+    "saving_throws": [
+      "con",
+      "int"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -348,7 +372,11 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": ["Common", "Gnomish", "Elvish"],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Elvish"
+    ],
     "features": [
       {
         "name": "Tool Expertise",
@@ -426,7 +454,10 @@
     "personality_traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
     "personality_quirks": "Reviews spellbook before significant encounters. Reformed gambling addict.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -435,7 +466,11 @@
       "Persuasion"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -664,7 +699,10 @@
     "personality_traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
     "personality_quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -673,7 +711,11 @@
       "History"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -872,7 +914,10 @@
     "personality_traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
     "personality_quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -881,7 +926,11 @@
       "History"
     ],
     "expertise": [],
-    "languages": ["Common", "Celestial", "partial Southern (Sovi's language)"],
+    "languages": [
+      "Common",
+      "Celestial",
+      "partial Southern (Sovi's language)"
+    ],
     "features": [
       {
         "name": "Channel Divinity",
@@ -984,7 +1033,10 @@
     "personality_traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
     "personality_quirks": "Helena's niece — the family resemblance is in the intelligence, not the features.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Sleight of Hand",
@@ -992,8 +1044,14 @@
       "Acrobatics",
       "Deception"
     ],
-    "expertise": ["Stealth", "Sleight of Hand"],
-    "languages": ["Common", "Halfling"],
+    "expertise": [
+      "Stealth",
+      "Sleight of Hand"
+    ],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
     "features": [
       {
         "name": "Sneak Attack 5d6",
@@ -1096,10 +1154,20 @@
     "personality_traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
     "personality_quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Athletics", "Intimidation", "Arcana", "Deception"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Arcana",
+      "Deception"
+    ],
     "expertise": [],
-    "languages": ["Common"],
+    "languages": [
+      "Common"
+    ],
     "features": [
       {
         "name": "Pact of the Blade",
@@ -1270,7 +1338,10 @@
     "personality_traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
     "personality_quirks": "Equal shares per job — a principle, not a preference.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -1278,8 +1349,13 @@
       "Acrobatics",
       "Nature"
     ],
-    "expertise": ["Nature", "Survival"],
-    "languages": ["Common"],
+    "expertise": [
+      "Nature",
+      "Survival"
+    ],
+    "languages": [
+      "Common"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -1381,7 +1457,10 @@
     "personality_traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
     "personality_quirks": "",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -1391,8 +1470,15 @@
       "Arcana",
       "Performance"
     ],
-    "expertise": ["Perception", "Persuasion"],
-    "languages": ["Common", "Elvish", "two others (half-elf bonus)"],
+    "expertise": [
+      "Perception",
+      "Persuasion"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "two others (half-elf bonus)"
+    ],
     "features": [
       {
         "name": "Bardic Inspiration d8 (5/long rest)",
@@ -1591,7 +1677,10 @@
     "personality_traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
     "personality_quirks": "Three years hunting answers about her brother Aldren.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -1600,7 +1689,11 @@
       "Medicine"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Ward 16HP (recharges when casting abjuration spells)",
@@ -1839,7 +1932,10 @@
     "hp_current": 87,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -1847,7 +1943,9 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": ["Common"],
+    "languages": [
+      "Common"
+    ],
     "spellcasting_ability": null,
     "personality_traits": "Reliable, professional. Not a decision maker — executes well, asks good questions, steady presence.",
     "personality_quirks": "Walks patrol routes even off duty. Knows everyone in Ravenquay who owes favors.",
@@ -1924,7 +2022,10 @@
     "personality_traits": "Legendary rogue, now retired. Applies 156 years of tactical memory to leatherworking.",
     "personality_quirks": "",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -1933,8 +2034,14 @@
       "History",
       "Persuasion"
     ],
-    "expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Dwarvish"],
+    "expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Psychic Blades (Soulknife)",
@@ -2016,10 +2123,21 @@
     "hp_current": 74,
     "unarmored_ac_formula": "monk",
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "dex"],
-    "skill_proficiencies": ["Acrobatics", "Athletics", "Perception", "Stealth"],
+    "saving_throws": [
+      "str",
+      "dex"
+    ],
+    "skill_proficiencies": [
+      "Acrobatics",
+      "Athletics",
+      "Perception",
+      "Stealth"
+    ],
     "expertise": [],
-    "languages": ["Common", "Giant"],
+    "languages": [
+      "Common",
+      "Giant"
+    ],
     "spellcasting_ability": null,
     "personality_traits": null,
     "personality_quirks": null,
@@ -2121,7 +2239,10 @@
         "uses_current": 1
       }
     ],
-    "ki_points": { "max": 8, "current": 8 },
+    "ki_points": {
+      "max": 8,
+      "current": 8
+    },
     "martial_arts_die": "1d8",
     "spells": [],
     "active_effects": [],
@@ -2212,7 +2333,10 @@
     "hp_current": 72,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Nature",
       "Perception",
@@ -2221,7 +2345,12 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
+    "languages": [
+      "Common",
+      "Halfling",
+      "Druidic",
+      "Sylvan"
+    ],
     "spellcasting_ability": "wis",
     "personality_traits": null,
     "personality_quirks": null,
@@ -2332,10 +2461,30 @@
       }
     ],
     "spells": [
-      { "name": "Shillelagh", "level": 0, "prepared": true, "type": "cantrip" },
-      { "name": "Guidance", "level": 0, "prepared": true, "type": "cantrip" },
-      { "name": "Druidcraft", "level": 0, "prepared": true, "type": "cantrip" },
-      { "name": "Thorn Whip", "level": 0, "prepared": true, "type": "cantrip" },
+      {
+        "name": "Shillelagh",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Druidcraft",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Thorn Whip",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
       {
         "name": "Cure Wounds",
         "level": 1,
@@ -2348,9 +2497,24 @@
         "prepared": true,
         "type": "prepared"
       },
-      { "name": "Entangle", "level": 1, "prepared": true, "type": "prepared" },
-      { "name": "Ice Knife", "level": 1, "prepared": true, "type": "prepared" },
-      { "name": "Moonbeam", "level": 2, "prepared": true, "type": "prepared" },
+      {
+        "name": "Entangle",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Ice Knife",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Moonbeam",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Lesser Restoration",
         "level": 2,
@@ -2393,8 +2557,18 @@
         "prepared": true,
         "type": "prepared"
       },
-      { "name": "Blight", "level": 4, "prepared": true, "type": "prepared" },
-      { "name": "Polymorph", "level": 4, "prepared": true, "type": "prepared" },
+      {
+        "name": "Blight",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Polymorph",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Conjure Woodland Beings",
         "level": 4,
@@ -2446,7 +2620,10 @@
     "personality_traits": "Born wise, still young. Makes brilliant observations and terrible decisions sometimes in the same breath. Leads with his heart in every situation — professional, personal, spiritual. Veleth's influence means he reads emotional undercurrents in rooms better than most twice his age. Hormones and wisdom are currently negotiating a truce with mixed results.",
     "personality_quirks": "Gets visibly flustered when attracted to someone and then says something deeply insightful immediately after. Calls lightning storms beautiful even when they're dangerous. Has strong opinions about what people actually mean versus what they say. Grew up around humans which means he has human impatience in an almost-elven body.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -2455,7 +2632,11 @@
       "Perception"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Celestial"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Celestial"
+    ],
     "features": [
       {
         "name": "Wrath of the Storm — reaction: when hit by attacker within 5ft, deal 2d8 lightning or thunder damage (DEX save for half)",
@@ -2491,29 +2672,54 @@
       }
     ],
     "spells": [
-      { "name": "Thunderwave", "level": 1, "prepared": true, "type": "domain" },
-      { "name": "Fog Cloud", "level": 1, "prepared": true, "type": "domain" },
+      {
+        "name": "Thunderwave",
+        "level": 1,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Fog Cloud",
+        "level": 1,
+        "prepared": true,
+        "type": "domain"
+      },
       {
         "name": "Gust of Wind",
         "level": 2,
         "prepared": true,
         "type": "domain"
       },
-      { "name": "Shatter", "level": 2, "prepared": true, "type": "domain" },
+      {
+        "name": "Shatter",
+        "level": 2,
+        "prepared": true,
+        "type": "domain"
+      },
       {
         "name": "Call Lightning",
         "level": 3,
         "prepared": true,
         "type": "domain"
       },
-      { "name": "Sleet Storm", "level": 3, "prepared": true, "type": "domain" },
+      {
+        "name": "Sleet Storm",
+        "level": 3,
+        "prepared": true,
+        "type": "domain"
+      },
       {
         "name": "Control Water",
         "level": 4,
         "prepared": true,
         "type": "domain"
       },
-      { "name": "Ice Storm", "level": 4, "prepared": true, "type": "domain" },
+      {
+        "name": "Ice Storm",
+        "level": 4,
+        "prepared": true,
+        "type": "domain"
+      },
       {
         "name": "Destructive Wave",
         "level": 5,
@@ -2538,7 +2744,12 @@
         "prepared": true,
         "type": "prepared"
       },
-      { "name": "Sanctuary", "level": 1, "prepared": true, "type": "prepared" },
+      {
+        "name": "Sanctuary",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Charm Person",
         "level": 1,
@@ -2557,7 +2768,12 @@
         "prepared": true,
         "type": "prepared"
       },
-      { "name": "Silence", "level": 2, "prepared": true, "type": "prepared" },
+      {
+        "name": "Silence",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Mass Healing Word",
         "level": 3,
@@ -2570,7 +2786,12 @@
         "prepared": true,
         "type": "prepared"
       },
-      { "name": "Sending", "level": 3, "prepared": true, "type": "prepared" },
+      {
+        "name": "Sending",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Death Ward",
         "level": 4,
@@ -2589,14 +2810,24 @@
         "prepared": true,
         "type": "cantrip"
       },
-      { "name": "Guidance", "level": 0, "prepared": true, "type": "cantrip" },
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
       {
         "name": "Toll the Dead",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
       },
-      { "name": "Thaumaturgy", "level": 0, "prepared": true, "type": "cantrip" }
+      {
+        "name": "Thaumaturgy",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
     ],
     "deity": "Veleth",
     "active_effects": [],
@@ -2626,7 +2857,10 @@
     "personality_traits": "Fundamentally joyful in a way that isn't performance — it's just how she's built. Bounces back from setbacks in seconds. Jokes constantly, including at inappropriate moments, including about herself. When she performs she becomes something more focused and serious without losing the warmth underneath. Two years of hard living in rough parts of cities haven't dented the essential bubbly quality, they've just added texture to it.",
     "personality_quirks": "Never surprised for more than two seconds. Never sad for more than two seconds either — not because she's suppressing it but because she genuinely processes and moves on faster than most people. Makes friends with everyone in a room within twenty minutes. Has strong opinions about food. The gilded horns are real and she absolutely uses the moment people realize that.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "str"],
+    "saving_throws": [
+      "dex",
+      "str"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -2636,7 +2870,10 @@
       "Survival",
       "Athletics"
     ],
-    "expertise": ["Stealth", "Performance"],
+    "expertise": [
+      "Stealth",
+      "Performance"
+    ],
     "languages": [
       "Common",
       "Infernal",
@@ -2697,10 +2934,30 @@
       }
     ],
     "spells": [
-      { "name": "Thaumaturgy", "level": 0, "prepared": true, "type": "racial" },
-      { "name": "Fog Cloud", "level": 1, "prepared": true, "type": "ranger" },
-      { "name": "Rope Trick", "level": 2, "prepared": true, "type": "ranger" },
-      { "name": "Fear", "level": 3, "prepared": true, "type": "ranger" }
+      {
+        "name": "Thaumaturgy",
+        "level": 0,
+        "prepared": true,
+        "type": "racial"
+      },
+      {
+        "name": "Fog Cloud",
+        "level": 1,
+        "prepared": true,
+        "type": "ranger"
+      },
+      {
+        "name": "Rope Trick",
+        "level": 2,
+        "prepared": true,
+        "type": "ranger"
+      },
+      {
+        "name": "Fear",
+        "level": 3,
+        "prepared": true,
+        "type": "ranger"
+      }
     ],
     "active_effects": [],
     "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 → Rogue 2, Level 10 → Rogue 3 (Assassin subclass unlocked), Level 11 → Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer — fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
@@ -2728,7 +2985,10 @@
     "personality_traits": "Still where Elucyne is bubbly. Sits with things before responding. Reads rooms the way she reads music — feeling what wants to be expressed before deciding what to do about it. Seems like she knows something she isn't saying. Sometimes she does.",
     "personality_quirks": "The dance never fully stops. Responds to genuine music or genuine emotion the way plants respond to light — automatically, completely, without deciding to. Has never stayed anywhere longer than she felt like staying. May be reconsidering that.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -2737,8 +2997,15 @@
       "Perception",
       "Medicine"
     ],
-    "expertise": ["Performance", "Insight"],
-    "languages": ["Common", "Elvish", "southeastern regional language"],
+    "expertise": [
+      "Performance",
+      "Insight"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "southeastern regional language"
+    ],
     "features": [
       {
         "name": "Bardic Inspiration d8 — 5 per long rest",
@@ -2864,7 +3131,12 @@
         "prepared": true,
         "type": "cantrip"
       },
-      { "name": "Mage Hand", "level": 0, "prepared": true, "type": "cantrip" },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
       {
         "name": "Green Flame Blade",
         "level": 0,
@@ -2910,7 +3182,10 @@
     "personality_traits": "Drives straight in. Hospitable to a fault — the door is always open, there is always food, everyone is welcome until proven otherwise. Clan-first mentality applied to whatever group he's currently part of. Does unexpected things without noticing they're unexpected. Carix's influence shows in behavior not narration.",
     "personality_quirks": "Picks up useful objects without deciding to. Arrives unannounced and finds this entirely normal. Warm laugh that arrives suddenly and fills a room. Has strong opinions about hospitality and will feed people whether they asked to be fed or not. The accent is distinctive and he's entirely unconscious of it.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -2919,7 +3194,10 @@
       "Perception"
     ],
     "expertise": [],
-    "languages": ["Common", "one additional"],
+    "languages": [
+      "Common",
+      "one additional"
+    ],
     "features": [
       {
         "name": "Divine Smite — expend spell slot on hit for 2d8 radiant damage per slot level, +1d8 vs undead or fiends",
@@ -2951,7 +3229,12 @@
       }
     ],
     "spells": [
-      { "name": "Bless", "level": 1, "prepared": true, "type": "prepared" },
+      {
+        "name": "Bless",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Cure Wounds",
         "level": 1,
@@ -2982,7 +3265,12 @@
         "prepared": true,
         "type": "prepared"
       },
-      { "name": "Shatter", "level": 2, "prepared": true, "type": "prepared" },
+      {
+        "name": "Shatter",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
       {
         "name": "Blinding Smite",
         "level": 3,
