@@ -17,6 +17,13 @@
       <div class="panel-content">
         <component :is="activeSidebarComponent" />
       </div>
+      <button
+        v-if="activeTab === 'players'"
+        class="deselect-all-btn"
+        @click="deselectAll"
+      >
+        Deselect all
+      </button>
     </aside>
 
     <!-- Main Content Area -->
@@ -133,6 +140,12 @@ export default {
     },
   },
 
+  methods: {
+    deselectAll() {
+      this.$store.commit('SET_SELECTED_PLAYERS', [])
+    },
+  },
+
   async created() {},
 }
 </script>
@@ -200,7 +213,7 @@ export default {
   box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
 }
 
-..nav-btn.active {
+.nav-btn.active {
   background: var(--color-bg-surface-alt);
   border-color: var(--color-accent);
   color: var(--color-accent-strong);
@@ -218,6 +231,25 @@ export default {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-scrollbar) transparent;
+}
+
+.deselect-all-btn {
+  margin: 0.8rem;
+  align-self: stretch;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-surface);
+  color: var(--color-text);
+  padding: 0.75rem 0.9rem;
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.deselect-all-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-bg-surface-alt);
 }
 
 .panel-content::-webkit-scrollbar {
