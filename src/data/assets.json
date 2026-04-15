@@ -235,7 +235,7 @@
   },
   {
     "id": "assets_20",
-    "name": "Warm Water",
+    "name": "Argent Sunrise",
     "subtype": "caravel",
     "captain": "Maeris",
     "crew_full": 10,
@@ -248,5 +248,17 @@
     "condition": null,
     "notes": "Manageable with reduced crew of 5. Very dark hull and signs of repairs. Some sections of wood are double-thick.",
     "type": "ship"
+  },
+  {
+    "id": "assets_21",
+    "name": "The Drevorn House",
+    "type": "real_estate",
+    "subtype": "estate",
+    "location": "Argentveil",
+    "district": "Cliff Line, South Harbor",
+    "status": "acquired, renovation pending",
+    "ownership": "Dawn Blades, purchased from Drevorn estate",
+    "acquisition_cost": 35000,
+    "notes": "Three levels, each smaller than the last due to decks and balconies built over rooms below. Eight bedrooms, two large reception rooms, central courtyard with dry fountain fed by rooftop cistern system. Staff quarters in east wing, six rooms. Kitchen large and well positioned. Stone construction throughout, structurally sound. Walled and gated on two sides, cliff edge on the other two — natural defensibility. Gardens overgrown but intentionally preserved where possible, wild growth to be shaped rather than cleared. Original Drevorn family home, neighborhood landmark. Fountain mechanism blocked by sediment, two to three hours work to restore. Teleportation circle to be established here. Sivenne Althar appointed house steward. Restoration architect Duvaine contacted via Hallan. Former most prestigious address on the cliff line, restoration will be noticed by neighbors."
   }
 ]

@@ -2093,5 +2093,59 @@
     "stat_overrides": { "stat_con": 19 },
     "effect": "Sets CON to 19.",
     "notes": "Jaygar already has one equipped. Confirm if this is a second copy."
+  },
+  {
+    "name": "Longsword +2 (Bronze Flame)",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "effect": "Command word ignites bronze edges — adds 2d6 fire damage to each hit while active. Flame is controlled and precise, burns only what it's told to burn.",
+    "notes": ""
+  },
+  {
+    "name": "The Lexicon",
+    "type": "focus",
+    "weapon_type": "melee",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "finesse": true,
+    "damage_dice": "1d4",
+    "magic_bonus": 1,
+    "stat_bonuses": { "spell_save_dc": 2 },
+    "charges_current": 1,
+    "charges_max": 1,
+    "charges_recharge": "long_rest",
+    "effect": "When held as spellcasting focus: spell save DC +2. Once per long rest when casting a spell of 3rd level or higher: cast it as if using a slot one level higher without expending the higher slot.",
+    "notes": "Runes translate loosely as 'the word made sharp'. Old name for an old concept."
+  },
+  {
+    "name": "The Steadfast",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "charges_current": 1,
+    "charges_max": 1,
+    "charges_recharge": "short_rest",
+    "effect": "Reaction when any ally within 30ft drops to 0hp: grant that ally 1d8 + proficiency bonus temporary hit points, potentially keeping them conscious. Once per short rest. Additionally: advantage on death saving throws.",
+    "notes": "No maker's name, no origin runes. Just the inscription."
+  },
+  {
+    "name": "Ring of Transmutation",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": null,
+    "attuned": true,
+    "charges_current": 3,
+    "charges_max": 3,
+    "charges_recharge": "daily",
+    "effect": "1 charge: cast Alter Self without concentration — change appearance, gain natural weapons, or adapt to aquatic environments including water breathing and swim speed, lasts 1 hour. 2 charges: cast Polymorph on yourself only. 3 charges: cast Gaseous Form.",
+    "notes": ""
   }
 ]

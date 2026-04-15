@@ -1,12 +1,12 @@
 {
   "party_purse": {
-    "gold": 82465,
+    "gold": 90465,
     "notes": "On hand, accessible immediately."
   },
   "reserves": [
     {
       "name": "Argentveil Account",
-      "amount": 178000,
+      "amount": 143000,
       "access": "Handled.",
       "risk": "low"
     },
@@ -28,8 +28,8 @@
     },
     {
       "source": "Long Arm Trading",
-      "amount_min": 900,
-      "amount_max": 1200,
+      "amount_min": 1000,
+      "amount_max": 1300,
       "frequency": "weekly",
       "notes": "Can grow if trading/sourcing or import/export change in the story. Owns 4 ships."
     },

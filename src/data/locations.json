@@ -459,6 +459,13 @@
         "notes": ""
       },
       {
+        "name": "The Fork & Roger",
+        "type": "tavern",
+        "description": "Harbor area, good ale, adequate food, good place to keep an eye on the harbor. ",
+        "npcs_present": [],
+        "notes": ""
+      },
+      {
         "name": "Linden Street Antiquities Market",
         "type": "market",
         "description": "Where Ossivane Relk operates.",

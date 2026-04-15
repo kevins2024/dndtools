@@ -42,5 +42,39 @@
     "worship_notes": "",
     "known_followers": ["Dovan"],
     "notes": ""
+  },
+  {
+    "name": "Veleth",
+    "type": "deity",
+    "domain": [
+      "Love",
+      "Desire",
+      "Friendship",
+      "Affection",
+      "Physical Connection"
+    ],
+    "alignment": "Chaotic Good",
+    "symbol": "two hands reaching toward each other without quite touching",
+    "description": "*Love is not one thing. It is every thing.* The space between people is sacred. Desire is honest. Friendship is love's quietest and most enduring form. Physical connection is neither shameful nor trivial — it is one of the clearest languages available to living things. Veleth makes no distinction between romantic love, deep friendship, or physical affection — all are expressions of the same fundamental reaching toward another.",
+    "worship_notes": "No formal liturgy. Prayers are conversational, often whispered. Ceremonies mark connections between people rather than obligations to the deity. Temples are warm, candlelit, open at all hours. Clergy are listeners first. No vows of celibacy — considered counterproductive. Followers are encouraged to love specifically and honestly rather than generally and safely.",
+    "known_followers": ["Revven"],
+    "notes": "Veleth is present whether worshipped or not. The deity doesn't require acknowledgment — only that people reach toward each other honestly. Clergy of Veleth are often found where people are suffering from isolation, loss, or broken connection. The symbol — two hands almost touching — represents both the beauty and the ache of reaching."
+  },
+  {
+    "name": "Carix",
+    "type": "deity",
+    "domain": [
+      "Mischief",
+      "Unexpected Consequences",
+      "Disruption",
+      "Revelation",
+      "Change"
+    ],
+    "alignment": "Chaotic Neutral",
+    "symbol": "a coin standing on its edge",
+    "description": "*Nothing that stays the same stays true.* Carix is not evil and is not good — Carix is the stone thrown into still water. Comfort breeds blindness. Certainty breeds arrogance. The unexpected consequence is not punishment — it is information. What falls apart when disrupted was already falling apart. What survives was always worth keeping. Carix does not cause chaos for its own sake but understands that what appears chaotic from inside the disruption often reveals necessary truth from outside it.",
+    "worship_notes": "No fixed rituals — rituals become habit and habit is antithema to Carix. Prayers are improvisational. Temples rarely look like temples. Clergy change their methods constantly by principle. Followers are expected to question comfortable assumptions, disrupt stagnant situations, and accept that their own disruptions will sometimes produce consequences they didn't intend. That's the point. Carix asks only that followers remain honest about what they're doing and why.",
+    "known_followers": [],
+    "notes": "Carix and Veleth are often found working adjacent to each other — disruption frequently reveals buried feeling, and honest connection frequently disrupts comfortable arrangements. Their clergy have a complicated relationship that mostly manifests as mutual exasperated respect. Carix is present in every moment someone does the unexpected thing for the right reason."
   }
 ]

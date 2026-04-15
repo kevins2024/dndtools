@@ -1865,7 +1865,7 @@
         "uses_current": null
       },
       {
-        "name": "Stone's Endurance (Goliath)",
+        "name": "Fire's Burn (Goliath)",
         "type": "feature",
         "action_type": "reaction",
         "recharge": "short_rest",
@@ -2167,5 +2167,556 @@
     "active_effects": [],
     "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form — Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required.",
     "id": "characters_15"
+  },
+  {
+    "name": "Revven",
+    "full_name": "Revven Ashveil",
+    "race": "Half-Elf",
+    "class": "Cleric",
+    "subclass": "Tempest Domain",
+    "level": 7,
+    "appearance": "Very elven facial features — high cheekbones, slightly pointed ears, large expressive eyes the color of storm clouds. Pale gold-olive skin. Curly red-orange hair that refuses to be tamed, currently losing a battle with a leather cord trying to hold it back. Slight build that looks younger than it is. Moves with the impulsive energy of someone whose body acts before his mind finishes the thought. His medium chain-mail armor is a dark amber metallic color with small fabric swatches of pale blue.",
+    "image": "",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": "wis",
+    "stat_str": 10,
+    "stat_dex": 12,
+    "stat_con": 16,
+    "stat_int": 13,
+    "stat_wis": 19,
+    "stat_cha": 16,
+    "hp_max": 52,
+    "hp_current": 52,
+    "personality_traits": "Born wise, still young. Makes brilliant observations and terrible decisions sometimes in the same breath. Leads with his heart in every situation — professional, personal, spiritual. Veleth's influence means he reads emotional undercurrents in rooms better than most twice his age. Hormones and wisdom are currently negotiating a truce with mixed results.",
+    "personality_quirks": "Gets visibly flustered when attracted to someone and then says something deeply insightful immediately after. Calls lightning storms beautiful even when they're dangerous. Has strong opinions about what people actually mean versus what they say. Grew up around humans which means he has human impatience in an almost-elven body.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": [
+      "Insight",
+      "Medicine",
+      "Persuasion",
+      "Religion",
+      "Perception"
+    ],
+    "expertise": [],
+    "languages": ["Common", "Elvish", "Celestial"],
+    "features": [
+      {
+        "name": "Wrath of the Storm — reaction: when hit by attacker within 5ft, deal 2d8 lightning or thunder damage (DEX save for half)",
+        "type": "feature"
+      },
+      {
+        "name": "Destructive Wrath — Channel Divinity: maximize lightning or thunder damage instead of rolling",
+        "type": "feature"
+      },
+      {
+        "name": "Thunderbolt Strike — when dealing lightning damage to Large or smaller creature, push them up to 10ft",
+        "type": "feature"
+      },
+      {
+        "name": "Channel Divinity: Turn Undead",
+        "type": "feature"
+      },
+      {
+        "name": "Blessed Strikes — once per turn add 1d8 radiant damage to weapon attack or cantrip",
+        "type": "feature"
+      },
+      {
+        "name": "Fey Ancestry — advantage vs charm, immune to magical sleep",
+        "type": "feature"
+      }
+    ],
+    "spells": [
+      {
+        "name": "Thunderwave",
+        "level": 1,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Fog Cloud",
+        "level": 1,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Gust of Wind",
+        "level": 2,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Shatter",
+        "level": 2,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Call Lightning",
+        "level": 3,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Sleet Storm",
+        "level": 3,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Control Water",
+        "level": 4,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Ice Storm",
+        "level": 4,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Destructive Wave",
+        "level": 5,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Insect Plague",
+        "level": 5,
+        "prepared": true,
+        "type": "domain"
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Sanctuary",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Charm Person",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Fast Friends",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Lesser Restoration",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silence",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mass Healing Word",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Remove Curse",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Sending",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Death Ward",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Greater Restoration",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Sacred Flame",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Toll the Dead",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Thaumaturgy",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
+    ],
+    "items": [
+      {
+        "name": "Stormsplit",
+        "type": "weapon",
+        "notes": "Appears as a +2 flail dealing radiant damage. When the handle is rubbed the chain straightens into a +2 morningstar dealing lightning damage instead. Switching between forms takes a bonus action. Named Stormsplit by Revven himself the day he received it."
+      },
+      {
+        "name": "Medium Armor",
+        "type": "armor",
+        "notes": "Chain shirt currently. Practical, unglamorous, has a dent he keeps meaning to have fixed."
+      }
+    ],
+    "deity": "Veleth",
+    "active_effects": [],
+    "notes": "First met Vaz through Torven's temple referral while investigating three missing girls in Argentveil's eastern market district. The investigation and its resolution confirmed what he already suspected — his calling is in the world, not the temple. May be on a path toward becoming the first paladin of Veleth, though he doesn't know this yet.",
+    "id": "characters_17"
+  },
+  {
+    "name": "Elucyne",
+    "full_name": "Elucyne Varas",
+    "race": "Tiefling",
+    "class": "Ranger / Rogue / Fighter",
+    "subclass": "Gloom Stalker / Assassin / Champion",
+    "level": 7,
+    "class_breakdown": "4 Gloom Stalker Ranger / 1 Assassin Rogue / 2 Champion Fighter",
+    "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns — not decorative, real, and striking enough that she's learned to use the moment people realize it. Symmetrical darker purple markings on both shoulders, somewhere between tattoos and birthmarks. Moves with the fluid ease of a performer who learned survival as a second language.",
+    "image": "",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": null,
+    "stat_str": 10,
+    "stat_dex": 20,
+    "stat_con": 14,
+    "stat_int": 13,
+    "stat_wis": 12,
+    "stat_cha": 18,
+    "hp_max": 52,
+    "hp_current": 52,
+    "personality_traits": "Fundamentally joyful in a way that isn't performance — it's just how she's built. Bounces back from setbacks in seconds. Jokes constantly, including at inappropriate moments, including about herself. When she performs she becomes something more focused and serious without losing the warmth underneath. Two years of hard living in rough parts of cities haven't dented the essential bubbly quality, they've just added texture to it.",
+    "personality_quirks": "Never surprised for more than two seconds. Never sad for more than two seconds either — not because she's suppressing it but because she genuinely processes and moves on faster than most people. Makes friends with everyone in a room within twenty minutes. Has strong opinions about food. The gilded horns are real and she absolutely uses the moment people realize that.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["dex", "str"],
+    "skill_proficiencies": [
+      "Stealth",
+      "Perception",
+      "Acrobatics",
+      "Performance",
+      "Deception",
+      "Survival",
+      "Athletics"
+    ],
+    "expertise": ["Stealth", "Performance"],
+    "languages": [
+      "Common",
+      "Infernal",
+      "one additional from southeastern region"
+    ],
+    "features": [
+      {
+        "name": "Dread Ambusher — +4 initiative, first turn extra attack, extra 1d8 damage on first hit",
+        "type": "feature"
+      },
+      {
+        "name": "Umbral Sight — 60ft darkvision, invisible to darkvision while in darkness",
+        "type": "feature"
+      },
+      {
+        "name": "Iron Mind — proficiency in WIS saves",
+        "type": "feature"
+      },
+      {
+        "name": "Stalker's Flurry — once per turn when missing an attack, make another attack immediately",
+        "type": "feature"
+      },
+      {
+        "name": "Sneak Attack 1d6",
+        "type": "feature"
+      },
+      {
+        "name": "Assassinate — advantage on attacks against creatures that haven't taken a turn, auto-crit on surprised creatures",
+        "type": "feature"
+      },
+      {
+        "name": "Cunning Action — hide, dash, or disengage as bonus action",
+        "type": "feature"
+      },
+      {
+        "name": "Second Wind — bonus action regain 1d10 + fighter level HP once per short rest",
+        "type": "feature"
+      },
+      {
+        "name": "Improved Critical — crit on 19-20",
+        "type": "feature"
+      },
+      {
+        "name": "Favored Enemy — humanoids",
+        "type": "feature"
+      },
+      {
+        "name": "Natural Explorer — urban and underground terrain",
+        "type": "feature"
+      },
+      {
+        "name": "Mindfind — once per day, concentrate for 30 seconds to locate a specific person or object she has personal connection to within one mile. Returns general direction and distance only. Requires having met the person or touched the object previously.",
+        "type": "feature"
+      },
+      {
+        "name": "Hellish Resistance — resistance to fire damage",
+        "type": "feature"
+      },
+      {
+        "name": "Infernal Legacy — can cast Thaumaturgy cantrip at will",
+        "type": "feature"
+      }
+    ],
+    "spells": [
+      {
+        "name": "Thaumaturgy",
+        "level": 0,
+        "prepared": true,
+        "type": "racial"
+      },
+      {
+        "name": "Fog Cloud",
+        "level": 1,
+        "prepared": true,
+        "type": "ranger"
+      },
+      {
+        "name": "Rope Trick",
+        "level": 2,
+        "prepared": true,
+        "type": "ranger"
+      },
+      {
+        "name": "Fear",
+        "level": 3,
+        "prepared": true,
+        "type": "ranger"
+      }
+    ],
+    "items": [
+      {
+        "name": "Hand Crossbow +2",
+        "type": "weapon",
+        "notes": "Primary ranged weapon. The one from Torvaine's shop — roots target on hit once per turn instead of dealing damage."
+      },
+      {
+        "name": "Trident",
+        "type": "weapon",
+        "notes": "Preferred melee weapon. Can be thrown. Suits her performance background — dramatic without being impractical."
+      },
+      {
+        "name": "Ring of Lightning Resistance",
+        "type": "wondrous",
+        "notes": "Recovered from Darrock Wilnkarn's lockbox. Hers originally, taken when she was first approached two years ago."
+      },
+      {
+        "name": "Leather Armor +1",
+        "type": "armor",
+        "notes": "Good quality, worn in, acquired during the two years running."
+      }
+    ],
+    "active_effects": [],
+    "notes": "Tiefling entertainer from southeast of Argentveil, region not yet fully mapped. Spent two years running from Darrock Wilnkarn who wanted to use her Mindfind ability. During that time developed significant survival and stealth capabilities in rough urban environments. Her Gloom Stalker abilities emerged from circus and traveling performance background adapted to harder circumstances. Exceptional performer — fire manipulation is her signature act, the gilded horns her signature look. Recovered her lightning resistance ring from Darrock's lockbox. Cooks exceptionally well, southern technique, grows a specific herb on her window ledge that doesn't quite thrive in Argentveil's light.",
+    "id": "characters_16"
+  },
+  {
+    "name": "Sorra",
+    "full_name": "Oul'sorra'i",
+    "race": "Human",
+    "class": "Bard",
+    "subclass": "College of Spirits",
+    "level": 7,
+    "appearance": "Dark skin, silver hair worn loose, moves with the quality of someone whose dance never fully stops even when standing still. Composed beauty that has stopped surprising her. Eyes that sit with things longer than most people are comfortable with.",
+    "image": "",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": "cha",
+    "stat_str": 10,
+    "stat_dex": 16,
+    "stat_con": 14,
+    "stat_int": 14,
+    "stat_wis": 16,
+    "stat_cha": 20,
+    "hp_max": 44,
+    "hp_current": 44,
+    "personality_traits": "Still where Elucyne is bubbly. Sits with things before responding. Reads rooms the way she reads music — feeling what wants to be expressed before deciding what to do about it. Seems like she knows something she isn't saying. Sometimes she does.",
+    "personality_quirks": "The dance never fully stops. Responds to genuine music or genuine emotion the way plants respond to light — automatically, completely, without deciding to. Has never stayed anywhere longer than she felt like staying. May be reconsidering that.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["dex", "cha"],
+    "skill_proficiencies": [
+      "Performance",
+      "Insight",
+      "Persuasion",
+      "History",
+      "Perception",
+      "Medicine"
+    ],
+    "expertise": ["Performance", "Insight"],
+    "languages": ["Common", "Elvish", "southeastern regional language"],
+    "features": [
+      {
+        "name": "Bardic Inspiration d8 — 5 per long rest",
+        "type": "feature"
+      },
+      {
+        "name": "Jack of All Trades",
+        "type": "feature"
+      },
+      {
+        "name": "Song of Rest d8",
+        "type": "feature"
+      },
+      {
+        "name": "Spiritual Focus — use musical instrument as spellcasting focus, add 1d6 to healing or damage rolls once per turn when using it",
+        "type": "feature"
+      },
+      {
+        "name": "Tales from Beyond — use Bardic Inspiration to channel spirit tales, producing random effects from a table of narrative-based magical outcomes",
+        "type": "feature"
+      },
+      {
+        "name": "Spirit Session — ritual to commune with spirits, gain access to additional spells temporarily based on the spirits contacted",
+        "type": "feature"
+      },
+      {
+        "name": "Countercharm",
+        "type": "feature"
+      },
+      {
+        "name": "Magical Secrets — two spells from any class",
+        "type": "feature"
+      }
+    ],
+    "spells": [
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dissonant Whispers",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silvery Barbs",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Calm Emotions",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Detect Thoughts",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Invisibility",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Speak with Dead",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dimension Door",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Greater Invisibility",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Animate Objects",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Vicious Mockery",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Counterspell",
+        "level": null,
+        "prepared": true,
+        "type": "magical_secret"
+      },
+      {
+        "name": "Revivify",
+        "level": null,
+        "prepared": true,
+        "type": "magical_secret"
+      }
+    ],
+    "active_effects": [],
+    "notes": "From southeastern region same general area as Elucyne, specific location unmapped. Three months in Argentveil when she joined. The circus was passing through and she stayed because the city felt right. Occasional performer at better establishments and taverns alike. Responded to Lexica's playing of the unknown instrument at the festival circus by dancing — not choreographed, just responsive. That's what she does. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear. She has no instrument but inspires with body.",
+    "id": "characters_18"
   }
 ]
