@@ -60,6 +60,20 @@
       "amount_max": 350,
       "frequency": "weekly",
       "notes": ""
+    },
+    {
+      "source": "Ravenquay Docks Warehouse",
+      "amount_min": 50,
+      "amount_max": 60,
+      "frequency": "weekly",
+      "notes": "10% yield on estimated 4,000-5,000g property value. Morrow and Selt as tenants."
+    },
+    {
+      "source": "Khemrise Ostwick Townhouse",
+      "amount_min": 75,
+      "amount_max": 85,
+      "frequency": "weekly",
+      "notes": "10% yield on estimated 6,000-7,000g property value. Tailor's workshop as tenant."
     }
   ],
   "expenses": [

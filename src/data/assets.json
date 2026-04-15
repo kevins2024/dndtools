@@ -125,8 +125,6 @@
     "district": null,
     "status": "operational",
     "ownership": "Dawn Blades",
-    "weekly_income_min": 15,
-    "weekly_income_max": 25,
     "notes": "Real wool trading operation with genuine clients and good regional reputation. Just getting rebuilt as a new brand, will increase as it grows. Harwick managing with Rendwick offering contacts."
   },
   {
@@ -138,8 +136,6 @@
     "district": null,
     "status": "operational",
     "ownership": "Dawn Blades own the building, Prestiria Filas operates",
-    "weekly_income_min": 24,
-    "weekly_income_max": 24,
     "notes": "Real apothecary, legitimate pharmacist Prestiria Filas. Solid client base, real medicines. Tova handled ownership transition professionally. Supplier relationship with Trevash herb merchant."
   },
   {
@@ -260,5 +256,31 @@
     "ownership": "Dawn Blades, purchased from Drevorn estate",
     "acquisition_cost": 35000,
     "notes": "Three levels, each smaller than the last due to decks and balconies built over rooms below. Eight bedrooms, two large reception rooms, central courtyard with dry fountain fed by rooftop cistern system. Staff quarters in east wing, six rooms. Kitchen large and well positioned. Stone construction throughout, structurally sound. Walled and gated on two sides, cliff edge on the other two — natural defensibility. Gardens overgrown but intentionally preserved where possible, wild growth to be shaped rather than cleared. Original Drevorn family home, neighborhood landmark. Fountain mechanism blocked by sediment, two to three hours work to restore. Teleportation circle to be established here. Sivenne Althar appointed house steward. Restoration architect Duvaine contacted via Hallan. Former most prestigious address on the cliff line, restoration will be noticed by neighbors."
+  },
+  {
+    "id": "assets_22",
+    "name": "Ravenquay Docks Warehouse",
+    "type": "real_estate",
+    "subtype": "warehouse",
+    "location": "Ravenquay",
+    "district": "Docks Ward",
+    "status": "operational",
+    "ownership": "Dawn Blades",
+    "estimated_value_min": 4000,
+    "estimated_value_max": 5000,
+    "notes": "Morrow and Selt staying as tenants."
+  },
+  {
+    "id": "assets_23",
+    "name": "Khemrise Ostwick Townhouse",
+    "type": "real_estate",
+    "subtype": "townhouse",
+    "location": "Khemrise",
+    "district": "Merchant Quarter",
+    "status": "operational",
+    "ownership": "Dawn Blades",
+    "estimated_value_min": 6000,
+    "estimated_value_max": 7000,
+    "notes": "Tailor's workshop staying as tenant. Formerly Ostwick family property."
   }
 ]
