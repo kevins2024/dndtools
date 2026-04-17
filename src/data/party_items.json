@@ -2147,5 +2147,74 @@
     "charges_recharge": "daily",
     "effect": "1 charge: cast Alter Self without concentration — change appearance, gain natural weapons, or adapt to aquatic environments including water breathing and swim speed, lasts 1 hour. 2 charges: cast Polymorph on yourself only. 3 charges: cast Gaseous Form.",
     "notes": ""
+  },
+  {
+    "name": "Hand Crossbow +2",
+    "type": "weapon",
+    "equipped_by": "Elucyne",
+    "carried_by": null,
+    "notes": "Primary ranged weapon. The one from Torvaine's shop — can root target on hit once per turn instead of dealing damage."
+  },
+  {
+    "name": "Trident",
+    "type": "weapon",
+    "equipped_by": "Elucyne",
+    "carried_by": null,
+    "notes": "Preferred melee weapon. Can be thrown. Suits her performance background — dramatic without being impractical."
+  },
+  {
+    "name": "Ring of Lightning Resistance",
+    "type": "wondrous",
+    "equipped_by": "Elucyne",
+    "carried_by": null,
+    "notes": "Recovered from Darrock Wilnkarn's lockbox. Hers originally, taken when she was first approached two years ago."
+  },
+  {
+    "name": "Leather Armor +1",
+    "type": "armor",
+    "equipped_by": "Elucyne",
+    "carried_by": null,
+    "notes": "Good quality, worn in."
+  },
+  {
+    "name": "Stormsplit",
+    "type": "weapon",
+    "equipped_by": "Revven",
+    "carried_by": null,
+    "finesse": false,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "notes": "Appears as a +2 flail dealing radiant damage. When the handle is rubbed the chain straightens into a +2 morningstar dealing lightning damage instead. Switching between forms takes a bonus action. Named Stormsplit by Revven himself the day he received it."
+  },
+  {
+    "name": "Medium Armor",
+    "type": "armor",
+    "equipped_by": "Revven",
+    "carried_by": null,
+    "notes": "Chain shirt currently. Practical, unglamorous, has a dent he keeps meaning to have fixed."
+  },
+  {
+    "name": "Warhammer",
+    "type": "weapon",
+    "equipped_by": "Ferghus",
+    "carried_by": null,
+    "finesse": false,
+    "damage_dice": "1d10",
+    "magic_bonus": 0,
+    "notes": "Primary weapon. Well used, well maintained."
+  },
+  {
+    "name": "Shield",
+    "type": "armor",
+    "equipped_by": "Ferghus",
+    "carried_by": null,
+    "notes": "Standard issue. Has a dent he hasn't mentioned to anyone."
+  },
+  {
+    "name": "Half Plate",
+    "type": "armor",
+    "equipped_by": "Ferghus",
+    "carried_by": null,
+    "notes": "Practical. Nothing decorative about it."
   }
 ]

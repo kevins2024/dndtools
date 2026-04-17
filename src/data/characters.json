@@ -6,7 +6,7 @@
     "race": "Silver Dragonborn",
     "class": "Fighter",
     "subclass": "Battle Master",
-    "level": 7,
+    "level": 8,
     "appearance": "silver dragonborn, lean athletic build, deliberate grace, purple eyes. Wyvern Scale Coat catches light distinctively.",
     "image": "https://iili.io/q8iJoiv.jpg",
     "proficiency_bonus": 3,
@@ -18,8 +18,8 @@
     "stat_int": 12,
     "stat_wis": 10,
     "stat_cha": 14,
-    "hp_max": 57,
-    "hp_current": 57,
+    "hp_max": 70,
+    "hp_current": 70,
     "personality_traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
     "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try.",
     "unarmored_ac_formula": "default",
@@ -82,6 +82,14 @@
         "uses_current": null
       },
       {
+        "name": "Sentinel — hit creature with OA reduces speed to 0; can make OA against creatures attacking nearby allies",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
         "name": "Disarming Attack",
         "type": "maneuver",
         "action_type": null,
@@ -124,7 +132,7 @@
     "race": "Half-Orc",
     "class": "Barbarian",
     "subclass": "Berserker",
-    "level": 7,
+    "level": 8,
     "appearance": "half-orc woman, powerfully built, greenish-brown skin, dark hair kept practically short, brown eyes, lower jaw tusks (modest, not dramatic). Scars she doesn't explain.",
     "image": "https://iili.io/qgnHUXa.png",
     "proficiency_bonus": 3,
@@ -136,8 +144,8 @@
     "stat_int": 10,
     "stat_wis": 10,
     "stat_cha": 8,
-    "hp_max": 79,
-    "hp_current": 79,
+    "hp_max": 91,
+    "hp_current": 91,
     "personality_traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
     "personality_quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it.",
     "unarmored_ac_formula": "default",
@@ -152,7 +160,7 @@
     "languages": ["Common", "Orc"],
     "features": [
       {
-        "name": "Rage 3/day",
+        "name": "Rage 4/day",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -206,6 +214,14 @@
         "recharge": null,
         "uses_max": null,
         "uses_current": null
+      },
+      {
+        "name": "Great Weapon Master — on crit or kill, bonus action attack; optional -5 to hit for +10 damage",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [],
@@ -218,7 +234,7 @@
     "race": "Human",
     "class": "Rogue",
     "subclass": "Assassin",
-    "level": 7,
+    "level": 8,
     "appearance": "olive skin, medium build, forgettable by design, brown hair, neutral features, clothes chosen for function.",
     "image": "https://iili.io/q8iHiKl.jpg",
     "proficiency_bonus": 3,
@@ -230,8 +246,8 @@
     "stat_int": 12,
     "stat_wis": 14,
     "stat_cha": 10,
-    "hp_max": 46,
-    "hp_current": 46,
+    "hp_max": 48,
+    "hp_current": 48,
     "personality_traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
     "personality_quirks": "Was gone before anyone saw her leave. Private relationship with her blades.",
     "unarmored_ac_formula": "default",
@@ -248,7 +264,7 @@
     "languages": ["Common", "Thieves Cant"],
     "features": [
       {
-        "name": "Sneak Attack 4d6",
+        "name": "Sneak Attack 5d6",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -286,6 +302,14 @@
         "recharge": null,
         "uses_max": null,
         "uses_current": null
+      },
+      {
+        "name": "Shadow Touched — Invisibility 1/day; Inflict Wounds 1/day (1st level spell, no slot required)",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [],
@@ -298,7 +322,7 @@
     "race": "Gnome",
     "class": "Artificer",
     "subclass": "Alchemist",
-    "level": 7,
+    "level": 8,
     "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
     "image": "https://iili.io/qguKsjf.jpg",
     "proficiency_bonus": 3,
@@ -308,10 +332,10 @@
     "stat_dex": 12,
     "stat_con": 19,
     "stat_int": 20,
-    "stat_wis": 12,
+    "stat_wis": 13,
     "stat_cha": 10,
-    "hp_max": 46,
-    "hp_current": 46,
+    "hp_max": 50,
+    "hp_current": 50,
     "personality_traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
     "personality_quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity.",
     "unarmored_ac_formula": "default",
@@ -343,7 +367,7 @@
         "uses_current": null
       },
       {
-        "name": "Alchemical Savant",
+        "name": "Alchemical Savant — add INT mod to one damage roll (acid, fire, necrotic, or poison) or healing per spell",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -365,6 +389,14 @@
         "recharge": null,
         "uses_max": null,
         "uses_current": null
+      },
+      {
+        "name": "Fey Touched — +1 WIS (13), Misty Step 1/day, Command 1/day (no spell slot required)",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [],
@@ -377,20 +409,20 @@
     "race": "Human",
     "class": "Wizard",
     "subclass": "Evocation",
-    "level": 7,
+    "level": 8,
     "appearance": "human man, late thirties, amber robes with darker trim, simple cut. Looks like a traveler, life has shown on his face. Carries himself better than he used to but the wear is still visible.",
     "image": "https://iili.io/q8iHyVj.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "",
+    "notes": "Spell slots at level 8: 4/3/3/3/2. Metamagic Adept gives 2 sorcery points per long rest — Empowered Spell (1 point: reroll up to INT mod damage dice) or Quickened Spell (2 points: cast leveled spell as bonus action). Reformed gambling addict.",
     "stat_str": 10,
     "stat_dex": 12,
     "stat_con": 13,
     "stat_int": 20,
     "stat_wis": 12,
     "stat_cha": 12,
-    "hp_max": 38,
-    "hp_current": 38,
+    "hp_max": 43,
+    "hp_current": 43,
     "personality_traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
     "personality_quirks": "Reviews spellbook before significant encounters. Reformed gambling addict.",
     "unarmored_ac_formula": "default",
@@ -416,6 +448,14 @@
       {
         "name": "Potent Cantrip (cantrip saves deal half on success)",
         "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Metamagic Adept — Empowered Spell (1 sorcery point: reroll up to 5 damage dice, keep new results) and Quickened Spell (2 sorcery points: cast leveled spell as bonus action); 2 sorcery points per long rest",
+        "type": "feat",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
@@ -456,6 +496,12 @@
       {
         "name": "Identify",
         "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hold Person",
+        "level": 2,
         "prepared": true,
         "type": "prepared"
       },
@@ -556,6 +602,12 @@
         "type": "prepared"
       },
       {
+        "name": "Conjure Elemental",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
         "name": "Fire Bolt",
         "level": 0,
         "prepared": true,
@@ -595,20 +647,20 @@
     "race": "Elf",
     "class": "Wizard",
     "subclass": "Bladesinger",
-    "level": 7,
+    "level": 8,
     "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant — light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it — it's a distraction and she knows it.",
     "image": "https://iili.io/q8iHZH7.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "",
+    "notes": "AC setup: Mage Armor (13 + DEX 5 = 18) + Bracers of Defense (+2) = 20 base. Bladesong active adds INT mod (+5) = 25 AC. Bracers of Defense compatible with Mage Armor (spell, not armor). Spell slots at level 8: 4/3/3/3/2. SHOPPING: mage robes (non-armor), +1 or +2 rapier or dancing sword.",
     "stat_str": 10,
-    "stat_dex": 18,
+    "stat_dex": 20,
     "stat_con": 13,
     "stat_int": 20,
     "stat_wis": 12,
     "stat_cha": 12,
-    "hp_max": 42,
-    "hp_current": 42,
+    "hp_max": 49,
+    "hp_current": 49,
     "personality_traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
     "personality_quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked.",
     "unarmored_ac_formula": "default",
@@ -650,6 +702,12 @@
     ],
     "spells": [
       {
+        "name": "Booming Blade",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
         "name": "Ray of Frost",
         "level": 0,
         "prepared": true,
@@ -668,62 +726,122 @@
         "type": "cantrip"
       },
       {
+        "name": "Mage Armor",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
         "name": "Shield",
-        "level": null,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Blur",
-        "level": null,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Mirror Image",
-        "level": null,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Misty Step",
-        "level": null,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Haste",
-        "level": null,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Counterspell",
-        "level": null,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Shadow Blade",
-        "level": null,
+        "level": 1,
         "prepared": true,
         "type": "prepared"
       },
       {
         "name": "Silvery Barbs",
-        "level": null,
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Absorb Elements",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Feather Fall",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Blur",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mirror Image",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Shadow Blade",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "See Invisibility",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Intellect Fortress",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Counterspell",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Haste",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Pulse Wave",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Vampiric Touch",
+        "level": 3,
         "prepared": true,
         "type": "prepared"
       },
       {
         "name": "Dimension Door",
-        "level": null,
+        "level": 4,
         "prepared": true,
         "type": "prepared"
       },
       {
         "name": "Greater Invisibility",
-        "level": null,
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Cone of Cold",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Telekinesis",
+        "level": 5,
         "prepared": true,
         "type": "prepared"
       }
@@ -737,20 +855,20 @@
     "race": "Human",
     "class": "Cleric",
     "subclass": "Life Domain",
-    "level": 7,
+    "level": 8,
     "appearance": "small human woman, curly brown hair with flowers in it, unrealistically green eyes, moves like water, expressions change faster than conversations.",
     "image": "https://iili.io/q8iJ2UB.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "wis",
-    "notes": "Partial fluency in Sovi's southern language — historically significant.",
+    "notes": "Partial fluency in Sovi's southern language — historically significant. Clerics prepare spells daily from full list — Life Domain spells always prepared. SHOPPING: new armor (half plate or breastplate minimum, ideally magical with WIS bonus). Inspiring Leader: 10 min speech, up to 6 allies gain 11 temp HP (level 8 + CHA mod 3).",
     "stat_str": 10,
     "stat_dex": 10,
     "stat_con": 14,
     "stat_int": 12,
     "stat_wis": 20,
     "stat_cha": 16,
-    "hp_max": 53,
-    "hp_current": 53,
+    "hp_max": 59,
+    "hp_current": 59,
     "personality_traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
     "personality_quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace.",
     "unarmored_ac_formula": "default",
@@ -790,8 +908,24 @@
         "uses_current": null
       },
       {
-        "name": "Inspiring Leader",
+        "name": "Inspiring Leader — 10 min speech grants up to 6 allies 11 temp HP (level + CHA mod)",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Divine Strike — once per turn add 1d8 radiant damage to a weapon attack",
         "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "War Caster — advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
+        "type": "feat",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
@@ -832,21 +966,21 @@
     "full_name": "Pirra",
     "race": "Halfling",
     "class": "Rogue",
-    "subclass": null,
-    "level": 7,
+    "subclass": "Inquisitive",
+    "level": 8,
     "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood — the resemblance is purely in the intelligence and awareness.",
     "image": "https://iili.io/q8iJqDg.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": null,
-    "notes": "",
+    "notes": "Passive Perception 20 (10 + WIS mod 2 + proficiency 3 + Observant 5). Passive Investigation similarly exceptional. Excellent sub-team perception anchor.",
     "stat_str": 8,
     "stat_dex": 20,
     "stat_con": 12,
     "stat_int": 13,
-    "stat_wis": 14,
+    "stat_wis": 15,
     "stat_cha": 12,
-    "hp_max": 38,
-    "hp_current": 38,
+    "hp_max": 41,
+    "hp_current": 41,
     "personality_traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
     "personality_quirks": "Helena's niece — the family resemblance is in the intelligence, not the features.",
     "unarmored_ac_formula": "default",
@@ -862,7 +996,7 @@
     "languages": ["Common", "Halfling"],
     "features": [
       {
-        "name": "Sneak Attack 4d6",
+        "name": "Sneak Attack 5d6",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -884,6 +1018,54 @@
         "recharge": null,
         "uses_max": null,
         "uses_current": null
+      },
+      {
+        "name": "Ear for Deceit — minimum roll of 8 on Insight checks (Inquisitive)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Eye for Detail — bonus action to make Perception or Investigation check (Inquisitive)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Insightful Fighting — bonus action Insight check vs target's Deception; on success can Sneak Attack without needing advantage or ally adjacent (Inquisitive)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Steady Eye — advantage on Perception and Investigation if you don't move that turn (Inquisitive)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Unerring Eye — detect illusions, shapechangers, and magical concealment within 30ft (Inquisitive)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Observant — +5 passive Perception and Investigation; +1 WIS; can lip read",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [],
@@ -896,20 +1078,21 @@
     "race": "Human",
     "class": "Warlock/Fighter",
     "subclass": "Great Old One / Champion",
-    "level": 7,
+    "level": 8,
+    "class_breakdown": "4 Fighter / 4 Warlock",
     "appearance": "human woman with distant orcish heritage — quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
     "image": "https://iili.io/q8iHLSS.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "cha",
-    "notes": "",
+    "notes": "Lore: was a Fighter first, became a Warlock through a Great Old One encounter. Correct progression: 4 Fighter / 4 Warlock. Warlock spell slots: 3 slots of 2nd level, recharge on short rest. Thirsting Blade and Eldritch Smite removed — requires Warlock 5. Roadmap: next 4 levels into Warlock to reach level 5 (Thirsting Blade + Eldritch Smite legitimately) then 6, 7, 8. Target build level 12: 4 Fighter / 8 Warlock. Combat identity now: STR melee pact weapon + Shadow of Moil + Devil's Sight darkness combo. Eyes of the Rune Keeper — has been quietly reading things she shouldn't for years, never mentioned it.",
     "stat_str": 20,
     "stat_dex": 12,
     "stat_con": 14,
     "stat_int": 12,
     "stat_wis": 10,
-    "stat_cha": 14,
-    "hp_max": 52,
-    "hp_current": 52,
+    "stat_cha": 16,
+    "hp_max": 56,
+    "hp_current": 56,
     "personality_traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
     "personality_quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
     "unarmored_ac_formula": "default",
@@ -927,7 +1110,23 @@
         "uses_current": null
       },
       {
-        "name": "Extra Attack (via Thirsting Blade)",
+        "name": "Second Wind",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Action Surge",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Improved Critical — crits on 19-20 (Champion Fighter 3)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -935,32 +1134,24 @@
         "uses_current": null
       },
       {
-        "name": "Agonizing Blast",
-        "type": "feature",
+        "name": "Agonizing Blast — add CHA mod to Eldritch Blast damage",
+        "type": "invocation",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
         "uses_current": null
       },
       {
-        "name": "Eldritch Smite",
-        "type": "feature",
+        "name": "Devil's Sight — see normally in magical and nonmagical darkness to 120ft; pairs with Shadow of Moil",
+        "type": "invocation",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
         "uses_current": null
       },
       {
-        "name": "Thirsting Blade",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Eyes of the Rune Keeper (reads any written language — has been doing so quietly for years, never mentioned it)",
-        "type": "feature",
+        "name": "Eyes of the Rune Keeper — read any written language; has been doing so quietly for years, never mentioned it",
+        "type": "invocation",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
@@ -970,85 +1161,85 @@
     "spells": [
       {
         "name": "Dissonant Whispers",
-        "level": null,
+        "level": 1,
         "prepared": true,
         "type": "patron"
       },
       {
         "name": "Tasha's Hideous Laughter",
-        "level": null,
+        "level": 1,
         "prepared": true,
         "type": "patron"
       },
       {
         "name": "Detect Thoughts",
-        "level": null,
+        "level": 2,
         "prepared": true,
         "type": "patron"
       },
       {
         "name": "Phantasmal Force",
-        "level": null,
+        "level": 2,
         "prepared": true,
         "type": "patron"
       },
       {
         "name": "Clairvoyance",
-        "level": null,
+        "level": 3,
         "prepared": true,
         "type": "patron"
       },
       {
         "name": "Sending",
-        "level": null,
+        "level": 3,
         "prepared": true,
         "type": "patron"
       },
       {
         "name": "Eldritch Blast",
-        "level": null,
+        "level": 0,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Hex",
-        "level": null,
+        "level": 1,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Hunger of Hadar",
-        "level": null,
+        "level": 3,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Shadow of Moil",
-        "level": null,
+        "level": 4,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Banishment",
-        "level": null,
+        "level": 4,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Misty Step",
-        "level": null,
+        "level": 2,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Armor of Agathys",
-        "level": null,
+        "level": 1,
         "prepared": true,
         "type": "chosen"
       },
       {
         "name": "Hold Monster",
-        "level": null,
+        "level": 5,
         "prepared": true,
         "type": "chosen"
       }
@@ -1061,21 +1252,21 @@
     "full_name": "Siv Ravencroft",
     "race": "Human",
     "class": "Fighter",
-    "subclass": "Champion",
-    "level": 7,
+    "subclass": "Scout",
+    "level": 8,
     "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
     "image": "https://iili.io/q8iJnWJ.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": null,
-    "notes": "",
+    "notes": "Movement: 50ft total (30 base + 10 Superior Mobility + 10 Mobile feat). Mobile feat: no opportunity attacks from creatures she attacks. Ambush Master: advantage on initiative; first creature hit grants all allies advantage on attacks against it that turn.",
     "stat_str": 12,
     "stat_dex": 20,
     "stat_con": 14,
     "stat_int": 10,
     "stat_wis": 12,
     "stat_cha": 10,
-    "hp_max": 52,
-    "hp_current": 52,
+    "hp_max": 56,
+    "hp_current": 56,
     "personality_traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
     "personality_quirks": "Equal shares per job — a principle, not a preference.",
     "unarmored_ac_formula": "default",
@@ -1084,9 +1275,10 @@
       "Athletics",
       "Perception",
       "Survival",
-      "Acrobatics"
+      "Acrobatics",
+      "Nature"
     ],
-    "expertise": [],
+    "expertise": ["Nature", "Survival"],
     "languages": ["Common"],
     "features": [
       {
@@ -1098,7 +1290,23 @@
         "uses_current": null
       },
       {
-        "name": "Sharpshooter (ignore cover, -5/+10 option)",
+        "name": "Second Wind",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Action Surge",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Sharpshooter — ignore cover, no disadvantage at long range, optional -5 to hit for +10 damage",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1106,7 +1314,7 @@
         "uses_current": null
       },
       {
-        "name": "Archery Fighting Style (+2 to ranged attack rolls)",
+        "name": "Archery Fighting Style — +2 to ranged attack rolls",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1114,8 +1322,32 @@
         "uses_current": null
       },
       {
-        "name": "Remarkable Athlete",
+        "name": "Surveyor — expertise in Nature and Survival (Scout)",
         "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Superior Mobility — +10ft movement (Scout)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Ambush Master — advantage on initiative; first creature hit each combat grants all allies advantage on attacks against it that turn (Scout)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Mobile — +10ft speed (total 50ft); no opportunity attacks from creatures you attack this turn",
+        "type": "feat",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
@@ -1132,20 +1364,20 @@
     "race": "Half-Elf",
     "class": "Bard",
     "subclass": "College of Lore",
-    "level": 7,
+    "level": 8,
     "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't — can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
     "image": "https://iili.io/q8iJ9ix.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "cha",
-    "notes": "INT 19 from Headband of Intellect.",
+    "notes": "INT 19 from Headband of Intellect. Bardic Inspiration: 5/long rest (CHA mod). Spell slots at level 8: 4/3/3/2 plus two 4th level slots.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
     "stat_int": 19,
     "stat_wis": 12,
     "stat_cha": 20,
-    "hp_max": 44,
-    "hp_current": 44,
+    "hp_max": 48,
+    "hp_current": 48,
     "personality_traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
     "personality_quirks": "",
     "unarmored_ac_formula": "default",
@@ -1225,6 +1457,14 @@
         "recharge": null,
         "uses_max": null,
         "uses_current": null
+      },
+      {
+        "name": "War Caster — advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
+        "type": "feat",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [
@@ -1241,13 +1481,7 @@
         "type": "prepared"
       },
       {
-        "name": "Detect Magic",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Unseen Servant",
+        "name": "Silvery Barbs",
         "level": 1,
         "prepared": true,
         "type": "prepared"
@@ -1266,12 +1500,6 @@
       },
       {
         "name": "Silence",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Locate Object",
         "level": 2,
         "prepared": true,
         "type": "prepared"
@@ -1301,7 +1529,7 @@
         "type": "prepared"
       },
       {
-        "name": "Locate Creature",
+        "name": "Phantasmal Killer",
         "level": 4,
         "prepared": true,
         "type": "prepared"
@@ -1326,13 +1554,13 @@
       },
       {
         "name": "Counterspell",
-        "level": null,
+        "level": 3,
         "prepared": true,
         "type": "magical_secret"
       },
       {
         "name": "Scrying",
-        "level": null,
+        "level": 5,
         "prepared": true,
         "type": "magical_secret"
       }
@@ -1346,20 +1574,20 @@
     "race": "Human",
     "class": "Wizard",
     "subclass": "Abjuration",
-    "level": 7,
+    "level": 8,
     "appearance": "human woman, early thirties, very fair skin, pretty but doesn't invest time in accentuating it. Slight build, dark circles under watchful eyes from years of research and worry.",
     "image": "https://iili.io/q8iJJKQ.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws.",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws. Arcane Ward: 16HP max (2 x wizard level 8), recharges when casting abjuration spells. Spell save DC 16, spell attack +8. Spell slots at level 8: 4/3/3/3/2. Three years hunting answers about her brother Aldren. ITEM NOTE: Belt of Constitution available from Corwin — would bring CON from 12 to 18, strongly recommended.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
-    "stat_int": 18,
+    "stat_int": 20,
     "stat_wis": 14,
     "stat_cha": 10,
-    "hp_max": 38,
-    "hp_current": 38,
+    "hp_max": 43,
+    "hp_current": 43,
     "personality_traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
     "personality_quirks": "Three years hunting answers about her brother Aldren.",
     "unarmored_ac_formula": "default",
@@ -1375,7 +1603,7 @@
     "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
-        "name": "Arcane Ward ~14HP (recharges when casting abjuration spells)",
+        "name": "Arcane Ward 16HP (recharges when casting abjuration spells)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1559,6 +1787,18 @@
         "type": "prepared"
       },
       {
+        "name": "Synaptic Static",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mislead",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
         "name": "Mage Hand",
         "level": 0,
         "prepared": true,
@@ -1586,17 +1826,17 @@
     "race": "Human",
     "class": "Fighter",
     "subclass": "Champion",
-    "level": 7,
+    "level": 8,
     "alignment": "Lawful Neutral",
     "appearance": "Human man, late thirties. Guard bearing. Weathered, solid build.",
     "stat_str": 16,
     "stat_dex": 14,
-    "stat_con": 16,
+    "stat_con": 18,
     "stat_int": 12,
     "stat_wis": 14,
     "stat_cha": 12,
-    "hp_max": 76,
-    "hp_current": 76,
+    "hp_max": 87,
+    "hp_current": 87,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
     "saving_throws": ["str", "con"],
@@ -1621,7 +1861,7 @@
         "uses_current": null
       },
       {
-        "name": "Improved Critical",
+        "name": "Improved Critical — crits on 19-20",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1655,7 +1895,7 @@
     ],
     "spells": [],
     "active_effects": [],
-    "notes": "STR 19 from Gauntlets of Ogre Power. CON 18 from Belt of Constitution. Improved Critical — crits on 19-20. Corwin holds the Ravenquay relationship network.",
+    "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally — Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 → 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip — no retroactive level recalculation. Improved Critical — crits on 19-20. Corwin holds the Ravenquay relationship network.",
     "image": "https://iili.io/qgWY8Dx.jpg",
     "id": "characters_13"
   },
@@ -1665,14 +1905,14 @@
     "race": "Dwarf",
     "class": "Rogue",
     "subclass": "Soulknife / Mastermind",
-    "level": 7,
+    "level": 12,
     "location": "Khemrise",
     "alignment": "Chaotic Neutral",
     "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
     "image": "https://iili.io/qtjjK5N.jpg",
     "proficiency_bonus": null,
     "spellcasting_ability": null,
-    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses.",
+    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
     "stat_str": 14,
     "stat_dex": 20,
     "stat_con": 16,
@@ -1743,6 +1983,14 @@
         "recharge": null,
         "uses_max": null,
         "uses_current": null
+      },
+      {
+        "name": "Old Scores — once per session, Torrin knows someone wherever the party is. That person owes him a favor. Purely narrative — opens doors, creates opportunities. 156 years of living leaves marks everywhere.",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [],
@@ -1755,17 +2003,17 @@
     "race": "Goliath",
     "class": "Monk",
     "subclass": "Way of the Open Hand",
-    "level": 7,
+    "level": 8,
     "alignment": null,
     "appearance": "Female goliath.",
     "stat_str": 14,
     "stat_dex": 20,
     "stat_con": 16,
     "stat_int": 10,
-    "stat_wis": 18,
+    "stat_wis": 20,
     "stat_cha": 8,
-    "hp_max": 63,
-    "hp_current": 63,
+    "hp_max": 74,
+    "hp_current": 74,
     "unarmored_ac_formula": "monk",
     "proficiency_bonus": 3,
     "saving_throws": ["str", "dex"],
@@ -1817,7 +2065,7 @@
         "uses_current": null
       },
       {
-        "name": "Wholeness of Body",
+        "name": "Wholeness of Body — heals 24HP (3x monk level) once per long rest",
         "type": "feature",
         "action_type": "action",
         "recharge": "long_rest",
@@ -1873,11 +2121,11 @@
         "uses_current": 1
       }
     ],
-    "ki_points": { "max": 7, "current": 7 },
+    "ki_points": { "max": 8, "current": 8 },
     "martial_arts_die": "1d8",
     "spells": [],
     "active_effects": [],
-    "notes": "Unarmored AC = 10 + DEX mod + WIS mod. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 3x monk level (21hp) once per long rest. Stone's Endurance — reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
+    "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 16. Stunning Strike DC 16. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 24hp (3x monk level 8) once per long rest. Stone's Endurance — reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
   },
   {
     "name": "Perch",
@@ -1950,7 +2198,7 @@
     "race": "Halfling",
     "class": "Druid",
     "subclass": "Circle of Stars",
-    "level": 7,
+    "level": 8,
     "alignment": null,
     "appearance": "Male halfling.",
     "stat_str": 10,
@@ -1959,8 +2207,8 @@
     "stat_int": 12,
     "stat_wis": 22,
     "stat_cha": 12,
-    "hp_max": 63,
-    "hp_current": 63,
+    "hp_max": 72,
+    "hp_current": 72,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
     "saving_throws": ["int", "wis"],
@@ -2072,6 +2320,14 @@
         "recharge": "daily",
         "uses_max": 1,
         "uses_current": 1
+      },
+      {
+        "name": "Bountiful Luck — reaction: when any ally within 30ft rolls a natural 1 on an attack, ability check, or saving throw, they may reroll and must use the new result (Halfling racial feat)",
+        "type": "feat",
+        "action_type": "reaction",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
       }
     ],
     "spells": [
@@ -2163,9 +2419,8 @@
         "type": "prepared"
       }
     ],
-    "relationships": [],
     "active_effects": [],
-    "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form — Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required.",
+    "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form — Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required. Bountiful Luck: reaction when any ally within 30ft rolls a natural 1 — they reroll. Competes with Cosmic Omen for reaction; prioritize accordingly.",
     "id": "characters_15"
   },
   {
@@ -2174,7 +2429,7 @@
     "race": "Half-Elf",
     "class": "Cleric",
     "subclass": "Tempest Domain",
-    "level": 7,
+    "level": 8,
     "appearance": "Very elven facial features — high cheekbones, slightly pointed ears, large expressive eyes the color of storm clouds. Pale gold-olive skin. Curly red-orange hair that refuses to be tamed, currently losing a battle with a leather cord trying to hold it back. Slight build that looks younger than it is. Moves with the impulsive energy of someone whose body acts before his mind finishes the thought. His medium chain-mail armor is a dark amber metallic color with small fabric swatches of pale blue.",
     "image": "",
     "proficiency_bonus": 3,
@@ -2183,10 +2438,10 @@
     "stat_dex": 12,
     "stat_con": 16,
     "stat_int": 13,
-    "stat_wis": 19,
+    "stat_wis": 20,
     "stat_cha": 16,
-    "hp_max": 52,
-    "hp_current": 52,
+    "hp_max": 58,
+    "hp_current": 58,
     "personality_traits": "Born wise, still young. Makes brilliant observations and terrible decisions sometimes in the same breath. Leads with his heart in every situation — professional, personal, spiritual. Veleth's influence means he reads emotional undercurrents in rooms better than most twice his age. Hormones and wisdom are currently negotiating a truce with mixed results.",
     "personality_quirks": "Gets visibly flustered when attracted to someone and then says something deeply insightful immediately after. Calls lightning storms beautiful even when they're dangerous. Has strong opinions about what people actually mean versus what they say. Grew up around humans which means he has human impatience in an almost-elven body.",
     "unarmored_ac_formula": "default",
@@ -2222,59 +2477,42 @@
         "type": "feature"
       },
       {
+        "name": "Divine Strike — once per turn add 1d8 lightning or thunder damage to a weapon attack",
+        "type": "feature"
+      },
+      {
         "name": "Fey Ancestry — advantage vs charm, immune to magical sleep",
         "type": "feature"
+      },
+      {
+        "name": "Fey Touched — +1 WIS (now 20), Misty Step 1/day, Comprehend Languages 1/day (no spell slot required)",
+        "type": "feat"
       }
     ],
     "spells": [
-      {
-        "name": "Thunderwave",
-        "level": 1,
-        "prepared": true,
-        "type": "domain"
-      },
-      {
-        "name": "Fog Cloud",
-        "level": 1,
-        "prepared": true,
-        "type": "domain"
-      },
+      { "name": "Thunderwave", "level": 1, "prepared": true, "type": "domain" },
+      { "name": "Fog Cloud", "level": 1, "prepared": true, "type": "domain" },
       {
         "name": "Gust of Wind",
         "level": 2,
         "prepared": true,
         "type": "domain"
       },
-      {
-        "name": "Shatter",
-        "level": 2,
-        "prepared": true,
-        "type": "domain"
-      },
+      { "name": "Shatter", "level": 2, "prepared": true, "type": "domain" },
       {
         "name": "Call Lightning",
         "level": 3,
         "prepared": true,
         "type": "domain"
       },
-      {
-        "name": "Sleet Storm",
-        "level": 3,
-        "prepared": true,
-        "type": "domain"
-      },
+      { "name": "Sleet Storm", "level": 3, "prepared": true, "type": "domain" },
       {
         "name": "Control Water",
         "level": 4,
         "prepared": true,
         "type": "domain"
       },
-      {
-        "name": "Ice Storm",
-        "level": 4,
-        "prepared": true,
-        "type": "domain"
-      },
+      { "name": "Ice Storm", "level": 4, "prepared": true, "type": "domain" },
       {
         "name": "Destructive Wave",
         "level": 5,
@@ -2299,12 +2537,7 @@
         "prepared": true,
         "type": "prepared"
       },
-      {
-        "name": "Sanctuary",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
+      { "name": "Sanctuary", "level": 1, "prepared": true, "type": "prepared" },
       {
         "name": "Charm Person",
         "level": 1,
@@ -2323,12 +2556,7 @@
         "prepared": true,
         "type": "prepared"
       },
-      {
-        "name": "Silence",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
+      { "name": "Silence", "level": 2, "prepared": true, "type": "prepared" },
       {
         "name": "Mass Healing Word",
         "level": 3,
@@ -2341,12 +2569,7 @@
         "prepared": true,
         "type": "prepared"
       },
-      {
-        "name": "Sending",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
+      { "name": "Sending", "level": 3, "prepared": true, "type": "prepared" },
       {
         "name": "Death Ward",
         "level": 4,
@@ -2365,40 +2588,18 @@
         "prepared": true,
         "type": "cantrip"
       },
-      {
-        "name": "Guidance",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
+      { "name": "Guidance", "level": 0, "prepared": true, "type": "cantrip" },
       {
         "name": "Toll the Dead",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
       },
-      {
-        "name": "Thaumaturgy",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      }
-    ],
-    "items": [
-      {
-        "name": "Stormsplit",
-        "type": "weapon",
-        "notes": "Appears as a +2 flail dealing radiant damage. When the handle is rubbed the chain straightens into a +2 morningstar dealing lightning damage instead. Switching between forms takes a bonus action. Named Stormsplit by Revven himself the day he received it."
-      },
-      {
-        "name": "Medium Armor",
-        "type": "armor",
-        "notes": "Chain shirt currently. Practical, unglamorous, has a dent he keeps meaning to have fixed."
-      }
+      { "name": "Thaumaturgy", "level": 0, "prepared": true, "type": "cantrip" }
     ],
     "deity": "Veleth",
     "active_effects": [],
-    "notes": "First met Vaz through Torven's temple referral while investigating three missing girls in Argentveil's eastern market district. The investigation and its resolution confirmed what he already suspected — his calling is in the world, not the temple. May be on a path toward becoming the first paladin of Veleth, though he doesn't know this yet.",
+    "notes": "Spell save DC 17, spell attack +9. First met Vaz through Torven's temple referral while investigating three missing girls in Argentveil's eastern market district. The investigation and its resolution confirmed what he already suspected — his calling is in the world, not the temple. May be on a path toward becoming the first paladin of Veleth, though he doesn't know this yet.",
     "id": "characters_17"
   },
   {
@@ -2406,9 +2607,9 @@
     "full_name": "Elucyne Varas",
     "race": "Tiefling",
     "class": "Ranger / Rogue / Fighter",
-    "subclass": "Gloom Stalker / Assassin / Champion",
-    "level": 7,
-    "class_breakdown": "4 Gloom Stalker Ranger / 1 Assassin Rogue / 2 Champion Fighter",
+    "subclass": "Gloom Stalker",
+    "level": 8,
+    "class_breakdown": "5 Gloom Stalker Ranger / 1 Rogue / 2 Fighter",
     "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns — not decorative, real, and striking enough that she's learned to use the moment people realize it. Symmetrical darker purple markings on both shoulders, somewhere between tattoos and birthmarks. Moves with the fluid ease of a performer who learned survival as a second language.",
     "image": "",
     "proficiency_bonus": 3,
@@ -2419,8 +2620,8 @@
     "stat_int": 13,
     "stat_wis": 12,
     "stat_cha": 18,
-    "hp_max": 52,
-    "hp_current": 52,
+    "hp_max": 59,
+    "hp_current": 59,
     "personality_traits": "Fundamentally joyful in a way that isn't performance — it's just how she's built. Bounces back from setbacks in seconds. Jokes constantly, including at inappropriate moments, including about herself. When she performs she becomes something more focused and serious without losing the warmth underneath. Two years of hard living in rough parts of cities haven't dented the essential bubbly quality, they've just added texture to it.",
     "personality_quirks": "Never surprised for more than two seconds. Never sad for more than two seconds either — not because she's suppressing it but because she genuinely processes and moves on faster than most people. Makes friends with everyone in a room within twenty minutes. Has strong opinions about food. The gilded horns are real and she absolutely uses the moment people realize that.",
     "unarmored_ac_formula": "default",
@@ -2442,39 +2643,35 @@
     ],
     "features": [
       {
-        "name": "Dread Ambusher — +4 initiative, first turn extra attack, extra 1d8 damage on first hit",
+        "name": "Dread Ambusher — +4 initiative, first turn extra attack, extra 1d8 damage on first hit (Ranger 3)",
         "type": "feature"
       },
       {
-        "name": "Umbral Sight — 60ft darkvision, invisible to darkvision while in darkness",
+        "name": "Umbral Sight — 60ft darkvision, invisible to darkvision while in darkness (Ranger 3)",
         "type": "feature"
       },
       {
-        "name": "Iron Mind — proficiency in WIS saves",
+        "name": "Extra Attack — from Ranger 5",
         "type": "feature"
       },
       {
-        "name": "Stalker's Flurry — once per turn when missing an attack, make another attack immediately",
+        "name": "Steel Will — advantage on saves against being frightened (Ranger 5)",
         "type": "feature"
       },
       {
-        "name": "Sneak Attack 1d6",
+        "name": "Sneak Attack 1d6 (Rogue 1)",
         "type": "feature"
       },
       {
-        "name": "Assassinate — advantage on attacks against creatures that haven't taken a turn, auto-crit on surprised creatures",
+        "name": "Cunning Action — hide, dash, or disengage as bonus action (Rogue 1)",
         "type": "feature"
       },
       {
-        "name": "Cunning Action — hide, dash, or disengage as bonus action",
+        "name": "Second Wind — bonus action regain 1d10 + fighter level HP once per short rest (Fighter 1)",
         "type": "feature"
       },
       {
-        "name": "Second Wind — bonus action regain 1d10 + fighter level HP once per short rest",
-        "type": "feature"
-      },
-      {
-        "name": "Improved Critical — crit on 19-20",
+        "name": "Action Surge — one additional action once per short rest (Fighter 2)",
         "type": "feature"
       },
       {
@@ -2499,76 +2696,34 @@
       }
     ],
     "spells": [
-      {
-        "name": "Thaumaturgy",
-        "level": 0,
-        "prepared": true,
-        "type": "racial"
-      },
-      {
-        "name": "Fog Cloud",
-        "level": 1,
-        "prepared": true,
-        "type": "ranger"
-      },
-      {
-        "name": "Rope Trick",
-        "level": 2,
-        "prepared": true,
-        "type": "ranger"
-      },
-      {
-        "name": "Fear",
-        "level": 3,
-        "prepared": true,
-        "type": "ranger"
-      }
-    ],
-    "items": [
-      {
-        "name": "Hand Crossbow +2",
-        "type": "weapon",
-        "notes": "Primary ranged weapon. The one from Torvaine's shop — roots target on hit once per turn instead of dealing damage."
-      },
-      {
-        "name": "Trident",
-        "type": "weapon",
-        "notes": "Preferred melee weapon. Can be thrown. Suits her performance background — dramatic without being impractical."
-      },
-      {
-        "name": "Ring of Lightning Resistance",
-        "type": "wondrous",
-        "notes": "Recovered from Darrock Wilnkarn's lockbox. Hers originally, taken when she was first approached two years ago."
-      },
-      {
-        "name": "Leather Armor +1",
-        "type": "armor",
-        "notes": "Good quality, worn in, acquired during the two years running."
-      }
+      { "name": "Thaumaturgy", "level": 0, "prepared": true, "type": "racial" },
+      { "name": "Fog Cloud", "level": 1, "prepared": true, "type": "ranger" },
+      { "name": "Rope Trick", "level": 2, "prepared": true, "type": "ranger" },
+      { "name": "Fear", "level": 3, "prepared": true, "type": "ranger" }
     ],
     "active_effects": [],
-    "notes": "Tiefling entertainer from southeast of Argentveil, region not yet fully mapped. Spent two years running from Darrock Wilnkarn who wanted to use her Mindfind ability. During that time developed significant survival and stealth capabilities in rough urban environments. Her Gloom Stalker abilities emerged from circus and traveling performance background adapted to harder circumstances. Exceptional performer — fire manipulation is her signature act, the gilded horns her signature look. Recovered her lightning resistance ring from Darrock's lockbox. Cooks exceptionally well, southern technique, grows a specific herb on her window ledge that doesn't quite thrive in Argentveil's light.",
+    "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 → Rogue 2, Level 10 → Rogue 3 (Assassin subclass unlocked), Level 11 → Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer — fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
     "id": "characters_16"
   },
   {
     "name": "Sorra",
     "full_name": "Oul'sorra'i",
-    "race": "Human",
+    "race": "Half-Elf",
     "class": "Bard",
     "subclass": "College of Spirits",
-    "level": 7,
+    "level": 8,
     "appearance": "Dark skin, silver hair worn loose, moves with the quality of someone whose dance never fully stops even when standing still. Composed beauty that has stopped surprising her. Eyes that sit with things longer than most people are comfortable with.",
     "image": "",
     "proficiency_bonus": 3,
     "spellcasting_ability": "cha",
     "stat_str": 10,
-    "stat_dex": 16,
+    "stat_dex": 20,
     "stat_con": 14,
     "stat_int": 14,
-    "stat_wis": 16,
+    "stat_wis": 17,
     "stat_cha": 20,
-    "hp_max": 44,
-    "hp_current": 44,
+    "hp_max": 50,
+    "hp_current": 50,
     "personality_traits": "Still where Elucyne is bubbly. Sits with things before responding. Reads rooms the way she reads music — feeling what wants to be expressed before deciding what to do about it. Seems like she knows something she isn't saying. Sometimes she does.",
     "personality_quirks": "The dance never fully stops. Responds to genuine music or genuine emotion the way plants respond to light — automatically, completely, without deciding to. Has never stayed anywhere longer than she felt like staying. May be reconsidering that.",
     "unarmored_ac_formula": "default",
@@ -2615,6 +2770,18 @@
       {
         "name": "Magical Secrets — two spells from any class",
         "type": "feature"
+      },
+      {
+        "name": "Fey Ancestry — advantage vs charm, immune to magical sleep (Half-Elf)",
+        "type": "feature"
+      },
+      {
+        "name": "Darkvision 60ft (Half-Elf)",
+        "type": "feature"
+      },
+      {
+        "name": "Slasher — +1 DEX (to 20); on hit with slashing weapon reduce target speed by 10ft until next turn; on crit target has disadvantage on attack rolls until next turn",
+        "type": "feat"
       }
     ],
     "spells": [
@@ -2696,27 +2863,140 @@
         "prepared": true,
         "type": "cantrip"
       },
+      { "name": "Mage Hand", "level": 0, "prepared": true, "type": "cantrip" },
       {
-        "name": "Mage Hand",
+        "name": "Green Flame Blade",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
       },
       {
         "name": "Counterspell",
-        "level": null,
+        "level": 3,
         "prepared": true,
         "type": "magical_secret"
       },
       {
         "name": "Revivify",
-        "level": null,
+        "level": 3,
         "prepared": true,
         "type": "magical_secret"
       }
     ],
     "active_effects": [],
-    "notes": "From southeastern region same general area as Elucyne, specific location unmapped. Three months in Argentveil when she joined. The circus was passing through and she stayed because the city felt right. Occasional performer at better establishments and taverns alike. Responded to Lexica's playing of the unknown instrument at the festival circus by dancing — not choreographed, just responsive. That's what she does. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear. She has no instrument but inspires with body.",
+    "notes": "Race corrected to Half-Elf. Stat reallocation: 2 points moved from CHA to DEX base, Half-Elf racial +2 CHA restores to 20, racial +1 DEX and +1 WIS applied, Slasher feat +1 DEX brings to 20. Inspires with body/dance rather than instrument — Spiritual Focus applies when using body as focus per table ruling. SHOPPING: scimitar, ideally magical, DEX/slashing flavored. From southeastern region same general area as Elucyne. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear.",
     "id": "characters_18"
+  },
+  {
+    "name": "Ferghus",
+    "full_name": "Ferghus Crae",
+    "race": "Human",
+    "class": "Paladin",
+    "subclass": "Oath of the Open Road",
+    "level": 8,
+    "appearance": "Broad shouldered, the build of someone who works physically and always has. Red-brown hair, not quite a beard but committed to the attempt. Weathered without being worn. Somewhere in his thirties. Large in the way that is present rather than threatening.",
+    "image": "",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": "cha",
+    "stat_str": 18,
+    "stat_dex": 12,
+    "stat_con": 16,
+    "stat_int": 11,
+    "stat_wis": 14,
+    "stat_cha": 18,
+    "hp_max": 66,
+    "hp_current": 66,
+    "personality_traits": "Drives straight in. Hospitable to a fault — the door is always open, there is always food, everyone is welcome until proven otherwise. Clan-first mentality applied to whatever group he's currently part of. Does unexpected things without noticing they're unexpected. Carix's influence shows in behavior not narration.",
+    "personality_quirks": "Picks up useful objects without deciding to. Arrives unannounced and finds this entirely normal. Warm laugh that arrives suddenly and fills a room. Has strong opinions about hospitality and will feed people whether they asked to be fed or not. The accent is distinctive and he's entirely unconscious of it.",
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": [
+      "Athletics",
+      "Persuasion",
+      "Insight",
+      "Religion",
+      "Perception"
+    ],
+    "expertise": [],
+    "languages": ["Common", "one additional"],
+    "features": [
+      {
+        "name": "Divine Smite — expend spell slot on hit for 2d8 radiant damage per slot level, +1d8 vs undead or fiends",
+        "type": "feature"
+      },
+      {
+        "name": "Divine Health — immune to disease",
+        "type": "feature"
+      },
+      {
+        "name": "Sacred Weapon — Channel Divinity: weapon attack bonus equals CHA modifier (+4) for 1 minute",
+        "type": "feature"
+      },
+      {
+        "name": "Vow of the Open Road — Channel Divinity: creature within 30ft must make WIS save or be compelled to move in an unexpected direction",
+        "type": "feature"
+      },
+      {
+        "name": "Aura of Protection — allies within 10ft add CHA modifier (+4) to all saving throws",
+        "type": "feature"
+      },
+      {
+        "name": "Extra Attack",
+        "type": "feature"
+      },
+      {
+        "name": "Lay on Hands — pool of 40HP per long rest, can cure disease or poison for 5HP from pool",
+        "type": "feature"
+      }
+    ],
+    "spells": [
+      { "name": "Bless", "level": 1, "prepared": true, "type": "prepared" },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Wrathful Smite",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Thunderous Smite",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Lesser Restoration",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      { "name": "Shatter", "level": 2, "prepared": true, "type": "prepared" },
+      {
+        "name": "Blinding Smite",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
+    "active_effects": [],
+    "notes": "Paladin of Carix, god of mischief and unexpected consequences. Eight years in Argentveil. CHA 18 — Aura of Protection now grants +4 to all saving throws for allies within 10ft. Lay on Hands pool corrected to 40HP (5 x paladin level 8). Spell save DC 15, spell attack +7. Known to Jho'a Uld, Galealzre, and various others in the city. Introduced Vaz to Gwynn and the Veilgarten block opportunity. Joined Dawn Blades provisionally Day 65 Year 468.",
+    "id": "characters_19"
   }
 ]

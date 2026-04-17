@@ -138,18 +138,6 @@
     "notes": "Niece by clan rather than blood. The daughter who always wanted to leave, sent south with more hope than Vrethka shows."
   },
   {
-    "id": "rel_23",
-    "people": ["vaz", "vrethka"],
-    "type": "new-significant",
-    "notes": "Two days old and already the relationship that will define the next chapter."
-  },
-  {
-    "id": "rel_24",
-    "people": ["petra", "vrethka"],
-    "type": "recognition",
-    "notes": "Recognized each other immediately. Haven't discussed it yet."
-  },
-  {
     "id": "rel_25",
     "people": ["corwin", "wren"],
     "type": "growing-romance",
@@ -192,12 +180,6 @@
     "notes": ""
   },
   {
-    "id": "rel_32",
-    "people": ["morrow", "selt"],
-    "type": "business-partner",
-    "notes": ""
-  },
-  {
     "id": "rel_33",
     "people": ["marcus freeborn", "petra"],
     "type": "protective-warmth",
@@ -210,38 +192,8 @@
     "notes": "Ran Denna's network when Denna was sixteen. Professional respect."
   },
   {
-    "id": "rel_35",
-    "people": ["cruze", "torsten"],
-    "type": "sibling",
-    "notes": "Guard brothers."
-  },
-  {
-    "id": "rel_36",
-    "people": ["cruze", "gunner"],
-    "type": "sibling",
-    "notes": "Guard brothers."
-  },
-  {
-    "id": "rel_37",
-    "people": ["cruze", "torsten"],
-    "type": "sibling",
-    "notes": "Guard brothers."
-  },
-  {
-    "id": "rel_38",
-    "people": ["gunner", "torsten"],
-    "type": "sibling",
-    "notes": "Guard brothers."
-  },
-  {
     "id": "rel_39",
-    "people": ["cruze", "gunner"],
-    "type": "sibling",
-    "notes": "Guard brothers."
-  },
-  {
-    "id": "rel_40",
-    "people": ["gunner", "torsten"],
+    "people": ["cruze", "gunner", "torsten"],
     "type": "sibling",
     "notes": "Guard brothers."
   },
@@ -270,26 +222,8 @@
     "notes": "Brothers."
   },
   {
-    "id": "rel_45",
-    "people": ["aldric", "pell"],
-    "type": "sibling",
-    "notes": "Brothers."
-  },
-  {
-    "id": "rel_46",
-    "people": ["seris", "tova"],
-    "type": "sibling",
-    "notes": "Sisters."
-  },
-  {
     "id": "rel_47",
     "people": ["aldric", "merren"],
-    "type": "traveled-with",
-    "notes": ""
-  },
-  {
-    "id": "rel_48",
-    "people": ["merren", "pell"],
     "type": "traveled-with",
     "notes": ""
   },
@@ -318,12 +252,6 @@
     "notes": "His older daughter."
   },
   {
-    "id": "rel_53",
-    "people": ["aldous fenn", "oswin belverbridge"],
-    "type": "colleague",
-    "notes": "Coordinating on council matters."
-  },
-  {
     "id": "rel_54",
     "people": ["dov carren", "vaz"],
     "type": "warm",
@@ -342,40 +270,10 @@
     "notes": "Genuine, uncomplicated faith. Found the right deity on the first try. May be on a path toward becoming the first paladin of Veleth though he doesn't know it yet."
   },
   {
-    "id": "rel_57",
-    "people": ["revven", "dawn blades"],
-    "type": "new",
-    "notes": "Joined Day 61 Year 468. Still finding his place."
-  },
-  {
-    "id": "rel_58",
-    "people": ["revven", "sorra"],
-    "type": "complicated-beginning",
-    "notes": "He looked at her the way everyone looks at her and then said something so unexpectedly perceptive she forgot to be composed. Still processing that."
-  },
-  {
     "id": "rel_59",
     "people": ["elucyne", "vaz"],
     "type": "new-warm",
     "notes": "Met at the Thorncast table during the Spring Festival. He came to find her himself rather than sending someone. That mattered."
-  },
-  {
-    "id": "rel_60",
-    "people": ["elucyne", "dawn blades"],
-    "type": "new",
-    "notes": "Joined Day 61 Year 468 after Darrock situation resolved."
-  },
-  {
-    "id": "rel_61",
-    "people": ["elucyne", "sorra"],
-    "type": "old-friend",
-    "notes": "Traveling performance circuit, southeastern region. Different towns, same world. Elucyne not running anymore was the thing that made staying feel worth trying."
-  },
-  {
-    "id": "rel_62",
-    "people": ["sorra", "dawn blades"],
-    "type": "new",
-    "notes": "Came to see the Drevorn House. Came back the next morning with her things. Didn't announce a decision."
   },
   {
     "id": "rel_63",

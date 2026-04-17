@@ -1074,5 +1074,18 @@
     "faction": "Dawn Blades adjacent",
     "role": "Ship rigger",
     "id": "npcs_93"
+  },
+  {
+    "name": "Aeveth",
+    "full_name": "Aeveth Sorel",
+    "location": "Argentveil",
+    "faction": "Independent Academic",
+    "role": "Pre-settlement historian, Argentveil academy",
+    "appearance": "Human woman, late thirties. Dark hair kept practically. Ink on her fingers that never fully washes out. The kind of attractive that becomes more apparent the longer you're in conversation with her because she's entirely unaware of it.",
+    "status": ["ally"],
+    "personality_traits": "Precise about things that matter, entirely imprecise about things that don't. Will forget to eat when working. Remembers everything she's read. Asks questions that sound simple and aren't.",
+    "personality_quirks": "Has strong opinions about how people misunderstand pre-settlement Argentveil and will share them whether asked or not. Keeps three projects running simultaneously and claims to find this restful. Has been with Galealzre four years and considers their arrangement entirely normal.",
+    "notes": "Galealzre's partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history — potentially significant resource regarding the sunken warship in the harbor waters and the pre-separation orcish horn. Will want to see Relk's coin purchases and the horn. Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
+    "id": "npcs_94"
   }
 ]

@@ -19,7 +19,7 @@
     "id": "assets_1",
     "name": "Gilt Blades",
     "subtype": "caravel",
-    "captain": null,
+    "captain": "Seris",
     "crew_full": 10,
     "crew_current": 5,
     "passengers": null,
@@ -28,7 +28,7 @@
     "current_location": null,
     "armament": null,
     "condition": null,
-    "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5. Flagship.",
+    "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5. Flagship. Updated with power source, +60% speed.",
     "type": "ship"
   },
   {
@@ -45,7 +45,7 @@
     "armament": null,
     "condition": null,
     "hidden_compartment": "Can conceal up to 8 people.",
-    "notes": "Similar to Gilt Blades but less refined. Hidden compartment.",
+    "notes": "Similar to Gilt Blades but less refined. Hidden compartment. Updated with power source, +60% speed.",
     "type": "ship"
   },
   {
@@ -61,7 +61,7 @@
     "current_location": null,
     "armament": null,
     "condition": null,
-    "notes": "Likely former slaver vessel. Large enough for 23 passengers plus crew. No luxury fittings.",
+    "notes": "Likely former slaver vessel. Large enough for 23 passengers plus crew. No luxury fittings. Updated with power source, +60% speed.",
     "type": "ship"
   },
   {
@@ -78,7 +78,7 @@
     "armament": null,
     "condition": null,
     "owned_by": "allied",
-    "notes": "Not Dawn Blades property. Allied vessel. Essavane captaining.",
+    "notes": "Not Dawn Blades property. Allied vessel. Essavane captaining. Updated with power source, +60% speed.",
     "type": "ship"
   },
   {
@@ -247,7 +247,7 @@
   },
   {
     "id": "assets_21",
-    "name": "The Drevorn House",
+    "name": "Nossa Valessa",
     "type": "real_estate",
     "subtype": "estate",
     "location": "Argentveil",
@@ -282,5 +282,44 @@
     "estimated_value_min": 6000,
     "estimated_value_max": 7000,
     "notes": "Tailor's workshop staying as tenant. Formerly Ostwick family property."
+  },
+  {
+    "id": "assets_24",
+    "name": "Veilgarten Block - Brewery and Beer Garden",
+    "type": "real_estate",
+    "subtype": "commercial",
+    "location": "Argentveil",
+    "district": "Merchant Quarter Adjacent",
+    "status": "developing",
+    "ownership": "Dawn Blades",
+    "estimated_value_min": 7000,
+    "estimated_value_max": 9000,
+    "notes": "Ground floor converted to brewery operation. Shared central courtyard claimed as beer garden. Copper vessels and fittings planned using recovered copper architectural sheets. Gwynn operating as brewer, 20% stake, full recipe control in writing. Decorative hops on south courtyard wall. Fire pit and simple food service. Sourcing grain and hops from orc neighborhood farms via Orvha relationship. Upper two floors residential."
+  },
+  {
+    "id": "assets_25",
+    "name": "Veilgarten Block - Tailor",
+    "type": "real_estate",
+    "subtype": "commercial",
+    "location": "Argentveil",
+    "district": "Merchant Quarter Adjacent",
+    "status": "operational",
+    "ownership": "Dawn Blades",
+    "estimated_value_min": 5000,
+    "estimated_value_max": 6000,
+    "notes": "Existing tailor's workshop staying as tenant. Upper floor residential."
+  },
+  {
+    "id": "assets_26",
+    "name": "Veilgarten Block - Carter",
+    "type": "real_estate",
+    "subtype": "commercial",
+    "location": "Argentveil",
+    "district": "Merchant Quarter Adjacent",
+    "status": "operational",
+    "ownership": "Dawn Blades",
+    "estimated_value_min": 5000,
+    "estimated_value_max": 6000,
+    "notes": "Existing carter and storage operation staying as tenant. Upper floor residential."
   }
 ]
