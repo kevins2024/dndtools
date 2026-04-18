@@ -6,6 +6,16 @@
 
       <div class="col-section">
         <div class="col-section-label">Equipped</div>
+        <div v-if="slotSummaries.length > 0" class="slot-summary">
+          <span
+            v-for="summary in slotSummaries"
+            :key="summary.slot"
+            class="slot-chip"
+            :class="{ over: summary.over }"
+          >
+            {{ summary.slot }} {{ summary.count }}/{{ summary.cap }}
+          </span>
+        </div>
         <div v-if="equippedItems.length === 0" class="empty">
           Nothing equipped
         </div>
@@ -13,10 +23,12 @@
           v-for="item in equippedItems"
           :key="item.id"
           class="inv-item equipped"
+          :class="{ overloaded: isSlotOverfilled(item.slot || item.type) }"
           @click="unequip(item)"
           title="Click to unequip"
         >
           <span class="item-name">{{ item.name }}</span>
+          <span class="item-slot">{{ item.slot || item.type }}</span>
           <span class="item-tag">{{ item.type }}</span>
           <span class="item-action">↓</span>
         </div>
@@ -32,12 +44,21 @@
           :key="item.id"
           class="inv-item carried"
         >
-          <span class="item-name" @click="equip(item)" title="Click to equip">{{
-            item.name
-          }}</span>
+          <span
+            class="item-name"
+            @click="canEquip(item) && equip(item)"
+            :title="canEquip(item) ? 'Click to equip' : 'Slot full'"
+          >
+            {{ item.name }}
+          </span>
           <span class="item-tag">{{ item.type }}</span>
           <div class="item-actions">
-            <button class="act-btn" @click="equip(item)" title="Equip">
+            <button
+              class="act-btn"
+              @click="equip(item)"
+              :disabled="!canEquip(item)"
+              :title="canEquip(item) ? 'Equip' : 'Slot full'"
+            >
               ↑
             </button>
             <button
@@ -70,6 +91,43 @@
           <span class="item-name">{{ item.name }}</span>
           <span class="item-tag">{{ item.type }}</span>
           <span class="item-action">→</span>
+          <button
+            class="act-btn dim delete-btn"
+            @click.stop="confirmDelete(item)"
+            title="Delete item"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="deleteDialogOpen"
+      class="dialog-backdrop"
+      @click.self="cancelDelete"
+    >
+      <div class="dialog-panel">
+        <div class="dialog-title">Confirm delete</div>
+        <p>
+          Delete
+          <strong>{{ deleteCandidate ? deleteCandidate.name : '' }}</strong>
+          from the party pool?
+        </p>
+        <label class="dialog-field">
+          <span>If you sold the item, how much did it sell for?</span>
+          <input
+            v-model="deleteSaleValue"
+            type="number"
+            min="0"
+            placeholder="0"
+          />
+        </label>
+        <div class="dialog-actions">
+          <button class="act-btn dim" @click="cancelDelete">Cancel</button>
+          <button class="act-btn" @click="deleteConfirmed">
+            Delete and add gold
+          </button>
         </div>
       </div>
     </div>
@@ -97,12 +155,60 @@ export default {
       )
     },
     poolItems() {
-      return this.allItems.filter((i) => !i.carried_by && !i.equipped_by)
+      return this.allItems.filter((i) => this.isPoolItem(i))
+    },
+    slotCounts() {
+      return this.equippedItems.reduce((counts, item) => {
+        const slot = item.slot || item.type || 'unknown'
+        counts[slot] = (counts[slot] || 0) + 1
+        return counts
+      }, {})
+    },
+    multiSlotTypes() {
+      return ['ring', 'melee1h', 'ranged1h']
+    },
+    slotSummaries() {
+      return Object.entries(this.slotCounts).map(([slot, count]) => {
+        const cap = this.multiSlotTypes.includes(slot) ? 2 : 1
+        return {
+          slot,
+          count,
+          cap,
+          over: count > cap,
+        }
+      })
     },
   },
 
+  data() {
+    return {
+      deleteDialogOpen: false,
+      deleteCandidate: null,
+      deleteSaleValue: '',
+    }
+  },
+
   methods: {
+    slotCapacity(slot) {
+      return this.multiSlotTypes.includes(slot) ? 2 : 1
+    },
+    isSlotOverfilled(slot) {
+      const count = this.slotCounts[slot] || 0
+      return count > this.slotCapacity(slot)
+    },
+    isPoolItem(item) {
+      return (
+        item.carried_by === 'party' || (!item.carried_by && !item.equipped_by)
+      )
+    },
+    canEquip(item) {
+      if (item.equipped_by === 'disallowed') return false
+      const slot = item.slot || item.type || 'unknown'
+      const count = this.slotCounts[slot] || 0
+      return count < this.slotCapacity(slot)
+    },
     equip(item) {
+      if (!this.canEquip(item)) return
       this.$store.commit('UPDATE_ITEM', {
         ...item,
         equipped_by: this.character.name,
@@ -126,9 +232,29 @@ export default {
     toPool(item) {
       this.$store.commit('UPDATE_ITEM', {
         ...item,
-        carried_by: null,
+        carried_by: 'party',
         equipped_by: null,
       })
+    },
+    confirmDelete(item) {
+      this.deleteCandidate = item
+      this.deleteSaleValue = ''
+      this.deleteDialogOpen = true
+    },
+    cancelDelete() {
+      this.deleteDialogOpen = false
+      this.deleteCandidate = null
+      this.deleteSaleValue = ''
+    },
+    deleteConfirmed() {
+      if (!this.deleteCandidate) return
+      const value = parseFloat(this.deleteSaleValue)
+      const gold = Number.isFinite(value) && value > 0 ? value : 0
+      this.$store.commit('DELETE_PARTY_ITEM', this.deleteCandidate.id)
+      if (gold) {
+        this.$store.commit('ADJUST_PARTY_GOLD', gold)
+      }
+      this.cancelDelete()
     },
   },
 }
@@ -171,6 +297,28 @@ export default {
   gap: 0.3vh;
 }
 
+.slot-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4vw;
+  margin-bottom: 0.4vh;
+}
+
+.slot-chip {
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-panel);
+  color: var(--color-text);
+  font-size: var(--font-size-xxs);
+}
+
+.slot-chip.over {
+  border-color: var(--color-text-danger);
+  background: rgba(160, 60, 50, 0.15);
+  color: var(--color-text-danger);
+}
+
 .col-section-label {
   font-size: var(--font-size-xxxs);
   color: var(--color-text-muted);
@@ -189,8 +337,13 @@ export default {
   border: 1px solid var(--color-border);
   background: var(--color-bg-surface);
   cursor: pointer;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease;
   font-size: var(--font-size-small);
+}
+
+.inv-item.overloaded {
+  border-color: var(--color-text-danger);
+  background: rgba(160, 60, 50, 0.12);
 }
 
 .inv-item.equipped {
@@ -209,6 +362,13 @@ export default {
 .item-name {
   flex: 1;
   color: var(--color-text);
+}
+
+.item-slot {
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-muted);
+  padding: 0 6px;
+  border-left: 1px solid var(--color-border);
 }
 
 .item-tag {
@@ -237,6 +397,11 @@ export default {
   transition: color 0.15s ease;
 }
 
+.act-btn:disabled {
+  color: var(--color-text-low);
+  cursor: not-allowed;
+}
+
 .act-btn:hover {
   color: var(--color-accent);
 }
@@ -250,5 +415,57 @@ export default {
   color: var(--color-text-low);
   font-style: italic;
   padding: 2px 0;
+}
+
+.delete-btn {
+  margin-left: auto;
+  color: var(--color-text-danger);
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 12, 18, 0.7);
+  z-index: 20;
+}
+
+.dialog-panel {
+  width: min(92vw, 420px);
+  padding: 1.2rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-title {
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.dialog-field {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.dialog-field input {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-panel);
+  color: var(--color-text);
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 </style>

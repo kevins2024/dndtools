@@ -149,7 +149,7 @@
     "effect": "Once per turn on a hit: choose to deal damage as normal OR root target in place until end of their next turn.",
     "notes": "Primary ranged option.",
     "id": "items_170",
-    "slot": "ranged"
+    "slot": "ranged1h"
   },
   {
     "name": "Hand Crossbow (standard)",
@@ -163,7 +163,7 @@
     "magic_bonus": 0,
     "notes": "Backup ranged.",
     "id": "items_25",
-    "slot": "ranged"
+    "slot": "ranged1h"
   },
   {
     "name": "Wyvern Scale Coat +2",
@@ -531,7 +531,7 @@
     "effect": "Fires custom alchemical bolts \u2014 replaces bomb throwing as primary ranged delivery system. Bolt effects TBD per bolt type. Quieter release than standard heavy crossbow.",
     "notes": "Built from Ravine Stalker jaw construction. Commission fulfilled. NOTE: Jaygar not currently proficient with heavy crossbows \u2014 needs proficiency resolution (feat, training, or class feature).",
     "id": "items_jaygar_xbow",
-    "slot": "ranged"
+    "slot": "ranged2h"
   },
   {
     "name": "Alchemical Heavy Crossbow (party copy)",
@@ -546,7 +546,7 @@
     "effect": "Fires custom alchemical bolts. Bolt effects TBD per bolt type. Quieter release than standard heavy crossbow.",
     "notes": "Second commissioned copy. Built from Ravine Stalker jaw construction. Available for party use.",
     "id": "items_jaygar_xbow_party",
-    "slot": "ranged"
+    "slot": "ranged2h"
   },
   {
     "name": "Web Bomb",
@@ -1053,7 +1053,7 @@
     "effect": "Deals force damage instead of piercing.",
     "notes": "Primary weapon. Replaces Whisper Longbow +2 (moved to Sorra).",
     "id": "items_99",
-    "slot": "ranged"
+    "slot": "ranged2h"
   },
   {
     "name": "Bow Grip",
@@ -1135,7 +1135,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 1,
     "id": "items_92",
-    "slot": "ranged"
+    "slot": "ranged1h"
   },
   {
     "name": "Rapier",
@@ -1538,7 +1538,7 @@
     "magic_bonus": 2,
     "notes": "Primary ranged. From Torvaine's shop \u2014 can root target on hit once per turn instead of dealing damage.",
     "id": "items_elucyne_xbow",
-    "slot": "ranged"
+    "slot": "ranged1h"
   },
   {
     "name": "Trident",
@@ -1586,7 +1586,7 @@
     "magic_bonus": 2,
     "notes": "Primary ranged weapon. Reassigned from Siv.",
     "id": "items_86",
-    "slot": "ranged"
+    "slot": "ranged2h"
   },
   {
     "name": "Bracers of Archery",
@@ -1973,24 +1973,11 @@
     "slot": "wrists"
   },
   {
-    "name": "Alchemical Heavy Crossbow (party copy)",
-    "type": "weapon",
-    "equipped_by": null,
-    "carried_by": "party",
-    "attuned": false,
-    "weapon_type": "ranged",
-    "finesse": false,
-    "damage_dice": "1d10",
-    "magic_bonus": 2,
-    "effect": "Fires custom alchemical bolts. Quieter release than standard heavy crossbow.",
-    "notes": "Second commissioned copy. Available for party use.",
-    "id": "items_xbow_party",
-    "slot": "ranged"
-  },
-  {
     "name": "The Right Arm",
     "type": "item",
     "subtype": "staff",
+    "equipped_by": "Tackett",
+    "carried_by": null,
     "rarity": "legendary",
     "requires_attunement": true,
     "attunement_by": "Tackett",

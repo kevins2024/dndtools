@@ -44,6 +44,18 @@ export default new Vuex.Store({
         state.party_items.splice(idx, 1, updatedItem)
       }
     },
+    DELETE_PARTY_ITEM(state, itemId) {
+      const idx = state.party_items.findIndex((i) => i.id === itemId)
+      if (idx !== -1) {
+        state.party_items.splice(idx, 1)
+      }
+    },
+    ADJUST_PARTY_GOLD(state, amount) {
+      if (!state.finances.party_purse) {
+        state.finances.party_purse = { gold: 0 }
+      }
+      state.finances.party_purse.gold += Number(amount) || 0
+    },
   },
 
   actions: {
