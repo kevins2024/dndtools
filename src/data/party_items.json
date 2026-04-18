@@ -1859,18 +1859,6 @@
     "slot": "melee1h"
   },
   {
-    "name": "Two Rubies",
-    "type": "material",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
-    "attuned": false,
-    "quantity": 2,
-    "effect": "For Helm of Brilliance reconstruction.",
-    "notes": "",
-    "id": "items_106",
-    "slot": "none"
-  },
-  {
     "name": "Battle Spellbook",
     "type": "document",
     "equipped_by": "disallowed",
@@ -1911,7 +1899,7 @@
     "equipped_by": "disallowed",
     "carried_by": "party",
     "attuned": false,
-    "notes": "7 rubies, 6 opals, 4 spinel, 2 sapphire, 5 diamonds.",
+    "notes": "6 spinel, 2 sapphire.",
     "id": "items_150",
     "slot": "none"
   },
@@ -1924,18 +1912,6 @@
     "effect": "Reading takes 48 hours over 6 days. INT score and maximum increase by 2. Becomes mundane for 100 years afterward.",
     "notes": "Read on day 121.",
     "id": "items_165",
-    "slot": "none"
-  },
-  {
-    "name": "Bottled Daylight",
-    "type": "consumable",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
-    "attuned": false,
-    "quantity": 1,
-    "effect": "Releases daylight equivalent illumination when opened.",
-    "notes": "800g.",
-    "id": "items_166",
     "slot": "none"
   },
   {
@@ -2037,5 +2013,239 @@
     "owner": "Tackett",
     "origin": "Trevash delta, approximately Year 368. Offered by the spring itself.",
     "slot": "melee2h"
+  },
+  {
+    "name": "Maul +2",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "slot": "melee2h",
+    "equipped_by": "Ferghus",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": false,
+    "damage_dice": "2d6",
+    "magic_bonus": 2,
+    "effect": "On a critical hit: target is knocked prone. Focusing pattern on the head.",
+    "notes": ""
+  },
+  {
+    "name": "Cold Dagger +2",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "slot": "melee1h",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": true,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "effect": "Deals cold damage. On hit: target's movement reduced by 10ft until start of their next turn.",
+    "notes": ""
+  },
+  {
+    "name": "Curved Blade +2",
+    "type": "weapon",
+    "weapon_type": "melee",
+    "slot": "melee1h",
+    "equipped_by": "Elucyne",
+    "carried_by": null,
+    "attuned": false,
+    "finesse": true,
+    "damage_dice": "1d8",
+    "magic_bonus": 2,
+    "effect": "On a critical hit: deals 2d6 slashing damage instead of doubling dice.",
+    "notes": ""
+  },
+  {
+    "name": "Full Plate +2 (Grey-Green)",
+    "type": "armor",
+    "armor_type": "heavy",
+    "armor_base_ac": 18,
+    "magic_bonus": 2,
+    "slot": "body",
+    "equipped_by": "Ferghus",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Resistance to lightning and thunder damage.",
+    "notes": ""
+  },
+  {
+    "name": "Mithral Half Plate +2",
+    "type": "armor",
+    "armor_type": "medium",
+    "armor_base_ac": 15,
+    "magic_bonus": 2,
+    "slot": "body",
+    "equipped_by": "Kerra",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "No stealth disadvantage.",
+    "notes": ""
+  },
+  {
+    "name": "Half Plate +2 (Lightning)",
+    "type": "armor",
+    "armor_type": "medium",
+    "armor_base_ac": 15,
+    "magic_bonus": 2,
+    "slot": "body",
+    "equipped_by": "Revven",
+    "carried_by": null,
+    "attuned": false,
+    "effect": "Resistance to lightning and thunder damage.",
+    "notes": ""
+  },
+  {
+    "name": "Boots of Speed",
+    "type": "wondrous",
+    "slot": "feet",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": true,
+    "effect": "Double movement speed as a bonus action. Opportunity attacks against wearer have disadvantage while active.",
+    "notes": "TBD assignment."
+  },
+  {
+    "name": "Boots of the Winterlands",
+    "type": "wondrous",
+    "slot": "feet",
+    "equipped_by": "Rhuna",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Resistance to cold damage. Move across icy surfaces without penalty. Withstand temperatures as low as -50 degrees without harm.",
+    "notes": ""
+  },
+  {
+    "name": "Ring of Spell Turning",
+    "type": "wondrous",
+    "slot": "ring",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": true,
+    "effect": "Advantage on saves against spells that target only you. On a natural 20, the spell is reflected back at the caster.",
+    "notes": "TBD assignment."
+  },
+  {
+    "name": "Belt of Dwarvenkind",
+    "type": "wondrous",
+    "slot": "waist",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": true,
+    "stat_bonuses": { "stat_con": 2 },
+    "effect": "+2 CON. Advantage on CHA checks with dwarves. 50% chance each day of growing a beard if capable. Darkvision 60ft. Resistance to poison, advantage on poison saves.",
+    "notes": "TBD assignment."
+  },
+  {
+    "name": "Goggles of Night",
+    "type": "wondrous",
+    "slot": "head",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": false,
+    "effect": "Darkvision 60ft. If already have darkvision, extends by 60ft.",
+    "notes": "TBD assignment."
+  },
+  {
+    "name": "Gloves of Missile Snaring",
+    "type": "wondrous",
+    "slot": "hands",
+    "equipped_by": "Denna",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "Reaction when hit by a ranged weapon attack: reduce damage by 1d10 + DEX modifier. If reduced to 0, catch the missile.",
+    "notes": ""
+  },
+  {
+    "name": "Gauntlets of Ogre Power",
+    "type": "wondrous",
+    "slot": "hands",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": true,
+    "stat_overrides": { "stat_str": 19 },
+    "effect": "Sets STR to 19.",
+    "notes": "TBD assignment. Corwin already has a pair equipped."
+  },
+  {
+    "name": "Gloves of Soul Catching",
+    "type": "wondrous",
+    "slot": "hands",
+    "equipped_by": "Chuknora",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "On unarmed strike hit: deal extra 2d10 psychic damage. Choose to either regain HP equal to psychic damage dealt, or gain advantage on one attack roll, ability check, or saving throw before end of next turn.",
+    "notes": ""
+  },
+  {
+    "name": "Bracers of Striking +2",
+    "type": "wondrous",
+    "slot": "wrists",
+    "equipped_by": "Chuknora",
+    "carried_by": null,
+    "attuned": true,
+    "effect": "+2 to unarmed strike attack and damage rolls.",
+    "notes": ""
+  },
+  {
+    "name": "Monk's Belt",
+    "type": "wondrous",
+    "slot": "waist",
+    "equipped_by": "Chuknora",
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": { "ac_unarmored_con": 1 },
+    "effect": "Adds CON modifier to unarmored AC in addition to DEX and WIS.",
+    "notes": "Requires dnd_utils unarmored AC formula update for monk — CON mod now included."
+  },
+  {
+    "name": "Robe of the Archmagi",
+    "type": "wondrous",
+    "slot": "body",
+    "equipped_by": "Kessara",
+    "carried_by": null,
+    "attuned": true,
+    "stat_bonuses": {
+      "spell_save_dc": 2,
+      "spell_attack": 2,
+      "saving_throws": 1
+    },
+    "effect": "Spell save DC +2, spell attack rolls +2, advantage on saving throws against spells and magical effects. AC 15 while wearing if not wearing armor.",
+    "notes": "Must be a sorcerer, warlock, or wizard to attune."
+  },
+  {
+    "name": "Scroll of Ice Storm",
+    "type": "consumable",
+    "slot": "none",
+    "equipped_by": "disallowed",
+    "carried_by": "party",
+    "attuned": false,
+    "quantity": 1,
+    "effect": "Cast Ice Storm at 4th level. Single use.",
+    "notes": ""
+  },
+  {
+    "name": "Scroll of Mind Whip",
+    "type": "consumable",
+    "slot": "none",
+    "equipped_by": "disallowed",
+    "carried_by": "party",
+    "attuned": false,
+    "quantity": 1,
+    "effect": "Cast Mind Whip at 2nd level. Single use.",
+    "notes": ""
+  },
+  {
+    "name": "Helm of Brilliance",
+    "type": "wondrous",
+    "slot": "head",
+    "equipped_by": null,
+    "carried_by": "party",
+    "attuned": true,
+    "charges_current": 20,
+    "charges_max": 20,
+    "charges_recharge": "none — gems are consumed",
+    "effect": "Contains 6 opals, 9 rubies, 5 diamonds. Opals cast Daylight. Rubies cast Fireball. Diamonds cast Wall of Light. Sheds light based on gems remaining. Undead within 30ft have disadvantage on attack rolls. If exposed to direct sunlight while any gems remain, roll d20 — on 1 the helm explodes dealing 10 damage per remaining gem to everyone within 60ft.",
+    "notes": "Reconstructed from ceremonial clan collar materials and additional gems. Gems are consumed on use — track individually when possible."
   }
 ]

@@ -1,18 +1,18 @@
 {
   "party_purse": {
-    "gold": 82700,
+    "gold": 34200,
     "notes": "On hand, accessible immediately."
   },
   "reserves": [
     {
       "name": "Argentveil Account",
-      "amount": 143000,
+      "amount": 23000,
       "access": "Handled.",
       "risk": "low"
     },
     {
       "name": "Khemrise Strongbox",
-      "amount": 39000,
+      "amount": 19000,
       "access": "Salt Hook Tavern key. Registered under assumed name.",
       "contents": "",
       "risk": "low"

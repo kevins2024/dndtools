@@ -304,14 +304,6 @@
         "notes": "Removes collars."
       },
       {
-        "name": "Seris's Operative Room",
-        "district": "Harbor District",
-        "type": "safe_house",
-        "description": "Rooming house on Coppervane Street. Second floor, end of hall. Proprietor asks nothing, charges by week.",
-        "npcs_present": [],
-        "notes": "Seris registered as Vel. Circle mark on doorframe indicated trouble."
-      },
-      {
         "name": "Salt Hook Tavern",
         "district": "Harbor District",
         "type": "tavern",
@@ -450,6 +442,16 @@
         "description": "Sitting members include Galealzre.",
         "npcs_present": [],
         "notes": ""
+      },
+      {
+        "name": "The Measured Word",
+        "type": "shop",
+        "subtype": "magical_supplies",
+        "location": "Argentveil",
+        "district": "Scholar's Lane",
+        "status": "operational",
+        "npcs_present": [],
+        "notes": "Behind the transmutation spire. Run by a retired wizard who makes approximately half his own stock. Worth visiting for unusual or crafted magical supplies."
       },
       {
         "name": "The Glass Sipper",
