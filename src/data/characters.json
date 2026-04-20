@@ -1670,7 +1670,7 @@
     "image": "https://iili.io/q8iJJKQ.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "Danse Macabre recovered from a necromancer's spellbook \u00e2\u20ac\u201d she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws. Arcane Ward: 16HP max (2 x wizard level 8), recharges when casting abjuration spells. Spell save DC 16, spell attack +8. Spell slots at level 8: 4/3/3/3/2. Three years hunting answers about her brother Aldren. ITEM NOTE: Belt of Constitution available from Corwin \u00e2\u20ac\u201d would bring CON from 12 to 18, strongly recommended.",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook \u00e2\u20ac\u201d she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws. Arcane Ward: 16HP max (2 x wizard level 8), recharges when casting abjuration spells. Spell save DC 16, spell attack +8. Spell slots at level 8: 4/3/3/3/2. ",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -2000,8 +2000,7 @@
       "Behind the professional bearing is someone who chose this life from genuine admiration of it.",
       "Pursues things he wants quietly and without announcement. Reports minimally afterward.",
       "Genuinely content with good conversation and a walk home. Uncomplicated about it.",
-      "Reliable, professional.",
-      "Knows everyone in Ravenquay who owes favors."
+      "Reliable, professional."
     ],
     "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally \u00e2\u20ac\u201d Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 \u00e2\u2020\u2019 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip \u00e2\u20ac\u201d no retroactive level recalculation. Improved Critical \u00e2\u20ac\u201d crits on 19-20. Corwin holds the Ravenquay relationship network.",
     "image": "https://iili.io/qgWY8Dx.jpg",
@@ -2248,10 +2247,235 @@
     "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 16. Stunning Strike DC 16. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 24hp (3x monk level 8) once per long rest. Stone's Endurance \u00e2\u20ac\u201d reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
   },
   {
+    "name": "Enauweyn",
+    "full_name": "Enauweyn",
+    "race": "Eladrin Elf",
+    "class": "Paladin",
+    "subclass": "Oath of the Crown",
+    "level": 8,
+    "appearance": "Chestnut hair, light olive skin, angular features, pointed chin, very pretty. Green magical armor that appears revealing but extends invisible protection — counts as half plate. Luxurious flowing cloth around legs and sleeves gives a mystical fey quality. Moves with the ease of someone equally comfortable commanding a room or vanishing into a forest.",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": "cha",
+    "notes": "Armor: Green Fey Armor (half plate, +1 CHA, attunement required, only Enauweyn can wear it). CHA is 17 base, 18 while armor attuned. Spell save DC 14 base (15 attuned). Spell attack +6 base (+7 attuned). Aura of Protection grants +3 to all ally saving throws within 10ft (+4 attuned). Former instructor in Argentveil — taught a young Kessara. Sworn to Kexifrext, ancient forest lord of the fey realm, whose commands arrive slowly like seasons. Left Argentveil 80 years ago to expand her understanding of the world, recently returned. Kexifrext is a slowly-moving tree-adjacent ancient entity — commands are broad and slow, giving Enauweyn enormous interpretive latitude.",
+    "stat_str": 16,
+    "stat_dex": 14,
+    "stat_con": 14,
+    "stat_int": 8,
+    "stat_wis": 10,
+    "stat_cha": 17,
+    "hp_max": 63,
+    "hp_current": 63,
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Insight", "Medicine", "Perception"],
+    "expertise": [],
+    "languages": ["Common", "Elvish", "one additional"],
+    "features": [
+      {
+        "name": "Protection Fighting Style — reaction: impose disadvantage on attack roll against ally within 5ft (requires shield)",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Divine Smite — expend spell slot on hit: 2d8 radiant per slot level (+1d8 vs undead or fiends)",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Divine Health — immune to disease",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Lay on Hands — pool of 40HP per long rest; cure disease or poison for 5HP from pool",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 40,
+        "uses_current": 40
+      },
+      {
+        "name": "Extra Attack",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Channel Divinity: Champion Challenge — each creature of choice within 30ft must make WIS save or be unable to willingly move more than 30ft from you for 1 minute",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Channel Divinity: Turn the Tide — bonus action: creatures of choice within 30ft at 50% HP or fewer regain 1d6 + CHA mod HP",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Aura of Protection — allies within 10ft add CHA modifier (+3, or +4 with armor attuned) to all saving throws. Passive, always on.",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Aura of Courage — allies within 10ft cannot be frightened while Enauweyn is conscious. Passive, always on.",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Daunting Strike — when hitting with a weapon attack, expend a spell slot to deal 1d6 psychic damage per slot level; target makes WIS save or is frightened until end of your next turn",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Fey Step — teleport up to 30ft to an unoccupied space you can see (Eladrin racial)",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Fey Ancestry — advantage on saving throws vs charm, immune to magical sleep",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Darkvision 60ft",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Command",
+        "level": 1,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Compelled Duel",
+        "level": 1,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Warding Bond",
+        "level": 2,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Zone of Truth",
+        "level": 2,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Bless",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Shield of Faith",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Heroism",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Lesser Restoration",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Aid",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Revivify",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
+    "spell_slots": {
+      "level_1": { "max": 4, "current": 4 },
+      "level_2": { "max": 3, "current": 3 },
+      "level_3": { "max": 2, "current": 2 }
+    },
+    "image": "https://iili.io/Br9QBgs.jpg",
+    "active_effects": [],
+    "persona_notes": [
+      "Unexpected mix of authoritative commanding presence and whimsical playful oddness depending on mood. Can silence a room with a look and then say something completely unexpected. The unpredictability is not performance — it is genuinely how she moves through the world.",
+      "Former instructor — occasionally slips into teaching mode without noticing. Served Kexifrext long enough that she thinks in forest-time occasionally, patient in ways that feel uncanny. Kessara was one of her students and she remembers exactly who that girl was."
+    ],
+    "deity": "Kexifrext — ancient forest lord of the fey realm. Tree-adjacent entity whose commands arrive slowly like seasons, allowing enormous interpretive latitude.",
+    "id": "characters_20"
+  },
+  {
     "name": "Perch",
     "type": "companion",
     "owner": "Tackett",
     "species": "Falcon",
+    "image": "https://iili.io/Br9QndG.jpg",
     "ac": 14,
     "hp_max": 38,
     "hp_current": 38,

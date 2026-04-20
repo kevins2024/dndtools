@@ -2429,5 +2429,24 @@
     "effect": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
     "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow — no deity symbol, the metal didn't want one. It wanted a window.",
     "id": "items_helm_open_eye"
+  },
+  {
+    "name": "Green Fey Armor",
+    "type": "armor",
+    "equipped_by": "Enauweyn",
+    "carried_by": null,
+    "attuned": true,
+    "needs_attunement": true,
+    "slot": "body",
+    "armor_type": "medium",
+    "armor_base_ac": 15,
+    "magic_bonus": 0,
+    "stat_bonuses": {
+      "cha": 1
+    },
+    "effect": "Counts as half plate (AC 15 + DEX mod max 2). Appears revealing but magical protection extends invisibly for full coverage. +1 CHA while attuned. Only Enauweyn can attune to this item.",
+    "description": "Green armor of fey construction. Revealing in appearance but the magical protection extends invisibly — coverage is complete. Luxurious flowing cloth around legs and sleeves gives a mystical quality. The green deepens or lightens subtly with her mood.",
+    "notes": "Attunement restricted to Enauweyn only.",
+    "id": "items_enauweyn_armor"
   }
 ]
