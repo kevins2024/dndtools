@@ -1497,7 +1497,7 @@
     "slot": "head"
   },
   {
-    "name": "Plate +1",
+    "name": "Plate +2",
     "type": "armor",
     "equipped_by": "Corwin",
     "carried_by": null,
@@ -2378,5 +2378,56 @@
     "notes": "Tackett refers to it as his right arm. Offered by the Trevash delta spring after Tackett destroyed the ancient spirit corrupting it. Legendary — unique to Tackett.",
     "id": "items_the_right_arm",
     "slot": "melee2h"
+  },
+  {
+    "name": "Shadowgrain Leather",
+    "type": "armor",
+    "armor_type": "light",
+    "armor_base_ac": 11,
+    "magic_bonus": 1,
+    "slot": "body",
+    "equipped_by": "Tackett",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "effect": "Always +1 to AC. Additional +1 to AC while in dim light or darkness, for a total of +2.",
+    "notes": "Commission from Torrin Gallowglass. Dark green-brown leather, forest floor coloring, grain patterns that shift with the light. Melds into wildshape forms per druid rules — AC bonus applies in halfling form only. Torrin's signature: made for someone who knows how to use shadow.",
+    "id": ""
+  },
+  {
+    "name": "Helm of Carix",
+    "type": "wondrous",
+    "slot": "head",
+    "equipped_by": "Ferghus",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "effect": "Immunity to charm and fear. Once per day when wearer does something that genuinely surprises an enemy, gain advantage on next attack roll.",
+    "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
+    "id": "items_helm_open_road"
+  },
+  {
+    "name": "Helm of the Reaching Hand",
+    "type": "wondrous",
+    "slot": "head",
+    "equipped_by": "Revven",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "effect": "Advantage on Insight checks. Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet — the smith let it.",
+    "id": "items_helm_reaching_hand"
+  },
+  {
+    "name": "Helm of the Open Eye",
+    "type": "wondrous",
+    "slot": "head",
+    "equipped_by": "Kerra",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "effect": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
+    "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow — no deity symbol, the metal didn't want one. It wanted a window.",
+    "id": "items_helm_open_eye"
   }
 ]

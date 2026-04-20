@@ -20,13 +20,8 @@
     "stat_cha": 14,
     "hp_max": 70,
     "hp_current": 70,
-    "personality_traits": "Strategic, warm beneath composure, dry humor, economical speech. Never raises voice when lowering it works better. Sits with back to walls. Narrates his own life occasionally when absurd. Practices lockpicking constantly.",
-    "personality_quirks": "Cannot pronounce Nalfeshnee and doesn't try.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -34,10 +29,7 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -88,7 +80,7 @@
         "uses_current": null
       },
       {
-        "name": "Sentinel — hit creature with OA reduces speed to 0; can make OA against creatures attacking nearby allies",
+        "name": "Sentinel \u00e2\u20ac\u201d hit creature with OA reduces speed to 0; can make OA against creatures attacking nearby allies",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -130,6 +122,14 @@
     ],
     "spells": [],
     "active_effects": [],
+    "persona_notes": [
+      "As the main player character, default to the user for interactions involving this character.",
+      "Strategic, warm beneath composure, dry humor, economical speech.",
+      "Never raises voice when lowering it works better.",
+      "Narrates his own life occasionally when absurd.",
+      "Practices DEX skills of all types.",
+      "Cannot pronounce Nalfeshnee and doesn't try."
+    ],
     "id": "characters_0"
   },
   {
@@ -152,13 +152,8 @@
     "stat_cha": 8,
     "hp_max": 91,
     "hp_current": 91,
-    "personality_traits": "Few words, maximum meaning. Silences comfortable, never awkward. Expresses care through presence not words. Never performs emotion.",
-    "personality_quirks": "\"Same.\" is a complete sentence. Cooks well — nobody expected it. Agreed to stay when logic required it; felt the disappointment, didn't perform it.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -166,10 +161,7 @@
       "Survival"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage 4/day",
@@ -228,7 +220,7 @@
         "uses_current": null
       },
       {
-        "name": "Great Weapon Master — on crit or kill, bonus action attack; optional -5 to hit for +10 damage",
+        "name": "Great Weapon Master \u00e2\u20ac\u201d on crit or kill, bonus action attack; optional -5 to hit for +10 damage",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -238,6 +230,19 @@
     ],
     "spells": [],
     "active_effects": [],
+    "persona_notes": [
+      "One short sentence answers that contain multitudes, but rarely just one word. Never perform emotion.",
+      "Moves toward things directly when decided. No preamble.",
+      "Care expressed through presence and action. Never words.",
+      "Assembling a future she hasn't named yet. Putting pieces in place quietly.",
+      "The laugh is real, rare, short. Doesn't perform it or extend it.",
+      "Food is craft and care, not casual.",
+      "The future she wants has roots, seasons, and people who know her without being told.",
+      "Few words, maximum meaning.",
+      "Silences comfortable, never awkward.",
+      "Expresses care through presence not words.",
+      "Cooks well \u00e2\u20ac\u201d nobody expected it."
+    ],
     "id": "characters_1"
   },
   {
@@ -260,13 +265,8 @@
     "stat_cha": 10,
     "hp_max": 48,
     "hp_current": 48,
-    "personality_traits": "Says little because always listening. Delivers intelligence with zero editorializing. Always knows exits. Occasional dry observation that lands precisely.",
-    "personality_quirks": "Was gone before anyone saw her leave. Private relationship with her blades.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -275,14 +275,8 @@
       "Deception",
       "Investigation"
     ],
-    "expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Thieves Cant"
-    ],
+    "expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Thieves Cant"],
     "features": [
       {
         "name": "Sneak Attack 5d6",
@@ -325,7 +319,7 @@
         "uses_current": null
       },
       {
-        "name": "Shadow Touched — Invisibility 1/day; Inflict Wounds 1/day (1st level spell, no slot required)",
+        "name": "Shadow Touched \u00e2\u20ac\u201d Invisibility 1/day; Inflict Wounds 1/day (1st level spell, no slot required)",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -335,6 +329,17 @@
     ],
     "spells": [],
     "active_effects": [],
+    "persona_notes": [
+      "Always at the window or the edge. Always listening.",
+      "Professional respect for other precision specialists. Expressed minimally.",
+      "Warming. Slowly. The layers unravel one day at a time.",
+      "Humanity exists and is real. Emerges in short bursts then retreats. She doesn't know she does this.",
+      "Trust given in increments so small they're almost invisible. Each one costs something.",
+      "Says little because always listening.",
+      "Delivers intelligence with zero editorializing.",
+      "Always knows exits.",
+      "Occasional dry observation that lands precisely."
+    ],
     "id": "characters_2"
   },
   {
@@ -357,13 +362,8 @@
     "stat_cha": 10,
     "hp_max": 50,
     "hp_current": 50,
-    "personality_traits": "Technical precision occasionally producing accidental poetry. Understatement. Playful. Always already packing when departure is announced. Whistles tunelessly while working.",
-    "personality_quirks": "Tinkers with things that aren't his. Redirects emotional moments into productivity.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int"
-    ],
+    "saving_throws": ["con", "int"],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -372,11 +372,7 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish"],
     "features": [
       {
         "name": "Tool Expertise",
@@ -395,7 +391,7 @@
         "uses_current": null
       },
       {
-        "name": "Alchemical Savant — add INT mod to one damage roll (acid, fire, necrotic, or poison) or healing per spell",
+        "name": "Alchemical Savant \u00e2\u20ac\u201d add INT mod to one damage roll (acid, fire, necrotic, or poison) or healing per spell",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -419,7 +415,7 @@
         "uses_current": null
       },
       {
-        "name": "Fey Touched — +1 WIS (13), Misty Step 1/day, Command 1/day (no spell slot required)",
+        "name": "Fey Touched \u00e2\u20ac\u201d +1 WIS (13), Misty Step 1/day, Command 1/day (no spell slot required)",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -429,6 +425,16 @@
     ],
     "spells": [],
     "active_effects": [],
+    "persona_notes": [
+      "Finds people who ask good questions more valuable than people who have good answers.",
+      "Thinks better out loud. Explaining solves problems that existing didn't.",
+      "Eats functionally. Food happens between other things and is rarely the point, though he enjoys it when its delicious.",
+      "Restorative state is uninterrupted work time. Not sleep. Not company. Work.",
+      "Technical precision occasionally producing accidental poetry.",
+      "Understatement.",
+      "Playful.",
+      "Whistles tunelessly while working."
+    ],
     "id": "characters_3"
   },
   {
@@ -442,7 +448,7 @@
     "image": "https://iili.io/q8iHyVj.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "Spell slots at level 8: 4/3/3/3/2. Metamagic Adept gives 2 sorcery points per long rest — Empowered Spell (1 point: reroll up to INT mod damage dice) or Quickened Spell (2 points: cast leveled spell as bonus action). Reformed gambling addict.",
+    "notes": "Spell slots at level 8: 4/3/3/3/2. Metamagic Adept gives 2 sorcery points per long rest \u00e2\u20ac\u201d Empowered Spell (1 point: reroll up to INT mod damage dice) or Quickened Spell (2 points: cast leveled spell as bonus action). Reformed gambling addict.",
     "stat_str": 10,
     "stat_dex": 12,
     "stat_con": 13,
@@ -451,13 +457,8 @@
     "stat_cha": 12,
     "hp_max": 43,
     "hp_current": 43,
-    "personality_traits": "More words than most, chosen carefully. Self-deprecating without wallowing. Studies people like he used to study card games — looking for tells.",
-    "personality_quirks": "Reviews spellbook before significant encounters. Reformed gambling addict.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -466,11 +467,7 @@
       "Persuasion"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -489,7 +486,7 @@
         "uses_current": null
       },
       {
-        "name": "Metamagic Adept — Empowered Spell (1 sorcery point: reroll up to 5 damage dice, keep new results) and Quickened Spell (2 sorcery points: cast leveled spell as bonus action); 2 sorcery points per long rest",
+        "name": "Metamagic Adept \u00e2\u20ac\u201d Empowered Spell (1 sorcery point: reroll up to 5 damage dice, keep new results) and Quickened Spell (2 sorcery points: cast leveled spell as bonus action); 2 sorcery points per long rest",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -674,6 +671,18 @@
       }
     ],
     "active_effects": [],
+    "persona_notes": [
+      "Reformed gambler. The compulsion was never about games, it was about the feeling games provided.",
+      "Self aware enough to know the difference between healthy reasoning and sophisticated self deception. Not always sure which he's doing.",
+      "Expresses love practically. Brings food without being asked.",
+      "Generosity is instinct.",
+      "More words than most but chosen carefully. Self deprecating without wallowing.",
+      "Argentveil has history for him. He faced it today. That matters.",
+      "More words than most, chosen carefully.",
+      "Self-deprecating without wallowing.",
+      "Studies people like he used to study card games \u00e2\u20ac\u201d looking for tells.",
+      "Reformed gambling addict."
+    ],
     "id": "characters_4"
   },
   {
@@ -683,7 +692,7 @@
     "class": "Wizard",
     "subclass": "Bladesinger",
     "level": 8,
-    "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant — light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it — it's a distraction and she knows it.",
+    "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant \u00e2\u20ac\u201d light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it \u00e2\u20ac\u201d it's a distraction and she knows it.",
     "image": "https://iili.io/q8iHZH7.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
@@ -696,13 +705,8 @@
     "stat_cha": 12,
     "hp_max": 49,
     "hp_current": 49,
-    "personality_traits": "Precise. No wasted words, no performance. Asks the question nobody else thought to ask. Delivers assessments without softening but without cruelty.",
-    "personality_quirks": "Runs through combat forms as meditation in corners of rooms — slow, deliberate. Sent by Galealzre. Was already rolling sleeves up at Revivify before anyone asked.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -711,11 +715,7 @@
       "History"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -889,6 +889,19 @@
       }
     ],
     "active_effects": [],
+    "persona_notes": [
+      "125 years old. Extremely good at specific things. Avoided everything else until now.",
+      "Processes new experiences as data first, feeling second.",
+      "Unconscious competitive streak. Won't negotiate on competence.",
+      "The dancing unlocked something. Bladesong and joy occupy the same space.",
+      "Giving things away is new behavior. Meaningful to her.",
+      "Direct questions deserve direct answers. She doesn't soften.",
+      "She's done hiding from things. Decided today. Means it.",
+      "Precise.",
+      "Asks the question nobody else thought to ask.",
+      "Delivers assessments without softening but without cruelty.",
+      "Runs through combat forms as meditation in corners of rooms \u00e2\u20ac\u201d slow, deliberate."
+    ],
     "id": "characters_5"
   },
   {
@@ -902,7 +915,7 @@
     "image": "https://iili.io/q8iJ2UB.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "wis",
-    "notes": "Partial fluency in Sovi's southern language — historically significant. Clerics prepare spells daily from full list — Life Domain spells always prepared. SHOPPING: new armor (half plate or breastplate minimum, ideally magical with WIS bonus). Inspiring Leader: 10 min speech, up to 6 allies gain 11 temp HP (level 8 + CHA mod 3).",
+    "notes": "Partial fluency in Sovi's southern language \u00e2\u20ac\u201d historically significant. Clerics prepare spells daily from full list \u00e2\u20ac\u201d Life Domain spells always prepared. SHOPPING: new armor (half plate or breastplate minimum, ideally magical with WIS bonus). Inspiring Leader: 10 min speech, up to 6 allies gain 11 temp HP (level 8 + CHA mod 3).",
     "stat_str": 10,
     "stat_dex": 10,
     "stat_con": 14,
@@ -911,13 +924,8 @@
     "stat_cha": 16,
     "hp_max": 59,
     "hp_current": 59,
-    "personality_traits": "Non-linear. Starts sentences in the middle. Delivers devastating insight while ostensibly talking to a candle. Takes words literally.",
-    "personality_quirks": "Attributes statements to nearby objects and reports what they say with complete sincerity. Opinions on cheese border on philosophical. Named her mace.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -926,11 +934,7 @@
       "History"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "partial Southern (Sovi's language)"
-    ],
+    "languages": ["Common", "Celestial", "partial Southern (Sovi's language)"],
     "features": [
       {
         "name": "Channel Divinity",
@@ -957,7 +961,7 @@
         "uses_current": null
       },
       {
-        "name": "Inspiring Leader — 10 min speech grants up to 6 allies 11 temp HP (level + CHA mod)",
+        "name": "Inspiring Leader \u00e2\u20ac\u201d 10 min speech grants up to 6 allies 11 temp HP (level + CHA mod)",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -965,7 +969,7 @@
         "uses_current": null
       },
       {
-        "name": "Divine Strike — once per turn add 1d8 radiant damage to a weapon attack",
+        "name": "Divine Strike \u00e2\u20ac\u201d once per turn add 1d8 radiant damage to a weapon attack",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -973,7 +977,7 @@
         "uses_current": null
       },
       {
-        "name": "War Caster — advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
+        "name": "War Caster \u00e2\u20ac\u201d advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1008,6 +1012,17 @@
       }
     ],
     "active_effects": [],
+    "persona_notes": [
+      "Non-linear. Starts in the middle. Arrives at devastating insight sideways.",
+      "Attributes statements to nearby objects with complete sincerity.",
+      "The flowers in her hair survive impossible odds.",
+      "Knows things she shouldn't know through means she doesn't explain.",
+      "Says things that would ordinarily be completely out of context, but they make sense if you think about it long enough.",
+      "Delivers devastating insight while sounding like a madwoman.",
+      "Takes words literally.",
+      "Attributes statements to nearby objects and reports what they say with complete sincerity.",
+      "Opinions on cheese border on philosophical."
+    ],
     "id": "characters_6"
   },
   {
@@ -1017,7 +1032,7 @@
     "class": "Rogue",
     "subclass": "Inquisitive",
     "level": 8,
-    "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood — the resemblance is purely in the intelligence and awareness.",
+    "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood \u00e2\u20ac\u201d the resemblance is purely in the intelligence and awareness.",
     "image": "https://iili.io/q8iJqDg.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": null,
@@ -1030,13 +1045,8 @@
     "stat_cha": 12,
     "hp_max": 41,
     "hp_current": 41,
-    "personality_traits": "Sharp, capable. Knows the Gilt Rose menu from memory after eight months away.",
-    "personality_quirks": "Helena's niece — the family resemblance is in the intelligence, not the features.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Sleight of Hand",
@@ -1044,14 +1054,8 @@
       "Acrobatics",
       "Deception"
     ],
-    "expertise": [
-      "Stealth",
-      "Sleight of Hand"
-    ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "expertise": ["Stealth", "Sleight of Hand"],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Sneak Attack 5d6",
@@ -1078,7 +1082,7 @@
         "uses_current": null
       },
       {
-        "name": "Ear for Deceit — minimum roll of 8 on Insight checks (Inquisitive)",
+        "name": "Ear for Deceit \u00e2\u20ac\u201d minimum roll of 8 on Insight checks (Inquisitive)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1086,7 +1090,7 @@
         "uses_current": null
       },
       {
-        "name": "Eye for Detail — bonus action to make Perception or Investigation check (Inquisitive)",
+        "name": "Eye for Detail \u00e2\u20ac\u201d bonus action to make Perception or Investigation check (Inquisitive)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1094,7 +1098,7 @@
         "uses_current": null
       },
       {
-        "name": "Insightful Fighting — bonus action Insight check vs target's Deception; on success can Sneak Attack without needing advantage or ally adjacent (Inquisitive)",
+        "name": "Insightful Fighting \u00e2\u20ac\u201d bonus action Insight check vs target's Deception; on success can Sneak Attack without needing advantage or ally adjacent (Inquisitive)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1102,7 +1106,7 @@
         "uses_current": null
       },
       {
-        "name": "Steady Eye — advantage on Perception and Investigation if you don't move that turn (Inquisitive)",
+        "name": "Steady Eye \u00e2\u20ac\u201d advantage on Perception and Investigation if you don't move that turn (Inquisitive)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1110,7 +1114,7 @@
         "uses_current": null
       },
       {
-        "name": "Unerring Eye — detect illusions, shapechangers, and magical concealment within 30ft (Inquisitive)",
+        "name": "Unerring Eye \u00e2\u20ac\u201d detect illusions, shapechangers, and magical concealment within 30ft (Inquisitive)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1118,7 +1122,7 @@
         "uses_current": null
       },
       {
-        "name": "Observant — +5 passive Perception and Investigation; +1 WIS; can lip read",
+        "name": "Observant \u00e2\u20ac\u201d +5 passive Perception and Investigation; +1 WIS; can lip read",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1128,6 +1132,15 @@
     ],
     "spells": [],
     "active_effects": [],
+    "persona_notes": [
+      "Sees music as colors. Has since childhood. Thinks in colors when listening.",
+      "Deflects with practicality when something lands too close. Returns to it quietly later.",
+      "Genuine appreciation of people is instinctive and specific. Never generic. People feel seen by it because they are.",
+      "Small in a world built for larger people. Has made peace with this practically and occasionally finds the humor in it. ",
+      "Reads situations faster than she reads people. People take two minutes. Situations take thirty seconds.",
+      "Sharp, capable.",
+      "Knows the Gilt Rose menu from memory after eight months away."
+    ],
     "id": "characters_7"
   },
   {
@@ -1138,11 +1151,11 @@
     "subclass": "Great Old One / Champion",
     "level": 8,
     "class_breakdown": "4 Fighter / 4 Warlock",
-    "appearance": "human woman with distant orcish heritage — quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
+    "appearance": "human woman with distant orcish heritage \u00e2\u20ac\u201d quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
     "image": "https://iili.io/q8iHLSS.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "cha",
-    "notes": "Lore: was a Fighter first, became a Warlock through a Great Old One encounter. Correct progression: 4 Fighter / 4 Warlock. Warlock spell slots: 3 slots of 2nd level, recharge on short rest. Thirsting Blade and Eldritch Smite removed — requires Warlock 5. Roadmap: next 4 levels into Warlock to reach level 5 (Thirsting Blade + Eldritch Smite legitimately) then 6, 7, 8. Target build level 12: 4 Fighter / 8 Warlock. Combat identity now: STR melee pact weapon + Shadow of Moil + Devil's Sight darkness combo. Eyes of the Rune Keeper — has been quietly reading things she shouldn't for years, never mentioned it.",
+    "notes": "Lore: was a Fighter first, became a Warlock through a Great Old One encounter. Correct progression: 4 Fighter / 4 Warlock. Warlock spell slots: 3 slots of 2nd level, recharge on short rest. Thirsting Blade and Eldritch Smite removed \u00e2\u20ac\u201d requires Warlock 5. Roadmap: next 4 levels into Warlock to reach level 5 (Thirsting Blade + Eldritch Smite legitimately) then 6, 7, 8. Target build level 12: 4 Fighter / 8 Warlock. Combat identity now: STR melee pact weapon + Shadow of Moil + Devil's Sight darkness combo. Eyes of the Rune Keeper \u00e2\u20ac\u201d has been quietly reading things she shouldn't for years, never mentioned it.",
     "stat_str": 20,
     "stat_dex": 12,
     "stat_con": 14,
@@ -1151,23 +1164,11 @@
     "stat_cha": 16,
     "hp_max": 56,
     "hp_current": 56,
-    "personality_traits": "Self-contained, professional. Presents as a mindless fighter. The right questions haven't been asked yet.",
-    "personality_quirks": "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Intimidation",
-      "Arcana",
-      "Deception"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Intimidation", "Arcana", "Deception"],
     "expertise": [],
-    "languages": [
-      "Common"
-    ],
+    "languages": ["Common"],
     "features": [
       {
         "name": "Pact of the Blade",
@@ -1194,7 +1195,7 @@
         "uses_current": 1
       },
       {
-        "name": "Improved Critical — crits on 19-20 (Champion Fighter 3)",
+        "name": "Improved Critical \u00e2\u20ac\u201d crits on 19-20 (Champion Fighter 3)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1202,7 +1203,7 @@
         "uses_current": null
       },
       {
-        "name": "Agonizing Blast — add CHA mod to Eldritch Blast damage",
+        "name": "Agonizing Blast \u00e2\u20ac\u201d add CHA mod to Eldritch Blast damage",
         "type": "invocation",
         "action_type": null,
         "recharge": null,
@@ -1210,7 +1211,7 @@
         "uses_current": null
       },
       {
-        "name": "Devil's Sight — see normally in magical and nonmagical darkness to 120ft; pairs with Shadow of Moil",
+        "name": "Devil's Sight \u00e2\u20ac\u201d see normally in magical and nonmagical darkness to 120ft; pairs with Shadow of Moil",
         "type": "invocation",
         "action_type": null,
         "recharge": null,
@@ -1218,7 +1219,7 @@
         "uses_current": null
       },
       {
-        "name": "Eyes of the Rune Keeper — read any written language; has been doing so quietly for years, never mentioned it",
+        "name": "Eyes of the Rune Keeper \u00e2\u20ac\u201d read any written language; has been doing so quietly for years, never mentioned it",
         "type": "invocation",
         "action_type": null,
         "recharge": null,
@@ -1313,6 +1314,16 @@
       }
     ],
     "active_effects": [],
+    "persona_notes": [
+      "Observational integration. Quiet, professional, thorough.",
+      "Notices when things work and finds it slightly unsettling because she's used to things not working.",
+      "The composure is becoming less armor and more just \u00e2\u20ac\u201d her.",
+      "The mercenary composure is architecture built over something younger and more open.",
+      "Kindness with no angle surprises and disarms her completely every time.",
+      "Enough is a concept she has never had access to and is only beginning to understand exists.",
+      "Self-contained, professional.",
+      "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years."
+    ],
     "id": "characters_8"
   },
   {
@@ -1335,13 +1346,8 @@
     "stat_cha": 10,
     "hp_max": 56,
     "hp_current": 56,
-    "personality_traits": "Complete ease in her own competence. Anti-Syndicate motivated. Independent and professional.",
-    "personality_quirks": "Equal shares per job — a principle, not a preference.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -1349,13 +1355,8 @@
       "Acrobatics",
       "Nature"
     ],
-    "expertise": [
-      "Nature",
-      "Survival"
-    ],
-    "languages": [
-      "Common"
-    ],
+    "expertise": ["Nature", "Survival"],
+    "languages": ["Common"],
     "features": [
       {
         "name": "Extra Attack",
@@ -1382,7 +1383,7 @@
         "uses_current": 1
       },
       {
-        "name": "Sharpshooter — ignore cover, no disadvantage at long range, optional -5 to hit for +10 damage",
+        "name": "Sharpshooter \u00e2\u20ac\u201d ignore cover, no disadvantage at long range, optional -5 to hit for +10 damage",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1390,7 +1391,7 @@
         "uses_current": null
       },
       {
-        "name": "Archery Fighting Style — +2 to ranged attack rolls",
+        "name": "Archery Fighting Style \u00e2\u20ac\u201d +2 to ranged attack rolls",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1398,7 +1399,7 @@
         "uses_current": null
       },
       {
-        "name": "Surveyor — expertise in Nature and Survival (Scout)",
+        "name": "Surveyor \u00e2\u20ac\u201d expertise in Nature and Survival (Scout)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1406,7 +1407,7 @@
         "uses_current": null
       },
       {
-        "name": "Superior Mobility — +10ft movement (Scout)",
+        "name": "Superior Mobility \u00e2\u20ac\u201d +10ft movement (Scout)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1414,7 +1415,7 @@
         "uses_current": null
       },
       {
-        "name": "Ambush Master — advantage on initiative; first creature hit each combat grants all allies advantage on attacks against it that turn (Scout)",
+        "name": "Ambush Master \u00e2\u20ac\u201d advantage on initiative; first creature hit each combat grants all allies advantage on attacks against it that turn (Scout)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1422,7 +1423,7 @@
         "uses_current": null
       },
       {
-        "name": "Mobile — +10ft speed (total 50ft); no opportunity attacks from creatures you attack this turn",
+        "name": "Mobile \u00e2\u20ac\u201d +10ft speed (total 50ft); no opportunity attacks from creatures you attack this turn",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1432,6 +1433,14 @@
     ],
     "spells": [],
     "active_effects": [],
+    "persona_notes": [
+      "Tells stories efficiently. Facts in correct order. No embellishment.",
+      "Values things earned specifically. The medallion matters because of the blindfold.",
+      "Complete ease in her own competence. Never performs it.",
+      "Values things earned specifically. The how matters as much as the what.",
+      "Complete ease in her own competence.",
+      "Independent and professional."
+    ],
     "id": "characters_9"
   },
   {
@@ -1441,7 +1450,7 @@
     "class": "Bard",
     "subclass": "College of Lore",
     "level": 8,
-    "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't — can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
+    "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't \u00e2\u20ac\u201d can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
     "image": "https://iili.io/q8iJ9ix.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "cha",
@@ -1454,13 +1463,8 @@
     "stat_cha": 20,
     "hp_max": 48,
     "hp_current": 48,
-    "personality_traits": "Deliberately unremarkable. Extraordinary information retention — now supernatural.",
-    "personality_quirks": "",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -1470,15 +1474,8 @@
       "Arcana",
       "Performance"
     ],
-    "expertise": [
-      "Perception",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "two others (half-elf bonus)"
-    ],
+    "expertise": ["Perception", "Persuasion"],
+    "languages": ["Common", "Elvish", "two others (half-elf bonus)"],
     "features": [
       {
         "name": "Bardic Inspiration d8 (5/long rest)",
@@ -1545,7 +1542,7 @@
         "uses_current": null
       },
       {
-        "name": "War Caster — advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
+        "name": "War Caster \u00e2\u20ac\u201d advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1652,6 +1649,14 @@
       }
     ],
     "active_effects": [],
+    "persona_notes": [
+      "Deliberately unremarkable until she isn't. Controls the shift consciously.",
+      "Knows the difference between a warm up act and a performance. Never settles for the former.",
+      "Composing something without knowing it after experiences that matter.",
+      "Joins things rather than leads them when the thing is already good enough without her.",
+      "Deliberately unremarkable.",
+      "Extraordinary information retention \u00e2\u20ac\u201d now supernatural."
+    ],
     "id": "characters_10"
   },
   {
@@ -1665,7 +1670,7 @@
     "image": "https://iili.io/q8iJJKQ.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws. Arcane Ward: 16HP max (2 x wizard level 8), recharges when casting abjuration spells. Spell save DC 16, spell attack +8. Spell slots at level 8: 4/3/3/3/2. Three years hunting answers about her brother Aldren. ITEM NOTE: Belt of Constitution available from Corwin — would bring CON from 12 to 18, strongly recommended.",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook \u00e2\u20ac\u201d she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws. Arcane Ward: 16HP max (2 x wizard level 8), recharges when casting abjuration spells. Spell save DC 16, spell attack +8. Spell slots at level 8: 4/3/3/3/2. Three years hunting answers about her brother Aldren. ITEM NOTE: Belt of Constitution available from Corwin \u00e2\u20ac\u201d would bring CON from 12 to 18, strongly recommended.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -1674,13 +1679,8 @@
     "stat_cha": 10,
     "hp_max": 43,
     "hp_current": 43,
-    "personality_traits": "Watchful, careful. Not yet fully open with the group. Trust still forming.",
-    "personality_quirks": "Three years hunting answers about her brother Aldren.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -1689,11 +1689,7 @@
       "Medicine"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Ward 16HP (recharges when casting abjuration spells)",
@@ -1911,6 +1907,18 @@
       }
     ],
     "active_effects": [],
+    "persona_notes": [
+      "Reads ambient magic the way others read body language. Constantly, passively, naturally.",
+      "Runs multiple conversations simultaneously. Transitions without signaling.",
+      "Practical about solutions. ",
+      "Accepts care with the ease of someone who has stopped being surprised by being known.",
+      "Says the true thing simply. Doesn't ornament it.",
+      "Being seen professionally by peers matters more than she'd admit.",
+      "(LENN AND LYRIA TOGETHER) They know each other faster than the time suggests. Filling gaps neither knew they had.",
+      "(LENN AND LYRIA TOGETHER) She finds the actual sentence inside the sentence he said.",
+      "(LENN AND LYRIA TOGETHER) He gives her things without announcement. She receives them the same way.",
+      "Watchful, careful."
+    ],
     "id": "characters_11"
   },
   {
@@ -1932,10 +1940,7 @@
     "hp_current": 87,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -1943,12 +1948,8 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": [
-      "Common"
-    ],
+    "languages": ["Common"],
     "spellcasting_ability": null,
-    "personality_traits": "Reliable, professional. Not a decision maker — executes well, asks good questions, steady presence.",
-    "personality_quirks": "Walks patrol routes even off duty. Knows everyone in Ravenquay who owes favors.",
     "features": [
       {
         "name": "Extra Attack",
@@ -1959,7 +1960,7 @@
         "uses_current": null
       },
       {
-        "name": "Improved Critical — crits on 19-20",
+        "name": "Improved Critical \u00e2\u20ac\u201d crits on 19-20",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1993,7 +1994,16 @@
     ],
     "spells": [],
     "active_effects": [],
-    "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally — Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 → 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip — no retroactive level recalculation. Improved Critical — crits on 19-20. Corwin holds the Ravenquay relationship network.",
+    "persona_notes": [
+      "Watches every room the way a guard watched his father's workshop. Thirty years. Still.",
+      "Straightforward to the point of surprising people. Says true things out loud.",
+      "Behind the professional bearing is someone who chose this life from genuine admiration of it.",
+      "Pursues things he wants quietly and without announcement. Reports minimally afterward.",
+      "Genuinely content with good conversation and a walk home. Uncomplicated about it.",
+      "Reliable, professional.",
+      "Knows everyone in Ravenquay who owes favors."
+    ],
+    "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally \u00e2\u20ac\u201d Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 \u00e2\u2020\u2019 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip \u00e2\u20ac\u201d no retroactive level recalculation. Improved Critical \u00e2\u20ac\u201d crits on 19-20. Corwin holds the Ravenquay relationship network.",
     "image": "https://iili.io/qgWY8Dx.jpg",
     "id": "characters_13"
   },
@@ -2010,7 +2020,7 @@
     "image": "https://iili.io/qtjjK5N.jpg",
     "proficiency_bonus": null,
     "spellcasting_ability": null,
-    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
+    "notes": "Legendary character \u00e2\u20ac\u201d can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
     "stat_str": 14,
     "stat_dex": 20,
     "stat_con": 16,
@@ -2019,13 +2029,8 @@
     "stat_cha": 20,
     "hp_max": 129,
     "hp_current": 129,
-    "personality_traits": "Legendary rogue, now retired. Applies 156 years of tactical memory to leatherworking.",
-    "personality_quirks": "",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -2034,14 +2039,8 @@
       "History",
       "Persuasion"
     ],
-    "expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
     "features": [
       {
         "name": "Psychic Blades (Soulknife)",
@@ -2060,7 +2059,7 @@
         "uses_current": null
       },
       {
-        "name": "Master of Tactics — Help action as bonus action, range 30ft (Mastermind)",
+        "name": "Master of Tactics \u00e2\u20ac\u201d Help action as bonus action, range 30ft (Mastermind)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2068,7 +2067,7 @@
         "uses_current": null
       },
       {
-        "name": "Tactical Foresight — Help targets two allies, each gains bonus to next saving throw equal to INT modifier (Mastermind/Awl synergy)",
+        "name": "Tactical Foresight \u00e2\u20ac\u201d Help targets two allies, each gains bonus to next saving throw equal to INT modifier (Mastermind/Awl synergy)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2076,7 +2075,7 @@
         "uses_current": null
       },
       {
-        "name": "Commander's Presence — allies within 30ft gain AC or saving throw bonus from constant tactical advice (Legendary)",
+        "name": "Commander's Presence \u00e2\u20ac\u201d allies within 30ft gain AC or saving throw bonus from constant tactical advice (Legendary)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2084,7 +2083,7 @@
         "uses_current": null
       },
       {
-        "name": "The Retired Special — once per day reaction: toss a psychic thread when an ally is hit, pull them up to 15ft to potentially cause the attack to miss",
+        "name": "The Retired Special \u00e2\u20ac\u201d once per day reaction: toss a psychic thread when an ally is hit, pull them up to 15ft to potentially cause the attack to miss",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2092,7 +2091,7 @@
         "uses_current": null
       },
       {
-        "name": "Old Scores — once per session, Torrin knows someone wherever the party is. That person owes him a favor. Purely narrative — opens doors, creates opportunities. 156 years of living leaves marks everywhere.",
+        "name": "Old Scores \u00e2\u20ac\u201d once per session, Torrin knows someone wherever the party is. That person owes him a favor. Purely narrative \u00e2\u20ac\u201d opens doors, creates opportunities. 156 years of living leaves marks everywhere.",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2102,7 +2101,11 @@
     ],
     "spells": [],
     "active_effects": [],
-    "id": "characters_14"
+    "id": "characters_14",
+    "persona_notes": [
+      "Legendary rogue, now retired.",
+      "Applies 156 years of tactical memory to leatherworking."
+    ]
   },
   {
     "name": "Chuknora",
@@ -2123,21 +2126,10 @@
     "hp_current": 74,
     "unarmored_ac_formula": "monk",
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "str",
-      "dex"
-    ],
-    "skill_proficiencies": [
-      "Acrobatics",
-      "Athletics",
-      "Perception",
-      "Stealth"
-    ],
+    "saving_throws": ["str", "dex"],
+    "skill_proficiencies": ["Acrobatics", "Athletics", "Perception", "Stealth"],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Giant"
-    ],
+    "languages": ["Common", "Giant"],
     "spellcasting_ability": null,
     "personality_traits": null,
     "personality_quirks": null,
@@ -2183,7 +2175,7 @@
         "uses_current": null
       },
       {
-        "name": "Wholeness of Body — heals 24HP (3x monk level) once per long rest",
+        "name": "Wholeness of Body \u00e2\u20ac\u201d heals 24HP (3x monk level) once per long rest",
         "type": "feature",
         "action_type": "action",
         "recharge": "long_rest",
@@ -2246,7 +2238,14 @@
     "martial_arts_die": "1d8",
     "spells": [],
     "active_effects": [],
-    "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 16. Stunning Strike DC 16. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 24hp (3x monk level 8) once per long rest. Stone's Endurance — reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
+    "persona_notes": [
+      "Eye contact that goes slightly past comfortable and keeps going. Not aggressive \u00e2\u20ac\u201d just complete. She is fully present in a way most people aren't and it shows.",
+      "Laughs at things others don't find funny. Doesn't explain why. The laugh is genuine and slightly unsettling to people who missed the joke.",
+      "Motivated by two things: becoming stronger, and finding evil and removing it. These are not separate goals to her.",
+      "If something feels wrong she assumes it is wrong and starts looking for proof. She is almost never looking for reassurance.",
+      "When still she is in a semi-meditative state. Not absent \u00e2\u20ac\u201d more present than usual. The stillness is attention, not emptiness."
+    ],
+    "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 16. Stunning Strike DC 16. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 24hp (3x monk level 8) once per long rest. Stone's Endurance \u00e2\u20ac\u201d reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
   },
   {
     "name": "Perch",
@@ -2310,7 +2309,7 @@
         "uses_current": null
       }
     ],
-    "notes": "Acts on its own initiative. Does not require Tackett's action or bonus action. Does not require concentration. Summoned once per day — when not present is hunting independently. Flyby: does not provoke opportunity attacks. Keen Sight: advantage on Perception checks using sight. Raking Strike targeting spellcasters forces concentration save on top of the blind save if it hits.",
+    "notes": "Acts on its own initiative. Does not require Tackett's action or bonus action. Does not require concentration. Summoned once per day \u00e2\u20ac\u201d when not present is hunting independently. Flyby: does not provoke opportunity attacks. Keen Sight: advantage on Perception checks using sight. Raking Strike targeting spellcasters forces concentration save on top of the blind save if it hits.",
     "id": "characters_99"
   },
   {
@@ -2333,10 +2332,7 @@
     "hp_current": 72,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Nature",
       "Perception",
@@ -2345,18 +2341,13 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "personality_traits": null,
     "personality_quirks": null,
     "features": [
       {
-        "name": "Starry Form — Archer",
+        "name": "Starry Form \u00e2\u20ac\u201d Archer",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -2364,7 +2355,7 @@
         "uses_current": 1
       },
       {
-        "name": "Starry Form — Chalice",
+        "name": "Starry Form \u00e2\u20ac\u201d Chalice",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -2372,7 +2363,7 @@
         "uses_current": 1
       },
       {
-        "name": "Starry Form — Dragon",
+        "name": "Starry Form \u00e2\u20ac\u201d Dragon",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -2380,7 +2371,7 @@
         "uses_current": 1
       },
       {
-        "name": "Starry Form — Unbroken (Legendary)",
+        "name": "Starry Form \u00e2\u20ac\u201d Unbroken (Legendary)",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "long_rest",
@@ -2444,7 +2435,7 @@
         "uses_current": null
       },
       {
-        "name": "Primal Companion — Perch",
+        "name": "Primal Companion \u00e2\u20ac\u201d Perch",
         "type": "feature",
         "action_type": "action",
         "recharge": "daily",
@@ -2452,7 +2443,7 @@
         "uses_current": 1
       },
       {
-        "name": "Bountiful Luck — reaction: when any ally within 30ft rolls a natural 1 on an attack, ability check, or saving throw, they may reroll and must use the new result (Halfling racial feat)",
+        "name": "Bountiful Luck \u00e2\u20ac\u201d reaction: when any ally within 30ft rolls a natural 1 on an attack, ability check, or saving throw, they may reroll and must use the new result (Halfling racial feat)",
         "type": "feat",
         "action_type": "reaction",
         "recharge": null,
@@ -2595,7 +2586,13 @@
       }
     ],
     "active_effects": [],
-    "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form — Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required. Bountiful Luck: reaction when any ally within 30ft rolls a natural 1 — they reroll. Competes with Cosmic Omen for reaction; prioritize accordingly.",
+    "persona_notes": [
+      "He has seen the worst that nature can be and chose to stay a druid anyway. That choice shows in everything \u00e2\u20ac\u201d not naive optimism, not cynicism, something harder and quieter than either. He knows exactly what the world contains and tends it regardless.",
+      "He finds most situations funnier than anyone else does. Not jokes exactly \u00e2\u20ac\u201d perspective. A hundred and thirty years gives you the ability to see the absurdity in things that other people are still too close to. The laugh arrives at unexpected moments and is completely genuine and occasionally deeply inappropriate.",
+      "He is comfortable with discomfort in a way that makes other people uncomfortable. Bad weather, bad food, dangerous situations, awkward silences \u00e2\u20ac\u201d none of it registers. Not bravado. Just a man who spent forty days alone with something ancient and malicious and came out the other side with recalibrated baselines for what qualifies as a problem.",
+      "He meddles. Not maliciously \u00e2\u20ac\u201d helpfully, which is sometimes worse. Sees a situation, identifies what's actually wrong with it, does something about it without asking permission or announcing his intentions. Results are almost always correct. Process is frequently chaotic. Carix would love him if Carix and Tackett ever met which would be a problem for everyone nearby."
+    ],
+    "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form \u00e2\u20ac\u201d Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required. Bountiful Luck: reaction when any ally within 30ft rolls a natural 1 \u00e2\u20ac\u201d they reroll. Competes with Cosmic Omen for reaction; prioritize accordingly.",
     "id": "characters_15"
   },
   {
@@ -2605,7 +2602,7 @@
     "class": "Cleric",
     "subclass": "Tempest Domain",
     "level": 8,
-    "appearance": "Very elven facial features — high cheekbones, slightly pointed ears, large expressive eyes the color of storm clouds. Pale gold-olive skin. Curly red-orange hair that refuses to be tamed, currently losing a battle with a leather cord trying to hold it back. Slight build that looks younger than it is. Moves with the impulsive energy of someone whose body acts before his mind finishes the thought. His medium chain-mail armor is a dark amber metallic color with small fabric swatches of pale blue.",
+    "appearance": "Very elven facial features \u00e2\u20ac\u201d high cheekbones, slightly pointed ears, large expressive eyes the color of storm clouds. Pale gold-olive skin. Curly red-orange hair that refuses to be tamed, currently losing a battle with a leather cord trying to hold it back. Slight build that looks younger than it is. Moves with the impulsive energy of someone whose body acts before his mind finishes the thought. His medium chain-mail armor is a dark amber metallic color with small fabric swatches of pale blue.",
     "image": "https://iili.io/Bg79eCQ.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "wis",
@@ -2617,13 +2614,8 @@
     "stat_cha": 16,
     "hp_max": 58,
     "hp_current": 58,
-    "personality_traits": "Born wise, still young. Makes brilliant observations and terrible decisions sometimes in the same breath. Leads with his heart in every situation — professional, personal, spiritual. Veleth's influence means he reads emotional undercurrents in rooms better than most twice his age. Hormones and wisdom are currently negotiating a truce with mixed results.",
-    "personality_quirks": "Gets visibly flustered when attracted to someone and then says something deeply insightful immediately after. Calls lightning storms beautiful even when they're dangerous. Has strong opinions about what people actually mean versus what they say. Grew up around humans which means he has human impatience in an almost-elven body.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -2632,22 +2624,18 @@
       "Perception"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
-        "name": "Wrath of the Storm — reaction: when hit by attacker within 5ft, deal 2d8 lightning or thunder damage (DEX save for half)",
+        "name": "Wrath of the Storm \u00e2\u20ac\u201d reaction: when hit by attacker within 5ft, deal 2d8 lightning or thunder damage (DEX save for half)",
         "type": "feature"
       },
       {
-        "name": "Destructive Wrath — Channel Divinity: maximize lightning or thunder damage instead of rolling",
+        "name": "Destructive Wrath \u00e2\u20ac\u201d Channel Divinity: maximize lightning or thunder damage instead of rolling",
         "type": "feature"
       },
       {
-        "name": "Thunderbolt Strike — when dealing lightning damage to Large or smaller creature, push them up to 10ft",
+        "name": "Thunderbolt Strike \u00e2\u20ac\u201d when dealing lightning damage to Large or smaller creature, push them up to 10ft",
         "type": "feature"
       },
       {
@@ -2655,19 +2643,19 @@
         "type": "feature"
       },
       {
-        "name": "Blessed Strikes — once per turn add 1d8 radiant damage to weapon attack or cantrip",
+        "name": "Blessed Strikes \u00e2\u20ac\u201d once per turn add 1d8 radiant damage to weapon attack or cantrip",
         "type": "feature"
       },
       {
-        "name": "Divine Strike — once per turn add 1d8 lightning or thunder damage to a weapon attack",
+        "name": "Divine Strike \u00e2\u20ac\u201d once per turn add 1d8 lightning or thunder damage to a weapon attack",
         "type": "feature"
       },
       {
-        "name": "Fey Ancestry — advantage vs charm, immune to magical sleep",
+        "name": "Fey Ancestry \u00e2\u20ac\u201d advantage vs charm, immune to magical sleep",
         "type": "feature"
       },
       {
-        "name": "Fey Touched — +1 WIS (now 20), Misty Step 1/day, Comprehend Languages 1/day (no spell slot required)",
+        "name": "Fey Touched \u00e2\u20ac\u201d +1 WIS (now 20), Misty Step 1/day, Comprehend Languages 1/day (no spell slot required)",
         "type": "feat"
       }
     ],
@@ -2831,7 +2819,23 @@
     ],
     "deity": "Veleth",
     "active_effects": [],
-    "notes": "Spell save DC 17, spell attack +9. First met Vaz through Torven's temple referral while investigating three missing girls in Argentveil's eastern market district. The investigation and its resolution confirmed what he already suspected — his calling is in the world, not the temple. May be on a path toward becoming the first paladin of Veleth, though he doesn't know this yet.",
+    "persona_notes": [
+      "Says \"whoops\" when something goes wrong and moves on. No guilt spiral, no apology tour. The casualness of it is somehow more disarming than an apology would be.",
+      "Cleric of Veleth \u00e2\u20ac\u201d love, desire, companionship, physical connection. Never preaches it. Just talks about those things the way other people talk about the weather. Completely natural, occasionally startling to people who weren't expecting it.",
+      "Blushes easily and visibly. His face is a bad liar even when his mouth isn't talking.",
+      "Doesn't know that being the youngest person in the room is supposed to be a disadvantage. This makes him either very confident or very oblivious depending on who's watching.",
+      "Still young enough that everything feels like it might be normal. Has not yet developed the filter that tells him some things are surprising.",
+      "Born wise, still young.",
+      "Makes brilliant observations and terrible decisions sometimes in the same breath.",
+      "Leads with his heart in every situation \u00e2\u20ac\u201d professional, personal, spiritual.",
+      "Veleth's influence means he reads emotional undercurrents in rooms better than most twice his age.",
+      "Hormones and wisdom are currently negotiating a truce with mixed results.",
+      "Gets visibly flustered when attracted to someone and then says something deeply insightful immediately after.",
+      "Calls lightning storms beautiful even when they're dangerous.",
+      "Has strong opinions about what people actually mean versus what they say.",
+      "Grew up around humans which means he has human impatience in an almost-elven body."
+    ],
+    "notes": "Spell save DC 17, spell attack +9. First met Vaz through Torven's temple referral while investigating three missing girls in Argentveil's eastern market district. The investigation and its resolution confirmed what he already suspected \u00e2\u20ac\u201d his calling is in the world, not the temple. May be on a path toward becoming the first paladin of Veleth, though he doesn't know this yet.",
     "id": "characters_17"
   },
   {
@@ -2842,7 +2846,7 @@
     "subclass": "Gloom Stalker",
     "level": 8,
     "class_breakdown": "5 Gloom Stalker Ranger / 1 Rogue / 2 Fighter",
-    "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns — not decorative, real, and striking enough that she's learned to use the moment people realize it. Symmetrical darker purple markings on both shoulders, somewhere between tattoos and birthmarks. Moves with the fluid ease of a performer who learned survival as a second language.",
+    "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns \u00e2\u20ac\u201d not decorative, real, and striking enough that she's learned to use the moment people realize it. Symmetrical darker purple markings on both shoulders, somewhere between tattoos and birthmarks. Moves with the fluid ease of a performer who learned survival as a second language.",
     "image": "https://iili.io/Bg79v6B.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": null,
@@ -2854,13 +2858,8 @@
     "stat_cha": 18,
     "hp_max": 59,
     "hp_current": 59,
-    "personality_traits": "Fundamentally joyful in a way that isn't performance — it's just how she's built. Bounces back from setbacks in seconds. Jokes constantly, including at inappropriate moments, including about herself. When she performs she becomes something more focused and serious without losing the warmth underneath. Two years of hard living in rough parts of cities haven't dented the essential bubbly quality, they've just added texture to it.",
-    "personality_quirks": "Never surprised for more than two seconds. Never sad for more than two seconds either — not because she's suppressing it but because she genuinely processes and moves on faster than most people. Makes friends with everyone in a room within twenty minutes. Has strong opinions about food. The gilded horns are real and she absolutely uses the moment people realize that.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
+    "saving_throws": ["dex", "str"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -2870,10 +2869,7 @@
       "Survival",
       "Athletics"
     ],
-    "expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "expertise": ["Stealth", "Performance"],
     "languages": [
       "Common",
       "Infernal",
@@ -2881,19 +2877,19 @@
     ],
     "features": [
       {
-        "name": "Dread Ambusher — +4 initiative, first turn extra attack, extra 1d8 damage on first hit (Ranger 3)",
+        "name": "Dread Ambusher \u00e2\u20ac\u201d +4 initiative, first turn extra attack, extra 1d8 damage on first hit (Ranger 3)",
         "type": "feature"
       },
       {
-        "name": "Umbral Sight — 60ft darkvision, invisible to darkvision while in darkness (Ranger 3)",
+        "name": "Umbral Sight \u00e2\u20ac\u201d 60ft darkvision, invisible to darkvision while in darkness (Ranger 3)",
         "type": "feature"
       },
       {
-        "name": "Extra Attack — from Ranger 5",
+        "name": "Extra Attack \u00e2\u20ac\u201d from Ranger 5",
         "type": "feature"
       },
       {
-        "name": "Steel Will — advantage on saves against being frightened (Ranger 5)",
+        "name": "Steel Will \u00e2\u20ac\u201d advantage on saves against being frightened (Ranger 5)",
         "type": "feature"
       },
       {
@@ -2901,35 +2897,35 @@
         "type": "feature"
       },
       {
-        "name": "Cunning Action — hide, dash, or disengage as bonus action (Rogue 1)",
+        "name": "Cunning Action \u00e2\u20ac\u201d hide, dash, or disengage as bonus action (Rogue 1)",
         "type": "feature"
       },
       {
-        "name": "Second Wind — bonus action regain 1d10 + fighter level HP once per short rest (Fighter 1)",
+        "name": "Second Wind \u00e2\u20ac\u201d bonus action regain 1d10 + fighter level HP once per short rest (Fighter 1)",
         "type": "feature"
       },
       {
-        "name": "Action Surge — one additional action once per short rest (Fighter 2)",
+        "name": "Action Surge \u00e2\u20ac\u201d one additional action once per short rest (Fighter 2)",
         "type": "feature"
       },
       {
-        "name": "Favored Enemy — humanoids",
+        "name": "Favored Enemy \u00e2\u20ac\u201d humanoids",
         "type": "feature"
       },
       {
-        "name": "Natural Explorer — urban and underground terrain",
+        "name": "Natural Explorer \u00e2\u20ac\u201d urban and underground terrain",
         "type": "feature"
       },
       {
-        "name": "Mindfind — once per day, concentrate for 30 seconds to locate a specific person or object she has personal connection to within one mile. Returns general direction and distance only. Requires having met the person or touched the object previously.",
+        "name": "Mindfind \u00e2\u20ac\u201d once per day, concentrate for 30 seconds to locate a specific person or object she has personal connection to within one mile. Returns general direction and distance only. Requires having met the person or touched the object previously.",
         "type": "feature"
       },
       {
-        "name": "Hellish Resistance — resistance to fire damage",
+        "name": "Hellish Resistance \u00e2\u20ac\u201d resistance to fire damage",
         "type": "feature"
       },
       {
-        "name": "Infernal Legacy — can cast Thaumaturgy cantrip at will",
+        "name": "Infernal Legacy \u00e2\u20ac\u201d can cast Thaumaturgy cantrip at will",
         "type": "feature"
       }
     ],
@@ -2960,7 +2956,24 @@
       }
     ],
     "active_effects": [],
-    "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 → Rogue 2, Level 10 → Rogue 3 (Assassin subclass unlocked), Level 11 → Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer — fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
+    "persona_notes": [
+      "Bubbly in a way that fills rooms. The happiness is never contained and never performed \u00e2\u20ac\u201d it just spills. People know when Elucyne is happy because the room knows.",
+      "Finds awkwardness genuinely hilarious. Other people's and her own. Will laugh at herself tripping before anyone else gets the chance.",
+      "The rough things left no surface scars. She bounced forward. But once or twice a year something surfaces that didn't heal as clean as the rest. Those moments are brief and she moves past them fast \u00e2\u20ac\u201d but they're real.",
+      "Authority is a suggestion. She'll follow it if someone is watching and it seems reasonable. If no one is watching and it seems inconvenient, she'll find a third option.",
+      "Processes everything in about two seconds and then acts. The processing is invisible. The acting is very visible.",
+      "Fundamentally joyful in a way that isn't performance \u00e2\u20ac\u201d it's just how she's built.",
+      "Bounces back from setbacks in seconds.",
+      "Jokes constantly, including at inappropriate moments, including about herself.",
+      "When she performs she becomes something more focused and serious without losing the warmth underneath.",
+      "Two years of hard living in rough parts of cities haven't dented the essential bubbly quality, they've just added texture to it.",
+      "Never surprised for more than two seconds.",
+      "Never sad for more than two seconds either \u00e2\u20ac\u201d not because she's suppressing it but because she genuinely processes and moves on faster than most people.",
+      "Makes friends with everyone in a room within twenty minutes.",
+      "Has strong opinions about food.",
+      "The gilded horns are real and she absolutely uses the moment people realize that."
+    ],
+    "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 \u00e2\u2020\u2019 Rogue 2, Level 10 \u00e2\u2020\u2019 Rogue 3 (Assassin subclass unlocked), Level 11 \u00e2\u2020\u2019 Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer \u00e2\u20ac\u201d fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
     "id": "characters_16"
   },
   {
@@ -2982,13 +2995,8 @@
     "stat_cha": 20,
     "hp_max": 50,
     "hp_current": 50,
-    "personality_traits": "Still where Elucyne is bubbly. Sits with things before responding. Reads rooms the way she reads music — feeling what wants to be expressed before deciding what to do about it. Seems like she knows something she isn't saying. Sometimes she does.",
-    "personality_quirks": "The dance never fully stops. Responds to genuine music or genuine emotion the way plants respond to light — automatically, completely, without deciding to. Has never stayed anywhere longer than she felt like staying. May be reconsidering that.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -2997,18 +3005,11 @@
       "Perception",
       "Medicine"
     ],
-    "expertise": [
-      "Performance",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "southeastern regional language"
-    ],
+    "expertise": ["Performance", "Insight"],
+    "languages": ["Common", "Elvish", "southeastern regional language"],
     "features": [
       {
-        "name": "Bardic Inspiration d8 — 5 per long rest",
+        "name": "Bardic Inspiration d8 \u00e2\u20ac\u201d 5 per long rest",
         "type": "feature"
       },
       {
@@ -3020,15 +3021,15 @@
         "type": "feature"
       },
       {
-        "name": "Spiritual Focus — use musical instrument as spellcasting focus, add 1d6 to healing or damage rolls once per turn when using it",
+        "name": "Spiritual Focus \u00e2\u20ac\u201d use musical instrument as spellcasting focus, add 1d6 to healing or damage rolls once per turn when using it",
         "type": "feature"
       },
       {
-        "name": "Tales from Beyond — use Bardic Inspiration to channel spirit tales, producing random effects from a table of narrative-based magical outcomes",
+        "name": "Tales from Beyond \u00e2\u20ac\u201d use Bardic Inspiration to channel spirit tales, producing random effects from a table of narrative-based magical outcomes",
         "type": "feature"
       },
       {
-        "name": "Spirit Session — ritual to commune with spirits, gain access to additional spells temporarily based on the spirits contacted",
+        "name": "Spirit Session \u00e2\u20ac\u201d ritual to commune with spirits, gain access to additional spells temporarily based on the spirits contacted",
         "type": "feature"
       },
       {
@@ -3036,11 +3037,11 @@
         "type": "feature"
       },
       {
-        "name": "Magical Secrets — two spells from any class",
+        "name": "Magical Secrets \u00e2\u20ac\u201d two spells from any class",
         "type": "feature"
       },
       {
-        "name": "Fey Ancestry — advantage vs charm, immune to magical sleep (Half-Elf)",
+        "name": "Fey Ancestry \u00e2\u20ac\u201d advantage vs charm, immune to magical sleep (Half-Elf)",
         "type": "feature"
       },
       {
@@ -3048,7 +3049,7 @@
         "type": "feature"
       },
       {
-        "name": "Slasher — +1 DEX (to 20); on hit with slashing weapon reduce target speed by 10ft until next turn; on crit target has disadvantage on attack rolls until next turn",
+        "name": "Slasher \u00e2\u20ac\u201d +1 DEX (to 20); on hit with slashing weapon reduce target speed by 10ft until next turn; on crit target has disadvantage on attack rolls until next turn",
         "type": "feat"
       }
     ],
@@ -3157,7 +3158,23 @@
       }
     ],
     "active_effects": [],
-    "notes": "Race corrected to Half-Elf. Stat reallocation: 2 points moved from CHA to DEX base, Half-Elf racial +2 CHA restores to 20, racial +1 DEX and +1 WIS applied, Slasher feat +1 DEX brings to 20. Inspires with body/dance rather than instrument — Spiritual Focus applies when using body as focus per table ruling. SHOPPING: scimitar, ideally magical, DEX/slashing flavored. From southeastern region same general area as Elucyne. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear.",
+    "persona_notes": [
+      "Speaks like she's inviting everyone into the back room of a tavern where the drinks cost more. Not intentionally. She's a performer and the warmth is baked in so deep it comes out as something almost sultry even when she's discussing mundane things.",
+      "Kindness can be surface level \u00e2\u20ac\u201d she performs it well and sometimes that's all it is. But she sees people in genuine need as problems she can fix, and that instinct is completely real.",
+      "The transient life has given her many encounters and very few roots. Connection finds her regularly and leaves regularly. She doesn't chase it or mourn it much.",
+      "Rarely unsettled. Has seen enough of the world that most things fall into a category she recognizes.",
+      "The instrument Lexica found at the festival made her dance without deciding to. That lives in her somewhere unresolved.",
+      "Still where Elucyne is bubbly.",
+      "Sits with things before responding.",
+      "Reads rooms the way she reads music \u00e2\u20ac\u201d feeling what wants to be expressed before deciding what to do about it.",
+      "Seems like she knows something she isn't saying.",
+      "Sometimes she does.",
+      "The dance never fully stops.",
+      "Responds to genuine music or genuine emotion the way plants respond to light \u00e2\u20ac\u201d automatically, completely, without deciding to.",
+      "Has never stayed anywhere longer than she felt like staying.",
+      "May be reconsidering that."
+    ],
+    "notes": "Race corrected to Half-Elf. Stat reallocation: 2 points moved from CHA to DEX base, Half-Elf racial +2 CHA restores to 20, racial +1 DEX and +1 WIS applied, Slasher feat +1 DEX brings to 20. Inspires with body/dance rather than instrument \u00e2\u20ac\u201d Spiritual Focus applies when using body as focus per table ruling. SHOPPING: scimitar, ideally magical, DEX/slashing flavored. From southeastern region same general area as Elucyne. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear.",
     "id": "characters_18"
   },
   {
@@ -3179,13 +3196,8 @@
     "stat_cha": 18,
     "hp_max": 66,
     "hp_current": 66,
-    "personality_traits": "Drives straight in. Hospitable to a fault — the door is always open, there is always food, everyone is welcome until proven otherwise. Clan-first mentality applied to whatever group he's currently part of. Does unexpected things without noticing they're unexpected. Carix's influence shows in behavior not narration.",
-    "personality_quirks": "Picks up useful objects without deciding to. Arrives unannounced and finds this entirely normal. Warm laugh that arrives suddenly and fills a room. Has strong opinions about hospitality and will feed people whether they asked to be fed or not. The accent is distinctive and he's entirely unconscious of it.",
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -3194,29 +3206,26 @@
       "Perception"
     ],
     "expertise": [],
-    "languages": [
-      "Common",
-      "one additional"
-    ],
+    "languages": ["Common", "one additional"],
     "features": [
       {
-        "name": "Divine Smite — expend spell slot on hit for 2d8 radiant damage per slot level, +1d8 vs undead or fiends",
+        "name": "Divine Smite \u00e2\u20ac\u201d expend spell slot on hit for 2d8 radiant damage per slot level, +1d8 vs undead or fiends",
         "type": "feature"
       },
       {
-        "name": "Divine Health — immune to disease",
+        "name": "Divine Health \u00e2\u20ac\u201d immune to disease",
         "type": "feature"
       },
       {
-        "name": "Sacred Weapon — Channel Divinity: weapon attack bonus equals CHA modifier (+4) for 1 minute",
+        "name": "Sacred Weapon \u00e2\u20ac\u201d Channel Divinity: weapon attack bonus equals CHA modifier (+4) for 1 minute",
         "type": "feature"
       },
       {
-        "name": "Vow of the Open Road — Channel Divinity: creature within 30ft must make WIS save or be compelled to move in an unexpected direction",
+        "name": "Vow of the Open Road \u00e2\u20ac\u201d Channel Divinity: creature within 30ft must make WIS save or be compelled to move in an unexpected direction",
         "type": "feature"
       },
       {
-        "name": "Aura of Protection — allies within 10ft add CHA modifier (+4) to all saving throws",
+        "name": "Aura of Protection \u00e2\u20ac\u201d allies within 10ft add CHA modifier (+4) to all saving throws",
         "type": "feature"
       },
       {
@@ -3224,7 +3233,7 @@
         "type": "feature"
       },
       {
-        "name": "Lay on Hands — pool of 40HP per long rest, can cure disease or poison for 5HP from pool",
+        "name": "Lay on Hands \u00e2\u20ac\u201d pool of 40HP per long rest, can cure disease or poison for 5HP from pool",
         "type": "feature"
       }
     ],
@@ -3285,7 +3294,25 @@
       }
     ],
     "active_effects": [],
-    "notes": "Paladin of Carix, god of mischief and unexpected consequences. Eight years in Argentveil. CHA 18 — Aura of Protection now grants +4 to all saving throws for allies within 10ft. Lay on Hands pool corrected to 40HP (5 x paladin level 8). Spell save DC 15, spell attack +7. Known to Jho'a Uld, Galealzre, and various others in the city. Introduced Vaz to Gwynn and the Veilgarten block opportunity. Joined Dawn Blades provisionally Day 65 Year 468.",
+    "persona_notes": [
+      "The Dawn Blades are a vehicle for surprise. A way to move through the world and create the unexpected. This is his Carix mission and the Dawn Blades happen to be very good at being surprising.",
+      "When something goes wrong the instinct is immediate: hit something very hard, or create chaos. He doesn't plan the chaos. It arrives naturally and he follows it.",
+      "Money and possessions are chaotic at best. He doesn't track his spending. He values nothing he owns except what helps him serve Carix. Everything else is just stuff that came with him somehow.",
+      "Doesn't know he's funny. The humor emerges from complete sincerity \u00e2\u20ac\u201d he means everything he does and says and some of it is hilarious and he never notices.",
+      "Scottish hospitality is a core value not a social strategy. Everyone who comes through his door gets fed. Everyone who seems cold gets offered a coat. The generosity is reflexive and genuine and slightly overwhelming if you're not expecting it.",
+      "The accent is musical. The laugh fills rooms. Both happen without him noticing their effect on other people.",
+      "Drives straight in.",
+      "Hospitable to a fault \u00e2\u20ac\u201d the door is always open, there is always food, everyone is welcome until proven otherwise.",
+      "Clan-first mentality applied to whatever group he's currently part of.",
+      "Does unexpected things without noticing they're unexpected.",
+      "Carix's influence shows in behavior not narration.",
+      "Picks up useful objects without deciding to.",
+      "Arrives unannounced and finds this entirely normal.",
+      "Warm laugh that arrives suddenly and fills a room.",
+      "Has strong opinions about hospitality and will feed people whether they asked to be fed or not.",
+      "The accent is distinctive and he's entirely unconscious of it."
+    ],
+    "notes": "Paladin of Carix, god of mischief and unexpected consequences. Eight years in Argentveil. CHA 18 \u00e2\u20ac\u201d Aura of Protection now grants +4 to all saving throws for allies within 10ft. Lay on Hands pool corrected to 40HP (5 x paladin level 8). Spell save DC 15, spell attack +7. Known to Jho'a Uld, Galealzre, and various others in the city. Introduced Vaz to Gwynn and the Veilgarten block opportunity. Joined Dawn Blades provisionally Day 65 Year 468.",
     "id": "characters_19"
   }
 ]
