@@ -173,7 +173,7 @@
     "faction": "Casvath Network",
     "role": "Chandler's shop, harbor front",
     "appearance": null,
-    "notes": "Casvath coastal relay. Say 'grey tide is running' — sends messages within the hour along coastal road north.",
+    "notes": "",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -185,7 +185,7 @@
     "faction": "Casvath Network",
     "role": "Chandler's shop, harbor front",
     "appearance": null,
-    "notes": "Casvath coastal relay. Say 'grey tide is running' — sends messages within the hour along coastal road north.",
+    "notes": "",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -487,7 +487,7 @@
     "faction": "Dawn Blades estate (freed captive)",
     "role": "Natural organizer among refugees",
     "appearance": "Human woman, forties.",
-    "notes": "Sister somewhere in Khemrise — finding her is on the list.",
+    "notes": "",
     "status": ["ally"],
     "personality_traits": "Careful stillness of someone who survived by becoming invisible, now discovering she doesn't need to.",
     "personality_quirks": "Conducting one-on-ones with refugees. Finding her voice.",
@@ -589,7 +589,7 @@
     "faction": "Independent / Long Arm Trading",
     "role": "Merchant consortium, funder",
     "appearance": "Sixties, silver at temples. Weathered from sea time without being a sailor.",
-    "notes": "Funded Dawn Blades 15,000g. Coastal relay network via Morrow and Selt — grey tide running. Second payment on Khemrise confirmed clean. Contact through Morrow and Selt.",
+    "notes": "Funded Dawn Blades 15,000g. Coastal relay network via Morrow and Selt. Second payment on Khemrise confirmed clean. Contact through Morrow and Selt.",
     "status": ["ally"],
     "personality_traits": "",
     "personality_quirks": "",
@@ -650,7 +650,7 @@
     "name": "Vethara",
     "location": "clan_winter_camp",
     "role": "Clan leader",
-    "notes": "Vrethka's daughter. War ending — given two weeks before approaching Cindermarch. Proud, practical, afraid of being wrong and learning to survive it. Northern metalwork trade contact.",
+    "notes": "Vrethka's daughter. Proud, practical, afraid of being wrong and learning to survive it. Northern metalwork trade contact.",
     "status": [],
     "id": "npcs_58"
   },
@@ -1085,7 +1085,7 @@
     "status": ["ally"],
     "personality_traits": "Precise about things that matter, entirely imprecise about things that don't. Will forget to eat when working. Remembers everything she's read. Asks questions that sound simple and aren't.",
     "personality_quirks": "Has strong opinions about how people misunderstand pre-settlement Argentveil and will share them whether asked or not. Keeps three projects running simultaneously and claims to find this restful. Has been with Galealzre four years and considers their arrangement entirely normal.",
-    "notes": "Galealzre's partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history — potentially significant resource regarding the sunken warship in the harbor waters and the pre-separation orcish horn. Will want to see Relk's coin purchases and the horn. Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
+    "notes": "Galealzre's partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history, Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
     "id": "npcs_94"
   }
 ]

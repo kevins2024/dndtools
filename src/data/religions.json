@@ -76,5 +76,16 @@
     "worship_notes": "No fixed rituals — rituals become habit and habit is antithema to Carix. Prayers are improvisational. Temples rarely look like temples. Clergy change their methods constantly by principle. Followers are expected to question comfortable assumptions, disrupt stagnant situations, and accept that their own disruptions will sometimes produce consequences they didn't intend. That's the point. Carix asks only that followers remain honest about what they're doing and why.",
     "known_followers": [],
     "notes": "Carix and Veleth are often found working adjacent to each other — disruption frequently reveals buried feeling, and honest connection frequently disrupts comfortable arrangements. Their clergy have a complicated relationship that mostly manifests as mutual exasperated respect. Carix is present in every moment someone does the unexpected thing for the right reason."
+  },
+  {
+    "name": "Kexifrext",
+    "type": "ancient-elemental",
+    "domain": ["Forests", "Lore", "Earth Element", "Time"],
+    "alignment": "Neutral",
+    "symbol": "a single root growing around a stone — neither breaking it nor stopped by it",
+    "description": "*What grows does not hurry. What hurries does not grow.* Kexifrext is not distant — Kexifrext is simply operating on a timescale that makes most beings feel like mayflies. The forests of the fey realm are not Kexifrext's domain in the sense of territory. They are Kexifrext's body, memory, and language simultaneously. A command from Kexifrext may take decades to arrive and decades more to fully understand. This is not negligence. This is how something that has existed since before the continent had its current shape communicates with a world that moves too fast to listen properly.",
+    "worship_notes": "No clergy in the conventional sense — Kexifrext does not require intermediaries, only patience. Followers learn to sit with incomplete instructions and trust that the full meaning will arrive in time. Prayers are not spoken but grown — an action taken, a thing planted, a path walked slowly. Enauweyn is among the few mortals Kexifrext communicates with directly, and even she receives commands that take years to fully resolve. Followers are expected to protect old growth, resist those who would accelerate or exploit natural processes, and exercise judgment in the long silences between guidance.",
+    "known_followers": ["Enauweyn"],
+    "notes": "Kexifrext is neither good nor evil in any way mortals find useful to categorize. The forest does not have opinions about individual creatures — it has opinions about patterns over centuries. Fey shenanigans continue largely unchecked under Kexifrext's sovereignty not from indifference but because on Kexifrext's timescale, most fey mischief resolves itself. When Kexifrext does intervene, it is slow, inexorable, and final in the way that a root eventually splits a stone."
   }
 ]

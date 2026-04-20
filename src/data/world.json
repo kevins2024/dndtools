@@ -22,6 +22,11 @@
         }
       ]
     },
+    "inspirations": {
+      "religion": "Mostly set up like the Greek pantheon but with a few twists. The gods are more active and present in the world, but they don't necessarily intervene directly in mortal affairs. They have specific domains and philosophies that influence their followers, but they more often than not don't demand worship or obedience. Names are heavily influenced by Gaulic and Saxon names.",
+      "cities": "Each major city should have a relatively distinct climate and culture inspired by a mix of real-world cultures but avoid the obvious ones. They need defined demographics, governments, economies, and something that sets them apart.",
+      "continents": "The group knows of five continents now but the only two with any information are Aethermoor (which is the name of the world as well, other continents won't refer to this continent in the same manner) and Yetgrese. Current plan is for Aethermoor to be a sort of standard fantasy realm continent that fulfills traditional tropes and Yetgrese is going to be purely unusual -- not a single standard city there."
+    },
     "continents": [
       {
         "name": "Aethermoor",
@@ -281,7 +286,7 @@
           "y": 18
         },
         "type": "territory",
-        "description": "Gone quiet two years ago."
+        "description": ""
       }
     ]
   }
