@@ -1,18 +1,20 @@
 <template>
   <div class="player-select">
-    <div v-for="player in players" :key="player.name" class="player-card">
+    <div
+      v-for="player in availablePlayers"
+      :key="player.name"
+      class="player-card"
+      title="Add to combat"
+      @click="addToCombat(player)"
+    >
       <div
         class="player-img"
         :style="{ backgroundImage: `url(${player.image})` }"
       ></div>
-      <h3>{{ player.name }}</h3>
-      <input
-        type="checkbox"
-        class="player-checkbox"
-        :checked="isSelected(player)"
-        @click.stop
-        @change="toggleSelect(player)"
-      />
+      <div class="player-name">{{ player.name }}</div>
+    </div>
+    <div v-if="availablePlayers.length === 0" class="bench-empty">
+      All players on-deck
     </div>
   </div>
 </template>
@@ -24,61 +26,46 @@ export default {
   name: 'PlayerCharacterSelect',
 
   data() {
-    return {
-      players,
-    }
+    return { players }
   },
+
   computed: {
-    selected() {
+    inCombat() {
       return this.$store.state.selectedPlayers
     },
-  },
-  methods: {
-    toggleSelect(player) {
-      const updated = this.isSelected(player)
-        ? this.selected.filter((name) => name !== player.name)
-        : [...this.selected, player.name]
-      this.$store.commit('SET_SELECTED_PLAYERS', updated)
+    availablePlayers() {
+      return this.players.filter((p) => !this.inCombat.includes(p.name))
     },
-    isSelected(player) {
-      return this.selected.includes(player.name)
+  },
+
+  methods: {
+    addToCombat(player) {
+      this.$store.commit('SET_SELECTED_PLAYERS', [...this.inCombat, player.name])
     },
   },
 }
 </script>
 
-<style>
+<style scoped>
 .player-select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  padding: 8px 0;
 }
 
 .player-card {
-  width: 84%;
-  border: solid var(--color-neutral) 1px;
+  width: 88%;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  position: relative;
-}
-
-.player-checkbox {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  width: 18px;
-  height: 18px;
+  overflow: hidden;
   cursor: pointer;
-  accent-color: var(--color-selected); /* matches your selected border color */
+  transition: border-color 0.15s ease;
 }
 
-.player-card.selected {
-  border: solid var(--color-selected) 1px;
-}
-
-.player-card h3 {
-  margin: 8px;
-  text-align: center;
+.player-card:hover {
+  border-color: var(--color-accent);
 }
 
 .player-img {
@@ -86,6 +73,29 @@ export default {
   aspect-ratio: 13 / 16;
   background-position: 50% 0%;
   background-repeat: no-repeat;
-  border-bottom: solid var(--color-neutral) 1px;
+  background-size: cover;
+}
+
+.player-name {
+  padding: 4px 6px;
+  text-align: center;
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+  background: var(--color-bg-panel);
+  border-top: 1px solid var(--color-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-card:hover .player-name {
+  color: var(--color-accent);
+}
+
+.bench-empty {
+  color: var(--color-text-low);
+  font-size: var(--font-size-tiny);
+  text-align: center;
+  padding: 1rem 0.5rem;
 }
 </style>

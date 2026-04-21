@@ -1,34 +1,24 @@
 <template>
   <div class="app-layout">
-    <!-- Side Panel -->
-    <aside class="side-panel">
-      <nav class="side-nav">
+    <!-- Header -->
+    <header class="app-header">
+      <nav class="context-nav">
         <button
-          v-for="tab in tabs"
-          :key="tab.id"
-          class="nav-btn"
-          :class="{ active: activeTab === tab.id }"
-          :title="tab.label"
-          @click="activeTab = tab.id"
+          v-for="ctx in contexts"
+          :key="ctx.id"
+          class="ctx-btn"
+          :class="{ active: activeContext === ctx.id }"
+          @click="activeContext = ctx.id"
         >
-          <span class="nav-icon" v-html="tab.icon"></span>
+          {{ ctx.label }}
         </button>
       </nav>
-      <div class="panel-content">
-        <component :is="activeSidebarComponent" />
-      </div>
-      <button
-        v-if="activeTab === 'players'"
-        class="deselect-all-btn"
-        @click="deselectAll"
-      >
-        Deselect all
-      </button>
-    </aside>
+    </header>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <component :is="activeDetailComponent" />
+    <!-- Context Area -->
+    <main class="context-area">
+      <CombatContext v-if="activeContext === 'combat'" />
+      <div v-else class="context-placeholder">{{ activeContextLabel }}</div>
     </main>
 
     <!-- Dice Drawer -->
@@ -52,114 +42,51 @@
 </template>
 
 <script>
-import PlayerCharacterSelect from './components/PlayerCharacterSelect.vue'
-import NPCSelect from './components/NPCSelect.vue'
-import Locations from './components/Locations.vue'
-import Items from './components/Items.vue'
-import Placeholder from './components/Placeholder.vue'
-import CharacterDetails from './components/CharacterDetails.vue'
-import ItemDetails from './components/ItemDetails.vue'
-import LocationDetails from './components/LocationDetails.vue'
-import PartyDetails from './components/PartyDetails.vue'
 import DiceRoller from './components/DiceRoller.vue'
 import Drawer from './components/Drawer.vue'
 import SaveDialog from './components/SaveDialog.vue'
+import CombatContext from './components/CombatContext.vue'
 
 export default {
   name: 'AppLayout',
 
   components: {
-    PlayerCharacterSelect,
-    NPCSelect,
-    Locations,
-    Items,
-    Placeholder,
-    CharacterDetails,
-    ItemDetails,
-    LocationDetails,
-    PartyDetails,
     DiceRoller,
     Drawer,
     SaveDialog,
+    CombatContext,
   },
 
   data() {
     return {
-      activeTab: 'players',
+      activeContext: 'combat',
       saveDialogOpen: false,
-      tabs: [
-        {
-          id: 'players',
-          label: 'Player Characters',
-          icon: '&#9876;',
-          component: 'PlayerCharacterSelect',
-        },
-        {
-          id: 'npcs',
-          label: 'NPCs',
-          icon: '&#128100;',
-          component: 'NPCSelect',
-        },
-        {
-          id: 'locations',
-          label: 'Locations',
-          icon: '&#127956;',
-          component: 'Locations',
-        },
-        { id: 'items', label: 'Items', icon: '&#128188;', component: 'Items' },
-        {
-          id: 'placeholder',
-          label: 'More',
-          icon: '&#8230;',
-          component: 'Placeholder',
-        },
-      ],
-      details: [
-        { id: 'character', title: 'Character', component: 'CharacterDetails' },
-        { id: 'item', title: 'Item', component: 'ItemDetails' },
-        { id: 'location', title: 'Location', component: 'LocationDetails' },
-        { id: 'party', title: 'Party Overview', component: 'PartyDetails' },
+      contexts: [
+        { id: 'combat',    label: 'Combat'    },
+        { id: 'character', label: 'Character' },
+        { id: 'world',     label: 'World'     },
+        { id: 'story',     label: 'Story'     },
+        { id: 'tools',     label: 'Tools'     },
       ],
     }
   },
 
   computed: {
-    activeSidebarComponent() {
-      const tab = this.tabs.find((t) => t.id === this.activeTab)
-      return tab ? tab.component : null
-    },
-    activeDetailComponent() {
-      const detail = this.details.find((d) => d.id === this.activeDetail)
-      return detail ? detail.component : null
-    },
-    activeDetail() {
-      if (this.activeTab === 'players' && this.selectedPlayers.length === 1)
-        return 'character'
-      if (this.activeTab === 'players' && this.selectedPlayers.length > 1)
-        return 'party'
-      if (this.activeTab === 'items') return 'item'
-      return null
-    },
-    selectedPlayers() {
-      return this.$store.state.selectedPlayers
+    activeContextLabel() {
+      const ctx = this.contexts.find((c) => c.id === this.activeContext)
+      return ctx ? ctx.label : ''
     },
     hasChanges() {
       return this.$store.getters.hasChanges
-    },
-  },
-
-  methods: {
-    deselectAll() {
-      this.$store.commit('SET_SELECTED_PLAYERS', [])
     },
   },
 }
 </script>
 
 <style scoped>
-/* ── Layout ── */
 .app-layout {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -169,108 +96,61 @@ export default {
   position: relative;
 }
 
-/* ── Side Panel ── */
-.side-panel {
-  width: 20vw;
-  min-width: 160px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-bg-panel);
-  border-right: 1px solid var(--color-border);
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.6);
+/* ── Header ── */
+.app-header {
   flex-shrink: 0;
-}
-
-/* ── Nav Button Strip ── */
-.side-nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
-  padding: 0.6vh 0.4vw;
-  border-bottom: 1px solid var(--color-border);
+  height: 2.6rem;
+  padding: 0 0.75rem;
   background-color: var(--color-bg-panel-dark);
-  gap: 0.3vw;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.nav-btn {
-  width: 2.4vw;
-  height: 2.4vw;
-  min-width: 32px;
-  min-height: 32px;
+.context-nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
+  gap: 0.25rem;
+}
+
+.ctx-btn {
+  padding: 0.2rem 0.75rem;
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: 4px;
-  cursor: pointer;
   color: var(--color-text-muted);
-  font-size: var(--font-size-nav);
-  transition: all 0.15s ease;
-  padding: 0;
-}
-
-.nav-btn:hover {
-  background: var(--color-bg-surface-alt);
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
-}
-
-.nav-btn.active {
-  background: var(--color-bg-surface-alt);
-  border-color: var(--color-accent);
-  color: var(--color-accent-strong);
-  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.3);
-}
-
-.nav-icon {
-  line-height: 1;
-  pointer-events: none;
-}
-
-/* ── Panel Content ── */
-.panel-content {
-  flex: 1;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
-}
-
-.deselect-all-btn {
-  margin: 0.8rem;
-  align-self: stretch;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background: var(--color-bg-surface);
-  color: var(--color-text);
-  padding: 0.75rem 0.9rem;
+  font-family: var(--font-display);
   font-size: var(--font-size-small);
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
-.deselect-all-btn:hover {
-  border-color: var(--color-accent);
+.ctx-btn:hover {
   color: var(--color-accent);
-  background: var(--color-bg-surface-alt);
+  border-color: var(--color-border);
 }
 
-.panel-content::-webkit-scrollbar {
-  width: 4px;
-}
-.panel-content::-webkit-scrollbar-thumb {
-  background: var(--color-scrollbar);
-  border-radius: 2px;
+.ctx-btn.active {
+  color: var(--color-accent-strong);
+  border-color: var(--color-accent);
+  background: var(--color-bg-surface);
 }
 
-/* ── Main Content ── */
-.main-content {
+/* ── Context Area ── */
+.context-area {
   flex: 1;
-  height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
+}
+
+.context-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-low);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  letter-spacing: 0.05em;
 }
 
 /* ── Save Button ── */
