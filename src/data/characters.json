@@ -2130,8 +2130,7 @@
     "expertise": [],
     "languages": ["Common", "Giant"],
     "spellcasting_ability": null,
-    "personality_traits": null,
-    "personality_quirks": null,
+    "image": "https://iili.io/BrERGFp.jpg",
     "features": [
       {
         "name": "Flurry of Blows",
@@ -2480,7 +2479,7 @@
     "type": "companion",
     "owner": "Tackett",
     "species": "Falcon",
-    "image": "https://iili.io/Br9QndG.jpg",
+    "image": "https://iili.io/BrE7L3Q.jpg",
     "ac": 14,
     "hp_max": 38,
     "hp_current": 38,
