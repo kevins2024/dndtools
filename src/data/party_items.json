@@ -1530,8 +1530,8 @@
     "name": "Longsword +2 (Bronze Flame)",
     "type": "weapon",
     "weapon_type": "melee",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": false,
     "finesse": false,
@@ -1545,8 +1545,8 @@
   {
     "name": "Collapsible Shield +2",
     "type": "armor",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": false,
     "armor_type": "shield",
@@ -1628,8 +1628,8 @@
   {
     "name": "Bracers of Defense +2",
     "type": "wondrous",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
