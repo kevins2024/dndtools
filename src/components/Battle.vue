@@ -30,13 +30,8 @@
             </div>
           </div>
 
-          <!-- Player: static score -->
-          <div v-if="entry.type === 'player'" class="card-score">
-            {{ entry.total }}
-          </div>
-
-          <!-- Enemy: click-to-edit score -->
-          <div v-else class="card-score-wrap" @click.stop>
+          <!-- All scores: click-to-edit -->
+          <div class="card-score-wrap" @click.stop>
             <input
               v-if="editingKey === entry.key"
               :ref="`scoreInput-${entry.key}`"
@@ -50,13 +45,31 @@
             <span
               v-else
               class="card-score editable"
-              title="Click to override"
+              title="Click to override initiative"
               @click="startEdit(entry.key, entry.total)"
             >
               {{ entry.total }}
             </span>
           </div>
         </div>
+      </div>
+
+      <!-- Add enemy mid-fight -->
+      <div class="sidebar-add-enemy">
+        <input
+          v-model="newEnemyName"
+          class="add-enemy-input"
+          placeholder="Add enemy…"
+          @keyup.enter="emitAddEnemy"
+        />
+        <input
+          v-model.number="newEnemyMod"
+          class="add-enemy-mod"
+          type="number"
+          placeholder="mod"
+          @keyup.enter="emitAddEnemy"
+        />
+        <button class="add-enemy-btn" :disabled="!newEnemyName.trim()" @click="emitAddEnemy">+</button>
       </div>
     </aside>
 
@@ -186,16 +199,18 @@ export default {
     order: { type: Array, required: true },
   },
 
-  emits: ['override-roll'],
+  emits: ['override-roll', 'add-enemy'],
 
   data() {
     return {
-      activeTurn:   0,
-      editingKey:   null,
+      activeTurn:    0,
+      editingKey:    null,
       overrideValue: null,
-      enemyHp:      {},  // { [key]: { damage: 0, maxHp: null } }
-      damageInput:  null,
-      maxHpInput:   null,
+      enemyHp:       {},
+      damageInput:   null,
+      maxHpInput:    null,
+      newEnemyName:  '',
+      newEnemyMod:   0,
     }
   },
 
@@ -304,6 +319,17 @@ export default {
       const val = this.maxHpInput > 0 ? this.maxHpInput : null
       this._ensureEnemyHp(key)
       this.$set(this.enemyHp, key, { ...this.enemyHp[key], maxHp: val })
+    },
+
+    // ── Add enemy mid-fight ──
+    emitAddEnemy() {
+      if (!this.newEnemyName.trim()) return
+      this.$emit('add-enemy', {
+        name: this.newEnemyName.trim(),
+        mod: isNaN(this.newEnemyMod) ? 0 : this.newEnemyMod,
+      })
+      this.newEnemyName = ''
+      this.newEnemyMod = 0
     },
 
     // ── Initiative override ──
@@ -556,6 +582,69 @@ export default {
   text-align: right;
   padding: 0.1rem 0.2rem;
 }
+
+/* ── Sidebar add enemy ── */
+.sidebar-add-enemy {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.5rem 0.5rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.add-enemy-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.25rem 0.4rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: var(--font-size-tiny);
+  font-family: var(--font-body);
+}
+
+.add-enemy-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.add-enemy-mod {
+  width: 2.8rem;
+  padding: 0.25rem 0.3rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: var(--font-size-tiny);
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.add-enemy-mod:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.add-enemy-btn {
+  padding: 0.25rem 0.5rem;
+  background: var(--color-bg-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.add-enemy-btn:hover:not(:disabled) {
+  border-color: var(--color-text-danger);
+  color: var(--color-text-danger);
+}
+
+.add-enemy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ── Turn Panel ── */
 .turn-panel {

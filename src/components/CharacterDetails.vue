@@ -41,6 +41,10 @@ export default {
   name: 'CharacterDetails',
   components: { CharacterInventory, CharacterSheet, Editor },
 
+  props: {
+    character: { type: Object, default: null },
+  },
+
   data() {
     return {
       activeTab: 'sheet',
@@ -49,6 +53,7 @@ export default {
 
   computed: {
     selected() {
+      if (this.character) return this.character
       if (this.$store.state.selectedPlayers.length === 1) {
         const name = this.$store.state.selectedPlayers[0]
         return this.$store.state.characters.find((c) => c.name === name)

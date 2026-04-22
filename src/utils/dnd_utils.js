@@ -17,6 +17,15 @@
 //   dnd.signed(n)       → "+3" or "-1" (always shows sign)
 //   dnd.formatBonus(n)  → alias for signed
 
+export const STAT_KEYS = [
+  { key: 'str', label: 'STR' },
+  { key: 'dex', label: 'DEX' },
+  { key: 'con', label: 'CON' },
+  { key: 'int', label: 'INT' },
+  { key: 'wis', label: 'WIS' },
+  { key: 'cha', label: 'CHA' },
+]
+
 export const dnd = {
   // ─────────────────────────────────────────────
   // CORE PRIMITIVES
@@ -386,6 +395,17 @@ export const dnd = {
   // UTILITY LOOKUPS
   // Helpers for working with the data files
   // ─────────────────────────────────────────────
+
+  // Returns a display-ready array of stat objects for templates
+  statArray(character) {
+    return STAT_KEYS.map(({ key, label }) => ({
+      key,
+      label,
+      score: character[`stat_${key}`],
+      mod: dnd.mod(character[`stat_${key}`]),
+      modStr: dnd.signed(dnd.mod(character[`stat_${key}`])),
+    }))
+  },
 
   // Find a character by name (first match) from characters array
   findCharacter(characters, name) {

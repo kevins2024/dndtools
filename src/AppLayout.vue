@@ -17,8 +17,10 @@
 
     <!-- Context Area -->
     <main class="context-area">
-      <CombatContext v-if="activeContext === 'combat'" />
-      <div v-else class="context-placeholder">{{ activeContextLabel }}</div>
+      <keep-alive>
+        <component :is="activeContextComponent" v-if="activeContextComponent" />
+      </keep-alive>
+      <div v-if="!activeContextComponent" class="context-placeholder">{{ activeContextLabel }}</div>
     </main>
 
     <!-- Dice Drawer -->
@@ -46,6 +48,7 @@ import DiceRoller from './components/DiceRoller.vue'
 import Drawer from './components/Drawer.vue'
 import SaveDialog from './components/SaveDialog.vue'
 import CombatContext from './components/CombatContext.vue'
+import CharacterContext from './components/CharacterContext.vue'
 
 export default {
   name: 'AppLayout',
@@ -55,6 +58,7 @@ export default {
     Drawer,
     SaveDialog,
     CombatContext,
+    CharacterContext,
   },
 
   data() {
@@ -62,11 +66,11 @@ export default {
       activeContext: 'combat',
       saveDialogOpen: false,
       contexts: [
-        { id: 'combat',    label: 'Combat'    },
-        { id: 'character', label: 'Character' },
-        { id: 'world',     label: 'World'     },
-        { id: 'story',     label: 'Story'     },
-        { id: 'tools',     label: 'Tools'     },
+        { id: 'combat',    label: 'Combat',    component: 'CombatContext' },
+        { id: 'character', label: 'Character', component: 'CharacterContext' },
+        { id: 'world',     label: 'World',     component: null },
+        { id: 'story',     label: 'Story',     component: null },
+        { id: 'tools',     label: 'Tools',     component: null },
       ],
     }
   },
@@ -75,6 +79,10 @@ export default {
     activeContextLabel() {
       const ctx = this.contexts.find((c) => c.id === this.activeContext)
       return ctx ? ctx.label : ''
+    },
+    activeContextComponent() {
+      const ctx = this.contexts.find((c) => c.id === this.activeContext)
+      return ctx?.component ?? null
     },
     hasChanges() {
       return this.$store.getters.hasChanges

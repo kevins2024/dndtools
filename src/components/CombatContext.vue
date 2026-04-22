@@ -64,6 +64,7 @@
       </section>
 
       <div class="roll-bar">
+        <button class="exit-btn" @click="exitCombat">Exit Combat</button>
         <button
           class="roll-btn"
           :disabled="!hasAnyCombatant"
@@ -77,8 +78,9 @@
 
     <!-- ── Battle phase ── -->
     <template v-else>
-      <Battle class="battle-fill" :order="initiativeOrder" @override-roll="onOverrideRoll" />
+      <Battle class="battle-fill" :order="initiativeOrder" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" />
       <div class="roll-bar">
+        <button class="exit-btn" @click="exitCombat">Exit Combat</button>
         <button class="back-btn" @click="phase = 'setup'">← Back to Setup</button>
       </div>
     </template>
@@ -175,6 +177,21 @@ export default {
     },
     onOverrideRoll({ key, total }) {
       this.$set(this.rolls, key, { ...this.rolls[key], total })
+    },
+    onAddEnemyMidFight({ name, mod }) {
+      const id = this.nextEnemyId++
+      this.enemies.push({ id, name, mod })
+      // Start at 0 — player overrides via click-to-edit in the sidebar
+      this.$set(this.rolls, `enemy-${id}`, { total: 0 })
+    },
+    exitCombat() {
+      this.phase = 'setup'
+      this.enemies = []
+      this.rolls = {}
+      this.enemyName = ''
+      this.enemyMod = 0
+      this.nextEnemyId = 1
+      this.$store.commit('SET_SELECTED_PLAYERS', [])
     },
     formatMod: (mod) => dnd.signed(mod),
   },
@@ -410,5 +427,22 @@ export default {
 .back-btn:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+.exit-btn {
+  padding: 0.45rem 1rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text-low);
+  font-family: var(--font-display);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exit-btn:hover {
+  border-color: var(--color-text-danger);
+  color: var(--color-text-danger);
 }
 </style>

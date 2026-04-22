@@ -80,7 +80,7 @@
     "attuned": false,
     "description": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet.",
     "effect": "No movement penalties in difficult terrain (snow, ice, mud, rubble). Travel pace never causes exhaustion regardless of distance covered in a day.",
-    "notes": "Situational northern environments only — no attunement required.",
+    "notes": "",
     "id": "items_6",
     "slot": "feet"
   },
@@ -97,7 +97,7 @@
     },
     "description": "Blackwood wand usable as a spellcasting focus.",
     "effect": "+1 to spell attack rolls and spell save DC.",
-    "notes": "Only casters benefit, +1 only — no attunement required.",
+    "notes": "",
     "id": "items_9",
     "slot": "held"
   },
@@ -112,7 +112,7 @@
     "finesse": true,
     "damage_dice": "1d8",
     "magic_bonus": 2,
-    "notes": "Finesse fighter specific — party would not pass around.",
+    "notes": "",
     "id": "items_21",
     "slot": "melee1h"
   },
@@ -184,7 +184,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor, Vaz's signature — party would not pass around.",
+    "notes": "",
     "id": "items_26",
     "slot": "body"
   },
@@ -195,7 +195,7 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": false,
-    "notes": "Free off-hand attack reaction — universally desirable — attunement required.",
+    "notes": "Free off-hand attack reaction.",
     "id": "items_27",
     "slot": "wrists"
   },
@@ -206,7 +206,7 @@
     "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
-    "notes": "Party would pass before stealth missions — attunement required.",
+    "notes": "",
     "id": "items_28",
     "slot": "neck"
   },
@@ -215,9 +215,9 @@
     "type": "wondrous",
     "equipped_by": "Vaz",
     "carried_by": null,
-    "needs_attunement": true,
+    "needs_attunement": false,
     "attuned": false,
-    "notes": "Party would pass situationally — attunement required.",
+    "notes": "",
     "id": "items_29",
     "slot": "head"
   },
@@ -229,7 +229,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
-    "notes": "Everyone wants double movement — attunement required.",
+    "notes": "",
     "id": "items_30",
     "slot": "feet"
   },
@@ -240,7 +240,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Niche utility — party would not pass around.",
+    "notes": "",
     "id": "items_31",
     "slot": "ring"
   },
@@ -251,7 +251,7 @@
     "carried_by": "Vaz",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Noncombat utility. Carried conditionally.",
+    "notes": "Carried conditionally.",
     "id": "items_32",
     "slot": "head"
   },
@@ -262,7 +262,7 @@
     "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Single elemental resistance, situational — no attunement. Superseded by Mithral Half Plate.",
+    "notes": "Superseded by Mithral Half Plate.",
     "id": "items_33",
     "slot": "body"
   },
@@ -274,7 +274,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
-    "notes": "Party would pass before social encounters — attunement required.",
+    "notes": "",
     "id": "items_109",
     "slot": "back"
   },
@@ -289,7 +289,7 @@
       "proficiency_bonus": 1
     },
     "effect": "Proficiency bonus increases by 1 while attuned.",
-    "notes": "Everyone wants proficiency bonus increase — attunement required.",
+    "notes": "",
     "id": "items_ioun_stone",
     "slot": "ioun"
   },
@@ -298,10 +298,10 @@
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Vaz",
-    "needs_attunement": true,
+    "needs_attunement": false,
     "attuned": false,
     "effect": "Wearer becomes visually uncompelling — the eye slides past without focusing.",
-    "notes": "Party would pass before infiltration — attunement required.",
+    "notes": "",
     "id": "items_cloak_unremarkability",
     "slot": "back"
   },
@@ -316,7 +316,7 @@
     "charges_max": 3,
     "charges_recharge": "daily",
     "effect": "Detects secret doors and traps within 30ft.",
-    "notes": "Utility only.",
+    "notes": "",
     "id": "items_141",
     "slot": "held"
   },
@@ -328,7 +328,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Ask yes/no questions. Always truthful.",
-    "notes": "Roleplay only.",
+    "notes": "",
     "id": "items_149",
     "slot": "none"
   },
@@ -354,7 +354,7 @@
     "stat_bonuses": {
       "ac": 2
     },
-    "notes": "Anyone unarmored wants +2 AC — attunement required.",
+    "notes": "",
     "id": "items_42",
     "slot": "wrists"
   },
@@ -369,7 +369,7 @@
       "ac": 1,
       "saving_throws": 1
     },
-    "notes": "Everyone wants AC and saves — would pass around — attunement required.",
+    "notes": "",
     "id": "items_44",
     "slot": "ring"
   },
@@ -380,7 +380,7 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": false,
-    "notes": "Everyone wants attack disadvantage — attunement required.",
+    "notes": "",
     "id": "items_45",
     "slot": "back"
   },
@@ -392,7 +392,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Unaffected by difficult terrain, movement speed reduction, and paralysis.",
-    "notes": "Paralysis immunity universally useful — attunement required.",
+    "notes": "",
     "id": "items_ring_free_action",
     "slot": "ring"
   },
@@ -407,7 +407,7 @@
       "stat_str": 27
     },
     "effect": "Sets STR to 27.",
-    "notes": "Every melee fighter wants this — attunement required.",
+    "notes": "",
     "id": "items_147",
     "slot": "waist"
   },
@@ -418,7 +418,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Single elemental resistance, situational — no attunement.",
+    "notes": "",
     "id": "items_34",
     "slot": "body"
   },
@@ -434,7 +434,7 @@
     "damage_dice": "2d6",
     "magic_bonus": 3,
     "effect": "On a critical hit: target makes a STR saving throw or is knocked prone.",
-    "notes": "Rhuna's weapon — party would not pass around.",
+    "notes": "",
     "id": "items_167",
     "slot": "melee2h"
   },
@@ -459,7 +459,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Resistance to cold damage. Move across icy surfaces without penalty. Withstand extreme cold.",
-    "notes": "Situational cold environments only — no attunement required.",
+    "notes": "",
     "id": "items_boots_winterlands"
   },
   {
@@ -473,7 +473,7 @@
     "finesse": true,
     "damage_dice": "1d6",
     "magic_bonus": 1,
-    "notes": "Resonance only works with Pirra's paired sword — party would not pass around.",
+    "notes": "Resonance only works with Pirra's paired sword.",
     "id": "items_46",
     "slot": "melee1h"
   },
@@ -489,7 +489,7 @@
     "damage_dice": "1d4",
     "magic_bonus": 1,
     "effect": "Once per turn on a hit: immediately make a second strike with this dagger as part of the same attack, without using a bonus action.",
-    "notes": "Free extra attack — universally desirable — attunement required.",
+    "notes": "",
     "id": "items_50",
     "slot": "melee1h"
   },
@@ -500,7 +500,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor — party would not pass around.",
+    "notes": "",
     "id": "items_57",
     "slot": "body"
   },
@@ -509,9 +509,9 @@
     "type": "armor",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": true,
+    "needs_attunement": false,
     "attuned": false,
-    "notes": "Party would pass before stealth missions — attunement required.",
+    "notes": "",
     "id": "items_52",
     "slot": "feet"
   },
@@ -522,7 +522,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Only rogues care — party would not pass around.",
+    "notes": "",
     "id": "items_54",
     "slot": "hands"
   },
@@ -536,7 +536,7 @@
     "stat_bonuses": {
       "skill_Perception": 1
     },
-    "notes": "Minor benefits — party would not pass around.",
+    "notes": "",
     "id": "items_51",
     "slot": "ring"
   },
@@ -547,7 +547,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Niche utility.",
+    "notes": "",
     "id": "items_55",
     "slot": "ring"
   },
@@ -559,7 +559,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Spider climb. Immunity to web. Cast Web 1/day.",
-    "notes": "Spider climb universally useful — party would pass around — attunement required.",
+    "notes": "",
     "id": "items_143",
     "slot": "back"
   },
@@ -569,13 +569,13 @@
     "weapon_type": "melee",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": false,
+    "needs_attunement": true,
     "attuned": false,
     "finesse": true,
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "Deals cold damage. On hit: target's movement reduced by 10ft until start of their next turn.",
-    "notes": "Secondary weapon — party would not pass around.",
+    "notes": "",
     "id": "items_cold_dagger",
     "slot": "melee1h"
   },
@@ -587,7 +587,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Reaction when hit by ranged attack: reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
-    "notes": "Everyone wants ranged attack mitigation — attunement required.",
+    "notes": "",
     "id": "items_gloves_missile_snaring",
     "slot": "hands"
   },
@@ -602,7 +602,7 @@
     "finesse": true,
     "damage_dice": "1d4",
     "magic_bonus": 0,
-    "notes": "Passive alchemical utility — Jaygar specific.",
+    "notes": "Passive alchemical utility.",
     "id": "items_58",
     "slot": "melee1h"
   },
@@ -618,7 +618,7 @@
     "damage_dice": "1d10",
     "magic_bonus": 2,
     "effect": "Fires custom alchemical bolts. Quieter release.",
-    "notes": "Jaygar specific — proficiency resolution still needed.",
+    "notes": "Proficiency resolution still needed.",
     "id": "items_jaygar_xbow",
     "slot": "ranged2h"
   },
@@ -634,7 +634,7 @@
     "damage_dice": "1d10",
     "magic_bonus": 2,
     "effect": "Fires custom alchemical bolts. Quieter release.",
-    "notes": "Second copy. Available for party use.",
+    "notes": "Second copy.",
     "id": "items_jaygar_xbow_party",
     "slot": "ranged2h"
   },
@@ -709,7 +709,7 @@
     "stat_overrides": {
       "con": 19
     },
-    "notes": "CON 19 helps everyone — attunement required.",
+    "notes": "",
     "id": "items_65",
     "slot": "neck"
   },
@@ -720,7 +720,7 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": false,
-    "notes": "Everyone wants attack disadvantage — attunement required. Second copy confirmed intentional.",
+    "notes": "Second copy confirmed intentional.",
     "id": "items_127",
     "slot": "back"
   },
@@ -731,7 +731,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_84",
     "slot": "body"
   },
@@ -744,7 +744,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "When bearer is hit by melee attack, attacker takes 1d6 force damage.",
-    "notes": "1d6 barely noticeable — no attunement required.",
+    "notes": "",
     "id": "items_174",
     "slot": "shield"
   },
@@ -759,7 +759,7 @@
       "ranged_attack": 1
     },
     "effect": "+1 ranged attack. Advantage on concentration saves after taking damage.",
-    "notes": "+1 only, minor — no attunement required.",
+    "notes": "",
     "id": "items_100",
     "slot": "wrists"
   },
@@ -785,7 +785,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Once per day situational damage reduction — no attunement required.",
+    "notes": "Once per day situational damage reduction.",
     "id": "items_67",
     "slot": "wrists"
   },
@@ -796,7 +796,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Situational utility.",
+    "notes": "",
     "id": "items_68",
     "slot": "ring"
   },
@@ -807,7 +807,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Only spellcasters care, noncombat utility — no attunement required.",
+    "notes": "",
     "id": "items_69",
     "slot": "neck"
   },
@@ -834,7 +834,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Every spell cast treated as one level higher automatically.",
-    "notes": "Every caster wants free upcasting — attunement required.",
+    "notes": "",
     "id": "items_155",
     "slot": "hands"
   },
@@ -856,7 +856,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Resistance to one element chosen on attunement. Attuned to: fire.",
-    "notes": "Single elemental resistance — no attunement required.",
+    "notes": "",
     "id": "items_108",
     "slot": "body"
   },
@@ -866,13 +866,13 @@
     "weapon_type": "melee",
     "equipped_by": "Lenn",
     "carried_by": null,
-    "needs_attunement": false,
+    "needs_attunement": true,
     "attuned": false,
     "finesse": false,
     "damage_dice": "1d6",
     "magic_bonus": 0,
     "effect": "Adds bonus damage to evocation spells.",
-    "notes": "Only evocation wizards benefit — party would not pass around.",
+    "notes": "",
     "id": "items_105",
     "slot": "melee1h"
   },
@@ -888,7 +888,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "On a hit: choose to deal psychic damage instead of piercing.",
-    "notes": "Kessara's weapon — party would not pass around.",
+    "notes": "",
     "id": "items_171",
     "slot": "melee1h"
   },
@@ -902,7 +902,7 @@
     "stat_bonuses": {
       "ac": 2
     },
-    "notes": "Anyone unarmored wants +2 AC — attunement required.",
+    "notes": "",
     "id": "items_43",
     "slot": "wrists"
   },
@@ -914,7 +914,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Easier concentration checks.",
-    "notes": "Superseded by Robe of Archmagi. Stored. Only casters with concentration spells benefit.",
+    "notes": "Superseded by Robe of Archmagi. Stored.",
     "id": "items_107",
     "slot": "body"
   },
@@ -926,7 +926,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Stops a harsh impact once per day.",
-    "notes": "Single situational benefit — no attunement required.",
+    "notes": "",
     "id": "items_103",
     "charges_current": 1,
     "charges_max": 1,
@@ -950,7 +950,7 @@
     "charges_max": 1,
     "charges_recharge": "long_rest",
     "effect": "Spell save DC +2. Once per long rest when casting 3rd level or higher: cast as if one level higher without expending the higher slot.",
-    "notes": "Every caster wants +2 spell DC and free upcast — attunement required.",
+    "notes": "",
     "id": "items_lexicon",
     "slot": "held"
   },
@@ -968,7 +968,7 @@
       "saving_throws": 1
     },
     "effect": "+2 spell DC and attack, advantage on saves against spells, AC 15 unarmored.",
-    "notes": "Every caster wants this — attunement required.",
+    "notes": "",
     "id": "items_robe_archmagi"
   },
   {
@@ -983,7 +983,7 @@
       "saving_throws": 2
     },
     "effect": "+2 AC and saving throws.",
-    "notes": "Everyone wants AC and saves — attunement required.",
+    "notes": "",
     "id": "items_163b",
     "slot": "back"
   },
@@ -994,7 +994,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_77",
     "slot": "body"
   },
@@ -1010,7 +1010,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 1,
     "effect": "Whenever bearer casts a healing spell, all other creatures within 15ft are healed for 2hp.",
-    "notes": "Only healers benefit — party would not pass around.",
+    "notes": "",
     "id": "items_waive",
     "slot": "melee1h"
   },
@@ -1023,7 +1023,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Display any image or symbol on shield face.",
-    "notes": "Cosmetic only.",
+    "notes": "Cosmetic.",
     "id": "items_173",
     "slot": "shield"
   },
@@ -1039,7 +1039,7 @@
       "spell_save_dc": 2
     },
     "effect": "+2 spell attack and spell save DC.",
-    "notes": "Clerics and paladins all want this — attunement required.",
+    "notes": "",
     "id": "items_amulet_devout",
     "slot": "neck"
   },
@@ -1051,7 +1051,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on all concentration checks.",
-    "notes": "Every concentration caster wants this — attunement required.",
+    "notes": "",
     "id": "items_129",
     "slot": "neck"
   },
@@ -1066,7 +1066,7 @@
     "finesse": true,
     "damage_dice": "1d6",
     "magic_bonus": 1,
-    "notes": "Resonance only works with Denna's paired sword — party would not pass around.",
+    "notes": "Resonance only works with Denna's paired sword.",
     "id": "items_47",
     "slot": "melee1h"
   },
@@ -1092,7 +1092,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_80",
     "slot": "body"
   },
@@ -1107,7 +1107,7 @@
       "skill_SleightOfHand": 5
     },
     "effect": "Invisible while worn. +5 Sleight of Hand and lockpicking.",
-    "notes": "Only rogues care.",
+    "notes": "",
     "id": "items_gloves_thievery_2",
     "slot": "hands"
   },
@@ -1119,7 +1119,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Breathe underwater. Swim speed 60.",
-    "notes": "Situational utility.",
+    "notes": "",
     "id": "items_120",
     "slot": "back"
   },
@@ -1134,7 +1134,7 @@
     "finesse": false,
     "damage_dice": "1d8",
     "magic_bonus": 2,
-    "notes": "Party backup. No special properties.",
+    "notes": "Party backup.",
     "id": "items_81",
     "slot": "melee1h"
   },
@@ -1150,7 +1150,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "On a roll of 20: severs a limb and deals extra 14 damage.",
-    "notes": "Every melee fighter wants limb severing on 20 — attunement required.",
+    "notes": "",
     "id": "items_152",
     "slot": "melee1h"
   },
@@ -1164,7 +1164,7 @@
     "stat_bonuses": {
       "hit_chance": 2
     },
-    "notes": "+2 to hit helps any single weapon fighter — attunement required.",
+    "notes": "",
     "id": "items_89",
     "slot": "hands"
   },
@@ -1180,7 +1180,7 @@
       "saving_throws": 2
     },
     "effect": "+2 AC and saving throws.",
-    "notes": "Everyone wants AC and saves — attunement required.",
+    "notes": "",
     "id": "items_163",
     "slot": "back"
   },
@@ -1196,7 +1196,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "No stealth disadvantage.",
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_mithral_halfplate_kerra"
   },
   {
@@ -1208,7 +1208,7 @@
     "attuned": false,
     "paired_with": "The Farreach (B)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to ability or skill check.",
-    "notes": "Paired specifically with Lexica's ring — party would not pass around.",
+    "notes": "Paired with Lexica's ring.",
     "id": "items_48",
     "slot": "ring"
   },
@@ -1224,7 +1224,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "Deals force damage instead of piercing.",
-    "notes": "Siv's weapon — party would not pass around.",
+    "notes": "",
     "id": "items_99",
     "slot": "ranged2h"
   },
@@ -1236,7 +1236,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Reduces moving shot penalty.",
-    "notes": "Minor passive.",
+    "notes": "",
     "id": "items_111",
     "slot": "none"
   },
@@ -1262,7 +1262,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_82",
     "slot": "body"
   },
@@ -1271,9 +1271,9 @@
     "type": "armor",
     "equipped_by": "Siv",
     "carried_by": null,
-    "needs_attunement": true,
+    "needs_attunement": false,
     "attuned": false,
-    "notes": "Party would pass before stealth missions — attunement required.",
+    "notes": "",
     "id": "items_53",
     "slot": "feet"
   },
@@ -1287,7 +1287,7 @@
     "stat_bonuses": {
       "ranged_damage": 2
     },
-    "notes": "Siv and Sorra each have their own pair — no passing needed.",
+    "notes": "Siv and Sorra each have their own pair.",
     "id": "items_88",
     "slot": "wrists"
   },
@@ -1300,7 +1300,7 @@
     "attuned": false,
     "paired_with": "The Farreach (A)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus.",
-    "notes": "Paired specifically with Siv's ring — party would not pass around.",
+    "notes": "Paired with Siv's ring.",
     "id": "items_49",
     "slot": "ring"
   },
@@ -1341,7 +1341,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_83",
     "slot": "body"
   },
@@ -1356,7 +1356,7 @@
       "skill_Perception": 1
     },
     "effect": "+1 passive perception. Advantage on Perception in dim light or darkness.",
-    "notes": "Pure storytelling item.",
+    "notes": "",
     "id": "items_hat_perception",
     "slot": "head"
   },
@@ -1368,7 +1368,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on Stealth checks outdoors. Color shifting.",
-    "notes": "Party would pass before stealth missions — attunement required.",
+    "notes": "",
     "id": "items_121",
     "slot": "back"
   },
@@ -1380,7 +1380,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "60ft rope, animates on command. Restrain target 1/day.",
-    "notes": "Utility item.",
+    "notes": "",
     "id": "items_144",
     "slot": "none"
   },
@@ -1395,7 +1395,7 @@
       "ac": 1,
       "saving_throws": 1
     },
-    "notes": "Everyone wants AC and saves — attunement required.",
+    "notes": "",
     "id": "items_95",
     "slot": "back"
   },
@@ -1409,7 +1409,7 @@
     "stat_bonuses": {
       "ac": 2
     },
-    "notes": "Anyone unarmored wants +2 AC — attunement required.",
+    "notes": "",
     "id": "items_bracers_defense_lyria",
     "slot": "wrists"
   },
@@ -1421,7 +1421,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Sets CON to 18.",
-    "notes": "CON helps everyone — attunement required.",
+    "notes": "",
     "id": "items_119",
     "slot": "waist"
   },
@@ -1439,7 +1439,7 @@
     "charges_max": 6,
     "charges_recharge": "daily",
     "effect": "Cast Magic Missile at 5th level using charges. +1 saving throws. Planewalk to Astral Plane.",
-    "notes": "Multiple benefits everyone wants — attunement required.",
+    "notes": "",
     "id": "items_robe_stars",
     "slot": "body"
   },
@@ -1462,7 +1462,7 @@
     "charges_max": 20,
     "charges_recharge": "some daily",
     "effect": "Cast from charges: Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC.",
-    "notes": "Every caster wants this — attunement required. Do not break it.",
+    "notes": "Do not break it.",
     "id": "items_156",
     "slot": "melee1h"
   },
@@ -1477,7 +1477,7 @@
     "charges_max": 7,
     "charges_recharge": "daily",
     "effect": "Cast Web using charges.",
-    "notes": "Single spell access.",
+    "notes": "",
     "id": "items_139",
     "slot": "held"
   },
@@ -1492,7 +1492,7 @@
     "charges_max": 3,
     "charges_recharge": "daily",
     "effect": "Cast Scorching Ray 3 times per day.",
-    "notes": "Single spell access — doesn't change battle.",
+    "notes": "",
     "id": "items_145",
     "slot": "head"
   },
@@ -1506,7 +1506,7 @@
     "armor_type": "heavy",
     "armor_base_ac": 18,
     "magic_bonus": 1,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_132",
     "slot": "body"
   },
@@ -1522,7 +1522,7 @@
     "damage_dice": "1d10",
     "magic_bonus": 2,
     "effect": "Cannot be surprised, advantage on initiative. Wakes wielder if danger approaches during sleep.",
-    "notes": "Surprise immunity universally useful — party would pass around — attunement required.",
+    "notes": "",
     "id": "items_153",
     "slot": "melee2h"
   },
@@ -1538,7 +1538,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "Command word ignites bronze edges — adds 2d6 fire damage to each hit while active.",
-    "notes": "2d6 fire damage universally desirable — attunement required.",
+    "notes": "",
     "id": "items_bronze_flame",
     "slot": "melee1h"
   },
@@ -1551,7 +1551,7 @@
     "attuned": false,
     "armor_type": "shield",
     "magic_bonus": 2,
-    "notes": "Everyone wants +2 shield — attunement required.",
+    "notes": "",
     "id": "items_137",
     "slot": "shield"
   },
@@ -1566,7 +1566,7 @@
       "stat_str": 19
     },
     "effect": "Sets STR to 19.",
-    "notes": "Every melee fighter wants STR 19 — attunement required.",
+    "notes": "",
     "id": "items_134",
     "slot": "hands"
   },
@@ -1582,7 +1582,7 @@
       "saving_throws": 1
     },
     "effect": "+1 AC and saving throws.",
-    "notes": "Everyone wants AC and saves — attunement required.",
+    "notes": "",
     "id": "items_136",
     "slot": "back"
   },
@@ -1594,7 +1594,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on INT, WIS, CHA saving throws. Resistance to psychic damage.",
-    "notes": "Advantage on three save types — universally useful — attunement required.",
+    "notes": "",
     "id": "items_146",
     "slot": "head"
   },
@@ -1609,7 +1609,7 @@
       "stat_con": 19
     },
     "effect": "Sets CON to 19.",
-    "notes": "CON 19 helps everyone — attunement required.",
+    "notes": "",
     "id": "items_amulet_health_2",
     "slot": "neck"
   },
@@ -1621,7 +1621,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Cannot be disarmed.",
-    "notes": "Niche passive — party would not pass around.",
+    "notes": "",
     "id": "items_112",
     "slot": "ring"
   },
@@ -1636,7 +1636,7 @@
       "ac": 2
     },
     "effect": "+2 AC when not wearing armor or shield.",
-    "notes": "Anyone unarmored wants +2 AC — attunement required.",
+    "notes": "",
     "id": "items_164",
     "slot": "wrists"
   },
@@ -1648,7 +1648,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Resistance to one element. Attuned to: fire.",
-    "notes": "Single elemental resistance — no attunement required.",
+    "notes": "",
     "id": "items_108b",
     "slot": "body"
   },
@@ -1663,7 +1663,7 @@
     "charges_max": 3,
     "charges_recharge": "daily",
     "effect": "1 charge: Alter Self. 2 charges: Polymorph (self only). 3 charges: Gaseous Form.",
-    "notes": "Polymorph is universally powerful — party would pass around — attunement required.",
+    "notes": "",
     "id": "items_ring_transmutation",
     "slot": "ring"
   },
@@ -1675,7 +1675,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Jump distance tripled.",
-    "notes": "Minor utility — party would not pass around.",
+    "notes": "",
     "id": "items_ring_jumping",
     "slot": "ring"
   },
@@ -1688,7 +1688,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "On unarmed strike hit: deal extra 2d10 psychic damage. Choose to regain HP equal to psychic damage dealt OR gain advantage on one roll.",
-    "notes": "Everyone wants 2d10 healing per hit — attunement required.",
+    "notes": "",
     "id": "items_gloves_soul_catching"
   },
   {
@@ -1700,7 +1700,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "+2 to unarmed strike attack and damage rolls.",
-    "notes": "Only monks benefit — party would not pass around.",
+    "notes": "",
     "id": "items_bracers_striking"
   },
   {
@@ -1715,7 +1715,7 @@
       "ac_unarmored_con": 1
     },
     "effect": "Adds CON modifier to unarmored AC in addition to DEX and WIS.",
-    "notes": "Only monks benefit — party would not pass around.",
+    "notes": "",
     "id": "items_monks_belt"
   },
   {
@@ -1727,7 +1727,7 @@
     "attuned": false,
     "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue.",
     "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades +2 attack and damage. (2) Tactical Foresight — Help targets two allies. (3) Grandmaster's Stitch — infuse leather item during long rest. (4) The Retired Special — once per day reaction pull ally up to 15ft.",
-    "notes": "Multiple significant benefits, Torrin specific — attunement required.",
+    "notes": "",
     "id": "items_131",
     "charges_current": 1,
     "charges_max": 1,
@@ -1745,7 +1745,7 @@
     "finesse": false,
     "damage_dice": "1d8",
     "magic_bonus": 2,
-    "notes": "Revven's weapon. Dual form is one weapon not two benefits — party would not pass around.",
+    "notes": "Dual form is one weapon not two benefits.",
     "id": "items_stormsplit",
     "slot": "melee1h"
   },
@@ -1772,7 +1772,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Resistance to lightning and thunder damage.",
-    "notes": "Fitted armor — party would not pass around.",
+    "notes": "",
     "id": "items_halfplate_revven"
   },
   {
@@ -1786,7 +1786,7 @@
     "charges_max": 7,
     "charges_recharge": "1d6+1 at dawn",
     "effect": "Cast Magic Missile using charges.",
-    "notes": "Single spell access.",
+    "notes": "",
     "id": "items_118",
     "slot": "held"
   },
@@ -1812,7 +1812,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Single elemental resistance — no attunement required.",
+    "notes": "",
     "id": "items_elucyne_ring",
     "slot": "ring"
   },
@@ -1823,7 +1823,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_elucyne_armor",
     "slot": "body"
   },
@@ -1839,7 +1839,7 @@
     "damage_dice": "1d6",
     "magic_bonus": 2,
     "effect": "Returns to hand after thrown. On crit: target knocked prone regardless of size.",
-    "notes": "Returning property useful for anyone who throws — attunement required.",
+    "notes": "",
     "id": "items_157",
     "slot": "melee1h"
   },
@@ -1855,7 +1855,7 @@
     "damage_dice": "1d8",
     "magic_bonus": 2,
     "effect": "On a critical hit: deals 2d6 slashing damage instead of doubling dice.",
-    "notes": "Elucyne's weapon — party would not pass around.",
+    "notes": "",
     "id": "items_curved_blade",
     "slot": "melee1h"
   },
@@ -1870,7 +1870,7 @@
     "finesse": false,
     "damage_dice": "1d8",
     "magic_bonus": 2,
-    "notes": "Sorra's weapon — party would not pass around.",
+    "notes": "",
     "id": "items_86",
     "slot": "ranged2h"
   },
@@ -1884,7 +1884,7 @@
     "stat_bonuses": {
       "ranged_damage": 2
     },
-    "notes": "Siv and Sorra each have their own — no passing needed.",
+    "notes": "Siv and Sorra each have their own.",
     "id": "items_90",
     "slot": "wrists"
   },
@@ -1898,7 +1898,7 @@
     "armor_type": "light",
     "armor_base_ac": 14,
     "magic_bonus": 2,
-    "notes": "Fitted armor.",
+    "notes": "",
     "id": "items_104",
     "slot": "body"
   },
@@ -1913,7 +1913,7 @@
     "charges_max": 1,
     "charges_recharge": "short_rest",
     "effect": "Reaction when ally within 30ft drops to 0hp: grant 1d8 + proficiency bonus temp HP. Advantage on death saving throws.",
-    "notes": "Whoever faces most danger wants this — party would pass around — attunement required.",
+    "notes": "",
     "id": "items_steadfast",
     "slot": "neck"
   },
@@ -1943,7 +1943,7 @@
       "stat_str": 21
     },
     "effect": "Sets STR to 21.",
-    "notes": "Every melee fighter wants this — attunement required.",
+    "notes": "",
     "id": "items_168",
     "slot": "waist"
   },
@@ -1955,7 +1955,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Become invisible for up to 1 hour per day.",
-    "notes": "Everyone wants invisibility — attunement required.",
+    "notes": "",
     "id": "items_142",
     "slot": "back"
   },
@@ -1967,7 +1967,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Each bead cast once per day. Rolled spells: Bless, Greater Restoration, Cure Wounds, Wind Walk.",
-    "notes": "Clerics and paladins all want spell access — attunement required.",
+    "notes": "",
     "id": "items_prayer_beads",
     "slot": "neck"
   },
@@ -1979,7 +1979,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Immunity to charm and fear.",
-    "notes": "Charm and fear immunity universally useful — attunement required.",
+    "notes": "",
     "id": "items_123",
     "slot": "head"
   },
@@ -1991,7 +1991,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Complete immunity to poison while worn.",
-    "notes": "Poison immunity universally useful — attunement required.",
+    "notes": "",
     "id": "items_126",
     "slot": "neck"
   },
@@ -2007,7 +2007,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Resistance to lightning and thunder damage.",
-    "notes": "Fitted armor — party would not pass around.",
+    "notes": "",
     "id": "items_fullplate_ferghus"
   },
   {
@@ -2023,7 +2023,7 @@
     "damage_dice": "2d6",
     "magic_bonus": 2,
     "effect": "On a critical hit: target is knocked prone.",
-    "notes": "Ferghus's weapon — party would not pass around.",
+    "notes": "",
     "id": "items_maul_ferghus"
   },
   {
@@ -2037,7 +2037,7 @@
       "speed": 10
     },
     "effect": "+10ft movement speed. Dash as bonus action once per short rest.",
-    "notes": "Everyone wants extra movement — attunement required.",
+    "notes": "",
     "id": "items_169",
     "slot": "wrists"
   },
@@ -2241,7 +2241,7 @@
     "finesse": false,
     "damage_dice": "1d8",
     "magic_bonus": 2,
-    "notes": "Backup melee. No special properties.",
+    "notes": "Backup melee.",
     "id": "items_longsword_party",
     "slot": "melee1h"
   },
@@ -2254,7 +2254,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
-    "notes": "Everyone wants double movement — attunement required. Unassigned.",
+    "notes": "Unassigned.",
     "id": "items_boots_speed"
   },
   {
@@ -2266,7 +2266,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on saves against spells targeting only you. On natural 20, spell reflected back at caster.",
-    "notes": "Everyone wants spell turning — attunement required. Unassigned.",
+    "notes": "Unassigned.",
     "id": "items_ring_spell_turning"
   },
   {
@@ -2281,7 +2281,7 @@
       "stat_con": 2
     },
     "effect": "+2 CON. Advantage on CHA checks with dwarves. Darkvision 60ft. Resistance to poison, advantage on poison saves.",
-    "notes": "Multiple benefits everyone wants — attunement required. Unassigned.",
+    "notes": "Unassigned.",
     "id": "items_belt_dwarvenkind"
   },
   {
@@ -2293,7 +2293,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Darkvision 60ft. If already have darkvision, extends by 60ft.",
-    "notes": "Situational — only humans without darkvision benefit significantly. Unassigned.",
+    "notes": "Unassigned.",
     "id": "items_goggles_night"
   },
   {
@@ -2308,7 +2308,7 @@
       "stat_str": 19
     },
     "effect": "Sets STR to 19.",
-    "notes": "Every melee fighter wants STR 19 — attunement required. Unassigned. Corwin already has a pair.",
+    "notes": "Unassigned. Corwin already has a pair.",
     "id": "items_gauntlets_ogre_power"
   },
   {
@@ -2323,7 +2323,7 @@
     "charges_max": 20,
     "charges_recharge": "none — gems consumed",
     "effect": "6 opals cast Daylight. 9 rubies cast Fireball. 5 diamonds cast Wall of Light. Undead within 30ft have disadvantage on attacks. On 1 in sunlight: explodes.",
-    "notes": "Multiple significant benefits — attunement required. Unassigned.",
+    "notes": "Unassigned.",
     "id": "items_helm_brilliance"
   },
   {
@@ -2375,7 +2375,7 @@
         "description": "Staff merges into non-halfling forms. While merged: +3 attack and damage, HP maximum increases by druid level, once per wildshape cast a cantrip as bonus action. In Stars form the staff remains physical."
       }
     ],
-    "notes": "Tackett refers to it as his right arm. Offered by the Trevash delta spring after Tackett destroyed the ancient spirit corrupting it. Legendary — unique to Tackett.",
+    "notes": "Tackett refers to it as his right arm. Offered by the Trevash delta spring after Tackett destroyed the ancient spirit corrupting it.",
     "id": "items_the_right_arm",
     "slot": "melee2h"
   },
@@ -2400,7 +2400,7 @@
     "slot": "head",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": false,
+    "needs_attunement": true,
     "attuned": false,
     "effect": "Immunity to charm and fear. Once per day when wearer does something that genuinely surprises an enemy, gain advantage on next attack roll.",
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",

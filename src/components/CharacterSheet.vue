@@ -174,24 +174,9 @@
 </template>
 
 <script>
-const STAT_KEYS = [
-  { key: 'str', label: 'STR' },
-  { key: 'dex', label: 'DEX' },
-  { key: 'con', label: 'CON' },
-  { key: 'int', label: 'INT' },
-  { key: 'wis', label: 'WIS' },
-  { key: 'cha', label: 'CHA' },
-]
+import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
 const SAVE_KEYS = STAT_KEYS
-
-function modifier(score) {
-  return Math.floor((score - 10) / 2)
-}
-
-function modStr(mod) {
-  return mod >= 0 ? `+${mod}` : `${mod}`
-}
 
 export default {
   name: 'CharacterSheet',
@@ -202,11 +187,7 @@ export default {
 
   computed: {
     stats() {
-      return STAT_KEYS.map(({ key, label }) => {
-        const score = this.character[`stat_${key}`]
-        const mod = modifier(score)
-        return { key, label, score, mod, modStr: modStr(mod) }
-      })
+      return dnd.statArray(this.character)
     },
 
     allSaves() {
@@ -227,7 +208,7 @@ export default {
       // default unarmored: 10 + dex mod
       // extend this later when equipment is wired up
       if (this.character.unarmored_ac_formula === 'default') {
-        return 10 + modifier(this.character.stat_dex)
+        return 10 + this.$dnd.mod(this.character.stat_dex)
       }
       return '—'
     },
@@ -236,10 +217,10 @@ export default {
   methods: {
     saveModStr(key) {
       const score = this.character[`stat_${key}`]
-      const mod = modifier(score)
+      const mod = this.$dnd.mod(score)
       const proficient = this.character.saving_throws.includes(key)
       const total = proficient ? mod + this.character.proficiency_bonus : mod
-      return modStr(total)
+      return this.$dnd.signed(total)
     },
 
     capitalize(str) {
