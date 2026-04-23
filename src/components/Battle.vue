@@ -80,53 +80,11 @@
       <template v-if="activeEntry && activeEntry.type === 'player' && activeChar">
         <div class="panel-header">
           <span class="panel-name">{{ activeChar.name }}</span>
-          <span class="panel-subtitle">{{ activeChar.class }} {{ activeChar.level }}</span>
+          <span class="panel-subtitle">{{ activeChar.class_breakdown || (activeChar.class + ' ' + activeChar.level) }}</span>
           <span class="panel-hp">{{ playerHp(activeChar.name) }} HP</span>
         </div>
 
-        <div class="stat-chips">
-          <div class="stat-chip" :title="speedTooltip">
-            <span class="chip-val">{{ speed }}</span>
-            <span class="chip-label">Speed</span>
-          </div>
-          <div class="stat-chip" :title="acTooltip">
-            <span class="chip-val">{{ ac }}</span>
-            <span class="chip-label">AC</span>
-          </div>
-          <div class="stat-chip" :title="`Proficiency bonus at level ${activeChar.level}`">
-            <span class="chip-val">+{{ activeChar.proficiency_bonus }}</span>
-            <span class="chip-label">Prof</span>
-          </div>
-          <div v-if="spellAttack !== null" class="stat-chip" :title="spellAttackTooltip">
-            <span class="chip-val">{{ signed(spellAttack) }}</span>
-            <span class="chip-label">Spell Atk</span>
-          </div>
-          <div v-if="spellSaveDC !== null" class="stat-chip" :title="spellDCTooltip">
-            <span class="chip-val">{{ spellSaveDC }}</span>
-            <span class="chip-label">Save DC</span>
-          </div>
-        </div>
-
-        <div class="section-label">Weapons</div>
-        <div v-if="equippedWeapons.length === 0" class="section-empty">No weapons equipped</div>
-        <table v-else class="weapon-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th class="col-num" title="Attack bonus">Atk</th>
-              <th class="col-num" title="Damage dice + modifier">Dmg</th>
-              <th class="col-tag">Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="w in equippedWeapons" :key="w.id">
-              <td class="weapon-name">{{ w.name }}</td>
-              <td class="col-num" :title="weaponAtkTooltip(w)">{{ signed(weaponAtk(w)) }}</td>
-              <td class="col-num" :title="weaponDmgTooltip(w)">{{ weaponDmg(w) }}</td>
-              <td class="col-tag">{{ w.weapon_type }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <CharacterCombatPanel :character="activeChar" />
       </template>
 
       <!-- Enemy turn -->
@@ -189,11 +147,12 @@
 
 <script>
 import characters from '@/data/characters.json'
-import { dnd } from '@/utils/dnd_utils.js'
-import { DEFAULT_SPEED_FT, ARMOR_BASE_AC, ARMOR_DEX_CAP } from '@/utils/dnd_constants.js'
+import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
 
 export default {
   name: 'Battle',
+
+  components: { CharacterCombatPanel },
 
   props: {
     order: { type: Array, required: true },
@@ -226,41 +185,6 @@ export default {
       if (!this.activeEntry || this.activeEntry.type !== 'enemy') return null
       return this.enemyHp[this.activeEntry.key] ?? { damage: 0, maxHp: null }
     },
-    equippedWeapons() {
-      if (!this.activeChar) return []
-      return this.$store.state.party_items.filter(
-        (i) => i.type === 'weapon' && i.equipped_by === this.activeChar.name
-      )
-    },
-    speed() {
-      const s = this.activeChar?.speed
-      if (!s) return `${DEFAULT_SPEED_FT} ft`
-      return typeof s === 'number' ? `${s} ft` : s
-    },
-    speedTooltip() {
-      return this.activeChar?.speed
-        ? 'From character data'
-        : `Default ${DEFAULT_SPEED_FT} ft — add "speed" to character data to override`
-    },
-    ac() { return this._acCalc().total },
-    acTooltip() { return this._acCalc().tooltip },
-    spellAttack() {
-      return this.activeChar ? dnd.spellAttackBonus(this.activeChar) : null
-    },
-    spellAttackTooltip() {
-      if (!this.activeChar?.spellcasting_ability) return ''
-      const ability = this.activeChar.spellcasting_ability
-      const mod = dnd.mod(this.activeChar[`stat_${ability}`])
-      const prof = this.activeChar.proficiency_bonus
-      return `${ability.toUpperCase()} mod ${dnd.signed(mod)} + Prof ${dnd.signed(prof)} = ${dnd.signed(mod + prof)}`
-    },
-    spellSaveDC() {
-      return this.activeChar ? dnd.spellSaveDC(this.activeChar) : null
-    },
-    spellDCTooltip() {
-      if (!this.activeChar || this.spellAttack === null) return ''
-      return `8 + Spell Atk ${dnd.signed(this.spellAttack)} = ${8 + this.spellAttack}`
-    },
   },
 
   watch: {
@@ -274,8 +198,6 @@ export default {
   },
 
   methods: {
-    signed: dnd.signed,
-
     // ── Player HP display ──
     playerHp(name) {
       const char = characters.find((c) => c.name === name)
@@ -354,94 +276,6 @@ export default {
       this.overrideValue = null
     },
 
-    // ── AC ──
-    _acCalc() {
-      if (!this.activeChar) return { total: '—', tooltip: '' }
-      const char = this.activeChar
-      const dexMod = dnd.mod(char.stat_dex)
-      const equipped = this.$store.state.party_items.filter((i) => i.equipped_by === char.name)
-      const armorItem = equipped.find((i) => i.type === 'armor' && i.slot === 'body')
-
-      let base, category, armorDesc
-      if (armorItem) {
-        const def = ARMOR_BASE_AC[armorItem.armor_type]
-        if (def) {
-          base = def.base + (armorItem.magic_bonus ?? 0)
-          category = def.category
-          armorDesc = armorItem.name
-        } else if (armorItem.base_ac != null) {
-          base = armorItem.base_ac + (armorItem.magic_bonus ?? 0)
-          category = armorItem.armor_category ?? 'light'
-          armorDesc = armorItem.name
-        } else {
-          base = 10; category = 'unarmored'
-          armorDesc = `Unarmored (add armor_type to ${armorItem.name})`
-        }
-      } else {
-        base = 10; category = 'unarmored'; armorDesc = 'Unarmored'
-      }
-
-      const dexCap = ARMOR_DEX_CAP[category] ?? Infinity
-      const dexContrib = Math.min(dexMod, dexCap)
-      const shield = equipped.find((i) => i.armor_type === 'shield')
-      const shieldBonus = shield ? 2 + (shield.magic_bonus ?? 0) : 0
-      const acBonus = equipped.reduce((sum, i) => sum + (i.stat_bonuses?.ac ?? 0), 0)
-      const total = base + dexContrib + shieldBonus + acBonus
-
-      const parts = [`${armorDesc}: ${base}`]
-      if (dexContrib !== 0 || category === 'unarmored') {
-        const capNote = dexCap === Infinity ? '' : ` (cap +${dexCap})`
-        parts.push(`DEX ${dnd.signed(dexContrib)}${capNote}`)
-      }
-      if (shieldBonus) parts.push(`${shield.name} +${shieldBonus}`)
-      if (acBonus) parts.push(`items ${dnd.signed(acBonus)}`)
-      parts.push(`= ${total}`)
-      return { total, tooltip: parts.join(' + ').replace(' + =', ' =') }
-    },
-
-    // ── Weapons ──
-    weaponAtk(weapon) { return dnd.attackBonus(this.activeChar, weapon) },
-    weaponAtkTooltip(weapon) {
-      const char = this.activeChar
-      const strMod = dnd.mod(char.stat_str)
-      const dexMod = dnd.mod(char.stat_dex)
-      const prof = char.proficiency_bonus
-      const magic = weapon.magic_bonus ?? 0
-      let statMod, statDesc
-      if (weapon.finesse) {
-        statMod = Math.max(strMod, dexMod)
-        statDesc = `Finesse — best of STR ${dnd.signed(strMod)}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
-      } else if (weapon.weapon_type === 'ranged') {
-        statMod = dexMod; statDesc = `DEX ${dnd.signed(dexMod)}`
-      } else {
-        statMod = strMod; statDesc = `STR ${dnd.signed(strMod)}`
-      }
-      const total = statMod + prof + magic
-      const parts = [statDesc, `Prof ${dnd.signed(prof)}`]
-      if (magic) parts.push(`Magic ${dnd.signed(magic)}`)
-      parts.push(`= ${dnd.signed(total)}`)
-      return parts.join(' + ').replace(' + =', ' =')
-    },
-    weaponDmg(weapon) {
-      return `${weapon.damage_dice ?? '?'}${dnd.signed(dnd.damageBonus(this.activeChar, weapon))}`
-    },
-    weaponDmgTooltip(weapon) {
-      const char = this.activeChar
-      const strMod = dnd.mod(char.stat_str)
-      const dexMod = dnd.mod(char.stat_dex)
-      const magic = weapon.magic_bonus ?? 0
-      let statMod, statDesc
-      if (weapon.finesse) {
-        statMod = Math.max(strMod, dexMod); statDesc = `Finesse ${dnd.signed(statMod)}`
-      } else if (weapon.weapon_type === 'ranged') {
-        statMod = dexMod; statDesc = `DEX ${dnd.signed(dexMod)}`
-      } else {
-        statMod = strMod; statDesc = `STR ${dnd.signed(strMod)}`
-      }
-      const parts = [`${weapon.damage_dice ?? '?'}`, statDesc]
-      if (magic) parts.push(`Magic ${dnd.signed(magic)}`)
-      return parts.join(' + ')
-    },
   },
 }
 </script>
@@ -680,88 +514,6 @@ export default {
   font-size: var(--font-size-small);
   color: var(--color-text-muted);
 }
-
-/* ── Stat Chips ── */
-.stat-chips { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-.stat-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.4rem 0.9rem;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  cursor: default;
-  min-width: 4rem;
-}
-
-.chip-val {
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-accent-strong);
-}
-
-.chip-label {
-  font-size: var(--font-size-tiny);
-  color: var(--color-text-low);
-  margin-top: 0.1rem;
-}
-
-/* ── Section Label ── */
-.section-label {
-  font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
-  color: var(--color-text-low);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.section-empty { font-size: var(--font-size-small); color: var(--color-text-low); }
-
-/* ── Weapon Table ── */
-.weapon-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--font-size-small);
-}
-
-.weapon-table th {
-  text-align: left;
-  font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
-  font-weight: normal;
-  color: var(--color-text-low);
-  letter-spacing: 0.04em;
-  padding: 0.2rem 0.5rem 0.4rem 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.weapon-table td {
-  padding: 0.4rem 0.5rem 0.4rem 0;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text);
-  vertical-align: middle;
-}
-
-.weapon-table tr:last-child td { border-bottom: none; }
-
-.weapon-table th.col-num,
-.weapon-table td.col-num {
-  text-align: right;
-  min-width: 3rem;
-  font-family: var(--font-display);
-  color: var(--color-accent-strong);
-}
-
-.weapon-table th.col-tag,
-.weapon-table td.col-tag {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-tiny);
-  padding-left: 0.5rem;
-}
-
-.weapon-name { color: var(--color-text); }
 
 /* ── Damage Tracker ── */
 .damage-tracker {

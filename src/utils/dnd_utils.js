@@ -17,6 +17,8 @@
 //   dnd.signed(n)       → "+3" or "-1" (always shows sign)
 //   dnd.formatBonus(n)  → alias for signed
 
+import { ARMOR_BASE_AC, WEAPON_PROPS } from './dnd_constants.js'
+
 export const STAT_KEYS = [
   { key: 'str', label: 'STR' },
   { key: 'dex', label: 'DEX' },
@@ -62,10 +64,10 @@ export const dnd = {
   // Always call this before computing AC, saves, etc.
   // ─────────────────────────────────────────────
 
-  // Returns { stats, bonuses }
+  // Returns { stats, bonuses, unarmoredBonuses }
   // stats:   raw ability scores after overrides (e.g. Amulet of Health sets CON 19)
-  // bonuses: flat additive bonuses from items keyed by stat name
-  //          (e.g. { ac: 2, saving_throws: 1, skill_Perception: 1, ranged_damage: 2 })
+  // bonuses: flat additive bonuses from items that apply regardless of armor
+  // unarmoredBonuses: bonuses that only apply when unarmored
   resolveStats(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
     const stats = {
@@ -77,6 +79,7 @@ export const dnd = {
       cha: character.stat_cha,
     }
     const bonuses = {}
+    const unarmoredBonuses = {}
 
     // Pass 1 — stat_overrides set a stat to a fixed value
     for (const item of items) {
@@ -85,16 +88,23 @@ export const dnd = {
       }
     }
 
-    // Pass 2 — stat_bonuses stack additively
+    // Pass 2 — collect bonuses (regular and unarmored separately)
     for (const item of items) {
+      // Regular bonuses (apply always)
       if (item.stat_bonuses) {
         for (const [key, val] of Object.entries(item.stat_bonuses)) {
           bonuses[key] = (bonuses[key] ?? 0) + val
         }
       }
+      // Unarmored-only bonuses
+      if (item.unarmored_stat_bonuses) {
+        for (const [key, val] of Object.entries(item.unarmored_stat_bonuses)) {
+          unarmoredBonuses[key] = (unarmoredBonuses[key] ?? 0) + val
+        }
+      }
     }
 
-    return { stats, bonuses }
+    return { stats, bonuses, unarmoredBonuses }
   },
 
   // ─────────────────────────────────────────────
@@ -102,47 +112,82 @@ export const dnd = {
   // Handles heavy / medium / light / unarmored
   // Applies item ac bonuses (Bracers of Defense,
   // Ring of Protection, Cloak of Protection, etc.)
+  // Also handles unarmored AC from robes/wondrous items
   // Optional: pass bladesongActive = true for Bladesinger
   // ─────────────────────────────────────────────
 
-  ac(character, { bladesongActive = false } = {}) {
-    const { stats, bonuses } = dnd.resolveStats(character)
-    const {
-      armor_type,
-      armor_base_ac,
-      shield,
-      magic_bonus = 0,
-    } = character.ac_base
+  ac(character, { bladesongActive = false, carriedPartyItems = [] } = {}) {
+    const { stats, bonuses, unarmoredBonuses } = dnd.resolveStats(
+      character,
+      carriedPartyItems
+    )
+    const items = [...(character.items ?? []), ...carriedPartyItems]
+
+    // Check if wearing armor (blocks unarmored bonuses)
+    const armorItem = items.find(
+      (i) =>
+        i.equipped_by === character.name &&
+        i.type === 'armor' &&
+        i.slot === 'body'
+    )
+    const isWearingArmor = !!armorItem
+
     const dexMod = dnd.mod(stats.dex)
     const intMod = dnd.mod(stats.int)
 
-    let base
-    switch (armor_type) {
-      case 'heavy':
-        base = armor_base_ac
-        break
-      case 'medium':
-        base = armor_base_ac + Math.min(dexMod, 2)
-        break
-      case 'light':
-        base = armor_base_ac + dexMod
-        break
-      case 'unarmored':
-      default:
+    let base, armorType
+    if (isWearingArmor) {
+      armorType = armorItem.armor_type
+      const armorData = ARMOR_BASE_AC[armorType]
+      const category = armorData?.category ?? armorType
+      const armorBaseAc = armorItem.armor_base_ac ?? armorData?.base ?? 10
+      const magicBonus = armorItem.magic_bonus ?? 0
+
+      switch (category) {
+        case 'heavy':
+          base = armorBaseAc + magicBonus
+          break
+        case 'medium':
+          base = armorBaseAc + magicBonus + Math.min(dexMod, 2)
+          break
+        case 'light':
+        default:
+          base = armorBaseAc + magicBonus + dexMod
+          break
+      }
+    } else {
+      // Not wearing armor - check for unarmored AC sources
+      const unarmoredAcItem = items.find(
+        (i) =>
+          i.equipped_by === character.name && i.unarmored_armor_base_ac != null
+      )
+
+      if (unarmoredAcItem) {
+        // Item like Robe of the Archmagi provides base unarmored AC
+        base = unarmoredAcItem.unarmored_armor_base_ac + dexMod
+        armorType = 'unarmored'
+      } else {
+        // Standard unarmored AC
         base = 10 + dexMod
-        break
+        armorType = 'unarmored'
+      }
     }
 
     // Bladesinger: +INT mod to AC while Bladesong active
     const bladesongBonus = bladesongActive ? intMod : 0
 
-    // Shield adds flat +2
-    const shieldBonus = shield ? 2 : 0
+    // Shield adds flat +2 (if not blocked by armor restrictions)
+    const shieldItem = items.find(
+      (i) => i.equipped_by === character.name && i.armor_type === 'shield'
+    )
+    const shieldBonus = shieldItem ? 2 + (shieldItem.magic_bonus ?? 0) : 0
 
-    // Item bonuses (Bracers of Defense, Ring/Cloak of Protection, etc.)
-    const itemAcBonus = bonuses.ac ?? 0
+    // Item bonuses - combine regular and unarmored bonuses appropriately
+    const regularAcBonus = bonuses.ac ?? 0
+    const unarmoredAcBonus = isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0
+    const itemAcBonus = regularAcBonus + unarmoredAcBonus
 
-    return base + magic_bonus + shieldBonus + itemAcBonus + bladesongBonus
+    return base + shieldBonus + itemAcBonus + bladesongBonus
   },
 
   // ─────────────────────────────────────────────
@@ -267,17 +312,20 @@ export const dnd = {
 
   spellAttackBonus(character) {
     if (!character.spellcasting_ability) return null
-    const { stats } = dnd.resolveStats(character)
+    const { stats, bonuses } = dnd.resolveStats(character)
     const mod = dnd.mod(stats[character.spellcasting_ability])
     const prof =
       character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
-    return mod + prof
+    const itemBonus = bonuses.spell_attack ?? 0
+    return mod + prof + itemBonus
   },
 
   spellSaveDC(character) {
     const bonus = dnd.spellAttackBonus(character)
     if (bonus === null) return null
-    return 8 + bonus
+    const { bonuses } = dnd.resolveStats(character)
+    const itemBonus = bonuses.spell_save_dc ?? 0
+    return 8 + bonus + itemBonus
   },
 
   // ─────────────────────────────────────────────
@@ -293,45 +341,71 @@ export const dnd = {
   // Includes ranged_damage item bonus for Bracers of Archery.
   // ─────────────────────────────────────────────
 
+  // Resolves all weapon properties, with item-level fields overriding the WEAPON_PROPS lookup.
+  // Items only need weapon_category + any non-standard overrides (e.g. homebrew damage dice).
+  _weaponProps(weapon) {
+    const base = WEAPON_PROPS[weapon.weapon_category] ?? {}
+    return {
+      weapon_type: weapon.weapon_type ?? base.weapon_type ?? (weapon.slot?.startsWith('ranged') ? 'ranged' : 'melee'),
+      damage_dice: weapon.damage_dice ?? base.damage_dice ?? '1d4',
+      damage_dice_2h: weapon.damage_dice_2h ?? base.damage_dice_2h ?? null,
+      finesse: weapon.finesse ?? base.finesse ?? false,
+      versatile: weapon.versatile ?? base.versatile ?? false,
+    }
+  },
+
   _weaponStatMod(character, weapon) {
     const { stats } = dnd.resolveStats(character)
-    if (weapon.finesse) {
+    const props = dnd._weaponProps(weapon)
+    if (props.finesse) {
       return Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
     }
-    if (weapon.weapon_type === 'ranged') {
-      return dnd.mod(stats.dex)
-    }
-    return dnd.mod(stats.str)
+    return props.weapon_type === 'ranged' ? dnd.mod(stats.dex) : dnd.mod(stats.str)
+  },
+
+  // Returns the damage die for a weapon, choosing 1h or 2h based on what the character has equipped.
+  // Shields count as melee1h — off-hand is free only when a single melee1h item is equipped.
+  gripDie(character, weapon, partyItems = []) {
+    const props = dnd._weaponProps(weapon)
+    if (!props.versatile) return props.damage_dice
+    if (weapon.slot === 'melee2h') return props.damage_dice_2h ?? props.damage_dice
+    const melee1hCount = partyItems.filter(
+      (i) => i.equipped_by === character.name && i.slot === 'melee1h'
+    ).length
+    return melee1hCount <= 1
+      ? (props.damage_dice_2h ?? props.damage_dice)
+      : props.damage_dice
   },
 
   attackBonus(character, weapon) {
+    const { bonuses } = dnd.resolveStats(character)
+    const props = dnd._weaponProps(weapon)
     const statMod = dnd._weaponStatMod(character, weapon)
-    const prof =
-      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
+    const prof = character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
     const magic = weapon.magic_bonus ?? 0
-    return statMod + prof + magic
+    const attackTypeBonus = props.weapon_type === 'ranged'
+      ? bonuses.ranged_attack ?? 0
+      : bonuses.melee_attack ?? 0
+    return statMod + prof + magic + attackTypeBonus
   },
 
   damageBonus(character, weapon) {
     const { bonuses } = dnd.resolveStats(character)
+    const props = dnd._weaponProps(weapon)
     const statMod = dnd._weaponStatMod(character, weapon)
     const magic = weapon.magic_bonus ?? 0
-    // Bracers of Archery apply only to ranged weapons
-    const rangedBonus =
-      weapon.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
+    const rangedBonus = props.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
     return statMod + magic + rangedBonus
   },
 
-  // Returns a display-ready summary for each weapon
-  // e.g. { name: "Veilstrike Rapier +2", attackBonus: "+9", damage: "1d8+7", notes: "..." }
-  weaponSummary(character, weapon) {
+  weaponSummary(character, weapon, partyItems = []) {
+    const props = dnd._weaponProps(weapon)
+    const die = dnd.gripDie(character, weapon, partyItems)
     return {
       name: weapon.name,
       attack: dnd.signed(dnd.attackBonus(character, weapon)),
-      damage: `${weapon.damage_dice}${dnd.signed(
-        dnd.damageBonus(character, weapon)
-      )}`,
-      type: weapon.weapon_type,
+      damage: `${die}${dnd.signed(dnd.damageBonus(character, weapon))}`,
+      type: props.weapon_type,
       notes: weapon.notes ?? '',
     }
   },

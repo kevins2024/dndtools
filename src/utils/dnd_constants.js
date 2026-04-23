@@ -1,66 +1,56 @@
-// Standard 5e weapon damage dice, keyed by lowercase weapon name.
-// Used as a fallback when damage_dice is not set on an item in party_items.json.
-export const WEAPON_DICE = {
-  // Simple melee
-  'club':           '1d4',
-  'dagger':         '1d4',
-  'greatclub':      '1d8',
-  'handaxe':        '1d6',
-  'javelin':        '1d6',
-  'light hammer':   '1d4',
-  'mace':           '1d6',
-  'quarterstaff':   '1d6',
-  'sickle':         '1d4',
-  'spear':          '1d6',
+// Canonical 5e weapon properties, keyed by weapon_category on each item.
+// Items only store what differs from these defaults (magic_bonus, damage_dice override, etc.)
+// weapon_type: 'melee' | 'ranged'
+// versatile weapons have damage_dice_2h for the two-handed grip
+export const WEAPON_PROPS = {
+  // ── Simple melee ──
+  club:            { weapon_type: 'melee',  damage_dice: '1d4',  finesse: false, versatile: false },
+  dagger:          { weapon_type: 'melee',  damage_dice: '1d4',  finesse: true,  versatile: false },
+  greatclub:       { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: false },
+  handaxe:         { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: false },
+  javelin:         { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: false },
+  'light hammer':  { weapon_type: 'melee',  damage_dice: '1d4',  finesse: false, versatile: false },
+  mace:            { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: false },
+  quarterstaff:    { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: true,  damage_dice_2h: '1d8'  },
+  staff:           { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: true,  damage_dice_2h: '1d8'  },
+  sickle:          { weapon_type: 'melee',  damage_dice: '1d4',  finesse: false, versatile: false },
+  spear:           { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: true,  damage_dice_2h: '1d8'  },
 
-  // Martial melee
-  'battleaxe':      '1d8',
-  'flail':          '1d8',
-  'glaive':         '1d10',
-  'greataxe':       '1d12',
-  'greatsword':     '2d6',
-  'halberd':        '1d10',
-  'lance':          '1d12',
-  'longsword':      '1d8',
-  'maul':           '2d6',
-  'morningstar':    '1d8',
-  'pike':           '1d10',
-  'rapier':         '1d8',
-  'scimitar':       '1d6',
-  'shortsword':     '1d6',
-  'trident':        '1d6',
-  'war pick':       '1d8',
-  'warhammer':      '1d8',
-  'whip':           '1d4',
+  // ── Martial melee ──
+  battleaxe:       { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: true,  damage_dice_2h: '1d10' },
+  flail:           { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: false },
+  glaive:          { weapon_type: 'melee',  damage_dice: '1d10', finesse: false, versatile: false },
+  greataxe:        { weapon_type: 'melee',  damage_dice: '1d12', finesse: false, versatile: false },
+  greatsword:      { weapon_type: 'melee',  damage_dice: '2d6',  finesse: false, versatile: false },
+  halberd:         { weapon_type: 'melee',  damage_dice: '1d10', finesse: false, versatile: false },
+  lance:           { weapon_type: 'melee',  damage_dice: '1d12', finesse: false, versatile: false },
+  longsword:       { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: true,  damage_dice_2h: '1d10' },
+  maul:            { weapon_type: 'melee',  damage_dice: '2d6',  finesse: false, versatile: false },
+  morningstar:     { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: false },
+  pike:            { weapon_type: 'melee',  damage_dice: '1d10', finesse: false, versatile: false },
+  rapier:          { weapon_type: 'melee',  damage_dice: '1d8',  finesse: true,  versatile: false },
+  scimitar:        { weapon_type: 'melee',  damage_dice: '1d6',  finesse: true,  versatile: false },
+  shortsword:      { weapon_type: 'melee',  damage_dice: '1d6',  finesse: true,  versatile: false },
+  trident:         { weapon_type: 'melee',  damage_dice: '1d6',  finesse: false, versatile: true,  damage_dice_2h: '1d8'  },
+  'war pick':      { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: false },
+  warhammer:       { weapon_type: 'melee',  damage_dice: '1d8',  finesse: false, versatile: true,  damage_dice_2h: '1d10' },
+  whip:            { weapon_type: 'melee',  damage_dice: '1d4',  finesse: true,  versatile: false },
 
-  // Simple ranged
-  'crossbow, light': '1d8',
-  'dart':            '1d4',
-  'shortbow':        '1d6',
-  'sling':           '1d4',
+  // ── Simple ranged ──
+  dart:            { weapon_type: 'ranged', damage_dice: '1d4',  finesse: true,  versatile: false },
+  shortbow:        { weapon_type: 'ranged', damage_dice: '1d6',  finesse: false, versatile: false },
+  sling:           { weapon_type: 'ranged', damage_dice: '1d4',  finesse: false, versatile: false },
 
-  // Martial ranged
-  'blowgun':         '1',
-  'crossbow, hand':  '1d6',
-  'crossbow, heavy': '1d10',
-  'longbow':         '1d8',
-  'net':             '0',
-}
-
-// Versatile dice (two-handed grip) for weapons that support it.
-export const WEAPON_DICE_VERSATILE = {
-  'battleaxe':    '1d10',
-  'longsword':    '1d10',
-  'quarterstaff': '1d8',
-  'spear':        '1d8',
-  'trident':      '1d8',
-  'warhammer':    '1d10',
+  // ── Martial ranged ──
+  'hand crossbow': { weapon_type: 'ranged', damage_dice: '1d6',  finesse: false, versatile: false },
+  'heavy crossbow':{ weapon_type: 'ranged', damage_dice: '1d10', finesse: false, versatile: false },
+  longbow:         { weapon_type: 'ranged', damage_dice: '1d8',  finesse: false, versatile: false },
 }
 
 // Standard 5e armor base AC, keyed by armor type name (lowercase).
 // Add armor_type to each armor item in party_items.json to use this lookup.
 // magic_bonus on the item is added on top of base.
-// Truly homebrew armor with no equivalent can use base_ac + armor_category directly on the item.
+// Truly homebrew armor with no equivalent can use armor_base_ac directly on the item.
 export const ARMOR_BASE_AC = {
   // Light — full DEX mod
   'padded':          { base: 11, category: 'light' },

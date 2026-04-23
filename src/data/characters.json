@@ -2233,7 +2233,7 @@
       "max": 8,
       "current": 8
     },
-    "martial_arts_die": "1d8",
+    "martial_arts_die": "1d6",
     "spells": [],
     "active_effects": [],
     "persona_notes": [
@@ -3074,10 +3074,11 @@
     "subclass": "Gloom Stalker",
     "level": 8,
     "class_breakdown": "5 Gloom Stalker Ranger / 1 Rogue / 2 Fighter",
+    "spellcasting_level": 5,
     "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns - not decorative, real, and striking enough that she's learned to use the moment people realize it. Symmetrical darker purple markings on both shoulders, somewhere between tattoos and birthmarks. Moves with the fluid ease of a performer who learned survival as a second language.",
     "image": "https://iili.io/Bg79v6B.jpg",
     "proficiency_bonus": 3,
-    "spellcasting_ability": null,
+    "spellcasting_ability": "wis",
     "stat_str": 10,
     "stat_dex": 20,
     "stat_con": 14,

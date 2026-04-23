@@ -10,35 +10,16 @@
         <h2 class="char-name">{{ character.name }}</h2>
         <div class="char-fullname">{{ character.full_name }}</div>
         <div class="char-subtitle">
-          {{ character.race }} · {{ character.class
-          }}<span v-if="character.subclass"> ({{ character.subclass }})</span> ·
-          Level {{ character.level }}
+          {{ character.race }} ·
+          <template v-if="character.class_breakdown">{{ character.class_breakdown }}</template>
+          <template v-else>{{ character.class }}<span v-if="character.subclass"> ({{ character.subclass }})</span> · Level {{ character.level }}</template>
         </div>
         <div class="char-appearance">{{ character.appearance }}</div>
       </div>
     </div>
 
-    <!-- Combat bar: HP / AC / Prof -->
-    <div class="combat-bar">
-      <div class="combat-stat">
-        <div class="combat-val">
-          {{ character.hp_current }} / {{ character.hp_max }}
-        </div>
-        <div class="combat-label">Hit Points</div>
-      </div>
-      <div class="combat-stat">
-        <div class="combat-val">{{ ac }}</div>
-        <div class="combat-label">Armor Class</div>
-      </div>
-      <div class="combat-stat">
-        <div class="combat-val">+{{ character.proficiency_bonus }}</div>
-        <div class="combat-label">Proficiency</div>
-      </div>
-      <div class="combat-stat" v-if="character.spellcasting_ability">
-        <div class="combat-val">{{ character.spellcasting_ability }}</div>
-        <div class="combat-label">Spellcasting</div>
-      </div>
-    </div>
+    <!-- Combat stats -->
+    <CharacterCombatPanel :character="character" />
 
     <!-- Stats -->
     <div class="sheet-section">
@@ -175,11 +156,14 @@
 
 <script>
 import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
+import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
 
 const SAVE_KEYS = STAT_KEYS
 
 export default {
   name: 'CharacterSheet',
+
+  components: { CharacterCombatPanel },
 
   props: {
     character: { type: Object, required: true },
@@ -202,15 +186,6 @@ export default {
         groups[type].push(f)
         return groups
       }, {})
-    },
-
-    ac() {
-      // default unarmored: 10 + dex mod
-      // extend this later when equipment is wired up
-      if (this.character.unarmored_ac_formula === 'default') {
-        return 10 + this.$dnd.mod(this.character.stat_dex)
-      }
-      return '—'
     },
   },
 
@@ -288,38 +263,6 @@ export default {
   color: var(--color-text-low);
   margin-top: 0.4vh;
   line-height: 1.4;
-}
-
-/* ── Combat bar ── */
-.combat-bar {
-  display: flex;
-  gap: 1vw;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  background: var(--color-bg-panel);
-  padding: 0.8vh 1vw;
-}
-
-.combat-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-.combat-val {
-  font-size: var(--font-size-large);
-  font-weight: 600;
-  color: var(--color-accent-strong);
-  line-height: 1;
-}
-
-.combat-label {
-  font-size: var(--font-size-xxs);
-  color: var(--color-text-low);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 2px;
 }
 
 /* ── Sections ── */
