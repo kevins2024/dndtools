@@ -76,10 +76,27 @@
       },
       {
         "name": "Yetgrese",
-        "description": "Second continent. Seven to eight days sailing from Aethermoor's western coast.",
-        "climate": "Warmer overall than Aethermoor based on position.",
-        "player_knowledge": "rumor",
-        "notes": "Dangerous crossing — weather, distance, and navigation all factors. Small enough that most Aethermoor residents have never met anyone from there. Occasional traders make the crossing. No cities, factions, or geography established."
+        "description": "Second continent. 2-3 weeks sailing from Aethermoor's western coast; under 2 weeks with magical propulsion if crossing goes smoothly.",
+        "climate": "Variable regionally. Interior sea climate likely distinct from exterior coasts due to geological shelter.",
+        "player_knowledge": "limited",
+        "geography": {
+          "shape": "Crescent — massive partial crater or caldera, eroded asymmetrically over millennia",
+          "western": "Massive, mountainous, intact. Tallest and most dramatic terrain. Likely volcanic in origin.",
+          "eastern": "Partially eroded and broken. Lower elevation. Where the old crater wall wore away.",
+          "gap": "Open waterway where the eastern wall eroded through — connects outer ocean to interior sea.",
+          "interior_sea": "Massively deep. Geologically sheltered and isolated for millennia. Likely contains unique fauna. Mostly cliffed borders with no beaches — cliffs grow dramatically taller moving west.",
+          "archipelago": "Complex island chain in the interior where the eroded eastern face crumbled into the water over millennia. Remnants of the old crater wall.",
+          "target_city": "On the eastern face of the main continent, slightly north of the waterway gap, facing outward toward the open sea."
+        },
+        "demographics": {
+          "notes": "Humans are 15-20% of population at most. Several familiar races present but as less common or divergent subtypes — not standard Western Reach versions. Full demographic composition still being established. Do not default to human NPCs.",
+          "candidates": [
+            "lizardfolk (under consideration)",
+            "divergent elf subtypes",
+            "other non-standard familiar races"
+          ]
+        },
+        "notes": "Dangerous crossing — weather, distance, and navigation all factors. Difficult enough that most Aethermoor residents have never met anyone from there. Occasional traders make the crossing. Target city is trade-accessible but not frequently visited — arrival is noteworthy but not unprecedented."
       }
     ]
   },

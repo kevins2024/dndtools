@@ -1178,7 +1178,7 @@
     "attuned": false,
     "paired_with": "The Farreach (B)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to ability or skill check.",
-    "notes": "Paired with Lexica's ring.",
+    "notes": "",
     "id": "items_48",
     "slot": "ring"
   },
@@ -1255,7 +1255,7 @@
     "stat_bonuses": {
       "ranged_damage": 2
     },
-    "notes": "Siv and Sorra each have their own pair.",
+    "notes": "",
     "id": "items_88",
     "slot": "wrists"
   },
@@ -1268,7 +1268,7 @@
     "attuned": false,
     "paired_with": "The Farreach (A)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus.",
-    "notes": "Paired with Siv's ring.",
+    "notes": "",
     "id": "items_49",
     "slot": "ring"
   },
@@ -1835,7 +1835,7 @@
     "stat_bonuses": {
       "ranged_damage": 2
     },
-    "notes": "Siv and Sorra each have their own.",
+    "notes": "",
     "id": "items_90",
     "slot": "wrists"
   },
