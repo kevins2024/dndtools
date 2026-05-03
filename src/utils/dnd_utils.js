@@ -39,7 +39,7 @@ export const dnd = {
 
   // Ability score → modifier
   mod(score) {
-    return Math.floor((score - 10) / 2)
+    return Math.floor(((score ?? 10) - 10) / 2)
   },
 
   // Format a number as a signed string for display: 3 → "+3", -1 → "-1", 0 → "+0"
@@ -472,13 +472,16 @@ export const dnd = {
 
   // Returns a display-ready array of stat objects for templates
   statArray(character) {
-    return STAT_KEYS.map(({ key, label }) => ({
-      key,
-      label,
-      score: character[`stat_${key}`],
-      mod: dnd.mod(character[`stat_${key}`]),
-      modStr: dnd.signed(dnd.mod(character[`stat_${key}`])),
-    }))
+    return STAT_KEYS.map(({ key, label }) => {
+      const score = character[`stat_${key}`] ?? 10
+      return {
+        key,
+        label,
+        score,
+        mod: dnd.mod(score),
+        modStr: dnd.signed(dnd.mod(score)),
+      }
+    })
   },
 
   // Find a character by name (first match) from characters array

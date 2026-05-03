@@ -44,7 +44,7 @@
             v-for="s in allSaves"
             :key="s.key"
             class="pill"
-            :class="{ proficient: character.saving_throws.includes(s.key) }"
+            :class="{ proficient: (character.saving_throws ?? []).includes(s.key) }"
           >
             {{ s.label }}
             <span class="pill-mod">{{ saveModStr(s.key) }}</span>
@@ -55,7 +55,7 @@
         <div class="section-title">Skill Proficiencies</div>
         <div class="pill-list">
           <span
-            v-for="skill in character.skill_proficiencies"
+            v-for="skill in character.skill_proficiencies ?? []"
             :key="skill"
             class="pill proficient"
           >
@@ -69,7 +69,7 @@
     <div class="sheet-section">
       <div class="section-title">Languages</div>
       <div class="pill-list">
-        <span v-for="lang in character.languages" :key="lang" class="pill">{{
+        <span v-for="lang in character.languages ?? []" :key="lang" class="pill">{{
           lang
         }}</span>
       </div>
@@ -191,11 +191,7 @@ export default {
 
   methods: {
     saveModStr(key) {
-      const score = this.character[`stat_${key}`]
-      const mod = this.$dnd.mod(score)
-      const proficient = this.character.saving_throws.includes(key)
-      const total = proficient ? mod + this.character.proficiency_bonus : mod
-      return this.$dnd.signed(total)
+      return dnd.signed(dnd.savingThrow(this.character, key))
     },
 
     capitalize(str) {

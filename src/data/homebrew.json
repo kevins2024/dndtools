@@ -26,6 +26,14 @@
   ],
   "features": [
     {
+      "name": "Bladesong",
+      "class": "Wizard (Bladesinger)",
+      "description": "You invoke an ancient elven magic as a bonus action. While active (up to 1 minute), you gain a bonus to AC equal to your INT modifier, your walking speed increases by 10 ft, you have advantage on Dexterity (Acrobatics) checks, and you gain a bonus to Constitution saves to maintain concentration equal to your INT modifier. Ends early if you are incapacitated, don medium or heavy armor or a shield, or use two hands to make an attack. 2 uses, regained on a short or long rest.",
+      "known_by": [
+        "Kessara"
+      ]
+    },
+    {
       "name": "Totemic Assault",
       "class": "Shaman",
       "description": "When hitting with a weapon or cantrip, channel spirit energy for 1d8 lightning or cold damage.",
@@ -107,6 +115,386 @@
       "known_by": [
         "Torrin"
       ]
+    },
+    {
+      "name": "Sentinel",
+      "category": "feat",
+      "action_type": "reaction",
+      "description": "When you hit a creature with an opportunity attack, its speed becomes 0 for the rest of the turn. Creatures provoke opportunity attacks even if they took the Disengage action. When a creature within 5ft attacks a target other than you, you can use your reaction to make a melee weapon attack against that creature."
+    },
+    {
+      "name": "Dual Wielder",
+      "category": "feat",
+      "description": "+1 AC while wielding a melee weapon in each hand. Can use two-weapon fighting with non-light weapons. Can draw or stow two weapons at once."
+    },
+    {
+      "name": "Great Weapon Master",
+      "category": "feat",
+      "action_type": "action",
+      "description": "On a critical hit or killing blow with a heavy melee weapon: make one melee weapon attack as a bonus action. Before making a melee attack with a heavy weapon: take -5 to hit for +10 damage.",
+      "note": "Decide before the roll whether to use the -5/+10 option."
+    },
+    {
+      "name": "Sharpshooter",
+      "category": "feat",
+      "description": "Attacking at long range doesn't impose disadvantage. Ranged attacks ignore half and three-quarters cover. Before making a ranged attack: take -5 to hit for +10 damage.",
+      "note": "Decide before the roll whether to use the -5/+10 option."
+    },
+    {
+      "name": "War Caster",
+      "category": "feat",
+      "action_type": "reaction",
+      "description": "Advantage on CON saving throws to maintain concentration. Can perform somatic components with hands full. Can cast a spell as an opportunity attack — must target only the provoking creature, casting time must be 1 action."
+    },
+    {
+      "name": "Mobile",
+      "category": "feat",
+      "description": "+10ft movement speed. Difficult terrain doesn't cost extra movement when you Dash. When you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn regardless of hit or miss."
+    },
+    {
+      "name": "Observant",
+      "category": "feat",
+      "description": "+5 passive Perception. +5 passive Investigation. Can read lips if you can see the creature's mouth and it is speaking a language you know. +1 INT or WIS."
+    },
+    {
+      "name": "Inspiring Leader",
+      "category": "feat",
+      "action_type": "action",
+      "recharge": "short_rest",
+      "description": "Spend 10 minutes speaking to up to 6 friendly creatures who can hear and understand you. Each gains temporary HP equal to your level + CHA modifier. Creatures cannot benefit again until they finish a short or long rest.",
+      "note": "Must spend 10 minutes — plan before combat, not during."
+    },
+    {
+      "name": "Metamagic Adept",
+      "category": "feat",
+      "recharge": "long_rest",
+      "description": "Gain 2 Sorcery Points per long rest. Learn two Metamagic options. Spend Sorcery Points to apply Metamagic to spells as normal.",
+      "note": "Specify which two Metamagic options each character has chosen."
+    },
+    {
+      "name": "Slasher",
+      "category": "feat",
+      "description": "+1 STR or DEX. On a hit with a slashing weapon: target's speed reduced by 10ft until start of your next turn. On a critical hit with a slashing weapon: target has disadvantage on attack rolls until start of your next turn."
+    },
+    {
+      "name": "Fey Touched",
+      "category": "feat",
+      "recharge": "long_rest",
+      "description": "+1 INT, WIS, or CHA. Learn Misty Step and one 1st level divination or enchantment spell. Cast each once per long rest without a spell slot. Can also cast using spell slots.",
+      "note": "Specify which 1st level spell each character chose."
+    },
+    {
+      "name": "Shadow Touched",
+      "category": "feat",
+      "recharge": "long_rest",
+      "description": "+1 INT, WIS, or CHA. Learn Invisibility and one 1st level illusion or necromancy spell. Cast each once per long rest without a spell slot. Can also cast using spell slots.",
+      "note": "Specify which 1st level spell each character chose."
+    },
+    {
+      "name": "Disarming Attack",
+      "category": "battlemaster_maneuver",
+      "action_type": "action",
+      "description": "Expend one Superiority Die. On a hit: add Superiority Die to damage. Target makes STR or DEX save (DC = 8 + proficiency + STR or DEX mod) or drops one held item of your choice."
+    },
+    {
+      "name": "Precision Attack",
+      "category": "battlemaster_maneuver",
+      "action_type": "action",
+      "description": "Expend one Superiority Die before the attack roll. Add the die to the attack roll. Can use after seeing the roll but before knowing if it hits.",
+      "note": "Use this to turn near-misses into hits."
+    },
+    {
+      "name": "Riposte",
+      "category": "battlemaster_maneuver",
+      "action_type": "reaction",
+      "description": "When a creature misses you with a melee attack: expend one Superiority Die as a reaction to make one melee weapon attack against that creature. On a hit: add Superiority Die to damage."
+    },
+    {
+      "name": "Menacing Attack",
+      "category": "battlemaster_maneuver",
+      "action_type": "action",
+      "description": "Expend one Superiority Die. On a hit: add Superiority Die to damage. Target makes WIS save (DC = 8 + proficiency + STR or DEX mod) or is frightened of you until end of your next turn."
+    },
+    {
+      "name": "Superiority Dice",
+      "category": "battlemaster_maneuver",
+      "recharge": "short_rest",
+      "description": "Pool of d10s used to fuel Battle Master maneuvers. At level 7: 4 dice. Recharge on short or long rest.",
+      "note": "Track current dice separately in active_effects or character sheet."
+    },
+    {
+      "name": "Agonizing Blast",
+      "category": "warlock_invocation",
+      "description": "Add CHA modifier to Eldritch Blast damage rolls. Applies to each beam separately."
+    },
+    {
+      "name": "Devil's Sight",
+      "category": "warlock_invocation",
+      "description": "See normally in darkness — both magical and nonmagical — to 120ft.",
+      "note": "Pairs exceptionally well with Hunger of Hadar."
+    },
+    {
+      "name": "Eyes of the Rune Keeper",
+      "category": "warlock_invocation",
+      "description": "Read all writing. Any language, any script, any surface. No action required.",
+      "note": "Kerra has been using this quietly for years without mentioning it."
+    },
+    {
+      "name": "Alchemical Savant",
+      "category": "artificer_feature",
+      "description": "When casting a spell using alchemist's supplies as a spellcasting focus: add INT modifier to one damage roll or to the amount of HP restored by the spell."
+    },
+    {
+      "name": "Experimental Elixir",
+      "category": "artificer_feature",
+      "action_type": "action",
+      "recharge": "long_rest",
+      "description": "After a long rest: produce a number of experimental elixirs equal to INT modifier. Roll d6 per elixir to determine effect: 1 Healing (2d4+2), 2 Swiftness (+10ft speed 1 hour), 3 Resilience (+1 AC 10 minutes), 4 Boldness (advantage on attack rolls and saves 1 minute), 5 Flight (fly speed 10ft 10 minutes), 6 Transformation (as Alter Self 10 minutes). Drinking is a bonus action.",
+      "note": "Elixirs expire after a long rest if unused."
+    },
+    {
+      "name": "Flash of Genius",
+      "category": "artificer_feature",
+      "action_type": "reaction",
+      "description": "When you or a creature within 30ft makes an ability check or saving throw: add INT modifier to the roll. Can use a number of times equal to INT modifier per long rest."
+    },
+    {
+      "name": "Tool Expertise",
+      "category": "artificer_feature",
+      "description": "Proficiency bonus doubled for any ability check using a tool you are proficient with."
+    },
+    {
+      "name": "Inquisitive — Insightful Fighting",
+      "category": "subclass_feature",
+      "action_type": "bonus_action",
+      "description": "Make an Insight check against a creature's Deception check. On success: can use Sneak Attack against that creature even if you don't have advantage and no ally is adjacent to it. Lasts 1 minute."
+    },
+    {
+      "name": "Inquisitive — Steady Eye",
+      "category": "subclass_feature",
+      "description": "Advantage on Perception and Investigation checks if you don't move more than half your speed on the same turn."
+    },
+    {
+      "name": "Inquisitive — Unerring Eye",
+      "category": "subclass_feature",
+      "action_type": "action",
+      "recharge": "wis_mod_per_long_rest",
+      "description": "Sense magical illusions, shapechanger in disguise, or other magical deception within 30ft. Not exact — you sense something is off, not necessarily what."
+    },
+    {
+      "name": "Scout — Skirmisher",
+      "category": "subclass_feature",
+      "action_type": "reaction",
+      "description": "When an enemy ends its turn within 5ft of you: move up to half your speed without provoking opportunity attacks."
+    },
+    {
+      "name": "Scout — Survivalist",
+      "category": "subclass_feature",
+      "description": "Gain proficiency in Nature and Survival. Proficiency bonus doubled for these skills."
+    },
+    {
+      "name": "Scout — Superior Mobility",
+      "category": "subclass_feature",
+      "description": "+10ft movement speed. If no armor worn, +10ft additionally."
+    },
+    {
+      "name": "Soulknife — Psychic Blades",
+      "category": "subclass_feature",
+      "action_type": "action",
+      "description": "Manifest a psychic blade as part of an attack. 1d6 psychic damage, finesse, thrown (60ft). Second blade as bonus action on same turn deals 1d4 psychic. No material component, appear and vanish instantly."
+    },
+    {
+      "name": "Soulknife — Psionic Energy",
+      "category": "subclass_feature",
+      "recharge": "long_rest",
+      "description": "Pool of Psionic Energy dice (d6s). Used for Soul Blades, Psychic Whispers, Psychic Veil, and Psi-Bolstered Knack. Regain one die as bonus action once per short rest.",
+      "note": "Track current dice in active_effects."
+    },
+    {
+      "name": "Soulknife — Psi-Bolstered Knack",
+      "category": "subclass_feature",
+      "description": "When failing an ability check using a skill or tool proficiency: expend one Psionic Energy die and add it to the check, potentially turning failure into success.",
+      "note": "Expend after seeing the roll."
+    },
+    {
+      "name": "Soulknife — Psychic Whispers",
+      "category": "subclass_feature",
+      "action_type": "action",
+      "description": "Expend one Psionic Energy die. Choose creatures equal to proficiency bonus. Telepathic link for a number of hours equal to die roll. Communicate silently at any range as long as on same plane."
+    },
+    {
+      "name": "Stars Druid — Starry Form",
+      "category": "subclass_feature",
+      "action_type": "bonus_action",
+      "recharge": "short_rest",
+      "description": "Transform into a starry form for 10 minutes. Choose constellation: Archer (bonus radiant damage on spells, 1d8+WIS as bonus action each turn), Chalice (healing spells heal Tackett for 1d8+WIS mod), Dragon (concentration checks auto-succeed on rolls of 9 or lower). Unbroken (legendary — see separate entry)."
+    },
+    {
+      "name": "Stars Druid — Cosmic Omen",
+      "category": "subclass_feature",
+      "action_type": "reaction",
+      "recharge": "long_rest",
+      "description": "After a long rest roll a d6. Odd: Weal — use reaction to add 1d6 to an attack roll, ability check, or saving throw of a creature within 30ft. Even: Woe — use reaction to subtract 1d6 from a roll of a creature within 30ft.",
+      "note": "Roll at start of each long rest to determine Weal or Woe."
+    },
+    {
+      "name": "Stars Druid — Full of Stars",
+      "category": "subclass_feature",
+      "description": "While in Starry Form: become partially incorporeal. Resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks."
+    },
+    {
+      "name": "Stars Druid — Unbroken (Legendary)",
+      "category": "subclass_feature",
+      "action_type": "bonus_action",
+      "recharge": "long_rest",
+      "description": "Legendary fourth constellation. While active: can maintain concentration on two spells simultaneously, advantage on all concentration saving throws. Duration 10 minutes. Once per long rest.",
+      "note": "Cannot stack with other Starry Form constellations — this replaces them for the duration."
+    },
+    {
+      "name": "Abjuration Wizard — Arcane Ward",
+      "category": "subclass_feature",
+      "description": "When casting an abjuration spell of 1st level or higher: ward gains HP equal to twice spell level + INT modifier. Ward has max HP of twice wizard level + INT modifier. Damage to Lyria hits the ward first. Ward recharges when she casts abjuration spells.",
+      "note": "Track ward HP separately."
+    },
+    {
+      "name": "Abjuration Wizard — Projected Ward",
+      "category": "subclass_feature",
+      "action_type": "reaction",
+      "description": "When a creature within 30ft takes damage: expend the Arcane Ward to absorb damage for that creature instead of Lyria.",
+      "note": "Ward is consumed — must recharge before using again."
+    },
+    {
+      "name": "Abjuration Wizard — Improved Abjuration",
+      "category": "subclass_feature",
+      "description": "Add proficiency bonus to ability checks made as part of casting Counterspell or Dispel Magic."
+    },
+    {
+      "name": "Abjuration Wizard — Spell Resistance",
+      "category": "subclass_feature",
+      "description": "Advantage on saving throws against spells. Resistance to spell damage."
+    },
+    {
+      "name": "Tempest Cleric — Wrath of the Storm",
+      "category": "subclass_feature",
+      "action_type": "reaction",
+      "recharge": "wis_mod_per_long_rest",
+      "description": "When a creature within 5ft hits you: use reaction to deal 2d8 lightning or thunder damage. Target makes DEX save (spell save DC) for half."
+    },
+    {
+      "name": "Tempest Cleric — Destructive Wrath",
+      "category": "subclass_feature",
+      "recharge": "channel_divinity",
+      "description": "When rolling lightning or thunder damage: replace any roll with maximum damage instead of rolling.",
+      "note": "Uses Channel Divinity."
+    },
+    {
+      "name": "Tempest Cleric — Thunderbolt Strike",
+      "category": "subclass_feature",
+      "description": "When dealing lightning damage to a Large or smaller creature: push it up to 10ft away."
+    },
+    {
+      "name": "Stone's Endurance",
+      "category": "racial_feature",
+      "action_type": "reaction",
+      "recharge": "short_rest",
+      "description": "When you take damage: use reaction to reduce damage by 1d12 + CON modifier.",
+      "note": "Goliath racial feature."
+    },
+    {
+      "name": "Bountiful Luck",
+      "category": "racial_feature",
+      "action_type": "reaction",
+      "description": "When an ally within 30ft rolls a 1 on an attack roll, ability check, or saving throw: use reaction to let them reroll. They must use the new roll.",
+      "note": "Halfling racial feat. Does not cost Tackett's Lucky feature."
+    },
+    {
+      "name": "Old Scores",
+      "category": "homebrew_feat",
+      "description": "Details not fully specified — confirm with DM.",
+      "note": "Homebrew. Fill in when details confirmed."
+    },
+    {
+      "name": "Vow of the Open Road",
+      "category": "homebrew_feat",
+      "description": "Details not fully specified — confirm with DM.",
+      "note": "Homebrew. Fill in when details confirmed."
+    },
+    {
+      "name": "Inquisitive — Ear for Deceit",
+      "category": "subclass_feature",
+      "action_type": null,
+      "description": "Gain proficiency in Insight. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of 7 or lower as an 8."
+    },
+    {
+      "name": "Inquisitive — Eye for Detail",
+      "category": "subclass_feature",
+      "action_type": "bonus_action",
+      "description": "Use a bonus action to take the Search action, or to make a Wisdom (Perception) check to spot a hidden creature or object, or an Intelligence (Investigation) check to uncover or decipher clues."
+    },
+    {
+      "name": "Scout — Ambush Master",
+      "category": "subclass_feature",
+      "action_type": null,
+      "description": "Advantage on initiative rolls. Creatures you hit during the first round of combat become easier targets — each ally has advantage on attack rolls against them until the start of your next turn."
+    },
+    {
+      "name": "Master of Tactics",
+      "category": "subclass_feature",
+      "action_type": "bonus_action",
+      "description": "Use the Help action as a bonus action. When you use Help to aid an ally attacking a creature, the target can be within 30ft rather than 5ft."
+    },
+    {
+      "name": "Blessed Strikes",
+      "category": "feature",
+      "action_type": null,
+      "description": "When your weapon attack or cantrip damages a creature, you can expend a use of Divine Strike or Potent Spellcasting (whichever you have) to deal an extra 1d8 radiant damage to the target. You can use this benefit only once per turn.",
+      "note": "Optional class feature from Tasha's Cauldron of Everything, replaces Divine Strike."
+    },
+    {
+      "name": "Sacred Weapon",
+      "category": "subclass_feature",
+      "action_type": "action",
+      "recharge": "channel_divinity",
+      "description": "As an action, expend one use of Channel Divinity to imbue one weapon you are holding with positive energy. For 1 minute: add CHA modifier to attack rolls (minimum +1), weapon counts as magical, emits bright light in 20ft radius and dim light 20ft beyond."
     }
-  ]
+  ],
+  "domain_spells": {
+    "life": [
+      {
+        "level": 1,
+        "spells": [
+          "Bless",
+          "Cure Wounds"
+        ]
+      },
+      {
+        "level": 3,
+        "spells": [
+          "Lesser Restoration",
+          "Spiritual Weapon"
+        ]
+      },
+      {
+        "level": 5,
+        "spells": [
+          "Beacon of Hope",
+          "Revivify"
+        ]
+      },
+      {
+        "level": 7,
+        "spells": [
+          "Death Ward",
+          "Guardian of Faith"
+        ]
+      },
+      {
+        "level": 9,
+        "spells": [
+          "Mass Cure Wounds",
+          "Raise Dead"
+        ]
+      }
+    ]
+  }
 }

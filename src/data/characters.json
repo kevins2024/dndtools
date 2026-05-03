@@ -21,7 +21,10 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -29,7 +32,10 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": ["Common", "Draconic"],
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -40,7 +46,7 @@
         "uses_current": null
       },
       {
-        "name": "Action Surge",
+        "name": "Action Surge (1 use)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -56,7 +62,7 @@
         "uses_current": null
       },
       {
-        "name": "Lucky 3/day",
+        "name": "Lucky",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -72,7 +78,7 @@
         "uses_current": null
       },
       {
-        "name": "Superiority Dice 4d10",
+        "name": "Superiority Dice",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -80,7 +86,7 @@
         "uses_current": null
       },
       {
-        "name": "Sentinel - hit creature with OA reduces speed to 0; can make OA against creatures attacking nearby allies",
+        "name": "Sentinel",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -153,7 +159,10 @@
     "hp_max": 91,
     "hp_current": 91,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -161,10 +170,13 @@
       "Survival"
     ],
     "expertise": [],
-    "languages": ["Common", "Orc"],
+    "languages": [
+      "Common",
+      "Orc"
+    ],
     "features": [
       {
-        "name": "Rage 4/day",
+        "name": "Rage",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -212,7 +224,7 @@
         "uses_current": null
       },
       {
-        "name": "Feral Instinct (advantage on initiative, can act when surprised)",
+        "name": "Feral Instinct",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -220,7 +232,7 @@
         "uses_current": null
       },
       {
-        "name": "Great Weapon Master - on crit or kill, bonus action attack; optional -5 to hit for +10 damage",
+        "name": "Great Weapon Master",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -266,7 +278,10 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -275,11 +290,17 @@
       "Deception",
       "Investigation"
     ],
-    "expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Thieves Cant"],
+    "expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Thieves Cant"
+    ],
     "features": [
       {
-        "name": "Sneak Attack 5d6",
+        "name": "Sneak Attack",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -319,12 +340,13 @@
         "uses_current": null
       },
       {
-        "name": "Shadow Touched - Invisibility 1/day; Inflict Wounds 1/day (1st level spell, no slot required)",
+        "name": "Shadow Touched",
         "type": "feat",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
-        "uses_current": null
+        "uses_current": null,
+        "note": "1st-level spell: Inflict Wounds"
       }
     ],
     "spells": [],
@@ -363,7 +385,10 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "int"],
+    "saving_throws": [
+      "con",
+      "int"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -372,7 +397,11 @@
       "Sleight of Hand"
     ],
     "expertise": [],
-    "languages": ["Common", "Gnomish", "Elvish"],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Elvish"
+    ],
     "features": [
       {
         "name": "Tool Expertise",
@@ -391,7 +420,7 @@
         "uses_current": null
       },
       {
-        "name": "Alchemical Savant - add INT mod to one damage roll (acid, fire, necrotic, or poison) or healing per spell",
+        "name": "Alchemical Savant",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -407,7 +436,7 @@
         "uses_current": null
       },
       {
-        "name": "Flash of Genius (reaction: add INT mod to nearby save or ability check)",
+        "name": "Flash of Genius",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -415,12 +444,13 @@
         "uses_current": null
       },
       {
-        "name": "Fey Touched - +1 WIS (13), Misty Step 1/day, Command 1/day (no spell slot required)",
+        "name": "Fey Touched",
         "type": "feat",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
-        "uses_current": null
+        "uses_current": null,
+        "note": "1st-level spell: Command"
       }
     ],
     "spells": [],
@@ -458,7 +488,10 @@
     "hp_max": 43,
     "hp_current": 43,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -467,7 +500,11 @@
       "Persuasion"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -478,7 +515,7 @@
         "uses_current": null
       },
       {
-        "name": "Potent Cantrip (cantrip saves deal half on success)",
+        "name": "Potent Cantrip",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -486,12 +523,13 @@
         "uses_current": null
       },
       {
-        "name": "Metamagic Adept - Empowered Spell (1 sorcery point: reroll up to 5 damage dice, keep new results) and Quickened Spell (2 sorcery points: cast leveled spell as bonus action); 2 sorcery points per long rest",
+        "name": "Metamagic Adept",
         "type": "feat",
         "action_type": null,
         "recharge": null,
         "uses_max": null,
-        "uses_current": null
+        "uses_current": null,
+        "note": "Empowered Spell, Quickened Spell"
       }
     ],
     "spells": [
@@ -706,7 +744,10 @@
     "hp_max": 49,
     "hp_current": 49,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -715,7 +756,11 @@
       "History"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -726,15 +771,15 @@
         "uses_current": null
       },
       {
-        "name": "Bladesong (bonus action: +INT mod to AC, +10 speed, advantage on CON saves while active)",
+        "name": "Bladesong",
         "type": "feature",
         "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
+        "recharge": "short_rest",
+        "uses_max": 2,
+        "uses_current": 2
       },
       {
-        "name": "Fey Ancestry (advantage vs charm, immune to magical sleep)",
+        "name": "Fey Ancestry",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -925,7 +970,10 @@
     "hp_max": 59,
     "hp_current": 59,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -934,7 +982,11 @@
       "History"
     ],
     "expertise": [],
-    "languages": ["Common", "Celestial", "partial Southern (Sovi's language)"],
+    "languages": [
+      "Common",
+      "Celestial",
+      "partial Southern (Sovi's language)"
+    ],
     "features": [
       {
         "name": "Channel Divinity",
@@ -945,7 +997,7 @@
         "uses_current": null
       },
       {
-        "name": "Preserve Life",
+        "name": "Channel Divinity: Preserve Life",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -961,7 +1013,7 @@
         "uses_current": null
       },
       {
-        "name": "Inspiring Leader - 10 min speech grants up to 6 allies 11 temp HP (level + CHA mod)",
+        "name": "Inspiring Leader",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -969,7 +1021,7 @@
         "uses_current": null
       },
       {
-        "name": "Divine Strike - once per turn add 1d8 radiant damage to a weapon attack",
+        "name": "Divine Strike",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -977,7 +1029,7 @@
         "uses_current": null
       },
       {
-        "name": "War Caster - advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
+        "name": "War Caster",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -989,26 +1041,135 @@
       {
         "name": "Sacred Flame",
         "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "prepared": true
       },
       {
         "name": "Guidance",
         "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "prepared": true
       },
       {
         "name": "Spare the Dying",
         "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "prepared": true
       },
       {
         "name": "Thaumaturgy",
         "level": 0,
+        "prepared": true
+      },
+      {
+        "name": "Bless",
+        "level": 1,
         "prepared": true,
-        "type": "cantrip"
+        "domain": true
+      },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Lesser Restoration",
+        "level": 2,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Spiritual Weapon",
+        "level": 2,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Beacon of Hope",
+        "level": 3,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Revivify",
+        "level": 3,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Death Ward",
+        "level": 4,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Guardian of Faith",
+        "level": 4,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Sanctuary",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Guiding Bolt",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Shield of Faith",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Aid",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Prayer of Healing",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Zone of Truth",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Silence",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Mass Healing Word",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Spirit Guardians",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Freedom of Movement",
+        "level": 4,
+        "prepared": true
+      },
+      {
+        "name": "Banishment",
+        "level": 4,
+        "prepared": true
       }
     ],
     "active_effects": [],
@@ -1046,7 +1207,10 @@
     "hp_max": 41,
     "hp_current": 41,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Sleight of Hand",
@@ -1054,11 +1218,17 @@
       "Acrobatics",
       "Deception"
     ],
-    "expertise": ["Stealth", "Sleight of Hand"],
-    "languages": ["Common", "Halfling"],
+    "expertise": [
+      "Stealth",
+      "Sleight of Hand"
+    ],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
     "features": [
       {
-        "name": "Sneak Attack 5d6",
+        "name": "Sneak Attack",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1082,7 +1252,7 @@
         "uses_current": null
       },
       {
-        "name": "Ear for Deceit - minimum roll of 8 on Insight checks (Inquisitive)",
+        "name": "Inquisitive — Ear for Deceit",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1090,7 +1260,7 @@
         "uses_current": null
       },
       {
-        "name": "Eye for Detail - bonus action to make Perception or Investigation check (Inquisitive)",
+        "name": "Inquisitive — Eye for Detail",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1098,7 +1268,7 @@
         "uses_current": null
       },
       {
-        "name": "Insightful Fighting - bonus action Insight check vs target's Deception; on success can Sneak Attack without needing advantage or ally adjacent (Inquisitive)",
+        "name": "Inquisitive — Insightful Fighting",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1106,7 +1276,7 @@
         "uses_current": null
       },
       {
-        "name": "Steady Eye - advantage on Perception and Investigation if you don't move that turn (Inquisitive)",
+        "name": "Inquisitive — Steady Eye",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1114,7 +1284,7 @@
         "uses_current": null
       },
       {
-        "name": "Unerring Eye - detect illusions, shapechangers, and magical concealment within 30ft (Inquisitive)",
+        "name": "Inquisitive — Unerring Eye",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1122,7 +1292,7 @@
         "uses_current": null
       },
       {
-        "name": "Observant - +5 passive Perception and Investigation; +1 WIS; can lip read",
+        "name": "Observant",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1165,10 +1335,20 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Athletics", "Intimidation", "Arcana", "Deception"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Arcana",
+      "Deception"
+    ],
     "expertise": [],
-    "languages": ["Common"],
+    "languages": [
+      "Common"
+    ],
     "features": [
       {
         "name": "Pact of the Blade",
@@ -1187,7 +1367,7 @@
         "uses_current": 1
       },
       {
-        "name": "Action Surge",
+        "name": "Action Surge (1 use)",
         "type": "feature",
         "action_type": "action",
         "recharge": "short_rest",
@@ -1195,7 +1375,7 @@
         "uses_current": 1
       },
       {
-        "name": "Improved Critical - crits on 19-20 (Champion Fighter 3)",
+        "name": "Improved Critical",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1203,7 +1383,7 @@
         "uses_current": null
       },
       {
-        "name": "Agonizing Blast - add CHA mod to Eldritch Blast damage",
+        "name": "Agonizing Blast",
         "type": "invocation",
         "action_type": null,
         "recharge": null,
@@ -1211,7 +1391,7 @@
         "uses_current": null
       },
       {
-        "name": "Devil's Sight - see normally in magical and nonmagical darkness to 120ft; pairs with Shadow of Moil",
+        "name": "Devil's Sight",
         "type": "invocation",
         "action_type": null,
         "recharge": null,
@@ -1219,7 +1399,7 @@
         "uses_current": null
       },
       {
-        "name": "Eyes of the Rune Keeper - read any written language; has been doing so quietly for years, never mentioned it",
+        "name": "Eyes of the Rune Keeper",
         "type": "invocation",
         "action_type": null,
         "recharge": null,
@@ -1347,7 +1527,10 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -1355,8 +1538,13 @@
       "Acrobatics",
       "Nature"
     ],
-    "expertise": ["Nature", "Survival"],
-    "languages": ["Common"],
+    "expertise": [
+      "Nature",
+      "Survival"
+    ],
+    "languages": [
+      "Common"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -1375,7 +1563,7 @@
         "uses_current": 1
       },
       {
-        "name": "Action Surge",
+        "name": "Action Surge (1 use)",
         "type": "feature",
         "action_type": "action",
         "recharge": "short_rest",
@@ -1383,7 +1571,7 @@
         "uses_current": 1
       },
       {
-        "name": "Sharpshooter - ignore cover, no disadvantage at long range, optional -5 to hit for +10 damage",
+        "name": "Sharpshooter",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1391,7 +1579,7 @@
         "uses_current": null
       },
       {
-        "name": "Archery Fighting Style - +2 to ranged attack rolls",
+        "name": "Archery Fighting Style",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1399,7 +1587,7 @@
         "uses_current": null
       },
       {
-        "name": "Surveyor - expertise in Nature and Survival (Scout)",
+        "name": "Scout — Survivalist",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1407,7 +1595,7 @@
         "uses_current": null
       },
       {
-        "name": "Superior Mobility - +10ft movement (Scout)",
+        "name": "Scout — Superior Mobility",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1415,7 +1603,7 @@
         "uses_current": null
       },
       {
-        "name": "Ambush Master - advantage on initiative; first creature hit each combat grants all allies advantage on attacks against it that turn (Scout)",
+        "name": "Scout — Ambush Master",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1423,7 +1611,7 @@
         "uses_current": null
       },
       {
-        "name": "Mobile - +10ft speed (total 50ft); no opportunity attacks from creatures you attack this turn",
+        "name": "Mobile",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1464,7 +1652,10 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -1474,11 +1665,18 @@
       "Arcana",
       "Performance"
     ],
-    "expertise": ["Perception", "Persuasion"],
-    "languages": ["Common", "Elvish", "two others (half-elf bonus)"],
+    "expertise": [
+      "Perception",
+      "Persuasion"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "two others (half-elf bonus)"
+    ],
     "features": [
       {
-        "name": "Bardic Inspiration d8 (5/long rest)",
+        "name": "Bardic Inspiration (d8)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1494,7 +1692,7 @@
         "uses_current": null
       },
       {
-        "name": "Song of Rest d8",
+        "name": "Song of Rest (d8)",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1502,7 +1700,7 @@
         "uses_current": null
       },
       {
-        "name": "Cutting Words (reaction: subtract Inspiration die from enemy attack/damage/check)",
+        "name": "Cutting Words",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1534,7 +1732,7 @@
         "uses_current": null
       },
       {
-        "name": "Fey Ancestry (advantage vs charm, immune to magical sleep)",
+        "name": "Fey Ancestry",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1542,7 +1740,7 @@
         "uses_current": null
       },
       {
-        "name": "War Caster - advantage on CON saves to maintain concentration; can cast spells as opportunity attacks",
+        "name": "War Caster",
         "type": "feat",
         "action_type": null,
         "recharge": null,
@@ -1680,7 +1878,10 @@
     "hp_max": 43,
     "hp_current": 43,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -1689,10 +1890,14 @@
       "Medicine"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
-        "name": "Arcane Ward 16HP (recharges when casting abjuration spells)",
+        "name": "Abjuration Wizard — Arcane Ward",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1700,7 +1905,7 @@
         "uses_current": null
       },
       {
-        "name": "Projected Ward (reaction: extend ward to a nearby ally)",
+        "name": "Abjuration Wizard — Projected Ward",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1708,7 +1913,7 @@
         "uses_current": null
       },
       {
-        "name": "Improved Abjuration (add proficiency bonus to counterspell and dispel magic checks)",
+        "name": "Abjuration Wizard — Improved Abjuration",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1716,7 +1921,7 @@
         "uses_current": null
       },
       {
-        "name": "Spell Resistance (advantage on saves vs spells, resistance to spell damage)",
+        "name": "Abjuration Wizard — Spell Resistance",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1940,7 +2145,10 @@
     "hp_current": 87,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -1948,7 +2156,9 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": ["Common"],
+    "languages": [
+      "Common"
+    ],
     "spellcasting_ability": null,
     "features": [
       {
@@ -1960,7 +2170,7 @@
         "uses_current": null
       },
       {
-        "name": "Improved Critical - crits on 19-20",
+        "name": "Improved Critical",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -1984,7 +2194,7 @@
         "uses_current": 1
       },
       {
-        "name": "Action Surge",
+        "name": "Action Surge (1 use)",
         "type": "feature",
         "action_type": "action",
         "recharge": "short_rest",
@@ -2002,7 +2212,7 @@
       "Genuinely content with good conversation and a walk home. Uncomplicated about it.",
       "Reliable, professional."
     ],
-    "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally - Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 \u00e2\u2020\u2019 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip - no retroactive level recalculation. Improved Critical - crits on 19-20. Corwin holds the Ravenquay relationship network.",
+    "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally - Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 â†’ 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip - no retroactive level recalculation. Improved Critical - crits on 19-20. Corwin holds the Ravenquay relationship network.",
     "image": "https://iili.io/qgWY8Dx.jpg",
     "id": "characters_13"
   },
@@ -2029,7 +2239,10 @@
     "hp_max": 129,
     "hp_current": 129,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -2038,11 +2251,17 @@
       "History",
       "Persuasion"
     ],
-    "expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Dwarvish"],
+    "expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
     "features": [
       {
-        "name": "Psychic Blades (Soulknife)",
+        "name": "Soulknife — Psychic Blades",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2050,7 +2269,7 @@
         "uses_current": null
       },
       {
-        "name": "Psi-Bolstered Knack (Soulknife)",
+        "name": "Soulknife — Psi-Bolstered Knack",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2058,7 +2277,7 @@
         "uses_current": null
       },
       {
-        "name": "Master of Tactics - Help action as bonus action, range 30ft (Mastermind)",
+        "name": "Master of Tactics",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2066,7 +2285,7 @@
         "uses_current": null
       },
       {
-        "name": "Tactical Foresight - Help targets two allies, each gains bonus to next saving throw equal to INT modifier (Mastermind/Awl synergy)",
+        "name": "Tactical Foresight",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2074,7 +2293,7 @@
         "uses_current": null
       },
       {
-        "name": "Commander's Presence - allies within 30ft gain AC or saving throw bonus from constant tactical advice (Legendary)",
+        "name": "Commander's Presence",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2082,7 +2301,7 @@
         "uses_current": null
       },
       {
-        "name": "The Retired Special - once per day reaction: toss a psychic thread when an ally is hit, pull them up to 15ft to potentially cause the attack to miss",
+        "name": "The Retired Special",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2090,7 +2309,7 @@
         "uses_current": null
       },
       {
-        "name": "Old Scores - once per session, Torrin knows someone wherever the party is. That person owes him a favor. Purely narrative - opens doors, creates opportunities. 156 years of living leaves marks everywhere.",
+        "name": "Old Scores",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2125,10 +2344,21 @@
     "hp_current": 74,
     "unarmored_ac_formula": "monk",
     "proficiency_bonus": 3,
-    "saving_throws": ["str", "dex"],
-    "skill_proficiencies": ["Acrobatics", "Athletics", "Perception", "Stealth"],
+    "saving_throws": [
+      "str",
+      "dex"
+    ],
+    "skill_proficiencies": [
+      "Acrobatics",
+      "Athletics",
+      "Perception",
+      "Stealth"
+    ],
     "expertise": [],
-    "languages": ["Common", "Giant"],
+    "languages": [
+      "Common",
+      "Giant"
+    ],
     "spellcasting_ability": null,
     "image": "https://iili.io/BrERGFp.jpg",
     "features": [
@@ -2173,7 +2403,7 @@
         "uses_current": null
       },
       {
-        "name": "Wholeness of Body - heals 24HP (3x monk level) once per long rest",
+        "name": "Wholeness of Body",
         "type": "feature",
         "action_type": "action",
         "recharge": "long_rest",
@@ -2221,7 +2451,7 @@
         "uses_current": null
       },
       {
-        "name": "Fire's Burn (Goliath)",
+        "name": "Stone's Endurance",
         "type": "feature",
         "action_type": "reaction",
         "recharge": "short_rest",
@@ -2265,13 +2495,24 @@
     "hp_max": 63,
     "hp_current": 63,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Insight", "Medicine", "Perception"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Insight",
+      "Medicine",
+      "Perception"
+    ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "one additional"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "one additional"
+    ],
     "features": [
       {
-        "name": "Protection Fighting Style — reaction: impose disadvantage on attack roll against ally within 5ft (requires shield)",
+        "name": "Protection Fighting Style",
         "type": "feature",
         "action_type": "reaction",
         "recharge": null,
@@ -2279,7 +2520,7 @@
         "uses_current": null
       },
       {
-        "name": "Divine Smite — expend spell slot on hit: 2d8 radiant per slot level (+1d8 vs undead or fiends)",
+        "name": "Divine Smite",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2287,7 +2528,7 @@
         "uses_current": null
       },
       {
-        "name": "Divine Health — immune to disease",
+        "name": "Divine Health",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2295,7 +2536,7 @@
         "uses_current": null
       },
       {
-        "name": "Lay on Hands — pool of 40HP per long rest; cure disease or poison for 5HP from pool",
+        "name": "Lay on Hands",
         "type": "feature",
         "action_type": "action",
         "recharge": "long_rest",
@@ -2311,7 +2552,7 @@
         "uses_current": null
       },
       {
-        "name": "Channel Divinity: Champion Challenge — each creature of choice within 30ft must make WIS save or be unable to willingly move more than 30ft from you for 1 minute",
+        "name": "Channel Divinity: Champion Challenge",
         "type": "feature",
         "action_type": "action",
         "recharge": "short_rest",
@@ -2319,7 +2560,7 @@
         "uses_current": 1
       },
       {
-        "name": "Channel Divinity: Turn the Tide — bonus action: creatures of choice within 30ft at 50% HP or fewer regain 1d6 + CHA mod HP",
+        "name": "Channel Divinity: Turn the Tide",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -2327,7 +2568,7 @@
         "uses_current": 1
       },
       {
-        "name": "Aura of Protection — allies within 10ft add CHA modifier (+3, or +4 with armor attuned) to all saving throws. Passive, always on.",
+        "name": "Aura of Protection",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2335,7 +2576,7 @@
         "uses_current": null
       },
       {
-        "name": "Aura of Courage — allies within 10ft cannot be frightened while Enauweyn is conscious. Passive, always on.",
+        "name": "Aura of Courage",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2343,7 +2584,7 @@
         "uses_current": null
       },
       {
-        "name": "Daunting Strike — when hitting with a weapon attack, expend a spell slot to deal 1d6 psychic damage per slot level; target makes WIS save or is frightened until end of your next turn",
+        "name": "Daunting Strike",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2351,7 +2592,7 @@
         "uses_current": null
       },
       {
-        "name": "Fey Step — teleport up to 30ft to an unoccupied space you can see (Eladrin racial)",
+        "name": "Fey Step",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -2359,7 +2600,7 @@
         "uses_current": 1
       },
       {
-        "name": "Fey Ancestry — advantage on saving throws vs charm, immune to magical sleep",
+        "name": "Fey Ancestry",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2367,7 +2608,7 @@
         "uses_current": null
       },
       {
-        "name": "Darkvision 60ft",
+        "name": "Darkvision",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2456,9 +2697,18 @@
       }
     ],
     "spell_slots": {
-      "level_1": { "max": 4, "current": 4 },
-      "level_2": { "max": 3, "current": 3 },
-      "level_3": { "max": 2, "current": 2 }
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 2,
+        "current": 2
+      }
     },
     "image": "https://iili.io/Br9QBgs.jpg",
     "active_effects": [],
@@ -2473,72 +2723,6 @@
     ],
     "deity": "Kexifrext",
     "id": "characters_20"
-  },
-  {
-    "name": "Perch",
-    "type": "companion",
-    "owner": "Tackett",
-    "species": "Falcon",
-    "image": "https://iili.io/BrE7L3Q.jpg",
-    "ac": 14,
-    "hp_max": 38,
-    "hp_current": 38,
-    "speed": "80ft flying",
-    "stat_str": 6,
-    "stat_dex": 18,
-    "stat_con": 12,
-    "stat_int": 8,
-    "stat_wis": 14,
-    "stat_cha": 8,
-    "proficiency_bonus": 3,
-    "attacks": [
-      {
-        "name": "Talon Strike",
-        "type": "melee",
-        "attack_bonus": 7,
-        "damage_dice": "1d6",
-        "damage_bonus": 4,
-        "damage_type": "slashing",
-        "effect": "Standard attack."
-      },
-      {
-        "name": "Raking Strike",
-        "type": "melee",
-        "attack_bonus": 7,
-        "damage_dice": "1d4",
-        "damage_bonus": 2,
-        "damage_type": "slashing",
-        "effect": "On hit: target makes DEX save DC 14 or is blinded until end of their next turn."
-      }
-    ],
-    "features": [
-      {
-        "name": "Flyby",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Independent",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      },
-      {
-        "name": "Keen Sight",
-        "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
-      }
-    ],
-    "notes": "Acts on its own initiative. Does not require Tackett's action or bonus action. Does not require concentration. Summoned once per day - when not present is hunting independently. Flyby: does not provoke opportunity attacks. Keen Sight: advantage on Perception checks using sight. Raking Strike targeting spellcasters forces concentration save on top of the blind save if it hits.",
-    "id": "characters_99"
   },
   {
     "name": "Tackett",
@@ -2560,7 +2744,10 @@
     "hp_current": 72,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 3,
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Nature",
       "Perception",
@@ -2569,13 +2756,18 @@
       "Insight"
     ],
     "expertise": [],
-    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
+    "languages": [
+      "Common",
+      "Halfling",
+      "Druidic",
+      "Sylvan"
+    ],
     "spellcasting_ability": "wis",
     "personality_traits": null,
     "personality_quirks": null,
     "features": [
       {
-        "name": "Starry Form - Archer",
+        "name": "Stars Druid — Starry Form",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -2583,23 +2775,7 @@
         "uses_current": 1
       },
       {
-        "name": "Starry Form - Chalice",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Starry Form - Dragon",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Starry Form - Unbroken (Legendary)",
+        "name": "Stars Druid — Unbroken (Legendary)",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "long_rest",
@@ -2607,7 +2783,7 @@
         "uses_current": 1
       },
       {
-        "name": "Cosmic Omen",
+        "name": "Stars Druid — Cosmic Omen",
         "type": "feature",
         "action_type": "reaction",
         "recharge": "long_rest",
@@ -2615,7 +2791,7 @@
         "uses_current": 1
       },
       {
-        "name": "Full of Stars",
+        "name": "Stars Druid — Full of Stars",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2623,7 +2799,7 @@
         "uses_current": null
       },
       {
-        "name": "Wild Shape",
+        "name": "Wild Shape (CR 1 or below)",
         "type": "feature",
         "action_type": "action",
         "recharge": "short_rest",
@@ -2639,7 +2815,7 @@
         "uses_current": null
       },
       {
-        "name": "Lucky (Halfling)",
+        "name": "Lucky",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2647,7 +2823,7 @@
         "uses_current": null
       },
       {
-        "name": "Brave (Halfling)",
+        "name": "Brave",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2655,7 +2831,7 @@
         "uses_current": null
       },
       {
-        "name": "Naturally Stealthy (Halfling)",
+        "name": "Naturally Stealthy",
         "type": "feature",
         "action_type": null,
         "recharge": null,
@@ -2663,7 +2839,7 @@
         "uses_current": null
       },
       {
-        "name": "Primal Companion - Perch",
+        "name": "Primal Companion",
         "type": "feature",
         "action_type": "action",
         "recharge": "daily",
@@ -2671,7 +2847,7 @@
         "uses_current": 1
       },
       {
-        "name": "Bountiful Luck - reaction: when any ally within 30ft rolls a natural 1 on an attack, ability check, or saving throw, they may reroll and must use the new result (Halfling racial feat)",
+        "name": "Bountiful Luck",
         "type": "feat",
         "action_type": "reaction",
         "recharge": null,
@@ -2843,7 +3019,10 @@
     "hp_max": 58,
     "hp_current": 58,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -2852,18 +3031,22 @@
       "Perception"
     ],
     "expertise": [],
-    "languages": ["Common", "Elvish", "Celestial"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Celestial"
+    ],
     "features": [
       {
-        "name": "Wrath of the Storm - reaction: when hit by attacker within 5ft, deal 2d8 lightning or thunder damage (DEX save for half)",
+        "name": "Tempest Cleric — Wrath of the Storm",
         "type": "feature"
       },
       {
-        "name": "Destructive Wrath - Channel Divinity: maximize lightning or thunder damage instead of rolling",
+        "name": "Tempest Cleric — Destructive Wrath",
         "type": "feature"
       },
       {
-        "name": "Thunderbolt Strike - when dealing lightning damage to Large or smaller creature, push them up to 10ft",
+        "name": "Tempest Cleric — Thunderbolt Strike",
         "type": "feature"
       },
       {
@@ -2871,20 +3054,21 @@
         "type": "feature"
       },
       {
-        "name": "Blessed Strikes - once per turn add 1d8 radiant damage to weapon attack or cantrip",
+        "name": "Blessed Strikes",
         "type": "feature"
       },
       {
-        "name": "Divine Strike - once per turn add 1d8 lightning or thunder damage to a weapon attack",
+        "name": "Divine Strike",
         "type": "feature"
       },
       {
-        "name": "Fey Ancestry - advantage vs charm, immune to magical sleep",
+        "name": "Fey Ancestry",
         "type": "feature"
       },
       {
-        "name": "Fey Touched - +1 WIS (now 20), Misty Step 1/day, Comprehend Languages 1/day (no spell slot required)",
-        "type": "feat"
+        "name": "Fey Touched",
+        "type": "feat",
+        "note": "1st-level spell: Comprehend Languages"
       }
     ],
     "spells": [
@@ -3088,7 +3272,10 @@
     "hp_max": 59,
     "hp_current": 59,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "str"],
+    "saving_throws": [
+      "dex",
+      "str"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -3098,7 +3285,10 @@
       "Survival",
       "Athletics"
     ],
-    "expertise": ["Stealth", "Performance"],
+    "expertise": [
+      "Stealth",
+      "Performance"
+    ],
     "languages": [
       "Common",
       "Infernal",
@@ -3106,55 +3296,51 @@
     ],
     "features": [
       {
-        "name": "Dread Ambusher - +4 initiative, first turn extra attack, extra 1d8 damage on first hit (Ranger 3)",
+        "name": "Dread Ambusher",
         "type": "feature"
       },
       {
-        "name": "Umbral Sight - 60ft darkvision, invisible to darkvision while in darkness (Ranger 3)",
+        "name": "Umbral Sight",
         "type": "feature"
       },
       {
-        "name": "Extra Attack - from Ranger 5",
+        "name": "Extra Attack",
         "type": "feature"
       },
       {
-        "name": "Steel Will - advantage on saves against being frightened (Ranger 5)",
+        "name": "Steel Will",
         "type": "feature"
       },
       {
-        "name": "Sneak Attack 1d6 (Rogue 1)",
+        "name": "Sneak Attack",
         "type": "feature"
       },
       {
-        "name": "Cunning Action - hide, dash, or disengage as bonus action (Rogue 1)",
+        "name": "Cunning Action",
         "type": "feature"
       },
       {
-        "name": "Second Wind - bonus action regain 1d10 + fighter level HP once per short rest (Fighter 1)",
+        "name": "Second Wind",
         "type": "feature"
       },
       {
-        "name": "Action Surge - one additional action once per short rest (Fighter 2)",
+        "name": "Action Surge (1 use)",
         "type": "feature"
       },
       {
-        "name": "Favored Enemy - humanoids",
+        "name": "Favored Enemy",
         "type": "feature"
       },
       {
-        "name": "Natural Explorer - urban and underground terrain",
+        "name": "Natural Explorer",
         "type": "feature"
       },
       {
-        "name": "Mindfind - once per day, concentrate for 30 seconds to locate a specific person or object she has personal connection to within one mile. Returns general direction and distance only. Requires having met the person or touched the object previously.",
+        "name": "Hellish Resistance",
         "type": "feature"
       },
       {
-        "name": "Hellish Resistance - resistance to fire damage",
-        "type": "feature"
-      },
-      {
-        "name": "Infernal Legacy - can cast Thaumaturgy cantrip at will",
+        "name": "Infernal Legacy",
         "type": "feature"
       }
     ],
@@ -3202,7 +3388,7 @@
       "Has strong opinions about food.",
       "The gilded horns are real and she absolutely uses the moment people realize that."
     ],
-    "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 \u00e2\u2020\u2019 Rogue 2, Level 10 \u00e2\u2020\u2019 Rogue 3 (Assassin subclass unlocked), Level 11 \u00e2\u2020\u2019 Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer - fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
+    "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 â†’ Rogue 2, Level 10 â†’ Rogue 3 (Assassin subclass unlocked), Level 11 â†’ Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer - fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
     "id": "characters_16"
   },
   {
@@ -3225,7 +3411,10 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -3234,11 +3423,18 @@
       "Perception",
       "Medicine"
     ],
-    "expertise": ["Performance", "Insight"],
-    "languages": ["Common", "Elvish", "southeastern regional language"],
+    "expertise": [
+      "Performance",
+      "Insight"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "southeastern regional language"
+    ],
     "features": [
       {
-        "name": "Bardic Inspiration d8 - 5 per long rest",
+        "name": "Bardic Inspiration (d8)",
         "type": "feature"
       },
       {
@@ -3246,19 +3442,19 @@
         "type": "feature"
       },
       {
-        "name": "Song of Rest d8",
+        "name": "Song of Rest (d8)",
         "type": "feature"
       },
       {
-        "name": "Spiritual Focus - use musical instrument as spellcasting focus, add 1d6 to healing or damage rolls once per turn when using it",
+        "name": "Spiritual Focus",
         "type": "feature"
       },
       {
-        "name": "Tales from Beyond - use Bardic Inspiration to channel spirit tales, producing random effects from a table of narrative-based magical outcomes",
+        "name": "Tales from Beyond",
         "type": "feature"
       },
       {
-        "name": "Spirit Session - ritual to commune with spirits, gain access to additional spells temporarily based on the spirits contacted",
+        "name": "Spirit Session",
         "type": "feature"
       },
       {
@@ -3266,19 +3462,19 @@
         "type": "feature"
       },
       {
-        "name": "Magical Secrets - two spells from any class",
+        "name": "Magical Secrets",
         "type": "feature"
       },
       {
-        "name": "Fey Ancestry - advantage vs charm, immune to magical sleep (Half-Elf)",
+        "name": "Fey Ancestry",
         "type": "feature"
       },
       {
-        "name": "Darkvision 60ft (Half-Elf)",
+        "name": "Darkvision",
         "type": "feature"
       },
       {
-        "name": "Slasher - +1 DEX (to 20); on hit with slashing weapon reduce target speed by 10ft until next turn; on crit target has disadvantage on attack rolls until next turn",
+        "name": "Slasher",
         "type": "feat"
       }
     ],
@@ -3426,7 +3622,10 @@
     "hp_max": 66,
     "hp_current": 66,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -3435,26 +3634,29 @@
       "Perception"
     ],
     "expertise": [],
-    "languages": ["Common", "one additional"],
+    "languages": [
+      "Common",
+      "one additional"
+    ],
     "features": [
       {
-        "name": "Divine Smite - expend spell slot on hit for 2d8 radiant damage per slot level, +1d8 vs undead or fiends",
+        "name": "Divine Smite",
         "type": "feature"
       },
       {
-        "name": "Divine Health - immune to disease",
+        "name": "Divine Health",
         "type": "feature"
       },
       {
-        "name": "Sacred Weapon - Channel Divinity: weapon attack bonus equals CHA modifier (+4) for 1 minute",
+        "name": "Sacred Weapon",
         "type": "feature"
       },
       {
-        "name": "Vow of the Open Road - Channel Divinity: creature within 30ft must make WIS save or be compelled to move in an unexpected direction",
+        "name": "Vow of the Open Road",
         "type": "feature"
       },
       {
-        "name": "Aura of Protection - allies within 10ft add CHA modifier (+4) to all saving throws",
+        "name": "Aura of Protection",
         "type": "feature"
       },
       {
@@ -3462,7 +3664,7 @@
         "type": "feature"
       },
       {
-        "name": "Lay on Hands - pool of 40HP per long rest, can cure disease or poison for 5HP from pool",
+        "name": "Lay on Hands",
         "type": "feature"
       }
     ],

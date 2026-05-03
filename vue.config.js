@@ -17,4 +17,12 @@ module.exports = {
       ignored: [path.resolve(__dirname, 'src/data')],
     },
   },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
+  },
 }

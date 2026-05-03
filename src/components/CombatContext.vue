@@ -11,6 +11,45 @@
 
       <aside class="col ondeck-col">
         <div class="col-label">On-Deck</div>
+
+        <!-- Saved parties -->
+        <div class="parties-section">
+          <div v-if="savedParties.length" class="parties-pills">
+            <div
+              v-for="party in savedParties"
+              :key="party.name"
+              class="party-pill"
+              :title="party.members.join(', ')"
+              @click="loadParty(party)"
+            >
+              {{ party.name }}
+              <button class="pill-remove" @click.stop="deleteParty(party)">✕</button>
+            </div>
+          </div>
+
+          <div v-if="!savingParty" class="parties-actions">
+            <button
+              v-if="playerNames.length > 0"
+              class="save-party-btn"
+              @click="promptSaveParty"
+            >
+              + Save party
+            </button>
+          </div>
+          <div v-else class="party-save-form">
+            <input
+              ref="partyNameInput"
+              v-model="newPartyName"
+              class="field"
+              placeholder="Party name…"
+              @keyup.enter="confirmSaveParty"
+              @keyup.escape="cancelSaveParty"
+            />
+            <button class="add-btn" :disabled="!newPartyName.trim()" @click="confirmSaveParty">Save</button>
+            <button class="remove-btn" @click="cancelSaveParty">✕</button>
+          </div>
+        </div>
+
         <div class="portrait-list">
           <div
             v-for="name in playerNames"
@@ -106,6 +145,9 @@ export default {
       enemyName: '',
       enemyMod: 0,
       nextEnemyId: 1,
+      savedParties: [],
+      savingParty: false,
+      newPartyName: '',
     }
   },
 
@@ -143,7 +185,41 @@ export default {
     },
   },
 
+  created() {
+    const raw = localStorage.getItem('dndtools_saved_parties')
+    if (raw) this.savedParties = JSON.parse(raw)
+  },
+
   methods: {
+    // ── Saved parties ──
+    promptSaveParty() {
+      this.savingParty = true
+      this.$nextTick(() => this.$refs.partyNameInput?.focus())
+    },
+    cancelSaveParty() {
+      this.savingParty = false
+      this.newPartyName = ''
+    },
+    confirmSaveParty() {
+      const name = this.newPartyName.trim()
+      if (!name) return
+      const entry = { name, members: [...this.playerNames] }
+      const idx = this.savedParties.findIndex((p) => p.name === name)
+      if (idx !== -1) this.savedParties.splice(idx, 1, entry)
+      else this.savedParties.push(entry)
+      localStorage.setItem('dndtools_saved_parties', JSON.stringify(this.savedParties))
+      this.savingParty = false
+      this.newPartyName = ''
+    },
+    loadParty(party) {
+      const valid = new Set(characters.map((c) => c.name))
+      this.$store.commit('SET_SELECTED_PLAYERS', party.members.filter((m) => valid.has(m)))
+    },
+    deleteParty(party) {
+      this.savedParties = this.savedParties.filter((p) => p.name !== party.name)
+      localStorage.setItem('dndtools_saved_parties', JSON.stringify(this.savedParties))
+    },
+
     portrait(name) {
       const char = characters.find((c) => c.name === name)
       return char?.image ?? ''
@@ -152,11 +228,21 @@ export default {
       this.$store.commit('SET_SELECTED_PLAYERS', this.playerNames.filter((n) => n !== name))
       this.$delete(this.rolls, `player-${name}`)
     },
+    nextAutoName() {
+      const used = new Set(
+        this.enemies
+          .map(e => e.name.match(/^Enemy (\d+)$/))
+          .filter(Boolean)
+          .map(m => Number(m[1]))
+      )
+      let n = 1
+      while (used.has(n)) n++
+      return `Enemy ${n}`
+    },
     addEnemy() {
-      if (!this.enemyName.trim()) return
       this.enemies.push({
         id: this.nextEnemyId++,
-        name: this.enemyName.trim(),
+        name: this.enemyName.trim() || this.nextAutoName(),
         mod: isNaN(this.enemyMod) ? 0 : this.enemyMod,
       })
       this.enemyName = ''
@@ -180,7 +266,7 @@ export default {
     },
     onAddEnemyMidFight({ name, mod }) {
       const id = this.nextEnemyId++
-      this.enemies.push({ id, name, mod })
+      this.enemies.push({ id, name: name || this.nextAutoName(), mod })
       // Start at 0 — player overrides via click-to-edit in the sidebar
       this.$set(this.rolls, `enemy-${id}`, { total: 0 })
     },
@@ -293,6 +379,92 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ── Saved Parties ── */
+.parties-section {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.parties-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.4rem;
+  padding: 0 0.5rem;
+}
+
+.party-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.18rem 0.35rem 0.18rem 0.55rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 12px;
+  font-size: var(--font-size-tiny);
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  user-select: none;
+}
+
+.party-pill:hover {
+  background: var(--color-bg-surface-alt);
+}
+
+.pill-remove {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-size: 0.55rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.pill-remove:hover { color: var(--color-text-danger); }
+
+.parties-actions { display: flex; padding: 0 0.5rem; }
+
+.save-party-btn {
+  padding: 0.18rem 0.55rem;
+  background: none;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  color: var(--color-text-low);
+  font-size: var(--font-size-tiny);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.save-party-btn:hover {
+  border-style: solid;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.party-save-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0 0.5rem;
+}
+
+.party-save-form .field {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: var(--font-size-tiny);
+  padding: 0.25rem 0.4rem;
+}
+
+.party-save-form .add-btn,
+.party-save-form .remove-btn {
+  width: 100%;
+  text-align: center;
 }
 
 /* ── Enemies ── */

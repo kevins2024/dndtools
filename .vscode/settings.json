@@ -19,5 +19,5 @@
     "**/.git": true,
     "**/node_modules": true
   },
-  "workbench.colorTheme": "Default Dark+"
+  "workbench.colorTheme": "Dark+"
 }

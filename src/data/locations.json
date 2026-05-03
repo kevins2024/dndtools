@@ -575,7 +575,7 @@
     "name": "Orvath",
     "type": "city",
     "coords": null,
-    "description": "Free city. No extradition, anonymous deposits. Location within the Western Reach unspecified.",
+    "description": "Free city. No extradition, anonymous deposits. Location in the interior near an oasis.",
     "climate": null,
     "faction_presence": [],
     "notes": "",
@@ -635,6 +635,14 @@
           "y": 0.5
         },
         "description": "Off the southern coast, in the water.",
+        "npcs_present": [],
+        "notes": ""
+      },
+      {
+        "name": "Forest Trolls, roughly",
+        "type": "village",
+        "coords": {},
+        "description": "Northwest of Khemrise, several days journey.",
         "npcs_present": [],
         "notes": ""
       }

@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const d=require\\('./src/data/api_data_cache/features.json'\\); const ws=d.filter\\(f=>f.name.startsWith\\('Wild Shape'\\)\\); console.log\\(JSON.stringify\\(ws,null,2\\)\\)\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('vue:', p.dependencies?.vue, 'scripts:', JSON.stringify\\(p.scripts\\)\\)\")",
+      "Bash(node -e ' *)",
+      "WebFetch(domain:www.dnd5eapi.co)",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/features?name=Bladesong\")",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/subclasses?name=Bladesinger\")",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/traits?name=Fey+Ancestry\")",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/races?name=Elf\")",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/traits/fey-ancestry\")",
+      "WebSearch",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/feats\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\)\\); console.log\\(d.count, 'feats'\\); d.results.forEach\\(f=>console.log\\(f.name\\)\\)\")",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/feats\" -o /tmp/feats.json)",
+      "Bash(node -e \"const d=require\\('/tmp/feats.json'\\); console.log\\(d.count,'feats:'\\); d.results.forEach\\(f=>console.log\\(f.name\\)\\)\")",
+      "Bash(curl -s \"https://www.dnd5eapi.co/api/2014/feats\" -o feats_tmp.json)",
+      "Bash(node -e \"const d=require\\('./feats_tmp.json'\\); console.log\\(d.count,'feats'\\); d.results.forEach\\(f=>console.log\\(f.name\\)\\)\")",
+      "Bash(del feats_tmp.json)",
+      "Read(//c/Users/kevin/.claude/projects/c--GitHub-dndtools/**)",
+      "Bash(python3 -c \"import sys,json; [print\\(json.dumps\\(json.loads\\(l\\), indent=2\\)[:3000]\\) for l in sys.stdin]\")",
+      "Bash(node merge_features.js)",
+      "Bash(node rename_features.js)",
+      "Bash(node add_notes.js)"
+    ]
+  }
+}

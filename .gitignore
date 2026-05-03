@@ -1,3 +1,6 @@
+# 5e ruleset data cache (fetched on demand, not committed)
+src/data/api_data_cache/
+
 # Build output
 dist/
 

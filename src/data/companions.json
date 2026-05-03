@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Perch",
+    "type": "companion",
+    "companion_type": "primal_companion",
+    "owner": "Tackett",
+    "species": "Falcon",
+    "image": "https://iili.io/BrE7L3Q.jpg",
+    "ac": 14,
+    "hp_max": 38,
+    "hp_current": 38,
+    "speed": "80ft flying",
+    "proficiency_bonus": 3,
+    "stat_str": 6,
+    "stat_dex": 18,
+    "stat_con": 12,
+    "stat_int": 8,
+    "stat_wis": 14,
+    "stat_cha": 8,
+    "attacks": [
+      {
+        "name": "Talon Strike",
+        "type": "melee",
+        "attack_bonus": 7,
+        "damage_dice": "1d6",
+        "damage_bonus": 4,
+        "damage_type": "slashing",
+        "effect": "Standard attack."
+      },
+      {
+        "name": "Raking Strike",
+        "type": "melee",
+        "attack_bonus": 7,
+        "damage_dice": "1d4",
+        "damage_bonus": 2,
+        "damage_type": "slashing",
+        "effect": "On hit: target makes DEX save DC 14 or is blinded until end of their next turn."
+      }
+    ],
+    "features": [
+      {
+        "name": "Flyby",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Independent",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      },
+      {
+        "name": "Keen Sight",
+        "type": "feature",
+        "action_type": null,
+        "recharge": null,
+        "uses_max": null,
+        "uses_current": null
+      }
+    ],
+    "notes": "Acts on its own initiative. Does not require Tackett's action or bonus action. Does not require concentration. Summoned once per day - when not present is hunting independently. Flyby: does not provoke opportunity attacks. Keen Sight: advantage on Perception checks using sight. Raking Strike targeting spellcasters forces concentration save on top of the blind save if it hits."
+  }
+]

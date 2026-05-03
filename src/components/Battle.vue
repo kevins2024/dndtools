@@ -69,7 +69,7 @@
           placeholder="mod"
           @keyup.enter="emitAddEnemy"
         />
-        <button class="add-enemy-btn" :disabled="!newEnemyName.trim()" @click="emitAddEnemy">+</button>
+        <button class="add-enemy-btn" @click="emitAddEnemy">+</button>
       </div>
     </aside>
 
@@ -245,7 +245,6 @@ export default {
 
     // ── Add enemy mid-fight ──
     emitAddEnemy() {
-      if (!this.newEnemyName.trim()) return
       this.$emit('add-enemy', {
         name: this.newEnemyName.trim(),
         mod: isNaN(this.newEnemyMod) ? 0 : this.newEnemyMod,

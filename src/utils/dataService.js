@@ -11,7 +11,7 @@ import world from '@/data/world.json'
 import homebrew from '@/data/homebrew.json'
 import finances from '@/data/finances.json'
 
-const SERVER_URL = 'http://localhost:3001'
+const SERVER_URL = ''
 const isDev = process.env.NODE_ENV === 'development'
 
 const staticTables = {
