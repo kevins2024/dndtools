@@ -531,21 +531,139 @@
   {
     "name": "Valdmere",
     "type": "city",
+    "population": "tens of thousands, growing rapidly",
     "coords": {
-      "x": 0,
-      "y": 10
+      "x": 3,
+      "y": 7.5
     },
-    "description": "Frontier city, northwest coast. Coast faces south. Wilderness to the north. Two weeks sail from Khemrise. Drier, more extreme temperature swings. Less forgiving than the coast.",
-    "climate": "Drier, more extreme temperature swings. Frontier feeling.",
-    "notes": "",
-    "districts": [],
+    "description": "Frontier city on the western coast tip. Coast faces south, northern and western coasts nearby. Wilderness and dense forest to the east. Seven day sail from Khemrise. Built around the Vald-mere, a shallow inland lake fed by winter runoff with a natural outlet to the coast.",
+    "climate": "Temperate. Mild winters, rich fishing, well-watered farmland from seasonal runoff. Natural disasters uncommon. Food production exceptional.",
+    "history": {
+      "first_settlement": "A city existed here centuries ago, founded by people fleeing governmental persecution seeking freedom. Grew too dangerous internally, triggered mass exodus, fully abandoned.",
+      "second_settlement": "Roughly 100 years ago a legend circulated about an artifact or font of immense power at this location. Two wealthy families funded expeditions, found nothing — the legend is almost certainly false — but built infrastructure in the process and the settlement stuck.",
+      "current_boom": "Population exploded in the last five years. Driven by word of opportunity — rich fishing, abundant timber, viable mining and quarrying, fertile farmland, internal trade diversity. Everyone is an outsider so no one is. The gossip of opportunity became self-fulfilling."
+    },
+    "government": "None formal. Power is distributed between four major families, Clan Tetwhistle, criminal organizations, and individual dock owners. The families maintain rough balance — a power imbalance would be catastrophic for all of them and they know it. Disputes are resolved by strength, negotiation, or occasionally the implicit threat of either.",
+    "layout": "Organic and chaotic. No planned quarters or districts. A natural main street of several blocks has emerged where foot traffic concentrates. Everything else is irregular blocks, opportunistic construction, and streets that exist because people kept walking the same path. Rapid expansion means buildings are beginning to appear outside the gate area.",
+    "demographics": "Highly diverse. Every major race represented. No dominant demographic — the frontier nature attracted anyone willing to make the crossing from more established cities.",
+    "power_structures": {
+      "major_families": [
+        {
+          "name": "Lithcai'nael",
+          "race": "Elf",
+          "origin": "Unknown — predates written records of the family",
+          "wealth_source": "Dragon slaying centuries ago. Hatched and raised two brass dragons, one killed in battle, one escaped into the wilds and has not been seen since. Converted draconic wealth into land, ownership, and taxation.",
+          "valdmere_presence": "Largest district in the city. Residents pay a tax to the family. Militaristic, professionally trained forces. Not numerous but exceptionally capable.",
+          "appearance": "All family armaments and crests feature polished brass and draconic motifs.",
+          "notes": "Abandoned their original family name so long ago it has been forgotten by all but a few. Renamed themselves Lithcai'nael — roughly 'owners of the sky's wings.' The escaped brass dragon is a permanent liability — brass dragons are famously talkative and it carries centuries of family secrets."
+        },
+        {
+          "name": "Gaermuion",
+          "race": "Gnome",
+          "origin": "Far east of the continent — exact location TBD pending continent map",
+          "wealth_source": "Master alchemists and potion-makers. One of the oldest and most sophisticated potion-making lineages known. Their craft predates and exceeds anything available on the western coast.",
+          "valdmere_presence": "Control most mining and quarrying operations — not because they are miners but because raw materials feed their actual work. Maintain a private laboratory compound in or near the city. Discreet but not hidden.",
+          "notes": "Small family. Precise and methodical. Not interested in political theater. Their compound is quietly one of the most valuable facilities on this side of the continent. What they produce cannot be replicated elsewhere."
+        },
+        {
+          "name": "Wyllard",
+          "race": "Human",
+          "origin": "First family to return to Valdmere in the second settlement",
+          "wealth_source": "Infrastructure and construction. Built Valdmere's physical foundations and have been present at the founding of every significant enterprise since.",
+          "valdmere_presence": "Most connected family in the city. Not the wealthiest or most powerful in any single domain but intermarried with half the merchant class and present in everything. Anyone wanting to expand their holdings needs Wyllard knowhow.",
+          "notes": "Large, sprawling family. Pragmatic rather than cruel. Don't take the moral high ground often but understand that burning bridges costs more than it gains. Know where the foundations are weak on every building in the city, literally and figuratively. Hired by Clan Tetwhistle during canal construction — relationship ongoing."
+        },
+        {
+          "name": "Bostrom",
+          "race": "Human",
+          "origin": "Former official clothiers and textile suppliers to pre-merchant-revolution royalty across the continent",
+          "wealth_source": "Premium textile trade to monarchies. Helped overthrow those same monarchies alongside merchant guilds, destroying their own primary market in the process. Made increasingly bad decisions afterward and ran out of capital without recovering.",
+          "valdmere_presence": "The family is effectively gone as a power. The name carries the ghost of former influence. Descendants are scattered across the social spectrum — some in Valdmere, some elsewhere, some clinging to the name, some having abandoned it.",
+          "notes": "The family's actual skill was never textiles — it was reading political winds and positioning accordingly. That skill still exists in some descendants and is worth considerably more in Valdmere than any craft. A Bostrom who understands this is an interesting person."
+        }
+      ],
+      "emerging_powers": [
+        {
+          "name": "Clan Tetwhistle",
+          "race": "Mixed — coalition of three to four small human families",
+          "origin": "Ravenquay shipbuilders. Arrived approximately 50 years ago, roughly 25 heads.",
+          "wealth_source": "Claimed vast swampy, mosquito-ridden, non-arable land no one else wanted. Used a 300 gold loan from Ravenquay creditors against existing collateral and reputation, hired labor including Wyllard contractors, and built a canal connecting the Vald-mere to the coast. Now operate the canal toll and the lake moorings — calmer and safer than coastal docks.",
+          "valdmere_presence": "Control the canal and lake moorings. Strategically critical infrastructure. The swamp land no one wanted is now some of the most valuable real estate in the city.",
+          "notes": "Clan rather than family — the coalition identity is deliberate and maintained. Still have strong Ravenquay connections giving them advance knowledge of maritime arrivals. Internal governance is their biggest challenge as the clan has grown. The major families allowed their land claim because swamp wasn't worth fighting over — that calculation has not aged well for the older families. Dawn Blades are Ravenquay-based — relationship with Tetwhistle worth developing."
+        }
+      ],
+      "criminal_organizations": "Several gangs operate in the gaps between family territories. The line between criminal organization and de facto neighborhood authority is deliberately blurry. Some provide genuine services — dispute resolution, protection for those who can't afford family patronage. Some are predatory. All have working relationships with at least one major family."
+    },
     "locations": [
+      {
+        "name": "Tallow and Tar",
+        "type": "inn",
+        "district": "Main street",
+        "description": "Better than it sounds. Run by a woman who knows everything worth knowing about Valdmere and a fair amount worth knowing about everything else. Does not share information directly — tells you what she thinks you need when she thinks you need it.",
+        "notes": "Recommended by Osmer. Tell her Osmer sent you."
+      },
+      {
+        "name": "Temple of Voryn",
+        "type": "temple",
+        "district": "Northeast bluff",
+        "description": "Modest footprint, single story with partial loft. Living vines cover the eastern face, flowering ahead of season. Raw timber doorframe with carved patterns that almost resolve into animals. Interior blurs the boundary between inside and outside — open southern wall section, living trees incorporated into corners, partial open roof. Has changed hands multiple times — cartographer's guild, merchant collective, current Voryn congregation.",
+        "notes": "Contains an ancient teleportation circle beneath the main hall flagstones. Current Keeper is aware of it. Dawn Blades have negotiated access. Two former enemy operatives now working temple floor restoration as penance. Circle activation planned."
+      },
+      {
+        "name": "City Gate",
+        "type": "district",
+        "district": "Eastern edge",
+        "description": "More than a gate — an ecosystem. New customs checkpoint, raw timber construction. Arrivals, labor for hire, information brokers, people waiting for someone who hasn't come yet. Buildings spreading outside the gate as the city expands faster than its own boundaries.",
+        "notes": "Three separate groups observed watching the gate on party's arrival day. Registration requirement for non-humans above certain size threshold — currently under review following Lenn Ashford's intervention."
+      },
+      {
+        "name": "The Vald-mere",
+        "type": "landmark",
+        "district": "City center-inland",
+        "description": "The shallow lake the city is named for. Fed by winter runoff, natural outlet to the coast. Calmer and safer than coastal waters. Fishing boats, Tetwhistle canal entrance, lake moorings.",
+        "notes": "The original settlement grew around the lake rather than the coast. The lake came first — the city grew outward from it."
+      },
+      {
+        "name": "Tetwhistle Canal and Lake Moorings",
+        "type": "infrastructure",
+        "district": "Southwest — former swampland",
+        "description": "Canal connecting the Vald-mere to the coast. Built 50 years ago by Clan Tetwhistle on land no one else wanted. Toll-operated. Lake moorings calmer and safer than coastal docks. Most serious maritime traders prefer it.",
+        "notes": "The swamp land surrounding the canal operation is Tetwhistle's claim and is now some of the most strategically valuable real estate in the city."
+      },
+      {
+        "name": "Lithcai'nael District",
+        "type": "district",
+        "district": "Location TBD",
+        "description": "Largest single district in the city. You know when you've crossed into it — brass and draconic motifs on everything the family owns. Residents pay a family tax. Well-maintained relative to the rest of Valdmere.",
+        "notes": "Professionally trained security force. Not numerous but exceptionally capable."
+      },
+      {
+        "name": "Gaermuion Compound",
+        "type": "facility",
+        "district": "Location TBD",
+        "description": "Private laboratory and family residence. Not a shop or public-facing business. Discreet but not hidden.",
+        "notes": "Quietly one of the most valuable facilities on this side of the continent. Access is not casually granted."
+      },
+      {
+        "name": "Wyllard Holdings",
+        "type": "district",
+        "district": "Location TBD",
+        "description": "Less a defined district than a presence throughout the city — construction yards, material depots, offices embedded in multiple neighborhoods.",
+        "notes": "The family is everywhere without appearing to dominate anywhere specifically."
+      },
       {
         "name": "Valdmere Banking Institution",
         "type": "bank",
+        "district": "Location TBD",
         "description": "",
-        "npcs_present": [],
         "notes": ""
+      },
+      {
+        "name": "Coastal Docks",
+        "type": "infrastructure",
+        "district": "Southern coast",
+        "description": "Privately owned docks, no harbor authority. Port fees set by individual dock owners. Information about arrivals fragmented and purchasable.",
+        "notes": "Smuggling is trivially easy. No unified oversight."
       }
     ]
   },
@@ -556,7 +674,7 @@
       "x": 7.6,
       "y": 8
     },
-    "description": "Military fortress town, northeast of Khemrise. Border with Northern Reaches. Active conflict with whatever comes from the north. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes. 90% of the winter there is snow to the north but not to the south.",
+    "description": "Military fortress town, northeast of Khemrise. Border with Northern Reaches. Active conflict with whatever comes from the north. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes, with an active (not constantly) volcano to the east. 90% of the winter there is snow to the north but not to the south.",
     "climate": "Coldest in the region.",
     "faction_presence": ["Cindermarch Military"],
     "notes": "",
@@ -643,7 +761,7 @@
         "type": "village",
         "coords": {},
         "description": "Northwest of Khemrise, several days journey.",
-        "npcs_present": [],
+        "npcs_present": ["Wend"],
         "notes": ""
       }
     ]

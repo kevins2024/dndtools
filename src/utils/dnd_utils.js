@@ -1,21 +1,18 @@
 // dnd_utils.js
 // Utility functions for Dawn Blades campaign app
-// All functions are pure — pass in a character object, get a number back
+// All functions are pure — pass in a character object + partyItems, get a number back
 // Designed for use as Vue 2 computed properties
 //
 // USAGE IN VUE COMPONENT:
 //   import { dnd } from './dnd_utils.js'
 //   computed: {
-//     ac()              { return dnd.ac(this.character) },
-//     initiative()      { return dnd.initiative(this.character) },
-//     passivePerception(){ return dnd.passivePerception(this.character) },
-//     weapons()         { return dnd.weaponSummaries(this.character) },
-//     // etc.
+//     partyItems() { return this.$store.state.party_items },
+//     ac()               { return dnd.ac(this.character, { carriedPartyItems: this.partyItems }) },
+//     savingThrow(key)   { return dnd.savingThrow(this.character, key, this.partyItems) },
 //   }
 //
 // DISPLAY HELPERS (for templates):
-//   dnd.signed(n)       → "+3" or "-1" (always shows sign)
-//   dnd.formatBonus(n)  → alias for signed
+//   dnd.signed(n)   → "+3" or "-1"
 
 import { ARMOR_BASE_AC, WEAPON_PROPS } from './dnd_constants.js'
 
@@ -28,6 +25,30 @@ export const STAT_KEYS = [
   { key: 'cha', label: 'CHA' },
 ]
 
+export const CLASS_ICONS = {
+  fighter:   'ra-crossed-swords',
+  barbarian: 'ra-axe-swing',
+  rogue:     'ra-daggers',
+  artificer: 'ra-gear-hammer',
+  wizard:    'ra-crystal-wand',
+  cleric:    'ra-ankh',
+  warlock:   'ra-eye-monster',
+  bard:      'ra-quill-ink',
+  monk:      'ra-lightning',
+  paladin:   'ra-bolt-shield',
+  druid:     'ra-leaf',
+  ranger:    'ra-broadhead-arrow',
+  sorcerer:  'ra-fluffy-swirl',
+}
+
+export function classIcon(character) {
+  const primary = (character.class ?? '').split(/[\s\/]+/)[0].toLowerCase()
+  return CLASS_ICONS[primary] ?? null
+}
+
+// Ability score keys that live inside stat_bonuses but modify the score itself, not a derived bonus.
+const SCORE_BONUS_KEYS = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha'])
+
 export const dnd = {
   // ─────────────────────────────────────────────
   // CORE PRIMITIVES
@@ -37,39 +58,35 @@ export const dnd = {
     return Math.floor(Math.random() * 20) + 1
   },
 
-  // Ability score → modifier
   mod(score) {
     return Math.floor(((score ?? 10) - 10) / 2)
   },
 
-  // Format a number as a signed string for display: 3 → "+3", -1 → "-1", 0 → "+0"
   signed(n) {
     return n >= 0 ? `+${n}` : `${n}`
   },
 
-  // Alias
   formatBonus(n) {
     return dnd.signed(n)
   },
 
-  // Proficiency bonus from level (standard 5e table)
   proficiencyBonus(level) {
     return Math.ceil(level / 4) + 1
   },
 
   // ─────────────────────────────────────────────
   // STAT RESOLUTION
-  // Applies item stat_overrides first, then collects
-  // stat_bonuses for use in downstream calculations.
-  // Always call this before computing AC, saves, etc.
+  // Pass carriedPartyItems whenever item effects must be visible.
+  //
+  // Returns { stats, bonuses, unarmoredBonuses }
+  //   stats          — ability scores after overrides + score bonuses
+  //   bonuses        — additive derived bonuses (ac, saves, spell_attack, etc.)
+  //   unarmoredBonuses — bonuses that only apply when not wearing armor
   // ─────────────────────────────────────────────
 
-  // Returns { stats, bonuses, unarmoredBonuses }
-  // stats:   raw ability scores after overrides (e.g. Amulet of Health sets CON 19)
-  // bonuses: flat additive bonuses from items that apply regardless of armor
-  // unarmoredBonuses: bonuses that only apply when unarmored
   resolveStats(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
+
     const stats = {
       str: character.stat_str,
       dex: character.stat_dex,
@@ -81,22 +98,30 @@ export const dnd = {
     const bonuses = {}
     const unarmoredBonuses = {}
 
-    // Pass 1 — stat_overrides set a stat to a fixed value
-    for (const item of items) {
+    // Only items equipped by this character apply their bonuses
+    const equippedItems = items.filter((i) => i.equipped_by === character.name)
+
+    // Pass 1 — stat_overrides set a stat to a fixed value (e.g. Amulet of Health: con → 19)
+    for (const item of equippedItems) {
       if (item.stat_overrides) {
-        Object.assign(stats, item.stat_overrides)
+        for (const [key, val] of Object.entries(item.stat_overrides)) {
+          if (key in stats) stats[key] = val
+        }
       }
     }
 
-    // Pass 2 — collect bonuses (regular and unarmored separately)
-    for (const item of items) {
-      // Regular bonuses (apply always)
+    // Pass 2 — collect bonuses; ability-score keys (str/dex/…) add to the score itself
+    for (const item of equippedItems) {
       if (item.stat_bonuses) {
         for (const [key, val] of Object.entries(item.stat_bonuses)) {
-          bonuses[key] = (bonuses[key] ?? 0) + val
+          if (SCORE_BONUS_KEYS.has(key)) {
+            // e.g. Belt of Dwarvenkind { con: 2 } → add to CON score
+            if (key in stats) stats[key] = (stats[key] ?? 10) + val
+          } else {
+            bonuses[key] = (bonuses[key] ?? 0) + val
+          }
         }
       }
-      // Unarmored-only bonuses
       if (item.unarmored_stat_bonuses) {
         for (const [key, val] of Object.entries(item.unarmored_stat_bonuses)) {
           unarmoredBonuses[key] = (unarmoredBonuses[key] ?? 0) + val
@@ -107,130 +132,129 @@ export const dnd = {
     return { stats, bonuses, unarmoredBonuses }
   },
 
+  // Effective proficiency bonus: base (class/level or character field) + item bonus (Ioun Stone).
+  _prof(character, bonuses) {
+    const base = character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
+    return base + (bonuses.proficiency_bonus ?? 0)
+  },
+
   // ─────────────────────────────────────────────
   // ARMOR CLASS
-  // Handles heavy / medium / light / unarmored
-  // Applies item ac bonuses (Bracers of Defense,
-  // Ring of Protection, Cloak of Protection, etc.)
-  // Also handles unarmored AC from robes/wondrous items
-  // Optional: pass bladesongActive = true for Bladesinger
   // ─────────────────────────────────────────────
 
-  ac(character, { bladesongActive = false, carriedPartyItems = [] } = {}) {
-    const { stats, bonuses, unarmoredBonuses } = dnd.resolveStats(
-      character,
-      carriedPartyItems
-    )
+  // Internal — runs the full AC calculation and records each step for the breakdown tooltip.
+  _acCompute(character, { bladesongActive = false, carriedPartyItems = [] } = {}) {
+    const { stats, bonuses, unarmoredBonuses } = dnd.resolveStats(character, carriedPartyItems)
     const items = [...(character.items ?? []), ...carriedPartyItems]
+    const mine = (i) => i.equipped_by === character.name
 
-    // Check if wearing armor (blocks unarmored bonuses)
-    const armorItem = items.find(
-      (i) =>
-        i.equipped_by === character.name &&
-        i.type === 'armor' &&
-        i.slot === 'body'
-    )
+    const armorItem = items.find((i) => mine(i) && i.type === 'armor' && i.slot === 'body')
     const isWearingArmor = !!armorItem
-
     const dexMod = dnd.mod(stats.dex)
     const intMod = dnd.mod(stats.int)
+    const steps = []
+    let base
 
-    let base, armorType
     if (isWearingArmor) {
-      armorType = armorItem.armor_type
-      const armorData = ARMOR_BASE_AC[armorType]
-      const category = armorData?.category ?? armorType
+      const armorData = ARMOR_BASE_AC[armorItem.armor_type]
+      const category = armorData?.category ?? armorItem.armor_type
       const armorBaseAc = armorItem.armor_base_ac ?? armorData?.base ?? 10
       const magicBonus = armorItem.magic_bonus ?? 0
+      const magicStr = magicBonus ? `, +${magicBonus} magic` : ''
 
       switch (category) {
         case 'heavy':
           base = armorBaseAc + magicBonus
+          steps.push(`${armorItem.name} (base ${armorBaseAc}${magicStr})`)
           break
-        case 'medium':
-          base = armorBaseAc + magicBonus + Math.min(dexMod, 2)
+        case 'medium': {
+          const dexCapped = Math.min(dexMod, 2)
+          base = armorBaseAc + magicBonus + dexCapped
+          steps.push(`${armorItem.name} (base ${armorBaseAc}${magicStr})`)
+          steps.push(`DEX ${dnd.signed(dexCapped)} (cap 2)`)
           break
-        case 'light':
-        default:
+        }
+        default: {
           base = armorBaseAc + magicBonus + dexMod
+          steps.push(`${armorItem.name} (base ${armorBaseAc}${magicStr})`)
+          steps.push(`DEX ${dnd.signed(dexMod)}`)
           break
+        }
       }
     } else {
-      // Not wearing armor - check for unarmored AC sources
-      const unarmoredAcItem = items.find(
-        (i) =>
-          i.equipped_by === character.name && i.unarmored_armor_base_ac != null
-      )
-
+      const unarmoredAcItem = items.find((i) => mine(i) && i.unarmored_armor_base_ac != null)
       if (unarmoredAcItem) {
-        // Item like Robe of the Archmagi provides base unarmored AC
         base = unarmoredAcItem.unarmored_armor_base_ac + dexMod
-        armorType = 'unarmored'
+        steps.push(`${unarmoredAcItem.name} (base ${unarmoredAcItem.unarmored_armor_base_ac})`)
+        steps.push(`DEX ${dnd.signed(dexMod)}`)
       } else {
-        // Standard unarmored AC
         base = 10 + dexMod
-        armorType = 'unarmored'
+        steps.push(`Unarmored 10 + DEX ${dnd.signed(dexMod)}`)
       }
     }
 
-    // Bladesinger: +INT mod to AC while Bladesong active
-    const bladesongBonus = bladesongActive ? intMod : 0
-
-    // Shield adds flat +2 (if not blocked by armor restrictions)
-    const shieldItem = items.find(
-      (i) => i.equipped_by === character.name && i.armor_type === 'shield'
-    )
+    const shieldItem = items.find((i) => mine(i) && i.armor_type === 'shield')
     const shieldBonus = shieldItem ? 2 + (shieldItem.magic_bonus ?? 0) : 0
+    if (shieldItem) steps.push(`${shieldItem.name} (${dnd.signed(shieldBonus)})`)
 
-    // Item bonuses - combine regular and unarmored bonuses appropriately
-    const regularAcBonus = bonuses.ac ?? 0
-    const unarmoredAcBonus = isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0
-    const itemAcBonus = regularAcBonus + unarmoredAcBonus
+    // Per-item AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
+    for (const item of items.filter(mine)) {
+      const bonus = item.stat_bonuses?.ac ?? 0
+      const unarmoredBonus = !isWearingArmor ? (item.unarmored_stat_bonuses?.ac ?? 0) : 0
+      const total = bonus + unarmoredBonus
+      if (total) steps.push(`${item.name} (${dnd.signed(total)})`)
+    }
 
-    return base + shieldBonus + itemAcBonus + bladesongBonus
+    if (bladesongActive) steps.push(`Bladesong INT ${dnd.signed(intMod)}`)
+
+    const itemAcBonus = (bonuses.ac ?? 0) + (isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0)
+    const bladesongBonus = bladesongActive ? intMod : 0
+    const value = base + shieldBonus + itemAcBonus + bladesongBonus
+    steps.push(`= ${value}`)
+    return { value, steps }
+  },
+
+  ac(character, options = {}) {
+    return dnd._acCompute(character, options).value
+  },
+
+  // Returns a newline-separated string describing the AC calculation for the breakdown tooltip.
+  acBreakdown(character, options = {}) {
+    return dnd._acCompute(character, options).steps.join('\n')
   },
 
   // ─────────────────────────────────────────────
   // INITIATIVE
-  // DEX modifier. Feral Instinct (Barbarian) gives
-  // advantage — handled at the table, not here.
   // ─────────────────────────────────────────────
 
-  initiative(character) {
-    const { stats } = dnd.resolveStats(character)
+  initiative(character, partyItems = []) {
+    const { stats } = dnd.resolveStats(character, partyItems)
     return dnd.mod(stats.dex)
   },
 
   // ─────────────────────────────────────────────
   // SAVING THROWS
-  // Returns bonus for a given stat key ('str','dex',etc.)
-  // Includes proficiency if the character is proficient.
-  // Includes item saving_throw bonuses (Ring/Cloak of Protection).
   // ─────────────────────────────────────────────
 
-  savingThrow(character, statKey) {
-    const { stats, bonuses } = dnd.resolveStats(character)
+  savingThrow(character, statKey, partyItems = []) {
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
     const base = dnd.mod(stats[statKey])
-    const prof =
-      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
+    const prof = dnd._prof(character, bonuses)
     const isProficient = (character.saving_throws ?? []).includes(statKey)
-    const itemBonus = bonuses.saving_throws ?? 0
-    return base + (isProficient ? prof : 0) + itemBonus
+    return base + (isProficient ? prof : 0) + (bonuses.saving_throws ?? 0)
   },
 
-  // Returns all six saving throws as an object
-  allSavingThrows(character) {
-    const keys = ['str', 'dex', 'con', 'int', 'wis', 'cha']
+  allSavingThrows(character, partyItems = []) {
     return Object.fromEntries(
-      keys.map((k) => [k, dnd.savingThrow(character, k)])
+      ['str', 'dex', 'con', 'int', 'wis', 'cha'].map((k) => [
+        k,
+        dnd.savingThrow(character, k, partyItems),
+      ])
     )
   },
 
   // ─────────────────────────────────────────────
   // SKILLS
-  // Maps each skill to its governing ability score.
-  // Accounts for proficiency and expertise (double prof).
-  // Accounts for item skill bonuses (e.g. skill_Perception).
   // ─────────────────────────────────────────────
 
   SKILL_MAP: {
@@ -254,95 +278,68 @@ export const dnd = {
     Survival: 'wis',
   },
 
-  skill(character, skillName) {
-    const { stats, bonuses } = dnd.resolveStats(character)
+  skill(character, skillName, partyItems = []) {
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
     const statKey = dnd.SKILL_MAP[skillName]
     if (!statKey) return 0
 
     const base = dnd.mod(stats[statKey])
-    const prof =
-      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
-    const isProficient = (character.skill_proficiencies ?? []).includes(
-      skillName
-    )
-    const hasExpertise = (character.expertise ?? []).includes(skillName)
+    const prof = dnd._prof(character, bonuses)
+    const isProficient = (character.skill_proficiencies ?? []).includes(skillName)
+    const hasExpertise = (character.skill_expertise ?? []).includes(skillName)
     const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
-
-    // Item skill bonuses use key format "skill_SkillName" (e.g. skill_Perception)
     const itemBonus = bonuses[`skill_${skillName}`] ?? 0
 
     return base + profBonus + itemBonus
   },
 
-  // Returns all skills as an object
-  allSkills(character) {
+  allSkills(character, partyItems = []) {
     return Object.fromEntries(
-      Object.keys(dnd.SKILL_MAP).map((s) => [s, dnd.skill(character, s)])
+      Object.keys(dnd.SKILL_MAP).map((s) => [s, dnd.skill(character, s, partyItems)])
     )
   },
 
   // ─────────────────────────────────────────────
   // PASSIVE PERCEPTION
-  // 10 + Perception skill bonus (includes expertise
-  // and item bonuses automatically via skill())
   // ─────────────────────────────────────────────
 
-  passivePerception(character) {
-    return 10 + dnd.skill(character, 'Perception')
+  passivePerception(character, partyItems = []) {
+    return 10 + dnd.skill(character, 'Perception', partyItems)
   },
 
   // ─────────────────────────────────────────────
   // ABILITY MODIFIERS (convenience)
-  // Returns all six mods after stat resolution
   // ─────────────────────────────────────────────
 
-  allMods(character) {
-    const { stats } = dnd.resolveStats(character)
-    return Object.fromEntries(
-      Object.entries(stats).map(([k, v]) => [k, dnd.mod(v)])
-    )
+  allMods(character, partyItems = []) {
+    const { stats } = dnd.resolveStats(character, partyItems)
+    return Object.fromEntries(Object.entries(stats).map(([k, v]) => [k, dnd.mod(v)]))
   },
 
   // ─────────────────────────────────────────────
   // SPELLCASTING
-  // Requires character.spellcasting_ability to be set
-  // (e.g. 'int', 'wis', 'cha'). Returns null if not
-  // a spellcaster.
   // ─────────────────────────────────────────────
 
-  spellAttackBonus(character) {
+  spellAttackBonus(character, partyItems = []) {
     if (!character.spellcasting_ability) return null
-    const { stats, bonuses } = dnd.resolveStats(character)
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
     const mod = dnd.mod(stats[character.spellcasting_ability])
-    const prof =
-      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
-    const itemBonus = bonuses.spell_attack ?? 0
-    return mod + prof + itemBonus
+    const prof = dnd._prof(character, bonuses)
+    return mod + prof + (bonuses.spell_attack ?? 0)
   },
 
-  spellSaveDC(character) {
-    const bonus = dnd.spellAttackBonus(character)
-    if (bonus === null) return null
-    const { bonuses } = dnd.resolveStats(character)
-    const itemBonus = bonuses.spell_save_dc ?? 0
-    return 8 + bonus + itemBonus
+  spellSaveDC(character, partyItems = []) {
+    if (!character.spellcasting_ability) return null
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
+    const mod = dnd.mod(stats[character.spellcasting_ability])
+    const prof = dnd._prof(character, bonuses)
+    return 8 + mod + prof + (bonuses.spell_save_dc ?? 0)
   },
 
   // ─────────────────────────────────────────────
-  // WEAPON ATTACK & DAMAGE BONUSES
-  // weapon: an item object with type: 'weapon',
-  //   weapon_type: 'melee' | 'ranged',
-  //   finesse: bool,
-  //   magic_bonus: number
-  //
-  // Finesse weapons use the better of STR or DEX.
-  // Ranged weapons use DEX.
-  // Melee non-finesse uses STR.
-  // Includes ranged_damage item bonus for Bracers of Archery.
+  // WEAPON ATTACK & DAMAGE
   // ─────────────────────────────────────────────
 
-  // Resolves all weapon properties, with item-level fields overriding the WEAPON_PROPS lookup.
-  // Items only need weapon_category + any non-standard overrides (e.g. homebrew damage dice).
   _weaponProps(weapon) {
     const base = WEAPON_PROPS[weapon.weapon_category] ?? {}
     return {
@@ -354,17 +351,13 @@ export const dnd = {
     }
   },
 
-  _weaponStatMod(character, weapon) {
-    const { stats } = dnd.resolveStats(character)
+  _weaponStatMod(character, weapon, partyItems = []) {
+    const { stats } = dnd.resolveStats(character, partyItems)
     const props = dnd._weaponProps(weapon)
-    if (props.finesse) {
-      return Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
-    }
+    if (props.finesse) return Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
     return props.weapon_type === 'ranged' ? dnd.mod(stats.dex) : dnd.mod(stats.str)
   },
 
-  // Returns the damage die for a weapon, choosing 1h or 2h based on what the character has equipped.
-  // Shields count as melee1h — off-hand is free only when a single melee1h item is equipped.
   gripDie(character, weapon, partyItems = []) {
     const props = dnd._weaponProps(weapon)
     if (!props.versatile) return props.damage_dice
@@ -372,29 +365,27 @@ export const dnd = {
     const melee1hCount = partyItems.filter(
       (i) => i.equipped_by === character.name && i.slot === 'melee1h'
     ).length
-    return melee1hCount <= 1
-      ? (props.damage_dice_2h ?? props.damage_dice)
-      : props.damage_dice
+    return melee1hCount <= 1 ? (props.damage_dice_2h ?? props.damage_dice) : props.damage_dice
   },
 
-  attackBonus(character, weapon) {
-    const { bonuses } = dnd.resolveStats(character)
+  attackBonus(character, weapon, partyItems = []) {
+    const { bonuses } = dnd.resolveStats(character, partyItems)
     const props = dnd._weaponProps(weapon)
-    const statMod = dnd._weaponStatMod(character, weapon)
-    const prof = character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
+    const statMod = dnd._weaponStatMod(character, weapon, partyItems)
+    const prof = dnd._prof(character, bonuses)
     const magic = weapon.magic_bonus ?? 0
-    const attackTypeBonus = props.weapon_type === 'ranged'
-      ? bonuses.ranged_attack ?? 0
-      : bonuses.melee_attack ?? 0
-    return statMod + prof + magic + attackTypeBonus
+    const typeBonus = props.weapon_type === 'ranged'
+      ? (bonuses.ranged_attack ?? 0)
+      : (bonuses.melee_attack ?? 0)
+    return statMod + prof + magic + typeBonus
   },
 
-  damageBonus(character, weapon) {
-    const { bonuses } = dnd.resolveStats(character)
+  damageBonus(character, weapon, partyItems = []) {
+    const { bonuses } = dnd.resolveStats(character, partyItems)
     const props = dnd._weaponProps(weapon)
-    const statMod = dnd._weaponStatMod(character, weapon)
+    const statMod = dnd._weaponStatMod(character, weapon, partyItems)
     const magic = weapon.magic_bonus ?? 0
-    const rangedBonus = props.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
+    const rangedBonus = props.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
     return statMod + magic + rangedBonus
   },
 
@@ -403,99 +394,64 @@ export const dnd = {
     const die = dnd.gripDie(character, weapon, partyItems)
     return {
       name: weapon.name,
-      attack: dnd.signed(dnd.attackBonus(character, weapon)),
-      damage: `${die}${dnd.signed(dnd.damageBonus(character, weapon))}`,
+      attack: dnd.signed(dnd.attackBonus(character, weapon, partyItems)),
+      damage: `${die}${dnd.signed(dnd.damageBonus(character, weapon, partyItems))}`,
       type: props.weapon_type,
       notes: weapon.notes ?? '',
     }
   },
 
-  // Returns summaries for all weapons in character's inventory
-  weaponSummaries(character) {
-    return (character.items ?? [])
-      .filter((i) => i.type === 'weapon')
-      .map((w) => dnd.weaponSummary(character, w))
+  weaponSummaries(character, partyItems = []) {
+    return partyItems
+      .filter((i) => i.equipped_by === character.name && i.type === 'weapon')
+      .map((w) => dnd.weaponSummary(character, w, partyItems))
   },
 
   // ─────────────────────────────────────────────
   // FULL CHARACTER SUMMARY
-  // Returns a single computed object with everything
-  // your templates are likely to need. Useful as a
-  // single Vue computed that memoizes all the math.
-  //
-  // Usage:
-  //   computed: {
-  //     computed() { return dnd.summary(this.character) }
-  //   }
-  //   then in template: computed.ac, computed.weapons, etc.
   // ─────────────────────────────────────────────
 
-  summary(character, options = {}) {
-    const { bladesongActive = false } = options
-    const { stats, bonuses } = dnd.resolveStats(character)
-    const prof =
-      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
+  summary(character, { bladesongActive = false, partyItems = [] } = {}) {
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
+    const prof = dnd._prof(character, bonuses)
 
     return {
-      // Resolved stats (after overrides like Amulet of Health)
       stats,
       bonuses,
-
-      // Core numbers
-      ac: dnd.ac(character, { bladesongActive }),
-      initiative: dnd.initiative(character),
+      ac: dnd.ac(character, { bladesongActive, carriedPartyItems: partyItems }),
+      initiative: dnd.initiative(character, partyItems),
       proficiencyBonus: prof,
-      passivePerception: dnd.passivePerception(character),
-
-      // Spellcasting (null if not a caster)
-      spellAttackBonus: dnd.spellAttackBonus(character),
-      spellSaveDC: dnd.spellSaveDC(character),
-
-      // Ability modifiers
-      mods: dnd.allMods(character),
-
-      // All saving throws
-      saves: dnd.allSavingThrows(character),
-
-      // All skills
-      skills: dnd.allSkills(character),
-
-      // Weapons
-      weapons: dnd.weaponSummaries(character),
+      passivePerception: dnd.passivePerception(character, partyItems),
+      spellAttackBonus: dnd.spellAttackBonus(character, partyItems),
+      spellSaveDC: dnd.spellSaveDC(character, partyItems),
+      mods: dnd.allMods(character, partyItems),
+      saves: dnd.allSavingThrows(character, partyItems),
+      skills: dnd.allSkills(character, partyItems),
+      weapons: dnd.weaponSummaries(character, partyItems),
     }
   },
 
   // ─────────────────────────────────────────────
-  // UTILITY LOOKUPS
-  // Helpers for working with the data files
+  // DISPLAY HELPERS
   // ─────────────────────────────────────────────
 
-  // Returns a display-ready array of stat objects for templates
-  statArray(character) {
+  // Stat block for templates — scores and mods after all item effects.
+  statArray(character, partyItems = []) {
+    const { stats } = dnd.resolveStats(character, partyItems)
     return STAT_KEYS.map(({ key, label }) => {
-      const score = character[`stat_${key}`] ?? 10
-      return {
-        key,
-        label,
-        score,
-        mod: dnd.mod(score),
-        modStr: dnd.signed(dnd.mod(score)),
-      }
+      const score = stats[key] ?? 10
+      return { key, label, score, mod: dnd.mod(score), modStr: dnd.signed(dnd.mod(score)) }
     })
   },
 
-  // Find a character by name (first match) from characters array
   findCharacter(characters, name) {
-    return (
-      characters.find(
-        (c) =>
-          c.name.toLowerCase() === name.toLowerCase() ||
-          c.full_name?.toLowerCase() === name.toLowerCase()
-      ) ?? null
-    )
+    return characters.find(
+      (c) =>
+        c.name.toLowerCase() === name.toLowerCase() ||
+        c.full_name?.toLowerCase() === name.toLowerCase()
+    ) ?? null
   },
 
-  // Find an NPC by name
   findNPC(npcs, name) {
     return npcs.find((n) => n.name.toLowerCase() === name.toLowerCase()) ?? null
   },
@@ -508,29 +464,12 @@ export const dnd = {
     )
   },
 
-  lookupSpell(spellName) {
-    return homebrew.spells.find((s) => s.name === spellName) ?? null
-  },
-
-  // Get all witness items across a character's inventory
-  witnessItems(character) {
-    return (character.items ?? []).filter((i) => i.type === 'witness')
-  },
-
-  // Get all weapons
-  weapons(character) {
-    return (character.items ?? []).filter((i) => i.type === 'weapon')
-  },
-
-  // Get all NPCs at a given location name
   npcsAtLocation(npcs, locationName) {
     return npcs.filter((n) =>
       n.location?.toLowerCase().includes(locationName.toLowerCase())
     )
   },
 
-  // Get all locations of a given type from a locations array
-  // (locations is the flat array of city-level objects from locations.js)
   locationsByType(locations, type) {
     const results = []
     for (const city of locations) {
@@ -541,7 +480,6 @@ export const dnd = {
     return results
   },
 
-  // Get all sealed chambers across all locations
   sealedChambers(locations) {
     return dnd.locationsByType(locations, 'sealed_chamber')
   },

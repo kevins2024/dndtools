@@ -5,7 +5,11 @@
       <div
         class="portrait"
         :style="{ backgroundImage: `url(${character.image})` }"
-      />
+      >
+        <span v-if="classIcon" class="class-badge" :title="character.class">
+          <i :class="`ra ${classIcon}`"></i>
+        </span>
+      </div>
       <div class="identity">
         <h2 class="char-name">{{ character.name }}</h2>
         <div class="char-fullname">{{ character.full_name }}</div>
@@ -155,7 +159,7 @@
 </template>
 
 <script>
-import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
+import { STAT_KEYS, dnd, classIcon } from '@/utils/dnd_utils.js'
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
 
 const SAVE_KEYS = STAT_KEYS
@@ -170,8 +174,16 @@ export default {
   },
 
   computed: {
+    partyItems() {
+      return this.$store.state.party_items ?? []
+    },
+
+    classIcon() {
+      return classIcon(this.character)
+    },
+
     stats() {
-      return dnd.statArray(this.character)
+      return dnd.statArray(this.character, this.partyItems)
     },
 
     allSaves() {
@@ -191,7 +203,7 @@ export default {
 
   methods: {
     saveModStr(key) {
-      return dnd.signed(dnd.savingThrow(this.character, key))
+      return dnd.signed(dnd.savingThrow(this.character, key, this.partyItems))
     },
 
     capitalize(str) {
@@ -219,6 +231,7 @@ export default {
 }
 
 .portrait {
+  position: relative;
   width: 10vw;
   min-width: 100px;
   aspect-ratio: 13 / 16;
@@ -227,6 +240,23 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 6px;
   flex-shrink: 0;
+}
+
+.class-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  backdrop-filter: blur(2px);
 }
 
 .identity {

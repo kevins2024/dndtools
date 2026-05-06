@@ -6,8 +6,8 @@
         <span class="chip-val">{{ character.hp_current }}/{{ character.hp_max }}</span>
         <span class="chip-label">HP</span>
       </div>
-      <div class="chip" :title="acTooltip">
-        <span class="chip-val">{{ ac }}</span>
+      <div class="chip">
+        <span class="chip-val"><StatChip :value="ac" :explain="acExplain" /></span>
         <span class="chip-label">AC</span>
       </div>
       <div class="chip" :title="speedTooltip">
@@ -97,11 +97,12 @@ import { dnd } from '@/utils/dnd_utils.js'
 import { DEFAULT_SPEED_FT } from '@/utils/dnd_constants.js'
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
 import DetailPopup from '@/components/DetailPopup.vue'
+import StatChip from '@/components/StatChip.vue'
 
 export default {
   name: 'CharacterCombatPanel',
 
-  components: { DetailPopup },
+  components: { DetailPopup, StatChip },
 
   props: {
     character: { type: Object, required: true },
@@ -116,10 +117,13 @@ export default {
 
   computed: {
     partyItems() {
-      return this.$store.state.party_items
+      return this.$store.state.party_items ?? []
+    },
+    resolvedStats() {
+      return dnd.resolveStats(this.character, this.partyItems)
     },
     profBonus() {
-      return this.character.proficiency_bonus ?? dnd.proficiencyBonus(this.character.level)
+      return dnd._prof(this.character, this.resolvedStats.bonuses)
     },
     equippedItems() {
       return this.partyItems.filter((i) => i.equipped_by === this.character.name)
@@ -128,17 +132,8 @@ export default {
     ac() {
       return dnd.ac(this.character, { carriedPartyItems: this.partyItems })
     },
-    acTooltip() {
-      const armor = this.equippedItems.find((i) => i.type === 'armor' && i.slot === 'body')
-      const shield = this.equippedItems.find((i) => i.armor_type === 'shield')
-      const acBonus = this.equippedItems.reduce((s, i) => s + (i.stat_bonuses?.ac ?? 0), 0)
-      const parts = []
-      if (armor) parts.push(armor.name)
-      else parts.push('Unarmored')
-      if (shield) parts.push(`${shield.name} (+${2 + (shield.magic_bonus ?? 0)})`)
-      if (acBonus) parts.push(`Items (${dnd.signed(acBonus)})`)
-      parts.push(`= ${this.ac}`)
-      return parts.join(' + ').replace(' + =', ' =')
+    acExplain() {
+      return () => dnd.acBreakdown(this.character, { carriedPartyItems: this.partyItems })
     },
 
     speed() {
@@ -158,20 +153,31 @@ export default {
     spellAttackTooltip() {
       if (!this.character.spellcasting_ability) return ''
       const ab = this.character.spellcasting_ability
-      const mod = dnd.mod(this.character[`stat_${ab}`])
+      const mod = dnd.mod(this.resolvedStats.stats[ab])
       const prof = this.profBonus
-      return `${ab.toUpperCase()} ${dnd.signed(mod)} + Prof ${dnd.signed(prof)} = ${dnd.signed(mod + prof)}`
+      const itemBonus = this.resolvedStats.bonuses.spell_attack ?? 0
+      const base = `${ab.toUpperCase()} ${dnd.signed(mod)} + Prof ${dnd.signed(prof)}`
+      return itemBonus
+        ? `${base} + Items ${dnd.signed(itemBonus)} = ${dnd.signed(mod + prof + itemBonus)}`
+        : `${base} = ${dnd.signed(mod + prof)}`
     },
     spellSaveDC() {
       return dnd.spellSaveDC(this.character, this.partyItems)
     },
     spellDCTooltip() {
-      if (this.spellAttack === null) return ''
-      return `8 + Spell Atk ${dnd.signed(this.spellAttack)} = ${8 + this.spellAttack}`
+      if (!this.character.spellcasting_ability) return ''
+      const ab = this.character.spellcasting_ability
+      const mod = dnd.mod(this.resolvedStats.stats[ab])
+      const prof = this.profBonus
+      const itemBonus = this.resolvedStats.bonuses.spell_save_dc ?? 0
+      const base = `8 + ${ab.toUpperCase()} ${dnd.signed(mod)} + Prof ${dnd.signed(prof)}`
+      return itemBonus
+        ? `${base} + Items ${dnd.signed(itemBonus)} = ${8 + mod + prof + itemBonus}`
+        : `${base} = ${8 + mod + prof}`
     },
 
     weaponSummaries() {
-      const { stats } = dnd.resolveStats(this.character, this.partyItems)
+      const { stats, bonuses } = this.resolvedStats
       const strMod = dnd.mod(stats.str)
       const dexMod = dnd.mod(stats.dex)
       const prof = this.profBonus
@@ -191,19 +197,25 @@ export default {
           statMod = strMod
           statDesc = `STR ${dnd.signed(strMod)}`
         }
-        const atkTotal = statMod + prof + magic
+        const typeBonus = props.weapon_type === 'ranged'
+          ? (bonuses.ranged_attack ?? 0)
+          : (bonuses.melee_attack ?? 0)
+        const atkTotal = dnd.attackBonus(this.character, w, this.partyItems)
         const atkParts = [statDesc, `Prof ${dnd.signed(prof)}`]
         if (magic) atkParts.push(`Magic ${dnd.signed(magic)}`)
+        if (typeBonus) atkParts.push(`Item ${dnd.signed(typeBonus)}`)
         atkParts.push(`= ${dnd.signed(atkTotal)}`)
 
-        const dmgBonus = dnd.damageBonus(this.character, w)
+        const dmgBonus = dnd.damageBonus(this.character, w, this.partyItems)
         const die = dnd.gripDie(this.character, w, this.partyItems)
+        const rangedBonus = props.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
         const dmgParts = [die, statDesc.split('—')[0].trim()]
         if (magic) dmgParts.push(`Magic ${dnd.signed(magic)}`)
+        if (rangedBonus) dmgParts.push(`Item ${dnd.signed(rangedBonus)}`)
 
         return {
           name: w.name,
-          attack: dnd.signed(dnd.attackBonus(this.character, w)),
+          attack: dnd.signed(atkTotal),
           damage: `${die}${dnd.signed(dmgBonus)}`,
           type: props.weapon_type,
           atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
@@ -214,14 +226,22 @@ export default {
       if (this.character.martial_arts_die) {
         const die = this.character.martial_arts_die
         const statMod = Math.max(strMod, dexMod)
-        const atkTotal = statMod + prof
+        const unarmedAtk = bonuses.unarmed_attack ?? 0
+        const unarmedDmg = bonuses.unarmed_damage ?? 0
+        const atkTotal = statMod + prof + unarmedAtk
+        const dmgTotal = statMod + unarmedDmg
+        const atkParts = [`Martial Arts ${dnd.signed(statMod)}`, `Prof ${dnd.signed(prof)}`]
+        if (unarmedAtk) atkParts.push(`Items ${dnd.signed(unarmedAtk)}`)
+        atkParts.push(`= ${dnd.signed(atkTotal)}`)
+        const dmgParts = [`${die}`, `STR/DEX ${dnd.signed(statMod)}`]
+        if (unarmedDmg) dmgParts.push(`Items ${dnd.signed(unarmedDmg)}`)
         summaries.unshift({
           name: 'Unarmed Strike',
           attack: dnd.signed(atkTotal),
-          damage: `${die}${dnd.signed(statMod)}`,
+          damage: `${die}${dnd.signed(dmgTotal)}`,
           type: 'melee',
-          atkTooltip: `Martial Arts — best of STR ${dnd.signed(strMod)}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)} + Prof ${dnd.signed(prof)} = ${dnd.signed(atkTotal)}`,
-          dmgTooltip: `${die} + best of STR ${dnd.signed(strMod)}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`,
+          atkTooltip: atkParts.join(' + ').replace('+ =', '='),
+          dmgTooltip: dmgParts.join(' + '),
         })
       }
 

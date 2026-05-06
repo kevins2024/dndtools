@@ -87,5 +87,22 @@
     "worship_notes": "No clergy in the conventional sense — Kexifrext does not require intermediaries, only patience. Followers learn to sit with incomplete instructions and trust that the full meaning will arrive in time. Prayers are not spoken but grown — an action taken, a thing planted, a path walked slowly. Enauweyn is among the few mortals Kexifrext communicates with directly, and even she receives commands that take years to fully resolve. Followers are expected to protect old growth, resist those who would accelerate or exploit natural processes, and exercise judgment in the long silences between guidance.",
     "known_followers": ["Enauweyn"],
     "notes": "Kexifrext is neither good nor evil in any way mortals find useful to categorize. The forest does not have opinions about individual creatures — it has opinions about patterns over centuries. Fey shenanigans continue largely unchecked under Kexifrext's sovereignty not from indifference but because on Kexifrext's timescale, most fey mischief resolves itself. When Kexifrext does intervene, it is slow, inexorable, and final in the way that a root eventually splits a stone."
+  },
+  {
+    "name": "Voryn",
+    "type": "deity",
+    "domain": [
+      "Wild Places",
+      "Instinct",
+      "Boundary Between Civilization and Wilderness",
+      "Untamed Nature",
+      "The Honest Animal"
+    ],
+    "alignment": "Chaotic Neutral",
+    "symbol": "a handprint in mud, half animal half human",
+    "description": "*The forest was here before you and will be here after. Walk accordingly.* Voryn is not savage and is not gentle — Voryn is the tree that grows through the wall, the wolf that watches from the tree line, the moment a civilized person realizes their instincts were right all along. He does not hate cities but finds them faintly amusing. He does not love wilderness but understands it completely. Voryn sits at the boundary between what people build and what exists without their permission, and he finds that boundary the most honest place in any landscape. What survives without cultivation was always meant to survive. What requires walls to protect it should examine why.",
+    "worship_notes": "Voryn has no strong feelings about where worship happens — he has strong feelings about whether it's honest. A congregation meeting indoors is fine provided they remember the building is temporary and the forest is not. Temples to Voryn tend to blur the boundary between inside and outside — open walls, living wood incorporated into structure, animals welcome. Rituals follow seasons and animal behavior rather than calendars. Clergy are expected to spend significant time alone in wild places — not as punishment but as education. Followers are asked to trust instinct before explanation, to know the difference between fear and danger, and to remember that civilization is a recent and provisional arrangement. Voryn asks that his followers remain honest about what they are underneath what they've built.",
+    "known_followers": [],
+    "notes": "Voryn and Carix have an uncomplicated relationship — Voryn disrupts through nature, Carix through consequence, and they rarely step on each other's territory. Voryn's clergy tend toward the practical and weathered. They do not proselytize. They plant things, tend animals, and show up when wild country needs a voice in civilized conversations. Voryn is present in every moment someone listens to what the forest is actually saying."
   }
 ]

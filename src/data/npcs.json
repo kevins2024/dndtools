@@ -1087,5 +1087,41 @@
     "personality_quirks": "Has strong opinions about how people misunderstand pre-settlement Argentveil and will share them whether asked or not. Keeps three projects running simultaneously and claims to find this restful. Has been with Galealzre four years and considers their arrangement entirely normal.",
     "notes": "Galealzre's partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history, Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
     "id": "npcs_94"
+  },
+  {
+    "name": "Osmer",
+    "location": "River mill, western interior route",
+    "faction": null,
+    "role": "Mill operator",
+    "status": ["friendly"],
+    "appearance": "Old, weathered, economical with everything including words",
+    "personality_traits": "Gives exactly what's needed, nothing more. Comfortable in solitude.",
+    "personality_quirks": "Offers his name only when you've earned the syllables.",
+    "notes": "Knows Bren at the logging camp. History there, unspoken. Recommended the Tallow and Tar in Valdmere.",
+    "id": "npcs_new_01"
+  },
+  {
+    "name": "Bren",
+    "location": "Logging camp, western interior route",
+    "faction": null,
+    "role": "Logging camp foreman",
+    "status": ["friendly"],
+    "appearance": "Big, forearms like load-bearing architecture",
+    "personality_traits": "Practical, fair, thinks in terms of systems and supply lines.",
+    "personality_quirks": "Goes quiet when Osmer's name comes up.",
+    "notes": "Camp expanding fast. Will need timber markets as western economy grows.",
+    "id": "npcs_new_02"
+  },
+  {
+    "name": "Wend",
+    "location": "Western interior forests, ranging north",
+    "faction": "His own people — unnamed as yet",
+    "role": "Scout, self-appointed watcher",
+    "status": ["ally"],
+    "appearance": "Seven and a half feet, grey-green skin, lean for his kind. Disappears in tree cover with unreasonable ease.",
+    "personality_traits": "Measured, precise with language, dry humor that arrives without warning.",
+    "personality_quirks": "Learned Common deliberately, not incidentally. Repeats key words back when filing them. Never fully enters spaces built for smaller people.",
+    "notes": "Tracked Vessel scout for 17 days alone. His people know of Vessel from deep northeast. Left a handprint on the settlement windowsill before departing.",
+    "id": "npcs_new_03"
   }
 ]

@@ -396,7 +396,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
-      "stat_str": 27
+      "str": 27
     },
     "effect": "Sets STR to 27.",
     "notes": "",
@@ -1133,7 +1133,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
-      "hit_chance": 2
+      "melee_attack": 2
     },
     "notes": "",
     "id": "items_89",
@@ -1522,7 +1522,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
-      "stat_str": 19
+      "str": 19
     },
     "effect": "Sets STR to 19.",
     "notes": "",
@@ -1565,7 +1565,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
-      "stat_con": 19
+      "con": 19
     },
     "effect": "Sets CON to 19.",
     "notes": "",
@@ -1658,6 +1658,10 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
+    "stat_bonuses": {
+      "unarmed_attack": 2,
+      "unarmed_damage": 2
+    },
     "effect": "+2 to unarmed strike attack and damage rolls.",
     "notes": "",
     "id": "items_bracers_striking"
@@ -1889,7 +1893,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
-      "stat_str": 21
+      "str": 21
     },
     "effect": "Sets STR to 21.",
     "notes": "",
@@ -2220,7 +2224,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
-      "stat_con": 2
+      "con": 2
     },
     "effect": "+2 CON. Advantage on CHA checks with dwarves. Darkvision 60ft. Resistance to poison, advantage on poison saves.",
     "notes": "Unassigned.",
@@ -2247,7 +2251,7 @@
     "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
-      "stat_str": 19
+      "str": 19
     },
     "effect": "Sets STR to 19.",
     "notes": "Unassigned. Corwin already has a pair.",
@@ -2372,6 +2376,21 @@
     "effect": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
     "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow — no deity symbol, the metal didn't want one. It wanted a window.",
     "id": "items_helm_open_eye"
+  },
+  {
+    "name": "Headband of Intellect",
+    "type": "wondrous",
+    "slot": "head",
+    "equipped_by": "Lexica",
+    "carried_by": null,
+    "needs_attunement": true,
+    "attuned": false,
+    "stat_overrides": {
+      "int": 19
+    },
+    "effect": "Sets INT to 19.",
+    "notes": "",
+    "id": "items_headband_intellect"
   },
   {
     "name": "Green Fey Armor",

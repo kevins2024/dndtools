@@ -368,17 +368,20 @@
     "name": "Jaygar",
     "full_name": "Jaygar Waxystache",
     "race": "Gnome",
+    "subrace": "Rock Gnome",
     "class": "Artificer",
-    "subclass": "Alchemist",
+    "subclass": "Artillerist",
     "level": 8,
     "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
     "image": "https://iili.io/qguKsjf.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "int",
-    "notes": "",
+    "spell_attack_bonus": 8,
+    "spell_save_dc": 16,
+    "notes": "Converted from Alchemist to Artillerist. Arcane Firearm is his custom alchemical heavy crossbow — all spells cast through it add 1d8 to one damage roll. Attack rolls are INT based not DEX based.",
     "stat_str": 8,
     "stat_dex": 12,
-    "stat_con": 19,
+    "stat_con": 11,
     "stat_int": 20,
     "stat_wis": 13,
     "stat_cha": 10,
@@ -396,7 +399,9 @@
       "Perception",
       "Sleight of Hand"
     ],
-    "expertise": [],
+    "skill_expertise": [
+      "Arcana"
+    ],
     "languages": [
       "Common",
       "Gnomish",
@@ -404,66 +409,191 @@
     ],
     "features": [
       {
+        "name": "Magical Tinkering",
+        "type": "feature",
+        "action_type": "action",
+        "description": "Touch a tiny nonmagical object and give it one of the following properties until you next use this feature: emit light 5ft, emit recorded message, emit odor or nonverbal sound, or display a visual effect. Can have up to INT modifier (5) objects tinkered simultaneously."
+      },
+      {
         "name": "Tool Expertise",
         "type": "feature",
         "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
+        "description": "Proficiency bonus doubled for any ability check using a tool you are proficient with."
       },
       {
-        "name": "War Caster",
+        "name": "Infuse Item",
         "type": "feature",
         "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
+        "description": "Infusions known: 6. Infusions active simultaneously: 4. Each infusion requires a long rest to create. If you die infusions end at next dawn.",
+        "infusions_known": 6,
+        "infusions_active": 4,
+        "current_infusions": [
+          {
+            "name": "Repeating Shot",
+            "applied_to": "Alchemical Heavy Crossbow",
+            "effect": "Ignore loading property. Weapon never runs out of ammunition. +1 to attack and damage rolls."
+          },
+          {
+            "name": "Enhanced Arcane Focus",
+            "applied_to": "Alchemical Heavy Crossbow",
+            "effect": "+2 to spell attack rolls made through this focus. Ignore half cover on spell attacks."
+          },
+          {
+            "name": "Armor of Magical Strength",
+            "applied_to": "Leather Armor +2",
+            "effect": "Use INT modifier instead of STR for STR checks and saving throws while wearing. Reaction to avoid being knocked prone."
+          },
+          {
+            "name": "Lantern of Revealing",
+            "applied_to": "Lantern",
+            "effect": "While lit reveals invisible creatures and objects within 30ft. Burns for 6 hours on oil flask."
+          }
+        ]
       },
       {
-        "name": "Alchemical Savant",
+        "name": "Arcane Firearm",
         "type": "feature",
         "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
+        "description": "Jaygar's custom alchemical heavy crossbow is his arcane firearm. When casting an artificer spell through it add 1d8 to one of the spell's damage rolls. The crossbow must be held to use this property."
       },
       {
-        "name": "Experimental Elixir",
+        "name": "Eldritch Cannon",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2,
+        "description": "Jaygar's crossbow functions as his Eldritch Cannon in Force Ballista mode. As an action create the cannon — it acts on his initiative. Can command it to activate as a bonus action. Lasts 1 hour or until destroyed. At level 6 can have two cannons simultaneously.",
+        "modes": [
+          {
+            "name": "Force Ballista",
+            "description": "Ranged spell attack using INT. Range 120ft. Hit: 2d8 force damage. Pushes target 5ft away on hit."
+          },
+          {
+            "name": "Flamethrower",
+            "description": "15ft cone. DEX save DC 16 or take 2d8 fire damage, half on success. Ignites unattended flammable objects."
+          },
+          {
+            "name": "Protector",
+            "description": "Emits aura of protective energy. Jaygar and allies within 10ft gain 1d8+5 temporary HP when activated."
+          }
+        ],
+        "note": "At level 8 Jaygar can have two cannons simultaneously. Second cannon costs an action to create but both can be commanded with one bonus action."
+      },
+      {
+        "name": "Fortified Position",
         "type": "feature",
         "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
+        "description": "Jaygar and allies within 10ft of an Eldritch Cannon gain half cover (+2 AC and DEX saves) while the cannon is active. Can now create two cannons simultaneously."
       },
       {
         "name": "Flash of Genius",
         "type": "feature",
-        "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5,
+        "description": "When Jaygar or a creature within 30ft makes an ability check or saving throw, add INT modifier (+5) to the roll. Uses equal to INT modifier per long rest."
+      },
+      {
+        "name": "War Caster",
+        "type": "feat",
+        "action_type": "reaction",
+        "description": "Advantage on CON saving throws to maintain concentration. Can perform somatic components with hands full. Can cast a spell as an opportunity attack — must target only the provoking creature, casting time must be 1 action."
       },
       {
         "name": "Fey Touched",
         "type": "feat",
         "action_type": null,
-        "recharge": null,
-        "uses_max": null,
-        "uses_current": null,
-        "note": "1st-level spell: Command"
+        "recharge": "long_rest",
+        "description": "Learn Misty Step and Command. Cast each once per long rest without a spell slot. Can also cast using spell slots.",
+        "spells_granted": [
+          "Misty Step",
+          "Command"
+        ]
+      },
+      {
+        "name": "Gnome Cunning",
+        "type": "racial",
+        "action_type": null,
+        "description": "Advantage on all INT, WIS, and CHA saving throws against magic."
+      },
+      {
+        "name": "Rock Gnome Artificer's Lore",
+        "type": "racial",
+        "action_type": null,
+        "description": "Add twice proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
       }
     ],
-    "spells": [],
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 1,
+        "current": 1
+      }
+    },
+    "artillerist_spells": {
+      "note": "Always prepared, do not count against spell limit",
+      "spells": [
+        {
+          "level": 1,
+          "name": "Shield"
+        },
+        {
+          "level": 1,
+          "name": "Thunderwave"
+        },
+        {
+          "level": 2,
+          "name": "Scorching Ray"
+        },
+        {
+          "level": 2,
+          "name": "Shatter"
+        },
+        {
+          "level": 3,
+          "name": "Fireball"
+        },
+        {
+          "level": 3,
+          "name": "Wind Wall"
+        },
+        {
+          "level": 4,
+          "name": "Ice Storm"
+        },
+        {
+          "level": 4,
+          "name": "Wall of Fire"
+        }
+      ]
+    },
     "active_effects": [],
     "persona_notes": [
       "Finds people who ask good questions more valuable than people who have good answers.",
       "Thinks better out loud. Explaining solves problems that existing didn't.",
-      "Eats functionally. Food happens between other things and is rarely the point, though he enjoys it when its delicious.",
+      "Eats functionally. Food happens between other things and is rarely the point, though he enjoys it when it's delicious.",
       "Restorative state is uninterrupted work time. Not sleep. Not company. Work.",
       "Technical precision occasionally producing accidental poetry.",
       "Understatement.",
       "Playful.",
-      "Whistles tunelessly while working."
+      "Whistles tunelessly while working.",
+      "Attack rolls and spell attacks are INT based — crossbow is his arcane firearm and eldritch cannon simultaneously.",
+      "Two eldritch cannons active at level 8 — can deploy both and command both with a single bonus action.",
+      "Flash of Genius is exceptional and should be used generously — +5 to any roll within 30ft five times per long rest.",
+      "Gnome Cunning gives advantage on all magic saves — he is surprisingly hard to enchant or charm."
     ],
     "id": "characters_3"
   },
@@ -721,7 +851,25 @@
       "Studies people like he used to study card games - looking for tells.",
       "Reformed gambling addict."
     ],
-    "id": "characters_4"
+    "id": "characters_4",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Kessara",
@@ -947,7 +1095,25 @@
       "Delivers assessments without softening but without cruelty.",
       "Runs through combat forms as meditation in corners of rooms - slow, deliberate."
     ],
-    "id": "characters_5"
+    "id": "characters_5",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Petra",
@@ -1184,7 +1350,25 @@
       "Attributes statements to nearby objects and reports what they say with complete sincerity.",
       "Opinions on cheese border on philosophical."
     ],
-    "id": "characters_6"
+    "id": "characters_6",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Pirra",
@@ -1504,7 +1688,13 @@
       "Self-contained, professional.",
       "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years."
     ],
-    "id": "characters_8"
+    "id": "characters_8",
+    "pact_magic": {
+      "slot_level": 2,
+      "max": 2,
+      "current": 2,
+      "recharge": "short_rest"
+    }
   },
   {
     "name": "Siv",
@@ -1855,7 +2045,25 @@
       "Deliberately unremarkable.",
       "Extraordinary information retention - now supernatural."
     ],
-    "id": "characters_10"
+    "id": "characters_10",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Lyria",
@@ -2124,7 +2332,25 @@
       "(LENN AND LYRIA TOGETHER) He gives her things without announcement. She receives them the same way.",
       "Watchful, careful."
     ],
-    "id": "characters_11"
+    "id": "characters_11",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Corwin",
@@ -2997,7 +3223,25 @@
       "He meddles. Not maliciously - helpfully, which is sometimes worse. Sees a situation, identifies what's actually wrong with it, does something about it without asking permission or announcing his intentions. Results are almost always correct. Process is frequently chaotic. Carix would love him if Carix and Tackett ever met which would be a problem for everyone nearby."
     ],
     "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form - Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required. Bountiful Luck: reaction when any ally within 30ft rolls a natural 1 - they reroll. Competes with Cosmic Omen for reaction; prioritize accordingly.",
-    "id": "characters_15"
+    "id": "characters_15",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Revven",
@@ -3248,7 +3492,25 @@
       "Grew up around humans which means he has human impatience in an almost-elven body."
     ],
     "notes": "Spell save DC 17, spell attack +9. First met Vaz through Torven's temple referral while investigating three missing girls in Argentveil's eastern market district. The investigation and its resolution confirmed what he already suspected - his calling is in the world, not the temple. May be on a path toward becoming the first paladin of Veleth, though he doesn't know this yet.",
-    "id": "characters_17"
+    "id": "characters_17",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Elucyne",
@@ -3389,7 +3651,13 @@
       "The gilded horns are real and she absolutely uses the moment people realize that."
     ],
     "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 â†’ Rogue 2, Level 10 â†’ Rogue 3 (Assassin subclass unlocked), Level 11 â†’ Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer - fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
-    "id": "characters_16"
+    "id": "characters_16",
+    "spell_slots": {
+      "level_1": {
+        "max": 3,
+        "current": 3
+      }
+    }
   },
   {
     "name": "Sorra",
@@ -3600,7 +3868,25 @@
       "May be reconsidering that."
     ],
     "notes": "Race corrected to Half-Elf. Stat reallocation: 2 points moved from CHA to DEX base, Half-Elf racial +2 CHA restores to 20, racial +1 DEX and +1 WIS applied, Slasher feat +1 DEX brings to 20. Inspires with body/dance rather than instrument - Spiritual Focus applies when using body as focus per table ruling. SHOPPING: scimitar, ideally magical, DEX/slashing flavored. From southeastern region same general area as Elucyne. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear.",
-    "id": "characters_18"
+    "id": "characters_18",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    }
   },
   {
     "name": "Ferghus",
@@ -3744,6 +4030,20 @@
       "The accent is distinctive and he's entirely unconscious of it."
     ],
     "notes": "Paladin of Carix, god of mischief and unexpected consequences. Eight years in Argentveil. CHA 18 - Aura of Protection now grants +4 to all saving throws for allies within 10ft. Lay on Hands pool corrected to 40HP (5 x paladin level 8). Spell save DC 15, spell attack +7. Known to Jho'a Uld, Galealzre, and various others in the city. Introduced Vaz to Gwynn and the Veilgarten block opportunity. Joined Dawn Blades provisionally Day 65 Year 468.",
-    "id": "characters_19"
+    "id": "characters_19",
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 2,
+        "current": 2
+      }
+    }
   }
 ]

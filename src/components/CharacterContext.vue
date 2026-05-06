@@ -15,7 +15,9 @@
             class="char-img"
             :style="{ backgroundImage: `url(${char.image})` }"
           ></div>
-          <div class="char-name">{{ char.name }}</div>
+          <div class="char-name">
+            <i v-if="classIcon(char)" :class="`ra ${classIcon(char)} char-class-icon`"></i>{{ char.name }}
+          </div>
         </div>
       </div>
     </aside>
@@ -30,6 +32,7 @@
 <script>
 import CharacterDetails from './CharacterDetails.vue'
 import characters from '@/data/characters.json'
+import { classIcon } from '@/utils/dnd_utils.js'
 
 export default {
   name: 'CharacterContext',
@@ -47,6 +50,10 @@ export default {
       if (!this.selectedName) return null
       return this.characters.find((c) => c.name === this.selectedName) ?? null
     },
+  },
+
+  methods: {
+    classIcon,
   },
 }
 </script>
@@ -129,6 +136,13 @@ export default {
 .char-card:hover .char-name,
 .char-card.selected .char-name {
   color: var(--color-accent);
+}
+
+.char-class-icon {
+  font-size: 0.7em;
+  opacity: 0.7;
+  margin-right: 4px;
+  vertical-align: middle;
 }
 
 /* ── Detail area ── */
