@@ -14,10 +14,6 @@ export default {
   },
   async created() {
     await this.$store.dispatch('loadAll')
-    const existingParty = dataService.loadSelectedPlayers()
-    if (existingParty.length > 0) {
-      this.$store.commit('SET_SELECTED_PLAYERS', existingParty)
-    }
   },
 }
 </script>

@@ -14,7 +14,7 @@ module.exports = {
   },
   configureWebpack: {
     watchOptions: {
-      ignored: [path.resolve(__dirname, 'src/data')],
+      ignored: ['**/src/data/**'],
     },
   },
   devServer: {

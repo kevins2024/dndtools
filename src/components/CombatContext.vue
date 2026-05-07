@@ -86,7 +86,7 @@
             type="number"
             @keyup.enter="addEnemy"
           />
-          <button class="add-btn" :disabled="!enemyName.trim()" @click="addEnemy">
+          <button class="add-btn" @click="addEnemy">
             Add
           </button>
         </div>
@@ -117,7 +117,7 @@
 
     <!-- ── Battle phase ── -->
     <template v-else>
-      <Battle class="battle-fill" :order="initiativeOrder" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" />
+      <Battle class="battle-fill" :order="initiativeOrder" :combatant-states="combatantStates" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" @toggle-friendly="onToggleFriendly" />
       <div class="roll-bar">
         <button class="exit-btn" @click="exitCombat">Exit Combat</button>
         <button class="back-btn" @click="phase = 'setup'">← Back to Setup</button>
@@ -132,6 +132,7 @@ import PlayerCharacterSelect from './PlayerCharacterSelect.vue'
 import Battle from './Battle.vue'
 import characters from '@/data/characters.json'
 import { dnd } from '@/utils/dnd_utils.js'
+import dataService from '@/utils/dataService.js'
 
 export default {
   name: 'CombatContext',
@@ -142,6 +143,7 @@ export default {
       phase: 'setup',
       enemies: [],
       rolls: {},
+      combatantStates: {},
       enemyName: '',
       enemyMod: 0,
       nextEnemyId: 1,
@@ -180,14 +182,18 @@ export default {
     },
     initiativeOrder() {
       return this.allEntries
-        .map((e) => ({ ...e, total: this.rolls[e.key]?.total ?? 0 }))
-        .sort((a, b) => b.total - a.total || b.mod - a.mod)
+        .map((e) => ({
+          ...e,
+          total: this.rolls[e.key]?.total ?? 0,
+          tiebreakOrder: this.rolls[e.key]?.tiebreakOrder ?? 0,
+        }))
+        .sort((a, b) => b.total - a.total || b.mod - a.mod || a.tiebreakOrder - b.tiebreakOrder)
     },
   },
 
-  created() {
-    const raw = localStorage.getItem('dndtools_saved_parties')
-    if (raw) this.savedParties = JSON.parse(raw)
+  async created() {
+    const prefs = await dataService.getUserPrefs()
+    this.savedParties = prefs.savedParties ?? []
   },
 
   methods: {
@@ -200,14 +206,14 @@ export default {
       this.savingParty = false
       this.newPartyName = ''
     },
-    confirmSaveParty() {
+    async confirmSaveParty() {
       const name = this.newPartyName.trim()
       if (!name) return
       const entry = { name, members: [...this.playerNames] }
       const idx = this.savedParties.findIndex((p) => p.name === name)
       if (idx !== -1) this.savedParties.splice(idx, 1, entry)
       else this.savedParties.push(entry)
-      localStorage.setItem('dndtools_saved_parties', JSON.stringify(this.savedParties))
+      await dataService.patchUserPrefs({ savedParties: this.savedParties })
       this.savingParty = false
       this.newPartyName = ''
     },
@@ -215,9 +221,9 @@ export default {
       const valid = new Set(characters.map((c) => c.name))
       this.$store.commit('SET_SELECTED_PLAYERS', party.members.filter((m) => valid.has(m)))
     },
-    deleteParty(party) {
+    async deleteParty(party) {
       this.savedParties = this.savedParties.filter((p) => p.name !== party.name)
-      localStorage.setItem('dndtools_saved_parties', JSON.stringify(this.savedParties))
+      await dataService.patchUserPrefs({ savedParties: this.savedParties })
     },
 
     portrait(name) {
@@ -256,10 +262,41 @@ export default {
       const newRolls = {}
       for (const entry of this.allEntries) {
         const roll = dnd.roll()
-        newRolls[entry.key] = { total: roll + entry.mod }
+        newRolls[entry.key] = { total: roll + entry.mod, tiebreakOrder: 0 }
       }
+
+      // Tiebreaker: group entries sharing the same total AND same DEX mod.
+      // Within each tied group, roll d20s repeatedly until all values are unique,
+      // then assign tiebreakOrder (1 = highest = goes first). Original totals unchanged.
+      const groups = {}
+      for (const entry of this.allEntries) {
+        const r = newRolls[entry.key]
+        const gk = `${r.total}_${entry.mod}`
+        if (!groups[gk]) groups[gk] = []
+        groups[gk].push(entry.key)
+      }
+      for (const keys of Object.values(groups)) {
+        if (keys.length < 2) continue
+        let tieRolls
+        do {
+          tieRolls = keys.map((k) => ({ k, r: dnd.roll() }))
+        } while (new Set(tieRolls.map((x) => x.r)).size < keys.length)
+        tieRolls.sort((a, b) => b.r - a.r)
+        tieRolls.forEach(({ k }, i) => { newRolls[k].tiebreakOrder = i + 1 })
+      }
+
       this.rolls = newRolls
       this.phase = 'battle'
+    },
+    onToggleFriendly(key) {
+      const current = this.combatantStates[key]
+      if (!current) {
+        this.$set(this.combatantStates, key, 'friendly')
+      } else if (current === 'friendly') {
+        this.$set(this.combatantStates, key, 'neutral')
+      } else {
+        this.$delete(this.combatantStates, key)
+      }
     },
     onOverrideRoll({ key, total }) {
       this.$set(this.rolls, key, { ...this.rolls[key], total })
@@ -267,13 +304,13 @@ export default {
     onAddEnemyMidFight({ name, mod }) {
       const id = this.nextEnemyId++
       this.enemies.push({ id, name: name || this.nextAutoName(), mod })
-      // Start at 0 — player overrides via click-to-edit in the sidebar
-      this.$set(this.rolls, `enemy-${id}`, { total: 0 })
+      this.$set(this.rolls, `enemy-${id}`, { total: dnd.roll() + mod, tiebreakOrder: 0 })
     },
     exitCombat() {
       this.phase = 'setup'
       this.enemies = []
       this.rolls = {}
+      this.combatantStates = {}
       this.enemyName = ''
       this.enemyMod = 0
       this.nextEnemyId = 1

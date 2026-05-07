@@ -9,12 +9,13 @@
 // Feature data: local features.json → homebrew.json → traits API.
 
 import featuresData from '@/data/api_data_cache/features.json'
-import homebrewData from '@/data/homebrew.json'
+import staticHomebrewData from '@/data/homebrew.json'
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
 const CACHE_VERSION = 'v1'
 const CACHE_PREFIX = `dndtools_${CACHE_VERSION}_`
+const isDev = process.env.NODE_ENV === 'development'
 
 // In-memory cache: key → normalized object (or null if lookup failed)
 const memCache = new Map()
@@ -22,6 +23,23 @@ const memCache = new Map()
 // Session-level homebrew edits: name.toLowerCase() → normalized result object.
 // Updated by saveToHomebrew so changes are visible immediately without page reload.
 const homebrewEdits = new Map()
+
+// In dev, homebrew.json is fetched live from the server so edits saved during a
+// previous session are visible immediately without restarting webpack.
+// In prod, the static bundle is used (saves are not available anyway).
+let _homebrewPromise = null
+
+function getHomebrew() {
+  if (_homebrewPromise) return _homebrewPromise
+  if (isDev) {
+    _homebrewPromise = fetch(`${DATA_SERVER}/api/homebrew`)
+      .then(r => r.ok ? r.json() : staticHomebrewData)
+      .catch(() => staticHomebrewData)
+  } else {
+    _homebrewPromise = Promise.resolve(staticHomebrewData)
+  }
+  return _homebrewPromise
+}
 
 // ── localStorage helpers ──────────────────────────────────────────────────────
 
@@ -113,6 +131,7 @@ export async function lookupSpell(name) {
     memCache.set(cacheKey, hbEdit)
     return hbEdit
   }
+  const homebrewData = await getHomebrew()
   const hbSpell = (homebrewData.spells ?? []).find(
     (s) => s.name.toLowerCase() === name.toLowerCase()
   )
@@ -166,6 +185,7 @@ export async function lookupFeature(name) {
   }
 
   // 3. Homebrew / non-SRD published features
+  const homebrewData = await getHomebrew()
   const hb = homebrewData.features?.find((f) => f.name.toLowerCase() === lower)
   if (hb) {
     return {
@@ -227,6 +247,9 @@ export async function saveToHomebrew(section, data) {
     console.error(`lookupService: network error saving ${section}/${data.name}`, err)
     return false
   }
+
+  // Invalidate the live homebrew cache so the next lookup re-fetches from disk.
+  _homebrewPromise = null
 
   // Update session override so the next lookup returns new data immediately.
   const lower = data.name.toLowerCase()

@@ -545,7 +545,7 @@
     },
     "government": "None formal. Power is distributed between four major families, Clan Tetwhistle, criminal organizations, and individual dock owners. The families maintain rough balance — a power imbalance would be catastrophic for all of them and they know it. Disputes are resolved by strength, negotiation, or occasionally the implicit threat of either.",
     "layout": "Organic and chaotic. No planned quarters or districts. A natural main street of several blocks has emerged where foot traffic concentrates. Everything else is irregular blocks, opportunistic construction, and streets that exist because people kept walking the same path. Rapid expansion means buildings are beginning to appear outside the gate area.",
-    "demographics": "Highly diverse. Every major race represented. No dominant demographic — the frontier nature attracted anyone willing to make the crossing from more established cities.",
+    "demographics": "Highly diverse. Every major race represented. No dominant demographic — the frontier nature attracted anyone willing to make the crossing from more established cities. Notable exception: halfling and gnome populations are significantly above continental average at approximately 25% and 15% respectively. Both races arrived early in the second settlement and established neighborhoods before the boom. Several distinct districts exist where architecture is built to halfling and gnome scale — full neighborhoods of half-sized houses, appropriately proportioned shops and public spaces. These neighborhoods are among the most established and well-organized in the city.",
     "power_structures": {
       "major_families": [
         {
@@ -664,6 +664,13 @@
         "district": "Southern coast",
         "description": "Privately owned docks, no harbor authority. Port fees set by individual dock owners. Information about arrivals fragmented and purchasable.",
         "notes": "Smuggling is trivially easy. No unified oversight."
+      },
+      {
+        "name": "Low Roof Districts",
+        "type": "district",
+        "district": "Multiple locations throughout city",
+        "description": "Several neighborhoods built entirely to halfling and gnome scale. Half-sized houses, appropriately proportioned streets and shops. Among the oldest and best-established neighborhoods in Valdmere — both races arrived early in the second settlement before the boom and claimed their ground accordingly.",
+        "notes": "Pirra will find these neighborhoods immediately. Gaermuion family presence likely strongest here given gnome population density."
       }
     ]
   },

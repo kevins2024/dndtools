@@ -10,7 +10,6 @@ import party_items from '@/data/party_items.json'
 import world from '@/data/world.json'
 import homebrew from '@/data/homebrew.json'
 import finances from '@/data/finances.json'
-
 const SERVER_URL = ''
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -24,28 +23,6 @@ const staticTables = {
   finances,
 }
 
-// ── Cookie helpers ────────────────────────────────────────
-const COOKIE_EXPIRY_DAYS = 365
-
-function setCookie(name, value, days) {
-  const expires = new Date()
-  expires.setDate(expires.getDate() + days)
-  document.cookie = `${name}=${encodeURIComponent(
-    JSON.stringify(value)
-  )};expires=${expires.toUTCString()};path=/`
-}
-
-function getCookie(name) {
-  const match = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith(`${name}=`))
-  if (!match) return null
-  try {
-    return JSON.parse(decodeURIComponent(match.split('=')[1]))
-  } catch {
-    return null
-  }
-}
 
 const dataService = {
   tables: Object.keys(staticTables),
@@ -87,13 +64,33 @@ const dataService = {
     }
   },
 
-  // ── Persistent preferences (cookies) ─────────────────
-  saveSelectedPlayers(players) {
-    setCookie('selectedPlayers', players, COOKIE_EXPIRY_DAYS)
+  // ── User preferences ──────────────────────────────────
+  // Served from project root (not src/) so webpack never watches it.
+  // In dev: persists to disk via the Express server.
+  // In prod: no-ops silently (saved parties are a DM/dev tool).
+  async getUserPrefs() {
+    if (!isDev) return { savedParties: [] }
+    try {
+      const res = await fetch(`${SERVER_URL}/api/user_prefs`)
+      return res.ok ? res.json() : { savedParties: [] }
+    } catch {
+      return { savedParties: [] }
+    }
   },
 
-  loadSelectedPlayers() {
-    return getCookie('selectedPlayers') ?? []
+  async patchUserPrefs(updates) {
+    if (!isDev) return
+    const current = await this.getUserPrefs()
+    const merged = { ...current, ...updates }
+    try {
+      await fetch(`${SERVER_URL}/api/user_prefs`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(merged),
+      })
+    } catch (err) {
+      console.error('dataService: failed to save user_prefs', err)
+    }
   },
 }
 

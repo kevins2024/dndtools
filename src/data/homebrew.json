@@ -2272,6 +2272,13 @@
       "action_type": "action",
       "recharge": "channel_divinity",
       "description": "As an action, expend one use of Channel Divinity to imbue one weapon you are holding with positive energy. For 1 minute: add CHA modifier to attack rolls (minimum +1), weapon counts as magical, emits bright light in 20ft radius and dim light 20ft beyond."
+    },
+    {
+      "name": "Assassinate",
+      "description": "Starting at 3rd level, you are at your deadliest when you get the drop on your enemies. You have advantage on attack rolls against any creature that hasn't taken a turn in the combat yet. In addition, any hit you score against a creature that is surprised is a critical hit.",
+      "subtitle": null,
+      "action_type": null,
+      "recharge": null
     }
   ],
   "domain_spells": {

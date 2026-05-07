@@ -11,6 +11,7 @@ const cors = require('cors')
 const app = express()
 const PORT = 3001
 const DATA_DIR = path.resolve(__dirname, './src/data')
+const PREFS_FILE = path.resolve(__dirname, './user_prefs.json')
 
 // Whitelist of allowed table names — prevents arbitrary file access
 const ALLOWED_TABLES = [
@@ -115,6 +116,28 @@ app.patch('/api/homebrew/:section', (req, res) => {
   } catch (err) {
     console.error(`Error updating homebrew ${section}:`, err.message)
     res.status(500).json({ error: 'Failed to update homebrew.json' })
+  }
+})
+
+// ── GET /api/user_prefs ──────────────────────────────────
+// Served from project root (not src/) so webpack never watches it.
+app.get('/api/user_prefs', (req, res) => {
+  try {
+    const data = fs.existsSync(PREFS_FILE)
+      ? JSON.parse(fs.readFileSync(PREFS_FILE, 'utf8'))
+      : { savedParties: [] }
+    res.json(data)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to read user_prefs.json' })
+  }
+})
+
+app.post('/api/user_prefs', (req, res) => {
+  try {
+    fs.writeFileSync(PREFS_FILE, JSON.stringify(req.body, null, 2), 'utf8')
+    res.json({ ok: true })
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to write user_prefs.json' })
   }
 })
 

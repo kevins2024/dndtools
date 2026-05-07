@@ -9,12 +9,18 @@
           v-for="(entry, i) in order"
           :key="entry.key"
           class="initiative-card"
-          :class="[entry.type, { 'is-active': activeTurn === i }]"
+          :class="[entry.type, { 'is-active': activeTurn === i, 'friendly': combatantStates[entry.key] === 'friendly', 'neutral': combatantStates[entry.key] === 'neutral' }]"
           @click="activeTurn = i"
         >
           <div class="card-portrait">
             <img v-if="entry.type === 'player'" :src="entry.image" class="portrait-img" />
-            <div v-else class="enemy-circle"></div>
+            <div
+              v-else
+              class="enemy-circle"
+              :class="combatantStates[entry.key]"
+              :title="combatantStates[entry.key] === 'friendly' ? 'Friendly — click for neutral' : combatantStates[entry.key] === 'neutral' ? 'Neutral — click for enemy' : 'Enemy — click for friendly'"
+              @click.stop="$emit('toggle-friendly', entry.key)"
+            ></div>
           </div>
 
           <div class="card-info">
@@ -155,10 +161,11 @@ export default {
   components: { CharacterCombatPanel },
 
   props: {
-    order: { type: Array, required: true },
+    order:           { type: Array,  required: true },
+    combatantStates: { type: Object, default: () => ({}) },
   },
 
-  emits: ['override-roll', 'add-enemy'],
+  emits: ['override-roll', 'add-enemy', 'toggle-friendly'],
 
   data() {
     return {
@@ -324,8 +331,10 @@ export default {
 
 .initiative-card:hover       { background: var(--color-bg-surface); }
 .initiative-card.is-active   { background: var(--color-bg-surface-alt); }
-.initiative-card.player.is-active { border-left: 3px solid var(--color-accent); }
-.initiative-card.enemy.is-active  { border-left: 3px solid var(--color-text-danger); }
+.initiative-card.player.is-active          { border-left: 3px solid var(--color-accent); }
+.initiative-card.enemy.is-active           { border-left: 3px solid var(--color-text-danger); }
+.initiative-card.enemy.friendly.is-active  { border-left: 3px solid #4a9e6b; }
+.initiative-card.enemy.neutral.is-active   { border-left: 3px solid #c9952a; }
 
 .card-portrait {
   flex-shrink: 0;
@@ -348,6 +357,18 @@ export default {
   border-radius: 50%;
   background: #6b2020;
   border: 2px solid var(--color-text-danger);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.enemy-circle.friendly {
+  background: #1e4d2e;
+  border-color: #4a9e6b;
+}
+
+.enemy-circle.neutral {
+  background: #4d3d0a;
+  border-color: #c9952a;
 }
 
 .card-info   { flex: 1; min-width: 0; }
