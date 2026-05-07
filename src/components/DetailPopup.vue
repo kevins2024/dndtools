@@ -27,6 +27,13 @@
           <span class="dp-field-value">{{ f.value }}</span>
         </div>
       </div>
+      <div v-if="displaySpellList.length" class="dp-spell-list">
+        <span
+          v-for="cls in displaySpellList"
+          :key="cls"
+          class="dp-spell-list-chip"
+        >{{ cls }}</span>
+      </div>
       <div class="dp-desc">
         <template v-if="displayDescription">{{ displayDescription }}</template>
         <span v-else class="dp-no-desc">No description available — click Edit to add one.</span>
@@ -48,6 +55,19 @@
             <label class="dp-edit-label">Components<input v-model="draft.components" class="dp-edit-input" placeholder="e.g. V, S" /></label>
             <label class="dp-edit-label">Save<input v-model="draft.save" class="dp-edit-input" placeholder="e.g. Constitution" /></label>
             <label class="dp-edit-label">Damage Type<input v-model="draft.damage_type" class="dp-edit-input" placeholder="e.g. Psychic" /></label>
+          </div>
+          <div class="dp-edit-field-group">
+            <div class="dp-field-group-label">Spell List</div>
+            <div class="dp-class-chips">
+              <button
+                v-for="cls in spellClasses"
+                :key="cls"
+                type="button"
+                class="dp-class-chip"
+                :class="{ active: draftSpellList.includes(cls) }"
+                @click="toggleSpellClass(cls)"
+              >{{ cls }}</button>
+            </div>
           </div>
         </template>
 
@@ -95,8 +115,8 @@ export default {
       saving: false,
       saveError: null,
       draft: {},
-      // After a successful save, override the display with these values.
       savedData: null,
+      spellClasses: ['Artificer', 'Bard', 'Cleric', 'Druid', 'Paladin', 'Ranger', 'Sorcerer', 'Warlock', 'Wizard'],
     }
   },
 
@@ -108,6 +128,13 @@ export default {
     displayDescription() {
       if (this.savedData) return this.savedData.description
       return this.item.description
+    },
+    draftSpellList() {
+      return Array.isArray(this.draft.spell_list) ? this.draft.spell_list : []
+    },
+    displaySpellList() {
+      const src = this.savedData ?? (this.item.editable ?? {})
+      return Array.isArray(src.spell_list) ? src.spell_list : []
     },
     displayFields() {
       if (this.savedData && this.item.itemType === 'spell') {
@@ -135,6 +162,13 @@ export default {
   },
 
   methods: {
+    toggleSpellClass(cls) {
+      const current = [...this.draftSpellList]
+      const idx = current.indexOf(cls)
+      if (idx >= 0) current.splice(idx, 1)
+      else current.push(cls)
+      this.$set(this.draft, 'spell_list', current)
+    },
     onClose() {
       this.editing = false
       this.savedData = null
@@ -381,5 +415,65 @@ export default {
   font-size: var(--font-size-tiny);
   color: #c0392b;
   margin: 0;
+}
+
+/* ── Spell list (view mode) ── */
+.dp-spell-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.dp-spell-list-chip {
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  background: transparent;
+  letter-spacing: 0.04em;
+}
+
+/* ── Spell list (edit mode) ── */
+.dp-edit-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.dp-field-group-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-low);
+}
+
+.dp-class-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.dp-class-chip {
+  font-size: var(--font-size-tiny);
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-panel);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+}
+
+.dp-class-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.dp-class-chip.active {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
 </style>

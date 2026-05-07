@@ -79,7 +79,8 @@
       </div>
     </aside>
 
-    <!-- Turn panel -->
+    <!-- Right column: turn panel + dice roller -->
+    <div class="battle-right">
     <main class="turn-panel">
 
       <!-- Player turn -->
@@ -88,6 +89,20 @@
           <span class="panel-name">{{ activeChar.name }}</span>
           <span class="panel-subtitle">{{ activeChar.class_breakdown || (activeChar.class + ' ' + activeChar.level) }}</span>
           <span class="panel-hp">{{ playerHp(activeChar.name) }} HP</span>
+        </div>
+
+        <div class="section-label">HP</div>
+        <div class="damage-tracker">
+          <div class="damage-summary">
+            <span class="damage-taken" :class="{ 'hp-low': playerCurrentHp(activeChar.name) <= 0 }">{{ playerCurrentHp(activeChar.name) }}</span>
+            <span class="damage-taken-label">/ {{ activeChar.hp_max }} HP</span>
+          </div>
+          <div class="damage-row">
+            <input v-model.number="playerDmgInput" class="field dmg-field" type="number" placeholder="Damage" min="0" @keyup.enter="applyPlayerDamage" />
+            <button class="add-btn" :disabled="!playerDmgInput" @click="applyPlayerDamage">Apply</button>
+            <input v-model.number="playerHealInput" class="field dmg-field heal-field" type="number" placeholder="Heal" min="0" @keyup.enter="applyPlayerHeal" />
+            <button class="heal-btn" :disabled="!playerHealInput" @click="applyPlayerHeal">Heal</button>
+          </div>
         </div>
 
         <CharacterCombatPanel :character="activeChar" />
@@ -129,6 +144,7 @@
             >
               Reset
             </button>
+            <button class="remove-enemy-btn" title="Remove from initiative" @click="$emit('remove-enemy', activeEntry.key)">✕ Remove</button>
           </div>
 
           <div class="max-hp-row">
@@ -148,33 +164,41 @@
       <div v-else class="panel-empty">Select a combatant to view their turn</div>
 
     </main>
+
+    <div class="dice-bar">
+      <DiceRoller />
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
-import characters from '@/data/characters.json'
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
+import DiceRoller from '@/components/DiceRoller.vue'
 
 export default {
   name: 'Battle',
 
-  components: { CharacterCombatPanel },
+  components: { CharacterCombatPanel, DiceRoller },
 
   props: {
     order:           { type: Array,  required: true },
     combatantStates: { type: Object, default: () => ({}) },
   },
 
-  emits: ['override-roll', 'add-enemy', 'toggle-friendly'],
+  emits: ['override-roll', 'add-enemy', 'toggle-friendly', 'remove-enemy'],
 
   data() {
     return {
       activeTurn:    0,
       editingKey:    null,
       overrideValue: null,
-      enemyHp:       {},
-      damageInput:   null,
-      maxHpInput:    null,
+      enemyHp:        {},
+      damageInput:    null,
+      maxHpInput:     null,
+      playerHpDelta:  {},
+      playerDmgInput: null,
+      playerHealInput: null,
       newEnemyName:  '',
       newEnemyMod:   0,
     }
@@ -186,7 +210,7 @@ export default {
     },
     activeChar() {
       if (!this.activeEntry || this.activeEntry.type !== 'player') return null
-      return characters.find((c) => c.name === this.activeEntry.name) ?? null
+      return this.$store.state.characters.find((c) => c.name === this.activeEntry.name) ?? null
     },
     activeEnemyHp() {
       if (!this.activeEntry || this.activeEntry.type !== 'enemy') return null
@@ -207,9 +231,30 @@ export default {
   methods: {
     // ── Player HP display ──
     playerHp(name) {
-      const char = characters.find((c) => c.name === name)
+      const char = this.$store.state.characters.find((c) => c.name === name)
       if (!char) return '—'
-      return `${char.hp_current}/${char.hp_max}`
+      const delta = this.playerHpDelta[name] ?? 0
+      return `${char.hp_current - delta}/${char.hp_max}`
+    },
+    playerCurrentHp(name) {
+      const char = this.$store.state.characters.find((c) => c.name === name)
+      if (!char) return null
+      return char.hp_current - (this.playerHpDelta[name] ?? 0)
+    },
+    applyPlayerDamage() {
+      const amount = Number(this.playerDmgInput)
+      if (!amount || amount <= 0 || !this.activeChar) return
+      const name = this.activeChar.name
+      this.$set(this.playerHpDelta, name, (this.playerHpDelta[name] ?? 0) + amount)
+      this.playerDmgInput = null
+    },
+    applyPlayerHeal() {
+      const amount = Number(this.playerHealInput)
+      if (!amount || amount <= 0 || !this.activeChar) return
+      const name = this.activeChar.name
+      const newDelta = Math.max(0, (this.playerHpDelta[name] ?? 0) - amount)
+      this.$set(this.playerHpDelta, name, newDelta)
+      this.playerHealInput = null
     },
 
     // ── Enemy damage display (sidebar) ──
@@ -500,6 +545,14 @@ export default {
 
 .add-enemy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
+/* ── Right column ── */
+.battle-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 /* ── Turn Panel ── */
 .turn-panel {
   flex: 1;
@@ -508,6 +561,15 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+/* ── Dice bar ── */
+.dice-bar {
+  flex-shrink: 0;
+  height: 9rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-panel);
+  overflow: hidden;
 }
 
 .panel-header {
@@ -616,6 +678,39 @@ export default {
 
 .reset-btn:hover:not(:disabled) { border-color: var(--color-text-danger); color: var(--color-text-danger); }
 .reset-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.heal-field { border-color: #2d5a3d; }
+.heal-field:focus { border-color: #4a9e6b; }
+
+.heal-btn {
+  padding: 0.35rem 0.75rem;
+  background: var(--color-bg-surface-alt);
+  border: 1px solid #2d5a3d;
+  border-radius: 4px;
+  color: #4a9e6b;
+  font-size: var(--font-size-small);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.heal-btn:hover:not(:disabled) { background: #1e4d2e; border-color: #4a9e6b; }
+.heal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.hp-low { color: var(--color-text-danger); }
+
+.remove-enemy-btn {
+  margin-left: auto;
+  padding: 0.35rem 0.6rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-low);
+  font-size: var(--font-size-small);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.remove-enemy-btn:hover { border-color: var(--color-text-danger); color: var(--color-text-danger); }
 
 /* ── Panel Empty ── */
 .panel-empty {

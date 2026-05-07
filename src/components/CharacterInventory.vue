@@ -1,5 +1,38 @@
 <template>
   <div class="inventory-manager">
+
+    <!-- Search bar -->
+    <div class="search-section">
+      <input
+        v-model="itemSearch"
+        class="search-input"
+        placeholder="Search all items by name…"
+      />
+      <div v-if="itemSearch.trim()" class="search-results">
+        <div v-if="searchResults.length === 0" class="search-empty">
+          No items match "{{ itemSearch }}"
+        </div>
+        <div
+          v-for="item in searchResults"
+          :key="item.id"
+          class="search-result-row"
+        >
+          <span class="sr-name">{{ item.name }}</span>
+          <span class="sr-status">{{ itemStatus(item) }}</span>
+          <button
+            class="act-btn sr-take-btn"
+            :disabled="item.carried_by === character.name || item.equipped_by === character.name"
+            @click="takeItem(item)"
+          >
+            {{ item.carried_by === character.name || item.equipped_by === character.name ? 'Yours' : 'Take' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columns -->
+    <div class="inv-columns">
+
     <!-- Left: This character -->
     <div class="inv-column">
       <div class="col-title">{{ character.name }}</div>
@@ -146,6 +179,8 @@
         </div>
       </div>
     </div>
+
+    </div> <!-- /inv-columns -->
 
     <div
       v-if="deleteDialogOpen"
@@ -329,10 +364,16 @@ export default {
     attunedCount() {
       return this.attunedItems.length
     },
+    searchResults() {
+      const q = this.itemSearch.trim().toLowerCase()
+      if (!q) return []
+      return this.allItems.filter((i) => i.name.toLowerCase().includes(q))
+    },
   },
 
   data() {
     return {
+      itemSearch: '',
       deleteDialogOpen: false,
       deleteCandidate: null,
       deleteSaleValue: '',
@@ -342,6 +383,18 @@ export default {
   },
 
   methods: {
+    itemStatus(item) {
+      if (item.equipped_by) return `Equipped by ${item.equipped_by}`
+      if (item.carried_by && item.carried_by !== 'party') return `Carried by ${item.carried_by}`
+      return 'Party Pool'
+    },
+    takeItem(item) {
+      this.$store.commit('UPDATE_ITEM', {
+        ...item,
+        carried_by: this.character.name,
+        equipped_by: null,
+      })
+    },
     slotCapacity(slot) {
       return this.multiSlotTypes.includes(slot) ? 2 : 1
     },
@@ -359,8 +412,6 @@ export default {
       const slot = item.slot || item.type || 'unknown'
       const count = this.slotCounts[slot] || 0
       if (count >= this.slotCapacity(slot)) return false
-      // Check attunement limit: max 3 attuned items per character
-      if (item.needs_attunement && this.attunedCount >= 3) return false
       return true
     },
     cannotEquipReason(item) {
@@ -368,8 +419,6 @@ export default {
       const slot = item.slot || item.type || 'unknown'
       const count = this.slotCounts[slot] || 0
       if (count >= this.slotCapacity(slot)) return `${slot} slot full`
-      if (item.needs_attunement && this.attunedCount >= 3)
-        return 'Attunement limit (3/3)'
       return null
     },
     equip(item) {
@@ -436,9 +485,100 @@ export default {
 <style scoped>
 .inventory-manager {
   display: flex;
-  gap: 1vw;
+  flex-direction: column;
   height: 100%;
   padding: 1vh 1vw;
+  gap: 0.6vh;
+  overflow: hidden;
+}
+
+/* ── Search ── */
+.search-section {
+  flex-shrink: 0;
+}
+
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.6rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  font-family: var(--font-body);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.search-results {
+  margin-top: 0.4vh;
+  max-height: 12rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar) transparent;
+}
+
+.search-empty {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-low);
+  font-style: italic;
+  padding: 0.3rem 0.4rem;
+}
+
+.search-result-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  font-size: var(--font-size-small);
+}
+
+.sr-name {
+  flex: 1;
+  color: var(--color-text);
+}
+
+.sr-status {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+}
+
+.sr-take-btn {
+  padding: 2px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+  background: var(--color-bg-panel);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sr-take-btn:not(:disabled):hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.sr-take-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ── Columns wrapper ── */
+.inv-columns {
+  display: flex;
+  gap: 1vw;
+  flex: 1;
   overflow: hidden;
 }
 

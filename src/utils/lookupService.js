@@ -82,6 +82,9 @@ function normalizeSpell(data) {
     components: Array.isArray(data.components) ? data.components.join(', ') : (data.components ?? null),
     save: data.dc?.dc_type?.name ?? (typeof data.save === 'object' ? data.save?.stat?.toUpperCase() : data.save) ?? null,
     damage_type: data.damage?.damage_type?.name ?? data.damage_type ?? null,
+    spell_list: Array.isArray(data.classes)
+      ? data.classes.map((c) => (typeof c === 'string' ? c : c.name)).filter(Boolean)
+      : (Array.isArray(data.spell_list) ? data.spell_list : null),
   }
 }
 

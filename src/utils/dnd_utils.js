@@ -159,8 +159,8 @@ export const dnd = {
       const armorData = ARMOR_BASE_AC[armorItem.armor_type]
       const category = armorData?.category ?? armorItem.armor_type
       const armorBaseAc = armorItem.armor_base_ac ?? armorData?.base ?? 10
-      const magicBonus = armorItem.magic_bonus ?? 0
-      const magicStr = magicBonus ? `, +${magicBonus} magic` : ''
+      const magicBonus = armorItem.enhancement_bonus ?? 0
+      const magicStr = magicBonus ? `, +${magicBonus} enhancement` : ''
 
       switch (category) {
         case 'heavy':
@@ -194,8 +194,12 @@ export const dnd = {
     }
 
     const shieldItem = items.find((i) => mine(i) && i.armor_type === 'shield')
-    const shieldBonus = shieldItem ? 2 + (shieldItem.magic_bonus ?? 0) : 0
-    if (shieldItem) steps.push(`${shieldItem.name} (${dnd.signed(shieldBonus)})`)
+    const shieldEnhancement = shieldItem ? (shieldItem.enhancement_bonus ?? 0) : 0
+    const shieldBonus = shieldItem ? 2 + shieldEnhancement : 0
+    if (shieldItem) {
+      const shieldStr = shieldEnhancement ? `, +${shieldEnhancement} enhancement` : ''
+      steps.push(`${shieldItem.name} (${dnd.signed(shieldBonus)}${shieldStr})`)
+    }
 
     // Per-item AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
     for (const item of items.filter(mine)) {
@@ -373,7 +377,7 @@ export const dnd = {
     const props = dnd._weaponProps(weapon)
     const statMod = dnd._weaponStatMod(character, weapon, partyItems)
     const prof = dnd._prof(character, bonuses)
-    const magic = weapon.magic_bonus ?? 0
+    const magic = weapon.enhancement_bonus ?? 0
     const typeBonus = props.weapon_type === 'ranged'
       ? (bonuses.ranged_attack ?? 0)
       : (bonuses.melee_attack ?? 0)
@@ -384,7 +388,7 @@ export const dnd = {
     const { bonuses } = dnd.resolveStats(character, partyItems)
     const props = dnd._weaponProps(weapon)
     const statMod = dnd._weaponStatMod(character, weapon, partyItems)
-    const magic = weapon.magic_bonus ?? 0
+    const magic = weapon.enhancement_bonus ?? 0
     const rangedBonus = props.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
     return statMod + magic + rangedBonus
   },

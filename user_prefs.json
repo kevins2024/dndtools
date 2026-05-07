@@ -1,3 +1,17 @@
 {
-  "savedParties": []
+  "savedParties": [
+    {
+      "name": "East_full",
+      "members": [
+        "Lexica",
+        "Kessara",
+        "Vaz",
+        "Denna",
+        "Enauweyn",
+        "Tackett",
+        "Sorra",
+        "Ferghus"
+      ]
+    }
+  ]
 }

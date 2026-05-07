@@ -23,10 +23,11 @@
       <div v-if="!activeContextComponent" class="context-placeholder">{{ activeContextLabel }}</div>
     </main>
 
-    <!-- Dice Drawer -->
-    <Drawer toggle-title="Toggle dice roller">
+    <!-- Dice Drawer (hidden during combat) -->
+    <Drawer v-if="!isCombat" toggle-title="Toggle dice roller">
       <DiceRoller />
     </Drawer>
+
 
     <!-- Save Dialog -->
     <SaveDialog :open="saveDialogOpen" @close="saveDialogOpen = false" />
@@ -76,6 +77,9 @@ export default {
   },
 
   computed: {
+    isCombat() {
+      return this.activeContext === 'combat'
+    },
     activeContextLabel() {
       const ctx = this.contexts.find((c) => c.id === this.activeContext)
       return ctx ? ctx.label : ''

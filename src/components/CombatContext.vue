@@ -117,7 +117,7 @@
 
     <!-- ── Battle phase ── -->
     <template v-else>
-      <Battle class="battle-fill" :order="initiativeOrder" :combatant-states="combatantStates" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" @toggle-friendly="onToggleFriendly" />
+      <Battle class="battle-fill" :order="initiativeOrder" :combatant-states="combatantStates" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" @toggle-friendly="onToggleFriendly" @remove-enemy="onRemoveEnemy" />
       <div class="roll-bar">
         <button class="exit-btn" @click="exitCombat">Exit Combat</button>
         <button class="back-btn" @click="phase = 'setup'">← Back to Setup</button>
@@ -300,6 +300,11 @@ export default {
     },
     onOverrideRoll({ key, total }) {
       this.$set(this.rolls, key, { ...this.rolls[key], total })
+    },
+    onRemoveEnemy(key) {
+      const id = parseInt(key.replace('enemy-', ''))
+      this.enemies = this.enemies.filter((e) => e.id !== id)
+      this.$delete(this.rolls, key)
     },
     onAddEnemyMidFight({ name, mod }) {
       const id = this.nextEnemyId++

@@ -31,7 +31,7 @@ export default {
 
   methods: {
     toggle() {
-      if (!this.breakdown) this.breakdown = this.explain()
+      if (!this.open) this.breakdown = this.explain()
       this.open = !this.open
       if (this.open) {
         document.addEventListener('click', this.close, { once: true })

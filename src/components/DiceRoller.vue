@@ -16,9 +16,14 @@
           {{ die === 2 ? 'coin' : `d${die}` }}
         </button>
         <label class="advantage-label">
-          <input type="checkbox" v-model="advantage" />
+          <input type="checkbox" v-model="advantage" @change="onAdvantageChange" />
           Advantage
         </label>
+        <label class="advantage-label">
+          <input type="checkbox" v-model="disadvantage" @change="onDisadvantageChange" />
+          Disadvantage
+        </label>
+        <button class="clear-btn" :disabled="!history.length && !current" @click="clearHistory">Clear</button>
       </div>
     </div>
 
@@ -89,21 +94,30 @@ export default {
       coin_heads,
       coin_tails,
       advantage: false,
+      disadvantage: false,
       current: null,
       history: [],
     }
   },
 
   methods: {
+    onAdvantageChange() { if (this.advantage) this.disadvantage = false },
+    onDisadvantageChange() { if (this.disadvantage) this.advantage = false },
+    clearHistory() {
+      this.history = []
+      this.current = null
+    },
     roll(sides) {
       const rand = () => Math.floor(Math.random() * sides) + 1
 
       let rolls, result, display, image
+      const useAdv = this.advantage && sides === 20
+      const useDisadv = this.disadvantage && sides === 20
 
-      if (this.advantage && sides === 20) {
+      if (useAdv || useDisadv) {
         rolls = [rand(), rand()]
-        result = Math.max(...rolls)
-        display = `${result} ↑`
+        result = useAdv ? Math.max(...rolls) : Math.min(...rolls)
+        display = `${result} ${useAdv ? '↑' : '↓'}`
         image = this.diceImages[sides]
       } else {
         rolls = [rand()]
@@ -125,7 +139,7 @@ export default {
         result,
         display,
         image,
-        advantage: this.advantage && sides === 20,
+        advantage: useAdv || useDisadv,
       }
 
       if (this.current) {
@@ -208,6 +222,21 @@ export default {
   accent-color: var(--color-accent);
   cursor: pointer;
 }
+
+.clear-btn {
+  margin-left: 0.4vw;
+  padding: 3px 10px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-low);
+  font-size: var(--font-size-label);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.clear-btn:hover:not(:disabled) { border-color: var(--color-text-danger); color: var(--color-text-danger); }
+.clear-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ── Roll Area ── */
 .roll-area {

@@ -1,5 +1,5 @@
 // Canonical 5e weapon properties, keyed by weapon_category on each item.
-// Items only store what differs from these defaults (magic_bonus, damage_dice override, etc.)
+// Items only store what differs from these defaults (enhancement_bonus, damage_dice override, etc.)
 // weapon_type: 'melee' | 'ranged'
 // versatile weapons have damage_dice_2h for the two-handed grip
 export const WEAPON_PROPS = {
@@ -49,7 +49,7 @@ export const WEAPON_PROPS = {
 
 // Standard 5e armor base AC, keyed by armor type name (lowercase).
 // Add armor_type to each armor item in party_items.json to use this lookup.
-// magic_bonus on the item is added on top of base.
+// enhancement_bonus on the item is added on top of base.
 // Truly homebrew armor with no equivalent can use armor_base_ac directly on the item.
 export const ARMOR_BASE_AC = {
   // Light — full DEX mod

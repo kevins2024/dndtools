@@ -64,6 +64,40 @@
       </div>
     </div>
 
+    <!-- Feats -->
+    <template v-if="visibleFeats.length || hiddenFeats.length">
+      <div class="feat-header">
+        <span class="section-label">Feats</span>
+        <button
+          v-if="hiddenFeats.length"
+          class="show-hidden-toggle"
+          @click="showHiddenFeats = !showHiddenFeats"
+        >{{ showHiddenFeats ? 'collapse hidden' : `${hiddenFeats.length} hidden` }}</button>
+      </div>
+      <div class="pill-row">
+        <span
+          v-for="feat in visibleFeats"
+          :key="feat.name"
+          class="feat-pill"
+          @click="openFeaturePopup(feat)"
+        >
+          {{ feat.name }}
+          <button class="feat-action" title="Hide from battle" @click.stop="toggleFeatHidden(feat, true)">×</button>
+        </span>
+        <template v-if="showHiddenFeats">
+          <span
+            v-for="feat in hiddenFeats"
+            :key="feat.name"
+            class="feat-pill feat-pill--hidden"
+            @click="openFeaturePopup(feat)"
+          >
+            {{ feat.name }}
+            <button class="feat-action feat-action--restore" title="Show in battle" @click.stop="toggleFeatHidden(feat, false)">↩</button>
+          </span>
+        </template>
+      </div>
+    </template>
+
     <!-- Spells -->
     <template v-if="spellGroups.length">
       <div class="section-label">Spells</div>
@@ -112,6 +146,7 @@ export default {
     return {
       popupOpen: false,
       popupItem: null,
+      showHiddenFeats: false,
     }
   },
 
@@ -185,7 +220,7 @@ export default {
       const weapons = this.equippedItems.filter((i) => i.type === 'weapon')
       const summaries = weapons.map((w) => {
         const props = dnd._weaponProps(w)
-        const magic = w.magic_bonus ?? 0
+        const magic = w.enhancement_bonus ?? 0
         let statMod, statDesc
         if (props.finesse) {
           statMod = Math.max(strMod, dexMod)
@@ -248,6 +283,12 @@ export default {
       return summaries
     },
 
+    visibleFeats() {
+      return (this.character.features ?? []).filter((f) => f.type === 'feat' && !f.battle_hidden)
+    },
+    hiddenFeats() {
+      return (this.character.features ?? []).filter((f) => f.type === 'feat' && f.battle_hidden)
+    },
     featureGroups() {
       const features = (this.character.features ?? []).filter((f) => f.type !== 'feat')
       const TYPE_ORDER = ['feature', 'maneuver']
@@ -264,7 +305,10 @@ export default {
     },
 
     spellGroups() {
-      const spells = this.character.spells ?? []
+      const spells = [
+        ...(this.character.spells ?? []),
+        ...(this.character.artillerist_spells?.spells ?? []).map((s) => ({ ...s, domain: true })),
+      ]
       const map = {}
       for (const s of spells) {
         const lvl = s.level ?? 0
@@ -278,6 +322,16 @@ export default {
   },
 
   methods: {
+    toggleFeatHidden(feat, hidden) {
+      const updatedFeatures = (this.character.features ?? []).map((f) =>
+        f.name === feat.name && f.type === 'feat' ? { ...f, battle_hidden: hidden } : f
+      )
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, features: updatedFeatures },
+      })
+    },
+
     async openSpellPopup(spell) {
       const data = await lookupSpell(spell.name)
       const fields = []
@@ -307,6 +361,7 @@ export default {
           components: data?.components ?? null,
           save: data?.save ?? null,
           damage_type: data?.damage_type ?? null,
+          spell_list: data?.spell_list ?? null,
         },
       }
       this.popupOpen = true
@@ -494,4 +549,62 @@ export default {
   border-style: dashed;
   opacity: 0.8;
 }
+
+/* ── Feats ── */
+.feat-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.show-hidden-toggle {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-low);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.show-hidden-toggle:hover { color: var(--color-text-muted); }
+
+.feat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: var(--font-size-tiny);
+  padding: 0.15rem 0.3rem 0.15rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-panel);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.feat-pill:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+.feat-pill--hidden {
+  opacity: 0.35;
+  border-style: dashed;
+}
+
+.feat-action {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: var(--font-size-tiny);
+  color: inherit;
+  line-height: 1;
+  opacity: 0.5;
+  transition: opacity 0.12s;
+}
+
+.feat-action:hover { opacity: 1; }
+
+.feat-action--restore { font-size: 10px; }
 </style>

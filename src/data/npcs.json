@@ -267,7 +267,7 @@
         "weapon_type": "melee",
         "finesse": false,
         "damage_dice": "2d6",
-        "magic_bonus": 2
+        "enhancement_bonus": 2
       },
       {
         "name": "Gauntlets of Ogre Power",
