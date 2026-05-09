@@ -51,6 +51,7 @@ import Drawer from './components/Drawer.vue'
 import SaveDialog from './components/SaveDialog.vue'
 import CombatContext from './components/CombatContext.vue'
 import CharacterContext from './components/CharacterContext.vue'
+import MapViewer from './components/MapViewer.vue'
 
 export default {
   name: 'AppLayout',
@@ -61,6 +62,7 @@ export default {
     SaveDialog,
     CombatContext,
     CharacterContext,
+    MapViewer,
   },
 
   data() {
@@ -70,6 +72,7 @@ export default {
       contexts: [
         { id: 'combat',    label: 'Combat',    component: 'CombatContext' },
         { id: 'character', label: 'Character', component: 'CharacterContext' },
+        { id: 'map',       label: 'Map',       component: 'MapViewer' },
         { id: 'world',     label: 'World',     component: null },
         { id: 'story',     label: 'Story',     component: null },
         { id: 'tools',     label: 'Tools',     component: null },

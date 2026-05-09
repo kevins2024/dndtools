@@ -1,0 +1,16 @@
+[
+  {
+    "id": "lymesmarch_base",
+    "name": "Lymesmarch",
+    "svgPath": "/maps/lymesmarch_base.svg",
+    "layers": [
+      { "id": "outline",  "label": "Outline", "color": "#666666", "strokeWidth": 0.525, "isOutline": true },
+      { "id": "path4",   "label": "Path A",  "prefix": "A", "color": "#a0b300", "strokeWidth": 0.794 },
+      { "id": "path5",   "label": "Path B",  "prefix": "B", "color": "#ad5353", "strokeWidth": 0.794 },
+      { "id": "path6",   "label": "Path C",  "prefix": "C", "color": "#f1eb0f", "strokeWidth": 0.794 },
+      { "id": "path7",   "label": "Path D",  "prefix": "D", "color": "#0f8cf1", "strokeWidth": 0.794 },
+      { "id": "path8",   "label": "Path E",  "prefix": "E", "color": "#7f0ff1", "strokeWidth": 0.794 },
+      { "id": "path9",   "label": "Path F",  "prefix": "F", "color": "#f00ff1", "strokeWidth": 0.794 }
+    ]
+  }
+]
