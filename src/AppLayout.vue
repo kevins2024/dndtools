@@ -13,6 +13,7 @@
           {{ ctx.label }}
         </button>
       </nav>
+      <button class="rest-btn" title="Long rest — recovers all HP and spell slots" @click="longRest">Long Rest</button>
     </header>
 
     <!-- Context Area -->
@@ -76,6 +77,12 @@ export default {
     }
   },
 
+  methods: {
+    longRest() {
+      this.$store.commit('LONG_REST')
+    },
+  },
+
   computed: {
     isCombat() {
       return this.activeContext === 'combat'
@@ -122,6 +129,23 @@ export default {
 .context-nav {
   display: flex;
   gap: 0.25rem;
+  flex: 1;
+}
+
+.rest-btn {
+  padding: 0.2rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.rest-btn:hover {
+  border-color: #4a9e6b;
+  color: #4a9e6b;
 }
 
 .ctx-btn {

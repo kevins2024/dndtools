@@ -432,7 +432,7 @@
     "description": "Southernmost city on the western coast. Warmest and driest. Mediterranean feel — olive trees, stone architecture built for heat. Most cosmopolitan city in the region. 4-5 days sail east of Ravenquay.",
     "climate": "Warmest and driest. Mediterranean feel.",
     "faction_presence": ["Argentveil City Council"],
-    "notes": "Chartered Investigators Act 15 years old, functioning, respected — model for Ravenquay charter. Beyond just being mediterranean style, Argentveil is also very magic-heavy. Dragonborn make up 40% of the population, many elves have found homes here along with plenty of others. Dwarves and orc-kin are now super rare. Various teiflings can be seen from time to time as well.  There are tall spires unlike any other city and a few districts have an abundance of wealth while others fill in the middle classes and the struggling. The docks are the safest in Aethermoor, crime finds its place elsewhere. Orvath lies a 6 day journed north/northeast over land into the drier climes, a fairly mild desert region.",
+    "notes": "Chartered Investigators Act 15 years old, functioning, respected — model for Ravenquay charter. Beyond just being mediterranean style, Argentveil is also very magic-heavy. Dragonborn make up 40% of the population, many elves have found homes here along with plenty of others. Dwarves and orc-kin are now super rare. Various teiflings can be seen from time to time as well.  There are tall spires unlike any other city and a few districts have an abundance of wealth while others fill in the middle classes and the struggling. The docks are the safest in Kaemahz, crime finds its place elsewhere. Orvath lies a 6 day journed north/northeast over land into the drier climes, a fairly mild desert region.",
     "districts": [],
     "locations": [
       {
@@ -449,7 +449,7 @@
         "subtype": "island",
         "region": "Argentveil coastal waters",
         "status": "protected",
-        "notes": "Small island approximately two hundred yards across at widest point. Ancient stone watchtower at center, highest point on the island. One natural landing spot on the south face, cliff or rock everywhere else. Home to a selkie community with historical and legal claim to the island predating Argentveil's establishment. Claim formalized through Dawn Blades intervention and Galealzre's council work, first legal framework established for aquatic species land rights in the Western Reach. Selkies maintain the island and the watchtower. Strange lights reported from the tower periodically — confirmed as selkie practice rather than threat. Sael knows the approach well."
+        "notes": "Small island approximately two hundred yards across at widest point. Ancient stone watchtower at center, highest point on the island. One natural landing spot on the south face, cliff or rock everywhere else. Home to a selkie community with historical and legal claim to the island predating Argentveil's establishment. Claim formalized through Dawn Blades intervention and Galealzre's council work, first legal framework established for aquatic species land rights in the Lymesmarch. Selkies maintain the island and the watchtower. Strange lights reported from the tower periodically — confirmed as selkie practice rather than threat. Sael knows the approach well."
       },
       {
         "name": "The Measured Word",
@@ -719,7 +719,7 @@
     "name": "Wilderness & Roads",
     "type": "region",
     "coords": null,
-    "description": "Named wilderness locations and road features across the Western Reach.",
+    "description": "Named wilderness locations and road features across the Lymesmarch.",
     "climate": null,
     "faction_presence": [],
     "notes": "",

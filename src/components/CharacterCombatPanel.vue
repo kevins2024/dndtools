@@ -98,6 +98,24 @@
       </div>
     </template>
 
+    <!-- Spell Slots -->
+    <template v-if="spellSlotLevels.length">
+      <div class="section-label">Spell Slots</div>
+      <div class="spell-slots">
+        <div v-for="lvl in spellSlotLevels" :key="lvl.key" class="slot-level">
+          <span class="slot-level-label">{{ lvl.label }}</span>
+          <span
+            v-for="i in lvl.max"
+            :key="i"
+            class="slot-box"
+            :class="{ used: i <= lvl.max - lvl.current }"
+            :title="i <= lvl.max - lvl.current ? 'Used — click to recover' : 'Available — click to use'"
+            @click="toggleSlot(lvl.key, i - 1)"
+          ></span>
+        </div>
+      </div>
+    </template>
+
     <!-- Spells -->
     <template v-if="spellGroups.length">
       <div class="section-label">Spells</div>
@@ -304,6 +322,19 @@ export default {
       return [...known, ...other]
     },
 
+    spellSlotLevels() {
+      const slots = this.character.spell_slots
+      if (!slots) return []
+      return Object.entries(slots)
+        .map(([key, slot]) => ({
+          key,
+          label: key.replace('level_', 'L'),
+          max: slot.max,
+          current: slot.current ?? slot.max,
+        }))
+        .filter((s) => s.max > 0)
+    },
+
     spellGroups() {
       const spells = [
         ...(this.character.spells ?? []),
@@ -329,6 +360,22 @@ export default {
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
         updatedItem: { ...this.character, features: updatedFeatures },
+      })
+    },
+
+    toggleSlot(levelKey, slotIndex) {
+      const slot = this.character.spell_slots[levelKey]
+      const used = slot.max - (slot.current ?? slot.max)
+      const newCurrent = slotIndex < used
+        ? slot.current + 1  // recover slot
+        : slot.current - 1  // use slot
+      const updatedSlots = {
+        ...this.character.spell_slots,
+        [levelKey]: { ...slot, current: Math.min(slot.max, Math.max(0, newCurrent)) },
+      }
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, spell_slots: updatedSlots },
       })
     },
 
@@ -607,4 +654,42 @@ export default {
 .feat-action:hover { opacity: 1; }
 
 .feat-action--restore { font-size: 10px; }
+
+/* ── Spell Slots ── */
+.spell-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+}
+
+.slot-level {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.slot-level-label {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-low);
+  width: 1.5rem;
+  flex-shrink: 0;
+}
+
+.slot-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+
+.slot-box.used {
+  background: transparent;
+  border-color: var(--color-text-low);
+}
+
+.slot-box:hover { opacity: 0.75; }
 </style>

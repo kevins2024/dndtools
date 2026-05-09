@@ -18,6 +18,7 @@ export default new Vuex.Store({
     loaded: false,
     originals: {},
     dirtyTables: [],
+    restVersion: 0,
   },
 
   mutations: {
@@ -91,6 +92,21 @@ export default new Vuex.Store({
       if (!state.dirtyTables.includes(table)) {
         state.dirtyTables.push(table)
       }
+    },
+    LONG_REST(state) {
+      state.characters = state.characters.map((char) => {
+        const updated = { ...char, hp_current: char.hp_max }
+        if (char.spell_slots) {
+          const slots = {}
+          for (const [level, slot] of Object.entries(char.spell_slots)) {
+            slots[level] = { ...slot, current: slot.max }
+          }
+          updated.spell_slots = slots
+        }
+        return updated
+      })
+      if (!state.dirtyTables.includes('characters')) state.dirtyTables.push('characters')
+      state.restVersion += 1
     },
     DELETE_PARTY_ITEM(state, itemId) {
       const idx = state.party_items.findIndex((i) => i.id === itemId)

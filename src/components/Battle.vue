@@ -219,6 +219,9 @@ export default {
   },
 
   watch: {
+    '$store.state.restVersion'() {
+      this.playerHpDelta = {}
+    },
     // Sync maxHpInput with stored value when active entry changes
     activeEntry(entry) {
       if (entry?.type === 'enemy') {

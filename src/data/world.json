@@ -1,6 +1,6 @@
 [
   {
-    "name": "Aethermoor",
+    "name": "Tellonde",
     "calendar_constants": {
       "days_per_year": 204,
       "seasons": [
@@ -25,11 +25,11 @@
     "inspirations": {
       "religion": "Mostly set up like the Greek pantheon but with a few twists. The gods are more active and present in the world, but they don't necessarily intervene directly in mortal affairs. They have specific domains and philosophies that influence their followers, but they more often than not don't demand worship or obedience. Names are heavily influenced by Gaulic and Saxon names.",
       "cities": "Each major city should have a relatively distinct climate and culture inspired by a mix of real-world cultures but avoid the obvious ones. They need defined demographics, governments, economies, and something that sets them apart.",
-      "continents": "The group knows of five continents now but the only two with any information are Aethermoor (which is the name of the world as well, other continents won't refer to this continent in the same manner) and Yetgrese. Current plan is for Aethermoor to be a sort of standard fantasy realm continent that fulfills traditional tropes and Yetgrese is going to be purely unusual -- not a single standard city there."
+      "continents": "The group knows of five continents now but the only two with any information are Kaemahz and Yetgrese. The world is called Tellonde; other continents won't refer to Kaemahz by the world name. Current plan is for Kaemahz to be a sort of standard fantasy realm continent that fulfills traditional tropes and Yetgrese is going to be purely unusual -- not a single standard city there."
     },
     "continents": [
       {
-        "name": "Aethermoor",
+        "name": "Kaemahz",
         "calendar_system": {
           "notes": "The 8 day weeks leave 4 days leftover, which is called the Spring Festival halfweek. This is regionally celebrated as a time of renewal and community gathering, with various local traditions. The Spring Festival halfweek is not considered part of any season, but rather a transition period between Winter and Spring.",
           "days_per_week": 8
@@ -37,7 +37,7 @@
         "description": "Large continental landmass divided into five regions. note: needs updating.",
         "regions": [
           {
-            "name": "The Western Reach",
+            "name": "Lymesmarch",
             "status": "current_campaign_region",
             "climate": "Temperate maritime overall, distinct microclimates city to city.",
             "shape_note": "Wide and shallow — twice as far east-west as north-south.",
@@ -63,7 +63,7 @@
             "status": "known",
             "climate": "Warmer.",
             "player_knowledge": "limited",
-            "notes": "Distinct language entirely unrelated to Western Reach tongues. Sovi comes from here. Petra has partial fluency in Sovi's language suggesting some historical contact between regions."
+            "notes": "Distinct language entirely unrelated to Lymesmarch tongues. Sovi comes from here. Petra has partial fluency in Sovi's language suggesting some historical contact between regions."
           },
           {
             "name": "The Deep Interior",
@@ -76,7 +76,7 @@
       },
       {
         "name": "Yetgrese",
-        "description": "Second continent. 2-3 weeks sailing from Aethermoor's western coast; under 2 weeks with magical propulsion if crossing goes smoothly.",
+        "description": "Second continent. 2-3 weeks sailing from Kaemahz's western coast; under 2 weeks with magical propulsion if crossing goes smoothly.",
         "climate": "Variable regionally. Interior sea climate likely distinct from exterior coasts due to geological shelter.",
         "player_knowledge": "limited",
         "geography": {
@@ -89,20 +89,20 @@
           "target_city": "On the eastern face of the main continent, slightly north of the waterway gap, facing outward toward the open sea."
         },
         "demographics": {
-          "notes": "Humans are 15-20% of population at most. Several familiar races present but as less common or divergent subtypes — not standard Western Reach versions. Full demographic composition still being established. Do not default to human NPCs.",
+          "notes": "Humans are 15-20% of population at most. Several familiar races present but as less common or divergent subtypes — not standard Lymesmarch versions. Full demographic composition still being established. Do not default to human NPCs.",
           "candidates": [
             "lizardfolk (under consideration)",
             "divergent elf subtypes",
             "other non-standard familiar races"
           ]
         },
-        "notes": "Dangerous crossing — weather, distance, and navigation all factors. Difficult enough that most Aethermoor residents have never met anyone from there. Occasional traders make the crossing. Target city is trade-accessible but not frequently visited — arrival is noteworthy but not unprecedented."
+        "notes": "Dangerous crossing — weather, distance, and navigation all factors. Difficult enough that most Kaemahz residents have never met anyone from there. Occasional traders make the crossing. Target city is trade-accessible but not frequently visited — arrival is noteworthy but not unprecedented."
       }
     ]
   },
   {
-    "name": "The Western Reach",
-    "continent": "Aethermoor",
+    "name": "Lymesmarch",
+    "continent": "Kaemahz",
     "cities": [
       {
         "name": "Valdmere",
@@ -213,7 +213,7 @@
       "height": 40
     },
     "shape": "pentagon",
-    "shape_notes": "Top point (20,40) — furthest north. Top left coast (20,40) to (0,20). Top right coast (20,40) to (40,20). Bottom left border (0,20) to (8,0). Bottom right border (40,20) to (32,0). Bottom edge (8,0) to (32,0) — Western Reach border.",
+    "shape_notes": "Top point (20,40) — furthest north. Top left coast (20,40) to (0,20). Top right coast (20,40) to (40,20). Bottom left border (0,20) to (8,0). Bottom right border (40,20) to (32,0). Bottom edge (8,0) to (32,0) — Lymesmarch border.",
     "locations": [
       {
         "name": "Cindermarch",
@@ -222,7 +222,7 @@
           "y": 2
         },
         "type": "fortress",
-        "description": "Bottom center on border line. Military fortress, Western Reach side."
+        "description": "Bottom center on border line. Military fortress, Lymesmarch side."
       },
       {
         "name": "Harrow's Rest",
