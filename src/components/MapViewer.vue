@@ -1,10 +1,7 @@
 <template>
   <div class="map-viewer">
     <div class="map-toolbar">
-      <!-- Region buttons — always visible -->
-      <button class="map-btn" :class="{ active: showLymesmarch }" @click="toggleLymesmarch">
-        Lymesmarch
-      </button>
+      <span class="toolbar-label" style="font-weight:600;color:var(--color-text)">{{ currentMapName }}</span>
 
       <span class="toolbar-sep"></span>
 
@@ -47,6 +44,26 @@
       </template>
     </div>
 
+    <div class="map-content">
+    <aside class="map-sidebar">
+      <div class="sidebar-continent">{{ currentMapName }}</div>
+      <div class="sidebar-layers">
+        <label v-for="layer in toggleableLayers" :key="layer.id" class="layer-toggle">
+          <input type="checkbox" v-model="layerVisibility[layer.id]" />
+          {{ layer.label }}
+        </label>
+      </div>
+      <div class="sidebar-regions">
+        <button
+          v-for="r in mapRegions"
+          :key="r.id"
+          class="region-btn"
+          :class="{ active: selectedRegion === r.id }"
+          @click="selectRegion(r.id)"
+        >{{ r.name }}</button>
+      </div>
+    </aside>
+
     <div class="map-container">
       <div v-if="loading" class="map-loading">Loading map…</div>
       <svg
@@ -61,25 +78,32 @@
         @mouseleave="onMouseUp"
         @wheel.prevent="onWheel"
       >
-        <g :transform="groupTransform">
-          <!-- Region outline -->
+        <g>
+          <!-- Region overlay -->
           <path
-            v-if="showLymesmarch && lymesmarchPathD"
-            :d="lymesmarchPathD"
-            fill="none"
+            v-if="activeRegionPathD"
+            :d="activeRegionPathD"
+            fill="rgba(74,158,107,0.1)"
             stroke="#4a9e6b"
             stroke-width="0.8"
             stroke-dasharray="3,1.5"
           />
 
-          <!-- All paths -->
+          <!-- All paths (filtered by layer visibility) -->
           <path
-            v-for="p in pathDefs"
+            v-for="p in visiblePathDefs"
             :key="p.id"
             :d="p.d"
-            fill="none"
-            :stroke="p.color"
-            :stroke-width="p.strokeWidth"
+            :transform="p.transform || undefined"
+            :style="p.svgStyle"
+          />
+
+          <!-- Raw SVG layers (text, images, etc.) injected as-is -->
+          <g
+            v-for="layer in rawLayers"
+            :key="layer.id"
+            v-show="layerVisibility[layer.id]"
+            v-html="layer.innerHTML"
           />
 
           <!-- Edit mode: outline nodes -->
@@ -128,6 +152,7 @@
         </template>
       </svg>
     </div>
+    </div><!-- map-content -->
   </div>
 </template>
 
@@ -199,13 +224,17 @@ export default {
 
   data() {
     return {
+      currentMapId: '',
+      selectedRegion: null,
       viewBox: '0 0 336.72092 313.7638',
       groupTransform: '',
       loading: true,
       pathDefs: [],
+      discoveredLayers: [],
+      rawLayers: [],
+      layerVisibility: {},
       showLabels: true,
       showOutline: false,
-      showLymesmarch: false,
       showGrid: false,
       editMode: false,
       zoomLevel: 1,
@@ -217,19 +246,153 @@ export default {
   },
 
   async mounted() {
-    await this.loadMap('lymesmarch_base')
+    await this.loadMap('kaemahz_complete_normalized')
   },
 
   computed: {
+    showLymesmarch() {
+      return this.selectedRegion === 'lymesmarch'
+    },
+
+    currentMapName() {
+      return mapsData.find((m) => m.id === this.currentMapId)?.name ?? ''
+    },
+
+    mapRegions() {
+      return mapsData.find((m) => m.id === this.currentMapId)?.regions ?? []
+    },
+
+    visiblePathDefs() {
+      return this.pathDefs.filter((p) => this.layerVisibility[p.layerGroupId] !== false)
+    },
+
+    toggleableLayers() {
+      const outlineGroupIds = new Set(
+        this.pathDefs.filter((p) => p.isOutline).map((p) => p.layerGroupId)
+      )
+      return this.discoveredLayers.filter((l) => !outlineGroupIds.has(l.id))
+    },
+
     outlineNodes() {
       const outline = this.pathDefs.find((p) => p.isOutline)
       return outline ? extractNodes(outline.d) : []
     },
 
     featurePaths() {
-      return this.pathDefs
+      return this.visiblePathDefs
         .filter((p) => !p.isOutline)
         .map((p) => ({ ...p, nodes: extractNodes(p.d) }))
+    },
+
+    folPoints() {
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const bDef = this.pathDefs.find((p) => p.id === 'path5')
+      if (!outlineDef || !aDef || !bDef) return []
+      const on = extractNodes(outlineDef.d)
+      const an = extractNodes(aDef.d)
+      const bn = extractNodes(bDef.d)
+      const pts = []
+      for (let i = 0; i <= 7; i++) { if (bn[i]) pts.push(bn[i]) }
+      for (let i = 0; i <= 14; i++) { if (an[i]) pts.push(an[i]) }
+      for (let i = 78; i <= 97; i++) { if (on[i]) pts.push(on[i]) }
+      return pts
+    },
+
+    orvathPoints() {
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const cDef = this.pathDefs.find((p) => p.id === 'path6')
+      if (!aDef || !cDef) return []
+      const an = extractNodes(aDef.d)
+      const cn = extractNodes(cDef.d)
+      const pts = []
+      for (let i = 2; i <= 8; i++) { if (an[i]) pts.push(an[i]) }
+      cn.forEach((p) => pts.push(p))
+      return pts
+    },
+
+    solvaleEmpirePoints() {
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const fDef = this.pathDefs.find((p) => p.id === 'path2')
+      if (!outlineDef || !fDef) return []
+      const on = extractNodes(outlineDef.d)
+      const fn = extractNodes(fDef.d)
+      const pts = []
+      fn.forEach((p) => pts.push(p))
+      for (let i = 19; i <= 52; i++) { if (on[i]) pts.push(on[i]) }
+      return pts
+    },
+
+    aranwaldPoints() {
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const dDef = this.pathDefs.find((p) => p.id === 'path7')
+      const eDef = this.pathDefs.find((p) => p.id === 'path8')
+      const fDef = this.pathDefs.find((p) => p.id === 'path2')
+      if (!outlineDef || !dDef || !eDef || !fDef) return []
+      const on = extractNodes(outlineDef.d)
+      const dn = extractNodes(dDef.d)
+      const en = extractNodes(eDef.d)
+      const fn = extractNodes(fDef.d)
+      const pts = []
+      dn.forEach((p) => pts.push(p))
+      en.forEach((p) => pts.push(p))
+      for (let i = 15; i <= 19; i++) { if (on[i]) pts.push(on[i]) }
+      fn.forEach((p) => pts.push(p))
+      for (let i = 52; i <= 58; i++) { if (on[i]) pts.push(on[i]) }
+      return pts
+    },
+
+    birindalPoints() {
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const cDef = this.pathDefs.find((p) => p.id === 'path6')
+      const dDef = this.pathDefs.find((p) => p.id === 'path7')
+      const eDef = this.pathDefs.find((p) => p.id === 'path8')
+      if (!outlineDef || !aDef || !cDef || !dDef || !eDef) return []
+      const on = extractNodes(outlineDef.d)
+      const an = extractNodes(aDef.d)
+      const cn = extractNodes(cDef.d)
+      const dn = extractNodes(dDef.d)
+      const en = extractNodes(eDef.d)
+      const pts = []
+      pts.push(en[0], en[1])
+      dn.forEach((p) => pts.push(p))
+      for (let i = 58; i <= 77; i++) { if (on[i]) pts.push(on[i]) }
+      for (let i = 8; i <= 14; i++) { if (an[i]) pts.push(an[i]) }
+      for (let i = 0; i <= 11; i++) { if (cn[i]) pts.push(cn[i]) }
+      return pts
+    },
+
+    torwaldPoints() {
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const bDef = this.pathDefs.find((p) => p.id === 'path5')
+      const cDef = this.pathDefs.find((p) => p.id === 'path6')
+      const eDef = this.pathDefs.find((p) => p.id === 'path8')
+      if (!outlineDef || !aDef || !bDef || !cDef || !eDef) return []
+      const on = extractNodes(outlineDef.d)
+      const an = extractNodes(aDef.d)
+      const bn = extractNodes(bDef.d)
+      const cn = extractNodes(cDef.d)
+      const en = extractNodes(eDef.d)
+      const pts = []
+      for (let i = 0; i <= 2; i++) { if (an[i]) pts.push(an[i]) }
+      cn.forEach((p) => pts.push(p))
+      en.forEach((p) => pts.push(p))
+      for (let i = 12; i <= 15; i++) { if (on[i]) pts.push(on[i]) }
+      for (let i = 7; i <= 16; i++) { if (bn[i]) pts.push(bn[i]) }
+      return pts
+    },
+
+    selectedRegionPoints() {
+      if (this.selectedRegion === 'lymesmarch') return this.lymesmarchPoints
+      if (this.selectedRegion === 'fol') return this.folPoints
+      if (this.selectedRegion === 'orvath') return this.orvathPoints
+      if (this.selectedRegion === 'torwald') return this.torwaldPoints
+      if (this.selectedRegion === 'birindal') return this.birindalPoints
+      if (this.selectedRegion === 'aranwald') return this.aranwaldPoints
+      if (this.selectedRegion === 'solvale_empire') return this.solvaleEmpirePoints
+      return []
     },
 
     lymesmarchPoints() {
@@ -244,6 +407,167 @@ export default {
       if (o97 && o98) pts.push({ x: o97.x + 0.25 * (o98.x - o97.x), y: o97.y + 0.25 * (o98.y - o97.y) })
       for (let i = 98; i <= 102; i++) { if (on[i]) pts.push(on[i]) }
       return pts
+    },
+
+    folPathD() {
+      if (this.selectedRegion !== 'fol') return ''
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const bDef = this.pathDefs.find((p) => p.id === 'path5')
+      if (!outlineDef || !aDef || !bDef) return ''
+      const os = extractSegments(outlineDef.d)
+      const as_ = extractSegments(aDef.d)
+      const bs = extractSegments(bDef.d)
+      // Start at B0, forward to B7
+      let d = `M ${_f(bs[0].x)},${_f(bs[0].y)}`
+      for (let i = 1; i <= 7; i++) { if (bs[i]) d += ' ' + segFwd(bs[i]) }
+      // Connect to A0, forward to A14
+      if (as_[0]) d += ` L ${_f(as_[0].x)},${_f(as_[0].y)}`
+      for (let i = 1; i <= 14; i++) { if (as_[i]) d += ' ' + segFwd(as_[i]) }
+      // Connect to O78, follow outline forward to O97
+      if (os[78]) d += ` L ${_f(os[78].x)},${_f(os[78].y)}`
+      for (let i = 79; i <= 97; i++) { if (os[i]) d += ' ' + segFwd(os[i]) }
+      // Close via interpolated B0 connection point between O97 and O98
+      const o97 = os[97], o98 = os[98]
+      if (o97 && o98) d += ` L ${_f(o97.x + 0.25*(o98.x-o97.x))},${_f(o97.y + 0.25*(o98.y-o97.y))}`
+      return d + ' Z'
+    },
+
+    orvathPathD() {
+      if (this.selectedRegion !== 'orvath') return ''
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const cDef = this.pathDefs.find((p) => p.id === 'path6')
+      if (!aDef || !cDef) return ''
+      const as_ = extractSegments(aDef.d)
+      const cs = extractSegments(cDef.d)
+      // Start at A2, forward to A8 (A8 ≈ C0)
+      let d = `M ${_f(as_[2].x)},${_f(as_[2].y)}`
+      for (let i = 3; i <= 8; i++) { if (as_[i]) d += ' ' + segFwd(as_[i]) }
+      // Connect to C0, forward through all of path C (C_last ≈ A2)
+      if (cs[0]) d += ` L ${_f(cs[0].x)},${_f(cs[0].y)}`
+      for (let i = 1; i < cs.length; i++) { d += ' ' + segFwd(cs[i]) }
+      return d + ' Z'
+    },
+
+    solvaleEmpirePathD() {
+      if (this.selectedRegion !== 'solvale_empire') return ''
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const fDef = this.pathDefs.find((p) => p.id === 'path2')
+      if (!outlineDef || !fDef) return ''
+      const os = extractSegments(outlineDef.d)
+      const fs = extractSegments(fDef.d)
+      // F0 forward to F4
+      let d = `M ${_f(fs[0].x)},${_f(fs[0].y)}`
+      for (let i = 1; i < fs.length; i++) { d += ' ' + segFwd(fs[i]) }
+      // F4 ≈ O52: connect, reverse O52→O19 (south coast)
+      d += ` L ${_f(os[52].x)},${_f(os[52].y)}`
+      for (let i = 52; i >= 20; i--) { d += ' ' + segRev(os[i]) }
+      // O19 ≈ F0: close
+      return d + ' Z'
+    },
+
+    aranwaldPathD() {
+      if (this.selectedRegion !== 'aranwald') return ''
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const dDef = this.pathDefs.find((p) => p.id === 'path7')
+      const eDef = this.pathDefs.find((p) => p.id === 'path8')
+      const fDef = this.pathDefs.find((p) => p.id === 'path2')
+      if (!outlineDef || !dDef || !eDef || !fDef) return ''
+      const os = extractSegments(outlineDef.d)
+      const ds = extractSegments(dDef.d)
+      const es = extractSegments(eDef.d)
+      const fs = extractSegments(fDef.d)
+      // D0 forward to D2
+      let d = `M ${_f(ds[0].x)},${_f(ds[0].y)}`
+      for (let i = 1; i < ds.length; i++) { d += ' ' + segFwd(ds[i]) }
+      // D2 ≈ E1: connect, forward E2→E5
+      d += ` L ${_f(es[1].x)},${_f(es[1].y)}`
+      for (let i = 2; i < es.length; i++) { d += ' ' + segFwd(es[i]) }
+      // E5 ≈ O15: connect, forward O16→O18
+      d += ` L ${_f(os[15].x)},${_f(os[15].y)}`
+      for (let i = 16; i <= 19; i++) { if (os[i]) d += ' ' + segFwd(os[i]) }
+      // O19 ≈ F0: connect, forward F1→F4
+      d += ` L ${_f(fs[0].x)},${_f(fs[0].y)}`
+      for (let i = 1; i < fs.length; i++) { d += ' ' + segFwd(fs[i]) }
+      // F4 ≈ O52: connect, forward O53→O58
+      d += ` L ${_f(os[52].x)},${_f(os[52].y)}`
+      for (let i = 53; i <= 58; i++) { if (os[i]) d += ' ' + segFwd(os[i]) }
+      // O58 ≈ D0: close
+      return d + ' Z'
+    },
+
+    birindalPathD() {
+      if (this.selectedRegion !== 'birindal') return ''
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const cDef = this.pathDefs.find((p) => p.id === 'path6')
+      const dDef = this.pathDefs.find((p) => p.id === 'path7')
+      const eDef = this.pathDefs.find((p) => p.id === 'path8')
+      if (!outlineDef || !aDef || !cDef || !dDef || !eDef) return ''
+      const os = extractSegments(outlineDef.d)
+      const as_ = extractSegments(aDef.d)
+      const cs = extractSegments(cDef.d)
+      const ds = extractSegments(dDef.d)
+      const es = extractSegments(eDef.d)
+      // E0 → E1
+      let d = `M ${_f(es[0].x)},${_f(es[0].y)}`
+      d += ' ' + segFwd(es[1])
+      // E1 ≈ D2: connect, reverse D2→D1→D0
+      d += ` L ${_f(ds[ds.length - 1].x)},${_f(ds[ds.length - 1].y)}`
+      for (let i = ds.length - 1; i >= 1; i--) { d += ' ' + segRev(ds[i]) }
+      // D0 ≈ O58: forward O58→O77
+      d += ` L ${_f(os[58].x)},${_f(os[58].y)}`
+      for (let i = 59; i <= 77; i++) { if (os[i]) d += ' ' + segFwd(os[i]) }
+      // A little beyond O77: connect to A14, reverse A14→A8
+      d += ` L ${_f(as_[14].x)},${_f(as_[14].y)}`
+      for (let i = 14; i >= 9; i--) { d += ' ' + segRev(as_[i]) }
+      // A8 ≈ C0: connect, forward C1→C11
+      d += ` L ${_f(cs[0].x)},${_f(cs[0].y)}`
+      for (let i = 1; i <= 11; i++) { if (cs[i]) d += ' ' + segFwd(cs[i]) }
+      // C11 ≈ E0: close
+      return d + ' Z'
+    },
+
+    torwaldPathD() {
+      if (this.selectedRegion !== 'torwald') return ''
+      const outlineDef = this.pathDefs.find((p) => p.isOutline)
+      const aDef = this.pathDefs.find((p) => p.id === 'path4')
+      const bDef = this.pathDefs.find((p) => p.id === 'path5')
+      const cDef = this.pathDefs.find((p) => p.id === 'path6')
+      const eDef = this.pathDefs.find((p) => p.id === 'path8')
+      if (!outlineDef || !aDef || !bDef || !cDef || !eDef) return ''
+      const os = extractSegments(outlineDef.d)
+      const as_ = extractSegments(aDef.d)
+      const bs = extractSegments(bDef.d)
+      const cs = extractSegments(cDef.d)
+      const es = extractSegments(eDef.d)
+      // Start at A0, forward A1→A2
+      let d = `M ${_f(as_[0].x)},${_f(as_[0].y)}`
+      for (let i = 1; i <= 2; i++) { if (as_[i]) d += ' ' + segFwd(as_[i]) }
+      // A2 ≈ C21: jump to last point of C, reverse C21→C11
+      d += ` L ${_f(cs[cs.length - 1].x)},${_f(cs[cs.length - 1].y)}`
+      for (let i = cs.length - 1; i >= 12; i--) { d += ' ' + segRev(cs[i]) }
+      // C11 ≈ E0: connect and forward E1→E5
+      d += ` L ${_f(es[0].x)},${_f(es[0].y)}`
+      for (let i = 1; i < es.length; i++) { d += ' ' + segFwd(es[i]) }
+      // E5 ≈ O15: connect and reverse O15→O12
+      d += ` L ${_f(os[15].x)},${_f(os[15].y)}`
+      for (let i = 15; i >= 13; i--) { d += ' ' + segRev(os[i]) }
+      // O12 ≈ B16: connect and reverse B16→B7 (B7 ≈ A0)
+      d += ` L ${_f(bs[16].x)},${_f(bs[16].y)}`
+      for (let i = 16; i >= 8; i--) { d += ' ' + segRev(bs[i]) }
+      return d + ' Z'
+    },
+
+    activeRegionPathD() {
+      if (this.selectedRegion === 'lymesmarch') return this.lymesmarchPathD
+      if (this.selectedRegion === 'fol') return this.folPathD
+      if (this.selectedRegion === 'orvath') return this.orvathPathD
+      if (this.selectedRegion === 'torwald') return this.torwaldPathD
+      if (this.selectedRegion === 'birindal') return this.birindalPathD
+      if (this.selectedRegion === 'aranwald') return this.aranwaldPathD
+      if (this.selectedRegion === 'solvale_empire') return this.solvaleEmpirePathD
+      return ''
     },
 
     lymesmarchPathD() {
@@ -267,11 +591,10 @@ export default {
     // Coordinates are the SVG's own viewBox space (0–336 range), not raw Inkscape path coords.
     baseViewBox() {
       let vb
-      if (this.showLymesmarch && this.lymesmarchPoints.length > 0) {
-        // Convert path-space points to viewBox space using the group transform offset
+      if (this.selectedRegionPoints.length > 0) {
         const [tx, ty] = (this.groupTransform.match(/-?[\d.]+/g) || ['0','0']).map(Number)
-        const xs = this.lymesmarchPoints.map((p) => p.x + tx)
-        const ys = this.lymesmarchPoints.map((p) => p.y + ty)
+        const xs = this.selectedRegionPoints.map((p) => p.x + tx)
+        const ys = this.selectedRegionPoints.map((p) => p.y + ty)
         const minX = Math.min(...xs), maxX = Math.max(...xs)
         const minY = Math.min(...ys), maxY = Math.max(...ys)
         vb = `${minX} ${minY} ${maxX - minX} ${maxY - minY}`
@@ -306,7 +629,7 @@ export default {
   },
 
   watch: {
-    showLymesmarch() {
+    selectedRegion() {
       this.panX = 0
       this.panY = 0
       this.zoomLevel = 1
@@ -318,6 +641,7 @@ export default {
       this.loading = true
       const meta = mapsData.find((m) => m.id === mapId)
       if (!meta) { this.loading = false; return }
+      this.currentMapId = mapId
 
       const res = await fetch(meta.svgPath)
       const text = await res.text()
@@ -326,19 +650,50 @@ export default {
 
       const svgEl = doc.querySelector('svg')
       this.viewBox = svgEl.getAttribute('viewBox') || this.viewBox
+      this.groupTransform = ''
 
-      const layerG = svgEl.querySelector('g')
-      this.groupTransform = layerG?.getAttribute('transform') || ''
+      const knownPathIds = new Set(meta.layers.map((l) => l.id))
+
+      // Discover all Inkscape layer groups
+      const inkscapeLayers = Array.from(svgEl.querySelectorAll('g')).filter(
+        (g) => g.getAttribute('inkscape:groupmode') === 'layer'
+      )
+
+      const discoveredLayers = []
+      const rawLayers = []
+      const visibility = {}
+
+      inkscapeLayers.forEach((g) => {
+        const id = g.getAttribute('id') || ''
+        const label = g.getAttribute('inkscape:label') || id
+        const childPathIds = Array.from(g.querySelectorAll('path')).map((p) => p.getAttribute('id'))
+        const isKnown = childPathIds.some((pid) => knownPathIds.has(pid))
+        discoveredLayers.push({ id, label, isKnown })
+        if (!isKnown) rawLayers.push({ id, label, innerHTML: g.innerHTML })
+        visibility[id] = true
+      })
 
       this.pathDefs = meta.layers
         .map((layer) => {
           const el = doc.getElementById(layer.id)
           if (!el) return null
-          return { ...layer, d: el.getAttribute('d') || '', showNodes: !layer.isOutline }
+          const parent = el.parentElement
+          const layerGroupId = parent?.getAttribute('inkscape:groupmode') === 'layer'
+            ? (parent.getAttribute('id') || '')
+            : ''
+          const svgStyle = el.getAttribute('style') || ''
+          return { ...layer, d: el.getAttribute('d') || '', transform: '', showNodes: !layer.isOutline, layerGroupId, svgStyle }
         })
         .filter(Boolean)
 
+      this.discoveredLayers = discoveredLayers
+      this.rawLayers = rawLayers
+      this.layerVisibility = visibility
       this.loading = false
+    },
+
+    selectRegion(id) {
+      this.selectedRegion = this.selectedRegion === id ? null : id
     },
 
     toggleLymesmarch() {
@@ -444,6 +799,86 @@ export default {
 .zoom-label { gap: 0.5rem; }
 .zoom-slider { width: 80px; accent-color: var(--color-accent); cursor: pointer; }
 
+.map-content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.map-sidebar {
+  width: 18vw;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-panel-dark);
+  border-right: 1px solid var(--color-border);
+  overflow-y: auto;
+}
+
+.sidebar-continent {
+  padding: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  color: var(--color-accent-strong);
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-layers {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem;
+  gap: 0.1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.4rem;
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 3px;
+}
+
+.layer-toggle:hover { color: var(--color-text); }
+.layer-toggle input { cursor: pointer; accent-color: var(--color-accent); }
+
+.sidebar-regions {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem;
+  gap: 0.2rem;
+}
+
+.region-btn {
+  text-align: left;
+  padding: 0.3rem 0.6rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.region-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+.region-btn.active {
+  color: var(--color-accent-strong);
+  border-color: var(--color-accent);
+  background: var(--color-bg-surface);
+}
+
 .map-container {
   flex: 1;
   overflow: hidden;
@@ -463,7 +898,7 @@ export default {
 .map-svg {
   width: 100%;
   height: 100%;
-  background: #1a1a2e;
+  background: #c8b882;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   display: block;

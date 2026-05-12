@@ -1,16 +1,25 @@
 [
   {
-    "id": "lymesmarch_base",
-    "name": "Lymesmarch",
-    "svgPath": "/maps/lymesmarch_base.svg",
+    "id": "kaemahz_complete_normalized",
+    "name": "Kaemahz",
+    "svgPath": "/maps/kaemahz_complete_normalized.svg",
+    "regions": [
+      { "id": "lymesmarch",    "name": "Lymesmarch" },
+      { "id": "fol",           "name": "Fol" },
+      { "id": "orvath",        "name": "Orvath" },
+      { "id": "torwald",       "name": "Torwald" },
+      { "id": "birindal",      "name": "Birindal" },
+      { "id": "aranwald",      "name": "Aranwald" },
+      { "id": "solvale_empire","name": "Solvale Empire" }
+    ],
     "layers": [
-      { "id": "outline",  "label": "Outline", "color": "#666666", "strokeWidth": 0.525, "isOutline": true },
-      { "id": "path4",   "label": "Path A",  "prefix": "A", "color": "#a0b300", "strokeWidth": 0.794 },
-      { "id": "path5",   "label": "Path B",  "prefix": "B", "color": "#ad5353", "strokeWidth": 0.794 },
-      { "id": "path6",   "label": "Path C",  "prefix": "C", "color": "#f1eb0f", "strokeWidth": 0.794 },
-      { "id": "path7",   "label": "Path D",  "prefix": "D", "color": "#0f8cf1", "strokeWidth": 0.794 },
-      { "id": "path8",   "label": "Path E",  "prefix": "E", "color": "#7f0ff1", "strokeWidth": 0.794 },
-      { "id": "path9",   "label": "Path F",  "prefix": "F", "color": "#f00ff1", "strokeWidth": 0.794 }
+      { "id": "path1", "isOutline": true },
+      { "id": "path4", "prefix": "A", "color": "#a0b300" },
+      { "id": "path5", "prefix": "B", "color": "#ad5353" },
+      { "id": "path6", "prefix": "C", "color": "#f1eb0f" },
+      { "id": "path7", "prefix": "D", "color": "#0f8cf1" },
+      { "id": "path8", "prefix": "E", "color": "#7f0ff1" },
+      { "id": "path2", "prefix": "F", "color": "#f00ff1" }
     ]
   }
 ]

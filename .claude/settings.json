@@ -25,7 +25,12 @@
       "Bash(node merge_features.js)",
       "Bash(node rename_features.js)",
       "Bash(node add_notes.js)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"c:\\\\GitHub\\\\dndtools\\\\scripts\")",
+      "Bash(node scripts/normalize-svg.js public/maps/lymesmarch_base.svg public/maps/lymesmarch_test_normalized.svg)"
+    ],
+    "additionalDirectories": [
+      "c:\\GitHub\\dndtools"
     ]
   }
 }
