@@ -233,7 +233,7 @@
     "id": "assets_20",
     "name": "Argent Sunrise",
     "subtype": "caravel",
-    "captain": "Maeris",
+    "captain": "Erren Sault",
     "crew_full": 10,
     "crew_current": 5,
     "passengers": null,
@@ -321,5 +321,55 @@
     "estimated_value_min": 5000,
     "estimated_value_max": 6000,
     "notes": "Existing carter and storage operation staying as tenant. Upper floor residential."
+  },
+  {
+    "id": "assets_27",
+    "name": "Bluff House",
+    "type": "real_estate",
+    "subtype": "residence",
+    "location": "Valdmere",
+    "district": "Northeast Bluff",
+    "status": "newly acquired",
+    "ownership": "Dawn Blades",
+    "notes": "Double lot. Two floors, four rooms plus common room and kitchen. Ocean view west. Stone floors suitable for teleportation circle inscription. Needs roof repair northwest corner and damp addressed in left back room. One street below Voryn temple. Purchased Day 75 Year 468 for 420 gold from Nimbri Tatch."
+  },
+  {
+    "id": "assets_28",
+    "name": "Lake Plot",
+    "type": "real_estate",
+    "subtype": "undeveloped_land",
+    "location": "Valdmere",
+    "district": "North lake bank",
+    "status": "claimed, undeveloped",
+    "ownership": "Dawn Blades",
+    "notes": "Approximately 110ft lake frontage, 400ft depth. Both banks of eastern creek included. Road access on eastern boundary. Abandoned foundation claim next door absorbed. Registered Day 76 Year 468. Annual fee 8 gold. Vision: exclusive high-end establishment. Secondary use: private dock for Dawn Blades vessels. Neighboring plot could be used for something else."
+  },
+  {
+    "id": "assets_29",
+    "name": "Eye of the Deep",
+    "subtype": "Xebec",
+    "captain": "Drevna",
+    "crew_full": null,
+    "crew_current": 0,
+    "passengers": [],
+    "home_port": "unknown",
+    "current_location": "Yetgrese archipelago",
+    "armament": "2x swivel-mounted light ballistae (port and starboard), ~30 bolts",
+    "notes": "Captured from Corrath's pirate crew.",
+    "type": "ship"
+  },
+  {
+    "id": "assets_30",
+    "name": "Ocean Huntress",
+    "subtype": "Xebec",
+    "captain": "Brathek",
+    "crew_full": null,
+    "crew_current": 0,
+    "passengers": null,
+    "home_port": "unknown",
+    "current_location": "Yetgrese archipelago",
+    "armament": "1x small cannon (~15 shots powder and ball), 2x swivel-mounted light ballistae",
+    "notes": "",
+    "type": "ship"
   }
 ]

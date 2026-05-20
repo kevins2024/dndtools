@@ -132,22 +132,22 @@
           <line
             v-for="x in gridLines.cols" :key="'gc' + x"
             :x1="x" :y1="gridLines.top" :x2="x" :y2="gridLines.bottom"
-            stroke="rgba(200,200,200,0.2)" stroke-width="0.4"
+            stroke="rgba(0,0,0,0.2)" stroke-width="0.4"
           />
           <text
             v-for="x in gridLines.cols" :key="'gct' + x"
             :x="x + 1" :y="gridLines.top + 7"
-            font-size="5" fill="rgba(200,200,200,0.55)" font-family="monospace"
+            font-size="5" fill="rgba(0,0,0,0.45)" font-family="monospace"
           >{{ Math.round(x) }}</text>
           <line
             v-for="y in gridLines.rows" :key="'gr' + y"
             :x1="gridLines.left" :y1="y" :x2="gridLines.right" :y2="y"
-            stroke="rgba(200,200,200,0.2)" stroke-width="0.4"
+            stroke="rgba(0,0,0,0.2)" stroke-width="0.4"
           />
           <text
             v-for="y in gridLines.rows" :key="'grt' + y"
             :x="gridLines.left + 1" :y="y - 1"
-            font-size="5" fill="rgba(200,200,200,0.55)" font-family="monospace"
+            font-size="5" fill="rgba(0,0,0,0.45)" font-family="monospace"
           >{{ Math.round(y) }}</text>
         </template>
       </svg>
@@ -233,10 +233,10 @@ export default {
       discoveredLayers: [],
       rawLayers: [],
       layerVisibility: {},
-      showLabels: true,
+      showLabels: false,
       showOutline: false,
       showGrid: false,
-      editMode: false,
+      editMode: true,
       zoomLevel: 1,
       panX: 0,
       panY: 0,
@@ -682,7 +682,7 @@ export default {
             ? (parent.getAttribute('id') || '')
             : ''
           const svgStyle = el.getAttribute('style') || ''
-          return { ...layer, d: el.getAttribute('d') || '', transform: '', showNodes: !layer.isOutline, layerGroupId, svgStyle }
+          return { ...layer, d: el.getAttribute('d') || '', transform: '', showNodes: false, layerGroupId, svgStyle }
         })
         .filter(Boolean)
 

@@ -72,6 +72,10 @@
 
       <section class="col enemy-col">
         <div class="col-label">Enemies</div>
+        <div v-if="currentEncounter" class="enc-load-bar">
+          <span class="enc-load-hint">{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} · {{ currentEncounter.enemies.length }} enemies</span>
+          <button class="enc-load-btn" @click="loadEncounterEnemies">Load Encounter</button>
+        </div>
         <div class="enemy-input-row">
           <input
             v-model="enemyName"
@@ -104,6 +108,7 @@
 
       <div class="roll-bar">
         <button class="exit-btn" @click="exitCombat">Exit Combat</button>
+        <button class="gen-btn" @click="showEncounterModal = true">Generate Encounter</button>
         <button
           class="roll-btn"
           :disabled="!hasAnyCombatant"
@@ -124,19 +129,33 @@
       </div>
     </template>
 
+    <!-- ── Encounter Generator Modal ── -->
+    <div v-if="showEncounterModal" class="enc-modal-overlay" @click.self="showEncounterModal = false">
+      <div class="enc-modal">
+        <div class="enc-modal-header">
+          <span>Encounter Generator</span>
+          <button class="enc-modal-close" @click="showEncounterModal = false">✕</button>
+        </div>
+        <div class="enc-modal-body">
+          <EncounterGenerator />
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import PlayerCharacterSelect from './PlayerCharacterSelect.vue'
 import Battle from './Battle.vue'
+import EncounterGenerator from './EncounterGenerator.vue'
 import characters from '@/data/characters.json'
 import { dnd } from '@/utils/dnd_utils.js'
 import dataService from '@/utils/dataService.js'
 
 export default {
   name: 'CombatContext',
-  components: { PlayerCharacterSelect, Battle },
+  components: { PlayerCharacterSelect, Battle, EncounterGenerator },
 
   data() {
     return {
@@ -150,6 +169,7 @@ export default {
       savedParties: [],
       savingParty: false,
       newPartyName: '',
+      showEncounterModal: false,
     }
   },
 
@@ -159,6 +179,9 @@ export default {
     },
     hasAnyCombatant() {
       return this.playerNames.length > 0 || this.enemies.length > 0
+    },
+    currentEncounter() {
+      return this.$store.state.currentEncounter
     },
     allEntries() {
       const players = this.playerNames.map((name) => {
@@ -177,6 +200,7 @@ export default {
         name: e.name,
         mod: e.mod,
         image: '',
+        encounterData: e.encounterData ?? null,
       }))
       return [...players, ...enemies]
     },
@@ -194,6 +218,15 @@ export default {
   async created() {
     const prefs = await dataService.getUserPrefs()
     this.savedParties = prefs.savedParties ?? []
+  },
+
+  watch: {
+    '$store.state.pendingCombatEnemies'(enemies) {
+      if (!enemies) return
+      this.enemies = enemies.map((e) => ({ ...e, id: this.nextEnemyId++ }))
+      this.$store.commit('CLEAR_PENDING_COMBAT_ENEMIES')
+      this.showEncounterModal = false
+    },
   },
 
   methods: {
@@ -311,6 +344,18 @@ export default {
       this.enemies.push({ id, name: name || this.nextAutoName(), mod })
       this.$set(this.rolls, `enemy-${id}`, { total: dnd.roll() + mod, tiebreakOrder: 0 })
     },
+    loadEncounterEnemies() {
+      const enc = this.$store.state.currentEncounter
+      if (!enc) return
+      this.enemies = enc.enemies.map((e) => ({
+        id:           this.nextEnemyId++,
+        name:         e.name,
+        mod:          Math.floor((e.stats.dex - 10) / 2),
+        encounterData: e,
+      }))
+      this.showEncounterModal = false
+    },
+
     exitCombat() {
       this.phase = 'setup'
       this.enemies = []
@@ -509,6 +554,41 @@ export default {
   text-align: center;
 }
 
+/* ── Encounter load bar ── */
+.enc-load-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: rgba(136,136,221,0.07);
+  border-bottom: 1px solid rgba(136,136,221,0.25);
+}
+
+.enc-load-hint {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-low);
+  text-transform: capitalize;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.enc-load-btn {
+  padding: 0.2rem 0.6rem;
+  background: none;
+  border: 1px solid #8888dd;
+  border-radius: 4px;
+  color: #8888dd;
+  font-size: var(--font-size-tiny);
+  font-family: var(--font-display);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+}
+.enc-load-btn:hover { background: rgba(136,136,221,0.15); }
+
 /* ── Enemies ── */
 .enemy-col {
   grid-area: enemies;
@@ -658,5 +738,74 @@ export default {
 .exit-btn:hover {
   border-color: var(--color-text-danger);
   color: var(--color-text-danger);
+}
+
+.gen-btn {
+  padding: 0.45rem 1rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gen-btn:hover {
+  border-color: #8888dd;
+  color: #8888dd;
+}
+
+/* ── Encounter modal ── */
+.enc-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.enc-modal {
+  display: flex;
+  flex-direction: column;
+  width: 96vw;
+  height: 94vh;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.enc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  background: var(--color-bg-panel-dark);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  font-size: var(--font-size-small);
+  color: var(--color-accent-strong);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.enc-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.enc-modal-close:hover { color: var(--color-text-danger); }
+
+.enc-modal-body {
+  flex: 1;
+  overflow: hidden;
 }
 </style>

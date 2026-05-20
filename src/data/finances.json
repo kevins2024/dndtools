@@ -1,6 +1,6 @@
 {
   "party_purse": {
-    "gold": 41338,
+    "gold": 24818,
     "notes": "On hand, accessible immediately."
   },
   "reserves": [
@@ -24,7 +24,7 @@
       "amount_min": 1350,
       "amount_max": 1350,
       "frequency": "weekly",
-      "notes": "Pending full operation — confirm timing."
+      "notes": ""
     },
     {
       "source": "Long Arm Trading",

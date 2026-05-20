@@ -19,6 +19,10 @@ export default new Vuex.Store({
     originals: {},
     dirtyTables: [],
     restVersion: 0,
+    currentEncounter: null,
+    lastEncounter: null,
+    combatNavRequest: false,
+    pendingCombatEnemies: null,
   },
 
   mutations: {
@@ -92,6 +96,22 @@ export default new Vuex.Store({
       if (!state.dirtyTables.includes(table)) {
         state.dirtyTables.push(table)
       }
+    },
+    SET_ENCOUNTER(state, encounter) {
+      state.lastEncounter    = state.currentEncounter
+      state.currentEncounter = encounter
+    },
+    REQUEST_COMBAT_NAV(state) {
+      state.combatNavRequest = true
+    },
+    CLEAR_COMBAT_NAV(state) {
+      state.combatNavRequest = false
+    },
+    SET_PENDING_COMBAT_ENEMIES(state, enemies) {
+      state.pendingCombatEnemies = enemies
+    },
+    CLEAR_PENDING_COMBAT_ENEMIES(state) {
+      state.pendingCombatEnemies = null
     },
     LONG_REST(state) {
       state.characters = state.characters.map((char) => {

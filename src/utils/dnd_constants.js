@@ -45,6 +45,7 @@ export const WEAPON_PROPS = {
   'hand crossbow': { weapon_type: 'ranged', damage_dice: '1d6',  finesse: false, versatile: false },
   'heavy crossbow':{ weapon_type: 'ranged', damage_dice: '1d10', finesse: false, versatile: false },
   longbow:         { weapon_type: 'ranged', damage_dice: '1d8',  finesse: false, versatile: false },
+
 }
 
 // Standard 5e armor base AC, keyed by armor type name (lowercase).

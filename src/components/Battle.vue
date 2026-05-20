@@ -112,8 +112,34 @@
       <template v-else-if="activeEntry && activeEntry.type === 'enemy'">
         <div class="panel-header">
           <span class="panel-name">{{ activeEntry.name }}</span>
-          <span class="panel-subtitle">Enemy</span>
+          <span class="panel-subtitle">{{ activeEntry.encounterData ? activeEntry.encounterData.roleLabel : 'Enemy' }}</span>
         </div>
+
+        <!-- Combat stats from encounter data -->
+        <template v-if="activeEntry.encounterData">
+          <div class="section-label">Stats</div>
+          <div class="enemy-stat-chips">
+            <div class="enemy-stat-chip">
+              <span class="enemy-chip-val">{{ activeEntry.encounterData.ac }}</span>
+              <span class="enemy-chip-lbl">AC</span>
+            </div>
+            <div class="enemy-stat-chip">
+              <span class="enemy-chip-val">{{ activeEntry.encounterData.attackBonus }}</span>
+              <span class="enemy-chip-lbl">Attack</span>
+            </div>
+            <div v-if="activeEntry.encounterData.weapon" class="enemy-stat-chip weapon-chip">
+              <span class="enemy-chip-val">{{ activeEntry.encounterData.weapon.damageDice }}{{ signed(activeEntry.encounterData.weapon.damageMod) }}</span>
+              <span class="enemy-chip-lbl">{{ activeEntry.encounterData.weapon.displayName }}</span>
+            </div>
+          </div>
+          <div class="enemy-ability-row">
+            <div v-for="s in statKeys" :key="s" class="ability-chip">
+              <span class="ability-lbl">{{ s }}</span>
+              <span class="ability-val">{{ activeEntry.encounterData.stats[s] }}</span>
+              <span class="ability-mod">{{ scoreMod(activeEntry.encounterData.stats[s]) }}</span>
+            </div>
+          </div>
+        </template>
 
         <div class="section-label">Damage Tracker</div>
         <div class="damage-tracker">
@@ -201,6 +227,7 @@ export default {
       playerHealInput: null,
       newEnemyName:  '',
       newEnemyMod:   0,
+      statKeys:      ['str', 'dex', 'con', 'int', 'wis', 'cha'],
     }
   },
 
@@ -222,7 +249,16 @@ export default {
     '$store.state.restVersion'() {
       this.playerHpDelta = {}
     },
-    // Sync maxHpInput with stored value when active entry changes
+    order: {
+      immediate: true,
+      handler(entries) {
+        for (const entry of entries) {
+          if (entry.type === 'enemy' && entry.encounterData?.maxHp && !this.enemyHp[entry.key]) {
+            this.$set(this.enemyHp, entry.key, { damage: 0, maxHp: entry.encounterData.maxHp })
+          }
+        }
+      },
+    },
     activeEntry(entry) {
       if (entry?.type === 'enemy') {
         this.maxHpInput = this.enemyHp[entry.key]?.maxHp ?? null
@@ -296,6 +332,14 @@ export default {
       const val = this.maxHpInput > 0 ? this.maxHpInput : null
       this._ensureEnemyHp(key)
       this.$set(this.enemyHp, key, { ...this.enemyHp[key], maxHp: val })
+    },
+
+    scoreMod(score) {
+      const m = Math.floor((score - 10) / 2)
+      return m >= 0 ? `+${m}` : `${m}`
+    },
+    signed(n) {
+      return n >= 0 ? `+${n}` : `${n}`
     },
 
     // ── Add enemy mid-fight ──
@@ -714,6 +758,79 @@ export default {
   transition: all 0.15s ease;
 }
 .remove-enemy-btn:hover { border-color: var(--color-text-danger); color: var(--color-text-danger); }
+
+/* ── Enemy combat stats ── */
+.enemy-stat-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.enemy-stat-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  min-width: 3.5rem;
+}
+
+.weapon-chip { min-width: unset; max-width: 12rem; }
+
+.enemy-chip-val {
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  color: var(--color-accent-strong);
+  line-height: 1;
+}
+
+.enemy-chip-lbl {
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-low);
+  margin-top: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.enemy-ability-row {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.ability-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  min-width: 38px;
+}
+
+.ability-lbl {
+  font-size: 8px;
+  text-transform: uppercase;
+  color: var(--color-text-low);
+  letter-spacing: 0.05em;
+}
+
+.ability-val {
+  font-size: var(--font-size-small);
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.ability-mod {
+  font-size: 9px;
+  color: var(--color-accent);
+}
 
 /* ── Panel Empty ── */
 .panel-empty {

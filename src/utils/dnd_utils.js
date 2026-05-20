@@ -15,6 +15,11 @@
 //   dnd.signed(n)   → "+3" or "-1"
 
 import { ARMOR_BASE_AC, WEAPON_PROPS } from './dnd_constants.js'
+import homebrew from '../data/homebrew.json'
+
+const HOMEBREW_WEAPON_PROPS = Object.fromEntries(
+  (homebrew.weapon_types ?? []).map((w) => [w.id, w])
+)
 
 export const STAT_KEYS = [
   { key: 'str', label: 'STR' },
@@ -345,7 +350,7 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   _weaponProps(weapon) {
-    const base = WEAPON_PROPS[weapon.weapon_category] ?? {}
+    const base = WEAPON_PROPS[weapon.weapon_category] ?? HOMEBREW_WEAPON_PROPS[weapon.weapon_category] ?? {}
     return {
       weapon_type: weapon.weapon_type ?? base.weapon_type ?? (weapon.slot?.startsWith('ranged') ? 'ranged' : 'melee'),
       damage_dice: weapon.damage_dice ?? base.damage_dice ?? '1d4',

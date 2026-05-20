@@ -45,32 +45,11 @@
             "notes": ""
           },
           {
-            "name": "The Northern Reaches",
+            "name": "Fol",
             "status": "known",
             "climate": "Colder, harder, shorter growing seasons.",
             "player_knowledge": "limited",
             "notes": "Begins immediately north of Cindermarch. No merchant-council structure. Cindermarch exists specifically because of active conflict with whatever comes from here. Raiding culture implied."
-          },
-          {
-            "name": "The Eastern Interior",
-            "status": "known",
-            "climate": "Drier, more extreme temperature swings between seasons.",
-            "player_knowledge": "limited",
-            "notes": "City-states rather than merchant-council model. Valdmere's frontier feeling comes partly from proximity to this region."
-          },
-          {
-            "name": "The Southern Reach",
-            "status": "known",
-            "climate": "Warmer.",
-            "player_knowledge": "limited",
-            "notes": "Distinct language entirely unrelated to Lymesmarch tongues. Sovi comes from here. Petra has partial fluency in Sovi's language suggesting some historical contact between regions."
-          },
-          {
-            "name": "The Deep Interior",
-            "status": "known",
-            "climate": "Mountainous.",
-            "player_knowledge": "limited",
-            "notes": "Heartland connecting all other regions, belonging to none. Largely unmapped. Dwarven presence suggested by Tormund Coalbeard's background. No roads established, no cities known."
           }
         ]
       },
@@ -121,7 +100,7 @@
           "y": 8
         },
         "type": "fortress",
-        "description": "Military fortress on the Northern Reaches border.",
+        "description": "Military fortress on the Fol border.",
         "notes": "1 day north of Millhaven, 3 days northeast of Khemrise, 4-5 days ride from Ravenquay."
       },
       {
@@ -207,7 +186,7 @@
     ]
   },
   {
-    "name": "Northern Reaches",
+    "name": "Fol",
     "grid": {
       "width": 40,
       "height": 40

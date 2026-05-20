@@ -681,7 +681,7 @@
       "x": 7.6,
       "y": 8
     },
-    "description": "Military fortress town, northeast of Khemrise. Border with Northern Reaches. Active conflict with whatever comes from the north. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes, with an active (not constantly) volcano to the east. 90% of the winter there is snow to the north but not to the south.",
+    "description": "Military fortress town, northeast of Khemrise. Border with Fol. Active conflict with whatever comes from the north. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes, with an active (not constantly) volcano to the east. 90% of the winter there is snow to the north but not to the south.",
     "climate": "Coldest in the region.",
     "faction_presence": ["Cindermarch Military"],
     "notes": "",
@@ -772,5 +772,114 @@
         "notes": ""
       }
     ]
+  },
+  {
+    "name": "Tilawam",
+    "type": "city",
+    "continent": "Yetgrese",
+    "location": "Eastern face of the Yetgrese crescent, slightly north of the main waterway gap, facing the open exterior sea",
+    "population": "unknown",
+    "description": "A harbour city built into and onto the cliff face of Yetgrese's lower eastern coast. Structures are carved and constructed directly into the rock at multiple levels, connected by switchback roads, lifts, and bridges. The line between natural rock and constructed city is genuinely difficult to find — the city has been inhabited long enough that construction sits on top of older construction on top of older construction.",
+    "climate": "unknown — eastern exterior coast, sheltered partially by the crescent geography",
+    "history": {},
+    "government": {
+      "type": "Dual legislature — Magistrates and Councillors",
+      "origin": "Approximately 100 years ago a monarchy collapsed following civil unrest. Two factions emerged simultaneously: a conglomerate of aristocrats who seized power, and a union of working-class government officials (sheriffs, administrators, etc.) from across the region who declared their own right to govern. Both sides recognised that further conflict was worse than compromise. Neither acknowledged the other formally. Over a century of deals, arguments, partnerships, and evolution, the arrangement solidified into a functioning dual system.",
+      "magistrates": {
+        "description": "Seats filled by votes from the upper classes. Represent merchant, aristocratic, and wealthy interests.",
+        "count": "approximately 1 per 4 councillors",
+        "collective_power": "Equal to the councillors despite lower numbers — individual magistrates carry significantly more weight per vote"
+      },
+      "councillors": {
+        "description": "Seats filled by votes from the lower classes. Represent working, craft, and common interests.",
+        "count": "approximately 4 per 1 magistrate",
+        "collective_power": "Equal to the magistrates collectively"
+      },
+      "banking_role": "Banks are responsible for truthfully reporting household value, which determines class designation and therefore voting eligibility. As a result the banking institutions are exceptionally sophisticated and nearly impenetrable — protected by both governments simultaneously. Attacking or corrupting the banks is the one act that would unite both governments instantly.",
+      "deadlock_mechanism": "No law or decision can be made on a tie vote. There are no tiebreakers — the matter returns to discussion and comes back two weeks later. This prevents gaming the system through manufactured deadlock while ensuring genuinely contested decisions move slowly.",
+      "notes": "The system is slow. It is also, by design, mostly not war. Both sides have the arrangement baked deeply enough into their institutions that dismantling it would require defeating the other side entirely — a calculation neither has found worthwhile in a century."
+    },
+    "demographics": {
+      "notes": "Humans are a minority — estimated 15-20% of population. Several familiar races present but as divergent or less common subtypes that do not match Western Reach versions. Full demographic breakdown under development. Do not assume human NPCs as default.",
+      "known": [
+        "Harbour authority figures appear to be a distinct non-human race — shorter than average, broader, heavier featured, colouring unlike anything in the Western Reach. Not dwarves.",
+        "Quiveth the translator has mixed features suggesting some demographic blending exists"
+      ]
+    },
+    "economy": {
+      "notes": "Trade port. Receives occasional crossings from Aethermoor — rare enough that the party's arrival is noteworthy. Maritime salvage claims processed through harbour authority with 3-5 day review period. Market district exists with standard trading functions. Banking institutions are exceptional by any standard. People do not say prices out loud, but rather write them down and pass it to the buyer. It's bad luck to say a price out loud."
+    },
+    "harbour": {
+      "description": "Sheltered by two ancient stone breakwaters of pre-current-civilisation construction. Lower harbour distinct from merchant docks — Davan directed the party to the lower harbour specifically. Harbour authority present and functional. Current pattern between the breakwaters is non-obvious and not captured on Aethermoor charts.",
+      "notes": "Harbour officer assigned to vessels involved in piracy incidents as standard procedure. Salvage vessels held pending 3-5 day review before sale or transfer permitted."
+    },
+    "known_locations": [
+      {
+        "name": "Lower Harbour",
+        "type": "harbour",
+        "description": "Distinct from the merchant docks. Davan directed the party here on arrival. Ancient breakwaters.",
+        "notes": "Current pattern between breakwaters is tricky — not on Aethermoor charts. Manageable with local knowledge."
+      },
+      {
+        "name": "Harbour Authority Office",
+        "type": "government office",
+        "description": "Standard arrival processing, declaration forms, salvage claim registration.",
+        "notes": "Quiveth was based here as translator before being hired by the party."
+      },
+      {
+        "name": "Bathhouse",
+        "type": "services",
+        "description": "Located near the dockside establishment. Hot water, private rooms available. Well developed.",
+        "notes": "First stop for the party on arrival."
+      },
+      {
+        "name": "Dockside Establishment",
+        "type": "tavern/inn",
+        "description": "Caters to dock workers and sailors. Unpretentious, good food, stays open late. Communal and welcoming of strangers. Games available, some unfamiliar to Western Reach visitors.",
+        "notes": "Recommended by Quiveth. Party's first meal in Tilawam. Arm wrestling exists here universally."
+      },
+      {
+        "name": "Market District",
+        "type": "district",
+        "description": "Standard trading functions. Opens at dawn.",
+        "notes": "Quiveth will escort party here tomorrow for selling salvage cargo, scales, jaw material, and other goods."
+      },
+      {
+        "name": "Repose",
+        "type": "inn",
+        "district": "Dock district, three streets back from lower harbour",
+        "description": "Quiet older stone building set back from the waterfront. Two stories with internal courtyard. No street signage. Common room with hearth on ground floor. Four rooms — two larger courtyard-facing, two smaller street-facing. Breakfast included, dinner available on request.",
+        "owner": "Griffas — broader heavier-featured local woman, older, no Common",
+        "price": "Reasonable nightly rate per room",
+        "notes": "Recommended by Quiveth. Caters to traders and merchants rather than sailors."
+      }
+    ],
+    "known_npcs": [
+      {
+        "name": "Quiveth",
+        "role": "Translator, hired by party",
+        "description": "Young, mixed features, based at harbour authority. Languages come easily. Rates are reasonable. Adaptable — goes where needed.",
+        "notes": "Noticed Jaygar's ink-stained hands and moustache with the look of someone filing something away. Not stupid."
+      },
+      {
+        "name": "Davan",
+        "role": "Survivor, local navigator, Yetgrese native",
+        "description": "Human man, forties. Pulled from open ocean on day 2 of crossing. Navigator by trade. Has made the Aethermoor crossing before.",
+        "notes": "Connected to Councillor Brama Coinsmith — she is the reason he was trying to get home. Has directed party not to speak to anyone in authority until he makes contact first. Knows the city well. Choosing to help the party as choice, not payment."
+      },
+      {
+        "name": "Councillor Brama Coinsmith",
+        "role": "Government — Councillor (lower class legislature)",
+        "description": "Female dwarf. Artificer background. Family name derived from ancestral mint operation — name is historical, not current practice. Earned councillor seat on own merit.",
+        "notes": "Davan's contact. Arguing against Magistrate Duvask's proposed fee increases on the crossing. Will want to see the documents recovered from the pirate lockbox. Do not approach until Davan has made contact first."
+      },
+      {
+        "name": "Magistrate Rannick Duvask",
+        "role": "Government — Magistrate (upper class legislature)",
+        "description": "Male halfling. Suspected dealings with a dark patron. Has held his position for eleven years.",
+        "notes": "Suspected of funding pirate operations through Corrath to manufacture justification for increased crossing fees — effectively creating a monopoly on safe passage. Correspondence with an unnamed Aethermoor contact recovered from pirate lockbox. Approach with extreme caution."
+      }
+    ],
+    "notes": "Language barrier significant — Common is not widely spoken."
   }
 ]

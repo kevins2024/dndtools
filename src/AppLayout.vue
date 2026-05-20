@@ -52,6 +52,7 @@ import SaveDialog from './components/SaveDialog.vue'
 import CombatContext from './components/CombatContext.vue'
 import CharacterContext from './components/CharacterContext.vue'
 import MapViewer from './components/MapViewer.vue'
+import ToolsContext from './components/ToolsContext.vue'
 
 export default {
   name: 'AppLayout',
@@ -63,6 +64,7 @@ export default {
     CombatContext,
     CharacterContext,
     MapViewer,
+    ToolsContext,
   },
 
   data() {
@@ -75,7 +77,7 @@ export default {
         { id: 'map',       label: 'Map',       component: 'MapViewer' },
         { id: 'world',     label: 'World',     component: null },
         { id: 'story',     label: 'Story',     component: null },
-        { id: 'tools',     label: 'Tools',     component: null },
+        { id: 'tools',     label: 'Tools',     component: 'ToolsContext' },
       ],
     }
   },
@@ -83,6 +85,15 @@ export default {
   methods: {
     longRest() {
       this.$store.commit('LONG_REST')
+    },
+  },
+
+  watch: {
+    '$store.state.combatNavRequest'(val) {
+      if (val) {
+        this.activeContext = 'combat'
+        this.$store.commit('CLEAR_COMBAT_NAV')
+      }
     },
   },
 

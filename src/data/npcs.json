@@ -1123,5 +1123,17 @@
     "personality_quirks": "Learned Common deliberately, not incidentally. Repeats key words back when filing them. Never fully enters spaces built for smaller people.",
     "notes": "Tracked Vessel scout for 17 days alone. His people know of Vessel from deep northeast. Left a handprint on the settlement windowsill before departing.",
     "id": "npcs_new_03"
+  },
+  {
+    "name": "Brix Quellin",
+    "location": "Valdmere, Bluff House",
+    "faction": null,
+    "role": "House Steward, Dawn Blades Valdmere property",
+    "status": ["ally", "employed"],
+    "appearance": "Gnome woman, younger than her competence suggests. Ink on her fingers almost always. Ledger within reach at all times.",
+    "personality_traits": "Thinks in systems. Defines the infrastructure of a situation before engaging with its details. Honest about what she doesn't know. Asks the questions others forget to ask.",
+    "personality_quirks": "Arrived to her interview with notes already made. Turned down two family-aligned positions before accepting this one. Wage ask was specific and justified in a single sentence.",
+    "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons — nothing attached to her. Turned down Wyllard and one other family approach. Told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Zav'rel reads her as impressive rather than suspicious for having no allegiances. Handles household accounts, visitor management, supply rotation, and records office liaison.",
+    "id": "npcs_valdmere_02"
   }
 ]

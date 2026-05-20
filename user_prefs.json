@@ -12,6 +12,26 @@
         "Sorra",
         "Ferghus"
       ]
+    },
+    {
+      "name": "Valdmere",
+      "members": [
+        "Lenn",
+        "Pirra",
+        "Petra",
+        "Siv",
+        "Chuknora"
+      ]
+    },
+    {
+      "name": "Yetgrese",
+      "members": [
+        "Jaygar",
+        "Rhuna",
+        "Kerra",
+        "Revven",
+        "Elucyne"
+      ]
     }
   ]
 }
