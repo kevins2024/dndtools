@@ -813,7 +813,7 @@
       "description": "Sheltered by two ancient stone breakwaters of pre-current-civilisation construction. Lower harbour distinct from merchant docks — Davan directed the party to the lower harbour specifically. Harbour authority present and functional. Current pattern between the breakwaters is non-obvious and not captured on Aethermoor charts.",
       "notes": "Harbour officer assigned to vessels involved in piracy incidents as standard procedure. Salvage vessels held pending 3-5 day review before sale or transfer permitted."
     },
-    "known_locations": [
+    "locations": [
       {
         "name": "Lower Harbour",
         "type": "harbour",
@@ -852,32 +852,54 @@
         "owner": "Griffas — broader heavier-featured local woman, older, no Common",
         "price": "Reasonable nightly rate per room",
         "notes": "Recommended by Quiveth. Caters to traders and merchants rather than sailors."
-      }
-    ],
-    "known_npcs": [
-      {
-        "name": "Quiveth",
-        "role": "Translator, hired by party",
-        "description": "Young, mixed features, based at harbour authority. Languages come easily. Rates are reasonable. Adaptable — goes where needed.",
-        "notes": "Noticed Jaygar's ink-stained hands and moustache with the look of someone filing something away. Not stupid."
       },
       {
-        "name": "Davan",
-        "role": "Survivor, local navigator, Yetgrese native",
-        "description": "Human man, forties. Pulled from open ocean on day 2 of crossing. Navigator by trade. Has made the Aethermoor crossing before.",
-        "notes": "Connected to Councillor Brama Coinsmith — she is the reason he was trying to get home. Has directed party not to speak to anyone in authority until he makes contact first. Knows the city well. Choosing to help the party as choice, not payment."
+        "name": "Repose",
+        "type": "inn",
+        "description": "Quiet older stone building, two stories, internal courtyard. Four rooms — two larger courtyard-facing, two smaller street-facing. Common room with hearth. Breakfast included, dinner available on request.",
+        "npcs_present": ["Griffas"],
+        "notes": "Three streets back from lower harbour, dock district.",
+        "id": "locations_tilawam_1"
       },
       {
-        "name": "Councillor Brama Coinsmith",
-        "role": "Government — Councillor (lower class legislature)",
-        "description": "Female dwarf. Artificer background. Family name derived from ancestral mint operation — name is historical, not current practice. Earned councillor seat on own merit.",
-        "notes": "Davan's contact. Arguing against Magistrate Duvask's proposed fee increases on the crossing. Will want to see the documents recovered from the pirate lockbox. Do not approach until Davan has made contact first."
+        "name": "Sorreval and Sons",
+        "type": "trading_house",
+        "description": "Three generation trading house. Permanent frontage in merchant district. House mark above door in iron.",
+        "npcs_present": ["Taenya Sorreval", "Davan"],
+        "notes": "Formal trade partnership with Dawn Blades. Handles Tilawam-side storage, buyers, suppliers.",
+        "id": "locations_tilawam_2"
       },
       {
-        "name": "Magistrate Rannick Duvask",
-        "role": "Government — Magistrate (upper class legislature)",
-        "description": "Male halfling. Suspected dealings with a dark patron. Has held his position for eleven years.",
-        "notes": "Suspected of funding pirate operations through Corrath to manufacture justification for increased crossing fees — effectively creating a monopoly on safe passage. Correspondence with an unnamed Aethermoor contact recovered from pirate lockbox. Approach with extreme caution."
+        "name": "Ssivanak's Workshop",
+        "type": "shop",
+        "description": "Upper district. Dark green door, no signage. Dense, organized interior. Back room houses large items.",
+        "npcs_present": ["Ssivanak"],
+        "notes": "Only magical item dealer in Tilawam.",
+        "id": "locations_tilawam_3"
+      },
+      {
+        "name": "Brama Coinsmith's Office",
+        "type": "government_office",
+        "description": "Upper district. Identified by copper door.",
+        "npcs_present": ["Brama Coinsmith"],
+        "notes": "",
+        "id": "locations_tilawam_4"
+      },
+      {
+        "name": "Artificers Guild",
+        "type": "guild",
+        "description": "Craftsman district. Workshop-focused, primarily mechanical and alchemical disciplines. Four generation precision instrument family associated.",
+        "npcs_present": [],
+        "notes": "Gifted vibration deterrent device to party. Not enchantment-capable.",
+        "id": "locations_tilawam_5"
+      },
+      {
+        "name": "Stillwater Harbour",
+        "type": "harbour",
+        "description": "Natural deep water anchorage inside southern archipelago island cluster. Invisible from exterior approach. Channel entrance narrow with two turns. Iron chain across inner channel. Two buildings against interior rock face, one partially demolished. Existing dock infrastructure. Capacity for six ships.",
+        "npcs_present": [],
+        "notes": "Former Stillwater pirate base. Claimed by Dawn Blades. Eastern gap gated. Chain key held by Dawn Blades. Repair and development project underway.",
+        "id": "locations_tilawam_6"
       }
     ],
     "notes": "Language barrier significant — Common is not widely spoken."

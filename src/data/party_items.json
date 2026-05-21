@@ -2558,5 +2558,43 @@
     "notes": "Given free by Ssivanak in exchange for Jaygar identifying it. Inscription was deliberately damaged by previous owner to obscure contents.",
     "id": "items_scroll_plane_shift",
     "slot": "none"
+  },
+  {
+    "name": "Scroll of Sending",
+    "type": "consumable",
+    "equipped_by": "disallowed",
+    "carried_by": "party",
+    "needs_attunement": false,
+    "attuned": false,
+    "quantity": 1,
+    "effect": "Cast Sending once. Deliver a 25 word message to any creature on the same plane. Target can reply.",
+    "notes": "Received as part of Ssivanak's Stillwater reward.",
+    "id": "items_scroll_sending",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Counterspell",
+    "type": "consumable",
+    "equipped_by": "disallowed",
+    "carried_by": "party",
+    "needs_attunement": false,
+    "attuned": false,
+    "quantity": 1,
+    "effect": "Cast Counterspell once. Interrupt a creature casting a spell of 3rd level or lower automatically. Higher levels require ability check.",
+    "notes": "Received as part of Ssivanak's Stillwater reward.",
+    "id": "items_scroll_counterspell",
+    "slot": "none"
+  },
+  {
+    "name": "Brooch of Shielding",
+    "type": "wondrous",
+    "equipped_by": "Elucyne",
+    "carried_by": "Elucyne",
+    "needs_attunement": true,
+    "attuned": false,
+    "effect": "Resistance to force damage. Immunity to Magic Missile.",
+    "notes": "Given by Ssivanak as part of Stillwater reward, her choice of item.",
+    "id": "items_brooch_shielding",
+    "slot": "neck"
   }
 ]

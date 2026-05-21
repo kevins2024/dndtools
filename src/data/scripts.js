@@ -1,4 +1,3 @@
-/* --------------------------- script to update IDs on fields
 const fs = require('fs')
 const path = require('path')
 
@@ -30,7 +29,6 @@ for (const [fileId, filePath] of Object.entries(config)) {
 
   console.log(`Updated ${filePath}`)
 }
------------------------------------------ */
 
 /* --------------------------- script to build relationships.json from character/npc data
 const fs = require('fs')

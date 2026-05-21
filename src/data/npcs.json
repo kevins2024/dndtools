@@ -1135,5 +1135,75 @@
     "personality_quirks": "Arrived to her interview with notes already made. Turned down two family-aligned positions before accepting this one. Wage ask was specific and justified in a single sentence.",
     "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons — nothing attached to her. Turned down Wyllard and one other family approach. Told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Zav'rel reads her as impressive rather than suspicious for having no allegiances. Handles household accounts, visitor management, supply rotation, and records office liaison.",
     "id": "npcs_valdmere_02"
+  },
+  {
+    "name": "Quiveth",
+    "location": "Tilawam",
+    "faction": "Independent",
+    "role": "Translator",
+    "appearance": "Young, mixed features",
+    "description": "Primary translator for the party in Tilawam. Speaks Common and primary Tilawam tongue.",
+    "notes": "Based at harbour authority before hired by party. Rates slightly higher than Ossavel.",
+    "id": "npcs_101"
+  },
+  {
+    "name": "Ossavel",
+    "location": "Tilawam",
+    "faction": "Independent",
+    "role": "Translator",
+    "appearance": "Middle aged, weathered",
+    "description": "Secondary translator. Speaks Common and primary Tilawam tongue.",
+    "notes": "Available on request. Slightly lower rate than Quiveth.",
+    "id": "npcs_102"
+  },
+  {
+    "name": "Taenya Sorreval",
+    "location": "Tilawam",
+    "faction": "Sorreval and Sons",
+    "role": "Head of trading house",
+    "appearance": "Human woman, mid-twenties, ink on right hand",
+    "description": "Third generation head of Sorreval and Sons. Practical, composed, difficult to surprise.",
+    "notes": "",
+    "id": "npcs_103"
+  },
+  {
+    "name": "Davan",
+    "location": "Tilawam",
+    "faction": "Sorreval and Sons",
+    "role": "Liaison, navigator",
+    "appearance": "Human man, forties",
+    "description": "Yetgrese native navigator. Permanent liaison between Dawn Blades and Sorreval and Sons.",
+    "notes": "Uncle to Taenya Sorreval.",
+    "id": "npcs_104"
+  },
+  {
+    "name": "Ssivanak",
+    "location": "Tilawam",
+    "faction": "Independent",
+    "role": "Magical item dealer",
+    "appearance": "Tall, angular, age difficult to determine",
+    "description": "Foremost and only magical item dealer in Tilawam. Practitioner herself — made the Robe of Stilled Thought.",
+    "notes": "Speaks no Common. Prefers morning visitors.",
+    "id": "npcs_105"
+  },
+  {
+    "name": "Rannick Duvask",
+    "location": "Tilawam",
+    "faction": "Magistrates",
+    "role": "Magistrate",
+    "appearance": "Male halfling, slight build, neat dresser",
+    "description": "Eleven year incumbent magistrate. Suspected dealings with dark patron.",
+    "notes": "Council removal proceedings underway.",
+    "id": "npcs_106"
+  },
+  {
+    "name": "Brama Coinsmith",
+    "location": "Tilawam",
+    "faction": "Councillors",
+    "role": "Councillor",
+    "appearance": "Female dwarf, white hair cropped close, craftsperson's hands",
+    "description": "Councillor with artificer background. Family name derived from ancestral mint operation.",
+    "notes": "",
+    "id": "npcs_107"
   }
 ]

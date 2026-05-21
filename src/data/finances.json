@@ -28,8 +28,8 @@
     },
     {
       "source": "Long Arm Trading",
-      "amount_min": 1000,
-      "amount_max": 1300,
+      "amount_min": 4000,
+      "amount_max": 4800,
       "frequency": "weekly",
       "notes": "Can grow if trading/sourcing or import/export change in the story. Owns 4 ships."
     },
