@@ -9,7 +9,7 @@
     "description": "",
     "effect": "",
     "notes": "",
-    "id": "items_1",
+    "id": "items_0",
     "charges_current": 3,
     "charges_max": 3,
     "charges_recharge": null,
@@ -27,7 +27,7 @@
     "description": "Portable enchanting station — a toolkit rather than a fixed station.",
     "effect": "",
     "notes": "",
-    "id": "items_2",
+    "id": "items_1",
     "slot": "none"
   },
   {
@@ -40,7 +40,7 @@
     "description": "Sharpening whetstone.",
     "effect": "1/rest.",
     "notes": "",
-    "id": "items_3",
+    "id": "items_2",
     "slot": "none"
   },
   {
@@ -54,7 +54,7 @@
     "description": "",
     "effect": "",
     "notes": "",
-    "id": "items_4",
+    "id": "items_3",
     "slot": "none"
   },
   {
@@ -68,7 +68,7 @@
     "description": "Candles that do not burn down.",
     "effect": "",
     "notes": "",
-    "id": "items_5",
+    "id": "items_4",
     "slot": "none"
   },
   {
@@ -81,7 +81,7 @@
     "description": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet.",
     "effect": "No movement penalties in difficult terrain (snow, ice, mud, rubble). Travel pace never causes exhaustion regardless of distance covered in a day.",
     "notes": "",
-    "id": "items_6",
+    "id": "items_5",
     "slot": "feet"
   },
   {
@@ -98,7 +98,7 @@
     "description": "Blackwood wand usable as a spellcasting focus.",
     "effect": "+1 to spell attack rolls and spell save DC.",
     "notes": "",
-    "id": "items_9",
+    "id": "items_6",
     "slot": "held"
   },
   {
@@ -111,7 +111,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "",
-    "id": "items_21",
+    "id": "items_7",
     "slot": "melee1h"
   },
   {
@@ -124,7 +124,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Off-hand secondary weapon.",
-    "id": "items_22",
+    "id": "items_8",
     "slot": "melee1h"
   },
   {
@@ -137,7 +137,7 @@
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Boot dagger backup.",
-    "id": "items_23",
+    "id": "items_9",
     "slot": "melee1h"
   },
   {
@@ -151,7 +151,7 @@
     "enhancement_bonus": 2,
     "effect": "Once per turn on a hit: choose to deal damage as normal OR root target in place until end of their next turn.",
     "notes": "Sidearm.",
-    "id": "items_170",
+    "id": "items_10",
     "slot": "ranged1h"
   },
   {
@@ -163,7 +163,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Backup ranged.",
-    "id": "items_25",
+    "id": "items_11",
     "slot": "ranged1h"
   },
   {
@@ -176,7 +176,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_26",
+    "id": "items_12",
     "slot": "body"
   },
   {
@@ -187,7 +187,7 @@
     "needs_attunement": true,
     "attuned": false,
     "notes": "Free off-hand attack reaction.",
-    "id": "items_27",
+    "id": "items_13",
     "slot": "wrists"
   },
   {
@@ -198,7 +198,7 @@
     "needs_attunement": true,
     "attuned": false,
     "notes": "",
-    "id": "items_28",
+    "id": "items_14",
     "slot": "neck"
   },
   {
@@ -209,7 +209,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_29",
+    "id": "items_15",
     "slot": "head"
   },
   {
@@ -221,7 +221,7 @@
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
     "notes": "",
-    "id": "items_30",
+    "id": "items_16",
     "slot": "feet"
   },
   {
@@ -232,7 +232,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_31",
+    "id": "items_17",
     "slot": "ring"
   },
   {
@@ -243,7 +243,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Carried conditionally.",
-    "id": "items_32",
+    "id": "items_18",
     "slot": "head"
   },
   {
@@ -254,7 +254,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Superseded by Mithral Half Plate.",
-    "id": "items_33",
+    "id": "items_19",
     "slot": "body"
   },
   {
@@ -266,7 +266,7 @@
     "attuned": false,
     "effect": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
     "notes": "",
-    "id": "items_109",
+    "id": "items_20",
     "slot": "back"
   },
   {
@@ -281,7 +281,7 @@
     },
     "effect": "Proficiency bonus increases by 1 while attuned.",
     "notes": "",
-    "id": "items_ioun_stone",
+    "id": "items_21",
     "slot": "ioun"
   },
   {
@@ -293,7 +293,7 @@
     "attuned": false,
     "effect": "Wearer becomes visually uncompelling — the eye slides past without focusing.",
     "notes": "",
-    "id": "items_cloak_unremarkability",
+    "id": "items_22",
     "slot": "back"
   },
   {
@@ -308,7 +308,7 @@
     "charges_recharge": "daily",
     "effect": "Detects secret doors and traps within 30ft.",
     "notes": "",
-    "id": "items_141",
+    "id": "items_23",
     "slot": "held"
   },
   {
@@ -320,7 +320,7 @@
     "attuned": false,
     "effect": "Ask yes/no questions. Always truthful.",
     "notes": "",
-    "id": "items_149",
+    "id": "items_24",
     "slot": "none"
   },
   {
@@ -332,7 +332,7 @@
     "attuned": false,
     "quantity": 8,
     "notes": "Large gold coins, unfamiliar crest. Not Lymesmarch minting.",
-    "id": "items_154",
+    "id": "items_25",
     "slot": "none"
   },
   {
@@ -346,7 +346,7 @@
       "ac": 2
     },
     "notes": "",
-    "id": "items_42",
+    "id": "items_26",
     "slot": "wrists"
   },
   {
@@ -361,7 +361,7 @@
       "saving_throws": 1
     },
     "notes": "",
-    "id": "items_44",
+    "id": "items_27",
     "slot": "ring"
   },
   {
@@ -372,7 +372,7 @@
     "needs_attunement": true,
     "attuned": false,
     "notes": "",
-    "id": "items_45",
+    "id": "items_28",
     "slot": "back"
   },
   {
@@ -384,7 +384,7 @@
     "attuned": false,
     "effect": "Unaffected by difficult terrain, movement speed reduction, and paralysis.",
     "notes": "",
-    "id": "items_ring_free_action",
+    "id": "items_29",
     "slot": "ring"
   },
   {
@@ -399,7 +399,7 @@
     },
     "effect": "Sets STR to 27.",
     "notes": "",
-    "id": "items_147",
+    "id": "items_30",
     "slot": "waist"
   },
   {
@@ -410,7 +410,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_34",
+    "id": "items_31",
     "slot": "body"
   },
   {
@@ -424,7 +424,7 @@
     "enhancement_bonus": 3,
     "effect": "On a critical hit: target makes a STR saving throw or is knocked prone.",
     "notes": "",
-    "id": "items_167",
+    "id": "items_32",
     "slot": "melee2h"
   },
   {
@@ -436,7 +436,7 @@
     "attuned": false,
     "effect": "Functions as both drinking vessel and musical instrument.",
     "notes": "Pre-clan-separation northern craftsmanship.",
-    "id": "items_159",
+    "id": "items_33",
     "slot": "none"
   },
   {
@@ -449,7 +449,7 @@
     "attuned": false,
     "effect": "Resistance to cold damage. Move across icy surfaces without penalty. Withstand extreme cold.",
     "notes": "",
-    "id": "items_boots_winterlands"
+    "id": "items_34"
   },
   {
     "name": "Paired Shortsword",
@@ -461,7 +461,7 @@
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Resonance only works with Pirra's paired sword.",
-    "id": "items_46",
+    "id": "items_35",
     "slot": "melee1h"
   },
   {
@@ -475,7 +475,7 @@
     "enhancement_bonus": 1,
     "effect": "Once per turn on a hit: immediately make a second strike with this dagger as part of the same attack, without using a bonus action.",
     "notes": "",
-    "id": "items_50",
+    "id": "items_36",
     "slot": "melee1h"
   },
   {
@@ -488,7 +488,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_57",
+    "id": "items_37",
     "slot": "body"
   },
   {
@@ -499,7 +499,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_52",
+    "id": "items_38",
     "slot": "feet"
   },
   {
@@ -510,7 +510,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_54",
+    "id": "items_39",
     "slot": "hands"
   },
   {
@@ -524,7 +524,7 @@
       "skill_Perception": 1
     },
     "notes": "",
-    "id": "items_51",
+    "id": "items_40",
     "slot": "ring"
   },
   {
@@ -535,7 +535,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_55",
+    "id": "items_41",
     "slot": "ring"
   },
   {
@@ -547,7 +547,7 @@
     "attuned": false,
     "effect": "Spider climb. Immunity to web. Cast Web 1/day.",
     "notes": "",
-    "id": "items_143",
+    "id": "items_42",
     "slot": "back"
   },
   {
@@ -561,7 +561,7 @@
     "enhancement_bonus": 2,
     "effect": "Deals cold damage. On hit: +1d6 cold damage and target's movement reduced by 10ft until start of their next turn.",
     "notes": "",
-    "id": "items_cold_dagger",
+    "id": "items_43",
     "slot": "melee1h"
   },
   {
@@ -573,7 +573,7 @@
     "attuned": false,
     "effect": "Reaction when hit by ranged attack: reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
     "notes": "",
-    "id": "items_gloves_missile_snaring",
+    "id": "items_44",
     "slot": "hands"
   },
   {
@@ -585,7 +585,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Passive alchemical utility.",
-    "id": "items_58",
+    "id": "items_45",
     "slot": "melee1h"
   },
   {
@@ -599,7 +599,7 @@
     "enhancement_bonus": 2,
     "effect": "Fires custom alchemical bolts. Quieter release.",
     "notes": "Proficiency resolution still needed.",
-    "id": "items_jaygar_xbow",
+    "id": "items_46",
     "slot": "ranged2h"
   },
   {
@@ -613,7 +613,7 @@
     "enhancement_bonus": 2,
     "effect": "Fires custom alchemical bolts. Quieter release.",
     "notes": "Second copy.",
-    "id": "items_jaygar_xbow_party",
+    "id": "items_47",
     "slot": "ranged2h"
   },
   {
@@ -623,7 +623,7 @@
     "carried_by": "Jaygar",
     "needs_attunement": false,
     "attuned": false,
-    "id": "items_59",
+    "id": "items_48",
     "slot": "none"
   },
   {
@@ -633,7 +633,7 @@
     "carried_by": "Jaygar",
     "needs_attunement": false,
     "attuned": false,
-    "id": "items_60",
+    "id": "items_49",
     "slot": "none"
   },
   {
@@ -643,7 +643,7 @@
     "carried_by": "Jaygar",
     "needs_attunement": false,
     "attuned": false,
-    "id": "items_61",
+    "id": "items_50",
     "slot": "none"
   },
   {
@@ -653,7 +653,7 @@
     "carried_by": "Jaygar",
     "needs_attunement": false,
     "attuned": false,
-    "id": "items_62",
+    "id": "items_51",
     "slot": "none"
   },
   {
@@ -663,7 +663,7 @@
     "carried_by": "Jaygar",
     "needs_attunement": false,
     "attuned": false,
-    "id": "items_63",
+    "id": "items_52",
     "slot": "none"
   },
   {
@@ -674,7 +674,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "30ft range.",
-    "id": "items_64",
+    "id": "items_53",
     "slot": "none"
   },
   {
@@ -688,7 +688,7 @@
       "con": 19
     },
     "notes": "",
-    "id": "items_65",
+    "id": "items_54",
     "slot": "neck"
   },
   {
@@ -699,7 +699,7 @@
     "needs_attunement": true,
     "attuned": false,
     "notes": "Second copy confirmed intentional.",
-    "id": "items_127",
+    "id": "items_55",
     "slot": "back"
   },
   {
@@ -712,7 +712,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_84",
+    "id": "items_56",
     "slot": "body"
   },
   {
@@ -725,7 +725,7 @@
     "attuned": false,
     "effect": "When bearer is hit by melee attack, attacker takes 1d6 force damage.",
     "notes": "",
-    "id": "items_174",
+    "id": "items_57",
     "slot": "melee1h"
   },
   {
@@ -740,7 +740,7 @@
     },
     "effect": "+1 ranged attack. Advantage on concentration saves after taking damage.",
     "notes": "",
-    "id": "items_100",
+    "id": "items_58",
     "slot": "wrists"
   },
   {
@@ -755,7 +755,7 @@
     "charges_recharge": "daily",
     "effect": "Cast random magical effect using charges.",
     "notes": "",
-    "id": "items_140",
+    "id": "items_59",
     "slot": "held"
   },
   {
@@ -766,7 +766,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Once per day situational damage reduction.",
-    "id": "items_67",
+    "id": "items_60",
     "slot": "wrists"
   },
   {
@@ -777,7 +777,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_68",
+    "id": "items_61",
     "slot": "ring"
   },
   {
@@ -788,7 +788,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_69",
+    "id": "items_62",
     "slot": "neck"
   },
   {
@@ -801,7 +801,7 @@
     "attuned": false,
     "enhancement_bonus": 0,
     "notes": "Backup weapon. Silvered.",
-    "id": "items_70",
+    "id": "items_63",
     "slot": "melee1h"
   },
   {
@@ -813,7 +813,7 @@
     "attuned": false,
     "effect": "Every spell cast treated as one level higher automatically.",
     "notes": "",
-    "id": "items_155",
+    "id": "items_64",
     "slot": "hands"
   },
   {
@@ -823,7 +823,7 @@
     "carried_by": "Lenn",
     "needs_attunement": false,
     "attuned": false,
-    "id": "items_72",
+    "id": "items_65",
     "slot": "none"
   },
   {
@@ -835,7 +835,7 @@
     "attuned": false,
     "effect": "Resistance to one element chosen on attunement. Attuned to: fire.",
     "notes": "",
-    "id": "items_108",
+    "id": "items_66",
     "slot": "body"
   },
   {
@@ -849,7 +849,7 @@
     "enhancement_bonus": 0,
     "effect": "Adds bonus damage to evocation spells.",
     "notes": "",
-    "id": "items_105",
+    "id": "items_67",
     "slot": "melee1h"
   },
   {
@@ -863,7 +863,7 @@
     "enhancement_bonus": 2,
     "effect": "On a hit: choose to deal psychic damage instead of piercing.",
     "notes": "",
-    "id": "items_171",
+    "id": "items_68",
     "slot": "melee1h"
   },
   {
@@ -877,7 +877,7 @@
       "ac": 2
     },
     "notes": "",
-    "id": "items_43",
+    "id": "items_69",
     "slot": "wrists"
   },
   {
@@ -889,7 +889,7 @@
     "attuned": false,
     "effect": "Easier concentration checks.",
     "notes": "Superseded by Robe of Archmagi. Stored.",
-    "id": "items_107",
+    "id": "items_70",
     "slot": "body"
   },
   {
@@ -901,7 +901,7 @@
     "attuned": false,
     "effect": "Stops a harsh impact once per day.",
     "notes": "",
-    "id": "items_103",
+    "id": "items_71",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "daily",
@@ -925,7 +925,7 @@
     "charges_recharge": "long_rest",
     "effect": "Spell save DC +2. Once per long rest when casting 3rd level or higher: cast as if one level higher without expending the higher slot.",
     "notes": "",
-    "id": "items_lexicon",
+    "id": "items_72",
     "slot": "held"
   },
   {
@@ -944,7 +944,7 @@
     "unarmored_armor_base_ac": 15,
     "effect": "+2 spell DC and attack, advantage on saves against spells, AC 15 unarmored.",
     "notes": "",
-    "id": "items_robe_archmagi"
+    "id": "items_73"
   },
   {
     "name": "Cloak of Protection +2",
@@ -959,7 +959,7 @@
     },
     "effect": "+2 AC and saving throws.",
     "notes": "",
-    "id": "items_163b",
+    "id": "items_74",
     "slot": "back"
   },
   {
@@ -972,7 +972,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_77",
+    "id": "items_75",
     "slot": "body"
   },
   {
@@ -986,7 +986,7 @@
     "enhancement_bonus": 1,
     "effect": "Whenever bearer casts a healing spell, all other creatures within 15ft are healed for 2hp.",
     "notes": "",
-    "id": "items_waive",
+    "id": "items_76",
     "slot": "melee1h"
   },
   {
@@ -999,7 +999,7 @@
     "attuned": false,
     "effect": "Display any image or symbol on shield face.",
     "notes": "Cosmetic.",
-    "id": "items_173",
+    "id": "items_77",
     "slot": "melee1h"
   },
   {
@@ -1015,7 +1015,7 @@
     },
     "effect": "+2 spell attack and spell save DC.",
     "notes": "",
-    "id": "items_amulet_devout",
+    "id": "items_78",
     "slot": "neck"
   },
   {
@@ -1027,7 +1027,7 @@
     "attuned": false,
     "effect": "Advantage on all concentration checks.",
     "notes": "",
-    "id": "items_129",
+    "id": "items_79",
     "slot": "neck"
   },
   {
@@ -1040,7 +1040,7 @@
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Resonance only works with Denna's paired sword.",
-    "id": "items_47",
+    "id": "items_80",
     "slot": "melee1h"
   },
   {
@@ -1053,7 +1053,7 @@
     "attuned": false,
     "enhancement_bonus": 0,
     "notes": "Backup. Silvered.",
-    "id": "items_71",
+    "id": "items_81",
     "slot": "melee1h"
   },
   {
@@ -1066,7 +1066,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_80",
+    "id": "items_82",
     "slot": "body"
   },
   {
@@ -1081,7 +1081,7 @@
     },
     "effect": "Invisible while worn. +5 Sleight of Hand and lockpicking.",
     "notes": "",
-    "id": "items_gloves_thievery_2",
+    "id": "items_83",
     "slot": "hands"
   },
   {
@@ -1093,7 +1093,7 @@
     "attuned": false,
     "effect": "Breathe underwater. Swim speed 60.",
     "notes": "",
-    "id": "items_120",
+    "id": "items_84",
     "slot": "back"
   },
   {
@@ -1106,7 +1106,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Party backup.",
-    "id": "items_81",
+    "id": "items_85",
     "slot": "melee1h"
   },
   {
@@ -1120,7 +1120,7 @@
     "enhancement_bonus": 2,
     "effect": "On a roll of 20: severs a limb and deals extra 14 damage.",
     "notes": "",
-    "id": "items_152",
+    "id": "items_86",
     "slot": "melee1h"
   },
   {
@@ -1134,7 +1134,7 @@
       "melee_attack": 2
     },
     "notes": "",
-    "id": "items_89",
+    "id": "items_87",
     "slot": "hands"
   },
   {
@@ -1150,7 +1150,7 @@
     },
     "effect": "+2 AC and saving throws.",
     "notes": "",
-    "id": "items_163",
+    "id": "items_88",
     "slot": "back"
   },
   {
@@ -1165,7 +1165,7 @@
     "attuned": false,
     "effect": "No stealth disadvantage.",
     "notes": "",
-    "id": "items_mithral_halfplate_kerra"
+    "id": "items_89"
   },
   {
     "name": "The Farreach (A)",
@@ -1177,7 +1177,7 @@
     "paired_with": "The Farreach (B)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to ability or skill check.",
     "notes": "",
-    "id": "items_48",
+    "id": "items_90",
     "slot": "ring"
   },
   {
@@ -1191,7 +1191,7 @@
     "enhancement_bonus": 2,
     "effect": "Deals force damage instead of piercing.",
     "notes": "",
-    "id": "items_99",
+    "id": "items_91",
     "slot": "ranged2h"
   },
   {
@@ -1203,7 +1203,7 @@
     "attuned": false,
     "effect": "Reduces moving shot penalty.",
     "notes": "",
-    "id": "items_111",
+    "id": "items_92",
     "slot": "none"
   },
   {
@@ -1216,7 +1216,7 @@
     "attuned": false,
     "enhancement_bonus": 0,
     "notes": "Backup melee.",
-    "id": "items_87",
+    "id": "items_93",
     "slot": "melee1h"
   },
   {
@@ -1229,7 +1229,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_82",
+    "id": "items_94",
     "slot": "body"
   },
   {
@@ -1240,7 +1240,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_53",
+    "id": "items_95",
     "slot": "feet"
   },
   {
@@ -1254,7 +1254,7 @@
       "ranged_damage": 2
     },
     "notes": "",
-    "id": "items_88",
+    "id": "items_96",
     "slot": "wrists"
   },
   {
@@ -1267,7 +1267,7 @@
     "paired_with": "The Farreach (A)",
     "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus.",
     "notes": "",
-    "id": "items_49",
+    "id": "items_97",
     "slot": "ring"
   },
   {
@@ -1280,7 +1280,7 @@
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Sidearm.",
-    "id": "items_92",
+    "id": "items_98",
     "slot": "ranged1h"
   },
   {
@@ -1293,7 +1293,7 @@
     "attuned": false,
     "enhancement_bonus": 0,
     "notes": "Backup melee.",
-    "id": "items_91",
+    "id": "items_99",
     "slot": "melee1h"
   },
   {
@@ -1306,7 +1306,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_83",
+    "id": "items_100",
     "slot": "body"
   },
   {
@@ -1321,7 +1321,7 @@
     },
     "effect": "+1 passive perception. Advantage on Perception in dim light or darkness.",
     "notes": "",
-    "id": "items_hat_perception",
+    "id": "items_101",
     "slot": "head"
   },
   {
@@ -1333,7 +1333,7 @@
     "attuned": false,
     "effect": "Advantage on Stealth checks outdoors. Color shifting.",
     "notes": "",
-    "id": "items_121",
+    "id": "items_102",
     "slot": "back"
   },
   {
@@ -1345,7 +1345,7 @@
     "attuned": false,
     "effect": "60ft rope, animates on command. Restrain target 1/day.",
     "notes": "",
-    "id": "items_144",
+    "id": "items_103",
     "slot": "none"
   },
   {
@@ -1360,7 +1360,7 @@
       "saving_throws": 1
     },
     "notes": "",
-    "id": "items_95",
+    "id": "items_104",
     "slot": "back"
   },
   {
@@ -1374,7 +1374,7 @@
       "ac": 2
     },
     "notes": "",
-    "id": "items_bracers_defense_lyria",
+    "id": "items_105",
     "slot": "wrists"
   },
   {
@@ -1386,7 +1386,7 @@
     "attuned": false,
     "effect": "Sets CON to 18.",
     "notes": "",
-    "id": "items_119",
+    "id": "items_106",
     "slot": "waist"
   },
   {
@@ -1404,7 +1404,7 @@
     "charges_recharge": "daily",
     "effect": "Cast Magic Missile at 5th level using charges. +1 saving throws. Planewalk to Astral Plane.",
     "notes": "",
-    "id": "items_robe_stars",
+    "id": "items_107",
     "slot": "body"
   },
   {
@@ -1425,7 +1425,7 @@
     "charges_recharge": "some daily",
     "effect": "Cast from charges: Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC.",
     "notes": "Do not break it.",
-    "id": "items_156",
+    "id": "items_108",
     "slot": "melee1h"
   },
   {
@@ -1440,7 +1440,7 @@
     "charges_recharge": "daily",
     "effect": "Cast Web using charges.",
     "notes": "",
-    "id": "items_139",
+    "id": "items_109",
     "slot": "held"
   },
   {
@@ -1455,7 +1455,7 @@
     "charges_recharge": "daily",
     "effect": "Cast Scorching Ray 3 times per day.",
     "notes": "",
-    "id": "items_145",
+    "id": "items_110",
     "slot": "head"
   },
   {
@@ -1468,7 +1468,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_132",
+    "id": "items_111",
     "slot": "body"
   },
   {
@@ -1482,7 +1482,7 @@
     "enhancement_bonus": 2,
     "effect": "Cannot be surprised, advantage on initiative. Wakes wielder if danger approaches during sleep.",
     "notes": "",
-    "id": "items_153",
+    "id": "items_112",
     "slot": "melee2h"
   },
   {
@@ -1496,7 +1496,7 @@
     "enhancement_bonus": 2,
     "effect": "Command word ignites bronze edges — adds 2d6 fire damage to each hit while active.",
     "notes": "",
-    "id": "items_bronze_flame",
+    "id": "items_113",
     "slot": "melee1h"
   },
   {
@@ -1509,7 +1509,7 @@
     "armor_type": "shield",
     "enhancement_bonus": 2,
     "notes": "",
-    "id": "items_137",
+    "id": "items_114",
     "slot": "melee1h"
   },
   {
@@ -1524,7 +1524,7 @@
     },
     "effect": "Sets STR to 19.",
     "notes": "",
-    "id": "items_134",
+    "id": "items_115",
     "slot": "hands"
   },
   {
@@ -1540,7 +1540,7 @@
     },
     "effect": "+1 AC and saving throws.",
     "notes": "",
-    "id": "items_136",
+    "id": "items_116",
     "slot": "back"
   },
   {
@@ -1552,7 +1552,7 @@
     "attuned": false,
     "effect": "Advantage on INT, WIS, CHA saving throws. Resistance to psychic damage.",
     "notes": "",
-    "id": "items_146",
+    "id": "items_117",
     "slot": "head"
   },
   {
@@ -1567,7 +1567,7 @@
     },
     "effect": "Sets CON to 19.",
     "notes": "",
-    "id": "items_amulet_health_2",
+    "id": "items_118",
     "slot": "neck"
   },
   {
@@ -1579,7 +1579,7 @@
     "attuned": false,
     "effect": "Cannot be disarmed.",
     "notes": "",
-    "id": "items_112",
+    "id": "items_119",
     "slot": "ring"
   },
   {
@@ -1594,7 +1594,7 @@
     },
     "effect": "+2 AC when not wearing armor or shield.",
     "notes": "",
-    "id": "items_164",
+    "id": "items_120",
     "slot": "wrists"
   },
   {
@@ -1606,7 +1606,7 @@
     "attuned": false,
     "effect": "Resistance to one element. Attuned to: fire.",
     "notes": "",
-    "id": "items_108b",
+    "id": "items_121",
     "slot": "body"
   },
   {
@@ -1621,7 +1621,7 @@
     "charges_recharge": "daily",
     "effect": "1 charge: Alter Self. 2 charges: Polymorph (self only). 3 charges: Gaseous Form.",
     "notes": "",
-    "id": "items_ring_transmutation",
+    "id": "items_122",
     "slot": "ring"
   },
   {
@@ -1633,7 +1633,7 @@
     "attuned": false,
     "effect": "Jump distance tripled.",
     "notes": "",
-    "id": "items_ring_jumping",
+    "id": "items_123",
     "slot": "ring"
   },
   {
@@ -1646,7 +1646,7 @@
     "attuned": false,
     "effect": "On unarmed strike hit: deal extra 2d10 psychic damage. Choose to regain HP equal to psychic damage dealt OR gain advantage on one roll.",
     "notes": "",
-    "id": "items_gloves_soul_catching"
+    "id": "items_124"
   },
   {
     "name": "Bracers of Striking +2",
@@ -1662,7 +1662,7 @@
     },
     "effect": "+2 to unarmed strike attack and damage rolls.",
     "notes": "",
-    "id": "items_bracers_striking"
+    "id": "items_125"
   },
   {
     "name": "Monk's Belt",
@@ -1677,7 +1677,7 @@
     },
     "effect": "Adds CON modifier to unarmored AC in addition to DEX and WIS.",
     "notes": "",
-    "id": "items_monks_belt"
+    "id": "items_126"
   },
   {
     "name": "The Weaver's Master-Awl",
@@ -1689,7 +1689,7 @@
     "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue.",
     "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades +2 attack and damage. (2) Tactical Foresight — Help targets two allies. (3) Grandmaster's Stitch — infuse leather item during long rest. (4) The Retired Special — once per day reaction pull ally up to 15ft.",
     "notes": "",
-    "id": "items_131",
+    "id": "items_127",
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "daily",
@@ -1706,7 +1706,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Dual form is one weapon not two benefits.",
-    "id": "items_stormsplit",
+    "id": "items_128",
     "slot": "melee1h"
   },
   {
@@ -1717,7 +1717,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Chain shirt — superseded by Half Plate +2. Stored.",
-    "id": "items_revven_armor",
+    "id": "items_129",
     "slot": "body"
   },
   {
@@ -1732,7 +1732,7 @@
     "attuned": false,
     "effect": "Resistance to lightning and thunder damage.",
     "notes": "",
-    "id": "items_halfplate_revven"
+    "id": "items_130"
   },
   {
     "name": "Wand of Magic Missiles",
@@ -1746,7 +1746,7 @@
     "charges_recharge": "1d6+1 at dawn",
     "effect": "Cast Magic Missile using charges.",
     "notes": "",
-    "id": "items_118",
+    "id": "items_131",
     "slot": "held"
   },
   {
@@ -1759,7 +1759,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Sidearm.",
-    "id": "items_elucyne_xbow",
+    "id": "items_132",
     "slot": "ranged1h"
   },
   {
@@ -1770,7 +1770,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_elucyne_ring",
+    "id": "items_133",
     "slot": "ring"
   },
   {
@@ -1783,7 +1783,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_elucyne_armor",
+    "id": "items_134",
     "slot": "body"
   },
   {
@@ -1797,7 +1797,7 @@
     "enhancement_bonus": 2,
     "effect": "Returns to hand after thrown. On crit: target knocked prone regardless of size.",
     "notes": "",
-    "id": "items_157",
+    "id": "items_135",
     "slot": "melee1h"
   },
   {
@@ -1811,7 +1811,7 @@
     "enhancement_bonus": 2,
     "effect": "On a critical hit: deals 2d6 slashing damage instead of doubling dice.",
     "notes": "",
-    "id": "items_curved_blade",
+    "id": "items_136",
     "slot": "melee1h"
   },
   {
@@ -1824,7 +1824,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "",
-    "id": "items_86",
+    "id": "items_137",
     "slot": "ranged2h"
   },
   {
@@ -1838,7 +1838,7 @@
       "ranged_damage": 2
     },
     "notes": "",
-    "id": "items_90",
+    "id": "items_138",
     "slot": "wrists"
   },
   {
@@ -1852,7 +1852,7 @@
     "armor_base_ac": 14,
     "enhancement_bonus": 2,
     "notes": "",
-    "id": "items_104",
+    "id": "items_139",
     "slot": "body"
   },
   {
@@ -1867,7 +1867,7 @@
     "charges_recharge": "short_rest",
     "effect": "Reaction when ally within 30ft drops to 0hp: grant 1d8 + proficiency bonus temp HP. Advantage on death saving throws.",
     "notes": "",
-    "id": "items_steadfast",
+    "id": "items_140",
     "slot": "neck"
   },
   {
@@ -1880,7 +1880,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Return to Corwin or party pool.",
-    "id": "items_133",
+    "id": "items_141",
     "slot": "melee2h"
   },
   {
@@ -1895,7 +1895,7 @@
     },
     "effect": "Sets STR to 21.",
     "notes": "",
-    "id": "items_168",
+    "id": "items_142",
     "slot": "waist"
   },
   {
@@ -1907,7 +1907,7 @@
     "attuned": false,
     "effect": "Become invisible for up to 1 hour per day.",
     "notes": "",
-    "id": "items_142",
+    "id": "items_143",
     "slot": "back"
   },
   {
@@ -1919,7 +1919,7 @@
     "attuned": false,
     "effect": "Each bead cast once per day. Rolled spells: Bless, Greater Restoration, Cure Wounds, Wind Walk.",
     "notes": "",
-    "id": "items_prayer_beads",
+    "id": "items_144",
     "slot": "neck"
   },
   {
@@ -1931,7 +1931,7 @@
     "attuned": false,
     "effect": "Immunity to charm and fear.",
     "notes": "",
-    "id": "items_123",
+    "id": "items_145",
     "slot": "head"
   },
   {
@@ -1943,7 +1943,7 @@
     "attuned": false,
     "effect": "Complete immunity to poison while worn.",
     "notes": "",
-    "id": "items_126",
+    "id": "items_146",
     "slot": "neck"
   },
   {
@@ -1958,7 +1958,7 @@
     "attuned": false,
     "effect": "Resistance to lightning and thunder damage.",
     "notes": "",
-    "id": "items_fullplate_ferghus"
+    "id": "items_147"
   },
   {
     "name": "Maul +2",
@@ -1972,7 +1972,7 @@
     "enhancement_bonus": 2,
     "effect": "On a critical hit: target is knocked prone.",
     "notes": "",
-    "id": "items_maul_ferghus"
+    "id": "items_148"
   },
   {
     "name": "Bracers of Swiftness",
@@ -1986,7 +1986,7 @@
     },
     "effect": "+10ft movement speed. Dash as bonus action once per short rest.",
     "notes": "",
-    "id": "items_169",
+    "id": "items_149",
     "slot": "wrists"
   },
   {
@@ -1999,7 +1999,7 @@
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Greataxe. Trophy/display.",
-    "id": "items_41",
+    "id": "items_150",
     "slot": "melee2h"
   },
   {
@@ -2011,7 +2011,7 @@
     "attuned": false,
     "effect": "Cone of Cold L5",
     "notes": "Holds up to 5 levels worth of spells. Any creature can cast stored spell.",
-    "id": "items_101",
+    "id": "items_151",
     "charges_current": 0,
     "charges_max": 5,
     "charges_unit": "spell_levels",
@@ -2026,7 +2026,7 @@
     "attuned": false,
     "effect": "Haste",
     "notes": "Holds one spell up to 3rd level.",
-    "id": "items_102",
+    "id": "items_152",
     "charges_current": 0,
     "charges_max": 3,
     "charges_unit": "spell_levels",
@@ -2041,7 +2041,7 @@
     "attuned": false,
     "effect": "Mass Cure Wounds L5",
     "notes": "Holds spells up to 5th level.",
-    "id": "items_124",
+    "id": "items_153",
     "charges_current": 0,
     "charges_max": 5,
     "charges_unit": "spell_levels",
@@ -2059,7 +2059,7 @@
     },
     "effect": "+1 to hit with wrapped weapon.",
     "notes": "Applied to Veilstrike Rapier +2.",
-    "id": "items_grip_vaz",
+    "id": "items_154",
     "slot": "none"
   },
   {
@@ -2074,7 +2074,7 @@
     },
     "effect": "+1 to hit with wrapped weapon.",
     "notes": "Applied to Rapier +2 (Psychic).",
-    "id": "items_grip_kessara",
+    "id": "items_155",
     "slot": "none"
   },
   {
@@ -2089,7 +2089,7 @@
     },
     "effect": "+1 to hit with wrapped weapon.",
     "notes": "Applied to Greatsword +3.",
-    "id": "items_grip_rhuna",
+    "id": "items_156",
     "slot": "none"
   },
   {
@@ -2100,7 +2100,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Spellcasting focus. Thirty years old.",
-    "id": "items_96",
+    "id": "items_157",
     "slot": "held"
   },
   {
@@ -2113,7 +2113,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "Worn and repaired many times.",
-    "id": "items_97",
+    "id": "items_158",
     "slot": "body"
   },
   {
@@ -2126,7 +2126,7 @@
     "attuned": false,
     "enhancement_bonus": 0,
     "notes": "Hasn't used offensively in fifteen years.",
-    "id": "items_98",
+    "id": "items_159",
     "slot": "melee1h"
   },
   {
@@ -2138,7 +2138,7 @@
     "attuned": false,
     "quantity": 1,
     "effect": "Single use. Large area lightning damage.",
-    "id": "items_138",
+    "id": "items_160",
     "slot": "none"
   },
   {
@@ -2150,7 +2150,7 @@
     "attuned": false,
     "quantity": 2,
     "effect": "Restores 4d4+4 HP.",
-    "id": "items_128",
+    "id": "items_161",
     "slot": "none"
   },
   {
@@ -2161,7 +2161,7 @@
     "needs_attunement": false,
     "attuned": false,
     "notes": "6 spinel, 2 sapphire.",
-    "id": "items_150",
+    "id": "items_162",
     "slot": "none"
   },
   {
@@ -2173,7 +2173,7 @@
     "attuned": false,
     "effect": "Reading takes 48 hours over 6 days. INT score and maximum increase by 2. Becomes mundane for 100 years afterward.",
     "notes": "Read on day 121.",
-    "id": "items_165",
+    "id": "items_163",
     "slot": "none"
   },
   {
@@ -2186,7 +2186,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Backup melee.",
-    "id": "items_longsword_party",
+    "id": "items_164",
     "slot": "melee1h"
   },
   {
@@ -2199,7 +2199,7 @@
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
     "notes": "Unassigned.",
-    "id": "items_boots_speed"
+    "id": "items_165"
   },
   {
     "name": "Ring of Spell Turning",
@@ -2211,7 +2211,7 @@
     "attuned": false,
     "effect": "Advantage on saves against spells targeting only you. On natural 20, spell reflected back at caster.",
     "notes": "Unassigned.",
-    "id": "items_ring_spell_turning"
+    "id": "items_166"
   },
   {
     "name": "Belt of Dwarvenkind",
@@ -2226,7 +2226,7 @@
     },
     "effect": "+2 CON. Advantage on CHA checks with dwarves. Darkvision 60ft. Resistance to poison, advantage on poison saves.",
     "notes": "Unassigned.",
-    "id": "items_belt_dwarvenkind"
+    "id": "items_167"
   },
   {
     "name": "Goggles of Night",
@@ -2238,7 +2238,7 @@
     "attuned": false,
     "effect": "Darkvision 60ft. If already have darkvision, extends by 60ft.",
     "notes": "Unassigned.",
-    "id": "items_goggles_night"
+    "id": "items_168"
   },
   {
     "name": "Gauntlets of Ogre Power",
@@ -2253,7 +2253,7 @@
     },
     "effect": "Sets STR to 19.",
     "notes": "Unassigned. Corwin already has a pair.",
-    "id": "items_gauntlets_ogre_power"
+    "id": "items_169"
   },
   {
     "name": "Helm of Brilliance",
@@ -2268,7 +2268,7 @@
     "charges_recharge": "none — gems consumed",
     "effect": "6 opals cast Daylight. 9 rubies cast Fireball. 5 diamonds cast Wall of Light. Undead within 30ft have disadvantage on attacks. On 1 in sunlight: explodes.",
     "notes": "Unassigned.",
-    "id": "items_helm_brilliance"
+    "id": "items_170"
   },
   {
     "name": "Scroll of Ice Storm",
@@ -2280,7 +2280,7 @@
     "attuned": false,
     "quantity": 1,
     "effect": "Cast Ice Storm at 4th level. Single use.",
-    "id": "items_scroll_ice_storm"
+    "id": "items_171"
   },
   {
     "name": "Scroll of Mind Whip",
@@ -2292,7 +2292,7 @@
     "attuned": false,
     "quantity": 1,
     "effect": "Cast Mind Whip at 2nd level. Single use.",
-    "id": "items_scroll_mind_whip"
+    "id": "items_172"
   },
   {
     "name": "The Right Arm",
@@ -2321,7 +2321,7 @@
       }
     ],
     "notes": "Tackett refers to it as his right arm. Offered by the Trevash delta spring after Tackett destroyed the ancient spirit corrupting it.",
-    "id": "items_the_right_arm",
+    "id": "items_173",
     "slot": "melee2h"
   },
   {
@@ -2337,7 +2337,7 @@
     "attuned": false,
     "effect": "Always +1 to AC. Additional +1 to AC while in dim light or darkness, for a total of +2.",
     "notes": "Commission from Torrin Gallowglass. Dark green-brown leather, forest floor coloring, grain patterns that shift with the light. Melds into wildshape forms per druid rules — AC bonus applies in halfling form only. Torrin's signature: made for someone who knows how to use shadow.",
-    "id": "items_shadowgrain_leather"
+    "id": "items_174"
   },
   {
     "name": "Helm of Carix",
@@ -2349,7 +2349,7 @@
     "attuned": false,
     "effect": "Immunity to charm and fear. Once per day when wearer does something that genuinely surprises an enemy, gain advantage on next attack roll.",
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
-    "id": "items_helm_open_road"
+    "id": "items_175"
   },
   {
     "name": "Helm of the Reaching Hand",
@@ -2361,7 +2361,7 @@
     "attuned": false,
     "effect": "Advantage on Insight checks. Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet — the smith let it.",
-    "id": "items_helm_reaching_hand"
+    "id": "items_176"
   },
   {
     "name": "Helm of the Open Eye",
@@ -2373,7 +2373,7 @@
     "attuned": false,
     "effect": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
     "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow — no deity symbol, the metal didn't want one. It wanted a window.",
-    "id": "items_helm_open_eye"
+    "id": "items_177"
   },
   {
     "name": "Headband of Intellect",
@@ -2388,7 +2388,7 @@
     },
     "effect": "Sets INT to 19.",
     "notes": "",
-    "id": "items_headband_intellect"
+    "id": "items_178"
   },
   {
     "name": "Green Fey Armor",
@@ -2406,7 +2406,7 @@
     "effect": "Counts as half plate (AC 15 + DEX mod max 2). Appears revealing but magical protection extends invisibly for full coverage. +1 CHA while attuned. Only Enauweyn can attune to this item.",
     "description": "Green armor of fey construction. Revealing in appearance but the magical protection extends invisibly — coverage is complete. Luxurious flowing cloth around legs and sleeves gives a mystical quality. The green deepens or lightens subtly with her mood.",
     "notes": "Attunement restricted to Enauweyn only.",
-    "id": "items_enauweyn_armor"
+    "id": "items_179"
   },
   {
     "name": "Ring of the Fallen Star",
@@ -2418,7 +2418,7 @@
     "enhancement_bonus": 0,
     "effect": "Once per dawn: cast Starfall (see homebrew spells). Spell save DC uses wearer's spell save DC. Additionally, advantage on Perception checks made in darkness or starlight.",
     "notes": "Forged from meteorite iron by a civilization that no longer exists. Warm to the touch regardless of temperature. Constellation patterns visible in the metal only in darkness or starlight. Responds to celestial/star magic.",
-    "id": "items_fallen_star_ring",
+    "id": "items_180",
     "slot": "ring"
   },
   {
@@ -2432,7 +2432,7 @@
     "enhancement_bonus": 2,
     "effect": "Returns instantly to thrower's hand after a thrown attack, whether it hits or misses.",
     "notes": "Saltborn steel — no mechanical effect, flavor only.",
-    "id": "items_yetgrese_shortsword_elucyne",
+    "id": "items_181",
     "slot": "melee1h"
   },
   {
@@ -2444,7 +2444,7 @@
     "attuned": false,
     "description": "Paired stones. Cast Sending once per day between them. Unlimited range.",
     "notes": "One stone for Taenya Sorreval, one retained by party for cross-ocean communication.",
-    "id": "items_sending_stones",
+    "id": "items_182",
     "slot": "none"
   },
   {
@@ -2456,7 +2456,7 @@
     "attuned": true,
     "description": "Shield that transforms into a construct guardian via command words. Command word to materialize: viel'bi-ra. Command word to dematerialize: chk'TO. Construct HP 142, AC 17. Intercepts damage to attuned wearer. Stores one spell up to 4th level.",
     "notes": "Named by Jaygar. Two points of light function as eyes. Previous owner never named it. Ssivanak kept it three years waiting for right owner.",
-    "id": "items_hlifardheagar",
+    "id": "items_183",
     "slot": "none"
   },
   {
@@ -2468,7 +2468,7 @@
     "attuned": false,
     "description": "When wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
     "notes": "Made from local Yetgrese materials. Iridescent fabric that shifts with movement. Not available in Aethermoor.",
-    "id": "items_robe_tide",
+    "id": "items_184",
     "slot": "body"
   },
   {
@@ -2480,7 +2480,7 @@
     "attuned": false,
     "description": "One concentration spell cast while wearing this robe does not require concentration — it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately.",
     "notes": "Made by Ssivanak herself. Significant item — effectively frees concentration slot while one spell runs autonomously.",
-    "id": "items_robe_stilled_thought",
+    "id": "items_185",
     "slot": "body"
   },
   {
@@ -2492,7 +2492,7 @@
     "attuned": false,
     "effect": "+2 to spell save DC.",
     "notes": "Intended for Elucyne to enhance Fear and other save-based spells.",
-    "id": "items_bracers_spell_mastery",
+    "id": "items_186",
     "slot": "wrists"
   },
   {
@@ -2504,7 +2504,7 @@
     "attuned": false,
     "description": "Heavily annotated working spellbook with evocation and transmutation focus. Contains: Fly, Haste, Wall of Stone, Chain Lightning. Extensive marginalia throughout.",
     "notes": "Intended for Lenn on the other ship. Previous owner thought extensively on the page.",
-    "id": "items_evocation_spellbook",
+    "id": "items_187",
     "slot": "none"
   },
   {
@@ -2517,7 +2517,7 @@
     "quantity": 1,
     "effect": "Cast Control Water (level 4). Single use.",
     "notes": "Immediately relevant for ocean travel and combat.",
-    "id": "items_scroll_control_water",
+    "id": "items_188",
     "slot": "none"
   },
   {
@@ -2530,7 +2530,7 @@
     "quantity": 1,
     "effect": "Cast Lightning Bolt (level 3). Single use.",
     "notes": "Included free by Ssivanak to close the deal.",
-    "id": "items_scroll_lightning_bolt",
+    "id": "items_189",
     "slot": "none"
   },
   {
@@ -2543,7 +2543,7 @@
     "quantity": 1,
     "effect": "Cast Greater Invisibility (level 4). Single use.",
     "notes": "",
-    "id": "items_scroll_greater_invisibility",
+    "id": "items_190",
     "slot": "none"
   },
   {
@@ -2556,7 +2556,7 @@
     "quantity": 1,
     "effect": "Cast Plane Shift (level 7). Single use.",
     "notes": "Given free by Ssivanak in exchange for Jaygar identifying it. Inscription was deliberately damaged by previous owner to obscure contents.",
-    "id": "items_scroll_plane_shift",
+    "id": "items_191",
     "slot": "none"
   },
   {
@@ -2569,7 +2569,7 @@
     "quantity": 1,
     "effect": "Cast Sending once. Deliver a 25 word message to any creature on the same plane. Target can reply.",
     "notes": "Received as part of Ssivanak's Stillwater reward.",
-    "id": "items_scroll_sending",
+    "id": "items_192",
     "slot": "none"
   },
   {
@@ -2582,7 +2582,7 @@
     "quantity": 1,
     "effect": "Cast Counterspell once. Interrupt a creature casting a spell of 3rd level or lower automatically. Higher levels require ability check.",
     "notes": "Received as part of Ssivanak's Stillwater reward.",
-    "id": "items_scroll_counterspell",
+    "id": "items_193",
     "slot": "none"
   },
   {
@@ -2594,7 +2594,7 @@
     "attuned": false,
     "effect": "Resistance to force damage. Immunity to Magic Missile.",
     "notes": "Given by Ssivanak as part of Stillwater reward, her choice of item.",
-    "id": "items_brooch_shielding",
+    "id": "items_194",
     "slot": "neck"
   }
 ]

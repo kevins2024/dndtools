@@ -117,7 +117,7 @@
     "notes": "3/4 miles southeast of Khemrise. Main house, east outbuilding, stable, courtyard, vineyard rows. Ledwent managing.."
   },
   {
-    "id": "assets_9",
+    "id": "assets_8",
     "name": "Marchant Wool Imports",
     "type": "business",
     "subtype": "import_export",
@@ -128,7 +128,7 @@
     "notes": "Real wool trading operation with genuine clients and good regional reputation. Just getting rebuilt as a new brand, will increase as it grows. Harwick managing with Rendwick offering contacts."
   },
   {
-    "id": "assets_10",
+    "id": "assets_9",
     "name": "Filas Apothecary",
     "type": "business",
     "subtype": "apothecary",
@@ -139,7 +139,7 @@
     "notes": "Real apothecary, legitimate pharmacist Prestiria Filas. Solid client base, real medicines. Tova handled ownership transition professionally. Supplier relationship with Trevash herb merchant."
   },
   {
-    "id": "assets_11",
+    "id": "assets_10",
     "name": "Loan Dragon",
     "type": "business",
     "subtype": "loan_operation",
@@ -150,7 +150,7 @@
     "notes": "Reformed loan shark operation. Jessyl Denmar manages, Big Tam and Gritch enforce."
   },
   {
-    "id": "assets_12",
+    "id": "assets_11",
     "name": "Long Arm Trading",
     "type": "business",
     "subtype": "trading_partnership",
@@ -161,7 +161,7 @@
     "notes": "Helena Sable 16% partner. Overflow warehouse potential LA Trading property."
   },
   {
-    "id": "assets_14",
+    "id": "assets_12",
     "name": "Millhaven Mine",
     "type": "business",
     "subtype": "mining",
@@ -181,7 +181,7 @@
     "ownership": "acquired from Farendale estate sale",
     "acquisition_cost": 4000,
     "notes": "Two minute walk from Revivify.",
-    "id": "assets_15"
+    "id": "assets_13"
   },
   {
     "name": "Trevash Warehouse",
@@ -192,7 +192,7 @@
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
     "notes": "",
-    "id": "assets_16"
+    "id": "assets_14"
   },
   {
     "name": "Brennswick Land Parcel",
@@ -203,10 +203,10 @@
     "status": "acquired",
     "ownership": "deed acquired from Farendale estate",
     "notes": "",
-    "id": "assets_17"
+    "id": "assets_15"
   },
   {
-    "id": "assets_18",
+    "id": "assets_16",
     "name": "Crestgate Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",
@@ -218,7 +218,7 @@
     "notes": "End of row, two levels, side garden. Two minutes from main market square. Comfortable, formerly wealthy owner. Good access, central location."
   },
   {
-    "id": "assets_19",
+    "id": "assets_17",
     "name": "Arrenway Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",
@@ -230,7 +230,7 @@
     "notes": "Middle of row, modest neighborhood. Area doesn't see people come and go often — difficult to visit unnoticed. Small cellar. Comfortable, formerly wealthy owner. Better suited for discreet use than public-facing operations."
   },
   {
-    "id": "assets_20",
+    "id": "assets_18",
     "name": "Argent Sunrise",
     "subtype": "caravel",
     "captain": "Erren Sault",
@@ -246,7 +246,7 @@
     "type": "ship"
   },
   {
-    "id": "assets_21",
+    "id": "assets_19",
     "name": "Nossa Valessa",
     "type": "real_estate",
     "subtype": "estate",
@@ -258,7 +258,7 @@
     "notes": "Three levels, each smaller than the last due to decks and balconies built over rooms below. Eight bedrooms, two large reception rooms, central courtyard with dry fountain fed by rooftop cistern system. Staff quarters in east wing, six rooms. Kitchen large and well positioned. Stone construction throughout, structurally sound. Walled and gated on two sides, cliff edge on the other two — natural defensibility. Gardens overgrown but intentionally preserved where possible, wild growth to be shaped rather than cleared. Original Drevorn family home, neighborhood landmark. Fountain mechanism blocked by sediment, two to three hours work to restore. Teleportation circle to be established here. Sivenne Althar appointed house steward. Restoration architect Duvaine contacted via Hallan. Former most prestigious address on the cliff line, restoration will be noticed by neighbors."
   },
   {
-    "id": "assets_22",
+    "id": "assets_20",
     "name": "Ravenquay Docks Warehouse",
     "type": "real_estate",
     "subtype": "warehouse",
@@ -271,7 +271,7 @@
     "notes": "Morrow and Selt staying as tenants."
   },
   {
-    "id": "assets_23",
+    "id": "assets_21",
     "name": "Khemrise Midcity Townhouse",
     "type": "real_estate",
     "subtype": "townhouse",
@@ -284,7 +284,7 @@
     "notes": "Tailor's workshop staying as tenant. Formerly Ostwick family property."
   },
   {
-    "id": "assets_24",
+    "id": "assets_22",
     "name": "Veilgarten Block - Brewery and Beer Garden",
     "type": "real_estate",
     "subtype": "commercial",
@@ -297,7 +297,7 @@
     "notes": "Ground floor converted to brewery operation. Shared central courtyard claimed as beer garden. Copper vessels and fittings planned using recovered copper architectural sheets. Gwynn operating as brewer, 20% stake, full recipe control in writing. Decorative hops on south courtyard wall. Fire pit and simple food service. Sourcing grain and hops from orc neighborhood farms via Orvha relationship. Upper two floors residential."
   },
   {
-    "id": "assets_25",
+    "id": "assets_23",
     "name": "Veilgarten Block - Tailor",
     "type": "real_estate",
     "subtype": "commercial",
@@ -310,7 +310,7 @@
     "notes": "Existing tailor's workshop staying as tenant. Upper floor residential."
   },
   {
-    "id": "assets_26",
+    "id": "assets_24",
     "name": "Veilgarten Block - Carter",
     "type": "real_estate",
     "subtype": "commercial",
@@ -323,7 +323,7 @@
     "notes": "Existing carter and storage operation staying as tenant. Upper floor residential."
   },
   {
-    "id": "assets_27",
+    "id": "assets_25",
     "name": "Bluff House",
     "type": "real_estate",
     "subtype": "residence",
@@ -334,7 +334,7 @@
     "notes": "Double lot. Two floors, four rooms plus common room and kitchen. Ocean view west. Stone floors suitable for teleportation circle inscription. Needs roof repair northwest corner and damp addressed in left back room. One street below Voryn temple. Purchased Day 75 Year 468 for 420 gold from Nimbri Tatch."
   },
   {
-    "id": "assets_28",
+    "id": "assets_26",
     "name": "Lake Plot",
     "type": "real_estate",
     "subtype": "undeveloped_land",
@@ -345,7 +345,7 @@
     "notes": "Approximately 110ft lake frontage, 400ft depth. Both banks of eastern creek included. Road access on eastern boundary. Abandoned foundation claim next door absorbed. Registered Day 76 Year 468. Annual fee 8 gold. Vision: exclusive high-end establishment. Secondary use: private dock for Dawn Blades vessels. Neighboring plot could be used for something else."
   },
   {
-    "id": "assets_29",
+    "id": "assets_27",
     "name": "Eye of the Deep",
     "subtype": "Xebec",
     "captain": "Drevna",
@@ -359,7 +359,7 @@
     "type": "ship"
   },
   {
-    "id": "assets_30",
+    "id": "assets_28",
     "name": "Ocean Huntress",
     "subtype": "Xebec",
     "captain": "Brathek",

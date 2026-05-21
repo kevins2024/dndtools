@@ -2440,7 +2440,7 @@
     ],
     "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally - Belt of Constitution freed up and available to reassign (recommend Lyria, Lenn, or Kessara). Next ASI goal: CON 18 â†’ 20. Magic item CON rule: belt adds flat HP bonus equal to CON mod difference x level worn, removed on unequip - no retroactive level recalculation. Improved Critical - crits on 19-20. Corwin holds the Ravenquay relationship network.",
     "image": "https://iili.io/qgWY8Dx.jpg",
-    "id": "characters_13"
+    "id": "characters_12"
   },
   {
     "name": "Torrin",
@@ -2545,7 +2545,7 @@
     ],
     "spells": [],
     "active_effects": [],
-    "id": "characters_14",
+    "id": "characters_13",
     "persona_notes": [
       "Legendary rogue, now retired.",
       "Applies 156 years of tactical memory to leatherworking."
@@ -2699,7 +2699,8 @@
       "If something feels wrong she assumes it is wrong and starts looking for proof. She is almost never looking for reassurance.",
       "When still she is in a semi-meditative state. Not absent - more present than usual. The stillness is attention, not emptiness."
     ],
-    "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 16. Stunning Strike DC 16. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 24hp (3x monk level 8) once per long rest. Stone's Endurance - reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial)."
+    "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 16. Stunning Strike DC 16. Ki points fuel Flurry of Blows, Patient Defense, Step of the Wind, Stunning Strike. Wholeness of Body heals 24hp (3x monk level 8) once per long rest. Stone's Endurance - reaction to reduce damage by 1d12 + CON mod once per short rest (Goliath racial).",
+    "id": "characters_14"
   },
   {
     "name": "Enauweyn",
@@ -2948,7 +2949,7 @@
       "The fey in her is not decorative. Her loyalty to Kexifrext is not religious devotion to an absent god — it is a living relationship with something ancient and strange that shapes how she perceives the world. The forest is always present in some corner of her awareness. The actor should occasionally let something else seem to have her attention, even in an empty room."
     ],
     "deity": "Kexifrext",
-    "id": "characters_20"
+    "id": "characters_15"
   },
   {
     "name": "Tackett",
@@ -3223,7 +3224,7 @@
       "He meddles. Not maliciously - helpfully, which is sometimes worse. Sees a situation, identifies what's actually wrong with it, does something about it without asking permission or announcing his intentions. Results are almost always correct. Process is frequently chaotic. Carix would love him if Carix and Tackett ever met which would be a problem for everyone nearby."
     ],
     "notes": "WIS 22 gives spell save DC 17 and spell attack +9. Starry Form - Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously, advantage on all concentration saves. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Full of Stars: while in Starry Form, dim light doesn't impose disadvantage. Perch summoned once per day, acts independently, no concentration required. Bountiful Luck: reaction when any ally within 30ft rolls a natural 1 - they reroll. Competes with Cosmic Omen for reaction; prioritize accordingly.",
-    "id": "characters_15",
+    "id": "characters_16",
     "spell_slots": {
       "level_1": {
         "max": 4,
@@ -3651,7 +3652,7 @@
       "The gilded horns are real and she absolutely uses the moment people realize that."
     ],
     "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). Belt of Constitution rule: adds flat HP bonus of CON mod difference x level worn; removed on unequip without retroactive recalculation. NEXT LEVEL ROADMAP: Level 9 â†’ Rogue 2, Level 10 â†’ Rogue 3 (Assassin subclass unlocked), Level 11 â†’ Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil. Exceptional performer - fire manipulation signature act, gilded horns signature look. Cooks exceptionally well, southern technique.",
-    "id": "characters_16",
+    "id": "characters_18",
     "spell_slots": {
       "level_1": {
         "max": 3,
@@ -3868,7 +3869,7 @@
       "May be reconsidering that."
     ],
     "notes": "Race corrected to Half-Elf. Stat reallocation: 2 points moved from CHA to DEX base, Half-Elf racial +2 CHA restores to 20, racial +1 DEX and +1 WIS applied, Slasher feat +1 DEX brings to 20. Inspires with body/dance rather than instrument - Spiritual Focus applies when using body as focus per table ruling. SHOPPING: scimitar, ideally magical, DEX/slashing flavored. From southeastern region same general area as Elucyne. Her College of Spirits abilities feel less like magic and more like she's genuinely listening to something others can't hear.",
-    "id": "characters_18",
+    "id": "characters_19",
     "spell_slots": {
       "level_1": {
         "max": 4,
@@ -4030,7 +4031,7 @@
       "The accent is distinctive and he's entirely unconscious of it."
     ],
     "notes": "Paladin of Carix, god of mischief and unexpected consequences. Eight years in Argentveil. CHA 18 - Aura of Protection now grants +4 to all saving throws for allies within 10ft. Lay on Hands pool corrected to 40HP (5 x paladin level 8). Spell save DC 15, spell attack +7. Known to Jho'a Uld, Galealzre, and various others in the city. Introduced Vaz to Gwynn and the Veilgarten block opportunity. Joined Dawn Blades provisionally Day 65 Year 468.",
-    "id": "characters_19",
+    "id": "characters_20",
     "spell_slots": {
       "level_1": {
         "max": 4,
