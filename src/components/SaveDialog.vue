@@ -57,7 +57,7 @@ export default {
       try {
         await this.$store.dispatch('saveAll')
         this.$emit('close')
-        alert('Changes saved successfully!')
+        this.$emit('saved')
       } catch (error) {
         alert('Error saving changes: ' + error.message)
       }

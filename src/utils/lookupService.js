@@ -13,7 +13,7 @@ import staticHomebrewData from '@/data/homebrew.json'
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
-const CACHE_VERSION = 'v1'
+const CACHE_VERSION = 'v2'
 const CACHE_PREFIX = `dndtools_${CACHE_VERSION}_`
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -79,6 +79,7 @@ function normalizeSpell(data) {
     casting_time: data.casting_time ?? null,
     range: data.range ?? null,
     duration: data.duration ?? null,
+    concentration: data.concentration ?? data.duration?.toLowerCase().startsWith('concentration') ?? false,
     components: Array.isArray(data.components) ? data.components.join(', ') : (data.components ?? null),
     save: data.dc?.dc_type?.name ?? (typeof data.save === 'object' ? data.save?.stat?.toUpperCase() : data.save) ?? null,
     damage_type: data.damage?.damage_type?.name ?? data.damage_type ?? null,

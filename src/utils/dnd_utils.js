@@ -30,26 +30,6 @@ export const STAT_KEYS = [
   { key: 'cha', label: 'CHA' },
 ]
 
-export const CLASS_ICONS = {
-  fighter:   'ra-crossed-swords',
-  barbarian: 'ra-axe-swing',
-  rogue:     'ra-daggers',
-  artificer: 'ra-gear-hammer',
-  wizard:    'ra-crystal-wand',
-  cleric:    'ra-ankh',
-  warlock:   'ra-eye-monster',
-  bard:      'ra-quill-ink',
-  monk:      'ra-lightning',
-  paladin:   'ra-bolt-shield',
-  druid:     'ra-leaf',
-  ranger:    'ra-broadhead-arrow',
-  sorcerer:  'ra-fluffy-swirl',
-}
-
-export function classIcon(character) {
-  const primary = (character.class ?? '').split(/[\s\/]+/)[0].toLowerCase()
-  return CLASS_ICONS[primary] ?? null
-}
 
 // Ability score keys that live inside stat_bonuses but modify the score itself, not a derived bonus.
 const SCORE_BONUS_KEYS = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha'])

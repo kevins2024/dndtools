@@ -461,9 +461,9 @@
         "type": "feature",
         "action_type": "action",
         "recharge": "long_rest",
-        "uses_max": 2,
-        "uses_current": 2,
-        "description": "Jaygar's crossbow functions as his Eldritch Cannon in Force Ballista mode. As an action create the cannon — it acts on his initiative. Can command it to activate as a bonus action. Lasts 1 hour or until destroyed. At level 6 can have two cannons simultaneously.",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Jaygar's crossbow functions as his Eldritch Cannon in Force Ballista mode. As an action create the cannon — it acts on his initiative. Can command it to activate as a bonus action. Lasts 1 hour or until destroyed.",
         "modes": [
           {
             "name": "Force Ballista",
@@ -477,14 +477,7 @@
             "name": "Protector",
             "description": "Emits aura of protective energy. Jaygar and allies within 10ft gain 1d8+5 temporary HP when activated."
           }
-        ],
-        "note": "At level 8 Jaygar can have two cannons simultaneously. Second cannon costs an action to create but both can be commanded with one bonus action."
-      },
-      {
-        "name": "Fortified Position",
-        "type": "feature",
-        "action_type": null,
-        "description": "Jaygar and allies within 10ft of an Eldritch Cannon gain half cover (+2 AC and DEX saves) while the cannon is active. Can now create two cannons simultaneously."
+        ]
       },
       {
         "name": "Flash of Genius",
@@ -523,6 +516,27 @@
         "type": "racial",
         "action_type": null,
         "description": "Add twice proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
+      },
+      {
+        "name": "Infusion: Clockwork Amulet",
+        "type": "infusion",
+        "action_type": null,
+        "recharge": "dawn",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Replicated via Infuse Item. Copper amulet powered by Mechanus magic. Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10. (Common, XGE — no attunement required.)"
+      },
+      {
+        "name": "Infusion: Helm of Comprehending Languages",
+        "type": "infusion",
+        "action_type": null,
+        "description": "Replicated via Infuse Item. While wearing this helm, the wearer can read any written language. (Uncommon, DMG — no attunement required.) Persists until Jaygar ends the infusion or dies."
+      },
+      {
+        "name": "Infusion: Perfume of Bewitching",
+        "type": "infusion",
+        "action_type": "action",
+        "description": "Replicated via Infuse Item. Single-use vial. Apply as an action — for 1 hour the wearer has advantage on Charisma checks directed at humanoids of CR 1 or lower. Primarily a social/roleplay tool. Jaygar can craft a new vial each long rest. (Common, DMG — no attunement required.)"
       }
     ],
     "spell_slots": {
@@ -533,14 +547,6 @@
       "level_2": {
         "max": 3,
         "current": 3
-      },
-      "level_3": {
-        "max": 3,
-        "current": 3
-      },
-      "level_4": {
-        "max": 1,
-        "current": 1
       }
     },
     "artillerist_spells": {
@@ -561,22 +567,6 @@
         {
           "level": 2,
           "name": "Shatter"
-        },
-        {
-          "level": 3,
-          "name": "Fireball"
-        },
-        {
-          "level": 3,
-          "name": "Wind Wall"
-        },
-        {
-          "level": 4,
-          "name": "Ice Storm"
-        },
-        {
-          "level": 4,
-          "name": "Wall of Fire"
         }
       ]
     },
@@ -760,12 +750,6 @@
         "type": "prepared"
       },
       {
-        "name": "Speak with Dead",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Stoneskin",
         "level": 4,
         "prepared": true,
@@ -821,12 +805,6 @@
       },
       {
         "name": "Mind Sliver",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Prestidigitation",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
@@ -1641,25 +1619,19 @@
         "type": "chosen"
       },
       {
-        "name": "Hunger of Hadar",
-        "level": 3,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Shadow of Moil",
-        "level": 4,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Banishment",
-        "level": 4,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
         "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Hellish Rebuke",
+        "level": 1,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Shatter",
         "level": 2,
         "prepared": true,
         "type": "chosen"
@@ -1667,12 +1639,6 @@
       {
         "name": "Armor of Agathys",
         "level": 1,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Hold Monster",
-        "level": 5,
         "prepared": true,
         "type": "chosen"
       }
@@ -2187,12 +2153,6 @@
         "type": "prepared"
       },
       {
-        "name": "Pass Without Trace",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Counterspell",
         "level": 3,
         "prepared": true,
@@ -2218,12 +2178,6 @@
       },
       {
         "name": "Magic Circle",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Speak with Dead",
         "level": 3,
         "prepared": true,
         "type": "prepared"
@@ -2308,6 +2262,12 @@
       },
       {
         "name": "Blade Ward",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
@@ -2909,18 +2869,6 @@
         "level": 2,
         "prepared": true,
         "type": "prepared"
-      },
-      {
-        "name": "Revivify",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Dispel Magic",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
       }
     ],
     "spell_slots": {
@@ -2931,10 +2879,6 @@
       "level_2": {
         "max": 3,
         "current": 3
-      },
-      "level_3": {
-        "max": 2,
-        "current": 2
       }
     },
     "image": "https://iili.io/Br9QBgs.jpg",
@@ -3162,12 +3106,6 @@
         "type": "prepared"
       },
       {
-        "name": "Mass Healing Word",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Erupting Earth",
         "level": 3,
         "prepared": true,
@@ -3200,18 +3138,6 @@
       {
         "name": "Wall of Fire",
         "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Conjure Elemental",
-        "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Mass Cure Wounds",
-        "level": 5,
         "prepared": true,
         "type": "prepared"
       }
@@ -3438,14 +3364,20 @@
         "type": "prepared"
       },
       {
-        "name": "Death Ward",
-        "level": 4,
+        "name": "Bless",
+        "level": 1,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Greater Restoration",
-        "level": 5,
+        "name": "Spirit Guardians",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Death Ward",
+        "level": 4,
         "prepared": true,
         "type": "prepared"
       },
@@ -3655,8 +3587,12 @@
     "id": "characters_18",
     "spell_slots": {
       "level_1": {
-        "max": 3,
-        "current": 3
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 2,
+        "current": 2
       }
     }
   },

@@ -6,8 +6,8 @@
         class="portrait"
         :style="{ backgroundImage: `url(${character.image})` }"
       >
-        <span v-if="classIcon" class="class-badge" :title="character.class">
-          <i :class="`ra ${classIcon}`"></i>
+        <span class="class-badge" :title="character.class">
+          <ClassIcon :character="character" />
         </span>
       </div>
       <div class="identity">
@@ -159,15 +159,16 @@
 </template>
 
 <script>
-import { STAT_KEYS, dnd, classIcon } from '@/utils/dnd_utils.js'
+import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
+import ClassIcon from '@/components/ClassIcon.vue'
 
 const SAVE_KEYS = STAT_KEYS
 
 export default {
   name: 'CharacterSheet',
 
-  components: { CharacterCombatPanel },
+  components: { CharacterCombatPanel, ClassIcon },
 
   props: {
     character: { type: Object, required: true },
@@ -176,10 +177,6 @@ export default {
   computed: {
     partyItems() {
       return this.$store.state.party_items ?? []
-    },
-
-    classIcon() {
-      return classIcon(this.character)
     },
 
     stats() {
@@ -255,8 +252,12 @@ export default {
   align-items: center;
   justify-content: center;
   color: var(--color-accent);
-  font-size: 0.85rem;
   backdrop-filter: blur(2px);
+}
+
+.class-badge .class-icon {
+  width: 1rem;
+  height: 1rem;
 }
 
 .identity {

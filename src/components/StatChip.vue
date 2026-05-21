@@ -1,14 +1,7 @@
 <template>
-  <span class="stat-chip" :class="`stat-chip--${size}`" ref="root">
-    {{ value }}<button
-      v-if="explain"
-      class="stat-chip-btn"
-      :class="{ 'stat-chip-btn--active': open }"
-      type="button"
-      aria-label="Show calculation"
-      @click.stop="toggle"
-    >ⓘ</button>
-    <div v-if="open" class="stat-chip-tooltip">{{ breakdown }}</div>
+  <span class="stat-chip" :class="`stat-chip--${size}`">
+    <span :class="{ 'has-tip': explain }">{{ value }}</span>
+    <div v-if="explain" class="stat-chip-tooltip">{{ breakdown }}</div>
   </span>
 </template>
 
@@ -22,28 +15,10 @@ export default {
     size: { type: String, default: 'md' },
   },
 
-  data() {
-    return {
-      open: false,
-      breakdown: null,
-    }
-  },
-
-  methods: {
-    toggle() {
-      if (!this.open) this.breakdown = this.explain()
-      this.open = !this.open
-      if (this.open) {
-        document.addEventListener('click', this.close, { once: true })
-      }
+  computed: {
+    breakdown() {
+      return this.explain ? this.explain() : null
     },
-    close() {
-      this.open = false
-    },
-  },
-
-  beforeDestroy() {
-    document.removeEventListener('click', this.close)
   },
 }
 </script>
@@ -53,27 +28,11 @@ export default {
   position: relative;
   display: inline-flex;
   align-items: baseline;
-  gap: 0.15em;
 }
 
-.stat-chip-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  font-size: 0.65em;
-  color: var(--color-text-muted);
-  opacity: 1;
-  transition: opacity 0.1s, color 0.1s;
-  vertical-align: super;
-  user-select: none;
-}
-
-.stat-chip-btn:hover,
-.stat-chip-btn--active {
-  opacity: 1;
-  color: var(--color-accent);
+.has-tip {
+  border-bottom: 1px dotted currentColor;
+  cursor: default;
 }
 
 .stat-chip-tooltip {
@@ -94,11 +53,16 @@ export default {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
   pointer-events: none;
   font-family: var(--font-body);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
 }
 
-/* The last line "= N" gets accent color via nth-last trick — not possible with pre-line alone,
-   so we rely on the step format being clear enough as plain text. */
+.stat-chip:hover .stat-chip-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 
-.stat-chip--sm .stat-chip-btn { font-size: 0.55em; }
-.stat-chip--lg .stat-chip-btn { font-size: 0.75em; }
+.stat-chip--sm .has-tip { font-size: 0.9em; }
+.stat-chip--lg .has-tip { font-size: 1.1em; }
 </style>

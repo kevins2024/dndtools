@@ -13,7 +13,7 @@
             </button>
             <button class="dp-action-btn dp-cancel" @click="cancelEdit">Cancel</button>
           </template>
-          <button v-else class="dp-action-btn dp-edit" @click="startEdit">Edit</button>
+          <button v-else-if="!readonly" class="dp-action-btn dp-edit" @click="startEdit">Edit</button>
           <button class="dp-close" @click="onClose">✕</button>
         </div>
       </div>
@@ -55,6 +55,12 @@
             <label class="dp-edit-label">Components<input v-model="draft.components" class="dp-edit-input" placeholder="e.g. V, S" /></label>
             <label class="dp-edit-label">Save<input v-model="draft.save" class="dp-edit-input" placeholder="e.g. Constitution" /></label>
             <label class="dp-edit-label">Damage Type<input v-model="draft.damage_type" class="dp-edit-input" placeholder="e.g. Psychic" /></label>
+          </div>
+          <div class="dp-edit-row dp-edit-row--check">
+            <label class="dp-edit-check-label">
+              <input type="checkbox" v-model="draft.concentration" />
+              Concentration
+            </label>
           </div>
           <div class="dp-edit-field-group">
             <div class="dp-field-group-label">Spell List</div>
@@ -101,6 +107,7 @@ export default {
 
   props: {
     open: { type: Boolean, required: true },
+    readonly: { type: Boolean, default: false },
     item: {
       type: Object,
       default: () => ({ title: '', subtitle: null, description: null, fields: [], itemType: null, editable: null }),
@@ -143,6 +150,7 @@ export default {
         if (d.casting_time) fields.push({ label: 'Cast', value: d.casting_time })
         if (d.range) fields.push({ label: 'Range', value: d.range })
         if (d.duration) fields.push({ label: 'Duration', value: d.duration })
+        if (d.concentration) fields.push({ label: 'Conc', value: 'Yes' })
         if (d.components) fields.push({ label: 'Comp', value: d.components })
         if (d.save) fields.push({ label: 'Save', value: d.save })
         if (d.damage_type) fields.push({ label: 'Dmg', value: d.damage_type })
@@ -409,6 +417,20 @@ export default {
   resize: vertical;
   line-height: 1.55;
   font-family: inherit;
+}
+
+.dp-edit-row--check {
+  align-items: center;
+}
+
+.dp-edit-check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  user-select: none;
 }
 
 .dp-save-error {

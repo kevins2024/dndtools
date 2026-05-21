@@ -64,9 +64,8 @@
           :key="item.id"
           class="inv-item equipped"
           :class="{ overloaded: isSlotOverfilled(item.slot || item.type) }"
-          title="Click to unequip"
         >
-          <span class="item-name" @click="unequip(item)">{{ item.name }}</span>
+          <span class="item-name">{{ item.name }}</span>
           <span class="item-slot">{{ item.slot || item.type }}</span>
           <span class="item-tag">{{ item.type }}</span>
           <span
@@ -75,14 +74,22 @@
             title="Requires attunement"
             >⚡</span
           >
-          <button
-            class="act-btn inspect-btn"
-            @click.stop="inspectItem(item)"
-            title="View item details"
-          >
-            🔍
-          </button>
-          <span class="item-action">↓</span>
+          <div class="item-actions">
+            <button
+              class="act-btn inspect-btn"
+              @click.stop="inspectItem(item)"
+              title="View item details"
+            >
+              🔍
+            </button>
+            <button
+              class="act-btn"
+              @click.stop="unequip(item)"
+              title="Unequip"
+            >
+              ↓
+            </button>
+          </div>
         </div>
       </div>
 
@@ -242,15 +249,28 @@
             </div>
             <div class="meta-row">
               <span class="meta-label">Requires Attunement:</span>
-              <span class="meta-value">{{
-                inspectedItem.needs_attunement ? 'Yes' : 'No'
-              }}</span>
+              <span class="meta-value">
+                <label class="check-label">
+                  <input
+                    type="checkbox"
+                    :checked="inspectedItem.needs_attunement"
+                    @change="setNeedsAttunement($event.target.checked)"
+                  />
+                </label>
+              </span>
             </div>
-            <div v-if="inspectedItem.needs_attunement" class="meta-row">
+            <div class="meta-row">
               <span class="meta-label">Attuned:</span>
-              <span class="meta-value">{{
-                inspectedItem.attuned ? 'Yes' : 'No'
-              }}</span>
+              <span class="meta-value">
+                <label class="check-label" :class="{ 'check-disabled': !inspectedItem.needs_attunement }">
+                  <input
+                    type="checkbox"
+                    :checked="inspectedItem.attuned && inspectedItem.needs_attunement"
+                    :disabled="!inspectedItem.needs_attunement"
+                    @change="setAttuned($event.target.checked)"
+                  />
+                </label>
+              </span>
             </div>
             <div v-if="inspectedItem.quantity" class="meta-row">
               <span class="meta-label">Quantity:</span>
@@ -359,7 +379,7 @@ export default {
       })
     },
     attunedItems() {
-      return this.equippedItems.filter((i) => i.needs_attunement)
+      return this.equippedItems.filter((i) => i.attuned)
     },
     attunedCount() {
       return this.attunedItems.length
@@ -368,6 +388,9 @@ export default {
       const q = this.itemSearch.trim().toLowerCase()
       if (!q) return []
       return this.allItems.filter((i) => i.name.toLowerCase().includes(q))
+    },
+    inspectedItem() {
+      return this.allItems.find((i) => i.id === this.inspectedItemId) || null
     },
   },
 
@@ -378,7 +401,7 @@ export default {
       deleteCandidate: null,
       deleteSaleValue: '',
       inspectionOpen: false,
-      inspectedItem: null,
+      inspectedItemId: null,
     }
   },
 
@@ -434,6 +457,7 @@ export default {
         ...item,
         equipped_by: null,
         carried_by: this.character.name,
+        attuned: false,
       })
     },
     carry(item) {
@@ -470,13 +494,22 @@ export default {
       }
       this.cancelDelete()
     },
+    setNeedsAttunement(val) {
+      const updated = { ...this.inspectedItem, needs_attunement: val }
+      if (!val) updated.attuned = false
+      this.$store.commit('UPDATE_ITEM', updated)
+    },
+    setAttuned(val) {
+      if (!this.inspectedItem.needs_attunement) return
+      this.$store.commit('UPDATE_ITEM', { ...this.inspectedItem, attuned: val })
+    },
     inspectItem(item) {
-      this.inspectedItem = item
+      this.inspectedItemId = item.id
       this.inspectionOpen = true
     },
     closeInspection() {
       this.inspectionOpen = false
-      this.inspectedItem = null
+      this.inspectedItemId = null
     },
   },
 }
@@ -886,5 +919,18 @@ export default {
   font-family: monospace;
   font-size: var(--font-size-xxs);
   color: var(--color-text-muted);
+}
+
+.check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.check-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 </style>

@@ -31,7 +31,12 @@
 
 
     <!-- Save Dialog -->
-    <SaveDialog :open="saveDialogOpen" @close="saveDialogOpen = false" />
+    <SaveDialog :open="saveDialogOpen" @close="saveDialogOpen = false" @saved="onSaved" />
+
+    <!-- Save flash -->
+    <transition name="save-flash">
+      <div v-if="saveFlash" class="save-flash">✓ Saved</div>
+    </transition>
 
     <!-- Save Button -->
     <button
@@ -71,6 +76,7 @@ export default {
     return {
       activeContext: 'combat',
       saveDialogOpen: false,
+      saveFlash: false,
       contexts: [
         { id: 'combat',    label: 'Combat',    component: 'CombatContext' },
         { id: 'character', label: 'Character', component: 'CharacterContext' },
@@ -85,6 +91,10 @@ export default {
   methods: {
     longRest() {
       this.$store.commit('LONG_REST')
+    },
+    onSaved() {
+      this.saveFlash = true
+      setTimeout(() => { this.saveFlash = false }, 600)
     },
   },
 
@@ -225,5 +235,30 @@ export default {
   background: var(--color-accent-strong);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Save flash ── */
+.save-flash {
+  position: fixed;
+  bottom: 1vh;
+  right: 5vw;
+  padding: 8px 16px;
+  background: #2d7a4f;
+  border: 1px solid #3a9e64;
+  border-radius: 8px;
+  color: white;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  z-index: 102;
+  pointer-events: none;
+}
+
+.save-flash-enter-active,
+.save-flash-leave-active {
+  transition: opacity 0.2s ease;
+}
+.save-flash-enter,
+.save-flash-leave-to {
+  opacity: 0;
 }
 </style>

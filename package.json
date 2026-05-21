@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/kevins2024/dndtools#readme",
   "dependencies": {
+    "lucide-vue": "^0.517.0",
     "medium-zoom": "^1.1.0",
     "rpg-awesome": "^0.2.0",
     "vue": "^2.7.16",
