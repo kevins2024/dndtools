@@ -753,7 +753,7 @@ export default {
 }
 
 .toolbar-label {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
 }
 
@@ -767,7 +767,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -789,7 +789,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-muted);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   cursor: pointer;
   font-family: var(--font-display);
 }
@@ -819,7 +819,7 @@ export default {
 .sidebar-continent {
   padding: 0.75rem;
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-accent-strong);
   letter-spacing: 0.05em;
   border-bottom: 1px solid var(--color-border);
@@ -838,7 +838,7 @@ export default {
   align-items: center;
   gap: 0.4rem;
   padding: 0.2rem 0.4rem;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -863,7 +863,7 @@ export default {
   border-radius: 4px;
   color: var(--color-text-muted);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -892,7 +892,7 @@ export default {
   height: 100%;
   color: var(--color-text-low);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .map-svg {

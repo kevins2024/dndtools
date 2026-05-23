@@ -78,7 +78,7 @@ export default {
 .col-label {
   padding: 0.4rem 0.6rem;
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   border-bottom: 1px solid var(--color-border);
   letter-spacing: 0.05em;
@@ -122,7 +122,7 @@ export default {
 .char-name {
   padding: 4px 6px;
   text-align: center;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   background: var(--color-bg-panel);
   border-top: 1px solid var(--color-border);

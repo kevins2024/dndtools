@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <Dialog :open="open" @close="onClose">
     <template #title>
       <div class="dp-header">
@@ -9,7 +9,7 @@
         <div class="dp-header-actions">
           <template v-if="editing">
             <button class="dp-action-btn dp-save" :disabled="saving" @click="save">
-              {{ saving ? 'Saving…' : 'Save' }}
+              {{ saving ? 'Savingâ€¦' : 'Save' }}
             </button>
             <button class="dp-action-btn dp-cancel" @click="cancelEdit">Cancel</button>
           </template>
@@ -36,7 +36,7 @@
       </div>
       <div class="dp-desc">
         <template v-if="displayDescription">{{ displayDescription }}</template>
-        <span v-else class="dp-no-desc">No description available — click Edit to add one.</span>
+        <span v-else class="dp-no-desc">No description available â€” click Edit to add one.</span>
       </div>
     </template>
 
@@ -80,7 +80,7 @@
         <!-- Feature fields -->
         <template v-else>
           <div class="dp-edit-row">
-            <label class="dp-edit-label">Subtitle<input v-model="draft.subtitle" class="dp-edit-input" placeholder="e.g. Rogue · Level 3" /></label>
+            <label class="dp-edit-label">Subtitle<input v-model="draft.subtitle" class="dp-edit-input" placeholder="e.g. Rogue Â· Level 3" /></label>
             <label class="dp-edit-label">Action Type<input v-model="draft.action_type" class="dp-edit-input" placeholder="e.g. bonus_action" /></label>
             <label class="dp-edit-label">Recharge<input v-model="draft.recharge" class="dp-edit-input" placeholder="e.g. short_rest" /></label>
           </div>
@@ -88,7 +88,7 @@
 
         <label class="dp-edit-label dp-edit-desc-label">
           Description
-          <textarea v-model="draft.description" class="dp-edit-textarea" rows="8" placeholder="Enter description…" />
+          <textarea v-model="draft.description" class="dp-edit-textarea" rows="8" placeholder="Enter descriptionâ€¦" />
         </label>
 
         <p v-if="saveError" class="dp-save-error">{{ saveError }}</p>
@@ -217,7 +217,7 @@ export default {
         this.editing = false
         this.$emit('saved', { section, data: payload })
       } else {
-        this.saveError = 'Save failed — is the dev server running on port 3001?'
+        this.saveError = 'Save failed â€” is the dev server running on port 3001?'
       }
 
       this.saving = false
@@ -242,12 +242,12 @@ export default {
 
 .dp-name {
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-text);
 }
 
 .dp-subtitle {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   letter-spacing: 0.03em;
 }
@@ -260,7 +260,7 @@ export default {
 }
 
 .dp-action-btn {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0.2rem 0.55rem;
   border-radius: 3px;
   border: 1px solid var(--color-border);
@@ -301,7 +301,7 @@ export default {
   border: none;
   color: var(--color-text-low);
   cursor: pointer;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   padding: 0;
   line-height: 1;
 }
@@ -310,7 +310,7 @@ export default {
   color: var(--color-text);
 }
 
-/* ── View mode ── */
+/* â”€â”€ View mode â”€â”€ */
 .dp-fields {
   display: flex;
   flex-wrap: wrap;
@@ -330,21 +330,21 @@ export default {
 }
 
 .dp-field-label {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-low);
 }
 
 .dp-field-value {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text);
   margin-top: 0.1rem;
 }
 
 .dp-desc {
   margin-top: 0.85rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
   line-height: 1.6;
   white-space: pre-wrap;
@@ -358,7 +358,7 @@ export default {
   font-style: italic;
 }
 
-/* ── Edit mode ── */
+/* â”€â”€ Edit mode â”€â”€ */
 .dp-edit-form {
   margin-top: 0.75rem;
   display: flex;
@@ -376,7 +376,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-low);
@@ -389,7 +389,7 @@ export default {
 }
 
 .dp-edit-input {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0.25rem 0.4rem;
   background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
@@ -406,7 +406,7 @@ export default {
 }
 
 .dp-edit-textarea {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0.35rem 0.4rem;
   background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
@@ -427,19 +427,19 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
 }
 
 .dp-save-error {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: #c0392b;
   margin: 0;
 }
 
-/* ── Spell list (view mode) ── */
+/* â”€â”€ Spell list (view mode) â”€â”€ */
 .dp-spell-list {
   display: flex;
   flex-wrap: wrap;
@@ -448,7 +448,7 @@ export default {
 }
 
 .dp-spell-list-chip {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   padding: 2px 7px;
   border-radius: 999px;
   border: 1px solid var(--color-accent);
@@ -457,7 +457,7 @@ export default {
   letter-spacing: 0.04em;
 }
 
-/* ── Spell list (edit mode) ── */
+/* â”€â”€ Spell list (edit mode) â”€â”€ */
 .dp-edit-field-group {
   display: flex;
   flex-direction: column;
@@ -465,7 +465,7 @@ export default {
 }
 
 .dp-field-group-label {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-low);
@@ -478,7 +478,7 @@ export default {
 }
 
 .dp-class-chip {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 3px 9px;
   border-radius: 999px;
   border: 1px solid var(--color-border);

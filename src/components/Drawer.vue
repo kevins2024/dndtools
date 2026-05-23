@@ -61,7 +61,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-muted);
-  font-size: var(--font-size-toggle);
+  font-size: var(--font-size-xl);
   cursor: pointer;
   display: flex;
   align-items: center;

@@ -1,7 +1,7 @@
-<template>
+﻿<template>
   <div class="combat-context">
 
-    <!-- ── Setup phase ── -->
+    <!-- â”€â”€ Setup phase â”€â”€ -->
     <template v-if="phase === 'setup'">
 
       <aside class="col bench-col">
@@ -41,7 +41,7 @@
               ref="partyNameInput"
               v-model="newPartyName"
               class="field"
-              placeholder="Party name…"
+              placeholder="Party nameâ€¦"
               @keyup.enter="confirmSaveParty"
               @keyup.escape="cancelSaveParty"
             />
@@ -73,7 +73,7 @@
       <section class="col enemy-col">
         <div class="col-label">Enemies</div>
         <div v-if="currentEncounter" class="enc-load-bar">
-          <span class="enc-load-hint">{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} · {{ currentEncounter.enemies.length }} enemies</span>
+          <span class="enc-load-hint">{{ currentEncounter.difficulty }} Â· {{ currentEncounter.type }} Â· {{ currentEncounter.enemies.length }} enemies</span>
           <button class="enc-load-btn" @click="loadEncounterEnemies">Load Encounter</button>
         </div>
         <div class="enemy-input-row">
@@ -120,16 +120,16 @@
 
     </template>
 
-    <!-- ── Battle phase ── -->
+    <!-- â”€â”€ Battle phase â”€â”€ -->
     <template v-else>
       <Battle class="battle-fill" :order="initiativeOrder" :combatant-states="combatantStates" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" @toggle-friendly="onToggleFriendly" @remove-enemy="onRemoveEnemy" />
       <div class="roll-bar">
         <button class="exit-btn" @click="exitCombat">Exit Combat</button>
-        <button class="back-btn" @click="phase = 'setup'">← Back to Setup</button>
+        <button class="back-btn" @click="phase = 'setup'">â† Back to Setup</button>
       </div>
     </template>
 
-    <!-- ── Encounter Generator Modal ── -->
+    <!-- â”€â”€ Encounter Generator Modal â”€â”€ -->
     <div v-if="showEncounterModal" class="enc-modal-overlay" @click.self="showEncounterModal = false">
       <div class="enc-modal">
         <div class="enc-modal-header">
@@ -230,7 +230,7 @@ export default {
   },
 
   methods: {
-    // ── Saved parties ──
+    // â”€â”€ Saved parties â”€â”€
     promptSaveParty() {
       this.savingParty = true
       this.$nextTick(() => this.$refs.partyNameInput?.focus())
@@ -388,7 +388,7 @@ export default {
   grid-column: 1 / -1;
 }
 
-/* ── Shared column styles ── */
+/* â”€â”€ Shared column styles â”€â”€ */
 .col {
   display: flex;
   flex-direction: column;
@@ -400,7 +400,7 @@ export default {
 .col-label {
   padding: 0.4rem 0.6rem;
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   border-bottom: 1px solid var(--color-border);
   letter-spacing: 0.05em;
@@ -410,19 +410,19 @@ export default {
 
 .col-empty {
   color: var(--color-text-low);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   text-align: center;
   padding: 1rem 0.5rem;
 }
 
-/* ── Bench ── */
+/* â”€â”€ Bench â”€â”€ */
 .bench-col {
   grid-area: bench;
   background: var(--color-bg-panel);
   border-right: 1px solid var(--color-border);
 }
 
-/* ── On-Deck ── */
+/* â”€â”€ On-Deck â”€â”€ */
 .ondeck-col {
   grid-area: ondeck;
   background: var(--color-bg-panel);
@@ -459,7 +459,7 @@ export default {
 .player-name {
   padding: 4px 6px;
   text-align: center;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-accent);
   background: var(--color-bg-panel);
   border-top: 1px solid var(--color-border);
@@ -468,7 +468,7 @@ export default {
   text-overflow: ellipsis;
 }
 
-/* ── Saved Parties ── */
+/* â”€â”€ Saved Parties â”€â”€ */
 .parties-section {
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--color-border);
@@ -490,7 +490,7 @@ export default {
   background: var(--color-bg-surface);
   border: 1px solid var(--color-accent);
   border-radius: 12px;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-accent);
   cursor: pointer;
   transition: background 0.15s ease;
@@ -505,7 +505,7 @@ export default {
   background: none;
   border: none;
   color: var(--color-text-low);
-  font-size: 0.55rem;
+  font-size: var(--font-size-xs);
   cursor: pointer;
   padding: 0;
   line-height: 1;
@@ -522,7 +522,7 @@ export default {
   border: 1px dashed var(--color-border);
   border-radius: 12px;
   color: var(--color-text-low);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -544,7 +544,7 @@ export default {
 .party-save-form .field {
   width: 100%;
   box-sizing: border-box;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0.25rem 0.4rem;
 }
 
@@ -554,7 +554,7 @@ export default {
   text-align: center;
 }
 
-/* ── Encounter load bar ── */
+/* â”€â”€ Encounter load bar â”€â”€ */
 .enc-load-bar {
   display: flex;
   align-items: center;
@@ -566,7 +566,7 @@ export default {
 }
 
 .enc-load-hint {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   text-transform: capitalize;
   flex: 1;
@@ -581,7 +581,7 @@ export default {
   border: 1px solid #8888dd;
   border-radius: 4px;
   color: #8888dd;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-family: var(--font-display);
   cursor: pointer;
   white-space: nowrap;
@@ -589,7 +589,7 @@ export default {
 }
 .enc-load-btn:hover { background: rgba(136,136,221,0.15); }
 
-/* ── Enemies ── */
+/* â”€â”€ Enemies â”€â”€ */
 .enemy-col {
   grid-area: enemies;
   padding: 0.75rem 1rem;
@@ -609,7 +609,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   padding: 0.35rem 0.5rem;
 }
@@ -628,7 +628,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-muted);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -658,14 +658,14 @@ export default {
   border-radius: 4px;
 }
 
-.enemy-name { flex: 1; font-size: var(--font-size-small); color: var(--color-text); }
-.enemy-mod  { font-size: var(--font-size-tiny); color: var(--color-text-muted); min-width: 2.5rem; text-align: right; }
+.enemy-name { flex: 1; font-size: var(--font-size-md); color: var(--color-text); }
+.enemy-mod  { font-size: var(--font-size-base); color: var(--color-text-muted); min-width: 2.5rem; text-align: right; }
 
 .remove-btn {
   background: none;
   border: none;
   color: var(--color-text-low);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   cursor: pointer;
   padding: 0 0.25rem;
   line-height: 1;
@@ -673,7 +673,7 @@ export default {
 }
 .remove-btn:hover { color: var(--color-text-danger); }
 
-/* ── Roll Bar ── */
+/* â”€â”€ Roll Bar â”€â”€ */
 .roll-bar {
   grid-area: roll;
   grid-column: 1 / -1;
@@ -693,7 +693,7 @@ export default {
   border-radius: 6px;
   color: var(--color-bg);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   letter-spacing: 0.04em;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -713,7 +713,7 @@ export default {
   border-radius: 6px;
   color: var(--color-text-muted);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -730,7 +730,7 @@ export default {
   border-radius: 6px;
   color: var(--color-text-low);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -747,7 +747,7 @@ export default {
   border-radius: 6px;
   color: var(--color-text-muted);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -757,7 +757,7 @@ export default {
   color: #8888dd;
 }
 
-/* ── Encounter modal ── */
+/* â”€â”€ Encounter modal â”€â”€ */
 .enc-modal-overlay {
   position: absolute;
   inset: 0;
@@ -787,7 +787,7 @@ export default {
   background: var(--color-bg-panel-dark);
   border-bottom: 1px solid var(--color-border);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-accent-strong);
   letter-spacing: 0.04em;
   flex-shrink: 0;
@@ -797,7 +797,7 @@ export default {
   background: none;
   border: none;
   color: var(--color-text-low);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   padding: 0;
   line-height: 1;

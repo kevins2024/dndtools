@@ -79,7 +79,7 @@ export default {
 .player-name {
   padding: 4px 6px;
   text-align: center;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   background: var(--color-bg-panel);
   border-top: 1px solid var(--color-border);
@@ -94,7 +94,7 @@ export default {
 
 .bench-empty {
   color: var(--color-text-low);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   text-align: center;
   padding: 1rem 0.5rem;
 }

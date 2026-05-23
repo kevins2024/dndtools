@@ -70,7 +70,7 @@ export default {
   border-radius: 4px;
   color: var(--color-text-muted);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }

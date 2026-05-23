@@ -1,7 +1,7 @@
-<template>
+﻿<template>
   <div class="enc-gen">
 
-    <!-- ── Options panel ── -->
+    <!-- â”€â”€ Options panel â”€â”€ -->
     <div class="enc-options">
 
       <!-- Party source -->
@@ -77,7 +77,7 @@
 
     </div>
 
-    <!-- ── Result panel ── -->
+    <!-- â”€â”€ Result panel â”€â”€ -->
     <div class="enc-result">
       <div class="result-controls">
         <button class="generate-btn" @click="generate" :disabled="!canGenerate">
@@ -126,7 +126,7 @@
       </div>
     </div>
 
-    <!-- ── Encounter config wizard ── -->
+    <!-- â”€â”€ Encounter config wizard â”€â”€ -->
     <div v-if="showWizard" class="wizard-overlay" @click.self="showWizard = false">
       <div class="wizard-panel">
 
@@ -201,11 +201,11 @@
         </div>
 
         <div class="wizard-actions">
-          <button class="wiz-btn secondary" :disabled="wizardStep === 0" @click="wizardPrev">← Back</button>
+          <button class="wiz-btn secondary" :disabled="wizardStep === 0" @click="wizardPrev">â† Back</button>
           <div class="wiz-actions-right">
             <button class="wiz-btn ghost" @click="wizardRandomizeRemaining">Randomize Remaining</button>
             <button class="wiz-btn primary" @click="wizardNext">
-              {{ wizardStep === wizardSlots.length - 1 ? 'Generate' : 'Next →' }}
+              {{ wizardStep === wizardSlots.length - 1 ? 'Generate' : 'Next â†’' }}
             </button>
           </div>
         </div>
@@ -412,7 +412,7 @@ export default {
   overflow: hidden;
 }
 
-/* ── Options ── */
+/* â”€â”€ Options â”€â”€ */
 .enc-options {
   display: flex;
   flex-direction: row;
@@ -439,7 +439,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-accent-strong);
   letter-spacing: 0.04em;
   border-bottom: 1px solid var(--color-border);
@@ -451,7 +451,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -468,7 +468,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   text-align: center;
 }
 
@@ -483,7 +483,7 @@ export default {
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--color-border);
   border-radius: 12px;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -508,7 +508,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 0.15rem 0.5rem;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   display: flex;
   justify-content: space-between;
@@ -521,13 +521,13 @@ export default {
 }
 
 .opt-hint {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   font-style: italic;
   margin-top: 0.3rem;
 }
 
-/* ── Result ── */
+/* â”€â”€ Result â”€â”€ */
 .enc-result {
   flex: 1;
   display: flex;
@@ -550,7 +550,7 @@ export default {
   border-radius: 6px;
   color: white;
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: background 0.15s;
@@ -565,7 +565,7 @@ export default {
   border-radius: 6px;
   color: #8888dd;
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.15s;
@@ -574,10 +574,10 @@ export default {
 
 .enc-error {
   color: #c0392b;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
-/* ── Encounter card ── */
+/* â”€â”€ Encounter card â”€â”€ */
 .encounter-card {
   display: flex;
   flex-direction: column;
@@ -593,7 +593,7 @@ export default {
 .enc-badge {
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-family: var(--font-display);
   letter-spacing: 0.05em;
   text-transform: capitalize;
@@ -603,7 +603,7 @@ export default {
 .enc-badge.type       { background: rgba(100,100,200,0.15); color: #8888dd; border: 1px solid #8888dd; }
 .enc-badge.count      { background: rgba(200,100,100,0.15); color: #cc7766; border: 1px solid #cc7766; }
 
-/* ── Enemy rows ── */
+/* â”€â”€ Enemy rows â”€â”€ */
 .enemy-list {
   display: flex;
   flex-direction: column;
@@ -627,7 +627,7 @@ export default {
 
 .enemy-name {
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text);
 }
 
@@ -640,7 +640,7 @@ export default {
 }
 
 .estat {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   background: var(--color-bg-surface);
   padding: 0.1rem 0.4rem;
@@ -667,31 +667,31 @@ export default {
 }
 
 .score-label {
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   color: var(--color-text-low);
   letter-spacing: 0.05em;
 }
 
 .score-val {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   font-weight: 600;
   line-height: 1.1;
 }
 
 .score-mod {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   color: var(--color-accent);
 }
 
 .last-enc-hint {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   font-style: italic;
 }
 
-/* ── Wizard ── */
+/* â”€â”€ Wizard â”€â”€ */
 .wizard-overlay {
   position: fixed;
   inset: 0;
@@ -725,7 +725,7 @@ export default {
 
 .wizard-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-accent-strong);
   letter-spacing: 0.04em;
   flex: 1;
@@ -734,7 +734,7 @@ export default {
 .wizard-diff-badge {
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-family: var(--font-display);
   letter-spacing: 0.05em;
   text-transform: capitalize;
@@ -747,7 +747,7 @@ export default {
   background: none;
   border: none;
   color: var(--color-text-low);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   padding: 0;
   line-height: 1;
@@ -771,7 +771,7 @@ export default {
 
 .wiz-label {
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -787,7 +787,7 @@ export default {
   padding: 0.25rem 0.65rem;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -819,7 +819,7 @@ export default {
   padding: 0.4rem 1rem;
   border-radius: 6px;
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }

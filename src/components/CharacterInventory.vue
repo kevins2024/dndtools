@@ -538,7 +538,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 6px;
   color: var(--color-text);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
 }
 
@@ -559,7 +559,7 @@ export default {
 }
 
 .search-empty {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   font-style: italic;
   padding: 0.3rem 0.4rem;
@@ -573,7 +573,7 @@ export default {
   border-radius: 4px;
   border: 1px solid var(--color-border);
   background: var(--color-bg-surface);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .sr-name {
@@ -582,7 +582,7 @@ export default {
 }
 
 .sr-status {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
 }
 
@@ -590,7 +590,7 @@ export default {
   padding: 2px 8px;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   background: var(--color-bg-panel);
   cursor: pointer;
@@ -628,7 +628,7 @@ export default {
 
 .col-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-accent-strong);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -656,7 +656,7 @@ export default {
   border: 1px solid var(--color-border);
   background: var(--color-bg-panel);
   color: var(--color-text);
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
 }
 
 .slot-chip.over {
@@ -666,7 +666,7 @@ export default {
 }
 
 .col-section-label {
-  font-size: var(--font-size-xxxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -684,7 +684,7 @@ export default {
   background: var(--color-bg-surface);
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .inv-item.overloaded {
@@ -711,26 +711,26 @@ export default {
 }
 
 .item-slot {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   padding: 0 6px;
   border-left: 1px solid var(--color-border);
 }
 
 .item-tag {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-low);
 }
 
 .attunement-indicator {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-accent);
   margin-left: 2px;
   opacity: 0.8;
 }
 
 .item-action {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
 }
 
@@ -744,7 +744,7 @@ export default {
   border: none;
   color: var(--color-text-muted);
   cursor: pointer;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0 2px;
   line-height: 1;
   transition: color 0.15s ease;
@@ -764,7 +764,7 @@ export default {
 }
 
 .empty {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   font-style: italic;
   padding: 2px 0;
@@ -795,7 +795,7 @@ export default {
 }
 
 .dialog-title {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
@@ -824,7 +824,7 @@ export default {
 
 /* ── Item Inspection ── */
 .inspect-btn {
-  font-size: var(--font-size-small) !important;
+  font-size: var(--font-size-md) !important;
   color: var(--color-accent-muted) !important;
   padding: 0 4px !important;
 }
@@ -862,7 +862,7 @@ export default {
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 1rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   align-items: start;
 }
 
@@ -881,7 +881,7 @@ export default {
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-accent);
   margin-right: 0.4rem;
   margin-bottom: 0.2rem;
@@ -900,7 +900,7 @@ export default {
 }
 
 .section-label {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   font-weight: 700;
   color: var(--color-text-muted);
   text-transform: uppercase;
@@ -909,7 +909,7 @@ export default {
 }
 
 .section-content {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   line-height: 1.4;
   word-wrap: break-word;
@@ -917,7 +917,7 @@ export default {
 
 .id-content {
   font-family: monospace;
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
 

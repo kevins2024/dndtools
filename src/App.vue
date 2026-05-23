@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   line-height: var(--line-height-base);
 }
 
@@ -43,7 +43,7 @@ body,
 
 p,
 div {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   line-height: var(--line-height-base);
 }
 
@@ -64,23 +64,23 @@ h1 {
 }
 
 h2 {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
 }
 
 h3 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
 }
 
 h4 {
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-xl);
 }
 
 h5 {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
 }
 
 h6 {
-  font-size: var(--font-size-label);
+  font-size: var(--font-size-md);
 }
 
 button,

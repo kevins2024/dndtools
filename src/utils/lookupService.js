@@ -231,6 +231,72 @@ export async function lookupFeature(name) {
   return result
 }
 
+// ── Monster lookup ────────────────────────────────────────────────────────────
+
+function normalizeMonster(data) {
+  const ac = Array.isArray(data.armor_class) ? data.armor_class[0] : null
+  return {
+    name: data.name,
+    size: data.size ?? null,
+    type: data.type ?? null,
+    alignment: data.alignment ?? null,
+    ac: ac?.value ?? null,
+    ac_note: ac?.type ?? null,
+    hp: data.hit_points ?? null,
+    hit_dice: data.hit_dice ?? null,
+    speed: data.speed ?? null,
+    str: data.strength ?? null,
+    dex: data.dexterity ?? null,
+    con: data.constitution ?? null,
+    int: data.intelligence ?? null,
+    wis: data.wisdom ?? null,
+    cha: data.charisma ?? null,
+    saving_throws: (data.proficiencies ?? [])
+      .filter(p => p.proficiency?.index?.startsWith('saving-throw'))
+      .map(p => ({ stat: p.proficiency.name.replace('Saving Throw: ', ''), bonus: p.value })),
+    skills: (data.proficiencies ?? [])
+      .filter(p => p.proficiency?.index?.startsWith('skill'))
+      .map(p => ({ name: p.proficiency.name.replace('Skill: ', ''), bonus: p.value })),
+    damage_vulnerabilities: data.damage_vulnerabilities ?? [],
+    damage_resistances: data.damage_resistances ?? [],
+    damage_immunities: data.damage_immunities ?? [],
+    condition_immunities: (data.condition_immunities ?? []).map(c => c.name),
+    senses: data.senses ?? null,
+    languages: data.languages ?? null,
+    cr: data.challenge_rating ?? null,
+    xp: data.xp ?? null,
+    special_abilities: data.special_abilities ?? [],
+    actions: data.actions ?? [],
+    legendary_actions: data.legendary_actions ?? [],
+    reactions: data.reactions ?? [],
+  }
+}
+
+export async function lookupMonster(name) {
+  const slug = toSlug(name)
+  const cacheKey = `monster_${slug}`
+
+  if (memCache.has(cacheKey)) return memCache.get(cacheKey)
+
+  const stored = localGet(cacheKey)
+  if (stored !== null) {
+    memCache.set(cacheKey, stored)
+    return stored
+  }
+
+  let result = null
+  try {
+    const res = await fetch(`${API_BASE}/monsters/${slug}`)
+    if (res.ok) result = normalizeMonster(await res.json())
+  } catch (err) {
+    console.error(`lookupService: network error looking up monster "${name}"`, err)
+  }
+
+  memCache.set(cacheKey, result)
+  if (result) localSet(cacheKey, result)
+  return result
+}
+
 // ── Save to homebrew ──────────────────────────────────────────────────────────
 // Persists a spell or feature to homebrew.json via the dev server, then
 // updates in-memory caches so the change is visible immediately.

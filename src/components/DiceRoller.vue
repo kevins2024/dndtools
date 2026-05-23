@@ -186,7 +186,7 @@ export default {
   color: var(--color-text-muted);
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: var(--font-size-text);
+  font-size: var(--font-size-lg);
   padding: 3px 10px;
   transition: all 0.15s ease;
 }
@@ -212,7 +212,7 @@ export default {
   align-items: center;
   gap: 0.3vw;
   color: var(--color-text-muted);
-  font-size: var(--font-size-label);
+  font-size: var(--font-size-md);
   cursor: pointer;
   margin-left: 0.4vw;
   user-select: none;
@@ -230,7 +230,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-low);
-  font-size: var(--font-size-label);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -312,12 +312,12 @@ export default {
 }
 
 .history-die .die-label {
-  font-size: var(--font-size-xxxs);
+  font-size: var(--font-size-sm);
   color: var(--color-die);
 }
 
 .history-die .die-result {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--color-text-low);
   position: relative;
@@ -354,19 +354,19 @@ export default {
 }
 
 .current-die .die-result {
-  font-size: var(--font-size-huge);
+  font-size: var(--font-size-3xl);
   font-weight: 700;
   line-height: 1;
   color: var(--color-warning);
 }
 
 .current-die.empty .die-label {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-die);
 }
 
 .die-sub {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-low);
   margin-top: 2px;
 }

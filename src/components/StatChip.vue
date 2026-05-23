@@ -44,7 +44,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 5px;
   padding: 0.5rem 0.75rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   white-space: pre-line;
   text-align: left;

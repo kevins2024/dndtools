@@ -149,7 +149,7 @@ export default {
 
 .cat-label {
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-accent-strong);
   letter-spacing: 0.04em;
 }
@@ -158,7 +158,7 @@ export default {
   background: none;
   border: none;
   color: var(--color-text-low);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   cursor: pointer;
   padding: 0;
 }
@@ -168,7 +168,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -195,7 +195,7 @@ export default {
   border-radius: 6px;
   color: white;
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   letter-spacing: 0.06em;
   cursor: pointer;
   transition: background 0.15s;
@@ -204,7 +204,7 @@ export default {
 
 .gen-error {
   color: #c0392b;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .result-card {
@@ -227,7 +227,7 @@ export default {
 
 .result-key {
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -235,7 +235,7 @@ export default {
 
 .result-val {
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-accent-strong);
 }
 </style>

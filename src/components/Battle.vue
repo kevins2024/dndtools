@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="battle">
 
     <!-- Initiative sidebar -->
@@ -18,7 +18,7 @@
               v-else
               class="enemy-circle"
               :class="combatantStates[entry.key]"
-              :title="combatantStates[entry.key] === 'friendly' ? 'Friendly — click for neutral' : combatantStates[entry.key] === 'neutral' ? 'Neutral — click for enemy' : 'Enemy — click for friendly'"
+              :title="combatantStates[entry.key] === 'friendly' ? 'Friendly â€” click for neutral' : combatantStates[entry.key] === 'neutral' ? 'Neutral â€” click for enemy' : 'Enemy â€” click for friendly'"
               @click.stop="$emit('toggle-friendly', entry.key)"
             ></div>
           </div>
@@ -65,7 +65,7 @@
         <input
           v-model="newEnemyName"
           class="add-enemy-input"
-          placeholder="Add enemy…"
+          placeholder="Add enemyâ€¦"
           @keyup.enter="emitAddEnemy"
         />
         <input
@@ -115,7 +115,7 @@
           <span class="panel-subtitle">{{ activeEntry.encounterData ? activeEntry.encounterData.roleLabel : 'Enemy' }}</span>
         </div>
 
-        <!-- Combat stats from encounter data -->
+        <!-- Combat stats chips (encounter data only) -->
         <template v-if="activeEntry.encounterData">
           <div class="section-label">Stats</div>
           <div class="enemy-stat-chips">
@@ -132,14 +132,26 @@
               <span class="enemy-chip-lbl">{{ activeEntry.encounterData.weapon.displayName }}</span>
             </div>
           </div>
-          <div class="enemy-ability-row">
-            <div v-for="s in statKeys" :key="s" class="ability-chip">
-              <span class="ability-lbl">{{ s }}</span>
-              <span class="ability-val">{{ activeEntry.encounterData.stats[s] }}</span>
-              <span class="ability-mod">{{ scoreMod(activeEntry.encounterData.stats[s]) }}</span>
-            </div>
-          </div>
         </template>
+
+        <!-- Ability scores — always shown, always editable -->
+        <div class="section-label">Ability Scores</div>
+        <div class="enemy-ability-row">
+          <div v-for="s in statKeys" :key="s" class="ability-chip">
+            <span class="ability-lbl">{{ s.toUpperCase() }}</span>
+            <button class="ability-adj-btn" @click="adjustEnemyStat(s, 1)">+</button>
+            <input
+              class="ability-score-input"
+              type="number"
+              min="1"
+              max="30"
+              :value="activeEnemyStats[s]"
+              @change="setEnemyStat(s, $event.target.valueAsNumber)"
+            />
+            <button class="ability-adj-btn" @click="adjustEnemyStat(s, -1)">−</button>
+            <span class="ability-mod">{{ scoreMod(activeEnemyStats[s]) }}</span>
+          </div>
+        </div>
 
         <div class="section-label">Damage Tracker</div>
         <div class="damage-tracker">
@@ -185,6 +197,18 @@
             />
           </div>
         </div>
+
+        <!-- Conditions -->
+        <div class="section-label">Conditions</div>
+        <div class="enemy-cond-row">
+          <button
+            v-for="cond in CONDITIONS"
+            :key="cond"
+            class="enemy-cond-chip"
+            :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
+            @click="toggleEnemyCondition(cond)"
+          >{{ cond }}</button>
+        </div>
       </template>
 
       <div v-else class="panel-empty">Select a combatant to view their turn</div>
@@ -219,7 +243,9 @@ export default {
       activeTurn:    0,
       editingKey:    null,
       overrideValue: null,
-      enemyHp:        {},
+      enemyHp:         {},
+      enemyConditions: {},
+      enemyStats:      {},
       damageInput:    null,
       maxHpInput:     null,
       playerHpDelta:  {},
@@ -227,7 +253,12 @@ export default {
       playerHealInput: null,
       newEnemyName:  '',
       newEnemyMod:   0,
-      statKeys:      ['str', 'dex', 'con', 'int', 'wis', 'cha'],
+      statKeys: ['str', 'dex', 'con', 'int', 'wis', 'cha'],
+      CONDITIONS: [
+        'Blinded', 'Charmed', 'Deafened', 'Exhaustion', 'Frightened', 'Grappled',
+        'Incapacitated', 'Invisible', 'Paralyzed', 'Petrified', 'Poisoned',
+        'Prone', 'Restrained', 'Stunned', 'Unconscious', 'Concentrating',
+      ],
     }
   },
 
@@ -242,6 +273,16 @@ export default {
     activeEnemyHp() {
       if (!this.activeEntry || this.activeEntry.type !== 'enemy') return null
       return this.enemyHp[this.activeEntry.key] ?? { damage: 0, maxHp: null }
+    },
+
+    activeEnemyStats() {
+      if (!this.activeEntry || this.activeEntry.type !== 'enemy') return {}
+      const key = this.activeEntry.key
+      const fromEncounter = this.activeEntry.encounterData?.stats ?? {}
+      const fromOverrides = this.enemyStats[key] ?? {}
+      return Object.fromEntries(
+        this.statKeys.map((s) => [s, fromOverrides[s] ?? fromEncounter[s] ?? 10])
+      )
     },
   },
 
@@ -268,10 +309,10 @@ export default {
   },
 
   methods: {
-    // ── Player HP display ──
+    // â”€â”€ Player HP display â”€â”€
     playerHp(name) {
       const char = this.$store.state.characters.find((c) => c.name === name)
-      if (!char) return '—'
+      if (!char) return 'â€”'
       const delta = this.playerHpDelta[name] ?? 0
       return `${char.hp_current - delta}/${char.hp_max}`
     },
@@ -296,7 +337,7 @@ export default {
       this.playerHealInput = null
     },
 
-    // ── Enemy damage display (sidebar) ──
+    // â”€â”€ Enemy damage display (sidebar) â”€â”€
     enemyDmgLabel(key) {
       const hp = this.enemyHp[key]
       if (!hp || hp.damage === 0) return ''
@@ -304,7 +345,7 @@ export default {
       return `DMG ${hp.damage}`
     },
 
-    // ── Enemy HP helpers ──
+    // â”€â”€ Enemy HP helpers â”€â”€
     _ensureEnemyHp(key) {
       if (!this.enemyHp[key]) {
         this.$set(this.enemyHp, key, { damage: 0, maxHp: null })
@@ -334,15 +375,40 @@ export default {
       this.$set(this.enemyHp, key, { ...this.enemyHp[key], maxHp: val })
     },
 
+    // ── Enemy conditions ──
+    hasEnemyCondition(cond) {
+      return (this.enemyConditions[this.activeEntry?.key] ?? []).includes(cond)
+    },
+    toggleEnemyCondition(cond) {
+      const key = this.activeEntry.key
+      const current = this.enemyConditions[key] ?? []
+      this.$set(
+        this.enemyConditions,
+        key,
+        current.includes(cond) ? current.filter((c) => c !== cond) : [...current, cond]
+      )
+    },
+
+    // ── Enemy ability scores ──
+    setEnemyStat(stat, value) {
+      const key = this.activeEntry.key
+      if (!this.enemyStats[key]) this.$set(this.enemyStats, key, {})
+      const clamped = isNaN(value) ? 10 : Math.min(30, Math.max(1, value))
+      this.$set(this.enemyStats[key], stat, clamped)
+    },
+    adjustEnemyStat(stat, delta) {
+      this.setEnemyStat(stat, (this.activeEnemyStats[stat] ?? 10) + delta)
+    },
+
     scoreMod(score) {
-      const m = Math.floor((score - 10) / 2)
+      const m = Math.floor(((score ?? 10) - 10) / 2)
       return m >= 0 ? `+${m}` : `${m}`
     },
     signed(n) {
       return n >= 0 ? `+${n}` : `${n}`
     },
 
-    // ── Add enemy mid-fight ──
+    // â”€â”€ Add enemy mid-fight â”€â”€
     emitAddEnemy() {
       this.$emit('add-enemy', {
         name: this.newEnemyName.trim(),
@@ -352,7 +418,7 @@ export default {
       this.newEnemyMod = 0
     },
 
-    // ── Initiative override ──
+    // â”€â”€ Initiative override â”€â”€
     startEdit(key, currentTotal) {
       this.editingKey = key
       this.overrideValue = currentTotal
@@ -385,7 +451,7 @@ export default {
   overflow: hidden;
 }
 
-/* ── Initiative Sidebar ── */
+/* â”€â”€ Initiative Sidebar â”€â”€ */
 .initiative-sidebar {
   width: 210px;
   flex-shrink: 0;
@@ -401,7 +467,7 @@ export default {
 .col-label {
   padding: 0.4rem 0.75rem;
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   border-bottom: 1px solid var(--color-border);
   letter-spacing: 0.05em;
@@ -466,7 +532,7 @@ export default {
 .card-info   { flex: 1; min-width: 0; }
 
 .card-name {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
@@ -480,21 +546,21 @@ export default {
   margin-top: 0.1rem;
 }
 
-.card-turn { font-size: var(--font-size-tiny); color: var(--color-text-low); }
+.card-turn { font-size: var(--font-size-base); color: var(--color-text-low); }
 
 .card-hp {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
 }
 
 .card-dmg {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-danger);
 }
 
 .card-score {
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-accent-strong);
   min-width: 1.75rem;
   text-align: right;
@@ -524,12 +590,12 @@ export default {
   border-radius: 3px;
   color: var(--color-accent-strong);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   text-align: right;
   padding: 0.1rem 0.2rem;
 }
 
-/* ── Sidebar add enemy ── */
+/* â”€â”€ Sidebar add enemy â”€â”€ */
 .sidebar-add-enemy {
   display: flex;
   gap: 0.3rem;
@@ -547,7 +613,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-family: var(--font-body);
 }
 
@@ -563,7 +629,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-family: var(--font-body);
   text-align: center;
 }
@@ -579,7 +645,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-muted);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
@@ -592,7 +658,7 @@ export default {
 
 .add-enemy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ── Right column ── */
+/* â”€â”€ Right column â”€â”€ */
 .battle-right {
   flex: 1;
   display: flex;
@@ -600,7 +666,7 @@ export default {
   overflow: hidden;
 }
 
-/* ── Turn Panel ── */
+/* â”€â”€ Turn Panel â”€â”€ */
 .turn-panel {
   flex: 1;
   padding: 1rem 1.25rem;
@@ -610,7 +676,7 @@ export default {
   gap: 1rem;
 }
 
-/* ── Dice bar ── */
+/* â”€â”€ Dice bar â”€â”€ */
 .dice-bar {
   flex-shrink: 0;
   height: 9rem;
@@ -629,22 +695,22 @@ export default {
 
 .panel-name {
   font-family: var(--font-display);
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-xl);
   color: var(--color-text);
 }
 
 .panel-subtitle {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
 }
 
 .panel-hp {
   margin-left: auto;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
 }
 
-/* ── Damage Tracker ── */
+/* â”€â”€ Damage Tracker â”€â”€ */
 .damage-tracker {
   display: flex;
   flex-direction: column;
@@ -659,19 +725,19 @@ export default {
 
 .damage-taken {
   font-family: var(--font-display);
-  font-size: var(--font-size-display);
+  font-size: var(--font-size-2xl);
   color: var(--color-text-danger);
 }
 
 .damage-taken-label {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
 }
 
 .damage-sep { color: var(--color-text-low); }
 
 .damage-max {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
 }
 
@@ -687,7 +753,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   padding: 0.35rem 0.5rem;
 }
@@ -702,7 +768,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-muted);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -717,7 +783,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-low);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -735,7 +801,7 @@ export default {
   border: 1px solid #2d5a3d;
   border-radius: 4px;
   color: #4a9e6b;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -752,14 +818,14 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 4px;
   color: var(--color-text-low);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 .remove-enemy-btn:hover { border-color: var(--color-text-danger); color: var(--color-text-danger); }
 
-/* ── Enemy combat stats ── */
+/* â”€â”€ Enemy combat stats â”€â”€ */
 .enemy-stat-chips {
   display: flex;
   gap: 0.5rem;
@@ -781,13 +847,13 @@ export default {
 
 .enemy-chip-val {
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-accent-strong);
   line-height: 1;
 }
 
 .enemy-chip-lbl {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   margin-top: 0.15rem;
   white-space: nowrap;
@@ -814,22 +880,84 @@ export default {
 }
 
 .ability-lbl {
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   color: var(--color-text-low);
   letter-spacing: 0.05em;
 }
 
 .ability-val {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   font-weight: 600;
   line-height: 1.1;
 }
 
 .ability-mod {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   color: var(--color-accent);
+}
+
+.ability-score-input {
+  width: 2.4rem;
+  background: var(--color-bg);
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.05rem 0;
+  line-height: 1.1;
+  -moz-appearance: textfield;
+}
+.ability-score-input::-webkit-inner-spin-button,
+.ability-score-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.ability-score-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.ability-adj-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-size: var(--font-size-base);
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.1s;
+}
+.ability-adj-btn:hover { color: var(--color-accent); }
+
+/* ── Enemy Conditions ── */
+.enemy-cond-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.enemy-cond-chip {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-body);
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-low);
+  cursor: pointer;
+  transition: border-color 0.1s, color 0.1s, background 0.1s;
+}
+.enemy-cond-chip:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text-muted);
+}
+.enemy-cond-chip--active {
+  border-color: #e67e22;
+  color: #e67e22;
+  background: rgba(230, 126, 34, 0.08);
 }
 
 /* ── Panel Empty ── */
@@ -840,6 +968,6 @@ export default {
   height: 100%;
   color: var(--color-text-low);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 </style>

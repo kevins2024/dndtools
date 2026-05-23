@@ -2193,6 +2193,42 @@
         }
       ],
       "notes": "Found in lower altitude regions of Yetgrese."
+    },
+    {
+      "name": "Hei'ugar",
+      "plural": "Hei'ugar",
+      "adjective": "Hei'ugar",
+      "type": "homebrew_race",
+      "origin": "Yetgrese",
+      "size": "Medium",
+      "speed": 30,
+      "appearance": "Grey-undertoned skin, warmer than standard Duergar after generations of surface living. More varied hair than their Duergar kin. Enlarged pupils adapted to both darkness and daylight. Stocky, durable build.",
+      "languages": ["Yetgresian Common", "Undercommon"],
+      "ability_score_bonus": "Player's choice",
+      "traits": [
+        {
+          "name": "Grey Resilience",
+          "type": "passive",
+          "description": "Advantage on saving throws against illusions, charm, and paralysis."
+        },
+        {
+          "name": "Darkvision",
+          "type": "passive",
+          "description": "Can see in dim light within 60ft as if it were bright light, and in darkness as if it were dim light. Cannot discern color in darkness."
+        },
+        {
+          "name": "Gust of Wind",
+          "type": "active",
+          "recharge": "long_rest",
+          "description": "Cast Gust of Wind once per long rest without requiring a spell slot or material components."
+        },
+        {
+          "name": "Far Sight",
+          "type": "passive",
+          "description": "Advantage on Perception checks targeting creatures or objects 60ft or further away."
+        }
+      ],
+      "notes": "Duergar who left the underdark and settled on Yetgrese's surface generations ago. Named Hei'ugar meaning roughly Sky Duergar. Treat the open sky as sacred, bordering on religious. Predominantly farmers and fishermen living on Tilawam's outskirts. Approximately 5% of Tilawam's population."
     }
   ]
 }

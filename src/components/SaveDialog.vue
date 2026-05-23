@@ -178,7 +178,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 6px;
   margin-bottom: 0.75rem;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .change-detail-list {

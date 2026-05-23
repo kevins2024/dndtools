@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="combat-panel">
     <div class="chip-row">
       <div class="chip">
@@ -125,7 +125,7 @@
             title="Hide from battle"
             @click.stop="toggleFeatHidden(feat, true)"
           >
-            ×
+            Ã—
           </button>
         </span>
         <template v-if="showHiddenFeats">
@@ -141,7 +141,7 @@
               title="Show in battle"
               @click.stop="toggleFeatHidden(feat, false)"
             >
-              ↩
+              â†©
             </button>
           </span>
         </template>
@@ -161,8 +161,8 @@
             :class="{ used: i <= lvl.max - lvl.current }"
             :title="
               i <= lvl.max - lvl.current
-                ? 'Used — click to recover'
-                : 'Available — click to use'
+                ? 'Used â€” click to recover'
+                : 'Available â€” click to use'
             "
             @click="toggleSlot(lvl.key, i - 1)"
           ></span>
@@ -181,7 +181,7 @@
             :key="spell.name"
             class="spell-pill"
             :class="{ 'spell-pill--domain': spell.domain }"
-            :title="spell.domain ? 'Domain spell — always prepared' : null"
+            :title="spell.domain ? 'Domain spell â€” always prepared' : null"
             @click="openSpellPopup(spell)"
             >{{ spell.name
             }}<Sparkle
@@ -347,7 +347,7 @@ export default {
         let statMod, statDesc
         if (props.finesse) {
           statMod = Math.max(strMod, dexMod)
-          statDesc = `Finesse — best of STR ${dnd.signed(
+          statDesc = `Finesse â€” best of STR ${dnd.signed(
             strMod
           )}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
         } else if (props.weapon_type === 'ranged') {
@@ -368,7 +368,7 @@ export default {
 
         const dmgBonus = dnd.damageBonus(this.character, w, this.partyItems)
         const die = dnd.gripDie(this.character, w, this.partyItems)
-        const dmgParts = [die, statDesc.split('—')[0].trim()]
+        const dmgParts = [die, statDesc.split('â€”')[0].trim()]
         if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
         if (props.weapon_type === 'ranged') {
           ;(this.itemBonusBreakdown['ranged_damage'] ?? []).forEach(({ name, value }) =>
@@ -609,7 +609,7 @@ export default {
       const school = data?.school ?? ''
       this.popupItem = {
         title: spell.name,
-        subtitle: school ? `${level} · ${school}` : level,
+        subtitle: school ? `${level} Â· ${school}` : level,
         description: data?.description ?? null,
         fields,
         itemType: 'spell',
@@ -703,40 +703,40 @@ export default {
 
 .chip-val {
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: var(--color-accent-strong);
   line-height: 1;
 }
 
 .chip-label {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   margin-top: 0.15rem;
 }
 
 .section-label {
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .section-empty {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-low);
 }
 
 .weapon-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .weapon-table th {
   text-align: left;
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   font-weight: normal;
   color: var(--color-text-low);
   letter-spacing: 0.04em;
@@ -766,7 +766,7 @@ export default {
 .weapon-table th.col-tag,
 .weapon-table td.col-tag {
   color: var(--color-text-muted);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding-left: 0.5rem;
 }
 
@@ -774,7 +774,7 @@ export default {
   color: var(--color-text);
 }
 
-/* ── Features & Spells ── */
+/* â”€â”€ Features & Spells â”€â”€ */
 .pill-group {
   display: flex;
   flex-direction: column;
@@ -783,7 +783,7 @@ export default {
 }
 
 .pill-group-label {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   letter-spacing: 0.04em;
 }
@@ -796,7 +796,7 @@ export default {
 
 .feature-pill,
 .spell-pill {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0.15rem 0.5rem;
   border-radius: 3px;
   border: 1px solid var(--color-border);
@@ -836,7 +836,7 @@ export default {
   pointer-events: auto;
 }
 
-/* ── Feats ── */
+/* â”€â”€ Feats â”€â”€ */
 .feat-header {
   display: flex;
   align-items: baseline;
@@ -844,7 +844,7 @@ export default {
 }
 
 .show-hidden-toggle {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   background: none;
   border: none;
@@ -862,7 +862,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   padding: 0.15rem 0.3rem 0.15rem 0.5rem;
   border-radius: 3px;
   border: 1px solid var(--color-border);
@@ -888,7 +888,7 @@ export default {
   border: none;
   padding: 0;
   cursor: pointer;
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: inherit;
   line-height: 1;
   opacity: 0.5;
@@ -900,10 +900,10 @@ export default {
 }
 
 .feat-action--restore {
-  font-size: 10px;
+  font-size: var(--font-size-xs);
 }
 
-/* ── Spell Slots ── */
+/* â”€â”€ Spell Slots â”€â”€ */
 .spell-slots {
   display: flex;
   flex-wrap: wrap;
@@ -917,7 +917,7 @@ export default {
 }
 
 .slot-level-label {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-low);
   width: 1.5rem;
   flex-shrink: 0;
@@ -943,7 +943,7 @@ export default {
   opacity: 0.75;
 }
 
-/* ── Conditions ── */
+/* â”€â”€ Conditions â”€â”€ */
 .conditions-row {
   display: flex;
   flex-wrap: wrap;
@@ -951,7 +951,7 @@ export default {
 }
 
 .cond-chip {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   padding: 2px 7px;
   border-radius: 999px;
   border: 1px solid var(--color-border);
@@ -974,7 +974,7 @@ export default {
   background: rgba(230, 126, 34, 0.12);
 }
 
-/* ── Feature filter ── */
+/* â”€â”€ Feature filter â”€â”€ */
 .feature-filter-row {
   display: flex;
   gap: 0.25rem;
@@ -982,7 +982,7 @@ export default {
 }
 
 .filter-btn {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   padding: 2px 8px;
   border-radius: 3px;
   border: 1px solid var(--color-border);

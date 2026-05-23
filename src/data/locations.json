@@ -596,6 +596,15 @@
     },
     "locations": [
       {
+        "name": "The Velvet Flair",
+        "type": "inn",
+        "district": "Main street, bluff adjacent",
+        "status": "operational",
+        "description": "Mid-range inn presenting slightly above its surroundings. Clean, intentional, the ambition of it visible in small details. Clientele tends toward travelers with means and discretion.",
+        "notes": "Tierna Ashborne resident, room four. Previously where Harven Dross stayed.",
+        "id": "locations_valdmere_05"
+      },
+      {
         "name": "Tallow and Tar",
         "type": "inn",
         "district": "Main street",
@@ -799,13 +808,7 @@
       "deadlock_mechanism": "No law or decision can be made on a tie vote. There are no tiebreakers — the matter returns to discussion and comes back two weeks later. This prevents gaming the system through manufactured deadlock while ensuring genuinely contested decisions move slowly.",
       "notes": "The system is slow. It is also, by design, mostly not war. Both sides have the arrangement baked deeply enough into their institutions that dismantling it would require defeating the other side entirely — a calculation neither has found worthwhile in a century."
     },
-    "demographics": {
-      "notes": "Humans are a minority — estimated 15-20% of population. Several familiar races present but as divergent or less common subtypes that do not match Western Reach versions. Full demographic breakdown under development. Do not assume human NPCs as default.",
-      "known": [
-        "Harbour authority figures appear to be a distinct non-human race — shorter than average, broader, heavier featured, colouring unlike anything in the Western Reach. Not dwarves.",
-        "Quiveth the translator has mixed features suggesting some demographic blending exists"
-      ]
-    },
+    "demographics": "Tilawam's population is a genuine cosmopolitan mix unlike anything in the other continenets. Catrins form the majority at roughly half the city's population — the broad, ridge-jawed people most visitors associate with Yetgrese's exterior coast. Drevani make up around ten percent, small and fluffy and disproportionately visible in the dock district where their punk aesthetic and fearless energy make them impossible to miss. Hei'ugar account for another five percent, grey-undertoned and stocky, living mostly on the city's outskirts where they farm the surrounding land and fish the coastal waters with the quiet devotion of people for whom open sky is a kind of prayer. Humans are present but less than ten percent — traders mostly, short-term residents, the occasional person who came for a crossing and stayed. The remaining quarter or so of the population is a mix of elven subraces unique to the continent.",
     "economy": {
       "notes": "Trade port. Receives occasional crossings from Aethermoor — rare enough that the party's arrival is noteworthy. Maritime salvage claims processed through harbour authority with 3-5 day review period. Market district exists with standard trading functions. Banking institutions are exceptional by any standard. People do not say prices out loud, but rather write them down and pass it to the buyer. It's bad luck to say a price out loud."
     },

@@ -58,6 +58,7 @@ import CombatContext from './components/CombatContext.vue'
 import CharacterContext from './components/CharacterContext.vue'
 import MapViewer from './components/MapViewer.vue'
 import ToolsContext from './components/ToolsContext.vue'
+import WorldContext from './components/WorldContext.vue'
 
 export default {
   name: 'AppLayout',
@@ -70,6 +71,7 @@ export default {
     CharacterContext,
     MapViewer,
     ToolsContext,
+    WorldContext,
   },
 
   data() {
@@ -81,7 +83,7 @@ export default {
         { id: 'combat',    label: 'Combat',    component: 'CombatContext' },
         { id: 'character', label: 'Character', component: 'CharacterContext' },
         { id: 'map',       label: 'Map',       component: 'MapViewer' },
-        { id: 'world',     label: 'World',     component: null },
+        { id: 'world',     label: 'World',     component: 'WorldContext' },
         { id: 'story',     label: 'Story',     component: null },
         { id: 'tools',     label: 'Tools',     component: 'ToolsContext' },
       ],
@@ -163,7 +165,7 @@ export default {
   border-radius: 4px;
   color: var(--color-text-muted);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -179,7 +181,7 @@ export default {
   border-radius: 4px;
   color: var(--color-text-muted);
   font-family: var(--font-display);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
@@ -209,7 +211,7 @@ export default {
   height: 100%;
   color: var(--color-text-low);
   font-family: var(--font-display);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   letter-spacing: 0.05em;
 }
 
@@ -223,7 +225,7 @@ export default {
   border: 1px solid var(--color-accent);
   border-radius: 8px;
   color: white;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -247,7 +249,7 @@ export default {
   border: 1px solid #3a9e64;
   border-radius: 8px;
   color: white;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-weight: 600;
   z-index: 102;
   pointer-events: none;

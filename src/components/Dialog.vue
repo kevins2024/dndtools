@@ -46,7 +46,7 @@ export default {
 }
 
 .dialog-title {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
@@ -63,7 +63,7 @@ export default {
   border: none;
   color: var(--color-text-muted);
   cursor: pointer;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   transition: color 0.15s ease;

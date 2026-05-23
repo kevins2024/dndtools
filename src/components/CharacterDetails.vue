@@ -87,7 +87,7 @@ export default {
   color: var(--color-text-muted);
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: var(--font-size-text);
+  font-size: var(--font-size-lg);
   transition: all 0.15s ease;
 }
 

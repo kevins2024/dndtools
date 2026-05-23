@@ -22,9 +22,6 @@
       </div>
     </div>
 
-    <!-- Combat stats -->
-    <CharacterCombatPanel :character="character" />
-
     <!-- Stats -->
     <div class="sheet-section">
       <div class="section-title">Ability Scores</div>
@@ -39,32 +36,44 @@
       </div>
     </div>
 
-    <!-- Saving throws + skills -->
-    <div class="sheet-row">
-      <div class="sheet-section half">
-        <div class="section-title">Saving Throws</div>
-        <div class="pill-list">
-          <span
+    <!-- Combat stats -->
+    <CharacterCombatPanel :character="character" />
+
+    <!-- Saving throws + Skills (3-column layout) -->
+    <div class="sheet-section saves-skills-row">
+      <div class="saves-col">
+        <div class="section-title">Saves</div>
+        <div class="save-list">
+          <div
             v-for="s in allSaves"
             :key="s.key"
-            class="pill"
+            class="save-row"
             :class="{ proficient: (character.saving_throws ?? []).includes(s.key) }"
           >
-            {{ s.label }}
-            <span class="pill-mod">{{ saveModStr(s.key) }}</span>
-          </span>
+            <span class="save-dot" :class="{ filled: (character.saving_throws ?? []).includes(s.key) }"></span>
+            <span class="save-label">{{ s.label }}</span>
+            <span class="save-mod">{{ saveModStr(s.key) }}</span>
+          </div>
         </div>
       </div>
-      <div class="sheet-section half">
-        <div class="section-title">Skill Proficiencies</div>
-        <div class="pill-list">
-          <span
-            v-for="skill in character.skill_proficiencies ?? []"
-            :key="skill"
-            class="pill proficient"
+      <div class="skills-col">
+        <div class="section-title">Skills</div>
+        <div class="skill-grid">
+          <div
+            v-for="skill in skills"
+            :key="skill.name"
+            class="skill-row"
+            :class="{ 'skill-prof': skill.isProficient, 'skill-expert': skill.hasExpertise }"
+            :title="skill.tooltip"
           >
-            {{ skill }}
-          </span>
+            <span class="skill-dots">
+              <span class="skill-dot" :class="{ filled: skill.isProficient || skill.hasExpertise }"></span>
+              <span class="skill-dot" :class="{ filled: skill.hasExpertise }"></span>
+            </span>
+            <span class="skill-name">{{ skill.displayName }}</span>
+            <span class="skill-stat">{{ skill.statLabel }}</span>
+            <span class="skill-mod" :class="skill.value >= 0 ? 'pos' : 'neg'">{{ skill.valueStr }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -187,6 +196,43 @@ export default {
       return SAVE_KEYS
     },
 
+    skills() {
+      const { stats, bonuses } = dnd.resolveStats(this.character, this.partyItems)
+      const prof = dnd._prof(this.character, bonuses)
+      const proficiencies = this.character.skill_proficiencies ?? []
+      const expertises = this.character.skill_expertise ?? []
+
+      return Object.entries(dnd.SKILL_MAP).map(([skillName, statKey]) => {
+        const base = dnd.mod(stats[statKey])
+        const isProficient = proficiencies.includes(skillName)
+        const hasExpertise = expertises.includes(skillName)
+        const itemBonus = bonuses[`skill_${skillName}`] ?? 0
+        const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
+        const total = base + profBonus + itemBonus
+
+        const displayName = skillName.replace(/([A-Z])/g, ' $1').trim()
+        const statLabel = statKey.toUpperCase()
+
+        const lines = [`${displayName} (${statLabel})`, `${statLabel} ${dnd.signed(base)}`]
+        if (hasExpertise) lines.push(`Expertise ${dnd.signed(prof * 2)} (Prof ×2)`)
+        else if (isProficient) lines.push(`Prof ${dnd.signed(prof)}`)
+        if (itemBonus) lines.push(`Items ${dnd.signed(itemBonus)}`)
+        lines.push(`= ${dnd.signed(total)}`)
+
+        return {
+          name: skillName,
+          displayName,
+          statKey,
+          statLabel,
+          value: total,
+          valueStr: dnd.signed(total),
+          isProficient,
+          hasExpertise,
+          tooltip: lines.join('\n'),
+        }
+      })
+    },
+
     featureGroups() {
       if (!this.character.features) return {}
       return this.character.features.reduce((groups, f) => {
@@ -268,25 +314,25 @@ export default {
 
 .char-name {
   font-family: var(--font-display);
-  font-size: var(--font-size-display);
+  font-size: var(--font-size-2xl);
   font-weight: 600;
   color: var(--color-accent-strong);
   margin: 0;
 }
 
 .char-fullname {
-  font-size: var(--font-size-label);
+  font-size: var(--font-size-md);
   color: var(--color-text-muted);
   font-style: italic;
 }
 
 .char-subtitle {
-  font-size: var(--font-size-text);
+  font-size: var(--font-size-lg);
   color: var(--color-accent);
 }
 
 .char-appearance {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
   color: var(--color-text-low);
   margin-top: 0.4vh;
   line-height: 1.4;
@@ -298,20 +344,10 @@ export default {
   padding-top: 0.8vh;
 }
 
-.sheet-row {
-  display: flex;
-  gap: 1vw;
-}
-
-.sheet-section.half {
-  flex: 1;
-  border-top: 1px solid var(--color-bg-surface-alt);
-  padding-top: 0.8vh;
-}
 
 .section-title {
   font-family: var(--font-display);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -336,21 +372,21 @@ export default {
 }
 
 .stat-label {
-  font-size: var(--font-size-xxxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-low);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .stat-score {
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--color-text);
   line-height: 1.2;
 }
 
 .stat-mod {
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-md);
 }
 
 .stat-mod.pos {
@@ -360,7 +396,7 @@ export default {
   color: var(--color-text-danger);
 }
 
-/* ── Pills ── */
+/* ── Pills (languages etc.) ── */
 .pill-list {
   display: flex;
   flex-wrap: wrap;
@@ -368,7 +404,7 @@ export default {
 }
 
 .pill {
-  font-size: var(--font-size-caption);
+  font-size: var(--font-size-base);
   padding: 2px 8px;
   border-radius: 3px;
   border: 1px solid var(--color-border);
@@ -386,8 +422,158 @@ export default {
 
 .pill-mod {
   color: var(--color-text-muted);
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
 }
+
+/* ── Saves + Skills 3-column layout ── */
+.saves-skills-row {
+  display: flex;
+  gap: 1.5vw;
+  align-items: flex-start;
+}
+
+.saves-col {
+  flex-shrink: 0;
+  min-width: 7rem;
+}
+
+.skills-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.save-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.save-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1px 0;
+}
+
+.save-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  flex-shrink: 0;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.save-dot.filled {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.save-label {
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  flex: 1;
+}
+
+.save-row.proficient .save-label {
+  color: var(--color-accent);
+}
+
+.save-mod {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  min-width: 2rem;
+  text-align: right;
+}
+
+.save-row.proficient .save-mod {
+  color: var(--color-accent);
+}
+
+/* ── Skills ── */
+.skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.5vw;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1px 0;
+  cursor: default;
+}
+
+.skill-dots {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.skill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.skill-dot.filled {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.skill-row.skill-expert .skill-dot.filled {
+  background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+}
+
+.skill-name {
+  flex: 1;
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--color-border);
+}
+
+.skill-row.skill-prof .skill-name {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+.skill-row.skill-expert .skill-name {
+  color: var(--color-accent-strong);
+  text-decoration-color: var(--color-accent-strong);
+}
+
+.skill-stat {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  min-width: 2rem;
+  text-align: right;
+}
+
+.skill-mod {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  min-width: 2.5rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.skill-mod.pos { color: var(--color-text-muted); }
+.skill-mod.neg { color: var(--color-text-danger); }
+
+.skill-row.skill-prof .skill-mod { color: var(--color-accent); }
+.skill-row.skill-expert .skill-mod { color: var(--color-accent-strong); }
 
 /* ── Features ── */
 .feature-list {
@@ -400,7 +586,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.6vw;
-  font-size: var(--font-size-label);
+  font-size: var(--font-size-md);
 }
 
 .feature-name {
@@ -409,7 +595,7 @@ export default {
 }
 
 .feature-uses {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-base);
   color: var(--color-accent);
   border: 1px solid var(--color-border);
   border-radius: 3px;
@@ -417,19 +603,19 @@ export default {
 }
 
 .feature-recharge {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-low);
 }
 
 .feature-action {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-sm);
   color: var(--color-text-low);
   text-transform: uppercase;
 }
 
 /* ── Flavor text ── */
 .flavor-text {
-  font-size: var(--font-size-label);
+  font-size: var(--font-size-md);
   color: var(--color-text-low);
   line-height: 1.5;
   margin: 0;
