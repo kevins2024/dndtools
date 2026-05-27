@@ -1,4 +1,4 @@
-﻿<template>
+﻿﻿﻿<template>
   <div class="battle">
 
     <!-- Initiative sidebar -->
@@ -18,7 +18,7 @@
               v-else
               class="enemy-circle"
               :class="combatantStates[entry.key]"
-              :title="combatantStates[entry.key] === 'friendly' ? 'Friendly â€” click for neutral' : combatantStates[entry.key] === 'neutral' ? 'Neutral â€” click for enemy' : 'Enemy â€” click for friendly'"
+              :title="combatantStates[entry.key] === 'friendly' ? 'Friendly — click for neutral' : combatantStates[entry.key] === 'neutral' ? 'Neutral — click for enemy' : 'Enemy — click for friendly'"
               @click.stop="$emit('toggle-friendly', entry.key)"
             ></div>
           </div>
@@ -65,7 +65,7 @@
         <input
           v-model="newEnemyName"
           class="add-enemy-input"
-          placeholder="Add enemyâ€¦"
+          placeholder="Add enemy…"
           @keyup.enter="emitAddEnemy"
         />
         <input
@@ -206,6 +206,7 @@
             :key="cond"
             class="enemy-cond-chip"
             :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
+            :title="conditionTooltip(cond)"
             @click="toggleEnemyCondition(cond)"
           >{{ cond }}</button>
         </div>
@@ -225,6 +226,7 @@
 <script>
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
 import DiceRoller from '@/components/DiceRoller.vue'
+import { conditionTooltip } from '@/data/conditions.js'
 
 export default {
   name: 'Battle',
@@ -309,10 +311,12 @@ export default {
   },
 
   methods: {
-    // â”€â”€ Player HP display â”€â”€
+    conditionTooltip,
+
+    // ── Player HP display ──
     playerHp(name) {
       const char = this.$store.state.characters.find((c) => c.name === name)
-      if (!char) return 'â€”'
+      if (!char) return '—'
       const delta = this.playerHpDelta[name] ?? 0
       return `${char.hp_current - delta}/${char.hp_max}`
     },

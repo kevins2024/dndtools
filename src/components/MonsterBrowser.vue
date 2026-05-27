@@ -1,4 +1,4 @@
-﻿<template>
+﻿﻿﻿<template>
   <div class="monster-browser">
     <!-- Filters sidebar -->
     <aside class="mb-filters">
@@ -6,7 +6,7 @@
         <input
           v-model="search"
           class="mb-search"
-          placeholder="Search monstersâ€¦"
+          placeholder="Search monsters…"
           @input="resetPage"
         />
       </div>
@@ -87,15 +87,15 @@
           @click="selectMonster(m)"
         >
           <span class="mb-row-name">{{ m.name }}</span>
-          <span class="mb-row-cr">{{ m.cr != null ? 'CR ' + formatCR(m.cr) : 'â€”' }}</span>
-          <span class="mb-row-type">{{ m.type ?? 'â€”' }}</span>
-          <span class="mb-row-size">{{ m.size ? m.size[0] : 'â€”' }}</span>
+          <span class="mb-row-cr">{{ m.cr != null ? 'CR ' + formatCR(m.cr) : '—' }}</span>
+          <span class="mb-row-type">{{ m.type ?? '—' }}</span>
+          <span class="mb-row-size">{{ m.size ? m.size[0] : '—' }}</span>
         </div>
       </div>
       <div class="mb-pagination" v-if="totalPages > 1">
-        <button class="mb-page-btn" :disabled="page === 0" @click="page--; scrollTop()">â€¹</button>
+        <button class="mb-page-btn" :disabled="page === 0" @click="page--; scrollTop()">‹</button>
         <span class="mb-page-info">{{ page + 1 }} / {{ totalPages }}</span>
-        <button class="mb-page-btn" :disabled="page >= totalPages - 1" @click="page++; scrollTop()">â€º</button>
+        <button class="mb-page-btn" :disabled="page >= totalPages - 1" @click="page++; scrollTop()">›</button>
       </div>
     </div>
 
@@ -104,12 +104,12 @@
       <div class="mb-detail-header">
         <div class="mb-detail-name">{{ selected.name }}</div>
         <div class="mb-detail-subtitle">
-          {{ selected.size }} {{ selected.type }}{{ selected.alignment ? ' Â· ' + selected.alignment : '' }}
+          {{ selected.size }} {{ selected.type }}{{ selected.alignment ? ' · ' + selected.alignment : '' }}
         </div>
-        <div class="mb-detail-source">{{ selected.book }}{{ selected.publisher ? ' â€” ' + selected.publisher : '' }}</div>
+        <div class="mb-detail-source">{{ selected.book }}{{ selected.publisher ? ' — ' + selected.publisher : '' }}</div>
       </div>
 
-      <div v-if="loadingStats" class="mb-loading">Loading statsâ€¦</div>
+      <div v-if="loadingStats" class="mb-loading">Loading stats…</div>
 
       <!-- Full stat block from API -->
       <template v-if="statBlock">
@@ -200,7 +200,7 @@
       <template v-else-if="!loadingStats">
         <div class="mb-stat-row">
           <div class="mb-stat-chip">
-            <span class="mb-stat-val">{{ selected.cr != null ? formatCR(selected.cr) : 'â€”' }}</span>
+            <span class="mb-stat-val">{{ selected.cr != null ? formatCR(selected.cr) : '—' }}</span>
             <span class="mb-stat-label">CR</span>
           </div>
           <div v-if="selected.size" class="mb-stat-chip">
@@ -208,7 +208,7 @@
             <span class="mb-stat-label">Size</span>
           </div>
         </div>
-        <p class="mb-no-stats">Full stat block not in SRD â€” only basic info available.</p>
+        <p class="mb-no-stats">Full stat block not in SRD — only basic info available.</p>
       </template>
     </div>
 
@@ -226,11 +226,11 @@ const PAGE_SIZE = 50
 const CR_BRACKETS = [
   { label: 'Any',  min: null,  max: null  },
   { label: '0',    min: 0,     max: 0     },
-  { label: 'Â¼â€“Â½',  min: 0.125, max: 0.5  },
-  { label: '1â€“4',  min: 1,     max: 4     },
-  { label: '5â€“10', min: 5,     max: 10    },
-  { label: '11â€“16',min: 11,    max: 16    },
-  { label: '17â€“20',min: 17,    max: 20    },
+  { label: '¼–½',  min: 0.125, max: 0.5  },
+  { label: '1–4',  min: 1,     max: 4     },
+  { label: '5–10', min: 5,     max: 10    },
+  { label: '11–16',min: 11,    max: 16    },
+  { label: '17–20',min: 17,    max: 20    },
   { label: '21+',  min: 21,    max: 30    },
 ]
 
@@ -345,7 +345,7 @@ export default {
       return String(cr)
     },
     formatSpeed(speed) {
-      if (!speed) return 'â€”'
+      if (!speed) return '—'
       if (typeof speed === 'string') return speed
       return Object.entries(speed)
         .filter(([, v]) => v)
@@ -353,7 +353,7 @@ export default {
         .join(', ')
     },
     formatSenses(senses) {
-      if (!senses) return 'â€”'
+      if (!senses) return '—'
       if (typeof senses === 'string') return senses
       return Object.entries(senses)
         .filter(([, v]) => v)

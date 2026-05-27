@@ -1,4 +1,4 @@
-﻿<template>
+﻿﻿<template>
   <div class="enc-gen">
 
     <!-- â”€â”€ Options panel â”€â”€ -->
@@ -201,11 +201,11 @@
         </div>
 
         <div class="wizard-actions">
-          <button class="wiz-btn secondary" :disabled="wizardStep === 0" @click="wizardPrev">â† Back</button>
+          <button class="wiz-btn secondary" :disabled="wizardStep === 0" @click="wizardPrev">← Back</button>
           <div class="wiz-actions-right">
             <button class="wiz-btn ghost" @click="wizardRandomizeRemaining">Randomize Remaining</button>
             <button class="wiz-btn primary" @click="wizardNext">
-              {{ wizardStep === wizardSlots.length - 1 ? 'Generate' : 'Next â†’' }}
+              {{ wizardStep === wizardSlots.length - 1 ? 'Generate' : 'Next →' }}
             </button>
           </div>
         </div>

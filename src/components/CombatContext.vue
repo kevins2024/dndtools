@@ -1,4 +1,4 @@
-﻿<template>
+﻿﻿﻿<template>
   <div class="combat-context">
 
     <!-- â”€â”€ Setup phase â”€â”€ -->
@@ -41,7 +41,7 @@
               ref="partyNameInput"
               v-model="newPartyName"
               class="field"
-              placeholder="Party nameâ€¦"
+              placeholder="Party name…"
               @keyup.enter="confirmSaveParty"
               @keyup.escape="cancelSaveParty"
             />
@@ -73,7 +73,7 @@
       <section class="col enemy-col">
         <div class="col-label">Enemies</div>
         <div v-if="currentEncounter" class="enc-load-bar">
-          <span class="enc-load-hint">{{ currentEncounter.difficulty }} Â· {{ currentEncounter.type }} Â· {{ currentEncounter.enemies.length }} enemies</span>
+          <span class="enc-load-hint">{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} · {{ currentEncounter.enemies.length }} enemies</span>
           <button class="enc-load-btn" @click="loadEncounterEnemies">Load Encounter</button>
         </div>
         <div class="enemy-input-row">
@@ -124,9 +124,15 @@
     <template v-else>
       <Battle class="battle-fill" :order="initiativeOrder" :combatant-states="combatantStates" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" @toggle-friendly="onToggleFriendly" @remove-enemy="onRemoveEnemy" />
       <div class="roll-bar">
-        <button class="exit-btn" @click="exitCombat">Exit Combat</button>
-        <button class="back-btn" @click="phase = 'setup'">â† Back to Setup</button>
+        <div class="roll-bar-left">
+          <button class="exit-btn" @click="exitCombat">Exit Combat</button>
+          <button class="back-btn" @click="phase = 'setup'">← Back to Setup</button>
+        </div>
+        <div class="roll-bar-right">
+          <button class="map-btn" @click="showBattleMap = true">Battle Map</button>
+        </div>
       </div>
+      <BattleMap v-show="showBattleMap" :visible="showBattleMap" :order="initiativeOrder" :combatant-states="combatantStates" @close="showBattleMap = false" />
     </template>
 
     <!-- â”€â”€ Encounter Generator Modal â”€â”€ -->
@@ -149,13 +155,14 @@
 import PlayerCharacterSelect from './PlayerCharacterSelect.vue'
 import Battle from './Battle.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
+import BattleMap from './BattleMap.vue'
 import characters from '@/data/characters.json'
 import { dnd } from '@/utils/dnd_utils.js'
 import dataService from '@/utils/dataService.js'
 
 export default {
   name: 'CombatContext',
-  components: { PlayerCharacterSelect, Battle, EncounterGenerator },
+  components: { PlayerCharacterSelect, Battle, EncounterGenerator, BattleMap },
 
   data() {
     return {
@@ -170,6 +177,7 @@ export default {
       savingParty: false,
       newPartyName: '',
       showEncounterModal: false,
+      showBattleMap: false,
     }
   },
 
@@ -678,12 +686,19 @@ export default {
   grid-area: roll;
   grid-column: 1 / -1;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
   padding: 0.6rem 1rem;
   border-top: 1px solid var(--color-border);
   background: var(--color-bg-panel-dark);
+}
+
+.roll-bar-left,
+.roll-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .roll-btn {
@@ -738,6 +753,23 @@ export default {
 .exit-btn:hover {
   border-color: var(--color-text-danger);
   color: var(--color-text-danger);
+}
+
+.map-btn {
+  padding: 0.45rem 1.1rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.map-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .gen-btn {

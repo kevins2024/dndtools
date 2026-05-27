@@ -1,4 +1,4 @@
-﻿<template>
+﻿﻿﻿<template>
   <Dialog :open="open" @close="onClose">
     <template #title>
       <div class="dp-header">
@@ -9,7 +9,7 @@
         <div class="dp-header-actions">
           <template v-if="editing">
             <button class="dp-action-btn dp-save" :disabled="saving" @click="save">
-              {{ saving ? 'Savingâ€¦' : 'Save' }}
+              {{ saving ? 'Saving…' : 'Save' }}
             </button>
             <button class="dp-action-btn dp-cancel" @click="cancelEdit">Cancel</button>
           </template>
@@ -36,7 +36,7 @@
       </div>
       <div class="dp-desc">
         <template v-if="displayDescription">{{ displayDescription }}</template>
-        <span v-else class="dp-no-desc">No description available â€” click Edit to add one.</span>
+        <span v-else class="dp-no-desc">No description available — click Edit to add one.</span>
       </div>
     </template>
 
@@ -80,7 +80,7 @@
         <!-- Feature fields -->
         <template v-else>
           <div class="dp-edit-row">
-            <label class="dp-edit-label">Subtitle<input v-model="draft.subtitle" class="dp-edit-input" placeholder="e.g. Rogue Â· Level 3" /></label>
+            <label class="dp-edit-label">Subtitle<input v-model="draft.subtitle" class="dp-edit-input" placeholder="e.g. Rogue · Level 3" /></label>
             <label class="dp-edit-label">Action Type<input v-model="draft.action_type" class="dp-edit-input" placeholder="e.g. bonus_action" /></label>
             <label class="dp-edit-label">Recharge<input v-model="draft.recharge" class="dp-edit-input" placeholder="e.g. short_rest" /></label>
           </div>
@@ -88,7 +88,7 @@
 
         <label class="dp-edit-label dp-edit-desc-label">
           Description
-          <textarea v-model="draft.description" class="dp-edit-textarea" rows="8" placeholder="Enter descriptionâ€¦" />
+          <textarea v-model="draft.description" class="dp-edit-textarea" rows="8" placeholder="Enter description…" />
         </label>
 
         <p v-if="saveError" class="dp-save-error">{{ saveError }}</p>
@@ -217,7 +217,7 @@ export default {
         this.editing = false
         this.$emit('saved', { section, data: payload })
       } else {
-        this.saveError = 'Save failed â€” is the dev server running on port 3001?'
+        this.saveError = 'Save failed — is the dev server running on port 3001?'
       }
 
       this.saving = false

@@ -1,4 +1,4 @@
-﻿<template>
+﻿﻿﻿﻿﻿<template>
   <div class="combat-panel">
     <div class="chip-row">
       <div class="chip">
@@ -27,7 +27,7 @@
         }}</span>
         <span class="chip-label">Spell Atk</span>
       </div>
-      <div v-if="spellSaveDC !== null" class="chip">
+      <div class="chip">
         <span class="chip-val has-tip" :title="spellDCTooltip">{{
           spellSaveDC
         }}</span>
@@ -41,9 +41,10 @@
         v-for="cond in CONDITIONS"
         :key="cond"
         class="cond-chip"
-        :class="{ 'cond-chip--active': activeConditions.includes(cond) }"
-        @click="toggleCondition(cond)"
-      >{{ cond }}</span>
+        :class="{ 'cond-chip--active': cond === 'Exhaustion' ? exhaustionLevel > 0 : activeConditions.includes(cond) }"
+        :title="conditionTooltip(cond)"
+        @click="cond === 'Exhaustion' ? cycleExhaustion() : toggleCondition(cond)"
+      >{{ cond }}<span v-if="cond === 'Exhaustion' && exhaustionLevel > 0" class="exhaustion-level"> {{ exhaustionLevel }}</span></span>
     </div>
 
     <template v-if="weaponSummaries.length">
@@ -58,15 +59,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="w in weaponSummaries" :key="w.name">
-            <td class="weapon-name">{{ w.name }}</td>
-            <td class="col-num">
-              <span class="has-tip" :title="w.atkTooltip">{{ w.attack }}</span>
-            </td>
-            <td class="col-num">
-              <span class="has-tip" :title="w.dmgTooltip">{{ w.damage }}</span>
-            </td>
-            <td class="col-tag">{{ w.type }}</td>
+          <tr v-for="row in weaponRows" :key="row.key" :class="{ 'weapon-extra-row': row.extra }">
+            <template v-if="!row.extra">
+              <td class="weapon-name">{{ row.name }}</td>
+              <td class="col-num"><span class="has-tip" :title="row.atkTooltip">{{ row.attack }}</span></td>
+              <td class="col-num"><span class="has-tip" :title="row.dmgTooltip">{{ row.damage }}</span></td>
+              <td class="col-tag">{{ row.type }}</td>
+            </template>
+            <template v-else>
+              <td class="weapon-extra-name" :title="row.source">+ {{ row.source }}</td>
+              <td></td>
+              <td class="col-num weapon-extra-dmg">{{ row.die }}</td>
+              <td class="col-tag">{{ row.dmgType }}</td>
+            </template>
           </tr>
         </tbody>
       </table>
@@ -99,52 +104,15 @@
     </div>
 
     <!-- Feats -->
-    <template v-if="visibleFeats.length || hiddenFeats.length">
-      <div class="feat-header">
-        <span class="section-label">Feats</span>
-        <button
-          v-if="hiddenFeats.length"
-          class="show-hidden-toggle"
-          @click="showHiddenFeats = !showHiddenFeats"
-        >
-          {{
-            showHiddenFeats ? 'collapse hidden' : `${hiddenFeats.length} hidden`
-          }}
-        </button>
-      </div>
+    <template v-if="feats.length">
+      <div class="section-label">Feats</div>
       <div class="pill-row">
         <span
-          v-for="feat in visibleFeats"
+          v-for="feat in feats"
           :key="feat.name"
           class="feat-pill"
           @click="openFeaturePopup(feat)"
-        >
-          {{ feat.name }}
-          <button
-            class="feat-action"
-            title="Hide from battle"
-            @click.stop="toggleFeatHidden(feat, true)"
-          >
-            Ã—
-          </button>
-        </span>
-        <template v-if="showHiddenFeats">
-          <span
-            v-for="feat in hiddenFeats"
-            :key="feat.name"
-            class="feat-pill feat-pill--hidden"
-            @click="openFeaturePopup(feat)"
-          >
-            {{ feat.name }}
-            <button
-              class="feat-action feat-action--restore"
-              title="Show in battle"
-              @click.stop="toggleFeatHidden(feat, false)"
-            >
-              â†©
-            </button>
-          </span>
-        </template>
+        >{{ feat.name }}</span>
       </div>
     </template>
 
@@ -161,10 +129,28 @@
             :class="{ used: i <= lvl.max - lvl.current }"
             :title="
               i <= lvl.max - lvl.current
-                ? 'Used â€” click to recover'
-                : 'Available â€” click to use'
+                ? 'Used — click to recover'
+                : 'Available — click to use'
             "
             @click="toggleSlot(lvl.key, i - 1)"
+          ></span>
+        </div>
+      </div>
+    </template>
+
+    <!-- Class Resources (ki, superiority dice, rage, etc.) -->
+    <template v-if="classResources.length">
+      <div class="section-label">Resources</div>
+      <div class="spell-slots">
+        <div v-for="res in classResources" :key="res.key" class="slot-level">
+          <span class="slot-level-label slot-level-label--res" :title="res.name">{{ res.label }}</span>
+          <span
+            v-for="i in res.max"
+            :key="i"
+            class="slot-box slot-box--res"
+            :class="{ used: i <= res.max - res.current }"
+            :title="i <= res.max - res.current ? `${res.name}: spent — click to recover` : `${res.name}: available — click to spend`"
+            @click="toggleResource(res, i - 1)"
           ></span>
         </div>
       </div>
@@ -181,7 +167,7 @@
             :key="spell.name"
             class="spell-pill"
             :class="{ 'spell-pill--domain': spell.domain }"
-            :title="spell.domain ? 'Domain spell â€” always prepared' : null"
+            :title="spell.domain ? 'Domain spell — always prepared' : null"
             @click="openSpellPopup(spell)"
             >{{ spell.name
             }}<Sparkle
@@ -205,6 +191,7 @@
 
 <script>
 import { dnd } from '@/utils/dnd_utils.js'
+import { conditionTooltip } from '@/data/conditions.js'
 import { DEFAULT_SPEED_FT } from '@/utils/dnd_constants.js'
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
 import DetailPopup from '@/components/DetailPopup.vue'
@@ -220,12 +207,20 @@ export default {
     character: { type: Object, required: true },
   },
 
+  watch: {
+    'character.id'(newId, oldId) {
+      if (newId !== oldId) {
+        this.featureFilter = 'all'
+        this.loadSpellMeta()
+      }
+    },
+  },
+
   data() {
     return {
       popupOpen: false,
       popupItem: null,
       spellMeta: {},
-      showHiddenFeats: false,
       featureFilter: 'all',
       featureFilterOptions: [
         { value: 'all', label: 'All' },
@@ -234,7 +229,7 @@ export default {
         { value: 'reaction', label: 'Reaction' },
         { value: 'passive', label: 'Passive' },
       ],
-      CONDITIONS: ['Concentrating', 'Blessed', 'Hexed', 'Poisoned', 'Prone', 'Frightened', 'Charmed', 'Stunned', 'Paralyzed', 'Grappled', 'Restrained', 'Blinded', 'Deafened', 'Invisible', 'Incapacitated', 'Exhausted'],
+      CONDITIONS: ['Concentrating', 'Blessed', 'Hexed', 'Poisoned', 'Prone', 'Frightened', 'Charmed', 'Stunned', 'Paralyzed', 'Grappled', 'Restrained', 'Blinded', 'Deafened', 'Invisible', 'Incapacitated', 'Exhaustion'],
     }
   },
 
@@ -275,6 +270,9 @@ export default {
     },
     activeConditions() {
       return this.character.conditions ?? []
+    },
+    exhaustionLevel() {
+      return this.character.exhaustion_level ?? 0
     },
 
     ac() {
@@ -318,20 +316,31 @@ export default {
       return `${base} + ${itemStr} = ${dnd.signed(mod + prof + itemBonus)}`
     },
     spellSaveDC() {
-      return dnd.spellSaveDC(this.character, this.partyItems)
+      if (this.character.spellcasting_ability) {
+        return dnd.spellSaveDC(this.character, this.partyItems)
+      }
+      const { stats } = this.resolvedStats
+      return 8 + this.profBonus + Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
     },
     spellDCTooltip() {
-      if (!this.character.spellcasting_ability) return ''
-      const ab = this.character.spellcasting_ability
-      const mod = dnd.mod(this.resolvedStats.stats[ab])
       const prof = this.profBonus
-      const itemBonus = this.resolvedStats.bonuses.spell_save_dc ?? 0
-      const base = `8 + ${ab.toUpperCase()} ${dnd.signed(mod)} + Prof ${dnd.signed(prof)}`
-      if (!itemBonus) return `${base} = ${8 + mod + prof}`
-      const itemStr = (this.itemBonusBreakdown.spell_save_dc ?? [])
-        .map(({ name, value }) => `${name} ${dnd.signed(value)}`)
-        .join(', ')
-      return `${base} + ${itemStr} = ${8 + mod + prof + itemBonus}`
+      if (this.character.spellcasting_ability) {
+        const ab = this.character.spellcasting_ability
+        const mod = dnd.mod(this.resolvedStats.stats[ab])
+        const itemBonus = this.resolvedStats.bonuses.spell_save_dc ?? 0
+        const base = `8 + ${ab.toUpperCase()} ${dnd.signed(mod)} + Prof ${dnd.signed(prof)}`
+        if (!itemBonus) return `${base} = ${8 + mod + prof}`
+        const itemStr = (this.itemBonusBreakdown.spell_save_dc ?? [])
+          .map(({ name, value }) => `${name} ${dnd.signed(value)}`)
+          .join(', ')
+        return `${base} + ${itemStr} = ${8 + mod + prof + itemBonus}`
+      }
+      const { stats } = this.resolvedStats
+      const strMod = dnd.mod(stats.str)
+      const dexMod = dnd.mod(stats.dex)
+      const statMod = Math.max(strMod, dexMod)
+      const statName = statMod === dexMod && dexMod >= strMod ? 'DEX' : 'STR'
+      return `8 + ${statName} ${dnd.signed(statMod)} + Prof ${dnd.signed(prof)} = ${8 + statMod + prof}`
     },
 
     weaponSummaries() {
@@ -347,7 +356,7 @@ export default {
         let statMod, statDesc
         if (props.finesse) {
           statMod = Math.max(strMod, dexMod)
-          statDesc = `Finesse â€” best of STR ${dnd.signed(
+          statDesc = `Finesse — best of STR ${dnd.signed(
             strMod
           )}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
         } else if (props.weapon_type === 'ranged') {
@@ -368,13 +377,22 @@ export default {
 
         const dmgBonus = dnd.damageBonus(this.character, w, this.partyItems)
         const die = dnd.gripDie(this.character, w, this.partyItems)
-        const dmgParts = [die, statDesc.split('â€”')[0].trim()]
+        const dmgParts = [die, statDesc.split('—')[0].trim()]
         if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
         if (props.weapon_type === 'ranged') {
           ;(this.itemBonusBreakdown['ranged_damage'] ?? []).forEach(({ name, value }) =>
             dmgParts.push(`${name} ${dnd.signed(value)}`)
           )
         }
+
+        const extras = w.extra_damage
+          ? [{
+              source: `${w.extra_damage.type} ${w.extra_damage.trigger ?? 'on hit'}`,
+              die: w.extra_damage.die,
+              type: w.extra_damage.type,
+              trigger: w.extra_damage.trigger ?? 'on hit',
+            }]
+          : []
 
         return {
           name: w.name,
@@ -383,6 +401,7 @@ export default {
           type: props.weapon_type,
           atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
           dmgTooltip: dmgParts.join(' + '),
+          extras,
         }
       })
 
@@ -401,6 +420,16 @@ export default {
         atkParts.push(`= ${dnd.signed(atkTotal)}`)
         const dmgParts = [`${die}`, `STR/DEX ${dnd.signed(statMod)}`]
         if (unarmedDmg) dmgParts.push(`Items ${dnd.signed(unarmedDmg)}`)
+
+        const extras = this.equippedItems
+          .filter((i) => i.extra_damage?.applies_to === 'unarmed')
+          .map((i) => ({
+            source: i.name,
+            die: i.extra_damage.die,
+            type: i.extra_damage.type,
+            trigger: i.extra_damage.trigger ?? 'on hit',
+          }))
+
         summaries.unshift({
           name: 'Unarmed Strike',
           attack: dnd.signed(atkTotal),
@@ -408,21 +437,26 @@ export default {
           type: 'melee',
           atkTooltip: atkParts.join(' + ').replace('+ =', '='),
           dmgTooltip: dmgParts.join(' + '),
+          extras,
         })
       }
 
       return summaries
     },
 
-    visibleFeats() {
-      return (this.character.features ?? []).filter(
-        (f) => f.type === 'feat' && !f.battle_hidden
-      )
+    weaponRows() {
+      const rows = []
+      for (const w of this.weaponSummaries) {
+        rows.push({ key: w.name, extra: false, ...w })
+        for (const ex of (w.extras ?? [])) {
+          rows.push({ key: w.name + '|' + ex.source, extra: true, source: ex.source, die: ex.die, dmgType: ex.type })
+        }
+      }
+      return rows
     },
-    hiddenFeats() {
-      return (this.character.features ?? []).filter(
-        (f) => f.type === 'feat' && f.battle_hidden
-      )
+
+    feats() {
+      return (this.character.features ?? []).filter((f) => f.type === 'feat')
     },
     featureGroups() {
       let features = (this.character.features ?? []).filter(
@@ -482,6 +516,31 @@ export default {
       return result
     },
 
+    classResources() {
+      const c = this.character
+      const result = []
+
+      // ki_points (Monk)
+      if (c.ki_points?.max > 0) {
+        result.push({ key: 'ki_points', name: 'Ki', label: 'Ki', max: c.ki_points.max, current: c.ki_points.current ?? c.ki_points.max })
+      }
+
+      // Generic resources array — any class can define these
+      for (const res of (c.resources ?? [])) {
+        if (res.max > 0) {
+          result.push({
+            key: res.key ?? res.name,
+            name: res.name,
+            label: res.label ?? res.name.split(' ').map((w) => w[0]).join('').toUpperCase(),
+            max: res.max,
+            current: res.current ?? res.max,
+          })
+        }
+      }
+
+      return result
+    },
+
     spellGroups() {
       let spells = [
         ...(this.character.spells ?? []),
@@ -513,17 +572,7 @@ export default {
   },
 
   methods: {
-    toggleFeatHidden(feat, hidden) {
-      const updatedFeatures = (this.character.features ?? []).map((f) =>
-        f.name === feat.name && f.type === 'feat'
-          ? { ...f, battle_hidden: hidden }
-          : f
-      )
-      this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
-        updatedItem: { ...this.character, features: updatedFeatures },
-      })
-    },
+    conditionTooltip,
 
     toggleSlot(levelKey, slotIndex) {
       if (levelKey === 'pact') {
@@ -554,6 +603,36 @@ export default {
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
         updatedItem: { ...this.character, spell_slots: updatedSlots },
+      })
+    },
+
+    toggleResource(res, slotIndex) {
+      const cur = res.current
+      const used = res.max - cur
+      const newCurrent = Math.min(res.max, Math.max(0, slotIndex < used ? cur + 1 : cur - 1))
+
+      if (res.key === 'ki_points') {
+        this.$store.commit('UPDATE_TABLE_ITEM', {
+          table: 'characters',
+          updatedItem: { ...this.character, ki_points: { ...this.character.ki_points, current: newCurrent } },
+        })
+        return
+      }
+
+      const updatedResources = (this.character.resources ?? []).map((r) =>
+        (r.key ?? r.name) === res.key ? { ...r, current: newCurrent } : r
+      )
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, resources: updatedResources },
+      })
+    },
+
+    cycleExhaustion() {
+      const next = this.exhaustionLevel >= 6 ? 0 : this.exhaustionLevel + 1
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, exhaustion_level: next },
       })
     },
 
@@ -609,7 +688,7 @@ export default {
       const school = data?.school ?? ''
       this.popupItem = {
         title: spell.name,
-        subtitle: school ? `${level} Â· ${school}` : level,
+        subtitle: school ? `${level} · ${school}` : level,
         description: data?.description ?? null,
         fields,
         itemType: 'spell',
@@ -755,6 +834,23 @@ export default {
   border-bottom: none;
 }
 
+.weapon-extra-row td {
+  padding-top: 0;
+  padding-bottom: 0.3rem;
+  border-bottom: none;
+}
+
+.weapon-extra-name {
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  padding-left: 0.6rem;
+}
+
+.weapon-extra-dmg {
+  color: var(--color-text-muted) !important;
+  font-size: var(--font-size-base);
+}
+
 .weapon-table th.col-num,
 .weapon-table td.col-num {
   text-align: right;
@@ -837,33 +933,11 @@ export default {
 }
 
 /* â”€â”€ Feats â”€â”€ */
-.feat-header {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-
-.show-hidden-toggle {
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.show-hidden-toggle:hover {
-  color: var(--color-text-muted);
-}
-
 .feat-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.2rem;
   font-size: var(--font-size-base);
-  padding: 0.15rem 0.3rem 0.15rem 0.5rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 3px;
   border: 1px solid var(--color-border);
   background: var(--color-bg-panel);
@@ -876,31 +950,6 @@ export default {
 .feat-pill:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
-}
-
-.feat-pill--hidden {
-  opacity: 0.35;
-  border-style: dashed;
-}
-
-.feat-action {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-size: var(--font-size-base);
-  color: inherit;
-  line-height: 1;
-  opacity: 0.5;
-  transition: opacity 0.12s;
-}
-
-.feat-action:hover {
-  opacity: 1;
-}
-
-.feat-action--restore {
-  font-size: var(--font-size-xs);
 }
 
 /* â”€â”€ Spell Slots â”€â”€ */
@@ -943,6 +992,24 @@ export default {
   opacity: 0.75;
 }
 
+.slot-level-label--res {
+  width: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slot-box--res {
+  border-color: var(--color-text-muted);
+  background: var(--color-text-muted);
+  border-radius: 50%;
+}
+
+.slot-box--res.used {
+  background: transparent;
+  border-color: var(--color-text-low);
+}
+
 /* â”€â”€ Conditions â”€â”€ */
 .conditions-row {
   display: flex;
@@ -972,6 +1039,11 @@ export default {
   border-color: #e67e22;
   color: #e67e22;
   background: rgba(230, 126, 34, 0.12);
+}
+
+.exhaustion-level {
+  font-weight: 700;
+  font-size: 1.05em;
 }
 
 /* â”€â”€ Feature filter â”€â”€ */

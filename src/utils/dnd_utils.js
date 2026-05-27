@@ -136,9 +136,12 @@ export const dnd = {
     const armorItem = items.find((i) => mine(i) && i.type === 'armor' && i.slot === 'body')
     const isWearingArmor = !!armorItem
     const dexMod = dnd.mod(stats.dex)
+    const conMod = dnd.mod(stats.con)
+    const wisMod = dnd.mod(stats.wis)
     const intMod = dnd.mod(stats.int)
     const steps = []
     let base
+    let statUnarmoredBonus = 0
 
     if (isWearingArmor) {
       const armorData = ARMOR_BASE_AC[armorItem.armor_type]
@@ -172,9 +175,22 @@ export const dnd = {
         base = unarmoredAcItem.unarmored_armor_base_ac + dexMod
         steps.push(`${unarmoredAcItem.name} (base ${unarmoredAcItem.unarmored_armor_base_ac})`)
         steps.push(`DEX ${dnd.signed(dexMod)}`)
+      } else if (character.unarmored_ac_formula === 'monk') {
+        base = 10 + dexMod + wisMod
+        steps.push(`Monk Defense: 10 + DEX ${dnd.signed(dexMod)} + WIS ${dnd.signed(wisMod)}`)
+      } else if (character.unarmored_ac_formula === 'barbarian') {
+        base = 10 + dexMod + conMod
+        steps.push(`Barbarian Defense: 10 + DEX ${dnd.signed(dexMod)} + CON ${dnd.signed(conMod)}`)
       } else {
         base = 10 + dexMod
-        steps.push(`Unarmored 10 + DEX ${dnd.signed(dexMod)}`)
+        steps.push(`Unarmored: 10 + DEX ${dnd.signed(dexMod)}`)
+      }
+
+      // Stat-mod unarmored bonuses (e.g. Monk's Belt adds CON mod)
+      if (unarmoredBonuses.ac_unarmored_con) {
+        const src = items.filter(mine).find((i) => i.unarmored_stat_bonuses?.ac_unarmored_con)
+        steps.push(`${src?.name ?? 'Item'}: CON ${dnd.signed(conMod)}`)
+        statUnarmoredBonus += conMod
       }
     }
 
@@ -186,7 +202,7 @@ export const dnd = {
       steps.push(`${shieldItem.name} (${dnd.signed(shieldBonus)}${shieldStr})`)
     }
 
-    // Per-item AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
+    // Per-item flat AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
     for (const item of items.filter(mine)) {
       const bonus = item.stat_bonuses?.ac ?? 0
       const unarmoredBonus = !isWearingArmor ? (item.unarmored_stat_bonuses?.ac ?? 0) : 0
@@ -198,7 +214,7 @@ export const dnd = {
 
     const itemAcBonus = (bonuses.ac ?? 0) + (isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0)
     const bladesongBonus = bladesongActive ? intMod : 0
-    const value = base + shieldBonus + itemAcBonus + bladesongBonus
+    const value = base + shieldBonus + itemAcBonus + statUnarmoredBonus + bladesongBonus
     steps.push(`= ${value}`)
     return { value, steps }
   },

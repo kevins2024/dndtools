@@ -737,10 +737,6 @@
       {
         "name": "Crossroads Rest",
         "type": "waystation",
-        "coords": {
-          "x": 5.8,
-          "y": 3.4
-        },
         "description": "Waystation approximately 2 days north of Ravenquay on the main road.",
         "npcs_present": [],
         "notes": ""
@@ -748,7 +744,6 @@
       {
         "name": "Valley Ambush Site",
         "type": "wilderness",
-        "coords": null,
         "description": "Natural funnel in highland terrain north of Ravenquay.",
         "npcs_present": [],
         "notes": "Where Malrik and Vess were intercepted by Dawn Blades. Both turned, sent north with false all-clear message."
@@ -756,7 +751,6 @@
       {
         "name": "Coastal Road",
         "type": "road",
-        "coords": null,
         "description": "Runs between Ravenquay and Khemrise along the coast.",
         "npcs_present": [],
         "notes": "Casvath relay network operates along it. Harwick relay network being built alongside it with staging points."
@@ -764,10 +758,6 @@
       {
         "name": "Verath Ohn",
         "type": "island_or_landmark",
-        "coords": {
-          "x": 3,
-          "y": 0.5
-        },
         "description": "Off the southern coast, in the water.",
         "npcs_present": [],
         "notes": ""
@@ -775,10 +765,25 @@
       {
         "name": "Forest Trolls, roughly",
         "type": "village",
-        "coords": {},
         "description": "Northwest of Khemrise, several days journey.",
         "npcs_present": ["Wend"],
         "notes": ""
+      },
+      {
+        "id": "locations_forest_01",
+        "name": "The Breathing Tomb",
+        "type": "ancient_structure",
+        "subtype": "underground_complex",
+        "location": "Northern forest, several days northeast of Valdmere",
+        "status": "discovered, resealed",
+        "description": "Underground complex predating Valdmere and likely all current Western Reach civilization. Two chambers and a connecting corridor. Upper chamber is a tomb containing dozens of preserved figures of varied ages, hands cupped upward, names recorded on vaulted ceiling. Lower chamber is an archive — hundreds of sealed stone containers lining every wall, a stone bellows breathing mechanism in the center, and a continuous carved narrative covering the entire ceiling vault. Two suits of armor in dark unidentified metal stand at the archive entrance, depicted by name in the ceiling scene.",
+        "access": "Natural hollow in forest floor. Rotating stone mechanism opens from above after a two inch drop release. Can also be opened from below via lever. Doorman skeleton remains at interior lever.",
+        "atmosphere": "Bone dry, preserved. Breathing sound audible from surface when open. Air circulation maintained by deep stone bellows mechanism.",
+        "items_found": [
+          "Ring of Breathing — taken",
+          "Pendant with eye symbol — left in place"
+        ],
+        "notes": "Script matches ridge complex ruins and scroll from disc box. Dhovari may be able to read it. Bring Tongues spell. Resealed via Mage Hand on departure. Armor suits appear to be named individuals from the civilization. Archive contents unknown. Second door in tomb chamber leads to corridor and archive — second lever operates it from tomb side. Corridor predates tomb chamber."
       }
     ]
   },

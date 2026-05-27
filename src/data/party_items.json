@@ -562,7 +562,13 @@
     "effect": "Deals cold damage. On hit: +1d6 cold damage and target's movement reduced by 10ft until start of their next turn.",
     "notes": "",
     "id": "items_43",
-    "slot": "melee1h"
+    "slot": "melee1h",
+    "extra_damage": {
+      "die": "1d6",
+      "type": "cold",
+      "applies_to": "weapon",
+      "trigger": "on hit"
+    }
   },
   {
     "name": "Gloves of Missile Snaring",
@@ -1601,7 +1607,7 @@
     "type": "wondrous",
     "equipped_by": "Chuknora",
     "carried_by": null,
-    "needs_attunement": true,
+    "needs_attunement": false,
     "attuned": false,
     "charges_current": 3,
     "charges_max": 3,
@@ -1630,8 +1636,14 @@
     "equipped_by": "Chuknora",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "On unarmed strike hit: deal extra 2d10 psychic damage. Choose to regain HP equal to psychic damage dealt OR gain advantage on one roll.",
+    "extra_damage": {
+      "die": "2d10",
+      "type": "psychic",
+      "applies_to": "unarmed",
+      "trigger": "on hit"
+    },
     "notes": "",
     "id": "items_124"
   },
@@ -1641,8 +1653,8 @@
     "slot": "wrists",
     "equipped_by": "Chuknora",
     "carried_by": null,
-    "needs_attunement": false,
-    "attuned": false,
+    "needs_attunement": true,
+    "attuned": true,
     "stat_bonuses": {
       "unarmed_attack": 2,
       "unarmed_damage": 2
@@ -1657,8 +1669,8 @@
     "slot": "waist",
     "equipped_by": "Chuknora",
     "carried_by": null,
-    "needs_attunement": false,
-    "attuned": false,
+    "needs_attunement": true,
+    "attuned": true,
     "unarmored_stat_bonuses": {
       "ac_unarmored_con": 1
     },
