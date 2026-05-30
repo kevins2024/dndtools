@@ -1,0 +1,128 @@
+/**
+ * spellUtils.js — single source of truth for "what spells does this character have?"
+ *
+ * Add new spell sources here; Spellbook and CombatPanel pick them up automatically.
+ *
+ * Sources collected (in priority order for deduplication):
+ *   1. character.spells[]                  — main class list (richest data)
+ *   2. character.artillerist_spells.spells — Artificer subclass always-prepared spells
+ *   3. character.features[].spells_granted — feats / race / class features
+ *   4. homebrew.spells[] where known_by includes character.name
+ *
+ * Each returned spell object has the original fields plus:
+ *   _source  {string}  — human-readable origin label
+ *   artillerist {bool} — true if from artillerist_spells
+ *   featureGranted {bool} — true if from a feature's spells_granted
+ *   homebrew {bool}    — true if from homebrew known_by
+ *
+ * Deduplication: first occurrence wins (class list takes priority).
+ * Feature-granted spells already in the class list are silently skipped.
+ */
+
+import homebrewData from '@/data/homebrew.json'
+import clericSpells  from '@/data/api_data_cache/cleric_spells.json'
+import druidSpells   from '@/data/api_data_cache/druid_spells.json'
+import wizardSpells  from '@/data/api_data_cache/wizard_spells.json'
+import paladinSpells from '@/data/api_data_cache/paladin_spells.json'
+import rangerSpells  from '@/data/api_data_cache/ranger_spells.json'
+
+// Classes whose spell list lets them prepare ANY listed spell daily (not just ones they've "learned").
+// Wizards prepare from their spellbook (character.spells) — a separate concept.
+const FULL_CLASS_LIST_CLASSES = ['cleric', 'druid', 'paladin', 'ranger']
+
+const CLASS_SPELL_LISTS = {
+  cleric:  clericSpells,
+  druid:   druidSpells,
+  wizard:  wizardSpells,
+  paladin: paladinSpells,
+  ranger:  rangerSpells,
+}
+
+/**
+ * Returns the official class spell list for a character's class, or null if none is available.
+ * Each entry: { index, name, level }
+ */
+export function getClassSpellList(character) {
+  const cls = (character?.class ?? '').toLowerCase()
+  for (const [key, list] of Object.entries(CLASS_SPELL_LISTS)) {
+    if (cls.includes(key)) return list
+  }
+  return null
+}
+
+/**
+ * Returns true if this character's class can prepare from the full class spell list
+ * (as opposed to only from spells they've explicitly added to their spellbook).
+ */
+export function usesFullClassList(character) {
+  const cls = (character?.class ?? '').toLowerCase()
+  return FULL_CLASS_LIST_CLASSES.some((c) => cls.includes(c))
+}
+
+export function getCharacterSpells(character) {
+  const seen   = new Set()
+  const result = []
+
+  function add(spell) {
+    if (seen.has(spell.name)) return
+    seen.add(spell.name)
+    result.push(spell)
+  }
+
+  // 1. Main class spell list
+  for (const s of character.spells ?? []) {
+    add({ ...s, _source: 'class' })
+  }
+
+  // 2. Artillerist subclass spells (always prepared, don't count against limit)
+  for (const s of character.artillerist_spells?.spells ?? []) {
+    add({
+      name:        s.name,
+      level:       s.level,
+      prepared:    true,
+      artillerist: true,
+      _source:     'Artillerist Spells',
+    })
+  }
+
+  // 3. Feature / feat / race-granted spells
+  //    Requires features to have a `spells_granted: ["SpellName", ...]` array.
+  //    Add that field to any feature that teaches spells (Shadow Touched, Fey Touched,
+  //    Drow Magic, Tiefling Legacy, etc.).
+  for (const feat of character.features ?? []) {
+    for (const name of feat.spells_granted ?? []) {
+      add({
+        name,
+        level:         null, // resolved asynchronously via lookupSpell in loadMeta()
+        prepared:      true,
+        featureGranted: true,
+        _source:       feat.name,
+      })
+    }
+  }
+
+  // 4. Homebrew spells (spells authored outside the SRD, tagged known_by character)
+  for (const s of homebrewData.spells ?? []) {
+    if ((s.known_by ?? []).includes(character.name)) {
+      add({
+        name:     s.name,
+        level:    s.level,
+        prepared: true,
+        homebrew: true,
+        _source:  'Homebrew',
+      })
+    }
+  }
+
+  return result
+}
+
+/** Quick boolean — used by tab visibility checks without building the full list. */
+export function characterHasSpells(character) {
+  if (!character) return false
+  if ((character.spells ?? []).length > 0) return true
+  if ((character.artillerist_spells?.spells ?? []).length > 0) return true
+  if ((character.features ?? []).some((f) => (f.spells_granted ?? []).length > 0)) return true
+  if ((homebrewData.spells ?? []).some((s) => (s.known_by ?? []).includes(character.name))) return true
+  return false
+}

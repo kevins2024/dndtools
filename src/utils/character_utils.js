@@ -1,9 +1,16 @@
 export const GENDERS = ['Male', 'Female', 'Nonbinary']
 
 export const RACES = [
-  'Aasimar', 'Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'Goliath',
-  'Halfling', 'Human', 'Orc', 'Tiefling', 'Exotic',
+  'Human', 'Yetgresian Human', 'Halfling',
+  'Elf', 'Eladrin', 'Drow', 'Half-Elf',
+  'Dwarf', 'Duergar', 'Gnome', 'Deep Gnome', 'Surface Deep Gnome',
+  'Orc', 'Half-Orc',
+  'Dragonborn', 'Tiefling', 'Goliath', 'Aasimar', 'Aarakocra',
+  'Genasi (Air)', 'Genasi (Earth)', 'Genasi (Fire)', 'Genasi (Water)',
+  'Drevani', 'Oldwood Troll', 'Satyr',
 ]
+
+export const RACES_DEFAULT_OFF = new Set(['Satyr'])
 
 export const CLASSES = [
   'Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk',

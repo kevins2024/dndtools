@@ -194,9 +194,32 @@ import { dnd } from '@/utils/dnd_utils.js'
 import { conditionTooltip } from '@/data/conditions.js'
 import { DEFAULT_SPEED_FT } from '@/utils/dnd_constants.js'
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
+import { getCharacterSpells } from '@/utils/spellUtils.js'
 import DetailPopup from '@/components/DetailPopup.vue'
 import StatChip from '@/components/StatChip.vue'
 import { Sparkle } from 'lucide-vue'
+
+const CONDITIONS = [
+  'Concentrating', 'Blessed', 'Hexed', 'Poisoned', 'Prone', 'Frightened',
+  'Charmed', 'Stunned', 'Paralyzed', 'Grappled', 'Restrained', 'Blinded',
+  'Deafened', 'Invisible', 'Incapacitated', 'Exhaustion',
+]
+
+const FEATURE_FILTER_OPTIONS = [
+  { value: 'all',          label: 'All'      },
+  { value: 'action',       label: 'Action'   },
+  { value: 'bonus_action', label: 'Bonus'    },
+  { value: 'reaction',     label: 'Reaction' },
+  { value: 'passive',      label: 'Passive'  },
+]
+
+const FEATURE_TYPE_ORDER = ['feature', 'maneuver']
+const FEATURE_TYPE_LABEL = { feature: 'Features', maneuver: 'Maneuvers' }
+
+function nextSlotValue(max, current, clickedIndex) {
+  const used = max - current
+  return Math.min(max, Math.max(0, clickedIndex < used ? current + 1 : current - 1))
+}
 
 export default {
   name: 'CharacterCombatPanel',
@@ -222,14 +245,8 @@ export default {
       popupItem: null,
       spellMeta: {},
       featureFilter: 'all',
-      featureFilterOptions: [
-        { value: 'all', label: 'All' },
-        { value: 'action', label: 'Action' },
-        { value: 'bonus_action', label: 'Bonus' },
-        { value: 'reaction', label: 'Reaction' },
-        { value: 'passive', label: 'Passive' },
-      ],
-      CONDITIONS: ['Concentrating', 'Blessed', 'Hexed', 'Poisoned', 'Prone', 'Frightened', 'Charmed', 'Stunned', 'Paralyzed', 'Grappled', 'Restrained', 'Blinded', 'Deafened', 'Invisible', 'Incapacitated', 'Exhaustion'],
+      featureFilterOptions: FEATURE_FILTER_OPTIONS,
+      CONDITIONS,
     }
   },
 
@@ -262,11 +279,7 @@ export default {
       return (this.character.features ?? []).some((f) => f.type !== 'feat')
     },
     hasFilterableContent() {
-      return (
-        this.someFeatures ||
-        (this.character.spells ?? []).length > 0 ||
-        (this.character.artillerist_spells?.spells ?? []).length > 0
-      )
+      return this.someFeatures || getCharacterSpells(this.character).length > 0
     },
     activeConditions() {
       return this.character.conditions ?? []
@@ -344,104 +357,7 @@ export default {
     },
 
     weaponSummaries() {
-      const { stats, bonuses } = this.resolvedStats
-      const strMod = dnd.mod(stats.str)
-      const dexMod = dnd.mod(stats.dex)
-      const prof = this.profBonus
-
-      const weapons = this.equippedItems.filter((i) => i.type === 'weapon')
-      const summaries = weapons.map((w) => {
-        const props = dnd._weaponProps(w)
-        const magic = w.enhancement_bonus ?? 0
-        let statMod, statDesc
-        if (props.finesse) {
-          statMod = Math.max(strMod, dexMod)
-          statDesc = `Finesse — best of STR ${dnd.signed(
-            strMod
-          )}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
-        } else if (props.weapon_type === 'ranged') {
-          statMod = dexMod
-          statDesc = `DEX ${dnd.signed(dexMod)}`
-        } else {
-          statMod = strMod
-          statDesc = `STR ${dnd.signed(strMod)}`
-        }
-        const atkBonusKey = props.weapon_type === 'ranged' ? 'ranged_attack' : 'melee_attack'
-        const atkTotal = dnd.attackBonus(this.character, w, this.partyItems)
-        const atkParts = [statDesc, `Prof ${dnd.signed(prof)}`]
-        if (magic) atkParts.push(`Enchanted ${dnd.signed(magic)}`)
-        ;(this.itemBonusBreakdown[atkBonusKey] ?? []).forEach(({ name, value }) =>
-          atkParts.push(`${name} ${dnd.signed(value)}`)
-        )
-        atkParts.push(`= ${dnd.signed(atkTotal)}`)
-
-        const dmgBonus = dnd.damageBonus(this.character, w, this.partyItems)
-        const die = dnd.gripDie(this.character, w, this.partyItems)
-        const dmgParts = [die, statDesc.split('—')[0].trim()]
-        if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
-        if (props.weapon_type === 'ranged') {
-          ;(this.itemBonusBreakdown['ranged_damage'] ?? []).forEach(({ name, value }) =>
-            dmgParts.push(`${name} ${dnd.signed(value)}`)
-          )
-        }
-
-        const extras = w.extra_damage
-          ? [{
-              source: `${w.extra_damage.type} ${w.extra_damage.trigger ?? 'on hit'}`,
-              die: w.extra_damage.die,
-              type: w.extra_damage.type,
-              trigger: w.extra_damage.trigger ?? 'on hit',
-            }]
-          : []
-
-        return {
-          name: w.name,
-          attack: dnd.signed(atkTotal),
-          damage: `${die}${dnd.signed(dmgBonus)}`,
-          type: props.weapon_type,
-          atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
-          dmgTooltip: dmgParts.join(' + '),
-          extras,
-        }
-      })
-
-      if (this.character.martial_arts_die) {
-        const die = this.character.martial_arts_die
-        const statMod = Math.max(strMod, dexMod)
-        const unarmedAtk = bonuses.unarmed_attack ?? 0
-        const unarmedDmg = bonuses.unarmed_damage ?? 0
-        const atkTotal = statMod + prof + unarmedAtk
-        const dmgTotal = statMod + unarmedDmg
-        const atkParts = [
-          `Martial Arts ${dnd.signed(statMod)}`,
-          `Prof ${dnd.signed(prof)}`,
-        ]
-        if (unarmedAtk) atkParts.push(`Items ${dnd.signed(unarmedAtk)}`)
-        atkParts.push(`= ${dnd.signed(atkTotal)}`)
-        const dmgParts = [`${die}`, `STR/DEX ${dnd.signed(statMod)}`]
-        if (unarmedDmg) dmgParts.push(`Items ${dnd.signed(unarmedDmg)}`)
-
-        const extras = this.equippedItems
-          .filter((i) => i.extra_damage?.applies_to === 'unarmed')
-          .map((i) => ({
-            source: i.name,
-            die: i.extra_damage.die,
-            type: i.extra_damage.type,
-            trigger: i.extra_damage.trigger ?? 'on hit',
-          }))
-
-        summaries.unshift({
-          name: 'Unarmed Strike',
-          attack: dnd.signed(atkTotal),
-          damage: `${die}${dnd.signed(dmgTotal)}`,
-          type: 'melee',
-          atkTooltip: atkParts.join(' + ').replace('+ =', '='),
-          dmgTooltip: dmgParts.join(' + '),
-          extras,
-        })
-      }
-
-      return summaries
+      return dnd.buildWeaponRows(this.character, this.partyItems)
     },
 
     weaponRows() {
@@ -459,33 +375,23 @@ export default {
       return (this.character.features ?? []).filter((f) => f.type === 'feat')
     },
     featureGroups() {
-      let features = (this.character.features ?? []).filter(
-        (f) => f.type !== 'feat'
-      )
+      let features = (this.character.features ?? []).filter((f) => f.type !== 'feat')
       if (this.featureFilter !== 'all') {
         features = features.filter((f) =>
           this.featureFilter === 'passive' ? !f.action_type : f.action_type === this.featureFilter
         )
       }
-      const TYPE_ORDER = ['feature', 'maneuver']
-      const TYPE_LABEL = { feature: 'Features', maneuver: 'Maneuvers' }
       const map = {}
       for (const f of features) {
         const t = f.type || 'feature'
         ;(map[t] = map[t] ?? []).push(f)
       }
-      const known = TYPE_ORDER.filter((t) => map[t]).map((t) => ({
-        type: t,
-        label: TYPE_LABEL[t],
-        items: map[t],
+      const known = FEATURE_TYPE_ORDER.filter((t) => map[t]).map((t) => ({
+        type: t, label: FEATURE_TYPE_LABEL[t], items: map[t],
       }))
       const other = Object.keys(map)
-        .filter((t) => !TYPE_ORDER.includes(t))
-        .map((t) => ({
-          type: t,
-          label: t.charAt(0).toUpperCase() + t.slice(1) + 's',
-          items: map[t],
-        }))
+        .filter((t) => !FEATURE_TYPE_ORDER.includes(t))
+        .map((t) => ({ type: t, label: t.charAt(0).toUpperCase() + t.slice(1) + 's', items: map[t] }))
       return [...known, ...other]
     },
 
@@ -542,13 +448,7 @@ export default {
     },
 
     spellGroups() {
-      let spells = [
-        ...(this.character.spells ?? []),
-        ...(this.character.artillerist_spells?.spells ?? []).map((s) => ({
-          ...s,
-          domain: true,
-        })),
-      ]
+      let spells = getCharacterSpells(this.character)
       if (this.featureFilter !== 'all') {
         spells = spells.filter((s) => {
           const at = this.spellMeta[s.name]?.actionType
@@ -577,40 +477,24 @@ export default {
     toggleSlot(levelKey, slotIndex) {
       if (levelKey === 'pact') {
         const pm = this.character.pact_magic
-        const cur = pm.current ?? pm.max
-        const used = pm.max - cur
-        const newCurrent = slotIndex < used ? cur + 1 : cur - 1
         this.$store.commit('UPDATE_TABLE_ITEM', {
           table: 'characters',
-          updatedItem: {
-            ...this.character,
-            pact_magic: { ...pm, current: Math.min(pm.max, Math.max(0, newCurrent)) },
-          },
+          updatedItem: { ...this.character, pact_magic: { ...pm, current: nextSlotValue(pm.max, pm.current ?? pm.max, slotIndex) } },
         })
         return
       }
       const slot = this.character.spell_slots[levelKey]
-      const cur = slot.current ?? slot.max
-      const used = slot.max - cur
-      const newCurrent = slotIndex < used ? cur + 1 : cur - 1
-      const updatedSlots = {
-        ...this.character.spell_slots,
-        [levelKey]: {
-          ...slot,
-          current: Math.min(slot.max, Math.max(0, newCurrent)),
-        },
-      }
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
-        updatedItem: { ...this.character, spell_slots: updatedSlots },
+        updatedItem: {
+          ...this.character,
+          spell_slots: { ...this.character.spell_slots, [levelKey]: { ...slot, current: nextSlotValue(slot.max, slot.current ?? slot.max, slotIndex) } },
+        },
       })
     },
 
     toggleResource(res, slotIndex) {
-      const cur = res.current
-      const used = res.max - cur
-      const newCurrent = Math.min(res.max, Math.max(0, slotIndex < used ? cur + 1 : cur - 1))
-
+      const newCurrent = nextSlotValue(res.max, res.current, slotIndex)
       if (res.key === 'ki_points') {
         this.$store.commit('UPDATE_TABLE_ITEM', {
           table: 'characters',
@@ -618,13 +502,14 @@ export default {
         })
         return
       }
-
-      const updatedResources = (this.character.resources ?? []).map((r) =>
-        (r.key ?? r.name) === res.key ? { ...r, current: newCurrent } : r
-      )
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
-        updatedItem: { ...this.character, resources: updatedResources },
+        updatedItem: {
+          ...this.character,
+          resources: (this.character.resources ?? []).map((r) =>
+            (r.key ?? r.name) === res.key ? { ...r, current: newCurrent } : r
+          ),
+        },
       })
     },
 
@@ -648,10 +533,7 @@ export default {
     },
 
     async loadSpellMeta() {
-      const spells = [
-        ...(this.character.spells ?? []),
-        ...(this.character.artillerist_spells?.spells ?? []),
-      ]
+      const spells = getCharacterSpells(this.character)
       const meta = {}
       await Promise.all(
         spells.map(async (s) => {
@@ -793,14 +675,6 @@ export default {
   margin-top: 0.15rem;
 }
 
-.section-label {
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 .section-empty {
   font-size: var(--font-size-md);
   color: var(--color-text-low);
@@ -891,7 +765,8 @@ export default {
 }
 
 .feature-pill,
-.spell-pill {
+.spell-pill,
+.feat-pill {
   font-size: var(--font-size-base);
   padding: 0.15rem 0.5rem;
   border-radius: 3px;
@@ -903,7 +778,8 @@ export default {
   transition: border-color 0.12s ease, color 0.12s ease;
 }
 
-.feature-pill:hover {
+.feature-pill:hover,
+.feat-pill:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
@@ -936,20 +812,6 @@ export default {
 .feat-pill {
   display: inline-flex;
   align-items: center;
-  font-size: var(--font-size-base);
-  padding: 0.15rem 0.5rem;
-  border-radius: 3px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-panel);
-  color: var(--color-text-muted);
-  line-height: 1.4;
-  cursor: pointer;
-  transition: border-color 0.12s ease, color 0.12s ease;
-}
-
-.feat-pill:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
 }
 
 /* â”€â”€ Spell Slots â”€â”€ */
@@ -1036,8 +898,8 @@ export default {
 }
 
 .cond-chip--active {
-  border-color: #e67e22;
-  color: #e67e22;
+  border-color: var(--color-condition);
+  color: var(--color-condition);
   background: rgba(230, 126, 34, 0.12);
 }
 

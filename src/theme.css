@@ -25,10 +25,19 @@
   --color-white: #ffffff;
   --color-primary: #4a90d9;
   --color-selected: gold;
-  --color-neutral: gray;
   --color-highlight: #e8841a;
   --color-highlight-rgb: 232, 132, 26;
   --color-warning: #f0a830;
+
+  /* Semantic status colors */
+  --color-success: #4a9e6b;
+  --color-success-border: #2d5a3d;
+  --color-success-dark: #1e4d2e;
+  --color-neutral-amber: #c9952a;
+  --color-boss: #c0922a;
+  --color-danger: #c0392b;
+  --color-info: #8888dd;
+  --color-condition: #e67e22;
   --font-size-xs:   0.75rem;
   --font-size-sm:   0.9rem;
   --font-size-base: 1.125rem;

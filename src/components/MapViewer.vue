@@ -84,7 +84,7 @@
             v-if="activeRegionPathD"
             :d="activeRegionPathD"
             fill="rgba(74,158,107,0.1)"
-            stroke="#4a9e6b"
+            stroke="var(--color-success)"
             stroke-width="0.8"
             stroke-dasharray="3,1.5"
           />
@@ -236,7 +236,7 @@ export default {
       showLabels: false,
       showOutline: false,
       showGrid: false,
-      editMode: true,
+      editMode: false,
       zoomLevel: 1,
       panX: 0,
       panY: 0,
@@ -793,8 +793,8 @@ export default {
   cursor: pointer;
   font-family: var(--font-display);
 }
-.map-btn:hover { border-color: #4a9e6b; color: #4a9e6b; }
-.map-btn.active { border-color: #4a9e6b; color: #4a9e6b; background: rgba(74, 158, 107, 0.15); }
+.map-btn:hover { border-color: var(--color-success); color: var(--color-success); }
+.map-btn.active { border-color: var(--color-success); color: var(--color-success); background: rgba(74, 158, 107, 0.15); }
 
 .zoom-label { gap: 0.5rem; }
 .zoom-slider { width: 80px; accent-color: var(--color-accent); cursor: pointer; }
@@ -898,7 +898,7 @@ export default {
 .map-svg {
   width: 100%;
   height: 100%;
-  background: #c8b882;
+  background: #1a2d4a;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   display: block;

@@ -88,4 +88,45 @@ input,
 textarea {
   font-family: inherit;
 }
+
+/* ── Global utilities ── */
+
+/* Sidebar / panel column header (used in CombatContext, CharacterContext, Battle, etc.) */
+.col-label {
+  padding: 0.4rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  border-bottom: 1px solid var(--color-border);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* In-panel section divider (used in CharacterCombatPanel, Battle, CharacterInventory, etc.) */
+.section-label {
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Thin scrollbar styling — add alongside overflow-y: auto */
+.scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar) transparent;
+}
+
+/* Centered placeholder when a panel has nothing to show */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-low);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
 </style>

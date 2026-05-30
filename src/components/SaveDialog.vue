@@ -3,7 +3,7 @@
     <template #title>Save Changes</template>
 
     <p>The following data has been modified:</p>
-    <div class="changes-list">
+    <div class="changes-list scrollable">
       <div
         v-for="entry in changeEntries"
         :key="entry.table"
@@ -168,8 +168,6 @@ export default {
   margin: 1rem 0;
   max-height: 300px;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
 }
 
 .change-item {

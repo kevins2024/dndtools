@@ -4,12 +4,12 @@
     <!-- â”€â”€ Setup phase â”€â”€ -->
     <template v-if="phase === 'setup'">
 
-      <aside class="col bench-col">
+      <aside class="col bench-col scrollable">
         <div class="col-label">Bench</div>
         <PlayerCharacterSelect />
       </aside>
 
-      <aside class="col ondeck-col">
+      <aside class="col ondeck-col scrollable">
         <div class="col-label">On-Deck</div>
 
         <!-- Saved parties -->
@@ -70,7 +70,7 @@
         </div>
       </aside>
 
-      <section class="col enemy-col">
+      <section class="col enemy-col scrollable">
         <div class="col-label">Enemies</div>
         <div v-if="currentEncounter" class="enc-load-bar">
           <span class="enc-load-hint">{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} · {{ currentEncounter.enemies.length }} enemies</span>
@@ -401,19 +401,6 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
-}
-
-.col-label {
-  padding: 0.4rem 0.6rem;
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  border-bottom: 1px solid var(--color-border);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  flex-shrink: 0;
 }
 
 .col-empty {
@@ -586,9 +573,9 @@ export default {
 .enc-load-btn {
   padding: 0.2rem 0.6rem;
   background: none;
-  border: 1px solid #8888dd;
+  border: 1px solid var(--color-info);
   border-radius: 4px;
-  color: #8888dd;
+  color: var(--color-info);
   font-size: var(--font-size-base);
   font-family: var(--font-display);
   cursor: pointer;
@@ -785,8 +772,8 @@ export default {
 }
 
 .gen-btn:hover {
-  border-color: #8888dd;
-  color: #8888dd;
+  border-color: var(--color-info);
+  color: var(--color-info);
 }
 
 /* â”€â”€ Encounter modal â”€â”€ */

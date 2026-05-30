@@ -101,6 +101,10 @@
 import Dialog from '@/components/Dialog.vue'
 import { saveToHomebrew } from '@/utils/lookupService.js'
 
+const SPELL_CLASSES = Object.freeze([
+  'Artificer', 'Bard', 'Cleric', 'Druid', 'Paladin', 'Ranger', 'Sorcerer', 'Warlock', 'Wizard',
+])
+
 export default {
   name: 'DetailPopup',
   components: { Dialog },
@@ -123,7 +127,7 @@ export default {
       saveError: null,
       draft: {},
       savedData: null,
-      spellClasses: ['Artificer', 'Bard', 'Cleric', 'Druid', 'Paladin', 'Ranger', 'Sorcerer', 'Warlock', 'Wizard'],
+      spellClasses: SPELL_CLASSES,
     }
   },
 
@@ -435,7 +439,7 @@ export default {
 
 .dp-save-error {
   font-size: var(--font-size-base);
-  color: #c0392b;
+  color: var(--color-danger);
   margin: 0;
 }
 

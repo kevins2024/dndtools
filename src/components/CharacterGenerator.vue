@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { pick, GENDERS, RACES, CLASSES, generateCharacter } from '../utils/character_utils.js'
+import { pick, GENDERS, RACES, RACES_DEFAULT_OFF, CLASSES, generateCharacter } from '../utils/character_utils.js'
 
 const CATEGORIES = [
   { key: 'gender', label: 'Gender', options: GENDERS },
@@ -53,7 +53,9 @@ function buildEnabled() {
   const out = {}
   for (const cat of CATEGORIES) {
     out[cat.key] = {}
-    for (const opt of cat.options) out[cat.key][opt] = true
+    for (const opt of cat.options) {
+      out[cat.key][opt] = cat.key === 'race' ? !RACES_DEFAULT_OFF.has(opt) : true
+    }
   }
   return out
 }
@@ -203,7 +205,7 @@ export default {
 .generate-btn:hover { background: var(--color-accent-strong); }
 
 .gen-error {
-  color: #c0392b;
+  color: var(--color-danger);
   font-size: var(--font-size-md);
 }
 

@@ -20,8 +20,8 @@
 
         <div class="bm-legend">
           <span class="bm-legend-dot" style="background:#c8a96e"></span>Player
-          <span class="bm-legend-dot" style="background:#4a9e6b"></span>Friendly
-          <span class="bm-legend-dot" style="background:#c9952a"></span>Neutral
+          <span class="bm-legend-dot" style="background:var(--color-success)"></span>Friendly
+          <span class="bm-legend-dot" style="background:var(--color-neutral-amber)"></span>Neutral
           <span class="bm-legend-dot" style="background:#a05030"></span>Enemy
         </div>
 
@@ -86,7 +86,7 @@
       </div>
 
       <!-- Canvas -->
-      <div class="bm-canvas-wrap" ref="wrap" @wheel.prevent="handleWheel"
+      <div class="bm-canvas-wrap scrollable" ref="wrap" @wheel.prevent="handleWheel"
            :class="{ 'bm-cursor-paint': paintMode, 'bm-cursor-zone': zoneMode }">
         <canvas ref="canvas"
                 @click="handleClick"
@@ -218,6 +218,8 @@ export default {
     cellSize() {
       this.$nextTick(() => { this.resizeCanvas(); this.draw() })
     },
+    zoneRadius()        { this.draw() },
+    selectedZoneColor() { this.draw() },
   },
 
   mounted() {
@@ -335,8 +337,8 @@ export default {
       // Spell zones
       ctx.setLineDash([5, 4])
       for (const zone of this.zones) {
-        const cx = (zone.col + 0.5) * cs
-        const cy = (zone.row + 0.5) * cs
+        const cx = zone.col * cs
+        const cy = zone.row * cs
         const r  = zone.radius * cs
         const zc = ZONE_COLORS.find((c) => c.key === zone.color)
         const hex = zc ? zc.color : '#ffffff'
@@ -356,8 +358,8 @@ export default {
           this.hoverCol >= 0 && this.hoverCol < GRID &&
           this.hoverRow >= 0 && this.hoverRow < GRID) {
         if (this.zoneMode) {
-          const cx = (this.hoverCol + 0.5) * cs
-          const cy = (this.hoverRow + 0.5) * cs
+          const cx = this.hoverCol * cs
+          const cy = this.hoverRow * cs
           const r  = this.zoneRadius * cs
           const zc = ZONE_COLORS.find((c) => c.key === this.selectedZoneColor)
           const hex = zc ? zc.color : '#ffffff'
@@ -459,7 +461,7 @@ export default {
     },
 
     placeZone(col, row) {
-      if (col < 0 || col >= GRID || row < 0 || row >= GRID) return
+      if (col < 0 || col > GRID || row < 0 || row > GRID) return
       const existing = this.zones.findIndex((z) => z.col === col && z.row === row)
       if (existing >= 0) {
         this.zones.splice(existing, 1)
@@ -495,6 +497,16 @@ export default {
       }
     },
 
+    // Snaps to nearest grid intersection (corner of squares) — used for zone placement
+    // so a 20ft radius circle aligns cleanly with the grid lines.
+    snapCoords(event) {
+      const rect = this.$refs.canvas.getBoundingClientRect()
+      return {
+        col: Math.round((event.clientX - rect.left) / this.cellSize),
+        row: Math.round((event.clientY - rect.top)  / this.cellSize),
+      }
+    },
+
     handleMouseDown(event) {
       if (!this.paintMode) return
       this.isPainting = true
@@ -505,7 +517,7 @@ export default {
     handleContextMenu(event) {
       if (!this.zoneMode) return
       event.preventDefault()
-      const { col, row } = this.gridCoords(event)
+      const { col, row } = this.snapCoords(event)
       const existing = this.zones.findIndex((z) => z.col === col && z.row === row)
       if (existing >= 0) { this.zones.splice(existing, 1); this.draw() }
     },
@@ -517,7 +529,7 @@ export default {
     handleClick(event) {
       if (this.paintMode) return
       if (this.zoneMode) {
-        const { col, row } = this.gridCoords(event)
+        const { col, row } = this.snapCoords(event)
         this.placeZone(col, row)
         return
       }
@@ -537,8 +549,8 @@ export default {
     },
 
     handleMouseMove(event) {
-      const { col, row } = this.gridCoords(event)
       if (this.zoneMode) {
+        const { col, row } = this.snapCoords(event)
         if (col !== this.hoverCol || row !== this.hoverRow) {
           this.hoverCol = col
           this.hoverRow = row
@@ -546,6 +558,7 @@ export default {
         }
         return
       }
+      const { col, row } = this.gridCoords(event)
       if (this.paintMode) {
         if (col !== this.hoverCol || row !== this.hoverRow) {
           this.hoverCol = col
@@ -774,9 +787,7 @@ export default {
   flex: 1;
   overflow: auto;
   cursor: crosshair;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
-  background: #1a1612;
+  background: var(--color-bg);
 }
 
 .bm-canvas-wrap.bm-cursor-paint { cursor: cell; }

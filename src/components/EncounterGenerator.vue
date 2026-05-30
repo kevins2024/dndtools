@@ -219,7 +219,16 @@
 <script>
 import { ENCOUNTER_TYPES, DIFFICULTY_SELECTABLE, ROLE_PROFILES, ROLE_KEYS, planEncounter, generateEncounter, estimatePartyHP } from '../utils/encounter_utils.js'
 import { GENDERS, RACES } from '../utils/character_utils.js'
+import { STAT_KEYS } from '../utils/dnd_utils.js'
 import dataService from '../utils/dataService.js'
+
+const ENC_TYPES      = Object.freeze(ENCOUNTER_TYPES)
+const DIFFICULTIES   = Object.freeze(DIFFICULTY_SELECTABLE)
+const STAT_KEY_LIST  = Object.freeze(STAT_KEYS.map((s) => s.key))
+const ROLE_PROF_LIST = Object.freeze(ROLE_PROFILES)
+const ROLE_KEY_LIST  = Object.freeze(ROLE_KEYS)
+const RACE_LIST      = Object.freeze(RACES)
+const GENDER_LIST    = Object.freeze(GENDERS)
 
 export default {
   name: 'EncounterGenerator',
@@ -233,14 +242,14 @@ export default {
       manualCount:       4,
       difficulty:        'medium',
       encounterType:     'random',
-      encounterTypes:    ENCOUNTER_TYPES,
-      difficulties:      DIFFICULTY_SELECTABLE,
+      encounterTypes:    ENC_TYPES,
+      difficulties:      DIFFICULTIES,
       error:             '',
-      statKeys:          ['str', 'dex', 'con', 'int', 'wis', 'cha'],
-      roleProfiles:      ROLE_PROFILES,
-      roleKeys:          ROLE_KEYS,
-      races:             RACES,
-      genders:           GENDERS,
+      statKeys:          STAT_KEY_LIST,
+      roleProfiles:      ROLE_PROF_LIST,
+      roleKeys:          ROLE_KEY_LIST,
+      races:             RACE_LIST,
+      genders:           GENDER_LIST,
       // wizard state
       showWizard:        false,
       wizardSlots:       [],
@@ -561,9 +570,9 @@ export default {
 .load-btn {
   padding: 0.5rem 1.25rem;
   background: none;
-  border: 1px solid #8888dd;
+  border: 1px solid var(--color-info);
   border-radius: 6px;
-  color: #8888dd;
+  color: var(--color-info);
   font-family: var(--font-display);
   font-size: var(--font-size-md);
   letter-spacing: 0.05em;
@@ -573,7 +582,7 @@ export default {
 .load-btn:hover { background: rgba(136,136,221,0.12); }
 
 .enc-error {
-  color: #c0392b;
+  color: var(--color-danger);
   font-size: var(--font-size-md);
 }
 
@@ -599,9 +608,9 @@ export default {
   text-transform: capitalize;
 }
 
-.enc-badge.difficulty { background: rgba(74,158,107,0.15); color: #4a9e6b; border: 1px solid #4a9e6b; }
-.enc-badge.type       { background: rgba(100,100,200,0.15); color: #8888dd; border: 1px solid #8888dd; }
-.enc-badge.count      { background: rgba(200,100,100,0.15); color: #cc7766; border: 1px solid #cc7766; }
+.enc-badge.difficulty { background: rgba(74,158,107,0.15);  color: var(--color-success); border: 1px solid var(--color-success); }
+.enc-badge.type       { background: rgba(136,136,221,0.15); color: var(--color-info);    border: 1px solid var(--color-info); }
+.enc-badge.count      { background: rgba(200,100,100,0.15); color: #cc7766;              border: 1px solid #cc7766; }
 
 /* â”€â”€ Enemy rows â”€â”€ */
 .enemy-list {
@@ -621,7 +630,7 @@ export default {
 }
 
 .enemy-row.is-boss {
-  border-color: #c0922a;
+  border-color: var(--color-boss);
   background: rgba(192,146,42,0.07);
 }
 
@@ -631,7 +640,7 @@ export default {
   color: var(--color-text);
 }
 
-.is-boss .enemy-name { color: #c0922a; }
+.is-boss .enemy-name { color: var(--color-boss); }
 
 .enemy-stats {
   display: flex;
@@ -739,8 +748,8 @@ export default {
   letter-spacing: 0.05em;
   text-transform: capitalize;
   background: rgba(74,158,107,0.15);
-  color: #4a9e6b;
-  border: 1px solid #4a9e6b;
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
 }
 
 .wizard-close {
@@ -844,5 +853,5 @@ export default {
   border: 1px solid var(--color-border);
   color: var(--color-text-low);
 }
-.wiz-btn.ghost:hover { border-color: #8888dd; color: #8888dd; }
+.wiz-btn.ghost:hover { border-color: var(--color-info); color: var(--color-info); }
 </style>

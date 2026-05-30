@@ -2,7 +2,7 @@
   <div class="battle">
 
     <!-- Initiative sidebar -->
-    <aside class="initiative-sidebar">
+    <aside class="initiative-sidebar scrollable">
       <div class="col-label">Initiative</div>
       <div class="initiative-list">
         <div
@@ -212,7 +212,7 @@
         </div>
       </template>
 
-      <div v-else class="panel-empty">Select a combatant to view their turn</div>
+      <div v-else class="empty-state">Select a combatant to view their turn</div>
 
     </main>
 
@@ -227,6 +227,14 @@
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
 import DiceRoller from '@/components/DiceRoller.vue'
 import { conditionTooltip } from '@/data/conditions.js'
+import { STAT_KEYS } from '@/utils/dnd_utils.js'
+
+const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
+const CONDITIONS = Object.freeze([
+  'Blinded', 'Charmed', 'Deafened', 'Exhaustion', 'Frightened', 'Grappled',
+  'Incapacitated', 'Invisible', 'Paralyzed', 'Petrified', 'Poisoned',
+  'Prone', 'Restrained', 'Stunned', 'Unconscious', 'Concentrating',
+])
 
 export default {
   name: 'Battle',
@@ -255,12 +263,8 @@ export default {
       playerHealInput: null,
       newEnemyName:  '',
       newEnemyMod:   0,
-      statKeys: ['str', 'dex', 'con', 'int', 'wis', 'cha'],
-      CONDITIONS: [
-        'Blinded', 'Charmed', 'Deafened', 'Exhaustion', 'Frightened', 'Grappled',
-        'Incapacitated', 'Invisible', 'Paralyzed', 'Petrified', 'Poisoned',
-        'Prone', 'Restrained', 'Stunned', 'Unconscious', 'Concentrating',
-      ],
+      statKeys:   STAT_KEY_LIST,
+      CONDITIONS,
     }
   },
 
@@ -464,19 +468,6 @@ export default {
   border-right: 1px solid var(--color-border);
   background: var(--color-bg-panel);
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
-}
-
-.col-label {
-  padding: 0.4rem 0.75rem;
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  border-bottom: 1px solid var(--color-border);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  flex-shrink: 0;
 }
 
 .initiative-list { display: flex; flex-direction: column; }
@@ -495,8 +486,8 @@ export default {
 .initiative-card.is-active   { background: var(--color-bg-surface-alt); }
 .initiative-card.player.is-active          { border-left: 3px solid var(--color-accent); }
 .initiative-card.enemy.is-active           { border-left: 3px solid var(--color-text-danger); }
-.initiative-card.enemy.friendly.is-active  { border-left: 3px solid #4a9e6b; }
-.initiative-card.enemy.neutral.is-active   { border-left: 3px solid #c9952a; }
+.initiative-card.enemy.friendly.is-active  { border-left: 3px solid var(--color-success); }
+.initiative-card.enemy.neutral.is-active   { border-left: 3px solid var(--color-neutral-amber); }
 
 .card-portrait {
   flex-shrink: 0;
@@ -524,13 +515,13 @@ export default {
 }
 
 .enemy-circle.friendly {
-  background: #1e4d2e;
-  border-color: #4a9e6b;
+  background: var(--color-success-dark);
+  border-color: var(--color-success);
 }
 
 .enemy-circle.neutral {
   background: #4d3d0a;
-  border-color: #c9952a;
+  border-color: var(--color-neutral-amber);
 }
 
 .card-info   { flex: 1; min-width: 0; }
@@ -796,21 +787,21 @@ export default {
 .reset-btn:hover:not(:disabled) { border-color: var(--color-text-danger); color: var(--color-text-danger); }
 .reset-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-.heal-field { border-color: #2d5a3d; }
-.heal-field:focus { border-color: #4a9e6b; }
+.heal-field { border-color: var(--color-success-border); }
+.heal-field:focus { border-color: var(--color-success); }
 
 .heal-btn {
   padding: 0.35rem 0.75rem;
   background: var(--color-bg-surface-alt);
-  border: 1px solid #2d5a3d;
+  border: 1px solid var(--color-success-border);
   border-radius: 4px;
-  color: #4a9e6b;
+  color: var(--color-success);
   font-size: var(--font-size-md);
   font-family: var(--font-body);
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.heal-btn:hover:not(:disabled) { background: #1e4d2e; border-color: #4a9e6b; }
+.heal-btn:hover:not(:disabled) { background: var(--color-success-dark); border-color: var(--color-success); }
 .heal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 .hp-low { color: var(--color-text-danger); }
@@ -959,19 +950,9 @@ export default {
   color: var(--color-text-muted);
 }
 .enemy-cond-chip--active {
-  border-color: #e67e22;
-  color: #e67e22;
+  border-color: var(--color-condition);
+  color: var(--color-condition);
   background: rgba(230, 126, 34, 0.08);
 }
 
-/* ── Panel Empty ── */
-.panel-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: var(--color-text-low);
-  font-family: var(--font-display);
-  font-size: var(--font-size-md);
-}
 </style>

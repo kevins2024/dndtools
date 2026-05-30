@@ -1,7 +1,7 @@
 ﻿﻿﻿<template>
   <div class="monster-browser">
     <!-- Filters sidebar -->
-    <aside class="mb-filters">
+    <aside class="mb-filters scrollable">
       <div class="mb-filter-section">
         <input
           v-model="search"
@@ -78,7 +78,7 @@
 
     <!-- Monster list -->
     <div class="mb-list-col">
-      <div class="mb-list" ref="list">
+      <div class="mb-list scrollable" ref="list">
         <div
           v-for="(m, i) in paginatedMonsters"
           :key="page + '_' + i"
@@ -100,7 +100,7 @@
     </div>
 
     <!-- Detail panel -->
-    <div class="mb-detail" v-if="selected">
+    <div class="mb-detail scrollable" v-if="selected">
       <div class="mb-detail-header">
         <div class="mb-detail-name">{{ selected.name }}</div>
         <div class="mb-detail-subtitle">
@@ -168,28 +168,28 @@
         </div>
 
         <template v-if="statBlock.special_abilities.length">
-          <div class="mb-section-label">Traits</div>
+          <div class="section-label mb-section-label">Traits</div>
           <div v-for="t in statBlock.special_abilities" :key="t.name" class="mb-ability-block">
             <span class="mb-ability-name">{{ t.name }}.</span> {{ t.desc }}
           </div>
         </template>
 
         <template v-if="statBlock.actions.length">
-          <div class="mb-section-label">Actions</div>
+          <div class="section-label mb-section-label">Actions</div>
           <div v-for="a in statBlock.actions" :key="a.name" class="mb-ability-block">
             <span class="mb-ability-name">{{ a.name }}.</span> {{ a.desc }}
           </div>
         </template>
 
         <template v-if="statBlock.reactions && statBlock.reactions.length">
-          <div class="mb-section-label">Reactions</div>
+          <div class="section-label mb-section-label">Reactions</div>
           <div v-for="r in statBlock.reactions" :key="r.name" class="mb-ability-block">
             <span class="mb-ability-name">{{ r.name }}.</span> {{ r.desc }}
           </div>
         </template>
 
         <template v-if="statBlock.legendary_actions.length">
-          <div class="mb-section-label">Legendary Actions</div>
+          <div class="section-label mb-section-label">Legendary Actions</div>
           <div v-for="la in statBlock.legendary_actions" :key="la.name" class="mb-ability-block">
             <span class="mb-ability-name">{{ la.name }}.</span> {{ la.desc }}
           </div>
@@ -388,7 +388,6 @@ export default {
   background: var(--color-bg-panel);
   border-right: 1px solid var(--color-border);
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 .mb-filter-section {
@@ -466,7 +465,6 @@ export default {
 .mb-list {
   flex: 1;
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 .mb-row {
@@ -544,7 +542,6 @@ export default {
 /* â”€â”€ Detail â”€â”€ */
 .mb-detail {
   overflow-y: auto;
-  scrollbar-width: thin;
   padding: 0.85rem 1rem;
   display: flex;
   flex-direction: column;
@@ -663,11 +660,6 @@ export default {
 }
 
 .mb-section-label {
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.15rem;
   margin-top: 0.4rem;

@@ -22,16 +22,18 @@
 <script>
 import CharacterGenerator from './CharacterGenerator.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
+import WeeklyEvents from './WeeklyEvents.vue'
 
 export default {
   name: 'ToolsContext',
 
-  components: { CharacterGenerator, EncounterGenerator },
+  components: { CharacterGenerator, EncounterGenerator, WeeklyEvents },
 
   data() {
     return {
-      activeTool: 'encounter',
+      activeTool: 'weekly',
       tools: [
+        { id: 'weekly',     label: 'Weekly Events',        component: 'WeeklyEvents'       },
         { id: 'encounter',  label: 'Encounter Generator',  component: 'EncounterGenerator' },
         { id: 'character',  label: 'Character Generator',  component: 'CharacterGenerator' },
       ],

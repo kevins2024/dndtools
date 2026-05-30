@@ -1,7 +1,7 @@
 <template>
   <div class="character-context">
 
-    <aside class="char-col">
+    <aside class="char-col scrollable">
       <div class="col-label">Characters</div>
       <div class="char-list">
         <div
@@ -71,19 +71,6 @@ export default {
   background: var(--color-bg-panel);
   border-right: 1px solid var(--color-border);
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
-}
-
-.col-label {
-  padding: 0.4rem 0.6rem;
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  border-bottom: 1px solid var(--color-border);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  flex-shrink: 0;
 }
 
 .char-list {

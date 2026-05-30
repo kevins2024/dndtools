@@ -8,7 +8,7 @@
         class="search-input"
         placeholder="Search all items by name…"
       />
-      <div v-if="itemSearch.trim()" class="search-results">
+      <div v-if="itemSearch.trim()" class="search-results scrollable">
         <div v-if="searchResults.length === 0" class="search-empty">
           No items match "{{ itemSearch }}"
         </div>
@@ -34,7 +34,7 @@
     <div class="inv-columns">
 
     <!-- Left: This character -->
-    <div class="inv-column">
+    <div class="inv-column scrollable">
       <div class="col-title">{{ character.name }}</div>
 
       <div class="col-section">
@@ -146,7 +146,7 @@
     </div>
 
     <!-- Right: Available -->
-    <div class="inv-column">
+    <div class="inv-column scrollable">
       <div class="col-title">Party Pool</div>
 
       <div class="col-section">
@@ -228,7 +228,7 @@
         <div class="dialog-title">
           {{ inspectedItem ? inspectedItem.name : '' }}
         </div>
-        <div v-if="inspectedItem" class="inspection-content">
+        <div v-if="inspectedItem" class="inspection-content scrollable">
           <div class="inspection-meta">
             <div class="meta-row">
               <span class="meta-label">Type:</span>
@@ -554,8 +554,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
 }
 
 .search-empty {
@@ -622,8 +620,6 @@ export default {
   flex-direction: column;
   gap: 0.8vh;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
 }
 
 .col-title {
@@ -844,8 +840,6 @@ export default {
   overflow-y: auto;
   flex: 1;
   padding-right: 0.6rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) transparent;
 }
 
 .inspection-meta {

@@ -412,6 +412,104 @@ export const dnd = {
       .map((w) => dnd.weaponSummary(character, w, partyItems))
   },
 
+  // Groups stat_bonuses from equipped items by bonus key, with item name + value per entry.
+  // Used for building tooltip strings that name which item contributes each bonus.
+  _itemBonusBreakdown(character, partyItems) {
+    const result = {}
+    for (const item of partyItems.filter((i) => i.equipped_by === character.name)) {
+      for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
+        if (!result[key]) result[key] = []
+        result[key].push({ name: item.name, value: val })
+      }
+    }
+    return result
+  },
+
+  // Rich weapon rows for the combat panel UI — includes atkTooltip, dmgTooltip, and extras.
+  buildWeaponRows(character, partyItems = []) {
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
+    const strMod = dnd.mod(stats.str)
+    const dexMod = dnd.mod(stats.dex)
+    const prof = dnd._prof(character, bonuses)
+    const ibd = dnd._itemBonusBreakdown(character, partyItems)
+    const equippedItems = partyItems.filter((i) => i.equipped_by === character.name)
+
+    const summaries = equippedItems.filter((i) => i.type === 'weapon').map((w) => {
+      const props = dnd._weaponProps(w)
+      const magic = w.enhancement_bonus ?? 0
+      let statMod, statDesc
+      if (props.finesse) {
+        statMod = Math.max(strMod, dexMod)
+        statDesc = `Finesse — best of STR ${dnd.signed(strMod)}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
+      } else if (props.weapon_type === 'ranged') {
+        statMod = dexMod
+        statDesc = `DEX ${dnd.signed(dexMod)}`
+      } else {
+        statMod = strMod
+        statDesc = `STR ${dnd.signed(strMod)}`
+      }
+
+      const atkBonusKey = props.weapon_type === 'ranged' ? 'ranged_attack' : 'melee_attack'
+      const atkTotal = dnd.attackBonus(character, w, partyItems)
+      const atkParts = [statDesc, `Prof ${dnd.signed(prof)}`]
+      if (magic) atkParts.push(`Enchanted ${dnd.signed(magic)}`)
+      for (const { name, value } of (ibd[atkBonusKey] ?? [])) atkParts.push(`${name} ${dnd.signed(value)}`)
+      atkParts.push(`= ${dnd.signed(atkTotal)}`)
+
+      const dmgBonus = dnd.damageBonus(character, w, partyItems)
+      const die = dnd.gripDie(character, w, partyItems)
+      const dmgParts = [die, statDesc.split('—')[0].trim()]
+      if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
+      if (props.weapon_type === 'ranged') {
+        for (const { name, value } of (ibd.ranged_damage ?? [])) dmgParts.push(`${name} ${dnd.signed(value)}`)
+      }
+
+      const extras = w.extra_damage
+        ? [{ source: `${w.extra_damage.type} ${w.extra_damage.trigger ?? 'on hit'}`, die: w.extra_damage.die, type: w.extra_damage.type, trigger: w.extra_damage.trigger ?? 'on hit' }]
+        : []
+
+      return {
+        name: w.name,
+        attack: dnd.signed(atkTotal),
+        damage: `${die}${dnd.signed(dmgBonus)}`,
+        type: props.weapon_type,
+        atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
+        dmgTooltip: dmgParts.join(' + '),
+        extras,
+      }
+    })
+
+    if (character.martial_arts_die) {
+      const die = character.martial_arts_die
+      const statMod = Math.max(strMod, dexMod)
+      const unarmedAtk = bonuses.unarmed_attack ?? 0
+      const unarmedDmg = bonuses.unarmed_damage ?? 0
+      const atkTotal = statMod + prof + unarmedAtk
+      const dmgTotal = statMod + unarmedDmg
+      const atkParts = [`Martial Arts ${dnd.signed(statMod)}`, `Prof ${dnd.signed(prof)}`]
+      if (unarmedAtk) atkParts.push(`Items ${dnd.signed(unarmedAtk)}`)
+      atkParts.push(`= ${dnd.signed(atkTotal)}`)
+      const dmgParts = [die, `STR/DEX ${dnd.signed(statMod)}`]
+      if (unarmedDmg) dmgParts.push(`Items ${dnd.signed(unarmedDmg)}`)
+
+      const extras = equippedItems
+        .filter((i) => i.extra_damage?.applies_to === 'unarmed')
+        .map((i) => ({ source: i.name, die: i.extra_damage.die, type: i.extra_damage.type, trigger: i.extra_damage.trigger ?? 'on hit' }))
+
+      summaries.unshift({
+        name: 'Unarmed Strike',
+        attack: dnd.signed(atkTotal),
+        damage: `${die}${dnd.signed(dmgTotal)}`,
+        type: 'melee',
+        atkTooltip: atkParts.join(' + ').replace('+ =', '='),
+        dmgTooltip: dmgParts.join(' + '),
+        extras,
+      })
+    }
+
+    return summaries
+  },
+
   // ─────────────────────────────────────────────
   // FULL CHARACTER SUMMARY
   // ─────────────────────────────────────────────

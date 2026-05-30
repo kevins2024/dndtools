@@ -16,6 +16,14 @@
       >
         Equipment
       </button>
+      <button
+        v-if="hasSpells"
+        class="tab-btn"
+        :class="{ active: activeTab === 'spellbook' }"
+        @click="activeTab = 'spellbook'"
+      >
+        Spellbook
+      </button>
     </div>
 
     <!-- Content -->
@@ -24,6 +32,10 @@
         <CharacterSheet v-if="activeTab === 'sheet'" :character="selected" />
         <CharacterInventory
           v-else-if="activeTab === 'equipment'"
+          :character="selected"
+        />
+        <CharacterSpellbook
+          v-else-if="activeTab === 'spellbook'"
           :character="selected"
         />
       </template>
@@ -35,11 +47,13 @@
 <script>
 import CharacterInventory from './CharacterInventory.vue'
 import CharacterSheet from './CharacterSheet.vue'
+import CharacterSpellbook from './CharacterSpellbook.vue'
 import Editor from './Editor.vue'
+import { characterHasSpells } from '@/utils/spellUtils.js'
 
 export default {
   name: 'CharacterDetails',
-  components: { CharacterInventory, CharacterSheet, Editor },
+  components: { CharacterInventory, CharacterSheet, CharacterSpellbook, Editor },
 
   props: {
     character: { type: Object, default: null },
@@ -59,6 +73,9 @@ export default {
         return this.$store.state.characters.find((c) => c.name === name)
       }
       return null
+    },
+    hasSpells() {
+      return characterHasSpells(this.selected)
     },
   },
 }
@@ -107,10 +124,4 @@ export default {
   padding: 1vh 1vw;
 }
 
-.empty-state {
-  color: var(--color-die);
-  font-style: italic;
-  margin-top: 2vh;
-  text-align: center;
-}
 </style>
