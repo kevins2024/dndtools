@@ -250,8 +250,8 @@ export default {
   },
 
   computed: {
-    showLymesmarch() {
-      return this.selectedRegion === 'lymesmarch'
+    showFynesmarch() {
+      return this.selectedRegion === 'fynesmarch'
     },
 
     currentMapName() {
@@ -385,7 +385,7 @@ export default {
     },
 
     selectedRegionPoints() {
-      if (this.selectedRegion === 'lymesmarch') return this.lymesmarchPoints
+      if (this.selectedRegion === 'fynesmarch') return this.fynesmarchPoints
       if (this.selectedRegion === 'fol') return this.folPoints
       if (this.selectedRegion === 'orvath') return this.orvathPoints
       if (this.selectedRegion === 'torwald') return this.torwaldPoints
@@ -395,7 +395,7 @@ export default {
       return []
     },
 
-    lymesmarchPoints() {
+    fynesmarchPoints() {
       const on = this.outlineNodes
       const bPath = this.featurePaths.find((p) => p.id === 'path5')
       if (!bPath) return []
@@ -560,7 +560,7 @@ export default {
     },
 
     activeRegionPathD() {
-      if (this.selectedRegion === 'lymesmarch') return this.lymesmarchPathD
+      if (this.selectedRegion === 'fynesmarch') return this.fynesmarchPathD
       if (this.selectedRegion === 'fol') return this.folPathD
       if (this.selectedRegion === 'orvath') return this.orvathPathD
       if (this.selectedRegion === 'torwald') return this.torwaldPathD
@@ -570,8 +570,8 @@ export default {
       return ''
     },
 
-    lymesmarchPathD() {
-      if (!this.showLymesmarch) return ''
+    fynesmarchPathD() {
+      if (!this.showFynesmarch) return ''
       const outlineDef = this.pathDefs.find((p) => p.isOutline)
       const bDef = this.pathDefs.find((p) => p.id === 'path5')
       if (!outlineDef || !bDef) return ''
@@ -696,8 +696,8 @@ export default {
       this.selectedRegion = this.selectedRegion === id ? null : id
     },
 
-    toggleLymesmarch() {
-      this.showLymesmarch = !this.showLymesmarch
+    toggleFynesmarch() {
+      this.showFynesmarch = !this.showFynesmarch
     },
 
     onMouseDown(e) {

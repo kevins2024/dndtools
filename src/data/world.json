@@ -4,28 +4,16 @@
     "calendar_constants": {
       "days_per_year": 204,
       "seasons": [
-        {
-          "name": "Winter",
-          "length": 51
-        },
-        {
-          "name": "Spring",
-          "length": 51
-        },
-        {
-          "name": "Summer",
-          "length": 51
-        },
-        {
-          "name": "Autumn",
-          "length": 51
-        }
+        { "name": "Winter", "length": 51 },
+        { "name": "Spring", "length": 51 },
+        { "name": "Summer", "length": 51 },
+        { "name": "Autumn", "length": 51 }
       ]
     },
     "inspirations": {
       "religion": "Mostly set up like the Greek pantheon but with a few twists. The gods are more active and present in the world, but they don't necessarily intervene directly in mortal affairs. They have specific domains and philosophies that influence their followers, but they more often than not don't demand worship or obedience. Names are heavily influenced by Gaulic and Saxon names.",
       "cities": "Each major city should have a relatively distinct climate and culture inspired by a mix of real-world cultures but avoid the obvious ones. They need defined demographics, governments, economies, and something that sets them apart.",
-      "continents": "The group knows of five continents now but the only two with any information are Kaemahz and Yetgrese. The world is called Tellonde; other continents won't refer to Kaemahz by the world name. Current plan is for Kaemahz to be a sort of standard fantasy realm continent that fulfills traditional tropes and Yetgrese is going to be purely unusual -- not a single standard city there."
+      "continents": "Two continents are known: Kaemahz and Yetgrese. Other continents may exist but are speculative — only these two have any established information. Kaemahz is the primary fantasy-familiar continent; Yetgrese is deliberately unusual with no standard city structures."
     },
     "continents": [
       {
@@ -34,23 +22,24 @@
           "notes": "The 8 day weeks leave 4 days leftover, which is called the Spring Festival halfweek. This is regionally celebrated as a time of renewal and community gathering, with various local traditions. The Spring Festival halfweek is not considered part of any season, but rather a transition period between Winter and Spring.",
           "days_per_week": 8
         },
-        "description": "Large continental landmass divided into five regions. note: needs updating.",
+        "description": "Large continental landmass divided into seven regions. The primary fantasy-familiar continent of the known world — fulfills traditional tropes of kingdoms, trade routes, and established civilizations. Dragonborn presence is strong throughout, particularly concentrated in the southern regions.",
+        "geography": {
+          "notable_features": [
+            {
+              "name": "Inkaba",
+              "type": "volcano",
+              "notes": "Active but not constantly erupting. Located roughly in the center of Kaemahz, east of Cindermarch. Visible from the fortress on clear days. Name means 'navel' (Zulu origin) — implies it is the origin point of the continent. Contributes to Cindermarch's weather pattern: snow to the north, clear to the south."
+            }
+          ]
+        },
         "regions": [
-          {
-            "name": "Lymesmarch",
-            "status": "current_campaign_region",
-            "climate": "Temperate maritime overall, distinct microclimates city to city.",
-            "shape_note": "Wide and shallow — twice as far east-west as north-south.",
-            "player_knowledge": "full",
-            "notes": ""
-          },
-          {
-            "name": "Fol",
-            "status": "known",
-            "climate": "Colder, harder, shorter growing seasons.",
-            "player_knowledge": "limited",
-            "notes": "Begins immediately north of Cindermarch. No merchant-council structure. Cindermarch exists specifically because of active conflict with whatever comes from here. Raiding culture implied."
-          }
+          { "name": "Fynesmarch", "status": "current_campaign_region", "player_knowledge": "full" },
+          { "name": "Fol", "status": "known", "player_knowledge": "limited" },
+          { "name": "Torwald", "status": "known", "player_knowledge": "limited" },
+          { "name": "Aranwald", "status": "known", "player_knowledge": "limited" },
+          { "name": "Orvath", "status": "known", "player_knowledge": "limited" },
+          { "name": "Birindal", "status": "known", "player_knowledge": "limited" },
+          { "name": "Solvale", "status": "known", "player_knowledge": "limited" }
         ]
       },
       {
@@ -60,7 +49,7 @@
         "player_knowledge": "limited",
         "geography": {
           "shape": "Crescent — massive partial crater or caldera, eroded asymmetrically over millennia",
-          "western": "Massive, mountainous, intact. Tallest and most dramatic terrain. Likely volcanic in origin.",
+          "western": "Massive, mountainous, intact. Tallest and most dramatic terrain. Volcanic or meteoric origin — meteoric preferred, TBD.",
           "eastern": "Partially eroded and broken. Lower elevation. Where the old crater wall wore away.",
           "gap": "Open waterway where the eastern wall eroded through — connects outer ocean to interior sea.",
           "interior_sea": "Massively deep. Geologically sheltered and isolated for millennia. Likely contains unique fauna. Mostly cliffed borders with no beaches — cliffs grow dramatically taller moving west.",
@@ -68,7 +57,7 @@
           "target_city": "On the eastern face of the main continent, slightly north of the waterway gap, facing outward toward the open sea."
         },
         "demographics": {
-          "notes": "Humans are 15-20% of population at most. Several familiar races present but as less common or divergent subtypes — not standard Lymesmarch versions. Full demographic composition still being established. Do not default to human NPCs.",
+          "notes": "Humans are 15-20% of population at most. Several familiar races present but as less common or divergent subtypes — not standard Kaemahz versions. Full demographic composition still being established. Do not default to human NPCs.",
           "candidates": [
             "lizardfolk (under consideration)",
             "divergent elf subtypes",
@@ -80,130 +69,122 @@
     ]
   },
   {
-    "name": "Lymesmarch",
+    "name": "Fynesmarch",
     "continent": "Kaemahz",
+    "climate": "Temperate maritime overall, distinct microclimates city to city.",
+    "shape_note": "Wide and shallow — twice as far east-west as north-south.",
+    "naming_conventions": "Literal and descriptive. Place names directly reflect observable features — Cindermarch is a fortress (march) near ashen terrain from the Inkaba volcano. This pattern should guide generation of new place names consistently.",
+    "notes": "Primary campaign region. Cindermarch on its northeastern border served as a fortress during past conflict with Fol — that conflict has ended. Cindermarch is now both a fortress and a functioning city.",
     "cities": [
-      {
-        "name": "Valdmere",
-        "type": "city",
-        "description": "Northwest coast, faces south. Frontier port.",
-        "notes": "Two weeks sail to Khemrise."
-      },
-      {
-        "name": "Cindermarch",
-        "type": "fortress",
-        "description": "Military fortress on the Fol border.",
-        "notes": "1 day north of Millhaven, 3 days northeast of Khemrise, 4-5 days ride from Ravenquay."
-      },
-      {
-        "name": "Millhaven",
-        "type": "town",
-        "description": "Mining town, inland.",
-        "notes": "2 days northeast of Khemrise, 1 day south of Cindermarch, 4 days north of Ravenquay."
-      },
-      {
-        "name": "Khemrise",
-        "type": "city",
-        "description": "Major coastal city, vineyards. Pivot point where the coast turns north-south.",
-        "notes": "2 days sail north of Trevash, 3 days sail north of Ravenquay."
-      },
-      {
-        "name": "Brennswick",
-        "type": "village",
-        "description": "Farming village.",
-        "notes": "Half day east of Khemrise."
-      },
-      {
-        "name": "Trevash",
-        "type": "port",
-        "description": "Small working port.",
-        "notes": "2 days sail south of Khemrise, 1 day sail north of Ravenquay."
-      },
-      {
-        "name": "Ravenquay",
-        "type": "city",
-        "description": "River delta. Dawn Blades home base.",
-        "notes": "1 day sail south of Trevash, 3 days sail south of Khemrise."
-      },
-      {
-        "name": "Argentveil",
-        "type": "city",
-        "description": "Southern coast after eastward bend. Warmest, most cosmopolitan.",
-        "notes": "4-5 days sail east of Ravenquay."
-      }
+      { "name": "Ravenquay", "type": "city", "description": "River delta. Dawn Blades home base.", "notes": "1 day sail south of Trevash, 3 days sail south of Khemrise." },
+      { "name": "Trevash", "type": "port", "description": "Small working port.", "notes": "2 days sail south of Khemrise, 1 day sail north of Ravenquay." },
+      { "name": "Khemrise", "type": "city", "description": "Major coastal city, vineyards. Pivot point where the coast turns north-south.", "notes": "2 days sail north of Trevash, 3 days sail north of Ravenquay." },
+      { "name": "Brennswick", "type": "village", "description": "Farming village.", "notes": "Half day east of Khemrise." },
+      { "name": "Millhaven", "type": "town", "description": "Mining town, inland.", "notes": "2 days northeast of Khemrise, 1 day south of Cindermarch, 4 days north of Ravenquay." },
+      { "name": "Argentveil", "type": "city", "description": "Southern coast after eastward bend. Warmest, most cosmopolitan.", "notes": "4-5 days sail east of Ravenquay." },
+      { "name": "Cindermarch", "type": "fortress_city", "description": "Military fortress and city on the Fol border.", "notes": "1 day north of Millhaven, 3 days northeast of Khemrise, 4-5 days ride from Ravenquay." },
+      { "name": "Valdmere", "type": "city", "description": "Northwest coast, faces south. Frontier port.", "notes": "Two weeks sail to Khemrise." },
+      { "name": "Halvenmoren", "type": "town", "description": "Border town at the mouth of Dunric Pass." }
     ],
     "wilderness": [
-      {
-        "name": "Crossroads Rest",
-        "type": "waystation",
-        "description": "Waystation on main road. 2 days north of Ravenquay toward Millhaven."
-      },
-      {
-        "name": "Verath Ohn",
-        "type": "island_or_landmark",
-        "description": "Off southern coast, in the water."
-      }
+      { "name": "Crossroads Rest", "type": "waystation", "description": "Waystation on main road. 2 days north of Ravenquay toward Millhaven." },
+      { "name": "Verath Ohn", "type": "island_or_landmark", "description": "Off southern coast, in the water." }
     ]
   },
   {
     "name": "Fol",
+    "continent": "Kaemahz",
+    "culture": "Tribal and shamanistic. Ironworking is culturally central — not merely a trade skill but an identity, bound up in spiritual practice. Shamanism is the primary spiritual framework. No merchant-council structure, no capital.",
+    "tribes": {
+      "known": ["Veratha — known as the Firstwalkers. The name implies a belief that they were the first people to walk the land, potentially predating other civilizations on Kaemahz."],
+      "notes": "Avoid generating more V-names for new tribes in this region."
+    },
+    "sub_regions": [
+      {
+        "name": "Northern Cliffs",
+        "description": "Cliff-faced coastline, no sea access, harsh winters, no sailing culture."
+      }
+    ],
+    "notes": "Past conflict with Fynesmarch has ended. Cindermarch fortress exists due to historical raids, not active conflict.",
     "grid": {
       "width": 40,
       "height": 40
     },
     "shape": "pentagon",
-    "shape_notes": "Top point (20,40) — furthest north. Top left coast (20,40) to (0,20). Top right coast (20,40) to (40,20). Bottom left border (0,20) to (8,0). Bottom right border (40,20) to (32,0). Bottom edge (8,0) to (32,0) — Lymesmarch border.",
+    "shape_notes": "Top point (20,40) — furthest north. Top left coast (20,40) to (0,20). Top right coast (20,40) to (40,20). Bottom left border (0,20) to (8,0). Bottom right border (40,20) to (32,0). Bottom edge (8,0) to (32,0) — Fynesmarch border.",
     "locations": [
-      {
-        "name": "Cindermarch",
-        "type": "fortress",
-        "description": "Bottom center on border line. Military fortress, Lymesmarch side."
-      },
-      {
-        "name": "Harrow's Rest",
-        "type": "waystation",
-        "description": "Three hours east of Cindermarch."
-      },
-      {
-        "name": "Northern Rock Waystation",
-        "type": "waystation",
-        "description": "Rock overhang shelter. Firstwalker songs carved in hearthstone."
-      },
-      {
-        "name": "Vethara Winter Camp",
-        "type": "settlement",
-        "description": "Northeast of Cindermarch. Firstwalker winter camp."
-      },
-      {
-        "name": "Greyspine Passage",
-        "type": "wilderness",
-        "description": "Narrow mountain passage. Only winter route through the ridge."
-      },
-      {
-        "name": "Frostmark Waystation",
-        "type": "waystation",
-        "description": "Neutral trading waystation."
-      },
-      {
-        "name": "Observatory",
-        "type": "ancient_structure",
-        "description": "Ancient pre-settlement structure. Mast's research base."
-      },
-      {
-        "name": "Varath Valley",
-        "type": "settlement",
-        "description": "Hidden valley."
-      },
-      {
-        "name": "Eldest's Valley",
-        "type": "wilderness",
-        "description": "Wide protected valley. Warm quality."
-      },
-      {
-        "name": "Sixth Clan Territory",
-        "type": "territory",
-        "description": ""
-      }
+      { "name": "Cindermarch", "type": "fortress", "description": "Bottom center on border line. Military fortress, Fynesmarch side." },
+      { "name": "Harrow's Rest", "type": "waystation", "description": "Three hours east of Cindermarch." },
+      { "name": "Northern Rock Waystation", "type": "waystation", "description": "Rock overhang shelter. Firstwalker songs carved in hearthstone." },
+      { "name": "Vethara Winter Camp", "type": "settlement", "description": "Northeast of Cindermarch. Firstwalker winter camp." },
+      { "name": "Greyspine Passage", "type": "wilderness", "description": "Narrow mountain passage. Only winter route through the ridge." },
+      { "name": "Frostmark Waystation", "type": "waystation", "description": "Neutral trading waystation." },
+      { "name": "Observatory", "type": "ancient_structure", "description": "Ancient pre-settlement structure. Mast's research base." },
+      { "name": "Varath Valley", "type": "settlement", "description": "Hidden valley." },
+      { "name": "Eldest's Valley", "type": "wilderness", "description": "Wide protected valley. Warm quality." },
+      { "name": "Sixth Clan Territory", "type": "territory", "description": "" }
+    ]
+  },
+  {
+    "name": "Torwald",
+    "continent": "Kaemahz",
+    "capital": "Filian's Keep",
+    "climate": "Temperate.",
+    "culture": "Anglo-Saxon cultural feel. Considers itself the keeper of original culture — both its own and what Aranwald set aside. Slightly smug about this. Never occupied by Solvale.",
+    "relationship_with_aranwald": "Familial and good overall, with a persistent tension. Torwald finds Aranwald's embrace of Solvaran aesthetics gauche — sees it as celebrating the style of an occupier. Torwald views itself as the keeper of what both kingdoms once were; Aranwald regards this position as provincial.",
+    "history": "Once a single kingdom with what is now Aranwald. The Solvale Empire occupied the southern half for approximately 200 years, effectively splitting the territory. A prince eventually recaptured the occupied territory and renamed it Aranwald, formalizing the split. A sibling on the Torwald side was reportedly indignant about not being the one to recapture it — the kingdoms separated formally but retained familial connection. See Aranwald for the full account.",
+    "cities": [
+      { "name": "Filian's Keep", "type": "city", "description": "Capital of Torwald." }
+    ]
+  },
+  {
+    "name": "Aranwald",
+    "continent": "Kaemahz",
+    "capital": "Feldtazur",
+    "culture": "Persian-Anglo fusion. Occupied by the Solvale Empire for approximately 200 years. A prince recaptured it and coined the name deliberately — kept 'wald' for continuity with the land, replaced 'Tor' with 'Aran' (Persian: peaceful/noble). Founding philosophy: 'we didn't just conquer the land, we conquered everything.' Solvaran artifacts, architecture, and cultural elements are high-status symbols — trophies of strength, not shameful remnants. Solvaran scholars and craftsmen increasingly emigrating here as the empire destabilizes.",
+    "solvaran_cultural_inheritance": "The occupation left a deep imprint that Aranwald has deliberately reclaimed rather than erased: domed buildings and arched courtyards, elaborate geometric gardens, rich textiles and ornate metalwork, a strong poetry and oral tradition, possible fire worship or fire-adjacent religious practice, a taste for court intrigue, and a sophisticated bureaucratic tradition. These elements are visible throughout Feldtazur's architecture and the aristocratic culture of the region.",
+    "relationship_with_torwald": "Familial and good overall. Aranwald regards Torwald's insistence on pre-Solvaran tradition as provincial — clinging to what was rather than mastering what is. Both views are stated with family fondness rather than hostility.",
+    "split_history": "Torwald and Aranwald were once a single kingdom. The Solvare Empire's occupation of the southern half lasted approximately 200 years before a prince recaptured the territory and renamed it Aranwald, breaking formal unity permanently. A sibling on the Torwald side was reportedly indignant about not being the hero of that moment. The kingdoms split but retained familial connection. The naming of Aranwald was a deliberate philosophical act, not merely a geographic one.",
+    "notes": "Capital name Feldtazur coined by the prince — Anglo 'feld' + Persian-derived 'tazur'.",
+    "cities": [
+      { "name": "Feldtazur", "type": "city", "description": "Capital of Aranwald." }
+    ]
+  },
+  {
+    "name": "Orvath",
+    "continent": "Kaemahz",
+    "climate": "High desert.",
+    "culture": "Primarily elven population. Mongolian-inspired — what this means in practice is TBD (nomadic heritage expressed in a settled city? clan-based social structure? horse culture adapted to desert context?). Question-free banking is the defining feature to outsiders.",
+    "banking": "Anonymous deposits, no extradition, no questions asked — by design, not accident. The most secure financial institution on Kaemahz. How this status was established and maintained is TBD, but the implication is either significant political neutrality, deep historical precedent, or a power arrangement that makes interference more costly than cooperation.",
+    "origin_notes": "How a question-free banking haven came to exist in the middle of a high desert is TBD — worth developing as a campaign or world-building element.",
+    "notes": "Contains only one city, also called Orvath. 6 days north/northeast of Argentveil overland.",
+    "cities": [
+      { "name": "Orvath", "type": "city", "description": "Only city in the region." }
+    ]
+  },
+  {
+    "name": "Birindal",
+    "continent": "Kaemahz",
+    "climate": "Northeastern coastal, likely cooler.",
+    "culture": "Two distinct communities maintain separate but cooperative identities. Coastal (Drinaell): Celtic/Nordic seafaring culture — merchant marine and raiding heritage, community governance by harbor council or similar. Mountain (Brakvunder): Dwarven stronghold culture — deep craft tradition, independent governance, minimal interest in maritime affairs.",
+    "governance": "No capital because the coastal and mountain communities govern themselves independently. No central authority both sides would accept — and neither has pushed for one. The arrangement works because their needs are complementary rather than competitive.",
+    "drinaell_brakvunder_relationship": "Maritime trade partnership. Brakvunder produces metal, stone, and finished craft goods; Drinaell moves them. Drinaell provides sea access and external trade networks; Brakvunder provides inland security and resources. How Drinaell became the dominant maritime force on Kaemahz is TBD — likely geography, shipbuilding tradition, and absence of strong competition from other regions.",
+    "cities": [
+      { "name": "Drinaell", "type": "city", "description": "Coastal seafaring city." },
+      { "name": "Brakvunder", "type": "city", "description": "Dwarven mountain city, inland." }
+    ]
+  },
+  {
+    "name": "Solvale",
+    "continent": "Kaemahz",
+    "capital": "Yshavar",
+    "climate": "Warm to tropical, North African/Moroccan feel.",
+    "culture": "Once the heart of the Solvale Empire — still uses the imperial name. People are called Solvaran. At its height: architecturally stunning, culturally sophisticated, center of learning and trade. Cultural exports — art, poetry, bureaucratic method, architectural style — shaped Aranwald for generations of occupation.",
+    "collapse": "The empire extracted Aranwald's resources for approximately 200 years, then lost it. The entire economic engine collapsed without that resource base. Dictatorial leadership that had built the empire proved unable to adapt — the same structures that enabled expansion prevented recovery.",
+    "current_state": "Yshavar is now a city built for more people than inhabit it. Public buildings maintained by habit more than necessity. The grandeur is still visible — the bones of empire are impressive — but the scale no longer matches the population.",
+    "notes": "Southernmost region of Kaemahz. A recovery path exists but is politically nearly impossible without outside intervention or significant leadership change. Potential campaign arc.",
+    "cities": [
+      { "name": "Yshavar", "type": "city", "description": "Capital of the Solvale Empire." }
     ]
   }
 ]

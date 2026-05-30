@@ -4,7 +4,7 @@
     "name": "Kaemahz",
     "svgPath": "/maps/kaemahz_complete_normalized.svg",
     "regions": [
-      { "id": "lymesmarch",    "name": "Lymesmarch" },
+      { "id": "fynesmarch",    "name": "Fynesmarch" },
       { "id": "fol",           "name": "Fol" },
       { "id": "orvath",        "name": "Orvath" },
       { "id": "torwald",       "name": "Torwald" },

@@ -468,7 +468,7 @@
         "subtype": "island",
         "region": "Argentveil coastal waters",
         "status": "protected",
-        "notes": "Small island approximately two hundred yards across at widest point. Ancient stone watchtower at center, highest point on the island. One natural landing spot on the south face, cliff or rock everywhere else. Home to a selkie community with historical and legal claim to the island predating Argentveil's establishment. Claim formalized through Dawn Blades intervention and Galealzre's council work, first legal framework established for aquatic species land rights in the Lymesmarch. Selkies maintain the island and the watchtower. Strange lights reported from the tower periodically — confirmed as selkie practice rather than threat. Sael knows the approach well."
+        "notes": "Small island approximately two hundred yards across at widest point. Ancient stone watchtower at center, highest point on the island. One natural landing spot on the south face, cliff or rock everywhere else. Home to a selkie community with historical and legal claim to the island predating Argentveil's establishment. Claim formalized through Dawn Blades intervention and Galealzre's council work, first legal framework established for aquatic species land rights in Fynesmarch. Selkies maintain the island and the watchtower. Strange lights reported from the tower periodically — confirmed as selkie practice rather than threat. Sael knows the approach well."
       },
       {
         "name": "The Measured Word",
@@ -711,7 +711,7 @@
   {
     "name": "Cindermarch",
     "type": "fortress",
-    "description": "Military fortress town, northeast of Khemrise. Border with Fol. Active conflict with whatever comes from the north. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes, with an active (not constantly) volcano to the east. 90% of the winter there is snow to the north but not to the south.",
+    "description": "Fortress city, northeast of Khemrise. On the Fol border. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes, with Inkaba — an active volcano — visible to the east on clear days. Snow to the north, clear to the south most of the year. Conflict with Fol has ended; the fortress remains and the city has grown around it.",
     "climate": "Coldest in the region.",
     "faction_presence": [
       "Cindermarch Military"
@@ -733,10 +733,11 @@
   {
     "name": "Orvath",
     "type": "city",
-    "description": "Free city. No extradition, anonymous deposits. Location in the interior near an oasis.",
-    "climate": null,
+    "region": "Orvath",
+    "description": "Free city built around a desert oasis — the only reliable water source in the region, which is why the city exists where it does. Streets are wide and the architecture reflects both desert practicality and elven aesthetic sensibility. Primarily elven population, Mongolian-inspired culture. The banking district is the reason most outsiders make the journey.",
+    "climate": "High desert.",
     "faction_presence": [],
-    "notes": "",
+    "notes": "Question-free banking hub — no extradition, anonymous deposits. 6 days north/northeast of Argentveil overland.",
     "districts": [],
     "locations": [
       {
@@ -751,7 +752,7 @@
   {
     "name": "Wilderness & Roads",
     "type": "region",
-    "description": "Named wilderness locations and road features across the Lymesmarch.",
+    "description": "Named wilderness locations and road features across Fynesmarch.",
     "climate": null,
     "faction_presence": [],
     "notes": "",
@@ -801,7 +802,7 @@
         "subtype": "underground_complex",
         "location": "Northern forest, several days northeast of Valdmere",
         "status": "discovered, resealed",
-        "description": "Underground complex predating Valdmere and likely all current Western Reach civilization. Two chambers and a connecting corridor. Upper chamber is a tomb containing dozens of preserved figures of varied ages, hands cupped upward, names recorded on vaulted ceiling. Lower chamber is an archive — hundreds of sealed stone containers lining every wall, a stone bellows breathing mechanism in the center, and a continuous carved narrative covering the entire ceiling vault. Two suits of armor in dark unidentified metal stand at the archive entrance, depicted by name in the ceiling scene.",
+        "description": "Underground complex predating Valdmere and likely all current Kaemahz civilization. Two chambers and a connecting corridor. Upper chamber is a tomb containing dozens of preserved figures of varied ages, hands cupped upward, names recorded on vaulted ceiling. Lower chamber is an archive — hundreds of sealed stone containers lining every wall, a stone bellows breathing mechanism in the center, and a continuous carved narrative covering the entire ceiling vault. Two suits of armor in dark unidentified metal stand at the archive entrance, depicted by name in the ceiling scene.",
         "access": "Natural hollow in forest floor. Rotating stone mechanism opens from above after a two inch drop release. Can also be opened from below via lever. Doorman skeleton remains at interior lever.",
         "atmosphere": "Bone dry, preserved. Breathing sound audible from surface when open. Air circulation maintained by deep stone bellows mechanism.",
         "items_found": [
@@ -840,10 +841,10 @@
     },
     "demographics": "Tilawam's population is a genuine cosmopolitan mix unlike anything in the other continenets. Catrins form the majority at roughly half the city's population — the broad, ridge-jawed people most visitors associate with Yetgrese's exterior coast. Drevani make up around ten percent, small and fluffy and disproportionately visible in the dock district where their punk aesthetic and fearless energy make them impossible to miss. Hei'ugar account for another five percent, grey-undertoned and stocky, living mostly on the city's outskirts where they farm the surrounding land and fish the coastal waters with the quiet devotion of people for whom open sky is a kind of prayer. Humans are present but less than ten percent — traders mostly, short-term residents, the occasional person who came for a crossing and stayed. The remaining quarter or so of the population is a mix of elven subraces unique to the continent.",
     "economy": {
-      "notes": "Trade port. Receives occasional crossings from Aethermoor — rare enough that the party's arrival is noteworthy. Maritime salvage claims processed through harbour authority with 3-5 day review period. Market district exists with standard trading functions. Banking institutions are exceptional by any standard. People do not say prices out loud, but rather write them down and pass it to the buyer. It's bad luck to say a price out loud."
+      "notes": "Trade port. Receives occasional crossings from Kaemahz — rare enough that the party's arrival is noteworthy. Maritime salvage claims processed through harbour authority with 3-5 day review period. Market district exists with standard trading functions. Banking institutions are exceptional by any standard. People do not say prices out loud, but rather write them down and pass it to the buyer. It's bad luck to say a price out loud."
     },
     "harbour": {
-      "description": "Sheltered by two ancient stone breakwaters of pre-current-civilisation construction. Lower harbour distinct from merchant docks — Davan directed the party to the lower harbour specifically. Harbour authority present and functional. Current pattern between the breakwaters is non-obvious and not captured on Aethermoor charts.",
+      "description": "Sheltered by two ancient stone breakwaters of pre-current-civilisation construction. Lower harbour distinct from merchant docks — Davan directed the party to the lower harbour specifically. Harbour authority present and functional. Current pattern between the breakwaters is non-obvious and not captured on Kaemahz charts.",
       "notes": "Harbour officer assigned to vessels involved in piracy incidents as standard procedure. Salvage vessels held pending 3-5 day review before sale or transfer permitted."
     },
     "locations": [
@@ -851,7 +852,7 @@
         "name": "Lower Harbour",
         "type": "harbour",
         "description": "Distinct from the merchant docks. Davan directed the party here on arrival. Ancient breakwaters.",
-        "notes": "Current pattern between breakwaters is tricky — not on Aethermoor charts. Manageable with local knowledge."
+        "notes": "Current pattern between breakwaters is tricky — not on Kaemahz charts. Manageable with local knowledge."
       },
       {
         "name": "Harbour Authority Office",
@@ -868,7 +869,7 @@
       {
         "name": "Dockside Establishment",
         "type": "tavern/inn",
-        "description": "Caters to dock workers and sailors. Unpretentious, good food, stays open late. Communal and welcoming of strangers. Games available, some unfamiliar to Western Reach visitors.",
+        "description": "Caters to dock workers and sailors. Unpretentious, good food, stays open late. Communal and welcoming of strangers. Games available, some unfamiliar to Kaemahz visitors.",
         "notes": "Recommended by Quiveth. Party's first meal in Tilawam. Arm wrestling exists here universally."
       },
       {
@@ -949,7 +950,7 @@
   {
     "name": "Halvenmoren",
     "type": "town",
-    "description": "Border town on the Lymesmarch side of Dunric Pass. Old enough to have two naming traditions visible in its architecture — the newer Lymesmarch quarter descriptive and practical, the older Torvald-origin buildings heavier, stonework that suggests someone's grandfather built to last. Sits at the mouth of the pass road. Most traffic through here is either going somewhere or coming from somewhere cold.",
+    "description": "Border town on the Fynesmarch side of Dunric Pass. Old enough to have two naming traditions visible in its architecture — the newer Fynesmarch quarter descriptive and practical, the older Torwald-origin buildings heavier, stonework that suggests someone's grandfather built to last. Sits at the mouth of the pass road. Most traffic through here is either going somewhere or coming from somewhere cold.",
     "climate": "Cooler than Argentveil, exposed to pass weather when the wind turns. Spring arrives late here.",
     "notes": "Primary gateway settlement for Dunric Pass.",
     "districts": [],
@@ -978,5 +979,50 @@
         "notes": "Jax has lived here four years. Locals treat him as harmless local color. The papered windows are deliberate — nobody can see in."
       }
     ]
+  },
+  {
+    "name": "Filian's Keep",
+    "type": "city",
+    "region": "Torwald",
+    "description": "Capital of Torwald. A working fortress-city built on a defensible hill — practical and unadorned in the Torwald tradition. Stone streets, solid buildings, nothing wasted on decoration that doesn't also serve a purpose. The keep itself predates the city that grew around it.",
+    "notes": "",
+    "districts": [],
+    "locations": []
+  },
+  {
+    "name": "Feldtazur",
+    "type": "city",
+    "region": "Aranwald",
+    "description": "Capital of Aranwald. The city visually layers 200 years of Solvaran architecture over the older Torwald-origin construction beneath — arched courtyards, geometric tilework, and repurposed minarets sit alongside the original Saxon-influenced stonework. The Solvaran additions are displayed as trophies, not erased as shame. Walking through Feldtazur is a study in the prince's founding philosophy: we didn't just conquer the land, we conquered everything. Name coined by the prince — Anglo 'feld' + Persian-derived 'tazur'.",
+    "notes": "",
+    "districts": [],
+    "locations": []
+  },
+  {
+    "name": "Yshavar",
+    "type": "city",
+    "region": "Solvale",
+    "description": "Capital of the Solvale Empire. Built for imperial scale — wide boulevards, domed public buildings, formal gardens, grand architecture designed to house more people and more ambition than currently inhabit it. The bones of empire are still impressive; the city is well-maintained by habit. But it feels like a coat cut for a larger person. Population and commerce have contracted since the collapse; the grandeur remains, sitting in slightly too much space.",
+    "notes": "",
+    "districts": [],
+    "locations": []
+  },
+  {
+    "name": "Drinaell",
+    "type": "city",
+    "region": "Birindal",
+    "description": "Coastal seafaring city and maritime hub of Birindal. Celtic/Nordic character — stone and timber construction built to last in sea weather, harbor infrastructure expanded and rebuilt over generations. The city smells of salt, tar, and woodsmoke. Ship captains are a social class unto themselves. Likely the primary naval power on Kaemahz.",
+    "notes": "",
+    "districts": [],
+    "locations": []
+  },
+  {
+    "name": "Brakvunder",
+    "type": "city",
+    "region": "Birindal",
+    "description": "Dwarven mountain city carved into the northeastern range of Kaemahz. The mountain is the city — generations of expansion have pushed deeper and wider into the rock. Renowned for metalwork and stonecraft. Maintains a working trade partnership with Drinaell on the coast, supplying finished goods in exchange for sea access and external trade networks.",
+    "notes": "",
+    "districts": [],
+    "locations": []
   }
 ]
