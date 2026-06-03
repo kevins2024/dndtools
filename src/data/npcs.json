@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "name": "Helena Sable",
     "location": "Ravenquay",
@@ -6,9 +6,11 @@
     "role": "Info broker, runs the Gilt Rose",
     "appearance": "Human woman, ~55. Composed, controlled.",
     "notes": "16% Long Arm Trading partner. Access to Casvath coastal relay via Morrow and Selt.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Extraordinarily capable. Works when frightened.",
-    "personality_quirks": "Cried once privately at Pirra\u0027s return, composed completely afterward. Reveals nothing she doesn\u0027t choose to.",
+    "personality_quirks": "Cried once privately at Pirra's return, composed completely afterward. Reveals nothing she doesn't choose to.",
     "id": "npcs_0"
   },
   {
@@ -18,7 +20,9 @@
     "role": "Guard Captain",
     "appearance": "Human man, fifties. Practical uniform, nothing decorative.",
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Formerly corrupt, genuinely flipped. Trustworthy within his authority. Practical.",
     "personality_quirks": "",
     "id": "npcs_1"
@@ -30,7 +34,9 @@
     "role": "River Quarter leader, runs Loan Dragon",
     "appearance": "Human woman.",
     "notes": "Managing Pip situation. Arranged Tormund Coalbeard meeting for Rhuna.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable, pragmatic, excellent field contacts.",
     "personality_quirks": "",
     "id": "npcs_2"
@@ -42,7 +48,9 @@
     "role": "Retired solicitor",
     "appearance": "Older human man. Precise in movement and dress.",
     "notes": "Drafted Dawn Blades charter. Charter complete, council vote in 5 days. 100g owed on completion.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Precise, methodical.",
     "personality_quirks": "",
     "id": "npcs_3"
@@ -54,7 +62,9 @@
     "role": "Magistrate",
     "appearance": null,
     "notes": "Handled overflow warehouse title search and ship registration papers.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Supportive, discreet.",
     "personality_quirks": "",
     "id": "npcs_4"
@@ -66,7 +76,9 @@
     "role": "City Councillor",
     "appearance": null,
     "notes": "",
-    "status": ["uncertain"],
+    "status": [
+      "uncertain"
+    ],
     "personality_traits": "Not corrupt. Opposed to Dawn Blades as potential private army.",
     "personality_quirks": "Morning tea, Crestfall Street, eighth bell daily.",
     "id": "npcs_5"
@@ -78,7 +90,9 @@
     "role": "Enforcer",
     "appearance": null,
     "notes": "Flipped early campaign.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable muscle.",
     "personality_quirks": "",
     "id": "npcs_6"
@@ -90,7 +104,9 @@
     "role": "Enforcer",
     "appearance": null,
     "notes": "Flipped early campaign.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable muscle.",
     "personality_quirks": "",
     "id": "npcs_7"
@@ -102,7 +118,9 @@
     "role": "Weaponsmith, Trade District",
     "appearance": null,
     "notes": "Reliable contact for weapon and armor work.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable.",
     "personality_quirks": "",
     "id": "npcs_8"
@@ -114,7 +132,9 @@
     "role": "Leatherworker (needle and hide sign)",
     "appearance": null,
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_9"
@@ -126,7 +146,9 @@
     "role": "Enchanted communication dealer",
     "appearance": "Sixties, slight, unremarkable face, clever eyes.",
     "notes": "Departed for Argentveil. Find him Linden Street antiquities market.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Criteria-based client selection.",
     "personality_quirks": "",
     "id": "npcs_10"
@@ -138,7 +160,9 @@
     "role": "Smoke Vipers leader, Docks Ward",
     "appearance": null,
     "notes": "Not always loyal to Dawn Blades or the idea of going clean. Warning given.",
-    "status": ["uncertain"],
+    "status": [
+      "uncertain"
+    ],
     "personality_traits": "Stalling on legitimacy.",
     "personality_quirks": "",
     "id": "npcs_11"
@@ -150,7 +174,9 @@
     "role": "Former courier/spy",
     "appearance": "17 years old.",
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_12"
@@ -162,7 +188,9 @@
     "role": "Retired mining ethics consultant",
     "appearance": "Dwarf.",
     "notes": "Millhaven approach planning with Rhuna.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_13"
@@ -171,10 +199,12 @@
     "name": "Morrow",
     "location": "Ravenquay",
     "faction": "Casvath Network",
-    "role": "Chandler\u0027s shop, harbor front",
+    "role": "Chandler's shop, harbor front",
     "appearance": null,
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_14"
@@ -183,10 +213,12 @@
     "name": "Selt",
     "location": "Ravenquay",
     "faction": "Casvath Network",
-    "role": "Chandler\u0027s shop, harbor front",
+    "role": "Chandler's shop, harbor front",
     "appearance": null,
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_15"
@@ -195,10 +227,12 @@
     "name": "Idy Rossel",
     "location": "Ravenquay",
     "faction": "Independent",
-    "role": "Tavern owner, Shrike\u0027s Perch",
+    "role": "Tavern owner, Shrike's Perch",
     "appearance": null,
-    "notes": "Owns Shrike\u0027s Perch neutral ground tavern with private Rookery meeting rooms. Near the Gilt Rose.",
-    "status": ["neutral"],
+    "notes": "Owns Shrike's Perch neutral ground tavern with private Rookery meeting rooms. Near the Gilt Rose.",
+    "status": [
+      "neutral"
+    ],
     "personality_traits": "Ex-smuggler.",
     "personality_quirks": "",
     "id": "npcs_16"
@@ -210,7 +244,9 @@
     "role": "Runs Wayward Warehouse job board, Trade District",
     "appearance": "Scarred veteran.",
     "notes": "Legitimate mercenary work source.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Legitimate. Good standing with Dawn Blades.",
     "personality_quirks": "",
     "id": "npcs_17"
@@ -220,18 +256,20 @@
     "location": "Ravenquay",
     "faction": "Dawn Blades adjacent",
     "role": "Managing Revivify",
-    "appearance": "Human man, late twenties. Formerly enslaved. Wears Egarryn\u0027s red masterwork leather armor deliberately — nobody has asked why yet.",
+    "appearance": "Human man, late twenties. Formerly enslaved. Wears Egarryn's red masterwork leather armor deliberately — nobody has asked why yet.",
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "stat_str": 20,
     "personality_traits": "Quiet in the way of someone still finding his voice.",
-    "personality_quirks": "Gravitating toward leadership naturally, hasn\u0027t noticed.",
+    "personality_quirks": "Gravitating toward leadership naturally, hasn't noticed.",
     "combat_class": "Fighter",
     "combat_level": 5,
     "combat_notes": "NPC-lite.",
     "items": [
       {
-        "name": "Egarryn\u0027s Red Masterwork Leather Armor",
+        "name": "Egarryn's Red Masterwork Leather Armor",
         "type": "armor",
         "notes": "Worn deliberately. Nobody has asked why yet."
       }
@@ -245,7 +283,9 @@
     "role": "Guard liaison",
     "appearance": "Human man, thirties. Guard bearing.",
     "notes": "Holds Ravenquay sending stone.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "stat_str": 16,
     "stat_con": 20,
     "personality_traits": "Knows everyone in Ravenquay who owes favors.",
@@ -296,13 +336,17 @@
     "role": "Runs parallel solutions network",
     "appearance": "Human woman, approaching 40. Capable bearing.",
     "notes": "Formal Dawn Blades member, no conflicting contracts.",
-    "status": ["ally"],
-    "personality_traits": "Has been running dangerous operations since sixteen. Captain\u0027s awareness of every person in a room.",
+    "status": [
+      "ally"
+    ],
+    "personality_traits": "Has been running dangerous operations since sixteen. Captain's awareness of every person in a room.",
     "personality_quirks": "",
     "combat_class": "Rogue",
     "combat_level": 7,
     "combat_notes": null,
-    "combat_features": ["Alert feat"],
+    "combat_features": [
+      "Alert feat"
+    ],
     "items": [
       {
         "name": "Leather Armor",
@@ -318,9 +362,11 @@
     "role": "Estate head butler",
     "appearance": "Human man, older. Dark complexion. Impeccable bearing and timing.",
     "notes": "Steward of Fogmore.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Completely reliable. 11 years in post.",
-    "personality_quirks": "Reveals nothing he doesn\u0027t choose to.",
+    "personality_quirks": "Reveals nothing he doesn't choose to.",
     "items": [
       {
         "name": "Khemrise Sending Stone",
@@ -337,7 +383,9 @@
     "role": "Estate guard",
     "appearance": null,
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable security.",
     "personality_quirks": "",
     "id": "npcs_22"
@@ -349,7 +397,9 @@
     "role": "Estate guard",
     "appearance": null,
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable security.",
     "personality_quirks": "",
     "id": "npcs_23"
@@ -361,7 +411,9 @@
     "role": "Estate guard",
     "appearance": null,
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Reliable security.",
     "personality_quirks": "",
     "id": "npcs_24"
@@ -373,7 +425,9 @@
     "role": "Estate guard",
     "appearance": "Young guard.",
     "notes": "Family debt being resolved via Rendwick.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_25"
@@ -385,7 +439,9 @@
     "role": "Analyst — ledgers and shell company thread",
     "appearance": null,
     "notes": "Working ledgers and shell company thread with Lenn.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Precise, careful. Extraordinary with numbers and patterns. Not a fighter, entirely invaluable.",
     "personality_quirks": "",
     "id": "npcs_26"
@@ -397,7 +453,9 @@
     "role": "",
     "appearance": "Human man, forties. Lean, sharp-featured.",
     "notes": "Completely disappeared.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Careful tidiness of a man demonstrating reliability through his surroundings.",
     "personality_quirks": "",
     "id": "npcs_27"
@@ -409,8 +467,10 @@
     "role": "Acting harbormaster",
     "appearance": "Human man, thirties. Slight, ink on fingers. Clean, competent.",
     "notes": "Harbor watch on all three Dawn Blades ships.",
-    "status": ["ally"],
-    "personality_traits": "Clean, competent. Reorganized Glicken\u0027s desk immediately.",
+    "status": [
+      "ally"
+    ],
+    "personality_traits": "Clean, competent. Reorganized Glicken's desk immediately.",
     "personality_quirks": "",
     "id": "npcs_28"
   },
@@ -421,7 +481,9 @@
     "role": "Logistics manager (joining Long Arm Trading)",
     "appearance": null,
     "notes": "Built relay network with rotating 7-day cipher (Lenn improved it). Wool business selling to Argentveil consortium — half proceeds to Dawn Blades.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Careful tidiness of a man demonstrating reliability through his surroundings.",
     "personality_quirks": "",
     "id": "npcs_29"
@@ -443,9 +505,11 @@
     "location": "Khemrise",
     "faction": "Dawn Blades",
     "role": "Cargo handler, Dawn Blades ships",
-    "appearance": "Broad-shouldered, weathered. Longshoreman\u0027s build with guard\u0027s eyes.",
+    "appearance": "Broad-shouldered, weathered. Longshoreman's build with guard's eyes.",
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Twelve years moving cargo, asking no questions. Now asking them.",
     "personality_quirks": "",
     "id": "npcs_31"
@@ -457,7 +521,9 @@
     "role": "Cooper",
     "appearance": null,
     "notes": "Staying at estate. Supplying barrels for winery operation.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_32"
@@ -469,9 +535,11 @@
     "role": "Refugee child",
     "appearance": "Girl, approximately ten. Small, serious assessment eyes. Dark hair. Carries notebook always.",
     "notes": "Dusken Coast origin. Staying at Khemrise estate.",
-    "status": ["ward"],
+    "status": [
+      "ward"
+    ],
     "personality_traits": "Drawing prodigy. Serious, assessing.",
-    "personality_quirks": "Doesn\u0027t cry easily. Speaks a southern language — Petra has partial fluency. Learning common quickly.",
+    "personality_quirks": "Doesn't cry easily. Speaks a southern language — Petra has partial fluency. Learning common quickly.",
     "items": [
       {
         "name": "Drawing Notebook",
@@ -488,8 +556,10 @@
     "role": "Natural organizer among refugees",
     "appearance": "Human woman, forties.",
     "notes": "",
-    "status": ["ally"],
-    "personality_traits": "Careful stillness of someone who survived by becoming invisible, now discovering she doesn\u0027t need to.",
+    "status": [
+      "ally"
+    ],
+    "personality_traits": "Careful stillness of someone who survived by becoming invisible, now discovering she doesn't need to.",
     "personality_quirks": "Conducting one-on-ones with refugees. Finding her voice.",
     "id": "npcs_34"
   },
@@ -500,7 +570,9 @@
     "role": "Physician",
     "appearance": "Sixties, lean, precise hands. Medical bag always on hook by door out of long habit.",
     "notes": "Near the harbor, 20 minutes from Fogstone.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "Precise. Works freely now.",
     "personality_quirks": "Medical bag always on hook by the door — long habit.",
     "items": [
@@ -519,7 +591,9 @@
     "role": "Fisherman, freed from ship",
     "appearance": null,
     "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road. ",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_36"
@@ -531,7 +605,9 @@
     "role": "Fisherman, freed from ship",
     "appearance": null,
     "notes": "Trevash fisherman. Know every cove and inlet between Trevash and Khemrise. Broken tooth cove 2 miles north of Trevash — deep, hidden, only they know it. Dawn Blades informants on coastal road.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_37"
@@ -543,7 +619,9 @@
     "role": "Antiquities dealer",
     "appearance": null,
     "notes": "Antiquities shop, Merchant Quarter. Worth a visit.",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_38"
@@ -555,13 +633,18 @@
     "role": "Operative (trust-building)",
     "appearance": "Assassin-type.",
     "notes": "",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "combat_class": "Rogue",
     "combat_level": 7,
     "combat_notes": null,
-    "combat_features": ["Expertise: Stealth", "Expertise: Deception"],
+    "combat_features": [
+      "Expertise: Stealth",
+      "Expertise: Deception"
+    ],
     "items": [
       {
         "name": "Locket",
@@ -578,7 +661,9 @@
     "role": "Harbor worker",
     "appearance": null,
     "notes": "Now in Ravenquay.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_40"
@@ -590,7 +675,9 @@
     "role": "Merchant consortium, funder",
     "appearance": "Sixties, silver at temples. Weathered from sea time without being a sailor.",
     "notes": "Funded Dawn Blades 15,000g. Coastal relay network via Morrow and Selt. Second payment on Khemrise confirmed clean. Contact through Morrow and Selt.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_41"
@@ -602,7 +689,9 @@
     "role": "Freed merchant",
     "appearance": null,
     "notes": "Freed, reunited with family. Selling wool business to Argentveil consortium. Available for wool logistics.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "\"When you need wool moved, find me.\"",
     "id": "npcs_42"
@@ -612,9 +701,11 @@
     "location": "Argentveil",
     "faction": "Argentveil City Council",
     "role": "City councillor",
-    "appearance": "Vaz\u0027s brother.",
+    "appearance": "Vaz's brother.",
     "notes": "Receiving sending stone pair and full intelligence letter.",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_43"
@@ -626,7 +717,9 @@
     "role": "Master-at-Arms",
     "appearance": null,
     "notes": "",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_44"
@@ -638,7 +731,9 @@
     "role": "Battle mage for hire",
     "appearance": null,
     "notes": "Probably checks Wayward Warehouse. Still available.",
-    "status": ["potential-hire"],
+    "status": [
+      "potential-hire"
+    ],
     "personality_traits": "Purely transactional, no loyalty.",
     "personality_quirks": "",
     "combat_class": null,
@@ -650,7 +745,7 @@
     "name": "Vethara",
     "location": "clan_winter_camp",
     "role": "Clan leader",
-    "notes": "Vrethka\u0027s daughter. Proud, practical, afraid of being wrong and learning to survive it. Northern metalwork trade contact.",
+    "notes": "Vrethka's daughter. Proud, practical, afraid of being wrong and learning to survive it. Northern metalwork trade contact.",
     "status": [],
     "id": "npcs_46"
   },
@@ -667,7 +762,9 @@
     "location": "Khemrise (Fogstone)",
     "faction": "Dawn Blades",
     "role": "Intelligence network operator",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": "Sharp, organized, emotionally contained.",
     "personality_traits": "Methodical, emotionally contained about personal losses.",
     "personality_quirks": "",
@@ -679,9 +776,11 @@
     "location": "Khemrise",
     "faction": "Dawn Blades adjacent",
     "role": "Khemrise city councillor",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": "Forty years in Khemrise.",
-    "personality_traits": "Principled, moved by what\u0027s happening.",
+    "personality_traits": "Principled, moved by what's happening.",
     "personality_quirks": "",
     "notes": "Bought Fogstone Estate for 10,000g as decoy — Vaz buys it back for 10,500g when threat passes. Called emergency council session, charter passed unanimously. Family dinner at Fogstone established genuine alliance.",
     "id": "npcs_49"
@@ -690,11 +789,13 @@
     "name": "Sona Belverbridge",
     "location": "Khemrise",
     "faction": "Dawn Blades adjacent",
-    "role": "Oswin\u0027s daughter, potential future asset",
-    "status": ["ally"],
+    "role": "Oswin's daughter, potential future asset",
+    "status": [
+      "ally"
+    ],
     "appearance": "16 years old.",
     "personality_traits": "Immediately operational. Strong instincts, organizational mind.",
-    "personality_quirks": "Corrected Ledwent\u0027s supply manifest within hours and was right. Ledwent noticed and chose not to point it out — highest possible compliment.",
+    "personality_quirks": "Corrected Ledwent's supply manifest within hours and was right. Ledwent noticed and chose not to point it out — highest possible compliment.",
     "notes": "Not yet tested under pressure but showing significant promise.",
     "id": "npcs_50"
   },
@@ -703,11 +804,13 @@
     "location": "Khemrise",
     "faction": "Dawn Blades adjacent",
     "role": "Khemrise city councillor, former Guard captain",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": "30 years in the city.",
     "personality_traits": "Clean, reliable, principled, not corrupt.",
     "personality_quirks": "Moved by Dov speaking at the charter session.",
-    "notes": "Presented evidence at charter session including Holst evidence. Dawn Blades\u0027 man on the Khemrise council alongside Oswin.",
+    "notes": "Presented evidence at charter session including Holst evidence. Dawn Blades' man on the Khemrise council alongside Oswin.",
     "id": "npcs_51"
   },
   {
@@ -715,7 +818,9 @@
     "location": "Khemrise",
     "faction": "Khemrise City Watch",
     "role": "City watch commander",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "personality_traits": "Clean, fully cooperative post-charter. Professional.",
     "personality_quirks": "",
@@ -727,7 +832,9 @@
     "location": "Varies",
     "faction": "Dawn Blades",
     "role": "Captain, Wold Anchor",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "personality_traits": "Professional, experienced with unusual cargo arrangements.",
     "personality_quirks": "",
@@ -739,11 +846,13 @@
     "location": "Khemrise",
     "faction": "Dawn Blades",
     "role": "Documents expert",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "personality_traits": "Precise, professional.",
     "personality_quirks": "",
-    "notes": "Handled Merchant\u0027s Guild counterfeit note presentation to Corev Aldrath. Invaluable on document authentication and forgery detection.",
+    "notes": "Handled Merchant's Guild counterfeit note presentation to Corev Aldrath. Invaluable on document authentication and forgery detection.",
     "id": "npcs_54"
   },
   {
@@ -751,11 +860,13 @@
     "location": "Valdmere (en route)",
     "faction": "Independent",
     "role": "Refugee, 15 years old",
-    "status": ["civilian"],
+    "status": [
+      "civilian"
+    ],
     "appearance": "15 years old, from Valdmere.",
     "personality_traits": "Nervous but spoke at charter session anyway. Left without asking to stay — showed character.",
     "personality_quirks": "Vaz tousled his hair which he hated with the full dignity of a 15-year-old.",
-    "notes": "Family: mother and sister Bren (9). Father didn\u0027t know about false mill work promise. Spoke at charter session, moved two council members. Sent back to Valdmere on Shalindra.",
+    "notes": "Family: mother and sister Bren (9). Father didn't know about false mill work promise. Spoke at charter session, moved two council members. Sent back to Valdmere on Shalindra.",
     "id": "npcs_55"
   },
   {
@@ -763,11 +874,13 @@
     "location": "Valdmere (en route)",
     "faction": "Dawn Blades",
     "role": "Captain, Shalindra",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": "Experienced captain, lost her ship to a storm two years ago.",
-    "personality_traits": "Professional, decisive. Doesn\u0027t need things explained twice.",
+    "personality_traits": "Professional, decisive. Doesn't need things explained twice.",
     "personality_quirks": "Accepted the name Shalindra seriously because sailors take ship names seriously.",
-    "notes": "Found at harbor authority office. Terms: captaincy, Dawn Blades eyes and ears in Valdmere, home port Valdmere. Sending stone paired to Tielle\u0027s network.",
+    "notes": "Found at harbor authority office. Terms: captaincy, Dawn Blades eyes and ears in Valdmere, home port Valdmere. Sending stone paired to Tielle's network.",
     "id": "npcs_56"
   },
   {
@@ -775,10 +888,12 @@
     "location": "Millhaven road (2 miles south of Cindermarch)",
     "faction": "Independent",
     "role": "Waystation keeper",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "personality_traits": "Ran neutral ground waystation 20 years.",
     "personality_quirks": "",
-    "notes": "Held Kern\u0027s message for Vaz, gave it on the road rather than waiting. Road contact.",
+    "notes": "Held Kern's message for Vaz, gave it on the road rather than waiting. Road contact.",
     "id": "npcs_57"
   },
   {
@@ -786,7 +901,9 @@
     "location": "Millhaven",
     "faction": "Dawn Blades adjacent",
     "role": "Millhaven constable",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": "Eleven years in post.",
     "personality_traits": "Quietly reliable. Was waiting for someone to do something about Ironvein the whole time.",
     "personality_quirks": "",
@@ -798,7 +915,9 @@
     "location": "Millhaven",
     "faction": "Dawn Blades adjacent",
     "role": "Retired military surgeon",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": null,
     "personality_traits": "Clean, professional. Stayed voluntarily.",
     "personality_quirks": "",
@@ -809,8 +928,10 @@
     "name": "Aldren Caluverath",
     "location": "Millhaven",
     "faction": "Dawn Blades adjacent",
-    "role": "Lyria\u0027s brother",
-    "status": ["ally"],
+    "role": "Lyria's brother",
+    "status": [
+      "ally"
+    ],
     "appearance": "Late thirties, thin from three years of hard labor adequately fed.",
     "personality_traits": "",
     "personality_quirks": "Sleeping outside because he needed to feel the air.",
@@ -822,11 +943,13 @@
     "location": "Argentveil",
     "faction": "Independent",
     "role": "Magical supply shop owner, Merchant Quarter",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "personality_traits": "",
     "personality_quirks": "",
-    "notes": "Harwick vouched for her, expecting future contact. Jaygar\u0027s crystal components request being routed through her. First name not established.",
+    "notes": "Harwick vouched for her, expecting future contact. Jaygar's crystal components request being routed through her. First name not established.",
     "id": "npcs_61"
   },
   {
@@ -834,11 +957,13 @@
     "location": "Argentveil",
     "faction": "Independent",
     "role": "Retired mage, theoretical magic teacher",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "personality_traits": "Particular about who she works with. Drinks tea at Meridian House every morning.",
     "personality_quirks": "",
-    "notes": "Established three permanent Teleportation Circles in her career, all still active. Alurath\u0027s referral will get a conversation. Potential Argentveil teleportation anchor.",
+    "notes": "Established three permanent Teleportation Circles in her career, all still active. Alurath's referral will get a conversation. Potential Argentveil teleportation anchor.",
     "id": "npcs_62"
   },
   {
@@ -846,7 +971,9 @@
     "location": "Ravenquay",
     "faction": "Independent",
     "role": "Previous owner of Farendale estate",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "personality_traits": "",
     "personality_quirks": "",
@@ -858,7 +985,9 @@
     "location": "Argentveil",
     "faction": "Independent",
     "role": "Beer hall worker, cliff hill establishment",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": "From the coast originally, moved to Argentveil eight years ago.",
     "personality_traits": "Warm, genuine, professional without being impersonal. Knows everyone on the hill.",
     "personality_quirks": "",
@@ -870,7 +999,9 @@
     "location": "Argentveil",
     "faction": "Independent",
     "role": "Kite operator, cliff hill",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "personality_traits": "Straightforwardly kind with no angle to it. Finds what he has sufficient, no apparent desire for more.",
     "personality_quirks": "Has a small sailing boat, fishes when he feels like it, takes people out sometimes. Nothing that requires him to be somewhere specific.",
@@ -882,7 +1013,9 @@
     "location": "Argentveil",
     "faction": "Independent",
     "role": "property agent",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "notes": "Merchant Quarter at the end of Silverline Court.",
     "id": "npcs_66"
@@ -892,7 +1025,9 @@
     "location": "Argentveil",
     "faction": "Independent",
     "role": "architect",
-    "status": ["neutral"],
+    "status": [
+      "neutral"
+    ],
     "appearance": null,
     "id": "npcs_67"
   },
@@ -907,7 +1042,7 @@
     "image": "./characters/vrethka.jpg",
     "proficiency_bonus": 3,
     "spellcasting_ability": "wis",
-    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn\u0027t follow standard proficiency+ability formula exactly. Short rest spell slot recovery.",
+    "notes": "Spell save DC 16 and spell attack +8 are explicitly defined and override dnd_utils calculations — homebrew class doesn't follow standard proficiency+ability formula exactly. Short rest spell slot recovery.",
     "spell_save_dc": 16,
     "spell_attack_bonus": 8,
     "spell_recovery": "Short rest (communes with place spirits)",
@@ -919,10 +1054,13 @@
     "stat_cha": 14,
     "hp_max": 46,
     "hp_current": 46,
-    "personality_traits": "Economical in the way her daughter isn\u0027t quite yet. Doesn\u0027t explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
-    "personality_quirks": "The clan markings tell stories she\u0027ll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction.",
+    "personality_traits": "Economical in the way her daughter isn't quite yet. Doesn't explain herself unless explanation will help someone. Will sit in silence for an hour with a stone and consider it time well spent. Has strong opinions about how fires should be built.",
+    "personality_quirks": "The clan markings tell stories she'll share if asked directly and not otherwise. Was right about staying for four generations and right about leaving now — experiences neither as contradiction.",
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "con"],
+    "saving_throws": [
+      "wis",
+      "con"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -1047,7 +1185,7 @@
     "faction": "Orc Neighborhood / Independent Trade",
     "role": "External commerce handler for the orc neighborhood",
     "appearance": "Orc woman, fifties, broad and capable, dark hair streaked with grey, calm steady eyes that have been reading people across a trading table for twenty years",
-    "description": "Handles all external commercial relationships for the Argentveil orc neighborhood. Twenty years experience navigating the city\u0027s merchant quarter on behalf of her community. Strong opinions about pricing transparency and has built a reliable detector for the difference between partners and exploiters. Not easily impressed but moves decisively when she decides to trust someone. Agreed to a Long Arm Trading partnership with full pricing transparency as a condition.",
+    "description": "Handles all external commercial relationships for the Argentveil orc neighborhood. Twenty years experience navigating the city's merchant quarter on behalf of her community. Strong opinions about pricing transparency and has built a reliable detector for the difference between partners and exploiters. Not easily impressed but moves decisively when she decides to trust someone. Agreed to a Long Arm Trading partnership with full pricing transparency as a condition.",
     "id": "npcs_71"
   },
   {
@@ -1081,11 +1219,13 @@
     "location": "Argentveil",
     "faction": "Independent Academic",
     "role": "Pre-settlement historian, Argentveil academy",
-    "appearance": "Human woman, late thirties. Dark hair kept practically. Ink on her fingers that never fully washes out. The kind of attractive that becomes more apparent the longer you\u0027re in conversation with her because she\u0027s entirely unaware of it.",
-    "status": ["ally"],
-    "personality_traits": "Precise about things that matter, entirely imprecise about things that don\u0027t. Will forget to eat when working. Remembers everything she\u0027s read. Asks questions that sound simple and aren\u0027t.",
+    "appearance": "Human woman, late thirties. Dark hair kept practically. Ink on her fingers that never fully washes out. The kind of attractive that becomes more apparent the longer you're in conversation with her because she's entirely unaware of it.",
+    "status": [
+      "ally"
+    ],
+    "personality_traits": "Precise about things that matter, entirely imprecise about things that don't. Will forget to eat when working. Remembers everything she's read. Asks questions that sound simple and aren't.",
     "personality_quirks": "Has strong opinions about how people misunderstand pre-settlement Argentveil and will share them whether asked or not. Keeps three projects running simultaneously and claims to find this restful. Has been with Galealzre four years and considers their arrangement entirely normal.",
-    "notes": "Galealzre\u0027s partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history, Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
+    "notes": "Galealzre's partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history, Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
     "id": "npcs_75"
   },
   {
@@ -1093,10 +1233,12 @@
     "location": "River mill, western interior route",
     "faction": null,
     "role": "Mill operator",
-    "status": ["friendly"],
+    "status": [
+      "friendly"
+    ],
     "appearance": "Old, weathered, economical with everything including words",
-    "personality_traits": "Gives exactly what\u0027s needed, nothing more. Comfortable in solitude.",
-    "personality_quirks": "Offers his name only when you\u0027ve earned the syllables.",
+    "personality_traits": "Gives exactly what's needed, nothing more. Comfortable in solitude.",
+    "personality_quirks": "Offers his name only when you've earned the syllables.",
     "notes": "Knows Bren at the logging camp. History there, unspoken. Recommended the Tallow and Tar in Valdmere.",
     "id": "npcs_76"
   },
@@ -1105,10 +1247,12 @@
     "location": "Logging camp, western interior route",
     "faction": null,
     "role": "Logging camp foreman",
-    "status": ["friendly"],
+    "status": [
+      "friendly"
+    ],
     "appearance": "Big, forearms like load-bearing architecture",
     "personality_traits": "Practical, fair, thinks in terms of systems and supply lines.",
-    "personality_quirks": "Goes quiet when Osmer\u0027s name comes up.",
+    "personality_quirks": "Goes quiet when Osmer's name comes up.",
     "notes": "Camp expanding fast. Will need timber markets as western economy grows.",
     "id": "npcs_77"
   },
@@ -1117,7 +1261,9 @@
     "location": "Western interior forests, ranging north",
     "faction": "His own people — unnamed as yet",
     "role": "Scout, self-appointed watcher",
-    "status": ["ally"],
+    "status": [
+      "ally"
+    ],
     "appearance": "Seven and a half feet, grey-green skin, lean for his kind. Disappears in tree cover with unreasonable ease.",
     "personality_traits": "Measured, precise with language, dry humor that arrives without warning.",
     "personality_quirks": "Learned Common deliberately, not incidentally. Repeats key words back when filing them. Never fully enters spaces built for smaller people.",
@@ -1129,11 +1275,14 @@
     "location": "Valdmere, Bluff House",
     "faction": null,
     "role": "House Steward, Dawn Blades Valdmere property",
-    "status": ["ally", "employed"],
+    "status": [
+      "ally",
+      "employed"
+    ],
     "appearance": "Gnome woman, younger than her competence suggests. Ink on her fingers almost always. Ledger within reach at all times.",
-    "personality_traits": "Thinks in systems. Defines the infrastructure of a situation before engaging with its details. Honest about what she doesn\u0027t know. Asks the questions others forget to ask.",
+    "personality_traits": "Thinks in systems. Defines the infrastructure of a situation before engaging with its details. Honest about what she doesn't know. Asks the questions others forget to ask.",
     "personality_quirks": "Arrived to her interview with notes already made. Turned down two family-aligned positions before accepting this one. Wage ask was specific and justified in a single sentence.",
-    "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons — nothing attached to her. Turned down Wyllard and one other family approach. Told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Zav\u0027rel reads her as impressive rather than suspicious for having no allegiances. Handles household accounts, visitor management, supply rotation, and records office liaison.",
+    "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons — nothing attached to her. Turned down Wyllard and one other family approach. Told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Zav'rel reads her as impressive rather than suspicious for having no allegiances. Handles household accounts, visitor management, supply rotation, and records office liaison.",
     "id": "npcs_79"
   },
   {
@@ -1201,7 +1350,7 @@
     "location": "Tilawam",
     "faction": "Councillors",
     "role": "Councillor",
-    "appearance": "Female dwarf, white hair cropped close, craftsperson\u0027s hands",
+    "appearance": "Female dwarf, white hair cropped close, craftsperson's hands",
     "description": "Councillor with artificer background. Family name derived from ancestral mint operation.",
     "notes": "",
     "id": "npcs_86"
@@ -1211,95 +1360,118 @@
     "location": "Valdmere, Tetwhistle canal moorings office",
     "faction": "Clan Tetwhistle",
     "role": "Moorings office manager, south bank",
-    "status": ["unknown", "person of interest"],
+    "status": [
+      "unknown",
+      "person of interest"
+    ],
     "appearance": null,
     "personality_traits": "Presents as legitimate business operator. Willing to distance himself from associates when circumstances require it.",
     "personality_quirks": null,
     "notes": "Used Niattos Fynch as a courier for sensitive cargo three weeks ago. Cargo had an undisclosed escort. Has since cut contact with Fynch entirely. Unclear whether acting independently or on Tetwhistle clan direction.",
-    "id": "npcs_valdmere_03"
+    "id": "npcs_87"
   },
   {
     "name": "Tierna Ashborne",
     "location": "Valdmere, The Velvet Flair",
     "faction": null,
     "role": "Former Khemrise magistrate, independent investigator",
-    "status": ["neutral", "potential ally"],
+    "status": [
+      "neutral",
+      "potential ally"
+    ],
     "appearance": "Fifties. Dresses to be remembered — good quality clothing that announces itself, color that catches light. Silver hair, practical cut.",
     "personality_traits": "Measured, precise, accustomed to being listened to. Makes decisions over long timeframes. Comfortable with silence.",
     "personality_quirks": "Moves to the window when thinking. States difficult things without self pity.",
-    "notes": "Removed from magistracy four years ago by Calwick Orne\u0027s political maneuvering. Has been building a case against Orne since. Believes Orne has an established agent in Valdmere and that sealed cargo delivered to Lithcai\u0027nael district three weeks ago is connected. Provided summary document on Orne. Wants to know what Orne put in the Lithcai\u0027nael district and why. Owes the party a favor if they find out.",
-    "id": "npcs_valdmere_04"
+    "notes": "Removed from magistracy four years ago by Calwick Orne's political maneuvering. Has been building a case against Orne since. Believes Orne has an established agent in Valdmere and that sealed cargo delivered to Lithcai'nael district three weeks ago is connected. Provided summary document on Orne. Wants to know what Orne put in the Lithcai'nael district and why. Owes the party a favor if they find out.",
+    "id": "npcs_88"
   },
   {
-    "name": "Aeravel Lithcai\u0027nael",
-    "location": "Valdmere, Lithcai\u0027nael district",
-    "faction": "Lithcai\u0027nael family",
+    "name": "Aeravel Lithcai'nael",
+    "location": "Valdmere, Lithcai'nael district",
+    "faction": "Lithcai'nael family",
     "role": "Family elder",
-    "status": ["neutral", "cautious ally"],
+    "status": [
+      "neutral",
+      "cautious ally"
+    ],
     "appearance": "Quite old. Ageless in the way of very old elves. Speaks rarely but with full weight.",
     "personality_traits": "Patient beyond human comprehension. Thinks in decades at least. Difficulty concealing intensity when something genuinely surprises him.",
     "personality_quirks": "Asks the question underneath the question. Hard to redirect once focused on something.",
     "notes": "Deeply invested in the escaped brass dragon situation. Visibly affected by information about the ancient dragon east of Argentveil. Father to Cariveth.",
-    "id": "npcs_valdmere_05"
+    "id": "npcs_89"
   },
   {
-    "name": "Lirathen Lithcai\u0027nael",
-    "location": "Valdmere, Lithcai\u0027nael district",
-    "faction": "Lithcai\u0027nael family",
+    "name": "Lirathen Lithcai'nael",
+    "location": "Valdmere, Lithcai'nael district",
+    "faction": "Lithcai'nael family",
     "role": "Family head, Valdmere",
-    "status": ["neutral", "cautious ally"],
+    "status": [
+      "neutral",
+      "cautious ally"
+    ],
     "appearance": "Runs the table. Direct, composed, dressed with intention.",
-    "personality_traits": "Decision maker. Manages Aeravel\u0027s intensity. Thinks strategically across long timeframes.",
-    "personality_quirks": "Puts a hand flat on the table to ground conversations that are drifting. Gives nothing away that isn\u0027t deliberate.",
+    "personality_traits": "Decision maker. Manages Aeravel's intensity. Thinks strategically across long timeframes.",
+    "personality_quirks": "Puts a hand flat on the table to ground conversations that are drifting. Gives nothing away that isn't deliberate.",
     "notes": "Invited Dawn Blades to formal dinner after three days acquaintance — significant for this family. Shared the brass dragon situation openly. Mother to Cariveth.",
-    "id": "npcs_valdmere_06"
+    "id": "npcs_90"
   },
   {
-    "name": "Cariveth Lithcai\u0027nael",
-    "location": "Valdmere, Lithcai\u0027nael district",
-    "faction": "Lithcai\u0027nael family",
+    "name": "Cariveth Lithcai'nael",
+    "location": "Valdmere, Lithcai'nael district",
+    "faction": "Lithcai'nael family",
     "role": "Family liaison, Dawn Blades relationship",
-    "status": ["neutral", "friendly"],
+    "status": [
+      "neutral",
+      "friendly"
+    ],
     "appearance": "About 95 years. More openly curious than her parents.",
     "personality_traits": "Assigned to or volunteered for the Dawn Blades relationship. Engaged, less guarded than her parents.",
     "personality_quirks": "Speaks when her parents are holding back. Asked Chuknora about goliath fighting traditions with genuine interest.",
     "notes": "Mentioned Fen Bostrom unprompted. Female.",
-    "id": "npcs_valdmere_07"
+    "id": "npcs_91"
   },
   {
     "name": "Wren",
     "location": "Valdmere, Low Roof district, unnamed establishment",
     "faction": null,
     "role": "Proprietor, unnamed tea and compound shop",
-    "status": ["friendly"],
+    "status": [
+      "friendly"
+    ],
     "appearance": "Halfling woman, indeterminate age, precise hands.",
-    "personality_traits": "Reads people accurately and quickly. Gives what\u0027s needed rather than what\u0027s asked for.",
+    "personality_traits": "Reads people accurately and quickly. Gives what's needed rather than what's asked for.",
     "personality_quirks": "Her establishment has no sign and no name. People who need it find it.",
     "notes": "Sister lives near the bluff house. Makes compounds and drinks that address what people actually need. Not magical, not medicinal — something between. Worth cultivating as a Low Roof district relationship.",
-    "id": "npcs_valdmere_08"
+    "id": "npcs_92"
   },
   {
     "name": "Scribblin' Jax",
     "location": "Halvenmoren",
     "faction": "Order of the Pale Road",
     "role": "Sleeper informant",
-    "status": ["neutral", "civilian"],
+    "status": [
+      "neutral",
+      "civilian"
+    ],
     "appearance": "Human male, late fifties. Thin, slightly stooped. Ink-stained fingers on both hands that no amount of washing has fully cleared. Clothes that were once decent and are now just present. Eyes noticeably sharper than the rest of him.",
     "personality_traits": "Runs a performance of harmless eccentricity that has partially become real after four years. Fundamentally a man of observation and record who has spent a decade pretending otherwise. Lonely in a way he doesn't acknowledge.",
     "personality_quirks": "Fingers move occasionally as if tracing routes on a surface that isn't there. Overcorrects into louder, more erratic behavior when he feels he isn't being dismissed quickly enough.",
     "notes": "Real name Caderith — unknown to anyone in Halvenmoren. Former cartographer's assistant recruited by the Order of the Pale Road. Has operated as a sleeper informant in Halvenmoren for four years.",
-    "id": ""
+    "id": "npcs_93"
   },
   {
     "name": "Evrenath",
     "location": "Khemrise Estate",
     "faction": "Order of the Pale Road (former, defecting)",
     "role": "Research and intelligence architect",
-    "status": ["neutral", "unknown"],
+    "status": [
+      "neutral",
+      "unknown"
+    ],
     "appearance": "Human woman, late fifties apparent age, genuinely older. Angular face, composed features, grey-streaked hair kept simply. Traveling clothes chosen for anonymity, good quality. Posture belongs to someone who spent years in rooms where it mattered.",
     "personality_traits": "Operates entirely through calculation rather than sentiment — not coldly, but with the precision of someone who learned early that emotion clouds inputs. Has spent nineteen years being the most controlled person in difficult rooms and holds to this even when it costs her. Will not ask for help directly but will arrange circumstances in which help becomes available.",
     "personality_quirks": "Repeats significant proper nouns back in isolation after conversations end — as though filing them somewhere permanent. Creates records compulsively, even when they serve no strategic purpose. Processes questions in reverse order of difficulty before answering.",
     "notes": "Appeared at Nossa Valessa on night of Day 85, Year 468, having sent a letter via private courier using the consortium's organizational mark — a downward-pointing triangle with a horizontal line through the lower third. Identified herself as E from correspondence found in Order locked box at Dunric Pass plateau camp. Research and intelligence architect for the Order for nineteen years, older than she appears due to unknown means. Provided location and schedule of independent scholar Devreth Ansolm, resulting in his death — this is what crossed her personal line. Knows the Order's internal structure and field operations but not the Compact's true goals or the dragon connection. Sent through Revivify portal to safehouse. Ledwent alerted. Mentioned Ansolm had a daughter whose whereabouts are unknown. Retained her records — did not leave them with the party on first meeting.",
-    "id": ""
+    "id": "npcs_94"
   }
 ]
