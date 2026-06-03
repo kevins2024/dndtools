@@ -29,6 +29,11 @@ const ALLOWED_TABLES = [
 app.use(cors())
 app.use(express.json({ limit: '10mb' }))
 
+// ── GET /hello ───────────────────────────────────────────
+app.get('/hello', (req, res) => {
+  res.send('World!')
+})
+
 // ── GET /api/user_prefs ──────────────────────────────────
 // Served from project root (not src/) so webpack never watches it.
 app.get('/api/user_prefs', (req, res) => {

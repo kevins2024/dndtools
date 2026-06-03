@@ -541,9 +541,34 @@ export const dnd = {
   // Stat block for templates — scores and mods after all item effects.
   statArray(character, partyItems = []) {
     const { stats } = dnd.resolveStats(character, partyItems)
+    const baseScores = { str: character.stat_str ?? 10, dex: character.stat_dex ?? 10, con: character.stat_con ?? 10, int: character.stat_int ?? 10, wis: character.stat_wis ?? 10, cha: character.stat_cha ?? 10 }
+    const equipped = [...(character.items ?? []), ...partyItems].filter(i => i.equipped_by === character.name)
+    const effects = {}
+    for (const item of equipped) {
+      for (const [key, val] of Object.entries(item.stat_overrides ?? {})) {
+        ;(effects[key] = effects[key] ?? []).push({ name: item.name, type: 'override', value: val })
+      }
+      for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
+        if (SCORE_BONUS_KEYS.has(key))
+          ;(effects[key] = effects[key] ?? []).push({ name: item.name, type: 'bonus', value: val })
+      }
+    }
     return STAT_KEYS.map(({ key, label }) => {
       const score = stats[key] ?? 10
-      return { key, label, score, mod: dnd.mod(score), modStr: dnd.signed(dnd.mod(score)) }
+      const fx = effects[key]
+      let tooltip = null
+      if (fx?.length) {
+        if (fx.some(e => e.type === 'override')) {
+          const ov = fx.find(e => e.type === 'override')
+          tooltip = `${ov.value} (${ov.name})`
+        } else {
+          const parts = [`${baseScores[key]} base`]
+          for (const e of fx) parts.push(`+${e.value} (${e.name})`)
+          parts.push(`= ${score}`)
+          tooltip = parts.join(' · ')
+        }
+      }
+      return { key, label, score, mod: dnd.mod(score), modStr: dnd.signed(dnd.mod(score)), tooltip }
     })
   },
 

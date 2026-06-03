@@ -24,6 +24,10 @@
           Disadvantage
         </label>
         <button class="clear-btn" :disabled="!history.length && !current" @click="clearHistory">Clear</button>
+        <span v-if="accumulated.length" class="acc-total" title="Running total — click dice to add, click here to clear" @click="clearAccumulated">
+          Σ {{ accumulatedTotal }}
+          <span class="acc-count">({{ accumulated.length }})</span>
+        </span>
       </div>
     </div>
 
@@ -32,7 +36,14 @@
       <!-- History -->
       <div class="roll-history">
         <transition-group name="slide" tag="div" class="history-track">
-          <div v-for="roll in history" :key="roll.id" class="history-die">
+          <div
+            v-for="roll in history"
+            :key="roll.id"
+            class="history-die"
+            :class="{ 'history-die--acc': accumulated.some(a => a.id === roll.id) }"
+            :title="'Click to add ' + roll.result + ' to running total'"
+            @click="toggleAccumulate(roll)"
+          >
             <div class="die-icon-wrap">
               <img :src="roll.image" class="die-bg-img dimmed" />
               <span class="die-result">{{ roll.display }}</span>
@@ -97,7 +108,14 @@ export default {
       disadvantage: false,
       current: null,
       history: [],
+      accumulated: [],
     }
+  },
+
+  computed: {
+    accumulatedTotal() {
+      return this.accumulated.reduce((sum, r) => sum + r.result, 0)
+    },
   },
 
   methods: {
@@ -106,6 +124,13 @@ export default {
     clearHistory() {
       this.history = []
       this.current = null
+      this.accumulated = []
+    },
+    clearAccumulated() { this.accumulated = [] },
+    toggleAccumulate(roll) {
+      const idx = this.accumulated.findIndex(a => a.id === roll.id)
+      if (idx === -1) this.accumulated.push(roll)
+      else this.accumulated.splice(idx, 1)
     },
     roll(sides) {
       const rand = () => Math.floor(Math.random() * sides) + 1
@@ -237,6 +262,27 @@ export default {
 }
 .clear-btn:hover:not(:disabled) { border-color: var(--color-text-danger); color: var(--color-text-danger); }
 .clear-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.acc-total {
+  margin-left: 0.4vw;
+  padding: 3px 10px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  color: var(--color-accent);
+  font-size: var(--font-size-md);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.acc-total:hover { border-color: var(--color-text-danger); color: var(--color-text-danger); }
+.acc-count { opacity: 0.6; font-size: var(--font-size-base); }
+
+.history-die { cursor: pointer; transition: border-color 0.12s ease; }
+.history-die:hover { border-color: var(--color-accent); }
+.history-die--acc { border-color: var(--color-accent); background: var(--color-bg-surface-alt); }
+.history-die--acc .die-result { color: var(--color-accent); }
 
 /* ── Roll Area ── */
 .roll-area {

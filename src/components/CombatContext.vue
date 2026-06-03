@@ -156,7 +156,6 @@ import PlayerCharacterSelect from './PlayerCharacterSelect.vue'
 import Battle from './Battle.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
 import BattleMap from './BattleMap.vue'
-import characters from '@/data/characters.json'
 import { dnd } from '@/utils/dnd_utils.js'
 import dataService from '@/utils/dataService.js'
 
@@ -182,6 +181,9 @@ export default {
   },
 
   computed: {
+    characters() {
+      return this.$store.state.characters
+    },
     playerNames() {
       return this.$store.state.selectedPlayers
     },
@@ -193,7 +195,7 @@ export default {
     },
     allEntries() {
       const players = this.playerNames.map((name) => {
-        const char = characters.find((c) => c.name === name)
+        const char = this.characters.find((c) => c.name === name)
         return {
           key: `player-${name}`,
           type: 'player',
@@ -259,7 +261,7 @@ export default {
       this.newPartyName = ''
     },
     loadParty(party) {
-      const valid = new Set(characters.map((c) => c.name))
+      const valid = new Set(this.characters.map((c) => c.name))
       this.$store.commit('SET_SELECTED_PLAYERS', party.members.filter((m) => valid.has(m)))
     },
     async deleteParty(party) {
@@ -268,7 +270,7 @@ export default {
     },
 
     portrait(name) {
-      const char = characters.find((c) => c.name === name)
+      const char = this.characters.find((c) => c.name === name)
       return char?.image ?? ''
     },
     removeFromCombat(name) {
@@ -347,9 +349,9 @@ export default {
       this.enemies = this.enemies.filter((e) => e.id !== id)
       this.$delete(this.rolls, key)
     },
-    onAddEnemyMidFight({ name, mod }) {
+    onAddEnemyMidFight({ name, mod, encounterData }) {
       const id = this.nextEnemyId++
-      this.enemies.push({ id, name: name || this.nextAutoName(), mod })
+      this.enemies.push({ id, name: name || this.nextAutoName(), mod, encounterData: encounterData ?? null })
       this.$set(this.rolls, `enemy-${id}`, { total: dnd.roll() + mod, tiebreakOrder: 0 })
     },
     loadEncounterEnemies() {

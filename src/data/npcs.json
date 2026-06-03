@@ -317,7 +317,7 @@
     "faction": "Dawn Blades estate",
     "role": "Estate head butler",
     "appearance": "Human man, older. Dark complexion. Impeccable bearing and timing.",
-    "notes": "",
+    "notes": "Steward of Fogmore.",
     "status": ["ally"],
     "personality_traits": "Completely reliable. 11 years in post.",
     "personality_quirks": "Reveals nothing he doesn\u0027t choose to.",
@@ -1288,6 +1288,18 @@
     "personality_traits": "Runs a performance of harmless eccentricity that has partially become real after four years. Fundamentally a man of observation and record who has spent a decade pretending otherwise. Lonely in a way he doesn't acknowledge.",
     "personality_quirks": "Fingers move occasionally as if tracing routes on a surface that isn't there. Overcorrects into louder, more erratic behavior when he feels he isn't being dismissed quickly enough.",
     "notes": "Real name Caderith — unknown to anyone in Halvenmoren. Former cartographer's assistant recruited by the Order of the Pale Road. Has operated as a sleeper informant in Halvenmoren for four years.",
+    "id": ""
+  },
+  {
+    "name": "Evrenath",
+    "location": "Khemrise Estate",
+    "faction": "Order of the Pale Road (former, defecting)",
+    "role": "Research and intelligence architect",
+    "status": ["neutral", "unknown"],
+    "appearance": "Human woman, late fifties apparent age, genuinely older. Angular face, composed features, grey-streaked hair kept simply. Traveling clothes chosen for anonymity, good quality. Posture belongs to someone who spent years in rooms where it mattered.",
+    "personality_traits": "Operates entirely through calculation rather than sentiment — not coldly, but with the precision of someone who learned early that emotion clouds inputs. Has spent nineteen years being the most controlled person in difficult rooms and holds to this even when it costs her. Will not ask for help directly but will arrange circumstances in which help becomes available.",
+    "personality_quirks": "Repeats significant proper nouns back in isolation after conversations end — as though filing them somewhere permanent. Creates records compulsively, even when they serve no strategic purpose. Processes questions in reverse order of difficulty before answering.",
+    "notes": "Appeared at Nossa Valessa on night of Day 85, Year 468, having sent a letter via private courier using the consortium's organizational mark — a downward-pointing triangle with a horizontal line through the lower third. Identified herself as E from correspondence found in Order locked box at Dunric Pass plateau camp. Research and intelligence architect for the Order for nineteen years, older than she appears due to unknown means. Provided location and schedule of independent scholar Devreth Ansolm, resulting in his death — this is what crossed her personal line. Knows the Order's internal structure and field operations but not the Compact's true goals or the dragon connection. Sent through Revivify portal to safehouse. Ledwent alerted. Mentioned Ansolm had a daughter whose whereabouts are unknown. Retained her records — did not leave them with the party on first meeting.",
     "id": ""
   }
 ]

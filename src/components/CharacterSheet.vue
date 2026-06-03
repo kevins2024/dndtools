@@ -26,7 +26,7 @@
     <div class="sheet-section">
       <div class="section-title">Ability Scores</div>
       <div class="stat-grid">
-        <div v-for="stat in stats" :key="stat.key" class="stat-block">
+        <div v-for="stat in stats" :key="stat.key" class="stat-block" :class="{ 'stat-block--boosted': stat.tooltip }" :title="stat.tooltip">
           <div class="stat-label">{{ stat.label }}</div>
           <div class="stat-score">{{ stat.score }}</div>
           <div class="stat-mod" :class="stat.mod >= 0 ? 'pos' : 'neg'">
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Combat stats -->
-    <CharacterCombatPanel :character="character" />
+    <CharacterCombatPanel :character="character" :hide-spells="true" />
 
     <!-- Saving throws + Skills (3-column layout) -->
     <div class="sheet-section saves-skills-row">
@@ -100,46 +100,6 @@
       <p v-if="character.personality_quirks" class="flavor-text quirk">
         {{ character.personality_quirks }}
       </p>
-    </div>
-
-    <!-- Features grouped by type -->
-    <div
-      v-for="(group, type) in featureGroups"
-      :key="type"
-      class="sheet-section"
-    >
-      <div class="section-title">{{ capitalize(type) }}s</div>
-      <div class="feature-list">
-        <div v-for="f in group" :key="f.name" class="feature-item">
-          <span class="feature-name">{{ f.name }}</span>
-          <span v-if="f.uses_max" class="feature-uses">
-            {{ f.uses_current }} / {{ f.uses_max }}
-          </span>
-          <span v-if="f.recharge" class="feature-recharge">{{
-            f.recharge
-          }}</span>
-          <span v-if="f.action_type" class="feature-action">{{
-            f.action_type
-          }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spells -->
-    <div
-      class="sheet-section"
-      v-if="character.spells && character.spells.length"
-    >
-      <div class="section-title">Spells</div>
-      <div class="feature-list">
-        <div
-          v-for="spell in character.spells"
-          :key="spell.name"
-          class="feature-item"
-        >
-          <span class="feature-name">{{ spell.name }}</span>
-        </div>
-      </div>
     </div>
 
     <!-- Active effects -->
@@ -233,24 +193,11 @@ export default {
       })
     },
 
-    featureGroups() {
-      if (!this.character.features) return {}
-      return this.character.features.reduce((groups, f) => {
-        const type = f.type || 'feature'
-        if (!groups[type]) groups[type] = []
-        groups[type].push(f)
-        return groups
-      }, {})
-    },
   },
 
   methods: {
     saveModStr(key) {
       return dnd.signed(dnd.savingThrow(this.character, key, this.partyItems))
-    },
-
-    capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
     },
   },
 }
@@ -384,6 +331,7 @@ export default {
   color: var(--color-text);
   line-height: 1.2;
 }
+.stat-block--boosted .stat-score { color: var(--color-accent); }
 
 .stat-mod {
   font-size: var(--font-size-md);
@@ -594,24 +542,6 @@ export default {
   flex: 1;
 }
 
-.feature-uses {
-  font-size: var(--font-size-base);
-  color: var(--color-accent);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 1px 5px;
-}
-
-.feature-recharge {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-low);
-}
-
-.feature-action {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-low);
-  text-transform: uppercase;
-}
 
 /* ── Flavor text ── */
 .flavor-text {

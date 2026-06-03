@@ -624,7 +624,7 @@ export default {
 /* ── Spell grid ── */
 .sb-spell-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 2px 0.5rem;
 }
 

@@ -1059,7 +1059,7 @@
       {
         "name": "Telekinesis",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       }
     ],
@@ -1095,7 +1095,8 @@
         "max": 2,
         "current": 2
       }
-    }
+    },
+    "conditions": []
   },
   {
     "name": "Petra",
@@ -2809,25 +2810,7 @@
     ],
     "spells": [
       {
-        "name": "Command",
-        "level": 1,
-        "prepared": true,
-        "type": "oath"
-      },
-      {
-        "name": "Compelled Duel",
-        "level": 1,
-        "prepared": true,
-        "type": "oath"
-      },
-      {
         "name": "Warding Bond",
-        "level": 2,
-        "prepared": true,
-        "type": "oath"
-      },
-      {
-        "name": "Zone of Truth",
         "level": 2,
         "prepared": true,
         "type": "oath"
@@ -2851,12 +2834,6 @@
         "type": "prepared"
       },
       {
-        "name": "Heroism",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Misty Step",
         "level": 2,
         "prepared": true,
@@ -2873,6 +2850,11 @@
         "level": 2,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Detect Magic",
+        "level": 1,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -2897,7 +2879,9 @@
       "The fey in her is not decorative. Her loyalty to Kexifrext is not religious devotion to an absent god — it is a living relationship with something ancient and strange that shapes how she perceives the world. The forest is always present in some corner of her awareness. The actor should occasionally let something else seem to have her attention, even in an empty room."
     ],
     "deity": "Kexifrext",
-    "id": "characters_15"
+    "id": "characters_15",
+    "exhaustion_level": 0,
+    "conditions": []
   },
   {
     "name": "Tackett",
@@ -3068,12 +3052,6 @@
         "type": "prepared"
       },
       {
-        "name": "Entangle",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Ice Knife",
         "level": 1,
         "prepared": true,
@@ -3104,19 +3082,7 @@
         "type": "prepared"
       },
       {
-        "name": "Call Lightning",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Erupting Earth",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Conjure Animals",
         "level": 3,
         "prepared": true,
         "type": "prepared"
@@ -3128,19 +3094,7 @@
         "type": "prepared"
       },
       {
-        "name": "Polymorph",
-        "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Conjure Woodland Beings",
-        "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Wall of Fire",
         "level": 4,
         "prepared": true,
         "type": "prepared"
@@ -3148,6 +3102,36 @@
       {
         "name": "Detect Magic",
         "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Resistance",
+        "level": 0,
+        "prepared": true
+      },
+      {
+        "name": "Poison Spray",
+        "level": 0,
+        "prepared": true
+      },
+      {
+        "name": "Create or Destroy Water",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Sleet Storm",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Conjure Minor Elementals",
+        "level": 4,
+        "prepared": true
+      },
+      {
+        "name": "Ice Storm",
+        "level": 4,
         "prepared": true
       }
     ],
@@ -3177,7 +3161,9 @@
         "max": 2,
         "current": 2
       }
-    }
+    },
+    "exhaustion_level": 0,
+    "conditions": []
   },
   {
     "name": "Revven",
@@ -3832,7 +3818,8 @@
         "max": 2,
         "current": 2
       }
-    }
+    },
+    "conditions": []
   },
   {
     "name": "Ferghus",
@@ -3953,16 +3940,9 @@
         "type": "prepared"
       },
       {
-        "name": "Blinding Smite",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Dispel Magic",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
+        "name": "Divine Favor",
+        "level": 1,
+        "prepared": true
       }
     ],
     "active_effects": [],
@@ -3994,11 +3974,9 @@
       "level_2": {
         "max": 3,
         "current": 3
-      },
-      "level_3": {
-        "max": 2,
-        "current": 2
       }
-    }
+    },
+    "exhaustion_level": 0,
+    "conditions": []
   }
 ]

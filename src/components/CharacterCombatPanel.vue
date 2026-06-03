@@ -35,6 +35,17 @@
       </div>
     </div>
 
+    <!-- Saving throws -->
+    <div class="saves-row">
+      <span
+        v-for="s in savingThrows"
+        :key="s.key"
+        class="save-chip"
+        :class="{ 'save-chip--prof': s.proficient }"
+        :title="s.tooltip"
+      >{{ s.label }} {{ s.valueStr }}</span>
+    </div>
+
     <!-- Conditions -->
     <div class="conditions-row">
       <span
@@ -98,7 +109,9 @@
           :key="f.name"
           class="feature-pill"
           @click="openFeaturePopup(f)"
-          >{{ f.name }}</span
+          >{{ f.name
+          }}<span v-if="f.uses_max" class="pill-uses">{{ f.uses_current ?? f.uses_max }}/{{ f.uses_max }}</span
+          ><span v-if="f.recharge" class="pill-recharge">{{ rechargeLabel(f.recharge) }}</span></span
         >
       </div>
     </div>
@@ -112,12 +125,15 @@
           :key="feat.name"
           class="feat-pill"
           @click="openFeaturePopup(feat)"
-        >{{ feat.name }}</span>
+          >{{ feat.name
+          }}<span v-if="feat.uses_max" class="pill-uses">{{ feat.uses_current ?? feat.uses_max }}/{{ feat.uses_max }}</span
+          ><span v-if="feat.recharge" class="pill-recharge">{{ rechargeLabel(feat.recharge) }}</span></span
+        >
       </div>
     </template>
 
     <!-- Spell Slots -->
-    <template v-if="spellSlotLevels.length">
+    <template v-if="!hideSpells && spellSlotLevels.length">
       <div class="section-label">Spell Slots</div>
       <div class="spell-slots">
         <div v-for="lvl in spellSlotLevels" :key="lvl.key" class="slot-level">
@@ -157,7 +173,7 @@
     </template>
 
     <!-- Spells -->
-    <template v-if="spellGroups.length">
+    <template v-if="!hideSpells && spellGroups.length">
       <div class="section-label">Spells</div>
       <div v-for="group in spellGroups" :key="group.label" class="pill-group">
         <div class="pill-group-label">{{ group.label }}</div>
@@ -190,7 +206,7 @@
 </template>
 
 <script>
-import { dnd } from '@/utils/dnd_utils.js'
+import { dnd, STAT_KEYS } from '@/utils/dnd_utils.js'
 import { conditionTooltip } from '@/data/conditions.js'
 import { DEFAULT_SPEED_FT } from '@/utils/dnd_constants.js'
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
@@ -200,7 +216,7 @@ import StatChip from '@/components/StatChip.vue'
 import { Sparkle } from 'lucide-vue'
 
 const CONDITIONS = [
-  'Concentrating', 'Blessed', 'Hexed', 'Poisoned', 'Prone', 'Frightened',
+  'Concentrating', 'Haste', 'Bardic', 'Blessed', 'Hexed', 'Poisoned', 'Prone', 'Frightened',
   'Charmed', 'Stunned', 'Paralyzed', 'Grappled', 'Restrained', 'Blinded',
   'Deafened', 'Invisible', 'Incapacitated', 'Exhaustion',
 ]
@@ -228,6 +244,7 @@ export default {
 
   props: {
     character: { type: Object, required: true },
+    hideSpells: { type: Boolean, default: false },
   },
 
   watch: {
@@ -256,6 +273,22 @@ export default {
     },
     resolvedStats() {
       return dnd.resolveStats(this.character, this.partyItems)
+    },
+    savingThrows() {
+      const { stats, bonuses } = this.resolvedStats
+      const prof = dnd._prof(this.character, bonuses)
+      const proficient = new Set(this.character.saving_throws ?? [])
+      return STAT_KEYS.map(({ key, label }) => {
+        const isProficient = proficient.has(key)
+        const mod = dnd.mod(stats[key])
+        const flatBonus = bonuses.saving_throws ?? 0
+        const total = mod + (isProficient ? prof : 0) + flatBonus
+        const parts = [`${label} ${dnd.signed(mod)}`]
+        if (isProficient) parts.push(`prof ${dnd.signed(prof)}`)
+        if (flatBonus) parts.push(`bonus ${dnd.signed(flatBonus)}`)
+        parts.push(`= ${dnd.signed(total)}`)
+        return { key, label, proficient: isProficient, valueStr: dnd.signed(total), tooltip: parts.join(' · ') }
+      })
     },
     profBonus() {
       return dnd._prof(this.character, this.resolvedStats.bonuses)
@@ -473,6 +506,12 @@ export default {
 
   methods: {
     conditionTooltip,
+
+    rechargeLabel(recharge) {
+      if (recharge === 'short_rest') return 'SR'
+      if (recharge === 'long_rest') return 'LR'
+      return recharge.replace(/_/g, ' ')
+    },
 
     toggleSlot(levelKey, slotIndex) {
       if (levelKey === 'pact') {
@@ -784,6 +823,19 @@ export default {
   color: var(--color-accent);
 }
 
+.pill-uses {
+  margin-left: 0.35em;
+  font-size: 0.8em;
+  opacity: 0.65;
+}
+
+.pill-recharge {
+  margin-left: 0.3em;
+  font-size: 0.75em;
+  opacity: 0.5;
+  font-style: italic;
+}
+
 .spell-pill {
   border-color: var(--color-bg-surface-alt);
   color: var(--color-accent);
@@ -873,6 +925,26 @@ export default {
 }
 
 /* â”€â”€ Conditions â”€â”€ */
+.saves-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.save-chip {
+  font-size: var(--font-size-xs);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-low);
+  white-space: nowrap;
+}
+
+.save-chip--prof {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
 .conditions-row {
   display: flex;
   flex-wrap: wrap;

@@ -32,7 +32,6 @@
 <script>
 import CharacterDetails from './CharacterDetails.vue'
 import ClassIcon from './ClassIcon.vue'
-import characters from '@/data/characters.json'
 
 export default {
   name: 'CharacterContext',
@@ -40,15 +39,26 @@ export default {
 
   data() {
     return {
-      characters,
-      selectedName: characters.length ? characters[0].name : null,
+      selectedName: null,
     }
   },
 
   computed: {
+    characters() {
+      return this.$store.state.characters
+    },
     selectedCharacter() {
       if (!this.selectedName) return null
       return this.characters.find((c) => c.name === this.selectedName) ?? null
+    },
+  },
+
+  watch: {
+    characters: {
+      immediate: true,
+      handler(chars) {
+        if (!this.selectedName && chars.length) this.selectedName = chars[0].name
+      },
     },
   },
 

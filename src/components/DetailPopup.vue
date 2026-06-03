@@ -36,7 +36,7 @@
       </div>
       <div class="dp-desc">
         <template v-if="displayDescription">{{ displayDescription }}</template>
-        <span v-else class="dp-no-desc">No description available — click Edit to add one.</span>
+        <span v-else class="dp-no-desc">{{ readonly ? 'No description available.' : 'No description available — click Edit to add one.' }}</span>
       </div>
     </template>
 

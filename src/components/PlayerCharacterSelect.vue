@@ -20,21 +20,18 @@
 </template>
 
 <script>
-import players from '@/data/characters.json'
-
 export default {
   name: 'PlayerCharacterSelect',
 
-  data() {
-    return { players }
-  },
-
   computed: {
+    characters() {
+      return this.$store.state.characters
+    },
     inCombat() {
       return this.$store.state.selectedPlayers
     },
     availablePlayers() {
-      return this.players.filter((p) => !this.inCombat.includes(p.name))
+      return this.characters.filter((p) => !this.inCombat.includes(p.name))
     },
   },
 

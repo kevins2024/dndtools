@@ -10,7 +10,8 @@
     "build": "vue-cli-service build",
     "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "script": "node ./src/data/scripts.js"
+    "update-ids": "node update-ids.js",
+    "copy-world": "node copy-world.js"
   },
   "repository": {
     "type": "git",

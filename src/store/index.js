@@ -116,12 +116,31 @@ export default new Vuex.Store({
     LONG_REST(state) {
       state.characters = state.characters.map((char) => {
         const updated = { ...char, hp_current: char.hp_max }
+        // Spell slots
         if (char.spell_slots) {
           const slots = {}
           for (const [level, slot] of Object.entries(char.spell_slots)) {
             slots[level] = { ...slot, current: slot.max }
           }
           updated.spell_slots = slots
+        }
+        // Pact magic
+        if (char.pact_magic) updated.pact_magic = { ...char.pact_magic, current: char.pact_magic.max }
+        // Ki / monk resources
+        if (char.ki_points) updated.ki_points = { ...char.ki_points, current: char.ki_points.max }
+        // Feature uses (long rest recharge; short rest charges also refill on long rest)
+        if (char.features) {
+          updated.features = char.features.map((f) =>
+            f.uses_max != null && f.recharge
+              ? { ...f, uses_current: f.uses_max }
+              : f
+          )
+        }
+        // Clear conditions except Exhaustion (preserve exhaustion level)
+        if (char.conditions?.length) {
+          updated.conditions = char.conditions.filter((c) =>
+            typeof c === 'string' ? c === 'Exhaustion' : c?.name === 'Exhaustion'
+          )
         }
         return updated
       })
