@@ -63,6 +63,10 @@ export default {
   opacity: 1;
 }
 
-.stat-chip--sm .has-tip { font-size: 0.9em; }
-.stat-chip--lg .has-tip { font-size: 1.1em; }
+.stat-chip--sm .has-tip {
+  font-size: 0.9em;
+}
+.stat-chip--lg .has-tip {
+  font-size: 1.1em;
+}
 </style>

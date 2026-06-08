@@ -3,7 +3,8 @@
 
 export const CONDITIONS = {
   Blinded: {
-    summary: 'Cannot see. Attacks against it have advantage; its attacks have disadvantage.',
+    summary:
+      'Cannot see. Attacks against it have advantage; its attacks have disadvantage.',
     rules: [
       'Automatically fails any ability check requiring sight.',
       'Attack rolls against it have advantage.',
@@ -11,7 +12,8 @@ export const CONDITIONS = {
     ],
   },
   Charmed: {
-    summary: 'Cannot attack the charmer. Charmer has advantage on social checks against it.',
+    summary:
+      'Cannot attack the charmer. Charmer has advantage on social checks against it.',
     rules: [
       'Cannot attack the charmer or target them with harmful abilities or spells.',
       'The charmer has advantage on Charisma checks made against it.',
@@ -37,29 +39,29 @@ export const CONDITIONS = {
     ],
   },
   Frightened: {
-    summary: 'Disadvantage on checks and attacks while source of fear is in sight. Cannot move closer.',
+    summary:
+      'Disadvantage on checks and attacks while source of fear is in sight. Cannot move closer.',
     rules: [
       'Disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.',
       'Cannot willingly move closer to the source of its fear.',
     ],
   },
   Grappled: {
-    summary: 'Speed 0. Ends if grappler is incapacitated or creature is moved out of reach.',
+    summary:
+      'Speed 0. Ends if grappler is incapacitated or creature is moved out of reach.',
     rules: [
       'Speed becomes 0 and cannot benefit from bonuses to speed.',
       'Condition ends if the grappler is incapacitated.',
-      'Condition ends if an effect moves the grappled creature out of the grappler\'s reach.',
+      "Condition ends if an effect moves the grappled creature out of the grappler's reach.",
     ],
   },
   Incapacitated: {
     summary: 'Cannot take actions or reactions.',
-    rules: [
-      'Cannot take actions.',
-      'Cannot take reactions.',
-    ],
+    rules: ['Cannot take actions.', 'Cannot take reactions.'],
   },
   Invisible: {
-    summary: 'Cannot be seen without special sense. Attacks against it have disadvantage; its attacks have advantage.',
+    summary:
+      'Cannot be seen without special sense. Attacks against it have disadvantage; its attacks have advantage.',
     rules: [
       'Impossible to see without special sense (tremorsense, truesight, etc.).',
       'For attack purposes it is heavily obscured.',
@@ -69,7 +71,8 @@ export const CONDITIONS = {
     ],
   },
   Paralyzed: {
-    summary: 'Incapacitated, speed 0. Auto-fail STR/DEX saves. Attacks have advantage; hits within 5 ft are critical.',
+    summary:
+      'Incapacitated, speed 0. Auto-fail STR/DEX saves. Attacks have advantage; hits within 5 ft are critical.',
     rules: [
       'Is incapacitated and cannot move or speak.',
       'Automatically fails Strength and Dexterity saving throws.',
@@ -78,7 +81,8 @@ export const CONDITIONS = {
     ],
   },
   Petrified: {
-    summary: 'Transformed to stone. Incapacitated, auto-fail STR/DEX saves, resistance to all damage, immune to poison/disease.',
+    summary:
+      'Transformed to stone. Incapacitated, auto-fail STR/DEX saves, resistance to all damage, immune to poison/disease.',
     rules: [
       'Is transformed into solid inanimate substance (along with nonmagical gear).',
       'Weight increases by a factor of ten and ceases aging.',
@@ -91,13 +95,11 @@ export const CONDITIONS = {
   },
   Poisoned: {
     summary: 'Disadvantage on attack rolls and ability checks.',
-    rules: [
-      'Disadvantage on attack rolls.',
-      'Disadvantage on ability checks.',
-    ],
+    rules: ['Disadvantage on attack rolls.', 'Disadvantage on ability checks.'],
   },
   Prone: {
-    summary: 'Disadvantage on attacks. Attacks within 5 ft have advantage; ranged have disadvantage. Costs half speed to stand.',
+    summary:
+      'Disadvantage on attacks. Attacks within 5 ft have advantage; ranged have disadvantage. Costs half speed to stand.',
     rules: [
       'Only movement option is crawling, unless it stands up.',
       'Standing up costs half its speed.',
@@ -107,7 +109,8 @@ export const CONDITIONS = {
     ],
   },
   Restrained: {
-    summary: 'Speed 0. Its attacks have disadvantage; attacks against it have advantage. Disadvantage on DEX saves.',
+    summary:
+      'Speed 0. Its attacks have disadvantage; attacks against it have advantage. Disadvantage on DEX saves.',
     rules: [
       'Speed becomes 0 and cannot benefit from bonuses to speed.',
       'Attack rolls against it have advantage.',
@@ -116,7 +119,8 @@ export const CONDITIONS = {
     ],
   },
   Stunned: {
-    summary: 'Incapacitated, speed 0. Auto-fail STR/DEX saves. Attacks against it have advantage.',
+    summary:
+      'Incapacitated, speed 0. Auto-fail STR/DEX saves. Attacks against it have advantage.',
     rules: [
       'Is incapacitated and cannot move.',
       'Can speak only falteringly.',
@@ -125,7 +129,8 @@ export const CONDITIONS = {
     ],
   },
   Unconscious: {
-    summary: 'Incapacitated, prone, drops held items. Auto-fail STR/DEX saves. Attacks have advantage; hits within 5 ft are critical.',
+    summary:
+      'Incapacitated, prone, drops held items. Auto-fail STR/DEX saves. Attacks have advantage; hits within 5 ft are critical.',
     rules: [
       'Is incapacitated, cannot move or speak, and is unaware of its surroundings.',
       'Drops anything held and falls prone.',
@@ -135,7 +140,8 @@ export const CONDITIONS = {
     ],
   },
   Concentrating: {
-    summary: 'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half damage) or spell drops.',
+    summary:
+      'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half damage) or spell drops.',
     rules: [
       'Taking damage requires a Constitution saving throw (DC 10 or half the damage taken, whichever is higher).',
       'On a failed save the concentration spell ends.',
@@ -145,13 +151,11 @@ export const CONDITIONS = {
   },
   Blessed: {
     summary: '+1d4 to attack rolls and saving throws.',
-    rules: [
-      'Add 1d4 to attack rolls.',
-      'Add 1d4 to saving throws.',
-    ],
+    rules: ['Add 1d4 to attack rolls.', 'Add 1d4 to saving throws.'],
   },
   Hexed: {
-    summary: 'Caster deals +1d6 necrotic to chosen target; disadvantage on chosen ability checks.',
+    summary:
+      'Caster deals +1d6 necrotic to chosen target; disadvantage on chosen ability checks.',
     rules: [
       'The caster deals an extra 1d6 necrotic damage to it on each hit.',
       'Disadvantage on ability checks using the ability chosen by the caster.',
@@ -161,11 +165,24 @@ export const CONDITIONS = {
 
 // Ordered list for display (matches existing chip order in the app)
 export const CONDITION_NAMES = [
-  'Concentrating', 'Blessed', 'Hexed',
-  'Poisoned', 'Prone', 'Frightened', 'Charmed',
-  'Stunned', 'Paralyzed', 'Grappled', 'Restrained',
-  'Blinded', 'Deafened', 'Invisible', 'Incapacitated',
-  'Exhaustion', 'Unconscious', 'Petrified',
+  'Concentrating',
+  'Blessed',
+  'Hexed',
+  'Poisoned',
+  'Prone',
+  'Frightened',
+  'Charmed',
+  'Stunned',
+  'Paralyzed',
+  'Grappled',
+  'Restrained',
+  'Blinded',
+  'Deafened',
+  'Invisible',
+  'Incapacitated',
+  'Exhaustion',
+  'Unconscious',
+  'Petrified',
 ]
 
 export function conditionTooltip(name) {

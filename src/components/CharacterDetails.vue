@@ -53,7 +53,12 @@ import { characterHasSpells } from '@/utils/spellUtils.js'
 
 export default {
   name: 'CharacterDetails',
-  components: { CharacterInventory, CharacterSheet, CharacterSpellbook, Editor },
+  components: {
+    CharacterInventory,
+    CharacterSheet,
+    CharacterSpellbook,
+    Editor,
+  },
 
   props: {
     character: { type: Object, default: null },
@@ -123,5 +128,4 @@ export default {
   overflow-y: auto;
   padding: 1vh 1vw;
 }
-
 </style>

@@ -113,19 +113,30 @@ export default {
         const details = []
         if (added.length)
           details.push(
-            `Added: ${added.map((id) => this.describeItem(currentById[id])).join(', ')}`
+            `Added: ${added
+              .map((id) => this.describeItem(currentById[id]))
+              .join(', ')}`
           )
         if (removed.length)
           details.push(
-            `Removed: ${removed.map((id) => this.describeItem(originalById[id])).join(', ')}`
+            `Removed: ${removed
+              .map((id) => this.describeItem(originalById[id]))
+              .join(', ')}`
           )
         modified.forEach((id) => {
-          const changedKeys = this.getObjectDiffKeys(originalById[id], currentById[id])
+          const changedKeys = this.getObjectDiffKeys(
+            originalById[id],
+            currentById[id]
+          )
           details.push(
-            `Modified ${this.describeItem(currentById[id])}: ${changedKeys.join(', ')}`
+            `Modified ${this.describeItem(currentById[id])}: ${changedKeys.join(
+              ', '
+            )}`
           )
         })
-        return details.length ? details : ['No item-level change details available']
+        return details.length
+          ? details
+          : ['No item-level change details available']
       }
 
       return ['Array changed']
@@ -141,7 +152,9 @@ export default {
         )
         .map(
           (key) =>
-            `${key}: ${JSON.stringify(original[key])} → ${JSON.stringify(current[key])}`
+            `${key}: ${JSON.stringify(original[key])} → ${JSON.stringify(
+              current[key]
+            )}`
         )
       return changes.length ? changes : ['No property-level changes detected']
     },
@@ -150,8 +163,7 @@ export default {
         new Set([...Object.keys(original), ...Object.keys(current)])
       )
       return keys.filter(
-        (key) =>
-          JSON.stringify(original[key]) !== JSON.stringify(current[key])
+        (key) => JSON.stringify(original[key]) !== JSON.stringify(current[key])
       )
     },
     describeItem(item) {

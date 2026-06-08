@@ -1,12 +1,12 @@
 {
   "party_purse": {
-    "gold": 25823,
+    "gold": 29497,
     "notes": "On hand, accessible immediately."
   },
   "reserves": [
     {
       "name": "Argentveil Account",
-      "amount": 23000,
+      "amount": 11000,
       "access": "Handled.",
       "risk": "low"
     },

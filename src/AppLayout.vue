@@ -1,6 +1,6 @@
 <template>
   <div class="app-layout">
-    <!-- Header -->
+    <!-- Header: nav tabs only -->
     <header class="app-header">
       <nav class="context-nav">
         <button
@@ -13,7 +13,6 @@
           {{ ctx.label }}
         </button>
       </nav>
-      <button class="rest-btn" title="Long rest — recovers all HP and spell slots" @click="longRest">Long Rest</button>
     </header>
 
     <!-- Context Area -->
@@ -21,17 +20,68 @@
       <keep-alive>
         <component :is="activeContextComponent" v-if="activeContextComponent" />
       </keep-alive>
-      <div v-if="!activeContextComponent" class="context-placeholder">{{ activeContextLabel }}</div>
+      <div v-if="!activeContextComponent" class="context-placeholder">
+        {{ activeContextLabel }}
+      </div>
     </main>
 
-    <!-- Dice Drawer (hidden during combat) -->
-    <Drawer v-if="!isCombat" toggle-title="Toggle dice roller">
+    <!-- Dice panel (toggle owned by bottom bar) -->
+    <Drawer :show-toggle="false">
       <DiceRoller />
     </Drawer>
 
+    <!-- Bottom bar: contextual actions left, dice toggle right -->
+    <div class="bottom-bar">
+      <div class="bar-left">
+        <template v-if="activeContext === 'party'">
+          <button
+            class="bar-btn"
+            @click="shortRestOpen = true"
+            title="Take a short rest"
+          >
+            Short Rest
+          </button>
+          <button
+            class="bar-btn"
+            @click="longRestOpen = true"
+            title="Begin a long rest"
+          >
+            Long Rest
+          </button>
+          <button class="bar-btn accent" @click="partyEditOpen = true">
+            Manage Parties
+          </button>
+        </template>
+      </div>
+      <button
+        class="bar-dice-btn"
+        :class="{ open: diceOpen }"
+        @click="toggleDice"
+      >
+        <img
+          :src="d20Icon"
+          class="bar-d20"
+          :class="{ 'bar-d20--open': diceOpen }"
+        />
+        {{ diceOpen ? 'Hide Dice' : 'Dice Roller' }}
+      </button>
+    </div>
+
+    <!-- Party edit modal -->
+    <PartyEditModal v-if="partyEditOpen" @close="partyEditOpen = false" />
+
+    <!-- Short rest modal -->
+    <ShortRestModal v-if="shortRestOpen" @close="shortRestOpen = false" />
+
+    <!-- Long rest modal -->
+    <LongRestModal v-if="longRestOpen" @close="longRestOpen = false" />
 
     <!-- Save Dialog -->
-    <SaveDialog :open="saveDialogOpen" @close="saveDialogOpen = false" @saved="onSaved" />
+    <SaveDialog
+      :open="saveDialogOpen"
+      @close="saveDialogOpen = false"
+      @saved="onSaved"
+    />
 
     <!-- Save flash -->
     <transition name="save-flash">
@@ -51,6 +101,7 @@
 </template>
 
 <script>
+import d20 from '@/assets/dice/d20.svg'
 import DiceRoller from './components/DiceRoller.vue'
 import Drawer from './components/Drawer.vue'
 import SaveDialog from './components/SaveDialog.vue'
@@ -59,6 +110,11 @@ import CharacterContext from './components/CharacterContext.vue'
 import MapViewer from './components/MapViewer.vue'
 import ToolsContext from './components/ToolsContext.vue'
 import WorldContext from './components/WorldContext.vue'
+import StoryContext from './components/StoryContext.vue'
+import PartyContext from './components/PartyContext.vue'
+import PartyEditModal from './components/PartyEditModal.vue'
+import LongRestModal from './components/LongRestModal.vue'
+import ShortRestModal from './components/ShortRestModal.vue'
 
 export default {
   name: 'AppLayout',
@@ -72,31 +128,61 @@ export default {
     MapViewer,
     ToolsContext,
     WorldContext,
+    StoryContext,
+    PartyContext,
+    PartyEditModal,
+    LongRestModal,
+    ShortRestModal,
   },
 
   data() {
     return {
-      activeContext: 'combat',
+      d20Icon: d20,
+      activeContext: 'party',
       saveDialogOpen: false,
       saveFlash: false,
+      partyEditOpen: false,
+      shortRestOpen: false,
+      longRestOpen: false,
       contexts: [
-        { id: 'combat',    label: 'Combat',    component: 'CombatContext' },
+        { id: 'party', label: 'Party', component: 'PartyContext' },
+        { id: 'combat', label: 'Combat', component: 'CombatContext' },
         { id: 'character', label: 'Character', component: 'CharacterContext' },
-        { id: 'map',       label: 'Map',       component: 'MapViewer' },
-        { id: 'world',     label: 'World',     component: 'WorldContext' },
-        { id: 'story',     label: 'Story',     component: null },
-        { id: 'tools',     label: 'Tools',     component: 'ToolsContext' },
+        { id: 'map', label: 'Map', component: 'MapViewer' },
+        { id: 'world', label: 'World', component: 'WorldContext' },
+        { id: 'story', label: 'Story', component: 'StoryContext' },
+        { id: 'tools', label: 'Tools', component: 'ToolsContext' },
       ],
     }
   },
 
+  computed: {
+    activeContextLabel() {
+      return this.contexts.find((c) => c.id === this.activeContext)?.label ?? ''
+    },
+    activeContextComponent() {
+      return (
+        this.contexts.find((c) => c.id === this.activeContext)?.component ??
+        null
+      )
+    },
+    hasChanges() {
+      return this.$store.getters.hasChanges
+    },
+    diceOpen() {
+      return this.$store.state.diceDrawerOpen
+    },
+  },
+
   methods: {
-    longRest() {
-      this.$store.commit('LONG_REST')
+    toggleDice() {
+      this.$store.commit('SET_DICE_DRAWER_OPEN', !this.diceOpen)
     },
     onSaved() {
       this.saveFlash = true
-      setTimeout(() => { this.saveFlash = false }, 600)
+      setTimeout(() => {
+        this.saveFlash = false
+      }, 600)
     },
   },
 
@@ -107,22 +193,11 @@ export default {
         this.$store.commit('CLEAR_COMBAT_NAV')
       }
     },
-  },
-
-  computed: {
-    isCombat() {
-      return this.activeContext === 'combat'
-    },
-    activeContextLabel() {
-      const ctx = this.contexts.find((c) => c.id === this.activeContext)
-      return ctx ? ctx.label : ''
-    },
-    activeContextComponent() {
-      const ctx = this.contexts.find((c) => c.id === this.activeContext)
-      return ctx?.component ?? null
-    },
-    hasChanges() {
-      return this.$store.getters.hasChanges
+    '$store.state.characterNavRequest'(name) {
+      if (name) {
+        this.activeContext = 'character'
+        this.$store.commit('CLEAR_CHARACTER_NAV')
+      }
     },
   },
 }
@@ -158,22 +233,6 @@ export default {
   flex: 1;
 }
 
-.rest-btn {
-  padding: 0.2rem 0.75rem;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-muted);
-  font-family: var(--font-display);
-  font-size: var(--font-size-md);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.rest-btn:hover {
-  border-color: #4a9e6b;
-  color: #4a9e6b;
-}
-
 .ctx-btn {
   padding: 0.2rem 0.75rem;
   background: transparent;
@@ -186,12 +245,10 @@ export default {
   transition: all 0.15s ease;
   white-space: nowrap;
 }
-
 .ctx-btn:hover {
   color: var(--color-accent);
   border-color: var(--color-border);
 }
-
 .ctx-btn.active {
   color: var(--color-accent-strong);
   border-color: var(--color-accent);
@@ -201,6 +258,7 @@ export default {
 /* ── Context Area ── */
 .context-area {
   flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -215,7 +273,83 @@ export default {
   letter-spacing: 0.05em;
 }
 
-/* ── Save Button ── */
+/* ── Bottom bar ── */
+.bottom-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  background: var(--color-bg-panel-dark);
+  border-top: 1px solid var(--color-border);
+  padding: 0 0.5rem;
+}
+
+.bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.bar-btn {
+  padding: 0.15rem 0.7rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-low);
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+.bar-btn:hover {
+  color: var(--color-text-muted);
+  border-color: var(--color-text-low);
+}
+.bar-btn.accent {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.bar-btn.accent:hover {
+  background: rgba(var(--color-accent-rgb), 0.1);
+}
+
+.bar-dice-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.75rem;
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: color 0.15s;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.bar-dice-btn:hover,
+.bar-dice-btn.open {
+  color: var(--color-accent);
+}
+
+.bar-d20 {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+  transition: transform 0.22s ease, opacity 0.15s;
+}
+.bar-dice-btn:hover .bar-d20,
+.bar-dice-btn.open .bar-d20 {
+  opacity: 1;
+}
+.bar-d20--open {
+  transform: rotate(180deg);
+}
+
+/* ── Save button / flash ── */
 .save-btn {
   position: fixed;
   bottom: 1vh;
@@ -232,14 +366,12 @@ export default {
   transition: all 0.15s ease;
   z-index: 102;
 }
-
 .save-btn:hover {
   background: var(--color-accent-strong);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* ── Save flash ── */
 .save-flash {
   position: fixed;
   bottom: 1vh;
@@ -254,7 +386,6 @@ export default {
   z-index: 102;
   pointer-events: none;
 }
-
 .save-flash-enter-active,
 .save-flash-leave-active {
   transition: opacity 0.2s ease;

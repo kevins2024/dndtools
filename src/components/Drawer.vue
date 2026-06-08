@@ -1,88 +1,124 @@
 <template>
-  <div>
-    <transition name="drawer">
-      <div v-if="open" class="drawer">
+  <div class="drawer-wrap">
+    <transition name="dice-slide">
+      <div v-if="open" class="drawer-panel">
         <slot />
       </div>
     </transition>
     <button
+      v-if="showToggle"
       class="drawer-toggle"
       :class="{ open }"
       :title="toggleTitle"
-      @click="open = !open"
+      @click="toggle"
     >
-      &#9776;
+      <img
+        :src="d20"
+        class="toggle-d20"
+        :class="{ 'toggle-d20--open': open }"
+      />
+      <span class="toggle-label">{{ open ? 'Hide Dice' : 'Dice Roller' }}</span>
     </button>
   </div>
 </template>
 
 <script>
+import d20 from '@/assets/dice/d20.svg'
+
 export default {
   name: 'Drawer',
 
   props: {
-    toggleTitle: {
-      type: String,
-      default: 'Toggle drawer',
-    },
+    toggleTitle: { type: String, default: 'Toggle dice roller' },
+    showToggle: { type: Boolean, default: true },
   },
 
   data() {
-    return {
-      open: false,
-    }
+    return { d20 }
+  },
+
+  computed: {
+    open() {
+      return this.$store.state.diceDrawerOpen
+    },
+  },
+
+  methods: {
+    toggle() {
+      this.$store.commit('SET_DICE_DRAWER_OPEN', !this.open)
+    },
   },
 }
 </script>
 
 <style scoped>
-.drawer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 80vw;
-  max-width: 80vw;
-  height: 25vh;
-  background-color: var(--color-bg-panel);
-  border-left: 1px solid var(--color-border);
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.7);
+.drawer-wrap {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  z-index: 100;
+  border-top: 1px solid var(--color-border);
 }
 
+/* ── Dice panel ── */
+.drawer-panel {
+  height: 17vh;
+  min-height: 90px;
+  overflow: hidden;
+  background: var(--color-bg-panel-dark);
+}
+
+/* ── Toggle strip ── */
 .drawer-toggle {
-  position: fixed;
-  bottom: 2vh;
-  right: 1vw;
-  width: 42px;
-  height: 42px;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xl);
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s ease;
-  z-index: 101;
+  gap: 0.5rem;
+  width: 100%;
+  height: 28px;
+  background: var(--color-bg-panel-dark);
+  border: none;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-low);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
 }
 
 .drawer-toggle:hover,
 .drawer-toggle.open {
-  border-color: var(--color-accent);
   color: var(--color-accent);
-  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
+  background: var(--color-bg-surface);
 }
 
-.drawer-enter-active,
-.drawer-leave-active {
-  transition: transform 0.25s ease;
+.toggle-d20 {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  transition: transform 0.22s ease, opacity 0.15s ease;
 }
-.drawer-enter,
-.drawer-leave-to {
-  transform: translateX(100%);
+.toggle-d20--open {
+  transform: rotate(180deg);
+}
+.drawer-toggle:hover .toggle-d20,
+.drawer-toggle.open .toggle-d20 {
+  opacity: 1;
+}
+
+.toggle-label {
+  letter-spacing: 0.04em;
+}
+
+/* ── Slide animation ── */
+.dice-slide-enter-active,
+.dice-slide-leave-active {
+  transition: height 0.22s ease, opacity 0.22s ease;
+  overflow: hidden;
+}
+.dice-slide-enter,
+.dice-slide-leave-to {
+  height: 0 !important;
+  opacity: 0;
 }
 </style>

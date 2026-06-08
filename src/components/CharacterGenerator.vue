@@ -1,6 +1,5 @@
 <template>
   <div class="char-gen">
-
     <div class="char-gen-options">
       <div v-for="cat in categories" :key="cat.key" class="cat-section">
         <div class="cat-header">
@@ -36,17 +35,23 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import { pick, GENDERS, RACES, RACES_DEFAULT_OFF, CLASSES, generateCharacter } from '../utils/character_utils.js'
+import {
+  pick,
+  GENDERS,
+  RACES,
+  RACES_DEFAULT_OFF,
+  CLASSES,
+  generateCharacter,
+} from '../utils/character_utils.js'
 
 const CATEGORIES = [
   { key: 'gender', label: 'Gender', options: GENDERS },
-  { key: 'race',   label: 'Race',   options: RACES   },
-  { key: 'class',  label: 'Class',  options: CLASSES  },
+  { key: 'race', label: 'Race', options: RACES },
+  { key: 'class', label: 'Class', options: CLASSES },
 ]
 
 function buildEnabled() {
@@ -54,7 +59,8 @@ function buildEnabled() {
   for (const cat of CATEGORIES) {
     out[cat.key] = {}
     for (const opt of cat.options) {
-      out[cat.key][opt] = cat.key === 'race' ? !RACES_DEFAULT_OFF.has(opt) : true
+      out[cat.key][opt] =
+        cat.key === 'race' ? !RACES_DEFAULT_OFF.has(opt) : true
     }
   }
   return out
@@ -84,7 +90,9 @@ export default {
 
     toggleAll(cat) {
       const next = !this.allEnabled(cat)
-      cat.options.forEach((o) => { this.enabled[cat.key][o] = next })
+      cat.options.forEach((o) => {
+        this.enabled[cat.key][o] = next
+      })
     },
 
     generate() {
@@ -92,15 +100,19 @@ export default {
       this.result = null
 
       const genderPool = this.enabledOptions('gender')
-      const racePool   = this.enabledOptions('race')
-      const classPool  = this.enabledOptions('class')
+      const racePool = this.enabledOptions('race')
+      const classPool = this.enabledOptions('class')
 
       if (!genderPool.length || !racePool.length || !classPool.length) {
         this.error = 'Enable at least one option in every category.'
         return
       }
 
-      const { gender, race, cls } = generateCharacter(genderPool, racePool, classPool)
+      const { gender, race, cls } = generateCharacter(
+        genderPool,
+        racePool,
+        classPool
+      )
       if (cls === null) {
         this.error = 'Hybrid needs at least two other classes enabled.'
         return
@@ -164,7 +176,9 @@ export default {
   cursor: pointer;
   padding: 0;
 }
-.cat-all-btn:hover { color: var(--color-accent); }
+.cat-all-btn:hover {
+  color: var(--color-accent);
+}
 
 .opt-label {
   display: flex;
@@ -176,8 +190,13 @@ export default {
   user-select: none;
   padding: 0.1rem 0;
 }
-.opt-label input { cursor: pointer; accent-color: var(--color-accent); }
-.opt-label:hover { color: var(--color-text); }
+.opt-label input {
+  cursor: pointer;
+  accent-color: var(--color-accent);
+}
+.opt-label:hover {
+  color: var(--color-text);
+}
 
 /* ── Result panel ── */
 .char-gen-result {
@@ -202,7 +221,9 @@ export default {
   cursor: pointer;
   transition: background 0.15s;
 }
-.generate-btn:hover { background: var(--color-accent-strong); }
+.generate-btn:hover {
+  background: var(--color-accent-strong);
+}
 
 .gen-error {
   color: var(--color-danger);

@@ -1,7 +1,5 @@
 {
   "permissions": {
-    "allow": [
-      "WebFetch(domain:kevins2024.github.io)"
-    ]
+    "allow": ["WebFetch(domain:kevins2024.github.io)"]
   }
 }

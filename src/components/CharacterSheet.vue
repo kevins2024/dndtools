@@ -15,8 +15,14 @@
         <div class="char-fullname">{{ character.full_name }}</div>
         <div class="char-subtitle">
           {{ character.race }} ·
-          <template v-if="character.class_breakdown">{{ character.class_breakdown }}</template>
-          <template v-else>{{ character.class }}<span v-if="character.subclass"> ({{ character.subclass }})</span> · Level {{ character.level }}</template>
+          <template v-if="character.class_breakdown">{{
+            character.class_breakdown
+          }}</template>
+          <template v-else
+            >{{ character.class
+            }}<span v-if="character.subclass"> ({{ character.subclass }})</span>
+            · Level {{ character.level }}</template
+          >
         </div>
         <div class="char-appearance">{{ character.appearance }}</div>
       </div>
@@ -26,7 +32,13 @@
     <div class="sheet-section">
       <div class="section-title">Ability Scores</div>
       <div class="stat-grid">
-        <div v-for="stat in stats" :key="stat.key" class="stat-block" :class="{ 'stat-block--boosted': stat.tooltip }" :title="stat.tooltip">
+        <div
+          v-for="stat in stats"
+          :key="stat.key"
+          class="stat-block"
+          :class="{ 'stat-block--boosted': stat.tooltip }"
+          :title="stat.tooltip"
+        >
           <div class="stat-label">{{ stat.label }}</div>
           <div class="stat-score">{{ stat.score }}</div>
           <div class="stat-mod" :class="stat.mod >= 0 ? 'pos' : 'neg'">
@@ -48,9 +60,16 @@
             v-for="s in allSaves"
             :key="s.key"
             class="save-row"
-            :class="{ proficient: (character.saving_throws ?? []).includes(s.key) }"
+            :class="{
+              proficient: (character.saving_throws ?? []).includes(s.key),
+            }"
           >
-            <span class="save-dot" :class="{ filled: (character.saving_throws ?? []).includes(s.key) }"></span>
+            <span
+              class="save-dot"
+              :class="{
+                filled: (character.saving_throws ?? []).includes(s.key),
+              }"
+            ></span>
             <span class="save-label">{{ s.label }}</span>
             <span class="save-mod">{{ saveModStr(s.key) }}</span>
           </div>
@@ -63,16 +82,27 @@
             v-for="skill in skills"
             :key="skill.name"
             class="skill-row"
-            :class="{ 'skill-prof': skill.isProficient, 'skill-expert': skill.hasExpertise }"
+            :class="{
+              'skill-prof': skill.isProficient,
+              'skill-expert': skill.hasExpertise,
+            }"
             :title="skill.tooltip"
           >
             <span class="skill-dots">
-              <span class="skill-dot" :class="{ filled: skill.isProficient || skill.hasExpertise }"></span>
-              <span class="skill-dot" :class="{ filled: skill.hasExpertise }"></span>
+              <span
+                class="skill-dot"
+                :class="{ filled: skill.isProficient || skill.hasExpertise }"
+              ></span>
+              <span
+                class="skill-dot"
+                :class="{ filled: skill.hasExpertise }"
+              ></span>
             </span>
             <span class="skill-name">{{ skill.displayName }}</span>
             <span class="skill-stat">{{ skill.statLabel }}</span>
-            <span class="skill-mod" :class="skill.value >= 0 ? 'pos' : 'neg'">{{ skill.valueStr }}</span>
+            <span class="skill-mod" :class="skill.value >= 0 ? 'pos' : 'neg'">{{
+              skill.valueStr
+            }}</span>
           </div>
         </div>
       </div>
@@ -82,9 +112,12 @@
     <div class="sheet-section">
       <div class="section-title">Languages</div>
       <div class="pill-list">
-        <span v-for="lang in character.languages ?? []" :key="lang" class="pill">{{
-          lang
-        }}</span>
+        <span
+          v-for="lang in character.languages ?? []"
+          :key="lang"
+          class="pill"
+          >{{ lang }}</span
+        >
       </div>
     </div>
 
@@ -157,7 +190,10 @@ export default {
     },
 
     skills() {
-      const { stats, bonuses } = dnd.resolveStats(this.character, this.partyItems)
+      const { stats, bonuses } = dnd.resolveStats(
+        this.character,
+        this.partyItems
+      )
       const prof = dnd._prof(this.character, bonuses)
       const proficiencies = this.character.skill_proficiencies ?? []
       const expertises = this.character.skill_expertise ?? []
@@ -173,8 +209,12 @@ export default {
         const displayName = skillName.replace(/([A-Z])/g, ' $1').trim()
         const statLabel = statKey.toUpperCase()
 
-        const lines = [`${displayName} (${statLabel})`, `${statLabel} ${dnd.signed(base)}`]
-        if (hasExpertise) lines.push(`Expertise ${dnd.signed(prof * 2)} (Prof ×2)`)
+        const lines = [
+          `${displayName} (${statLabel})`,
+          `${statLabel} ${dnd.signed(base)}`,
+        ]
+        if (hasExpertise)
+          lines.push(`Expertise ${dnd.signed(prof * 2)} (Prof ×2)`)
         else if (isProficient) lines.push(`Prof ${dnd.signed(prof)}`)
         if (itemBonus) lines.push(`Items ${dnd.signed(itemBonus)}`)
         lines.push(`= ${dnd.signed(total)}`)
@@ -192,7 +232,6 @@ export default {
         }
       })
     },
-
   },
 
   methods: {
@@ -291,7 +330,6 @@ export default {
   padding-top: 0.8vh;
 }
 
-
 .section-title {
   font-family: var(--font-display);
   font-size: var(--font-size-base);
@@ -331,7 +369,9 @@ export default {
   color: var(--color-text);
   line-height: 1.2;
 }
-.stat-block--boosted .stat-score { color: var(--color-accent); }
+.stat-block--boosted .stat-score {
+  color: var(--color-accent);
+}
 
 .stat-mod {
   font-size: var(--font-size-md);
@@ -517,11 +557,19 @@ export default {
   flex-shrink: 0;
 }
 
-.skill-mod.pos { color: var(--color-text-muted); }
-.skill-mod.neg { color: var(--color-text-danger); }
+.skill-mod.pos {
+  color: var(--color-text-muted);
+}
+.skill-mod.neg {
+  color: var(--color-text-danger);
+}
 
-.skill-row.skill-prof .skill-mod { color: var(--color-accent); }
-.skill-row.skill-expert .skill-mod { color: var(--color-accent-strong); }
+.skill-row.skill-prof .skill-mod {
+  color: var(--color-accent);
+}
+.skill-row.skill-expert .skill-mod {
+  color: var(--color-accent-strong);
+}
 
 /* ── Features ── */
 .feature-list {
@@ -541,7 +589,6 @@ export default {
   color: var(--color-text);
   flex: 1;
 }
-
 
 /* ── Flavor text ── */
 .flavor-text {

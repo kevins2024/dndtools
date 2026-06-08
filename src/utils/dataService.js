@@ -23,7 +23,6 @@ const staticTables = {
   finances,
 }
 
-
 const dataService = {
   tables: Object.keys(staticTables),
 

@@ -33,9 +33,17 @@ export default {
     return {
       activeTool: 'weekly',
       tools: [
-        { id: 'weekly',     label: 'Weekly Events',        component: 'WeeklyEvents'       },
-        { id: 'encounter',  label: 'Encounter Generator',  component: 'EncounterGenerator' },
-        { id: 'character',  label: 'Character Generator',  component: 'CharacterGenerator' },
+        { id: 'weekly', label: 'Weekly Events', component: 'WeeklyEvents' },
+        {
+          id: 'encounter',
+          label: 'Encounter Generator',
+          component: 'EncounterGenerator',
+        },
+        {
+          id: 'character',
+          label: 'Character Generator',
+          component: 'CharacterGenerator',
+        },
       ],
     }
   },

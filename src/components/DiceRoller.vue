@@ -16,15 +16,34 @@
           {{ die === 2 ? 'coin' : `d${die}` }}
         </button>
         <label class="advantage-label">
-          <input type="checkbox" v-model="advantage" @change="onAdvantageChange" />
+          <input
+            type="checkbox"
+            v-model="advantage"
+            @change="onAdvantageChange"
+          />
           Advantage
         </label>
         <label class="advantage-label">
-          <input type="checkbox" v-model="disadvantage" @change="onDisadvantageChange" />
+          <input
+            type="checkbox"
+            v-model="disadvantage"
+            @change="onDisadvantageChange"
+          />
           Disadvantage
         </label>
-        <button class="clear-btn" :disabled="!history.length && !current" @click="clearHistory">Clear</button>
-        <span v-if="accumulated.length" class="acc-total" title="Running total — click dice to add, click here to clear" @click="clearAccumulated">
+        <button
+          class="clear-btn"
+          :disabled="!history.length && !current"
+          @click="clearHistory"
+        >
+          Clear
+        </button>
+        <span
+          v-if="accumulated.length"
+          class="acc-total"
+          title="Running total — click dice to add, click here to clear"
+          @click="clearAccumulated"
+        >
           Σ {{ accumulatedTotal }}
           <span class="acc-count">({{ accumulated.length }})</span>
         </span>
@@ -40,7 +59,9 @@
             v-for="roll in history"
             :key="roll.id"
             class="history-die"
-            :class="{ 'history-die--acc': accumulated.some(a => a.id === roll.id) }"
+            :class="{
+              'history-die--acc': accumulated.some((a) => a.id === roll.id),
+            }"
             :title="'Click to add ' + roll.result + ' to running total'"
             @click="toggleAccumulate(roll)"
           >
@@ -56,7 +77,16 @@
       <!-- Most Recent -->
       <div class="recent-zone">
         <transition name="pop">
-          <div v-if="current" :key="current.id" class="current-die">
+          <div
+            v-if="current"
+            :key="current.id"
+            class="current-die"
+            :class="{
+              'current-die--acc': accumulated.some((a) => a.id === current.id),
+            }"
+            :title="'Click to add ' + current.result + ' to running total'"
+            @click="toggleAccumulate(current)"
+          >
             <div class="die-icon-wrap">
               <img :src="current.image" class="die-bg-img" />
               <div class="die-overlay">
@@ -119,16 +149,22 @@ export default {
   },
 
   methods: {
-    onAdvantageChange() { if (this.advantage) this.disadvantage = false },
-    onDisadvantageChange() { if (this.disadvantage) this.advantage = false },
+    onAdvantageChange() {
+      if (this.advantage) this.disadvantage = false
+    },
+    onDisadvantageChange() {
+      if (this.disadvantage) this.advantage = false
+    },
     clearHistory() {
       this.history = []
       this.current = null
       this.accumulated = []
     },
-    clearAccumulated() { this.accumulated = [] },
+    clearAccumulated() {
+      this.accumulated = []
+    },
     toggleAccumulate(roll) {
-      const idx = this.accumulated.findIndex(a => a.id === roll.id)
+      const idx = this.accumulated.findIndex((a) => a.id === roll.id)
       if (idx === -1) this.accumulated.push(roll)
       else this.accumulated.splice(idx, 1)
     },
@@ -260,8 +296,14 @@ export default {
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.clear-btn:hover:not(:disabled) { border-color: var(--color-text-danger); color: var(--color-text-danger); }
-.clear-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.clear-btn:hover:not(:disabled) {
+  border-color: var(--color-text-danger);
+  color: var(--color-text-danger);
+}
+.clear-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 .acc-total {
   margin-left: 0.4vw;
@@ -276,13 +318,39 @@ export default {
   transition: all 0.15s ease;
   user-select: none;
 }
-.acc-total:hover { border-color: var(--color-text-danger); color: var(--color-text-danger); }
-.acc-count { opacity: 0.6; font-size: var(--font-size-base); }
+.acc-total:hover {
+  border-color: var(--color-text-danger);
+  color: var(--color-text-danger);
+}
+.acc-count {
+  opacity: 0.6;
+  font-size: var(--font-size-base);
+}
 
-.history-die { cursor: pointer; transition: border-color 0.12s ease; }
-.history-die:hover { border-color: var(--color-accent); }
-.history-die--acc { border-color: var(--color-accent); background: var(--color-bg-surface-alt); }
-.history-die--acc .die-result { color: var(--color-accent); }
+.history-die {
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease,
+    box-shadow 0.12s ease;
+}
+.history-die:hover {
+  border-color: var(--color-accent);
+}
+.history-die--acc {
+  border-color: var(--color-accent);
+  border-width: 2px;
+  background: rgba(var(--color-accent-rgb), 0.12);
+  box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.3);
+}
+.history-die--acc .die-result {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+.history-die--acc .die-bg-img {
+  opacity: 0.7;
+}
+.history-die--acc .die-label {
+  color: var(--color-accent);
+}
 
 /* ── Roll Area ── */
 .roll-area {
@@ -391,6 +459,20 @@ export default {
   box-shadow: 0 0 20px rgba(var(--color-highlight-rgb), 0.35),
     0 0 6px rgba(var(--color-highlight-rgb), 0.2);
   color: var(--color-warning);
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.current-die--acc {
+  border-color: var(--color-accent);
+  border-width: 3px;
+  background: rgba(var(--color-accent-rgb), 0.12);
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.4),
+    0 0 8px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.current-die--acc .die-result {
+  color: var(--color-accent);
 }
 
 .current-die.empty {

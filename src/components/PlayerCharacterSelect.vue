@@ -37,7 +37,10 @@ export default {
 
   methods: {
     addToCombat(player) {
-      this.$store.commit('SET_SELECTED_PLAYERS', [...this.inCombat, player.name])
+      this.$store.commit('SET_SELECTED_PLAYERS', [
+        ...this.inCombat,
+        player.name,
+      ])
     },
   },
 }

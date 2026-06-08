@@ -29,8 +29,20 @@
       "Bash(mkdir -p \"c:\\\\GitHub\\\\dndtools\\\\scripts\")",
       "Bash(node scripts/normalize-svg.js public/maps/lymesmarch_base.svg public/maps/lymesmarch_test_normalized.svg)"
     ],
-    "additionalDirectories": [
-      "c:\\GitHub\\dndtools"
+    "additionalDirectories": ["c:\\GitHub\\dndtools"]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const f=(JSON.parse(d).tool_input||{}).file_path;if(f){require('child_process').execSync('npx prettier --write '+JSON.stringify(f),{stdio:'inherit'})}}catch(e){}})\"",
+            "statusMessage": "Formatting with Prettier..."
+          }
+        ]
+      }
     ]
   }
 }

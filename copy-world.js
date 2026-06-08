@@ -10,7 +10,6 @@ const DATA_DIR = path.join(__dirname, 'src/data')
 
 const FILES = [
   'assets',
-  'characters',
   'companions',
   'events',
   'locations',
@@ -20,6 +19,13 @@ const FILES = [
   'world',
 ]
 
+const BOM = Buffer.from([0xef, 0xbb, 0xbf])
+function readJSON(fp) {
+  let buf = fs.readFileSync(fp)
+  while (buf.slice(0, 3).equals(BOM)) buf = buf.slice(3)
+  return JSON.parse(buf.toString('utf8'))
+}
+
 const result = {}
 for (const name of FILES) {
   const fp = path.join(DATA_DIR, `${name}.json`)
@@ -27,7 +33,12 @@ for (const name of FILES) {
     console.warn(`Skipping ${name}.json — not found`)
     continue
   }
-  result[name] = JSON.parse(fs.readFileSync(fp, 'utf8'))
+  try {
+    result[name] = readJSON(fp)
+  } catch (e) {
+    console.error(`ERROR reading ${name}.json: ${e.message}`)
+    process.exit(1)
+  }
 }
 
 const text = JSON.stringify(result, null, 2)

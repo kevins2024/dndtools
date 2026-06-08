@@ -1,6 +1,5 @@
 <template>
   <div class="character-context">
-
     <aside class="char-col scrollable">
       <div class="col-label">Characters</div>
       <div class="char-list">
@@ -16,7 +15,9 @@
             :style="{ backgroundImage: `url(${char.image})` }"
           ></div>
           <div class="char-name">
-            <ClassIcon :character="char" class="char-class-icon" />{{ char.name }}
+            <ClassIcon :character="char" class="char-class-icon" />{{
+              char.name
+            }}
           </div>
         </div>
       </div>
@@ -25,7 +26,6 @@
     <section class="detail-area">
       <CharacterDetails :character="selectedCharacter" />
     </section>
-
   </div>
 </template>
 
@@ -57,8 +57,12 @@ export default {
     characters: {
       immediate: true,
       handler(chars) {
-        if (!this.selectedName && chars.length) this.selectedName = chars[0].name
+        if (!this.selectedName && chars.length)
+          this.selectedName = chars[0].name
       },
+    },
+    '$store.state.characterNavRequest'(name) {
+      if (name) this.selectedName = name
     },
   },
 

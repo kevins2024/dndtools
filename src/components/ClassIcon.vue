@@ -4,25 +4,35 @@
 
 <script>
 import {
-  Swords, Axe, Crosshair, Wrench, Wand,
-  Cross, Eye, Music, Zap, ShieldHalf,
-  Leaf, BowArrow, Sparkles,
+  Swords,
+  Axe,
+  Crosshair,
+  Wrench,
+  Wand,
+  Cross,
+  Eye,
+  Music,
+  Zap,
+  ShieldHalf,
+  Leaf,
+  BowArrow,
+  Sparkles,
 } from 'lucide-vue'
 
 const CLASS_MAP = {
-  fighter:   Swords,
+  fighter: Swords,
   barbarian: Axe,
-  rogue:     Crosshair,
+  rogue: Crosshair,
   artificer: Wrench,
-  wizard:    Wand,
-  cleric:    Cross,
-  warlock:   Eye,
-  bard:      Music,
-  monk:      Zap,
-  paladin:   ShieldHalf,
-  druid:     Leaf,
-  ranger:    BowArrow,
-  sorcerer:  Sparkles,
+  wizard: Wand,
+  cleric: Cross,
+  warlock: Eye,
+  bard: Music,
+  monk: Zap,
+  paladin: ShieldHalf,
+  druid: Leaf,
+  ranger: BowArrow,
+  sorcerer: Sparkles,
 }
 
 export default {
@@ -32,7 +42,9 @@ export default {
   },
   computed: {
     icon() {
-      const primary = (this.character.class ?? '').split(/[\s/]+/)[0].toLowerCase()
+      const primary = (this.character.class ?? '')
+        .split(/[\s/]+/)[0]
+        .toLowerCase()
       return CLASS_MAP[primary] ?? null
     },
   },

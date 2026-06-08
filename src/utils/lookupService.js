@@ -33,7 +33,7 @@ function getHomebrew() {
   if (_homebrewPromise) return _homebrewPromise
   if (isDev) {
     _homebrewPromise = fetch(`${DATA_SERVER}/api/homebrew`)
-      .then(r => r.ok ? r.json() : staticHomebrewData)
+      .then((r) => (r.ok ? r.json() : staticHomebrewData))
       .catch(() => staticHomebrewData)
   } else {
     _homebrewPromise = Promise.resolve(staticHomebrewData)
@@ -48,7 +48,10 @@ function localGet(key) {
     const raw = localStorage.getItem(CACHE_PREFIX + key)
     return raw ? JSON.parse(raw) : null
   } catch (err) {
-    console.error(`lookupService: failed to read localStorage["${CACHE_PREFIX + key}"]`, err)
+    console.error(
+      `lookupService: failed to read localStorage["${CACHE_PREFIX + key}"]`,
+      err
+    )
     return null
   }
 }
@@ -57,7 +60,10 @@ function localSet(key, value) {
   try {
     localStorage.setItem(CACHE_PREFIX + key, JSON.stringify(value))
   } catch (err) {
-    console.error(`lookupService: failed to write localStorage["${CACHE_PREFIX + key}"]`, err)
+    console.error(
+      `lookupService: failed to write localStorage["${CACHE_PREFIX + key}"]`,
+      err
+    )
   }
 }
 
@@ -65,7 +71,10 @@ function localSet(key, value) {
 
 // "Cure Wounds" → "cure-wounds", "Tasha's Hideous Laughter" → "tasha-s-hideous-laughter"
 function toSlug(name) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
 }
 
 // Normalize the dnd5eapi.co response shape into a consistent object the
@@ -73,19 +82,35 @@ function toSlug(name) {
 function normalizeSpell(data) {
   return {
     name: data.name,
-    description: Array.isArray(data.desc) ? data.desc.join('\n\n') : (data.description ?? null),
+    description: Array.isArray(data.desc)
+      ? data.desc.join('\n\n')
+      : data.description ?? null,
     level: data.level ?? null,
     school: data.school?.name ?? data.school ?? null,
     casting_time: data.casting_time ?? null,
     range: data.range ?? null,
     duration: data.duration ?? null,
-    concentration: data.concentration ?? data.duration?.toLowerCase().startsWith('concentration') ?? false,
-    components: Array.isArray(data.components) ? data.components.join(', ') : (data.components ?? null),
-    save: data.dc?.dc_type?.name ?? (typeof data.save === 'object' ? data.save?.stat?.toUpperCase() : data.save) ?? null,
+    concentration:
+      data.concentration ??
+      data.duration?.toLowerCase().startsWith('concentration') ??
+      false,
+    components: Array.isArray(data.components)
+      ? data.components.join(', ')
+      : data.components ?? null,
+    save:
+      data.dc?.dc_type?.name ??
+      (typeof data.save === 'object'
+        ? data.save?.stat?.toUpperCase()
+        : data.save) ??
+      null,
     damage_type: data.damage?.damage_type?.name ?? data.damage_type ?? null,
     spell_list: Array.isArray(data.classes)
-      ? data.classes.map((c) => (typeof c === 'string' ? c : c.name)).filter(Boolean)
-      : (Array.isArray(data.spell_list) ? data.spell_list : null),
+      ? data.classes
+          .map((c) => (typeof c === 'string' ? c : c.name))
+          .filter(Boolean)
+      : Array.isArray(data.spell_list)
+      ? data.spell_list
+      : null,
   }
 }
 
@@ -93,7 +118,9 @@ async function fetchSpellBySlug(slug) {
   const res = await fetch(`${API_BASE}/spells/${slug}`)
   if (res.ok) return normalizeSpell(await res.json())
   if (res.status !== 404) {
-    console.error(`lookupService: unexpected status ${res.status} fetching /spells/${slug}`)
+    console.error(
+      `lookupService: unexpected status ${res.status} fetching /spells/${slug}`
+    )
   }
   return null
 }
@@ -101,16 +128,22 @@ async function fetchSpellBySlug(slug) {
 async function fetchSpellByNameSearch(name) {
   const res = await fetch(`${API_BASE}/spells?name=${encodeURIComponent(name)}`)
   if (!res.ok) {
-    console.error(`lookupService: spell name search failed for "${name}", status ${res.status}`)
+    console.error(
+      `lookupService: spell name search failed for "${name}", status ${res.status}`
+    )
     return null
   }
   const { results } = await res.json()
-  const match = results?.find((r) => r.name.toLowerCase() === name.toLowerCase())
+  const match = results?.find(
+    (r) => r.name.toLowerCase() === name.toLowerCase()
+  )
   if (!match) return null
 
   const detail = await fetch(`https://www.dnd5eapi.co${match.url}`)
   if (!detail.ok) {
-    console.error(`lookupService: failed to fetch spell detail at ${match.url}, status ${detail.status}`)
+    console.error(
+      `lookupService: failed to fetch spell detail at ${match.url}, status ${detail.status}`
+    )
     return null
   }
   return normalizeSpell(await detail.json())
@@ -151,7 +184,10 @@ export async function lookupSpell(name) {
     result = await fetchSpellBySlug(toSlug(name))
     if (!result) result = await fetchSpellByNameSearch(name)
   } catch (err) {
-    console.error(`lookupService: network error looking up spell "${name}"`, err)
+    console.error(
+      `lookupService: network error looking up spell "${name}"`,
+      err
+    )
   }
 
   // Cache successes in localStorage; cache both outcomes in memory so we
@@ -219,7 +255,9 @@ export async function lookupFeature(name) {
         description: data.desc?.join('\n\n') ?? null,
       }
     } else if (res.status !== 404) {
-      console.error(`lookupService: unexpected status ${res.status} fetching trait "${name}"`)
+      console.error(
+        `lookupService: unexpected status ${res.status} fetching trait "${name}"`
+      )
     }
   } catch (err) {
     console.error(`lookupService: network error fetching trait "${name}"`, err)
@@ -252,15 +290,21 @@ function normalizeMonster(data) {
     wis: data.wisdom ?? null,
     cha: data.charisma ?? null,
     saving_throws: (data.proficiencies ?? [])
-      .filter(p => p.proficiency?.index?.startsWith('saving-throw'))
-      .map(p => ({ stat: p.proficiency.name.replace('Saving Throw: ', ''), bonus: p.value })),
+      .filter((p) => p.proficiency?.index?.startsWith('saving-throw'))
+      .map((p) => ({
+        stat: p.proficiency.name.replace('Saving Throw: ', ''),
+        bonus: p.value,
+      })),
     skills: (data.proficiencies ?? [])
-      .filter(p => p.proficiency?.index?.startsWith('skill'))
-      .map(p => ({ name: p.proficiency.name.replace('Skill: ', ''), bonus: p.value })),
+      .filter((p) => p.proficiency?.index?.startsWith('skill'))
+      .map((p) => ({
+        name: p.proficiency.name.replace('Skill: ', ''),
+        bonus: p.value,
+      })),
     damage_vulnerabilities: data.damage_vulnerabilities ?? [],
     damage_resistances: data.damage_resistances ?? [],
     damage_immunities: data.damage_immunities ?? [],
-    condition_immunities: (data.condition_immunities ?? []).map(c => c.name),
+    condition_immunities: (data.condition_immunities ?? []).map((c) => c.name),
     senses: data.senses ?? null,
     languages: data.languages ?? null,
     cr: data.challenge_rating ?? null,
@@ -289,7 +333,10 @@ export async function lookupMonster(name) {
     const res = await fetch(`${API_BASE}/monsters/${slug}`)
     if (res.ok) result = normalizeMonster(await res.json())
   } catch (err) {
-    console.error(`lookupService: network error looking up monster "${name}"`, err)
+    console.error(
+      `lookupService: network error looking up monster "${name}"`,
+      err
+    )
   }
 
   memCache.set(cacheKey, result)
@@ -310,11 +357,17 @@ export async function saveToHomebrew(section, data) {
     })
     if (!res.ok) {
       const body = await res.json().catch(() => ({}))
-      console.error(`lookupService: server returned ${res.status} saving ${section}/${data.name}`, body)
+      console.error(
+        `lookupService: server returned ${res.status} saving ${section}/${data.name}`,
+        body
+      )
       return false
     }
   } catch (err) {
-    console.error(`lookupService: network error saving ${section}/${data.name}`, err)
+    console.error(
+      `lookupService: network error saving ${section}/${data.name}`,
+      err
+    )
     return false
   }
 

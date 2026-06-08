@@ -4,13 +4,13 @@
     "name": "Kaemahz",
     "svgPath": "/maps/kaemahz_complete_normalized.svg",
     "regions": [
-      { "id": "fynesmarch",    "name": "Fynesmarch" },
-      { "id": "fol",           "name": "Fol" },
-      { "id": "orvath",        "name": "Orvath" },
-      { "id": "torwald",       "name": "Torwald" },
-      { "id": "birindal",      "name": "Birindal" },
-      { "id": "aranwald",      "name": "Aranwald" },
-      { "id": "solvale_empire","name": "Solvale Empire" }
+      { "id": "fynesmarch", "name": "Fynesmarch" },
+      { "id": "fol", "name": "Fol" },
+      { "id": "orvath", "name": "Orvath" },
+      { "id": "torwald", "name": "Torwald" },
+      { "id": "birindal", "name": "Birindal" },
+      { "id": "aranwald", "name": "Aranwald" },
+      { "id": "solvale_empire", "name": "Solvale Empire" }
     ],
     "layers": [
       { "id": "path1", "isOutline": true },

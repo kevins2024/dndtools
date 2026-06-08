@@ -4,19 +4,13 @@
     "type": "city",
     "description": "River delta city. Dawn Blades home base. 1 day sail south of Trevash, 3 days sail south of Khemrise.",
     "climate": null,
-    "faction_presence": [
-      "Dawn Blades",
-      "Smoke Vipers",
-      "Long Arm Trading"
-    ],
+    "faction_presence": ["Dawn Blades", "Smoke Vipers", "Long Arm Trading"],
     "notes": "",
     "districts": [
       {
         "name": "Docks Ward",
         "description": "Working harbor, rough, practical. Smells of fish and tar. Criminal element present.",
-        "faction_presence": [
-          "Smoke Vipers"
-        ]
+        "faction_presence": ["Smoke Vipers"]
       },
       {
         "name": "Merchant Quarter",
@@ -62,13 +56,8 @@
           "Multiple sleeping areas",
           "Workshop space (still needed)"
         ],
-        "features": [
-          "Window box outside",
-          "New bench at door"
-        ],
-        "npcs_present": [
-          "Marcus Freeborn"
-        ],
+        "features": ["Window box outside", "New bench at door"],
+        "npcs_present": ["Marcus Freeborn"],
         "notes": "Marcus managing. Miren and Dav assisting."
       },
       {
@@ -76,11 +65,7 @@
         "district": "Docks Ward",
         "type": "dawn_blades_business",
         "description": "Reformed loan shark operation.",
-        "npcs_present": [
-          "Jessyl Denmar",
-          "Big Tam",
-          "Gritch"
-        ],
+        "npcs_present": ["Jessyl Denmar", "Big Tam", "Gritch"],
         "notes": "70/30 split favoring Dawn Blades. Approximately 25-30g/month income."
       },
       {
@@ -88,9 +73,7 @@
         "district": "Merchant Quarter (adjacent)",
         "type": "establishment",
         "description": "Helena's establishment. Discreet, well-appointed, charges enough to keep out trouble. Information brokering center. Regular clientele from upper social layer.",
-        "npcs_present": [
-          "Helena Sable"
-        ],
+        "npcs_present": ["Helena Sable"],
         "notes": ""
       },
       {
@@ -98,9 +81,7 @@
         "district": "Merchant Quarter (adjacent)",
         "type": "tavern",
         "description": "Neutral ground tavern with private Rookery meeting rooms. Near the Gilt Rose.",
-        "npcs_present": [
-          "Idy Rossel"
-        ],
+        "npcs_present": ["Idy Rossel"],
         "notes": ""
       },
       {
@@ -116,9 +97,7 @@
         "district": "Docks Ward",
         "type": "workshop",
         "description": "Leatherworker. Needle and hide sign above door. Smells of leather, oil, and something harder to place underneath.",
-        "npcs_present": [
-          "Calla Denn"
-        ],
+        "npcs_present": ["Calla Denn"],
         "notes": ""
       },
       {
@@ -126,9 +105,7 @@
         "district": "Trade District (adjacent)",
         "type": "workshop",
         "description": "Weaponsmith.",
-        "npcs_present": [
-          "Torvald Ironwood"
-        ],
+        "npcs_present": ["Torvald Ironwood"],
         "notes": ""
       },
       {
@@ -144,9 +121,7 @@
         "district": "Trade District (adjacent)",
         "type": "government",
         "description": "Captain Crane's domain. Holding cells inside.",
-        "npcs_present": [
-          "Captain Crane"
-        ],
+        "npcs_present": ["Captain Crane"],
         "notes": "Duty sergeant recognizes Vaz on sight."
       },
       {
@@ -162,10 +137,7 @@
         "district": "Harbor front",
         "type": "shop",
         "description": "Chandler's shop. Casvath coastal relay access point.",
-        "npcs_present": [
-          "Morrow",
-          "Selt"
-        ],
+        "npcs_present": ["Morrow", "Selt"],
         "notes": "Ask for Morrow, say 'grey tide is running'. Messages sent within the hour along coastal road north."
       },
       {
@@ -173,9 +145,7 @@
         "district": "Trade District",
         "type": "job_board",
         "description": "Legitimate mercenary job board.",
-        "npcs_present": [
-          "Darius Rent"
-        ],
+        "npcs_present": ["Darius Rent"],
         "notes": "Erasmus probably checks here."
       },
       {
@@ -209,10 +179,7 @@
     "type": "city",
     "description": "Major coastal city, vineyards, pivot point where coast turns north-south. 2 days sail north of Trevash, 3 days sail north of Ravenquay.",
     "climate": "Temperate maritime. Fog burns off by midmorning every day without exception — locals treat this as a moral certainty.",
-    "faction_presence": [
-      "Dawn Blades",
-      "Long Arm Trading"
-    ],
+    "faction_presence": ["Dawn Blades", "Long Arm Trading"],
     "notes": "Harvest festival approximately 12 days out from current story position.",
     "features": [
       {
@@ -309,9 +276,7 @@
         "district": "Harbor District",
         "type": "government",
         "description": "Solid two-story stone, official signage. Ground floor clerk window with queue. Exterior stairs to upper office. Curtained upper window, heavy door.",
-        "npcs_present": [
-          "Rendall"
-        ],
+        "npcs_present": ["Rendall"],
         "notes": "Harbor watch active on all three Dawn Blades ships."
       },
       {
@@ -326,9 +291,7 @@
         "district": "Harbor District",
         "type": "clinic",
         "description": "Coppersalt Lane — narrow street that doesn't appear on official maps. Fish smell, old rope. Blue shutter, grey door, no sign. Everyone knows it, nobody talks about it.",
-        "npcs_present": [
-          "Legend"
-        ],
+        "npcs_present": ["Legend"],
         "notes": "Removes collars."
       },
       {
@@ -360,9 +323,7 @@
         "district": "Merchant District",
         "type": "residence",
         "description": "Respectable merchant district. Neither wealthy enough to attract attention nor poor enough to suggest trouble. Front room carefully tidy.",
-        "npcs_present": [
-          "Harwick"
-        ],
+        "npcs_present": ["Harwick"],
         "notes": "Relay network documents on table."
       },
       {
@@ -378,9 +339,7 @@
         "district": "Merchant Quarter",
         "type": "shop",
         "description": "Antiquities dealer.",
-        "npcs_present": [
-          "Rosten Alurath"
-        ],
+        "npcs_present": ["Rosten Alurath"],
         "notes": "Worth a visit."
       }
     ]
@@ -448,9 +407,7 @@
     "type": "city",
     "description": "Southernmost city on the western coast. Warmest and driest. Mediterranean feel — olive trees, stone architecture built for heat. Most cosmopolitan city in the region. 4-5 days sail east of Ravenquay.",
     "climate": "Warmest and driest. Mediterranean feel.",
-    "faction_presence": [
-      "Argentveil City Council"
-    ],
+    "faction_presence": ["Argentveil City Council"],
     "notes": "Chartered Investigators Act 15 years old, functioning, respected — model for Ravenquay charter. Beyond just being mediterranean style, Argentveil is also very magic-heavy. Dragonborn make up 40% of the population, many elves have found homes here along with plenty of others. Dwarves and orc-kin are now super rare. Various teiflings can be seen from time to time as well.  There are tall spires unlike any other city and a few districts have an abundance of wealth while others fill in the middle classes and the struggling. The docks are the safest in Kaemahz, crime finds its place elsewhere. Orvath lies a 6 day journed north/northeast over land into the drier climes, a fairly mild desert region.",
     "districts": [],
     "locations": [
@@ -498,9 +455,7 @@
         "name": "Linden Street Antiquities Market",
         "type": "market",
         "description": "Where Ossivane Relk operates.",
-        "npcs_present": [
-          "Ossivane Relk"
-        ],
+        "npcs_present": ["Ossivane Relk"],
         "notes": ""
       },
       {
@@ -517,35 +472,27 @@
         "name": "Vethran & Son",
         "type": "armorer",
         "district": "Commerce District",
-        "npcs_present": [
-          "Wainkur (the son)"
-        ]
+        "npcs_present": ["Wainkur (the son)"]
       },
       {
         "name": "Torvaine's Steel",
         "type": "weapons",
         "district": "Commerce District",
-        "npcs_present": [
-          "Torvaine"
-        ],
+        "npcs_present": ["Torvaine"],
         "notes": "By referral only"
       },
       {
         "name": "Forged & Found",
         "type": "weapons",
         "district": "Commerce District",
-        "npcs_present": [
-          "Kovran"
-        ],
+        "npcs_present": ["Kovran"],
         "notes": "Red awning"
       },
       {
         "name": "DUVRAK",
         "type": "enchanter",
         "district": "Upper Merchant Quarter",
-        "npcs_present": [
-          "Duvrak"
-        ],
+        "npcs_present": ["Duvrak"],
         "notes": "referral only"
       },
       {
@@ -713,9 +660,7 @@
     "type": "fortress",
     "description": "Fortress city, northeast of Khemrise. On the Fol border. 3 days northeast of Khemrise, 1 day beyond Millhaven, 4-5 days ride from Ravenquay. Positioned between two rising mountain ranges, right where the weather changes, with Inkaba — an active volcano — visible to the east on clear days. Snow to the north, clear to the south most of the year. Conflict with Fol has ended; the fortress remains and the city has grown around it.",
     "climate": "Coldest in the region.",
-    "faction_presence": [
-      "Cindermarch Military"
-    ],
+    "faction_presence": ["Cindermarch Military"],
     "notes": "",
     "districts": [],
     "locations": [
@@ -723,9 +668,7 @@
         "name": "Cindermarch Fortress",
         "type": "military",
         "description": "The fortress proper.",
-        "npcs_present": [
-          "Salla Kern"
-        ],
+        "npcs_present": ["Salla Kern"],
         "notes": "Salla Kern is Master-at-Arms. Where Kerra was enslaved before transfer to Khemrise estate. Caravan escort destination early campaign. Salla Kern sent job offer regarding Kerra — follow-up pending."
       }
     ]
@@ -790,9 +733,7 @@
         "name": "Forest Trolls, roughly",
         "type": "village",
         "description": "Northwest of Khemrise, several days journey.",
-        "npcs_present": [
-          "Wend"
-        ],
+        "npcs_present": ["Wend"],
         "notes": ""
       },
       {
@@ -805,10 +746,6 @@
         "description": "Underground complex predating Valdmere and likely all current Kaemahz civilization. Two chambers and a connecting corridor. Upper chamber is a tomb containing dozens of preserved figures of varied ages, hands cupped upward, names recorded on vaulted ceiling. Lower chamber is an archive — hundreds of sealed stone containers lining every wall, a stone bellows breathing mechanism in the center, and a continuous carved narrative covering the entire ceiling vault. Two suits of armor in dark unidentified metal stand at the archive entrance, depicted by name in the ceiling scene.",
         "access": "Natural hollow in forest floor. Rotating stone mechanism opens from above after a two inch drop release. Can also be opened from below via lever. Doorman skeleton remains at interior lever.",
         "atmosphere": "Bone dry, preserved. Breathing sound audible from surface when open. Air circulation maintained by deep stone bellows mechanism.",
-        "items_found": [
-          "Ring of Breathing — taken",
-          "Pendant with eye symbol — left in place"
-        ],
         "notes": "Script matches ridge complex ruins and scroll from disc box. Dhovari may be able to read it. Bring Tongues spell. Resealed via Mage Hand on departure. Armor suits appear to be named individuals from the civilization. Archive contents unknown. Second door in tomb chamber leads to corridor and archive — second lever operates it from tomb side. Corridor predates tomb chamber."
       }
     ]
@@ -891,9 +828,7 @@
         "name": "Repose",
         "type": "inn",
         "description": "Quiet older stone building, two stories, internal courtyard. Four rooms — two larger courtyard-facing, two smaller street-facing. Common room with hearth. Breakfast included, dinner available on request.",
-        "npcs_present": [
-          "Griffas"
-        ],
+        "npcs_present": ["Griffas"],
         "notes": "Three streets back from lower harbour, dock district.",
         "id": "locations_tilawam_1"
       },
@@ -901,10 +836,7 @@
         "name": "Sorreval and Sons",
         "type": "trading_house",
         "description": "Three generation trading house. Permanent frontage in merchant district. House mark above door in iron.",
-        "npcs_present": [
-          "Taenya Sorreval",
-          "Davan"
-        ],
+        "npcs_present": ["Taenya Sorreval", "Davan"],
         "notes": "Formal trade partnership with Dawn Blades. Handles Tilawam-side storage, buyers, suppliers.",
         "id": "locations_tilawam_2"
       },
@@ -912,9 +844,7 @@
         "name": "Ssivanak's Workshop",
         "type": "shop",
         "description": "Upper district. Dark green door, no signage. Dense, organized interior. Back room houses large items.",
-        "npcs_present": [
-          "Ssivanak"
-        ],
+        "npcs_present": ["Ssivanak"],
         "notes": "Only magical item dealer in Tilawam.",
         "id": "locations_tilawam_3"
       },
@@ -922,9 +852,7 @@
         "name": "Brama Coinsmith's Office",
         "type": "government_office",
         "description": "Upper district. Identified by copper door.",
-        "npcs_present": [
-          "Brama Coinsmith"
-        ],
+        "npcs_present": ["Brama Coinsmith"],
         "notes": "",
         "id": "locations_tilawam_4"
       },
@@ -973,9 +901,7 @@
         "name": "Jax's Place",
         "type": "residence",
         "description": "Narrow building wedged between a cooperage and a feed store. Original use unclear — too small for a proper shop, too cluttered for a house. Windows papered from inside with what looks like old maps. Completely stacked full with hand-written books that appear to be gibberish.",
-        "npcs_present": [
-          "Scribblin' Jax"
-        ],
+        "npcs_present": ["Scribblin' Jax"],
         "notes": "Jax has lived here four years. Locals treat him as harmless local color. The papered windows are deliberate — nobody can see in."
       }
     ]

@@ -2088,6 +2088,30 @@
       "subtitle": null,
       "action_type": null,
       "recharge": null
+    },
+    {
+      "name": "Tattoo of Warding",
+      "description": "Once per long rest, as a reaction, you may completely block one incoming ranged attack — negating all damage and effects from that attack. The tattoo is inscribed on the sword arm and activates instinctively.",
+      "type": "feature",
+      "source": "Campaign homebrew"
+    },
+    {
+      "name": "Divine Magic",
+      "description": "Divine Soul Sorcerer feature. You have access to the full Cleric spell list in addition to the Sorcerer spell list. When you learn a Sorcerer spell, you may choose from either list.",
+      "type": "feature",
+      "source": "Divine Soul (Sorcerer subclass)"
+    },
+    {
+      "name": "Favored by the Gods",
+      "description": "Divine Soul Sorcerer feature. When you fail a saving throw or miss with an attack roll, you can roll 2d4 and add it to the total, possibly changing the outcome. Once used, cannot be used again until you finish a short or long rest.",
+      "type": "feature",
+      "source": "Divine Soul (Sorcerer subclass)"
+    },
+    {
+      "name": "Empowered Healing",
+      "description": "Divine Soul Sorcerer feature. When you or an ally within 5 feet of you rolls dice to determine hit points restored by a spell, you may spend 1 sorcery point to reroll any number of those dice once, taking the new result.",
+      "type": "feature",
+      "source": "Divine Soul (Sorcerer subclass)"
     }
   ],
   "domain_spells": {

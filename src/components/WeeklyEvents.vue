@@ -1,6 +1,5 @@
 <template>
   <div class="we-root">
-
     <div class="we-header">
       <div>
         <div class="we-title">Weekly Resolution</div>
@@ -12,22 +11,30 @@
     </div>
 
     <div v-if="!results" class="we-empty">
-      Click <strong>Roll Week</strong> to resolve this week's income, refugees arriving at Revivify, and any scheduled events.
+      Click <strong>Roll Week</strong> to resolve this week's income, refugees
+      arriving at Revivify, and any scheduled events.
     </div>
 
     <div v-else class="we-body">
-
       <!-- ── Income ── -->
       <div class="we-section">
         <div class="we-section-title">Income</div>
         <div v-for="item in results.income" :key="item.source" class="we-row">
           <span class="we-row-name">{{ item.source }}</span>
-          <span v-if="item.amount_min !== item.amount_max" class="we-row-range">{{ item.amount_min.toLocaleString() }}–{{ item.amount_max.toLocaleString() }}</span>
-          <span class="we-row-amount we-amount--income">+{{ item.rolled.toLocaleString() }} gp</span>
+          <span v-if="item.amount_min !== item.amount_max" class="we-row-range"
+            >{{ item.amount_min.toLocaleString() }}–{{
+              item.amount_max.toLocaleString()
+            }}</span
+          >
+          <span class="we-row-amount we-amount--income"
+            >+{{ item.rolled.toLocaleString() }} gp</span
+          >
         </div>
         <div class="we-section-total">
           <span>Weekly total</span>
-          <span class="we-total-amount we-amount--income">{{ results.totalIncome.toLocaleString() }} gp</span>
+          <span class="we-total-amount we-amount--income"
+            >{{ results.totalIncome.toLocaleString() }} gp</span
+          >
         </div>
       </div>
 
@@ -36,34 +43,59 @@
         <div class="we-section-title">Expenses</div>
         <div v-for="item in results.expenses" :key="item.name" class="we-row">
           <span class="we-row-name">{{ item.name }}</span>
-          <span v-if="item.amount_min !== item.amount_max" class="we-row-range">{{ item.amount_min.toLocaleString() }}–{{ item.amount_max.toLocaleString() }}</span>
-          <span class="we-row-amount we-amount--expense">−{{ item.rolled.toLocaleString() }} gp</span>
+          <span v-if="item.amount_min !== item.amount_max" class="we-row-range"
+            >{{ item.amount_min.toLocaleString() }}–{{
+              item.amount_max.toLocaleString()
+            }}</span
+          >
+          <span class="we-row-amount we-amount--expense"
+            >−{{ item.rolled.toLocaleString() }} gp</span
+          >
         </div>
         <div v-if="monthlyExpenses.length" class="we-monthly-note">
           <span class="we-monthly-label">Monthly (not counted this week):</span>
-          <span v-for="item in monthlyExpenses" :key="item.name" class="we-monthly-item">
+          <span
+            v-for="item in monthlyExpenses"
+            :key="item.name"
+            class="we-monthly-item"
+          >
             {{ item.name }} ({{ item.amount_min }}–{{ item.amount_max }} gp/mo)
           </span>
         </div>
         <div class="we-section-total">
           <span>Weekly total</span>
-          <span class="we-total-amount we-amount--expense">{{ results.totalExpenses.toLocaleString() }} gp</span>
+          <span class="we-total-amount we-amount--expense"
+            >{{ results.totalExpenses.toLocaleString() }} gp</span
+          >
         </div>
       </div>
 
       <!-- ── Net ── -->
-      <div class="we-net" :class="results.net >= 0 ? 'we-net--pos' : 'we-net--neg'">
+      <div
+        class="we-net"
+        :class="results.net >= 0 ? 'we-net--pos' : 'we-net--neg'"
+      >
         <span class="we-net-label">Net this week</span>
-        <span class="we-net-amount">{{ results.net >= 0 ? '+' : '' }}{{ results.net.toLocaleString() }} gp</span>
+        <span class="we-net-amount"
+          >{{ results.net >= 0 ? '+' : ''
+          }}{{ results.net.toLocaleString() }} gp</span
+        >
       </div>
 
       <!-- ── Revivify refugees ── -->
       <div class="we-section">
         <div class="we-section-title">
-          Revivify — {{ results.refugees.count }} refugee{{ results.refugees.count !== 1 ? 's' : '' }} arriving this week
+          Revivify — {{ results.refugees.count }} refugee{{
+            results.refugees.count !== 1 ? 's' : ''
+          }}
+          arriving this week
           <span class="we-section-dice">1d4+3</span>
         </div>
-        <div v-for="(r, i) in results.refugees.rolls" :key="i" class="we-row we-refugee-row">
+        <div
+          v-for="(r, i) in results.refugees.rolls"
+          :key="i"
+          class="we-row we-refugee-row"
+        >
           <span class="we-refugee-num">#{{ i + 1 }}</span>
           <span class="we-d20" :class="d20Class(r.roll)">{{ r.roll }}</span>
           <span class="we-refugee-label">{{ r.label }}</span>
@@ -81,7 +113,6 @@
         </div>
         <div v-else class="we-no-events">No weekly events scheduled.</div>
       </div>
-
     </div>
   </div>
 </template>
@@ -90,20 +121,48 @@
 import eventsData from '@/data/events.json'
 
 const REFUGEE_TIERS = [
-  { max: 1,  label: 'Critically desperate — may need immediate intervention',  cls: 'tier-critical'     },
-  { max: 5,  label: 'Standard — needs shelter, stability, and time',            cls: 'tier-standard'     },
-  { max: 10, label: 'Interesting — notable skill or unusual background',        cls: 'tier-interesting'  },
-  { max: 15, label: 'Remarkable — significant history or connections',          cls: 'tier-remarkable'   },
-  { max: 19, label: 'Extraordinary — rare circumstances, clear story thread',   cls: 'tier-extraordinary'},
-  { max: 20, label: 'Exceptional — major NPC potential, unique situation',      cls: 'tier-exceptional'  },
+  {
+    max: 1,
+    label: 'Critically desperate — may need immediate intervention',
+    cls: 'tier-critical',
+  },
+  {
+    max: 5,
+    label: 'Standard — needs shelter, stability, and time',
+    cls: 'tier-standard',
+  },
+  {
+    max: 10,
+    label: 'Interesting — notable skill or unusual background',
+    cls: 'tier-interesting',
+  },
+  {
+    max: 15,
+    label: 'Remarkable — significant history or connections',
+    cls: 'tier-remarkable',
+  },
+  {
+    max: 19,
+    label: 'Extraordinary — rare circumstances, clear story thread',
+    cls: 'tier-extraordinary',
+  },
+  {
+    max: 20,
+    label: 'Exceptional — major NPC potential, unique situation',
+    cls: 'tier-exceptional',
+  },
 ]
 
 function rollBetween(min, max) {
   if (min === max) return min
   return min + Math.floor(Math.random() * (max - min + 1))
 }
-function d4()  { return Math.floor(Math.random() * 4)  + 1 }
-function d20() { return Math.floor(Math.random() * 20) + 1 }
+function d4() {
+  return Math.floor(Math.random() * 4) + 1
+}
+function d20() {
+  return Math.floor(Math.random() * 20) + 1
+}
 
 export default {
   name: 'WeeklyEvents',
@@ -120,15 +179,21 @@ export default {
     },
 
     weeklyIncome() {
-      return (this.finances.income || []).filter((i) => i.frequency === 'weekly')
+      return (this.finances.income || []).filter(
+        (i) => i.frequency === 'weekly'
+      )
     },
 
     weeklyExpenses() {
-      return (this.finances.expenses || []).filter((e) => e.frequency === 'weekly')
+      return (this.finances.expenses || []).filter(
+        (e) => e.frequency === 'weekly'
+      )
     },
 
     monthlyExpenses() {
-      return (this.finances.expenses || []).filter((e) => e.frequency === 'monthly')
+      return (this.finances.expenses || []).filter(
+        (e) => e.frequency === 'monthly'
+      )
     },
 
     weeklyEvents() {
@@ -148,7 +213,7 @@ export default {
         rolled: rollBetween(item.amount_min, item.amount_max),
       }))
 
-      const totalIncome   = income.reduce((s, i) => s + i.rolled, 0)
+      const totalIncome = income.reduce((s, i) => s + i.rolled, 0)
       const totalExpenses = expenses.reduce((s, i) => s + i.rolled, 0)
 
       const refugeeCount = d4() + 3
@@ -217,7 +282,9 @@ export default {
   cursor: pointer;
   transition: background 0.15s;
 }
-.we-roll-btn:hover { background: var(--color-accent-strong); }
+.we-roll-btn:hover {
+  background: var(--color-accent-strong);
+}
 
 /* ── Empty state ── */
 .we-empty {
@@ -274,7 +341,9 @@ export default {
   border-radius: 3px;
   font-size: var(--font-size-base);
 }
-.we-row:hover { background: rgba(255,255,255,0.03); }
+.we-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
 
 .we-row-name {
   flex: 1;
@@ -297,8 +366,12 @@ export default {
   text-align: right;
 }
 
-.we-amount--income  { color: #5a9e5a; }
-.we-amount--expense { color: #c0442a; }
+.we-amount--income {
+  color: #5a9e5a;
+}
+.we-amount--expense {
+  color: #c0442a;
+}
 
 /* ── Monthly note ── */
 .we-monthly-note {
@@ -310,8 +383,13 @@ export default {
   color: var(--color-text-low);
   font-style: italic;
 }
-.we-monthly-label { color: var(--color-text-muted); font-style: normal; }
-.we-monthly-item  { white-space: nowrap; }
+.we-monthly-label {
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+.we-monthly-item {
+  white-space: nowrap;
+}
 
 /* ── Section total ── */
 .we-section-total {
@@ -338,20 +416,35 @@ export default {
   border-radius: 6px;
   border: 1px solid;
 }
-.we-net--pos { border-color: #5a9e5a; background: rgba(90,158,90,0.1); }
-.we-net--neg { border-color: #c0442a; background: rgba(192,68,42,0.1); }
+.we-net--pos {
+  border-color: #5a9e5a;
+  background: rgba(90, 158, 90, 0.1);
+}
+.we-net--neg {
+  border-color: #c0442a;
+  background: rgba(192, 68, 42, 0.1);
+}
 
-.we-net-label  { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.we-net-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
 .we-net-amount {
   font-family: var(--font-display);
   font-size: var(--font-size-xl);
   font-weight: 700;
 }
-.we-net--pos .we-net-amount { color: #5a9e5a; }
-.we-net--neg .we-net-amount { color: #c0442a; }
+.we-net--pos .we-net-amount {
+  color: #5a9e5a;
+}
+.we-net--neg .we-net-amount {
+  color: #c0442a;
+}
 
 /* ── Refugees ── */
-.we-refugee-row { gap: 0.6rem; }
+.we-refugee-row {
+  gap: 0.6rem;
+}
 
 .we-refugee-num {
   font-size: var(--font-size-xs);
@@ -373,12 +466,36 @@ export default {
   flex-shrink: 0;
 }
 
-.tier-critical      { border-color: #8b1a1a; color: #c84444; background: rgba(139,26,26,0.15); }
-.tier-standard      { border-color: var(--color-border); color: var(--color-text-muted); background: transparent; }
-.tier-interesting   { border-color: #336699; color: #5588cc; background: rgba(51,102,153,0.12); }
-.tier-remarkable    { border-color: #6644aa; color: #9966dd; background: rgba(102,68,170,0.12); }
-.tier-extraordinary { border-color: #997722; color: #ccaa44; background: rgba(153,119,34,0.12); }
-.tier-exceptional   { border-color: var(--color-accent); color: var(--color-accent-strong); background: rgba(200,169,110,0.15); }
+.tier-critical {
+  border-color: #8b1a1a;
+  color: #c84444;
+  background: rgba(139, 26, 26, 0.15);
+}
+.tier-standard {
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+  background: transparent;
+}
+.tier-interesting {
+  border-color: #336699;
+  color: #5588cc;
+  background: rgba(51, 102, 153, 0.12);
+}
+.tier-remarkable {
+  border-color: #6644aa;
+  color: #9966dd;
+  background: rgba(102, 68, 170, 0.12);
+}
+.tier-extraordinary {
+  border-color: #997722;
+  color: #ccaa44;
+  background: rgba(153, 119, 34, 0.12);
+}
+.tier-exceptional {
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+  background: rgba(200, 169, 110, 0.15);
+}
 
 .we-refugee-label {
   font-size: var(--font-size-sm);

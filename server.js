@@ -24,6 +24,8 @@ const ALLOWED_TABLES = [
   'factions',
   'quests',
   'finances',
+  'networks',
+  'assets',
 ]
 
 app.use(cors())
@@ -119,7 +121,9 @@ app.post('/api/:table', (req, res) => {
 app.patch('/api/homebrew/:section', (req, res) => {
   const { section } = req.params
   if (!['spells', 'features'].includes(section)) {
-    return res.status(400).json({ error: 'Section must be "spells" or "features"' })
+    return res
+      .status(400)
+      .json({ error: 'Section must be "spells" or "features"' })
   }
   const item = req.body
   if (!item?.name) {
@@ -148,7 +152,14 @@ app.patch('/api/homebrew/:section', (req, res) => {
 
 // ── GET /api/cache/:filename ─────────────────────────────
 const CACHE_DIR = path.resolve(__dirname, './src/data/api_data_cache')
-const ALLOWED_CACHE_FILES = ['spells', 'features', 'items', 'monsters', 'species', 'backgrounds']
+const ALLOWED_CACHE_FILES = [
+  'spells',
+  'features',
+  'items',
+  'monsters',
+  'species',
+  'backgrounds',
+]
 
 app.get('/api/cache/:filename', (req, res) => {
   const { filename } = req.params
@@ -157,7 +168,9 @@ app.get('/api/cache/:filename', (req, res) => {
   }
   const file = path.join(CACHE_DIR, `${filename}.json`)
   if (!fs.existsSync(file)) {
-    return res.status(404).json({ error: `Cache file not found: ${filename}.json` })
+    return res
+      .status(404)
+      .json({ error: `Cache file not found: ${filename}.json` })
   }
   try {
     const data = JSON.parse(fs.readFileSync(file, 'utf8'))

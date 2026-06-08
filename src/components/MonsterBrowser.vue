@@ -1,4 +1,5 @@
-﻿﻿﻿<template>
+﻿﻿﻿
+<template>
   <div class="monster-browser">
     <!-- Filters sidebar -->
     <aside class="mb-filters scrollable">
@@ -20,7 +21,9 @@
             class="mb-chip"
             :class="{ active: crBracket === b.label }"
             @click="setCR(b)"
-          >{{ b.label }}</button>
+          >
+            {{ b.label }}
+          </button>
         </div>
       </div>
 
@@ -30,15 +33,25 @@
           <button
             class="mb-chip"
             :class="{ active: filterType === null }"
-            @click="filterType = null; resetPage()"
-          >Any</button>
+            @click="
+              filterType = null
+              resetPage()
+            "
+          >
+            Any
+          </button>
           <button
             v-for="t in TYPES"
             :key="t"
             class="mb-chip"
             :class="{ active: filterType === t }"
-            @click="filterType = t; resetPage()"
-          >{{ t }}</button>
+            @click="
+              filterType = t
+              resetPage()
+            "
+          >
+            {{ t }}
+          </button>
         </div>
       </div>
 
@@ -48,15 +61,25 @@
           <button
             class="mb-chip"
             :class="{ active: filterSize === null }"
-            @click="filterSize = null; resetPage()"
-          >Any</button>
+            @click="
+              filterSize = null
+              resetPage()
+            "
+          >
+            Any
+          </button>
           <button
             v-for="s in SIZES"
             :key="s"
             class="mb-chip"
             :class="{ active: filterSize === s }"
-            @click="filterSize = s; resetPage()"
-          >{{ s }}</button>
+            @click="
+              filterSize = s
+              resetPage()
+            "
+          >
+            {{ s }}
+          </button>
         </div>
       </div>
 
@@ -68,12 +91,19 @@
             :key="src.label"
             class="mb-chip"
             :class="{ active: filterSource === src.key }"
-            @click="filterSource = src.key; resetPage()"
-          >{{ src.label }}</button>
+            @click="
+              filterSource = src.key
+              resetPage()
+            "
+          >
+            {{ src.label }}
+          </button>
         </div>
       </div>
 
-      <div class="mb-result-count">{{ filteredMonsters.length.toLocaleString() }} monsters</div>
+      <div class="mb-result-count">
+        {{ filteredMonsters.length.toLocaleString() }} monsters
+      </div>
     </aside>
 
     <!-- Monster list -->
@@ -87,15 +117,35 @@
           @click="selectMonster(m)"
         >
           <span class="mb-row-name">{{ m.name }}</span>
-          <span class="mb-row-cr">{{ m.cr != null ? 'CR ' + formatCR(m.cr) : '—' }}</span>
+          <span class="mb-row-cr">{{
+            m.cr != null ? 'CR ' + formatCR(m.cr) : '—'
+          }}</span>
           <span class="mb-row-type">{{ m.type ?? '—' }}</span>
           <span class="mb-row-size">{{ m.size ? m.size[0] : '—' }}</span>
         </div>
       </div>
       <div class="mb-pagination" v-if="totalPages > 1">
-        <button class="mb-page-btn" :disabled="page === 0" @click="page--; scrollTop()">‹</button>
+        <button
+          class="mb-page-btn"
+          :disabled="page === 0"
+          @click="
+            page--
+            scrollTop()
+          "
+        >
+          ‹
+        </button>
         <span class="mb-page-info">{{ page + 1 }} / {{ totalPages }}</span>
-        <button class="mb-page-btn" :disabled="page >= totalPages - 1" @click="page++; scrollTop()">›</button>
+        <button
+          class="mb-page-btn"
+          :disabled="page >= totalPages - 1"
+          @click="
+            page++
+            scrollTop()
+          "
+        >
+          ›
+        </button>
       </div>
     </div>
 
@@ -104,9 +154,13 @@
       <div class="mb-detail-header">
         <div class="mb-detail-name">{{ selected.name }}</div>
         <div class="mb-detail-subtitle">
-          {{ selected.size }} {{ selected.type }}{{ selected.alignment ? ' · ' + selected.alignment : '' }}
+          {{ selected.size }} {{ selected.type
+          }}{{ selected.alignment ? ' · ' + selected.alignment : '' }}
         </div>
-        <div class="mb-detail-source">{{ selected.book }}{{ selected.publisher ? ' — ' + selected.publisher : '' }}</div>
+        <div class="mb-detail-source">
+          {{ selected.book
+          }}{{ selected.publisher ? ' — ' + selected.publisher : '' }}
+        </div>
       </div>
 
       <div v-if="loadingStats" class="mb-loading">Loading stats…</div>
@@ -115,11 +169,21 @@
       <template v-if="statBlock">
         <div class="mb-stat-row">
           <div class="mb-stat-chip">
-            <span class="mb-stat-val">{{ statBlock.ac }}<span v-if="statBlock.ac_note" class="mb-stat-note"> ({{ statBlock.ac_note }})</span></span>
+            <span class="mb-stat-val"
+              >{{ statBlock.ac
+              }}<span v-if="statBlock.ac_note" class="mb-stat-note">
+                ({{ statBlock.ac_note }})</span
+              ></span
+            >
             <span class="mb-stat-label">AC</span>
           </div>
           <div class="mb-stat-chip">
-            <span class="mb-stat-val">{{ statBlock.hp }}<span v-if="statBlock.hit_dice" class="mb-stat-note"> ({{ statBlock.hit_dice }})</span></span>
+            <span class="mb-stat-val"
+              >{{ statBlock.hp
+              }}<span v-if="statBlock.hit_dice" class="mb-stat-note">
+                ({{ statBlock.hit_dice }})</span
+              ></span
+            >
             <span class="mb-stat-label">HP</span>
           </div>
           <div class="mb-stat-chip">
@@ -128,7 +192,9 @@
           </div>
           <div class="mb-stat-chip">
             <span class="mb-stat-val">CR {{ formatCR(statBlock.cr) }}</span>
-            <span class="mb-stat-label">{{ statBlock.xp != null ? statBlock.xp.toLocaleString() + ' XP' : '' }}</span>
+            <span class="mb-stat-label">{{
+              statBlock.xp != null ? statBlock.xp.toLocaleString() + ' XP' : ''
+            }}</span>
           </div>
         </div>
 
@@ -136,32 +202,53 @@
           <div v-for="ab in ABILITIES" :key="ab.key" class="mb-ability">
             <span class="mb-ability-label">{{ ab.label }}</span>
             <span class="mb-ability-score">{{ statBlock[ab.key] }}</span>
-            <span class="mb-ability-mod">{{ signedMod(statBlock[ab.key]) }}</span>
+            <span class="mb-ability-mod">{{
+              signedMod(statBlock[ab.key])
+            }}</span>
           </div>
         </div>
 
         <div v-if="statBlock.saving_throws.length" class="mb-detail-line">
           <span class="mb-detail-key">Saves</span>
-          {{ statBlock.saving_throws.map(s => s.stat + ' ' + signed(s.bonus)).join(', ') }}
+          {{
+            statBlock.saving_throws
+              .map((s) => s.stat + ' ' + signed(s.bonus))
+              .join(', ')
+          }}
         </div>
         <div v-if="statBlock.skills.length" class="mb-detail-line">
           <span class="mb-detail-key">Skills</span>
-          {{ statBlock.skills.map(s => s.name + ' ' + signed(s.bonus)).join(', ') }}
+          {{
+            statBlock.skills
+              .map((s) => s.name + ' ' + signed(s.bonus))
+              .join(', ')
+          }}
         </div>
-        <div v-if="statBlock.damage_vulnerabilities.length" class="mb-detail-line">
-          <span class="mb-detail-key">Vulnerabilities</span>{{ statBlock.damage_vulnerabilities.join(', ') }}
+        <div
+          v-if="statBlock.damage_vulnerabilities.length"
+          class="mb-detail-line"
+        >
+          <span class="mb-detail-key">Vulnerabilities</span
+          >{{ statBlock.damage_vulnerabilities.join(', ') }}
         </div>
         <div v-if="statBlock.damage_resistances.length" class="mb-detail-line">
-          <span class="mb-detail-key">Resistances</span>{{ statBlock.damage_resistances.join(', ') }}
+          <span class="mb-detail-key">Resistances</span
+          >{{ statBlock.damage_resistances.join(', ') }}
         </div>
         <div v-if="statBlock.damage_immunities.length" class="mb-detail-line">
-          <span class="mb-detail-key">Immunities</span>{{ statBlock.damage_immunities.join(', ') }}
+          <span class="mb-detail-key">Immunities</span
+          >{{ statBlock.damage_immunities.join(', ') }}
         </div>
-        <div v-if="statBlock.condition_immunities.length" class="mb-detail-line">
-          <span class="mb-detail-key">Cond. Immune</span>{{ statBlock.condition_immunities.join(', ') }}
+        <div
+          v-if="statBlock.condition_immunities.length"
+          class="mb-detail-line"
+        >
+          <span class="mb-detail-key">Cond. Immune</span
+          >{{ statBlock.condition_immunities.join(', ') }}
         </div>
         <div v-if="statBlock.senses" class="mb-detail-line">
-          <span class="mb-detail-key">Senses</span>{{ formatSenses(statBlock.senses) }}
+          <span class="mb-detail-key">Senses</span
+          >{{ formatSenses(statBlock.senses) }}
         </div>
         <div v-if="statBlock.languages" class="mb-detail-line">
           <span class="mb-detail-key">Languages</span>{{ statBlock.languages }}
@@ -169,28 +256,44 @@
 
         <template v-if="statBlock.special_abilities.length">
           <div class="section-label mb-section-label">Traits</div>
-          <div v-for="t in statBlock.special_abilities" :key="t.name" class="mb-ability-block">
+          <div
+            v-for="t in statBlock.special_abilities"
+            :key="t.name"
+            class="mb-ability-block"
+          >
             <span class="mb-ability-name">{{ t.name }}.</span> {{ t.desc }}
           </div>
         </template>
 
         <template v-if="statBlock.actions.length">
           <div class="section-label mb-section-label">Actions</div>
-          <div v-for="a in statBlock.actions" :key="a.name" class="mb-ability-block">
+          <div
+            v-for="a in statBlock.actions"
+            :key="a.name"
+            class="mb-ability-block"
+          >
             <span class="mb-ability-name">{{ a.name }}.</span> {{ a.desc }}
           </div>
         </template>
 
         <template v-if="statBlock.reactions && statBlock.reactions.length">
           <div class="section-label mb-section-label">Reactions</div>
-          <div v-for="r in statBlock.reactions" :key="r.name" class="mb-ability-block">
+          <div
+            v-for="r in statBlock.reactions"
+            :key="r.name"
+            class="mb-ability-block"
+          >
             <span class="mb-ability-name">{{ r.name }}.</span> {{ r.desc }}
           </div>
         </template>
 
         <template v-if="statBlock.legendary_actions.length">
           <div class="section-label mb-section-label">Legendary Actions</div>
-          <div v-for="la in statBlock.legendary_actions" :key="la.name" class="mb-ability-block">
+          <div
+            v-for="la in statBlock.legendary_actions"
+            :key="la.name"
+            class="mb-ability-block"
+          >
             <span class="mb-ability-name">{{ la.name }}.</span> {{ la.desc }}
           </div>
         </template>
@@ -200,7 +303,9 @@
       <template v-else-if="!loadingStats">
         <div class="mb-stat-row">
           <div class="mb-stat-chip">
-            <span class="mb-stat-val">{{ selected.cr != null ? formatCR(selected.cr) : '—' }}</span>
+            <span class="mb-stat-val">{{
+              selected.cr != null ? formatCR(selected.cr) : '—'
+            }}</span>
             <span class="mb-stat-label">CR</span>
           </div>
           <div v-if="selected.size" class="mb-stat-chip">
@@ -208,7 +313,9 @@
             <span class="mb-stat-label">Size</span>
           </div>
         </div>
-        <p class="mb-no-stats">Full stat block not in SRD — only basic info available.</p>
+        <p class="mb-no-stats">
+          Full stat block not in SRD — only basic info available.
+        </p>
       </template>
     </div>
 
@@ -224,29 +331,42 @@ import { lookupMonster } from '@/utils/lookupService.js'
 const PAGE_SIZE = 50
 
 const CR_BRACKETS = [
-  { label: 'Any',  min: null,  max: null  },
-  { label: '0',    min: 0,     max: 0     },
-  { label: '¼–½',  min: 0.125, max: 0.5  },
-  { label: '1–4',  min: 1,     max: 4     },
-  { label: '5–10', min: 5,     max: 10    },
-  { label: '11–16',min: 11,    max: 16    },
-  { label: '17–20',min: 17,    max: 20    },
-  { label: '21+',  min: 21,    max: 30    },
+  { label: 'Any', min: null, max: null },
+  { label: '0', min: 0, max: 0 },
+  { label: '¼–½', min: 0.125, max: 0.5 },
+  { label: '1–4', min: 1, max: 4 },
+  { label: '5–10', min: 5, max: 10 },
+  { label: '11–16', min: 11, max: 16 },
+  { label: '17–20', min: 17, max: 20 },
+  { label: '21+', min: 21, max: 30 },
 ]
 
 const TYPES = [
-  'Aberration','Beast','Celestial','Construct','Dragon','Elemental',
-  'Fey','Fiend','Giant','Humanoid','Monstrosity','Ooze','Plant','Swarm','Undead',
+  'Aberration',
+  'Beast',
+  'Celestial',
+  'Construct',
+  'Dragon',
+  'Elemental',
+  'Fey',
+  'Fiend',
+  'Giant',
+  'Humanoid',
+  'Monstrosity',
+  'Ooze',
+  'Plant',
+  'Swarm',
+  'Undead',
 ]
 
-const SIZES = ['Tiny','Small','Medium','Large','Huge','Gargantuan']
+const SIZES = ['Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan']
 
 const SOURCES = [
-  { label: 'All',         key: null },
-  { label: 'WotC',        key: 'Wizards of the Coast' },
-  { label: 'Kobold',      key: 'Kobold Press' },
-  { label: 'MCDM',        key: 'MCDM Productions' },
-  { label: 'Other',       key: '__other__' },
+  { label: 'All', key: null },
+  { label: 'WotC', key: 'Wizards of the Coast' },
+  { label: 'Kobold', key: 'Kobold Press' },
+  { label: 'MCDM', key: 'MCDM Productions' },
+  { label: 'Other', key: '__other__' },
 ]
 
 const ABILITIES = [
@@ -258,7 +378,11 @@ const ABILITIES = [
   { key: 'cha', label: 'CHA' },
 ]
 
-const MAIN_PUBLISHERS = new Set(['Wizards of the Coast','Kobold Press','MCDM Productions'])
+const MAIN_PUBLISHERS = new Set([
+  'Wizards of the Coast',
+  'Kobold Press',
+  'MCDM Productions',
+])
 
 export default {
   name: 'MonsterBrowser',
@@ -290,8 +414,10 @@ export default {
       const q = this.search.trim().toLowerCase()
       return this.monsters.filter((m) => {
         if (q && !m.name.toLowerCase().includes(q)) return false
-        if (this.crMin !== null && (m.cr == null || m.cr < this.crMin)) return false
-        if (this.crMax !== null && (m.cr == null || m.cr > this.crMax)) return false
+        if (this.crMin !== null && (m.cr == null || m.cr < this.crMin))
+          return false
+        if (this.crMax !== null && (m.cr == null || m.cr > this.crMax))
+          return false
         if (this.filterType && m.type !== this.filterType) return false
         if (this.filterSize && m.size !== this.filterSize) return false
         if (this.filterSource) {
@@ -340,8 +466,8 @@ export default {
     },
     formatCR(cr) {
       if (cr === 0.125) return '1/8'
-      if (cr === 0.25)  return '1/4'
-      if (cr === 0.5)   return '1/2'
+      if (cr === 0.25) return '1/4'
+      if (cr === 0.5) return '1/2'
       return String(cr)
     },
     formatSpeed(speed) {
@@ -349,7 +475,7 @@ export default {
       if (typeof speed === 'string') return speed
       return Object.entries(speed)
         .filter(([, v]) => v)
-        .map(([k, v]) => k === 'walk' ? `${v} ft` : `${k} ${v} ft`)
+        .map(([k, v]) => (k === 'walk' ? `${v} ft` : `${k} ${v} ft`))
         .join(', ')
     },
     formatSenses(senses) {

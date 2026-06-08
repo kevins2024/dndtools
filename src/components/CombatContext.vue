@@ -1,9 +1,8 @@
-﻿﻿﻿<template>
+﻿﻿﻿
+<template>
   <div class="combat-context">
-
     <!-- â”€â”€ Setup phase â”€â”€ -->
     <template v-if="phase === 'setup'">
-
       <aside class="col bench-col scrollable">
         <div class="col-label">Bench</div>
         <PlayerCharacterSelect />
@@ -12,41 +11,22 @@
       <aside class="col ondeck-col scrollable">
         <div class="col-label">On-Deck</div>
 
-        <!-- Saved parties -->
+        <!-- Parties from store — managed via Party tab -->
         <div class="parties-section">
-          <div v-if="savedParties.length" class="parties-pills">
+          <div v-if="parties.length" class="parties-pills">
             <div
-              v-for="party in savedParties"
-              :key="party.name"
+              v-for="party in parties"
+              :key="party.id"
               class="party-pill"
+              :class="{ active: party.active }"
               :title="party.members.join(', ')"
               @click="loadParty(party)"
             >
               {{ party.name }}
-              <button class="pill-remove" @click.stop="deleteParty(party)">✕</button>
             </div>
           </div>
-
-          <div v-if="!savingParty" class="parties-actions">
-            <button
-              v-if="playerNames.length > 0"
-              class="save-party-btn"
-              @click="promptSaveParty"
-            >
-              + Save party
-            </button>
-          </div>
-          <div v-else class="party-save-form">
-            <input
-              ref="partyNameInput"
-              v-model="newPartyName"
-              class="field"
-              placeholder="Party name…"
-              @keyup.enter="confirmSaveParty"
-              @keyup.escape="cancelSaveParty"
-            />
-            <button class="add-btn" :disabled="!newPartyName.trim()" @click="confirmSaveParty">Save</button>
-            <button class="remove-btn" @click="cancelSaveParty">✕</button>
+          <div v-else class="col-empty">
+            No parties — create one in the Party tab.
           </div>
         </div>
 
@@ -73,8 +53,13 @@
       <section class="col enemy-col scrollable">
         <div class="col-label">Enemies</div>
         <div v-if="currentEncounter" class="enc-load-bar">
-          <span class="enc-load-hint">{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} · {{ currentEncounter.enemies.length }} enemies</span>
-          <button class="enc-load-btn" @click="loadEncounterEnemies">Load Encounter</button>
+          <span class="enc-load-hint"
+            >{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} ·
+            {{ currentEncounter.enemies.length }} enemies</span
+          >
+          <button class="enc-load-btn" @click="loadEncounterEnemies">
+            Load Encounter
+          </button>
         </div>
         <div class="enemy-input-row">
           <input
@@ -90,9 +75,7 @@
             type="number"
             @keyup.enter="addEnemy"
           />
-          <button class="add-btn" @click="addEnemy">
-            Add
-          </button>
+          <button class="add-btn" @click="addEnemy">Add</button>
         </div>
         <div class="enemy-list">
           <div v-for="e in enemies" :key="e.id" class="enemy-row">
@@ -108,7 +91,9 @@
 
       <div class="roll-bar">
         <button class="exit-btn" @click="exitCombat">Exit Combat</button>
-        <button class="gen-btn" @click="showEncounterModal = true">Generate Encounter</button>
+        <button class="gen-btn" @click="showEncounterModal = true">
+          Generate Encounter
+        </button>
         <button
           class="roll-btn"
           :disabled="!hasAnyCombatant"
@@ -117,37 +102,59 @@
           Roll Initiative
         </button>
       </div>
-
     </template>
 
     <!-- â”€â”€ Battle phase â”€â”€ -->
     <template v-else>
-      <Battle class="battle-fill" :order="initiativeOrder" :combatant-states="combatantStates" @override-roll="onOverrideRoll" @add-enemy="onAddEnemyMidFight" @toggle-friendly="onToggleFriendly" @remove-enemy="onRemoveEnemy" />
+      <Battle
+        class="battle-fill"
+        :order="initiativeOrder"
+        :combatant-states="combatantStates"
+        @override-roll="onOverrideRoll"
+        @add-enemy="onAddEnemyMidFight"
+        @toggle-friendly="onToggleFriendly"
+        @remove-enemy="onRemoveEnemy"
+      />
       <div class="roll-bar">
         <div class="roll-bar-left">
           <button class="exit-btn" @click="exitCombat">Exit Combat</button>
-          <button class="back-btn" @click="phase = 'setup'">← Back to Setup</button>
+          <button class="back-btn" @click="phase = 'setup'">
+            ← Back to Setup
+          </button>
         </div>
         <div class="roll-bar-right">
-          <button class="map-btn" @click="showBattleMap = true">Battle Map</button>
+          <button class="map-btn" @click="showBattleMap = true">
+            Battle Map
+          </button>
         </div>
       </div>
-      <BattleMap v-show="showBattleMap" :visible="showBattleMap" :order="initiativeOrder" :combatant-states="combatantStates" @close="showBattleMap = false" />
+      <BattleMap
+        v-show="showBattleMap"
+        :visible="showBattleMap"
+        :order="initiativeOrder"
+        :combatant-states="combatantStates"
+        @close="showBattleMap = false"
+      />
     </template>
 
     <!-- â”€â”€ Encounter Generator Modal â”€â”€ -->
-    <div v-if="showEncounterModal" class="enc-modal-overlay" @click.self="showEncounterModal = false">
+    <div
+      v-if="showEncounterModal"
+      class="enc-modal-overlay"
+      @click.self="showEncounterModal = false"
+    >
       <div class="enc-modal">
         <div class="enc-modal-header">
           <span>Encounter Generator</span>
-          <button class="enc-modal-close" @click="showEncounterModal = false">✕</button>
+          <button class="enc-modal-close" @click="showEncounterModal = false">
+            ✕
+          </button>
         </div>
         <div class="enc-modal-body">
           <EncounterGenerator />
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -172,9 +179,6 @@ export default {
       enemyName: '',
       enemyMod: 0,
       nextEnemyId: 1,
-      savedParties: [],
-      savingParty: false,
-      newPartyName: '',
       showEncounterModal: false,
       showBattleMap: false,
     }
@@ -192,6 +196,9 @@ export default {
     },
     currentEncounter() {
       return this.$store.state.currentEncounter
+    },
+    parties() {
+      return this.$store.state.parties
     },
     allEntries() {
       const players = this.playerNames.map((name) => {
@@ -221,13 +228,13 @@ export default {
           total: this.rolls[e.key]?.total ?? 0,
           tiebreakOrder: this.rolls[e.key]?.tiebreakOrder ?? 0,
         }))
-        .sort((a, b) => b.total - a.total || b.mod - a.mod || a.tiebreakOrder - b.tiebreakOrder)
+        .sort(
+          (a, b) =>
+            b.total - a.total ||
+            b.mod - a.mod ||
+            a.tiebreakOrder - b.tiebreakOrder
+        )
     },
-  },
-
-  async created() {
-    const prefs = await dataService.getUserPrefs()
-    this.savedParties = prefs.savedParties ?? []
   },
 
   watch: {
@@ -240,33 +247,12 @@ export default {
   },
 
   methods: {
-    // â”€â”€ Saved parties â”€â”€
-    promptSaveParty() {
-      this.savingParty = true
-      this.$nextTick(() => this.$refs.partyNameInput?.focus())
-    },
-    cancelSaveParty() {
-      this.savingParty = false
-      this.newPartyName = ''
-    },
-    async confirmSaveParty() {
-      const name = this.newPartyName.trim()
-      if (!name) return
-      const entry = { name, members: [...this.playerNames] }
-      const idx = this.savedParties.findIndex((p) => p.name === name)
-      if (idx !== -1) this.savedParties.splice(idx, 1, entry)
-      else this.savedParties.push(entry)
-      await dataService.patchUserPrefs({ savedParties: this.savedParties })
-      this.savingParty = false
-      this.newPartyName = ''
-    },
     loadParty(party) {
       const valid = new Set(this.characters.map((c) => c.name))
-      this.$store.commit('SET_SELECTED_PLAYERS', party.members.filter((m) => valid.has(m)))
-    },
-    async deleteParty(party) {
-      this.savedParties = this.savedParties.filter((p) => p.name !== party.name)
-      await dataService.patchUserPrefs({ savedParties: this.savedParties })
+      this.$store.commit(
+        'SET_SELECTED_PLAYERS',
+        party.members.filter((m) => valid.has(m))
+      )
     },
 
     portrait(name) {
@@ -274,15 +260,18 @@ export default {
       return char?.image ?? ''
     },
     removeFromCombat(name) {
-      this.$store.commit('SET_SELECTED_PLAYERS', this.playerNames.filter((n) => n !== name))
+      this.$store.commit(
+        'SET_SELECTED_PLAYERS',
+        this.playerNames.filter((n) => n !== name)
+      )
       this.$delete(this.rolls, `player-${name}`)
     },
     nextAutoName() {
       const used = new Set(
         this.enemies
-          .map(e => e.name.match(/^Enemy (\d+)$/))
+          .map((e) => e.name.match(/^Enemy (\d+)$/))
           .filter(Boolean)
-          .map(m => Number(m[1]))
+          .map((m) => Number(m[1]))
       )
       let n = 1
       while (used.has(n)) n++
@@ -302,6 +291,7 @@ export default {
       this.$delete(this.rolls, `enemy-${e.id}`)
     },
     rollInitiative() {
+      this.$store.commit('SET_DICE_DRAWER_OPEN', true)
       const newRolls = {}
       for (const entry of this.allEntries) {
         const roll = dnd.roll()
@@ -325,7 +315,9 @@ export default {
           tieRolls = keys.map((k) => ({ k, r: dnd.roll() }))
         } while (new Set(tieRolls.map((x) => x.r)).size < keys.length)
         tieRolls.sort((a, b) => b.r - a.r)
-        tieRolls.forEach(({ k }, i) => { newRolls[k].tiebreakOrder = i + 1 })
+        tieRolls.forEach(({ k }, i) => {
+          newRolls[k].tiebreakOrder = i + 1
+        })
       }
 
       this.rolls = newRolls
@@ -351,16 +343,24 @@ export default {
     },
     onAddEnemyMidFight({ name, mod, encounterData }) {
       const id = this.nextEnemyId++
-      this.enemies.push({ id, name: name || this.nextAutoName(), mod, encounterData: encounterData ?? null })
-      this.$set(this.rolls, `enemy-${id}`, { total: dnd.roll() + mod, tiebreakOrder: 0 })
+      this.enemies.push({
+        id,
+        name: name || this.nextAutoName(),
+        mod,
+        encounterData: encounterData ?? null,
+      })
+      this.$set(this.rolls, `enemy-${id}`, {
+        total: dnd.roll() + mod,
+        tiebreakOrder: 0,
+      })
     },
     loadEncounterEnemies() {
       const enc = this.$store.state.currentEncounter
       if (!enc) return
       this.enemies = enc.enemies.map((e) => ({
-        id:           this.nextEnemyId++,
-        name:         e.name,
-        mod:          Math.floor((e.stats.dex - 10) / 2),
+        id: this.nextEnemyId++,
+        name: e.name,
+        mod: Math.floor((e.stats.dex - 10) / 2),
         encounterData: e,
       }))
       this.showEncounterModal = false
@@ -387,8 +387,8 @@ export default {
   grid-template-columns: 120px 140px 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas:
-    "bench ondeck enemies"
-    "roll  roll   roll";
+    'bench ondeck enemies'
+    'roll  roll   roll';
   height: 100%;
   overflow: hidden;
 }
@@ -443,7 +443,9 @@ export default {
   transition: opacity 0.15s ease;
 }
 
-.player-card:hover { opacity: 0.7; }
+.player-card:hover {
+  opacity: 0.7;
+}
 
 .player-img {
   width: 100%;
@@ -498,6 +500,11 @@ export default {
   background: var(--color-bg-surface-alt);
 }
 
+.party-pill.active {
+  border-width: 2px;
+  font-weight: 600;
+}
+
 .pill-remove {
   background: none;
   border: none;
@@ -509,9 +516,14 @@ export default {
   transition: color 0.15s ease;
 }
 
-.pill-remove:hover { color: var(--color-text-danger); }
+.pill-remove:hover {
+  color: var(--color-text-danger);
+}
 
-.parties-actions { display: flex; padding: 0 0.5rem; }
+.parties-actions {
+  display: flex;
+  padding: 0 0.5rem;
+}
 
 .save-party-btn {
   padding: 0.18rem 0.55rem;
@@ -558,8 +570,8 @@ export default {
   justify-content: space-between;
   gap: 0.5rem;
   padding: 0.4rem 0.75rem;
-  background: rgba(136,136,221,0.07);
-  border-bottom: 1px solid rgba(136,136,221,0.25);
+  background: rgba(136, 136, 221, 0.07);
+  border-bottom: 1px solid rgba(136, 136, 221, 0.25);
 }
 
 .enc-load-hint {
@@ -584,7 +596,9 @@ export default {
   white-space: nowrap;
   transition: all 0.12s ease;
 }
-.enc-load-btn:hover { background: rgba(136,136,221,0.15); }
+.enc-load-btn:hover {
+  background: rgba(136, 136, 221, 0.15);
+}
 
 /* â”€â”€ Enemies â”€â”€ */
 .enemy-col {
@@ -616,8 +630,12 @@ export default {
   border-color: var(--color-accent);
 }
 
-.name-field { flex: 1; }
-.mod-field { width: 4rem; }
+.name-field {
+  flex: 1;
+}
+.mod-field {
+  width: 4rem;
+}
 
 .add-btn {
   padding: 0.35rem 0.75rem;
@@ -636,7 +654,10 @@ export default {
   color: var(--color-accent);
 }
 
-.add-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 .enemy-list {
   display: flex;
@@ -655,8 +676,17 @@ export default {
   border-radius: 4px;
 }
 
-.enemy-name { flex: 1; font-size: var(--font-size-md); color: var(--color-text); }
-.enemy-mod  { font-size: var(--font-size-base); color: var(--color-text-muted); min-width: 2.5rem; text-align: right; }
+.enemy-name {
+  flex: 1;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+.enemy-mod {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  min-width: 2.5rem;
+  text-align: right;
+}
 
 .remove-btn {
   background: none;
@@ -668,7 +698,9 @@ export default {
   line-height: 1;
   transition: color 0.15s ease;
 }
-.remove-btn:hover { color: var(--color-text-danger); }
+.remove-btn:hover {
+  color: var(--color-text-danger);
+}
 
 /* â”€â”€ Roll Bar â”€â”€ */
 .roll-bar {
@@ -708,7 +740,10 @@ export default {
   border-color: var(--color-accent-strong);
 }
 
-.roll-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.roll-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 .back-btn {
   padding: 0.45rem 1rem;
@@ -823,7 +858,9 @@ export default {
   padding: 0;
   line-height: 1;
 }
-.enc-modal-close:hover { color: var(--color-text-danger); }
+.enc-modal-close:hover {
+  color: var(--color-text-danger);
+}
 
 .enc-modal-body {
   flex: 1;

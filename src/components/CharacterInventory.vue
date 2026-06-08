@@ -1,6 +1,5 @@
 <template>
   <div class="inventory-manager">
-
     <!-- Search bar -->
     <div class="search-section">
       <input
@@ -21,10 +20,18 @@
           <span class="sr-status">{{ itemStatus(item) }}</span>
           <button
             class="act-btn sr-take-btn"
-            :disabled="item.carried_by === character.name || item.equipped_by === character.name"
+            :disabled="
+              item.carried_by === character.name ||
+              item.equipped_by === character.name
+            "
             @click="takeItem(item)"
           >
-            {{ item.carried_by === character.name || item.equipped_by === character.name ? 'Yours' : 'Take' }}
+            {{
+              item.carried_by === character.name ||
+              item.equipped_by === character.name
+                ? 'Yours'
+                : 'Take'
+            }}
           </button>
         </div>
       </div>
@@ -32,92 +39,143 @@
 
     <!-- Columns -->
     <div class="inv-columns">
+      <!-- Left: This character -->
+      <div class="inv-column scrollable">
+        <div class="col-title">{{ character.name }}</div>
 
-    <!-- Left: This character -->
-    <div class="inv-column scrollable">
-      <div class="col-title">{{ character.name }}</div>
+        <div class="col-section">
+          <div class="col-section-label">Equipped</div>
+          <div v-if="slotSummaries.length > 0" class="slot-summary">
+            <span
+              v-for="summary in slotSummaries"
+              :key="summary.slot"
+              class="slot-chip"
+              :class="{ over: summary.over }"
+            >
+              {{ summary.slot }} {{ summary.count }}/{{ summary.cap }}
+            </span>
+            <span
+              class="slot-chip"
+              :class="{ over: attunedCount > 3 }"
+              title="Attuned items equipped"
+            >
+              attunement {{ attunedCount }}/3
+            </span>
+          </div>
+          <div v-if="equippedItems.length === 0" class="empty">
+            Nothing equipped
+          </div>
+          <div
+            v-for="item in equippedItems"
+            :key="item.id"
+            class="inv-item equipped"
+            :class="{ overloaded: isSlotOverfilled(item.slot || item.type) }"
+          >
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-slot">{{ item.slot || item.type }}</span>
+            <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="item.needs_attunement"
+              class="attunement-indicator"
+              title="Requires attunement"
+              >⚡</span
+            >
+            <div class="item-actions">
+              <button
+                class="act-btn inspect-btn"
+                @click.stop="inspectItem(item)"
+                title="View item details"
+              >
+                🔍
+              </button>
+              <button
+                class="act-btn"
+                @click.stop="unequip(item)"
+                title="Unequip"
+              >
+                ↓
+              </button>
+            </div>
+          </div>
+        </div>
 
-      <div class="col-section">
-        <div class="col-section-label">Equipped</div>
-        <div v-if="slotSummaries.length > 0" class="slot-summary">
-          <span
-            v-for="summary in slotSummaries"
-            :key="summary.slot"
-            class="slot-chip"
-            :class="{ over: summary.over }"
+        <div class="col-section">
+          <div class="col-section-label">Carrying</div>
+          <div v-if="carriedItems.length === 0" class="empty">
+            Nothing carried
+          </div>
+          <div
+            v-for="item in carriedItems"
+            :key="item.id"
+            class="inv-item carried"
           >
-            {{ summary.slot }} {{ summary.count }}/{{ summary.cap }}
-          </span>
-          <span
-            class="slot-chip"
-            :class="{ over: attunedCount > 3 }"
-            title="Attuned items equipped"
-          >
-            attunement {{ attunedCount }}/3
-          </span>
-        </div>
-        <div v-if="equippedItems.length === 0" class="empty">
-          Nothing equipped
-        </div>
-        <div
-          v-for="item in equippedItems"
-          :key="item.id"
-          class="inv-item equipped"
-          :class="{ overloaded: isSlotOverfilled(item.slot || item.type) }"
-        >
-          <span class="item-name">{{ item.name }}</span>
-          <span class="item-slot">{{ item.slot || item.type }}</span>
-          <span class="item-tag">{{ item.type }}</span>
-          <span
-            v-if="item.needs_attunement"
-            class="attunement-indicator"
-            title="Requires attunement"
-            >⚡</span
-          >
-          <div class="item-actions">
-            <button
-              class="act-btn inspect-btn"
-              @click.stop="inspectItem(item)"
-              title="View item details"
+            <span
+              class="item-name"
+              @click="canEquip(item) && equip(item)"
+              :title="
+                canEquip(item) ? 'Click to equip' : cannotEquipReason(item)
+              "
             >
-              🔍
-            </button>
-            <button
-              class="act-btn"
-              @click.stop="unequip(item)"
-              title="Unequip"
+              {{ item.name }}
+            </span>
+            <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="item.needs_attunement"
+              class="attunement-indicator"
+              title="Requires attunement"
+              >⚡</span
             >
-              ↓
-            </button>
+            <div class="item-actions">
+              <button
+                class="act-btn inspect-btn"
+                @click.stop="inspectItem(item)"
+                title="View item details"
+              >
+                🔍
+              </button>
+              <button
+                class="act-btn"
+                @click="equip(item)"
+                :disabled="!canEquip(item)"
+                :title="canEquip(item) ? 'Equip' : cannotEquipReason(item)"
+              >
+                ↑
+              </button>
+              <button
+                class="act-btn dim"
+                @click="toPool(item)"
+                title="Return to party pool"
+              >
+                ✕
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-section">
-        <div class="col-section-label">Carrying</div>
-        <div v-if="carriedItems.length === 0" class="empty">
-          Nothing carried
-        </div>
-        <div
-          v-for="item in carriedItems"
-          :key="item.id"
-          class="inv-item carried"
-        >
-          <span
-            class="item-name"
-            @click="canEquip(item) && equip(item)"
-            :title="canEquip(item) ? 'Click to equip' : cannotEquipReason(item)"
+      <!-- Right: Available -->
+      <div class="inv-column scrollable">
+        <div class="col-title">Party Pool</div>
+
+        <div class="col-section">
+          <div v-if="poolItems.length === 0" class="empty">
+            Party pool is empty
+          </div>
+          <div
+            v-for="item in poolItems"
+            :key="item.id"
+            class="inv-item pool"
+            @click="carry(item)"
+            title="Click to carry"
           >
-            {{ item.name }}
-          </span>
-          <span class="item-tag">{{ item.type }}</span>
-          <span
-            v-if="item.needs_attunement"
-            class="attunement-indicator"
-            title="Requires attunement"
-            >⚡</span
-          >
-          <div class="item-actions">
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="item.needs_attunement"
+              class="attunement-indicator"
+              title="Requires attunement"
+              >⚡</span
+            >
             <button
               class="act-btn inspect-btn"
               @click.stop="inspectItem(item)"
@@ -125,18 +183,11 @@
             >
               🔍
             </button>
+            <span class="item-action">→</span>
             <button
-              class="act-btn"
-              @click="equip(item)"
-              :disabled="!canEquip(item)"
-              :title="canEquip(item) ? 'Equip' : cannotEquipReason(item)"
-            >
-              ↑
-            </button>
-            <button
-              class="act-btn dim"
-              @click="toPool(item)"
-              title="Return to party pool"
+              class="act-btn dim delete-btn"
+              @click.stop="confirmDelete(item)"
+              title="Delete item"
             >
               ✕
             </button>
@@ -144,50 +195,7 @@
         </div>
       </div>
     </div>
-
-    <!-- Right: Available -->
-    <div class="inv-column scrollable">
-      <div class="col-title">Party Pool</div>
-
-      <div class="col-section">
-        <div v-if="poolItems.length === 0" class="empty">
-          Party pool is empty
-        </div>
-        <div
-          v-for="item in poolItems"
-          :key="item.id"
-          class="inv-item pool"
-          @click="carry(item)"
-          title="Click to carry"
-        >
-          <span class="item-name">{{ item.name }}</span>
-          <span class="item-tag">{{ item.type }}</span>
-          <span
-            v-if="item.needs_attunement"
-            class="attunement-indicator"
-            title="Requires attunement"
-            >⚡</span
-          >
-          <button
-            class="act-btn inspect-btn"
-            @click.stop="inspectItem(item)"
-            title="View item details"
-          >
-            🔍
-          </button>
-          <span class="item-action">→</span>
-          <button
-            class="act-btn dim delete-btn"
-            @click.stop="confirmDelete(item)"
-            title="Delete item"
-          >
-            ✕
-          </button>
-        </div>
-      </div>
-    </div>
-
-    </div> <!-- /inv-columns -->
+    <!-- /inv-columns -->
 
     <div
       v-if="deleteDialogOpen"
@@ -262,10 +270,15 @@
             <div class="meta-row">
               <span class="meta-label">Attuned:</span>
               <span class="meta-value">
-                <label class="check-label" :class="{ 'check-disabled': !inspectedItem.needs_attunement }">
+                <label
+                  class="check-label"
+                  :class="{ 'check-disabled': !inspectedItem.needs_attunement }"
+                >
                   <input
                     type="checkbox"
-                    :checked="inspectedItem.attuned && inspectedItem.needs_attunement"
+                    :checked="
+                      inspectedItem.attuned && inspectedItem.needs_attunement
+                    "
                     :disabled="!inspectedItem.needs_attunement"
                     @change="setAttuned($event.target.checked)"
                   />
@@ -408,7 +421,8 @@ export default {
   methods: {
     itemStatus(item) {
       if (item.equipped_by) return `Equipped by ${item.equipped_by}`
-      if (item.carried_by && item.carried_by !== 'party') return `Carried by ${item.carried_by}`
+      if (item.carried_by && item.carried_by !== 'party')
+        return `Carried by ${item.carried_by}`
       return 'Party Pool'
     },
     takeItem(item) {

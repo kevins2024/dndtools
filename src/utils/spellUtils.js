@@ -20,22 +20,22 @@
  */
 
 import homebrewData from '@/data/homebrew.json'
-import clericSpells  from '@/data/api_data_cache/cleric_spells.json'
-import druidSpells   from '@/data/api_data_cache/druid_spells.json'
-import wizardSpells  from '@/data/api_data_cache/wizard_spells.json'
+import clericSpells from '@/data/api_data_cache/cleric_spells.json'
+import druidSpells from '@/data/api_data_cache/druid_spells.json'
+import wizardSpells from '@/data/api_data_cache/wizard_spells.json'
 import paladinSpells from '@/data/api_data_cache/paladin_spells.json'
-import rangerSpells  from '@/data/api_data_cache/ranger_spells.json'
+import rangerSpells from '@/data/api_data_cache/ranger_spells.json'
 
 // Classes whose spell list lets them prepare ANY listed spell daily (not just ones they've "learned").
 // Wizards prepare from their spellbook (character.spells) — a separate concept.
 const FULL_CLASS_LIST_CLASSES = ['cleric', 'druid', 'paladin', 'ranger']
 
 const CLASS_SPELL_LISTS = {
-  cleric:  clericSpells,
-  druid:   druidSpells,
-  wizard:  wizardSpells,
+  cleric: clericSpells,
+  druid: druidSpells,
+  wizard: wizardSpells,
   paladin: paladinSpells,
-  ranger:  rangerSpells,
+  ranger: rangerSpells,
 }
 
 /**
@@ -60,7 +60,7 @@ export function usesFullClassList(character) {
 }
 
 export function getCharacterSpells(character) {
-  const seen   = new Set()
+  const seen = new Set()
   const result = []
 
   function add(spell) {
@@ -77,11 +77,11 @@ export function getCharacterSpells(character) {
   // 2. Artillerist subclass spells (always prepared, don't count against limit)
   for (const s of character.artillerist_spells?.spells ?? []) {
     add({
-      name:        s.name,
-      level:       s.level,
-      prepared:    true,
+      name: s.name,
+      level: s.level,
+      prepared: true,
       artillerist: true,
-      _source:     'Artillerist Spells',
+      _source: 'Artillerist Spells',
     })
   }
 
@@ -93,10 +93,10 @@ export function getCharacterSpells(character) {
     for (const name of feat.spells_granted ?? []) {
       add({
         name,
-        level:         null, // resolved asynchronously via lookupSpell in loadMeta()
-        prepared:      true,
+        level: null, // resolved asynchronously via lookupSpell in loadMeta()
+        prepared: true,
         featureGranted: true,
-        _source:       feat.name,
+        _source: feat.name,
       })
     }
   }
@@ -105,11 +105,11 @@ export function getCharacterSpells(character) {
   for (const s of homebrewData.spells ?? []) {
     if ((s.known_by ?? []).includes(character.name)) {
       add({
-        name:     s.name,
-        level:    s.level,
+        name: s.name,
+        level: s.level,
         prepared: true,
         homebrew: true,
-        _source:  'Homebrew',
+        _source: 'Homebrew',
       })
     }
   }
@@ -122,7 +122,15 @@ export function characterHasSpells(character) {
   if (!character) return false
   if ((character.spells ?? []).length > 0) return true
   if ((character.artillerist_spells?.spells ?? []).length > 0) return true
-  if ((character.features ?? []).some((f) => (f.spells_granted ?? []).length > 0)) return true
-  if ((homebrewData.spells ?? []).some((s) => (s.known_by ?? []).includes(character.name))) return true
+  if (
+    (character.features ?? []).some((f) => (f.spells_granted ?? []).length > 0)
+  )
+    return true
+  if (
+    (homebrewData.spells ?? []).some((s) =>
+      (s.known_by ?? []).includes(character.name)
+    )
+  )
+    return true
   return false
 }

@@ -1,19 +1,34 @@
-﻿﻿﻿<template>
+﻿﻿﻿
+<template>
   <Dialog :open="open" @close="onClose">
     <template #title>
       <div class="dp-header">
         <div class="dp-titles">
           <span class="dp-name">{{ item.title }}</span>
-          <span v-if="displaySubtitle" class="dp-subtitle">{{ displaySubtitle }}</span>
+          <span v-if="displaySubtitle" class="dp-subtitle">{{
+            displaySubtitle
+          }}</span>
         </div>
         <div class="dp-header-actions">
           <template v-if="editing">
-            <button class="dp-action-btn dp-save" :disabled="saving" @click="save">
+            <button
+              class="dp-action-btn dp-save"
+              :disabled="saving"
+              @click="save"
+            >
               {{ saving ? 'Saving…' : 'Save' }}
             </button>
-            <button class="dp-action-btn dp-cancel" @click="cancelEdit">Cancel</button>
+            <button class="dp-action-btn dp-cancel" @click="cancelEdit">
+              Cancel
+            </button>
           </template>
-          <button v-else-if="!readonly" class="dp-action-btn dp-edit" @click="startEdit">Edit</button>
+          <button
+            v-else-if="!readonly"
+            class="dp-action-btn dp-edit"
+            @click="startEdit"
+          >
+            Edit
+          </button>
           <button class="dp-close" @click="onClose">✕</button>
         </div>
       </div>
@@ -32,11 +47,16 @@
           v-for="cls in displaySpellList"
           :key="cls"
           class="dp-spell-list-chip"
-        >{{ cls }}</span>
+          >{{ cls }}</span
+        >
       </div>
       <div class="dp-desc">
         <template v-if="displayDescription">{{ displayDescription }}</template>
-        <span v-else class="dp-no-desc">{{ readonly ? 'No description available.' : 'No description available — click Edit to add one.' }}</span>
+        <span v-else class="dp-no-desc">{{
+          readonly
+            ? 'No description available.'
+            : 'No description available — click Edit to add one.'
+        }}</span>
       </div>
     </template>
 
@@ -46,15 +66,50 @@
         <!-- Spell fields -->
         <template v-if="item.itemType === 'spell'">
           <div class="dp-edit-row">
-            <label class="dp-edit-label">School<input v-model="draft.school" class="dp-edit-input" placeholder="e.g. Enchantment" /></label>
-            <label class="dp-edit-label">Casting Time<input v-model="draft.casting_time" class="dp-edit-input" placeholder="e.g. 1 reaction" /></label>
-            <label class="dp-edit-label">Range<input v-model="draft.range" class="dp-edit-input" placeholder="e.g. 60 feet" /></label>
+            <label class="dp-edit-label"
+              >School<input
+                v-model="draft.school"
+                class="dp-edit-input"
+                placeholder="e.g. Enchantment"
+            /></label>
+            <label class="dp-edit-label"
+              >Casting Time<input
+                v-model="draft.casting_time"
+                class="dp-edit-input"
+                placeholder="e.g. 1 reaction"
+            /></label>
+            <label class="dp-edit-label"
+              >Range<input
+                v-model="draft.range"
+                class="dp-edit-input"
+                placeholder="e.g. 60 feet"
+            /></label>
           </div>
           <div class="dp-edit-row">
-            <label class="dp-edit-label">Duration<input v-model="draft.duration" class="dp-edit-input" placeholder="e.g. Instantaneous" /></label>
-            <label class="dp-edit-label">Components<input v-model="draft.components" class="dp-edit-input" placeholder="e.g. V, S" /></label>
-            <label class="dp-edit-label">Save<input v-model="draft.save" class="dp-edit-input" placeholder="e.g. Constitution" /></label>
-            <label class="dp-edit-label">Damage Type<input v-model="draft.damage_type" class="dp-edit-input" placeholder="e.g. Psychic" /></label>
+            <label class="dp-edit-label"
+              >Duration<input
+                v-model="draft.duration"
+                class="dp-edit-input"
+                placeholder="e.g. Instantaneous"
+            /></label>
+            <label class="dp-edit-label"
+              >Components<input
+                v-model="draft.components"
+                class="dp-edit-input"
+                placeholder="e.g. V, S"
+            /></label>
+            <label class="dp-edit-label"
+              >Save<input
+                v-model="draft.save"
+                class="dp-edit-input"
+                placeholder="e.g. Constitution"
+            /></label>
+            <label class="dp-edit-label"
+              >Damage Type<input
+                v-model="draft.damage_type"
+                class="dp-edit-input"
+                placeholder="e.g. Psychic"
+            /></label>
           </div>
           <div class="dp-edit-row dp-edit-row--check">
             <label class="dp-edit-check-label">
@@ -72,7 +127,9 @@
                 class="dp-class-chip"
                 :class="{ active: draftSpellList.includes(cls) }"
                 @click="toggleSpellClass(cls)"
-              >{{ cls }}</button>
+              >
+                {{ cls }}
+              </button>
             </div>
           </div>
         </template>
@@ -80,15 +137,35 @@
         <!-- Feature fields -->
         <template v-else>
           <div class="dp-edit-row">
-            <label class="dp-edit-label">Subtitle<input v-model="draft.subtitle" class="dp-edit-input" placeholder="e.g. Rogue · Level 3" /></label>
-            <label class="dp-edit-label">Action Type<input v-model="draft.action_type" class="dp-edit-input" placeholder="e.g. bonus_action" /></label>
-            <label class="dp-edit-label">Recharge<input v-model="draft.recharge" class="dp-edit-input" placeholder="e.g. short_rest" /></label>
+            <label class="dp-edit-label"
+              >Subtitle<input
+                v-model="draft.subtitle"
+                class="dp-edit-input"
+                placeholder="e.g. Rogue · Level 3"
+            /></label>
+            <label class="dp-edit-label"
+              >Action Type<input
+                v-model="draft.action_type"
+                class="dp-edit-input"
+                placeholder="e.g. bonus_action"
+            /></label>
+            <label class="dp-edit-label"
+              >Recharge<input
+                v-model="draft.recharge"
+                class="dp-edit-input"
+                placeholder="e.g. short_rest"
+            /></label>
           </div>
         </template>
 
         <label class="dp-edit-label dp-edit-desc-label">
           Description
-          <textarea v-model="draft.description" class="dp-edit-textarea" rows="8" placeholder="Enter description…" />
+          <textarea
+            v-model="draft.description"
+            class="dp-edit-textarea"
+            rows="8"
+            placeholder="Enter description…"
+          />
         </label>
 
         <p v-if="saveError" class="dp-save-error">{{ saveError }}</p>
@@ -102,7 +179,15 @@ import Dialog from '@/components/Dialog.vue'
 import { saveToHomebrew } from '@/utils/lookupService.js'
 
 const SPELL_CLASSES = Object.freeze([
-  'Artificer', 'Bard', 'Cleric', 'Druid', 'Paladin', 'Ranger', 'Sorcerer', 'Warlock', 'Wizard',
+  'Artificer',
+  'Bard',
+  'Cleric',
+  'Druid',
+  'Paladin',
+  'Ranger',
+  'Sorcerer',
+  'Warlock',
+  'Wizard',
 ])
 
 export default {
@@ -114,7 +199,14 @@ export default {
     readonly: { type: Boolean, default: false },
     item: {
       type: Object,
-      default: () => ({ title: '', subtitle: null, description: null, fields: [], itemType: null, editable: null }),
+      default: () => ({
+        title: '',
+        subtitle: null,
+        description: null,
+        fields: [],
+        itemType: null,
+        editable: null,
+      }),
     },
   },
 
@@ -144,14 +236,15 @@ export default {
       return Array.isArray(this.draft.spell_list) ? this.draft.spell_list : []
     },
     displaySpellList() {
-      const src = this.savedData ?? (this.item.editable ?? {})
+      const src = this.savedData ?? this.item.editable ?? {}
       return Array.isArray(src.spell_list) ? src.spell_list : []
     },
     displayFields() {
       if (this.savedData && this.item.itemType === 'spell') {
         const d = this.savedData
         const fields = []
-        if (d.casting_time) fields.push({ label: 'Cast', value: d.casting_time })
+        if (d.casting_time)
+          fields.push({ label: 'Cast', value: d.casting_time })
         if (d.range) fields.push({ label: 'Range', value: d.range })
         if (d.duration) fields.push({ label: 'Duration', value: d.duration })
         if (d.concentration) fields.push({ label: 'Conc', value: 'Yes' })

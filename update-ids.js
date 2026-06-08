@@ -9,12 +9,12 @@ const DATA_DIR = path.join(__dirname, 'src/data')
 
 const FILES = {
   characters: 'characters.json',
-  npcs:       'npcs.json',
-  items:      'party_items.json',
-  assets:     'assets.json',
+  npcs: 'npcs.json',
+  items: 'party_items.json',
+  assets: 'assets.json',
 }
 
-const BOM = Buffer.from([0xEF, 0xBB, 0xBF])
+const BOM = Buffer.from([0xef, 0xbb, 0xbf])
 
 function readJSON(fp) {
   let buf = fs.readFileSync(fp)

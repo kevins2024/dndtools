@@ -4,10 +4,10 @@
   --font-body: 'Crimson Text', Georgia, serif;
   --font-display: 'Cinzel', Georgia, serif;
   --color-text: #e8dcc8;
-  --color-text-muted: #8a7a60;
+  --color-text-muted: #a08870;
   --color-text-alt: #c8a96e;
   --color-text-strong: #e8c87a;
-  --color-text-low: #6a5a40;
+  --color-text-low: #8a7a60;
   --color-text-danger: #a05030;
   --color-text-warning: #f0a830;
   --color-bg: #1a1612;
@@ -38,13 +38,13 @@
   --color-danger: #c0392b;
   --color-info: #8888dd;
   --color-condition: #e67e22;
-  --font-size-xs:   0.75rem;
-  --font-size-sm:   0.9rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.9rem;
   --font-size-base: 1.125rem;
-  --font-size-md:   1.275rem;
-  --font-size-lg:   1.5rem;
-  --font-size-xl:   1.95rem;
-  --font-size-2xl:  2.4rem;
-  --font-size-3xl:  3.3rem;
+  --font-size-md: 1.275rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 1.95rem;
+  --font-size-2xl: 2.4rem;
+  --font-size-3xl: 3.3rem;
   --line-height-base: 1.6;
 }

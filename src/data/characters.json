@@ -99,7 +99,10 @@
       "Practices DEX skills of all types.",
       "Cannot pronounce Nalfeshnee and doesn't try."
     ],
-    "id": "characters_0"
+    "id": "characters_0",
+    "darkvision": 60,
+    "hit_die": "d10",
+    "hit_dice_current": 9
   },
   {
     "name": "Rhuna",
@@ -193,7 +196,10 @@
       "Expresses care through presence not words.",
       "Cooks well - nobody expected it."
     ],
-    "id": "characters_1"
+    "id": "characters_1",
+    "darkvision": 60,
+    "hit_die": "d12",
+    "hit_dice_current": 9
   },
   {
     "name": "Denna",
@@ -283,7 +289,10 @@
       "Always knows exits.",
       "Occasional dry observation that lands precisely."
     ],
-    "id": "characters_2"
+    "id": "characters_2",
+    "darkvision": 0,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Jaygar",
@@ -515,7 +524,10 @@
       "Flash of Genius is exceptional and should be used generously — +5 to any roll within 30ft five times per long rest.",
       "Gnome Cunning gives advantage on all magic saves — he is surprisingly hard to enchant or charm."
     ],
-    "id": "characters_3"
+    "id": "characters_3",
+    "darkvision": 60,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Lenn",
@@ -572,19 +584,121 @@
     ],
     "spells": [
       {
+        "name": "Blade Ward",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Booming Blade",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Light",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Ray of Frost",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Shocking Grasp",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Absorb Elements",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Alarm",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Comprehend Languages",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Disguise Self",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Feather Fall",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Find Familiar",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Identify",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
         "name": "Mage Armor",
         "level": 1,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Shield",
+        "name": "Protection from Evil and Good",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
-        "name": "Disguise Self",
+        "name": "Shield",
         "level": 1,
         "prepared": true,
         "type": "prepared"
@@ -596,19 +710,43 @@
         "type": "prepared"
       },
       {
-        "name": "Absorb Elements",
-        "level": 1,
-        "prepared": true,
+        "name": "Arcane Lock",
+        "level": 2,
+        "prepared": false,
         "type": "prepared"
       },
       {
-        "name": "Identify",
-        "level": 1,
-        "prepared": true,
+        "name": "Blur",
+        "level": 2,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Hold Person",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Intellect Fortress",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Knock",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mirror Image",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
         "level": 2,
         "prepared": true,
         "type": "prepared"
@@ -620,38 +758,20 @@
         "type": "prepared"
       },
       {
-        "name": "Misty Step",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Web",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Knock",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "See Invisibility",
         "level": 2,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Fireball",
-        "level": 3,
-        "prepared": true,
+        "name": "Shadow Blade",
+        "level": 2,
+        "prepared": false,
         "type": "prepared"
       },
       {
-        "name": "Hypnotic Pattern",
-        "level": 3,
+        "name": "Web",
+        "level": 2,
         "prepared": true,
         "type": "prepared"
       },
@@ -668,7 +788,7 @@
         "type": "prepared"
       },
       {
-        "name": "Protection from Energy",
+        "name": "Fireball",
         "level": 3,
         "prepared": true,
         "type": "prepared"
@@ -680,13 +800,109 @@
         "type": "prepared"
       },
       {
-        "name": "Stoneskin",
+        "name": "Haste",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Magic Circle",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Protection from Energy",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Pulse Wave",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Remove Curse",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Slow",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Vampiric Touch",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Arcane Eye",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Banishment",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Dimension Door",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Evard's Black Tentacles",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Greater Invisibility",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Otiluke's Resilient Sphere",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Phantasmal Killer",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Sickening Radiance",
         "level": 4,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Sickening Radiance",
+        "name": "Stone Shape",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Stoneskin",
         "level": 4,
         "prepared": true,
         "type": "prepared"
@@ -704,15 +920,9 @@
         "type": "prepared"
       },
       {
-        "name": "Synaptic Static",
+        "name": "Cone of Cold",
         "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Wall of Force",
-        "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -722,28 +932,58 @@
         "type": "prepared"
       },
       {
-        "name": "Fire Bolt",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "name": "Danse Macabre",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
       },
       {
-        "name": "Mage Hand",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "name": "Mislead",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
       },
       {
-        "name": "Mind Sliver",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "name": "Modify Memory",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
       },
       {
-        "name": "Message",
-        "level": 0,
+        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Rary's Telepathic Bond",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Summon Draconic Spirit",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Synaptic Static",
+        "level": 5,
         "prepared": true,
-        "type": "cantrip"
+        "type": "prepared"
+      },
+      {
+        "name": "Telekinesis",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Wall of Force",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
       }
     ],
     "spell_slots": {
@@ -779,7 +1019,10 @@
       "Studies people like he used to study card games - looking for tells.",
       "Reformed gambling addict."
     ],
-    "id": "characters_4"
+    "id": "characters_4",
+    "darkvision": 0,
+    "hit_die": "d6",
+    "hit_dice_current": 9
   },
   {
     "name": "Kessara",
@@ -838,9 +1081,51 @@
     ],
     "spells": [
       {
+        "name": "Blade Ward",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
         "name": "Booming Blade",
         "level": 0,
         "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Light",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": false,
         "type": "cantrip"
       },
       {
@@ -856,15 +1141,57 @@
         "type": "cantrip"
       },
       {
-        "name": "Fire Bolt",
-        "level": 0,
+        "name": "Absorb Elements",
+        "level": 1,
         "prepared": true,
-        "type": "cantrip"
+        "type": "prepared"
+      },
+      {
+        "name": "Alarm",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Comprehend Languages",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Disguise Self",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Feather Fall",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Find Familiar",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Identify",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
       },
       {
         "name": "Mage Armor",
         "level": 1,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Protection from Evil and Good",
+        "level": 1,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -880,21 +1207,33 @@
         "type": "prepared"
       },
       {
-        "name": "Absorb Elements",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Feather Fall",
-        "level": 1,
-        "prepared": true,
+        "name": "Arcane Lock",
+        "level": 2,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Blur",
         "level": 2,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hold Person",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Intellect Fortress",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Knock",
+        "level": 2,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -910,9 +1249,9 @@
         "type": "prepared"
       },
       {
-        "name": "Shadow Blade",
+        "name": "Scorching Ray",
         "level": 2,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -922,13 +1261,43 @@
         "type": "prepared"
       },
       {
-        "name": "Intellect Fortress",
+        "name": "Shadow Blade",
         "level": 2,
         "prepared": true,
         "type": "prepared"
       },
       {
+        "name": "Web",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
         "name": "Counterspell",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Fireball",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Fly",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Haste",
         "level": 3,
         "prepared": true,
         "type": "prepared"
@@ -940,9 +1309,15 @@
         "type": "prepared"
       },
       {
-        "name": "Haste",
+        "name": "Magic Circle",
         "level": 3,
-        "prepared": true,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Protection from Energy",
+        "level": 3,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -952,9 +1327,33 @@
         "type": "prepared"
       },
       {
+        "name": "Remove Curse",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Slow",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
         "name": "Vampiric Touch",
         "level": 3,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Arcane Eye",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Banishment",
+        "level": 4,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -964,9 +1363,57 @@
         "type": "prepared"
       },
       {
+        "name": "Evard's Black Tentacles",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
         "name": "Greater Invisibility",
         "level": 4,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Otiluke's Resilient Sphere",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Phantasmal Killer",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Sickening Radiance",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Stone Shape",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Stoneskin",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Vitriolic Sphere",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Bigby's Hand",
+        "level": 5,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -976,7 +1423,37 @@
         "type": "prepared"
       },
       {
-        "name": "Telekinesis",
+        "name": "Conjure Elemental",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Danse Macabre",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Mislead",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Modify Memory",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Rary's Telepathic Bond",
         "level": 5,
         "prepared": false,
         "type": "prepared"
@@ -991,6 +1468,18 @@
         "name": "Synaptic Static",
         "level": 5,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Telekinesis",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Wall of Force",
+        "level": 5,
+        "prepared": false,
         "type": "prepared"
       }
     ],
@@ -1031,7 +1520,10 @@
       "Delivers assessments without softening but without cruelty.",
       "Runs through combat forms as meditation in corners of rooms - slow, deliberate."
     ],
-    "id": "characters_5"
+    "id": "characters_5",
+    "darkvision": 60,
+    "hit_die": "d6",
+    "hit_dice_current": 9
   },
   {
     "name": "Petra",
@@ -1281,7 +1773,10 @@
       "Takes words literally.",
       "Opinions on cheese border on philosophical."
     ],
-    "id": "characters_6"
+    "id": "characters_6",
+    "darkvision": 0,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Pirra",
@@ -1372,7 +1867,10 @@
       "Sharp, capable.",
       "Knows the Gilt Rose menu from memory after eight months away."
     ],
-    "id": "characters_7"
+    "id": "characters_7",
+    "darkvision": 0,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Kerra",
@@ -1527,8 +2025,8 @@
         "type": "chosen"
       },
       {
-        "name": "Shadow of Moil",
-        "level": 4,
+        "name": "Hunger of Hadar",
+        "level": 3,
         "prepared": true,
         "type": "chosen"
       },
@@ -1557,7 +2055,10 @@
       "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
       "Shadow of Moil + Devil's Sight darkness combo now fully online."
     ],
-    "id": "characters_8"
+    "id": "characters_8",
+    "darkvision": 0,
+    "hit_die": "d10",
+    "hit_dice_current": 9
   },
   {
     "name": "Siv",
@@ -1660,7 +2161,10 @@
       "Values things earned specifically. The how matters as much as the what.",
       "Independent and professional."
     ],
-    "id": "characters_9"
+    "id": "characters_9",
+    "darkvision": 0,
+    "hit_die": "d10",
+    "hit_dice_current": 9
   },
   {
     "name": "Lexica",
@@ -1886,7 +2390,10 @@
       "Joins things rather than leads them when the thing is already good enough without her.",
       "Extraordinary information retention - now supernatural."
     ],
-    "id": "characters_10"
+    "id": "characters_10",
+    "darkvision": 60,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Lyria",
@@ -1946,19 +2453,109 @@
     ],
     "spells": [
       {
-        "name": "Mage Armor",
-        "level": 1,
+        "name": "Blade Ward",
+        "level": 0,
         "prepared": true,
-        "type": "prepared"
+        "type": "cantrip"
       },
       {
-        "name": "Shield",
-        "level": 1,
+        "name": "Booming Blade",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Light",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
         "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Ray of Frost",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Shocking Grasp",
+        "level": 0,
+        "prepared": false,
+        "type": "cantrip"
+      },
+      {
+        "name": "Absorb Elements",
+        "level": 1,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Alarm",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Comprehend Languages",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Disguise Self",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Feather Fall",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Find Familiar",
+        "level": 1,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Identify",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mage Armor",
         "level": 1,
         "prepared": true,
         "type": "prepared"
@@ -1970,13 +2567,13 @@
         "type": "prepared"
       },
       {
-        "name": "Silvery Barbs",
+        "name": "Shield",
         "level": 1,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Identify",
+        "name": "Silvery Barbs",
         "level": 1,
         "prepared": true,
         "type": "prepared"
@@ -1994,9 +2591,57 @@
         "type": "prepared"
       },
       {
+        "name": "Hold Person",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Intellect Fortress",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Knock",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Mirror Image",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
         "name": "Misty Step",
         "level": 2,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Scorching Ray",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "See Invisibility",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Shadow Blade",
+        "level": 2,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Web",
+        "level": 2,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2012,15 +2657,27 @@
         "type": "prepared"
       },
       {
-        "name": "Slow",
+        "name": "Fireball",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Fly",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Haste",
         "level": 3,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Remove Curse",
+        "name": "Hypnotic Pattern",
         "level": 3,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2030,9 +2687,33 @@
         "type": "prepared"
       },
       {
-        "name": "Haste",
+        "name": "Protection from Energy",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Pulse Wave",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Remove Curse",
         "level": 3,
         "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Slow",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Vampiric Touch",
+        "level": 3,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2048,19 +2729,25 @@
         "type": "prepared"
       },
       {
-        "name": "Wall of Force",
+        "name": "Dimension Door",
         "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Otiluke's Resilient Sphere",
-        "level": 4,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Evard's Black Tentacles",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Greater Invisibility",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Otiluke's Resilient Sphere",
         "level": 4,
         "prepared": true,
         "type": "prepared"
@@ -2072,31 +2759,55 @@
         "type": "prepared"
       },
       {
-        "name": "Telekinesis",
-        "level": 5,
+        "name": "Sickening Radiance",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Stone Shape",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Stoneskin",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Vitriolic Sphere",
+        "level": 4,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Wall of Force",
+        "level": 4,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Modify Memory",
+        "name": "Bigby's Hand",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Cone of Cold",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Conjure Elemental",
+        "level": 5,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Danse Macabre",
-        "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
-        "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Synaptic Static",
         "level": 5,
         "prepared": true,
         "type": "prepared"
@@ -2108,34 +2819,40 @@
         "type": "prepared"
       },
       {
+        "name": "Modify Memory",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
         "name": "Rary's Telepathic Bond",
         "level": 5,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Mage Hand",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "name": "Summon Draconic Spirit",
+        "level": 5,
+        "prepared": false,
+        "type": "prepared"
       },
       {
-        "name": "Blade Ward",
-        "level": 0,
+        "name": "Synaptic Static",
+        "level": 5,
         "prepared": true,
-        "type": "cantrip"
+        "type": "prepared"
       },
       {
-        "name": "Mind Sliver",
-        "level": 0,
+        "name": "Telekinesis",
+        "level": 5,
         "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Minor Illusion",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
+        "type": "prepared"
       }
     ],
     "spell_slots": {
@@ -2173,7 +2890,10 @@
       "(LENN AND LYRIA TOGETHER) He gives her things without announcement. She receives them the same way.",
       "Watchful, careful."
     ],
-    "id": "characters_11"
+    "id": "characters_11",
+    "darkvision": 0,
+    "hit_die": "d6",
+    "hit_dice_current": 9
   },
   {
     "name": "Corwin",
@@ -2258,7 +2978,10 @@
       "Genuinely content with good conversation and a walk home. Uncomplicated about it.",
       "Reliable, professional."
     ],
-    "id": "characters_12"
+    "id": "characters_12",
+    "darkvision": 0,
+    "hit_die": "d10",
+    "hit_dice_current": 9
   },
   {
     "name": "Chuknora",
@@ -2373,7 +3096,10 @@
       "If something feels wrong she assumes it is wrong and starts looking for proof.",
       "When still she is in a semi-meditative state. Not absent - more present than usual."
     ],
-    "id": "characters_13"
+    "id": "characters_13",
+    "darkvision": 0,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Enauweyn",
@@ -2571,7 +3297,10 @@
       "She was a teacher and it never fully left her.",
       "The fey in her is not decorative."
     ],
-    "id": "characters_14"
+    "id": "characters_14",
+    "darkvision": 60,
+    "hit_die": "d10",
+    "hit_dice_current": 9
   },
   {
     "name": "Tackett",
@@ -2776,12 +3505,6 @@
         "type": "prepared"
       },
       {
-        "name": "Sleet Storm",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Blight",
         "level": 4,
         "prepared": true,
@@ -2804,6 +3527,11 @@
         "level": 4,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Hold Person",
+        "level": 2,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -2838,7 +3566,10 @@
       "He is comfortable with discomfort in a way that makes other people uncomfortable.",
       "He meddles. Not maliciously - helpfully, which is sometimes worse."
     ],
-    "id": "characters_15"
+    "id": "characters_15",
+    "darkvision": 0,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Revven",
@@ -3117,7 +3848,10 @@
       "Calls lightning storms beautiful even when they're dangerous.",
       "Grew up around humans which means he has human impatience in an almost-elven body."
     ],
-    "id": "characters_16"
+    "id": "characters_16",
+    "darkvision": 60,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Elucyne",
@@ -3261,7 +3995,10 @@
       "Makes friends with everyone in a room within twenty minutes.",
       "The gilded horns are real and she absolutely uses the moment people realize that."
     ],
-    "id": "characters_17"
+    "id": "characters_17",
+    "darkvision": 60,
+    "hit_die": "d10",
+    "hit_dice_current": 9
   },
   {
     "name": "Sorra",
@@ -3505,7 +4242,10 @@
       "The dance never fully stops.",
       "Has never stayed anywhere longer than she felt like staying. May be reconsidering that."
     ],
-    "id": "characters_18"
+    "id": "characters_18",
+    "darkvision": 60,
+    "hit_die": "d8",
+    "hit_dice_current": 9
   },
   {
     "name": "Ferghus",
@@ -3676,6 +4416,378 @@
       "Warm laugh that arrives suddenly and fills a room.",
       "Has strong opinions about hospitality and will feed people whether they asked to be fed or not."
     ],
-    "id": "characters_19"
+    "id": "characters_19",
+    "darkvision": 0,
+    "hit_die": "d10",
+    "hit_dice_current": 9
+  },
+  {
+    "name": "Eldi",
+    "full_name": "Eldi'taevyn Brandeldeen",
+    "campaign_start": "Year 468, day 87",
+    "race": "Half-Elf",
+    "class": "Fighter / Rogue",
+    "subclass": "Echo Knight / Swashbuckler",
+    "level": 8,
+    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Moves like she's already decided where she's going. Twin sabers, light on her feet, the kind of person who finds the exit before she needs it.",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": null,
+    "notes": "Fighter 5 / Rogue 3. At level 9 gains Fighter 6 — second ASI, take DEX 18→20. Long term Fighter heavy. Tattoo on sword arm: 1/day reaction to completely block one ranged attack. Elven Accuracy: triple advantage when she has advantage on attack rolls.",
+    "stat_str": 10,
+    "stat_dex": 17,
+    "stat_con": 16,
+    "stat_int": 8,
+    "stat_wis": 8,
+    "stat_cha": 14,
+    "hp_max": 69,
+    "hp_current": 69,
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Perception",
+      "Stealth",
+      "Acrobatics",
+      "Deception",
+      "Sleight of Hand",
+      "Persuasion",
+      "Intimidation"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Dwarvish"
+    ],
+    "features": [
+      {
+        "name": "Two-Weapon Fighting Style",
+        "type": "feature"
+      },
+      {
+        "name": "Second Wind",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Action Surge",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Manifest Echo",
+        "type": "feature",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Unleash Incarnation",
+        "type": "feature",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Extra Attack",
+        "type": "feature"
+      },
+      {
+        "name": "Sneak Attack (2d6)",
+        "type": "feature"
+      },
+      {
+        "name": "Cunning Action",
+        "type": "feature",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Fancy Footwork",
+        "type": "feature"
+      },
+      {
+        "name": "Rakish Audacity",
+        "type": "feature"
+      },
+      {
+        "name": "Elven Accuracy",
+        "type": "feat",
+        "stat_bonuses": {
+          "dex": 1
+        },
+        "note": "Grants triple advantage when you have advantage on attack rolls using DEX, INT, WIS, or CHA. +1 DEX applied via stat_bonuses."
+      },
+      {
+        "name": "Fey Ancestry",
+        "type": "feature"
+      },
+      {
+        "name": "Darkvision",
+        "type": "feature"
+      },
+      {
+        "name": "Tattoo of Warding",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "persona_notes": [
+      "Younger twin by minutes. Has never once let Rith forget it.",
+      "Acts before thinking as a matter of principle.",
+      "Finds standing still in a fight philosophically objectionable.",
+      "Warm but impatient. Affection expressed through showing up, not through words.",
+      "Lost everything in the mudslide except Rith and the clothes on her back. Treats this as a reason to travel light.",
+      "The echo unsettles people who see it for the first time. She finds this useful."
+    ],
+    "id": "characters_20",
+    "class_breakdown": "Fighter 5 / Rogue 3",
+    "spellcasting_level": null,
+    "image": "./characters/eldi.jpg",
+    "skill_expertise": [
+      "Stealth",
+      "Acrobatics"
+    ],
+    "darkvision": 60,
+    "hit_die": "d10",
+    "hit_dice_current": 8
+  },
+  {
+    "name": "Rith",
+    "full_name": "Rith'taevyn Brandeldeen",
+    "campaign_start": "Year 468, day 87",
+    "race": "Half-Elf",
+    "class": "Sorcerer",
+    "subclass": "Divine Soul",
+    "level": 8,
+    "appearance": "Half-elf man, early twenties. Same bone structure as his sister but quieter in how he holds it. Stands slightly back from whatever is happening, watching. The kind of person a room does not notice until he speaks.",
+    "proficiency_bonus": 3,
+    "spellcasting_ability": "cha",
+    "image": "./characters/rith.jpg",
+    "stat_str": 8,
+    "stat_dex": 11,
+    "stat_con": 16,
+    "stat_int": 12,
+    "stat_wis": 10,
+    "stat_cha": 17,
+    "hp_max": 44,
+    "hp_current": 44,
+    "unarmored_ac_formula": "default",
+    "saving_throws": [
+      "con",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "Insight",
+      "Persuasion",
+      "Medicine"
+    ],
+    "skill_expertise": [],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Dwarvish"
+    ],
+    "features": [
+      {
+        "name": "Divine Magic",
+        "type": "feature"
+      },
+      {
+        "name": "Favored by the Gods",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Font of Magic",
+        "type": "feature"
+      },
+      {
+        "name": "Metamagic: Twinned Spell",
+        "type": "feature"
+      },
+      {
+        "name": "Metamagic: Quickened Spell",
+        "type": "feature"
+      },
+      {
+        "name": "Empowered Healing",
+        "type": "feature"
+      },
+      {
+        "name": "Fey Touched",
+        "type": "feat",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "stat_bonuses": {
+          "cha": 1
+        },
+        "note": "Free cast of Misty Step and Silvery Barbs once each per long rest (tracked via uses). +1 CHA applied via stat_bonuses."
+      },
+      {
+        "name": "War Caster",
+        "type": "feat"
+      },
+      {
+        "name": "Fey Ancestry",
+        "type": "feature"
+      },
+      {
+        "name": "Darkvision",
+        "type": "feature"
+      }
+    ],
+    "resources": [
+      {
+        "key": "sorcery_points",
+        "name": "Sorcery Points",
+        "label": "SP",
+        "max": 8,
+        "current": 8
+      }
+    ],
+    "spells": [
+      {
+        "name": "Sacred Flame",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Shield",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Bless",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Silvery Barbs",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Fey Touched"
+      },
+      {
+        "name": "Aid",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Counterspell",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mass Healing Word",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Haste",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Death Ward",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 2,
+        "current": 2
+      }
+    },
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "persona_notes": [
+      "Older twin by minutes. Carries this with complete seriousness.",
+      "Thinks before acting. Always. Sometimes frustratingly so to Eldi.",
+      "Protective of his sister in the specific way of someone who knows she won't protect herself.",
+      "Warm but measured. Expresses care through preparation rather than words.",
+      "The divine power arrived without warning during the mudslide. He has not fully decided what he thinks about that yet.",
+      "Watches a room the way a healer watches patients — looking for what is wrong before anyone says so."
+    ],
+    "id": "characters_21",
+    "darkvision": 60,
+    "hit_die": "d6",
+    "hit_dice_current": 8
   }
 ]

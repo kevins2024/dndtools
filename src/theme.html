@@ -5,45 +5,71 @@
     <title>Theme Preview</title>
     <link rel="stylesheet" href="./theme.css" />
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
         background: var(--color-bg);
         color: var(--color-text);
         font-family: var(--font-body);
         padding: 2rem;
         margin: 0;
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
       }
       h1 {
         font-family: var(--font-display);
         color: var(--color-accent-strong);
-        margin-bottom: 2rem;
-        font-size: var(--font-size-display);
+        margin-bottom: 0.25rem;
+        font-size: 2rem;
+        letter-spacing: 0.05em;
+      }
+      .subtitle {
+        color: var(--color-text-muted);
+        font-size: var(--font-size-sm);
+        margin-bottom: 2.5rem;
       }
       h2 {
         font-family: var(--font-display);
-        font-size: var(--font-size-xxxs);
+        font-size: var(--font-size-xs);
         text-transform: uppercase;
         letter-spacing: 0.12em;
         color: var(--color-text-muted);
         border-bottom: 1px solid var(--color-border);
         padding-bottom: 0.4rem;
-        margin: 2rem 0 1rem;
+        margin: 2.5rem 0 1rem;
+      }
+      h3 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-low);
+        margin: 1.2rem 0 0.5rem;
       }
       .grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.8rem;
+        gap: 0.75rem;
       }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      /* ── Variable cards ── */
       .var-card {
         background: var(--color-bg-panel);
         border: 1px solid var(--color-border);
         border-radius: 6px;
         padding: 0.6rem 0.8rem;
         min-width: 180px;
-        font-size: var(--font-size-caption);
       }
       .var-name {
         color: var(--color-text-muted);
-        font-size: var(--font-size-tiny);
+        font-size: var(--font-size-xs);
         margin-bottom: 0.3rem;
         word-break: break-all;
       }
@@ -56,10 +82,10 @@
       }
       .var-value {
         color: var(--color-text-low);
-        font-size: var(--font-size-tiny);
+        font-size: var(--font-size-xs);
       }
       .font-sample {
-        font-size: var(--font-size-label);
+        font-size: 1rem;
         color: var(--color-text);
         margin-bottom: 0.2rem;
       }
@@ -67,10 +93,881 @@
         color: var(--color-text);
         white-space: nowrap;
       }
+
+      /* ── Component demos ── */
+      .demo-block {
+        background: var(--color-bg-panel);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        flex: 1 1 340px;
+        max-width: 600px;
+      }
+      .demo-block.dark {
+        background: var(--color-bg-panel-dark);
+      }
+      .demo-block.surface {
+        background: var(--color-bg-surface);
+      }
+      .demo-block.surface-alt {
+        background: var(--color-bg-surface-alt);
+      }
+      .demo-label {
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-low);
+        margin-bottom: 0.75rem;
+        font-family: var(--font-display);
+      }
+
+      /* Text hierarchy demo */
+      .text-line {
+        margin: 0.3rem 0;
+      }
+      .text-line span {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-low);
+        margin-left: 0.5rem;
+      }
+
+      /* Buttons */
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0.5rem 0;
+      }
+      .btn {
+        padding: 0.25rem 0.85rem;
+        border-radius: 4px;
+        border: 1px solid var(--color-border);
+        background: var(--color-bg-surface);
+        color: var(--color-text-muted);
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        cursor: pointer;
+        letter-spacing: 0.04em;
+      }
+      .btn-accent {
+        background: var(--color-accent);
+        color: #0e0c09;
+        border-color: var(--color-accent);
+        font-weight: 600;
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--color-accent);
+        border-color: var(--color-accent);
+      }
+      .btn-danger {
+        background: transparent;
+        color: var(--color-text-danger);
+        border-color: var(--color-text-danger);
+      }
+      .btn-muted {
+        background: transparent;
+        color: var(--color-text-low);
+        border-color: var(--color-border);
+      }
+      .btn-disabled {
+        color: var(--color-text-low);
+        border-color: var(--color-border);
+        background: transparent;
+        cursor: not-allowed;
+      }
+
+      /* Inputs */
+      .inp {
+        width: 100%;
+        padding: 0.4rem 0.7rem;
+        background: var(--color-bg-panel);
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: var(--font-size-base);
+        margin: 0.3rem 0;
+      }
+      .inp:focus {
+        outline: none;
+        border-color: var(--color-accent);
+      }
+      .inp::placeholder {
+        color: var(--color-text-low);
+      }
+      .inp-label {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-low);
+        margin-top: 0.5rem;
+        display: block;
+      }
+
+      /* Badges / pills */
+      .badge {
+        display: inline-block;
+        padding: 0.1rem 0.55rem;
+        border-radius: 12px;
+        font-size: var(--font-size-xs);
+        font-family: var(--font-display);
+        letter-spacing: 0.05em;
+      }
+      .badge-accent {
+        background: rgba(200, 169, 110, 0.18);
+        color: var(--color-accent);
+        border: 1px solid rgba(200, 169, 110, 0.4);
+      }
+      .badge-success {
+        background: rgba(74, 158, 107, 0.18);
+        color: var(--color-success);
+        border: 1px solid rgba(74, 158, 107, 0.3);
+      }
+      .badge-danger {
+        background: rgba(192, 57, 43, 0.18);
+        color: var(--color-danger);
+        border: 1px solid rgba(192, 57, 43, 0.3);
+      }
+      .badge-info {
+        background: rgba(136, 136, 221, 0.18);
+        color: var(--color-info);
+        border: 1px solid rgba(136, 136, 221, 0.3);
+      }
+      .badge-muted {
+        background: var(--color-bg-surface);
+        color: var(--color-text-muted);
+        border: 1px solid var(--color-border);
+      }
+
+      /* Nav tabs */
+      .tab-row {
+        display: flex;
+        border-bottom: 1px solid var(--color-border);
+        margin: 0.5rem 0;
+      }
+      .tab {
+        padding: 0.3rem 1rem;
+        font-family: var(--font-display);
+        font-size: 0.82rem;
+        color: var(--color-text-muted);
+        border: 1px solid transparent;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        margin-bottom: -1px;
+        letter-spacing: 0.04em;
+      }
+      .tab.active {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
+      }
+      .tab:hover {
+        color: var(--color-accent);
+      }
+
+      /* List items */
+      .list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.35rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin: 2px 0;
+      }
+      .list-item:hover {
+        background: var(--color-bg-surface);
+      }
+      .list-item.selected {
+        background: var(--color-bg-surface-alt);
+        color: var(--color-accent);
+        border-left: 2px solid var(--color-accent);
+      }
+      .list-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        flex-shrink: 0;
+      }
+
+      /* Stat chips */
+      .stat-chip {
+        background: var(--color-bg-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        padding: 0.3rem 0.6rem;
+        text-align: center;
+        min-width: 60px;
+      }
+      .stat-key {
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-text-low);
+        display: block;
+      }
+      .stat-val {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text);
+        font-family: var(--font-display);
+        display: block;
+      }
+
+      /* Data rows */
+      .data-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.25rem 0;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 0.85rem;
+      }
+      .data-row:last-child {
+        border-bottom: none;
+      }
+      .data-key {
+        color: var(--color-text-low);
+      }
+      .data-val {
+        color: var(--color-text-muted);
+      }
+      .data-val.highlight {
+        color: var(--color-accent);
+      }
+
+      /* Bottom bar demo */
+      .bottom-bar-demo {
+        background: var(--color-bg-panel-dark);
+        border-top: 1px solid var(--color-border);
+        border-radius: 0 0 8px 8px;
+        display: flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 0.5rem;
+        margin-top: 0.75rem;
+        gap: 0.4rem;
+      }
+      .bar-btn-demo {
+        padding: 0.12rem 0.6rem;
+        font-size: var(--font-size-xs);
+        font-family: var(--font-display);
+        border: 1px solid var(--color-border);
+        border-radius: 3px;
+        background: transparent;
+        color: var(--color-text-low);
+        cursor: pointer;
+      }
+      .bar-btn-demo.accent {
+        color: var(--color-accent);
+        border-color: var(--color-accent);
+      }
+      .bar-spacer {
+        flex: 1;
+      }
+      .bar-dice {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-low);
+        font-family: var(--font-body);
+      }
+
+      /* Header demo */
+      .header-demo {
+        background: var(--color-bg-panel-dark);
+        border-bottom: 1px solid var(--color-border);
+        border-radius: 8px 8px 0 0;
+        display: flex;
+        align-items: center;
+        height: 2.6rem;
+        padding: 0 0.75rem;
+        gap: 0.25rem;
+        margin-bottom: 0;
+      }
+      .ctx-tab {
+        padding: 0.2rem 0.75rem;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: var(--color-text-muted);
+        font-family: var(--font-display);
+        font-size: 0.82rem;
+        cursor: pointer;
+      }
+      .ctx-tab.active {
+        color: var(--color-accent-strong);
+        border-color: var(--color-accent);
+        background: var(--color-bg-surface);
+      }
+
+      /* Skill pip */
+      .skill-pip {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-low);
+        background: var(--color-bg-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 3px;
+        padding: 1px 5px;
+        display: inline-block;
+        margin: 2px;
+      }
+      .skill-pip strong {
+        color: var(--color-text-muted);
+      }
+
+      /* Warning / success / info banners */
+      .banner {
+        padding: 0.5rem 0.9rem;
+        border-radius: 5px;
+        font-size: 0.82rem;
+        margin: 0.4rem 0;
+      }
+      .banner-success {
+        background: var(--color-success-dark);
+        border: 1px solid var(--color-success-border);
+        color: var(--color-success);
+      }
+      .banner-warning {
+        background: rgba(240, 168, 48, 0.12);
+        border: 1px solid rgba(240, 168, 48, 0.3);
+        color: var(--color-text-warning);
+      }
+      .banner-danger {
+        background: rgba(192, 57, 43, 0.12);
+        border: 1px solid rgba(192, 57, 43, 0.3);
+        color: var(--color-danger);
+      }
+      .banner-info {
+        background: rgba(136, 136, 221, 0.1);
+        border: 1px solid rgba(136, 136, 221, 0.25);
+        color: var(--color-info);
+      }
+
+      .spacer {
+        height: 1rem;
+      }
     </style>
   </head>
   <body>
     <h1>Theme Preview</h1>
+    <div class="subtitle">
+      Dawn Blades Campaign App — Design Tokens &amp; Component Reference
+    </div>
+
+    <!-- ══ COMPONENTS ══════════════════════════════════════════════════════ -->
+    <h2>Components</h2>
+
+    <!-- App shell -->
+    <h3>App shell — header &amp; bottom bar</h3>
+    <div
+      style="
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        overflow: hidden;
+        max-width: 700px;
+      "
+    >
+      <div class="header-demo">
+        <div class="ctx-tab active">Party</div>
+        <div class="ctx-tab">Combat</div>
+        <div class="ctx-tab">Character</div>
+        <div class="ctx-tab">World</div>
+        <div class="ctx-tab">Tools</div>
+      </div>
+      <div
+        style="
+          background: var(--color-bg);
+          padding: 0.75rem 1rem;
+          font-size: 0.8rem;
+          color: var(--color-text-low);
+          text-align: center;
+        "
+      >
+        ← context area →
+      </div>
+      <div class="bottom-bar-demo">
+        <button class="bar-btn-demo">Long Rest</button>
+        <button class="bar-btn-demo accent">Manage Parties</button>
+        <div class="bar-spacer"></div>
+        <span class="bar-dice">⬡ Dice Roller</span>
+      </div>
+    </div>
+
+    <!-- Text hierarchy -->
+    <h3>Text hierarchy — all levels on main backgrounds</h3>
+    <div class="row">
+      <div class="demo-block" style="flex: 1 1 280px">
+        <div class="demo-label">--color-bg-panel (#13100d)</div>
+        <div class="text-line" style="color: var(--color-text)">
+          --color-text <span>#e8dcc8</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-muted)">
+          --color-text-muted <span>#a08870</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-alt)">
+          --color-text-alt <span>#c8a96e</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-strong)">
+          --color-text-strong <span>#e8c87a</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-low)">
+          --color-text-low <span>#8a7a60</span>
+        </div>
+        <div class="text-line" style="color: var(--color-accent)">
+          --color-accent <span>#c8a96e</span>
+        </div>
+        <div class="text-line" style="color: var(--color-accent-strong)">
+          --color-accent-strong <span>#e8c87a</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-danger)">
+          --color-text-danger <span>#a05030</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-warning)">
+          --color-text-warning <span>#f0a830</span>
+        </div>
+        <div class="text-line" style="color: var(--color-info)">
+          --color-info <span>#8888dd</span>
+        </div>
+        <div class="text-line" style="color: var(--color-success)">
+          --color-success <span>#4a9e6b</span>
+        </div>
+      </div>
+      <div class="demo-block surface" style="flex: 1 1 280px">
+        <div class="demo-label">--color-bg-surface (#1e1a14)</div>
+        <div class="text-line" style="color: var(--color-text)">
+          --color-text <span>#e8dcc8</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-muted)">
+          --color-text-muted <span>#a08870</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-alt)">
+          --color-text-alt <span>#c8a96e</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-strong)">
+          --color-text-strong <span>#e8c87a</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-low)">
+          --color-text-low <span>#8a7a60</span>
+        </div>
+        <div class="text-line" style="color: var(--color-accent)">
+          --color-accent <span>#c8a96e</span>
+        </div>
+        <div class="text-line" style="color: var(--color-accent-strong)">
+          --color-accent-strong <span>#e8c87a</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-danger)">
+          --color-text-danger <span>#a05030</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-warning)">
+          --color-text-warning <span>#f0a830</span>
+        </div>
+        <div class="text-line" style="color: var(--color-info)">
+          --color-info <span>#8888dd</span>
+        </div>
+        <div class="text-line" style="color: var(--color-success)">
+          --color-success <span>#4a9e6b</span>
+        </div>
+      </div>
+      <div class="demo-block dark" style="flex: 1 1 280px">
+        <div class="demo-label">--color-bg-panel-dark (#0e0c09)</div>
+        <div class="text-line" style="color: var(--color-text)">
+          --color-text <span>#e8dcc8</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-muted)">
+          --color-text-muted <span>#a08870</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-alt)">
+          --color-text-alt <span>#c8a96e</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-strong)">
+          --color-text-strong <span>#e8c87a</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-low)">
+          --color-text-low <span>#8a7a60</span>
+        </div>
+        <div class="text-line" style="color: var(--color-accent)">
+          --color-accent <span>#c8a96e</span>
+        </div>
+        <div class="text-line" style="color: var(--color-accent-strong)">
+          --color-accent-strong <span>#e8c87a</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-danger)">
+          --color-text-danger <span>#a05030</span>
+        </div>
+        <div class="text-line" style="color: var(--color-text-warning)">
+          --color-text-warning <span>#f0a830</span>
+        </div>
+        <div class="text-line" style="color: var(--color-info)">
+          --color-info <span>#8888dd</span>
+        </div>
+        <div class="text-line" style="color: var(--color-success)">
+          --color-success <span>#4a9e6b</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <h3>Buttons</h3>
+    <div class="demo-block" style="max-width: 100%">
+      <div class="demo-label">All button variants</div>
+      <div class="btn-row">
+        <button class="btn btn-accent">Primary / Accent</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn">Default</button>
+        <button class="btn btn-muted">Muted</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-disabled" disabled>Disabled</button>
+      </div>
+      <div class="btn-row" style="margin-top: 0.5rem">
+        <button
+          class="btn"
+          style="font-size: var(--font-size-xs); padding: 0.12rem 0.5rem"
+        >
+          xs button
+        </button>
+        <button
+          class="btn"
+          style="font-size: var(--font-size-xs); padding: 0.15rem 0.6rem"
+        >
+          sm button
+        </button>
+        <button
+          class="btn btn-accent"
+          style="font-size: var(--font-size-xs); padding: 0.15rem 0.6rem"
+        >
+          sm accent
+        </button>
+      </div>
+    </div>
+
+    <!-- Font sizes -->
+    <h3>Typography — font sizes</h3>
+    <div class="demo-block" style="max-width: 100%">
+      <div class="demo-label">All --font-size-* tokens (body font)</div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+          margin-top: 0.25rem;
+        "
+      >
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span
+            style="
+              font-size: var(--font-size-3xl);
+              font-family: var(--font-display);
+              color: var(--color-text);
+            "
+            >Aa</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-3xl · 3.3rem</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span
+            style="
+              font-size: var(--font-size-2xl);
+              font-family: var(--font-display);
+              color: var(--color-text);
+            "
+            >Aa</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-2xl · 2.4rem</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span
+            style="
+              font-size: var(--font-size-xl);
+              font-family: var(--font-display);
+              color: var(--color-text);
+            "
+            >Aa</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-xl · 1.95rem</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span
+            style="
+              font-size: var(--font-size-lg);
+              font-family: var(--font-display);
+              color: var(--color-text);
+            "
+            >Aa</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-lg · 1.5rem</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span style="font-size: var(--font-size-md); color: var(--color-text)"
+            >Dawn Blades</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-md · 1.275rem</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span
+            style="font-size: var(--font-size-base); color: var(--color-text)"
+            >Dawn Blades — The quick brown fox</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-base · 1.125rem · body default</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span style="font-size: var(--font-size-sm); color: var(--color-text)"
+            >Dawn Blades — The quick brown fox jumps over the lazy dog</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-sm · 0.9rem</span
+          >
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 1rem">
+          <span style="font-size: var(--font-size-xs); color: var(--color-text)"
+            >Dawn Blades — The quick brown fox jumps over the lazy dog</span
+          >
+          <span
+            style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+            >--font-size-xs · 0.75rem</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Inputs -->
+    <h3>Inputs</h3>
+    <div class="demo-block" style="max-width: 500px">
+      <span class="inp-label">Text input</span>
+      <input class="inp" placeholder="Placeholder text…" />
+      <span class="inp-label">Focused (outlined)</span>
+      <input
+        class="inp"
+        value="Filled input value"
+        style="border-color: var(--color-accent)"
+      />
+      <span class="inp-label">Disabled</span>
+      <input class="inp" value="Disabled input" disabled style="opacity: 0.4" />
+    </div>
+
+    <!-- Badges & pills -->
+    <h3>Badges &amp; pills</h3>
+    <div class="row" style="align-items: center">
+      <span class="badge badge-accent">Accent</span>
+      <span class="badge badge-success">Active</span>
+      <span class="badge badge-danger">Dead</span>
+      <span class="badge badge-info">Concentrating</span>
+      <span class="badge badge-muted">Muted</span>
+    </div>
+
+    <!-- Status banners -->
+    <h3>Status banners</h3>
+    <div class="banner banner-success">
+      ✓ Long rest complete — all resources recovered.
+    </div>
+    <div class="banner banner-warning">
+      ⚠ Half hit points remaining — consider retreating.
+    </div>
+    <div class="banner banner-danger">
+      ✕ Rhuna is unconscious and making death saving throws.
+    </div>
+    <div class="banner banner-info">
+      ℹ Kessara is concentrating on Hypnotic Pattern.
+    </div>
+
+    <!-- Cards -->
+    <h3>Cards &amp; panels</h3>
+    <div class="row">
+      <!-- Character-style card -->
+      <div class="demo-block" style="flex: 0 0 220px">
+        <div class="demo-label">Member card</div>
+        <div
+          style="
+            background: var(--color-bg-surface-alt);
+            border-radius: 5px;
+            height: 100px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-low);
+            font-size: var(--font-size-xs);
+          "
+        >
+          [portrait]
+        </div>
+        <div
+          style="
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--color-text);
+            letter-spacing: 0.03em;
+          "
+        >
+          Kessara
+        </div>
+        <div
+          style="font-size: var(--font-size-xs); color: var(--color-text-muted)"
+        >
+          Wizard
+        </div>
+        <div
+          style="font-size: var(--font-size-xs); color: var(--color-text-low)"
+        >
+          Bladesinger
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            margin: 0.25rem 0;
+          "
+        >
+          <span class="stat-key">INT</span>
+          <span
+            class="stat-val"
+            style="font-size: 0.9rem; color: var(--color-accent)"
+            >20</span
+          >
+        </div>
+        <div>
+          <span class="skill-pip">Arca <strong>+9</strong></span>
+          <span class="skill-pip">Acro <strong>+7</strong></span>
+          <span class="skill-pip">Perc <strong>+5</strong></span>
+        </div>
+        <div class="btn-row" style="margin-top: 0.4rem">
+          <button
+            class="btn"
+            style="flex: 1; font-size: var(--font-size-xs); padding: 0.18rem 0"
+          >
+            Sheet
+          </button>
+          <button
+            class="btn"
+            style="flex: 1; font-size: var(--font-size-xs); padding: 0.18rem 0"
+          >
+            Items
+          </button>
+          <button
+            class="btn"
+            style="flex: 1; font-size: var(--font-size-xs); padding: 0.18rem 0"
+          >
+            Spells
+          </button>
+        </div>
+      </div>
+
+      <!-- Data panel -->
+      <div class="demo-block" style="flex: 1 1 260px">
+        <div class="demo-label">Data panel</div>
+        <div class="data-row">
+          <span class="data-key">Armor Class</span
+          ><span class="data-val highlight">18</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Hit Points</span
+          ><span class="data-val">52 / 68</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Initiative</span
+          ><span class="data-val">+5</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Spell Save DC</span
+          ><span class="data-val highlight">17</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Speed</span><span class="data-val">30 ft</span>
+        </div>
+        <div class="data-row">
+          <span class="data-key">Proficiency Bonus</span
+          ><span class="data-val">+4</span>
+        </div>
+      </div>
+
+      <!-- Stat chips -->
+      <div class="demo-block" style="flex: 1 1 260px">
+        <div class="demo-label">Stat chips</div>
+        <div class="row" style="gap: 0.4rem">
+          <div class="stat-chip">
+            <span class="stat-key">STR</span><span class="stat-val">10</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-key">DEX</span><span class="stat-val">20</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-key">CON</span><span class="stat-val">14</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-key">INT</span><span class="stat-val">20</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-key">WIS</span><span class="stat-val">12</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-key">CHA</span><span class="stat-val">14</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs & lists -->
+    <h3>Tabs &amp; lists</h3>
+    <div class="row">
+      <div class="demo-block" style="flex: 1 1 300px">
+        <div class="demo-label">Sub-navigation tabs</div>
+        <div class="tab-row">
+          <div class="tab active">Character Sheet</div>
+          <div class="tab">Equipment</div>
+          <div class="tab">Spellbook</div>
+        </div>
+        <div
+          style="
+            color: var(--color-text-low);
+            font-size: var(--font-size-xs);
+            padding: 0.5rem 0;
+          "
+        >
+          ← tab content area →
+        </div>
+      </div>
+      <div class="demo-block" style="flex: 1 1 260px">
+        <div class="demo-label">List items</div>
+        <div class="list-item">
+          <div class="list-dot"></div>
+          Vaz Tharrazk
+        </div>
+        <div class="list-item selected">
+          <div class="list-dot"></div>
+          Kessara
+        </div>
+        <div class="list-item">
+          <div class="list-dot"></div>
+          Rhuna Stoneback
+        </div>
+        <div class="list-item">
+          <div class="list-dot"></div>
+          Lexica
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DESIGN TOKENS ═══════════════════════════════════════════════════ -->
+
     <div id="root"></div>
 
     <script>
@@ -94,7 +991,7 @@
         return vars
       }
 
-      function isColor(name, value) {
+      function isColor(name) {
         return (
           name.includes('color') ||
           name.includes('accent') ||
@@ -107,7 +1004,6 @@
           name.includes('die')
         )
       }
-
       function isFont(name) {
         return (
           name.includes('font-family') ||
@@ -124,44 +1020,18 @@
       }
 
       function colorCard(name, value) {
-        // skip rgb variants as standalone swatches
         if (name.includes('-rgb'))
-          return `
-        <div class="var-card">
-          <div class="var-name">${name}</div>
-          <div class="var-value">${value}</div>
-        </div>`
-        return `
-        <div class="var-card">
-          <div class="var-name">${name}</div>
-          <div class="swatch" style="background:${value}"></div>
-          <div class="var-value">${value}</div>
-        </div>`
+          return `<div class="var-card"><div class="var-name">${name}</div><div class="var-value">${value}</div></div>`
+        return `<div class="var-card"><div class="var-name">${name}</div><div class="swatch" style="background:${value}"></div><div class="var-value">${value}</div></div>`
       }
-
       function fontCard(name, value) {
-        return `
-        <div class="var-card" style="min-width:260px">
-          <div class="var-name">${name}</div>
-          <div class="font-sample" style="font-family:${value}">Dawn Blades — The quick brown fox</div>
-          <div class="var-value">${value}</div>
-        </div>`
+        return `<div class="var-card" style="min-width:260px"><div class="var-name">${name}</div><div class="font-sample" style="font-family:${value}">Dawn Blades — The quick brown fox jumps</div><div class="var-value">${value}</div></div>`
       }
-
       function sizeCard(name, value) {
-        return `
-        <div class="var-card">
-          <div class="var-name">${name}</div>
-          <div class="size-sample" style="font-size:${value}">Aa — ${value}</div>
-        </div>`
+        return `<div class="var-card"><div class="var-name">${name}</div><div class="size-sample" style="font-size:${value}">Aa — ${value}</div></div>`
       }
-
       function otherCard(name, value) {
-        return `
-        <div class="var-card">
-          <div class="var-name">${name}</div>
-          <div class="var-value">${value}</div>
-        </div>`
+        return `<div class="var-card"><div class="var-name">${name}</div><div class="var-value">${value}</div></div>`
       }
 
       window.addEventListener('load', () => {
@@ -170,16 +1040,14 @@
           fonts = '',
           sizes = '',
           other = ''
-
         for (const [name, value] of Object.entries(vars)) {
           if (isFont(name)) fonts += fontCard(name, value)
           else if (isSize(name)) sizes += sizeCard(name, value)
-          else if (isColor(name, value)) colors += colorCard(name, value)
+          else if (isColor(name)) colors += colorCard(name, value)
           else other += otherCard(name, value)
         }
-
         document.getElementById('root').innerHTML =
-          section('Colors', colors) +
+          section('Colors — all tokens', colors) +
           section('Typography — Fonts', fonts) +
           section('Typography — Sizes', sizes) +
           (other ? section('Other', other) : '')

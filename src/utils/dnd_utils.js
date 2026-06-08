@@ -30,7 +30,6 @@ export const STAT_KEYS = [
   { key: 'cha', label: 'CHA' },
 ]
 
-
 // Ability score keys that live inside stat_bonuses but modify the score itself, not a derived bonus.
 const SCORE_BONUS_KEYS = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha'])
 
@@ -114,12 +113,26 @@ export const dnd = {
       }
     }
 
+    // Pass 3 — feature stat_bonuses (e.g. Elven Accuracy +1 DEX)
+    for (const feature of character.features ?? []) {
+      if (feature.stat_bonuses) {
+        for (const [key, val] of Object.entries(feature.stat_bonuses)) {
+          if (SCORE_BONUS_KEYS.has(key)) {
+            if (key in stats) stats[key] = (stats[key] ?? 10) + val
+          } else {
+            bonuses[key] = (bonuses[key] ?? 0) + val
+          }
+        }
+      }
+    }
+
     return { stats, bonuses, unarmoredBonuses }
   },
 
   // Effective proficiency bonus: base (class/level or character field) + item bonus (Ioun Stone).
   _prof(character, bonuses) {
-    const base = character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
+    const base =
+      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
     return base + (bonuses.proficiency_bonus ?? 0)
   },
 
@@ -128,12 +141,20 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   // Internal — runs the full AC calculation and records each step for the breakdown tooltip.
-  _acCompute(character, { bladesongActive = false, carriedPartyItems = [] } = {}) {
-    const { stats, bonuses, unarmoredBonuses } = dnd.resolveStats(character, carriedPartyItems)
+  _acCompute(
+    character,
+    { bladesongActive = false, carriedPartyItems = [] } = {}
+  ) {
+    const { stats, bonuses, unarmoredBonuses } = dnd.resolveStats(
+      character,
+      carriedPartyItems
+    )
     const items = [...(character.items ?? []), ...carriedPartyItems]
     const mine = (i) => i.equipped_by === character.name
 
-    const armorItem = items.find((i) => mine(i) && i.type === 'armor' && i.slot === 'body')
+    const armorItem = items.find(
+      (i) => mine(i) && i.type === 'armor' && i.slot === 'body'
+    )
     const isWearingArmor = !!armorItem
     const dexMod = dnd.mod(stats.dex)
     const conMod = dnd.mod(stats.con)
@@ -170,17 +191,29 @@ export const dnd = {
         }
       }
     } else {
-      const unarmoredAcItem = items.find((i) => mine(i) && i.unarmored_armor_base_ac != null)
+      const unarmoredAcItem = items.find(
+        (i) => mine(i) && i.unarmored_armor_base_ac != null
+      )
       if (unarmoredAcItem) {
         base = unarmoredAcItem.unarmored_armor_base_ac + dexMod
-        steps.push(`${unarmoredAcItem.name} (base ${unarmoredAcItem.unarmored_armor_base_ac})`)
+        steps.push(
+          `${unarmoredAcItem.name} (base ${unarmoredAcItem.unarmored_armor_base_ac})`
+        )
         steps.push(`DEX ${dnd.signed(dexMod)}`)
       } else if (character.unarmored_ac_formula === 'monk') {
         base = 10 + dexMod + wisMod
-        steps.push(`Monk Defense: 10 + DEX ${dnd.signed(dexMod)} + WIS ${dnd.signed(wisMod)}`)
+        steps.push(
+          `Monk Defense: 10 + DEX ${dnd.signed(dexMod)} + WIS ${dnd.signed(
+            wisMod
+          )}`
+        )
       } else if (character.unarmored_ac_formula === 'barbarian') {
         base = 10 + dexMod + conMod
-        steps.push(`Barbarian Defense: 10 + DEX ${dnd.signed(dexMod)} + CON ${dnd.signed(conMod)}`)
+        steps.push(
+          `Barbarian Defense: 10 + DEX ${dnd.signed(dexMod)} + CON ${dnd.signed(
+            conMod
+          )}`
+        )
       } else {
         base = 10 + dexMod
         steps.push(`Unarmored: 10 + DEX ${dnd.signed(dexMod)}`)
@@ -188,33 +221,41 @@ export const dnd = {
 
       // Stat-mod unarmored bonuses (e.g. Monk's Belt adds CON mod)
       if (unarmoredBonuses.ac_unarmored_con) {
-        const src = items.filter(mine).find((i) => i.unarmored_stat_bonuses?.ac_unarmored_con)
+        const src = items
+          .filter(mine)
+          .find((i) => i.unarmored_stat_bonuses?.ac_unarmored_con)
         steps.push(`${src?.name ?? 'Item'}: CON ${dnd.signed(conMod)}`)
         statUnarmoredBonus += conMod
       }
     }
 
     const shieldItem = items.find((i) => mine(i) && i.armor_type === 'shield')
-    const shieldEnhancement = shieldItem ? (shieldItem.enhancement_bonus ?? 0) : 0
+    const shieldEnhancement = shieldItem ? shieldItem.enhancement_bonus ?? 0 : 0
     const shieldBonus = shieldItem ? 2 + shieldEnhancement : 0
     if (shieldItem) {
-      const shieldStr = shieldEnhancement ? `, +${shieldEnhancement} enhancement` : ''
+      const shieldStr = shieldEnhancement
+        ? `, +${shieldEnhancement} enhancement`
+        : ''
       steps.push(`${shieldItem.name} (${dnd.signed(shieldBonus)}${shieldStr})`)
     }
 
     // Per-item flat AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
     for (const item of items.filter(mine)) {
       const bonus = item.stat_bonuses?.ac ?? 0
-      const unarmoredBonus = !isWearingArmor ? (item.unarmored_stat_bonuses?.ac ?? 0) : 0
+      const unarmoredBonus = !isWearingArmor
+        ? item.unarmored_stat_bonuses?.ac ?? 0
+        : 0
       const total = bonus + unarmoredBonus
       if (total) steps.push(`${item.name} (${dnd.signed(total)})`)
     }
 
     if (bladesongActive) steps.push(`Bladesong INT ${dnd.signed(intMod)}`)
 
-    const itemAcBonus = (bonuses.ac ?? 0) + (isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0)
+    const itemAcBonus =
+      (bonuses.ac ?? 0) + (isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0)
     const bladesongBonus = bladesongActive ? intMod : 0
-    const value = base + shieldBonus + itemAcBonus + statUnarmoredBonus + bladesongBonus
+    const value =
+      base + shieldBonus + itemAcBonus + statUnarmoredBonus + bladesongBonus
     steps.push(`= ${value}`)
     return { value, steps }
   },
@@ -290,7 +331,9 @@ export const dnd = {
 
     const base = dnd.mod(stats[statKey])
     const prof = dnd._prof(character, bonuses)
-    const isProficient = (character.skill_proficiencies ?? []).includes(skillName)
+    const isProficient = (character.skill_proficiencies ?? []).includes(
+      skillName
+    )
     const hasExpertise = (character.skill_expertise ?? []).includes(skillName)
     const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
     const itemBonus = bonuses[`skill_${skillName}`] ?? 0
@@ -300,7 +343,10 @@ export const dnd = {
 
   allSkills(character, partyItems = []) {
     return Object.fromEntries(
-      Object.keys(dnd.SKILL_MAP).map((s) => [s, dnd.skill(character, s, partyItems)])
+      Object.keys(dnd.SKILL_MAP).map((s) => [
+        s,
+        dnd.skill(character, s, partyItems),
+      ])
     )
   },
 
@@ -318,7 +364,9 @@ export const dnd = {
 
   allMods(character, partyItems = []) {
     const { stats } = dnd.resolveStats(character, partyItems)
-    return Object.fromEntries(Object.entries(stats).map(([k, v]) => [k, dnd.mod(v)]))
+    return Object.fromEntries(
+      Object.entries(stats).map(([k, v]) => [k, dnd.mod(v)])
+    )
   },
 
   // ─────────────────────────────────────────────
@@ -346,9 +394,15 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   _weaponProps(weapon) {
-    const base = WEAPON_PROPS[weapon.weapon_category] ?? HOMEBREW_WEAPON_PROPS[weapon.weapon_category] ?? {}
+    const base =
+      WEAPON_PROPS[weapon.weapon_category] ??
+      HOMEBREW_WEAPON_PROPS[weapon.weapon_category] ??
+      {}
     return {
-      weapon_type: weapon.weapon_type ?? base.weapon_type ?? (weapon.slot?.startsWith('ranged') ? 'ranged' : 'melee'),
+      weapon_type:
+        weapon.weapon_type ??
+        base.weapon_type ??
+        (weapon.slot?.startsWith('ranged') ? 'ranged' : 'melee'),
       damage_dice: weapon.damage_dice ?? base.damage_dice ?? '1d4',
       damage_dice_2h: weapon.damage_dice_2h ?? base.damage_dice_2h ?? null,
       finesse: weapon.finesse ?? base.finesse ?? false,
@@ -360,17 +414,22 @@ export const dnd = {
     const { stats } = dnd.resolveStats(character, partyItems)
     const props = dnd._weaponProps(weapon)
     if (props.finesse) return Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
-    return props.weapon_type === 'ranged' ? dnd.mod(stats.dex) : dnd.mod(stats.str)
+    return props.weapon_type === 'ranged'
+      ? dnd.mod(stats.dex)
+      : dnd.mod(stats.str)
   },
 
   gripDie(character, weapon, partyItems = []) {
     const props = dnd._weaponProps(weapon)
     if (!props.versatile) return props.damage_dice
-    if (weapon.slot === 'melee2h') return props.damage_dice_2h ?? props.damage_dice
+    if (weapon.slot === 'melee2h')
+      return props.damage_dice_2h ?? props.damage_dice
     const melee1hCount = partyItems.filter(
       (i) => i.equipped_by === character.name && i.slot === 'melee1h'
     ).length
-    return melee1hCount <= 1 ? (props.damage_dice_2h ?? props.damage_dice) : props.damage_dice
+    return melee1hCount <= 1
+      ? props.damage_dice_2h ?? props.damage_dice
+      : props.damage_dice
   },
 
   attackBonus(character, weapon, partyItems = []) {
@@ -379,9 +438,10 @@ export const dnd = {
     const statMod = dnd._weaponStatMod(character, weapon, partyItems)
     const prof = dnd._prof(character, bonuses)
     const magic = weapon.enhancement_bonus ?? 0
-    const typeBonus = props.weapon_type === 'ranged'
-      ? (bonuses.ranged_attack ?? 0)
-      : (bonuses.melee_attack ?? 0)
+    const typeBonus =
+      props.weapon_type === 'ranged'
+        ? bonuses.ranged_attack ?? 0
+        : bonuses.melee_attack ?? 0
     return statMod + prof + magic + typeBonus
   },
 
@@ -390,7 +450,8 @@ export const dnd = {
     const props = dnd._weaponProps(weapon)
     const statMod = dnd._weaponStatMod(character, weapon, partyItems)
     const magic = weapon.enhancement_bonus ?? 0
-    const rangedBonus = props.weapon_type === 'ranged' ? (bonuses.ranged_damage ?? 0) : 0
+    const rangedBonus =
+      props.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
     return statMod + magic + rangedBonus
   },
 
@@ -400,7 +461,9 @@ export const dnd = {
     return {
       name: weapon.name,
       attack: dnd.signed(dnd.attackBonus(character, weapon, partyItems)),
-      damage: `${die}${dnd.signed(dnd.damageBonus(character, weapon, partyItems))}`,
+      damage: `${die}${dnd.signed(
+        dnd.damageBonus(character, weapon, partyItems)
+      )}`,
       type: props.weapon_type,
       notes: weapon.notes ?? '',
     }
@@ -416,7 +479,9 @@ export const dnd = {
   // Used for building tooltip strings that name which item contributes each bonus.
   _itemBonusBreakdown(character, partyItems) {
     const result = {}
-    for (const item of partyItems.filter((i) => i.equipped_by === character.name)) {
+    for (const item of partyItems.filter(
+      (i) => i.equipped_by === character.name
+    )) {
       for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
         if (!result[key]) result[key] = []
         result[key].push({ name: item.name, value: val })
@@ -432,52 +497,70 @@ export const dnd = {
     const dexMod = dnd.mod(stats.dex)
     const prof = dnd._prof(character, bonuses)
     const ibd = dnd._itemBonusBreakdown(character, partyItems)
-    const equippedItems = partyItems.filter((i) => i.equipped_by === character.name)
+    const equippedItems = partyItems.filter(
+      (i) => i.equipped_by === character.name
+    )
 
-    const summaries = equippedItems.filter((i) => i.type === 'weapon').map((w) => {
-      const props = dnd._weaponProps(w)
-      const magic = w.enhancement_bonus ?? 0
-      let statMod, statDesc
-      if (props.finesse) {
-        statMod = Math.max(strMod, dexMod)
-        statDesc = `Finesse — best of STR ${dnd.signed(strMod)}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
-      } else if (props.weapon_type === 'ranged') {
-        statMod = dexMod
-        statDesc = `DEX ${dnd.signed(dexMod)}`
-      } else {
-        statMod = strMod
-        statDesc = `STR ${dnd.signed(strMod)}`
-      }
+    const summaries = equippedItems
+      .filter((i) => i.type === 'weapon')
+      .map((w) => {
+        const props = dnd._weaponProps(w)
+        const magic = w.enhancement_bonus ?? 0
+        let statMod, statDesc
+        if (props.finesse) {
+          statMod = Math.max(strMod, dexMod)
+          statDesc = `Finesse — best of STR ${dnd.signed(
+            strMod
+          )}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
+        } else if (props.weapon_type === 'ranged') {
+          statMod = dexMod
+          statDesc = `DEX ${dnd.signed(dexMod)}`
+        } else {
+          statMod = strMod
+          statDesc = `STR ${dnd.signed(strMod)}`
+        }
 
-      const atkBonusKey = props.weapon_type === 'ranged' ? 'ranged_attack' : 'melee_attack'
-      const atkTotal = dnd.attackBonus(character, w, partyItems)
-      const atkParts = [statDesc, `Prof ${dnd.signed(prof)}`]
-      if (magic) atkParts.push(`Enchanted ${dnd.signed(magic)}`)
-      for (const { name, value } of (ibd[atkBonusKey] ?? [])) atkParts.push(`${name} ${dnd.signed(value)}`)
-      atkParts.push(`= ${dnd.signed(atkTotal)}`)
+        const atkBonusKey =
+          props.weapon_type === 'ranged' ? 'ranged_attack' : 'melee_attack'
+        const atkTotal = dnd.attackBonus(character, w, partyItems)
+        const atkParts = [statDesc, `Prof ${dnd.signed(prof)}`]
+        if (magic) atkParts.push(`Enchanted ${dnd.signed(magic)}`)
+        for (const { name, value } of ibd[atkBonusKey] ?? [])
+          atkParts.push(`${name} ${dnd.signed(value)}`)
+        atkParts.push(`= ${dnd.signed(atkTotal)}`)
 
-      const dmgBonus = dnd.damageBonus(character, w, partyItems)
-      const die = dnd.gripDie(character, w, partyItems)
-      const dmgParts = [die, statDesc.split('—')[0].trim()]
-      if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
-      if (props.weapon_type === 'ranged') {
-        for (const { name, value } of (ibd.ranged_damage ?? [])) dmgParts.push(`${name} ${dnd.signed(value)}`)
-      }
+        const dmgBonus = dnd.damageBonus(character, w, partyItems)
+        const die = dnd.gripDie(character, w, partyItems)
+        const dmgParts = [die, statDesc.split('—')[0].trim()]
+        if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
+        if (props.weapon_type === 'ranged') {
+          for (const { name, value } of ibd.ranged_damage ?? [])
+            dmgParts.push(`${name} ${dnd.signed(value)}`)
+        }
 
-      const extras = w.extra_damage
-        ? [{ source: `${w.extra_damage.type} ${w.extra_damage.trigger ?? 'on hit'}`, die: w.extra_damage.die, type: w.extra_damage.type, trigger: w.extra_damage.trigger ?? 'on hit' }]
-        : []
+        const extras = w.extra_damage
+          ? [
+              {
+                source: `${w.extra_damage.type} ${
+                  w.extra_damage.trigger ?? 'on hit'
+                }`,
+                die: w.extra_damage.die,
+                type: w.extra_damage.type,
+                trigger: w.extra_damage.trigger ?? 'on hit',
+              },
+            ]
+          : []
 
-      return {
-        name: w.name,
-        attack: dnd.signed(atkTotal),
-        damage: `${die}${dnd.signed(dmgBonus)}`,
-        type: props.weapon_type,
-        atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
-        dmgTooltip: dmgParts.join(' + '),
-        extras,
-      }
-    })
+        return {
+          name: w.name,
+          attack: dnd.signed(atkTotal),
+          damage: `${die}${dnd.signed(dmgBonus)}`,
+          type: props.weapon_type,
+          atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
+          dmgTooltip: dmgParts.join(' + '),
+          extras,
+        }
+      })
 
     if (character.martial_arts_die) {
       const die = character.martial_arts_die
@@ -486,7 +569,10 @@ export const dnd = {
       const unarmedDmg = bonuses.unarmed_damage ?? 0
       const atkTotal = statMod + prof + unarmedAtk
       const dmgTotal = statMod + unarmedDmg
-      const atkParts = [`Martial Arts ${dnd.signed(statMod)}`, `Prof ${dnd.signed(prof)}`]
+      const atkParts = [
+        `Martial Arts ${dnd.signed(statMod)}`,
+        `Prof ${dnd.signed(prof)}`,
+      ]
       if (unarmedAtk) atkParts.push(`Items ${dnd.signed(unarmedAtk)}`)
       atkParts.push(`= ${dnd.signed(atkTotal)}`)
       const dmgParts = [die, `STR/DEX ${dnd.signed(statMod)}`]
@@ -494,7 +580,12 @@ export const dnd = {
 
       const extras = equippedItems
         .filter((i) => i.extra_damage?.applies_to === 'unarmed')
-        .map((i) => ({ source: i.name, die: i.extra_damage.die, type: i.extra_damage.type, trigger: i.extra_damage.trigger ?? 'on hit' }))
+        .map((i) => ({
+          source: i.name,
+          die: i.extra_damage.die,
+          type: i.extra_damage.type,
+          trigger: i.extra_damage.trigger ?? 'on hit',
+        }))
 
       summaries.unshift({
         name: 'Unarmed Strike',
@@ -541,16 +632,43 @@ export const dnd = {
   // Stat block for templates — scores and mods after all item effects.
   statArray(character, partyItems = []) {
     const { stats } = dnd.resolveStats(character, partyItems)
-    const baseScores = { str: character.stat_str ?? 10, dex: character.stat_dex ?? 10, con: character.stat_con ?? 10, int: character.stat_int ?? 10, wis: character.stat_wis ?? 10, cha: character.stat_cha ?? 10 }
-    const equipped = [...(character.items ?? []), ...partyItems].filter(i => i.equipped_by === character.name)
+    const baseScores = {
+      str: character.stat_str ?? 10,
+      dex: character.stat_dex ?? 10,
+      con: character.stat_con ?? 10,
+      int: character.stat_int ?? 10,
+      wis: character.stat_wis ?? 10,
+      cha: character.stat_cha ?? 10,
+    }
+    const equipped = [...(character.items ?? []), ...partyItems].filter(
+      (i) => i.equipped_by === character.name
+    )
     const effects = {}
     for (const item of equipped) {
       for (const [key, val] of Object.entries(item.stat_overrides ?? {})) {
-        ;(effects[key] = effects[key] ?? []).push({ name: item.name, type: 'override', value: val })
+        ;(effects[key] = effects[key] ?? []).push({
+          name: item.name,
+          type: 'override',
+          value: val,
+        })
       }
       for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
-        if (SCORE_BONUS_KEYS.has(key))
-          ;(effects[key] = effects[key] ?? []).push({ name: item.name, type: 'bonus', value: val })
+        if (SCORE_BONUS_KEYS.has(key));
+        ;(effects[key] = effects[key] ?? []).push({
+          name: item.name,
+          type: 'bonus',
+          value: val,
+        })
+      }
+    }
+    for (const feature of character.features ?? []) {
+      for (const [key, val] of Object.entries(feature.stat_bonuses ?? {})) {
+        if (SCORE_BONUS_KEYS.has(key));
+        ;(effects[key] = effects[key] ?? []).push({
+          name: feature.name,
+          type: 'bonus',
+          value: val,
+        })
       }
     }
     return STAT_KEYS.map(({ key, label }) => {
@@ -558,8 +676,8 @@ export const dnd = {
       const fx = effects[key]
       let tooltip = null
       if (fx?.length) {
-        if (fx.some(e => e.type === 'override')) {
-          const ov = fx.find(e => e.type === 'override')
+        if (fx.some((e) => e.type === 'override')) {
+          const ov = fx.find((e) => e.type === 'override')
           tooltip = `${ov.value} (${ov.name})`
         } else {
           const parts = [`${baseScores[key]} base`]
@@ -568,16 +686,25 @@ export const dnd = {
           tooltip = parts.join(' · ')
         }
       }
-      return { key, label, score, mod: dnd.mod(score), modStr: dnd.signed(dnd.mod(score)), tooltip }
+      return {
+        key,
+        label,
+        score,
+        mod: dnd.mod(score),
+        modStr: dnd.signed(dnd.mod(score)),
+        tooltip,
+      }
     })
   },
 
   findCharacter(characters, name) {
-    return characters.find(
-      (c) =>
-        c.name.toLowerCase() === name.toLowerCase() ||
-        c.full_name?.toLowerCase() === name.toLowerCase()
-    ) ?? null
+    return (
+      characters.find(
+        (c) =>
+          c.name.toLowerCase() === name.toLowerCase() ||
+          c.full_name?.toLowerCase() === name.toLowerCase()
+      ) ?? null
+    )
   },
 
   findNPC(npcs, name) {

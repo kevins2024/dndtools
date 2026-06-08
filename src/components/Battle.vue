@@ -1,4 +1,5 @@
-﻿﻿﻿<template>
+﻿﻿﻿
+<template>
   <div class="battle">
     <!-- Initiative sidebar -->
     <aside class="initiative-sidebar scrollable">
@@ -113,7 +114,7 @@
       </div>
     </aside>
 
-    <!-- Right column: turn panel + dice roller -->
+    <!-- Right column: turn panel -->
     <div class="battle-right">
       <main class="turn-panel">
         <!-- Player turn -->
@@ -342,8 +343,21 @@
                 min="0"
                 @keyup.enter="applyHeal"
               />
-              <button class="heal-btn" :disabled="!healInput" @click="applyHeal">Heal</button>
-              <button class="temp-btn" :disabled="!healInput" @click="applyEnemyTemp" title="Grant temp HP">Tmp</button>
+              <button
+                class="heal-btn"
+                :disabled="!healInput"
+                @click="applyHeal"
+              >
+                Heal
+              </button>
+              <button
+                class="temp-btn"
+                :disabled="!healInput"
+                @click="applyEnemyTemp"
+                title="Grant temp HP"
+              >
+                Tmp
+              </button>
             </div>
 
             <div class="max-hp-row">
@@ -364,7 +378,6 @@
               >
                 Reset
               </button>
-              <button class="remove-enemy-btn" title="Remove from initiative" @click="$emit('remove-enemy', activeEntry.key)">✕</button>
             </div>
           </div>
 
@@ -387,17 +400,34 @@
               :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
               :title="conditionTooltip(cond)"
               @click="toggleEnemyCondition(cond)"
-            >{{ cond }}</button>
+            >
+              {{ cond }}
+            </button>
             <button
-              v-for="cond in (enemyConditions[activeEntry.key] || []).filter(c => !CONDITIONS.includes(c))"
+              v-for="cond in (enemyConditions[activeEntry.key] || []).filter(
+                (c) => !CONDITIONS.includes(c)
+              )"
               :key="'custom-' + cond"
               class="enemy-cond-chip enemy-cond-chip--active enemy-cond-chip--custom"
               @click="toggleEnemyCondition(cond)"
-            >{{ cond }} ✕</button>
+            >
+              {{ cond }} ✕
+            </button>
           </div>
           <div class="custom-cond-row">
-            <input v-model="newCustomCond" class="field custom-cond-input" placeholder="Add condition…" @keyup.enter="addCustomCondition" />
-            <button class="add-btn" :disabled="!newCustomCond.trim()" @click="addCustomCondition">+</button>
+            <input
+              v-model="newCustomCond"
+              class="field custom-cond-input"
+              placeholder="Add condition…"
+              @keyup.enter="addCustomCondition"
+            />
+            <button
+              class="add-btn"
+              :disabled="!newCustomCond.trim()"
+              @click="addCustomCondition"
+            >
+              +
+            </button>
           </div>
         </template>
 
@@ -405,10 +435,6 @@
           Select a combatant to view their turn
         </div>
       </main>
-
-      <div class="dice-bar">
-        <DiceRoller />
-      </div>
     </div>
 
     <!-- Battle log -->
@@ -426,7 +452,9 @@
       <div class="bestiary-panel">
         <div class="bestiary-panel-header">
           <span class="bestiary-panel-title">Add from Bestiary</span>
-          <button class="bestiary-panel-close" @click="bestiaryMode = false">✕</button>
+          <button class="bestiary-panel-close" @click="bestiaryMode = false">
+            ✕
+          </button>
         </div>
         <input
           v-model="bestiarySearch"
@@ -436,7 +464,9 @@
         />
         <div v-if="bestiaryLoading" class="bestiary-loading">Loading…</div>
         <div v-else class="bestiary-panel-results scrollable">
-          <div v-if="!bestiarySearch.trim()" class="bestiary-hint">Type to search</div>
+          <div v-if="!bestiarySearch.trim()" class="bestiary-hint">
+            Type to search
+          </div>
           <button
             v-for="m in bestiaryResults"
             :key="m.name"
@@ -444,9 +474,16 @@
             @click="addFromBestiary(m)"
           >
             <span class="br-name">{{ m.name }}</span>
-            <span class="br-meta">CR {{ m.cr }} · {{ m.type }} · {{ m.size }}</span>
+            <span class="br-meta"
+              >CR {{ m.cr }} · {{ m.type }} · {{ m.size }}</span
+            >
           </button>
-          <div v-if="bestiarySearch.trim() && !bestiaryResults.length" class="bestiary-empty">No results</div>
+          <div
+            v-if="bestiarySearch.trim() && !bestiaryResults.length"
+            class="bestiary-empty"
+          >
+            No results
+          </div>
         </div>
       </div>
     </div>
@@ -455,21 +492,35 @@
 
 <script>
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
-import DiceRoller from '@/components/DiceRoller.vue'
 import { conditionTooltip } from '@/data/conditions.js'
 import { STAT_KEYS } from '@/utils/dnd_utils.js'
 
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
 const CONDITIONS = Object.freeze([
-  'Blinded', 'Charmed', 'Deafened', 'Exhaustion', 'Frightened', 'Grappled',
-  'Haste', 'Incapacitated', 'Invisible', 'Paralyzed', 'Petrified', 'Poisoned',
-  'Prone', 'Restrained', 'Stunned', 'Unconscious', 'Concentrating', 'Bardic',
+  'Blinded',
+  'Charmed',
+  'Deafened',
+  'Exhaustion',
+  'Frightened',
+  'Grappled',
+  'Haste',
+  'Incapacitated',
+  'Invisible',
+  'Paralyzed',
+  'Petrified',
+  'Poisoned',
+  'Prone',
+  'Restrained',
+  'Stunned',
+  'Unconscious',
+  'Concentrating',
+  'Bardic',
 ])
 
 export default {
   name: 'Battle',
 
-  components: { CharacterCombatPanel, DiceRoller },
+  components: { CharacterCombatPanel },
 
   props: {
     order: { type: Array, required: true },
@@ -523,7 +574,13 @@ export default {
     },
     activeEnemyHp() {
       if (!this.activeEntry || this.activeEntry.type !== 'enemy') return null
-      return this.enemyHp[this.activeEntry.key] ?? { damage: 0, maxHp: null, tempHp: 0 }
+      return (
+        this.enemyHp[this.activeEntry.key] ?? {
+          damage: 0,
+          maxHp: null,
+          tempHp: 0,
+        }
+      )
     },
 
     activeEnemyStats() {
@@ -602,7 +659,16 @@ export default {
 
     log(msg) {
       const who = this.activeEntry?.name ?? '?'
-      this.battleLog.unshift({ id: Date.now(), turn: this.activeTurn + 1, who, msg, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) })
+      this.battleLog.unshift({
+        id: Date.now(),
+        turn: this.activeTurn + 1,
+        who,
+        msg,
+        time: new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      })
       if (this.battleLog.length > 100) this.battleLog.pop()
     },
 
@@ -628,10 +694,19 @@ export default {
       if (temp > 0) {
         const absorbed = Math.min(temp, amount)
         this.$set(this.playerTempHp, name, temp - absorbed)
-        if (amount - absorbed > 0) this.$set(this.playerHpDelta, name, (this.playerHpDelta[name] ?? 0) + amount - absorbed)
+        if (amount - absorbed > 0)
+          this.$set(
+            this.playerHpDelta,
+            name,
+            (this.playerHpDelta[name] ?? 0) + amount - absorbed
+          )
         this.log(`${amount} dmg (${absorbed} absorbed by temp HP)`)
       } else {
-        this.$set(this.playerHpDelta, name, (this.playerHpDelta[name] ?? 0) + amount)
+        this.$set(
+          this.playerHpDelta,
+          name,
+          (this.playerHpDelta[name] ?? 0) + amount
+        )
         this.log(`${amount} damage`)
       }
       this.playerDmgInput = null
@@ -640,7 +715,11 @@ export default {
       const amount = Number(this.playerHealInput)
       if (!amount || amount <= 0 || !this.activeChar) return
       const name = this.activeChar.name
-      this.$set(this.playerHpDelta, name, Math.max(0, (this.playerHpDelta[name] ?? 0) - amount))
+      this.$set(
+        this.playerHpDelta,
+        name,
+        Math.max(0, (this.playerHpDelta[name] ?? 0) - amount)
+      )
       this.log(`healed ${amount}`)
       this.playerHealInput = null
     },
@@ -648,7 +727,11 @@ export default {
       const amount = Number(this.playerTempInput)
       if (!amount || amount <= 0 || !this.activeChar) return
       const name = this.activeChar.name
-      this.$set(this.playerTempHp, name, Math.max(this.playerTempHp[name] ?? 0, amount))
+      this.$set(
+        this.playerTempHp,
+        name,
+        Math.max(this.playerTempHp[name] ?? 0, amount)
+      )
       this.log(`+${amount} temp HP`)
       this.playerTempInput = null
     },
@@ -664,7 +747,8 @@ export default {
     },
 
     _ensureEnemyHp(key) {
-      if (!this.enemyHp[key]) this.$set(this.enemyHp, key, { damage: 0, maxHp: null, tempHp: 0 })
+      if (!this.enemyHp[key])
+        this.$set(this.enemyHp, key, { damage: 0, maxHp: null, tempHp: 0 })
     },
     applyDamage() {
       const amount = Number(this.damageInput)
@@ -675,7 +759,11 @@ export default {
       const temp = hp.tempHp ?? 0
       if (temp > 0) {
         const absorbed = Math.min(temp, amount)
-        this.$set(this.enemyHp, key, { ...hp, damage: hp.damage + (amount - absorbed), tempHp: temp - absorbed })
+        this.$set(this.enemyHp, key, {
+          ...hp,
+          damage: hp.damage + (amount - absorbed),
+          tempHp: temp - absorbed,
+        })
         this.log(`${amount} damage (${absorbed} absorbed by temp HP)`)
       } else {
         this.$set(this.enemyHp, key, { ...hp, damage: hp.damage + amount })
@@ -689,7 +777,10 @@ export default {
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
       const hp = this.enemyHp[key]
-      this.$set(this.enemyHp, key, { ...hp, damage: Math.max(0, hp.damage - amount) })
+      this.$set(this.enemyHp, key, {
+        ...hp,
+        damage: Math.max(0, hp.damage - amount),
+      })
       this.log(`healed ${amount}`)
       this.healInput = null
     },
@@ -699,14 +790,21 @@ export default {
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
       const hp = this.enemyHp[key]
-      this.$set(this.enemyHp, key, { ...hp, tempHp: Math.max(hp.tempHp ?? 0, amount) })
+      this.$set(this.enemyHp, key, {
+        ...hp,
+        tempHp: Math.max(hp.tempHp ?? 0, amount),
+      })
       this.log(`+${amount} temp HP`)
       this.healInput = null
     },
     resetDamage() {
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
-      this.$set(this.enemyHp, key, { ...this.enemyHp[key], damage: 0, tempHp: 0 })
+      this.$set(this.enemyHp, key, {
+        ...this.enemyHp[key],
+        damage: 0,
+        tempHp: 0,
+      })
       this.log('damage reset')
     },
     saveMaxHp() {
@@ -724,7 +822,11 @@ export default {
       const key = this.activeEntry.key
       const current = this.enemyConditions[key] ?? []
       const had = current.includes(cond)
-      this.$set(this.enemyConditions, key, had ? current.filter((c) => c !== cond) : [...current, cond])
+      this.$set(
+        this.enemyConditions,
+        key,
+        had ? current.filter((c) => c !== cond) : [...current, cond]
+      )
       this.log(had ? `removed ${cond}` : `gained ${cond}`)
     },
     addCustomCondition() {
@@ -1166,15 +1268,6 @@ export default {
   gap: 1rem;
 }
 
-/* â”€â”€ Dice bar â”€â”€ */
-.dice-bar {
-  flex-shrink: 0;
-  height: 9rem;
-  border-top: 1px solid var(--color-border);
-  background: var(--color-bg-panel);
-  overflow: hidden;
-}
-
 .panel-header {
   display: flex;
   align-items: baseline;
@@ -1532,16 +1625,23 @@ export default {
   color: var(--color-condition);
   background: rgba(230, 126, 34, 0.08);
 }
-.enemy-cond-chip--custom { font-size: var(--font-size-xs); }
+.enemy-cond-chip--custom {
+  font-size: var(--font-size-xs);
+}
 
 .custom-cond-row {
   display: flex;
   gap: 0.3rem;
   margin-top: 0.3rem;
 }
-.custom-cond-input { flex: 1; min-width: 0; }
+.custom-cond-input {
+  flex: 1;
+  min-width: 0;
+}
 
-.temp-field { border-color: var(--color-info); }
+.temp-field {
+  border-color: var(--color-info);
+}
 .temp-btn {
   padding: 0.25rem 0.5rem;
   background: var(--color-bg-surface);
@@ -1552,8 +1652,14 @@ export default {
   cursor: pointer;
   flex-shrink: 0;
 }
-.temp-btn:hover:not(:disabled) { background: var(--color-info); color: var(--color-bg); }
-.temp-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.temp-btn:hover:not(:disabled) {
+  background: var(--color-info);
+  color: var(--color-bg);
+}
+.temp-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 /* ── Battle log ── */
 .battle-log {
@@ -1573,9 +1679,18 @@ export default {
   border-bottom: 1px solid var(--color-border);
   gap: 0.1rem;
 }
-.log-who { color: var(--color-accent); font-size: var(--font-size-base); font-weight: 600; }
-.log-msg { color: var(--color-text-muted); }
-.log-time { color: var(--color-text-low); font-size: var(--font-size-xs); }
+.log-who {
+  color: var(--color-accent);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}
+.log-msg {
+  color: var(--color-text-muted);
+}
+.log-time {
+  color: var(--color-text-low);
+  font-size: var(--font-size-xs);
+}
 
 /* ── Bestiary floating panel ── */
 .bestiary-overlay {
@@ -1584,7 +1699,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 200;
 }
 .bestiary-panel {
@@ -1606,11 +1721,20 @@ export default {
   border-bottom: 1px solid var(--color-border);
   background: var(--color-bg-panel-dark);
 }
-.bestiary-panel-title { font-family: var(--font-display); color: var(--color-accent); }
-.bestiary-panel-close {
-  background: none; border: none; color: var(--color-text-low); font-size: 1rem; cursor: pointer;
+.bestiary-panel-title {
+  font-family: var(--font-display);
+  color: var(--color-accent);
 }
-.bestiary-panel-close:hover { color: var(--color-text); }
+.bestiary-panel-close {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.bestiary-panel-close:hover {
+  color: var(--color-text);
+}
 .bestiary-panel-search {
   padding: 0.5rem 1rem;
   background: var(--color-bg-surface);
@@ -1642,6 +1766,14 @@ export default {
   cursor: pointer;
   gap: 1rem;
 }
-.bestiary-panel-result:hover { background: var(--color-bg-surface-alt); color: var(--color-accent); }
-.bestiary-hint { padding: 1rem; text-align: center; color: var(--color-text-low); font-style: italic; }
+.bestiary-panel-result:hover {
+  background: var(--color-bg-surface-alt);
+  color: var(--color-accent);
+}
+.bestiary-hint {
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-text-low);
+  font-style: italic;
+}
 </style>
