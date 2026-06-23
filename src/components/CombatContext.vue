@@ -18,7 +18,7 @@
               v-for="party in parties"
               :key="party.id"
               class="party-pill"
-              :class="{ active: party.active }"
+              :class="{ active: loadedPartyId === party.id }"
               :title="party.members.join(', ')"
               @click="loadParty(party)"
             >
@@ -81,6 +81,13 @@
           <div v-for="e in enemies" :key="e.id" class="enemy-row">
             <span class="enemy-name">{{ e.name }}</span>
             <span class="enemy-mod">{{ formatMod(e.mod) }}</span>
+            <button
+              class="dupe-btn"
+              title="Duplicate"
+              @click="duplicateEnemy(e)"
+            >
+              ❏
+            </button>
             <button class="remove-btn" @click="removeEnemy(e)">✕</button>
           </div>
           <div v-if="enemies.length === 0" class="col-empty">
@@ -112,6 +119,7 @@
         :combatant-states="combatantStates"
         @override-roll="onOverrideRoll"
         @add-enemy="onAddEnemyMidFight"
+        @duplicate-enemy="onDuplicateEnemy"
         @toggle-friendly="onToggleFriendly"
         @remove-enemy="onRemoveEnemy"
       />
@@ -181,6 +189,7 @@ export default {
       nextEnemyId: 1,
       showEncounterModal: false,
       showBattleMap: false,
+      loadedPartyId: null,
     }
   },
 
@@ -237,6 +246,13 @@ export default {
     },
   },
 
+  created() {
+    if (this.$store.state.selectedPlayers.length === 0) {
+      const active = this.$store.state.parties.find((p) => p.active)
+      if (active) this.loadParty(active)
+    }
+  },
+
   watch: {
     '$store.state.pendingCombatEnemies'(enemies) {
       if (!enemies) return
@@ -253,6 +269,7 @@ export default {
         'SET_SELECTED_PLAYERS',
         party.members.filter((m) => valid.has(m))
       )
+      this.loadedPartyId = party.id
     },
 
     portrait(name) {
@@ -289,6 +306,38 @@ export default {
     removeEnemy(e) {
       this.enemies = this.enemies.filter((x) => x.id !== e.id)
       this.$delete(this.rolls, `enemy-${e.id}`)
+    },
+    nextUniqueName(name) {
+      const m = name.match(/^(.*?)\s+(\d+)$/)
+      const base = m ? m[1] : name
+      const taken = new Set(this.enemies.map((e) => e.name.toLowerCase()))
+      let n = 2
+      while (taken.has(`${base} ${n}`.toLowerCase())) n++
+      return `${base} ${n}`
+    },
+    duplicateEnemy(e) {
+      this.enemies.push({
+        id: this.nextEnemyId++,
+        name: this.nextUniqueName(e.name),
+        mod: e.mod,
+        encounterData: e.encounterData ? { ...e.encounterData } : null,
+      })
+    },
+    onDuplicateEnemy(key) {
+      const id = parseInt(key.replace('enemy-', ''))
+      const src = this.enemies.find((e) => e.id === id)
+      if (!src) return
+      const newId = this.nextEnemyId++
+      this.enemies.push({
+        id: newId,
+        name: this.nextUniqueName(src.name),
+        mod: src.mod,
+        encounterData: src.encounterData ? { ...src.encounterData } : null,
+      })
+      this.$set(this.rolls, `enemy-${newId}`, {
+        total: dnd.roll() + src.mod,
+        tiebreakOrder: 0,
+      })
     },
     rollInitiative() {
       this.$store.commit('SET_DICE_DRAWER_OPEN', true)
@@ -688,6 +737,19 @@ export default {
   text-align: right;
 }
 
+.dupe-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+.dupe-btn:hover {
+  color: var(--color-accent);
+}
 .remove-btn {
   background: none;
   border: none;

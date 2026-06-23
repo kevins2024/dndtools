@@ -187,6 +187,12 @@
             class="sb-badge sb-badge--action"
             >{{ actionLabel(spellMeta[spell.name].actionType) }}</span
           >
+          <span
+            v-if="spellMeta[spell.name] && spellMeta[spell.name].school"
+            class="sb-badge sb-badge--school"
+            :title="spellMeta[spell.name].school"
+            >{{ schoolAbbr(spellMeta[spell.name].school) }}</span
+          >
         </div>
       </div>
 
@@ -239,6 +245,12 @@
               v-if="spellMeta[spell.name]"
               class="sb-badge sb-badge--action"
               >{{ actionLabel(spellMeta[spell.name].actionType) }}</span
+            >
+            <span
+              v-if="spellMeta[spell.name] && spellMeta[spell.name].school"
+              class="sb-badge sb-badge--school"
+              :title="spellMeta[spell.name].school"
+              >{{ schoolAbbr(spellMeta[spell.name].school) }}</span
             >
           </div>
         </div>
@@ -634,6 +646,20 @@ export default {
       if (type === 'reaction') return 'Rxn'
       if (type === 'action') return 'Act'
       return 'Psv'
+    },
+
+    schoolAbbr(school) {
+      const map = {
+        abjuration: 'Abj',
+        conjuration: 'Con',
+        divination: 'Div',
+        enchantment: 'Enc',
+        evocation: 'Evo',
+        illusion: 'Ill',
+        necromancy: 'Nec',
+        transmutation: 'Tra',
+      }
+      return map[school.toLowerCase()] ?? school.slice(0, 3)
     },
 
     togglePrepared(spell) {
@@ -1107,7 +1133,7 @@ export default {
 
 /* Compact badges */
 .sb-badge {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   padding: 0 3px;
   border-radius: 2px;
@@ -1140,6 +1166,11 @@ export default {
 .sb-badge--action {
   border-color: var(--color-border);
   color: var(--color-text-low);
+}
+.sb-badge--school {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
+  opacity: 0.7;
 }
 .sb-badge--level {
   border-color: var(--color-border);

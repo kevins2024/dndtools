@@ -652,6 +652,16 @@
         "district": "Multiple locations throughout city",
         "description": "Several neighborhoods built entirely to halfling and gnome scale. Half-sized houses, appropriately proportioned streets and shops. Among the oldest and best-established neighborhoods in Valdmere — both races arrived early in the second settlement before the boom and claimed their ground accordingly.",
         "notes": "Pirra will find these neighborhoods immediately. Gaermuion family presence likely strongest here given gnome population density."
+      },
+      {
+        "name": "Unnamed Tea Shop",
+        "type": "shop",
+        "subtype": "tea and compound",
+        "district": "Low Roof district, Valdmere",
+        "status": "operational",
+        "description": "Unnamed establishment with no sign. Three tables, six chairs, shelves floor to ceiling with jars, bundles and unidentifiable containers. The smell is extraordinary and shifts depending on where you're standing. Scaled for halfling and gnome clientele.",
+        "notes": "Run by Wrellia, halfling woman of indeterminate age. Makes compounds and drinks that address what people actually need rather than what they ask for. Her sister lives near the Bluff House. Said the party would come back with the certainty of a fact rather than an invitation. Found by following the smell through a slightly open door.",
+        "id": "locations_valdmere_06"
       }
     ]
   },

@@ -15,11 +15,23 @@
     },
     {
       "name": "Valdmere",
-      "members": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"]
+      "members": [
+        "Lenn",
+        "Pirra",
+        "Petra",
+        "Siv",
+        "Chuknora"
+      ]
     },
     {
       "name": "Yetgrese",
-      "members": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"]
+      "members": [
+        "Jaygar",
+        "Rhuna",
+        "Kerra",
+        "Revven",
+        "Elucyne"
+      ]
     }
   ],
   "parties": [
@@ -52,18 +64,42 @@
     {
       "id": "party_1780850600167_1",
       "name": "Valdmere",
-      "members": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"],
+      "members": [
+        "Lenn",
+        "Pirra",
+        "Petra",
+        "Siv",
+        "Chuknora"
+      ],
       "active": true,
-      "game_day": 86,
-      "marching_order": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"]
+      "game_day": 89,
+      "marching_order": [
+        "Pirra",
+        "Lenn",
+        "Petra",
+        "Siv",
+        "Chuknora"
+      ]
     },
     {
       "id": "party_1780850600167_2",
       "name": "Yetgrese",
-      "members": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"],
+      "members": [
+        "Jaygar",
+        "Rhuna",
+        "Kerra",
+        "Revven",
+        "Elucyne"
+      ],
       "active": false,
       "game_day": 92,
-      "marching_order": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"]
+      "marching_order": [
+        "Jaygar",
+        "Rhuna",
+        "Kerra",
+        "Revven",
+        "Elucyne"
+      ]
     }
   ]
 }

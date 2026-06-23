@@ -4,7 +4,7 @@
       <span
         class="toolbar-label"
         style="font-weight: 600; color: var(--color-text)"
-        >{{ currentMapName }}</span
+        >{{ toDisplayName(currentMapName) }}</span
       >
 
       <span class="toolbar-sep"></span>
@@ -45,7 +45,7 @@
         >
           <input type="checkbox" v-model="p.showNodes" />
           <span class="path-swatch" :style="{ background: p.color }"></span>
-          {{ p.label }}
+          {{ toDisplayName(p.label) }}
         </label>
         <span class="toolbar-sep"></span>
         <label class="path-toggle">
@@ -65,7 +65,7 @@
 
     <div class="map-content">
       <aside class="map-sidebar">
-        <div class="sidebar-continent">{{ currentMapName }}</div>
+        <div class="sidebar-continent">{{ toDisplayName(currentMapName) }}</div>
         <div class="sidebar-layers">
           <label
             v-for="layer in toggleableLayers"
@@ -73,7 +73,7 @@
             class="layer-toggle"
           >
             <input type="checkbox" v-model="layerVisibility[layer.id]" />
-            {{ layer.label }}
+            {{ toDisplayName(layer.label) }}
           </label>
         </div>
         <div class="sidebar-regions">
@@ -997,6 +997,12 @@ export default {
   },
 
   methods: {
+    toDisplayName(str) {
+      return (str || '')
+        .replace(/[_-]/g, ' ')
+        .replace(/\b\w/g, (c) => c.toUpperCase())
+    },
+
     async loadMap(mapId) {
       this.loading = true
       const meta = mapsData.find((m) => m.id === mapId)

@@ -252,7 +252,13 @@
               "
               class="conc-icon"
               title="Concentration"
-          /></span>
+            /><span
+              v-if="spellMeta[spell.name] && spellMeta[spell.name].school"
+              class="spell-school"
+              :title="spellMeta[spell.name].school"
+              >{{ schoolAbbr(spellMeta[spell.name].school) }}</span
+            ></span
+          >
         </div>
       </div>
     </template>
@@ -603,7 +609,9 @@ export default {
     },
 
     spellGroups() {
-      let spells = getCharacterSpells(this.character)
+      let spells = getCharacterSpells(this.character).filter(
+        (s) => s.level === 0 || s.prepared
+      )
       if (this.featureFilter !== 'all') {
         spells = spells.filter((s) => {
           const at = this.spellMeta[s.name]?.actionType
@@ -627,7 +635,11 @@ export default {
 
     battleItems() {
       return this.partyItems.filter(
-        (i) => i.battle_effect && i.equipped_by === this.character.name
+        (i) =>
+          i.battle_effect &&
+          (i.equipped_by === this.character.name ||
+            (i.carried_by === this.character.name &&
+              i.equipped_by === 'disallowed'))
       )
     },
   },
@@ -639,6 +651,20 @@ export default {
       if (recharge === 'short_rest') return 'SR'
       if (recharge === 'long_rest') return 'LR'
       return recharge.replace(/_/g, ' ')
+    },
+
+    schoolAbbr(school) {
+      const map = {
+        abjuration: 'Abj',
+        conjuration: 'Con',
+        divination: 'Div',
+        enchantment: 'Enc',
+        evocation: 'Evo',
+        illusion: 'Ill',
+        necromancy: 'Nec',
+        transmutation: 'Tra',
+      }
+      return map[school.toLowerCase()] ?? school.slice(0, 3)
     },
 
     toggleSlot(levelKey, slotIndex) {
@@ -730,7 +756,11 @@ export default {
             if (ct.includes('bonus action')) actionType = 'bonus_action'
             else if (ct.includes('reaction')) actionType = 'reaction'
             else if (ct.includes('action')) actionType = 'action'
-            meta[s.name] = { concentration: !!data.concentration, actionType }
+            meta[s.name] = {
+              concentration: !!data.concentration,
+              actionType,
+              school: data.school ?? '',
+            }
           }
         })
       )
@@ -1023,6 +1053,14 @@ export default {
   opacity: 0.65;
   vertical-align: middle;
   pointer-events: auto;
+}
+
+.spell-school {
+  font-size: 0.7em;
+  margin-left: 0.35em;
+  opacity: 0.55;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
 }
 
 /* â”€â”€ Feats â”€â”€ */

@@ -1,109 +1,153 @@
 <template>
   <div class="party-context">
-    <!-- Inactive party strips (same height as nav bar, with margin) -->
-    <div v-if="inactiveParties.length" class="strip-list">
-      <div
-        v-for="p in inactiveParties"
-        :key="p.id"
-        class="party-strip"
-        :title="`Switch to ${p.name}`"
-        @click="ACTIVATE_PARTY(p.id)"
+    <nav class="party-nav">
+      <button
+        class="party-tab"
+        :class="{ active: activeTab === 'party' }"
+        @click="activeTab = 'party'"
       >
-        <div class="strip-avatars">
+        Party
+      </button>
+      <button
+        class="party-tab"
+        :class="{ active: activeTab === 'networks' }"
+        @click="activeTab = 'networks'"
+      >
+        Networks
+      </button>
+    </nav>
+
+    <div class="party-tab-content">
+      <!-- Networks tab -->
+      <NetworksContext v-if="activeTab === 'networks'" />
+
+      <!-- Party tab -->
+      <template v-else>
+        <!-- Inactive party strips (same height as nav bar, with margin) -->
+        <div v-if="inactiveParties.length" class="strip-list">
           <div
-            v-for="name in p.members.slice(0, 10)"
-            :key="name"
-            class="strip-avatar"
-            :title="name"
+            v-for="p in inactiveParties"
+            :key="p.id"
+            class="party-strip"
+            :title="`Switch to ${p.name}`"
+            @click="ACTIVATE_PARTY(p.id)"
           >
-            <img :src="charImage(name)" class="strip-face" />
+            <div class="strip-avatars">
+              <div
+                v-for="name in p.members.slice(0, 10)"
+                :key="name"
+                class="strip-avatar"
+                :title="name"
+              >
+                <img :src="charImage(name)" class="strip-face" />
+              </div>
+            </div>
+            <span class="strip-label">{{ p.name }}</span>
           </div>
         </div>
-        <span class="strip-label">{{ p.name }}</span>
-      </div>
-    </div>
 
-    <!-- Active party -->
-    <div v-if="activeParty" class="active-party">
-      <div class="party-heading">
-        <span class="party-title">{{ activeParty.name }}</span>
-        <span class="member-count">{{ activeMembers.length }} members</span>
-      </div>
-      <div class="member-grid">
-        <div v-for="char in activeMembers" :key="char.name" class="member-card">
-          <div class="card-portrait">
-            <img :src="char.image" class="portrait-img" />
-            <span
-              v-if="char.darkvision"
-              class="dv-badge"
-              :title="`Darkvision ${char.darkvision}ft`"
-              >DV</span
+        <!-- Active party -->
+        <div v-if="activeParty" class="active-party">
+          <div class="party-heading">
+            <span class="party-title">{{ activeParty.name }}</span>
+            <span class="member-count">{{ activeMembers.length }} members</span>
+            <button
+              class="copy-json-btn"
+              :class="{ copied: copyConfirm }"
+              :title="copyConfirm ? 'Copied!' : 'Copy party JSON'"
+              @click="copyPartyJson"
             >
+              {{ copyConfirm ? '✓ Copied' : 'Copy JSON' }}
+            </button>
           </div>
-          <div class="card-body">
-            <div class="card-name">{{ char.name }}</div>
-            <div class="card-class">{{ char.class }}</div>
-            <div class="card-role" v-if="char.subclass">
-              {{ char.subclass }}
-            </div>
-            <div class="card-topstat">
-              <span class="stat-key">{{ topStat(char).name }}</span>
-              <span class="stat-score">{{ topStat(char).score }}</span>
-            </div>
-            <div class="card-skills">
-              <span
-                v-for="sk in topSkills(char)"
-                :key="sk.name"
-                class="skill-pip"
-              >
-                {{ sk.short }} <strong>{{ sk.signed }}</strong>
-              </span>
-            </div>
-            <div class="card-rest-row">
-              <span class="rest-label rest-short">S</span>
-              <span v-if="shortGains(char).length === 0" class="rest-full"
-                >full</span
-              >
-              <span
-                v-for="item in shortGains(char)"
-                :key="item"
-                class="rest-chip rest-chip-short"
-                >{{ item }}</span
-              >
-            </div>
-            <div class="card-rest-row">
-              <span class="rest-label rest-long">L</span>
-              <span v-if="longGains(char).length === 0" class="rest-full"
-                >full</span
-              >
-              <span
-                v-for="item in longGains(char)"
-                :key="item"
-                class="rest-chip rest-chip-long"
-                >{{ item }}</span
-              >
-            </div>
-            <div class="card-btns">
-              <button class="card-btn" @click="goTo(char.name)">Sheet</button>
-              <button class="card-btn" @click="goTo(char.name)">Items</button>
-              <button
-                v-if="char.spellcasting_ability"
-                class="card-btn"
-                @click="goTo(char.name)"
-              >
-                Spells
-              </button>
+          <div class="member-grid">
+            <div
+              v-for="char in activeMembers"
+              :key="char.name"
+              class="member-card"
+            >
+              <div class="card-portrait">
+                <img :src="char.image" class="portrait-img" />
+                <span
+                  v-if="char.darkvision"
+                  class="dv-badge"
+                  :title="`Darkvision ${char.darkvision}ft`"
+                  >DV</span
+                >
+              </div>
+              <div class="card-body">
+                <div class="card-name">{{ char.name }}</div>
+                <div class="card-class">{{ char.class }}</div>
+                <div class="card-role" v-if="char.subclass">
+                  {{ char.subclass }}
+                </div>
+                <div class="card-topstat">
+                  <span class="stat-key">{{ topStat(char).name }}</span>
+                  <span class="stat-score">{{ topStat(char).score }}</span>
+                </div>
+                <div class="card-skills">
+                  <span
+                    v-for="sk in topSkills(char)"
+                    :key="sk.name"
+                    class="skill-pip"
+                  >
+                    {{ sk.short }} <strong>{{ sk.signed }}</strong>
+                  </span>
+                </div>
+                <div class="card-rest-row">
+                  <span class="rest-label rest-short">S</span>
+                  <span v-if="shortGains(char).length === 0" class="rest-full"
+                    >full</span
+                  >
+                  <span
+                    v-for="item in shortGains(char)"
+                    :key="item"
+                    class="rest-chip rest-chip-short"
+                    >{{ item }}</span
+                  >
+                </div>
+                <div class="card-rest-row">
+                  <span class="rest-label rest-long">L</span>
+                  <span v-if="longGains(char).length === 0" class="rest-full"
+                    >full</span
+                  >
+                  <span
+                    v-for="item in longGains(char)"
+                    :key="item"
+                    class="rest-chip rest-chip-long"
+                    >{{ item }}</span
+                  >
+                </div>
+                <div class="card-btns">
+                  <button class="card-btn" @click="goTo(char.name, 'sheet')">
+                    Sheet
+                  </button>
+                  <button
+                    class="card-btn"
+                    @click="goTo(char.name, 'equipment')"
+                  >
+                    Items
+                  </button>
+                  <button
+                    v-if="char.spellcasting_ability"
+                    class="card-btn"
+                    @click="goTo(char.name, 'spellbook')"
+                  >
+                    Spells
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div v-else class="party-empty">
-      <div class="empty-msg">No active party.</div>
-      <div class="empty-sub">
-        Use <em>Manage Parties</em> in the toolbar to create one.
-      </div>
+        <div v-else class="party-empty">
+          <div class="empty-msg">No active party.</div>
+          <div class="empty-sub">
+            Use <em>Manage Parties</em> in the toolbar to create one.
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -111,6 +155,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import NetworksContext from './NetworksContext.vue'
 
 const STAT_NAMES = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
 const STAT_FIELDS = [
@@ -145,6 +190,14 @@ const SKILL_SHORT = {
 
 export default {
   name: 'PartyContext',
+  components: { NetworksContext },
+
+  data() {
+    return {
+      activeTab: 'party',
+      copyConfirm: false,
+    }
+  },
 
   computed: {
     ...mapState(['parties', 'characters', 'party_items']),
@@ -192,8 +245,8 @@ export default {
         }))
     },
 
-    goTo(name) {
-      this.NAV_TO_CHARACTER(name)
+    goTo(name, tab = 'sheet') {
+      this.NAV_TO_CHARACTER({ name, tab })
     },
 
     abbrevFeature(name) {
@@ -260,6 +313,26 @@ export default {
       }
       return items
     },
+
+    copyPartyJson() {
+      const memberNames = new Set(this.activeParty.members)
+      const items = this.party_items.filter(
+        (item) =>
+          memberNames.has(item.carried_by) ||
+          memberNames.has(item.equipped_by) ||
+          item.carried_by === 'party'
+      )
+      const payload = {
+        party: this.activeParty,
+        characters: this.activeMembers,
+        items,
+      }
+      navigator.clipboard.writeText(JSON.stringify(payload, null, 2))
+      this.copyConfirm = true
+      setTimeout(() => {
+        this.copyConfirm = false
+      }, 1800)
+    },
   },
 }
 </script>
@@ -269,6 +342,43 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
+}
+
+/* ── Tab nav ──────────────────────────────── */
+.party-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-panel);
+  flex-shrink: 0;
+}
+
+.party-tab {
+  font-size: var(--font-size-base);
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--color-text-low);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+  margin-bottom: -1px;
+}
+.party-tab:hover {
+  color: var(--color-text-muted);
+}
+.party-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.party-tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -340,9 +450,31 @@ export default {
 .party-heading {
   flex-shrink: 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 1rem 0.25rem;
+}
+
+.copy-json-btn {
+  margin-left: auto;
+  padding: 0.15rem 0.6rem;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display, serif);
+  letter-spacing: 0.04em;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-low);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.copy-json-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.copy-json-btn.copied {
+  color: var(--color-success);
+  border-color: var(--color-success);
 }
 .party-title {
   font-family: var(--font-display, serif);

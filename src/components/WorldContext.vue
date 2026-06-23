@@ -21,19 +21,17 @@
 
 <script>
 import MonsterBrowser from './MonsterBrowser.vue'
-import NetworksContext from './NetworksContext.vue'
 import TellondeCalendar from './TellondeCalendar.vue'
 
 export default {
   name: 'WorldContext',
-  components: { MonsterBrowser, NetworksContext, TellondeCalendar },
+  components: { MonsterBrowser, TellondeCalendar },
 
   data() {
     return {
       activeTab: 'monsters',
       tabs: [
         { id: 'monsters', label: 'Monsters', component: 'MonsterBrowser' },
-        { id: 'networks', label: 'Networks', component: 'NetworksContext' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
       ],
     }

@@ -10,6 +10,8 @@ import party_items from '@/data/party_items.json'
 import world from '@/data/world.json'
 import homebrew from '@/data/homebrew.json'
 import finances from '@/data/finances.json'
+import assets from '@/data/assets.json'
+import networks from '@/data/networks.json'
 const SERVER_URL = ''
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -21,6 +23,8 @@ const staticTables = {
   world,
   homebrew,
   finances,
+  assets,
+  networks,
 }
 
 const dataService = {

@@ -14,7 +14,6 @@
         "stat": "wis",
         "dc": "spell_save_dc"
       },
-      "known_by": ["Lyria"],
       "source": "Hendvar's Spellbook — author's original creation",
       "author_note": "Fifteen years perfecting it. It worked perfectly and solved nothing — his companions were already inside the ward when they became undead.",
       "concentration": true
@@ -1148,16 +1147,19 @@
       "concentration": false
     },
     {
-      "name": "Synaptic static",
+      "name": "Synaptic Static",
       "level": 5,
       "school": "Enchantment",
       "casting_time": "1 action",
       "range": "120 feet",
-      "components": ["V", "S"],
+      "components": "V, S",
       "duration": "Instantaneous",
       "description": "You choose a point within range and cause psychic energy to explode there. Each creature in a 20-foot-radius sphere centered on that point must make an Intelligence saving throw. A creature with an Intelligence score of 2 or lower can’t be affected by this spell. A target takes 8d6 psychic damage on a failed save, or half as much damage on a successful one.\nAfter a failed save, a target has muddled thoughts for 1 minute. During that time, it rolls a d6 and subtracts the number rolled from all its attack rolls and ability checks, as well as its Constitution saving throws to maintain concentration. The target can make an Intelligence saving throw at the end of each of its turns, ending the effect on itself on a success.",
       "source": "Xanathar's Guide to Everything",
-      "concentration": false
+      "concentration": false,
+      "save": "INT",
+      "damage_type": null,
+      "spell_list": null
     },
     {
       "name": "Tasha's Caustic Brew",
@@ -1661,71 +1663,60 @@
     {
       "name": "Bladesong",
       "class": "Wizard (Bladesinger)",
-      "description": "You invoke an ancient elven magic as a bonus action. While active (up to 1 minute), you gain a bonus to AC equal to your INT modifier, your walking speed increases by 10 ft, you have advantage on Dexterity (Acrobatics) checks, and you gain a bonus to Constitution saves to maintain concentration equal to your INT modifier. Ends early if you are incapacitated, don medium or heavy armor or a shield, or use two hands to make an attack. 2 uses, regained on a short or long rest.",
-      "known_by": ["Kessara"]
+      "description": "You invoke an ancient elven magic as a bonus action. While active (up to 1 minute), you gain a bonus to AC equal to your INT modifier, your walking speed increases by 10 ft, you have advantage on Dexterity (Acrobatics) checks, and you gain a bonus to Constitution saves to maintain concentration equal to your INT modifier. Ends early if you are incapacitated, don medium or heavy armor or a shield, or use two hands to make an attack. 2 uses, regained on a short or long rest."
     },
     {
       "name": "Totemic Assault",
       "class": "Shaman",
-      "description": "When hitting with a weapon or cantrip, channel spirit energy for 1d8 lightning or cold damage.",
-      "known_by": ["Vrethka"]
+      "description": "When hitting with a weapon or cantrip, channel spirit energy for 1d8 lightning or cold damage."
     },
     {
       "name": "Life Bearer",
       "class": "Shaman (Witch Doctor)",
-      "description": "When casting a healing spell, add WIS modifier to the healing done.",
-      "known_by": ["Vrethka"]
+      "description": "When casting a healing spell, add WIS modifier to the healing done."
     },
     {
       "name": "Totemic Blessing",
       "class": "Shaman (Witch Doctor)",
-      "description": "Bind any totem and use its effect as a bonus action when healing an ally.",
-      "known_by": ["Vrethka"]
+      "description": "Bind any totem and use its effect as a bonus action when healing an ally."
     },
     {
       "name": "Spirit Communion",
       "class": "Shaman (Witch Doctor)",
       "recharge": "long_rest",
-      "description": "Once per long rest, speak directly with any spirit within one mile, asking three questions.",
-      "known_by": ["Vrethka"]
+      "description": "Once per long rest, speak directly with any spirit within one mile, asking three questions."
     },
     {
       "name": "Sacred Focus: Mind",
       "class": "Shaman",
-      "description": "Add WIS modifier to Intelligence and Charisma checks and saving throws.",
-      "known_by": ["Vrethka"]
+      "description": "Add WIS modifier to Intelligence and Charisma checks and saving throws."
     },
     {
       "name": "Dagger of Swift Strike",
       "class": null,
       "description": "Once per turn on a hit with this dagger, immediately make a second strike with it as part of the same attack. No bonus action required.",
-      "known_by": ["Denna"],
       "note": "Item feature, not a class feature — stored here because it has a rules definition that needs to be referenced."
     },
     {
       "name": "Tactical Foresight",
       "class": "Rogue (Mastermind / Weaver's Master-Awl synergy)",
-      "description": "When using Master of Tactics Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier.",
-      "known_by": ["Torrin"]
+      "description": "When using Master of Tactics Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier."
     },
     {
       "name": "Commander's Presence",
       "class": "Rogue (Legendary)",
-      "description": "Allies within 30ft gain a bonus to AC or saving throws from constant tactical advice.",
-      "known_by": ["Torrin"]
+      "description": "Allies within 30ft gain a bonus to AC or saving throws from constant tactical advice."
     },
     {
       "name": "The Retired Special",
       "class": "Rogue (Legendary)",
       "description": "Once per day, reaction when an ally is hit: toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss.",
-      "recharge": "daily",
-      "known_by": ["Torrin"]
+      "recharge": "daily"
     },
     {
       "name": "Grandmaster's Stitch",
       "class": "Rogue (Legendary — Weaver's Master-Awl)",
-      "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours — wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened.",
-      "known_by": ["Torrin"]
+      "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours — wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened."
     },
     {
       "name": "Sentinel",
@@ -1875,10 +1866,10 @@
       "description": "Proficiency bonus doubled for any ability check using a tool you are proficient with."
     },
     {
-      "name": "Inquisitive — Insightful Fighting",
+      "name": "Insightful Fighting (Revised)",
       "category": "subclass_feature",
       "action_type": "bonus_action",
-      "description": "Make an Insight check against a creature's Deception check. On success: can use Sneak Attack against that creature even if you don't have advantage and no ally is adjacent to it. Lasts 1 minute."
+      "description": "As a bonus action, make an Insight check contested by a target's Charisma/Deception check. On a success, you identify and vocally expose a weakness in the target's defense. While this effect is active: Sneak Attack applies to attacks against this target without requiring advantage or an adjacent ally. Any attack roll against this target, by anyone, whose d20 result equals the unmodified Insight die roll (or standard natural 20) is treated as a critical hit. If the Insight die result was a natural 20, critical hits against this target deal triple damage. This effect lasts for 1 minute or until successfully used against a different target."
     },
     {
       "name": "Inquisitive — Steady Eye",
@@ -2253,6 +2244,23 @@
         }
       ],
       "notes": "Duergar who left the underdark and settled on Yetgrese's surface generations ago. Named Hei'ugar meaning roughly Sky Duergar. Treat the open sky as sacred, bordering on religious. Predominantly farmers and fishermen living on Tilawam's outskirts. Approximately 5% of Tilawam's population."
+    }
+  ],
+  "rules": [
+    {
+      "name": "Critical Hits",
+      "description": "On a critical hit, double the total damage of the attack after all modifiers are applied, rather than doubling the damage dice only.",
+      "notes": "Implemented because crits don't feel rewarding or powerful."
+    },
+    {
+      "name": "Critical Fail on Saving Throws",
+      "description": "A natural 1 on a saving throw results in double damage taken, rather than just a failed save.",
+      "notes": "Applies to both enemy and player saving throws for consistency."
+    },
+    {
+      "name": "Spell Material Components",
+      "description": "Material components (M) are not required to cast spells. In their place, spellcasters may use Weave Dust — a fine crystalline powder that serves as a universal substitute for all material components. Weave Dust can be purchased from alchemists, magic shops, and certain temples, or produced by breaking down traditional spell components or certain animal parts through a distillation process. The spell's original material cost roughly dictates how much dust is required. Dust is stored in small capsules, almost excluisvely made of silver, that hold enough for a simple spell. Weave Dust is sold in small vials and larger pouches; exact pricing varies by region but is generally 'per capsule'.",
+      "notes": "Introduced to streamline play. Hunting for obscure specific components is more friction than fun at this table. Characters must still buy or otherwise procure the powder.."
     }
   ]
 }

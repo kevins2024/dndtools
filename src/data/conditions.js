@@ -139,6 +139,15 @@ export const CONDITIONS = {
       'Any attack that hits it is a critical hit if the attacker is within 5 feet.',
     ],
   },
+  Muddled: {
+    summary:
+      'Synaptic Static: subtract 1d6 from attack rolls, ability checks, and CON saves to maintain concentration.',
+    rules: [
+      'Roll a d6 at the start of each affected action and subtract the result from attack rolls and ability checks.',
+      'Also subtract the d6 from Constitution saving throws made to maintain concentration.',
+      'At the end of each of its turns, the target may make an Intelligence saving throw to end this effect.',
+    ],
+  },
   Concentrating: {
     summary:
       'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half damage) or spell drops.',

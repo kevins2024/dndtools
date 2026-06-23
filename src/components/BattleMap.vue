@@ -69,6 +69,9 @@
             +
           </button>
         </div>
+        <button class="bm-btn" @click="exportMap">
+          {{ copyFlash ? '✓ Copied' : 'Export' }}
+        </button>
         <button class="bm-btn bm-close-btn" @click="$emit('close')">
           ✕ Close
         </button>
@@ -155,12 +158,31 @@
           </button>
         </div>
 
+        <div v-if="zones.length" class="zone-list">
+          <span
+            v-for="zone in zones"
+            :key="zone.id"
+            class="zone-list-item"
+            :title="
+              zoneColorLabel(zone.color) + ' — ' + zone.radius * 5 + 'ft radius'
+            "
+          >
+            <span
+              class="zone-list-dot"
+              :style="{ background: zoneColorHex(zone.color) }"
+            />
+            {{ zone.radius * 5 }}ft
+            <button class="zone-remove-btn" @click="removeZone(zone.id)">
+              ✕
+            </button>
+          </span>
+        </div>
         <button
           class="bm-fill-bg-btn"
           style="margin-left: auto"
           @click="clearZones"
         >
-          Clear All Zones
+          Clear All
         </button>
       </div>
 
@@ -256,6 +278,7 @@ export default {
       selectedZoneColor: 'yellow',
       TERRAIN_GROUPS,
       ZONE_COLORS,
+      copyFlash: false,
     }
   },
 
@@ -294,11 +317,28 @@ export default {
         const players = entries.filter((e) => e.type === 'player')
         const enemies = entries.filter((e) => e.type === 'enemy')
         const pos = { ...this.positions }
+        const occupied = () =>
+          new Set(Object.values(pos).map((p) => `${p.col},${p.row}`))
+        const freeCell = (col, row) => {
+          const occ = occupied()
+          if (!occ.has(`${col},${row}`)) return { col, row }
+          for (let r = 1; r <= 12; r++) {
+            for (let dc = -r; dc <= r; dc++) {
+              for (let dr = -r; dr <= r; dr++) {
+                if (Math.abs(dc) === r || Math.abs(dr) === r) {
+                  if (!occ.has(`${col + dc},${row + dr}`))
+                    return { col: col + dc, row: row + dr }
+                }
+              }
+            }
+          }
+          return { col, row }
+        }
         players.forEach((p, i) => {
-          if (!pos[p.key]) pos[p.key] = { col: 52, row: 31 + i * 3 }
+          if (!pos[p.key]) pos[p.key] = freeCell(52, 31 + i * 3)
         })
         enemies.forEach((e, i) => {
-          if (!pos[e.key]) pos[e.key] = { col: 35, row: 31 + i * 3 }
+          if (!pos[e.key]) pos[e.key] = freeCell(35, 31 + i * 3)
         })
         this.positions = pos
       },
@@ -627,6 +667,16 @@ export default {
       this.draw()
     },
 
+    removeZone(id) {
+      this.zones = this.zones.filter((z) => z.id !== id)
+      this.draw()
+    },
+    zoneColorHex(key) {
+      return ZONE_COLORS.find((c) => c.key === key)?.color ?? '#ffffff'
+    },
+    zoneColorLabel(key) {
+      return ZONE_COLORS.find((c) => c.key === key)?.label ?? key
+    },
     clearZones() {
       this.zones = []
       this.draw()
@@ -770,6 +820,72 @@ export default {
         this.MAX_CELL,
         Math.max(this.MIN_CELL, this.cellSize + delta)
       )
+    },
+
+    exportMap() {
+      // Collect all occupied cells to find bounding box
+      const allCells = []
+      for (const key of Object.keys(this.terrain)) {
+        const [col, row] = key.split(',').map(Number)
+        allCells.push({ col, row })
+      }
+      for (const pos of Object.values(this.positions)) {
+        allCells.push(pos)
+      }
+      if (allCells.length === 0) return
+
+      const minCol = Math.min(...allCells.map((c) => c.col)) - 1
+      const maxCol = Math.max(...allCells.map((c) => c.col)) + 1
+      const minRow = Math.min(...allCells.map((c) => c.row)) - 1
+      const maxRow = Math.max(...allCells.map((c) => c.row)) + 1
+
+      // Assign single-char symbols to combatants
+      const tokenMap = {}
+      const legend = []
+      const PLAYER_SYMS = 'ABCDEFGHIJKLMNOPQRSTUVWYZ'
+      const ENEMY_SYMS = 'abcdefghijklmnopqrstuvwxyz'
+      let pi = 0
+      let ei = 0
+      for (const entry of this.order) {
+        const pos = this.positions[entry.key]
+        if (!pos) continue
+        let sym
+        if (entry.type === 'player') {
+          sym = PLAYER_SYMS[pi++] ?? '@'
+        } else {
+          const state = this.combatantStates[entry.key]
+          if (state === 'friendly') sym = 'F'
+          else if (state === 'neutral') sym = 'N'
+          else sym = ENEMY_SYMS[ei++] ?? 'e'
+        }
+        tokenMap[`${pos.col},${pos.row}`] = sym
+        legend.push(`${sym} = ${entry.name}`)
+      }
+
+      // Build grid rows
+      const gridRows = []
+      for (let row = minRow; row <= maxRow; row++) {
+        let line = ''
+        for (let col = minCol; col <= maxCol; col++) {
+          const key = `${col},${row}`
+          if (tokenMap[key]) line += tokenMap[key]
+          else if (this.terrain[key] === 'x') line += 'X'
+          else line += '.'
+        }
+        gridRows.push(line)
+      }
+
+      const legendBlock =
+        (legend.length ? legend.join('\n') + '\n' : '') +
+        'X = obstacle  . = open'
+      const text = gridRows.join('\n') + '\n\n' + legendBlock
+
+      navigator.clipboard.writeText(text).then(() => {
+        this.copyFlash = true
+        setTimeout(() => {
+          this.copyFlash = false
+        }, 1500)
+      })
     },
   },
 }
@@ -970,6 +1086,45 @@ export default {
 .bm-fill-bg-btn:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+/* ── Zone list ── */
+.zone-list {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.zone-list-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 1px 4px 1px 3px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+}
+.zone-list-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.zone-remove-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  font-size: 0.6rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.1s;
+}
+.zone-remove-btn:hover {
+  color: var(--color-text-danger);
 }
 
 /* ── Canvas wrap ── */

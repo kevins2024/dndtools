@@ -76,7 +76,7 @@
 
       <!-- Most Recent -->
       <div class="recent-zone">
-        <transition name="pop">
+        <transition name="pop" mode="out-in">
           <div
             v-if="current"
             :key="current.id"
@@ -204,8 +204,7 @@ export default {
       }
 
       if (this.current) {
-        this.history.push(this.current)
-        if (this.history.length > 9) this.history.shift()
+        this.history.unshift(this.current)
       }
 
       this.current = entry
@@ -405,11 +404,12 @@ export default {
 
 .history-track {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 0.8vw;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  position: relative;
 }
 
 .history-die {
@@ -417,21 +417,22 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   border: 1px solid var(--color-border);
   border-radius: 6px;
   background: var(--color-bg);
   flex-shrink: 0;
+  will-change: transform;
 }
 
 .history-die .die-label {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   color: var(--color-die);
 }
 
 .history-die .die-result {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--color-text-low);
   position: relative;
@@ -500,27 +501,37 @@ export default {
 }
 
 /* ── Transitions ── */
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.3s ease;
+.slide-move {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.slide-enter-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .slide-enter {
-  transform: translateX(60px);
   opacity: 0;
-}
-.slide-leave-to {
-  transform: translateX(-60px);
-  opacity: 0;
+  transform: scale(1.2);
 }
 .slide-leave-active {
   position: absolute;
+  transition: opacity 0.15s ease;
+}
+.slide-leave-to {
+  opacity: 0;
 }
 
 .pop-enter-active {
-  transition: all 0.2s ease;
+  transition: opacity 0.18s ease,
+    transform 0.18s cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 .pop-enter {
-  transform: scale(0.7);
+  transform: scale(0.75);
+  opacity: 0;
+}
+.pop-leave-active {
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+.pop-leave-to {
+  transform: scale(0.85);
   opacity: 0;
 }
 </style>

@@ -4,22 +4,20 @@
  * Add new spell sources here; Spellbook and CombatPanel pick them up automatically.
  *
  * Sources collected (in priority order for deduplication):
- *   1. character.spells[]                  — main class list (richest data)
+ *   1. character.spells[]                  — main class list; homebrew spells live here too (homebrew: true)
  *   2. character.artillerist_spells.spells — Artificer subclass always-prepared spells
  *   3. character.features[].spells_granted — feats / race / class features
- *   4. homebrew.spells[] where known_by includes character.name
  *
  * Each returned spell object has the original fields plus:
  *   _source  {string}  — human-readable origin label
  *   artillerist {bool} — true if from artillerist_spells
  *   featureGranted {bool} — true if from a feature's spells_granted
- *   homebrew {bool}    — true if from homebrew known_by
+ *   homebrew {bool}    — true if spell is homebrew (set on the spell entry in character.spells)
  *
  * Deduplication: first occurrence wins (class list takes priority).
  * Feature-granted spells already in the class list are silently skipped.
  */
 
-import homebrewData from '@/data/homebrew.json'
 import clericSpells from '@/data/api_data_cache/cleric_spells.json'
 import druidSpells from '@/data/api_data_cache/druid_spells.json'
 import wizardSpells from '@/data/api_data_cache/wizard_spells.json'
@@ -101,19 +99,6 @@ export function getCharacterSpells(character) {
     }
   }
 
-  // 4. Homebrew spells (spells authored outside the SRD, tagged known_by character)
-  for (const s of homebrewData.spells ?? []) {
-    if ((s.known_by ?? []).includes(character.name)) {
-      add({
-        name: s.name,
-        level: s.level,
-        prepared: true,
-        homebrew: true,
-        _source: 'Homebrew',
-      })
-    }
-  }
-
   return result
 }
 
@@ -124,12 +109,6 @@ export function characterHasSpells(character) {
   if ((character.artillerist_spells?.spells ?? []).length > 0) return true
   if (
     (character.features ?? []).some((f) => (f.spells_granted ?? []).length > 0)
-  )
-    return true
-  if (
-    (homebrewData.spells ?? []).some((s) =>
-      (s.known_by ?? []).includes(character.name)
-    )
   )
     return true
   return false

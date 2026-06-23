@@ -29,9 +29,8 @@
       "Athletics",
       "Intimidation",
       "Perception",
-      "Sleight of Hand"
+      "SleightOfHand"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Draconic"
@@ -65,7 +64,11 @@
         "type": "feature"
       },
       {
-        "name": "Superiority Dice (5d10)",
+        "name": "Know Your Enemy",
+        "type": "feature"
+      },
+      {
+        "name": "Superiority Dice (5d8)",
         "type": "feature"
       },
       {
@@ -87,6 +90,10 @@
       {
         "name": "Menacing Attack",
         "type": "maneuver"
+      },
+      {
+        "name": "Parry",
+        "type": "maneuver"
       }
     ],
     "spells": [],
@@ -102,7 +109,8 @@
     "id": "characters_0",
     "darkvision": 60,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Rhuna",
@@ -135,7 +143,6 @@
       "Perception",
       "Survival"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Orc"
@@ -177,6 +184,10 @@
         "type": "feature"
       },
       {
+        "name": "Fast Movement",
+        "type": "feature"
+      },
+      {
         "name": "Great Weapon Master",
         "type": "feat"
       }
@@ -199,7 +210,8 @@
     "id": "characters_1",
     "darkvision": 60,
     "hit_die": "d12",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Denna",
@@ -230,13 +242,9 @@
       "Stealth",
       "Perception",
       "Acrobatics",
-      "Sleight of Hand",
+      "SleightOfHand",
       "Deception",
       "Investigation"
-    ],
-    "expertise": [
-      "Stealth",
-      "Perception"
     ],
     "languages": [
       "Common",
@@ -261,6 +269,10 @@
       },
       {
         "name": "Assassinate",
+        "type": "feature"
+      },
+      {
+        "name": "Assassin — Infiltration Expertise",
         "type": "feature"
       },
       {
@@ -292,7 +304,13 @@
     "id": "characters_2",
     "darkvision": 0,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": [
+      "Stealth",
+      "Perception",
+      "SleightOfHand",
+      "Investigation"
+    ]
   },
   {
     "name": "Jaygar",
@@ -326,12 +344,9 @@
       "Arcana",
       "Investigation",
       "Medicine",
-      "Perception",
-      "Sleight of Hand"
+      "Perception"
     ],
-    "skill_expertise": [
-      "Arcana"
-    ],
+    "skill_expertise": [],
     "languages": [
       "Common",
       "Gnomish",
@@ -557,11 +572,9 @@
     "skill_proficiencies": [
       "Arcana",
       "History",
-      "Investigation",
       "Insight",
       "Persuasion"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Elvish",
@@ -570,6 +583,14 @@
     "features": [
       {
         "name": "Arcane Recovery",
+        "type": "feature"
+      },
+      {
+        "name": "Evocation Savant",
+        "type": "feature"
+      },
+      {
+        "name": "Sculpt Spells",
         "type": "feature"
       },
       {
@@ -646,7 +667,7 @@
       {
         "name": "Absorb Elements",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -664,7 +685,7 @@
       {
         "name": "Disguise Self",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -688,7 +709,7 @@
       {
         "name": "Mage Armor",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -736,7 +757,7 @@
       {
         "name": "Knock",
         "level": 2,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -754,13 +775,13 @@
       {
         "name": "Scorching Ray",
         "level": 2,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "See Invisibility",
         "level": 2,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -784,7 +805,7 @@
       {
         "name": "Dispel Magic",
         "level": 3,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -910,13 +931,13 @@
       {
         "name": "Vitriolic Sphere",
         "level": 4,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Bigby's Hand",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -928,7 +949,7 @@
       {
         "name": "Conjure Elemental",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -982,7 +1003,7 @@
       {
         "name": "Wall of Force",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       }
     ],
@@ -1022,7 +1043,9 @@
     "id": "characters_4",
     "darkvision": 0,
     "hit_die": "d6",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "conditions": [],
+    "skill_expertise": []
   },
   {
     "name": "Kessara",
@@ -1056,13 +1079,20 @@
       "Athletics",
       "History"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Elvish",
       "Draconic"
     ],
     "features": [
+      {
+        "name": "Arcane Recovery",
+        "type": "feature"
+      },
+      {
+        "name": "Bladesinger — Training in War and Song",
+        "type": "feature"
+      },
       {
         "name": "Extra Attack",
         "type": "feature"
@@ -1523,7 +1553,8 @@
     "id": "characters_5",
     "darkvision": 60,
     "hit_die": "d6",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Petra",
@@ -1553,11 +1584,9 @@
     "skill_proficiencies": [
       "Medicine",
       "Insight",
-      "Persuasion",
       "Religion",
       "History"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Celestial",
@@ -1565,7 +1594,11 @@
     ],
     "features": [
       {
-        "name": "Channel Divinity (1/rest)",
+        "name": "Disciple of Life",
+        "type": "feature"
+      },
+      {
+        "name": "Channel Divinity (2/rest)",
         "type": "feature"
       },
       {
@@ -1581,7 +1614,7 @@
         "type": "feature"
       },
       {
-        "name": "Destroy Undead (CR 1/2)",
+        "name": "Destroy Undead (CR 1)",
         "type": "feature"
       },
       {
@@ -1695,11 +1728,6 @@
         "prepared": true
       },
       {
-        "name": "Aid",
-        "level": 2,
-        "prepared": true
-      },
-      {
         "name": "Prayer of Healing",
         "level": 2,
         "prepared": true
@@ -1737,6 +1765,16 @@
       {
         "name": "Banishment",
         "level": 4,
+        "prepared": true
+      },
+      {
+        "name": "Insect Plague",
+        "level": 5,
+        "prepared": true
+      },
+      {
+        "name": "Tongues",
+        "level": 3,
         "prepared": true
       }
     ],
@@ -1776,7 +1814,9 @@
     "id": "characters_6",
     "darkvision": 0,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "conditions": [],
+    "skill_expertise": []
   },
   {
     "name": "Pirra",
@@ -1805,14 +1845,11 @@
     ],
     "skill_proficiencies": [
       "Stealth",
-      "Sleight of Hand",
+      "SleightOfHand",
       "Perception",
       "Acrobatics",
-      "Deception"
-    ],
-    "expertise": [
-      "Stealth",
-      "Sleight of Hand"
+      "Deception",
+      "Insight"
     ],
     "languages": [
       "Common",
@@ -1832,6 +1869,10 @@
         "type": "feature"
       },
       {
+        "name": "Evasion",
+        "type": "feature"
+      },
+      {
         "name": "Inquisitive — Ear for Deceit",
         "type": "feature"
       },
@@ -1840,15 +1881,11 @@
         "type": "feature"
       },
       {
-        "name": "Inquisitive — Insightful Fighting",
+        "name": "Insightful Fighting (Revised)",
         "type": "feature"
       },
       {
         "name": "Inquisitive — Steady Eye",
-        "type": "feature"
-      },
-      {
-        "name": "Inquisitive — Unerring Eye",
         "type": "feature"
       },
       {
@@ -1870,7 +1907,13 @@
     "id": "characters_7",
     "darkvision": 0,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": [
+      "Stealth",
+      "SleightOfHand",
+      "Insight",
+      "Perception"
+    ]
   },
   {
     "name": "Kerra",
@@ -1902,13 +1945,21 @@
       "Athletics",
       "Intimidation",
       "Arcana",
-      "Deception"
+      "Deception",
+      "Persuasion",
+      "Survival"
     ],
-    "expertise": [],
     "languages": [
       "Common"
     ],
     "features": [
+      {
+        "name": "Fighting Style — Duelling",
+        "type": "feature",
+        "stat_bonuses": {
+          "melee_damage": 2
+        }
+      },
       {
         "name": "Pact of the Blade",
         "type": "feature"
@@ -1949,6 +2000,10 @@
       {
         "name": "Eyes of the Rune Keeper",
         "type": "invocation"
+      },
+      {
+        "name": "Awakened Mind",
+        "type": "feature"
       }
     ],
     "spells": [
@@ -2058,7 +2113,8 @@
     "id": "characters_8",
     "darkvision": 0,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Siv",
@@ -2087,14 +2143,9 @@
     ],
     "skill_proficiencies": [
       "Athletics",
-      "Perception",
       "Survival",
       "Acrobatics",
       "Nature"
-    ],
-    "expertise": [
-      "Nature",
-      "Survival"
     ],
     "languages": [
       "Common"
@@ -2133,6 +2184,14 @@
       },
       {
         "name": "Archery Fighting Style",
+        "type": "feature",
+        "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+        "stat_bonuses": {
+          "ranged_attack": 2
+        }
+      },
+      {
+        "name": "Scout — Skirmisher",
         "type": "feature"
       },
       {
@@ -2141,10 +2200,6 @@
       },
       {
         "name": "Scout — Superior Mobility",
-        "type": "feature"
-      },
-      {
-        "name": "Scout — Ambush Master",
         "type": "feature"
       },
       {
@@ -2164,7 +2219,9 @@
     "id": "characters_9",
     "darkvision": 0,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "conditions": [],
+    "skill_expertise": []
   },
   {
     "name": "Lexica",
@@ -2177,7 +2234,7 @@
     "image": "./characters/lexica.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
-    "notes": "INT 19 from Headband of Intellect. Bardic Inspiration: 5/long rest (CHA mod). Spell slots at level 9: 4/3/3/3/1. Spell save DC 17, spell attack +9. Song of Rest now d10. Magical Secrets at level 10 — big unlock next level.",
+    "notes": "INT 19 from Headband of Intellect. Bardic Inspiration: 5/long rest (CHA mod). Spell slots at level 9: 4/3/3/3/1. Spell save DC 17, spell attack +9. Magical Secrets at level 10 — big unlock next level.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -2198,11 +2255,10 @@
       "Insight",
       "History",
       "Arcana",
-      "Performance"
-    ],
-    "expertise": [
-      "Perception",
-      "Persuasion"
+      "Performance",
+      "AnimalHandling",
+      "Nature",
+      "Survival"
     ],
     "languages": [
       "Common",
@@ -2214,14 +2270,15 @@
         "name": "Bardic Inspiration (d8)",
         "type": "feature",
         "uses_max": 5,
-        "recharge": "long_rest"
+        "recharge": "long_rest",
+        "uses_current": 5
       },
       {
         "name": "Jack of All Trades",
         "type": "feature"
       },
       {
-        "name": "Song of Rest (d10)",
+        "name": "Song of Rest (d8)",
         "type": "feature"
       },
       {
@@ -2393,7 +2450,11 @@
     "id": "characters_10",
     "darkvision": 60,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": [
+      "Perception",
+      "Persuasion"
+    ]
   },
   {
     "name": "Lyria",
@@ -2424,10 +2485,8 @@
       "Arcana",
       "History",
       "Investigation",
-      "Insight",
-      "Medicine"
+      "Insight"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Elvish",
@@ -2435,19 +2494,19 @@
     ],
     "features": [
       {
+        "name": "Arcane Recovery",
+        "type": "feature"
+      },
+      {
+        "name": "Abjuration Savant",
+        "type": "feature"
+      },
+      {
         "name": "Abjuration Wizard — Arcane Ward (18HP max)",
         "type": "feature"
       },
       {
         "name": "Abjuration Wizard — Projected Ward",
-        "type": "feature"
-      },
-      {
-        "name": "Abjuration Wizard — Improved Abjuration",
-        "type": "feature"
-      },
-      {
-        "name": "Abjuration Wizard — Spell Resistance",
         "type": "feature"
       }
     ],
@@ -2853,6 +2912,12 @@
         "level": 5,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Undead Ward",
+        "level": 3,
+        "prepared": true,
+        "homebrew": true
       }
     ],
     "spell_slots": {
@@ -2893,7 +2958,8 @@
     "id": "characters_11",
     "darkvision": 0,
     "hit_die": "d6",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Corwin",
@@ -2926,7 +2992,6 @@
       "Perception",
       "Insight"
     ],
-    "expertise": [],
     "languages": [
       "Common"
     ],
@@ -2981,7 +3046,8 @@
     "id": "characters_12",
     "darkvision": 0,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Chuknora",
@@ -3013,7 +3079,6 @@
       "Perception",
       "Stealth"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Giant"
@@ -3069,6 +3134,14 @@
         "type": "feature"
       },
       {
+        "name": "Ki-Empowered Strikes",
+        "type": "feature"
+      },
+      {
+        "name": "Unarmored Movement (+15ft)",
+        "type": "feature"
+      },
+      {
         "name": "Stillness of Mind",
         "type": "feature"
       },
@@ -3085,7 +3158,7 @@
       "max": 9,
       "current": 9
     },
-    "martial_arts_die": "1d6",
+    "martial_arts_die": "auto",
     "spells": [],
     "active_effects": [],
     "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 17. Stunning Strike DC 17. Unarmored Movement +20ft, total speed 50ft. Wholeness of Body heals 27hp (3x monk level 9) once per long rest. Stone's Endurance - reaction to reduce damage by 1d12 + CON mod once per short rest.",
@@ -3099,7 +3172,8 @@
     "id": "characters_13",
     "darkvision": 0,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Enauweyn",
@@ -3129,15 +3203,20 @@
     "skill_proficiencies": [
       "Insight",
       "Medicine",
-      "Perception"
+      "Perception",
+      "Religion",
+      "Athletics"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Elvish",
       "one additional"
     ],
     "features": [
+      {
+        "name": "Divine Sense",
+        "type": "feature"
+      },
       {
         "name": "Protection Fighting Style",
         "type": "feature",
@@ -3184,8 +3263,9 @@
         "type": "feature"
       },
       {
-        "name": "Aura of Courage",
-        "type": "feature"
+        "name": "Crown — Divine Allegiance",
+        "type": "feature",
+        "action_type": "reaction"
       },
       {
         "name": "Daunting Strike",
@@ -3300,7 +3380,8 @@
     "id": "characters_14",
     "darkvision": 60,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Tackett",
@@ -3329,10 +3410,8 @@
       "Nature",
       "Perception",
       "Survival",
-      "Medicine",
-      "Insight"
+      "Medicine"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Halfling",
@@ -3358,6 +3437,10 @@
         "uses_current": 1
       },
       {
+        "name": "Stars Druid — Star Map",
+        "type": "feature"
+      },
+      {
         "name": "Stars Druid — Cosmic Omen",
         "type": "feature",
         "action_type": "reaction",
@@ -3366,7 +3449,7 @@
         "uses_current": 1
       },
       {
-        "name": "Stars Druid — Full of Stars",
+        "name": "Stars Druid — Twinkling Constellations",
         "type": "feature"
       },
       {
@@ -3376,10 +3459,6 @@
         "recharge": "short_rest",
         "uses_max": 2,
         "uses_current": 2
-      },
-      {
-        "name": "Timeless Body",
-        "type": "feature"
       },
       {
         "name": "Lucky",
@@ -3392,14 +3471,6 @@
       {
         "name": "Naturally Stealthy",
         "type": "feature"
-      },
-      {
-        "name": "Primal Companion",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "daily",
-        "uses_max": 1,
-        "uses_current": 1
       },
       {
         "name": "Bountiful Luck",
@@ -3569,7 +3640,8 @@
     "id": "characters_15",
     "darkvision": 0,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Revven",
@@ -3600,9 +3672,9 @@
       "Medicine",
       "Persuasion",
       "Religion",
-      "Perception"
+      "Perception",
+      "Performance"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "Elvish",
@@ -3626,7 +3698,7 @@
         "type": "feature"
       },
       {
-        "name": "Destroy Undead (CR 1/2)",
+        "name": "Destroy Undead (CR 1)",
         "type": "feature"
       },
       {
@@ -3851,7 +3923,8 @@
     "id": "characters_16",
     "darkvision": 60,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Elucyne",
@@ -3887,10 +3960,6 @@
       "Deception",
       "Survival",
       "Athletics"
-    ],
-    "expertise": [
-      "Stealth",
-      "Performance"
     ],
     "languages": [
       "Common",
@@ -3998,7 +4067,11 @@
     "id": "characters_17",
     "darkvision": 60,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": [
+      "Stealth",
+      "Performance"
+    ]
   },
   {
     "name": "Sorra",
@@ -4030,11 +4103,8 @@
       "Persuasion",
       "History",
       "Perception",
-      "Medicine"
-    ],
-    "expertise": [
-      "Performance",
-      "Insight"
+      "Medicine",
+      "Acrobatics"
     ],
     "languages": [
       "Common",
@@ -4046,14 +4116,19 @@
         "name": "Bardic Inspiration (d8)",
         "type": "feature",
         "uses_max": 5,
-        "recharge": "long_rest"
+        "recharge": "long_rest",
+        "uses_current": 5
       },
       {
         "name": "Jack of All Trades",
         "type": "feature"
       },
       {
-        "name": "Song of Rest (d10)",
+        "name": "Song of Rest (d8)",
+        "type": "feature"
+      },
+      {
+        "name": "Guiding Whispers",
         "type": "feature"
       },
       {
@@ -4071,11 +4146,6 @@
       {
         "name": "Countercharm",
         "type": "feature"
-      },
-      {
-        "name": "Magical Secrets",
-        "type": "feature",
-        "note": "Counterspell and Revivify chosen"
       },
       {
         "name": "Fey Ancestry",
@@ -4245,7 +4315,11 @@
     "id": "characters_18",
     "darkvision": 60,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": [
+      "Performance",
+      "Insight"
+    ]
   },
   {
     "name": "Ferghus",
@@ -4275,15 +4349,21 @@
       "Athletics",
       "Persuasion",
       "Insight",
-      "Religion",
-      "Perception"
+      "Religion"
     ],
-    "expertise": [],
     "languages": [
       "Common",
       "one additional"
     ],
     "features": [
+      {
+        "name": "Divine Sense",
+        "type": "feature"
+      },
+      {
+        "name": "Fighting Style",
+        "type": "feature"
+      },
       {
         "name": "Divine Smite",
         "type": "feature"
@@ -4419,7 +4499,8 @@
     "id": "characters_19",
     "darkvision": 0,
     "hit_die": "d10",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "skill_expertise": []
   },
   {
     "name": "Eldi",
@@ -4452,9 +4533,8 @@
       "Stealth",
       "Acrobatics",
       "Deception",
-      "Sleight of Hand",
-      "Persuasion",
-      "Intimidation"
+      "SleightOfHand",
+      "Persuasion"
     ],
     "languages": [
       "Common",
@@ -4593,7 +4673,9 @@
       "Arcana",
       "Insight",
       "Persuasion",
-      "Medicine"
+      "Medicine",
+      "Religion",
+      "History"
     ],
     "skill_expertise": [],
     "languages": [

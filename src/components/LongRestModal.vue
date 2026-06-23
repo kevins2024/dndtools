@@ -32,7 +32,7 @@
                     'slot-overwatch':
                       watches[si][pi] && isOverwatch(watches[si][pi]),
                   }"
-                  @click.stop="togglePicker(si, pi)"
+                  @click.stop="togglePicker(si, pi, $event)"
                 >
                   <template v-if="watches[si][pi]">
                     <img :src="charImage(watches[si][pi])" class="slot-face" />
@@ -62,6 +62,7 @@
                     pickerTarget.pi === pi
                   "
                   class="slot-picker"
+                  :style="pickerStyle"
                   @click.stop
                 >
                   <div
@@ -246,6 +247,28 @@ export default {
     totalWatchers() {
       return Object.keys(this.watchSlotCount).length
     },
+
+    pickerStyle() {
+      if (!this.pickerTarget?.bottom) return {}
+      const { left, width, top, bottom } = this.pickerTarget
+      const spaceBelow = window.innerHeight - bottom - 8
+      const openUp = spaceBelow < 180
+      return {
+        position: 'fixed',
+        left: `${left}px`,
+        width: `${width}px`,
+        zIndex: 200,
+        ...(openUp
+          ? {
+              bottom: `${window.innerHeight - top + 4}px`,
+              maxHeight: `${top - 12}px`,
+            }
+          : {
+              top: `${bottom + 4}px`,
+              maxHeight: `${spaceBelow}px`,
+            }),
+      }
+    },
   },
 
   created() {
@@ -294,11 +317,19 @@ export default {
       return count >= 1
     },
 
-    togglePicker(si, pi) {
+    togglePicker(si, pi, event) {
       if (this.pickerTarget?.si === si && this.pickerTarget?.pi === pi) {
         this.pickerTarget = null
       } else {
-        this.pickerTarget = { si, pi }
+        const r = event.currentTarget.getBoundingClientRect()
+        this.pickerTarget = {
+          si,
+          pi,
+          left: r.left,
+          width: r.width,
+          top: r.top,
+          bottom: r.bottom,
+        }
       }
     },
 
@@ -516,16 +547,10 @@ export default {
 
 /* ── Picker dropdown ── */
 .slot-picker {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  z-index: 10;
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: 6px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-  max-height: 260px;
   overflow-y: auto;
 }
 

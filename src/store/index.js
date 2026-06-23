@@ -27,6 +27,9 @@ export default new Vuex.Store({
     restVersion: 0,
     currentEncounter: null,
     lastEncounter: null,
+    savedEncounters: JSON.parse(
+      localStorage.getItem('savedEncounters') || '[]'
+    ),
     combatNavRequest: false,
     pendingCombatEnemies: null,
   },
@@ -70,8 +73,10 @@ export default new Vuex.Store({
         .patchUserPrefs({ parties: updated })
         .catch((e) => console.warn('Failed to save parties', e))
     },
-    NAV_TO_CHARACTER(state, name) {
-      state.characterNavRequest = name
+    NAV_TO_CHARACTER(state, payload) {
+      // payload: { name, tab } or legacy string
+      state.characterNavRequest =
+        typeof payload === 'string' ? { name: payload, tab: 'sheet' } : payload
     },
     CLEAR_CHARACTER_NAV(state) {
       state.characterNavRequest = null
@@ -150,6 +155,30 @@ export default new Vuex.Store({
     SET_ENCOUNTER(state, encounter) {
       state.lastEncounter = state.currentEncounter
       state.currentEncounter = encounter
+    },
+    SAVE_ENCOUNTER_SLOT(state, { name, encounter }) {
+      state.savedEncounters = [
+        {
+          name,
+          encounter,
+          savedAt: new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+        },
+        ...state.savedEncounters,
+      ].slice(0, 10)
+      localStorage.setItem(
+        'savedEncounters',
+        JSON.stringify(state.savedEncounters)
+      )
+    },
+    DELETE_ENCOUNTER_SLOT(state, idx) {
+      state.savedEncounters = state.savedEncounters.filter((_, i) => i !== idx)
+      localStorage.setItem(
+        'savedEncounters',
+        JSON.stringify(state.savedEncounters)
+      )
     },
     UPDATE_ENCOUNTER_ENEMY(state, { enemyId, newEnemy }) {
       if (!state.currentEncounter) return

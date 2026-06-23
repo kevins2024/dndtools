@@ -62,12 +62,19 @@ export default {
 
   props: {
     character: { type: Object, default: null },
+    requestedTab: { type: String, default: null },
   },
 
   data() {
     return {
       activeTab: 'sheet',
     }
+  },
+
+  watch: {
+    requestedTab(val) {
+      if (val) this.activeTab = val
+    },
   },
 
   computed: {

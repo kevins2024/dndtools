@@ -452,7 +452,9 @@ export const dnd = {
     const magic = weapon.enhancement_bonus ?? 0
     const rangedBonus =
       props.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
-    return statMod + magic + rangedBonus
+    const meleeBonus =
+      props.weapon_type !== 'ranged' ? bonuses.melee_damage ?? 0 : 0
+    return statMod + magic + rangedBonus + meleeBonus
   },
 
   weaponSummary(character, weapon, partyItems = []) {
@@ -563,7 +565,17 @@ export const dnd = {
       })
 
     if (character.martial_arts_die) {
-      const die = character.martial_arts_die
+      const level = character.level ?? 1
+      const die =
+        character.martial_arts_die === 'auto'
+          ? level >= 17
+            ? '1d10'
+            : level >= 11
+            ? '1d8'
+            : level >= 5
+            ? '1d6'
+            : '1d4'
+          : character.martial_arts_die
       const statMod = Math.max(strMod, dexMod)
       const unarmedAtk = bonuses.unarmed_attack ?? 0
       const unarmedDmg = bonuses.unarmed_damage ?? 0

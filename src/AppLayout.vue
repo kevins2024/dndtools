@@ -87,16 +87,6 @@
     <transition name="save-flash">
       <div v-if="saveFlash" class="save-flash">✓ Saved</div>
     </transition>
-
-    <!-- Save Button -->
-    <button
-      v-if="hasChanges"
-      class="save-btn"
-      title="Save changes"
-      @click="saveDialogOpen = true"
-    >
-      💾 Save
-    </button>
   </div>
 </template>
 
@@ -193,11 +183,19 @@ export default {
         this.$store.commit('CLEAR_COMBAT_NAV')
       }
     },
-    '$store.state.characterNavRequest'(name) {
-      if (name) {
+    '$store.state.characterNavRequest'(req) {
+      if (req) {
         this.activeContext = 'character'
-        this.$store.commit('CLEAR_CHARACTER_NAV')
+        // Do NOT clear here — CharacterContext reads it on mount and clears it itself
       }
+    },
+    hasChanges(val) {
+      if (!val) return
+      clearTimeout(this._autosaveTimer)
+      this._autosaveTimer = setTimeout(async () => {
+        await this.$store.dispatch('saveAll')
+        this.onSaved()
+      }, 1500)
     },
   },
 }

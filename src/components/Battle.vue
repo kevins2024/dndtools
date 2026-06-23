@@ -191,6 +191,37 @@
             </div>
           </div>
 
+          <!-- Death saving throws (shown when downed) -->
+          <template v-if="playerCurrentHp(activeChar.name) <= 0">
+            <div class="section-label">Death Saving Throws</div>
+            <div class="dst-row">
+              <span class="dst-label dst-success">Successes</span>
+              <button
+                v-for="i in 3"
+                :key="'s' + i"
+                class="dst-pip"
+                :class="{
+                  'dst-pip--success':
+                    deathSaveCount(activeChar.name, 'successes') >= i,
+                }"
+                @click="toggleDeathSave(activeChar.name, 'successes', i)"
+              />
+              <span class="dst-label dst-failure" style="margin-left: 0.75rem"
+                >Failures</span
+              >
+              <button
+                v-for="i in 3"
+                :key="'f' + i"
+                class="dst-pip"
+                :class="{
+                  'dst-pip--failure':
+                    deathSaveCount(activeChar.name, 'failures') >= i,
+                }"
+                @click="toggleDeathSave(activeChar.name, 'failures', i)"
+              />
+            </div>
+          </template>
+
           <CharacterCombatPanel :character="activeChar" />
         </template>
 
@@ -203,6 +234,22 @@
                 ? activeEntry.encounterData.roleLabel
                 : 'Enemy'
             }}</span>
+            <div class="panel-header-actions">
+              <button
+                class="header-action-btn"
+                title="Duplicate enemy"
+                @click="duplicateEnemy(activeEntry.key)"
+              >
+                ❏ Dupe
+              </button>
+              <button
+                class="header-action-btn header-action-btn--danger"
+                title="Remove from initiative"
+                @click="$emit('remove-enemy', activeEntry.key)"
+              >
+                ✕ Remove
+              </button>
+            </div>
           </div>
 
           <!-- Combat stats — always shown, editable -->
@@ -325,13 +372,6 @@
               >
                 Reset
               </button>
-              <button
-                class="remove-enemy-btn"
-                title="Remove from initiative"
-                @click="$emit('remove-enemy', activeEntry.key)"
-              >
-                ✕ Remove
-              </button>
             </div>
 
             <div class="damage-row">
@@ -394,7 +434,19 @@
           <div class="section-label">Conditions</div>
           <div class="enemy-cond-row">
             <button
-              v-for="cond in CONDITIONS"
+              v-for="cond in POSITIVE_CONDITIONS"
+              :key="cond"
+              class="enemy-cond-chip enemy-cond-chip--positive"
+              :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
+              :title="conditionTooltip(cond)"
+              @click="toggleEnemyCondition(cond)"
+            >
+              {{ cond }}
+            </button>
+          </div>
+          <div class="enemy-cond-row">
+            <button
+              v-for="cond in NEGATIVE_CONDITIONS"
               :key="cond"
               class="enemy-cond-chip"
               :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
@@ -439,7 +491,16 @@
 
     <!-- Battle log -->
     <aside v-if="battleLog.length" class="battle-log scrollable">
-      <div class="col-label">Battle Log</div>
+      <div class="log-header">
+        <span class="col-label">Battle Log</span>
+        <button
+          class="log-export-btn"
+          title="Export log as text"
+          @click="exportLog"
+        >
+          ↓
+        </button>
+      </div>
       <div v-for="entry in battleLog" :key="entry.id" class="log-entry">
         <span class="log-who">{{ entry.who }}</span>
         <span class="log-msg">{{ entry.msg }}</span>
@@ -496,16 +557,17 @@ import { conditionTooltip } from '@/data/conditions.js'
 import { STAT_KEYS } from '@/utils/dnd_utils.js'
 
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
-const CONDITIONS = Object.freeze([
+const POSITIVE_CONDITIONS = Object.freeze(['Bardic', 'Concentrating', 'Haste'])
+const NEGATIVE_CONDITIONS = Object.freeze([
   'Blinded',
   'Charmed',
   'Deafened',
   'Exhaustion',
   'Frightened',
   'Grappled',
-  'Haste',
   'Incapacitated',
   'Invisible',
+  'Muddled',
   'Paralyzed',
   'Petrified',
   'Poisoned',
@@ -513,8 +575,10 @@ const CONDITIONS = Object.freeze([
   'Restrained',
   'Stunned',
   'Unconscious',
-  'Concentrating',
-  'Bardic',
+])
+const CONDITIONS = Object.freeze([
+  ...POSITIVE_CONDITIONS,
+  ...NEGATIVE_CONDITIONS,
 ])
 
 export default {
@@ -527,7 +591,13 @@ export default {
     combatantStates: { type: Object, default: () => ({}) },
   },
 
-  emits: ['override-roll', 'add-enemy', 'toggle-friendly', 'remove-enemy'],
+  emits: [
+    'override-roll',
+    'add-enemy',
+    'duplicate-enemy',
+    'toggle-friendly',
+    'remove-enemy',
+  ],
 
   data() {
     return {
@@ -552,6 +622,10 @@ export default {
       newEnemyMod: 0,
       statKeys: STAT_KEY_LIST,
       CONDITIONS,
+      POSITIVE_CONDITIONS,
+      NEGATIVE_CONDITIONS,
+      deathSaves: {},
+      pendingStateCopy: null,
       bestiaryMode: false,
       bestiarySearch: '',
       bestiaryIndex: null,
@@ -631,7 +705,7 @@ export default {
     },
     order: {
       immediate: true,
-      handler(entries) {
+      handler(entries, oldEntries) {
         for (const entry of entries) {
           if (
             entry.type === 'enemy' &&
@@ -642,6 +716,22 @@ export default {
               damage: 0,
               maxHp: entry.encounterData.maxHp,
             })
+          }
+        }
+        if (this.pendingStateCopy && oldEntries) {
+          const oldKeys = new Set(oldEntries.map((e) => e.key))
+          const newEnemies = entries.filter(
+            (e) => e.type === 'enemy' && !oldKeys.has(e.key)
+          )
+          if (newEnemies.length > 0) {
+            const key = newEnemies[newEnemies.length - 1].key
+            const { meta, hp, stats, conditions } = this.pendingStateCopy
+            if (meta) this.$set(this.enemyMeta, key, { ...meta })
+            if (hp) this.$set(this.enemyHp, key, { ...hp })
+            if (stats) this.$set(this.enemyStats, key, { ...stats })
+            if (conditions)
+              this.$set(this.enemyConditions, key, [...conditions])
+            this.pendingStateCopy = null
           }
         }
       },
@@ -669,7 +759,19 @@ export default {
           minute: '2-digit',
         }),
       })
-      if (this.battleLog.length > 100) this.battleLog.pop()
+    },
+
+    exportLog() {
+      const lines = [...this.battleLog]
+        .reverse()
+        .map((e) => `[${e.time}] Turn ${e.turn} — ${e.who}: ${e.msg}`)
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `battle-log-${new Date().toISOString().slice(0, 10)}.txt`
+      a.click()
+      URL.revokeObjectURL(url)
     },
 
     // ── Player HP display ──
@@ -943,6 +1045,32 @@ export default {
     cancelEdit() {
       this.editingKey = null
       this.overrideValue = null
+    },
+
+    deathSaveCount(name, type) {
+      return this.deathSaves[name]?.[type] ?? 0
+    },
+    toggleDeathSave(name, type, pip) {
+      const current = this.deathSaves[name]?.[type] ?? 0
+      const next = current >= pip ? pip - 1 : pip
+      this.$set(this.deathSaves, name, {
+        ...(this.deathSaves[name] ?? { successes: 0, failures: 0 }),
+        [type]: next,
+      })
+    },
+
+    duplicateEnemy(key) {
+      this.pendingStateCopy = {
+        meta: this.enemyMeta[key] ? { ...this.enemyMeta[key] } : null,
+        hp: this.enemyHp[key]
+          ? { ...this.enemyHp[key], damage: 0, tempHp: 0 }
+          : null,
+        stats: this.enemyStats[key] ? { ...this.enemyStats[key] } : null,
+        conditions: this.enemyConditions[key]
+          ? [...this.enemyConditions[key]]
+          : null,
+      }
+      this.$emit('duplicate-enemy', key)
     },
   },
 }
@@ -1275,6 +1403,33 @@ export default {
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.6rem;
 }
+.panel-header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+.header-action-btn {
+  padding: 0.2rem 0.55rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-low);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.header-action-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.header-action-btn--danger:hover {
+  color: var(--color-text-danger);
+  border-color: var(--color-text-danger);
+}
 
 .panel-name {
   font-family: var(--font-display);
@@ -1422,23 +1577,6 @@ export default {
 }
 
 .hp-low {
-  color: var(--color-text-danger);
-}
-
-.remove-enemy-btn {
-  margin-left: auto;
-  padding: 0.35rem 0.6rem;
-  background: none;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-low);
-  font-size: var(--font-size-md);
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.remove-enemy-btn:hover {
-  border-color: var(--color-text-danger);
   color: var(--color-text-danger);
 }
 
@@ -1627,6 +1765,64 @@ export default {
 }
 .enemy-cond-chip--custom {
   font-size: var(--font-size-xs);
+}
+.enemy-cond-chip--positive {
+  clip-path: polygon(
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 50%,
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 50%
+  );
+  padding: 2px 14px;
+  border-radius: 0;
+  border: none;
+}
+.enemy-cond-chip--positive.enemy-cond-chip--active {
+  background: rgba(74, 158, 107, 0.2);
+  color: var(--color-success);
+}
+.enemy-cond-chip--positive:not(.enemy-cond-chip--active) {
+  background: var(--color-bg-surface);
+}
+
+/* ── Death saving throws ── */
+.dst-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.dst-label {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.dst-success {
+  color: var(--color-success);
+}
+.dst-failure {
+  color: var(--color-text-danger);
+}
+.dst-pip {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.12s, border-color 0.12s;
+  flex-shrink: 0;
+}
+.dst-pip--success {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+.dst-pip--failure {
+  background: var(--color-text-danger);
+  border-color: var(--color-text-danger);
 }
 
 .custom-cond-row {
