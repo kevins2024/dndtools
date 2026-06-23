@@ -85,7 +85,7 @@
                 <div v-if="isSelected(char.name)" class="tile-check">✓</div>
               </div>
               <div class="tile-name">{{ char.name }}</div>
-              <div class="tile-class">{{ char.class }}</div>
+              <div class="tile-class">{{ $dnd.classLabel(char) }}</div>
               <div class="tile-stat">
                 <span class="ts-key">{{ topStat(char).name }}</span>
                 <span class="ts-val">{{ topStat(char).score }}</span>

@@ -1614,8 +1614,8 @@
   {
     "name": "Elemental Resistance Robes",
     "type": "wondrous",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Resistance to one element. Attuned to: fire.",
@@ -1627,8 +1627,8 @@
   {
     "name": "Ring of Transmutation",
     "type": "wondrous",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": false,
     "charges_current": 3,

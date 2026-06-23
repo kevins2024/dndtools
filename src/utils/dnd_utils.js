@@ -35,6 +35,38 @@ const SCORE_BONUS_KEYS = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha'])
 
 export const dnd = {
   // ─────────────────────────────────────────────
+  // CLASS HELPERS
+  // ─────────────────────────────────────────────
+
+  // "Fighter / Warlock" or "Monk"
+  classLabel(character) {
+    return (character?.classes ?? []).map((c) => c.name).join(' / ')
+  },
+
+  // "Champion / Great Old One" or "Way of the Open Hand"
+  subclassLabel(character) {
+    return (character?.classes ?? [])
+      .map((c) => c.subclass)
+      .filter(Boolean)
+      .join(' / ')
+  },
+
+  // Full subtitle: "Fighter 4 / Warlock 5 · Level 9" or "Monk (Way of the Open Hand) · Level 9"
+  classBreakdownLabel(character) {
+    const classes = character?.classes ?? []
+    if (classes.length === 1) {
+      const c = classes[0]
+      return `${c.name}${c.subclass ? ` (${c.subclass})` : ''} · Level ${
+        character.level
+      }`
+    }
+    return (
+      classes.map((c) => `${c.name} ${c.level}`).join(' / ') +
+      ` · Level ${character.level}`
+    )
+  },
+
+  // ─────────────────────────────────────────────
   // CORE PRIMITIVES
   // ─────────────────────────────────────────────
 

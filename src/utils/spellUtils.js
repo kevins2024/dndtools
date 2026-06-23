@@ -41,9 +41,11 @@ const CLASS_SPELL_LISTS = {
  * Each entry: { index, name, level }
  */
 export function getClassSpellList(character) {
-  const cls = (character?.class ?? '').toLowerCase()
-  for (const [key, list] of Object.entries(CLASS_SPELL_LISTS)) {
-    if (cls.includes(key)) return list
+  for (const cc of character?.classes ?? []) {
+    const cls = cc.name.toLowerCase()
+    for (const [key, list] of Object.entries(CLASS_SPELL_LISTS)) {
+      if (cls.includes(key)) return list
+    }
   }
   return null
 }
@@ -53,8 +55,9 @@ export function getClassSpellList(character) {
  * (as opposed to only from spells they've explicitly added to their spellbook).
  */
 export function usesFullClassList(character) {
-  const cls = (character?.class ?? '').toLowerCase()
-  return FULL_CLASS_LIST_CLASSES.some((c) => cls.includes(c))
+  return (character?.classes ?? []).some((cc) =>
+    FULL_CLASS_LIST_CLASSES.some((c) => cc.name.toLowerCase().includes(c))
+  )
 }
 
 export function getCharacterSpells(character) {

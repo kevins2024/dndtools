@@ -4,8 +4,6 @@
     "full_name": "Vazseslaad Thrazak",
     "campaign_start": "Year 467, day 137",
     "race": "Silver Dragonborn",
-    "class": "Fighter",
-    "subclass": "Battle Master",
     "level": 9,
     "appearance": "silver dragonborn, lean athletic build, deliberate grace, purple eyes. Wyvern Scale Coat catches light distinctively.",
     "image": "./characters/vaz.jpg",
@@ -110,14 +108,19 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Fighter",
+        "subclass": "Battle Master",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Rhuna",
     "full_name": "Rhuna Stonebreaker",
     "race": "Half-Orc",
-    "class": "Barbarian",
-    "subclass": "Berserker",
     "level": 9,
     "appearance": "half-orc woman, powerfully built, greenish-brown skin, dark hair kept practically short, brown eyes, lower jaw tusks (modest, not dramatic). Scars she doesn't explain.",
     "image": "./characters/rhuna.png",
@@ -211,14 +214,19 @@
     "darkvision": 60,
     "hit_die": "d12",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Barbarian",
+        "subclass": "Berserker",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Denna",
     "full_name": "Denna Shadowstep",
     "race": "Human",
-    "class": "Rogue",
-    "subclass": "Assassin",
     "level": 9,
     "appearance": "olive skin, medium build, forgettable by design, brown hair, neutral features, clothes chosen for function.",
     "image": "./characters/denna.jpg",
@@ -310,6 +318,13 @@
       "Perception",
       "SleightOfHand",
       "Investigation"
+    ],
+    "classes": [
+      {
+        "name": "Rogue",
+        "subclass": "Assassin",
+        "level": 9
+      }
     ]
   },
   {
@@ -317,8 +332,6 @@
     "full_name": "Jaygar Waxystache",
     "race": "Gnome",
     "subrace": "Rock Gnome",
-    "class": "Artificer",
-    "subclass": "Artillerist",
     "level": 9,
     "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
     "image": "./characters/jaygar.jpg",
@@ -542,14 +555,19 @@
     "id": "characters_3",
     "darkvision": 60,
     "hit_die": "d8",
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "classes": [
+      {
+        "name": "Artificer",
+        "subclass": "Artillerist",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Lenn",
     "full_name": "Lenn Ashford",
     "race": "Human",
-    "class": "Wizard",
-    "subclass": "Evocation",
     "level": 9,
     "appearance": "human man, late thirties, amber robes with darker trim, simple cut. Looks like a traveler, life has shown on his face. Carries himself better than he used to but the wear is still visible.",
     "image": "./characters/lenn.jpg",
@@ -1045,14 +1063,19 @@
     "hit_die": "d6",
     "hit_dice_current": 9,
     "conditions": [],
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Wizard",
+        "subclass": "Evocation",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Kessara",
     "full_name": "Kessara Nightwind",
     "race": "Elf",
-    "class": "Wizard",
-    "subclass": "Bladesinger",
     "level": 9,
     "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant - light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it - it's a distraction and she knows it.",
     "image": "./characters/kessara.jpg",
@@ -1554,14 +1577,19 @@
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Wizard",
+        "subclass": "Bladesinger",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Petra",
     "full_name": "Petra Lightwhisper",
     "race": "Human",
-    "class": "Cleric",
-    "subclass": "Life Domain",
     "level": 9,
     "appearance": "small human woman, curly brown hair with flowers in it, unrealistically green eyes, moves like water, expressions change faster than conversations.",
     "image": "./characters/petra.jpg",
@@ -1816,14 +1844,19 @@
     "hit_die": "d8",
     "hit_dice_current": 9,
     "conditions": [],
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Cleric",
+        "subclass": "Life Domain",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Pirra",
     "full_name": "Pirra",
     "race": "Halfling",
-    "class": "Rogue",
-    "subclass": "Inquisitive",
     "level": 9,
     "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood - the resemblance is purely in the intelligence and awareness.",
     "image": "./characters/pirra.jpg",
@@ -1913,16 +1946,20 @@
       "SleightOfHand",
       "Insight",
       "Perception"
+    ],
+    "classes": [
+      {
+        "name": "Rogue",
+        "subclass": "Inquisitive",
+        "level": 9
+      }
     ]
   },
   {
     "name": "Kerra",
     "full_name": "Kerra Flint",
     "race": "Human",
-    "class": "Fighter/Warlock",
-    "subclass": "Champion / Great Old One",
     "level": 9,
-    "class_breakdown": "4 Fighter / 5 Warlock",
     "appearance": "human woman with distant orcish heritage - quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
     "image": "./characters/kerra.jpg",
     "proficiency_bonus": 4,
@@ -2114,14 +2151,24 @@
     "darkvision": 0,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Fighter",
+        "subclass": "Champion",
+        "level": 4
+      },
+      {
+        "name": "Warlock",
+        "subclass": "Great Old One",
+        "level": 5
+      }
+    ]
   },
   {
     "name": "Siv",
     "full_name": "Siv Ravencroft",
     "race": "Human",
-    "class": "Fighter",
-    "subclass": "Scout",
     "level": 9,
     "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
     "image": "./characters/siv.jpg",
@@ -2221,14 +2268,19 @@
     "hit_die": "d10",
     "hit_dice_current": 9,
     "conditions": [],
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Fighter",
+        "subclass": "Scout",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Lexica",
     "full_name": "Lexica Molerna",
     "race": "Half-Elf",
-    "class": "Bard",
-    "subclass": "College of Lore",
     "level": 9,
     "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't - can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
     "image": "./characters/lexica.jpg",
@@ -2454,14 +2506,19 @@
     "skill_expertise": [
       "Perception",
       "Persuasion"
+    ],
+    "classes": [
+      {
+        "name": "Bard",
+        "subclass": "College of Lore",
+        "level": 9
+      }
     ]
   },
   {
     "name": "Lyria",
     "full_name": "Lyria Moonwhisper",
     "race": "Human",
-    "class": "Wizard",
-    "subclass": "Abjuration",
     "level": 9,
     "appearance": "human woman, early thirties, very fair skin, pretty but doesn't invest time in accentuating it. Slight build, dark circles under watchful eyes from years of research and worry.",
     "image": "./characters/lyria.jpg",
@@ -2959,14 +3016,19 @@
     "darkvision": 0,
     "hit_die": "d6",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Wizard",
+        "subclass": "Abjuration",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Corwin",
     "full_name": "Corwin Drake",
     "race": "Human",
-    "class": "Fighter",
-    "subclass": "Champion",
     "level": 9,
     "alignment": "Lawful Neutral",
     "appearance": "Human man, late thirties. Guard bearing. Weathered, solid build.",
@@ -3047,14 +3109,19 @@
     "darkvision": 0,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Fighter",
+        "subclass": "Champion",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Chuknora",
     "full_name": "Chuknora",
     "race": "Goliath",
-    "class": "Monk",
-    "subclass": "Way of the Open Hand",
     "level": 9,
     "appearance": "Female goliath.",
     "image": "./characters/chuknora.jpg",
@@ -3173,14 +3240,19 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Monk",
+        "subclass": "Way of the Open Hand",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Enauweyn",
     "full_name": "Enauweyn Althidon",
     "race": "Eladrin Elf",
-    "class": "Paladin",
-    "subclass": "Oath of the Crown",
     "level": 9,
     "appearance": "Chestnut hair, light olive skin, angular features, pointed chin, very pretty. Green magical armor that appears revealing but extends invisible protection. Luxurious flowing cloth around legs and sleeves gives a mystical fey quality.",
     "image": "./characters/enauweyn.jpg",
@@ -3381,14 +3453,19 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Paladin",
+        "subclass": "Oath of the Crown",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Tackett",
     "full_name": "Tackett",
     "race": "Halfling",
-    "class": "Druid",
-    "subclass": "Circle of Stars",
     "level": 9,
     "image": "./characters/tackett.jpg",
     "appearance": "Male halfling.",
@@ -3641,14 +3718,19 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Druid",
+        "subclass": "Circle of Stars",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Revven",
     "full_name": "Revven Ashveil",
     "race": "Half-Elf",
-    "class": "Cleric",
-    "subclass": "Tempest Domain",
     "level": 9,
     "appearance": "Very elven facial features - high cheekbones, slightly pointed ears, large expressive eyes the color of storm clouds. Pale gold-olive skin. Curly red-orange hair. Slight build. Dark amber chain-mail with small fabric swatches of pale blue.",
     "image": "./characters/revven.jpg",
@@ -3924,16 +4006,20 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Cleric",
+        "subclass": "Tempest Domain",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Elucyne",
     "full_name": "Elucyne Varas",
     "race": "Tiefling",
-    "class": "Ranger / Rogue / Fighter",
-    "subclass": "Gloom Stalker / — / Champion",
     "level": 9,
-    "class_breakdown": "5 Gloom Stalker Ranger / 2 Rogue / 2 Fighter",
     "spellcasting_level": 5,
     "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns. Symmetrical darker purple markings on both shoulders. Moves with the fluid ease of a performer who learned survival as a second language.",
     "image": "./characters/elucyne.jpg",
@@ -4071,14 +4157,29 @@
     "skill_expertise": [
       "Stealth",
       "Performance"
+    ],
+    "classes": [
+      {
+        "name": "Ranger",
+        "subclass": "Gloom Stalker",
+        "level": 5
+      },
+      {
+        "name": "Rogue",
+        "subclass": null,
+        "level": 2
+      },
+      {
+        "name": "Fighter",
+        "subclass": "Champion",
+        "level": 2
+      }
     ]
   },
   {
     "name": "Sorra",
     "full_name": "Oul'sorra'i",
     "race": "Half-Elf",
-    "class": "Bard",
-    "subclass": "College of Spirits",
     "level": 9,
     "appearance": "Dark skin, silver hair worn loose, moves with the quality of someone whose dance never fully stops even when standing still. Composed beauty that has stopped surprising her.",
     "image": "./characters/sorra.jpg",
@@ -4319,14 +4420,19 @@
     "skill_expertise": [
       "Performance",
       "Insight"
+    ],
+    "classes": [
+      {
+        "name": "Bard",
+        "subclass": "College of Spirits",
+        "level": 9
+      }
     ]
   },
   {
     "name": "Ferghus",
     "full_name": "Ferghus Crae",
     "race": "Human",
-    "class": "Paladin",
-    "subclass": "Oath of the Open Road",
     "level": 9,
     "appearance": "Broad shouldered, the build of someone who works physically and always has. Red-brown hair, not quite a beard but committed to the attempt. Weathered without being worn. Large in the way that is present rather than threatening.",
     "image": "./characters/ferghus.jpg",
@@ -4500,15 +4606,20 @@
     "darkvision": 0,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": []
+    "skill_expertise": [],
+    "classes": [
+      {
+        "name": "Paladin",
+        "subclass": "Oath of the Open Road",
+        "level": 9
+      }
+    ]
   },
   {
     "name": "Eldi",
     "full_name": "Eldi'taevyn Brandeldeen",
     "campaign_start": "Year 468, day 87",
     "race": "Half-Elf",
-    "class": "Fighter / Rogue",
-    "subclass": "Echo Knight / Swashbuckler",
     "level": 8,
     "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Moves like she's already decided where she's going. Twin sabers, light on her feet, the kind of person who finds the exit before she needs it.",
     "proficiency_bonus": 3,
@@ -4633,7 +4744,6 @@
       "The echo unsettles people who see it for the first time. She finds this useful."
     ],
     "id": "characters_20",
-    "class_breakdown": "Fighter 5 / Rogue 3",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
     "skill_expertise": [
@@ -4642,15 +4752,25 @@
     ],
     "darkvision": 60,
     "hit_die": "d10",
-    "hit_dice_current": 8
+    "hit_dice_current": 8,
+    "classes": [
+      {
+        "name": "Fighter",
+        "subclass": "Echo Knight",
+        "level": 5
+      },
+      {
+        "name": "Rogue",
+        "subclass": "Swashbuckler",
+        "level": 3
+      }
+    ]
   },
   {
     "name": "Rith",
     "full_name": "Rith'taevyn Brandeldeen",
     "campaign_start": "Year 468, day 87",
     "race": "Half-Elf",
-    "class": "Sorcerer",
-    "subclass": "Divine Soul",
     "level": 8,
     "appearance": "Half-elf man, early twenties. Same bone structure as his sister but quieter in how he holds it. Stands slightly back from whatever is happening, watching. The kind of person a room does not notice until he speaks.",
     "proficiency_bonus": 3,
@@ -4870,6 +4990,13 @@
     "id": "characters_21",
     "darkvision": 60,
     "hit_die": "d6",
-    "hit_dice_current": 8
+    "hit_dice_current": 8,
+    "classes": [
+      {
+        "name": "Sorcerer",
+        "subclass": "Divine Soul",
+        "level": 8
+      }
+    ]
   }
 ]

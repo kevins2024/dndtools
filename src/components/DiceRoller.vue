@@ -322,7 +322,7 @@ export default {
   color: var(--color-text-danger);
 }
 .acc-count {
-  opacity: 0.6;
+  color: var(--color-text-muted);
   font-size: var(--font-size-base);
 }
 

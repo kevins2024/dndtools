@@ -42,9 +42,7 @@ export default {
   },
   computed: {
     icon() {
-      const primary = (this.character.class ?? '')
-        .split(/[\s/]+/)[0]
-        .toLowerCase()
+      const primary = (this.character.classes?.[0]?.name ?? '').toLowerCase()
       return CLASS_MAP[primary] ?? null
     },
   },

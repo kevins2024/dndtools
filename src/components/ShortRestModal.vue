@@ -21,7 +21,7 @@
             </div>
             <div class="member-info">
               <div class="member-name">{{ char.name }}</div>
-              <div class="member-class">{{ char.class }}</div>
+              <div class="member-class">{{ $dnd.classLabel(char) }}</div>
             </div>
             <div class="hp-section">
               <div class="hp-numbers">
@@ -518,7 +518,6 @@ export default {
 }
 .hd-estimate.muted {
   color: var(--color-text-low);
-  opacity: 0.6;
 }
 
 /* ── Footer ── */
@@ -590,7 +589,7 @@ export default {
   border-bottom: none;
 }
 .result-row.result-quiet {
-  opacity: 0.4;
+  color: var(--color-text-low);
 }
 .result-avatar {
   width: 2.2rem;

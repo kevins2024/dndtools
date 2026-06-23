@@ -6,7 +6,7 @@
         class="portrait"
         :style="{ backgroundImage: `url(${character.image})` }"
       >
-        <span class="class-badge" :title="character.class">
+        <span class="class-badge" :title="$dnd.classLabel(character)">
           <ClassIcon :character="character" />
         </span>
       </div>
@@ -14,15 +14,7 @@
         <h2 class="char-name">{{ character.name }}</h2>
         <div class="char-fullname">{{ character.full_name }}</div>
         <div class="char-subtitle">
-          {{ character.race }} ·
-          <template v-if="character.class_breakdown">{{
-            character.class_breakdown
-          }}</template>
-          <template v-else
-            >{{ character.class
-            }}<span v-if="character.subclass"> ({{ character.subclass }})</span>
-            · Level {{ character.level }}</template
-          >
+          {{ character.race }} · {{ $dnd.classBreakdownLabel(character) }}
         </div>
         <div class="char-appearance">{{ character.appearance }}</div>
       </div>

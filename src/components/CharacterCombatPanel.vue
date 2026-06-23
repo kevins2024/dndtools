@@ -1021,13 +1021,13 @@ export default {
 .pill-uses {
   margin-left: 0.35em;
   font-size: 0.8em;
-  opacity: 0.65;
+  color: var(--color-text-muted);
 }
 
 .pill-recharge {
   margin-left: 0.3em;
   font-size: 0.75em;
-  opacity: 0.5;
+  color: var(--color-text-low);
   font-style: italic;
 }
 
@@ -1043,7 +1043,6 @@ export default {
 
 .spell-pill--domain {
   border-style: dashed;
-  opacity: 0.8;
 }
 
 .conc-icon {
@@ -1058,7 +1057,7 @@ export default {
 .spell-school {
   font-size: 0.7em;
   margin-left: 0.35em;
-  opacity: 0.55;
+  color: var(--color-text-low);
   vertical-align: middle;
   letter-spacing: 0.02em;
 }

@@ -264,7 +264,9 @@
     <!-- ── Browse class spell list (Cleric, Druid, Paladin, Ranger) ── -->
     <div v-if="characterUsesFullClassList && classSpellList" class="sb-browse">
       <div class="sb-browse-header">
-        <span class="sb-browse-title">{{ character.class }} Spell List</span>
+        <span class="sb-browse-title"
+          >{{ $dnd.classLabel(character) }} Spell List</span
+        >
         <span class="sb-browse-count"
           >{{ availableToPrepare.length }} available</span
         >
@@ -326,7 +328,7 @@
         No spells match "{{ availableSearch }}"
       </div>
       <div v-else class="sb-browse-empty">
-        All {{ character.class }} spells are in your prepared list.
+        All {{ $dnd.classLabel(character) }} spells are in your prepared list.
       </div>
     </div>
 
@@ -439,11 +441,17 @@ export default {
     },
 
     preparationInfo() {
-      const cls = (this.character.class ?? '').toLowerCase()
-      const usesPrepare = PREPARATION_CLASSES.some((c) => cls.includes(c))
+      const classNames = (this.character.classes ?? []).map((c) =>
+        c.name.toLowerCase()
+      )
+      const usesPrepare = PREPARATION_CLASSES.some((p) =>
+        classNames.some((c) => c.includes(p))
+      )
       if (!usesPrepare) return null
 
-      const isHalfCaster = HALF_CASTER_CLASSES.some((c) => cls.includes(c))
+      const isHalfCaster = HALF_CASTER_CLASSES.some((p) =>
+        classNames.some((c) => c.includes(p))
+      )
       const level = this.character.level ?? 0
       const effectiveLevel = isHalfCaster
         ? Math.max(1, Math.floor(level / 2))
@@ -971,7 +979,10 @@ export default {
 }
 
 .sb-entry--dim {
-  opacity: 0.35;
+  color: var(--color-text-low);
+}
+.sb-entry--dim .sb-name {
+  color: var(--color-text-low);
 }
 
 .sb-sharers {
@@ -983,7 +994,7 @@ export default {
 }
 
 .sb-group--filtered {
-  opacity: 0.25;
+  color: var(--color-text-low);
 }
 
 .fade-enter-active,
@@ -1034,13 +1045,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 2px 0.5rem;
-}
-
-.sb-spell-grid--dim {
-  opacity: 0.55;
-}
-.sb-spell-grid--dim:hover {
-  opacity: 0.8;
 }
 
 .sb-spell-entry {
@@ -1127,6 +1131,9 @@ export default {
 .sb-name--unprepared {
   color: var(--color-text-muted);
 }
+.sb-name--unprepared:hover {
+  color: var(--color-text);
+}
 .sb-name--available {
   color: var(--color-text-muted);
 }
@@ -1170,7 +1177,6 @@ export default {
 .sb-badge--school {
   border-color: var(--color-border);
   color: var(--color-text-low);
-  opacity: 0.7;
 }
 .sb-badge--level {
   border-color: var(--color-border);
@@ -1197,8 +1203,7 @@ export default {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--color-border);
-  opacity: 0.5;
+  background: var(--color-bg-surface-alt);
 }
 
 /* ── Browse section ── */

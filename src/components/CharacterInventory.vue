@@ -736,7 +736,6 @@ export default {
   font-size: var(--font-size-base);
   color: var(--color-accent);
   margin-left: 2px;
-  opacity: 0.8;
 }
 
 .item-action {

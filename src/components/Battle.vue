@@ -124,8 +124,7 @@
           <div class="panel-header">
             <span class="panel-name">{{ activeChar.name }}</span>
             <span class="panel-subtitle">{{
-              activeChar.class_breakdown ||
-              activeChar.class + ' ' + activeChar.level
+              $dnd.classBreakdownLabel(activeChar)
             }}</span>
             <span class="panel-hp">{{ playerHp(activeChar.name) }} HP</span>
           </div>
@@ -554,7 +553,7 @@
 <script>
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
 import { conditionTooltip } from '@/data/conditions.js'
-import { STAT_KEYS } from '@/utils/dnd_utils.js'
+import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
 const POSITIVE_CONDITIONS = Object.freeze(['Bardic', 'Concentrating', 'Haste'])

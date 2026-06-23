@@ -83,7 +83,9 @@
                     <img :src="char.image" class="picker-face" />
                     <div class="picker-text">
                       <span class="picker-name">{{ char.name }}</span>
-                      <span class="picker-class">{{ char.class }}</span>
+                      <span class="picker-class">{{
+                        $dnd.classLabel(char)
+                      }}</span>
                     </div>
                     <div class="picker-badges">
                       <span class="picker-perc">{{ signedPerc(char) }}</span>
@@ -298,7 +300,8 @@ export default {
     },
 
     charClass(name) {
-      return this.characters.find((c) => c.name === name)?.class ?? ''
+      const char = this.characters.find((c) => c.name === name)
+      return char ? dnd.classLabel(char) : ''
     },
 
     isOverwatch(name) {
@@ -542,7 +545,6 @@ export default {
   font-size: 1rem;
   color: var(--color-text-low);
   margin: 0 auto;
-  opacity: 0.45;
 }
 
 /* ── Picker dropdown ── */
@@ -569,11 +571,11 @@ export default {
   background: rgba(var(--color-accent-rgb), 0.1);
 }
 .picker-option.picker-taken {
-  opacity: 0.3;
+  color: var(--color-text-low);
   cursor: not-allowed;
 }
 .picker-option.picker-overwatch {
-  opacity: 0.65;
+  color: var(--color-text-muted);
 }
 
 .picker-face {

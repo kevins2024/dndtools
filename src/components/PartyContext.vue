@@ -77,9 +77,9 @@
               </div>
               <div class="card-body">
                 <div class="card-name">{{ char.name }}</div>
-                <div class="card-class">{{ char.class }}</div>
-                <div class="card-role" v-if="char.subclass">
-                  {{ char.subclass }}
+                <div class="card-class">{{ $dnd.classLabel(char) }}</div>
+                <div class="card-role" v-if="$dnd.subclassLabel(char)">
+                  {{ $dnd.subclassLabel(char) }}
                 </div>
                 <div class="card-topstat">
                   <span class="stat-key">{{ topStat(char).name }}</span>
@@ -654,7 +654,6 @@ export default {
 .rest-full {
   font-size: var(--font-size-xs);
   color: var(--color-text-low);
-  opacity: 0.55;
 }
 .rest-chip {
   font-size: var(--font-size-xs);
