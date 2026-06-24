@@ -1,4 +1,5 @@
-﻿﻿<template>
+﻿﻿
+<template>
   <div class="enc-gen">
     <!-- â"€â"€ Options panel â"€â"€ -->
     <div class="enc-options">
@@ -6,63 +7,73 @@
       <section class="opt-section">
         <div class="opt-header">Party</div>
 
-        <!-- Source pills -->
-        <div class="source-pills">
-          <span
-            v-for="p in allParties"
-            :key="p.id"
-            class="source-pill"
-            :class="{ active: selectedPartyId === p.id }"
-            @click="selectStoreParty(p.id)"
-            >{{ p.name
-            }}<span v-if="p.active" class="pill-active-dot">●</span></span
-          >
-          <span
-            class="source-pill"
-            :class="{ active: partyMode === 'manual' }"
-            @click="partyMode = 'manual'"
-            >Manual</span
-          >
-        </div>
+        <!-- Combat roster mode: locked to active combatants -->
+        <template v-if="combatRoster">
+          <div class="opt-hint opt-hint--roster">From combat panel</div>
+          <div class="party-pills">
+            <span v-for="c in partyCharacters" :key="c.name" class="party-pill">
+              {{ c.name }} <span class="pill-level">Lv{{ c.level }}</span>
+            </span>
+          </div>
+        </template>
 
-        <!-- Member list -->
-        <div
-          v-if="partyMode === 'party' && partyCharacters.length"
-          class="party-pills"
-        >
-          <span v-for="c in partyCharacters" :key="c.name" class="party-pill">
-            {{ c.name }} <span class="pill-level">Lv{{ c.level }}</span>
-          </span>
-        </div>
-        <div
-          v-if="partyMode === 'party' && !partyCharacters.length"
-          class="opt-hint"
-        >
-          No members found.
-        </div>
+        <!-- Normal mode: party picker + manual -->
+        <template v-else>
+          <div class="source-pills">
+            <span
+              v-for="p in allParties"
+              :key="p.id"
+              class="source-pill"
+              :class="{ active: selectedPartyId === p.id }"
+              @click="selectStoreParty(p.id)"
+              >{{ p.name
+              }}<span v-if="p.active" class="pill-active-dot">●</span></span
+            >
+            <span
+              class="source-pill"
+              :class="{ active: partyMode === 'manual' }"
+              @click="partyMode = 'manual'"
+              >Manual</span
+            >
+          </div>
 
-        <!-- Manual inputs -->
-        <template v-if="partyMode === 'manual'">
-          <label class="opt-label nudge">
-            Level
-            <input
-              type="number"
-              v-model.number="manualLevel"
-              min="1"
-              max="20"
-              class="num-input"
-            />
-          </label>
-          <label class="opt-label nudge">
-            Characters
-            <input
-              type="number"
-              v-model.number="manualCount"
-              min="1"
-              max="12"
-              class="num-input"
-            />
-          </label>
+          <div
+            v-if="partyMode === 'party' && partyCharacters.length"
+            class="party-pills"
+          >
+            <span v-for="c in partyCharacters" :key="c.name" class="party-pill">
+              {{ c.name }} <span class="pill-level">Lv{{ c.level }}</span>
+            </span>
+          </div>
+          <div
+            v-if="partyMode === 'party' && !partyCharacters.length"
+            class="opt-hint"
+          >
+            No members found.
+          </div>
+
+          <template v-if="partyMode === 'manual'">
+            <label class="opt-label nudge">
+              Level
+              <input
+                type="number"
+                v-model.number="manualLevel"
+                min="1"
+                max="20"
+                class="num-input"
+              />
+            </label>
+            <label class="opt-label nudge">
+              Characters
+              <input
+                type="number"
+                v-model.number="manualCount"
+                min="1"
+                max="12"
+                class="num-input"
+              />
+            </label>
+          </template>
         </template>
       </section>
 
@@ -471,6 +482,10 @@ const ALL_BESTIARY_TYPES = [
 export default {
   name: 'EncounterGenerator',
 
+  props: {
+    combatRoster: { type: Array, default: null },
+  },
+
   data() {
     return {
       partyMode: 'party',
@@ -517,6 +532,7 @@ export default {
     },
 
     activePartyNames() {
+      if (this.combatRoster?.length) return this.combatRoster
       return this.selectedParty?.members ?? []
     },
 
@@ -996,6 +1012,11 @@ export default {
   color: var(--color-text-low);
   font-style: italic;
   margin-top: 0.3rem;
+}
+.opt-hint--roster {
+  font-style: normal;
+  color: var(--color-text-muted);
+  margin-bottom: 0.3rem;
 }
 
 /* â"€â"€ Result â"€â"€ */

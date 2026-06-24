@@ -1,4 +1,24 @@
 {
-  "sending_stones": [],
+  "sending_stones": [
+    {
+      "id": "ss_1782300079978",
+      "label": "Ilwuoshim",
+      "notes": "Meant to share information about the entrapment device",
+      "stone_a": {
+        "label": "Stone A",
+        "holder": "Lenn",
+        "location": "",
+        "status": "active",
+        "notes": ""
+      },
+      "stone_b": {
+        "label": "Stone B",
+        "holder": "Ilwuoshim",
+        "location": "The Liliveth",
+        "status": "active",
+        "notes": ""
+      }
+    }
+  ],
   "teleportation_circles": []
 }

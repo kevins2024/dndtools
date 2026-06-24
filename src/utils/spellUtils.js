@@ -7,15 +7,19 @@
  *   1. character.spells[]                  — main class list; homebrew spells live here too (homebrew: true)
  *   2. character.artillerist_spells.spells — Artificer subclass always-prepared spells
  *   3. character.features[].spells_granted — feats / race / class features
+ *   4. partyItems[].spells_granted         — equipped + attuned magic items
  *
  * Each returned spell object has the original fields plus:
- *   _source  {string}  — human-readable origin label
- *   artillerist {bool} — true if from artillerist_spells
- *   featureGranted {bool} — true if from a feature's spells_granted
- *   homebrew {bool}    — true if spell is homebrew (set on the spell entry in character.spells)
+ *   _source      {string}  — human-readable origin label
+ *   artillerist  {bool}    — true if from artillerist_spells
+ *   featureGranted {bool}  — true if from a feature's spells_granted
+ *   itemGranted  {bool}    — true if from an equipped item's spells_granted
+ *   homebrew     {bool}    — true if spell is homebrew (set on the spell entry in character.spells)
  *
- * Deduplication: first occurrence wins (class list takes priority).
- * Feature-granted spells already in the class list are silently skipped.
+ * Deduplication: sources 1-3 deduplicate by spell name (first wins).
+ * Item-granted spells (source 4) are always added alongside class/feature versions —
+ * if a character knows a spell AND an item grants it, both appear with distinct _source labels
+ * so the player can see which is always-prepared vs. counted against their limit.
  */
 
 import clericSpells from '@/data/api_data_cache/cleric_spells.json'
@@ -60,7 +64,7 @@ export function usesFullClassList(character) {
   )
 }
 
-export function getCharacterSpells(character) {
+export function getCharacterSpells(character, partyItems = []) {
   const seen = new Set()
   const result = []
 
@@ -102,11 +106,36 @@ export function getCharacterSpells(character) {
     }
   }
 
+  // 4. Equipped item-granted spells
+  //    Items with `spells_granted: ["SpellName", ...]` contribute when equipped by this
+  //    character. If the item requires attunement it must also be attuned.
+  //    Item grants are NOT deduplicated against sources 1-3 — if a character knows a
+  //    spell through their class AND an item grants it, both entries appear so the player
+  //    can distinguish always-prepared (item) from their preparation-limited version.
+  const equippedItems = partyItems.filter(
+    (i) =>
+      i.equipped_by === character.name && (!i.needs_attunement || i.attuned)
+  )
+  for (const item of equippedItems) {
+    for (const name of item.spells_granted ?? []) {
+      const key = `\0item\0${item.id}\0${name}`
+      if (seen.has(key)) continue
+      seen.add(key)
+      result.push({
+        name,
+        level: null,
+        prepared: true,
+        itemGranted: true,
+        _source: item.name,
+      })
+    }
+  }
+
   return result
 }
 
 /** Quick boolean — used by tab visibility checks without building the full list. */
-export function characterHasSpells(character) {
+export function characterHasSpells(character, partyItems = []) {
   if (!character) return false
   if ((character.spells ?? []).length > 0) return true
   if ((character.artillerist_spells?.spells ?? []).length > 0) return true
@@ -114,5 +143,10 @@ export function characterHasSpells(character) {
     (character.features ?? []).some((f) => (f.spells_granted ?? []).length > 0)
   )
     return true
-  return false
+  return partyItems.some(
+    (i) =>
+      i.equipped_by === character.name &&
+      (!i.needs_attunement || i.attuned) &&
+      (i.spells_granted ?? []).length > 0
+  )
 }

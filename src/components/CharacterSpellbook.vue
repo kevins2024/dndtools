@@ -386,8 +386,11 @@ export default {
   },
 
   computed: {
+    partyItems() {
+      return this.$store.state.party_items ?? []
+    },
     allSpells() {
-      return getCharacterSpells(this.character)
+      return getCharacterSpells(this.character, this.partyItems)
     },
 
     classSpellList() {

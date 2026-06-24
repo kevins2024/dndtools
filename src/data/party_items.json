@@ -1615,7 +1615,7 @@
     "name": "Elemental Resistance Robes",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Chuknora",
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Resistance to one element. Attuned to: fire.",
@@ -1628,7 +1628,7 @@
     "name": "Ring of Transmutation",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Chuknora",
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "charges_current": 3,
@@ -1643,66 +1643,14 @@
   {
     "name": "Ring of Jumping",
     "type": "wondrous",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Jump distance tripled.",
     "notes": "",
     "id": "items_124",
     "slot": "ring",
-    "battle_effect": true
-  },
-  {
-    "name": "Gloves of Soul Catching",
-    "type": "wondrous",
-    "slot": "hands",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
-    "needs_attunement": true,
-    "attuned": true,
-    "effect": "On unarmed strike hit: deal extra 2d10 psychic damage. Choose to regain HP equal to psychic damage dealt OR gain advantage on one roll.",
-    "extra_damage": {
-      "die": "2d10",
-      "type": "psychic",
-      "applies_to": "unarmed",
-      "trigger": "on hit"
-    },
-    "notes": "",
-    "id": "items_125",
-    "battle_effect": true
-  },
-  {
-    "name": "Bracers of Striking +2",
-    "type": "wondrous",
-    "slot": "wrists",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
-    "needs_attunement": true,
-    "attuned": true,
-    "stat_bonuses": {
-      "unarmed_attack": 2,
-      "unarmed_damage": 2
-    },
-    "effect": "+2 to unarmed strike attack and damage rolls.",
-    "notes": "",
-    "id": "items_126",
-    "battle_effect": true
-  },
-  {
-    "name": "Monk's Belt",
-    "type": "wondrous",
-    "slot": "waist",
-    "equipped_by": "Chuknora",
-    "carried_by": null,
-    "needs_attunement": true,
-    "attuned": true,
-    "unarmored_stat_bonuses": {
-      "ac_unarmored_con": 1
-    },
-    "effect": "Adds CON modifier to unarmored AC in addition to DEX and WIS.",
-    "notes": "",
-    "id": "items_127",
     "battle_effect": true
   },
   {
@@ -2599,22 +2547,6 @@
     "battle_effect": true
   },
   {
-    "name": "Planar Binding Stone",
-    "type": "artifact",
-    "material": "Deep mountain stone, Durath Iron brackets",
-    "dimensions": "18 inches across, disc-shaped",
-    "weight": "Heavy — two-handed carry",
-    "condition": "Intact, inert. Hairline crack in lower third from planar stress.",
-    "appearance": "Dense dark grey stone disc, covered on all faces with precisely carved dwarven rune schema. Two sheared Durath Iron bracket mounts on the flat reverse face. No current glow or magical activity.",
-    "origin": "Ancient dwarven clan work, predating current Duncavel settlement. Installed in the Ven Durath mine to bind a magma elemental to this plane, preventing full transit to the elemental plane.",
-    "magical_properties": "Dormant. Runes formed a planar binding schema — facilitated a connection between this plane and an elemental plane, anchoring Pyrethon here against planar pull. Inert without an active planar connection to bind. Schema is intact and theoretically functional if a planar connection were provided by someone with sufficient magical knowledge.",
-    "historical_significance": "One of few surviving examples of ancient dwarven planar binding work. The Durath Iron fittings alone are of significant metallurgical interest to dwarven scholars.",
-    "current_owner": "Dawn Blades",
-    "acquired": "Day 80, Year 468. Removed from east wall of Ven Durath chamber by Ferghus. Decisive factor in permanently destroying Pyrethon.",
-    "notes": "The consortium's Hearthstone operation above was designed to cool Pyrethon sufficiently for extraction — the elemental itself, or possibly this disc, was their target. Disc removed before consortium could retrieve it.",
-    "id": "items_195"
-  },
-  {
     "name": "Potion of Greater Healing",
     "type": "consumable",
     "equipped_by": "disallowed",
@@ -2740,5 +2672,51 @@
     "effect": "Once per day the wearer may ask one specific, answerable question. The answer arrives in the wearer's own voice as though remembered rather than received. Answers are truthful. The ring occasionally volunteers additional relevant information beyond the question asked — treat this as significant. Questions must be specific: a location, a name, a fact. Abstract questions yield nothing.",
     "notes": "Purchased from Ossivane Relk, Linden Street Antiquities Market, Argentveil. Day 89, Year 468. Cost 12,000 gold. Origin unknown — metal not from Kaemahz. Pre-existing symbol unidentified. First use: located factor's man Davan (green coat) to Crestfall House, Seventeen Anchor Row. Ring volunteered 'he is not alone' unprompted. Second use pending.",
     "id": "items_206"
+  },
+  {
+    "name": "Cold Valley Axe",
+    "type": "weapon",
+    "weapon_category": "battleaxe",
+    "enhancement_bonus": 2,
+    "slot": "melee1h",
+    "equipped_by": "Chuknora",
+    "carried_by": null,
+    "needs_attunement": true,
+    "attuned": false,
+    "effect": "On attunement: wielder gains the Smite From Afar spell (homebrew, 1st-level Paladin).",
+    "notes": "",
+    "id": "items_209",
+    "battle_effect": true,
+    "spells_granted": [
+      "Smite From Afar"
+    ]
+  },
+  {
+    "name": "Breastplate of Planes",
+    "type": "armor",
+    "armor_type": "breastplate",
+    "enhancement_bonus": 1,
+    "slot": "body",
+    "equipped_by": "Chuknora",
+    "carried_by": null,
+    "needs_attunement": true,
+    "attuned": false,
+    "effect": "On attunement: advantage on concentration saving throws.",
+    "notes": "",
+    "id": "items_210",
+    "battle_effect": true
+  },
+  {
+    "name": "Shield",
+    "type": "armor",
+    "armor_type": "shield",
+    "enhancement_bonus": 0,
+    "slot": "offhand",
+    "equipped_by": "Chuknora",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "",
+    "id": "items_211"
   }
 ]

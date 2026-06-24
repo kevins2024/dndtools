@@ -159,7 +159,7 @@
           </button>
         </div>
         <div class="enc-modal-body">
-          <EncounterGenerator />
+          <EncounterGenerator :combat-roster="playerNames" />
         </div>
       </div>
     </div>

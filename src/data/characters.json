@@ -256,7 +256,8 @@
     ],
     "languages": [
       "Common",
-      "Thieves Cant"
+      "Thieves Cant",
+      "Dwarvish"
     ],
     "features": [
       {
@@ -1618,7 +1619,7 @@
     "languages": [
       "Common",
       "Celestial",
-      "partial Southern (Sovi's language)"
+      "Solvalean"
     ],
     "features": [
       {
@@ -1987,7 +1988,9 @@
       "Survival"
     ],
     "languages": [
-      "Common"
+      "Common",
+      "Orcish",
+      "Deep Speech"
     ],
     "features": [
       {
@@ -2195,7 +2198,8 @@
       "Nature"
     ],
     "languages": [
-      "Common"
+      "Common",
+      "Goblin"
     ],
     "features": [
       {
@@ -2315,7 +2319,7 @@
     "languages": [
       "Common",
       "Elvish",
-      "two others (half-elf bonus)"
+      "Celestial"
     ],
     "features": [
       {
@@ -3055,7 +3059,8 @@
       "Insight"
     ],
     "languages": [
-      "Common"
+      "Common",
+      "Halfling"
     ],
     "features": [
       {
@@ -3126,92 +3131,55 @@
     "appearance": "Female goliath.",
     "image": "./characters/chuknora.jpg",
     "proficiency_bonus": 4,
-    "spellcasting_ability": null,
-    "stat_str": 14,
-    "stat_dex": 20,
+    "spellcasting_ability": "cha",
+    "spellcasting_level": 1,
+    "spell_attack_bonus": 3,
+    "spell_save_dc": 11,
+    "stat_str": 18,
+    "stat_dex": 12,
     "stat_con": 16,
     "stat_int": 10,
-    "stat_wis": 20,
-    "stat_cha": 8,
-    "hp_max": 85,
-    "hp_current": 85,
-    "unarmored_ac_formula": "monk",
+    "stat_wis": 12,
+    "stat_cha": 9,
+    "hp_max": 92,
+    "hp_current": 92,
+    "unarmored_ac_formula": null,
     "saving_throws": [
       "str",
-      "dex"
+      "con",
+      "wis",
+      "cha"
     ],
     "skill_proficiencies": [
-      "Acrobatics",
       "Athletics",
-      "Perception",
-      "Stealth"
+      "Insight",
+      "Religion",
+      "Survival",
+      "Intimidation"
     ],
+    "skill_expertise": [],
     "languages": [
       "Common",
-      "Giant"
+      "Giant",
+      "Celestial",
+      "Sylvan"
+    ],
+    "darkvision": 0,
+    "hit_die": "d12",
+    "hit_dice_current": 9,
+    "classes": [
+      {
+        "name": "Barbarian",
+        "subclass": "Path of the Giant",
+        "level": 6
+      },
+      {
+        "name": "Paladin",
+        "subclass": "Oath of the Ancients",
+        "level": 3
+      }
     ],
     "features": [
-      {
-        "name": "Flurry of Blows",
-        "type": "feature",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Patient Defense",
-        "type": "feature",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Step of the Wind",
-        "type": "feature",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Stunning Strike",
-        "type": "feature"
-      },
-      {
-        "name": "Open Hand Technique",
-        "type": "feature"
-      },
-      {
-        "name": "Wholeness of Body",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Deflect Missiles",
-        "type": "feature",
-        "action_type": "reaction"
-      },
-      {
-        "name": "Slow Fall",
-        "type": "feature",
-        "action_type": "reaction"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature"
-      },
-      {
-        "name": "Evasion",
-        "type": "feature"
-      },
-      {
-        "name": "Ki-Empowered Strikes",
-        "type": "feature"
-      },
-      {
-        "name": "Unarmored Movement (+15ft)",
-        "type": "feature"
-      },
-      {
-        "name": "Stillness of Mind",
-        "type": "feature"
-      },
       {
         "name": "Stone's Endurance",
         "type": "feature",
@@ -3219,16 +3187,129 @@
         "recharge": "short_rest",
         "uses_max": 1,
         "uses_current": 1
+      },
+      {
+        "name": "Powerful Build",
+        "type": "feature"
+      },
+      {
+        "name": "Mountain Born",
+        "type": "feature"
+      },
+      {
+        "name": "Rage",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Reckless Attack",
+        "type": "feature"
+      },
+      {
+        "name": "Danger Sense",
+        "type": "feature"
+      },
+      {
+        "name": "Giant's Havoc",
+        "type": "feature"
+      },
+      {
+        "name": "Extra Attack",
+        "type": "feature"
+      },
+      {
+        "name": "Fast Movement (+10ft)",
+        "type": "feature"
+      },
+      {
+        "name": "Elemental Cleaver",
+        "type": "feature"
+      },
+      {
+        "name": "Divine Sense",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Lay on Hands",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 15,
+        "uses_current": 15
+      },
+      {
+        "name": "Fighting Style: Defense",
+        "type": "feature",
+        "stat_bonuses": {
+          "ac": 1
+        }
+      },
+      {
+        "name": "Divine Smite",
+        "type": "feature"
+      },
+      {
+        "name": "Divine Health",
+        "type": "feature"
+      },
+      {
+        "name": "Channel Divinity (Nature's Wrath / Turn the Faithless)",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Shelter of the Faithful",
+        "type": "feature"
       }
     ],
-    "ki_points": {
-      "max": 9,
-      "current": 9
+    "spell_slots": {
+      "level_1": {
+        "max": 3,
+        "current": 3
+      }
     },
-    "martial_arts_die": "auto",
-    "spells": [],
+    "spells": [
+      {
+        "name": "Ensnaring Strike",
+        "level": 1,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Speak with Animals",
+        "level": 1,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Bless",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Shield of Faith",
+        "level": 1,
+        "prepared": true
+      }
+    ],
     "active_effects": [],
-    "notes": "Unarmored AC = 10 + DEX mod (5) + WIS mod (5) = 20. Ki save DC 17. Stunning Strike DC 17. Unarmored Movement +20ft, total speed 50ft. Wholeness of Body heals 27hp (3x monk level 9) once per long rest. Stone's Endurance - reaction to reduce damage by 1d12 + CON mod once per short rest.",
+    "conditions": [],
+    "notes": "Rage: +2 damage, resistance to B/P/S; Giant's Havoc — become Large while raging (+5ft reach, Crushing Throw adds rage bonus to thrown STR attacks). Elemental Cleaver: imbue weapon with acid/cold/fire/lightning/thunder when entering rage, +1d6 of that type per hit. Spell save DC 11 (CHA). Lay on Hands: 15 HP pool resets on long rest. Channel Divinity 1/SR: Nature's Wrath (restrain creature, STR/DEX save) or Turn the Faithless (turn fey/fiend, WIS save). Oath spells always prepared: Ensnaring Strike, Speak with Animals.",
     "persona_notes": [
       "Eye contact that goes slightly past comfortable and keeps going. Not aggressive - just complete.",
       "Laughs at things others don't find funny. Doesn't explain why.",
@@ -3236,18 +3317,7 @@
       "If something feels wrong she assumes it is wrong and starts looking for proof.",
       "When still she is in a semi-meditative state. Not absent - more present than usual."
     ],
-    "id": "characters_13",
-    "darkvision": 0,
-    "hit_die": "d8",
-    "hit_dice_current": 9,
-    "skill_expertise": [],
-    "classes": [
-      {
-        "name": "Monk",
-        "subclass": "Way of the Open Hand",
-        "level": 9
-      }
-    ]
+    "id": "characters_13"
   },
   {
     "name": "Enauweyn",
@@ -3282,7 +3352,7 @@
     "languages": [
       "Common",
       "Elvish",
-      "one additional"
+      "Sylvan"
     ],
     "features": [
       {
@@ -4050,7 +4120,7 @@
     "languages": [
       "Common",
       "Infernal",
-      "one additional from southeastern region"
+      "Abyssal"
     ],
     "features": [
       {
@@ -4210,7 +4280,7 @@
     "languages": [
       "Common",
       "Elvish",
-      "southeastern regional language"
+      "Solvalean"
     ],
     "features": [
       {
@@ -4459,7 +4529,7 @@
     ],
     "languages": [
       "Common",
-      "one additional"
+      "Gnomish"
     ],
     "features": [
       {

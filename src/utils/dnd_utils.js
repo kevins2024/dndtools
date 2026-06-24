@@ -281,6 +281,12 @@ export const dnd = {
       if (total) steps.push(`${item.name} (${dnd.signed(total)})`)
     }
 
+    // Per-feature flat AC bonuses (e.g. Fighting Style: Defense)
+    for (const feature of character.features ?? []) {
+      const bonus = feature.stat_bonuses?.ac ?? 0
+      if (bonus) steps.push(`${feature.name} (${dnd.signed(bonus)})`)
+    }
+
     if (bladesongActive) steps.push(`Bladesong INT ${dnd.signed(intMod)}`)
 
     const itemAcBonus =

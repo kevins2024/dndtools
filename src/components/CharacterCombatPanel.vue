@@ -404,7 +404,10 @@ export default {
       return (this.character.features ?? []).some((f) => f.type !== 'feat')
     },
     hasFilterableContent() {
-      return this.someFeatures || getCharacterSpells(this.character).length > 0
+      return (
+        this.someFeatures ||
+        getCharacterSpells(this.character, this.partyItems).length > 0
+      )
     },
     activeConditions() {
       return this.character.conditions ?? []
@@ -609,7 +612,7 @@ export default {
     },
 
     spellGroups() {
-      let spells = getCharacterSpells(this.character).filter(
+      let spells = getCharacterSpells(this.character, this.partyItems).filter(
         (s) => s.level === 0 || s.prepared
       )
       if (this.featureFilter !== 'all') {
@@ -745,7 +748,7 @@ export default {
     },
 
     async loadSpellMeta() {
-      const spells = getCharacterSpells(this.character)
+      const spells = getCharacterSpells(this.character, this.partyItems)
       const meta = {}
       await Promise.all(
         spells.map(async (s) => {
