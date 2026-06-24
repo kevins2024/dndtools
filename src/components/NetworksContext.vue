@@ -68,13 +68,6 @@
                 {{ stoneStatusLabel(pair[side].status) }}
               </button>
             </div>
-            <textarea
-              class="stone-notes"
-              :value="pair[side].notes"
-              placeholder="Notes…"
-              rows="2"
-              @input="updateStone(pi, side, 'notes', $event.target.value)"
-            ></textarea>
           </div>
 
           <div class="pair-link">↔</div>
@@ -91,15 +84,15 @@
       </div>
     </section>
 
-    <!-- ── Teleportation Circles ──────────────────── -->
+    <!-- ── Teleportation ────────────────────────────── -->
     <section class="net-section">
       <div class="net-section-header">
-        <span class="net-section-title">Teleportation Circles</span>
-        <button class="net-add-btn" @click="addCircle">+ Add Circle</button>
+        <span class="net-section-title">Teleportation</span>
+        <button class="net-add-btn" @click="addCircle">+ Add Entry</button>
       </div>
 
       <div v-if="!circles.length" class="empty-state">
-        No teleportation circles recorded.
+        No teleportation points recorded.
       </div>
 
       <div v-for="(circle, ci) in circles" :key="circle.id" class="circle-card">
@@ -489,7 +482,6 @@ export default {
   color: var(--color-text-low);
 }
 
-.stone-notes,
 .pair-notes,
 .circle-notes {
   width: 100%;
@@ -504,12 +496,10 @@ export default {
   padding: 0.2rem 0;
   box-sizing: border-box;
 }
-.stone-notes:focus,
 .pair-notes:focus,
 .circle-notes:focus {
   border-color: var(--color-border);
 }
-.stone-notes::placeholder,
 .pair-notes::placeholder,
 .circle-notes::placeholder {
   color: var(--color-text-low);

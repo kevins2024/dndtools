@@ -20,5 +20,14 @@
       }
     }
   ],
-  "teleportation_circles": []
+  "teleportation_circles": [
+    {
+      "id": "tc_1782333726290",
+      "location": "Forest Gate NE of Valdmere",
+      "sigil_known": false,
+      "access": "unknown",
+      "permanent": true,
+      "notes": "Requires a disc to activate which also determines the destination."
+    }
+  ]
 }

@@ -19,6 +19,7 @@ export default new Vuex.Store({
     world: [],
     networks: { sending_stones: [], teleportation_circles: [] },
     assets: [],
+    relationships: [],
     homebrew: {},
     finances: {},
     loaded: false,
@@ -342,6 +343,7 @@ export default new Vuex.Store({
         'finances',
         'networks',
         'assets',
+        'relationships',
       ]
       const originals = {}
       for (const table of tables) {

@@ -12,6 +12,7 @@ import homebrew from '@/data/homebrew.json'
 import finances from '@/data/finances.json'
 import assets from '@/data/assets.json'
 import networks from '@/data/networks.json'
+import relationships from '@/data/relationships.json'
 const SERVER_URL = ''
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -25,6 +26,7 @@ const staticTables = {
   finances,
   assets,
   networks,
+  relationships,
 }
 
 const dataService = {

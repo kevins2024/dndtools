@@ -26,6 +26,7 @@ const ALLOWED_TABLES = [
   'finances',
   'networks',
   'assets',
+  'relationships',
 ]
 
 app.use(cors())

@@ -2687,9 +2687,7 @@
     "notes": "",
     "id": "items_209",
     "battle_effect": true,
-    "spells_granted": [
-      "Smite From Afar"
-    ]
+    "spells_granted": ["Smite From Afar"]
   },
   {
     "name": "Breastplate of Planes",
@@ -2718,5 +2716,53 @@
     "attuned": false,
     "notes": "",
     "id": "items_211"
+  },
+  {
+    "name": "Disc of Origin",
+    "type": "teleport_disc",
+    "subtype": "planar network control disc",
+    "rarity": "artifact",
+    "equipped_by": null,
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Oldest of the four. Heavier than the others, different stone. Angular markings read 'breath of the first wind.' Keys to the ruins arch northeast of Valdmere.",
+    "id": "items_212"
+  },
+  {
+    "name": "Disc of the Unnamed Plane",
+    "type": "teleport_disc",
+    "subtype": "planar network control disc",
+    "rarity": "artifact",
+    "equipped_by": null,
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Middle weight. Markings identify a destination neither Lenn nor Ilwuoshim recognized. Old. Destination unknown.",
+    "id": "items_213"
+  },
+  {
+    "name": "Disc of the Junction",
+    "type": "teleport_disc",
+    "subtype": "planar network control disc",
+    "rarity": "artifact",
+    "equipped_by": null,
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Lightest of the four. Markings identify a waypoint arch built between two others as a transit point. Destination functions as a hub rather than a final location.",
+    "id": "items_214"
+  },
+  {
+    "name": "Disc of Ilwuoshim's Second Arch",
+    "type": "teleport_disc",
+    "subtype": "planar network control disc",
+    "rarity": "artifact",
+    "equipped_by": null,
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Ilwuoshim's own making, identified by the djinn personally. Keys to an arch built before the Liliveth was finished and never used. Ilwuoshim wants to go there when free. Keep safe.",
+    "id": "items_215"
   }
 ]

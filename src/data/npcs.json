@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "name": "Helena Sable",
     "location": "Ravenquay",
@@ -1301,5 +1301,17 @@
     "personality_quirks": "Repeats significant proper nouns back in isolation after conversations end — as though filing them somewhere permanent. Creates records compulsively, even when they serve no strategic purpose. Processes questions in reverse order of difficulty before answering.",
     "notes": "Appeared at Nossa Valessa on night of Day 85, Year 468, having sent a letter via private courier using the consortium's organizational mark — a downward-pointing triangle with a horizontal line through the lower third. Identified herself as E from correspondence found in Order locked box at Dunric Pass plateau camp. Research and intelligence architect for the Order for nineteen years, older than she appears due to unknown means. Provided location and schedule of independent scholar Devreth Ansolm, resulting in his death — this is what crossed her personal line. Knows the Order's internal structure and field operations but not the Compact's true goals or the dragon connection. Sent through Revivify portal to safehouse. Ledwent alerted. Mentioned Ansolm had a daughter whose whereabouts are unknown. Retained her records — did not leave them with the party on first meeting.",
     "id": "npcs_94"
+  },
+  {
+    "name": "Zilivek",
+    "location": "",
+    "faction": "",
+    "role": "Maker / craftsperson",
+    "appearance": "Lithkin. Small humanoid, smaller even than a halfling, with blue-purple skin that deepens toward indigo at the fingertips from years of pigment work. Long tapered ears, pointed chin, sharp downward-tipped nose, two visible pointed teeth at the corners of the mouth. Diamond-shaped eye openings that make the golden eyes within them appear angular. Indeterminate age — could be forty, could be four hundred. The Liliveth claimed them over a long residence and the coloring never fully reversed.",
+    "personality_traits": "Moves with the quiet efficiency of someone accustomed to working alone in a small space. Speaks Common with a long-practiced fluency that still carries the faint architecture of another language underneath it. Dry, precise, generous in small practical ways without announcing the generosity.",
+    "personality_quirks": "Makes things. Needs materials to work with or becomes restless.",
+    "notes": "",
+    "status": [],
+    "id": "npcs_95"
   }
 ]

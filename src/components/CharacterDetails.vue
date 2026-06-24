@@ -24,6 +24,14 @@
       >
         Spellbook
       </button>
+      <button
+        v-if="hasRelationships"
+        class="tab-btn"
+        :class="{ active: activeTab === 'relationships' }"
+        @click="activeTab = 'relationships'"
+      >
+        Relationships
+      </button>
     </div>
 
     <!-- Content -->
@@ -38,6 +46,10 @@
           v-else-if="activeTab === 'spellbook'"
           :character="selected"
         />
+        <CharacterRelationships
+          v-else-if="activeTab === 'relationships'"
+          :character="selected"
+        />
       </template>
       <div v-else class="empty-state">No character selected.</div>
     </div>
@@ -46,6 +58,7 @@
 
 <script>
 import CharacterInventory from './CharacterInventory.vue'
+import CharacterRelationships from './CharacterRelationships.vue'
 import CharacterSheet from './CharacterSheet.vue'
 import CharacterSpellbook from './CharacterSpellbook.vue'
 import Editor from './Editor.vue'
@@ -55,6 +68,7 @@ export default {
   name: 'CharacterDetails',
   components: {
     CharacterInventory,
+    CharacterRelationships,
     CharacterSheet,
     CharacterSpellbook,
     Editor,
@@ -86,8 +100,18 @@ export default {
       }
       return null
     },
+    partyItems() {
+      return this.$store.state.party_items ?? []
+    },
     hasSpells() {
-      return characterHasSpells(this.selected)
+      return characterHasSpells(this.selected, this.partyItems)
+    },
+    hasRelationships() {
+      if (!this.selected) return false
+      const key = this.selected.name.toLowerCase()
+      return (this.$store.state.relationships ?? []).some((r) =>
+        r.people.includes(key)
+      )
     },
   },
 }

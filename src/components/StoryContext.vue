@@ -22,10 +22,11 @@
 <script>
 import NpcBrowser from './NpcBrowser.vue'
 import AssetBrowser from './AssetBrowser.vue'
+import RelationshipBrowser from './RelationshipBrowser.vue'
 
 export default {
   name: 'StoryContext',
-  components: { NpcBrowser, AssetBrowser },
+  components: { NpcBrowser, AssetBrowser, RelationshipBrowser },
 
   data() {
     return {
@@ -33,6 +34,11 @@ export default {
       tabs: [
         { id: 'npcs', label: 'NPCs', component: 'NpcBrowser' },
         { id: 'assets', label: 'Assets', component: 'AssetBrowser' },
+        {
+          id: 'relationships',
+          label: 'Relationships',
+          component: 'RelationshipBrowser',
+        },
       ],
     }
   },

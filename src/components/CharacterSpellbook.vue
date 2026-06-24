@@ -177,6 +177,12 @@
             >F</span
           >
           <span
+            v-else-if="spell.itemGranted"
+            class="sb-badge sb-badge--item"
+            :title="spell._source"
+            >I</span
+          >
+          <span
             v-if="spellMeta[spell.name] && spellMeta[spell.name].concentration"
             class="sb-badge sb-badge--conc"
             title="Concentration"
@@ -473,6 +479,7 @@ export default {
           !s.domain &&
           !s.artillerist &&
           !s.featureGranted &&
+          !s.itemGranted &&
           !s.homebrew &&
           this.isReady(s)
       ).length
@@ -620,6 +627,7 @@ export default {
         spell.domain ||
         spell.artillerist ||
         spell.featureGranted ||
+        spell.itemGranted ||
         spell.homebrew
       )
         return true
@@ -634,6 +642,7 @@ export default {
         spell.domain ||
         spell.artillerist ||
         spell.featureGranted ||
+        spell.itemGranted ||
         spell.homebrew
       )
         return false
@@ -644,6 +653,8 @@ export default {
       if (spell.level === 0) return 'Cantrips are always available'
       if (spell.domain) return 'Domain spell — always prepared'
       if (spell.artillerist) return 'Artillerist spell — always prepared'
+      if (spell.itemGranted)
+        return `Granted by ${spell._source} — always available while attuned`
       if (spell.featureGranted || spell.homebrew)
         return `Granted by ${spell._source} — always available`
       if (!this.preparationInfo) return 'Known spell — always available'
@@ -1168,6 +1179,10 @@ export default {
 .sb-badge--feat {
   border-color: #88aa44;
   color: #88aa44;
+}
+.sb-badge--item {
+  border-color: #bb7733;
+  color: #bb7733;
 }
 .sb-badge--conc {
   border-color: #8866dd;
