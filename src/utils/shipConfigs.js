@@ -1,0 +1,225 @@
+export const SAILING_SHIP = {
+  viewBox: '0 0 200 340',
+  cx: 100,
+  vbW: 200,
+  vbH: 340,
+  hullOuter:
+    'M 100 14 C 142 28 157 75 157 128 L 157 225 C 157 275 142 308 134 308 L 66 308 C 58 308 43 275 43 225 L 43 128 C 43 75 58 28 100 14 Z',
+  hullInner:
+    'M 100 21 C 136 33 150 78 150 128 L 150 225 C 150 268 136 302 128 302 L 72 302 C 64 302 50 268 50 225 L 50 128 C 50 78 64 33 100 21 Z',
+  bowsprit: { x1: 100, y1: 14, x2: 100, y2: -16 },
+  stern: { x1: 66, y1: 308, x2: 134, y2: 308 },
+  helm: { cx: 100, cy: 272, r: 11 },
+  masts: [
+    { id: 'fore', cx: 100, cy: 82, r: 12, sym: 'F' },
+    { id: 'main', cx: 100, cy: 152, r: 15, sym: 'M' },
+    { id: 'mizz', cx: 100, cy: 212, r: 10, sym: 'Z' },
+  ],
+  shrouds: [
+    { x1: 100, y1: 82, x2: 50, y2: 66 },
+    { x1: 100, y1: 82, x2: 50, y2: 98 },
+    { x1: 100, y1: 82, x2: 150, y2: 66 },
+    { x1: 100, y1: 82, x2: 150, y2: 98 },
+    { x1: 100, y1: 152, x2: 50, y2: 135 },
+    { x1: 100, y1: 152, x2: 50, y2: 170 },
+    { x1: 100, y1: 152, x2: 150, y2: 135 },
+    { x1: 100, y1: 152, x2: 150, y2: 170 },
+    { x1: 100, y1: 212, x2: 50, y2: 198 },
+    { x1: 100, y1: 212, x2: 50, y2: 226 },
+    { x1: 100, y1: 212, x2: 150, y2: 198 },
+    { x1: 100, y1: 212, x2: 150, y2: 226 },
+  ],
+  weaponSlots: [
+    { id: 'pf', cx: 43, cy: 108, side: 'port', label: 'Port Fore' },
+    { id: 'pa', cx: 43, cy: 192, side: 'port', label: 'Port Aft' },
+    { id: 'sf', cx: 157, cy: 108, side: 'starboard', label: 'Stbd Fore' },
+    { id: 'sa', cx: 157, cy: 192, side: 'starboard', label: 'Stbd Aft' },
+    { id: 'bc', cx: 100, cy: 26, side: 'fore', label: 'Bow Chaser' },
+  ],
+  crewSlots: [
+    { id: 'bow', cx: 100, cy: 40, label: 'Bow Watch' },
+    { id: 'fp', cx: 74, cy: 90, label: 'Fore Port' },
+    { id: 'fs', cx: 126, cy: 90, label: 'Fore Stbd' },
+    { id: 'mp', cx: 62, cy: 158, label: 'Amid Port' },
+    { id: 'ms', cx: 138, cy: 158, label: 'Amid Stbd' },
+    { id: 'ap', cx: 64, cy: 218, label: 'Aft Port' },
+    { id: 'as', cx: 136, cy: 218, label: 'Aft Stbd' },
+    { id: 'helm', cx: 100, cy: 272, label: 'Helm' },
+  ],
+}
+
+export const WARSHIP = {
+  ...SAILING_SHIP,
+  viewBox: '0 0 220 360',
+  cx: 110,
+  vbW: 220,
+  vbH: 360,
+  hullOuter:
+    'M 110 14 C 158 30 175 82 175 138 L 175 240 C 175 294 156 332 148 332 L 72 332 C 64 332 45 294 45 240 L 45 138 C 45 82 62 30 110 14 Z',
+  hullInner:
+    'M 110 22 C 152 36 168 86 168 138 L 168 240 C 168 286 152 325 144 325 L 76 325 C 68 325 52 286 52 240 L 52 138 C 52 86 68 36 110 22 Z',
+  bowsprit: { x1: 110, y1: 14, x2: 110, y2: -18 },
+  stern: { x1: 72, y1: 332, x2: 148, y2: 332 },
+  helm: { cx: 110, cy: 290, r: 12 },
+  masts: [
+    { id: 'fore', cx: 110, cy: 88, r: 14, sym: 'F' },
+    { id: 'main', cx: 110, cy: 165, r: 17, sym: 'M' },
+    { id: 'mizz', cx: 110, cy: 228, r: 11, sym: 'Z' },
+  ],
+  shrouds: [
+    { x1: 110, y1: 88, x2: 52, y2: 70 },
+    { x1: 110, y1: 88, x2: 52, y2: 106 },
+    { x1: 110, y1: 88, x2: 168, y2: 70 },
+    { x1: 110, y1: 88, x2: 168, y2: 106 },
+    { x1: 110, y1: 165, x2: 52, y2: 148 },
+    { x1: 110, y1: 165, x2: 52, y2: 182 },
+    { x1: 110, y1: 165, x2: 168, y2: 148 },
+    { x1: 110, y1: 165, x2: 168, y2: 182 },
+    { x1: 110, y1: 228, x2: 52, y2: 214 },
+    { x1: 110, y1: 228, x2: 52, y2: 242 },
+    { x1: 110, y1: 228, x2: 168, y2: 214 },
+    { x1: 110, y1: 228, x2: 168, y2: 242 },
+  ],
+  weaponSlots: [
+    { id: 'pf', cx: 45, cy: 112, side: 'port', label: 'Port Fore' },
+    { id: 'pm', cx: 45, cy: 175, side: 'port', label: 'Port Mid' },
+    { id: 'pa', cx: 45, cy: 220, side: 'port', label: 'Port Aft' },
+    { id: 'sf', cx: 175, cy: 112, side: 'starboard', label: 'Stbd Fore' },
+    { id: 'sm', cx: 175, cy: 175, side: 'starboard', label: 'Stbd Mid' },
+    { id: 'sa', cx: 175, cy: 220, side: 'starboard', label: 'Stbd Aft' },
+    { id: 'bc', cx: 110, cy: 28, side: 'fore', label: 'Bow Chaser' },
+  ],
+  crewSlots: [
+    { id: 'bow', cx: 110, cy: 42, label: 'Bow Watch' },
+    { id: 'fp', cx: 80, cy: 96, label: 'Fore Port' },
+    { id: 'fs', cx: 140, cy: 96, label: 'Fore Stbd' },
+    { id: 'mp1', cx: 68, cy: 148, label: 'Mid Port' },
+    { id: 'ms1', cx: 152, cy: 148, label: 'Mid Stbd' },
+    { id: 'mp2', cx: 68, cy: 198, label: 'Aft-Mid Port' },
+    { id: 'ms2', cx: 152, cy: 198, label: 'Aft-Mid Stbd' },
+    { id: 'ap', cx: 70, cy: 238, label: 'Aft Port' },
+    { id: 'as', cx: 150, cy: 238, label: 'Aft Stbd' },
+    { id: 'helm', cx: 110, cy: 290, label: 'Helm' },
+  ],
+}
+
+export const GALLEY = {
+  viewBox: '0 0 170 390',
+  cx: 85,
+  vbW: 170,
+  vbH: 390,
+  hullOuter:
+    'M 85 18 C 112 32 125 78 125 138 L 125 300 C 125 350 110 369 106 369 L 64 369 C 60 369 45 350 45 300 L 45 138 C 45 78 58 32 85 18 Z',
+  hullInner:
+    'M 85 25 C 108 38 118 80 118 138 L 118 300 C 118 344 106 362 102 362 L 68 362 C 64 362 52 344 52 300 L 52 138 C 52 80 62 38 85 25 Z',
+  bowsprit: null,
+  ram: true,
+  stern: { x1: 64, y1: 369, x2: 106, y2: 369 },
+  helm: { cx: 85, cy: 334, r: 10 },
+  masts: [
+    { id: 'fore', cx: 85, cy: 100, r: 12, sym: 'F' },
+    { id: 'main', cx: 85, cy: 200, r: 14, sym: 'M' },
+  ],
+  shrouds: [
+    { x1: 85, y1: 100, x2: 45, y2: 84 },
+    { x1: 85, y1: 100, x2: 45, y2: 116 },
+    { x1: 85, y1: 100, x2: 125, y2: 84 },
+    { x1: 85, y1: 100, x2: 125, y2: 116 },
+    { x1: 85, y1: 200, x2: 45, y2: 185 },
+    { x1: 85, y1: 200, x2: 45, y2: 215 },
+    { x1: 85, y1: 200, x2: 125, y2: 185 },
+    { x1: 85, y1: 200, x2: 125, y2: 215 },
+  ],
+  weaponSlots: [
+    { id: 'pa', cx: 45, cy: 268, side: 'port', label: 'Port Aft' },
+    { id: 'sa', cx: 125, cy: 268, side: 'starboard', label: 'Stbd Aft' },
+  ],
+  oarPorts: [
+    { x: 45, y: 148 },
+    { x: 45, y: 168 },
+    { x: 45, y: 188 },
+    { x: 45, y: 208 },
+    { x: 45, y: 228 },
+    { x: 45, y: 248 },
+    { x: 125, y: 148 },
+    { x: 125, y: 168 },
+    { x: 125, y: 188 },
+    { x: 125, y: 208 },
+    { x: 125, y: 228 },
+    { x: 125, y: 248 },
+  ],
+  crewSlots: [
+    { id: 'bow', cx: 85, cy: 42, label: 'Bow' },
+    { id: 'fp', cx: 66, cy: 108, label: 'Fore Port' },
+    { id: 'fs', cx: 104, cy: 108, label: 'Fore Stbd' },
+    { id: 'mp', cx: 62, cy: 205, label: 'Mid Port' },
+    { id: 'ms', cx: 108, cy: 205, label: 'Mid Stbd' },
+    { id: 'ap', cx: 62, cy: 270, label: 'Aft Port' },
+    { id: 'as', cx: 108, cy: 270, label: 'Aft Stbd' },
+    { id: 'helm', cx: 85, cy: 334, label: 'Helm' },
+  ],
+}
+
+export const KEELBOAT = {
+  viewBox: '0 0 160 285',
+  cx: 80,
+  vbW: 160,
+  vbH: 285,
+  hullOuter:
+    'M 80 12 C 112 24 126 65 126 115 L 126 208 C 126 252 112 274 106 274 L 54 274 C 48 274 34 252 34 208 L 34 115 C 34 65 48 24 80 12 Z',
+  hullInner:
+    'M 80 19 C 108 30 119 68 119 115 L 119 208 C 119 245 108 267 100 267 L 60 267 C 52 267 41 245 41 208 L 41 115 C 41 68 52 30 80 19 Z',
+  bowsprit: { x1: 80, y1: 12, x2: 80, y2: -10 },
+  stern: { x1: 54, y1: 274, x2: 106, y2: 274 },
+  helm: { cx: 80, cy: 242, r: 10 },
+  masts: [{ id: 'main', cx: 80, cy: 140, r: 13, sym: 'M' }],
+  shrouds: [
+    { x1: 80, y1: 140, x2: 34, y2: 122 },
+    { x1: 80, y1: 140, x2: 34, y2: 158 },
+    { x1: 80, y1: 140, x2: 126, y2: 122 },
+    { x1: 80, y1: 140, x2: 126, y2: 158 },
+  ],
+  weaponSlots: [
+    { id: 'p', cx: 34, cy: 140, side: 'port', label: 'Port' },
+    { id: 's', cx: 126, cy: 140, side: 'starboard', label: 'Stbd' },
+  ],
+  crewSlots: [
+    { id: 'bow', cx: 80, cy: 42, label: 'Bow' },
+    { id: 'port', cx: 54, cy: 145, label: 'Port' },
+    { id: 'stbd', cx: 106, cy: 145, label: 'Stbd' },
+    { id: 'helm', cx: 80, cy: 242, label: 'Helm' },
+  ],
+}
+
+export const ROWBOAT = {
+  viewBox: '0 0 130 235',
+  cx: 65,
+  vbW: 130,
+  vbH: 235,
+  hullOuter:
+    'M 65 10 C 90 20 102 55 102 100 L 102 172 C 102 207 90 221 84 221 L 46 221 C 40 221 28 207 28 172 L 28 100 C 28 55 40 20 65 10 Z',
+  hullInner:
+    'M 65 17 C 86 26 95 58 95 100 L 95 172 C 95 200 86 214 80 214 L 50 214 C 44 214 35 200 35 172 L 35 100 C 35 58 44 26 65 17 Z',
+  bowsprit: null,
+  stern: { x1: 46, y1: 221, x2: 84, y2: 221 },
+  helm: null,
+  masts: [],
+  shrouds: [],
+  weaponSlots: [],
+  crewSlots: [
+    { id: 'bow', cx: 65, cy: 38, label: 'Bow' },
+    { id: 'rp1', cx: 44, cy: 112, label: 'Row Port' },
+    { id: 'rs1', cx: 86, cy: 112, label: 'Row Stbd' },
+    { id: 'rp2', cx: 44, cy: 150, label: 'Row Port' },
+    { id: 'rs2', cx: 86, cy: 150, label: 'Row Stbd' },
+    { id: 'stern', cx: 65, cy: 196, label: 'Stern' },
+  ],
+}
+
+export const CONFIGS = {
+  'Sailing Ship': SAILING_SHIP,
+  Warship: WARSHIP,
+  Galley: GALLEY,
+  Keelboat: KEELBOAT,
+  Rowboat: ROWBOAT,
+}

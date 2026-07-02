@@ -3,6 +3,7 @@
     "id": "kaemahz_complete_normalized",
     "name": "Kaemahz",
     "svgPath": "/maps/kaemahz_complete_normalized.svg",
+    "milesPerUnit": 1.25,
     "regions": [
       { "id": "fynesmarch", "name": "Fynesmarch" },
       { "id": "fol", "name": "Fol" },

@@ -172,7 +172,8 @@
         "npcs_present": [],
         "notes": "Ossivane Relk stayed here before departing for Argentveil."
       }
-    ]
+    ],
+    "flair": "A river delta city where commerce and underworld politics are inseparable from each other and from the docks. People arrive here looking for a fresh start or a fast deal — often the same thing. Busy, layered, and never fully asleep."
   },
   {
     "name": "Khemrise",
@@ -342,7 +343,8 @@
         "npcs_present": ["Rosten Alurath"],
         "notes": "Worth a visit."
       }
-    ]
+    ],
+    "flair": "A city that considers itself a cultural pivot point because it sits at a geographical one. The money here is old. The wine is genuinely good. Smaller than many cities but with a lot of money moving through."
   },
   {
     "name": "Trevash",
@@ -373,7 +375,8 @@
         "npcs_present": [],
         "notes": "Wanted poster for Vaz posted here — 400g reward, Meridian Trading House contact. Road guard encounter happened here."
       }
-    ]
+    ],
+    "flair": "Just a stop between bigger places — and that's exactly what gives it value. Everyone passing through has somewhere to be. Good for picking up information, bad for drawing attention to yourself."
   },
   {
     "name": "Millhaven",
@@ -382,7 +385,8 @@
     "climate": "Significantly colder. Real winters.",
     "notes": "Something in the deep tunnels connected to Kerra's patron three years ago. Kerra has tactical intelligence from a contract two years ago — approach roads, mine operation, and sight lines mapped in her memory.",
     "districts": [],
-    "locations": []
+    "locations": [],
+    "flair": "A mining town that works hard and asks few questions. The mine gives it purpose, the taverns give it character, and the dust never quite washes off anyone who lives here long."
   },
   {
     "name": "Brennswick",
@@ -400,7 +404,8 @@
         "npcs_present": [],
         "notes": "Dawn Blades acquired the Khemrise vineyard estate from this family. Petyr based here."
       }
-    ]
+    ],
+    "flair": "Quiet, agricultural, and surprisingly difficult to forget."
   },
   {
     "name": "Argentveil",
@@ -502,7 +507,8 @@
         "npcs_present": [],
         "notes": "Vaz has an open account of sorts — proprietor will contact when something relevant arrives."
       }
-    ]
+    ],
+    "flair": "The warmest, wealthiest, most cosmopolitan city in Fynesmarch. People come here to be seen, to spend money, and to reinvent themselves. Fashion and ambition move faster here than anywhere else on the coast. Every magic school has an academy here and magical goods and users are commonplace. Very modern and very large."
   },
   {
     "name": "Valdmere",
@@ -663,7 +669,8 @@
         "notes": "Run by Wrellia, halfling woman of indeterminate age. Makes compounds and drinks that address what people actually need rather than what they ask for. Her sister lives near the Bluff House. Said the party would come back with the certainty of a fact rather than an invitation. Found by following the smell through a slightly open door.",
         "id": "locations_valdmere_06"
       }
-    ]
+    ],
+    "flair": "A frontier port at the edge of the settled coast. Far enough from the center that it makes its own rules and gets away with it. Ships stop here that aren't going anywhere else. Currently booming and ungoverned."
   },
   {
     "name": "Cindermarch",
@@ -681,7 +688,8 @@
         "npcs_present": ["Salla Kern"],
         "notes": "Salla Kern is Master-at-Arms. Where Kerra was enslaved before transfer to Khemrise estate. Caravan escort destination early campaign. Salla Kern sent job offer regarding Kerra — follow-up pending."
       }
-    ]
+    ],
+    "flair": "A city built to hold a line that no longer needs holding, until it does again. The military architecture is still there. The martial culture is still there. But the walls haven't been seriously threatened in years, and the fortress-identity and city-identity pull against each other in everything from local politics to tavern conversation."
   },
   {
     "name": "Orvath",
@@ -700,7 +708,8 @@
         "npcs_present": [],
         "notes": ""
       }
-    ]
+    ],
+    "flair": "One city, one unique function, elevated to a cultural institution. The banking culture has shaped everything — the architecture favors discretion, the social norms reward neutrality, strangers are treated with professional courtesy that never tips into familiarity. Elven-Mongolian cultural mix that keeps outsiders slightly off-balance in ways they cannot quite name."
   },
   {
     "name": "Wilderness & Roads",
@@ -766,7 +775,8 @@
     "continent": "Yetgrese",
     "location": "Eastern face of the Yetgrese crescent, slightly north of the main waterway gap, facing the open exterior sea",
     "population": "unknown",
-    "description": "A harbour city built into and onto the cliff face of Yetgrese's lower eastern coast. Structures are carved and constructed directly into the rock at multiple levels, connected by switchback roads, lifts, and bridges. The line between natural rock and constructed city is genuinely difficult to find — the city has been inhabited long enough that construction sits on top of older construction on top of older construction.",
+    "description": "A low coastal city at the easternmost point of Yetgrese, where the old crater wall has fully eroded away. The land rises gradually inland — no dramatic topography. Built from rough-hewn uncut stone: irregular, natural-shaped, no two buildings quite alike. Thatched roofs coated annually in dark tar give the whole roofline a blackened character. Every building has one central chimney; seen from a distance the skyline is a forest of single chimneys at varying heights. Main thoroughfares are cobbled; side streets are mud, difficult after rain. Locals know which routes stay driest.",
+    "flair": "Oral history storytelling circles/events, gritty underground fight scene, Hei'ugar market and fishing culture, Drevani punk aesthetic, Catrin merchant culture. Very little magic use or practitioners. Axebeak racing is the city's dominant spectator sport — held on a flat track on the outskirts, heavy gambling, loud crowds, and deeply embedded in daily culture. The Drevani are the most devoted fanbase and frequently the boldest bettors. The racing breed is a selectively bred lineage — noticeably smaller than the standard axebeak but significantly faster, lighter-boned, and bred for acceleration over short distances. Late summer the city repaints simultaneously — faded orange and turquoise go suddenly vivid across every street at once, a collective event locals treat with evident seriousness. The Drevani neighbourhood has no gate, no sign, no hard line — you notice you are in it because the buildings run slightly smaller, the decorations run louder, and there is more leather, dye, and piercing per block than anywhere else in the city.",
     "climate": "unknown — eastern exterior coast, sheltered partially by the crescent geography",
     "history": {},
     "government": {
@@ -830,17 +840,9 @@
         "type": "inn",
         "district": "Dock district, three streets back from lower harbour",
         "description": "Quiet older stone building set back from the waterfront. Two stories with internal courtyard. No street signage. Common room with hearth on ground floor. Four rooms — two larger courtyard-facing, two smaller street-facing. Breakfast included, dinner available on request.",
-        "owner": "Griffas — broader heavier-featured local woman, older, no Common",
+        "npcs_present": ["Griffas"],
         "price": "Reasonable nightly rate per room",
         "notes": "Recommended by Quiveth. Caters to traders and merchants rather than sailors."
-      },
-      {
-        "name": "Repose",
-        "type": "inn",
-        "description": "Quiet older stone building, two stories, internal courtyard. Four rooms — two larger courtyard-facing, two smaller street-facing. Common room with hearth. Breakfast included, dinner available on request.",
-        "npcs_present": ["Griffas"],
-        "notes": "Three streets back from lower harbour, dock district.",
-        "id": "locations_tilawam_1"
       },
       {
         "name": "Sorreval and Sons",
@@ -914,7 +916,8 @@
         "npcs_present": ["Scribblin' Jax"],
         "notes": "Jax has lived here four years. Locals treat him as harmless local color. The papered windows are deliberate — nobody can see in."
       }
-    ]
+    ],
+    "flair": "A border town defined almost entirely by what it guards against. The Dunric Pass is the reason it exists; everything else about it is secondary to that geographic fact."
   },
   {
     "name": "Filian's Keep",
@@ -923,7 +926,8 @@
     "description": "Capital of Torwald. A working fortress-city built on a defensible hill — practical and unadorned in the Torwald tradition. Stone streets, solid buildings, nothing wasted on decoration that doesn't also serve a purpose. The keep itself predates the city that grew around it.",
     "notes": "",
     "districts": [],
-    "locations": []
+    "locations": [],
+    "flair": "The capital of a culture that has decided it represents authentic tradition. Everything here is done the right way — which is also the old way. Impressive in the manner of things preserved with great care. Visitors often feel they are being judged against a standard they were never told about."
   },
   {
     "name": "Feldtazur",
@@ -932,7 +936,8 @@
     "description": "Capital of Aranwald. The city visually layers 200 years of Solvaran architecture over the older Torwald-origin construction beneath — arched courtyards, geometric tilework, and repurposed minarets sit alongside the original Saxon-influenced stonework. The Solvaran additions are displayed as trophies, not erased as shame. Walking through Feldtazur is a study in the prince's founding philosophy: we didn't just conquer the land, we conquered everything. Name coined by the prince — Anglo 'feld' + Persian-derived 'tazur'.",
     "notes": "",
     "districts": [],
-    "locations": []
+    "locations": [],
+    "flair": "A capital built to prove a philosophical point: that to conquer something is to own everything about it, including its beauty. Persian-Anglo aesthetic fusion that is layered, intentional, and never subtle. The architecture alone tells the kingdom's entire founding story."
   },
   {
     "name": "Yshavar",
@@ -941,7 +946,8 @@
     "description": "Capital of the Solvale Empire. Built for imperial scale — wide boulevards, domed public buildings, formal gardens, grand architecture designed to house more people and more ambition than currently inhabit it. The bones of empire are still impressive; the city is well-maintained by habit. But it feels like a coat cut for a larger person. Population and commerce have contracted since the collapse; the grandeur remains, sitting in slightly too much space.",
     "notes": "",
     "districts": [],
-    "locations": []
+    "locations": [],
+    "flair": "An imperial capital still operating at imperial scale with half the people. The public buildings are maintained by habit. The art is extraordinary — the empire knew what it was doing at its height. The grandeur is genuine. The gap between the city's physical presence and its current population is felt everywhere, like a conversation where one person left the room and nobody mentioned it."
   },
   {
     "name": "Drinaell",
@@ -950,7 +956,8 @@
     "description": "Coastal seafaring city and maritime hub of Birindal. Celtic/Nordic character — stone and timber construction built to last in sea weather, harbor infrastructure expanded and rebuilt over generations. The city smells of salt, tar, and woodsmoke. Ship captains are a social class unto themselves. Likely the primary naval power on Kaemahz.",
     "notes": "",
     "districts": [],
-    "locations": []
+    "locations": [],
+    "flair": "The dominant maritime force in Kaemahz, and it carries itself accordingly. Celtic/Nordic feel with a merchant edge rather than a raiding one — the harbor council governs, the sea provides, and outsiders are welcomed as long as they have something to offer. Everyone here has an opinion about ships."
   },
   {
     "name": "Brakvunder",
@@ -959,6 +966,7 @@
     "description": "Dwarven mountain city carved into the northeastern range of Kaemahz. The mountain is the city — generations of expansion have pushed deeper and wider into the rock. Renowned for metalwork and stonecraft. Maintains a working trade partnership with Drinaell on the coast, supplying finished goods in exchange for sea access and external trade networks.",
     "notes": "",
     "districts": [],
-    "locations": []
+    "locations": [],
+    "flair": "A dwarven mountain city where craft is as close to religion as anything gets, and independence is non-negotiable. Sends finished goods down to Drinaell, takes what it wants from outside, and ignores the rest. Visitors are not unwelcome — just clearly secondary to the work."
   }
 ]

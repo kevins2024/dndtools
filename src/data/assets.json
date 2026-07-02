@@ -13,6 +13,7 @@
     "armament": null,
     "condition": null,
     "notes": "Originally a fishing vessel, converted to cargo use.",
+    "crew": [],
     "type": "ship"
   },
   {
@@ -29,6 +30,7 @@
     "armament": null,
     "condition": null,
     "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5. Flagship. Updated with power source, +60% speed.",
+    "crew": [{ "name": "Seris", "role": "Captain", "initMod": 3 }],
     "type": "ship"
   },
   {
@@ -46,6 +48,7 @@
     "condition": null,
     "hidden_compartment": "Can conceal up to 8 people.",
     "notes": "Similar to Gilt Blades but less refined. Hidden compartment. Updated with power source, +60% speed.",
+    "crew": [],
     "type": "ship"
   },
   {
@@ -62,6 +65,7 @@
     "armament": null,
     "condition": null,
     "notes": "Likely former slaver vessel. Large enough for 23 passengers plus crew. No luxury fittings. Updated with power source, +60% speed.",
+    "crew": [],
     "type": "ship"
   },
   {
@@ -79,6 +83,7 @@
     "condition": null,
     "owned_by": "allied",
     "notes": "Not Dawn Blades property. Allied vessel. Essavane captaining. Updated with power source, +60% speed.",
+    "crew": [{ "name": "Essavane", "role": "Captain", "initMod": 2 }],
     "type": "ship"
   },
   {
@@ -243,6 +248,7 @@
     "armament": null,
     "condition": null,
     "notes": "Manageable with reduced crew of 5. Very dark hull and signs of repairs. Some sections of wood are double-thick.",
+    "crew": [{ "name": "Erren Sault", "role": "Captain", "initMod": 2 }],
     "type": "ship"
   },
   {
@@ -349,13 +355,19 @@
     "name": "Eye of the Deep",
     "subtype": "Xebec",
     "captain": "Drevna",
-    "crew_full": null,
-    "crew_current": 0,
+    "crew_full": 13,
+    "crew_current": 13,
+    "crew_notes": "Roughly 12–13. Mix of Catrin, Drevani, Hei'ugar.",
     "passengers": [],
     "home_port": "unknown",
     "current_location": "Yetgrese archipelago",
-    "armament": "2x swivel-mounted light ballistae (port and starboard), ~30 bolts",
+    "armament": "Bow ram and angled armor plating. 1x forward-facing ballista (new). 2x swivel-mounted light ballistae (port and starboard, original).",
+    "propulsion": "Installed. Being calibrated by Jaygar.",
     "notes": "Captured from Corrath's pirate crew.",
+    "crew": [
+      { "name": "Drevna", "role": "Captain", "initMod": 3 },
+      { "name": "Kael Vorth", "role": "First Mate", "initMod": 2 }
+    ],
     "type": "ship"
   },
   {
@@ -363,13 +375,31 @@
     "name": "Ocean Huntress",
     "subtype": "Xebec",
     "captain": "Brathek",
-    "crew_full": null,
-    "crew_current": 0,
+    "crew_full": 13,
+    "crew_current": 13,
+    "crew_notes": "Roughly 12–13. Mix of races.",
     "passengers": null,
     "home_port": "unknown",
     "current_location": "Yetgrese archipelago",
-    "armament": "1x small cannon (~15 shots powder and ball), 2x swivel-mounted light ballistae",
+    "armament": "Bow ram and angled armor plating. 1x forward-facing ballista (new). 2x swivel-mounted light ballistae (port and starboard, original). 2x aft-mounted light cannons (new, replacing single heavier cannon).",
+    "propulsion": "Installed. Being calibrated by Jaygar.",
+    "hull": "Repaired from prior damage. Completed.",
     "notes": "",
+    "crew": [
+      { "name": "Brathek", "role": "Captain", "initMod": 3 },
+      { "name": "Torva", "role": "First Mate", "initMod": 2 }
+    ],
     "type": "ship"
+  },
+  {
+    "id": "assets_29",
+    "name": "Stillwater Harbor",
+    "type": "real_estate",
+    "subtype": "harbor_complex",
+    "location": "The Stillwater",
+    "district": null,
+    "status": "acquired",
+    "ownership": "Dawn Blades",
+    "notes": "A compact waterfront complex comprising two stone buildings flanking a sheltered mooring area. The larger building rises three levels and anchors the eastern end of the property; the smaller stands two levels to the west, with the gap between them forming a natural, partially enclosed berth. A small wooden dock extends from the mooring area into the water. Stone construction throughout the buildings, functional and solid. The layout gives the complex a natural discretion — vessels can moor out of open view, with direct access to both structures."
   }
 ]

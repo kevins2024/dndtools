@@ -80,6 +80,29 @@
               title="Requires attunement"
               >⚡</span
             >
+            <div v-if="item.charges_max != null" class="item-charges">
+              <button
+                class="charge-btn"
+                :disabled="item.charges_current <= 0"
+                @click.stop="spendCharge(item)"
+                title="Spend charge"
+              >
+                −
+              </button>
+              <span
+                class="charge-count"
+                :class="{ depleted: item.charges_current === 0 }"
+                >{{ item.charges_current }}/{{ item.charges_max }}</span
+              >
+              <button
+                class="charge-btn"
+                :disabled="item.charges_current >= item.charges_max"
+                @click.stop="restoreCharge(item)"
+                title="Restore charge"
+              >
+                +
+              </button>
+            </div>
             <div class="item-actions">
               <button
                 class="act-btn inspect-btn"
@@ -125,6 +148,29 @@
               title="Requires attunement"
               >⚡</span
             >
+            <div v-if="item.charges_max != null" class="item-charges">
+              <button
+                class="charge-btn"
+                :disabled="item.charges_current <= 0"
+                @click.stop="spendCharge(item)"
+                title="Spend charge"
+              >
+                −
+              </button>
+              <span
+                class="charge-count"
+                :class="{ depleted: item.charges_current === 0 }"
+                >{{ item.charges_current }}/{{ item.charges_max }}</span
+              >
+              <button
+                class="charge-btn"
+                :disabled="item.charges_current >= item.charges_max"
+                @click.stop="restoreCharge(item)"
+                title="Restore charge"
+              >
+                +
+              </button>
+            </div>
             <div class="item-actions">
               <button
                 class="act-btn inspect-btn"
@@ -153,20 +199,90 @@
         </div>
       </div>
 
-      <!-- Right: Available -->
-      <div class="inv-column scrollable">
-        <div class="col-title">Party Pool</div>
+      <!-- Right: Pool navigator -->
+      <div class="inv-column right-col">
+        <!-- Left: pool list -->
+        <div class="pool-nav">
+          <div class="pnav-group">Parties</div>
+          <button
+            v-for="party in sortedParties"
+            :key="party.id"
+            class="pnav-btn"
+            :class="{ active: effectivePool === 'party:' + party.id }"
+            :title="party.name"
+            @click="selectedPool = 'party:' + party.id"
+          >
+            <span class="pnav-name">{{ party.name }}</span>
+            <span v-if="partyItemCount(party.id)" class="pnav-count">{{
+              partyItemCount(party.id)
+            }}</span>
+          </button>
+          <button
+            v-if="unassignedItems.length"
+            class="pnav-btn pnav-unassigned"
+            :class="{ active: effectivePool === 'unassigned' }"
+            @click="selectedPool = 'unassigned'"
+          >
+            <span class="pnav-name">Unassigned</span>
+            <span class="pnav-count">{{ unassignedItems.length }}</span>
+          </button>
 
-        <div class="col-section">
-          <div v-if="poolItems.length === 0" class="empty">
-            Party pool is empty
+          <template v-if="shipAssets.length">
+            <div class="pnav-group">Ships</div>
+            <button
+              v-for="a in shipAssets"
+              :key="a.id"
+              class="pnav-btn"
+              :class="{ active: effectivePool === 'asset:' + a.name }"
+              :title="a.name"
+              @click="selectedPool = 'asset:' + a.name"
+            >
+              <span class="pnav-name">{{ a.name }}</span>
+              <span v-if="assetItemCount(a.name)" class="pnav-count">{{
+                assetItemCount(a.name)
+              }}</span>
+            </button>
+          </template>
+
+          <template v-if="propertyAssets.length">
+            <div class="pnav-group">Properties</div>
+            <button
+              v-for="a in propertyAssets"
+              :key="a.id"
+              class="pnav-btn"
+              :class="{ active: effectivePool === 'asset:' + a.name }"
+              :title="a.name"
+              @click="selectedPool = 'asset:' + a.name"
+            >
+              <span class="pnav-name">{{ a.name }}</span>
+              <span v-if="assetItemCount(a.name)" class="pnav-count">{{
+                assetItemCount(a.name)
+              }}</span>
+            </button>
+          </template>
+        </div>
+
+        <!-- Right: items in selected pool -->
+        <div class="pool-items scrollable">
+          <!-- Unassigned header -->
+          <div v-if="isUnassignedPool && activeParty" class="unassigned-banner">
+            These items don't belong to any party yet.
+            <button class="claim-all-btn" @click="assignAllToParty">
+              Claim all for {{ activeParty.name }}
+            </button>
           </div>
+
+          <div v-if="currentPoolItems.length === 0" class="empty">
+            {{ isAssetPool ? 'Nothing stored here' : 'Pool is empty' }}
+          </div>
+
           <div
-            v-for="item in poolItems"
+            v-for="item in currentPoolItems"
             :key="item.id"
-            class="inv-item pool"
-            @click="carry(item)"
-            title="Click to carry"
+            class="inv-item"
+            :class="isAssetPool ? 'stored' : 'pool'"
+            @click="!isAssetPool && carry(item)"
+            :title="!isAssetPool ? 'Click to carry' : ''"
           >
             <span class="item-name">{{ item.name }}</span>
             <span class="item-tag">{{ item.type }}</span>
@@ -176,6 +292,29 @@
               title="Requires attunement"
               >⚡</span
             >
+            <div v-if="item.charges_max != null" class="item-charges">
+              <button
+                class="charge-btn"
+                :disabled="item.charges_current <= 0"
+                @click.stop="spendCharge(item)"
+                title="Spend charge"
+              >
+                −
+              </button>
+              <span
+                class="charge-count"
+                :class="{ depleted: item.charges_current === 0 }"
+                >{{ item.charges_current }}/{{ item.charges_max }}</span
+              >
+              <button
+                class="charge-btn"
+                :disabled="item.charges_current >= item.charges_max"
+                @click.stop="restoreCharge(item)"
+                title="Restore charge"
+              >
+                +
+              </button>
+            </div>
             <button
               class="act-btn inspect-btn"
               @click.stop="inspectItem(item)"
@@ -183,7 +322,83 @@
             >
               🔍
             </button>
-            <span class="item-action">→</span>
+
+            <!-- Party pool actions -->
+            <template v-if="!isAssetPool">
+              <span v-if="!isUnassignedPool" class="item-action">→</span>
+              <button
+                v-if="isUnassignedPool && activeParty"
+                class="act-btn"
+                @click.stop="assignToParty(item)"
+                :title="`Assign to ${activeParty.name}`"
+              >
+                ✓
+              </button>
+              <select
+                class="store-select"
+                title="Store at asset"
+                @click.stop
+                @change.stop="handleStoreSelect(item, $event)"
+              >
+                <option value="">📦</option>
+                <optgroup v-if="shipAssets.length" label="Ships">
+                  <option v-for="a in shipAssets" :key="a.id" :value="a.name">
+                    {{ a.name }}
+                  </option>
+                </optgroup>
+                <optgroup v-if="propertyAssets.length" label="Properties">
+                  <option
+                    v-for="a in propertyAssets"
+                    :key="a.id"
+                    :value="a.name"
+                  >
+                    {{ a.name }}
+                  </option>
+                </optgroup>
+              </select>
+            </template>
+
+            <!-- Asset storage actions -->
+            <template v-if="isAssetPool">
+              <button
+                class="act-btn"
+                @click.stop="retrieveFromStorage(item)"
+                :title="`Retrieve to ${
+                  activeParty ? activeParty.name : 'party'
+                } pool`"
+              >
+                ↑
+              </button>
+              <select
+                class="store-select"
+                title="Move to different asset"
+                @click.stop
+                @change.stop="handleStoreSelect(item, $event)"
+              >
+                <option value="">⇄</option>
+                <optgroup v-if="shipAssets.length" label="Ships">
+                  <option
+                    v-for="a in shipAssets"
+                    :key="a.id"
+                    :value="a.name"
+                    :disabled="a.name === item.stored_at"
+                  >
+                    {{ a.name }}
+                  </option>
+                </optgroup>
+                <optgroup v-if="propertyAssets.length" label="Properties">
+                  <option
+                    v-for="a in propertyAssets"
+                    :key="a.id"
+                    :value="a.name"
+                    :disabled="a.name === item.stored_at"
+                  >
+                    {{ a.name }}
+                  </option>
+                </optgroup>
+              </select>
+            </template>
+
             <button
               class="act-btn dim delete-btn"
               @click.stop="confirmDelete(item)"
@@ -206,11 +421,33 @@
         <div class="dialog-title">Confirm delete</div>
         <p>
           Delete
-          <strong>{{ deleteCandidate ? deleteCandidate.name : '' }}</strong>
-          from the party pool?
+          <strong>{{ deleteCandidate ? deleteCandidate.name : '' }}</strong
+          >?
         </p>
+
+        <!-- Currency toggle: show dust option only for magical items -->
+        <div v-if="deleteIsMagical" class="delete-currency-toggle">
+          <button
+            class="curr-btn"
+            :class="{ active: deleteCurrencyType === 'gold' }"
+            @click="deleteCurrencyType = 'gold'"
+          >
+            Gold
+          </button>
+          <button
+            class="curr-btn"
+            :class="{ active: deleteCurrencyType === 'dust' }"
+            @click="deleteCurrencyType = 'dust'"
+          >
+            Weave Dust
+          </button>
+        </div>
+
         <label class="dialog-field">
-          <span>If you sold the item, how much did it sell for?</span>
+          <span v-if="deleteCurrencyType === 'dust'">
+            How much weave dust did this yield?
+          </span>
+          <span v-else>If you sold the item, how much did it sell for?</span>
           <input
             v-model="deleteSaleValue"
             type="number"
@@ -221,126 +458,167 @@
         <div class="dialog-actions">
           <button class="act-btn dim" @click="cancelDelete">Cancel</button>
           <button class="act-btn" @click="deleteConfirmed">
-            Delete and add gold
+            Delete{{
+              deleteSaleValue > 0
+                ? deleteCurrencyType === 'dust'
+                  ? ' + add dust'
+                  : ' + add gold'
+                : ''
+            }}
           </button>
         </div>
       </div>
     </div>
 
     <div
-      v-if="inspectionOpen"
+      v-if="inspectionOpen && editDraft"
       class="dialog-backdrop"
       @click.self="closeInspection"
     >
       <div class="dialog-panel inspection-panel">
-        <div class="dialog-title">
-          {{ inspectedItem ? inspectedItem.name : '' }}
-        </div>
-        <div v-if="inspectedItem" class="inspection-content scrollable">
+        <input
+          class="edit-title-input"
+          v-model="editDraft.name"
+          placeholder="Item name"
+        />
+
+        <div class="inspection-content scrollable">
           <div class="inspection-meta">
+            <!-- Editable fields -->
             <div class="meta-row">
-              <span class="meta-label">Type:</span>
-              <span class="meta-value">{{ inspectedItem.type }}</span>
-            </div>
-            <div v-if="inspectedItem.equipment_state" class="meta-row">
-              <span class="meta-label">State:</span>
-              <span class="meta-value">{{
-                inspectedItem.equipment_state
-              }}</span>
-            </div>
-            <div
-              v-if="inspectedItem.slot && inspectedItem.slot !== 'none'"
-              class="meta-row"
-            >
-              <span class="meta-label">Slot:</span>
-              <span class="meta-value">{{ inspectedItem.slot }}</span>
+              <span class="meta-label">Type</span>
+              <input
+                class="meta-input"
+                v-model="editDraft.type"
+                placeholder="e.g. weapon, armor…"
+              />
             </div>
             <div class="meta-row">
-              <span class="meta-label">Requires Attunement:</span>
+              <span class="meta-label">Slot</span>
+              <input
+                class="meta-input"
+                v-model="editDraft.slot"
+                placeholder="e.g. hand, neck…"
+              />
+            </div>
+
+            <!-- Attunement (live toggles) -->
+            <div class="meta-row">
+              <span class="meta-label">Requires Attunement</span>
               <span class="meta-value">
                 <label class="check-label">
                   <input
                     type="checkbox"
-                    :checked="inspectedItem.needs_attunement"
-                    @change="setNeedsAttunement($event.target.checked)"
+                    v-model="editDraft.needs_attunement"
+                    @change="
+                      if (!editDraft.needs_attunement) editDraft.attuned = false
+                    "
                   />
                 </label>
               </span>
             </div>
             <div class="meta-row">
-              <span class="meta-label">Attuned:</span>
+              <span class="meta-label">Attuned</span>
               <span class="meta-value">
                 <label
                   class="check-label"
-                  :class="{ 'check-disabled': !inspectedItem.needs_attunement }"
+                  :class="{ 'check-disabled': !editDraft.needs_attunement }"
                 >
                   <input
                     type="checkbox"
-                    :checked="
-                      inspectedItem.attuned && inspectedItem.needs_attunement
-                    "
-                    :disabled="!inspectedItem.needs_attunement"
-                    @change="setAttuned($event.target.checked)"
+                    v-model="editDraft.attuned"
+                    :disabled="!editDraft.needs_attunement"
                   />
                 </label>
               </span>
             </div>
-            <div v-if="inspectedItem.quantity" class="meta-row">
-              <span class="meta-label">Quantity:</span>
-              <span class="meta-value">{{ inspectedItem.quantity }}</span>
+
+            <!-- Charges -->
+            <div class="meta-row">
+              <span class="meta-label">Max charges</span>
+              <input
+                class="meta-input meta-input--num"
+                type="number"
+                min="0"
+                v-model.number="editDraft.charges_max"
+                placeholder="—"
+              />
             </div>
-            <div v-if="inspectedItem.equipped_by" class="meta-row">
-              <span class="meta-label">Equipped by:</span>
-              <span class="meta-value">{{ inspectedItem.equipped_by }}</span>
+            <div class="meta-row" v-if="editDraft.charges_max">
+              <span class="meta-label">Current charges</span>
+              <input
+                class="meta-input meta-input--num"
+                type="number"
+                min="0"
+                :max="editDraft.charges_max"
+                v-model.number="editDraft.charges_current"
+              />
             </div>
-            <div v-if="inspectedItem.carried_by" class="meta-row">
-              <span class="meta-label">Carried by:</span>
-              <span class="meta-value">{{ inspectedItem.carried_by }}</span>
+
+            <!-- Read-only status fields -->
+            <div v-if="editDraft.equipped_by" class="meta-row">
+              <span class="meta-label">Equipped by</span>
+              <span class="meta-value dim">{{ editDraft.equipped_by }}</span>
             </div>
-            <div v-if="inspectedItem.charges_max" class="meta-row">
-              <span class="meta-label">Charges:</span>
-              <span class="meta-value"
-                >{{ inspectedItem.charges_current }} /
-                {{ inspectedItem.charges_max }}</span
-              >
+            <div v-if="editDraft.carried_by" class="meta-row">
+              <span class="meta-label">Carried by</span>
+              <span class="meta-value dim">{{ editDraft.carried_by }}</span>
             </div>
-            <div v-if="inspectedItem.stat_bonuses" class="meta-row">
-              <span class="meta-label">Bonuses:</span>
+            <div v-if="editDraft.stored_at" class="meta-row">
+              <span class="meta-label">Stored at</span>
+              <span class="meta-value dim">{{ editDraft.stored_at }}</span>
+            </div>
+            <div v-if="editDraft.stat_bonuses" class="meta-row">
+              <span class="meta-label">Bonuses</span>
               <span class="meta-value">
                 <span
-                  v-for="(val, key) in inspectedItem.stat_bonuses"
+                  v-for="(val, key) in editDraft.stat_bonuses"
                   :key="key"
                   class="bonus-tag"
+                  >{{ key }}: +{{ val }}</span
                 >
-                  {{ key }}: +{{ val }}
-                </span>
               </span>
             </div>
           </div>
 
-          <div v-if="inspectedItem.description" class="inspection-section">
+          <!-- Long text fields -->
+          <div class="inspection-section">
             <div class="section-label">Description</div>
-            <div class="section-content">{{ inspectedItem.description }}</div>
+            <textarea
+              class="edit-textarea"
+              v-model="editDraft.description"
+              placeholder="Add a description…"
+              rows="3"
+            />
           </div>
-
-          <div v-if="inspectedItem.effect" class="inspection-section">
+          <div class="inspection-section">
             <div class="section-label">Effect</div>
-            <div class="section-content">{{ inspectedItem.effect }}</div>
+            <textarea
+              class="edit-textarea"
+              v-model="editDraft.effect"
+              placeholder="Mechanical effect…"
+              rows="3"
+            />
           </div>
-
-          <div v-if="inspectedItem.notes" class="inspection-section">
+          <div class="inspection-section">
             <div class="section-label">Notes</div>
-            <div class="section-content">{{ inspectedItem.notes }}</div>
+            <textarea
+              class="edit-textarea"
+              v-model="editDraft.notes"
+              placeholder="Any notes…"
+              rows="2"
+            />
           </div>
 
           <div class="inspection-section id-section">
             <div class="section-label">Item ID</div>
-            <div class="section-content id-content">{{ inspectedItem.id }}</div>
+            <div class="section-content id-content">{{ editDraft.id }}</div>
           </div>
         </div>
 
         <div class="dialog-actions">
-          <button class="act-btn" @click="closeInspection">Close</button>
+          <button class="act-btn dim" @click="closeInspection">Cancel</button>
+          <button class="act-btn" @click="saveEdit">Save</button>
         </div>
       </div>
     </div>
@@ -367,8 +645,41 @@ export default {
         (i) => i.carried_by === this.character.name && !i.equipped_by
       )
     },
-    poolItems() {
-      return this.allItems.filter((i) => this.isPoolItem(i))
+    activeParty() {
+      return this.$store.getters.activeParty
+    },
+    assets() {
+      return this.$store.state.assets
+    },
+    shipAssets() {
+      return this.assets.filter((a) => a.type === 'ship')
+    },
+    propertyAssets() {
+      return this.assets.filter((a) => a.type !== 'ship')
+    },
+    partyPoolItems() {
+      if (!this.activeParty) return []
+      return this.allItems.filter(
+        (i) => i.carried_by === 'party' && i.party_id === this.activeParty.id
+      )
+    },
+    unassignedItems() {
+      return this.allItems.filter(
+        (i) => i.carried_by === 'party' && !i.party_id && !i.stored_at
+      )
+    },
+    storedItems() {
+      return this.allItems.filter((i) => i.stored_at)
+    },
+    storedByAsset() {
+      const groups = {}
+      for (const item of this.storedItems) {
+        if (!groups[item.stored_at]) groups[item.stored_at] = []
+        groups[item.stored_at].push(item)
+      }
+      return Object.entries(groups)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([assetName, items]) => ({ assetName, items }))
     },
     slotCounts() {
       return this.equippedItems.reduce((counts, item) => {
@@ -405,31 +716,101 @@ export default {
     inspectedItem() {
       return this.allItems.find((i) => i.id === this.inspectedItemId) || null
     },
+    deleteIsMagical() {
+      const item = this.deleteCandidate
+      return !!(item && (item.rarity || item.needs_attunement))
+    },
+    sortedParties() {
+      return [...this.$store.state.parties].sort((a, b) => {
+        if (a.active && !b.active) return -1
+        if (!a.active && b.active) return 1
+        return a.name.localeCompare(b.name)
+      })
+    },
+    effectivePool() {
+      return (
+        this.selectedPool ??
+        (this.activeParty ? 'party:' + this.activeParty.id : 'unassigned')
+      )
+    },
+    isAssetPool() {
+      return this.effectivePool?.startsWith('asset:')
+    },
+    isUnassignedPool() {
+      return this.effectivePool === 'unassigned'
+    },
+    currentPoolItems() {
+      const pool = this.effectivePool
+      if (!pool) return []
+      if (pool === 'unassigned') return this.unassignedItems
+      if (pool.startsWith('party:')) {
+        const pid = pool.slice(6)
+        return this.allItems.filter(
+          (i) => i.carried_by === 'party' && i.party_id === pid
+        )
+      }
+      if (pool.startsWith('asset:')) {
+        const name = pool.slice(6)
+        return this.allItems.filter((i) => i.stored_at === name)
+      }
+      return []
+    },
+    partyItemCount() {
+      return (partyId) =>
+        this.allItems.filter(
+          (i) => i.carried_by === 'party' && i.party_id === partyId
+        ).length
+    },
+    assetItemCount() {
+      return (assetName) =>
+        this.allItems.filter((i) => i.stored_at === assetName).length
+    },
   },
 
   data() {
     return {
       itemSearch: '',
+      selectedPool: null,
+      editDraft: null,
       deleteDialogOpen: false,
       deleteCandidate: null,
       deleteSaleValue: '',
+      deleteCurrencyType: 'gold',
       inspectionOpen: false,
       inspectedItemId: null,
     }
   },
 
   methods: {
+    spendCharge(item) {
+      this.$store.commit('SPEND_CHARGE', item.id)
+    },
+    restoreCharge(item) {
+      this.$store.commit('RESTORE_CHARGE', item.id)
+    },
     itemStatus(item) {
+      if (item.stored_at) return `Stored: ${item.stored_at}`
       if (item.equipped_by) return `Equipped by ${item.equipped_by}`
       if (item.carried_by && item.carried_by !== 'party')
         return `Carried by ${item.carried_by}`
-      return 'Party Pool'
+      if (item.carried_by === 'party') {
+        if (item.party_id) {
+          const party = this.$store.state.parties.find(
+            (p) => p.id === item.party_id
+          )
+          return `${party?.name ?? 'Party'} Pool`
+        }
+        return 'Unassigned Pool'
+      }
+      return 'Pool'
     },
     takeItem(item) {
       this.$store.commit('UPDATE_ITEM', {
         ...item,
         carried_by: this.character.name,
         equipped_by: null,
+        stored_at: null,
+        party_id: null,
       })
     },
     slotCapacity(slot) {
@@ -440,9 +821,7 @@ export default {
       return count > this.slotCapacity(slot)
     },
     isPoolItem(item) {
-      return (
-        item.carried_by === 'party' || (!item.carried_by && !item.equipped_by)
-      )
+      return item.carried_by === 'party' && !item.stored_at
     },
     canEquip(item) {
       if (item.equipped_by === 'disallowed') return false
@@ -479,6 +858,8 @@ export default {
         ...item,
         carried_by: this.character.name,
         equipped_by: null,
+        stored_at: null,
+        party_id: null,
       })
     },
     toPool(item) {
@@ -486,44 +867,89 @@ export default {
         ...item,
         carried_by: 'party',
         equipped_by: null,
+        stored_at: null,
+        party_id: this.activeParty?.id ?? null,
       })
+    },
+    handleStoreSelect(item, event) {
+      const assetName = event.target.value
+      if (!assetName) return
+      this.storeAt(item, assetName)
+      event.target.value = ''
+    },
+    storeAt(item, assetName) {
+      this.$store.commit('UPDATE_ITEM', {
+        ...item,
+        stored_at: assetName,
+        carried_by: null,
+        equipped_by: null,
+        attuned: false,
+        party_id: null,
+      })
+    },
+    retrieveFromStorage(item) {
+      this.$store.commit('UPDATE_ITEM', {
+        ...item,
+        stored_at: null,
+        carried_by: 'party',
+        party_id: this.activeParty?.id ?? null,
+      })
+    },
+    assignToParty(item) {
+      this.$store.commit('UPDATE_ITEM', {
+        ...item,
+        party_id: this.activeParty?.id ?? null,
+      })
+    },
+    assignAllToParty() {
+      if (!this.activeParty) return
+      for (const item of this.unassignedItems) {
+        this.$store.commit('UPDATE_ITEM', {
+          ...item,
+          party_id: this.activeParty.id,
+        })
+      }
     },
     confirmDelete(item) {
       this.deleteCandidate = item
       this.deleteSaleValue = ''
+      this.deleteCurrencyType = 'gold'
       this.deleteDialogOpen = true
     },
     cancelDelete() {
       this.deleteDialogOpen = false
       this.deleteCandidate = null
       this.deleteSaleValue = ''
+      this.deleteCurrencyType = 'gold'
     },
     deleteConfirmed() {
       if (!this.deleteCandidate) return
       const value = parseFloat(this.deleteSaleValue)
-      const gold = Number.isFinite(value) && value > 0 ? value : 0
+      const amount = Number.isFinite(value) && value > 0 ? value : 0
       this.$store.commit('DELETE_PARTY_ITEM', this.deleteCandidate.id)
-      if (gold) {
-        this.$store.commit('ADJUST_PARTY_GOLD', gold)
+      if (amount) {
+        if (this.deleteCurrencyType === 'dust') {
+          this.$store.commit('ADJUST_CURRENCY', { key: 'weave_dust', amount })
+        } else {
+          this.$store.commit('ADJUST_PARTY_GOLD', amount)
+        }
       }
       this.cancelDelete()
     },
-    setNeedsAttunement(val) {
-      const updated = { ...this.inspectedItem, needs_attunement: val }
-      if (!val) updated.attuned = false
-      this.$store.commit('UPDATE_ITEM', updated)
-    },
-    setAttuned(val) {
-      if (!this.inspectedItem.needs_attunement) return
-      this.$store.commit('UPDATE_ITEM', { ...this.inspectedItem, attuned: val })
-    },
     inspectItem(item) {
       this.inspectedItemId = item.id
+      this.editDraft = { ...item }
       this.inspectionOpen = true
     },
     closeInspection() {
       this.inspectionOpen = false
       this.inspectedItemId = null
+      this.editDraft = null
+    },
+    saveEdit() {
+      if (!this.editDraft) return
+      this.$store.commit('UPDATE_ITEM', { ...this.editDraft })
+      this.closeInspection()
     },
   },
 }
@@ -738,6 +1164,50 @@ export default {
   margin-left: 2px;
 }
 
+.item-charges {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+}
+
+.charge-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  min-width: 2.6em;
+  text-align: center;
+}
+
+.charge-count.depleted {
+  color: var(--color-danger, #c0392b);
+}
+
+.charge-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.charge-btn:hover:not(:disabled) {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+.charge-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
 .item-action {
   font-size: var(--font-size-base);
   color: var(--color-text-muted);
@@ -803,10 +1273,99 @@ export default {
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.2);
 }
 
+/* editable title input replaces dialog-title in inspection panel */
+.edit-title-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  font-family: var(--font-display);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0 0 0.4rem;
+  margin-bottom: 0.75rem;
+  outline: none;
+}
+.edit-title-input:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.meta-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  padding: 0.15rem 0.4rem;
+  outline: none;
+}
+.meta-input:focus {
+  border-color: var(--color-accent);
+}
+.meta-input--num {
+  width: 80px;
+}
+
+.meta-value.dim {
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+.edit-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  font-family: var(--font-body);
+  padding: 0.35rem 0.4rem;
+  resize: vertical;
+  outline: none;
+  line-height: 1.45;
+}
+.edit-textarea:focus {
+  border-color: var(--color-accent);
+}
+
 .dialog-title {
   font-size: var(--font-size-md);
   font-weight: 700;
   margin-bottom: 0.75rem;
+}
+
+.delete-currency-toggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.curr-btn {
+  flex: 1;
+  padding: 0.3rem 0.6rem;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.curr-btn:hover {
+  border-color: var(--color-accent-muted);
+  color: var(--color-text);
+}
+.curr-btn.active {
+  background: var(--color-bg-surface);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .dialog-field {
@@ -939,5 +1498,170 @@ export default {
 .check-disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+/* ── Right column: pool navigator ── */
+.right-col {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  gap: 0;
+}
+
+.pool-nav {
+  width: 130px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem 0;
+}
+
+.pnav-group {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-low);
+  padding: 0.6rem 0.5rem 0.2rem;
+}
+
+.pnav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: 0.22rem 0.5rem;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+  min-width: 0;
+}
+.pnav-btn:hover {
+  background: var(--color-bg-panel);
+  color: var(--color-text);
+}
+.pnav-btn.active {
+  border-left-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-bg-panel);
+}
+
+.pnav-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.pnav-count {
+  font-size: var(--font-size-xs);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 99px;
+  padding: 0 4px;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  flex-shrink: 0;
+}
+.pnav-btn.active .pnav-count {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.pnav-unassigned {
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+.pool-items {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+  padding: 0.3rem 0.4rem;
+}
+
+/* ── Unassigned section ── */
+.unassigned-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.4rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: var(--color-bg-panel);
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+.unassigned-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.claim-all-btn {
+  margin-left: auto;
+  padding: 1px 7px;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.claim-all-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.inv-item.unassigned {
+  opacity: 0.7;
+  border-style: dashed;
+}
+
+/* ── Stored items ── */
+.inv-item.stored {
+  border-color: rgba(100, 120, 160, 0.4);
+  background: rgba(80, 100, 140, 0.06);
+}
+
+.storage-group-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── Store-at dropdown ── */
+.store-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  min-width: 0;
+  transition: color 0.12s;
+}
+.store-select:hover {
+  color: var(--color-accent);
+}
+.store-select:focus {
+  outline: none;
 }
 </style>

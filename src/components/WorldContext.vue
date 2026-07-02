@@ -22,10 +22,11 @@
 <script>
 import MonsterBrowser from './MonsterBrowser.vue'
 import TellondeCalendar from './TellondeCalendar.vue'
+import HomebrewBrowser from './HomebrewBrowser.vue'
 
 export default {
   name: 'WorldContext',
-  components: { MonsterBrowser, TellondeCalendar },
+  components: { MonsterBrowser, TellondeCalendar, HomebrewBrowser },
 
   data() {
     return {
@@ -33,6 +34,7 @@ export default {
       tabs: [
         { id: 'monsters', label: 'Monsters', component: 'MonsterBrowser' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
+        { id: 'homebrew', label: 'Homebrew', component: 'HomebrewBrowser' },
       ],
     }
   },

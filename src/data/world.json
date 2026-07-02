@@ -4,10 +4,22 @@
     "calendar_constants": {
       "days_per_year": 204,
       "seasons": [
-        { "name": "Winter", "length": 51 },
-        { "name": "Spring", "length": 51 },
-        { "name": "Summer", "length": 51 },
-        { "name": "Autumn", "length": 51 }
+        {
+          "name": "Winter",
+          "length": 51
+        },
+        {
+          "name": "Spring",
+          "length": 51
+        },
+        {
+          "name": "Summer",
+          "length": 51
+        },
+        {
+          "name": "Autumn",
+          "length": 51
+        }
       ]
     },
     "inspirations": {
@@ -18,6 +30,7 @@
     "continents": [
       {
         "name": "Kaemahz",
+        "flair": "The familiar face of the known world — but the familiarity is deceptive. Seven regions each feel like different countries: tribal shamanism in one, collapsed empire in another, question-free banking in the desert, maritime dual-culture on the northeast coast. Travel across Kaemahz is cultural border-crossing as much as geographical.",
         "calendar_system": {
           "notes": "The 8 day weeks leave 4 days leftover, which is called the Spring Festival halfweek. This is regionally celebrated as a time of renewal and community gathering, with various local traditions. The Spring Festival halfweek is not considered part of any season, but rather a transition period between Winter and Spring.",
           "days_per_week": 8
@@ -38,7 +51,11 @@
             "status": "current_campaign_region",
             "player_knowledge": "full"
           },
-          { "name": "Fol", "status": "known", "player_knowledge": "limited" },
+          {
+            "name": "Fol",
+            "status": "known",
+            "player_knowledge": "limited"
+          },
           {
             "name": "Torwald",
             "status": "known",
@@ -68,9 +85,9 @@
       },
       {
         "name": "Yetgrese",
+        "flair": "Fantastical in every way — should never feel like a standard fantasy setting. The geology is wrong, the demographics are wrong, the cities don't work like Kaemahz cities. Arriving here should feel like the rules changed.",
         "description": "Second continent. 2-3 weeks sailing from Kaemahz's western coast; under 2 weeks with magical propulsion if crossing goes smoothly.",
         "climate": "Variable regionally. Interior sea climate likely distinct from exterior coasts due to geological shelter.",
-        "player_knowledge": "limited",
         "geography": {
           "shape": "Crescent — massive partial crater or caldera, eroded asymmetrically over millennia",
           "western": "Massive, mountainous, intact. Tallest and most dramatic terrain. Volcanic or meteoric origin — meteoric preferred, TBD.",
@@ -95,6 +112,7 @@
   {
     "name": "Fynesmarch",
     "continent": "Kaemahz",
+    "flair": "The working coast — trade, ships, and the friction between old money and new ambition. Cities feel economically motivated rather than heroic. People here are trying to get ahead, stay out of trouble, or both. The most grounded region in Kaemahz.",
     "climate": "Temperate maritime overall, distinct microclimates city to city.",
     "shape_note": "Wide and shallow — twice as far east-west as north-south.",
     "naming_conventions": "Literal and descriptive. Place names directly reflect observable features — Cindermarch is a fortress (march) near ashen terrain from the Inkaba volcano. This pattern should guide generation of new place names consistently.",
@@ -170,6 +188,7 @@
   {
     "name": "Fol",
     "continent": "Kaemahz",
+    "flair": "A land where iron is sacred and shamanism is the architecture of the world. Entering Fol feels like stepping into an older, more coherent logic — one that works, just not in any way a Kaemahz merchant would recognize. The spirits are not metaphors here.",
     "culture": "Tribal and shamanistic. Ironworking is culturally central — not merely a trade skill but an identity, bound up in spiritual practice. Shamanism is the primary spiritual framework. No merchant-council structure, no capital.",
     "tribes": {
       "known": [
@@ -236,12 +255,17 @@
         "type": "wilderness",
         "description": "Wide protected valley. Warm quality."
       },
-      { "name": "Sixth Clan Territory", "type": "territory", "description": "" }
+      {
+        "name": "Sixth Clan Territory",
+        "type": "territory",
+        "description": ""
+      }
     ]
   },
   {
     "name": "Torwald",
     "continent": "Kaemahz",
+    "flair": "Proud, self-aware, and slightly insufferable about it. Torwald is what happens when a culture survives an empire without being touched by it — and then keeps the original form so carefully that it starts to calcify. Still vital, still impressive. Just very sure of itself, and not entirely wrong to be.",
     "capital": "Filian's Keep",
     "climate": "Temperate.",
     "culture": "Anglo-Saxon cultural feel. Considers itself the keeper of original culture — both its own and what Aranwald set aside. Slightly smug about this. Never occupied by Solvale.",
@@ -258,6 +282,7 @@
   {
     "name": "Aranwald",
     "continent": "Kaemahz",
+    "flair": "A kingdom that was occupied for two centuries, fought back, and then chose to keep the art, the architecture, and the aesthetic of the occupier — because they beat them, and that means it belongs to them now. The most stylistically layered region in Kaemahz. Conquest here is something you metabolize.",
     "capital": "Feldtazur",
     "culture": "Persian-Anglo fusion. Occupied by the Solvale Empire for approximately 200 years. A prince recaptured it and coined the name deliberately — kept 'wald' for continuity with the land, replaced 'Tor' with 'Aran' (Persian: peaceful/noble). Founding philosophy: 'we didn't just conquer the land, we conquered everything.' Solvaran artifacts, architecture, and cultural elements are high-status symbols — trophies of strength, not shameful remnants. Solvaran scholars and craftsmen increasingly emigrating here as the empire destabilizes.",
     "solvaran_cultural_inheritance": "The occupation left a deep imprint that Aranwald has deliberately reclaimed rather than erased: domed buildings and arched courtyards, elaborate geometric gardens, rich textiles and ornate metalwork, a strong poetry and oral tradition, possible fire worship or fire-adjacent religious practice, a taste for court intrigue, and a sophisticated bureaucratic tradition. These elements are visible throughout Feldtazur's architecture and the aristocratic culture of the region.",
@@ -275,6 +300,8 @@
   {
     "name": "Orvath",
     "continent": "Kaemahz",
+    "flair": "A question-free banking haven in the middle of a high desert. Coming here means you have something to hide, something to protect, or you are trying to move money that other places would scrutinize. The city does not judge. That is the entire point, and it shapes everything from the architecture to the way strangers greet each other.",
+    "capital": "Orvath",
     "climate": "High desert.",
     "culture": "Primarily elven population. Mongolian-inspired — what this means in practice is TBD (nomadic heritage expressed in a settled city? clan-based social structure? horse culture adapted to desert context?). Question-free banking is the defining feature to outsiders.",
     "banking": "Anonymous deposits, no extradition, no questions asked — by design, not accident. The most secure financial institution on Kaemahz. How this status was established and maintained is TBD, but the implication is either significant political neutrality, deep historical precedent, or a power arrangement that makes interference more costly than cooperation.",
@@ -291,6 +318,8 @@
   {
     "name": "Birindal",
     "continent": "Kaemahz",
+    "flair": "Two cultures that realized they needed each other and built a partnership instead of a country. Coast and mountain operate by different rules, worship different values, and have never tried to merge — the trade flows between them precisely because neither wants what the other has, only what the other produces.",
+    "continent_ref": "Kaemahz",
     "climate": "Northeastern coastal, likely cooler.",
     "culture": "Two distinct communities maintain separate but cooperative identities. Coastal (Drinaell): Celtic/Nordic seafaring culture — merchant marine and raiding heritage, community governance by harbor council or similar. Mountain (Brakvunder): Dwarven stronghold culture — deep craft tradition, independent governance, minimal interest in maritime affairs.",
     "governance": "No capital because the coastal and mountain communities govern themselves independently. No central authority both sides would accept — and neither has pushed for one. The arrangement works because their needs are complementary rather than competitive.",
@@ -311,6 +340,7 @@
   {
     "name": "Solvale",
     "continent": "Kaemahz",
+    "flair": "The bones of a great empire with not enough people left to fill them. The architecture is still extraordinary. The cultural sophistication is still real. But the city was built for twice its current population and the scale of the emptiness is its own kind of statement. Beautiful and melancholy in equal measure.",
     "capital": "Yshavar",
     "climate": "Warm to tropical, North African/Moroccan feel.",
     "culture": "Once the heart of the Solvale Empire — still uses the imperial name. People are called Solvaran. At its height: architecturally stunning, culturally sophisticated, center of learning and trade. Cultural exports — art, poetry, bureaucratic method, architectural style — shaped Aranwald for generations of occupation.",

@@ -7,6 +7,10 @@
           {{ currentSeason }}
         </div>
         <div class="cal-detail">
+          <span v-if="activeParty" class="cal-party-name">{{
+            activeParty.name
+          }}</span>
+          <span v-if="activeParty" class="cal-sep">·</span>
           <span class="cal-year">Year {{ currentYear }}</span>
           <span class="cal-sep">·</span>
           <span>Day {{ dayOfYear }} of {{ DAYS_PER_YEAR }}</span>
@@ -118,7 +122,7 @@ export default {
 
   computed: {
     ...mapState(['game_day']),
-    ...mapGetters(['activePartyDay']),
+    ...mapGetters(['activePartyDay', 'activeParty']),
 
     currentDay() {
       return this.activePartyDay || this.game_day
@@ -242,6 +246,13 @@ export default {
   font-size: 0.85rem;
   color: var(--color-text-muted);
   flex-wrap: wrap;
+}
+
+.cal-party-name {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
 }
 
 .cal-year {

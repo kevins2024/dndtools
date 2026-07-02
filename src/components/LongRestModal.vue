@@ -185,7 +185,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="skip-btn" @click="$emit('close')">Skip</button>
+          <button class="skip-btn" @click="skipAndSave">Skip</button>
           <button class="rest-btn" @click="saveMarchingOrder">
             Set Marching Order
           </button>
@@ -201,7 +201,7 @@ import { dnd } from '@/utils/dnd_utils'
 
 export default {
   name: 'LongRestModal',
-  emits: ['close'],
+  emits: ['close', 'rested'],
 
   data() {
     return {
@@ -354,6 +354,7 @@ export default {
 
     beginRest() {
       this.LONG_REST({ skipChars: this.overwatchChars })
+      this.$emit('rested')
       this.step = 'marching'
     },
 
@@ -369,6 +370,12 @@ export default {
       const arr = [...this.marchOrder]
       ;[arr[idx], arr[idx + 1]] = [arr[idx + 1], arr[idx]]
       this.marchOrder = arr
+    },
+
+    skipAndSave() {
+      // Persist game_day increment from LONG_REST without changing marching order
+      this.SET_PARTIES([...this.parties])
+      this.$emit('close')
     },
 
     saveMarchingOrder() {

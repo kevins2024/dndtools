@@ -1,0 +1,4942 @@
+[
+  {
+    "name": "Absolute's Warboard",
+    "rarity": "uncommon",
+    "desc": "Absolute's Warboard is an uncommon Shield that improves a branded wearer's Saving Throws and allows them to cast Heroism once per Long Rest.\n\nBlood is smeared across the shield's face, exalting wielders who bear the Absolute's mark."
+  },
+  {
+    "name": "Battleaxe +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of Misty Step",
+    "rarity": "uncommon",
+    "desc": "Amulet of Misty Step is an uncommon amulet that grants its wearer the Misty Step spell on a short rest cooldown.\n\nThis necklace allows the wearer to cast Misty Step. Made of blue gems unique to a privately-owned mine in Menzoberranzan, this necklace was likely a token of esteem - or perhaps a desperate attempt to win its recipient's mercy."
+  },
+  {
+    "name": "Boots of Aid and Comfort",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Blazer of Benevolence",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Absolute's Talisman",
+    "rarity": "uncommon",
+    "desc": "Absolute's Talisman is an uncommon Amulet that allows the wearer to cast a self-only version of Aid, and grants Advantage on Death Saving Throws if they bear the Absolute's Brand.\n\nStained by blood, and gifted to only the most faithful of True Souls to help preserve their lives."
+  },
+  {
+    "name": "Amulet of Elemental Torment",
+    "rarity": "uncommon",
+    "desc": "The Amulet of Elemental Torment is an uncommon Amulet that channels the effects of certain Surfaces into the wearer's spells.\n\nEach jewel gleams with the energy of the natural elements."
+  },
+  {
+    "name": "Amulet of the Unworthy",
+    "rarity": "uncommon",
+    "desc": "The Amulet of the Unworthy is an uncommon Amulet that protects the wearer from ⁠Slashing damage, but leaves them vulnerable to ⁠Bludgeoning damage.\n\nOnce part of the Girdle of Blades, this buckle was torn off and fashioned into an amulet that can be worn by creatures of all sizes."
+  },
+  {
+    "name": "Boots of Striding",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Bloodguzzler Garb",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of Selûne's Chosen",
+    "rarity": "uncommon",
+    "desc": "The Amulet of Selûne's Chosen is an uncommon Amulet that allows the wearer to cast Selûne's Dream once per Long Rest.\n\nThe gems and pearls of this necklace have a brilliant shine to them, as if reflecting unseen moonlight."
+  },
+  {
+    "name": "Amulet of Silvanus",
+    "rarity": "uncommon",
+    "desc": "The Amulet of Silvanus is an uncommon Amulet. It allows the wearer to cast  Lesser Restoration once per Short Rest.\n\nThis amulet, engraved with a small waterfall, imparts a feeling of calm serenity when worn."
+  },
+  {
+    "name": "Beastmaster's Chain",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Bracing Band",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Darkness",
+    "rarity": "uncommon",
+    "desc": "Arrow of Darkness is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nBlack as the Styx, beautiful as a starless night."
+  },
+  {
+    "name": "Arrow of Ilmater",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Roaring Thunder",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Assassin's Touch",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Auntie Ethel's Charm",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Bow of Awareness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Blue Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Elemental Momentum",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Argument Solver",
+    "rarity": "uncommon",
+    "desc": "Argument Solver is an uncommon +1 Greatclub that grants the wielder the Poison Mist weapon action, which deals extra Poison damage and creates a poison cloud.\n\nFew things solve a disagreement faster than displaying a greatclub. And this one reeks, too."
+  },
+  {
+    "name": "Assassin's Shortsword",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Breastplate +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Stormy Clamour",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Fiend Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Fiend Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nSwift and true as a solar's shining blade."
+  },
+  {
+    "name": "Arrow of Monstrosity Slaying",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Undead Slaying",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Beast Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Beast Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nThis roughly-hewn arrow was likely crafted in the field, fletcher's tools lit by a campfire's glow."
+  },
+  {
+    "name": "Aberration Hunters' Amulet",
+    "rarity": "uncommon",
+    "desc": "The Aberration Hunters' Amulet is an uncommon Amulet. It grants Githyanki wearing it  Advantage on Intelligence Saving Throws and aberrations have  Disadvantage on attacks against them. The wielder can gain  Advantage on Attack Rolls against Aberrations for 3 turns, once per Short Rest.[See: Bugs]\n\nMany a Githyanki hunter has worn this amulet before you. The strange stones set in swirling silver reverberate with echoes of their magic."
+  },
+  {
+    "name": "Braindrain Gloves",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Bided Time",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Very Fast Blinking",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Armour of Uninhibited Kushigo",
+    "rarity": "uncommon",
+    "desc": "The Armour of Uninhibited Kushigo is an uncommon piece of Clothing that allows the wearer to counter attack an enemy that misses them, so long as Patient Defence is active.\n\nLong ago,  Kushigo was a warrior. Bedecked in an enormous set of plate steel, its shoulder pauldrons fashioned like great antlered stags, his arrival on a battlefield spelled doom for the enemy.Yet this armour - so light and fine - speaks nothing to that legacy."
+  },
+  {
+    "name": "Arsonist's Oil",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Construct Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Construct Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nOnly a few fragile threads hold an artificial life together. Sever them with this."
+  },
+  {
+    "name": "Arrow of Elemental Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Elemental Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nPlacing a finger upon the flat of its arrowhead causes a different sensation every time - heat, cold, a jolt of electricity..."
+  },
+  {
+    "name": "Absolute Confidence Amulet",
+    "rarity": "uncommon",
+    "desc": "The Absolute Confidence Amulet is an uncommon Amulet that grants the wearer a +1 bonus to Performance checks at the cost of -1 to Intimidation checks.\n\nThe interlocked bronze links of this necklace tinkle softly every time you move."
+  },
+  {
+    "name": "Baldur's Gate Stone",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Sparrow Slaying",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Celestial Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Celestial Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nInfernal inscriptions twist around the shaft, burned black into the wood."
+  },
+  {
+    "name": "Arrow of Fey Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Fey Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nFire this and a Formorian laughs."
+  },
+  {
+    "name": "Arrow of Giant Slaying",
+    "rarity": "uncommon",
+    "desc": "Arrow of Giant Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nSmall weights in the fletching keep this arrow well-balanced despite the heft of its iron arrowhead."
+  },
+  {
+    "name": "Arrow of Ooze Slaying",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Plant Slaying",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Bone (Uncommon)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Bonesaw (+1)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Artificial Leech (+1)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Absolute's Smite",
+    "rarity": "uncommon",
+    "desc": "Absolute's Smite is an inaccessible uncommon Ring that grants its wearer the ability to cast Searing Smite once per Long Rest.\n\nThis ring coaxes anyone branded by the Absolute. Their fingers veritably itch to slip it on."
+  },
+  {
+    "name": "Deep Delver",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Corellon's Grace",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Dragon's Grasp",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ceremonial Mace",
+    "rarity": "uncommon",
+    "desc": "Ceremonial Mace is an uncommon, lightly enchanted (+1) Mace. While functionally the same as a Mace +1, it can be used for solving the puzzle inside the Rosymorn Monastery chapel.\n\nThe leather handle of this mace smells badly of rotting blood."
+  },
+  {
+    "name": "Dagger +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Doom Axe",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Chain Shirt +1",
+    "rarity": "uncommon",
+    "desc": "Chain Shirt +1 is an uncommon Medium Armour that reduces Slashing damage.\n\nThe intricate embroidery on the linen panel of this armour indicates the nobility of its previous owner."
+  },
+  {
+    "name": "Crusher's Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Broodmother's Revenge",
+    "rarity": "uncommon",
+    "desc": "The Broodmother's Revenge is an uncommon Amulet. It coats the wearer's weapon in poison for 2 turns whenever they are healed.\n\nEach of this amulet's jewels shines like a viper's eyes."
+  },
+  {
+    "name": "Cap of Curing",
+    "rarity": "uncommon",
+    "desc": "The Cap of Curing is an uncommon Hat that heals those inspired by the wearer using Bardic Inspiration.\n\nPutting on this hat is somehow enough to lift your spirits."
+  },
+  {
+    "name": "Chain of Liberation",
+    "rarity": "uncommon",
+    "desc": "The Chain of Liberation is an uncommon Medium Armour that allows the wearer to sacrifice their Momentum (Condition) to rush forward and avoid Attacks of Opportunity.\n\nLinked rings crackle with energy, just waiting to be released."
+  },
+  {
+    "name": "Circlet of Fire",
+    "rarity": "uncommon",
+    "desc": "The Circlet of Fire is an uncommon Circlet that grants the wearer a bonus action whenever they deal ⁠Fire damage with a leveled spell.\n\nMerely holding the circlet makes your skin flush, filling you with determination and righteous fury."
+  },
+  {
+    "name": "Dark Justiciar Helm",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Mail",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Fire Resistance",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Mask",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Club of Hill Giant Strength",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Doom Hammer",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Arcane Cultivation",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Caustic Band",
+    "rarity": "uncommon",
+    "desc": "Caustic Band is an uncommon Ring that grants the wearer 2 Acid damage with weapon attacks.\n\nAdjusting this unassuming ring on your finger, you hear a faint sizzle, as of pressure being released."
+  },
+  {
+    "name": "Drow Poison",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Crossbow of Arcane Force",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Bloodlust",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Chain Mail +1",
+    "rarity": "uncommon",
+    "desc": "Chain Mail +1 is an uncommon Heavy Armour that reduces Slashing damage.\n\nFine fabric obscures the bulk of this chain mail, allowing its wearer to mix in polite society while protecting them from unexpected assailants."
+  },
+  {
+    "name": "Elixir of Heroism",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Cloak of Protection",
+    "rarity": "uncommon",
+    "desc": "Cloak of Protection is an uncommon Cloak which grants the user +1  Armour Class and +1 to  Saving Throws\n\nWizards Otiluke and Bigby may be renowned as dignified members of the Circle of Eight, but on one occasion, as younger men, Bigby bet Otiluke that he couldn't suck thirteen litres of vodka out of a protection cloak like this one.\nBigby won."
+  },
+  {
+    "name": "Cinder Shoes",
+    "rarity": "uncommon",
+    "desc": "Cinder Shoes is a pair of uncommon Boots that grants Heat whenever the wearer Burns an enemy.\n\nDespite the many scorch marks, these leather boots are somehow still supple and intact."
+  },
+  {
+    "name": "Ceremonial Battleaxe",
+    "rarity": "uncommon",
+    "desc": "Ceremonial Battleaxe is an uncommon, lightly enchanted (+1) variant of the Battleaxes family of weapons. While functionally the same as a Battleaxe +1, it can be used for solving the puzzle inside the Rosymorn Monastery chapel.\n\nThe intricate engravings on this axe's blade and handle make plain the skill of its smith."
+  },
+  {
+    "name": "Dagger of Shar",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Cloak of Elemental Absorption",
+    "rarity": "uncommon",
+    "desc": "Cloak of Elemental Absorption is an uncommon Cloak that allows the wearer to absorb a small amount of magical damage, and add it to their next attack.\n\nA favourite among fleet-footed gish, this cloak allows the wearer to wield a foe's elemental mastery against them."
+  },
+  {
+    "name": "Coruscation Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Covert Cowl",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Callous Glow Ring",
+    "rarity": "uncommon",
+    "desc": "Callous Glow Ring is an uncommon Ring that causes the wearer to deal an additional 2 Radiant damage to illuminated creatures every time they deal damage.\n\nA grudging gleam emits from this ring - more an indictment of light than an endorsement."
+  },
+  {
+    "name": "Cloak of Cunning Brume",
+    "rarity": "uncommon",
+    "desc": "Cloak of Cunning Brume is an uncommon Cloak which grants the user a  smokescreen cloud effect when trying to  Disengage.\n\nOne of the relics of Deep Duerra's rebellious children. The children found nothing of use in the vault and were discouraged. But in the morning the Vault Keykeeper's son, who admired the children, sought them out - and in his arms he brought a wealth of things, forged in shadow."
+  },
+  {
+    "name": "Dark Justiciar Gauntlets (Uncommon)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Coldbrim Hat",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Barkskin",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ceremonial Warhammer",
+    "rarity": "uncommon",
+    "desc": "Ceremonial Warhammer is an uncommon, lightly enchanted (+1) Warhammer. While functionally the same as a Warhammer +1, it can be used for solving the puzzle inside the Rosymorn Monastery chapel.\n\nFollowing tradition, this hammer's faces were forged with grooves that sealed in the blood of its first kill."
+  },
+  {
+    "name": "Browbeaten Circlet",
+    "rarity": "uncommon",
+    "desc": "Browbeaten Circlet is an uncommon piece of Headwear that grants the wearer a bonus to spell save DC while being threatened.\n\nA cornered animal will, on occasion, feel a rush of exhilarating energy, and an urge to fight. The same is true of many arcane practitioners, who do not take kindly to being menaced."
+  },
+  {
+    "name": "Djinni Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Diluted Oil of Sharpness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Cindermoth Cloak",
+    "rarity": "uncommon",
+    "desc": "Cindermoth Cloak is an uncommon Cloak that inflicts Burning on any foe within 2m / 7ft which damages the wearer.\n\nWith every rustle of this cloak, small moths like windblown embers appear around you - they flutter for a moment, then fade into inconsequence."
+  },
+  {
+    "name": "Elixir of Darkvision",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Dart +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Comeback Handaxe",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Decanter of Nearly Endless Water",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ceremonial Longsword",
+    "rarity": "uncommon",
+    "desc": "Ceremonial Longsword is an uncommon, lightly enchanted (+1) Longsword. While functionally the same as a Longsword +1, it can be used for solving the puzzle inside the Rosymorn Monastery chapel.\n\nA complex filigree wraps around the base of this blade - the runes on the side suggesting it is not merely decorative."
+  },
+  {
+    "name": "Cloth Armour",
+    "rarity": "uncommon",
+    "desc": "Cloth Armour is an uncommon piece of Clothing that grants Wrath when an enemy damages the wearer.\n\nNo sooner does blood speck the armour than it's absorbed, as if sustaining something within."
+  },
+  {
+    "name": "Brewing Ladle",
+    "rarity": "uncommon",
+    "desc": "Brewing Ladle is an uncommon, lightly enchanted (+1) variant of the Light Hammers family of weapons. It is a simple melee weapon wielded in one hand.  It's a light weapon that anyone can dual-wield without special training.  Its design lends itself well to be thrown at enemies as a projectile.\n\nA skillful smith decorated the wooden handle with a fine golden filigree."
+  },
+  {
+    "name": "Club +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Glowing Shield",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Firestoker",
+    "rarity": "uncommon",
+    "desc": "The Firestoker is an uncommon Hand Crossbow that deals additional damage to Burning targets.\n\nThough the crossbow's bolts look burning hot, they are pleasantly warm to the touch."
+  },
+  {
+    "name": "Everburn Blade",
+    "rarity": "uncommon",
+    "desc": "Everburn Blade is an uncommon greatsword that deals additional ⁠⁠Fire damage.\n\nSilent flames surge the length of the blade as soon as it clears the scabbard."
+  },
+  {
+    "name": "Faithbreaker",
+    "rarity": "uncommon",
+    "desc": "Faithbreaker is an uncommon +1 Warhammer that grants the Absolute Power weapon action.\n\nA hand-like brand stamped into the leather handle obscures the notches that would normally signify a hobgoblin's rank."
+  },
+  {
+    "name": "Githyanki Greatsword (Psionic)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Greatclub +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Glaive +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Greataxe +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Exterminator's Axe",
+    "rarity": "uncommon",
+    "desc": "Exterminator's Axe is an uncommon Greataxe that deals additional Fire damage to Plants, Insects, and Small creatures.\n\nThe intricate engravings on this axe's blade and handle make plain the skill of its smith."
+  },
+  {
+    "name": "Gloves of Power",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Succour",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Flint and Steel",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Fire Resistance",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Fleetfingers",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Githyanki Crossbow",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Githyanki Longsword (+1)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Featherlight Boots",
+    "rarity": "uncommon",
+    "desc": "The Featherlight Boots are an uncommon pair of Boots that grants the wearer additional speed while greatly injured.\n\nThe soft and supple leather glides over your skin. Wearing them feels like running barefoot."
+  },
+  {
+    "name": "Explorer's Ring",
+    "rarity": "uncommon",
+    "desc": "The Explorer's Ring is an uncommon Ring that improves the wearer's knowledge of Nature and Survival.\n\nA radiant and remarkably preserved ring, forged from arandur metal."
+  },
+  {
+    "name": "Elixir of Hill Giant Strength",
+    "rarity": "uncommon",
+    "desc": "Elixir of Hill Giant Strength is an uncommon elixir. It increases Strength when consumed.\n\nA sliver of a hill giant's fingernail is suspended in this potion, and the foul stench renders it unpleasant to swallow."
+  },
+  {
+    "name": "Elixir of Lightning Resistance",
+    "rarity": "uncommon",
+    "desc": "Elixir of Lightning Resistance is an uncommon Elixir that grants ⁠Lightning Resistance when consumed.\n\nThis potion causes a tingling sensation in the extremities when consumed."
+  },
+  {
+    "name": "Elixir of Poison Resistance",
+    "rarity": "uncommon",
+    "desc": "Elixir of Poison Resistance is an uncommon Elixir that grants ⁠Poison Resistance when consumed.\n\nPopular among politicians and adventurers alike."
+  },
+  {
+    "name": "Gloves of the Growling Underdog",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Archery",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Hail of Thorns",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Thievery",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gandrel's Aspiration",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Belligerent Skies",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Peerless Focus",
+    "rarity": "uncommon",
+    "desc": "Elixir of Peerless Focus is an uncommon Utility Potion that helps maintain Concentration and resist being Charmed.\n\nA spellcaster who cannot maintain their spells is about as useful as a chocolate kettle."
+  },
+  {
+    "name": "Fireheart",
+    "rarity": "uncommon",
+    "desc": "Fireheart is an uncommon Amulet that grants the wearer 2 turns of  Heat when they take Fire damage.\n\nThe ruby's red reflections look like eerie flames dancing across your skin."
+  },
+  {
+    "name": "Enforcer Club",
+    "rarity": "uncommon",
+    "desc": "Enforcer Club is an uncommon, lightly enchanted (+1) variant of the Clubs family of weapons. It is a simple melee weapon wielded in one hand.  It's a light weapon that anyone can dual-wield without special training.\n\nSometimes the blunt application of fear (and, admittedly, some winging elbows) is the difference between continued chaos and the re-establishment of order."
+  },
+  {
+    "name": "Eversight Ring",
+    "rarity": "uncommon",
+    "desc": "Eversight Ring is an uncommon Ring that imparts immunity to  Blindness upon the wearer.\n\nOne of the relics of Deep Duerra's rebellious children. Paranoid by nature, Duerra had erected a vast array of biting, blasting, blinding traps and safeguards to keep her enemies from gaining her sanctum. \nOf course, this also meant her children were sealed in with her by those same deadly measures."
+  },
+  {
+    "name": "Family Ring",
+    "rarity": "uncommon",
+    "desc": "The Family Ring is an uncommon Ring that grants +2 to Death Saving Throws.\n\nThe ring's simplicity is a deceit. Its gold core is woven with iron-hard feathers from the wings of great black corvid birds, envoys of the Raven Queen."
+  },
+  {
+    "name": "Frost Prince",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloomstrand Shield",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Fleshmelter Cloak",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Firzu's Ring of Trading",
+    "rarity": "uncommon",
+    "desc": "Firzu's Ring of Trading is an uncommon Ring that grants +1 to Deception.\n\nBelonged to a trader Firzu. Increases Deception Checks by 1."
+  },
+  {
+    "name": "Elixir of the Colossus",
+    "rarity": "uncommon",
+    "desc": "Elixir of the Colossus is an uncommon Elixir that when drunk, increases your size. Weapons deal an additional 1d4 damage. You gain Advantage on Strength Checks and saves. Replaces effects from other elixirs when drunk.\n\nInstantly upon inhaling this elixir, your abdomen seems to swell, and the muscles in your back feel like sheets of hammer-beaten steel."
+  },
+  {
+    "name": "Gloves of Baneful Striking",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Heroism",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Vigilance",
+    "rarity": "uncommon",
+    "desc": "Elixir of Vigilance is an elixir that when consumed, grants a +5 bonus to Initiative. In addition, you can't be  Surprised. Replaces effects from other elixirs when drunk.\n\nAn acrid, coppery aroma wafts from this liquid, clearing the senses and honing awareness."
+  },
+  {
+    "name": "Fungal Bamboozler",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Eternal Carafe of Wine (Or Sometimes Acid)",
+    "rarity": "uncommon",
+    "desc": "Eternal Carafe of Wine (Or Sometimes Acid) is a uncommon Utility Potion that has either wine or acid in it, depending on the day.\n\nEach morning, this carafe refills with wine. Sometimes, however, instead of wine, it refills with indigestible acid."
+  },
+  {
+    "name": "Fishing Rod of Alertness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Flail +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Enforcer Shield",
+    "rarity": "uncommon",
+    "desc": "Enforcer Shield is an uncommon Shield.\n\nThe shield is so battered, its metallic portions have the look of a creased grey shirt. However, underneath those folds of steel, scintillas of arcane light glimmer, echoing the hidden power of the Enforcers."
+  },
+  {
+    "name": "Enforcer Helmet",
+    "rarity": "uncommon",
+    "desc": "Enforcer Helm is an uncommon Helmet that heals the wearer when knocking out creatures.\n\nThe brutish thuggery of the Enforcer's position is summarised in this helmet's design."
+  },
+  {
+    "name": "Githyanki Shortsword (+1)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Githyanki Longsword (Psionic)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Githyanki Greatsword",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Goblinbane Dagger",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Greatsword +1",
+    "rarity": "uncommon",
+    "desc": "Greatsword +1 is an uncommon, lightly enchanted Greatsword.\n\nThe thick leather straps wrapped around the base of the blade creak under a solid grip."
+  },
+  {
+    "name": "Light Hammer +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Heavy Crossbow +1",
+    "rarity": "uncommon",
+    "desc": "Heavy Crossbow +1 is an uncommon, lightly enchanted (+1) variant of the Heavy Crossbows family of weapons. It is a martial ranged weapon that's wielded with both hands.\n\nDespite the heaviness of this crossbow, the latch pulls back with an effortless ease."
+  },
+  {
+    "name": "Light Crossbow +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Handaxe +1",
+    "rarity": "uncommon",
+    "desc": "Handaxe +1 is an uncommon, lightly enchanted (+1) variant of the Handaxes family of weapons. It is a simple melee weapon wielded in one hand.    Its design lends itself well to be thrown at enemies as a projectile.\n\nThis axe's hooked blade is crafted to cleave flesh and bone."
+  },
+  {
+    "name": "Halberd +1",
+    "rarity": "uncommon",
+    "desc": "Halberd +1 is an uncommon, lightly enchanted (+1) Halberd.\n\nThis halberd's spike is black with ash that cannot be washed away."
+  },
+  {
+    "name": "Herbalist's Gloves",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hellrider's Pride",
+    "rarity": "uncommon",
+    "desc": "Hellrider's Pride are an uncommon pair of Gloves that grant creatures healed by the wearer resistance to the physical damage of weapon attacks.[See: Bugs]\n\nA waft of sulphur emanates from these proudly-kept gauntlets."
+  },
+  {
+    "name": "Komira's Locket",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ilmater's Aid",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Helmet of Smiting",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hamarhraft",
+    "rarity": "uncommon",
+    "desc": "Hamarhraft is an uncommon Maul that deals Thunder damage in an area around the wielder when they land a Jump.\n\nThe Dwarven grammar is garbled, but the weapon's name suggests something about the importance of first impressions."
+  },
+  {
+    "name": "Helmet of Autonomy",
+    "rarity": "uncommon",
+    "desc": "The Helmet of Autonomy is an uncommon Helmet that grants the wearer Proficiency in Wisdom Saving Throws.\n\nThe metal bolted to the helmet's forehead is engraved with a faded script. Though the words have become unintelligible, their magic remains."
+  },
+  {
+    "name": "Leather Armour +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Key of the Ancients",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Jagged Spear",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Intransigent Warhammer",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hunter's Dagger",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Greater Elixir of Arcane Cultivation",
+    "rarity": "uncommon",
+    "desc": "Greater Elixir of Arcane Cultivation is an uncommon elixir that grants an additional level 2 spell slot.\n\nFrom hedge wizards to high priests, these elixirs are coveted by spellcasters of any ilk."
+  },
+  {
+    "name": "Hunting Shortbow",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hedge Wanderer Armour",
+    "rarity": "uncommon",
+    "desc": "The Hedge Wanderer Armour is an uncommon Medium Armour that provides a small boost to Dexterity related rolls and towards Nature Skill Checks.\n\nThis simple cured goat hide was enchanted by a travelling druid. A goatherd once helped her negotiate a strange maze of hedges, so she blessed all his goats in thanks."
+  },
+  {
+    "name": "Hat of Fire Acuity",
+    "rarity": "uncommon",
+    "desc": "Hat of Fire Acuity is an uncommon hat that grants the wearer  Arcane Acuity whenever they deal Fire damage.\n\nIt is said some wizard hats grant the power to keep your head cool - both literally and figuratively."
+  },
+  {
+    "name": "Green Dye",
+    "rarity": "uncommon",
+    "desc": "Green Dye is a consumable item that can be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nA humble dye made from tree sap."
+  },
+  {
+    "name": "Light Blue Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Holy Lance Helm",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hoarfrost Boots",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hat of Storm Scion's Power",
+    "rarity": "uncommon",
+    "desc": "Hat of Storm Scion's Power is an uncommon hat that grants  Arcane Acuity whenever the wearer deals ⁠Thunder damage.\n\nTwo sigils glow white where the hat brushes your temples - something is being tapped into; something distant and fearsome."
+  },
+  {
+    "name": "Ichorous Gloves",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hellrider Longbow",
+    "rarity": "uncommon",
+    "desc": "Hellrider Longbow is an uncommon +1 Longbow that grants the wielder a large bonus to Initiative and Advantage on Perception checks. It may also apply Faerie Fire to a creature on a successful attack.\n\nThis longbow was forged from the remnants of Stanislav the Silver's shield, found near the wreckage of  Castle Ravenloft some years ago."
+  },
+  {
+    "name": "Kurwin's Cauteriser",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Haste Spore Grenade",
+    "rarity": "uncommon",
+    "desc": "Haste Spore Grenade is a Consumable (Grenade) item which can be  thrown.\n\nAn alchemical concoction practically buzzing with potential energy."
+  },
+  {
+    "name": "Helmet of Arcane Acuity",
+    "rarity": "uncommon",
+    "desc": "The Helmet of Arcane Acuity is an uncommon Helmet that imparts Arcane Acuity upon the wearer when they deal damage with a weapon attack.\n\nSubtle magics are woven into the helmet's leather panes - for a powerful offence is sometimes still the best defence."
+  },
+  {
+    "name": "Ironwood Club",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hammergrim Mist Amulet",
+    "rarity": "uncommon",
+    "desc": "The Hammergrim Mist Amulet is an uncommon Amulet that grants the wearer the ability to cast the  Fog Cloud spell.\n\nOne of the relics of Deep Duerra's rebellious children. Drugging the Keykeeper of Duerra's vaults, the children crept in under cover of night and plundered their mother's treasure - searching desperately for anything that would aid in their flight."
+  },
+  {
+    "name": "Ironvine Shield",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Knock Knuckle Gloves",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hand Crossbow +1",
+    "rarity": "uncommon",
+    "desc": "Hand Crossbow +1 is an uncommon, lightly enchanted (+1) variant of the Hand Crossbows family of weapons. It is a martial ranged weapon wielded in one hand.  It's a light weapon that anyone can dual-wield without special training.\n\nA subtle magic runs through both strings of this crossbow, keeping the bows even once the lack is released."
+  },
+  {
+    "name": "Hoppy",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hide Armour +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Half Plate Armour +1",
+    "rarity": "uncommon",
+    "desc": "Half Plate Armour +1 is a uncommon Medium Armour that reduces Piercing damage.\n\nHeraldic runes are sewn into the padding of this armour, offering a gift of protection to whoever dons it."
+  },
+  {
+    "name": "Katana",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hoots' Hooch",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Javelin +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Holy Hand Soap",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ironwood Breastplate",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Kill Collar",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Hag's Ring",
+    "rarity": "uncommon",
+    "desc": "Hag's Ring is an uncommon Ring that grants the wearer access to Vicious Mockery\n\nGrimy, discoloured, and revoltingly ugly. Auntie Ethel must have made it herself. Surprisingly, you feel no disgust. Instead it fills you with a longing, as if it's calling out for its like."
+  },
+  {
+    "name": "Guild Ring",
+    "rarity": "uncommon",
+    "desc": "Guild Ring is a story-related Ring found in Act 3.\n\nCalishite emeralds are embedded in this heavy silver ring."
+  },
+  {
+    "name": "Infernal Mace (Uncommon)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Infernal Mask",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Merregon Halberd",
+    "rarity": "uncommon",
+    "desc": "Merregon Halberd is an uncommon, lightly enchanted (+1) Halberd.\n\nSharp teeth grow out of the halberd's dark metal - if it is indeed metal at all."
+  },
+  {
+    "name": "Rapier +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Quarterstaff +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Longbow +1",
+    "rarity": "uncommon",
+    "desc": "Longbow +1 is an uncommon, lightly enchanted (+1) variant of the Longbows family of weapons. It is a martial ranged weapon that's wielded with both hands.\n\nCarved enchantments span the length of this supple bow."
+  },
+  {
+    "name": "Maul +1",
+    "rarity": "uncommon",
+    "desc": "Maul +1 is an uncommon, lightly enchanted (+1) Maul.\n\nA weapon of dwarven make: elegant, but strong enough to last several human lifetimes."
+  },
+  {
+    "name": "Morningstar +1",
+    "rarity": "uncommon",
+    "desc": "Morningstar +1 is an uncommon, lightly enchanted (+1) variant of the Morningstars family of weapons. It is a martial melee weapon wielded in one hand.\n\nIt's said that one warrior with a morningstar is worth seventeen with a sword - one for each of the weapon's spikes."
+  },
+  {
+    "name": "Nature's Snare",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Pike +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Longsword +1",
+    "rarity": "uncommon",
+    "desc": "Longsword +1 is an uncommon, lightly enchanted (+1) variant of the Longswords family of weapons. It is a martial melee weapon that can be wielded in one hand, or with both hands for extra damage.\n\nA complex filigree wraps around the base of this blade - the runes on the side suggesting it is not merely decorative."
+  },
+  {
+    "name": "Psychic Spark",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Rain Dancer",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Mystra's Grace",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Poisoner's Robe",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Mage's Friend",
+    "rarity": "uncommon",
+    "desc": "Mage's Friend is an uncommon Ring that improves the wearer's knowledge of Arcana and Religion.\n\nThough carefully stowed away in a bedside chest, this ring is covered in dust and cobwebs."
+  },
+  {
+    "name": "Moondrop Pendant",
+    "rarity": "uncommon",
+    "desc": "The Moondrop Pendant is an uncommon Amulet that allows the wearer to avoid provoking Attacks of Opportunity when below 50% hit points.\n\nThe back bears an inscription under a delicate crescent moon. 'You're a novice no more, Robin."
+  },
+  {
+    "name": "Potion of Speed",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Light of Creation",
+    "rarity": "uncommon",
+    "desc": "Light of Creation is an uncommon +1 Halberd that deals additional Lightning damage, but has a chance to Stun its wielder on each successful attack.\n\nSmall lodestones have been inserted along the halberd's shaft, a strange blue current running through them."
+  },
+  {
+    "name": "Loviatar's Scourge",
+    "rarity": "uncommon",
+    "desc": "Loviatar's Scourge is an uncommon Mace that grants the wielder resistance to Necrotic damage. It also deals additional Necrotic damage to all nearby creatures, including the wielder.\n\nMore club than scourge, this weapon has a serrated edge made for drawing long, shallow cuts."
+  },
+  {
+    "name": "Melf's First Staff",
+    "rarity": "uncommon",
+    "desc": "The Melf's First Staff is an uncommon +1 Quarterstaff that improves Spell Save DC and Spell Attack Rolls, and allows the wearer to cast Melf's Acid Arrow.\n\nIn spite of (or perhaps because of) his suspiciously amusing name, the wizard Melf was actually quite a talented spellcaster and innovator in the field of the arcane. He even led an order called the Knights of Luna."
+  },
+  {
+    "name": "Marksmanship Hat",
+    "rarity": "uncommon",
+    "desc": "Marksmanship Hat is an uncommon hat that grants its wearer a bonus to ranged and thrown attack rolls.\n\nSilvery wings spread over the stiff unyielding leather."
+  },
+  {
+    "name": "Muddy Red Dye",
+    "rarity": "uncommon",
+    "desc": "Muddy Red Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nThis is absolutely just mud and blood. Right?"
+  },
+  {
+    "name": "Ocean Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Orange Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Pale Green Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Pale Orange Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Purple Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Murderous Cut",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Necklace of Elemental Augmentation",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Mace +1",
+    "rarity": "uncommon",
+    "desc": "Mace +1 is an uncommon, lightly enchanted (+1) variant of the Maces family of weapons. It is a simple melee weapon wielded in one hand.\n\nThe leather handle of this mace smells badly of rotting blood."
+  },
+  {
+    "name": "Pearl of Power Amulet",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Padded Armour +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Plate Armour +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Potion of Supreme Healing",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Luminous Gloves",
+    "rarity": "uncommon",
+    "desc": "The Luminous Gloves are an uncommon pair of Gloves that causes the wearer's Radiant damage to afflict struck foes with the Radiating Orb condition.\n\nThe pads of each fingertip shine from the fabric with a garish glow."
+  },
+  {
+    "name": "Lightning Jabber",
+    "rarity": "uncommon",
+    "desc": "Lightning Jabber is an uncommon +1 Spear that deals extra Lightning damage when thrown, and also has a chance to  Shock a target on hit.\n\nA makeshift spear fashioned from a giant crab's claw and the charged imagination of kuo-toa fishfolk."
+  },
+  {
+    "name": "Promise",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Noxious Spore Grenade",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Myrkulite Scourge",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Protective Plate",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Oil of Diminution",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Oil of Accuracy",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Luminous Armour",
+    "rarity": "uncommon",
+    "desc": "Luminous Armour is an uncommon Medium Armour that allows the wearer to cause radiant shockwaves whenever they deal Radiant damage.\n\nMany an adventurer has found themselves swallowed up by the dark throat of some nameless dungeon, aching for a glimpse of light."
+  },
+  {
+    "name": "Poisoner's Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Potion of Universal Resistance",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Merregon Potion",
+    "rarity": "uncommon",
+    "desc": "Merregon Potion is a Consumable(Grenade) item that can be thrown using the Throw action.\n\nA potion brewed by the merregons to charm a displacer beast. This batch seems weaker and might only addle the mind."
+  },
+  {
+    "name": "Magical Pike",
+    "rarity": "uncommon",
+    "desc": "Magical Pike is an uncommon, lightly enchanted (+1) variant of the Pikes family of weapons. It is a martial melee weapon that's wielded with both hands.   It gives the user extra reach in melee combat.\n\nThe base of this polearm's shaft is splintered, likely having borne the weight of a rider plucked from their mount."
+  },
+  {
+    "name": "Mind Sundering Dagger",
+    "rarity": "uncommon",
+    "desc": "Mind Sundering Dagger is an uncommon, lightly enchanted (+1) variant of the Daggers family of weapons. It is a simple melee weapon wielded in one hand. As a finesse weapon, it can benefit from the wielder's Dexterity and not just their Strength. It's a light weapon that anyone can dual-wield without special training.  Its design lends itself well to be thrown at enemies as a projectile.\n\nLight as thoughts themselves, this dagger is in the habit of rending them, causing significant pain, and occasional death."
+  },
+  {
+    "name": "Moonblade",
+    "rarity": "uncommon",
+    "desc": "Moonblade is an uncommon special variant of the Longswords family of weapons. It is a martial melee weapon that can be wielded in one hand, or with both hands for extra damage.\n\nThis sacred elven blade once belonged to Ketheric Thorm. Selune's blessing shines silver along its cutting edge."
+  },
+  {
+    "name": "Nightsong's Armour",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Oathbreaker Knight Armour",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scimitar +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scale Mail Armour +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Robe of Summer",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Fire",
+    "rarity": "uncommon",
+    "desc": "The Ring of Fire is an uncommon Ring that grants the wearer additional fire damage when dealing fire damage.\n\nA burning heat radiates from this ring, warming the wearer from head to toe."
+  },
+  {
+    "name": "Reason's Grasp",
+    "rarity": "uncommon",
+    "desc": "Reason's Grasp are an uncommon pair of Gloves that give the wearer Temporary Hit Points if they choose to end their Rage.\n\nThe snug fit of these gloves resist a balled fist - as if favouring the open hand of peace."
+  },
+  {
+    "name": "Ring of Colour Spray",
+    "rarity": "uncommon",
+    "desc": "Ring of Colour Spray is an uncommon Ring which allows the wearer to cast  Colour Spray once per short rest.\n\nWhen the light hits it just so, the centre jewel shimmers with every colour of the rainbow."
+  },
+  {
+    "name": "Ring of Restorative Gravity",
+    "rarity": "uncommon",
+    "desc": "The Ring of Restorative Gravity is an uncommon Ring that pulls creatures towards the wearer when healed by them.\n\nA hymn to Eilistraee is inscribed along the inside of this ring, which is surprisingly heavy when worn."
+  },
+  {
+    "name": "Robust Chain Shirt",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Absolute Force",
+    "rarity": "uncommon",
+    "desc": "The Ring of Absolute Force is an uncommon Ring. It allows the wearer to cast the  Thunderwave spell and deal 1 additional thunder damage if they have the Absolute's Brand.[See: Bugs]\n\nDarkness seems to blossom from this ring, heightened by the menacing glare of the Absolute's symbol, though for the Branded this symbol holds the promise of power."
+  },
+  {
+    "name": "Ritual Dagger",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ritual Axe",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Blur",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Flaming Sphere",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Heat Metal",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Invisibility",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Hold Person",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Flame Blade",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Detect Thoughts",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Returning Pike",
+    "rarity": "uncommon",
+    "desc": "Returning Pike is an uncommon +1 Pike that returns to the wielder automatically after being thrown.\n\nA 'Crazy Wilbur' is a technique invented by the dwarvish Ticklebeard Clan. It involves getting your larger enemies to swallow your weapon, then calling it back to you - as messily as possible."
+  },
+  {
+    "name": "Rupturing Blade",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Flinging",
+    "rarity": "uncommon",
+    "desc": "Ring of Flinging is an uncommon Ring that improves throwing damage.\n\nOrganisations like the Harpers do not relegate their activities to head-to-head combat - many a moonlit chase with an evildoer has been resolved with a loose roof tile and a decent throwing arm."
+  },
+  {
+    "name": "Safeguard Shield",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Salving",
+    "rarity": "uncommon",
+    "desc": "The Ring of Salving is an uncommon Ring which restores additional hit points every time the wearer heals another creature.\n\nA hymn to Eilistraee is inscribed along the inside of this ring, which is surprisingly heavy when worn."
+  },
+  {
+    "name": "Ring of Shadows",
+    "rarity": "uncommon",
+    "desc": "The Ring of Shadows is an uncommon Ring that grants its wearer the ability to cast  Pass Without Trace once per Long Rest.\n\nFor some, darkness is wielded like a black opal stud embedded in a signet ring - fashioned to a sharp and unforgiving point."
+  },
+  {
+    "name": "Scroll of Blindness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Elemental Infusion",
+    "rarity": "uncommon",
+    "desc": "The Ring of Elemental Infusion is an uncommon Ring that infuses your weapon with the element of your spells or cantrips, dealing additional damage.\n\nThe mysterious gem set in this ring seems to change hues whenever you aren't looking."
+  },
+  {
+    "name": "Ring of Spiteful Thunder",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Jumping",
+    "rarity": "uncommon",
+    "desc": "Ring of Jumping is an uncommon Ring that grants the wearer the ability to cast Enhance Leap once per Short Rest.\n\nThe ring is scuffed and twisted out of shape, as if worn by big stony fingers. The owner of those fingers has carved 'Karthol' into the warped metal in a fit of affection or possessiveness."
+  },
+  {
+    "name": "Remedial Potion",
+    "rarity": "uncommon",
+    "desc": "Remedial Potion is a Consumable (Potion). It has a beneficial utility effect.\n\nA coveted restorative for the adventurer on their last legs."
+  },
+  {
+    "name": "Ring of Self Immolation",
+    "rarity": "uncommon",
+    "desc": "The Ring of Self Immolation is an uncommon Ring that grants its wearer the ability to use the Self Immolation ability to gain the  Heat condition.\n\nEvery one of the three gems in this ring is searing hot - enough to burn yourself with the slightest brush of your fingers."
+  },
+  {
+    "name": "Render of Mind and Body",
+    "rarity": "uncommon",
+    "desc": "Render of Mind and Body is an uncommon +1 Shortsword that deals additional Psychic damage whenever the attack is made at Advantage.\n\nThe best offence is a struck cognisance."
+  },
+  {
+    "name": "Ritual Dagger of Shar",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Geniality",
+    "rarity": "uncommon",
+    "desc": "Ring of Geniality is an uncommon Ring that grants a boost to Persuasion and Deception.\n\nGlibness is not only in the tongue, but in the body. Gesture is powerful. Think of how many words of comfort can be stored and saved, when a hug will do just as sweetly."
+  },
+  {
+    "name": "Ring of Mental Inhibition",
+    "rarity": "uncommon",
+    "desc": "Ring of Mental Inhibition is an uncommon Ring that places a mentally weakening condition on enemies who fail to Save against the wearer's spells and abilities.\n\nThe patterns in the ring's swirling metal make your head spin whenever you look at them for too long."
+  },
+  {
+    "name": "Scarlet Leather Armour",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Darkness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Darkvision",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Crown of Madness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring Mail Armour +1",
+    "rarity": "uncommon",
+    "desc": "Ring Mail Armour +1 is a uncommon Heavy Armour that grants a +1 bonus to Strength Saving Throws and Ability Checks."
+  },
+  {
+    "name": "Scale Mail +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Red Dye",
+    "rarity": "uncommon",
+    "desc": "Red Dye is a consumable item that can be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nOne of the primary colours, and one you've seen a lot of, given your career choice."
+  },
+  {
+    "name": "Scroll of Arcane Lock",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Enlarge",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Gust of Wind",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Barkskin",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Reverse Rain Cloak",
+    "rarity": "uncommon",
+    "desc": "Reverse Rain Cloak is an uncommon Cloak that grants the user the condition  Wet while worn, increasing resistance to ⁠Fire, but granting vulnerability to ⁠Lightning and ⁠Cold damage.\n\nThe wearer is perpetually just a little bit damp."
+  },
+  {
+    "name": "Sanguine Blade",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Sandthief's Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Crabsight",
+    "rarity": "uncommon",
+    "desc": "Ring of Crabsight is an uncommon Ring that grants +2 Perception.\n\nMud cakes the tiny letters of an inscription - 'A Cursed Sight Doth Dwell Beneath'."
+  },
+  {
+    "name": "Robe +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Staff of Arcane Blessing",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Spellthief",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shortbow +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shortsword of First Blood",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shortsword +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Skybreaker",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Speedy Reply",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Staff of Crones",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Spear +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Smuggler's Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Silver Pendant",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Spurred Band",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Spiderstep Boots",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Slippery Chain Shirt",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Sharran Crossbow",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Speak with Dead",
+    "rarity": "uncommon",
+    "desc": "Scroll of Speak with Dead is a single-use scroll that allows the user to cast Speak with Dead as an action."
+  },
+  {
+    "name": "Scroll of Silence",
+    "rarity": "uncommon",
+    "desc": "Scroll of Silence is single-use scroll which allows the user to cast Silence as an  Action."
+  },
+  {
+    "name": "Scroll of Mirror Image",
+    "rarity": "uncommon",
+    "desc": "Scroll of Mirror Image is a single-use scroll that allows the user to cast Mirror Image as an action."
+  },
+  {
+    "name": "Scroll of Web",
+    "rarity": "uncommon",
+    "desc": "Scroll of Web is a single-use scroll that allows the user to cast Web as an action."
+  },
+  {
+    "name": "Scroll of Spike Growth",
+    "rarity": "uncommon",
+    "desc": "Scroll of Spike Growth is single-use scroll that allows the user to cast Spike Growth as an action."
+  },
+  {
+    "name": "Scroll of Protection from Poison",
+    "rarity": "uncommon",
+    "desc": "Scroll of Protection from Poison is single-use scroll that allows the user to cast Protection from Poison as an action."
+  },
+  {
+    "name": "Scroll of Prayer of Healing",
+    "rarity": "uncommon",
+    "desc": "Scroll of Prayer of Healing is single-use scroll that allows the user to cast Prayer of Healing as an action."
+  },
+  {
+    "name": "Scroll of Misty Step",
+    "rarity": "uncommon",
+    "desc": "Scroll of Misty Step is a single-use scroll that allows the user to cast Misty Step as a bonus action."
+  },
+  {
+    "name": "Scroll of Lesser Restoration",
+    "rarity": "uncommon",
+    "desc": "Scroll of Lesser Restoration is single-use scroll that allows the user to cast Lesser Restoration as an action."
+  },
+  {
+    "name": "Sea Green Dye",
+    "rarity": "uncommon",
+    "desc": "Sea Green Dye is a consumable item that can be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nCunning  merrow preserve coral for a hundred years in a kind of aquatic stasis; when the coral emerges, it forms this dye."
+  },
+  {
+    "name": "Shining Staver-of-Skulls",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shapeshifter's Boon Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Snowburst Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shar's Temptation",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shadow-Cloaked Ring",
+    "rarity": "uncommon",
+    "desc": "The Shadow-Cloaked Ring is an uncommon Ring that causes the wearer's weapon and unarmed attacks to deal an additional 1d4 damage against Obscured or shadow creatures.\n\nEven in the brightest light, this ring never gleams, as if perpetually wrapped in shadow, hungry for the dark."
+  },
+  {
+    "name": "Shadow Blade Ring",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Serpent Fang Toxin",
+    "rarity": "uncommon",
+    "desc": "Serpent Fang Toxin is a Consumable (Coating). It can be applied to a weapon to give it special properties for ten turns or thrown as a Grenade to inflict its effects in an area.\n\nFrom political assassinations to marital dysfunction,  poison's got you covered."
+  },
+  {
+    "name": "Scroll of Shatter",
+    "rarity": "uncommon",
+    "desc": "Scroll of Shatter is a single-use scroll that allows the user to cast Shatter as an action."
+  },
+  {
+    "name": "Scroll of See Invisibility",
+    "rarity": "uncommon",
+    "desc": "Scroll of See Invisibility is a single-use scroll that allows the user to cast See Invisibility as an action."
+  },
+  {
+    "name": "Spineshudder Amulet",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Splint Armour +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Magic Weapon",
+    "rarity": "uncommon",
+    "desc": "Scroll of Magic Weapon is a single-use scroll that allows the user to cast Magic Weapon as an action."
+  },
+  {
+    "name": "Scroll of Melf's Acid Arrow",
+    "rarity": "uncommon",
+    "desc": "Scroll of Melf's Acid Arrow is a single-use scroll that allows the user to cast Melf's Acid Arrow as an action."
+  },
+  {
+    "name": "Scroll of Phantasmal Force",
+    "rarity": "uncommon",
+    "desc": "Scroll of Phantasmal Force is a single-use scroll that allows the user to cast Phantasmal Force as an action."
+  },
+  {
+    "name": "Seemingly Gleaming Ring",
+    "rarity": "uncommon",
+    "desc": "Seemingly Gleaming Ring is an uncommon Ring that grants +1 to Charisma Saving Throws and a -1 to Wisdom Saving Throws.\n\nThe garnet at the centrepiece of this ring is like an unblinking, malevolent eye."
+  },
+  {
+    "name": "Staff of a Mumbling Wizard",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Spoon of Saltiness",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shadow Blade (weapon)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Sending Shell",
+    "rarity": "uncommon",
+    "desc": "Sending Shell is a Miscellaneous item, primarily of use for bartering, or sale to Traders.\n\nFaint whispers creep from this Sending Shell when you hold it close, yet the method of sending messages from it is unclear."
+  },
+  {
+    "name": "Shadowstep Boots",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shadow Battleaxe",
+    "rarity": "uncommon",
+    "desc": "Shadow Battleaxe is an uncommon battle axe.\n\nOliver would watch his father split logs with this, enjoying the thwacking sound. Sometimes, in that part of dusk when the light gets thin, he was drawn to his father's shadow, and would feel a stir of inexplicable dread."
+  },
+  {
+    "name": "Steadfast Maul",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Spiderstep Staff",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Shar's Sting",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Singing Sword",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Real Sparky Sparkswall",
+    "rarity": "uncommon",
+    "desc": "The Real Sparky Sparkswall is an uncommon Shield that allows the wearer to create a Lightning Aura.\n\n'Is there anything as beautiful as lightning striking all around you?' Yrre the Sparkstruck said, letting lightning strike all around them."
+  },
+  {
+    "name": "Worgfang",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Sword of Screams",
+    "rarity": "uncommon",
+    "desc": "Sword of Screams is an uncommon Rapier that deals an additional 1d4 Psychic damage.\n\nA blade of flawless craft. As it parts the air, you fancy you can hear a faint, whispering shriek..."
+  },
+  {
+    "name": "Sword of Justice",
+    "rarity": "uncommon",
+    "desc": "Sword of Justice is an uncommon +1 greatsword that grants its wielder the  Tyr's Protection spell.\n\nThe words 'Deliverance. Justice. Vengeance.' are engraved on the base of this sword. They echo in your mind."
+  },
+  {
+    "name": "Vision of the Absolute",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Watcher's Guide",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Xyanyde",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "War Pick +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Trident +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Steelforged Sword",
+    "rarity": "uncommon",
+    "desc": "Steelforged Sword is an uncommon, lightly enchanted (+1) variant of the Shortswords family of weapons. It is a martial melee weapon wielded in one hand. As a finesse weapon, it can benefit from the wielder's Dexterity and not just their Strength. It's a light weapon that anyone can dual-wield without special training.\n\nThough the grip's leather is old and crusty, it shows no signs of wear, and not a single scratch mars the slender blade."
+  },
+  {
+    "name": "Very Heavy Greataxe",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Warhammer +1",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Studded Leather Armour +1",
+    "rarity": "uncommon",
+    "desc": "Studded Leather Armour +1 is an uncommon Light Armour that reduces Bludgeoning damage by 1.\n\nThis armour is strong enough to stop a dagger and light enough to escape whatever weapon follows it."
+  },
+  {
+    "name": "The Whispering Promise",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Sunwalker's Gift",
+    "rarity": "uncommon",
+    "desc": "Sunwalker's Gift is an uncommon Ring that grants a creature darkvision.\n\nThe ring's arcane jewel parts all but the darkest of shadows."
+  },
+  {
+    "name": "The Lifebringer",
+    "rarity": "uncommon",
+    "desc": "The Lifebringer is an uncommon circlet which grants the wearer temporary hit points whenever they gain Lightning Charges.\n\n'Lightning is like magic,' Yrre the Sparkstruck once said."
+  },
+  {
+    "name": "Wapira's Crown",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Ever-Seeing Eye",
+    "rarity": "uncommon",
+    "desc": "The Ever-Seeing Eye is an uncommon Amulet that allows the wearer to cast  Protection from Evil and Good once per Short Rest.\n\nA pale green eye, pierced by the twisting branches of a dead tree - the result of a foolhardy woman begging Auntie for a favour."
+  },
+  {
+    "name": "Warped Headband of Intellect",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Sparkswall",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Blast Pendant",
+    "rarity": "uncommon",
+    "desc": "The Blast Pendant is an uncommon Amulet that allows the wearer to focus and discharge their Lightning Charges to strengthen their next lightning spell.\n\nThough they only worked together for a short time, it is hard to overstate the influence Lenore the cleric of Mystra had on Yrre the Sparkstruck, who often likened harnessing lightning to manipulating the Weave."
+  },
+  {
+    "name": "Tarnished Charm",
+    "rarity": "uncommon",
+    "desc": "The Tarnished Charm is an uncommon amulet that reduces the DC of the wearer's death saving throws.\n\nA menacing cackle emanates from this twisted charm. It whispers to bite, to maim, to kill..."
+  },
+  {
+    "name": "Wood Woad Shield",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Shadespell Circlet",
+    "rarity": "uncommon",
+    "desc": "The Shadespell Circlet is an uncommon Helmet that grants a bonus to Spell Save DC when the wearer is obscured in shadow.\n\nOne of the relics of Deep Duerra's rebellious children. Flanked by her court, Duerra shook her head at her children. Had they really believed they could leave her?"
+  },
+  {
+    "name": "Swamp Green Dye",
+    "rarity": "uncommon",
+    "desc": "Swamp Green Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nThis dye will make your clothes look like noxious, stagnant swampwater, and honestly that's so in right now."
+  },
+  {
+    "name": "Yellow Dye",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Winter's Clutches",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Varsh Ko'kuu's Boots",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Skinburster",
+    "rarity": "uncommon",
+    "desc": "The Skinburster is an uncommon +1 Halberd that grants its wielder  Force Conduit on each successful hit.\n\nIn mellow light, the halberd's curved steel head eerily resembles a grin."
+  },
+  {
+    "name": "Strange Conduit Ring",
+    "rarity": "uncommon",
+    "desc": "The Strange Conduit Ring is a uncommon Ring that grants additional Psychic damage to the wearer's weapon while Concentrating.\n\nIn his speculative writing on arcane displacement, the wizard  Tenser notes the possibility for keenly focused minds to maintain spells, and even unlock hidden potential while doing so."
+  },
+  {
+    "name": "Wizardsbane Oil",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Witchbreaker",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Thermoarcanic Gloves",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "The Undead Bane",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Thunderskin Cloak",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Vivacious Cloak",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Watcher's Shield",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Sylvan Scimitar",
+    "rarity": "uncommon",
+    "desc": "Sylvan Scimitar is an uncommon +1 Scimitar that allows its wielder to use their Spellcasting Ability modifier instead of their Dexterity modifier to determine their Attack Roll bonus.\n\nEverything moves strangely in the  Feywild, from rivers to behaviours. It's a mercurial place, where the magical and physical can pass permeably through one another."
+  },
+  {
+    "name": "Svartlebee's Woundseeker",
+    "rarity": "uncommon",
+    "desc": "Svartlebee's Woundseeker is an uncommon +1 greatsword that grants its wielder bonus to Attack Rolls against already damaged creatures.\n\nWielded by Svartlebee The Custodian, so named because he had the following reputation: Have you got someone in your life causing a mess? Send Svartlebee a missive. He shall clean them up, and then clean up the crime scene."
+  },
+  {
+    "name": "Tyrannical Jackboots",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Tarnished Ring",
+    "rarity": "uncommon",
+    "desc": "The Tarnished Ring is a common Ring belonging to  Derryth Bonecloak.\n\nA cheap ring marred by rust and a thin patina of neglect."
+  },
+  {
+    "name": "The Oak Father's Embrace",
+    "rarity": "uncommon",
+    "desc": "The Oak Father's Embrace is an uncommon Medium Armour that deals Radiant damage to creatures violating the natural order, including the wearer.\n\nEmbroidered with a simple maxim - 'Nature is the True State of the World' - these hides radiate a faint divine power."
+  },
+  {
+    "name": "Unlucky Thief's Gloves",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Wulbren's Hammer",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Tenacious Boots",
+    "rarity": "uncommon",
+    "desc": "Tenacious Boots are an uncommon medium-armour footwear that grants the wearer Athletics +1 and a spell to plant the wearer's feet to the ground.\n\nPlant your feet firm as an oak, your roots determinate, your balance as precise as the contour of the moon."
+  },
+  {
+    "name": "Tough Sunrises",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Trepan (+1)",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Syringe (+1)",
+    "rarity": "uncommon",
+    "desc": "Syringe is an uncommon +1 Dagger which grants the Inject Nostrum weapon action to non player characters only.\n\nThe yellowish-green ooze dried to the syringe's long needle gives you the distinct impression that this medical device was never used to heal anyone."
+  },
+  {
+    "name": "Verminsign",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Wakeful Amulet",
+    "rarity": "uncommon",
+    "desc": ""
+  },
+  {
+    "name": "Adamantine Shield",
+    "rarity": "rare",
+    "desc": "Adamantine Shield is a rare Shield that sends enemies Reeling when they miss you with a melee attack.\n\nThe dull shine of the adamantine promises this shield could take a thousand beatings -- and still look as good as new."
+  },
+  {
+    "name": "Adamantine Longsword",
+    "rarity": "rare",
+    "desc": "Adamantine Longsword is a rare +1 Longsword that automatically critical hits objects and ignores Resistance to Slashing damage.\n\nThough heavy, this longsword swings effortlessly in your hand -- ready to take down a hundred enemies."
+  },
+  {
+    "name": "Adamantine Mace",
+    "rarity": "rare",
+    "desc": "Adamantine Mace is a rare +1 Mace that automatically critical hits objects and ignores Resistance to Bludgeoning damage.\n\nA nimble mace, heavy with the promise of broken bones."
+  },
+  {
+    "name": "Adamantine Scimitar",
+    "rarity": "rare",
+    "desc": "Adamantine Scimitar is a rare +1 Scimitar that automatically critical hits objects and ignores Resistance to Slashing damage.\n\nEach cut of this blade shines with the wicked glint of adamantine -- a promise for a devastating blow."
+  },
+  {
+    "name": "Blooded Greataxe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Speed",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Brilliance",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Bracers of Defence",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Uninhibited Kushigo",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Genial Striding",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of Restoration",
+    "rarity": "rare",
+    "desc": "Amulet of Restoration is a rare Amulet that allows the wearer to cast  Healing Word and  Mass Healing Word once per Long Rest.\n\nThe gemstone centrepiece of the amulet was long ago mottled and dyed by the tears of a martyr."
+  },
+  {
+    "name": "Black and Jade Green Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Black and Summer Green Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Black and Azure Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Bow of the Banshee",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Arcane Bolstering",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Black and Furnace Red Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Bloody Plum Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Brown Alabaster Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Allandra's Whelm",
+    "rarity": "rare",
+    "desc": "Allandra's Whelm is a rare, moderately enchanted (+2) variant of the Tridents family of weapons. It is a martial melee weapon that can be wielded in one hand, or with both hands for extra damage.    Its design lends itself well to be thrown at enemies as a projectile.\n\nWhen Allandra was a girl, she saw a hot spall of matter fire through the sky. She wished upon this falling star, but instead of getting an answer from the sky, she got one from the sea in the voice of Umberlee, goddess of the endless fathom."
+  },
+  {
+    "name": "Ambusher",
+    "rarity": "rare",
+    "desc": "Ambusher is a rare +1 Shortsword that grants the wielder bonuses to Initiative and  Advantage on Perception checks; it also deals extra Necrotic damage on creatures which have not taken a turn yet.\n\nThis blade is one of a few rare swords wielded by the Eucalyptus League, a group of fabulously wealthy courtesans who owned a great deal of Luskan's bazaars."
+  },
+  {
+    "name": "Arduous Flame Blade",
+    "rarity": "rare",
+    "desc": "Arduous Flame Blade is a rare, lightly enchanted (+1) variant of the Longswords family of weapons. It is a martial melee weapon that can be wielded in one hand, or with both hands for extra damage.\n\nThe extent of cultural idolatry amongst members of the Flaming Fist is anyone's guess, but fascination with fire is plain and unambiguously obsessive."
+  },
+  {
+    "name": "Blade of Oppressed Souls",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Blackguard's Sword",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Bigboy's Chew Toy",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Blood-Bound Blade",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Breaching Pikestaff",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Breastplate +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Apparent Death",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of the Harpers",
+    "rarity": "rare",
+    "desc": "Amulet of the Harpers is a rare Amulet that allows the wearer to cast Shield once per Long Rest and grants Advantage with Wisdom Saving Throws.\n\nNobility can be found in suffering the slings and arrows of outrageous fortune. So can dying. Best to be on guard."
+  },
+  {
+    "name": "Armour of Devotion",
+    "rarity": "rare",
+    "desc": "Armour of Devotion is a set of rare Full Plate Heavy Armour that allows the wearer to cast Eternal Devotion, restoring a charge of their Paladin Channel Oath ability.\n\nThe soft hum of a fervent prayer reverberates throughout the armoured plates."
+  },
+  {
+    "name": "Barkskin Armour",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Acrobat Shoes",
+    "rarity": "rare",
+    "desc": "Acrobat Shoes is a pair of rare Boots that grants a bonus to Acrobatics and Advantage on Dexterity Saving Throws.\n\nThese flexible shoes were once owned by Audreyne Willoughs, who, in a somewhat ironic twist of fate, ran away from the circus to join her parents back home."
+  },
+  {
+    "name": "Band of the Mystic Scoundrel",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Transposition",
+    "rarity": "rare",
+    "desc": "Arrow of Transposition is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nSome archers claim that these arrows switch places with one another when placed in the same quiver."
+  },
+  {
+    "name": "Arrow of Arcane Interference",
+    "rarity": "rare",
+    "desc": "Arrow of Arcane Interference is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nTo disrupt the Weave is to draw Mystra's wrath - if her casters can catch you."
+  },
+  {
+    "name": "Arrow of Many Targets",
+    "rarity": "rare",
+    "desc": "Arrow of Many Targets is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nThis arrow is far more flexible than most - it can bend nearly in half without snapping."
+  },
+  {
+    "name": "Arrow of Salving",
+    "rarity": "rare",
+    "desc": "Arrow of Salving is a Consumable (Arrow) item that can be fired from a Ranged Weapon to remove certain conditions from its target.\n\nThe fizzling, soothing balm that coats this arrow is recommended by a majority of sages to treat minor ailments."
+  },
+  {
+    "name": "Blackguard's Gauntlets",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Blackguard's Greaves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of the Drunkard",
+    "rarity": "rare",
+    "desc": "Amulet of the Drunkard is a rare amulet. It increases the duration of Drunk to 5 turns and causes the wearer to regain 2d4 hit points once, during the first turn of  Drunk that occurs with this item equipped.\n\nDonning this necklace causes the room to sway and tip - or maybe it was already swaying? Whatever, time for another pint."
+  },
+  {
+    "name": "Amulet of Branding",
+    "rarity": "rare",
+    "desc": "The Amulet of Branding is a rare Amulet which allows the wearer to cast Brand the Weak once per Long Rest.\n\nThough thin and delicate-looking, the amulet's pendant sits heavy against your chest."
+  },
+  {
+    "name": "Absolute's Protector",
+    "rarity": "rare",
+    "desc": "Absolute's Protector is a rare Shield that reduces damage from spells by 1 if the user bears the mark of the Absolute, grants Shield Bash, and allows the wielder to cast Fire Shield: Chill once per Long Rest.\n\nThe Absolute's power radiates from this shield, invisible waves of energy beckoning to the Branded."
+  },
+  {
+    "name": "Brilliant Retort",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Baby Blue and Gold Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "After Death Do Us Part",
+    "rarity": "rare",
+    "desc": "After Death Do Us Part is a rare Ring which allows its wearer to regain half their hit points after being  Downed, but be cursed with  Shadow Possession.\n\nLove is the last cruel leaf to fall in an autumn wide with sorrow."
+  },
+  {
+    "name": "Briskwind Boots",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Braindrain Cape",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "A Sparking Promise",
+    "rarity": "rare",
+    "desc": "A Sparking Promise is a rare Ring that grants a cantrip that can electrify the surfaces the target walks on.\n\nA year into their union, Lenore, cleric of Mystra, gifted the gnome inventor Yrre an invention of her own devising - a ring that held a spell of sparks. Eventually, the touch of Lenore's hand faded to a glinting memory, but the ring's tingling grip remained resolute."
+  },
+  {
+    "name": "Broken Parasite Jar",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Creation's Echo",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Circlet of Blasting",
+    "rarity": "rare",
+    "desc": "The Circlet of Blasting is a rare circlet that grants the wearer the ability to cast the Scorching Ray spell.\n\nThis delicate circlet grants the wearer the ability to cast the Scorching Ray spell."
+  },
+  {
+    "name": "Champion's Chain",
+    "rarity": "rare",
+    "desc": "Champion's Chain is a rare Amulet that allows the wearer to grant an ally a bonus to Intimidation.\n\nA plump mass torn from Sovereign Glut's own flesh. A marker of the colony's esteem - or perhaps its property."
+  },
+  {
+    "name": "Cap of Wrath",
+    "rarity": "rare",
+    "desc": "The Cap of Wrath is a rare Helmet that grants the wearer  Wrath when they start the turn with 50% Hit Points or less.\n\nWith every blow the skullcap seems to compress, narrowing the vision of the wearer."
+  },
+  {
+    "name": "Drow Studded Leather Armour",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Deep Lilac Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Clown Hammer",
+    "rarity": "rare",
+    "desc": "Clown Hammer is a rare +2 Warhammer that forces both the wielder and the target to make a Wisdom Saving Throw on a critical hit, or else fall down laughing.\n\nThis hammer has a colourful history - it doesn't honk when you squeeze it, alas."
+  },
+  {
+    "name": "Despair of Athkatla",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Cacophony",
+    "rarity": "rare",
+    "desc": "Cacophony is a rare +1 Quarterstaff that grants the wielder the Thunderous Smite spell.\n\nCarved in circles across the knob of the staff are different words for thunder. Gnomish, Sylvan, Elvish, Celestial, even the Primordial tongue - all of these and more fuse together to form the thunderword."
+  },
+  {
+    "name": "Defender Flail",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Daredevil Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Diadem of Arcane Synergy",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Circlet of Psionic Revenge",
+    "rarity": "rare",
+    "desc": "The Circlet of Psionic Revenge is a rare Circlet which allows Gith to enhance their saving throws and punish casters with psychic damage.\n\nYou get the eerie feeling that the jewelsmith used more than alien metals to forge this circlet - something like ancient magic, or shards of a soul."
+  },
+  {
+    "name": "Corrosive Flail",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Chain Shirt +2",
+    "rarity": "rare",
+    "desc": "Chain Shirt +2 is a rare Medium Armour that reduces Slashing damage and grants a +1 bonus to Dexterity Saving Throws and Ability Checks\n\nThis mail's impossibly fine, close joining indicates the work of gnomish fingers."
+  },
+  {
+    "name": "Cruel Sting",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Darkfire Shortbow",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Defender Greataxe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Caitiff Staff",
+    "rarity": "rare",
+    "desc": "Caitiff Staff is a rare, moderately enchanted (+2) special variant of the Quarterstaves family of weapons. It is a simple melee weapon that can be wielded in one hand, or with both hands for extra damage.\n\nThe texture of magic granted by a warlock's patron is largely dependent upon the patron themselves - for example, your standard eldritch patron's probably going to work some eyeball-mottled tentacles in there somewhere."
+  },
+  {
+    "name": "Charge-Bound Warhammer",
+    "rarity": "rare",
+    "desc": "Charge-Bound Warhammer is a rare +1 Warhammer with +1 bonus to damage and Attack Rolls, and deals additional 1d6⁠⁠Lightning damage.\nThis hammer's magical powers only function if it's  Bound to an Eldritch Knight or is a Warlock's  Pact Weapon.\n\nEnergy crackles in weird and wonderful patterns across your hand as you wield this bound weapon, as if your very veins were marbled like a cloud of blue-white lightning."
+  },
+  {
+    "name": "Cold Snap",
+    "rarity": "rare",
+    "desc": "Cold Snap is a rare Dagger which chills enemies that attack and miss the wielder; it also increases the wielder's Armour Class if used in the off-hand.\n\nIn the steel, you can see small ice formations like bubbles in a bath, and even hear them pop with crickling crackles of frosted delight."
+  },
+  {
+    "name": "Combination Axe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Corpsegrinder",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Chain Mail +2",
+    "rarity": "rare",
+    "desc": "Chain Mail +2 is a rare Heavy Armour that reduces Slashing damage by 2.\n\nMade from thick, strong chains loosely-fitted, this armour hangs more heavily than some but protects its wearer with an impenetrable weave of metal."
+  },
+  {
+    "name": "Dolor Amarus",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Drakethroat Glaive",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dread Iron Dagger",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Duke Ravengard's Longsword",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Half-Plate (Rare)",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Cindersnap Gloves",
+    "rarity": "rare",
+    "desc": "Cindersnap Gloves are a rare pair of Gloves that grant the spell Protection from Missiles.\n\n'What moves faster, a loosed crossbow bolt or a windblown cinder? Let's find out.' - Overheard during a Flaming Fist raid in Baldur's Gate."
+  },
+  {
+    "name": "Derivation Cloak",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Circle of Bones",
+    "rarity": "rare",
+    "desc": "Circle of Bones is a rare Circlet that grants all nearby allied undead Resistance to physical damage, and the wearer can cast Animate Dead once per Long Rest.\n\nA coldness clings to this macabre circlet, like the chill of a grave."
+  },
+  {
+    "name": "Circlet of Mental Anguish",
+    "rarity": "rare",
+    "desc": "The Circlet of Mental Anguish is a rare Circlet that heals the wearer for 1d4 hit points when an enemy fails a Charisma, Intelligence, or Wisdom Saving Throw against one of the wearer's spells or cantrips.\n\nFell magic has seeped into this circlet, rejoicing at the slightest touch of despair."
+  },
+  {
+    "name": "Cerebral Citadel Armour",
+    "rarity": "rare",
+    "desc": "Cerebral Citadel Armour is a rare Heavy Armour that makes the wearer immune to being Frightened and gives a +1 bonus to all Intelligence, Wisdom, and Charisma saving throws if the wearer is infested by a mind flayer tadpole.\n\nThe little tentacle engravings are a nice touch."
+  },
+  {
+    "name": "Drunken Cloth",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Cloak of Displacement",
+    "rarity": "rare",
+    "desc": "Cloak of Displacement is a rare Cloak that, every turn, subjects enemy attacks against its wearer to Disadvantage until the wearer takes damage.\n\nThe fur is so blue as to be almost black. When mantled across your shoulders, the patterns on the cloak seem to shift and ripple."
+  },
+  {
+    "name": "Chancer's Carcanet",
+    "rarity": "rare",
+    "desc": "Chancer's Carcanet is a rare Amulet. It allows the wearer to use a reaction to make an  Attack Roll or  Saving Throw with  Advantage, once per Long Rest.\n\nImbued with a little luck after the item was pressed to the pursed lips of a saint of the goddess Tymora."
+  },
+  {
+    "name": "Dark Displacement Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Crawler Mucus",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Cerebral Citadel Gloves",
+    "rarity": "rare",
+    "desc": "The Cerebral Citadel Gloves are rare gloves that provide a bonus to Attack Rolls and Saving Throws when the wearer Charms or Frightens a creature.\n\nThe taut violet leather is drier than snakeskin, and puckered at each knuckle with shallow mouth-shaped pits."
+  },
+  {
+    "name": "Craterflesh Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Cloth of Authority",
+    "rarity": "rare",
+    "desc": "Cloth of Authority is a rare piece of Clothing that grants immunity to emotion-altering conditions. It also grants +1 Armour Class as well as Advantage on Intimidation and Insight checks.\n\nOne can hardly be called a lord if they aren't dressed as such. A cursory glance at Gortash's finery would reveal intricate garb - a closer look would reveal a maddening attention to even the most minute details of the filigree."
+  },
+  {
+    "name": "Dagger +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dostrealt's Piccolo",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Boots",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Gauntlets (Rare)",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dart +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Deadly Channeller Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Cloak of Avarice",
+    "rarity": "rare",
+    "desc": "The Cloak of Avarice is a rare cloak.\n\nFor one to wear this heavy cloak woven of errant, unused gold, one's pockets must hang even heavier still."
+  },
+  {
+    "name": "Dauntless Amulet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Giantbreaker",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Envoy's Amulet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Fetish of Callarduran Smoothhands",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Cinder and Sizzle",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Missile Snaring",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Evasive Shoes",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Guileful Movement",
+    "rarity": "rare",
+    "desc": "Elixir of Guileful Movement gives the effects of  Freedom of Movement until a long rest.\n\nThough textured like half-frozen honey, this liquid flows as effortlessly as mercury."
+  },
+  {
+    "name": "Elven Chain",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Crushing",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Fistbreaker Helm",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Enraging Heart Garb",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Flawed Helldusk Armour",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Flawed Helldusk Helmet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Necrotic Resistance",
+    "rarity": "rare",
+    "desc": "Elixir of Necrotic Resistance is a rare Elixir that grants ⁠Necrotic Resistance when consumed.\n\nSmells of fresh herbs and berries. Some say flowers placed within will bloom indefinitely."
+  },
+  {
+    "name": "Flail of Ages",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of the Automaton",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Executioner Sword",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Fleshrender",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gleamdance Dagger",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of the Balanced Hands",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Flawed Helldusk Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gauntlets of Surging Accuracy",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gibus of the Worshipful Servant",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Viciousness",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of Battlemage's Power",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Dwarven Splintmail",
+    "rarity": "rare",
+    "desc": "Dwarven Splintmail is a rare heavy armour that reduces Piercing damage by 1 and grants a +1 bonus to Strength Saving Throws and Ability Checks. In addition, it also boosts the user's Constitution by 2.\n\nSkilled hands crafted this armour, reinforcing the metal plates while sacrificing none of the flexibility."
+  },
+  {
+    "name": "Garb of the Land and Sky",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Cloud Giant Strength",
+    "rarity": "rare",
+    "desc": "Elixir of Cloud Giant Strength is an elixir that increases Strength when consumed.\n\nAngling this solution just so refracts the colours of sunrise within."
+  },
+  {
+    "name": "Elixir of Battlemage's Power",
+    "rarity": "rare",
+    "desc": "Elixir of Battlemage's Power is a rare elixir that increases the potency of spells by granting 3 stacks of  Arcane Acuity that persist until the next long rest.\n\nDerived from the eye of a mage-hunting Nothic, this elixir waxes from within with a piercing light."
+  },
+  {
+    "name": "Elixir of See Invisibility",
+    "rarity": "rare",
+    "desc": "Elixir of See Invisibility is a rare elixir that grants the ability to spot Invisible creatures. Replaces effect from other elixirs when drunk.\n\nBeneath its vial of glass the liquid floods with colour, goes translucent, and becomes colourful once more - a pretty fluctuation."
+  },
+  {
+    "name": "Elixir of Half-Elven Healing",
+    "rarity": "rare",
+    "desc": "The Elixir of Half-Elven Healing is a rare Elixir made up of all of a half-elf's best qualities.\n\nUpon consumption, you and surrounding allies regain hit points equal to your Constitution score.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Elven Elegance",
+    "rarity": "rare",
+    "desc": "Elixir of Elven Elegance is a unique rare Elixir made up of all of an elf's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Falataeric Cli Lyre",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Glimmergad's Selgaunt Fiddle",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Elixir of Dwarven Resilience",
+    "rarity": "rare",
+    "desc": "The Elixir of Dwarven Resilience is a rare Elixir made up of all of a dwarf's best qualities distilled into a bottle.\n\nDwarven blood lets you add your Proficiency Modifier to Saving Throws until you succeed on 3 of them or take a Long Rest.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Githyanki Providence",
+    "rarity": "rare",
+    "desc": "Elixir of Githyanki Providence is a rare Elixir made up of all of an githyankis best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Tiefling Vice",
+    "rarity": "rare",
+    "desc": "Elixir of Tiefling Vice is a rare Elixir made up of all of a tieflings best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Dragonborn Prowess: Fire",
+    "rarity": "rare",
+    "desc": "Elixir of Dragonborn Prowess: Fire is a unique rare Elixir made up of all of a fire dragonborn's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Dragonborn Prowess: Lightning",
+    "rarity": "rare",
+    "desc": "Elixir of Dragonborn Prowess: Lightning is a unique rare Elixir made up of all of a lightning dragonborn's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Dragonborn Prowess: Acid",
+    "rarity": "rare",
+    "desc": "Elixir of Dragonborn Prowess: Acid is a unique rare Elixir made up of all of an acid dragonborn's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Dragonborn Prowess: Frost",
+    "rarity": "rare",
+    "desc": "Elixir of Dragonborn Prowess: Frost is a unique rare Elixir made up of all of a frost dragonborn's best qualities distilled into a bottle.\n\nYou have  Advantage on Intimidation and Persuasion Checks, Resistance to Cold damage, and can use  Ice Storm once until your next Long Rest.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Dragonborn Prowess: Poison",
+    "rarity": "rare",
+    "desc": "Elixir of Dragonborn Prowess: Poison is a unique rare Elixir made up of all of a poison dragonborn's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Halfling Luck",
+    "rarity": "rare",
+    "desc": "Elixir of Halfling Luck is a rare Elixir made up of all of an halfling's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Human Versatility",
+    "rarity": "rare",
+    "desc": "Elixir of Human Versatility is a rare Elixir made up of all of a human's best qualities distilled into a bottle.\n\nMundane pluckiness grants you Proficiency in all skills until the next Long Rest due to the wily resourcefulness now bubbling within it.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Gnomish Ingenuity",
+    "rarity": "rare",
+    "desc": "Elixir of Gnomish Ingenuity is a rare Elixir made up of all of a gnome's best qualities distilled into a bottle.\n\nYou are Proficient in Sleight of Hand Checks and can cast  Knock until your next Long Rest thanks to the crafty wiles of the Forgotten Folk.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Elixir of Half-Orcish Fury",
+    "rarity": "rare",
+    "desc": "Elixir of Half-Orcish Fury is a rare Elixir made up of all of a half-orc's best qualities distilled into a bottle.\n\nOne of Blood Vendor Araj Oblodra's elixirs, distilled from a specific sanguine quality, and with properties aligned to an equally specific race."
+  },
+  {
+    "name": "Githyanki Breastplate",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Flail of Dread Skulls",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Face-Painting Kit",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Flail +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Haste Helm",
+    "rarity": "rare",
+    "desc": "The Haste Helm is a rare helmet that grants the wearer a burst of speed at the start of combat.\n\nThe helm throbs when violence is near, filling the wearer with a compulsion to act."
+  },
+  {
+    "name": "Linebreaker Boots",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hide Armour +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Harold",
+    "rarity": "rare",
+    "desc": "Harold is a rare +1 Heavy Crossbow that can possibly Bane targets that it hits.\n\nNamed after Harold Butterbisk, who opened the Butterbisk Inn in Waterdeep before it was renamed by new owners. The stock of the crossbow reads: Quaffing is a shootable offence."
+  },
+  {
+    "name": "Gold Wyrmling Staff",
+    "rarity": "rare",
+    "desc": "Gold Wyrmling Staff is a rare +1 Quarterstaff that deals additional Fire damage with melee strikes and grants its wielder the Fire Bolt cantrip.\n\nThe fire engulfing this staff seems to feed off thin air, never once burning the dark wood."
+  },
+  {
+    "name": "Iron-Banded Shield +1",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Harmonium Halberd",
+    "rarity": "rare",
+    "desc": "Harmonium Halberd is a rare +1 Halberd that grants its wielder additional Strength at the cost of some Intelligence and Wisdom.\n\nThe platinum inlays of this halberd hum an otherworldy harmony in the key of C, heightening the wielder's vigour but diminishing their mental faculties. The sound it makes is pining, as if far from its rightful home."
+  },
+  {
+    "name": "Gloves of Uninhibited Kushigo",
+    "rarity": "rare",
+    "desc": "Gloves of Uninhibited Kushigo is a rare pair of gloves that deals additional damage with Throw and Improvised Weapon attacks.\n\nForsaking his infamous armour,  Kushigo left Irishi's body and wandered naked, without thought or care, into the barren countryside. The land was flat and desolate under the red-gold sun, but compared to his lonely heart, it seemed alive with joy."
+  },
+  {
+    "name": "Harlequin Black and White Dye",
+    "rarity": "rare",
+    "desc": "Harlequin Black and White Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nThe white of the moon, the black of courtly mischief."
+  },
+  {
+    "name": "Indigo Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Lime, Lemon, and Lichen Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Malice",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ketheric's Warhammer",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Jorgoral's Greatsword",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Larethian's Wrath",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Gloves of The Duellist",
+    "rarity": "rare",
+    "desc": "Gloves of The Duellist are a rare pair of Gloves that enhance melee weapon Attack Rolls when the wearer only holds one weapon in their main hand.\n\nWays of beginning a duel have varied over the years. Perhaps the most famous is the Bildumbacher Method, in which the instigator drips paint thinner onto the opponent's socks."
+  },
+  {
+    "name": "Lavender Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hellbeard Halberd",
+    "rarity": "rare",
+    "desc": "Hellbeard Halberd is a rare +2 Halberd which deals additional ⁠Poison damage and possibly  Poisons the target.\n\nSalvaged from the beard of a dead infernal leviathan, whose facial hair was formed from the weapons of an army it had once vanquished."
+  },
+  {
+    "name": "Leather Armour +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Half Plate Armour +2",
+    "rarity": "rare",
+    "desc": "Half Plate Armour +2 is a rare Medium Armour that moderately reduces Piercing damage.\n\nThis breastplate is far tougher than it appears, taking blows from common weapons without suffering so much as a scratch."
+  },
+  {
+    "name": "Icebite Robe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hammer of the Just",
+    "rarity": "rare",
+    "desc": "Hammer of the Just is a rare +2 Warhammer which allows the wielder to cast Detect Thoughts and deals additional Radiant damage. It also deals additional Bludgeoning damage to Fiends and Undead.\n\nTyr is often known as the Maimed God - a descriptor he shares with most victims of this heavy warhammer."
+  },
+  {
+    "name": "Harmonic Dueller",
+    "rarity": "rare",
+    "desc": "Harmonic Dueller is a rare +1 Rapier that when activated, can grant all the wielder's melee attacks extra damage equal to their Charisma modifier.\n\nUnsheathed, the steel of this rapier shivers and thrums mellifluously in response to nearby surfaces - the motion brings to mind an actor struck with pre-show nerves."
+  },
+  {
+    "name": "Harper Sacredstriker",
+    "rarity": "rare",
+    "desc": "Harper Sacredstriker is a rare +1 Quarterstaff that grants the wielder the Spiritual Weapon spell at level 6.\n\nThis quarterstaff is as solid as the bond between each member of the Harpers - even working in anonymity, they do so with a common and righteous cause."
+  },
+  {
+    "name": "Hollow's Staff",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Infernal Longsword",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Infernal Mace",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Least Expected",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hat of Uninhibited Kushigo",
+    "rarity": "rare",
+    "desc": "The Hat of Uninhibited Kushigo is a rare hat that grants +1 bonus to their Spell Save DC after dealing damage with an unarmed attack.\n\nComing upon a wise woman, Kushigo got drunk and grew maudlin, and told her about Irishi's scalping. She gave him some clothes - light and fine - and encouraged him to take his time to grieve. He did.And, when he was ready, he fought again, uninhibited by steel or fellowship - for they only weighed him down."
+  },
+  {
+    "name": "Keepsake Ring",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Justiciar's Greatshield",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Karabasan's Poison",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ketheric's Shield",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hat of the Sharp Caster",
+    "rarity": "rare",
+    "desc": "The Hat of the Sharp Caster is a rare Helmet that rerolls the die(s) on spell damage rolls if they are a 1 or 2.\n\nAll you need now is a holster for your wand, tobacco to chew, and some sort of pack animal to ride, and you'll look like a complete and utter bingus."
+  },
+  {
+    "name": "Jhannyl's Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Kiam Goda's Kilat Drum",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Karabasan's Gift",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hand Crossbow +2",
+    "rarity": "rare",
+    "desc": "Hand Crossbow +2 is a rare, moderately enchanted (+2) variant of the Hand Crossbows family of weapons. It is a martial ranged weapon wielded in one hand.  It's a light weapon that anyone can dual-wield without special training.\n\nThough the crossbow is small and light, a heavy power runs through its bowstring."
+  },
+  {
+    "name": "Infernal Spear",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Hat Of Uproarious Laughter",
+    "rarity": "rare",
+    "desc": "Hat Of Uproarious Laughter is a rare hat that tries to make targetted creatures fall on the floor laughting.\n\nThe insides of this hat have clasps, not for gloves or cards, but rather for a portable custard pie gag."
+  },
+  {
+    "name": "Helm of Arcane Gate",
+    "rarity": "rare",
+    "desc": "The Helm of Arcane Gate is a rare Helmet that allows the wearer to cast Arcane Gate.\n\nThe skullcap inside the helm is embroidered with the likeness of a pair of gorgeous gateways, tethered by a cord of light."
+  },
+  {
+    "name": "Kruznabir's Asylum Amulet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Infernal Warhammer",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Light Crossbow of Speed",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Longsword +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Mace +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Greataxe +2",
+    "rarity": "rare",
+    "desc": "Greataxe +2 is a rare, moderately enchanted (+2) Greataxe.\n\nThis heavy axe emits a barely audible hum when swung."
+  },
+  {
+    "name": "Longbow +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Headband of Intellect",
+    "rarity": "rare",
+    "desc": "The Headband of Intellect is a rare Circlet that raises the wearer's Intelligence to 19.\n\nAn elegant circlet, best worn by those with an affinity for the magical arts."
+  },
+  {
+    "name": "Greatclub +2",
+    "rarity": "rare",
+    "desc": "Greatclub +2 is a rare, moderately enchanted (+2) Greatclub.\n\nA blue glow radiates through the brass spirals at the end of this heavy club."
+  },
+  {
+    "name": "Phalar Aluve",
+    "rarity": "rare",
+    "desc": "Phalar Aluve is a rare +1 Longsword that can be made to  Sing or  Shriek, granting nearby allies or enemies a bonus to Attack Rolls or damage rolls, depending on the choice.\n\nThe Drow inscription on this blade appears to have been recently carved."
+  },
+  {
+    "name": "Ring of Mind-Shielding",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Poison Resistance",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Potion of Invisibility",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Pale Oak",
+    "rarity": "rare",
+    "desc": "Pale Oak is a rare Quarterstaff that grants the Faithwarden's Vines spell and prevents the wielder from being Ensnared by vines.\n\nInfused with Silvanus' strength, these staves are gifted to Faithwardens who act in defence of nature."
+  },
+  {
+    "name": "Ring of Protection",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Monster Slayer Glaive",
+    "rarity": "rare",
+    "desc": "Monster Slayer Glaive is a rare +1 Glaive that deals additional damage against Monstrosities and increases its wielder's Jump distance.\n\nMonster-slaying is a rare calling, not for the faint of heart. It requires temperance, discipline, and usually a very big stick with something pointy at the end. The best thing about spears is that the ugly parts of combat are happening at the other end."
+  },
+  {
+    "name": "Rat Bat",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Robe of Exquisite Focus",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Moonlight Glaive",
+    "rarity": "rare",
+    "desc": "Moonlight Glaive is a rare +2 Glaive that deals additional Radiant damage, has a permanent Light effect, and grants its wielder the Moonlight Butterflies weapon action.\n\nA gift from Dame Aylin and her radiant goddess, this weapon's contours hold a silver-white beauty akin to the nightly lantern that climbs the firmament each evening."
+  },
+  {
+    "name": "Ring of Exalted Marrow",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Pale Pink Dye",
+    "rarity": "rare",
+    "desc": "Pale Pink Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nAh, the hue of heroes."
+  },
+  {
+    "name": "Pink and Leaf Green Dye",
+    "rarity": "rare",
+    "desc": "Pink and Leaf Green Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nColours used by gnomish alderfolk to mark intelligence and guile."
+  },
+  {
+    "name": "Periapt of Wound Closure",
+    "rarity": "rare",
+    "desc": "Periapt of Wound Closure is a rare Amulet. Its wearer is automatically stabilised if  Downed at the start of their turn and the maximum the amount of hit points are restored to them when they receive healing.\n\nSometimes the best thing you can do for your friends is to stop bleeding and give them a chance to sort everything out."
+  },
+  {
+    "name": "Mellow Fruit Dye",
+    "rarity": "rare",
+    "desc": "Mellow Fruit Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nYou'll look like you belong in a tree - not hanging like an extremely dead person, but rather dangling in a most enchanting fashion."
+  },
+  {
+    "name": "Ring of Arcane Synergy",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ne'er Misser",
+    "rarity": "rare",
+    "desc": "The Ne'er Misser is a rare   + 1 Hand Crossbow that deals ⁠Force damage on its attacks and grants the wearer the ability to cast Magic Missile once per short rest as a 3rd level Spell."
+  },
+  {
+    "name": "Risky Ring",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Potion of Flying",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Rippling Force Mail",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Plate Armour +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring Mail Armour +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Poisoner's Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Planeslayer Flail",
+    "rarity": "rare",
+    "desc": "Planeslayer Flail is a rare, moderately enchanted (+2) variant of the Flails family of weapons. It is a martial melee weapon wielded in one hand."
+  },
+  {
+    "name": "Punch-Drunk Bastard",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Twilight",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ravengard's Scourger",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Rebound Battleaxe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Render of Scrumptious Flesh",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Obsidian Laced Robe",
+    "rarity": "rare",
+    "desc": "Obsidian Laced Robe is rare piece of Clothing that deals Fire damage to enemies on successful Saving Throws against their spells, and grants its wearer resistance to Fire damage.\n\nThe inside of this robe is dark and faceted like volcanic glass, yet the material is light and soft. Against the skin, it also produces a heat like a toasty fire on a day of snow."
+  },
+  {
+    "name": "Penumbral Armour",
+    "rarity": "rare",
+    "desc": "Penumbral Armour is a rare Light Armour that enhances Stealth when the wearer is Obscured.\n\nOne of the Relics of Deep Duerra's rebellious children. Kitted out though they were for escape, the older siblings had a horrible time encouraging their younger brothers and sisters, who at the crux were frightened of what their mother would do to them should they be caught."
+  },
+  {
+    "name": "Ring of Free Action",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Psionic Ward Armour",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Truthfulness",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Potion of Angelic Reprieve",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Raven Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Nimblefinger Gloves",
+    "rarity": "rare",
+    "desc": "Nimblefinger Gloves are a rare pair of Gloves that grant a Dexterity bonus to Gnomes, Halflings, and Dwarves, as well as a bonus to Sleight of Hand.\n\nFor the right wearer, these supple doeskin gloves offer both comfort and protection - alongside a perfectly attuned sense of where one's fingers are, and what pocket they're picking."
+  },
+  {
+    "name": "Martial Exertion Gloves",
+    "rarity": "rare",
+    "desc": "Martial Exertion Gloves are a rare pair of Gloves that allow the wearer to gain an additional attack and double their movement speed for one turn at the cost of taking some damage.\n\n'You drop and give me thirty you sumbitch; you think a bugbear's gonna roll over and let you rub his tummy? One two three four - keep going maggot!"
+  },
+  {
+    "name": "Ring of Blink",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Resonance Stone",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Oil of Bane",
+    "rarity": "rare",
+    "desc": "Oil of Bane is a Consumable (Coating). It can be applied to a weapon to give it special properties for ten turns.\n\nThe cloying scent of this oil makes one feel foolish, ill-prepared, not quite worthy."
+  },
+  {
+    "name": "Oil of Combustion",
+    "rarity": "rare",
+    "desc": "Oil of Combustion is a Consumable (Coating). It can be applied to a weapon to give it special properties for ten turns.\n\n'Look, it's perfectly simple. You just coat the person in the oil, like so."
+  },
+  {
+    "name": "Padded Armour +2",
+    "rarity": "rare",
+    "desc": "Padded Armour +2 is a rare Light Armour that reduces Bludgeoning damage by 2.\n\nA standard gambeson of quilted cloth. Good for catching blows, but almost unbearably sweaty."
+  },
+  {
+    "name": "Rapier +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Oil of Freezing",
+    "rarity": "rare",
+    "desc": "Oil of Freezing is a Consumable (Coating). It can be applied to a weapon to give it special properties for ten turns."
+  },
+  {
+    "name": "Quarterstaff +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Nightsinger's Half-Plate",
+    "rarity": "rare",
+    "desc": "Nightsinger's Half-Plate is a rare Medium Armour that reduces Piercing damage by 2.\n\nShar's aspect winds its way through the patterns and pauldrons of this half plate, and any light cast nearby seems to almost quiver away from it, afraid. For even the light knows that the clank of this armour is swiftly followed by a Dark Justiciar's silent blade."
+  },
+  {
+    "name": "Mutilated Carapace",
+    "rarity": "rare",
+    "desc": "Mutilated Carapace is a rare piece of Clothing that grants its wearer a bonus to attack rolls and damage rolls while disguised, as well as Advantage on Deception and Persuasion Ability Checks.\n\nHard, fleshy leather has been derived from a countless slew of victims to form this armour for Bhaal's fetid chosen."
+  },
+  {
+    "name": "Robe of Spell Resistance",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Beguiling",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Sentient Amulet (Rare)",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shadow of Menzoberranzan",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shattered Flail",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Seraphic Pugilist Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shelter of Athkatla",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Runepowder Vial",
+    "rarity": "rare",
+    "desc": "Runepowder Vial is a rare Consumable. It can be  thrown and explodes when broken.\n\nRunepowder was said to be invented by  Gaerdal Ironhand, the protector god of gnomes. A mere 23 vials were needed to repel an assault led by  Kurtulmak and his Kobold Delvers."
+  },
+  {
+    "name": "Scale Mail +2",
+    "rarity": "rare",
+    "desc": "Scale Mail +2 is a rare Medium Armour.\n\nCrafted by an artist's hands, this exquisite scale shirt feels like it could turn aside any blade."
+  },
+  {
+    "name": "Sentinel Shield",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shadeclinger Armour",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shadow Lantern",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Servitor of the Black Hand Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Evard's Black Tentacles",
+    "rarity": "rare",
+    "desc": "Scroll of Evard's Black Tentacles is a single-use scroll that allows the user to cast Evard's Black Tentacles as an action."
+  },
+  {
+    "name": "Scabby Pugilist Circlet",
+    "rarity": "rare",
+    "desc": "The Scabby Pugilist Circlet is a rare Helmet that grants additional damage on weapon and unarmed strikes while surrounded by 2 or more foes.\n\nEvery adventuring party has at least one 'chaotic element'. In the case of one such party, this was the infamous Scabby, a barbarous goblin who was trained by monks."
+  },
+  {
+    "name": "Scroll of Fly",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Knock",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Vampiric Touch",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of True Resurrection",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Dimension Door",
+    "rarity": "rare",
+    "desc": "Scroll of Dimension Door is a Scroll that allows the user to cast Dimension Door as an action."
+  },
+  {
+    "name": "Sage Green Dye",
+    "rarity": "rare",
+    "desc": "Sage Green Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nGreen as good-smelling herbs in a cookpot."
+  },
+  {
+    "name": "Scroll of Conjure Minor Elemental",
+    "rarity": "rare",
+    "desc": "A Scroll of Conjure Minor Elemental is a single-use scroll that allows the user to cast Conjure Minor Elemental as an action.\n\nConjure a minor elemental to fight alongside you."
+  },
+  {
+    "name": "Scimitar +2",
+    "rarity": "rare",
+    "desc": "Scimitar +2 is a rare, moderately enchanted (+2) variant of the Scimitars family of weapons. It is a martial melee weapon wielded in one hand. As a finesse weapon, it can benefit from the wielder's Dexterity and not just their Strength. It's a light weapon that anyone can dual-wield without special training.\n\nAn arched electric-blue afterimage follows this blade's every move."
+  },
+  {
+    "name": "Scroll of Blink",
+    "rarity": "rare",
+    "desc": "Scroll of Blink is a single-use scroll that allows the user to cast Blink as an action."
+  },
+  {
+    "name": "Scroll of Fear",
+    "rarity": "rare",
+    "desc": "Scroll of Fear is a single-use scroll that allows the user to cast Fear as an action."
+  },
+  {
+    "name": "Scroll of Feign Death",
+    "rarity": "rare",
+    "desc": "Scroll of Feign Death is a single-use scroll that allows the user to cast Feign Death as an action."
+  },
+  {
+    "name": "Scroll of Fireball",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Gaseous Form",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Glyph of Warding",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Haste",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Hypnotic Pattern",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Lightning Bolt",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Protection from Energy",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Remove Curse",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Slow",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Stinking Cloud",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Banishment",
+    "rarity": "rare",
+    "desc": "A Scroll of Banishment is a single-use scroll that allows the user to cast Banishment as an action."
+  },
+  {
+    "name": "Scroll of Blight",
+    "rarity": "rare",
+    "desc": "A Scroll of Blight is a single-use scroll that allows the user to cast Blight as an action."
+  },
+  {
+    "name": "Scroll of Confusion",
+    "rarity": "rare",
+    "desc": "A Scroll of Confusion is a single-use scroll that allows the user to cast Confusion as an action."
+  },
+  {
+    "name": "Scroll of Fire Shield",
+    "rarity": "rare",
+    "desc": "A Scroll of Fire Shield is a single-use scroll that allows the user to cast Fire Shield as an action."
+  },
+  {
+    "name": "Scroll of Greater Invisibility",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Ice Storm",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Otiluke's Resilient Sphere",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Phantasmal Killer",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Polymorph",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Stoneskin",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Wall of Fire",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Counterspell",
+    "rarity": "rare",
+    "desc": "Scroll of Counterspell is a single-use scroll that allows the user to cast Counterspell as an action."
+  },
+  {
+    "name": "Scroll of Arcane Eye",
+    "rarity": "rare",
+    "desc": "Scroll of Arcane Eye is a single-use scroll that allows the user to Summon a friendly Scrying Eye."
+  },
+  {
+    "name": "Salty Scimitar(rrr)",
+    "rarity": "rare",
+    "desc": "Salty Scimitar(rrr) is a rare +2 Scimitar that allows the wielder to cast  Command once per Long Rest.\n\nShiver me timbers, this be a devilishly nasty blade."
+  },
+  {
+    "name": "Scroll of Dispel Magic",
+    "rarity": "rare",
+    "desc": "Scroll of Dispel Magic is a single-use scroll that allows the user to cast Dispel Magic as an action."
+  },
+  {
+    "name": "Scroll of Fire Shield: Chill",
+    "rarity": "rare",
+    "desc": "Scroll of Fire Shield: Chill is a single-use scroll that allows the user to cast Fire Shield: Chill as an action."
+  },
+  {
+    "name": "Spidersilk Armour",
+    "rarity": "rare",
+    "desc": "Spidersilk Armour is a rare Light Armour that aids the wearer with Stealth checks and Constitution Saving Throws.\n\nTracings of glossy black spider-web mark this drow-made armour. It is supple, but strong - and made to blend in with the dark caves and crevices of the Underdark."
+  },
+  {
+    "name": "Sorrow",
+    "rarity": "rare",
+    "desc": "Sorrow is a rare +1 Glaive that grants its wielder the Sorrowful Lash cantrip as  Bonus Action once per turn.\n\nFor every drop of blood spilled, a piece of the soul perishes - until nothing remains but regret."
+  },
+  {
+    "name": "The Amulet of Lost Voices",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Jolty Vest",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Springstep Boots",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Joltshooter",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Sickle of BOOOAL",
+    "rarity": "rare",
+    "desc": "Sickle of BOOOAL is a rare variant of the Sickles family of weapons. It is a Simple melee weapon wielded in one hand.  It's a light weapon that anyone can dual-wield without special training.\n\nInfused with the inconceivable might of the formidable BOOOAL!"
+  },
+  {
+    "name": "Sussur Dagger",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Sussur Greatsword",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Sussur Sickle",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Graceful Cloth",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Soulbreaker Greatsword",
+    "rarity": "rare",
+    "desc": "Soulbreaker Greatsword is a rare +1 greatsword that grants its wielder the  Soulbreaker weapon action and a bonus to Initiative rolls; it also deals additional Psychic damage when wielded by a githyanki.\n\nThe sharp metal whispers to you. Pleading. Cursing... Echoes of slain foes."
+  },
+  {
+    "name": "The Deathstalker Mantle",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Swiresy Shoes",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Surgeon's Subjugation Amulet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shifting Corpus Ring",
+    "rarity": "rare",
+    "desc": "The Shifting Corpus Ring is a rare Ring that grants the ability to cast Invisibility  and Blur once per Long Rest.\n\nA shiny, deceptively simple band, designed to look like those worn by battlefield scouts and city pickpockets alike."
+  },
+  {
+    "name": "Swordmaster Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Baneful",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shield +1",
+    "rarity": "rare",
+    "desc": "A Shield +1 is a rare Shield with an enchantment increasing its  Armour Class bonus.\n\nThough dented in many places, this shield shines like new."
+  },
+  {
+    "name": "Shield of Scorching Reprisal",
+    "rarity": "rare",
+    "desc": "Shield of Scorching Reprisal is a rare Shield that grants Fire Resistance, allows one to Shield Bash, and also apply Blazing Retaliation.\n\nLocal rumour claims a devil's tear gives these city militia shields their fire - much to the chagrin of the barracks blacksmith."
+  },
+  {
+    "name": "Spear of Night",
+    "rarity": "rare",
+    "desc": "Spear of Night is a rare, lightly enchanted (+1) variant of the Spears family of weapons. It is a simple melee weapon that can be wielded in one hand, or with both hands for extra damage.    Its design lends itself well to be thrown at enemies as a projectile."
+  },
+  {
+    "name": "Sword of the Emperor",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Slicing Shortsword",
+    "rarity": "rare",
+    "desc": "The Slicing Shortsword is a rare +1 shortsword that inflicts Bleeding when the wielder attacks with advantage.\n\nSo sharp you can cut yourself just talking about it."
+  },
+  {
+    "name": "Tadpole Elixir",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Mighty Cloth",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Sword of Clutching Umbra",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Studded Leather Armour +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Splint Armour +2",
+    "rarity": "rare",
+    "desc": "Splint Armour +2 is a rare Heavy Armour that reduces Piercing damage by 1 and grants a +1 bonus to Strength Saving Throws and Ability Checks.\n\nWrought of an artisan's skill and passion, this armour will turn aside all but the fiercest of blades."
+  },
+  {
+    "name": "Strange Tendril Amulet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Stalker Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Snow-Dusted Monastery Gloves",
+    "rarity": "rare",
+    "desc": "Snow-Dusted Monastery Gloves are a rare pair of Gloves that add an additional 1d4 Cold damage to the wearer's unarmed atacks. They also grant the ability to cast Ice Knife as a 3rd level spell once per Long Rest.\n\nCracking your knuckles in these gloves dislodges puffy drifts of snow from your fingers."
+  },
+  {
+    "name": "Spell Savant Amulet",
+    "rarity": "rare",
+    "desc": "Spell Savant Amulet is a rare Amulet that grants an additional Level 2 spell slot.\n\nWhen on the wrong side of a few sherries, the powerful wizards Bigby and Tenser would sometimes see how many spells they could fit into amulets like this one before they burst."
+  },
+  {
+    "name": "The Long Arm of the Gur",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Spaceshunt Boots",
+    "rarity": "rare",
+    "desc": "Spaceshunt Boots is a rare pair of Boots that allow the wearer to cast the Dimension Door spell as an Action once per Long Rest.\n\nThese boots are well-maintained and clean, though their soles are thin from wear."
+  },
+  {
+    "name": "Spellseeking Gloves",
+    "rarity": "rare",
+    "desc": "Spellseeking Gloves are rare Gloves that allow the wearer to spend a Sorcery Point to gain Advantage when making a spell attack roll.\n\nSorcerers operate on a first-come, first-blasted basis."
+  },
+  {
+    "name": "Smokepowder Arrow",
+    "rarity": "rare",
+    "desc": "Smokepowder Arrow is a Consumable (Arrow) item that can be fired from a Ranged Weapon and explodes on impact.\n\nThis arrow is ripe with the metallic stench of smokepowder - eager to ignite."
+  },
+  {
+    "name": "Steelwatcher Helmet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Slinging Shoes",
+    "rarity": "rare",
+    "desc": "Slinging Shoes is a pair of Boots that deal psychic damage and return to the wearer when thrown.\n\nThese shoes were formerly enchanted to return to their owner's feet. This caused a great deal of trouble for owners, who, while wearing a slipper or a nice heeled number, kept being kicked in the ankles by jealous footwear."
+  },
+  {
+    "name": "Superior Elixir of Arcane Cultivation",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Stolyarof's Table Lute",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shield of Shielding",
+    "rarity": "rare",
+    "desc": "Shield of Shielding is a rare Shield that allows the wearer to cast Shield and use Shield Bash.\n\nNamed in the style of Extremely Unimaginative Jimmy, the geographer and interior decorator who named the 'waterfall' and the 'fireplace'."
+  },
+  {
+    "name": "Staff of Interruption",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shortsword +2",
+    "rarity": "rare",
+    "desc": "Shortsword +2 is a rare, moderately enchanted (+2) variant of the Shortswords family of weapons. It is a martial melee weapon wielded in one hand. As a finesse weapon, it can benefit from the wielder's Dexterity and not just their Strength. It's a light weapon that anyone can dual-wield without special training.\n\nA common and effective sword, carried by adventurers, thieves, and watchmen alike."
+  },
+  {
+    "name": "Staff of the Emperor",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Studded Shield +1",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Spear +2",
+    "rarity": "rare",
+    "desc": "Spear +2 is a rare, moderately enchanted (+2) Spear.\n\nEven the ornamentation at the base of this spear's head is honed to a razor edge."
+  },
+  {
+    "name": "The Fork-Lightning Fingers",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Staff of Accretion",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Shield +2",
+    "rarity": "rare",
+    "desc": "A Shield +2 is a rare Shield with an enchantment increasing its  Armour Class bonus.\n\nThis robust shield has been polished to a bright sheen."
+  },
+  {
+    "name": "Synaptic Needle Amulet",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Sparkle Hands",
+    "rarity": "rare",
+    "desc": "The Sparkle Hands are a pair of rare Gloves that grant Lightning Charges  on unarmed attacks and provide Advantage against metal constructs and armoured foes while charged.\n\n'Sometimes I just want to feel that spark,' Yrre the Sparkstruck said."
+  },
+  {
+    "name": "The Watersparkers",
+    "rarity": "rare",
+    "desc": "The Watersparkers are a pair of rare Boots that allow the wearer to electrify water surfaces and gain Lightning Charges.\n\nAn enormous storm was raging the first time Yrre the Sparkstruck left the Underdark. The deep gnome's interest in lightning became at once an all-consuming obsession, and they would spend the rest of their years striving to recreate that storm's power themselves."
+  },
+  {
+    "name": "The Speedy Lightfeet",
+    "rarity": "rare",
+    "desc": "The Speedy Lightfeet are a pair of rare Boots that allow the wearer to gain Lightning Charges when Dashing in combat.\n\nIt is said the Speedy Lightfeet were the first of many lightning inventions made by Yrre the Sparkstruck. The boots' old, frayed edges zap and crackle with even the slightest movement."
+  },
+  {
+    "name": "The Spellsparkler",
+    "rarity": "rare",
+    "desc": "The Spellsparkler is a rare Quarterstaff that allows the wielder to generate Lightning Charges upon dealing damage with spells.\n\nYrre the Sparkstruck intended to give the Spellsparkler to Lenore, a cleric of Mystra and old lover. But when the gnome returned to the cleric's tower, they found it empty - inhabited only by dust and abandoned experiments."
+  },
+  {
+    "name": "Uncovered Mysteries",
+    "rarity": "rare",
+    "desc": "Uncovered Mysteries is a rare Amulet that allows the wearer to cast Detect Thoughts once per Long Rest.\n\nBeneath the layers of dust covering this necklace, its inlaid gems still give off a blue sparkle - the colour of Mystra's clergy."
+  },
+  {
+    "name": "The Sparky Points",
+    "rarity": "rare",
+    "desc": "The Sparky Points is a rare Trident that allows the wielder to generate Lightning Charges upon dealing melee damage with this weapon."
+  },
+  {
+    "name": "Wyvern Toxin",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "The Protecty Sparkswall",
+    "rarity": "rare",
+    "desc": "The Protecty Sparkswall is a rare Clothing that increases the wearer's defences while they have Lightning Charges and grants a +1 bonus to their Spell Save DC.\n\nYrre the Sparkstruck was raised in the Underdark, so they weren't surprised that power begets envy, and envy begets violence. They were prepared."
+  },
+  {
+    "name": "Vital Conduit Boots",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Titanstring Bow",
+    "rarity": "rare",
+    "desc": "Titanstring Bow is a rare +1 Longbow that allows its wielder to add their Strength Modifier to damage dealt with this weapon.\n\nThe commonly held belief that archers are rangey, thin-wristed people is completely false. It takes years of training to pull a bowstring all the way back to your cheekbone, and wrists like iron."
+  },
+  {
+    "name": "Wondrous Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "True Love's Caress",
+    "rarity": "rare",
+    "desc": "True Love's Caress is one of a matching pair of Rings that grants the wearer  Warding Bond.\n\nThe most pragmatic and courageous lover ever known was, of course, Sorcha MacTire, for whom the popular hairstyle is named, and for whom many an extremely soppy poem has been written (most of them comparing her to geography)."
+  },
+  {
+    "name": "White and Scarlet Dye",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Unseen Menace",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Yuan-Ti Scale Mail",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Thermodynamo Axe",
+    "rarity": "rare",
+    "desc": "Thermodynamo Axe is a rare, lightly enchanted (+1) Battleaxe that grants Heat whenever the wielder deals damage with this weapon.\n\nDesigned by gnomish innovation, this weapon has a dynamic core that swivels and tinkles into life whenever the axe is swung at a foe."
+  },
+  {
+    "name": "Thorn Blade",
+    "rarity": "rare",
+    "desc": "Thorn Blade is a rare, lightly enchanted (+1) Scimitar that deals 1d4⁠⁠Poison damage with melee weapons attacks while Concentrating and grants the ability to cast  Ensnaring Strike (Melee).\n\nThis Blade is sharp and slender as a serpent's fang - and just as likely to inflict a hideous sting."
+  },
+  {
+    "name": "True Love's Embrace",
+    "rarity": "rare",
+    "desc": "True Love's Embrace is one of a matching pair of Rings that lets the wearer cast  Warding Bond.\n\nThe scholar of love, Joel Firris Baldidims, writes that the next time he reads about a woman compared to a flower (or any feature of geography for that matter) he's going to start knocking on poets' doors with a sledgehammer."
+  },
+  {
+    "name": "Viconia's Priestess Robe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Twist of Fortune",
+    "rarity": "rare",
+    "desc": "Twist of Fortune is a rare +1 Morningstar with the unique weapon action,  Blood Money. When the wielder rolls 2 or less with this weapon's damage die, they reroll and take the new result.\n\nThey say rich folk are never truly happy; especially true when they're targeted with this morningstar."
+  },
+  {
+    "name": "Wavemother's Cloak",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Wavemother's Sickle",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Thunderpalm Strikers",
+    "rarity": "rare",
+    "desc": "Thunderpalm Strikers are a rare pair of Gloves that add Thunder damage to unarmed attacks and allow the wearer to cast Thunderwave once per Long Rest.\n\nEach blow landed while wearing these gloves produces the rumbling boom of a thousand demons' ravenous stomachs."
+  },
+  {
+    "name": "Vicious Shortbow",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Vicious Battleaxe",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Till Death Do Us Part",
+    "rarity": "rare",
+    "desc": "Til Death Do Us Part is a rare Ring that grants its wearer the ability to cast  Beacon of Hope.\n\nLove is the sweetest bird that might migrate to the charming country of your heart."
+  },
+  {
+    "name": "The Pointy Hat",
+    "rarity": "rare",
+    "desc": "The Pointy Hat is a rare hat that gives the wearer a bonus to their persuasion checks equal to their Intelligence modifier.\n\nSages over the course of ages have dealt very constructive and useful advice - however, none so sagacious as that of the wizard Otiluke, who once advised one of his students thusly: 'Never cast Speak with Dead on a loved one if there's unresolved tension there. It's never worth it."
+  },
+  {
+    "name": "Wyvern Poison",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Unwanted Masterwork Gauntlets",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Unwanted Masterwork Greaves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Unwanted Masterwork Scalemail",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Warhammer +2",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Winkling Gloves",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Tightening Orbit Helm",
+    "rarity": "rare",
+    "desc": "Tightening Orbit Helm is a rare Helmet."
+  },
+  {
+    "name": "Treacleflow Amulet",
+    "rarity": "rare",
+    "desc": "Treacleflow Amulet is a rare Amulet.\n\nThe air surrounding this lavishly decorated amulet is thick - like pushing your fingers through sap or syrup."
+  },
+  {
+    "name": "Wavemother's Boots",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Torment Drinker Armour",
+    "rarity": "rare",
+    "desc": "Torment Drinker Armour is a rare Light Armour that grants temporary hit points when the wearer scores a Critical Hit or kills a creature.\n\nTimid, god-fearing Cat Burroughs was dizzyingly happy when an angel courted her one summer. But in the autumn, when he shamefacedly revealed he was not an angel but an incubus of the Hells, Cat flew into a rage, slew him, and fashioned this armour from his wings and still-warm bones."
+  },
+  {
+    "name": "Trident +2",
+    "rarity": "rare",
+    "desc": "Trident +2 is a rare, moderately enchanted (+2) variant of the Tridents family of weapons. It is a martial melee weapon that can be wielded in one hand, or with both hands for extra damage.    Its design lends itself well to be thrown at enemies as a projectile.\n\nAn elegant, vicious weapon designed to eviscerate flesh and organs."
+  },
+  {
+    "name": "Undead Slayer Crossbow",
+    "rarity": "rare",
+    "desc": ""
+  },
+  {
+    "name": "Adamantine Splint Armour",
+    "rarity": "very rare",
+    "desc": "Adamantine Splint Armour is a very rare Heavy Armour that reduces all incoming damage by 2 and sends attackers Reeling. In addition, attacks can't land critical hits on the wearer.\n\nThe adamantine plates lock and slide together perfectly - offering protection against even the deadliest of blades."
+  },
+  {
+    "name": "Adamantine Scale Mail",
+    "rarity": "very rare",
+    "desc": "Adamantine Scale Mail is a very rare Medium Armour that reduces all incoming damage by 1 and sends attackers Reeling. In addition, attacks cannot land Critical Hits on the user.\n\nThe adamantine scales hug your body like a second skin - a heavy, near-impregnable skin."
+  },
+  {
+    "name": "Elixir of Psychic Resistance",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Armour of Agility",
+    "rarity": "very rare",
+    "desc": "The Armour of Agility is a very rare Medium Armour that doesn't limit your AC's Dexterity bonus, and boosts all of the user's Saving Throws by 2.\n\nLayered sheets of smelted, shaped, and smithed steel have been etched with a sweetly luminous gold. Its outward appearance is heavy. And yet it's so light when you lift it, like lifting a bag of shrunken dead leaves."
+  },
+  {
+    "name": "Bonespike Garb",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Armour of Persistence",
+    "rarity": "very rare",
+    "desc": "Armour of Persistence is a very rare Armour that grants its wearer permanent Resistance and Blade Ward effects in addition to reducing all damage taken by 2.\n\nGreat sheets of steel were hammered and bashed into something like a carapace, thick and dense - you can almost feel the hammer blows, flooded with rich magic."
+  },
+  {
+    "name": "Boots of Persistence",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Abyss Beckoners",
+    "rarity": "very rare",
+    "desc": "The Abyss Beckoners are a very rare pair of gloves. They improve the damage resistance of the wearer's summons at the risk of driving them Mad.\n\nDemons will bite their masters, slaves, comrades, and, on occasion, themselves. They bite on principle, and are functionally piranha with extra steps."
+  },
+  {
+    "name": "Drake General Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Bonespike Gloves",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Bonespike Helmet",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of Greater Health",
+    "rarity": "very rare",
+    "desc": "Amulet of Greater Health is a very rare Amulet that can be obtained from the House of Hope.\n\nWorn by Lumi, a cleric beholden to twilight, who sheltered her fellow adventurers as a bantam shelters her chicks."
+  },
+  {
+    "name": "Circlet of Hunting",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Arcane Absorption Dagger",
+    "rarity": "very rare",
+    "desc": "Arcane Absorption Dagger is a very rare, lightly enchanted (+1) variant of the Daggers family of weapons. It is a simple melee weapon wielded in one hand. As a finesse weapon, it can benefit from the wielder's Dexterity and not just their Strength. It's a light weapon that anyone can dual-wield without special training.  Its design lends itself well to be thrown at enemies as a projectile.\n\nThe leather grip of this knife is decorated with jugs."
+  },
+  {
+    "name": "Belm",
+    "rarity": "very rare",
+    "desc": "Belm is a very rare +2 Scimitar. It grants the Whirlwind Attack and Perfectly Balanced Strike weapon actions.\n\nFaded but still legible, the mark of a  Kara-Turan forgemaster adorns the pommel of this exquisite sword. Light as a robin's wing, quick as a gnomish wit, this weapon has unseamed many foes - and will continue to, in the correct hands."
+  },
+  {
+    "name": "Blightbringer",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Birthright",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Bonespike Boots",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Arrow of Dragon Slaying",
+    "rarity": "very rare",
+    "desc": "Arrow of Dragon Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nIt's said the inventor of these arrows was assassinated by a shadow dragon, who wished their secret for itself."
+  },
+  {
+    "name": "Elixir of Universal Resistance",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Armour of Landfall",
+    "rarity": "very rare",
+    "desc": "Armour of Landfall is a very rare light armour which improves the spellcasting ability of its wearer and grants  Advantage on Constitution  Saving Throws. The wearer also heals while standing in vines and can cast  Plant Growth.\n\nSmelling of long-abandoned gardens grown wild with thorny roses, moss and hibiscus, this armour was worn by a powerful druid who spent so long from people that she forgot to miss them."
+  },
+  {
+    "name": "Armour of the Sporekeeper",
+    "rarity": "very rare",
+    "desc": "Armour of the Sporekeeper is a very rare Light Armour that enhances the wearer's Necrotic damage and Symbiotic Entity ability with 3 new abilities.\n\nAccording to one story, this armour was enriched by the cascading spores of a myconid sovereign, its great fungal head shimmering and twinkling as it shook upon the material."
+  },
+  {
+    "name": "Armour of Moonbasking",
+    "rarity": "very rare",
+    "desc": "Armour of Moonbasking is a very rare Light Armour that bestows Temporary Hit Points and Armour Class to its wielder when they Wild Shape.\n\nThis armour was designed by lunar-obsessed Cuthbertina, a gnomish arcane smith who now lives peacefully on a mountain plateau with her magical forge."
+  },
+  {
+    "name": "Amulet of Windrider",
+    "rarity": "very rare",
+    "desc": "Amulet of Windrider is a very rare Amulet that allows the wearer to cast Ride the Winds and Gust of Wind. It is one of the rewards of the quest Save Vanra.\n\nHeavily embossed with filigree, this necklace reflects light in all directions."
+  },
+  {
+    "name": "Dwarven Thrower",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Fabricated Arbalest",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Helmet",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Cloak of the Weave",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Boots of Psionic Movement",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Fey Semblance Amulet",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Elegant Studded Leather",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Blackguard's Plate",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Flame Enamelled Armour",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Abdel's Trusted Shield",
+    "rarity": "very rare",
+    "desc": "Abdel's Trusted Shield is a very rare Shield that allows the wearer to cast Protection from Missiles once per Short Rest, as well as use Shield Bash.\n\nAttached to this shield is a faded note. 'G, I've found the best defence against an arrow is to be the one behind the bow - but this shield also does the trick in a pinch."
+  },
+  {
+    "name": "Crypt Lord Ring",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Amulet of the Devout",
+    "rarity": "very rare",
+    "desc": "The Amulet of the Devout is a very rare Amulet. It grants the wearer a +2 bonus to Spell Save DC and, if the wearer has access to it, an additional use of  Channel Divinity Charge.\n\nOtto, a member of the powerful arcane organisation the Circle of Eight, had a penchant for amulets. So much so that they announced his arrival before he ever needed to."
+  },
+  {
+    "name": "Burnished Ring",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Emblazoned Plate of the Marshal",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Bhaalist Gloves",
+    "rarity": "very rare",
+    "desc": "Bhaalist Gloves are a very rare pair of Gloves that allow the wearer to Garrotte a target.\n\nWhen the Lord of Murder, Bhaal, was rendered mortal, he knew his days were numbered. His vile machinations had gained him many enemies. Those days ran out and Bhaal was indeed killed, not by a god, but by a man with hawkish features named  Cyric."
+  },
+  {
+    "name": "Bhaalist Armour",
+    "rarity": "very rare",
+    "desc": "Bhaalist Armour is a very rare Light Armour which grants Aura of Murder and a bonus to Initiative rolls.\n\nBhaal, Lord of Murder, was forced to walk the world as a mortal man during a period of history called the  Time of Troubles. He was more vulnerable than he had ever been. But Bhaal was cunning. He had contingencies in case he died."
+  },
+  {
+    "name": "Assassin of Bhaal Cowl",
+    "rarity": "very rare",
+    "desc": "Assassin of Bhaal Cowl is a very rare Helmet which grants a bonus to  Initiative. It also allows the wearer to see in the dark and cast See Invisibility.\n\nWhen he was killed, Bhaal's blight upon the world was not destroyed. For the many people upon whom he had sired his spawn slithered out of tainted wombs, and with their arrival Bhaal's malcontent returned with force."
+  },
+  {
+    "name": "Arrow of Aberration Slaying",
+    "rarity": "very rare",
+    "desc": "Arrow of Aberration Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nForged from a meteor's alien metals, this arrow resonates with an unsettling hum."
+  },
+  {
+    "name": "Arrow of Humanoid Slaying",
+    "rarity": "very rare",
+    "desc": "Arrow of Humanoid Slaying is a Consumable (Arrow) item that can be fired from a Ranged Weapon.\n\nIts twisting arrowhead shreds targets from within."
+  },
+  {
+    "name": "Corvid Token",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Dark Justiciar Half-Plate (Very Rare)",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Cobalt Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Boreal Blue Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Custard and Pink Rose Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Dark Amethyst Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Faewild Green and Dun Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Mourning Frost",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Grymskull Helm",
+    "rarity": "very rare",
+    "desc": "The Grymskull Helm is a very rare helmet. It grants fire resistance, protects its wearer from critical hits and grants the Hunter's Mark spell.\n\nOnce home to an inscrutable machine intelligence, Grym's skull now serves as a simple helm."
+  },
+  {
+    "name": "Helmet of Grit",
+    "rarity": "very rare",
+    "desc": "The Helmet of Grit is a very rare Helmet. It  grants the wearer an additional Bonus Action at 50% or lower Hit Points.\n\nAt the barest touch, you feel a surge of exuberance and stamina - like you could take on anyone and anything."
+  },
+  {
+    "name": "Gloves of Dexterity",
+    "rarity": "very rare",
+    "desc": "The Gloves of Dexterity are a very rare pair of gloves that give a character 18 Dexterity and increase their  Attack Rolls by 1.\n\nThe point at which the gloves meet the wrist is form-fitting and very snug; almost a hint at the supple quickness and skill these gloves permit the wearer."
+  },
+  {
+    "name": "Potent Robe",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Halberd of Vigilance",
+    "rarity": "very rare",
+    "desc": "Halberd of Vigilance is a very rare +2 Halberd that deals additional Force damage, gives a bonus to Initiative, and grants Advantage on Perception checks and Reactions.\n\nA variant of this halberd's design was thrown out in the early stages of development by its forgemaster. This was because the halberd kept expressing itself. 'ALARM!' it would shriek in peril. 'POTENCY FILLS ME LIKE A SONG OF HOPE!' it roared in triumph."
+  },
+  {
+    "name": "Infernal Rapier",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Infernal Robe",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Handmaiden's Mace",
+    "rarity": "very rare",
+    "desc": "Handmaiden's Mace is a very rare +2 Mace which sets the wielder's Strength to 18.\n\nThis mace was designed by  Lolth's assassins to fell heretics who dared turn their back on the Spider Queen. However, even the best-laid designs fall to nothingness when brought to bear against  Shar's faithfull."
+  },
+  {
+    "name": "Hood of the Weave",
+    "rarity": "very rare",
+    "desc": "Hood of the Weave is a very rare Helmet that boosts its wearer's Spell Save DC and Spell Attack rolls by 2.\n\nWorn by the   Tenser when he was inducted into the Circle of Eight."
+  },
+  {
+    "name": "Legacy of the Masters",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Helldusk Gloves",
+    "rarity": "very rare",
+    "desc": "Helldusk Gloves are a very rare pair of Gloves. They grant bonuses to spellcasting, weapon attacks, and unarmed attacks.\n\nWhat precisely confers eternal punishment, reward, absolution? Perhaps it's not just belief in a god. Perhaps the deciding factor is whether the gods believe in you."
+  },
+  {
+    "name": "Helldusk Helmet",
+    "rarity": "very rare",
+    "desc": "Helldusk Helmet is a very rare Headwear. It grants the wearer the ability to see in magical darkness, and they cannot be blinded. They also gain a +2 bonus to saving throws against spells and can use  Immolating Gaze to frighten enemies.\n\nIt is said that Carixim, the fiending titan whose flesh squirms with twenty-thousand trapped souls, forged the pieces of this armour set."
+  },
+  {
+    "name": "Gauntlets of Hill Giant Strength",
+    "rarity": "very rare",
+    "desc": "Gauntlets of Hill Giant Strength are a very rare pair of Gloves that set the wearer's Strength ability score to 23.\n\nYour basic hill giant is just a landslide with a digestive system."
+  },
+  {
+    "name": "Knife of the Undermountain King",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Gemini Gloves",
+    "rarity": "very rare",
+    "desc": "The Gemini Gloves are a very rare pair of Gloves. They grant the wearer the ability to cast Cantrips which can target foes or allies twice.\n\nDesigned by an arcane smith with half-vision. He made these gloves to make sure his spells hit their target."
+  },
+  {
+    "name": "Quickspell Gloves",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Foebreaker",
+    "rarity": "very rare",
+    "desc": "Foebreaker is a very rare +2 Maul that ignores ⁠Bludgeoning resistance of targets.\n\nAs heavy and opposed to nonsense as the kitchen cook in most stories about some young adventurous girl going to become a knight or a hedge witch or something. You've got to have a big no nonsense cook. It's like rules."
+  },
+  {
+    "name": "Incandescent Staff",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Mantle of the Holy Warrior",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Hellfire Engine Crossbow",
+    "rarity": "very rare",
+    "desc": "Hellfire Engine Crossbow is a very rare +2 Heavy Crossbow that grants the Lightning Arrow spell and can pull targets with the Reposition Malefactor weapon action.\n\n'Trundling, mashing, mincing, crushing, grinding, blasting, biting!"
+  },
+  {
+    "name": "Hellfire Greataxe",
+    "rarity": "very rare",
+    "desc": "Hellfire Greataxe is a very rare +2 Greataxe that deals additional Fire damage, afflicts its wielder with Heat on each successful hit, and grants the Hellflame Cleave weapon action.\n\nAnything hit by this has the life expectancy of a glass hammer."
+  },
+  {
+    "name": "Pelorsun Blade",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Gauntlet of the Tyrant",
+    "rarity": "very rare",
+    "desc": "Gauntlet of the Tyrant is a very rare Glove. It grants +1 Spell Save DC and the ability to cast the Command spell. It also adds Force damage to the wearer's unarmed attacks.\n\nA tyrant's grip must be one of cool, unforgiving, and intricately realised steel. It cannot budge, cannot falter, no matter the pressure, and its fingertips must deeply pierce those who would struggle against it."
+  },
+  {
+    "name": "Potion of Angelic Slumber",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Hellfire Hand Crossbow",
+    "rarity": "very rare",
+    "desc": "Hellfire Hand Crossbow is a very rare +2 Hand Crossbow that has a chance to set targets burning when attacking while Hiding or Invisible.\n\nRigged to draw on the skin-peeling hellfire of Avernus by a resourceful devil, this crossbow's size is no indication of its deadly potential."
+  },
+  {
+    "name": "Killer's Sweetheart",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Horns of the Berserker",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Hr'a'cknir Bracers",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Gauntlets of the Warmaster",
+    "rarity": "very rare",
+    "desc": "Gauntlets of the Warmaster are a very rare pair of Gauntlets. They grant their wielder +1 on Attack Rolls and subject the targets of their Manoeuvres to Disadvantage.\n\nClothing doesn't tend to have much personality. That comes down to how it's worn. Yet these gloves exude a confidence, an intangible aura of expertise."
+  },
+  {
+    "name": "Nymph Cloak",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Jannath's Hat",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Khalid's Gift",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Helldusk Boots",
+    "rarity": "very rare",
+    "desc": "The Helldusk Boots are a very rare pair of Boots that allows the wearer to ignore Difficult Terrain, and to use a  Reaction to succeed on a Saving Throw. It also grants the Hellcrawler bonus action.\n\nNo ore takes better to being forged than the infernal iron of Avernus, where the archdevil Zariel presides."
+  },
+  {
+    "name": "Mask of Soul Perception",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Justiciar's Scimitar",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Orphic Ring",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Moon Devotion Robe",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Purple Worm Toxin",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Pyroquickness Hat",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Netherstone-Studded Gauntlet",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Gorgeous Maroon Dye",
+    "rarity": "very rare",
+    "desc": "Gorgeous Maroon Dye is a consumable item that can be be combined with an equipment item to alter the colours of fabric, leather and even metal.\n\nIn the Sea Ward in Waterdeep, Lady Cassalanter caused quite the stir at one of her famous parties while wearing this shade of dye in her dress."
+  },
+  {
+    "name": "Jet and Pink Rose Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Lush Burgundy",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Peach and Apricot Dye",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Flashblinder",
+    "rarity": "very rare",
+    "desc": "Flashblinder is a Consumable (Grenade) item which can be  thrown to disable  Steel Watchers.\n\nGyroscopic whispers emanate from the device - gnomish machinery speaks with a metal tongue."
+  },
+  {
+    "name": "Magical Hand Crossbow",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Pale Widow Gloves",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Gargoyle Boots",
+    "rarity": "very rare",
+    "desc": "Gargoyle Boots are a very rare pair of Boots that lets the wearer cast Gargoyle's Countenance, granting them resistance to Bludgeoning, Slashing and Piercing damage.\n\nThese boots are heavy and slow to step in - perhaps due to the gargoyle spirit reportedly trapped within. While that legend's truth is debatable, the protection these boots offer against toe-stubbing is not."
+  },
+  {
+    "name": "Lofty Sorcerer's Amulet",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Sarevok's Horned Helmet",
+    "rarity": "very rare",
+    "desc": "Sarevok's Horned Helmet is a very rare Headwear that grants Darkvision to its wearer and increases critical hit chance. You also cannot be Frightened.\n\nThe last sight Sarevok witnessed as a mortal was his sibling's knife. This duel, the first between Bhaalspawn, is worshipped still by the cult of Bhaal, who now believe that no act is more sacred than fratricide between spawn before the altar of their Dread Lord."
+  },
+  {
+    "name": "Robe of the Weave",
+    "rarity": "very rare",
+    "desc": "Robe of the Weave is a very rare piece of Clothing. It heals the wearer when they succeeding a saving throw against a spell, and boosts their Spell Save DCs and Spell Attack Rolls rolls by 1 each.\n\nEarnest little Edith Cluckle was a small girl when she asked to be the great wizard  Otiluke's apprentice. He scoffed at her, but was quickly abashed when Mystra herself endowed Edith with this very cloak."
+  },
+  {
+    "name": "Reaper's Embrace",
+    "rarity": "very rare",
+    "desc": "Reaper's Embrace is a very rare heavy Armour that reduces incoming damage by 2 and makes the wearer immune to being moved by force. It also grants the Howl of the Dead class action.\n\nHeavy steel bones and teeth enclose the armour's chest and neck like a grotesque exoskeleton that both swallows and protects the wearer."
+  },
+  {
+    "name": "Staff of Spellpower",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Signed Trade Visa",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Sharpened Snare Cuirass",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Globe of Invulnerability",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Wall of Ice",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Regeneration",
+    "rarity": "very rare",
+    "desc": "Ring of Regeneration is a very rare Ring that heals the wearer at the beginning of their turn while in combat.\n\nThis ring is, in effect, a tiny field medic that won't charge you 70 gold pieces for a fifteen-minute consultation."
+  },
+  {
+    "name": "Rhapsody",
+    "rarity": "very rare",
+    "desc": "Rhapsody is a very rare +1 Dagger that grants better Attack Rolls, damage, and Spell Save DC for every foe slain (up to 3) and possibly inflicts Bleeding while the wielder is Hiding or Invisible.\n\nCazador's love of poetry arose after he read one on the naked stomach of a dead child in his homeland. The child was hung from the lowest branch of a tree. Cazador read the poem, and looked at the child, and he knew that here was the artform for him."
+  },
+  {
+    "name": "Spellmight Gloves",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Spellcrux Amulet",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Shield of Devotion",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Stillmaker",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Staff of Cherished Necromancy",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Shapeshifter Hat",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Feywild Sparks",
+    "rarity": "very rare",
+    "desc": "Ring of Feywild Sparks is a very rare Ring. It forces Wild Magic Surges to always trigger while  Tides of Chaos feature is active. It also grants a +1 bonus to  Spell Save DC.\n\nThis otherwise unassuming ring ties a spellcaster indelibly to the sporadic arcana of the Faerie realm."
+  },
+  {
+    "name": "Staff of the Ram",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Sentient Amulet (Very Rare)",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Circle of Death",
+    "rarity": "very rare",
+    "desc": "Scroll of Circle of Death is a single-use scroll that allows the user to cast Circle of Death as an action."
+  },
+  {
+    "name": "Scroll of Cloudkill",
+    "rarity": "very rare",
+    "desc": "Scroll of Cloudkill is a single-use scroll that allows the user to cast Cloudkill."
+  },
+  {
+    "name": "Shield of the Undevout",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Shade-Slayer Cloak",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Robe of Supreme Defences",
+    "rarity": "very rare",
+    "desc": "The Robe of Supreme Defences is a very rare piece of Clothing. It adds the wearer's Spellcasting Modifier to their Saving Throws while concentrating on a spell.\n\nLong ago, the young wizard  Bigby noticed his friend  Tenser spending a lot of time with his robe. One of nature's pranksters, Bigby sent his dog, Bigboy, to savage the garment. The ensuing struggle between canine and nude wizard was brutal, and eventually led to Tenser designing more durable robes like this one."
+  },
+  {
+    "name": "Scroll of Eyebite",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Artistry of War",
+    "rarity": "very rare",
+    "desc": "Scroll of  Artistry of War is a single-use scroll which can be transcribed or used to cast Artistry of War."
+  },
+  {
+    "name": "Scroll of Planar Binding",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Ring of Evasion",
+    "rarity": "very rare",
+    "desc": "Ring of Evasion is a very rare Ring that grants the wearer Dextrous Evasion.\n\nDecorated with a hummingbird wrought of jade and sapphire, this ring evokes the sheer wonderful quickness of that animal."
+  },
+  {
+    "name": "Runepowder Barrel",
+    "rarity": "very rare",
+    "desc": "Runepowder Barrel is a very rare Consumable that can be  thrown and explodes when broken, dealing devastating damage.\n\nA secret concoction of smokepowder and gnomic mysticism, a single vial of Runepowder is more volatile than a whole barrel of smokepowder. Who knows what this much could do..."
+  },
+  {
+    "name": "Scroll of Dethrone",
+    "rarity": "very rare",
+    "desc": "A Scroll of Dethrone is single-use scroll which can be transcribed or used to cast Dethrone."
+  },
+  {
+    "name": "Scroll of Bestial Communion",
+    "rarity": "very rare",
+    "desc": "Scroll of Bestial Communion is a single-use scroll which can be transcribed or used to cast Sights of the Seelie: Summon Deva."
+  },
+  {
+    "name": "Sethan",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Conjure Elemental",
+    "rarity": "very rare",
+    "desc": "A Scroll of Conjure Elemental is a single-use scroll that allows the user to cast Conjure Elemental as an action.\n\nBend the barrier between the Planes until they disgorge an elemental ally to follow and fight for you."
+  },
+  {
+    "name": "Sinful Red on Bone White",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Cone of Cold",
+    "rarity": "very rare",
+    "desc": "A Scroll of Cone of Cold is a single-use scroll that allows the user to cast Cone of Cold as an action."
+  },
+  {
+    "name": "Scroll of Disintegrate",
+    "rarity": "very rare",
+    "desc": "A Scroll of Disintegrate is a single-use scroll. It allows the user to cast  Disintegrate as an  Action."
+  },
+  {
+    "name": "Scroll of Dominate Person",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Hold Monster",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Telekinesis",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Wall of Stone",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Chain Lightning",
+    "rarity": "very rare",
+    "desc": "A Scroll of Chain Lightning is a single-use scroll that allows the user to cast Chain Lightning as an action."
+  },
+  {
+    "name": "Scroll of Flesh to Stone",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Otiluke's Freezing Sphere",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Otto's Irresistible Dance",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Sunbeam",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Scroll of Seeming",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Runepowder Bomb",
+    "rarity": "very rare",
+    "desc": "Runepowder Bomb is a very rare Consumable. It explodes when broken, dealing devastating damage.\n\nEvery ounce of Ironhand Gnome ingenuity has been poured into this metal casing - a moment of all-devouring destruction eagerly waiting release."
+  },
+  {
+    "name": "Shield (Hope)",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Sarevok's Wretched Armour",
+    "rarity": "very rare",
+    "desc": "Sarevok's Wretched Armour is a very rare Heavy Armour that reduces all damage by 2. When the wearer deals Necrotic damage, they gain Temporary Hit Points.\n\nThis armour drips with dark ambition - the ambition of a failed godchild: Sarevok, spawn of Bhaal. Sarevok has not been remembered fondly by most historians, who almost unanimously agree that he had the general disposition of a sledgehammer."
+  },
+  {
+    "name": "Shield of Returning",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "Sword of Life Stealing",
+    "rarity": "very rare",
+    "desc": "The Sword of Life Stealing is a very rare +2 shortsword which deals an extra 10 Necrotic damage on a critical hit, and heals the wielder for the same amount.\n\nFolded into the steel of this menacing weapon is an alloy of enchanted metal. It waits like a leech in thick swamp water, awaiting a victim to taste, awaiting a chance to restore your heartiness and inflict suffering on your foes."
+  },
+  {
+    "name": "The Spectator Eyes",
+    "rarity": "very rare",
+    "desc": "The Spectator Eyes is a very rare Amulet that allows the wearer to cast  Ray of Fear and  Wounding Ray once per Long Rest.\n\nSpectators are hideous aberrations that float above the ground, fiercely staring around and shooting beams at anything they don't appreciate."
+  },
+  {
+    "name": "Vest of Soul Rejuvenation",
+    "rarity": "very rare",
+    "desc": "Vest of Soul Rejuvenation is a very rare piece of Clothing. It heals the wearer on a successful saving throw against a spell and allows them to use a Reaction to make an Unarmed Attack against any attacker that misses.\n\nA garment worn by one of three monks who fought together against  Headless Serpent, Secret Venom, a gang in the port city of  Nyanzaru. This was worn by  Strigga Morkoscavich, whose stances moved fluidly, flawlessly, and who defanged the Serpent one blustery night."
+  },
+  {
+    "name": "Sword of Chaos",
+    "rarity": "very rare",
+    "desc": "Sword of Chaos is a very rare +2 greatsword which deals additional ⁠⁠Necrotic damage and also restores a portion of the wielder's health on each successful hit.\n\nThe sword of Sarevok, brother of  Gorion's Ward and child of the evil god Bhaal. Though much of its power died with him, the sword is still formidable, and glows with a malevolent light."
+  },
+  {
+    "name": "The Reviving Hands",
+    "rarity": "very rare",
+    "desc": "The Reviving Hands are a very rare pair of Gloves that grants the wearer the to ability to cast Revivify. They also apply Blade Ward and Death Ward to creatures healed or revived by the wearer respectively."
+  },
+  {
+    "name": "The Dead Shot",
+    "rarity": "very rare",
+    "desc": "The Dead Shot is a +2 Longbow which increases the accuracy of the wielder as well as increases the chance of a critical hit.\n\nWhen the archer Frederik Durlusk died, his only request was to be buried with his favorite bow. This is that bow."
+  },
+  {
+    "name": "The Sacred Star",
+    "rarity": "very rare",
+    "desc": "The Sacred Star is a very rare +2 Morningstar that applies  Radiating Orb on hit and possibly turns the target if it is Undead. It also grants the Dawnburst Strike weapon action.\n\nThe power of this item lies in belief, though not in any god. This item believes that it's very good at hitting things, so it is. Belief is quite powerful when it comes to violence."
+  },
+  {
+    "name": "Voss' Silver Sword",
+    "rarity": "very rare",
+    "desc": "Voss' Silver Sword is a very rare +2 Longsword enhanced with additional ⁠Psychic damage. It also grants a bonus to damage and Attack Rolls against githyanki, aberrations, fiends and elementals and well as granting the wielder the ability to cast the Wrathful Smite spell.\n\nHeavy and grouted in the gore of countless centuries, this prototype for the contemporary githyanki silver sword was wielded during their rebellion against the mind flayers who enslaved them."
+  },
+  {
+    "name": "Veil of the Morning",
+    "rarity": "very rare",
+    "desc": "Veil of the Morning is a very rare piece of Clothing that imposes Disadvantage on Undead Attack Rolls against the wearer, grants them Advantage against Undead spells and actions, and allows them to Turn Undead.\n\nCrafted from celestial feathers, bottled sunlight, and ink from the pages of sacred scripture, it's a wonder the maker didn't hang cloves of garlic from this robe, so anathema is it to the undead."
+  },
+  {
+    "name": "Wavemother's Robe",
+    "rarity": "very rare",
+    "desc": "Wavemother's Robe is a very rare piece of Clothing which heals the wearer while standing in  Water. It also grants Resistance to Fire and Cold damage, and allows them to cast  Create or Destroy Water.\n\nTales tell of a most wondrous fish, scales resplendent, an intricate jewel that shone beneath the sea. When it died, the Wavemother gifted its hide as a robe to her most devoted follower - and demanded she drown the sailors that killed her gem-bright fish."
+  },
+  {
+    "name": "Woe",
+    "rarity": "very rare",
+    "desc": ""
+  },
+  {
+    "name": "The Dancing Breeze",
+    "rarity": "very rare",
+    "desc": "The Dancing Breeze is a very rare +2 Glaive that grants its wielder the Whirlwind Attack weapon action, which strikes all nearby targets.\n\nTiny specks of blood are fused into the blade, as if the glaive is feeding on them."
+  },
+  {
+    "name": "Trident of the Waves",
+    "rarity": "very rare",
+    "desc": "Trident of the Waves is a +1 Trident. It creates a  Water surface around the target and also applies the  Wet condition.\n\nUmberlee, the goddess of the sea, is deeply capricious, intelligent, and not nearly as wet around the edges as her domain might suggest. She often demands sacrificial tribute from sailors, such as their ships, their cargo, and, while she's at it, them."
+  },
+  {
+    "name": "Swires' Sledboard",
+    "rarity": "very rare",
+    "desc": "Swires' Sledboard is a very rare shield that grants the wearer Force Conduit at the start of combat. It also grants Shield Bash.\n\nA gnomish adventurer once used this to outpace his enemies down a slope."
+  },
+  {
+    "name": "Thisobald's Brewed-Up Bellyglummer",
+    "rarity": "very rare",
+    "desc": "Thisobald's Brewed-Up Bellyglummer is a Consumable (Coating). It can be applied to a weapon to give it special properties for ten turns.\n\nA truly despicable poison devised from an agglutination of corpse roses by the experimental mind of Thisobald Thorm."
+  },
+  {
+    "name": "Unflinching Protector Amulet",
+    "rarity": "very rare",
+    "desc": "Unflinching Protector Amulet is a very rare Amulet that can be obtained from Ptaris.\n\nTouching this amulet's centrepiece, you are imbued with a vision of woven strands, and the strands coming apart and holding true and firm over your friends, like shields banded in a haze of golden light."
+  },
+  {
+    "name": "Supreme Elixir of Arcane Cultivation",
+    "rarity": "very rare",
+    "desc": "Supreme Elixir of Arcane Cultivation grants an additional Level 4 spell slot. Replaces the effect of other elixirs when drunk. Elixirs last until a long rest.\n\nIt is said that the glimmer in this elixir is the reflection of light on the Weave itself."
+  },
+  {
+    "name": "Tressym Collar",
+    "rarity": "very rare",
+    "desc": "Tressym Collar is a very rare Amulet which allows the wearer to cast  Telekinesis once per Long Rest.\n\nThe gem in this collar's centre is placed as a common courtesy: it allows the tressym's summoner to be identified and complained to in the case of bereaved pet owners or pigeon-masters. This one glows with a Waterdhavian name: Gale Dekarios."
+  },
+  {
+    "name": "Vampiric Gloves",
+    "rarity": "very rare",
+    "desc": "Vampiric Gloves are a pair of Very Rare Gloves that grant the wearer the ability to cast a Vampiric Touch.\n\nLittle leech motifs adorn the pad of each finger. The leeches have rows of suckling, sharp teeth."
+  },
+  {
+    "name": "The Impaler",
+    "rarity": "very rare",
+    "desc": "The Impaler is a very rare, inaccessible, moderately enchanted (+2) Pike that deals additional damage to targets at full hp and grants temporary hp on kills.\n\nThis impaling pole of enchanted steel was commissioned as part of a set by Strahd von Zarovich, who presented the weapons to his honour guard one cold morning."
+  },
+  {
+    "name": "Vicious Shortsword",
+    "rarity": "very rare",
+    "desc": "Vicious Shortsword is a very rare, moderately enchanted (+2) variant of the Shortswords family of weapons. It is a martial melee weapon wielded in one hand. As a finesse weapon, it can benefit from the wielder's Dexterity and not just their Strength. It's a light weapon that anyone can dual-wield without special training.\n\nDespite its engravings, this lightweight sword is perfectly balanced - a flawless killing implement."
+  },
+  {
+    "name": "The Blood of Lathander",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "Selûne's Spear of Night",
+    "rarity": "legendary",
+    "desc": "Selûne's Spear of Night is a legendary +3 Spear which allows the wielder to cast Moonbeam and grants Darkvision as well as Advantage on Wisdom Saving Throws and Perception Checks.\n\n'One of the goddess Selûne's titles, Moonmaiden, has often been debated among the ecclesiastical. Common symbology certainly rejects the assumption of virginity. More to the point, 'maiden' itself carries some dusty connotations. How about Lunar Lady?"
+  },
+  {
+    "name": "Balduran's Giantslayer",
+    "rarity": "legendary",
+    "desc": "Balduran's Giantslayer is a legendary +3 Greatsword that receives doubled damage bonus from Strength, grants its wielder the Giant Form class action and the Topple the Big Folk weapon action, as well as Advantage on attack rolls against Large, Huge, and Gargantuan creatures.\n\nWielded by Balduran, the founder of Baldur's Gate and friend to his guardian dragon, a great glittering wyrm called Ansur. Fellowship can be undone, though, as easily as you or I might unlace the strings of our shoes, and it was in a time of skullduggery and hardship that Balduran killed Ansur, carrying out the deed with this sword."
+  },
+  {
+    "name": "Markoheshkir",
+    "rarity": "legendary",
+    "desc": "Markoheshkir is a legendary +2 Quarterstaff which empowers the wielder's spells and can be tuned towards a certain element, granting extra spells and effects. It can also cast a spell for free, once per long rest.\n\n Kereska, draconic goddess of arcane knowledge, imbues many chromatic dragons with their magic. This includes their exquisite and terrible breath, which has wrenched giants from their tall thrones, and destroyed civilisations of smallfolk."
+  },
+  {
+    "name": "Nyrulna",
+    "rarity": "legendary",
+    "desc": "Nyrulna is a legendary +3 Trident which can be thrown to create an explosion that deals Thunder damage in an area. It grants additional movement speed and jump distance and returns to the wielder after being thrown.\n\nThe forgemaster Lirrico designed this weapon for the champion of the wind goddess  Akadi. A key component in the forging was his home city's wind, and for a year after the weapon was made, no wind blew there at all."
+  },
+  {
+    "name": "Helldusk Armour",
+    "rarity": "legendary",
+    "desc": "Helldusk Armour is a legendary heavy Armour which can be worn without any proficiency. It grants Fire resistance, reduces damage by 3 from all sources, and grants the Fly spell.\n\nCarixim, soul-stuffed forgemaster of hellish Avernus, hammers away ceaselessly at new creations. Questions of morality and destiny do not concern him. Conscience is for his betters. He works with cheer, his swollen skin moaning soothingly."
+  },
+  {
+    "name": "Gontr Mael",
+    "rarity": "legendary",
+    "desc": "Gontr Mael is a legendary +3 Longbow that can possibly inflict  Guiding Bolt on its target and grants the wielder the Celestial Haste spell and Bolt of Celestial Light actions.\n\nGontr Mael blasted from the corpse of the Steelwatcher Titan: a bow formed from the boiling slag and weird whispering gyros inherent to the mechanical giant. It must have acted as the Titan's abdomen, exchanging muscle for immaculate steel."
+  },
+  {
+    "name": "Mask of the Shapeshifter",
+    "rarity": "legendary",
+    "desc": "Mask of the Shapeshifter is a legendary Mask that allows the wearer to cast Disguise Self at will.\n\nThe magic of this mask comes from its gory provenance, and makes it perfect for the discerning actor, sleuth, or person with a mirror and time to kill."
+  },
+  {
+    "name": "Silver Sword of the Astral Plane",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "Orphic Hammer",
+    "rarity": "legendary",
+    "desc": "The Orphic Hammer is a legendary, plot-critical +3 Warhammer with the power to shatter infernal bonds. It also grants the wielder Advantage on saving throws vs spells.\n\nEvery contract a devil makes has some form of insurance - this one is cast in infernal iron and was forged in deep, ruinous hellfire."
+  },
+  {
+    "name": "Duellist's Prerogative",
+    "rarity": "legendary",
+    "desc": "Duellist's Prerogative is a legendary +3 Rapier that grants the wielder a greater chance of critical hits, and an extra reaction provided their off-hand is empty. The wielder can also use a reaction to grant additional Necrotic damage on a hit.\n\nA blade gifted to Lora by her own mother, Lenore the Fleet. When challenged to duels, Lenore's opponents assumed she had received this nickname from some naval exploit. They found out how wrong they were when her blade blurred faster than the eye could follow."
+  },
+  {
+    "name": "Crimson Mischief",
+    "rarity": "legendary",
+    "desc": "Crimson Mischief is a legendary +2 Shortsword that, when wielded in the main hand, grants additional damage when attacking with Advantage and against targets with 50% or less of their hit points. When wielded in the off-hand, it instead allows the wielder to add their Ability Modifier to their damage.\n\nWhen she was a girl, she toyed with nastiness and sadism. Children often grow out of this; they get hobbies. For Orin, that taste for cruelty fermented, and in a way she did find hobbies. Ones that screamed."
+  },
+  {
+    "name": "Devotee's Mace",
+    "rarity": "legendary",
+    "desc": "The Devotee's Mace is a legendary +3 Mace that deals extra Radiant damage on hit, and can create a healing aura which heals the wielder and nearby allies.\n\nThis weapon is favoured by celestial devas, the vanguards of the divine ranks of paradise."
+  },
+  {
+    "name": "Viconia's Walking Fortress",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "Bloodthirst",
+    "rarity": "legendary",
+    "desc": "Bloodthirst is a legendary +2 Dagger wielded by Orin which makes critical hits more likely. Also, depending on which hand this weapon is equipped on, it can either make targets vulnerable to Piercing or more likely to be hit.\n\nThe Lord of Murder wasn't always a lord. He was once just a petty killer. When Bhaal first drew blood in a Baldurian back-alley, it dropped to the ground and lingered. When he ascended, this dried blood-drop grew, warped - and became sharp."
+  },
+  {
+    "name": "Helm of Balduran",
+    "rarity": "legendary",
+    "desc": "Helm of Balduran is a legendary Headwear once worn by the fabled founder of Baldur's Gate, Balduran, and grants hit points every turn along with stun and critical hit immunities.\n\nThis helm, worn atop the pate of Balduran the Brave, still gleams as if with the untarnished splendour of his legacy. Baldur's Gate itself bears his name, and tales of his exploits have turned the heads and hearts of many."
+  },
+  {
+    "name": "Gloves of Soul Catching",
+    "rarity": "legendary",
+    "desc": "The Gloves of Soul Catching are a legendary pair of Gloves. They grant additional Force damage to unarmed attacks, +2 Constitution, and heal the wearer after an unarmed attack.\n\nFormerly worn by Autumnal Baskin, a professional meditator turned bare-knuckle champion, who gained enlightenment via two methods. The second was getting a lot of fighting acumen. Advanced cosmic harmony is a nose. Sometimes you've got to break it a few times to get the best of things."
+  },
+  {
+    "name": "The Tharchiate Codex",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "The Red Knight's Final Strategem",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "Shar's Spear of Evening",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "Caution Before the Seelie",
+    "rarity": "legendary",
+    "desc": "Caution Before the Seelie is a Legendary Book which grants the reader the powerful  Scroll of Bestial Communion.\n\nA text dealing with the  seelie courts of the fae realms: summer, winter, and sarcastic octopus. This last may not be entirely accurate."
+  },
+  {
+    "name": "The Annals of Karsus",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "The Clover",
+    "rarity": "legendary",
+    "desc": ""
+  },
+  {
+    "name": "Scarab of Protection",
+    "rarity": "legendary",
+    "desc": "Scarab of Protection is a legendary Amulet.\n\nThis beetle-shaped medallion thrums with a power redolent of older civilisations in Toril - how old is this relic, all grouted with dust as it is?"
+  },
+  {
+    "name": "Envoys at Table",
+    "rarity": "legendary",
+    "desc": "Envoys at Table is a legendary Valuable, primarily of use for bartering, or sale to Traders.\n\nContemporary, fresh, and very valuable, this piece is believed by savants on the art scene to be something special, perhaps a masterpiece that will marshal in a new genre-based movement."
+  },
+  {
+    "name": "Fake Portrait of a Noble Before His Death",
+    "rarity": "legendary",
+    "desc": "Fake Portrait of a Noble Before His Death is a legendary Valuable, primarily of use for bartering, or sale to Traders.\n\nA counterfeit piece of art."
+  },
+  {
+    "name": "Personal Portrait",
+    "rarity": "legendary",
+    "desc": "The Personal Portrait is a legendary Valuable, primarily of use for bartering, or sale to Traders.\n\nOh, and how fetching a face! Flawed, flawless. Elegant, hideous. Pained, pleasurable. It seems to fit all such descriptors, and many more besides."
+  },
+  {
+    "name": "Netherstone-Pommelled Bloodthirst",
+    "rarity": "legendary",
+    "desc": "Netherstone-Pommelled Bloodthirst is a legendary +2 Dagger wielded by Orin which makes critical hits more likely and can make targets vulnerable to Piercing or more likely to be hit, depending on which hand the weapon is equipped on.\n\nThe Lord of Murder wasn't always a lord. He was once just a petty killer. When Bhaal first drew blood in a Baldurian back-alley, it dropped to the ground and lingered. When he ascended, this dried blood-drop grew, warped - and became sharp."
+  }
+]

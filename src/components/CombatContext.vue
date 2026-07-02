@@ -1,7 +1,6 @@
-﻿﻿﻿
 <template>
   <div class="combat-context">
-    <!-- â”€â”€ Setup phase â”€â”€ -->
+    <!-- Setup phase -->
     <template v-if="phase === 'setup'">
       <aside class="col bench-col scrollable">
         <div class="col-label">Bench</div>
@@ -11,7 +10,6 @@
       <aside class="col ondeck-col scrollable">
         <div class="col-label">On-Deck</div>
 
-        <!-- Parties from store — managed via Party tab -->
         <div class="parties-section">
           <div v-if="parties.length" class="parties-pills">
             <div
@@ -53,10 +51,10 @@
       <section class="col enemy-col scrollable">
         <div class="col-label">Enemies</div>
         <div v-if="currentEncounter" class="enc-load-bar">
-          <span class="enc-load-hint"
-            >{{ currentEncounter.difficulty }} · {{ currentEncounter.type }} ·
-            {{ currentEncounter.enemies.length }} enemies</span
-          >
+          <span class="enc-load-hint">
+            {{ currentEncounter.difficulty }} · {{ currentEncounter.type }} ·
+            {{ currentEncounter.enemies.length }} enemies
+          </span>
           <button class="enc-load-btn" @click="loadEncounterEnemies">
             Load Encounter
           </button>
@@ -102,6 +100,13 @@
           Generate Encounter
         </button>
         <button
+          class="vehicles-btn"
+          :class="{ active: hasVehicleSession }"
+          @click="onVehicleBtn"
+        >
+          {{ vehicleBtnLabel }}
+        </button>
+        <button
           class="roll-btn"
           :disabled="!hasAnyCombatant"
           @click="rollInitiative"
@@ -111,7 +116,7 @@
       </div>
     </template>
 
-    <!-- â”€â”€ Battle phase â”€â”€ -->
+    <!-- Battle phase -->
     <template v-else>
       <Battle
         class="battle-fill"
@@ -131,6 +136,13 @@
           </button>
         </div>
         <div class="roll-bar-right">
+          <button
+            class="vehicles-btn"
+            :class="{ active: hasVehicleSession }"
+            @click="onVehicleBtn"
+          >
+            {{ vehicleBtnLabel }}
+          </button>
           <button class="map-btn" @click="showBattleMap = true">
             Battle Map
           </button>
@@ -145,7 +157,12 @@
       />
     </template>
 
-    <!-- â”€â”€ Encounter Generator Modal â”€â”€ -->
+    <!-- Vehicle wizard, mini panel, and full-screen ship combat -->
+    <VehicleCombatWizard />
+    <VehicleCombatPanel />
+    <ShipCombat />
+
+    <!-- Encounter Generator Modal -->
     <div
       v-if="showEncounterModal"
       class="enc-modal-overlay"
@@ -171,12 +188,22 @@ import PlayerCharacterSelect from './PlayerCharacterSelect.vue'
 import Battle from './Battle.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
 import BattleMap from './BattleMap.vue'
+import VehicleCombatWizard from './VehicleCombatWizard.vue'
+import VehicleCombatPanel from './VehicleCombatPanel.vue'
+import ShipCombat from './ShipCombat.vue'
 import { dnd } from '@/utils/dnd_utils.js'
-import dataService from '@/utils/dataService.js'
 
 export default {
   name: 'CombatContext',
-  components: { PlayerCharacterSelect, Battle, EncounterGenerator, BattleMap },
+  components: {
+    PlayerCharacterSelect,
+    Battle,
+    EncounterGenerator,
+    BattleMap,
+    VehicleCombatWizard,
+    VehicleCombatPanel,
+    ShipCombat,
+  },
 
   data() {
     return {
@@ -194,6 +221,21 @@ export default {
   },
 
   computed: {
+    showVehicleCombat: {
+      get() {
+        return this.$store.state.showVehicleCombat
+      },
+      set() {
+        this.$store.commit('TOGGLE_VEHICLE_COMBAT')
+      },
+    },
+    hasVehicleSession() {
+      return !!this.$store.state.vehicleCombatSession
+    },
+    vehicleBtnLabel() {
+      if (!this.hasVehicleSession) return '⚓ Vehicle Combat'
+      return this.showVehicleCombat ? '⚓ Ships ▾' : '⚓ Ships ▸'
+    },
     characters() {
       return this.$store.state.characters
     },
@@ -263,6 +305,14 @@ export default {
   },
 
   methods: {
+    onVehicleBtn() {
+      if (!this.hasVehicleSession) {
+        this.$store.commit('OPEN_VEHICLE_WIZARD')
+      } else {
+        this.$store.commit('TOGGLE_VEHICLE_COMBAT')
+      }
+    },
+
     loadParty(party) {
       const valid = new Set(this.characters.map((c) => c.name))
       this.$store.commit(
@@ -276,6 +326,7 @@ export default {
       const char = this.characters.find((c) => c.name === name)
       return char?.image ?? ''
     },
+
     removeFromCombat(name) {
       this.$store.commit(
         'SET_SELECTED_PLAYERS',
@@ -283,6 +334,7 @@ export default {
       )
       this.$delete(this.rolls, `player-${name}`)
     },
+
     nextAutoName() {
       const used = new Set(
         this.enemies
@@ -294,6 +346,7 @@ export default {
       while (used.has(n)) n++
       return `Enemy ${n}`
     },
+
     addEnemy() {
       this.enemies.push({
         id: this.nextEnemyId++,
@@ -303,10 +356,12 @@ export default {
       this.enemyName = ''
       this.enemyMod = 0
     },
+
     removeEnemy(e) {
       this.enemies = this.enemies.filter((x) => x.id !== e.id)
       this.$delete(this.rolls, `enemy-${e.id}`)
     },
+
     nextUniqueName(name) {
       const m = name.match(/^(.*?)\s+(\d+)$/)
       const base = m ? m[1] : name
@@ -315,6 +370,7 @@ export default {
       while (taken.has(`${base} ${n}`.toLowerCase())) n++
       return `${base} ${n}`
     },
+
     duplicateEnemy(e) {
       this.enemies.push({
         id: this.nextEnemyId++,
@@ -323,6 +379,7 @@ export default {
         encounterData: e.encounterData ? { ...e.encounterData } : null,
       })
     },
+
     onDuplicateEnemy(key) {
       const id = parseInt(key.replace('enemy-', ''))
       const src = this.enemies.find((e) => e.id === id)
@@ -339,6 +396,7 @@ export default {
         tiebreakOrder: 0,
       })
     },
+
     rollInitiative() {
       this.$store.commit('SET_DICE_DRAWER_OPEN', true)
       const newRolls = {}
@@ -347,9 +405,6 @@ export default {
         newRolls[entry.key] = { total: roll + entry.mod, tiebreakOrder: 0 }
       }
 
-      // Tiebreaker: group entries sharing the same total AND same DEX mod.
-      // Within each tied group, roll d20s repeatedly until all values are unique,
-      // then assign tiebreakOrder (1 = highest = goes first). Original totals unchanged.
       const groups = {}
       for (const entry of this.allEntries) {
         const r = newRolls[entry.key]
@@ -372,6 +427,7 @@ export default {
       this.rolls = newRolls
       this.phase = 'battle'
     },
+
     onToggleFriendly(key) {
       const current = this.combatantStates[key]
       if (!current) {
@@ -382,14 +438,17 @@ export default {
         this.$delete(this.combatantStates, key)
       }
     },
+
     onOverrideRoll({ key, total }) {
       this.$set(this.rolls, key, { ...this.rolls[key], total })
     },
+
     onRemoveEnemy(key) {
       const id = parseInt(key.replace('enemy-', ''))
       this.enemies = this.enemies.filter((e) => e.id !== id)
       this.$delete(this.rolls, key)
     },
+
     onAddEnemyMidFight({ name, mod, encounterData }) {
       const id = this.nextEnemyId++
       this.enemies.push({
@@ -403,6 +462,7 @@ export default {
         tiebreakOrder: 0,
       })
     },
+
     loadEncounterEnemies() {
       const enc = this.$store.state.currentEncounter
       if (!enc) return
@@ -425,6 +485,7 @@ export default {
       this.nextEnemyId = 1
       this.$store.commit('SET_SELECTED_PLAYERS', [])
     },
+
     formatMod: (mod) => dnd.signed(mod),
   },
 }
@@ -442,12 +503,12 @@ export default {
   overflow: hidden;
 }
 
-/* Battle phase fills the whole area above the roll bar */
+/* Battle phase fills the content row */
 .battle-fill {
   grid-column: 1 / -1;
 }
 
-/* â”€â”€ Shared column styles â”€â”€ */
+/* Shared column styles */
 .col {
   display: flex;
   flex-direction: column;
@@ -461,14 +522,14 @@ export default {
   padding: 1rem 0.5rem;
 }
 
-/* â”€â”€ Bench â”€â”€ */
+/* Bench */
 .bench-col {
   grid-area: bench;
   background: var(--color-bg-panel);
   border-right: 1px solid var(--color-border);
 }
 
-/* â”€â”€ On-Deck â”€â”€ */
+/* On-Deck */
 .ondeck-col {
   grid-area: ondeck;
   background: var(--color-bg-panel);
@@ -516,7 +577,7 @@ export default {
   text-overflow: ellipsis;
 }
 
-/* â”€â”€ Saved Parties â”€â”€ */
+/* Saved Parties */
 .parties-section {
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--color-border);
@@ -554,65 +615,7 @@ export default {
   font-weight: 600;
 }
 
-.pill-remove {
-  background: none;
-  border: none;
-  color: var(--color-text-low);
-  font-size: var(--font-size-xs);
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  transition: color 0.15s ease;
-}
-
-.pill-remove:hover {
-  color: var(--color-text-danger);
-}
-
-.parties-actions {
-  display: flex;
-  padding: 0 0.5rem;
-}
-
-.save-party-btn {
-  padding: 0.18rem 0.55rem;
-  background: none;
-  border: 1px dashed var(--color-border);
-  border-radius: 12px;
-  color: var(--color-text-low);
-  font-size: var(--font-size-base);
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.save-party-btn:hover {
-  border-style: solid;
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-.party-save-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  padding: 0 0.5rem;
-}
-
-.party-save-form .field {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: var(--font-size-base);
-  padding: 0.25rem 0.4rem;
-}
-
-.party-save-form .add-btn,
-.party-save-form .remove-btn {
-  width: 100%;
-  text-align: center;
-}
-
-/* â”€â”€ Encounter load bar â”€â”€ */
+/* Encounter load bar */
 .enc-load-bar {
   display: flex;
   align-items: center;
@@ -649,7 +652,7 @@ export default {
   background: rgba(136, 136, 221, 0.15);
 }
 
-/* â”€â”€ Enemies â”€â”€ */
+/* Enemies column */
 .enemy-col {
   grid-area: enemies;
   padding: 0.75rem 1rem;
@@ -682,6 +685,7 @@ export default {
 .name-field {
   flex: 1;
 }
+
 .mod-field {
   width: 4rem;
 }
@@ -730,6 +734,7 @@ export default {
   font-size: var(--font-size-md);
   color: var(--color-text);
 }
+
 .enemy-mod {
   font-size: var(--font-size-base);
   color: var(--color-text-muted);
@@ -750,6 +755,7 @@ export default {
 .dupe-btn:hover {
   color: var(--color-accent);
 }
+
 .remove-btn {
   background: none;
   border: none;
@@ -764,7 +770,7 @@ export default {
   color: var(--color-text-danger);
 }
 
-/* â”€â”€ Roll Bar â”€â”€ */
+/* Roll Bar */
 .roll-bar {
   grid-area: roll;
   grid-column: 1 / -1;
@@ -875,7 +881,30 @@ export default {
   color: var(--color-info);
 }
 
-/* â”€â”€ Encounter modal â”€â”€ */
+/* Vehicle Combat button */
+.vehicles-btn {
+  padding: 0.45rem 1rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text-low);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.vehicles-btn:hover {
+  border-color: var(--color-info);
+  color: var(--color-info);
+}
+.vehicles-btn.active {
+  border-color: var(--color-info);
+  color: var(--color-info);
+  background: rgba(136, 136, 221, 0.1);
+}
+
+/* Encounter modal */
 .enc-modal-overlay {
   position: absolute;
   inset: 0;
@@ -927,5 +956,17 @@ export default {
 .enc-modal-body {
   flex: 1;
   overflow: hidden;
+}
+
+/* col-label shared */
+.col-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-low);
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-panel-dark);
+  flex-shrink: 0;
 }
 </style>

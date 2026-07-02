@@ -1,6 +1,6 @@
 <template>
   <div class="app-layout">
-    <!-- Header: nav tabs only -->
+    <!-- Header: nav tabs + currency -->
     <header class="app-header">
       <nav class="context-nav">
         <button
@@ -13,6 +13,39 @@
           {{ ctx.label }}
         </button>
       </nav>
+
+      <!-- Party / day context -->
+      <div class="header-context" v-if="activeParty">
+        <span class="hctx-party">{{ activeParty.name }}</span>
+        <span class="hctx-sep">·</span>
+        <span class="hctx-day">Day {{ activePartyDay }}</span>
+      </div>
+
+      <!-- Currency badges -->
+      <div class="currency-bar">
+        <label class="currency-badge" title="Party gold (gp)">
+          <img :src="goldIcon" class="currency-icon" alt="Gold" />
+          <input
+            class="currency-input"
+            type="number"
+            min="0"
+            :value="partyGold"
+            @change="setCurrency('gold', $event.target.value)"
+          />
+          <span class="currency-unit">gp</span>
+        </label>
+        <label class="currency-badge" title="Weave dust">
+          <img :src="dustIcon" class="currency-icon" alt="Weave dust" />
+          <input
+            class="currency-input"
+            type="number"
+            min="0"
+            :value="weaveDust"
+            @change="setCurrency('weave_dust', $event.target.value)"
+          />
+          <span class="currency-unit dust-unit">dust</span>
+        </label>
+      </div>
     </header>
 
     <!-- Context Area -->
@@ -74,7 +107,11 @@
     <ShortRestModal v-if="shortRestOpen" @close="shortRestOpen = false" />
 
     <!-- Long rest modal -->
-    <LongRestModal v-if="longRestOpen" @close="longRestOpen = false" />
+    <LongRestModal
+      v-if="longRestOpen"
+      @close="longRestOpen = false"
+      @rested="onRested"
+    />
 
     <!-- Save Dialog -->
     <SaveDialog
@@ -87,11 +124,19 @@
     <transition name="save-flash">
       <div v-if="saveFlash" class="save-flash">✓ Saved</div>
     </transition>
+
+    <!-- Long rest date toast -->
+    <div v-if="restToast" class="rest-toast" @animationend="restToast = false">
+      <div class="rest-toast-label">Long Rest Complete</div>
+      <div class="rest-toast-date">{{ restDateLabel }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 import d20 from '@/assets/dice/d20.svg'
+import goldIcon from '@/assets/icons/icon-gold.svg'
+import dustIcon from '@/assets/icons/icon-dust.svg'
 import DiceRoller from './components/DiceRoller.vue'
 import Drawer from './components/Drawer.vue'
 import SaveDialog from './components/SaveDialog.vue'
@@ -125,12 +170,76 @@ export default {
     ShortRestModal,
   },
 
+  computed: {
+    activeContextLabel() {
+      return this.contexts.find((c) => c.id === this.activeContext)?.label ?? ''
+    },
+    activeContextComponent() {
+      return (
+        this.contexts.find((c) => c.id === this.activeContext)?.component ??
+        null
+      )
+    },
+    hasChanges() {
+      return this.$store.getters.hasChanges
+    },
+    activeParty() {
+      return this.$store.getters.activeParty
+    },
+    activePartyDay() {
+      return this.$store.getters.activePartyDay
+    },
+    partyGold() {
+      return this.$store.state.finances?.party_purse?.gold ?? 0
+    },
+    weaveDust() {
+      return this.$store.state.finances?.party_purse?.weave_dust ?? 0
+    },
+    diceOpen() {
+      return this.$store.state.diceDrawerOpen
+    },
+    restDateLabel() {
+      const DAYS_PER_YEAR = 204
+      const DAYS_PER_WEEK = 8
+      const SEASONS = [
+        { name: 'Winter', start: 1, end: 51 },
+        { name: 'Spring', start: 52, end: 102 },
+        { name: 'Summer', start: 103, end: 153 },
+        { name: 'Autumn', start: 154, end: 204 },
+      ]
+      const currentDay =
+        this.$store.getters.activePartyDay || this.$store.state.game_day || 1
+      const year = Math.floor((currentDay - 1) / DAYS_PER_YEAR) + 1
+      const doy = ((currentDay - 1) % DAYS_PER_YEAR) + 1
+      const season = (
+        SEASONS.find((s) => doy >= s.start && doy <= s.end) ?? SEASONS[0]
+      ).name
+      const week =
+        doy <= 48
+          ? Math.ceil(doy / DAYS_PER_WEEK)
+          : doy <= 52
+          ? null
+          : 6 + Math.ceil((doy - 52) / DAYS_PER_WEEK)
+      const dow =
+        doy <= 48
+          ? ((doy - 1) % DAYS_PER_WEEK) + 1
+          : doy <= 52
+          ? doy - 48
+          : ((doy - 53) % DAYS_PER_WEEK) + 1
+      const weekPart = week ? `Week ${week}, ` : 'Festival · '
+      return `${season} · Year ${year} · ${weekPart}Day ${dow}`
+    },
+  },
+
   data() {
     return {
       d20Icon: d20,
+      goldIcon,
+      dustIcon,
       activeContext: 'party',
       saveDialogOpen: false,
       saveFlash: false,
+      restToast: false,
       partyEditOpen: false,
       shortRestOpen: false,
       longRestOpen: false,
@@ -146,33 +255,24 @@ export default {
     }
   },
 
-  computed: {
-    activeContextLabel() {
-      return this.contexts.find((c) => c.id === this.activeContext)?.label ?? ''
-    },
-    activeContextComponent() {
-      return (
-        this.contexts.find((c) => c.id === this.activeContext)?.component ??
-        null
-      )
-    },
-    hasChanges() {
-      return this.$store.getters.hasChanges
-    },
-    diceOpen() {
-      return this.$store.state.diceDrawerOpen
-    },
-  },
-
   methods: {
     toggleDice() {
       this.$store.commit('SET_DICE_DRAWER_OPEN', !this.diceOpen)
+    },
+    setCurrency(key, value) {
+      this.$store.commit('SET_CURRENCY', { key, value })
     },
     onSaved() {
       this.saveFlash = true
       setTimeout(() => {
         this.saveFlash = false
       }, 600)
+    },
+    onRested() {
+      this.restToast = false
+      this.$nextTick(() => {
+        this.restToast = true
+      })
     },
   },
 
@@ -251,6 +351,88 @@ export default {
   color: var(--color-accent-strong);
   border-color: var(--color-accent);
   background: var(--color-bg-surface);
+}
+
+/* ── Currency bar ── */
+/* ── Header context (party + day) ── */
+.header-context {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  padding: 0 0.75rem;
+  white-space: nowrap;
+}
+.hctx-party {
+  font-family: var(--font-display, serif);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+}
+.hctx-sep {
+  font-size: 0.7rem;
+  color: var(--color-text-low);
+}
+.hctx-day {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.currency-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  padding-left: 0.5rem;
+}
+
+.currency-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.05rem 0.3rem 0.05rem 0.2rem;
+  cursor: text;
+}
+
+.currency-icon {
+  width: 17px;
+  height: 14px;
+  object-fit: contain;
+  display: block;
+}
+
+.currency-input {
+  width: 56px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  text-align: right;
+  padding: 0;
+  -moz-appearance: textfield;
+}
+.currency-input::-webkit-outer-spin-button,
+.currency-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.currency-input:focus {
+  color: var(--color-accent);
+}
+
+.currency-unit {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+.dust-unit {
+  color: #a855f7;
 }
 
 /* ── Context Area ── */
@@ -391,5 +573,58 @@ export default {
 .save-flash-enter,
 .save-flash-leave-to {
   opacity: 0;
+}
+
+/* ── Long rest toast ── */
+@keyframes rest-toast-anim {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+  12% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  78% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+
+.rest-toast {
+  position: fixed;
+  top: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  pointer-events: none;
+  text-align: center;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 10px;
+  padding: 0.7rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  animation: rest-toast-anim 10.8s ease forwards;
+}
+
+.rest-toast-label {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-low);
+  margin-bottom: 0.3rem;
+}
+
+.rest-toast-date {
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.03em;
 }
 </style>

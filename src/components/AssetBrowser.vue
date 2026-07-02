@@ -56,7 +56,33 @@
         <div class="ab-portrait ab-portrait--empty" v-else></div>
       </div>
 
-      <div class="ab-detail-body scrollable">
+      <!-- Loadout tab toggle (ships only) -->
+      <div v-if="selected.type === 'ship'" class="ab-detail-tabs">
+        <button
+          class="ab-tab-btn"
+          :class="{ 'ab-tab-btn--active': detailTab === 'overview' }"
+          @click="detailTab = 'overview'"
+        >
+          Overview
+        </button>
+        <button
+          class="ab-tab-btn"
+          :class="{ 'ab-tab-btn--active': detailTab === 'loadout' }"
+          @click="detailTab = 'loadout'"
+        >
+          Combat Loadout
+        </button>
+      </div>
+
+      <!-- Loadout panel (ships only) -->
+      <ship-loadout
+        v-if="selected.type === 'ship' && detailTab === 'loadout'"
+        :ship="selected"
+        @update="PATCH_ASSET"
+        class="ab-loadout-panel"
+      />
+
+      <div class="ab-detail-body scrollable" v-if="detailTab === 'overview'">
         <!-- Ship fields -->
         <template v-if="selected.type === 'ship'">
           <div class="ab-fields">
@@ -147,6 +173,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import ShipLoadout from './ShipLoadout.vue'
+
 const SHIP_SHOWN = new Set([
   'name',
   'type',
@@ -181,10 +210,13 @@ const ESTATE_SHOWN = new Set([
 export default {
   name: 'AssetBrowser',
 
+  components: { ShipLoadout },
+
   data() {
     return {
       typeFilter: null,
       selected: null,
+      detailTab: 'overview',
     }
   },
 
@@ -211,12 +243,17 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['PATCH_ASSET']),
+
     formatKey(key) {
       return key.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
     },
   },
 
   watch: {
+    selected(val) {
+      if (!val || val.type !== 'ship') this.detailTab = 'overview'
+    },
     filteredAssets(list) {
       if (this.selected && !list.find((a) => a.id === this.selected.id)) {
         this.selected = list[0] ?? null
@@ -423,5 +460,41 @@ export default {
   color: var(--color-text-muted);
   line-height: 1.6;
   margin: 0;
+}
+
+/* ── Ship detail tabs ── */
+.ab-detail-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+  background: var(--color-bg-surface);
+}
+
+.ab-tab-btn {
+  padding: 0.4rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-low);
+  font-family: var(--font-display, serif);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.1s, border-color 0.1s;
+  margin-bottom: -1px;
+}
+.ab-tab-btn:hover {
+  color: var(--color-text-muted);
+}
+.ab-tab-btn--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.ab-loadout-panel {
+  flex: 1;
+  overflow: hidden;
 }
 </style>

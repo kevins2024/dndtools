@@ -1,23 +1,9 @@
 {
   "party_purse": {
-    "gold": 56497,
+    "gold": 89732,
+    "weave_dust": 0,
     "notes": "On hand, accessible immediately."
   },
-  "reserves": [
-    {
-      "name": "Argentveil Account",
-      "amount": 11000,
-      "access": "Handled.",
-      "risk": "low"
-    },
-    {
-      "name": "Khemrise Strongbox",
-      "amount": 19000,
-      "access": "Salt Hook Tavern key. Registered under assumed name.",
-      "contents": "",
-      "risk": "low"
-    }
-  ],
   "income": [
     {
       "source": "Millhaven Mine",

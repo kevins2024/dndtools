@@ -34,6 +34,52 @@
         Edit
       </button>
 
+      <span class="toolbar-sep"></span>
+
+      <!-- Place Party -->
+      <template v-if="!placingParty">
+        <button class="map-btn map-btn--place" @click="startPlacing">
+          Place Party
+        </button>
+      </template>
+      <template v-else>
+        <select
+          v-model="placingPartyId"
+          class="placing-select"
+          @keydown.escape="placingParty = false"
+        >
+          <option v-for="p in parties" :key="p.id" :value="p.id">
+            {{ p.name }}
+          </option>
+        </select>
+        <button class="map-btn" @click="placingParty = false">Cancel</button>
+      </template>
+
+      <span class="toolbar-sep"></span>
+
+      <button
+        class="map-btn"
+        :class="{ active: pointInfoMode }"
+        @click="pointInfoMode = !pointInfoMode"
+      >
+        Point Info
+      </button>
+
+      <span class="toolbar-sep"></span>
+
+      <button
+        class="map-btn"
+        :class="{ active: distanceMode }"
+        @click="toggleDistanceMode"
+      >
+        Distance
+      </button>
+      <template v-if="distanceMode">
+        <span class="toolbar-label" style="font-size: var(--font-size-sm)">
+          {{ distancePts.length === 0 ? 'Click start' : 'Click to add point' }}
+        </span>
+      </template>
+
       <!-- Edit-mode controls -->
       <template v-if="editMode">
         <span class="toolbar-sep"></span>
@@ -93,14 +139,21 @@
         <div v-if="loading" class="map-loading">Loading map…</div>
         <svg
           v-else
+          ref="mapSvg"
           :viewBox="activeViewBox"
           class="map-svg"
-          :style="{ cursor: isDragging ? 'grabbing' : 'grab' }"
+          :style="{
+            cursor: isDragging
+              ? 'grabbing'
+              : placingParty || pointInfoMode
+              ? 'crosshair'
+              : 'grab',
+          }"
           xmlns="http://www.w3.org/2000/svg"
           @mousedown.prevent="onMouseDown"
           @mousemove="onMouseMove"
-          @mouseup="onMouseUp"
-          @mouseleave="onMouseUp"
+          @mouseup="onMouseUp($event)"
+          @mouseleave="onMouseUp($event, true)"
           @wheel.prevent="onWheel"
         >
           <g>
@@ -118,6 +171,7 @@
             <path
               v-for="p in visiblePathDefs"
               :key="p.id"
+              :id="p.id"
               :d="p.d"
               :transform="p.transform || undefined"
               :style="p.svgStyle"
@@ -127,6 +181,7 @@
             <g
               v-for="layer in rawLayers"
               :key="layer.id"
+              :id="layer.id"
               v-show="layerVisibility[layer.id]"
               v-html="layer.innerHTML"
             />
@@ -188,6 +243,73 @@
                 </template>
               </g>
             </template>
+
+            <!-- Party markers -->
+            <g
+              v-for="marker in markersForMap"
+              :key="marker.id"
+              class="party-marker"
+              :transform="`translate(${marker.x}, ${marker.y})`"
+              @click.stop="removeMarker(marker.id)"
+            >
+              <polygon
+                points="0,-7 6,0 0,7 -6,0"
+                fill="#e8c14f"
+                stroke="#1a1a2e"
+                stroke-width="0.6"
+              />
+              <circle r="1.5" fill="#1a1a2e" />
+              <text
+                y="-10"
+                text-anchor="middle"
+                font-size="4"
+                fill="#e8c14f"
+                stroke="#1a1a2e"
+                stroke-width="0.6"
+                paint-order="stroke"
+                font-family="sans-serif"
+              >
+                {{ marker.label }}
+              </text>
+            </g>
+
+            <!-- Distance measurement -->
+            <g v-if="distanceMode || distancePts.length" pointer-events="none">
+              <line
+                v-for="(pt, i) in distancePts.slice(1)"
+                :key="'dseg-' + i"
+                :x1="distancePts[i].x"
+                :y1="distancePts[i].y"
+                :x2="pt.x"
+                :y2="pt.y"
+                stroke="#f0c040"
+                stroke-width="0.8"
+                stroke-dasharray="3,1.5"
+              />
+              <g v-for="(pt, i) in distancePts" :key="'dpt-' + i">
+                <circle
+                  :cx="pt.x"
+                  :cy="pt.y"
+                  r="3"
+                  fill="#f0c040"
+                  stroke="#1a1a2e"
+                  stroke-width="0.5"
+                />
+                <text
+                  :x="pt.x"
+                  :y="pt.y - 5"
+                  text-anchor="middle"
+                  font-size="4"
+                  fill="#f0c040"
+                  stroke="#1a1a2e"
+                  stroke-width="0.5"
+                  paint-order="stroke"
+                  font-family="sans-serif"
+                >
+                  {{ ptLabel(i) }}
+                </text>
+              </g>
+            </g>
           </g>
 
           <!-- Edit mode: grid in viewBox-space (no transform — labels are display coords 0–336) -->
@@ -239,11 +361,86 @@
       </div>
     </div>
     <!-- map-content -->
+
+    <!-- Distance popup -->
+    <div v-if="distanceResult" class="point-popup dist-popup">
+      <div class="point-popup-header">
+        <span>Distance</span>
+        <button class="point-popup-close" @click="distancePts = []">✕</button>
+      </div>
+
+      <!-- Segments -->
+      <div
+        v-for="seg in distanceResult.segments"
+        :key="seg.label"
+        class="point-popup-row dist-row"
+      >
+        <span class="dist-seg-label">{{ seg.label }}</span>
+        <span class="dist-seg-val">{{ seg.miles.toFixed(1) }} mi</span>
+      </div>
+
+      <!-- Total -->
+      <div class="dist-total">
+        <span>Total</span>
+        <span>{{ distanceResult.miles.toFixed(1) }} mi</span>
+      </div>
+
+      <!-- Terrain -->
+      <div class="dist-terrain">
+        <span class="dist-terrain-label">Terrain</span>
+        <select v-model.number="distanceTerrain" class="dist-terrain-select">
+          <option :value="0.75">Road</option>
+          <option :value="1">Open / Plains</option>
+          <option :value="1.5">Hills</option>
+          <option :value="2">Forest</option>
+          <option :value="2.5">Swamp</option>
+          <option :value="3">Mountain</option>
+        </select>
+      </div>
+
+      <!-- Travel modes -->
+      <div
+        v-for="mode in distanceResult.modes"
+        :key="mode.label"
+        class="point-popup-row dist-row"
+      >
+        <span class="point-popup-layer">{{ mode.label }}</span>
+        <span class="dist-time">{{ mode.time }}</span>
+      </div>
+    </div>
+
+    <!-- Point Info popup -->
+    <div
+      v-if="pointInfoVisible"
+      class="point-popup"
+      :style="{ left: pointInfoPos.x + 'px', top: pointInfoPos.y + 'px' }"
+    >
+      <div class="point-popup-header">
+        <span>Point Info</span>
+        <button class="point-popup-close" @click="pointInfoVisible = false">
+          ✕
+        </button>
+      </div>
+      <div v-if="!pointInfoResults.length" class="point-popup-empty">
+        No filled layers found at this point.
+      </div>
+      <div
+        v-for="r in pointInfoResults"
+        :key="r.pathId"
+        class="point-popup-row"
+      >
+        <span class="point-popup-layer">{{ r.layerLabel }}</span>
+        <span v-if="r.pathLabel !== r.layerLabel" class="point-popup-path">{{
+          r.pathLabel
+        }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import mapsData from '../data/maps.json'
+import dataService from '@/utils/dataService.js'
 
 // ── SVG path parsers ─────────────────────────────────────────────────────────
 
@@ -492,16 +689,64 @@ export default {
       panY: 0,
       isDragging: false,
       dragStart: null,
+      dragMoved: false,
+      placingParty: false,
+      placingPartyId: null,
+      markers: [],
+      pointInfoMode: false,
+      pointInfoVisible: false,
+      pointInfoResults: [],
+      pointInfoPos: { x: 0, y: 0 },
+      distanceMode: false,
+      distancePts: [],
+      milesPerUnit: 1.25,
+      distanceTerrain: 1,
     }
   },
 
   async mounted() {
     await this.loadMap('kaemahz_complete_normalized')
+    const prefs = await dataService.getUserPrefs()
+    this.markers = prefs.mapMarkers ?? []
   },
 
   computed: {
     showFynesmarch() {
       return this.selectedRegion === 'fynesmarch'
+    },
+
+    markersForMap() {
+      return this.markers.filter((m) => m.mapId === this.currentMapId)
+    },
+
+    distanceResult() {
+      if (this.distancePts.length < 2) return null
+      const segments = this.distancePts.slice(1).map((b, i) => {
+        const a = this.distancePts[i]
+        const units = Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2)
+        return {
+          label: `${this.ptLabel(i)} → ${this.ptLabel(i + 1)}`,
+          miles: units * this.milesPerUnit,
+        }
+      })
+      const miles = segments.reduce((s, seg) => s + seg.miles, 0)
+      const travelTime = (mph) => {
+        const hours = (miles / mph) * this.distanceTerrain
+        return hours < 1
+          ? `${Math.round(hours * 60)} min`
+          : `${hours.toFixed(1)} hrs`
+      }
+      const modes = [
+        { label: 'On foot', mph: 3 },
+        { label: 'Mounted', mph: 5 },
+        { label: 'Ship (sailing)', mph: 7 },
+        { label: 'Ship (fast wind)', mph: 12 },
+      ].map(({ label, mph }) => ({ label, time: travelTime(mph) }))
+      return { segments, miles, modes }
+    },
+
+    parties() {
+      return this.$store.state.parties ?? []
     },
 
     currentMapName() {
@@ -1068,6 +1313,7 @@ export default {
       this.discoveredLayers = discoveredLayers
       this.rawLayers = rawLayers
       this.layerVisibility = visibility
+      if (meta.milesPerUnit) this.milesPerUnit = meta.milesPerUnit
       this.loading = false
     },
 
@@ -1084,26 +1330,150 @@ export default {
       const rect = e.currentTarget.getBoundingClientRect()
       const [, , vw] = this.activeViewBox.split(' ').map(Number)
       this.isDragging = true
+      this.dragMoved = false
       this.dragStart = {
         mouseX: e.clientX,
         mouseY: e.clientY,
         panX: this.panX,
         panY: this.panY,
         scale: vw / rect.width,
+        rect,
       }
     },
 
     onMouseMove(e) {
       if (!this.isDragging || !this.dragStart) return
-      const dx = (e.clientX - this.dragStart.mouseX) * this.dragStart.scale
-      const dy = (e.clientY - this.dragStart.mouseY) * this.dragStart.scale
-      this.panX = this.dragStart.panX - dx
-      this.panY = this.dragStart.panY - dy
+      const dx = e.clientX - this.dragStart.mouseX
+      const dy = e.clientY - this.dragStart.mouseY
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) this.dragMoved = true
+      this.panX = this.dragStart.panX - dx * this.dragStart.scale
+      this.panY = this.dragStart.panY - dy * this.dragStart.scale
     },
 
-    onMouseUp() {
+    onMouseUp(e, isLeave = false) {
+      if (!this.dragMoved && !isLeave) {
+        if (this.placingParty) {
+          const { x, y } = this.clientToSvg(e)
+          this.placeMarker(x, y)
+        } else if (this.pointInfoMode) {
+          this.doPointInfo(e)
+        } else if (this.distanceMode) {
+          this.addDistancePt(e)
+        }
+      }
       this.isDragging = false
       this.dragStart = null
+    },
+
+    clientToSvg(e) {
+      const svg = e.currentTarget
+      const pt = svg.createSVGPoint()
+      pt.x = e.clientX
+      pt.y = e.clientY
+      const svgPt = pt.matrixTransform(svg.getScreenCTM().inverse())
+      return { x: svgPt.x, y: svgPt.y }
+    },
+
+    toggleDistanceMode() {
+      this.distanceMode = !this.distanceMode
+      this.distancePts = []
+    },
+
+    addDistancePt(e) {
+      const { x, y } = this.clientToSvg(e)
+      this.distancePts = [...this.distancePts, { x, y }]
+    },
+
+    ptLabel(i) {
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      return i < letters.length ? letters[i] : `P${i}`
+    },
+
+    startPlacing() {
+      const active = this.parties.find((p) => p.active) ?? this.parties[0]
+      this.placingPartyId = active?.id ?? null
+      this.placingParty = true
+    },
+
+    placeMarker(x, y) {
+      const party = this.parties.find((p) => p.id === this.placingPartyId)
+      if (!party) return
+      const marker = {
+        id: `marker_${Date.now()}`,
+        mapId: this.currentMapId,
+        x,
+        y,
+        label: party.name,
+        partyId: party.id,
+        type: 'party',
+      }
+      this.markers = [...this.markers, marker]
+      dataService.patchUserPrefs({ mapMarkers: this.markers })
+      this.placingParty = false
+    },
+
+    doPointInfo(e) {
+      const svg = this.$refs.mapSvg
+      if (!svg) return
+      const clientPt = svg.createSVGPoint()
+      clientPt.x = e.clientX
+      clientPt.y = e.clientY
+
+      const results = []
+      for (const path of svg.querySelectorAll('path')) {
+        if (!path.id) continue
+        try {
+          const localPt = clientPt.matrixTransform(
+            path.getScreenCTM().inverse()
+          )
+          if (!path.isPointInFill(localPt)) continue
+          const layerLabel = this.getPathLayerLabel(path)
+          const pathDef = this.pathDefs.find((d) => d.id === path.id)
+          const pathLabel = pathDef
+            ? this.toDisplayName(pathDef.label)
+            : path.getAttribute('inkscape:label')
+            ? this.toDisplayName(path.getAttribute('inkscape:label'))
+            : this.toDisplayName(path.id)
+          if (!results.find((r) => r.layerLabel === layerLabel))
+            results.push({ pathId: path.id, layerLabel, pathLabel })
+        } catch (_) {
+          // path may have no fill or unsupported geometry
+        }
+      }
+
+      this.pointInfoResults = results
+      this.pointInfoPos = { x: e.clientX + 12, y: e.clientY + 12 }
+      this.pointInfoVisible = true
+    },
+
+    getPathLayerLabel(pathEl) {
+      // Walk up DOM to find a group whose id matches a known layer
+      let el = pathEl.parentElement
+      while (el && el.tagName.toLowerCase() !== 'svg') {
+        const id = el.getAttribute('id')
+        if (id) {
+          const layer =
+            this.rawLayers.find((l) => l.id === id) ||
+            this.discoveredLayers.find((l) => l.id === id)
+          if (layer) return this.toDisplayName(layer.label)
+        }
+        el = el.parentElement
+      }
+      // Fall back: use the pathDef's layerGroupId
+      const pathDef = this.pathDefs.find((d) => d.id === pathEl.id)
+      if (pathDef?.layerGroupId) {
+        const layer = this.discoveredLayers.find(
+          (l) => l.id === pathDef.layerGroupId
+        )
+        if (layer) return this.toDisplayName(layer.label)
+      }
+      return this.toDisplayName(pathEl.id)
+    },
+
+    removeMarker(id) {
+      if (this.placingParty) return
+      this.markers = this.markers.filter((m) => m.id !== id)
+      dataService.patchUserPrefs({ mapMarkers: this.markers })
     },
 
     onWheel(e) {
@@ -1116,6 +1486,7 @@ export default {
 
 <style scoped>
 .map-viewer {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1309,5 +1680,179 @@ export default {
 .node-label {
   font-family: monospace;
   pointer-events: none;
+}
+
+.placing-select {
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  padding: 0.15rem 0.5rem;
+  outline: none;
+}
+
+.map-btn--place:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.party-marker {
+  cursor: pointer;
+}
+.party-marker:hover polygon {
+  fill: #f5d87a;
+}
+
+.scale-input {
+  width: 4rem;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  padding: 1px 4px;
+  text-align: right;
+}
+.scale-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.dist-popup {
+  position: absolute;
+  left: 0.5rem;
+  top: 3.5rem;
+  min-width: 210px;
+  max-height: calc(100% - 5rem);
+  overflow-y: auto;
+}
+
+.dist-seg-label {
+  color: var(--color-text-low);
+  font-size: var(--font-size-sm);
+}
+
+.dist-seg-val {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.dist-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0.6rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  color: var(--color-accent-strong);
+  font-size: var(--font-size-md);
+}
+
+.dist-terrain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  gap: 0.5rem;
+}
+
+.dist-terrain-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-low);
+  flex-shrink: 0;
+}
+
+.dist-terrain-select {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  padding: 1px 4px;
+  flex: 1;
+}
+.dist-terrain-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.dist-row {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dist-time {
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+/* ── Point Info popup ── */
+.point-popup {
+  position: fixed;
+  z-index: 200;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  min-width: 180px;
+  max-width: 280px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  font-size: var(--font-size-base);
+}
+
+.point-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  color: var(--color-accent-strong);
+}
+
+.point-popup-close {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  padding: 0 0.2rem;
+}
+.point-popup-close:hover {
+  color: var(--color-text);
+}
+
+.point-popup-empty {
+  padding: 0.5rem 0.6rem;
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+.point-popup-row {
+  padding: 0.3rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.point-popup-row:last-child {
+  border-bottom: none;
+}
+
+.point-popup-layer {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.point-popup-path {
+  color: var(--color-text-low);
+  font-size: var(--font-size-sm);
 }
 </style>

@@ -4,6 +4,37 @@ import dataService from '@/utils/dataService'
 
 Vue.use(Vuex)
 
+function rollDiceExpr(expr) {
+  const match = String(expr).match(/(\d+)d(\d+)([+-]\d+)?/)
+  if (!match) return 0
+  const count = parseInt(match[1])
+  const sides = parseInt(match[2])
+  const mod = match[3] ? parseInt(match[3]) : 0
+  let total = mod
+  for (let i = 0; i < count; i++) total += Math.floor(Math.random() * sides) + 1
+  return Math.max(0, total)
+}
+
+function rechargeItems(items, rechargeTypes) {
+  return items.map((item) => {
+    if (item.charges_current == null || item.charges_max == null) return item
+    const r = item.charges_recharge
+    if (!r || r === 'none') return item
+    if (!rechargeTypes.includes(r) && !r.match(/\d+d\d+/)) return item
+    if (r.match(/\d+d\d+/)) {
+      const gained = rollDiceExpr(r)
+      return {
+        ...item,
+        charges_current: Math.min(
+          item.charges_max,
+          (item.charges_current ?? 0) + gained
+        ),
+      }
+    }
+    return { ...item, charges_current: item.charges_max }
+  })
+}
+
 export default new Vuex.Store({
   state: {
     selectedPlayers: [],
@@ -28,6 +59,9 @@ export default new Vuex.Store({
     restVersion: 0,
     currentEncounter: null,
     lastEncounter: null,
+    showVehicleCombat: false,
+    showVehicleWizard: false,
+    vehicleCombatSession: null,
     savedEncounters: JSON.parse(
       localStorage.getItem('savedEncounters') || '[]'
     ),
@@ -100,6 +134,41 @@ export default new Vuex.Store({
         state.dirtyTables.push(table)
       }
     },
+    PATCH_ASSET(state, patch) {
+      const idx = state.assets.findIndex((a) => a.id === patch.id)
+      if (idx === -1) return
+      const updated = [...state.assets]
+      updated[idx] = { ...updated[idx], ...patch }
+      state.assets = updated
+      if (!state.dirtyTables.includes('assets'))
+        state.dirtyTables.push('assets')
+    },
+    TOGGLE_VEHICLE_COMBAT(state) {
+      state.showVehicleCombat = !state.showVehicleCombat
+    },
+    OPEN_VEHICLE_WIZARD(state) {
+      state.showVehicleWizard = true
+    },
+    CLOSE_VEHICLE_WIZARD(state) {
+      state.showVehicleWizard = false
+    },
+    START_VEHICLE_COMBAT(state, ships) {
+      state.vehicleCombatSession = { ships }
+      state.showVehicleWizard = false
+      state.showVehicleCombat = true
+    },
+    END_VEHICLE_COMBAT(state) {
+      state.vehicleCombatSession = null
+      state.showVehicleCombat = false
+    },
+    PATCH_VEHICLE_SHIP(state, patch) {
+      if (!state.vehicleCombatSession) return
+      const ships = [...state.vehicleCombatSession.ships]
+      const idx = ships.findIndex((s) => s.id === patch.id)
+      if (idx === -1) return
+      ships[idx] = { ...ships[idx], ...patch }
+      state.vehicleCombatSession = { ...state.vehicleCombatSession, ships }
+    },
     CLEAR_DIRTY_TABLES(state) {
       state.dirtyTables = []
     },
@@ -111,7 +180,12 @@ export default new Vuex.Store({
         state.party_items.length > 0
           ? Math.max(...state.party_items.map((i) => i.id)) + 1
           : 0
-      state.party_items.push({ ...item, id: nextId })
+      const activeParty = state.parties.find((p) => p.active)
+      const newItem = { ...item, id: nextId }
+      if (newItem.carried_by === 'party' && !newItem.party_id && activeParty) {
+        newItem.party_id = activeParty.id
+      }
+      state.party_items.push(newItem)
       if (!state.dirtyTables.includes('party_items')) {
         state.dirtyTables.push('party_items')
       }
@@ -262,13 +336,22 @@ export default new Vuex.Store({
         state.dirtyTables.push('characters')
       state.restVersion += 1
 
-      // Advance active party's day
-      const activeParty = state.parties.find((p) => p.active)
-      if (activeParty) {
-        activeParty.game_day = (activeParty.game_day ?? 1) + 1
-        dataService
-          .patchUserPrefs({ parties: state.parties })
-          .catch(console.warn)
+      // Item charges — daily and short_rest both recharge on long rest; dice items auto-roll
+      state.party_items = rechargeItems(state.party_items, [
+        'daily',
+        'short_rest',
+      ])
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+
+      // Advance active party's day (immutable update — no patchUserPrefs here;
+      // the modal's Save/Skip path calls SET_PARTIES which owns party persistence)
+      const activeIdx = state.parties.findIndex((p) => p.active)
+      if (activeIdx !== -1) {
+        const p = state.parties[activeIdx]
+        const updated = [...state.parties]
+        updated[activeIdx] = { ...p, game_day: (p.game_day ?? 1) + 1 }
+        state.parties = updated
       } else {
         state.game_day += 1
         localStorage.setItem('game_day', state.game_day)
@@ -310,6 +393,29 @@ export default new Vuex.Store({
       if (!state.dirtyTables.includes('characters'))
         state.dirtyTables.push('characters')
       state.restVersion += 1
+
+      // Item charges — recharge short_rest items
+      state.party_items = rechargeItems(state.party_items, ['short_rest'])
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    SPEND_CHARGE(state, itemId) {
+      state.party_items = state.party_items.map((item) =>
+        item.id === itemId && item.charges_current > 0
+          ? { ...item, charges_current: item.charges_current - 1 }
+          : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    RESTORE_CHARGE(state, itemId) {
+      state.party_items = state.party_items.map((item) =>
+        item.id === itemId && item.charges_current < item.charges_max
+          ? { ...item, charges_current: item.charges_current + 1 }
+          : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
     },
     DELETE_PARTY_ITEM(state, itemId) {
       const idx = state.party_items.findIndex((i) => i.id === itemId)
@@ -325,6 +431,21 @@ export default new Vuex.Store({
         state.finances.party_purse = { gold: 0 }
       }
       state.finances.party_purse.gold += Number(amount) || 0
+      if (!state.dirtyTables.includes('finances')) {
+        state.dirtyTables.push('finances')
+      }
+    },
+    SET_CURRENCY(state, { key, value }) {
+      if (!state.finances.party_purse) state.finances.party_purse = {}
+      state.finances.party_purse[key] = Number(value) || 0
+      if (!state.dirtyTables.includes('finances')) {
+        state.dirtyTables.push('finances')
+      }
+    },
+    ADJUST_CURRENCY(state, { key, amount }) {
+      if (!state.finances.party_purse) state.finances.party_purse = {}
+      const current = Number(state.finances.party_purse[key]) || 0
+      state.finances.party_purse[key] = current + (Number(amount) || 0)
       if (!state.dirtyTables.includes('finances')) {
         state.dirtyTables.push('finances')
       }

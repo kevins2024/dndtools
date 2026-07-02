@@ -84,20 +84,22 @@
                 <img :src="char.image" class="tile-img" />
                 <div v-if="isSelected(char.name)" class="tile-check">✓</div>
               </div>
-              <div class="tile-name">{{ char.name }}</div>
-              <div class="tile-class">{{ $dnd.classLabel(char) }}</div>
-              <div class="tile-stat">
-                <span class="ts-key">{{ topStat(char).name }}</span>
-                <span class="ts-val">{{ topStat(char).score }}</span>
-              </div>
-              <div class="tile-skills">
-                <span
-                  v-for="sk in topSkills(char)"
-                  :key="sk.name"
-                  class="ts-skill"
-                >
-                  {{ sk.short }} {{ sk.signed }}
-                </span>
+              <div class="tile-body">
+                <div class="tile-name">{{ char.name }}</div>
+                <div class="tile-class">{{ $dnd.classLabel(char) }}</div>
+                <div class="tile-stat">
+                  <span class="ts-key">{{ topStat(char).name }}</span>
+                  <span class="ts-val">{{ topStat(char).score }}</span>
+                </div>
+                <div class="tile-skills">
+                  <span
+                    v-for="sk in topSkills(char)"
+                    :key="sk.name"
+                    class="ts-skill"
+                  >
+                    {{ sk.short }} {{ sk.signed }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -453,8 +455,8 @@ export default {
   flex: 1;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.4rem;
   padding: 0.5rem 0.75rem;
   align-content: start;
 }
@@ -463,11 +465,12 @@ export default {
   background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  overflow: hidden;
   cursor: pointer;
   transition: border-color 0.12s, opacity 0.12s;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
 }
 .char-tile:hover:not(.disabled) {
   border-color: var(--color-accent);
@@ -483,11 +486,16 @@ export default {
 
 .tile-portrait {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1;
+  width: 56px;
+  flex-shrink: 0;
   overflow: hidden;
+  background: var(--color-bg-surface);
+  border-radius: 5px 0 0 5px;
 }
 .tile-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -501,42 +509,51 @@ export default {
   justify-content: center;
   background: rgba(var(--color-accent-rgb), 0.55);
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
+.tile-body {
+  flex: 1;
+  min-width: 0;
+  padding: 0.3rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 .tile-name {
-  font-size: var(--font-size-xs);
+  font-size: 0.8rem;
   font-family: var(--font-display, serif);
-  color: var(--color-text-muted);
-  padding: 0.25rem 0.35rem 0.1rem;
+  color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 .tile-class {
-  font-size: var(--font-size-xs);
+  font-size: 0.68rem;
   color: var(--color-text-low);
-  padding: 0 0.35rem 0.1rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 .tile-stat {
   display: flex;
   align-items: baseline;
-  gap: 0.25rem;
-  padding: 0 0.35rem 0.1rem;
+  gap: 0.2rem;
+  margin-top: 2px;
 }
 .ts-key {
-  font-size: var(--font-size-xs);
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   color: var(--color-text-low);
 }
 .ts-val {
-  font-size: var(--font-size-xs);
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-accent);
   font-family: var(--font-display, serif);
@@ -546,13 +563,14 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
-  padding: 0 0.35rem 0.35rem;
+  margin-top: 2px;
 }
 .ts-skill {
-  font-size: var(--font-size-xs);
+  font-size: 0.62rem;
   color: var(--color-text-low);
   background: var(--color-bg-surface);
   border-radius: 2px;
   padding: 1px 3px;
+  line-height: 1.3;
 }
 </style>

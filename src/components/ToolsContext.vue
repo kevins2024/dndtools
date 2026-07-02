@@ -23,11 +23,17 @@
 import CharacterGenerator from './CharacterGenerator.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
 import WeeklyEvents from './WeeklyEvents.vue'
+import ItemGenerator from './ItemGenerator.vue'
 
 export default {
   name: 'ToolsContext',
 
-  components: { CharacterGenerator, EncounterGenerator, WeeklyEvents },
+  components: {
+    CharacterGenerator,
+    EncounterGenerator,
+    WeeklyEvents,
+    ItemGenerator,
+  },
 
   data() {
     return {
@@ -43,6 +49,11 @@ export default {
           id: 'character',
           label: 'Character Generator',
           component: 'CharacterGenerator',
+        },
+        {
+          id: 'items',
+          label: 'Item Generator',
+          component: 'ItemGenerator',
         },
       ],
     }

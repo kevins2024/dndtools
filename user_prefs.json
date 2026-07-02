@@ -71,7 +71,7 @@
         "Siv",
         "Chuknora"
       ],
-      "active": true,
+      "active": false,
       "game_day": 92,
       "marching_order": [
         "Pirra",
@@ -91,15 +91,27 @@
         "Revven",
         "Elucyne"
       ],
-      "active": false,
+      "active": true,
       "game_day": 92,
       "marching_order": [
-        "Jaygar",
         "Rhuna",
         "Kerra",
+        "Jaygar",
         "Revven",
         "Elucyne"
       ]
+    },
+    {
+      "id": "party_1782820688153",
+      "name": "Twins",
+      "members": [
+        "Eldi",
+        "Rith"
+      ],
+      "active": false,
+      "game_day": 1,
+      "marching_order": []
     }
-  ]
+  ],
+  "mapMarkers": []
 }

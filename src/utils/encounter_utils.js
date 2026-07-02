@@ -1088,3 +1088,24 @@ export function regenerateEnemy({
     specificMonster
   )
 }
+
+// ── Sailor / ship crew NPC generation ────────────────────────────────────────
+
+let _sailorNum = 0
+
+export function generateSailorNpc(overrideName) {
+  const dex = rollInRange(10, 14)
+  const con = rollInRange(10, 13)
+  const str = rollInRange(10, 13)
+  const hp = Math.max(4, rollInRange(1, 6) + rollInRange(1, 6) + mod(con))
+  return {
+    id: `sailor_${_eid++}`,
+    name: overrideName ?? `Sailor ${++_sailorNum}`,
+    initMod: mod(dex),
+    hp,
+    maxHp: hp,
+    ac: 12,
+    stats: { str, dex, con, int: 10, wis: 11, cha: 10 },
+    generated: true,
+  }
+}
