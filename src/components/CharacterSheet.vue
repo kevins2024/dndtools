@@ -5,11 +5,23 @@
       <div
         class="portrait"
         :style="{ backgroundImage: `url(${character.image})` }"
+        @click="lightboxOpen = true"
       >
         <span class="class-badge" :title="$dnd.classLabel(character)">
           <ClassIcon :character="character" />
         </span>
       </div>
+
+      <!-- Full-size image lightbox -->
+      <teleport to="body">
+        <div
+          v-if="lightboxOpen"
+          class="lightbox-overlay"
+          @click="lightboxOpen = false"
+        >
+          <img :src="character.image" class="lightbox-img" @click.stop />
+        </div>
+      </teleport>
       <div class="identity">
         <h2 class="char-name">{{ character.name }}</h2>
         <div class="char-fullname">{{ character.full_name }}</div>
@@ -166,6 +178,10 @@ export default {
 
   props: {
     character: { type: Object, required: true },
+  },
+
+  data() {
+    return { lightboxOpen: false }
   },
 
   computed: {
@@ -599,5 +615,30 @@ export default {
 .flavor-text.quirk {
   color: var(--color-text-low);
   margin-top: 0.4vh;
+}
+
+.portrait {
+  cursor: pointer;
+}
+</style>
+
+<style>
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
 }
 </style>

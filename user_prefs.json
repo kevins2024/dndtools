@@ -71,7 +71,7 @@
         "Siv",
         "Chuknora"
       ],
-      "active": false,
+      "active": true,
       "game_day": 92,
       "marching_order": [
         "Pirra",
@@ -91,7 +91,7 @@
         "Revven",
         "Elucyne"
       ],
-      "active": true,
+      "active": false,
       "game_day": 92,
       "marching_order": [
         "Rhuna",

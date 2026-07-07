@@ -120,6 +120,16 @@
       @saved="onSaved"
     />
 
+    <!-- Command palette -->
+    <CommandPalette
+      :open="commandPaletteOpen"
+      :contexts="contexts"
+      :characters="allCharacters"
+      @close="commandPaletteOpen = false"
+      @navigate-context="paletteNavigateContext"
+      @navigate-character="paletteNavigateCharacter"
+    />
+
     <!-- Save flash -->
     <transition name="save-flash">
       <div v-if="saveFlash" class="save-flash">✓ Saved</div>
@@ -150,6 +160,7 @@ import PartyContext from './components/PartyContext.vue'
 import PartyEditModal from './components/PartyEditModal.vue'
 import LongRestModal from './components/LongRestModal.vue'
 import ShortRestModal from './components/ShortRestModal.vue'
+import CommandPalette from './components/CommandPalette.vue'
 
 export default {
   name: 'AppLayout',
@@ -168,9 +179,27 @@ export default {
     PartyEditModal,
     LongRestModal,
     ShortRestModal,
+    CommandPalette,
+  },
+
+  mounted() {
+    this._paletteKey = (e) => {
+      if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault()
+        this.commandPaletteOpen = !this.commandPaletteOpen
+      }
+    }
+    window.addEventListener('keydown', this._paletteKey)
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('keydown', this._paletteKey)
   },
 
   computed: {
+    allCharacters() {
+      return this.$store.state.characters ?? []
+    },
     activeContextLabel() {
       return this.contexts.find((c) => c.id === this.activeContext)?.label ?? ''
     },
@@ -243,6 +272,7 @@ export default {
       partyEditOpen: false,
       shortRestOpen: false,
       longRestOpen: false,
+      commandPaletteOpen: false,
       contexts: [
         { id: 'party', label: 'Party', component: 'PartyContext' },
         { id: 'combat', label: 'Combat', component: 'CombatContext' },
@@ -256,6 +286,14 @@ export default {
   },
 
   methods: {
+    paletteNavigateContext(id) {
+      this.activeContext = id
+      this.commandPaletteOpen = false
+    },
+    paletteNavigateCharacter(name) {
+      this.$store.commit('NAV_TO_CHARACTER', { name, tab: 'sheet' })
+      this.commandPaletteOpen = false
+    },
     toggleDice() {
       this.$store.commit('SET_DICE_DRAWER_OPEN', !this.diceOpen)
     },
