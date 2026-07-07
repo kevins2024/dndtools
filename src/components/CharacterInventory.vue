@@ -230,7 +230,7 @@
           <template v-if="shipAssets.length">
             <div class="pnav-group">Ships</div>
             <button
-              v-for="a in shipAssets"
+              v-for="a in sortedShipAssets"
               :key="a.id"
               class="pnav-btn"
               :class="{ active: effectivePool === 'asset:' + a.name }"
@@ -247,7 +247,7 @@
           <template v-if="propertyAssets.length">
             <div class="pnav-group">Properties</div>
             <button
-              v-for="a in propertyAssets"
+              v-for="a in sortedPropertyAssets"
               :key="a.id"
               class="pnav-btn"
               :class="{ active: effectivePool === 'asset:' + a.name }"
@@ -724,8 +724,20 @@ export default {
       return [...this.$store.state.parties].sort((a, b) => {
         if (a.active && !b.active) return -1
         if (!a.active && b.active) return 1
+        const countDiff = this.partyItemCount(b.id) - this.partyItemCount(a.id)
+        if (countDiff !== 0) return countDiff
         return a.name.localeCompare(b.name)
       })
+    },
+    sortedShipAssets() {
+      return [...this.shipAssets].sort(
+        (a, b) => this.assetItemCount(b.name) - this.assetItemCount(a.name)
+      )
+    },
+    sortedPropertyAssets() {
+      return [...this.propertyAssets].sort(
+        (a, b) => this.assetItemCount(b.name) - this.assetItemCount(a.name)
+      )
     },
     effectivePool() {
       return (
@@ -1521,10 +1533,12 @@ export default {
 .pnav-group {
   font-size: var(--font-size-xs);
   font-family: var(--font-display);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-low);
-  padding: 0.6rem 0.5rem 0.2rem;
+  padding: 0.45rem 0.5rem 0.15rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
 }
 
 .pnav-btn {

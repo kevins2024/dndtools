@@ -2687,7 +2687,9 @@
     "notes": "",
     "id": "items_209",
     "battle_effect": true,
-    "spells_granted": ["Smite From Afar"]
+    "spells_granted": [
+      "Smite From Afar"
+    ]
   },
   {
     "name": "Breastplate of Planes",
@@ -2779,19 +2781,6 @@
     "description": "Once per long rest, attune to one willing creature within reach. Any healing you receive is also received by the bonded creature for the same amount. Once per day as a reaction (within 60 ft), turn any attack roll the bonded creature makes into a critical hit.",
     "notes": "",
     "id": "items_216"
-  },
-  {
-    "name": "Cloak of Displacement",
-    "type": "wondrous",
-    "slot": "back",
-    "equipped_by": "Elucyne",
-    "carried_by": null,
-    "needs_attunement": true,
-    "attuned": false,
-    "effect": "While worn, attackers have disadvantage on attack rolls against you. Ends until start of your next turn each time you take damage.",
-    "notes": "",
-    "id": "items_217",
-    "battle_effect": true
   },
   {
     "name": "Longbow",
