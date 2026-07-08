@@ -243,7 +243,7 @@
     "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Superseded by Mithral Half Plate.",
+    "notes": "",
     "id": "items_21",
     "slot": "body"
   },
@@ -1849,13 +1849,15 @@
     "type": "weapon",
     "weapon_category": "greatsword",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Return to Corwin or party pool.",
     "id": "items_141",
-    "slot": "melee2h"
+    "slot": "melee2h",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Belt of Giant Strength",
@@ -1975,15 +1977,17 @@
     "name": "Berserker's Fang +1",
     "type": "weapon",
     "weapon_category": "greataxe",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Greataxe. Trophy/display.",
     "id": "items_150",
     "slot": "melee2h",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": "Revivify",
+    "party_id": null
   },
   {
     "name": "Ring of Spell Storing (5 levels)",
@@ -2096,13 +2100,15 @@
   {
     "name": "Potion of Greater Healing",
     "type": "consumable",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP.",
     "id": "items_162",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Gemstones",
@@ -2118,14 +2124,16 @@
   {
     "name": "Tome of Clear Thought",
     "type": "wondrous",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Reading takes 48 hours over 6 days. INT score and maximum increase by 2. Becomes mundane for 100 years afterward.",
     "notes": "Read on day 121.",
     "id": "items_164",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Longsword +2 (party backup)",
@@ -2188,12 +2196,14 @@
     "type": "wondrous",
     "slot": "head",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Darkvision 60ft. If already have darkvision, extends by 60ft.",
     "notes": "Unassigned.",
-    "id": "items_169"
+    "id": "items_169",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Gauntlets of Ogre Power",
@@ -2398,18 +2408,6 @@
     "battle_effect": true
   },
   {
-    "name": "Sending Stones",
-    "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "party",
-    "needs_attunement": false,
-    "attuned": false,
-    "description": "Paired stones. Cast Sending once per day between them. Unlimited range.",
-    "notes": "One stone for Taenya Sorreval, one retained by party for cross-ocean communication.",
-    "id": "items_183",
-    "slot": "none"
-  },
-  {
     "name": "Hlifar'dhe'gar",
     "type": "wondrous",
     "equipped_by": "Jaygar",
@@ -2560,13 +2558,15 @@
   {
     "name": "Potion of Greater Healing",
     "type": "consumable",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_197",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Potion of Greater Healing",
@@ -2593,13 +2593,15 @@
   {
     "name": "Potion of Greater Healing (Measured Word formulation)",
     "type": "consumable",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP with advantage on the roll. Bonus action to self-administer.",
     "id": "items_200",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Potion of Greater Healing (Measured Word formulation)",
@@ -2682,7 +2684,7 @@
     "equipped_by": "Chuknora",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "On attunement: wielder gains the Smite From Afar spell (homebrew, 1st-level Paladin).",
     "notes": "",
     "id": "items_209",
@@ -2700,7 +2702,7 @@
     "equipped_by": "Chuknora",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "On attunement: advantage on concentration saving throws.",
     "notes": "",
     "id": "items_210",
@@ -2774,13 +2776,15 @@
     "rarity": "rare",
     "source": "published",
     "needs_attunement": true,
-    "attuned": false,
-    "equipped_by": null,
-    "carried_by": "party",
+    "attuned": true,
+    "equipped_by": "Chuknora",
+    "carried_by": "Chuknora",
     "slot": "finger",
     "description": "Once per long rest, attune to one willing creature within reach. Any healing you receive is also received by the bonded creature for the same amount. Once per day as a reaction (within 60 ft), turn any attack roll the bonded creature makes into a critical hit.",
     "notes": "",
-    "id": "items_216"
+    "id": "items_216",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Longbow",

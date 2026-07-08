@@ -22,6 +22,12 @@
         <span class="chip-val">+{{ profBonus }}</span>
         <span class="chip-label">Prof</span>
       </div>
+      <div class="chip">
+        <span class="chip-val has-tip" :title="passivePerceptionTooltip">{{
+          passivePerception
+        }}</span>
+        <span class="chip-label">Passive Perc</span>
+      </div>
       <div v-if="spellAttack !== null" class="chip">
         <span class="chip-val has-tip" :title="spellAttackTooltip">{{
           dnd.signed(spellAttack)
@@ -425,19 +431,58 @@ export default {
     },
 
     speed() {
-      const s = this.character.speed
-      if (!s) return `${DEFAULT_SPEED_FT} ft`
-      const base = typeof s === 'number' ? `${s} ft` : s
-      const bonus = this.equippedItems.reduce(
+      const baseNum =
+        typeof this.character.speed === 'number'
+          ? this.character.speed
+          : DEFAULT_SPEED_FT
+      const itemBonus = this.equippedItems.reduce(
         (sum, i) => sum + (i.stat_bonuses?.speed ?? 0),
         0
       )
-      return bonus
-        ? `${(typeof s === 'number' ? s : DEFAULT_SPEED_FT) + bonus} ft`
-        : base
+      const featureBonus = (this.character.features ?? []).reduce(
+        (sum, f) => sum + (f.stat_bonuses?.speed ?? 0),
+        0
+      )
+      return `${baseNum + itemBonus + featureBonus} ft`
     },
     speedTooltip() {
-      return this.character.speed ? '' : `Default ${DEFAULT_SPEED_FT} ft`
+      const hasExplicit = typeof this.character.speed === 'number'
+      const baseNum = hasExplicit ? this.character.speed : DEFAULT_SPEED_FT
+      const parts = [`${baseNum} ft${hasExplicit ? '' : ' (default)'}`]
+      for (const f of this.character.features ?? []) {
+        const bonus = f.stat_bonuses?.speed
+        if (bonus) parts.push(`${f.name} +${bonus}`)
+      }
+      for (const i of this.equippedItems) {
+        const bonus = i.stat_bonuses?.speed
+        if (bonus) parts.push(`${i.name} +${bonus}`)
+      }
+      return parts.length > 1 ? parts.join(' · ') : ''
+    },
+    passivePerception() {
+      return dnd.passivePerception(this.character, this.partyItems)
+    },
+    passivePerceptionTooltip() {
+      const { stats, bonuses } = this.resolvedStats
+      const wisMod = dnd.mod(stats.wis)
+      const prof = this.profBonus
+      const isProficient = (this.character.skill_proficiencies ?? []).includes(
+        'Perception'
+      )
+      const hasExpertise = (this.character.skill_expertise ?? []).includes(
+        'Perception'
+      )
+      const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
+      const itemBonus = bonuses['skill_Perception'] ?? 0
+      const featBonus = bonuses.passive_perception ?? 0
+      const parts = ['10 (base)', `WIS ${dnd.signed(wisMod)}`]
+      if (hasExpertise)
+        parts.push(`Expertise ${dnd.signed(profBonus)} (Prof ×2)`)
+      else if (isProficient) parts.push(`Prof ${dnd.signed(profBonus)}`)
+      if (itemBonus) parts.push(`Items ${dnd.signed(itemBonus)}`)
+      if (featBonus) parts.push(`Feat bonus ${dnd.signed(featBonus)}`)
+      parts.push(`= ${dnd.passivePerception(this.character, this.partyItems)}`)
+      return parts.join('\n')
     },
 
     spellAttack() {
@@ -825,6 +870,8 @@ export default {
             : String(feature.uses_max)
         fields.push({ label: 'Uses', value: uses })
       }
+      if (feature.description)
+        fields.push({ label: 'Effect', value: feature.description })
       if (feature.note) fields.push({ label: 'Note', value: feature.note })
       this.popupItem = {
         title: feature.name,

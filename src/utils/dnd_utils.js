@@ -265,10 +265,12 @@ export const dnd = {
     const shieldEnhancement = shieldItem ? shieldItem.enhancement_bonus ?? 0 : 0
     const shieldBonus = shieldItem ? 2 + shieldEnhancement : 0
     if (shieldItem) {
-      const shieldStr = shieldEnhancement
-        ? `, +${shieldEnhancement} enhancement`
-        : ''
-      steps.push(`${shieldItem.name} (${dnd.signed(shieldBonus)}${shieldStr})`)
+      const shieldLabel = shieldEnhancement
+        ? `+2 base, +${shieldEnhancement} enhancement = ${dnd.signed(
+            shieldBonus
+          )}`
+        : `${dnd.signed(shieldBonus)}`
+      steps.push(`${shieldItem.name} (${shieldLabel})`)
     }
 
     // Per-item flat AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
@@ -393,7 +395,12 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   passivePerception(character, partyItems = []) {
-    return 10 + dnd.skill(character, 'Perception', partyItems)
+    const { bonuses } = dnd.resolveStats(character, partyItems)
+    return (
+      10 +
+      dnd.skill(character, 'Perception', partyItems) +
+      (bonuses.passive_perception ?? 0)
+    )
   },
 
   // ─────────────────────────────────────────────

@@ -1313,5 +1313,17 @@
     "notes": "",
     "status": [],
     "id": "npcs_95"
+  },
+  {
+    "id": "npcs_valdmere_09",
+    "name": "Zav'rel",
+    "location": "Valdmere, The Tallow and Tar inn",
+    "faction": null,
+    "role": "Innkeeper, information broker",
+    "status": ["neutral"],
+    "appearance": "Drow. Unremarkable in presentation for someone who is clearly more than an innkeeper.",
+    "personality_traits": "Well connected, discreet, moves through complicated situations with ease. Keeps unusual hours.",
+    "personality_quirks": "Already awake when the party knocked late at night. Took them to Quelso's residence without hesitation when asked.",
+    "notes": "Helped the previous Bluff House owner flee Valdmere before the party arrived — that thread was not fully explored. Knew Dravan Quelso well enough to know where he lived and to have opinions about him. Led the party to Quelso's residence the night they investigated. Has been in Valdmere long enough to know the city's undercurrents well. The Tallow and Tar is well positioned for information gathering — anything said there likely reaches Zav'rel eventually."
   }
 ]

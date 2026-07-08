@@ -19,20 +19,14 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -126,7 +120,7 @@
     "image": "./characters/rhuna.png",
     "proficiency_bonus": 4,
     "spellcasting_ability": null,
-    "notes": "AC 18 accounts for Bracers of Defense (+2 unarmored) + Ring of Protection (+1) + DEX mod (+2). Verify in computed.",
+    "notes": "",
     "stat_str": 20,
     "stat_dex": 14,
     "stat_con": 16,
@@ -136,20 +130,14 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -242,10 +230,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -254,11 +239,7 @@
       "Deception",
       "Investigation"
     ],
-    "languages": [
-      "Common",
-      "Thieves Cant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Thieves Cant", "Dwarvish"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -291,10 +272,7 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Invisibility",
-          "Inflict Wounds"
-        ]
+        "spells_granted": ["Invisibility", "Inflict Wounds"]
       }
     ],
     "spells": [],
@@ -340,7 +318,7 @@
     "spellcasting_ability": "int",
     "spell_attack_bonus": 9,
     "spell_save_dc": 17,
-    "notes": "Converted from Alchemist to Artillerist. Arcane Firearm is his custom alchemical heavy crossbow — all spells cast through it add 1d8 to one damage roll. Attack rolls are INT based not DEX based.",
+    "notes": "Converted from Alchemist to Artillerist.",
     "stat_str": 8,
     "stat_dex": 12,
     "stat_con": 11,
@@ -350,10 +328,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int"
-    ],
+    "saving_throws": ["con", "int"],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -361,11 +336,7 @@
       "Perception"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish"],
     "features": [
       {
         "name": "Magical Tinkering",
@@ -460,10 +431,7 @@
         "type": "feat",
         "recharge": "long_rest",
         "description": "Learn Misty Step and Command. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Misty Step",
-          "Command"
-        ]
+        "spells_granted": ["Misty Step", "Command"]
       },
       {
         "name": "Gnome Cunning",
@@ -574,7 +542,7 @@
     "image": "./characters/lenn.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "int",
-    "notes": "Spell slots at level 9: 4/3/3/3/1. Metamagic Adept gives 2 sorcery points per long rest - Empowered Spell (1 point: reroll up to INT mod damage dice) or Quickened Spell (2 points: cast leveled spell as bonus action). Reformed gambling addict. Spell save DC 17, spell attack +9.",
+    "notes": "Reformed gambling addict but before that was an academic. Prefers evocation but is skilled across many schools. Plays the flute fairly well.",
     "stat_str": 10,
     "stat_dex": 12,
     "stat_con": 13,
@@ -584,21 +552,9 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -619,7 +575,17 @@
       {
         "name": "Metamagic Adept",
         "type": "feat",
-        "note": "Empowered Spell, Quickened Spell"
+        "note": "Pool of 2 sorcery points per long rest — spent on Empowered or Quickened Spell below."
+      },
+      {
+        "name": "Empowered Spell",
+        "type": "metamagic",
+        "description": "Cost: 1 sorcery point. When rolling damage for a spell, reroll up to INT modifier (5) dice and use the new rolls."
+      },
+      {
+        "name": "Quickened Spell",
+        "type": "metamagic",
+        "description": "Cost: 2 sorcery points. Cast a leveled spell that normally takes 1 action as a bonus action instead."
       }
     ],
     "spells": [
@@ -1065,6 +1031,16 @@
     "hit_dice_current": 9,
     "conditions": [],
     "skill_expertise": [],
+    "resources": [
+      {
+        "key": "sorcery_points",
+        "name": "Sorcery Points",
+        "label": "SP",
+        "max": 2,
+        "current": 2,
+        "recharge": "long_rest"
+      }
+    ],
     "classes": [
       {
         "name": "Wizard",
@@ -1082,7 +1058,7 @@
     "image": "./characters/kessara.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "int",
-    "notes": "AC setup: Mage Armor (13 + DEX 5 = 18) + Bracers of Defense (+2) = 20 base. Bladesong active adds INT mod (+5) = 25 AC. Bracers of Defense compatible with Mage Armor (spell, not armor). Spell slots at level 9: 4/3/3/3/1. Spell save DC 17, spell attack +9. SHOPPING: mage robes (non-armor), +1 or +2 rapier or dancing sword. One level away from Song of Defense.",
+    "notes": "",
     "stat_str": 10,
     "stat_dex": 20,
     "stat_con": 13,
@@ -1092,10 +1068,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -1103,11 +1076,7 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1596,7 +1565,7 @@
     "image": "./characters/petra.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "wis",
-    "notes": "Partial fluency in Sovi's southern language - historically significant. Clerics prepare spells daily from full list - Life Domain spells always prepared. SHOPPING: new armor (half plate or breastplate minimum, ideally magical with WIS bonus). Inspiring Leader: 10 min speech, up to 6 allies gain 11 temp HP (level 9 + CHA mod 3). Spell save DC 18, spell attack +9. Can prepare 14 spells per long rest. Raise Dead now available.",
+    "notes": "Partial fluency in Sovi's southern language — historically significant.",
     "stat_str": 10,
     "stat_dex": 10,
     "stat_con": 14,
@@ -1606,21 +1575,9 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Medicine",
-      "Insight",
-      "Religion",
-      "History"
-    ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Solvalean"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
+    "languages": ["Common", "Celestial", "Solvalean"],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1648,7 +1605,9 @@
       },
       {
         "name": "Inspiring Leader",
-        "type": "feat"
+        "type": "feat",
+        "action_type": "action",
+        "description": "10-minute speech. Up to 6 willing creatures who can hear and understand you gain temporary HP equal to your level + CHA modifier. A creature can't benefit again until after a short or long rest."
       },
       {
         "name": "War Caster",
@@ -1863,7 +1822,7 @@
     "image": "./characters/pirra.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": null,
-    "notes": "Passive Perception 21 (10 + WIS mod 2 + proficiency 4 + Observant 5). Passive Investigation similarly exceptional.",
+    "notes": "",
     "stat_str": 8,
     "stat_dex": 20,
     "stat_con": 12,
@@ -1873,10 +1832,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1885,10 +1841,7 @@
       "Deception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -1924,7 +1877,8 @@
       },
       {
         "name": "Observant",
-        "type": "feat"
+        "type": "feat",
+        "stat_bonuses": { "passive_perception": 5, "passive_investigation": 5 }
       }
     ],
     "spells": [],
@@ -1942,12 +1896,7 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "SleightOfHand",
-      "Insight",
-      "Perception"
-    ],
+    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
     "classes": [
       {
         "name": "Rogue",
@@ -1965,7 +1914,7 @@
     "image": "./characters/kerra.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
-    "notes": "Warlock spell slots: 2 slots of 3rd level, recharge on short rest. Spell save DC 15, spell attack +7. Shadow of Moil + Devil's Sight darkness combo now fully online. Roadmap: next 3 levels into Warlock to reach level 8. Target build level 12: 4 Fighter / 8 Warlock. Eyes of the Rune Keeper - has been quietly reading things she shouldn't for years, never mentioned it.",
+    "notes": "Target build: 4 Fighter / 8 Warlock.",
     "stat_str": 20,
     "stat_dex": 12,
     "stat_con": 14,
@@ -1975,10 +1924,7 @@
     "hp_max": 63,
     "hp_current": 63,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -1987,11 +1933,7 @@
       "Persuasion",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orcish",
-      "Deep Speech"
-    ],
+    "languages": ["Common", "Orcish", "Deep Speech"],
     "features": [
       {
         "name": "Fighting Style — Duelling",
@@ -2177,7 +2119,7 @@
     "image": "./characters/siv.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": null,
-    "notes": "Movement: 50ft total (30 base + 10 Superior Mobility + 10 Mobile feat). Mobile feat: no opportunity attacks from creatures she attacks. Ambush Master: advantage on initiative; first creature hit grants all allies advantage on attacks against it that turn.",
+    "notes": "",
     "stat_str": 12,
     "stat_dex": 20,
     "stat_con": 14,
@@ -2187,20 +2129,9 @@
     "hp_max": 61,
     "hp_current": 61,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Survival",
-      "Acrobatics",
-      "Nature"
-    ],
-    "languages": [
-      "Common",
-      "Goblin"
-    ],
+    "saving_throws": ["str", "con"],
+    "skill_proficiencies": ["Athletics", "Survival", "Acrobatics", "Nature"],
+    "languages": ["Common", "Goblin"],
     "features": [
       {
         "name": "Extra Attack",
@@ -2251,11 +2182,18 @@
       },
       {
         "name": "Scout — Superior Mobility",
-        "type": "feature"
+        "type": "feature",
+        "stat_bonuses": { "speed": 10 }
+      },
+      {
+        "name": "Scout — Ambush Master",
+        "type": "feature",
+        "description": "Advantage on initiative rolls. The first creature you hit each turn grants all allies advantage on attack rolls against it until the start of your next turn."
       },
       {
         "name": "Mobile",
-        "type": "feat"
+        "type": "feat",
+        "stat_bonuses": { "speed": 10 }
       }
     ],
     "spells": [],
@@ -2290,7 +2228,7 @@
     "image": "./characters/lexica.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
-    "notes": "INT 19 from Headband of Intellect. Bardic Inspiration: 5/long rest (CHA mod). Spell slots at level 9: 4/3/3/3/1. Spell save DC 17, spell attack +9. Magical Secrets at level 10 — big unlock next level.",
+    "notes": "",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -2300,10 +2238,7 @@
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -2316,11 +2251,7 @@
       "Nature",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -2507,10 +2438,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Perception",
-      "Persuasion"
-    ],
+    "skill_expertise": ["Perception", "Persuasion"],
     "classes": [
       {
         "name": "Bard",
@@ -2528,7 +2456,7 @@
     "image": "./characters/lyria.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "int",
-    "notes": "Danse Macabre recovered from a necromancer's spellbook - she can cast it, finds it distasteful. Cloak of Protection +1 applies to both AC and saving throws. Arcane Ward: 18HP max (2 x wizard level 9), recharges when casting abjuration spells. Spell save DC 17, spell attack +9. Spell slots at level 9: 4/3/3/3/1.",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -2538,21 +2466,9 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -3048,20 +2964,14 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Extra Attack",
@@ -3101,7 +3011,7 @@
     ],
     "spells": [],
     "active_effects": [],
-    "notes": "STR 19 from Gauntlets of Ogre Power. CON now 18 naturally. Next ASI goal: CON 18 → 20. Corwin holds the Ravenquay relationship network.",
+    "notes": "Next ASI goal: CON 18 → 20. Corwin holds the Ravenquay relationship network.",
     "persona_notes": [
       "Watches every room the way a guard watched his father's workshop. Thirty years. Still.",
       "Straightforward to the point of surprising people. Says true things out loud.",
@@ -3144,12 +3054,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": [
-      "str",
-      "con",
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["str", "con", "wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -3158,12 +3063,7 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Celestial",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -3222,7 +3122,8 @@
       },
       {
         "name": "Fast Movement (+10ft)",
-        "type": "feature"
+        "type": "feature",
+        "stat_bonuses": { "speed": 10 }
       },
       {
         "name": "Elemental Cleaver",
@@ -3309,7 +3210,7 @@
     ],
     "active_effects": [],
     "conditions": [],
-    "notes": "Rage: +2 damage, resistance to B/P/S; Giant's Havoc — become Large while raging (+5ft reach, Crushing Throw adds rage bonus to thrown STR attacks). Elemental Cleaver: imbue weapon with acid/cold/fire/lightning/thunder when entering rage, +1d6 of that type per hit. Spell save DC 11 (CHA). Lay on Hands: 15 HP pool resets on long rest. Channel Divinity 1/SR: Nature's Wrath (restrain creature, STR/DEX save) or Turn the Faithless (turn fey/fiend, WIS save). Oath spells always prepared: Ensnaring Strike, Speak with Animals.",
+    "notes": "",
     "persona_notes": [
       "Eye contact that goes slightly past comfortable and keeps going. Not aggressive - just complete.",
       "Laughs at things others don't find funny. Doesn't explain why.",
@@ -3328,7 +3229,7 @@
     "image": "./characters/enauweyn.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
-    "notes": "Armor: Green Fey Armor (half plate, +1 CHA, attunement required). CHA is 17 base, 18 while armor attuned. Spell save DC 16 attuned. Spell attack +8 attuned. Aura of Protection grants +4 to all ally saving throws within 10ft while attuned. Oath of the Crown 3rd level oath spells now available: Aura of Vitality, Spirit Guardians.",
+    "notes": "",
     "stat_str": 16,
     "stat_dex": 14,
     "stat_con": 14,
@@ -3338,10 +3239,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3349,11 +3247,7 @@
       "Religion",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Elvish", "Sylvan"],
     "features": [
       {
         "name": "Divine Sense",
@@ -3549,22 +3443,9 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Nature",
-      "Perception",
-      "Survival",
-      "Medicine"
-    ],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -3573,7 +3454,21 @@
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "modes": [
+          {
+            "name": "Archer",
+            "description": "Bonus action: constellation bow appears. When casting a spell, make a ranged spell attack — hit deals 1d8+WIS radiant damage."
+          },
+          {
+            "name": "Chalice",
+            "description": "When casting a healing spell, Tackett also regains 1d8+WIS HP."
+          },
+          {
+            "name": "Dragon",
+            "description": "Concentration checks automatically succeed on rolls of 9 or less."
+          }
+        ]
       },
       {
         "name": "Stars Druid — Unbroken (Legendary)",
@@ -3777,7 +3672,7 @@
     "active_effects": [],
     "exhaustion_level": 0,
     "conditions": [],
-    "notes": "WIS 22 gives spell save DC 18 and spell attack +10. Can prepare 15 spells per long rest. One level away from Twinkling Constellations. Starry Form - Archer: bonus action, constellation bow appears, bonus radiant damage on spells. Chalice: healing spells also heal Tackett for 1d8+WIS. Dragon: concentration checks automatically succeed on rolls of 9 or less. Unbroken (Legendary): can concentrate on two spells simultaneously. Cosmic Omen: reaction to add or subtract 1d6 from a roll once per long rest. Bountiful Luck: reaction when any ally within 30ft rolls a natural 1 - they reroll.",
+    "notes": "One level away from Twinkling Constellations.",
     "persona_notes": [
       "He has seen the worst that nature can be and chose to stay a druid anyway.",
       "He finds most situations funnier than anyone else does.",
@@ -3815,10 +3710,7 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3827,11 +3719,7 @@
       "Perception",
       "Performance"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
@@ -4059,7 +3947,7 @@
     },
     "deity": "Veleth",
     "active_effects": [],
-    "notes": "Spell save DC 17, spell attack +9. Can prepare 14 spells per long rest.",
+    "notes": "",
     "persona_notes": [
       "Says 'whoops' when something goes wrong and moves on.",
       "Cleric of Veleth - love, desire, companionship, physical connection. Never preaches it.",
@@ -4104,10 +3992,7 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
+    "saving_throws": ["dex", "str"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -4117,11 +4002,7 @@
       "Survival",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Infernal",
-      "Abyssal"
-    ],
+    "languages": ["Common", "Infernal", "Abyssal"],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -4209,7 +4090,7 @@
       }
     },
     "active_effects": [],
-    "notes": "CON boosted by Belt of Constitution (natural CON 14, belt brings to 18, mod +4). NEXT LEVEL ROADMAP: Level 10 → Rogue 3 (Assassin subclass unlocked), Level 11 → Fighter 3 (Champion + Improved Critical unlocked). Tiefling entertainer from southeast of Argentveil.",
+    "notes": "Tiefling entertainer from southeast of Argentveil. Level 10: Rogue 3 (Assassin subclass unlocked). Level 11: Fighter 3 (Champion + Improved Critical).",
     "persona_notes": [
       "Bubbly in a way that fills rooms. The happiness is never contained and never performed.",
       "Finds awkwardness genuinely hilarious.",
@@ -4224,10 +4105,7 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "skill_expertise": ["Stealth", "Performance"],
     "classes": [
       {
         "name": "Ranger",
@@ -4264,10 +4142,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -4277,11 +4152,7 @@
       "Medicine",
       "Acrobatics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Solvalean"
-    ],
+    "languages": ["Common", "Elvish", "Solvalean"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -4471,7 +4342,7 @@
     },
     "active_effects": [],
     "conditions": [],
-    "notes": "Inspires with body/dance rather than instrument. SHOPPING: scimitar, ideally magical. Spell save DC 17, spell attack +9.",
+    "notes": "Inspires with body/dance rather than instrument.",
     "persona_notes": [
       "Speaks like she's inviting everyone into the back room of a tavern where the drinks cost more.",
       "Kindness can be surface level - she performs it well. But she sees people in genuine need as problems she can fix.",
@@ -4487,10 +4358,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Performance",
-      "Insight"
-    ],
+    "skill_expertise": ["Performance", "Insight"],
     "classes": [
       {
         "name": "Bard",
@@ -4517,20 +4385,9 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Persuasion",
-      "Insight",
-      "Religion"
-    ],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
+    "languages": ["Common", "Gnomish"],
     "features": [
       {
         "name": "Divine Sense",
@@ -4660,7 +4517,7 @@
     "active_effects": [],
     "exhaustion_level": 0,
     "conditions": [],
-    "notes": "Paladin of Carix, god of mischief and unexpected consequences. Spell save DC 16, spell attack +8. Lay on Hands pool 45HP. Joined Dawn Blades provisionally Day 65 Year 468.",
+    "notes": "Paladin of Carix, god of mischief and unexpected consequences. Joined Dawn Blades provisionally Day 65 Year 468.",
     "persona_notes": [
       "The Dawn Blades are a vehicle for surprise.",
       "When something goes wrong the instinct is immediate: hit something very hard, or create chaos.",
@@ -4694,7 +4551,7 @@
     "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Moves like she's already decided where she's going. Twin sabers, light on her feet, the kind of person who finds the exit before she needs it.",
     "proficiency_bonus": 3,
     "spellcasting_ability": null,
-    "notes": "Fighter 5 / Rogue 3. At level 9 gains Fighter 6 — second ASI, take DEX 18→20. Long term Fighter heavy. Tattoo on sword arm: 1/day reaction to completely block one ranged attack. Elven Accuracy: triple advantage when she has advantage on attack rolls.",
+    "notes": "Next level: Fighter 6 — second ASI, planning DEX 18→20. Long-term build: Fighter heavy.",
     "stat_str": 10,
     "stat_dex": 17,
     "stat_con": 16,
@@ -4704,10 +4561,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4717,11 +4571,7 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Two-Weapon Fighting Style",
@@ -4816,10 +4666,7 @@
     "id": "characters_20",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": [
-      "Stealth",
-      "Acrobatics"
-    ],
+    "skill_expertise": ["Stealth", "Acrobatics"],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 8,
@@ -4855,10 +4702,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
+    "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4868,11 +4712,7 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Divine Magic",

@@ -379,6 +379,8 @@ export default {
 }
 .stat-block--boosted .stat-score {
   color: var(--color-accent);
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
 }
 
 .stat-mod {

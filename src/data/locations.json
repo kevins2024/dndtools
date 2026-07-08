@@ -587,6 +587,7 @@
         "type": "inn",
         "district": "Main street",
         "description": "Better than it sounds. Run by a woman who knows everything worth knowing about Valdmere and a fair amount worth knowing about everything else. Does not share information directly — tells you what she thinks you need when she thinks you need it.",
+        "npcs_present": ["Zav'rel"],
         "notes": "Recommended by Osmer. Tell her Osmer sent you."
       },
       {
