@@ -181,6 +181,28 @@ app.get('/api/cache/:filename', (req, res) => {
   }
 })
 
+// ── POST /api/dm-context ─────────────────────────────────
+// Writes a Markdown context file to public/dm-context/ for GitHub hosting.
+// Overwrites if the file already exists.
+app.post('/api/dm-context', (req, res) => {
+  const { filename, content } = req.body
+  if (!filename || !content) {
+    return res.status(400).json({ error: 'filename and content are required' })
+  }
+  const safe = filename.replace(/[^a-z0-9-_]/gi, '-').toLowerCase()
+  const dir = path.resolve(__dirname, 'public', 'dm-context')
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+  const filePath = path.join(dir, `${safe}.md`)
+  try {
+    fs.writeFileSync(filePath, content, 'utf8')
+    console.log(`DM context written: ${filePath}`)
+    res.json({ ok: true, path: `/dm-context/${safe}.md` })
+  } catch (err) {
+    console.error('Error writing DM context:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // ── Startup Scripts ───────────────────────────────────────
 // Add one-off data migration functions here, then clear them out when done.
 // Each function receives DATA_DIR and should log what it did.

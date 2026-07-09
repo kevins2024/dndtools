@@ -3,7 +3,7 @@
     {
       "id": "ss_1782300079978",
       "label": "Ilwuoshim",
-      "notes": "Meant to share information about the entrapment device",
+      "notes": "",
       "stone_a": {
         "label": "Stone A",
         "holder": "Lenn",
@@ -24,6 +24,38 @@
     {
       "id": "tc_1782333726290",
       "location": "Forest Gate NE of Valdmere",
+      "sigil_known": false,
+      "access": "unknown",
+      "permanent": true,
+      "notes": "Requires a disc to activate which also determines the destination."
+    },
+    {
+      "id": "tc_1783542290374",
+      "location": "Valdmere Bluff House",
+      "sigil_known": false,
+      "access": "unknown",
+      "permanent": true,
+      "notes": ""
+    },
+    {
+      "id": "tc_1783542290375",
+      "location": "Argentveil Nossa Valessa",
+      "sigil_known": false,
+      "access": "unknown",
+      "permanent": true,
+      "notes": ""
+    },
+    {
+      "id": "tc_1783542290376",
+      "location": "Khemrise Estate Cellars",
+      "sigil_known": false,
+      "access": "unknown",
+      "permanent": true,
+      "notes": ""
+    },
+    {
+      "id": "tc_1783542290377",
+      "location": "The Liliveth Gate",
       "sigil_known": false,
       "access": "unknown",
       "permanent": true,

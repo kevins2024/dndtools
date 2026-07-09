@@ -24,6 +24,7 @@ import CharacterGenerator from './CharacterGenerator.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
 import WeeklyEvents from './WeeklyEvents.vue'
 import ItemGenerator from './ItemGenerator.vue'
+import DmExport from './DmExport.vue'
 
 export default {
   name: 'ToolsContext',
@@ -33,6 +34,7 @@ export default {
     EncounterGenerator,
     WeeklyEvents,
     ItemGenerator,
+    DmExport,
   },
 
   data() {
@@ -54,6 +56,11 @@ export default {
           id: 'items',
           label: 'Item Generator',
           component: 'ItemGenerator',
+        },
+        {
+          id: 'dm-export',
+          label: 'DM Export',
+          component: 'DmExport',
         },
       ],
     }
