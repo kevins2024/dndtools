@@ -325,7 +325,7 @@
 
             <!-- Party pool actions -->
             <template v-if="!isAssetPool">
-              <span v-if="!isUnassignedPool" class="item-action">→</span>
+              <span v-if="!isUnassignedPool" class="item-action">←</span>
               <button
                 v-if="isUnassignedPool && activeParty"
                 class="act-btn"
@@ -568,6 +568,17 @@
               <span class="meta-label">Stored at</span>
               <span class="meta-value dim">{{ editDraft.stored_at }}</span>
             </div>
+            <div v-if="editDraft.stat_overrides" class="meta-row">
+              <span class="meta-label">Sets</span>
+              <span class="meta-value">
+                <span
+                  v-for="(val, key) in editDraft.stat_overrides"
+                  :key="key"
+                  class="bonus-tag"
+                  >{{ key.toUpperCase() }} → {{ val }}</span
+                >
+              </span>
+            </div>
             <div v-if="editDraft.stat_bonuses" class="meta-row">
               <span class="meta-label">Bonuses</span>
               <span class="meta-value">
@@ -576,6 +587,20 @@
                   :key="key"
                   class="bonus-tag"
                   >{{ key }}: +{{ val }}</span
+                >
+              </span>
+            </div>
+            <div
+              v-if="editDraft.stored_spells && editDraft.stored_spells.length"
+              class="meta-row"
+            >
+              <span class="meta-label">Stored</span>
+              <span class="meta-value">
+                <span
+                  v-for="sp in editDraft.stored_spells"
+                  :key="sp.name"
+                  class="bonus-tag"
+                  >{{ sp.name }} (L{{ sp.level }})</span
                 >
               </span>
             </div>

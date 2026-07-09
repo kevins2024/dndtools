@@ -40,7 +40,7 @@
           v-for="stat in stats"
           :key="stat.key"
           class="stat-block"
-          :class="{ 'stat-block--boosted': stat.tooltip }"
+          :class="{ 'stat-block--boosted': stat.modified }"
           :title="stat.tooltip"
         >
           <div class="stat-label">{{ stat.label }}</div>
@@ -75,7 +75,9 @@
               }"
             ></span>
             <span class="save-label">{{ s.label }}</span>
-            <span class="save-mod">{{ saveModStr(s.key) }}</span>
+            <span class="save-mod has-tip" :title="savingThrowTooltip(s.key)">{{
+              saveModStr(s.key)
+            }}</span>
           </div>
         </div>
       </div>
@@ -246,6 +248,22 @@ export default {
     saveModStr(key) {
       return dnd.signed(dnd.savingThrow(this.character, key, this.partyItems))
     },
+    savingThrowTooltip(key) {
+      const { stats, bonuses } = dnd.resolveStats(
+        this.character,
+        this.partyItems
+      )
+      const mod = dnd.mod(stats[key])
+      const prof = dnd._prof(this.character, bonuses)
+      const isProficient = (this.character.saving_throws ?? []).includes(key)
+      const flatBonus = bonuses.saving_throws ?? 0
+      const total = mod + (isProficient ? prof : 0) + flatBonus
+      const parts = [`${key.toUpperCase()} ${dnd.signed(mod)}`]
+      if (isProficient) parts.push(`Prof ${dnd.signed(prof)}`)
+      if (flatBonus) parts.push(`Bonus ${dnd.signed(flatBonus)}`)
+      parts.push(`= ${dnd.signed(total)}`)
+      return parts.join('\n')
+    },
   },
 }
 </script>
@@ -376,11 +394,12 @@ export default {
   font-weight: 600;
   color: var(--color-text);
   line-height: 1.2;
+  border-bottom: 1px dotted var(--color-border);
+  cursor: help;
 }
 .stat-block--boosted .stat-score {
   color: var(--color-accent);
-  border-bottom: 1px dotted currentColor;
-  cursor: help;
+  border-bottom-color: currentColor;
 }
 
 .stat-mod {
@@ -534,19 +553,14 @@ export default {
   flex: 1;
   font-size: var(--font-size-base);
   color: var(--color-text-low);
-  text-decoration: underline dotted;
-  text-underline-offset: 2px;
-  text-decoration-color: var(--color-border);
 }
 
 .skill-row.skill-prof .skill-name {
   color: var(--color-accent);
-  text-decoration-color: var(--color-accent);
 }
 
 .skill-row.skill-expert .skill-name {
   color: var(--color-accent-strong);
-  text-decoration-color: var(--color-accent-strong);
 }
 
 .skill-stat {
@@ -565,6 +579,8 @@ export default {
   min-width: 2.5rem;
   text-align: right;
   flex-shrink: 0;
+  border-bottom: 1px dotted var(--color-border);
+  cursor: help;
 }
 
 .skill-mod.pos {
@@ -576,9 +592,16 @@ export default {
 
 .skill-row.skill-prof .skill-mod {
   color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }
 .skill-row.skill-expert .skill-mod {
   color: var(--color-accent-strong);
+  border-bottom-color: var(--color-accent-strong);
+}
+
+.has-tip {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
 }
 
 /* ── Features ── */

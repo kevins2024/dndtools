@@ -731,17 +731,22 @@ export const dnd = {
     return STAT_KEYS.map(({ key, label }) => {
       const score = stats[key] ?? 10
       const fx = effects[key]
-      let tooltip = null
-      if (fx?.length) {
-        if (fx.some((e) => e.type === 'override')) {
-          const ov = fx.find((e) => e.type === 'override')
-          tooltip = `${ov.value} (${ov.name})`
-        } else {
-          const parts = [`${baseScores[key]} base`]
-          for (const e of fx) parts.push(`+${e.value} (${e.name})`)
-          parts.push(`= ${score}`)
-          tooltip = parts.join(' · ')
-        }
+      const modified = !!fx?.length
+      let tooltip
+      if (!modified) {
+        tooltip = `${label}: ${baseScores[key]} (no modifiers) = ${dnd.signed(
+          dnd.mod(score)
+        )}`
+      } else if (fx.some((e) => e.type === 'override')) {
+        const ov = fx.find((e) => e.type === 'override')
+        tooltip = `${label}: set to ${ov.value} by ${ov.name} = ${dnd.signed(
+          dnd.mod(score)
+        )}`
+      } else {
+        const parts = [`${label}: ${baseScores[key]} base`]
+        for (const e of fx) parts.push(`+${e.value} (${e.name})`)
+        parts.push(`= ${score} (${dnd.signed(dnd.mod(score))})`)
+        tooltip = parts.join(' · ')
       }
       return {
         key,
@@ -749,6 +754,7 @@ export const dnd = {
         score,
         mod: dnd.mod(score),
         modStr: dnd.signed(dnd.mod(score)),
+        modified,
         tooltip,
       }
     })

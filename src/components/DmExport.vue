@@ -44,16 +44,7 @@
       </div>
       <div class="summary-row">
         <span class="summary-label">NPCs included</span>
-        <span class="summary-val">
-          {{ allRelevantNpcs.length }}
-          <span
-            class="summary-sub"
-            v-if="selectedLocation && knownNpcsFromRels.length"
-          >
-            ({{ localNpcs.length }} local +
-            {{ knownNpcsFromRels.length }} known)
-          </span>
-        </span>
+        <span class="summary-val">{{ allRelevantNpcs.length }}</span>
       </div>
       <div class="summary-row">
         <span class="summary-label">Relationships</span>

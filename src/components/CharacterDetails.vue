@@ -86,8 +86,11 @@ export default {
   },
 
   watch: {
-    requestedTab(val) {
-      if (val) this.activeTab = val
+    requestedTab: {
+      immediate: true,
+      handler(val) {
+        if (val) this.activeTab = val
+      },
     },
   },
 

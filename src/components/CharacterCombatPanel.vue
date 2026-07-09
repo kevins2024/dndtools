@@ -19,7 +19,9 @@
         <span class="chip-label">Speed</span>
       </div>
       <div class="chip">
-        <span class="chip-val">+{{ profBonus }}</span>
+        <span class="chip-val has-tip" :title="profBonusTooltip"
+          >+{{ profBonus }}</span
+        >
         <span class="chip-label">Prof</span>
       </div>
       <div class="chip">
@@ -47,7 +49,7 @@
       <span
         v-for="s in savingThrows"
         :key="s.key"
-        class="save-chip"
+        class="save-chip has-tip"
         :class="{ 'save-chip--prof': s.proficient }"
         :title="s.tooltip"
         >{{ s.label }} {{ s.valueStr }}</span
@@ -148,7 +150,12 @@
           class="feature-pill"
           @click="openFeaturePopup(f)"
           >{{ f.name
-          }}<span v-if="f.uses_max" class="pill-uses"
+          }}<span
+            v-if="f.uses_max"
+            class="pill-uses has-tip"
+            :title="`${f.uses_current ?? f.uses_max} of ${
+              f.uses_max
+            } uses remaining · recharges ${rechargeLabel(f.recharge)}`"
             >{{ f.uses_current ?? f.uses_max }}/{{ f.uses_max }}</span
           ><span v-if="f.recharge" class="pill-recharge">{{
             rechargeLabel(f.recharge)
@@ -167,7 +174,12 @@
           class="feat-pill"
           @click="openFeaturePopup(feat)"
           >{{ feat.name
-          }}<span v-if="feat.uses_max" class="pill-uses"
+          }}<span
+            v-if="feat.uses_max"
+            class="pill-uses has-tip"
+            :title="`${feat.uses_current ?? feat.uses_max} of ${
+              feat.uses_max
+            } uses remaining · recharges ${rechargeLabel(feat.recharge)}`"
             >{{ feat.uses_current ?? feat.uses_max }}/{{ feat.uses_max }}</span
           ><span v-if="feat.recharge" class="pill-recharge">{{
             rechargeLabel(feat.recharge)
@@ -390,6 +402,10 @@ export default {
     },
     profBonus() {
       return dnd._prof(this.character, this.resolvedStats.bonuses)
+    },
+    profBonusTooltip() {
+      const lvl = this.character.level ?? 1
+      return `Level ${lvl} character\n+2 at levels 1–4, +3 at 5–8, +4 at 9–12, +5 at 13–16, +6 at 17–20\n= +${this.profBonus}`
     },
     equippedItems() {
       return this.partyItems.filter(

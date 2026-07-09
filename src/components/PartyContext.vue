@@ -69,9 +69,9 @@
               <div class="card-portrait">
                 <img :src="char.image" class="portrait-img" />
                 <span
-                  v-if="char.darkvision"
+                  v-if="charDarkvision(char)"
                   class="dv-badge"
-                  :title="`Darkvision ${char.darkvision}ft`"
+                  :title="`Darkvision ${charDarkvision(char)}ft`"
                   >DV</span
                 >
               </div>
@@ -223,6 +223,11 @@ export default {
 
     charImage(name) {
       return this.characters.find((c) => c.name === name)?.image ?? ''
+    },
+
+    charDarkvision(char) {
+      const { bonuses } = dnd.resolveStats(char, this.party_items)
+      return (char.darkvision ?? 0) + (bonuses.darkvision ?? 0)
     },
 
     topStat(char) {
