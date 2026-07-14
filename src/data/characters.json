@@ -586,6 +586,11 @@
         "name": "Quickened Spell",
         "type": "metamagic",
         "description": "Cost: 2 sorcery points. Cast a leveled spell that normally takes 1 action as a bonus action instead."
+      },
+      {
+        "name": "Linked Spellbook",
+        "type": "feature",
+        "description": "A yellow mark on the spine connects this spellbook permanently to Lyria's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       }
     ],
     "spells": [
@@ -843,6 +848,18 @@
       },
       {
         "name": "Slow",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Tongues",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Undead Ward",
         "level": 3,
         "prepared": false,
         "type": "prepared"
@@ -1100,6 +1117,11 @@
       {
         "name": "Fey Ancestry",
         "type": "feature"
+      },
+      {
+        "name": "Linked Spellbook",
+        "type": "feature",
+        "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Lyria's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       }
     ],
     "spells": [
@@ -1357,6 +1379,18 @@
       },
       {
         "name": "Slow",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Tongues",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Undead Ward",
         "level": 3,
         "prepared": false,
         "type": "prepared"
@@ -1878,7 +1912,10 @@
       {
         "name": "Observant",
         "type": "feat",
-        "stat_bonuses": { "passive_perception": 5, "passive_investigation": 5 }
+        "stat_bonuses": {
+          "passive_perception": 5,
+          "passive_investigation": 5
+        }
       }
     ],
     "spells": [],
@@ -2183,7 +2220,9 @@
       {
         "name": "Scout — Superior Mobility",
         "type": "feature",
-        "stat_bonuses": { "speed": 10 }
+        "stat_bonuses": {
+          "speed": 10
+        }
       },
       {
         "name": "Scout — Ambush Master",
@@ -2193,7 +2232,9 @@
       {
         "name": "Mobile",
         "type": "feat",
-        "stat_bonuses": { "speed": 10 }
+        "stat_bonuses": {
+          "speed": 10
+        }
       }
     ],
     "spells": [],
@@ -2485,6 +2526,11 @@
       {
         "name": "Abjuration Wizard — Projected Ward",
         "type": "feature"
+      },
+      {
+        "name": "Linked Spellbook",
+        "type": "feature",
+        "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       }
     ],
     "spells": [
@@ -2747,6 +2793,18 @@
         "type": "prepared"
       },
       {
+        "name": "Tongues",
+        "level": 3,
+        "prepared": false,
+        "type": "prepared"
+      },
+      {
+        "name": "Undead Ward",
+        "level": 3,
+        "prepared": true,
+        "homebrew": true
+      },
+      {
         "name": "Vampiric Touch",
         "level": 3,
         "prepared": false,
@@ -2820,7 +2878,7 @@
       },
       {
         "name": "Wall of Force",
-        "level": 4,
+        "level": 5,
         "prepared": true,
         "type": "prepared"
       },
@@ -2889,12 +2947,6 @@
         "level": 5,
         "prepared": true,
         "type": "prepared"
-      },
-      {
-        "name": "Undead Ward",
-        "level": 3,
-        "prepared": true,
-        "homebrew": true
       }
     ],
     "spell_slots": {
@@ -3123,7 +3175,9 @@
       {
         "name": "Fast Movement (+10ft)",
         "type": "feature",
-        "stat_bonuses": { "speed": 10 }
+        "stat_bonuses": {
+          "speed": 10
+        }
       },
       {
         "name": "Elemental Cleaver",
@@ -4300,7 +4354,7 @@
         "type": "cantrip"
       },
       {
-        "name": "Green Flame Blade",
+        "name": "Green-Flame Blade",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
@@ -4906,6 +4960,321 @@
         "name": "Sorcerer",
         "subclass": "Divine Soul",
         "level": 8
+      }
+    ]
+  },
+  {
+    "id": "characters_22",
+    "name": "Iyani",
+    "full_name": "Iyani",
+    "image": "./characters/iyani.jpg",
+    "race": "Aasimar",
+    "level": 9,
+    "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms — present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry — choker, layered necklaces, earrings — that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
+    "background": "Daughter of the Weave",
+    "background_feature": "Stella-Vision: You observed the material world from within the Weave for years and know many of its inhabitants personally — their mannerisms, abilities, and histories — before ever meeting them in person.",
+    "notes": "Mother is Ne'auveothrin, ancient demigod of the Weave, historically revered especially among genasi and early spellcasters. Father was human — they met during one of Ne'auveothrin's rare days outside the Weave; he is past now, deceased. Iyani grew up in or adjacent to the Weave itself, where time moves differently. She has spent long enough there that she counts time in ways that do not translate cleanly to years.\n\nShe observed the material world for a long time via 'stella-vision' — watching people perform magic is entertainment, and she developed deep familiarity with people she had never met. She recently arrived in the material plane. The air was initially uncomfortable, improving. Eating and drinking are being rediscovered as genuine pleasures — especially garlic lemon spinniks (how she says spinach). Touching physical objects is novel and satisfying.\n\nNe'auveothrin has given specific instructions about what not to reveal. Iyani obeys genuinely, not resentfully, but visibly struggles when excited. Has mentioned holding 'one more gift' for the right moment — unprompted.\n\nAbilities established in play that are NOT on her character sheet are temporary — gifts from her mother, going away soon: instantaneous planar travel (blue flash, desire-based), creation of permanent teleportation circles (Stillwater and Orvath placed casually), permanent shared spellbook synchronization granted to Lenn, Kessara, and Lyria, a self-cast Tongues equivalent, real-time perception of active spellwork in the Weave, and the ability to manifest physical objects from nothing.",
+    "proficiency_bonus": 4,
+    "spellcasting_ability": "cha",
+    "stat_str": 10,
+    "stat_dex": 14,
+    "stat_con": 16,
+    "stat_int": 10,
+    "stat_wis": 11,
+    "stat_cha": 20,
+    "hp_max": 65,
+    "hp_current": 65,
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["con", "cha"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
+    "skill_expertise": [],
+    "languages": ["Common", "Celestial", "Arcanis"],
+    "darkvision": 60,
+    "hit_die": "d6",
+    "hit_dice_current": 9,
+    "classes": [
+      {
+        "name": "Sorcerer",
+        "subclass": "Weave Attunement",
+        "level": 9
+      }
+    ],
+    "features": [
+      {
+        "name": "Darkvision",
+        "type": "feature"
+      },
+      {
+        "name": "Healing Touch",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Touch a creature to restore hit points equal to your proficiency bonus + CHA modifier (currently 9 HP)."
+      },
+      {
+        "name": "Celestial Resistance",
+        "type": "feature",
+        "description": "Resistance to Radiant and Necrotic damage."
+      },
+      {
+        "name": "Aasimar Transformation",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Choose one transformation at activation, lasting 1 minute:\n\nStarry Flight: Spectral wings grant 30ft fly speed; emit dim light in 10ft radius.\n\nSupernova: At the start of each creature's turn within 10ft, they take proficiency bonus radiant damage (4). You shed bright light 10ft, dim 10ft beyond.\n\nDivine Attractor: Each creature of your choice within 30ft must succeed on a CHA saving throw (DC 17) or be Blinded until the start of their next turn, and take proficiency bonus psychic damage (4) at the start of their turn while Blinded."
+      },
+      {
+        "name": "Loom Fire",
+        "type": "feature",
+        "description": "You know Sacred Flame (doesn't count against cantrips known). When you cast it, you may target one creature as normal OR target two creatures within range that are within 5 feet of each other. Both targets make a DEX save (DC 17); each takes 2d8 radiant on a fail, no damage on a success."
+      },
+      {
+        "name": "Weave Embodiment",
+        "type": "feature",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3,
+        "description": "Three times per long rest (once per phase), you may cast that phase's L1 grid spell without expending a spell slot: Shield (Leno), Ray of Sickness (Twill), Color Spray (Satin). Each use is phase-specific."
+      },
+      {
+        "name": "Font of Magic",
+        "type": "feature",
+        "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP → 1st-level slot (up to 5th level); convert slots → SP (1 SP per slot level)."
+      },
+      {
+        "name": "Metamagic: Twinned Spell",
+        "type": "feature",
+        "description": "When you cast a single-target spell not of range Self, spend SP equal to the spell's level (min 1) to target a second creature in range with the same spell."
+      },
+      {
+        "name": "Metamagic: Careful Spell",
+        "type": "feature",
+        "description": "When you cast a spell that forces saving throws, spend 1 SP to let up to CHA mod creatures (min 1) automatically succeed on the save."
+      },
+      {
+        "name": "Mother's Whim",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "description": "Spend 1 Sorcery Point to instantly shift your active Weave Phase (Leno, Twill, or Satin). The active phase grants a 1 SP discount on Metamagic for spells of that phase's school pair, usable up to 4 times per long rest (proficiency bonus). Subclass level 6 feature."
+      },
+      {
+        "name": "Leno Phase (Abjuration / Divination)",
+        "type": "feature",
+        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells. All five grid spells are always prepared regardless of active phase.",
+        "spells_granted": [
+          "Shield",
+          "Lesser Restoration",
+          "Dispel Magic",
+          "Death Ward",
+          "Rary's Telepathic Bond"
+        ]
+      },
+      {
+        "name": "Twill Phase (Enchantment / Necromancy)",
+        "type": "feature",
+        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells. All five grid spells are always prepared regardless of active phase.",
+        "spells_granted": [
+          "Silvery Barbs",
+          "Blindness/Deafness",
+          "Vampiric Touch",
+          "Confusion",
+          "Synaptic Static"
+        ]
+      },
+      {
+        "name": "Satin Phase (Illusion / Transmutation)",
+        "type": "feature",
+        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells. All five grid spells are always prepared regardless of active phase.",
+        "spells_granted": [
+          "Color Spray",
+          "Alter Self",
+          "Phantom Steed",
+          "Fabricate",
+          "Far Step"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "sorcery_points",
+        "name": "Sorcery Points",
+        "label": "SP",
+        "max": 9,
+        "current": 9,
+        "recharge": "long_rest"
+      }
+    ],
+    "spells": [
+      {
+        "name": "Sacred Flame",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Loom Fire"
+      },
+      {
+        "name": "Message",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Friends",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Thunderclap",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Light",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Burning Hands",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Chromatic Orb",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mirror Image",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Maximilian's Earthen Grasp",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Vortex Warp",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Web",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Lightning Bolt",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Thunder Step",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Banishment",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Telekinesis",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 3,
+        "current": 3
+      },
+      "level_5": {
+        "max": 1,
+        "current": 1
+      }
+    },
+    "weave_phase": "leno",
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "persona_notes": [
+      "Warm, excitable, genuinely loving. This is not a performance. Impulse control fails around exciting information — blurted a dragon reference before she could stop herself.",
+      "Non-linear speech. Present-tense dominant. Drops articles and pronouns naturally. Counts time differently — 'many times ago', 'long time', not years.",
+      "Completely without guile. Cannot deceive. Obeys her mother's restrictions genuinely, not resentfully, but visibly struggles when excited.",
+      "Stella-vision means she knows people before meeting them. Petra especially. Finds this completely normal.",
+      "Always touching things — walls, doorframes, empty air. Checking the Weave. Has done this her whole life.",
+      "Finds humans and their walking habits inefficient but endearing.",
+      "When she casts, the yellow markings light up like circuitry firing. She does not find this unusual."
+    ],
+    "relationships": [
+      {
+        "name": "Lenn",
+        "note": "Trusts. Chose to accompany him."
+      },
+      {
+        "name": "Pirra",
+        "note": "Likes. Finds her competent."
+      },
+      {
+        "name": "Vaz",
+        "note": "Shiny almost dragon. Affectionate. Has sent him home twice without asking."
+      },
+      {
+        "name": "Jaygar",
+        "note": "Has watched him work from the Weave for years. Finds it satisfying."
+      },
+      {
+        "name": "Petra",
+        "note": "Has watched extensively from the Weave. Very loud in the good way. Wants to meet urgently."
+      },
+      {
+        "name": "Corwin",
+        "note": "Noticed his quiet reaction from across the room. Mentioned it at dinner to his face."
       }
     ]
   }

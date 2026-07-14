@@ -1,9 +1,101 @@
 <template>
   <div class="networks">
-    <!-- ── Sending Stones ─────────────────────────── -->
+    <!-- ── Sending Stone Networks ─────────────────── -->
     <section class="net-section">
       <div class="net-section-header">
-        <span class="net-section-title">Sending Stones</span>
+        <span class="net-section-title">Sending Stone Networks</span>
+        <button class="net-add-btn" @click="addNetwork">+ Add Network</button>
+      </div>
+
+      <div v-if="!stoneNetworks.length" class="empty-state">
+        No networks recorded.
+      </div>
+
+      <div
+        v-for="(net, ni) in stoneNetworks"
+        :key="net.id"
+        class="network-card"
+      >
+        <div class="network-header">
+          <div class="network-title-row">
+            <input
+              class="network-name-input"
+              :value="net.label"
+              placeholder="Network name…"
+              @input="updateNetwork(ni, 'label', $event.target.value)"
+            />
+            <button
+              class="net-delete-btn"
+              title="Remove network"
+              @click="removeNetwork(ni)"
+            >
+              ✕
+            </button>
+          </div>
+          <div class="network-hub-row">
+            <span class="hub-label">Hub</span>
+            <input
+              class="hub-input"
+              :value="net.hub"
+              placeholder="Hub holder…"
+              @input="updateNetwork(ni, 'hub', $event.target.value)"
+            />
+          </div>
+        </div>
+
+        <div class="member-list">
+          <div
+            v-for="(member, mi) in net.members"
+            :key="mi"
+            class="member-row"
+            :class="{ 'member-row--hub': member.holder === net.hub }"
+          >
+            <button
+              class="status-dot"
+              :class="'status-dot--' + member.status"
+              :title="stoneStatusLabel(member.status)"
+              @click="cycleMemberStatus(ni, mi)"
+            >
+              ●
+            </button>
+            <span v-if="member.holder === net.hub" class="hub-badge">HUB</span>
+            <input
+              class="member-holder-input"
+              :value="member.holder"
+              placeholder="Holder…"
+              @input="updateMember(ni, mi, 'holder', $event.target.value)"
+            />
+            <input
+              class="member-notes-input"
+              :value="member.notes"
+              placeholder="notes…"
+              @input="updateMember(ni, mi, 'notes', $event.target.value)"
+            />
+            <button class="member-delete-btn" @click="removeMember(ni, mi)">
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <div class="network-footer">
+          <button class="add-member-btn" @click="addMember(ni)">
+            + Add member
+          </button>
+          <textarea
+            class="network-notes"
+            :value="net.notes"
+            placeholder="Network notes…"
+            rows="1"
+            @input="updateNetwork(ni, 'notes', $event.target.value)"
+          ></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Sending Stone Pairs ────────────────────── -->
+    <section class="net-section">
+      <div class="net-section-header">
+        <span class="net-section-title">Sending Stone Pairs</span>
         <button class="net-add-btn" @click="addPair">+ Add Pair</button>
       </div>
 
@@ -69,7 +161,6 @@
               </button>
             </div>
           </div>
-
           <div class="pair-link">↔</div>
         </div>
 
@@ -120,7 +211,6 @@
           >
             {{ circle.sigil_known ? '✓ Sigil Known' : '✗ Sigil Unknown' }}
           </button>
-
           <button
             class="toggle-chip"
             :class="{ 'toggle-chip--on': circle.permanent }"
@@ -128,7 +218,6 @@
           >
             {{ circle.permanent ? 'Permanent' : 'Temporary' }}
           </button>
-
           <button
             class="status-chip"
             :class="'status-chip--access-' + circle.access"
@@ -155,6 +244,20 @@ let nextId = Date.now()
 
 const STONE_STATUSES = ['active', 'lost', 'destroyed', 'unknown']
 const CIRCLE_ACCESS = ['open', 'guarded', 'restricted', 'one_way', 'unknown']
+
+function blankMember() {
+  return { holder: '', notes: '', status: 'active' }
+}
+
+function blankNetwork() {
+  return {
+    id: `ssn_${nextId++}`,
+    label: '',
+    hub: '',
+    notes: '',
+    members: [blankMember()],
+  }
+}
 
 function blankStone(label) {
   return { label, holder: '', location: '', status: 'unknown', notes: '' }
@@ -188,10 +291,14 @@ export default {
     networks() {
       return (
         this.$store.state.networks ?? {
+          sending_stone_networks: [],
           sending_stones: [],
           teleportation_circles: [],
         }
       )
+    },
+    stoneNetworks() {
+      return this.networks.sending_stone_networks ?? []
     },
     pairs() {
       return this.networks.sending_stones ?? []
@@ -208,37 +315,87 @@ export default {
         updatedItem: updated,
       })
     },
-
-    // ── Sending Stones ──
-    addPair() {
+    saved(patch) {
       this.save({
-        sending_stones: [...this.pairs, blankPair()],
+        sending_stone_networks: this.stoneNetworks,
+        sending_stones: this.pairs,
         teleportation_circles: this.circles,
+        ...patch,
       })
+    },
+
+    // ── Stone Networks ──
+    addNetwork() {
+      this.saved({
+        sending_stone_networks: [...this.stoneNetworks, blankNetwork()],
+      })
+    },
+    removeNetwork(i) {
+      this.saved({
+        sending_stone_networks: this.stoneNetworks.filter(
+          (_, idx) => idx !== i
+        ),
+      })
+    },
+    updateNetwork(i, field, value) {
+      this.saved({
+        sending_stone_networks: this.stoneNetworks.map((n, idx) =>
+          idx === i ? { ...n, [field]: value } : n
+        ),
+      })
+    },
+    addMember(ni) {
+      const nets = this.stoneNetworks.map((n, idx) =>
+        idx === ni ? { ...n, members: [...n.members, blankMember()] } : n
+      )
+      this.saved({ sending_stone_networks: nets })
+    },
+    removeMember(ni, mi) {
+      const nets = this.stoneNetworks.map((n, idx) =>
+        idx === ni ? { ...n, members: n.members.filter((_, i) => i !== mi) } : n
+      )
+      this.saved({ sending_stone_networks: nets })
+    },
+    updateMember(ni, mi, field, value) {
+      const nets = this.stoneNetworks.map((n, idx) => {
+        if (idx !== ni) return n
+        return {
+          ...n,
+          members: n.members.map((m, i) =>
+            i === mi ? { ...m, [field]: value } : m
+          ),
+        }
+      })
+      this.saved({ sending_stone_networks: nets })
+    },
+    cycleMemberStatus(ni, mi) {
+      const current = this.stoneNetworks[ni].members[mi].status
+      const next =
+        STONE_STATUSES[
+          (STONE_STATUSES.indexOf(current) + 1) % STONE_STATUSES.length
+        ]
+      this.updateMember(ni, mi, 'status', next)
+    },
+
+    // ── Sending Stone Pairs ──
+    addPair() {
+      this.saved({ sending_stones: [...this.pairs, blankPair()] })
     },
     removePair(i) {
-      const updated = this.pairs.filter((_, idx) => idx !== i)
-      this.save({
-        sending_stones: updated,
-        teleportation_circles: this.circles,
-      })
+      this.saved({ sending_stones: this.pairs.filter((_, idx) => idx !== i) })
     },
     updatePair(i, field, value) {
-      const updated = this.pairs.map((p, idx) =>
-        idx === i ? { ...p, [field]: value } : p
-      )
-      this.save({
-        sending_stones: updated,
-        teleportation_circles: this.circles,
+      this.saved({
+        sending_stones: this.pairs.map((p, idx) =>
+          idx === i ? { ...p, [field]: value } : p
+        ),
       })
     },
     updateStone(pi, side, field, value) {
-      const updated = this.pairs.map((p, idx) =>
-        idx === pi ? { ...p, [side]: { ...p[side], [field]: value } } : p
-      )
-      this.save({
-        sending_stones: updated,
-        teleportation_circles: this.circles,
+      this.saved({
+        sending_stones: this.pairs.map((p, idx) =>
+          idx === pi ? { ...p, [side]: { ...p[side], [field]: value } } : p
+        ),
       })
     },
     cycleStoneStatus(pi, side) {
@@ -262,20 +419,19 @@ export default {
 
     // ── Teleportation Circles ──
     addCircle() {
-      this.save({
-        sending_stones: this.pairs,
-        teleportation_circles: [...this.circles, blankCircle()],
-      })
+      this.saved({ teleportation_circles: [...this.circles, blankCircle()] })
     },
     removeCircle(i) {
-      const updated = this.circles.filter((_, idx) => idx !== i)
-      this.save({ sending_stones: this.pairs, teleportation_circles: updated })
+      this.saved({
+        teleportation_circles: this.circles.filter((_, idx) => idx !== i),
+      })
     },
     updateCircle(i, field, value) {
-      const updated = this.circles.map((c, idx) =>
-        idx === i ? { ...c, [field]: value } : c
-      )
-      this.save({ sending_stones: this.pairs, teleportation_circles: updated })
+      this.saved({
+        teleportation_circles: this.circles.map((c, idx) =>
+          idx === i ? { ...c, [field]: value } : c
+        ),
+      })
     },
     cycleCircleAccess(i) {
       const current = this.circles[i].access
@@ -363,7 +519,244 @@ export default {
   color: var(--color-danger);
 }
 
-/* ── Sending Stone pairs ── */
+.empty-state {
+  color: var(--color-text-low);
+  font-style: italic;
+  font-size: var(--font-size-base);
+  padding: 0.5rem 0;
+}
+
+/* ── Network cards ── */
+.network-card {
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.network-header {
+  margin-bottom: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.network-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.network-name-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  letter-spacing: 0.04em;
+  outline: none;
+  padding: 0.15rem 0;
+}
+.network-name-input:focus {
+  border-bottom-color: var(--color-accent);
+}
+.network-name-input::placeholder {
+  color: var(--color-text-low);
+}
+
+.network-hub-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.1rem;
+}
+
+.hub-label {
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  width: 2.5rem;
+  flex-shrink: 0;
+}
+
+.hub-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: var(--color-accent-strong);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  outline: none;
+  padding: 0.1rem 0;
+}
+.hub-input:focus {
+  border-bottom-color: var(--color-border);
+}
+
+/* ── Member list ── */
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.member-row:last-child {
+  border-bottom: none;
+}
+.member-row--hub {
+  background: color-mix(
+    in srgb,
+    var(--color-bg-surface) 80%,
+    var(--color-accent) 20%
+  );
+}
+
+.status-dot {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.65rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.status-dot--active {
+  color: var(--color-success);
+}
+.status-dot--lost {
+  color: var(--color-neutral-amber);
+}
+.status-dot--destroyed {
+  color: var(--color-danger);
+}
+.status-dot--unknown {
+  color: var(--color-text-low);
+}
+
+.hub-badge {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  padding: 0 0.3rem;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.member-holder-input {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  outline: none;
+  width: 10rem;
+  flex-shrink: 0;
+  padding: 0;
+}
+.member-holder-input:focus {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.member-notes-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--color-text-low);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  outline: none;
+  padding: 0;
+  min-width: 0;
+  font-style: italic;
+}
+.member-notes-input:focus {
+  border-bottom: 1px solid var(--color-border);
+  font-style: normal;
+  color: var(--color-text);
+}
+
+.member-delete-btn {
+  background: none;
+  border: none;
+  color: transparent;
+  cursor: pointer;
+  font-size: 0.65rem;
+  padding: 0 0.2rem;
+  flex-shrink: 0;
+}
+.member-row:hover .member-delete-btn {
+  color: var(--color-text-low);
+}
+.member-delete-btn:hover {
+  color: var(--color-danger) !important;
+}
+
+.network-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.add-member-btn {
+  background: none;
+  border: 1px dashed var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-low);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.add-member-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.network-notes {
+  flex: 1;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  resize: none;
+  outline: none;
+  padding: 0.2rem 0;
+  box-sizing: border-box;
+}
+.network-notes:focus {
+  border-color: var(--color-border);
+}
+.network-notes::placeholder {
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+/* ── Sending Stone Pairs ── */
 .pair-card {
   background: var(--color-bg-panel);
   border: 1px solid var(--color-border);

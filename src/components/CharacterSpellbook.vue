@@ -80,6 +80,13 @@
       </div>
     </div>
 
+    <!-- ── Weave Phase Grid (Weave Attunement subclass only) ── -->
+    <WeavePhaseGrid
+      v-if="character.weave_phase !== undefined"
+      :character="character"
+      @open-spell="openSpell"
+    />
+
     <!-- ── Cross-character spell search ── -->
     <div class="sb-search-bar">
       <input
@@ -357,6 +364,7 @@ import {
   usesFullClassList,
 } from '@/utils/spellUtils.js'
 import DetailPopup from '@/components/DetailPopup.vue'
+import WeavePhaseGrid from '@/components/WeavePhaseGrid.vue'
 
 // Classes that choose prepared spells daily from a full class list.
 // All others are "known spells" casters where every spell on their list is always ready.
@@ -373,7 +381,7 @@ const HALF_CASTER_CLASSES = ['paladin', 'ranger', 'artificer']
 
 export default {
   name: 'CharacterSpellbook',
-  components: { DetailPopup },
+  components: { DetailPopup, WeavePhaseGrid },
 
   props: {
     character: { type: Object, required: true },
@@ -590,6 +598,13 @@ export default {
           ),
       }))
     },
+
+    // Fingerprint of all feature-granted spell names — changes when grid spells are swapped
+    featureSpellNames() {
+      return (this.character.features ?? [])
+        .flatMap((f) => f.spells_granted ?? [])
+        .join('\n')
+    },
   },
 
   async created() {
@@ -599,6 +614,9 @@ export default {
   watch: {
     'character.id'() {
       this.loadMeta()
+    },
+    featureSpellNames(newVal, oldVal) {
+      if (newVal !== oldVal) this.loadMeta()
     },
   },
 

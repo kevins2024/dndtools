@@ -48,11 +48,16 @@ export default new Vuex.Store({
     locations: [],
     party_items: [],
     world: [],
-    networks: { sending_stones: [], teleportation_circles: [] },
+    networks: {
+      sending_stone_networks: [],
+      sending_stones: [],
+      teleportation_circles: [],
+    },
     assets: [],
     relationships: [],
     homebrew: {},
     finances: {},
+    calendar_notes: [],
     loaded: false,
     originals: {},
     dirtyTables: [],
@@ -276,10 +281,50 @@ export default new Vuex.Store({
     CLEAR_PENDING_COMBAT_ENEMIES(state) {
       state.pendingCombatEnemies = null
     },
+    LOAD_CALENDAR_NOTES(state, notes) {
+      state.calendar_notes = notes ?? []
+    },
+    SAVE_CALENDAR_NOTE(state, note) {
+      const idx = state.calendar_notes.findIndex((n) => n.id === note.id)
+      if (idx !== -1) {
+        state.calendar_notes.splice(idx, 1, note)
+      } else {
+        state.calendar_notes.push(note)
+      }
+      dataService
+        .patchUserPrefs({ calendar_notes: state.calendar_notes })
+        .catch(console.warn)
+    },
+    DELETE_CALENDAR_NOTE(state, id) {
+      state.calendar_notes = state.calendar_notes.filter((n) => n.id !== id)
+      dataService
+        .patchUserPrefs({ calendar_notes: state.calendar_notes })
+        .catch(console.warn)
+    },
     LONG_REST(state, payload = {}) {
       const skipChars = payload?.skipChars ?? []
       state.characters = state.characters.map((char) => {
-        if (skipChars.includes(char.name)) return char
+        if (skipChars.includes(char.name)) {
+          // No LR benefit; gain 1 level of Exhaustion for interrupted rest
+          const conditions = [...(char.conditions ?? [])]
+          const exIdx = conditions.findIndex((c) =>
+            typeof c === 'string'
+              ? c === 'Exhaustion'
+              : c?.name === 'Exhaustion'
+          )
+          if (exIdx !== -1) {
+            const ex = conditions[exIdx]
+            if (typeof ex === 'string') {
+              conditions.splice(exIdx, 0, 'Exhaustion')
+            } else {
+              const lvl = (ex.stacks ?? ex.level ?? 1) + 1
+              conditions[exIdx] = { ...ex, stacks: lvl, level: lvl }
+            }
+          } else {
+            conditions.push('Exhaustion')
+          }
+          return { ...char, conditions }
+        }
         const updated = { ...char, hp_current: char.hp_max }
         // Spell slots
         if (char.spell_slots) {
@@ -304,6 +349,15 @@ export default new Vuex.Store({
             f.uses_max != null && f.recharge
               ? { ...f, uses_current: f.uses_max }
               : f
+          )
+        }
+        // Generic resources (sorcery points, etc.) — recharge on long rest
+        if (char.resources) {
+          updated.resources = char.resources.map((r) =>
+            r.max != null &&
+            (r.recharge === 'long_rest' || r.recharge === 'short_rest')
+              ? { ...r, current: r.max }
+              : r
           )
         }
         // Hit dice: recover up to half max (rounded up), capped at level
@@ -388,6 +442,14 @@ export default new Vuex.Store({
         // Ki points (short rest)
         if (char.ki_points)
           updated.ki_points = { ...char.ki_points, current: char.ki_points.max }
+        // Generic resources (short rest recharge)
+        if (char.resources) {
+          updated.resources = char.resources.map((r) =>
+            r.max != null && r.recharge === 'short_rest'
+              ? { ...r, current: r.max }
+              : r
+          )
+        }
         return updated
       })
       if (!state.dirtyTables.includes('characters'))
@@ -491,6 +553,9 @@ export default new Vuex.Store({
           }))
           commit('LOAD_PARTIES', migrated)
           dataService.patchUserPrefs({ parties: migrated }).catch(console.warn)
+        }
+        if (prefs.calendar_notes) {
+          commit('LOAD_CALENDAR_NOTES', prefs.calendar_notes)
         }
       } catch (e) {
         console.warn('Failed to load user_prefs', e)

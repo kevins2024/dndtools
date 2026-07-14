@@ -236,6 +236,40 @@
       </div>
     </template>
 
+    <!-- Woven Phase selector (Woven Sorcerer only) -->
+    <template v-if="character.woven_phase !== undefined">
+      <div class="section-label woven-label">
+        Woven Phase
+        <span class="woven-hint">Metamagic -1 SP for active schools</span>
+      </div>
+      <div class="woven-phases">
+        <button
+          v-for="(ph, key) in wovenPhases"
+          :key="key"
+          class="woven-phase-btn"
+          :class="{ 'woven-phase-btn--active': character.woven_phase === key }"
+          :style="
+            character.woven_phase === key
+              ? { borderColor: ph.color, backgroundColor: ph.color + '20' }
+              : {}
+          "
+          :title="`${ph.schools.join(
+            ' + '
+          )}: Metamagic costs 1 fewer SP when applied to spells of these schools.\n\nLoom spells: ${ph.spells.join(
+            ', '
+          )}`"
+          @click="setWovenPhase(key)"
+        >
+          <span
+            class="woven-phase-name"
+            :style="character.woven_phase === key ? { color: ph.color } : {}"
+            >{{ ph.name }}</span
+          >
+          <span class="woven-phase-abbr">{{ ph.abbr }}</span>
+        </button>
+      </div>
+    </template>
+
     <!-- Spells -->
     <!-- Combat-relevant items (weapons with descriptions, special equipment) -->
     <template v-if="battleItems.length">
@@ -332,6 +366,48 @@ const FEATURE_FILTER_OPTIONS = [
 
 const FEATURE_TYPE_ORDER = ['feature', 'maneuver']
 const FEATURE_TYPE_LABEL = { feature: 'Features', maneuver: 'Maneuvers' }
+
+const WOVEN_PHASES = {
+  leno: {
+    name: 'Leno',
+    abbr: 'Abj · Div',
+    schools: ['Abjuration', 'Divination'],
+    color: '#7ec8e3',
+    spells: [
+      'Faerie Fire',
+      'Moonbeam',
+      'Clairvoyance',
+      'Death Ward',
+      'Scrying',
+    ],
+  },
+  satin: {
+    name: 'Satin',
+    abbr: 'Ill · Trs',
+    schools: ['Illusion', 'Transmutation'],
+    color: '#b88fe0',
+    spells: [
+      'Silent Image',
+      'Invisibility',
+      'Blink',
+      'Hallucinatory Terrain',
+      'Dream',
+    ],
+  },
+  twill: {
+    name: 'Twill',
+    abbr: 'Enc · Cnj',
+    schools: ['Enchantment', 'Conjuration'],
+    color: '#e8a860',
+    spells: [
+      'Dissonant Whispers',
+      'Web',
+      'Hunger of Hadar',
+      'Confusion',
+      'Hold Monster',
+    ],
+  },
+}
 
 function nextSlotValue(max, current, clickedIndex) {
   const used = max - current
@@ -706,10 +782,21 @@ export default {
               i.equipped_by === 'disallowed'))
       )
     },
+
+    wovenPhases() {
+      return WOVEN_PHASES
+    },
   },
 
   methods: {
     conditionTooltip,
+
+    setWovenPhase(key) {
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, woven_phase: key },
+      })
+    },
 
     rechargeLabel(recharge) {
       if (recharge === 'short_rest') return 'SR'
@@ -1275,5 +1362,57 @@ export default {
 .filter-btn--active {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+/* ── Woven Phase ── */
+.woven-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.woven-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-weight: normal;
+  font-style: italic;
+}
+
+.woven-phases {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.woven-phase-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.4rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+  color: var(--color-text-muted);
+}
+
+.woven-phase-btn:hover {
+  border-color: var(--color-text-muted);
+}
+
+.woven-phase-name {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.12s;
+}
+
+.woven-phase-abbr {
+  font-size: 0.62rem;
+  color: var(--color-text-low);
+  letter-spacing: 0.05em;
 }
 </style>

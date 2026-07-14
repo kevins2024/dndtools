@@ -2899,5 +2899,23 @@
     "attuned": false,
     "effect": "Cast Tongues (level 3). Single use. Target understands and is understood in any language for 1 hour.",
     "id": "items_219"
+  },
+  {
+    "name": "Bright Red Cloak",
+    "type": "wondrous",
+    "slot": "shoulders",
+    "equipped_by": "Chuknora",
+    "carried_by": "Chuknora",
+    "needs_attunement": false,
+    "attuned": false,
+    "effect": "+1 to CHA score.",
+    "notes": "Bright red. Custom-fitted.",
+    "stat_bonuses": {
+      "cha": 1
+    },
+    "id": "items_220",
+    "stored_at": null,
+    "party_id": null,
+    "battle_effect": false
   }
 ]

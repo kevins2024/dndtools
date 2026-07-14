@@ -13,15 +13,13 @@
       </div>
 
       <!-- Full-size image lightbox -->
-      <teleport to="body">
-        <div
-          v-if="lightboxOpen"
-          class="lightbox-overlay"
-          @click="lightboxOpen = false"
-        >
-          <img :src="character.image" class="lightbox-img" @click.stop />
-        </div>
-      </teleport>
+      <div
+        v-if="lightboxOpen"
+        class="lightbox-overlay"
+        @click="lightboxOpen = false"
+      >
+        <img :src="character.image" class="lightbox-img" @click.stop />
+      </div>
       <div class="identity">
         <h2 class="char-name">{{ character.name }}</h2>
         <div class="char-fullname">{{ character.full_name }}</div>
@@ -394,8 +392,8 @@ export default {
   font-weight: 600;
   color: var(--color-text);
   line-height: 1.2;
-  border-bottom: 1px dotted var(--color-border);
-  cursor: help;
+  border-bottom: 1px dotted currentColor;
+  cursor: default;
 }
 .stat-block--boosted .stat-score {
   color: var(--color-accent);
@@ -579,8 +577,8 @@ export default {
   min-width: 2.5rem;
   text-align: right;
   flex-shrink: 0;
-  border-bottom: 1px dotted var(--color-border);
-  cursor: help;
+  border-bottom: 1px dotted currentColor;
+  cursor: default;
 }
 
 .skill-mod.pos {
@@ -601,7 +599,7 @@ export default {
 
 .has-tip {
   border-bottom: 1px dotted currentColor;
-  cursor: help;
+  cursor: default;
 }
 
 /* ── Features ── */

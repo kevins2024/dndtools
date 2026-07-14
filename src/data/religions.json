@@ -89,6 +89,17 @@
     "notes": "Kexifrext is neither good nor evil in any way mortals find useful to categorize. The forest does not have opinions about individual creatures — it has opinions about patterns over centuries. Fey shenanigans continue largely unchecked under Kexifrext's sovereignty not from indifference but because on Kexifrext's timescale, most fey mischief resolves itself. When Kexifrext does intervene, it is slow, inexorable, and final in the way that a root eventually splits a stone."
   },
   {
+    "name": "Ne'auveothrin",
+    "type": "demigod",
+    "domain": ["The Weave", "Magic", "Spellcraft", "Arcane Knowledge"],
+    "alignment": "True Neutral",
+    "symbol": "a thread of light looping through itself without beginning or end",
+    "description": "Ne'auveothrin is not a god of magic in the way Mystra is — she is not concerned with access, balance, or the health of the Weave as an institution. She IS the Weave in the way that an ancient river is not governed by the concept of water. She predates most of the scholarly frameworks mortals have built to describe arcane force. Historically revered by genasi and early spellcasters who encountered the Weave as a living presence rather than a tool. Her interest in the material world is rare, occasional, and specific — she does not intervene, she notices, and sometimes a noticing has consequences that take generations to become clear.",
+    "worship_notes": "No formal clergy and no expectation of one. Worship, where it exists, takes the form of spellcasting performed with attention rather than habit — the understanding that every spell is a conversation with the fabric of reality. Historical reverence among certain genasi traditions involves a period of deliberate silence after each major casting, acknowledging the Weave's participation. She does not grant spells directly. Clerics of other deities who encounter evidence of her influence tend to find it unsettling — she is older than the systems they use to explain things.",
+    "known_followers": ["Iyani"],
+    "notes": "Mother of Iyani. Father was human, deceased. She steps outside the Weave on rare occasions, and one such occasion produced a daughter. Iyani grew up in or adjacent to the Weave and has been there long enough that time works differently for her. Ne'auveothrin has given Iyani specific instructions about what not to reveal regarding her nature and her mother's. The restrictions are real, not theatrical. She is aware of events in the material world through the Weave itself and has extended temporary abilities to Iyani during her early time in the material plane."
+  },
+  {
     "name": "Voryn",
     "type": "deity",
     "domain": [

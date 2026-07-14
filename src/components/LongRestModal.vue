@@ -96,7 +96,8 @@
                           watches[si][pi] !== char.name
                         "
                         class="picker-norest"
-                        >no LR</span
+                        title="Already on watch — a 2nd slot means no long rest"
+                        >2nd slot</span
                       >
                     </div>
                   </div>
@@ -115,12 +116,21 @@
             </div>
           </div>
 
+          <!-- Calendar notes for today -->
+          <div v-if="todaysNotes.length" class="today-notes">
+            <div class="today-notes-header">📅 Today's Calendar Notes</div>
+            <div v-for="note in todaysNotes" :key="note.id" class="today-note">
+              <span class="today-note-recur">{{ note.recurrence }}</span>
+              <span class="today-note-text">{{ note.text }}</span>
+            </div>
+          </div>
+
           <!-- Overwatch warning -->
           <div v-if="overwatchChars.length" class="overwatch-warning">
             <span class="warn-icon">⚠</span>
             <strong>{{ overwatchChars.join(', ') }}</strong>
-            {{ overwatchChars.length === 1 ? 'is' : 'are' }} assigned to
-            multiple slots and won't benefit from this long rest.
+            {{ overwatchChars.length === 1 ? 'is' : 'are' }} on watch for 4+
+            hours — no long rest benefit and will gain 1 Exhaustion.
           </div>
         </div>
 
@@ -199,6 +209,44 @@
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
 
+const DAYS_PER_YEAR = 204
+const SEASONS = [
+  { name: 'Winter', key: 'winter', start: 1, end: 51 },
+  { name: 'Spring', key: 'spring', start: 52, end: 102 },
+  { name: 'Summer', key: 'summer', start: 103, end: 153 },
+  { name: 'Autumn', key: 'autumn', start: 154, end: 204 },
+]
+
+function seasonForDay(day) {
+  return SEASONS.find((s) => day >= s.start && day <= s.end) ?? SEASONS[0]
+}
+
+function dowForDay(day) {
+  if (day <= 48) return ((day - 1) % 8) + 1
+  if (day <= 52) return day - 48
+  return ((day - 53) % 8) + 1
+}
+
+function noteMatchesDay(note, dayOfYear, absoluteDay) {
+  switch (note.recurrence) {
+    case 'none':
+      return note.absolute_day === absoluteDay
+    case 'annually':
+      return note.day_of_year === dayOfYear
+    case 'weekly':
+      return dowForDay(dayOfYear) === dowForDay(note.day_of_year)
+    case 'seasonally': {
+      const cs = seasonForDay(dayOfYear)
+      const ns = seasonForDay(note.day_of_year)
+      return (
+        cs.key === ns.key &&
+        dayOfYear - cs.start === note.day_of_year - ns.start
+      )
+    }
+  }
+  return false
+}
+
 export default {
   name: 'LongRestModal',
   emits: ['close', 'rested'],
@@ -218,8 +266,16 @@ export default {
   },
 
   computed: {
-    ...mapState(['characters', 'party_items', 'parties']),
-    ...mapGetters(['activeParty']),
+    ...mapState(['characters', 'party_items', 'parties', 'calendar_notes']),
+    ...mapGetters(['activeParty', 'activePartyDay']),
+
+    todaysNotes() {
+      const currentDay = this.activePartyDay || 1
+      const dayOfYear = ((currentDay - 1) % DAYS_PER_YEAR) + 1
+      return (this.calendar_notes ?? []).filter((n) =>
+        noteMatchesDay(n, dayOfYear, currentDay)
+      )
+    },
 
     members() {
       if (!this.activeParty) return []
@@ -273,12 +329,39 @@ export default {
     },
   },
 
+  beforeDestroy() {
+    // Ensure any in-memory party changes (e.g. game_day from LONG_REST) are persisted
+    // regardless of which button closed the modal
+    this.SET_PARTIES([...this.parties])
+  },
+
   created() {
-    const saved = this.activeParty?.marching_order ?? []
-    const memberNames = this.activeParty?.members ?? []
-    const ordered = saved.filter((n) => memberNames.includes(n))
+    const party = this.activeParty
+    const memberNames = party?.members ?? []
+
+    // Restore saved watch assignments
+    const savedWatches = party?.watch_assignments
+    if (savedWatches?.length === 4) {
+      this.watches = savedWatches.map((slot) => [...slot])
+    }
+
+    // Restore marching order
+    const savedOrder = party?.marching_order ?? []
+    const ordered = savedOrder.filter((n) => memberNames.includes(n))
     const missing = memberNames.filter((n) => !ordered.includes(n))
     this.marchOrder = [...ordered, ...missing]
+  },
+
+  watch: {
+    watches: {
+      deep: true,
+      handler(val) {
+        const updated = this.parties.map((p) =>
+          p.active ? { ...p, watch_assignments: val.map((s) => [...s]) } : p
+        )
+        this.SET_PARTIES(updated)
+      },
+    },
   },
 
   methods: {
@@ -648,6 +731,50 @@ export default {
 }
 .picker-clear:hover {
   color: var(--color-text-danger);
+}
+
+/* ── Calendar notes ── */
+.today-notes {
+  border: 1px solid rgba(200, 160, 80, 0.5);
+  background: rgba(200, 160, 80, 0.07);
+  border-radius: 5px;
+  padding: 0.55rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.today-notes-header {
+  font-size: 0.75rem;
+  font-family: var(--font-display, serif);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c8a050;
+  margin-bottom: 0.1rem;
+}
+
+.today-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.today-note-recur {
+  font-size: var(--font-size-xs);
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(200, 160, 80, 0.15);
+  color: #c8a050;
+  border: 1px solid rgba(200, 160, 80, 0.3);
+  flex-shrink: 0;
+  font-family: var(--font-display, serif);
+  letter-spacing: 0.04em;
+}
+
+.today-note-text {
+  font-size: 0.82rem;
+  color: #d4b060;
+  line-height: 1.4;
 }
 
 /* ── Overwatch warning ── */

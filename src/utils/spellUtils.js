@@ -27,6 +27,9 @@ import druidSpells from '@/data/api_data_cache/druid_spells.json'
 import wizardSpells from '@/data/api_data_cache/wizard_spells.json'
 import paladinSpells from '@/data/api_data_cache/paladin_spells.json'
 import rangerSpells from '@/data/api_data_cache/ranger_spells.json'
+import bardSpells from '@/data/api_data_cache/bard_spells.json'
+import sorcererSpells from '@/data/api_data_cache/sorcerer_spells.json'
+import warlockSpells from '@/data/api_data_cache/warlock_spells.json'
 
 // Classes whose spell list lets them prepare ANY listed spell daily (not just ones they've "learned").
 // Wizards prepare from their spellbook (character.spells) — a separate concept.
@@ -38,6 +41,9 @@ const CLASS_SPELL_LISTS = {
   wizard: wizardSpells,
   paladin: paladinSpells,
   ranger: rangerSpells,
+  bard: bardSpells,
+  sorcerer: sorcererSpells,
+  warlock: warlockSpells,
 }
 
 /**

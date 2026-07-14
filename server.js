@@ -13,6 +13,10 @@ const PORT = 3001
 const DATA_DIR = path.resolve(__dirname, './src/data')
 const PREFS_FILE = path.resolve(__dirname, './user_prefs.json')
 
+// Strip UTF-8 BOM before parsing — some editors write BOMs that break JSON.parse
+const readJSON = (file) =>
+  JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, ''))
+
 // Whitelist of allowed table names — prevents arbitrary file access
 const ALLOWED_TABLES = [
   'characters',
@@ -42,7 +46,7 @@ app.get('/hello', (req, res) => {
 app.get('/api/user_prefs', (req, res) => {
   try {
     const data = fs.existsSync(PREFS_FILE)
-      ? JSON.parse(fs.readFileSync(PREFS_FILE, 'utf8'))
+      ? readJSON(PREFS_FILE)
       : { savedParties: [] }
     res.json(data)
   } catch (err) {
@@ -74,7 +78,7 @@ app.get('/api/:table', (req, res) => {
   }
 
   try {
-    const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const data = readJSON(file)
     res.json(data)
   } catch (err) {
     console.error(`Error reading ${table}.json:`, err.message)
@@ -132,7 +136,7 @@ app.patch('/api/homebrew/:section', (req, res) => {
   }
   const file = path.join(DATA_DIR, 'homebrew.json')
   try {
-    const homebrew = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const homebrew = readJSON(file)
     if (!Array.isArray(homebrew[section])) homebrew[section] = []
     const idx = homebrew[section].findIndex(
       (x) => x.name.toLowerCase() === item.name.toLowerCase()
@@ -174,7 +178,7 @@ app.get('/api/cache/:filename', (req, res) => {
       .json({ error: `Cache file not found: ${filename}.json` })
   }
   try {
-    const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const data = readJSON(file)
     res.json(data)
   } catch (err) {
     res.status(500).json({ error: `Failed to read ${filename}.json` })
@@ -213,7 +217,7 @@ function addIndexToFile(filename) {
     console.log(`[startup] Skipping ${filename} — file not found`)
     return
   }
-  const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+  const data = readJSON(file)
   if (!Array.isArray(data)) {
     console.log(`[startup] Skipping ${filename} — not an array`)
     return

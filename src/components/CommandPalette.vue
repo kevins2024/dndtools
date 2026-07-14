@@ -1,38 +1,36 @@
 <template>
-  <teleport to="body">
-    <div v-if="open" class="cp-backdrop" @mousedown.self="$emit('close')">
-      <div class="cp-dialog" role="dialog" aria-label="Command palette">
-        <input
-          ref="input"
-          v-model="query"
-          class="cp-input"
-          placeholder="Go to context or character…"
-          autocomplete="off"
-          spellcheck="false"
-          @keydown.esc.prevent="$emit('close')"
-          @keydown.enter.prevent="confirm"
-          @keydown.up.prevent="move(-1)"
-          @keydown.down.prevent="move(1)"
-        />
-        <ul v-if="results.length" class="cp-list" ref="list">
-          <li
-            v-for="(item, i) in results"
-            :key="item.key"
-            class="cp-item"
-            :class="{ 'cp-item--active': i === cursor }"
-            @mousedown.prevent="selectIndex(i)"
-            @mousemove="cursor = i"
-          >
-            <span class="cp-badge" :class="`cp-badge--${item.type}`">
-              {{ item.type === 'context' ? 'ctx' : 'chr' }}
-            </span>
-            <span class="cp-label">{{ item.label }}</span>
-          </li>
-        </ul>
-        <div v-else-if="query.trim()" class="cp-empty">No results</div>
-      </div>
+  <div v-if="open" class="cp-backdrop" @mousedown.self="$emit('close')">
+    <div class="cp-dialog" role="dialog" aria-label="Command palette">
+      <input
+        ref="input"
+        v-model="query"
+        class="cp-input"
+        placeholder="Go to context or character…"
+        autocomplete="off"
+        spellcheck="false"
+        @keydown.esc.prevent="$emit('close')"
+        @keydown.enter.prevent="confirm"
+        @keydown.up.prevent="move(-1)"
+        @keydown.down.prevent="move(1)"
+      />
+      <ul v-if="results.length" ref="list" class="cp-list">
+        <li
+          v-for="(item, i) in results"
+          :key="item.key"
+          class="cp-item"
+          :class="{ 'cp-item--active': i === cursor }"
+          @mousedown.prevent="selectIndex(i)"
+          @mousemove="cursor = i"
+        >
+          <span class="cp-badge" :class="`cp-badge--${item.type}`">
+            {{ item.type === 'context' ? 'ctx' : 'chr' }}
+          </span>
+          <span class="cp-label">{{ item.label }}</span>
+        </li>
+      </ul>
+      <div v-else-if="query.trim()" class="cp-empty">No results</div>
     </div>
-  </teleport>
+  </div>
 </template>
 
 <script>

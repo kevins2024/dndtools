@@ -10,6 +10,7 @@
 
 import featuresData from '@/data/api_data_cache/features.json'
 import staticHomebrewData from '@/data/homebrew.json'
+import staticPublishedSpells from '@/data/published_spells.json'
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
@@ -162,15 +163,25 @@ export async function lookupSpell(name) {
     return stored
   }
 
+  // Strip trailing parenthetical notes (e.g. "Negative Energy Flood (homebrew spell from necromancer's spellbook)")
+  // so the base name can be matched against homebrew and API entries.
+  const baseName = name.replace(/\s*\([^)]*\)\s*$/, '').trim()
+
   // 3. Homebrew spells (including items saved this session via homebrewEdits)
-  const hbEdit = homebrewEdits.get(name.toLowerCase())
+  const hbEdit =
+    homebrewEdits.get(name.toLowerCase()) ??
+    (baseName !== name ? homebrewEdits.get(baseName.toLowerCase()) : undefined)
   if (hbEdit !== undefined) {
     memCache.set(cacheKey, hbEdit)
     return hbEdit
   }
   const homebrewData = await getHomebrew()
+  const nameLower = name.toLowerCase()
+  const baseNameLower = baseName.toLowerCase()
   const hbSpell = (homebrewData.spells ?? []).find(
-    (s) => s.name.toLowerCase() === name.toLowerCase()
+    (s) =>
+      s.name.toLowerCase() === nameLower ||
+      (baseName !== name && s.name.toLowerCase() === baseNameLower)
   )
   if (hbSpell) {
     const normalized = normalizeSpell(hbSpell)
@@ -178,11 +189,28 @@ export async function lookupSpell(name) {
     return normalized
   }
 
-  // 4. API fetch — slug first, name search as fallback
+  // 4. Published (non-SRD) spells bundled locally — XGE, TCoE, PHB, EGW, SCC, FTD, etc.
+  const pubSpell = staticPublishedSpells.find(
+    (s) =>
+      s.name.toLowerCase() === nameLower ||
+      (baseName !== name && s.name.toLowerCase() === baseNameLower)
+  )
+  if (pubSpell) {
+    const normalized = normalizeSpell(pubSpell)
+    memCache.set(cacheKey, normalized)
+    localSet(cacheKey, normalized)
+    return normalized
+  }
+
+  // 5. API fetch — slug first, name search as fallback; retry with baseName if parenthetical stripped
   let result = null
   try {
     result = await fetchSpellBySlug(toSlug(name))
     if (!result) result = await fetchSpellByNameSearch(name)
+    if (!result && baseName !== name) {
+      result = await fetchSpellBySlug(toSlug(baseName))
+      if (!result) result = await fetchSpellByNameSearch(baseName)
+    }
   } catch (err) {
     console.error(
       `lookupService: network error looking up spell "${name}"`,

@@ -23,16 +23,23 @@
 import MonsterBrowser from './MonsterBrowser.vue'
 import TellondeCalendar from './TellondeCalendar.vue'
 import HomebrewBrowser from './HomebrewBrowser.vue'
+import SpellBrowser from './SpellBrowser.vue'
 
 export default {
   name: 'WorldContext',
-  components: { MonsterBrowser, TellondeCalendar, HomebrewBrowser },
+  components: {
+    MonsterBrowser,
+    TellondeCalendar,
+    HomebrewBrowser,
+    SpellBrowser,
+  },
 
   data() {
     return {
       activeTab: 'monsters',
       tabs: [
         { id: 'monsters', label: 'Monsters', component: 'MonsterBrowser' },
+        { id: 'spells', label: 'Spells', component: 'SpellBrowser' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
         { id: 'homebrew', label: 'Homebrew', component: 'HomebrewBrowser' },
       ],

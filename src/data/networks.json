@@ -61,5 +61,100 @@
       "permanent": true,
       "notes": "Requires a disc to activate which also determines the destination."
     }
+  ],
+  "sending_stone_networks": [
+    {
+      "id": "ssn_1783617029418",
+      "label": "Tielle's Network",
+      "hub": "Tielle Vorn",
+      "notes": "Tielle is the relay hub. Messages from any spoke can be relayed to any other via Tielle.",
+      "members": [
+        {
+          "holder": "Tielle Vorn",
+          "notes": "Hub — relays all messages. Khemrise (Fogstone).",
+          "status": "active"
+        },
+        {
+          "holder": "Sivenne",
+          "notes": "Steward. Argentveil.",
+          "status": "active"
+        },
+        {
+          "holder": "Brix Quellin",
+          "notes": "House Steward, Dawn Blades Valdmere property. Bluff House.",
+          "status": "active"
+        },
+        {
+          "holder": "Galealzre",
+          "notes": "City councillor. Argentveil.",
+          "status": "active"
+        },
+        {
+          "holder": "Erren Sault",
+          "notes": "Captain, Wold Anchor.",
+          "status": "active"
+        },
+        {
+          "holder": "Essa Vane",
+          "notes": "Captain, Shalindra. Valdmere.",
+          "status": "active"
+        },
+        {
+          "holder": "Maeris",
+          "notes": "Ship captain. Argentveil.",
+          "status": "active"
+        },
+        {
+          "holder": "Harwick",
+          "notes": "Logistics manager. Khemrise.",
+          "status": "active"
+        },
+        {
+          "holder": "Vrethka",
+          "notes": "",
+          "status": "active"
+        },
+        {
+          "holder": "Vethara",
+          "notes": "Clan leader.",
+          "status": "active"
+        },
+        {
+          "holder": "Vaz",
+          "notes": "",
+          "status": "active"
+        },
+        {
+          "holder": "Lenn",
+          "notes": "",
+          "status": "active"
+        },
+        {
+          "holder": "Jaygar",
+          "notes": "",
+          "status": "active"
+        },
+        {
+          "holder": "Oswin Belverbridge",
+          "notes": "City councillor. Khemrise.",
+          "status": "active"
+        },
+        {
+          "holder": "Corwin",
+          "notes": "",
+          "status": "active"
+        },
+        {
+          "holder": "Tormund Coalbeard",
+          "notes": "Ravenquay.",
+          "status": "active"
+        },
+        {
+          "holder": "Tarn",
+          "notes": "Smoke Vipers leader. Docks Ward, Ravenquay.",
+          "status": "active"
+        }
+      ]
+    }
   ]
 }

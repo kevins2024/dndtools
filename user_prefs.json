@@ -49,16 +49,16 @@
         "Ferghus"
       ],
       "active": false,
-      "game_day": 92,
+      "game_day": 103,
       "marching_order": [
-        "Lexica",
-        "Kessara",
-        "Vaz",
         "Denna",
+        "Ferghus",
+        "Vaz",
+        "Kessara",
         "Enauweyn",
+        "Lexica",
         "Tackett",
-        "Sorra",
-        "Ferghus"
+        "Sorra"
       ]
     },
     {
@@ -71,14 +71,32 @@
         "Siv",
         "Chuknora"
       ],
-      "active": true,
-      "game_day": 92,
+      "active": false,
+      "game_day": 103,
       "marching_order": [
         "Pirra",
+        "Chuknora",
         "Lenn",
         "Petra",
-        "Siv",
-        "Chuknora"
+        "Siv"
+      ],
+      "watch_assignments": [
+        [
+          "Lenn",
+          "Petra"
+        ],
+        [
+          "Pirra",
+          null
+        ],
+        [
+          "Siv",
+          null
+        ],
+        [
+          "Chuknora",
+          null
+        ]
       ]
     },
     {
@@ -108,10 +126,19 @@
         "Eldi",
         "Rith"
       ],
-      "active": false,
-      "game_day": 1,
+      "active": true,
+      "game_day": 279,
       "marching_order": []
     }
   ],
-  "mapMarkers": []
+  "mapMarkers": [],
+  "calendar_notes": [
+    {
+      "id": "note_1783689851898",
+      "text": "Meet in Orvath",
+      "recurrence": "none",
+      "day_of_year": 103,
+      "absolute_day": 103
+    }
+  ]
 }

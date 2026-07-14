@@ -47,6 +47,7 @@
           @click="selectDay(day)"
         >
           <span class="cal-num">{{ day }}</span>
+          <span v-if="notesForDay(day).length" class="cal-note-dot">✦</span>
         </div>
 
         <!-- Spring Festival halfweek — own row, not counted as a week -->
@@ -60,6 +61,7 @@
           @click="selectDay(day)"
         >
           <span class="cal-num">{{ day }}</span>
+          <span v-if="notesForDay(day).length" class="cal-note-dot">✦</span>
         </div>
         <div
           v-for="n in 4"
@@ -77,6 +79,7 @@
           @click="selectDay(52 + i)"
         >
           <span class="cal-num">{{ 52 + i }}</span>
+          <span v-if="notesForDay(52 + i).length" class="cal-note-dot"></span>
         </div>
       </div>
     </div>
@@ -89,6 +92,64 @@
       <span class="legend-swatch season-autumn">Autumn</span>
       <span class="legend-swatch festival-day">Festival (49–52)</span>
     </div>
+
+    <!-- Note editor overlay -->
+    <div
+      v-if="noteEditorOpen"
+      class="note-overlay"
+      @click.self="closeNoteEditor"
+    >
+      <div class="note-panel">
+        <div class="note-panel-header">
+          <span class="note-panel-title"
+            >Day {{ noteEditorDay }} — {{ noteEditorDayLabel }}</span
+          >
+          <button class="note-close-btn" @click="closeNoteEditor">✕</button>
+        </div>
+
+        <!-- Existing notes for this day -->
+        <div
+          v-for="note in notesForEditorDay"
+          :key="note.id"
+          class="note-existing"
+        >
+          <span class="note-recur-badge">{{ note.recurrence }}</span>
+          <span class="note-text-existing">{{ note.text }}</span>
+          <button
+            class="note-delete-btn"
+            title="Delete note"
+            @click="deleteNote(note.id)"
+          >
+            ×
+          </button>
+        </div>
+
+        <!-- New note form -->
+        <div class="note-form">
+          <textarea
+            v-model="noteDraft.text"
+            class="note-textarea"
+            placeholder="Add a note…"
+            rows="3"
+          ></textarea>
+          <div class="note-form-row">
+            <select v-model="noteDraft.recurrence" class="note-recur-select">
+              <option value="none">Once (this day only)</option>
+              <option value="weekly">Repeat weekly</option>
+              <option value="seasonally">Repeat seasonally</option>
+              <option value="annually">Repeat annually</option>
+            </select>
+            <button
+              class="note-save-btn"
+              :disabled="!noteDraft.text.trim()"
+              @click="saveNote"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -97,6 +158,8 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 
 const DAYS_PER_YEAR = 204
 const DAYS_PER_WEEK = 8
+const YEAR_OFFSET = 466 // campaign year 1 = world year 467
+const CAMPAIGN_START_DAY = 137 // world year 467, day 137 = campaign day 1 (absolute internal day)
 
 const SEASONS = [
   { name: 'Winter', key: 'winter', start: 1, end: 51 },
@@ -105,31 +168,69 @@ const SEASONS = [
   { name: 'Autumn', key: 'autumn', start: 154, end: 204 },
 ]
 
-// Spring Festival: the 4 days straddling the Winter→Spring boundary
-// (days 49–51 are the tail of Winter outside complete 8-day weeks, day 52 opens Spring)
 const FESTIVAL_DAYS = new Set([49, 50, 51, 52])
 
 function seasonForDay(day) {
   return SEASONS.find((s) => day >= s.start && day <= s.end) ?? SEASONS[0]
 }
 
+function dowForDay(day) {
+  if (day <= 48) return ((day - 1) % 8) + 1
+  if (day <= 52) return day - 48
+  return ((day - 53) % 8) + 1
+}
+
+function noteMatchesDay(note, dayOfYear, absoluteDay) {
+  switch (note.recurrence) {
+    case 'none':
+      return note.absolute_day === absoluteDay
+    case 'annually':
+      return note.day_of_year === dayOfYear
+    case 'weekly':
+      return dowForDay(dayOfYear) === dowForDay(note.day_of_year)
+    case 'seasonally': {
+      const cs = seasonForDay(dayOfYear)
+      const ns = seasonForDay(note.day_of_year)
+      return (
+        cs.key === ns.key &&
+        dayOfYear - cs.start === note.day_of_year - ns.start
+      )
+    }
+  }
+  return false
+}
+
 export default {
   name: 'TellondeCalendar',
 
   data() {
-    return { DAYS_PER_YEAR, DAYS_PER_WEEK }
+    return {
+      DAYS_PER_YEAR,
+      DAYS_PER_WEEK,
+      noteEditorOpen: false,
+      noteEditorDay: null,
+      noteDraft: { text: '', recurrence: 'none' },
+    }
   },
 
   computed: {
-    ...mapState(['game_day']),
+    ...mapState(['game_day', 'calendar_notes']),
     ...mapGetters(['activePartyDay', 'activeParty']),
 
     currentDay() {
       return this.activePartyDay || this.game_day
     },
 
-    currentYear() {
+    internalYear() {
       return Math.floor((this.currentDay - 1) / DAYS_PER_YEAR) + 1
+    },
+
+    currentYear() {
+      return this.internalYear + YEAR_OFFSET
+    },
+
+    yearStart() {
+      return (this.internalYear - 1) * DAYS_PER_YEAR
     },
 
     dayOfYear() {
@@ -157,22 +258,48 @@ export default {
     currentSeasonKey() {
       return seasonForDay(this.dayOfYear).key
     },
+
+    noteEditorDayLabel() {
+      if (!this.noteEditorDay) return ''
+      if (FESTIVAL_DAYS.has(this.noteEditorDay))
+        return `Spring Festival, Day ${this.noteEditorDay - 48}`
+      const s = seasonForDay(this.noteEditorDay)
+      return `${s.name}`
+    },
+
+    notesForEditorDay() {
+      if (!this.noteEditorDay) return []
+      return this.notesForDay(this.noteEditorDay)
+    },
   },
 
   methods: {
-    ...mapMutations(['SET_GAME_DAY']),
+    ...mapMutations([
+      'SET_GAME_DAY',
+      'SAVE_CALENDAR_NOTE',
+      'DELETE_CALENDAR_NOTE',
+    ]),
 
     advance(delta) {
       this.SET_GAME_DAY(Math.max(1, this.currentDay + delta))
     },
 
     selectDay(day) {
-      const yearStart = (this.currentYear - 1) * DAYS_PER_YEAR
-      this.SET_GAME_DAY(yearStart + day)
+      this.SET_GAME_DAY(this.yearStart + day)
+      this.noteEditorDay = day
+      this.noteEditorOpen = true
+      this.noteDraft = { text: '', recurrence: 'none' }
     },
 
     isFestivalDay(day) {
       return FESTIVAL_DAYS.has(day)
+    },
+
+    notesForDay(day) {
+      const absoluteDay = this.yearStart + day
+      return this.calendar_notes.filter((n) =>
+        noteMatchesDay(n, day, absoluteDay)
+      )
     },
 
     cellClasses(day) {
@@ -181,23 +308,53 @@ export default {
         [`season-${s.key}`]: true,
         'festival-day': this.isFestivalDay(day),
         'current-day': day === this.dayOfYear,
+        'has-note': this.notesForDay(day).length > 0,
       }
     },
 
     cellTitle(day) {
       const s = seasonForDay(day)
+      let base
       if (FESTIVAL_DAYS.has(day)) {
-        return `Day ${day} · Spring Festival, Day ${day - 48} · ${s.name}`
+        base = `Day ${day} · Spring Festival, Day ${day - 48} · ${s.name}`
+      } else {
+        const week =
+          day <= 48
+            ? Math.ceil(day / DAYS_PER_WEEK)
+            : 6 + Math.ceil((day - 52) / DAYS_PER_WEEK)
+        const dow =
+          day <= 48
+            ? ((day - 1) % DAYS_PER_WEEK) + 1
+            : ((day - 53) % DAYS_PER_WEEK) + 1
+        base = `Day ${day} · ${s.name} · Week ${week}, Day ${dow}`
       }
-      const week =
-        day <= 48
-          ? Math.ceil(day / DAYS_PER_WEEK)
-          : 6 + Math.ceil((day - 52) / DAYS_PER_WEEK)
-      const dow =
-        day <= 48
-          ? ((day - 1) % DAYS_PER_WEEK) + 1
-          : ((day - 53) % DAYS_PER_WEEK) + 1
-      return `Day ${day} · ${s.name} · Week ${week}, Day ${dow}`
+      const notes = this.notesForDay(day)
+      if (notes.length) {
+        base += '\n' + notes.map((n) => `📌 ${n.text}`).join('\n')
+      }
+      return base
+    },
+
+    saveNote() {
+      if (!this.noteDraft.text.trim()) return
+      const note = {
+        id: `note_${Date.now()}`,
+        text: this.noteDraft.text.trim(),
+        recurrence: this.noteDraft.recurrence,
+        day_of_year: this.noteEditorDay,
+        absolute_day: this.yearStart + this.noteEditorDay,
+      }
+      this.SAVE_CALENDAR_NOTE(note)
+      this.noteDraft = { text: '', recurrence: 'none' }
+    },
+
+    deleteNote(id) {
+      this.DELETE_CALENDAR_NOTE(id)
+    },
+
+    closeNoteEditor() {
+      this.noteEditorOpen = false
+      this.noteEditorDay = null
     },
   },
 }
@@ -359,6 +516,23 @@ export default {
   line-height: 1;
 }
 
+/* Note dot indicator */
+.cal-note-dot {
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  font-size: 8px;
+  line-height: 1;
+  color: #f0c040;
+  pointer-events: none;
+  text-shadow: 0 0 4px rgba(240, 192, 64, 0.6);
+}
+
+/* Subtle ring on cells with notes */
+.has-note {
+  box-shadow: inset 0 0 0 1px rgba(240, 192, 64, 0.45);
+}
+
 /* Season colors — muted for dark theme */
 .season-winter {
   background: rgba(80, 120, 180, 0.25);
@@ -470,5 +644,167 @@ export default {
   background: rgba(200, 160, 80, 0.22);
   color: #d4b060;
   outline: 1px solid rgba(200, 160, 80, 0.5);
+}
+
+/* ── Note editor overlay ─────────────────────────── */
+.note-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 16, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+}
+
+.note-panel {
+  width: min(420px, 90vw);
+  background: var(--color-bg-surface);
+  border: 1px solid rgba(200, 160, 80, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.note-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.1rem;
+}
+
+.note-panel-title {
+  font-size: 0.82rem;
+  font-family: var(--font-display, serif);
+  color: #c8a050;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.note-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.1s;
+}
+
+.note-close-btn:hover {
+  color: var(--color-text-danger);
+}
+
+.note-existing {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.3rem 0.5rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.note-recur-badge {
+  font-size: var(--font-size-xs);
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(200, 160, 80, 0.15);
+  color: #c8a050;
+  border: 1px solid rgba(200, 160, 80, 0.3);
+  flex-shrink: 0;
+  font-family: var(--font-display, serif);
+  letter-spacing: 0.04em;
+}
+
+.note-text-existing {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.note-delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-low);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.1s;
+}
+
+.note-delete-btn:hover {
+  color: var(--color-text-danger);
+}
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.note-textarea {
+  width: 100%;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  padding: 0.3rem 0.45rem;
+  resize: vertical;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.note-textarea:focus {
+  outline: 1px solid rgba(200, 160, 80, 0.7);
+  border-color: rgba(200, 160, 80, 0.7);
+}
+
+.note-form-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.note-recur-select {
+  flex: 1;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.4rem;
+  cursor: pointer;
+}
+
+.note-save-btn {
+  padding: 0.25rem 0.85rem;
+  background: rgba(200, 160, 80, 0.8);
+  color: #0e0c09;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-display, serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.12s;
+}
+
+.note-save-btn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.note-save-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 </style>

@@ -3,6 +3,11 @@
     "name": "Tellonde",
     "calendar_constants": {
       "days_per_year": 204,
+      "campaign_epoch": {
+        "year": 467,
+        "day": 137,
+        "note": "Campaign Day 1 — the game's official start date. Subtract this from any party's current date to get days elapsed."
+      },
       "seasons": [
         {
           "name": "Winter",
