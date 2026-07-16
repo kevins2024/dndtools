@@ -638,6 +638,1085 @@ const ENHANCEMENT_TABLE = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3,
 ]
 
+// ── Attack calibration ────────────────────────────────────────────────────────
+
+// Target hit% per difficulty — drives attack bonus calibration.
+const TARGET_HIT_PCT = {
+  trivial: 0.35,
+  easy: 0.45,
+  medium: 0.55,
+  hard: 0.65,
+  deadly: 0.72,
+}
+
+// Average party AC by level (5e baseline). Index = level.
+// This campaign adds PARTY_AC_ITEM_BONUS on top for generous magic items.
+const BASE_PARTY_AC = [
+  0, 13, 13, 13, 14, 14, 15, 15, 15, 16, 16, 17, 17, 17, 18, 18, 19, 19, 19, 20,
+  20,
+]
+const PARTY_AC_ITEM_BONUS = 2
+
+// ── Feature library ───────────────────────────────────────────────────────────
+
+const BOSS_UNIVERSAL = [
+  {
+    name: 'Legendary Resistance (2/day)',
+    description:
+      'If this boss fails a saving throw, it can choose to succeed instead. Usable twice per encounter.',
+  },
+  {
+    name: 'Multiattack',
+    description:
+      'This boss makes two attacks per action. When below half HP, it makes three.',
+  },
+]
+
+const REACTIVE_FEATURES = {
+  antiHealing: {
+    name: 'Necrotic Siphon (Reaction)',
+    description:
+      'Once per round: when a creature within 60 ft is healed by magic, reduce that healing by half and gain that many temporary HP.',
+  },
+  antiControl: {
+    name: 'Iron Will',
+    description:
+      'Advantage on saving throws against being Charmed, Stunned, or Incapacitated.',
+  },
+}
+
+const FEATURE_POOLS = {
+  humanoid: {
+    melee_str: {
+      passive: [
+        {
+          name: 'Brutal Strikes',
+          description:
+            'When this enemy hits with a melee attack, reroll one damage die and use the higher result.',
+        },
+        {
+          name: 'Battle Hardened',
+          description:
+            'Advantage on CON saves and immunity to being frightened.',
+        },
+        {
+          name: 'Relentless Endurance (1/encounter)',
+          description: 'When reduced to 0 HP: drop to 1 HP instead.',
+        },
+      ],
+      active: [
+        {
+          name: 'Reckless Assault',
+          description:
+            'Attacks with advantage this round but grants advantage to all attackers against it until start of its next turn.',
+        },
+        {
+          name: 'Shield Slam (Bonus Action)',
+          description:
+            'Shove a creature within 5 ft (DC = 8 + STR mod + Prof). On fail: pushed 5 ft and knocked prone.',
+        },
+        {
+          name: 'Second Wind (Bonus Action)',
+          description: 'Once per encounter: regain 1d10 + level HP.',
+        },
+      ],
+      boss: [
+        {
+          name: "Commander's Bellow",
+          description:
+            'At the start of each turn, all allies within 30 ft gain +2 to their next attack roll.',
+        },
+        {
+          name: 'Unstoppable Charge',
+          description:
+            'After moving 10+ ft before attacking, target makes DC 15 STR save or is knocked prone.',
+        },
+      ],
+    },
+    melee_dex: {
+      passive: [
+        {
+          name: 'Shadow Steps',
+          description:
+            'Moving through dim light or darkness costs no extra movement; no opportunity attacks while in darkness.',
+        },
+        {
+          name: 'Nimble Escape',
+          description: 'Can Disengage or Hide as a bonus action each turn.',
+        },
+        {
+          name: 'Evasion',
+          description:
+            'When subjected to an effect that allows a DEX save for half damage: no damage on success, half on fail.',
+        },
+      ],
+      active: [
+        {
+          name: 'Sneak Attack (3d6)',
+          description:
+            'Once per turn when attacking with advantage or an ally is adjacent to the target: +3d6 piercing damage.',
+        },
+        {
+          name: 'Ambush Strike',
+          description:
+            'If attacking a surprised creature, all damage from that attack is doubled.',
+        },
+        {
+          name: 'Crippling Jab',
+          description:
+            'On a hit: DC 13 CON save or lose 10 ft of movement until end of next turn.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Death Strike',
+          description:
+            'If this enemy has advantage against a creature that has not acted yet, a hit is automatically a critical hit.',
+        },
+        {
+          name: 'Vanish (1/encounter)',
+          description:
+            'Become invisible until start of next turn. First attack while invisible has advantage.',
+        },
+      ],
+    },
+    ranged: {
+      passive: [
+        {
+          name: "Hawk's Eye",
+          description:
+            'Ignores half and three-quarters cover. No disadvantage on ranged attacks made within 5 ft of a hostile.',
+        },
+        {
+          name: 'Mobile Combatant',
+          description:
+            'After a ranged attack, can move up to 10 ft without provoking opportunity attacks.',
+        },
+        {
+          name: 'Steady Aim',
+          description:
+            'If this enemy does not move on their turn, they gain +2 to ranged attack rolls.',
+        },
+      ],
+      active: [
+        {
+          name: 'Volley',
+          description:
+            'Fire at all creatures in a 10-ft radius within normal range. DC 13 DEX save or take weapon damage.',
+        },
+        {
+          name: 'Pinning Shot',
+          description:
+            'On a hit: DC 13 STR save or speed reduced to 0 until end of next turn.',
+        },
+        {
+          name: 'Called Shot',
+          description:
+            'Declare a body part before attacking. Head: DC 14 CON or Stunned 1 rd. Legs: DC 13 STR or speed halved. Arm: DC 13 CON or disadvantage on attacks.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Rain of Arrows',
+          description:
+            'Makes 3 attacks per action, each against a different target.',
+        },
+        {
+          name: 'Explosive Shot (1/short rest)',
+          description:
+            '10-ft radius detonation on impact: DC 13 DEX save, 4d6 fire damage (half on save).',
+        },
+      ],
+    },
+    caster_int: {
+      passive: [
+        {
+          name: 'Arcane Ward',
+          description:
+            'Magical ward with 2× level HP absorbs damage before the caster takes any. Does not recharge mid-combat.',
+        },
+        {
+          name: 'Spell Absorption (1/encounter)',
+          description:
+            'When failing a save against a spell, can choose to succeed instead and absorb that spell slot level.',
+        },
+        {
+          name: 'Careful Metamagic',
+          description:
+            "Once per encounter, up to 3 creatures automatically succeed on a save against one of this caster's area spells.",
+        },
+      ],
+      active: [
+        {
+          name: 'Counterspell (Reaction)',
+          description:
+            'When a creature within 60 ft casts a spell: auto-counter spells up to L3; DC 10 + spell level for higher.',
+        },
+        {
+          name: 'Forceful Barrier (Bonus Action)',
+          description: 'Gain +3 AC until start of next turn.',
+        },
+        {
+          name: 'Arcane Riposte (Reaction)',
+          description:
+            'When hit by a melee attack: deal 2d6 force damage to the attacker.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Arcane Mastery',
+          description:
+            'Can maintain one concentration spell and one non-concentration spell simultaneously. Concentration checks have advantage.',
+        },
+        {
+          name: 'Spell Echo (1/encounter)',
+          description:
+            'When casting a spell of L3 or lower: cast it twice simultaneously against the same or different targets.',
+        },
+      ],
+    },
+    caster_cha: {
+      passive: [
+        {
+          name: 'Dark Blessing',
+          description:
+            'Regains 5 HP at the start of each of its turns if at 1+ HP. Cold and fire damage suppress this for one round.',
+        },
+        {
+          name: 'Entropic Shroud',
+          description:
+            'Creature that hits this enemy in melee: DC 13 WIS save or Frightened until end of their next turn.',
+        },
+        {
+          name: 'Pact Resilience',
+          description:
+            'When this creature would die, it instead drops to 1 HP (once per encounter). While below 10 HP, all incoming damage is halved.',
+        },
+      ],
+      active: [
+        {
+          name: 'Dominating Gaze',
+          description:
+            "One creature within 30 ft: DC 14 WIS save or Charmed until they take damage or the start of this caster's next turn.",
+        },
+        {
+          name: 'Horrific Curse',
+          description:
+            "One creature within 30 ft: DC 15 CON save (repeatable as an action). While cursed: disadvantage on all saves against this enemy's spells.",
+        },
+        {
+          name: 'Eldritch Blast (Repelling)',
+          description:
+            'Range 120 ft, +5 to hit: 1d10 force damage and target pushed 10 ft on hit.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Soul Drain (Recharge 5-6)',
+          description:
+            'All creatures within 20 ft: DC 15 CON save. Fail: 4d10 necrotic and HP max reduced by damage dealt until long rest.',
+        },
+        {
+          name: 'Eldritch Dominion',
+          description:
+            "Up to 3 non-boss allies are under this boss's telepathic control. If the boss dies, controlled allies are Stunned until end of their next turn.",
+        },
+      ],
+    },
+    healer: {
+      passive: [
+        {
+          name: 'Aura of Warding',
+          description:
+            'Allies within 10 ft gain resistance to damage from spells.',
+        },
+        {
+          name: 'Sacred Resilience',
+          description: 'Cannot be reduced below 1 HP more than once per round.',
+        },
+        {
+          name: 'Spiritual Advisor',
+          description:
+            'Allies within 30 ft have advantage on WIS and CHA saving throws.',
+        },
+      ],
+      active: [
+        {
+          name: 'Healing Word (Bonus Action)',
+          description:
+            'Heal one ally within 60 ft for 2d4 + 5 HP. Usable twice before a short rest.',
+        },
+        {
+          name: 'Dispel Magic (Action)',
+          description:
+            'End one spell of L3 or lower on a creature within 60 ft (auto). Higher: DC 10 + spell level.',
+        },
+        {
+          name: 'Sacred Flame',
+          description:
+            'Range 60 ft: DC 14 DEX save or 2d8 radiant damage. Cover provides no benefit.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Divine Rebuke (Reaction)',
+          description:
+            'When an ally within 30 ft takes damage: the attacker takes 3d6 radiant damage (DC 14 DEX save for half).',
+        },
+        {
+          name: 'Resurrect (1/encounter)',
+          description:
+            'As an action, restore a fallen ally to 1 HP. The ally immediately takes their turn on this initiative count.',
+        },
+      ],
+    },
+    support: {
+      passive: [
+        {
+          name: 'Pack Tactics',
+          description:
+            'Advantage on attack rolls if at least one ally is within 5 ft of the target.',
+        },
+        {
+          name: 'Coordinated Defense',
+          description: 'Allies within 10 ft gain +2 AC against ranged attacks.',
+        },
+        {
+          name: 'Inspiring Presence',
+          description:
+            'Allied humanoids within 30 ft deal +2 damage on their first attack each round.',
+        },
+      ],
+      active: [
+        {
+          name: 'Battle Orders (Bonus Action)',
+          description:
+            'Grant one ally within 30 ft an immediate additional attack using their reaction.',
+        },
+        {
+          name: 'Rally! (1/encounter)',
+          description:
+            'All allies within 30 ft gain 10 temporary HP and advantage on their next saving throw.',
+        },
+        {
+          name: 'Expose Weakness',
+          description:
+            "After hitting a target: all allies have advantage on their next attack against that same target before this creature's next turn.",
+        },
+      ],
+      boss: [
+        {
+          name: 'Supreme Command',
+          description:
+            'Acts first in initiative regardless of roll. Allies gain +2 to attacks while this boss is alive.',
+        },
+        {
+          name: 'Tactical Mastermind (Free Action)',
+          description:
+            'Once per round: Flank (two allies flank a target), Retreat (two allies Disengage for free), or Focus Fire (all allies must attack same target this round).',
+        },
+      ],
+    },
+  },
+  bestiary: {
+    Beast: {
+      passive: [
+        {
+          name: 'Pack Tactics',
+          description:
+            'Advantage on attacks if at least one ally is within 5 ft of the target.',
+        },
+        {
+          name: 'Keen Senses',
+          description: 'Advantage on Perception checks. Cannot be surprised.',
+        },
+        {
+          name: 'Rending Fury',
+          description:
+            'Deals an extra die of damage against targets that are Grappled or Prone.',
+        },
+      ],
+      active: [
+        {
+          name: 'Pounce',
+          description:
+            'After moving 20+ ft and hitting with a claw: DC 13 STR save or knocked prone, then make a bonus bite attack.',
+        },
+        {
+          name: 'Rend',
+          description:
+            "On a hit: target's AC is reduced by 1 (max −3) until repaired.",
+        },
+        {
+          name: 'Frenzied Bite (Recharge 5-6)',
+          description:
+            'One bite for 3d8 + STR mod piercing. Automatic critical if target is below half HP.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Alpha Howl',
+          description:
+            "Beast allies within 60 ft gain advantage on attacks until the Alpha's next turn. Other beasts make DC 12 WIS save or Frighten their enemies for 1 round.",
+        },
+        {
+          name: 'Feral Rampage',
+          description:
+            'When reduced below half HP: gain an extra attack and +2 damage on all hits.',
+        },
+      ],
+    },
+    Undead: {
+      passive: [
+        {
+          name: 'Undead Fortitude',
+          description:
+            'When reduced to 0 HP by non-radiant, non-critical damage: DC CON save (10 + damage dealt). Success = drop to 1 HP.',
+        },
+        {
+          name: 'Necrotic Aura',
+          description:
+            'Living creatures within 5 ft take 1d6 necrotic at start of their turn. Healing halved while in aura.',
+        },
+        {
+          name: 'Turn Immunity',
+          description:
+            'Immune to being Turned. Any Turn Undead effect aimed at this creature deals 2d6 psychic to the caster instead.',
+        },
+      ],
+      active: [
+        {
+          name: 'Life Drain (Recharge 5-6)',
+          description:
+            'DC 14 CON save. Fail: 3d8 necrotic damage and HP max reduced by amount dealt until long rest.',
+        },
+        {
+          name: 'Grave Chill',
+          description:
+            "On a hit: DC 13 CON save or speed halved and bonus action lost until start of undead's next turn.",
+        },
+        {
+          name: 'Withering Gaze',
+          description:
+            "Range 30 ft: DC 14 CON save or Weakened — attacks and saves have −2 penalty until end of target's next turn.",
+        },
+      ],
+      boss: [
+        {
+          name: 'Dark Resurrection (Reaction, Recharge 6)',
+          description:
+            'When an Undead ally within 30 ft drops to 0 HP: raise it with 1 HP and 10 temporary HP.',
+        },
+        {
+          name: 'Soul Consumption',
+          description:
+            'When any creature dies within 30 ft: gain 10 temp HP and an extra attack on the next turn.',
+        },
+      ],
+    },
+    Fiend: {
+      passive: [
+        { name: 'Fire Immunity', description: 'Immune to fire damage.' },
+        {
+          name: 'Magic Resistance',
+          description:
+            'Advantage on saving throws against spells and magical effects.',
+        },
+        {
+          name: 'Infernal Toughness',
+          description:
+            'Resistance to cold and lightning damage. Immune to poison and the poisoned condition.',
+        },
+      ],
+      active: [
+        {
+          name: 'Hellfire Burst (Recharge 5-6)',
+          description:
+            '15-ft cone: DC 14 DEX save. 3d10 fire damage (half on save). Undamaged targets may be ignited — 1d6 fire per round, action to extinguish.',
+        },
+        {
+          name: 'Corrupting Touch',
+          description:
+            'On a melee hit: target has disadvantage on Concentration checks and healing spells are halved until DC 15 CHA save (repeatable end of their turn).',
+        },
+        {
+          name: 'Infernal Chains',
+          description:
+            'Range 30 ft: DC 14 STR save or Restrained by spectral chains until end of next turn. Restrained targets take 2d8 fire at start of their turns.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Infernal Command',
+          description:
+            'All Fiend allies within 60 ft gain resistance to non-magical physical damage while this boss lives.',
+        },
+        {
+          name: 'Summon Lesser Fiends (1/day)',
+          description:
+            "Use action to summon 1d4 lesser fiends (50% chance per fiend). They arrive at start of boss's next turn.",
+        },
+      ],
+    },
+    Dragon: {
+      passive: [
+        {
+          name: 'Frightful Presence',
+          description:
+            'Creatures within 120 ft aware of the dragon: DC 17 WIS save or Frightened 1 minute. Repeat each turn. Immune for 24h on success.',
+        },
+        {
+          name: 'Dragon Resilience',
+          description:
+            'Advantage on all saving throws. Resistant to non-magical bludgeoning, piercing, and slashing.',
+        },
+      ],
+      active: [
+        {
+          name: 'Wing Attack',
+          description:
+            'Creatures within 15 ft: DC 15 DEX save or 2d6 bludgeoning and knocked prone. Dragon can then fly up to half its fly speed.',
+        },
+        {
+          name: 'Breath Weapon (Recharge 5-6)',
+          description:
+            '60-ft cone: DC 18 DEX save, 8d6 fire damage (half on save). Or cold breath: DC 18 CON save, 10d8 cold, speed halved 1 round.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Multiattack',
+          description:
+            'Three attacks: one bite (2d10+mod) and two claws (2d6+mod). Can replace one claw with Wing Attack.',
+        },
+        {
+          name: 'Lair Action (Initiative 20)',
+          description:
+            'Roll 1d3: (1) 20-ft eruption 3d6 fire DC 15; (2) stone spires in 20-ft area, difficult terrain; (3) 20-ft sphere noxious gas, DC 13 CON or Poisoned 1 rnd.',
+        },
+      ],
+    },
+    Construct: {
+      passive: [
+        {
+          name: 'Immutable Form',
+          description:
+            'Immune to spells that would alter form. Advantage on saves against Polymorph, Dominate, and similar.',
+        },
+        {
+          name: 'Damage Absorption (Lightning)',
+          description:
+            'Lightning damage is converted to healing for this creature instead.',
+        },
+        {
+          name: 'Adamantine Body',
+          description:
+            'Attacks that would deal a critical hit deal normal damage instead.',
+        },
+      ],
+      active: [
+        {
+          name: 'Force Slam (Recharge 5-6)',
+          description:
+            '20-ft radius shockwave: DC 15 STR save. 3d8 bludgeoning and knocked prone on fail.',
+        },
+        {
+          name: 'Interlocking Grapple',
+          description:
+            'On a melee hit: target is Grappled (escape DC 15) and Restrained. Can hold up to 2 creatures.',
+        },
+        {
+          name: 'Plasma Burst (Recharge 5-6)',
+          description:
+            '30-ft line: DC 14 DEX save. 4d6 lightning + 2d6 fire (half on save). Fail: also Blinded until end of next turn.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Overclock (Bonus Action)',
+          description:
+            'Gain an extra melee attack and double movement until end of round. Take 10 damage at end of round.',
+        },
+        {
+          name: 'Emergency Repair (Reaction, 1/encounter)',
+          description:
+            'When reduced below 25% HP: regain 30 HP and suppress all conditions for 1 round.',
+        },
+      ],
+    },
+    Fey: {
+      passive: [
+        {
+          name: 'Misty Escape (Reaction)',
+          description:
+            'When taking damage: teleport up to 60 ft to an unoccupied space in sight. Once per round.',
+        },
+        {
+          name: 'Glamour Aura',
+          description:
+            'Creatures starting their turn within 20 ft: DC 14 WIS save or Charmed until start of next turn (cannot attack this fey).',
+        },
+        {
+          name: 'Magic Resistance',
+          description:
+            'Advantage on saving throws against spells and magical effects.',
+        },
+      ],
+      active: [
+        {
+          name: 'Bewildering Visions',
+          description:
+            'One target within 30 ft: DC 14 WIS save or 3d6 psychic damage and treat all creatures as invisible until end of their next turn.',
+        },
+        {
+          name: 'Feywild Step (Bonus Action)',
+          description:
+            'Teleport up to 30 ft to an unoccupied space in sight. Once per turn.',
+        },
+        {
+          name: 'Pixie Dust',
+          description:
+            "10-ft radius around this creature: DC 13 WIS save or Incapacitated until hit or until end of fey's next turn.",
+        },
+      ],
+      boss: [
+        {
+          name: 'Wild Magic Surge (Start of Round)',
+          description:
+            'Roll 1d6. 1-2: all spells target random creatures. 3: boss regains a spell slot. 4-6: no effect.',
+        },
+        {
+          name: 'Curse of the Fey Court',
+          description:
+            'Range 60 ft: DC 16 CHA save or Cursed 1 minute. Cursed: highest ability score −4, cannot benefit from advantage. Remove Curse ends it.',
+        },
+      ],
+    },
+    default: {
+      passive: [
+        {
+          name: 'Relentless',
+          description:
+            'When a save would leave this creature Incapacitated: Stunned until end of next turn instead.',
+        },
+        {
+          name: 'Thick Hide',
+          description:
+            'Resistance to non-magical bludgeoning, piercing, and slashing damage.',
+        },
+        {
+          name: "Predator's Instinct",
+          description:
+            'Advantage on attack rolls against creatures that have not yet acted in combat.',
+        },
+      ],
+      active: [
+        {
+          name: 'Brutal Strike',
+          description:
+            'Once per turn on a hit: DC 14 STR save or knocked prone.',
+        },
+        {
+          name: 'Terrifying Screech (1/encounter)',
+          description:
+            'All creatures within 30 ft: DC 13 WIS save or Frightened 1 minute (repeat save end of each turn).',
+        },
+        {
+          name: 'Reckless Strike',
+          description:
+            'All attacks this turn have advantage, but all attacks against this creature also have advantage until start of its next turn.',
+        },
+      ],
+      boss: [
+        {
+          name: 'Apex Predator',
+          description:
+            'Cannot be flanked. Creatures attempting to Disengage from melee must succeed on a DC 14 STR save or fail to move.',
+        },
+        {
+          name: 'Second Nature (1/encounter)',
+          description:
+            'When reduced to 0 HP for the first time: regain half max HP. No longer subject to surprise conditions after this.',
+        },
+      ],
+    },
+  },
+}
+
+// ── Spell library for caster enemies ─────────────────────────────────────────
+
+const SPELL_POOLS = {
+  caster_int: {
+    easy: [
+      {
+        name: 'Magic Missile',
+        description: 'Three darts, each 1d4+1 force damage. Automatic hit.',
+      },
+      {
+        name: 'Shield (Reaction)',
+        description:
+          '+5 AC until start of next turn when targeted by an attack. Also blocks Magic Missile.',
+      },
+      {
+        name: 'Thunderwave',
+        description:
+          '15-ft cube from caster: DC 14 CON save. 2d8 thunder damage and pushed 10 ft on fail. Half, not pushed on save.',
+      },
+    ],
+    medium: [
+      {
+        name: 'Misty Step (Bonus Action)',
+        description: 'Teleport up to 30 ft to a space in sight.',
+      },
+      {
+        name: 'Web',
+        description:
+          '20-ft cube within 60 ft: difficult terrain. DC 14 DEX or Restrained. Concentration 1 hour.',
+      },
+      {
+        name: 'Mirror Image',
+        description:
+          '3 duplicates: each has 33%, then 50%, then 75% chance to absorb an attack (destroyed on hit).',
+      },
+      {
+        name: 'Magic Missile',
+        description: 'Three darts, each 1d4+1 force. Automatic hit.',
+      },
+      {
+        name: 'Shield (Reaction)',
+        description: '+5 AC until start of next turn.',
+      },
+    ],
+    hard: [
+      {
+        name: 'Fireball',
+        description:
+          '20-ft radius within 150 ft: DC 14 DEX save. 8d6 fire damage (half on save).',
+      },
+      {
+        name: 'Counterspell (Reaction)',
+        description:
+          'Interrupt a spell within 60 ft: auto-succeeds for spells up to L3. For higher: DC 10 + spell level.',
+      },
+      {
+        name: 'Hypnotic Pattern',
+        description:
+          '30-ft cube within 120 ft: DC 14 WIS save or Incapacitated. Concentration. Ends on damage to creature.',
+      },
+      {
+        name: 'Misty Step (Bonus Action)',
+        description: 'Teleport up to 30 ft to a space in sight.',
+      },
+      {
+        name: 'Mirror Image',
+        description: '3 duplicates absorb attacks before caster takes damage.',
+      },
+    ],
+    deadly: [
+      {
+        name: 'Disintegrate',
+        description:
+          'Range 60 ft: DC 16 DEX save. 10d6+40 force damage (half on save). Reduced to 0 HP = disintegrated.',
+      },
+      {
+        name: 'Fireball',
+        description: '20-ft radius: DC 14 DEX save. 8d6 fire (half on save).',
+      },
+      {
+        name: 'Counterspell (Reaction)',
+        description:
+          'Interrupt a spell: auto for L3 and under; DC 10 + spell level for higher.',
+      },
+      {
+        name: 'Hypnotic Pattern',
+        description: '30-ft cube: DC 14 WIS or Incapacitated. Concentration.',
+      },
+      {
+        name: 'Time Ravage',
+        description:
+          'Single target within 90 ft: DC 17 CON save. Fail: 10d8+20 necrotic, Aged, Poisoned, speed halved. Half on save.',
+      },
+    ],
+  },
+  caster_cha: {
+    easy: [
+      {
+        name: 'Charm Person',
+        description:
+          'Range 60 ft: DC 13 WIS save or Charmed — caster is treated as a friendly contact. Ends on damage.',
+      },
+      {
+        name: 'Hex (Bonus Action)',
+        description:
+          'Curse one target within 90 ft: +1d6 necrotic on each hit, disadvantage on one ability check type.',
+      },
+      {
+        name: 'Command',
+        description:
+          'Range 60 ft: DC 13 WIS save or obey one-word command (drop, flee, grovel, halt, approach).',
+      },
+    ],
+    medium: [
+      {
+        name: 'Darkness',
+        description:
+          'Range 60 ft: 15-ft sphere of magical darkness. Blocks darkvision.',
+      },
+      {
+        name: 'Hunger of Hadar',
+        description:
+          '20-ft sphere within 150 ft: difficult terrain, no light. 2d6 cold at turn start, 2d6 acid at turn end. Concentration.',
+      },
+      {
+        name: 'Suggestion',
+        description:
+          'Range 30 ft: DC 14 WIS save or follow a reasonable suggestion up to 8 hours. Ends on damage.',
+      },
+      {
+        name: 'Charm Person',
+        description: 'Range 60 ft: DC 13 WIS or Charmed.',
+      },
+      {
+        name: 'Hex (Bonus Action)',
+        description: '+1d6 necrotic per hit, disadvantage on one ability type.',
+      },
+    ],
+    hard: [
+      {
+        name: 'Banishment',
+        description:
+          'Range 60 ft: DC 15 CHA save or Banished to another plane. Concentration. Returns when concentration drops.',
+      },
+      {
+        name: 'Hold Monster',
+        description:
+          'Range 90 ft: DC 15 WIS save or Paralyzed. Auto-crits from within 5 ft. Concentration.',
+      },
+      {
+        name: 'Hunger of Hadar',
+        description:
+          '20-ft sphere: 2d6 cold each turn start, 2d6 acid each turn end. Blind within. Concentration.',
+      },
+      {
+        name: 'Darkness',
+        description: '15-ft sphere magical darkness. Blocks darkvision.',
+      },
+      {
+        name: 'Suggestion',
+        description: 'DC 14 WIS or follow reasonable suggestion for 8 hours.',
+      },
+    ],
+    deadly: [
+      {
+        name: 'Dominate Person',
+        description:
+          "Range 60 ft: DC 16 WIS save or completely under caster's control. Concentration 1 minute.",
+      },
+      {
+        name: 'Mass Suggestion',
+        description:
+          'Up to 6 targets within 60 ft: DC 16 WIS save or follow a suggestion for 24 hours.',
+      },
+      {
+        name: 'Eyebite',
+        description:
+          'One target per turn within 60 ft — choose: Asleep (DC 14 WIS, unconscious 1 min), Panicked (DC 14 WIS, frightened + flees), or Sickened (DC 14 CON, poisoned). Concentration 1 min.',
+      },
+      {
+        name: 'Banishment',
+        description: 'DC 15 CHA or Banished. Concentration.',
+      },
+      {
+        name: 'Hold Monster',
+        description:
+          'DC 15 WIS or Paralyzed. Auto-crits from 5 ft. Concentration.',
+      },
+    ],
+  },
+  healer: {
+    easy: [
+      { name: 'Cure Wounds', description: 'Touch: heal 1d8 + WIS mod HP.' },
+      {
+        name: 'Healing Word (Bonus Action)',
+        description:
+          'Range 60 ft: heal 1d4 + WIS mod HP. Can be cast same turn as another spell.',
+      },
+    ],
+    medium: [
+      {
+        name: 'Mass Healing Word (Bonus Action)',
+        description:
+          'Range 60 ft, up to 6 targets: each heals 1d4 + WIS mod HP.',
+      },
+      {
+        name: 'Lesser Restoration',
+        description:
+          'Touch: end one condition (blinded, deafened, paralyzed, or poisoned).',
+      },
+      { name: 'Cure Wounds', description: 'Touch: heal 2d8 + WIS mod HP.' },
+      {
+        name: 'Healing Word (Bonus Action)',
+        description: 'Range 60 ft: heal 1d4 + WIS mod HP.',
+      },
+    ],
+    hard: [
+      {
+        name: 'Revivify',
+        description:
+          'Touch: restore a creature that dropped to 0 HP this round to 1 HP.',
+      },
+      {
+        name: 'Mass Healing Word (Bonus Action)',
+        description: '6 targets each heal 1d4 + WIS mod HP.',
+      },
+      {
+        name: 'Spirit Guardians',
+        description:
+          '15-ft aura: enemies take 3d8 radiant/necrotic per turn (DC 15 WIS half), speed halved in zone. Concentration.',
+      },
+      {
+        name: 'Greater Restoration',
+        description:
+          'Touch: end charmed, exhaustion (−1), frightened, cursed, or HP max / ability score reduction.',
+      },
+    ],
+    deadly: [
+      {
+        name: 'Heal',
+        description:
+          'Range 60 ft: target regains 70 HP. No longer blinded, deafened, diseased, or poisoned.',
+      },
+      {
+        name: 'Mass Cure Wounds',
+        description: 'Range 60 ft, 6 targets: each heals 3d8 + WIS mod HP.',
+      },
+      {
+        name: 'Revivify',
+        description:
+          'Touch: restore a creature that dropped to 0 HP this round to 1 HP.',
+      },
+      {
+        name: 'Spirit Guardians',
+        description:
+          '15-ft aura: 3d8 radiant/necrotic per turn (DC 15 WIS half). Concentration.',
+      },
+      {
+        name: 'Flame Strike',
+        description:
+          '10-ft cylinder, 40 ft tall within 60 ft: DC 14 DEX save. 4d6 fire + 4d6 radiant (half on save).',
+      },
+    ],
+  },
+}
+
+// ── Party analysis & attack calibration ──────────────────────────────────────
+
+function pickN(arr, n) {
+  const copy = [...arr]
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[copy[i], copy[j]] = [copy[j], copy[i]]
+  }
+  return copy.slice(0, Math.min(n, copy.length))
+}
+
+export function analyzeParty(partyCharacters) {
+  if (!partyCharacters?.length) {
+    return {
+      avgLevel: 5,
+      estimatedAC: 17,
+      hasHealer: false,
+      hasArcane: false,
+      hasMartial: true,
+      hasControl: false,
+      hasAOE: false,
+    }
+  }
+  const avgLevel =
+    partyCharacters.reduce((a, c) => a + (c.level ?? 1), 0) /
+    partyCharacters.length
+  const lvlIdx = Math.min(20, Math.round(avgLevel))
+  const estimatedAC = (BASE_PARTY_AC[lvlIdx] ?? 15) + PARTY_AC_ITEM_BONUS
+
+  const classes = partyCharacters.flatMap((c) =>
+    (c.classes ?? []).map((cl) => (cl.name ?? '').toLowerCase())
+  )
+  const hasHealer = classes.some((c) =>
+    ['cleric', 'druid', 'paladin', 'bard'].includes(c)
+  )
+  const hasArcane = classes.some((c) =>
+    ['wizard', 'sorcerer', 'warlock', 'artificer', 'bard'].includes(c)
+  )
+  const hasMartial = classes.some((c) =>
+    ['fighter', 'barbarian', 'paladin', 'ranger', 'monk', 'rogue'].includes(c)
+  )
+  const hasControl = hasArcane || classes.includes('bard')
+  const hasAOE = classes.some((c) =>
+    ['sorcerer', 'wizard', 'druid', 'bard'].includes(c)
+  )
+
+  return {
+    avgLevel,
+    estimatedAC,
+    hasHealer,
+    hasArcane,
+    hasMartial,
+    hasControl,
+    hasAOE,
+  }
+}
+
+function calibrateAttackBonus(partyAvgAC, difficulty, isBoss) {
+  const hitPct = TARGET_HIT_PCT[difficulty] ?? 0.55
+  const effectivePct = isBoss ? Math.min(0.85, hitPct + 0.08) : hitPct
+  return Math.round(partyAvgAC - (21 - effectivePct * 20))
+}
+
+function assignFeatures(source, roleKey, difficulty, isBoss, partyProfile) {
+  const isHumanoid = source === 'humanoid'
+  const pool = isHumanoid
+    ? FEATURE_POOLS.humanoid[roleKey] ?? FEATURE_POOLS.humanoid.melee_str
+    : FEATURE_POOLS.bestiary[source] ?? FEATURE_POOLS.bestiary.default
+
+  const passiveCount =
+    { trivial: 0, easy: 1, medium: 1, hard: 2, deadly: 2 }[difficulty] ?? 1
+  const activeCount =
+    { trivial: 0, easy: 0, medium: 1, hard: 1, deadly: 2 }[difficulty] ?? 0
+
+  const features = [
+    ...pickN(pool.passive ?? [], passiveCount),
+    ...pickN(pool.active ?? [], activeCount),
+  ]
+
+  if (isBoss) {
+    const bossCount = difficulty === 'deadly' ? 2 : 1
+    features.push(...pickN(pool.boss ?? [], bossCount))
+    features.push(...BOSS_UNIVERSAL)
+  }
+
+  if (partyProfile && (difficulty === 'hard' || difficulty === 'deadly')) {
+    if (partyProfile.hasHealer && (isBoss || roleKey === 'healer'))
+      features.push(REACTIVE_FEATURES.antiHealing)
+    if (partyProfile.hasControl && isBoss && difficulty === 'deadly')
+      features.push(REACTIVE_FEATURES.antiControl)
+  }
+
+  // Deduplicate by name
+  const seen = new Set()
+  const unique = features.filter((f) => {
+    if (seen.has(f.name)) return false
+    seen.add(f.name)
+    return true
+  })
+
+  const spells =
+    isHumanoid && SPELL_POOLS[roleKey]
+      ? SPELL_POOLS[roleKey][difficulty] ?? SPELL_POOLS[roleKey].easy ?? []
+      : []
+
+  return { features: unique, spells }
+}
+
 // ── Stat helpers ──────────────────────────────────────────────────────────────
 
 function rollInRange(min, max) {
@@ -776,7 +1855,9 @@ function generateHumanoidEnemy(
   roleOverride,
   raceOverride,
   genderOverride,
-  typeRoleWeights
+  typeRoleWeights,
+  difficulty = 'medium',
+  partyProfile = null
 ) {
   const rolePool = typeRoleWeights ?? ROLE_POOL
   const roleKey =
@@ -790,11 +1871,20 @@ function generateHumanoidEnemy(
   const ac = generateAC(profile, stats, level + (isBoss ? 2 : 0))
   const primaryMod = mod(stats[profile.primary])
   const profBonus = Math.ceil(level / 4) + 1
-  const baseAtk = primaryMod + profBonus + (isBoss ? 2 : 0)
   const weapon = generateWeapon(roleKey, primaryMod)
-  const totalAtk = baseAtk + weapon.enhancement
+  const totalAtk = partyProfile
+    ? calibrateAttackBonus(partyProfile.estimatedAC, difficulty, isBoss)
+    : primaryMod + profBonus + (isBoss ? 2 : 0) + weapon.enhancement
   const gender = genderOverride ?? pick(GENDERS)
   const race = raceOverride ?? pick(RACES)
+
+  const { features, spells } = assignFeatures(
+    'humanoid',
+    roleKey,
+    difficulty,
+    isBoss,
+    partyProfile
+  )
 
   return {
     id: `enc_enemy_${_eid++}`,
@@ -811,6 +1901,8 @@ function generateHumanoidEnemy(
     stats,
     weapon,
     attackBonus: totalAtk >= 0 ? `+${totalAtk}` : `${totalAtk}`,
+    features,
+    spells,
   }
 }
 
@@ -855,7 +1947,9 @@ function generateBestiaryEnemy(
   isBoss,
   bestiaryType,
   sizeMax,
-  specificMonster = null
+  specificMonster = null,
+  difficulty = 'medium',
+  partyProfile = null
 ) {
   const monster =
     specificMonster ?? pickBestiaryMonster(bestiaryType, level, isBoss, sizeMax)
@@ -874,6 +1968,17 @@ function generateBestiaryEnemy(
 
   const monsterName = monster?.name ?? bestiaryType
   const displayName = isBoss ? `${monsterName} (Boss)` : monsterName
+  const calibratedAtk = partyProfile
+    ? calibrateAttackBonus(partyProfile.estimatedAC, difficulty, isBoss)
+    : baseAtk
+
+  const { features, spells } = assignFeatures(
+    bestiaryType,
+    null,
+    difficulty,
+    isBoss,
+    partyProfile
+  )
 
   return {
     id: `enc_enemy_${_eid++}`,
@@ -899,7 +2004,9 @@ function generateBestiaryEnemy(
       displayName: attackName,
       damageMod: primaryMod,
     },
-    attackBonus: baseAtk >= 0 ? `+${baseAtk}` : `${baseAtk}`,
+    attackBonus: calibratedAtk >= 0 ? `+${calibratedAtk}` : `${calibratedAtk}`,
+    features,
+    spells,
   }
 }
 
@@ -1003,6 +2110,7 @@ export function generateEncounter({
   minPartyHP,
   maxPartyHP,
   slots,
+  partyProfile = null,
 }) {
   const finalType =
     resolvedType ?? (type === 'random' ? pick(ENCOUNTER_TYPES) : type)
@@ -1025,7 +2133,9 @@ export function generateEncounter({
         slot.role,
         slot.race,
         slot.gender,
-        roleWeights
+        roleWeights,
+        resolvedDifficulty,
+        partyProfile
       )
     }
     return generateBestiaryEnemy(
@@ -1034,7 +2144,10 @@ export function generateEncounter({
       hpMax,
       slot.isBoss,
       src,
-      sizeMax
+      sizeMax,
+      null,
+      resolvedDifficulty,
+      partyProfile
     )
   })
 
@@ -1063,6 +2176,8 @@ export function regenerateEnemy({
   role = null,
   race = null,
   gender = null,
+  difficulty = 'medium',
+  partyProfile = null,
 }) {
   const sizeMax = typeConfig?.sizeMax ?? null
   const roleWeights = typeConfig?.roleWeights ?? null
@@ -1075,7 +2190,9 @@ export function regenerateEnemy({
       role,
       race,
       gender,
-      roleWeights
+      roleWeights,
+      difficulty,
+      partyProfile
     )
   }
   return generateBestiaryEnemy(
@@ -1085,7 +2202,9 @@ export function regenerateEnemy({
     isBoss,
     source,
     sizeMax,
-    specificMonster
+    specificMonster,
+    difficulty,
+    partyProfile
   )
 }
 

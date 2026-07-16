@@ -124,6 +124,12 @@
           {{ encounter.typeConfig }}
         </div>
 
+        <div class="enc-export-bar">
+          <button class="enc-export-all-btn" @click="exportAll">
+            Export All
+          </button>
+        </div>
+
         <div class="enemy-list">
           <div
             v-for="enemy in encounter.enemies"
@@ -167,6 +173,25 @@
                 >
                   Reroll
                 </button>
+                <button
+                  class="hide-abilities-btn"
+                  :title="
+                    revealedAbilities[enemy.id]
+                      ? 'Hide abilities from players'
+                      : 'Reveal abilities'
+                  "
+                  :class="{ 'is-hidden': !revealedAbilities[enemy.id] }"
+                  @click="toggleHideAbilities(enemy.id)"
+                >
+                  {{ revealedAbilities[enemy.id] ? 'Hide' : 'Show' }}
+                </button>
+                <button
+                  class="export-enemy-btn"
+                  title="Copy to clipboard"
+                  @click="exportEnemy(enemy)"
+                >
+                  Copy
+                </button>
               </div>
             </div>
             <div class="enemy-stats">
@@ -188,7 +213,58 @@
                 <span class="score-mod">{{ modStr(enemy.stats[s]) }}</span>
               </span>
             </div>
+            <div v-if="revealedAbilities[enemy.id]" class="enemy-abilities">
+              <div
+                v-if="enemy.features && enemy.features.length"
+                class="ability-section"
+              >
+                <div class="ability-section-label">Features</div>
+                <div
+                  v-for="f in enemy.features"
+                  :key="f.name"
+                  class="ability-entry"
+                >
+                  <span class="ability-name">{{ f.name }}.</span>
+                  <span class="ability-desc">{{ f.description }}</span>
+                </div>
+              </div>
+              <div
+                v-if="enemy.spells && enemy.spells.length"
+                class="ability-section"
+              >
+                <div class="ability-section-label">Spells</div>
+                <div
+                  v-for="s in enemy.spells"
+                  :key="s.name"
+                  class="ability-entry"
+                >
+                  <span class="ability-name">{{ s.name }}.</span>
+                  <span class="ability-desc">{{ s.description }}</span>
+                </div>
+              </div>
+            </div>
+            <div
+              v-if="!revealedAbilities[enemy.id]"
+              class="abilities-hidden-note"
+            >
+              Abilities hidden — click Show to reveal
+            </div>
           </div>
+        </div>
+
+        <div v-if="exportOutput" class="export-output">
+          <div class="export-output-header">
+            <span>Copied to clipboard failed — copy manually:</span>
+            <button class="export-close-btn" @click="exportOutput = ''">
+              ✕
+            </button>
+          </div>
+          <textarea
+            class="export-textarea"
+            :value="exportOutput"
+            readonly
+            @focus="$event.target.select()"
+          ></textarea>
         </div>
       </div>
 
@@ -457,6 +533,7 @@ import {
   regenerateEnemy,
   getBestiaryPool,
   estimatePartyHP,
+  analyzeParty,
 } from '../utils/encounter_utils.js'
 import { GENDERS, RACES } from '../utils/character_utils.js'
 import { STAT_KEYS } from '../utils/dnd_utils.js'
@@ -514,6 +591,10 @@ export default {
       // wizard preview state
       previewEnemy: null,
       monsterSearch: '',
+      // ability visibility — false by default (hidden); true when DM reveals
+      revealedAbilities: {},
+      // export output fallback when clipboard is unavailable
+      exportOutput: '',
     }
   },
 
@@ -545,7 +626,12 @@ export default {
           name: c.name,
           level: c.level ?? 1,
           hp_max: c.hp_max ?? 10,
+          classes: c.classes ?? [],
         }))
+    },
+
+    partyProfile() {
+      return analyzeParty(this.partyCharacters)
     },
 
     effectiveParty() {
@@ -681,6 +767,8 @@ export default {
         role: slot.role,
         race: slot.race,
         gender: slot.gender,
+        difficulty: this.wizardDifficulty || this.difficulty,
+        partyProfile: this.partyProfile,
       })
     },
 
@@ -740,6 +828,8 @@ export default {
 
     finishWizard() {
       this.showWizard = false
+      this.revealedAbilities = {}
+      this.exportOutput = ''
       const { size, level, minHP, maxHP } = this.effectiveParty
       const encounter = generateEncounter({
         resolvedDifficulty: this.wizardDifficulty,
@@ -749,6 +839,7 @@ export default {
         minPartyHP: minHP,
         maxPartyHP: maxHP,
         slots: this.wizardSlots,
+        partyProfile: this.partyProfile,
       })
       this.$store.commit('SET_ENCOUNTER', encounter)
     },
@@ -801,11 +892,46 @@ export default {
     setSlotProp(prop, value) {
       const slot = this.wizardSlots[this.wizardStep]
       const current = slot[prop]
+      const newValue = current === value ? null : value
+
       this.$set(this.wizardSlots, this.wizardStep, {
         ...slot,
-        [prop]: current === value ? null : value,
+        [prop]: newValue,
       })
-      this.$nextTick(() => this.generatePreview())
+
+      // Source change needs full regeneration.
+      // For role / race / gender, patch the existing preview in-place so the
+      // other randomly-generated fields (HP, stats, AC) don't re-roll on every click.
+      if (!this.previewEnemy || prop === 'source') {
+        this.$nextTick(() => this.generatePreview())
+        return
+      }
+
+      const p = this.previewEnemy
+      if (prop === 'race') {
+        const race = newValue ?? p.race
+        this.previewEnemy = {
+          ...p,
+          race,
+          name: `${p.isBoss ? 'Boss — ' : ''}${race} ${p.roleLabel}`,
+        }
+      } else if (prop === 'gender') {
+        this.previewEnemy = { ...p, gender: newValue ?? p.gender }
+      } else if (prop === 'role') {
+        const roleKey = newValue ?? p.role
+        const profile = ROLE_PROFILES[roleKey]
+        const roleLabel = profile?.label ?? p.roleLabel
+        this.previewEnemy = {
+          ...p,
+          role: roleKey,
+          roleLabel,
+          name: `${p.isBoss ? 'Boss — ' : ''}${
+            p.race ?? ''
+          } ${roleLabel}`.trim(),
+        }
+      } else {
+        this.$nextTick(() => this.generatePreview())
+      }
     },
 
     // ── Per-enemy override / reroll ──
@@ -837,6 +963,8 @@ export default {
         hpMax,
         isBoss: enemy.isBoss,
         typeConfig,
+        difficulty: enc.difficulty,
+        partyProfile: this.partyProfile,
       })
       newEnemy.id = enemy.id // keep same id so the list doesn't re-order
       this.$store.commit('UPDATE_ENCOUNTER_ENEMY', {
@@ -868,12 +996,72 @@ export default {
         hpMax,
         isBoss: enemy.isBoss,
         typeConfig,
+        difficulty: enc.difficulty,
+        partyProfile: this.partyProfile,
       })
       newEnemy.id = enemy.id
       this.$store.commit('UPDATE_ENCOUNTER_ENEMY', {
         enemyId: enemy.id,
         newEnemy,
       })
+    },
+
+    toggleHideAbilities(enemyId) {
+      this.$set(
+        this.revealedAbilities,
+        enemyId,
+        !this.revealedAbilities[enemyId]
+      )
+    },
+
+    formatEnemyText(e) {
+      const lines = [
+        `◆ ${e.name}`,
+        `  HP ${e.hp}  |  AC ${e.ac}  |  ATK ${e.attackBonus}  |  ${e.weapon.displayName} (${e.weapon.damageDice} ${e.weapon.damageType})`,
+        `  STR ${e.stats.str}  DEX ${e.stats.dex}  CON ${e.stats.con}  INT ${e.stats.int}  WIS ${e.stats.wis}  CHA ${e.stats.cha}`,
+      ]
+      if (e.features?.length) {
+        lines.push('  ── Features')
+        for (const f of e.features)
+          lines.push(`  • ${f.name}: ${f.description}`)
+      }
+      if (e.spells?.length) {
+        lines.push('  ── Spells')
+        for (const s of e.spells) lines.push(`  • ${s.name}: ${s.description}`)
+      }
+      return lines.join('\n')
+    },
+
+    copyToClipboard(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            this.exportOutput = ''
+          })
+          .catch(() => {
+            this.exportOutput = text
+          })
+      } else {
+        this.exportOutput = text
+      }
+    },
+
+    exportEnemy(enemy) {
+      this.copyToClipboard(this.formatEnemyText(enemy))
+    },
+
+    exportAll() {
+      const enc = this.encounter
+      if (!enc) return
+      const header = `[ ${enc.difficulty.toUpperCase()} ENCOUNTER  •  ${
+        enc.type
+      }  •  ${enc.enemies.length} enemies ]`
+      const divider = '─'.repeat(50)
+      const body = enc.enemies
+        .map((e) => this.formatEnemyText(e))
+        .join('\n' + divider + '\n')
+      this.copyToClipboard(`${header}\n${divider}\n${body}`)
     },
   },
 }
@@ -1198,6 +1386,135 @@ export default {
 .score-mod {
   font-size: var(--font-size-xs);
   color: var(--color-accent);
+}
+
+/* ── Abilities (features & spells) ── */
+.enc-export-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.enc-export-all-btn {
+  font-size: var(--font-size-xs);
+  padding: 0.2rem 0.6rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.enc-export-all-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.hide-abilities-btn,
+.export-enemy-btn {
+  font-size: var(--font-size-xs);
+  padding: 0.15rem 0.45rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.hide-abilities-btn:hover,
+.export-enemy-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.hide-abilities-btn.is-hidden {
+  border-color: var(--color-text-low);
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+.enemy-abilities {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ability-section {
+  font-size: var(--font-size-xs);
+}
+
+.ability-section-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.ability-entry {
+  padding: 0.18rem 0;
+  line-height: 1.4;
+  border-bottom: 1px solid var(--color-border-subtle, var(--color-border));
+}
+
+.ability-name {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-right: 0.25rem;
+}
+
+.ability-desc {
+  color: var(--color-text-muted);
+}
+
+.abilities-hidden-note {
+  margin-top: 0.3rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+/* ── Export output fallback ── */
+.export-output {
+  margin-top: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.export-output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0.6rem;
+  background: var(--color-bg-panel-dark);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.export-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  padding: 0 0.2rem;
+}
+
+.export-textarea {
+  display: block;
+  width: 100%;
+  min-height: 140px;
+  padding: 0.5rem 0.6rem;
+  background: var(--color-bg-input, var(--color-bg-surface));
+  border: none;
+  color: var(--color-text);
+  font-family: monospace;
+  font-size: var(--font-size-xs);
+  resize: vertical;
+  box-sizing: border-box;
 }
 
 .last-enc-hint {

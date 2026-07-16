@@ -127,8 +127,11 @@
         "Rith"
       ],
       "active": true,
-      "game_day": 279,
-      "marching_order": []
+      "game_day": 280,
+      "marching_order": [
+        "Eldi",
+        "Rith"
+      ]
     }
   ],
   "mapMarkers": [],

@@ -420,6 +420,76 @@
             </div>
           </div>
 
+          <!-- Generated features & spells from encounter generator -->
+          <template
+            v-if="
+              activeEntry.encounterData &&
+              ((activeEntry.encounterData.features &&
+                activeEntry.encounterData.features.length) ||
+                (activeEntry.encounterData.spells &&
+                  activeEntry.encounterData.spells.length))
+            "
+          >
+            <div class="section-label abilities-section-label">
+              Abilities
+              <span class="abilities-label-controls">
+                <label class="reveal-abilities-label">
+                  <input
+                    type="checkbox"
+                    :checked="revealedAbilities[activeEntry.key]"
+                    @change="
+                      $set(
+                        revealedAbilities,
+                        activeEntry.key,
+                        $event.target.checked
+                      )
+                    "
+                  />
+                  Reveal
+                </label>
+                <button
+                  class="export-abilities-btn"
+                  title="Copy full stat block to clipboard"
+                  @click="exportEnemyAbilities(activeEntry)"
+                >
+                  Export
+                </button>
+              </span>
+            </div>
+            <div
+              v-if="revealedAbilities[activeEntry.key]"
+              class="enc-abilities-block"
+            >
+              <div
+                v-for="f in activeEntry.encounterData.features || []"
+                :key="f.name"
+                class="enc-ability-entry"
+              >
+                <span class="enc-ability-name">{{ f.name }}.</span>
+                <span class="enc-ability-desc">{{ f.description }}</span>
+              </div>
+              <template
+                v-if="
+                  activeEntry.encounterData.spells &&
+                  activeEntry.encounterData.spells.length
+                "
+              >
+                <div class="enc-ability-divider">Spells</div>
+                <div
+                  v-for="s in activeEntry.encounterData.spells"
+                  :key="s.name"
+                  class="enc-ability-entry"
+                >
+                  <span class="enc-ability-name">{{ s.name }}.</span>
+                  <span class="enc-ability-desc">{{ s.description }}</span>
+                </div>
+              </template>
+            </div>
+            <div v-else class="abilities-hidden-hint">
+              Hidden — check Reveal to view
+            </div>
+          </template>
+
           <!-- Notes -->
           <div class="section-label">Notes</div>
           <textarea
@@ -630,6 +700,7 @@ export default {
       bestiaryIndex: null,
       bestiaryLoading: false,
       battleLog: [],
+      revealedAbilities: {},
     }
   },
 
@@ -771,6 +842,37 @@ export default {
       a.download = `battle-log-${new Date().toISOString().slice(0, 10)}.txt`
       a.click()
       URL.revokeObjectURL(url)
+    },
+
+    exportEnemyAbilities(entry) {
+      const enc = entry.encounterData ?? {}
+      const lines = [
+        `${entry.name}${enc.roleLabel ? ' — ' + enc.roleLabel : ''}`,
+        `HP ${enc.hp ?? '?'}  |  AC ${enc.ac ?? '?'}  |  ATK ${
+          enc.attackBonus ?? '?'
+        }  |  ${enc.weapon?.displayName ?? ''} (${
+          enc.weapon?.damageDice ?? ''
+        } ${enc.weapon?.damageType ?? ''})`,
+      ]
+      if (enc.stats) {
+        const s = enc.stats
+        lines.push(
+          `STR ${s.str}  DEX ${s.dex}  CON ${s.con}  INT ${s.int}  WIS ${s.wis}  CHA ${s.cha}`
+        )
+      }
+      if (enc.features?.length) {
+        lines.push('── Features')
+        for (const f of enc.features)
+          lines.push(`• ${f.name}: ${f.description}`)
+      }
+      if (enc.spells?.length) {
+        lines.push('── Spells')
+        for (const s of enc.spells) lines.push(`• ${s.name}: ${s.description}`)
+      }
+      const text = lines.join('\n')
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).catch(() => {})
+      }
     },
 
     // ── Player HP display ──
@@ -1659,6 +1761,92 @@ export default {
 }
 .enemy-notes:focus {
   border-color: var(--color-accent);
+}
+
+.enc-abilities-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.enc-ability-entry {
+  font-size: var(--font-size-xs);
+  line-height: 1.45;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--color-border-subtle, var(--color-border));
+}
+
+.enc-ability-name {
+  font-weight: 700;
+  color: var(--color-text);
+  margin-right: 0.2rem;
+}
+
+.enc-ability-desc {
+  color: var(--color-text-muted);
+}
+
+.enc-ability-divider {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin: 0.35rem 0 0.1rem;
+}
+
+.abilities-section-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.abilities-label-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reveal-abilities-label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.reveal-abilities-label input[type='checkbox'] {
+  cursor: pointer;
+  accent-color: var(--color-accent);
+}
+
+.export-abilities-btn {
+  font-size: var(--font-size-xs);
+  padding: 0.1rem 0.4rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.export-abilities-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.abilities-hidden-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-style: italic;
+  margin-bottom: 0.25rem;
 }
 
 .enemy-ability-row {

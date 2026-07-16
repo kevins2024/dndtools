@@ -4708,7 +4708,7 @@
     "spells": [],
     "active_effects": [],
     "conditions": [],
-    "exhaustion_level": 0,
+    "exhaustion_level": 1,
     "persona_notes": [
       "Younger twin by minutes. Has never once let Rith forget it.",
       "Acts before thinking as a matter of principle.",
@@ -4942,7 +4942,7 @@
     },
     "active_effects": [],
     "conditions": [],
-    "exhaustion_level": 0,
+    "exhaustion_level": 1,
     "persona_notes": [
       "Older twin by minutes. Carries this with complete seriousness.",
       "Thinks before acting. Always. Sometimes frustratingly so to Eldi.",
@@ -5276,6 +5276,87 @@
         "name": "Corwin",
         "note": "Noticed his quiet reaction from across the room. Mentioned it at dinner to his face."
       }
+    ]
+  },
+  {
+    "id": "characters_23",
+    "name": "Torrin",
+    "full_name": "Torrin Gallowglass",
+    "race": "Dwarf",
+    "classes": [
+      {
+        "name": "Rogue",
+        "subclass": "Soulknife / Mastermind",
+        "level": 12
+      }
+    ],
+    "location": "Khemrise",
+    "alignment": "Chaotic Neutral",
+    "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
+    "image": "./characters/torrin.jpg",
+    "spellcasting_ability": null,
+    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
+    "stat_str": 14,
+    "stat_dex": 20,
+    "stat_con": 16,
+    "stat_int": 20,
+    "stat_wis": 10,
+    "stat_cha": 20,
+    "hp_max": 129,
+    "hp_current": 129,
+    "hit_die": "d8",
+    "hit_dice_current": 12,
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["dex", "int"],
+    "skill_proficiencies": [
+      "Insight",
+      "Stealth",
+      "Perception",
+      "Investigation",
+      "History",
+      "Persuasion"
+    ],
+    "skill_expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
+    "features": [
+      {
+        "name": "Soulknife — Psychic Blades",
+        "type": "feature"
+      },
+      {
+        "name": "Soulknife — Psi-Bolstered Knack",
+        "type": "feature"
+      },
+      {
+        "name": "Master of Tactics",
+        "type": "feature"
+      },
+      {
+        "name": "Tactical Foresight",
+        "type": "feature"
+      },
+      {
+        "name": "Commander's Presence",
+        "type": "feature",
+        "description": "Passive aura, 30ft radius. Allies within range gain +1 to AC and +1 to all saving throws from Torrin's constant tactical whispers, threat assessment, and battlefield positioning advice. Does not require an action or concentration."
+      },
+      {
+        "name": "The Retired Special",
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Once per long rest, when an ally within 30ft is hit by an attack: expend your reaction to toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss if they are now out of range or the attacker no longer has line of effect."
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "persona_notes": [
+      "Legendary rogue, now retired.",
+      "Applies 156 years of tactical memory to leatherworking."
     ]
   }
 ]
