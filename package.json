@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "server": "node server.js",
-    "dev": "concurrently \"npm run serve\" \"npm run server\"",
+    "front": "vue-cli-service serve",
+    "back": "node server.js",
+    "serve": "concurrently \"npm run front\" \"npm run back\"",
     "build": "vue-cli-service build",
     "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",

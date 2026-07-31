@@ -8,7 +8,10 @@
       "range": "Self",
       "area": "10ft radius",
       "duration": "Up to 10 minutes",
-      "components": ["V", "S"],
+      "components": [
+        "V",
+        "S"
+      ],
       "description": "Creates a 10ft radius ward around the caster. Undead must make a WIS saving throw against the caster's spell save DC or be unable to enter the warded area. Does not destroy or turn undead — only prevents entry.",
       "save": {
         "stat": "wis",
@@ -24,7 +27,9 @@
       "school": "Evocation",
       "casting_time": "1 action",
       "range": "120 feet",
-      "components": ["S"],
+      "components": [
+        "S"
+      ],
       "duration": "Instantaneous (Starfall Ground persists 1 minute)",
       "description": "Call down a beam of starlight on any point visible to you within range. All creatures within a 10-foot radius of that point must make a Dexterity saving throw. On a failed save, a creature takes 6d6 radiant damage and is blinded until the end of its next turn. On a successful save, a creature takes half damage and is not blinded.\nThe impact point becomes Starfall Ground — a 10-foot radius patch of solidified starlight that persists for 1 minute. Creatures moving through Starfall Ground take 2d6 radiant damage and have their movement speed halved until the start of their next turn.\nThis spell can only be cast once per dawn. It does not consume a spell slot.",
       "source": "Homebrew — Ring of the Fallen Star",
@@ -37,7 +42,10 @@
       "casting_time": "1 bonus action",
       "range": "Self",
       "duration": "Until end of turn",
-      "components": ["V", "S"],
+      "components": [
+        "V",
+        "S"
+      ],
       "description": "Until the end of your turn, the next thrown or ranged weapon attack you make deals an additional 1d8 damage. Roll 1d8 to determine the damage type: 1 — Fire, 2 — Cold, 3 — Lightning, 4 — Thunder, 5 — Acid, 6 — Poison, 7 — Radiant, 8 — Force. This spell expends a spell slot as normal.",
       "source": "Homebrew — Cold Valley Axe attunement",
       "concentration": false
@@ -676,23 +684,38 @@
     "life": [
       {
         "level": 1,
-        "spells": ["Bless", "Cure Wounds"]
+        "spells": [
+          "Bless",
+          "Cure Wounds"
+        ]
       },
       {
         "level": 3,
-        "spells": ["Lesser Restoration", "Spiritual Weapon"]
+        "spells": [
+          "Lesser Restoration",
+          "Spiritual Weapon"
+        ]
       },
       {
         "level": 5,
-        "spells": ["Beacon of Hope", "Revivify"]
+        "spells": [
+          "Beacon of Hope",
+          "Revivify"
+        ]
       },
       {
         "level": 7,
-        "spells": ["Death Ward", "Guardian of Faith"]
+        "spells": [
+          "Death Ward",
+          "Guardian of Faith"
+        ]
       },
       {
         "level": 9,
-        "spells": ["Mass Cure Wounds", "Raise Dead"]
+        "spells": [
+          "Mass Cure Wounds",
+          "Raise Dead"
+        ]
       }
     ]
   },
@@ -723,7 +746,10 @@
       "size": "Medium",
       "speed": 30,
       "appearance": "Taller and broader than humans. Squared facial features. Mottled and ridged skin along lower jaw and chin instead of facial hair. Skin tones similar to human range but extending further into pink and yellow. Culturally tend toward very long hair.",
-      "languages": ["Yetgresian Common", "Catrinese"],
+      "languages": [
+        "Yetgresian Common",
+        "Catrinese"
+      ],
       "ability_score_bonus": "Player's choice",
       "traits": [
         {
@@ -759,7 +785,10 @@
       "size": "Small",
       "speed": 25,
       "appearance": "Humanoid pomeranian appearance. Average height 2.5 feet. Expressive faces, full fur covering. Tilawam subculture tends toward punk aesthetic — leather, piercings, dramatically dyed fur, shaved patches for tattoos.",
-      "languages": ["Yetgresian Common", "Drevani"],
+      "languages": [
+        "Yetgresian Common",
+        "Drevani"
+      ],
       "ability_score_bonus": "Player's choice",
       "traits": [
         {
@@ -790,7 +819,10 @@
       "size": "Medium",
       "speed": 30,
       "appearance": "Grey-undertoned skin, warmer than standard Duergar after generations of surface living. More varied hair than their Duergar kin. Enlarged pupils adapted to both darkness and daylight. Stocky, durable build.",
-      "languages": ["Yetgresian Common", "Undercommon"],
+      "languages": [
+        "Yetgresian Common",
+        "Undercommon"
+      ],
       "ability_score_bonus": "Player's choice",
       "traits": [
         {
@@ -836,7 +868,10 @@
       "name": "Solvalean",
       "type": "regional",
       "description": "The official language of the Solvale Empire.",
-      "speakers": ["Solvale Empire citizens", "Southeastern regional peoples"]
+      "speakers": [
+        "Solvale Empire citizens",
+        "Southeastern regional peoples"
+      ]
     }
   ],
   "rules": [
@@ -864,6 +899,11 @@
       "name": "Spell Material Components",
       "description": "Material components (M) are not required to cast spells. In their place, spellcasters may use Weave Dust — a fine crystalline powder that serves as a universal substitute for all material components. Weave Dust can be purchased from alchemists, magic shops, and certain temples, or produced by breaking down traditional spell components or certain animal parts through a distillation process. The spell's original material cost roughly dictates how much dust is required. Dust is stored in small capsules, almost excluisvely made of silver, that hold enough for a simple spell. Weave Dust is sold in small vials and larger pouches; exact pricing varies by region but is generally 'per capsule'.",
       "notes": "Introduced to streamline play. Hunting for obscure specific components is more friction than fun at this table. Characters must still buy or otherwise procure the powder.."
+    },
+    {
+      "name": "Caster Prestidigitation",
+      "description": "All arcane and divine casters receive a free, flavor-appropriate form of Prestidigitation that does not count against their spell allotment. Sorcerers and Wizards receive standard Prestidigitation. Druids receive standard Druidcraft. Clerics receive Divine Prestidigitation (a divine-flavored equivalent). Warlocks receive Dark Prestidigitation (a patron-flavored equivalent that does not draw from the Weave). These spells are always prepared and cannot be removed.",
+      "notes": "Casters should feel like casters without spending a cantrip slot on it. Mages wave their hand and make a small change in the world; druids make a flower bloom. These spells are the mechanical expression of that identity."
     }
   ]
 }

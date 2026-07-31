@@ -19,14 +19,20 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": ["Common", "Draconic"],
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -130,14 +136,20 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": ["Common", "Orc"],
+    "languages": [
+      "Common",
+      "Orc"
+    ],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -230,7 +242,10 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -239,7 +254,11 @@
       "Deception",
       "Investigation"
     ],
-    "languages": ["Common", "Thieves Cant", "Dwarvish"],
+    "languages": [
+      "Common",
+      "Thieves Cant",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -272,7 +291,10 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": ["Invisibility", "Inflict Wounds"]
+        "spells_granted": [
+          "Invisibility",
+          "Inflict Wounds"
+        ]
       }
     ],
     "spells": [],
@@ -328,7 +350,10 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "int"],
+    "saving_throws": [
+      "con",
+      "int"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -336,7 +361,11 @@
       "Perception"
     ],
     "skill_expertise": [],
-    "languages": ["Common", "Gnomish", "Elvish"],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Elvish"
+    ],
     "features": [
       {
         "name": "Magical Tinkering",
@@ -431,7 +460,10 @@
         "type": "feat",
         "recharge": "long_rest",
         "description": "Learn Misty Step and Command. Cast each once per long rest without a spell slot.",
-        "spells_granted": ["Misty Step", "Command"]
+        "spells_granted": [
+          "Misty Step",
+          "Command"
+        ]
       },
       {
         "name": "Gnome Cunning",
@@ -552,9 +584,21 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
-    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Insight",
+      "Persuasion"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1085,7 +1129,10 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -1093,7 +1140,11 @@
       "Athletics",
       "History"
     ],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1609,9 +1660,21 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
-    "languages": ["Common", "Celestial", "Solvalean"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Medicine",
+      "Insight",
+      "Religion",
+      "History"
+    ],
+    "languages": [
+      "Common",
+      "Celestial",
+      "Solvalean"
+    ],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1866,7 +1929,10 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1875,7 +1941,10 @@
       "Deception",
       "Insight"
     ],
-    "languages": ["Common", "Halfling"],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -1933,7 +2002,12 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
+    "skill_expertise": [
+      "Stealth",
+      "SleightOfHand",
+      "Insight",
+      "Perception"
+    ],
     "classes": [
       {
         "name": "Rogue",
@@ -1961,7 +2035,10 @@
     "hp_max": 63,
     "hp_current": 63,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -1970,7 +2047,11 @@
       "Persuasion",
       "Survival"
     ],
-    "languages": ["Common", "Orcish", "Deep Speech"],
+    "languages": [
+      "Common",
+      "Orcish",
+      "Deep Speech"
+    ],
     "features": [
       {
         "name": "Fighting Style — Duelling",
@@ -2166,9 +2247,20 @@
     "hp_max": 61,
     "hp_current": 61,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
-    "skill_proficiencies": ["Athletics", "Survival", "Acrobatics", "Nature"],
-    "languages": ["Common", "Goblin"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Survival",
+      "Acrobatics",
+      "Nature"
+    ],
+    "languages": [
+      "Common",
+      "Goblin"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -2279,7 +2371,10 @@
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -2292,7 +2387,11 @@
       "Nature",
       "Survival"
     ],
-    "languages": ["Common", "Elvish", "Celestial"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Celestial"
+    ],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -2479,7 +2578,10 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": ["Perception", "Persuasion"],
+    "skill_expertise": [
+      "Perception",
+      "Persuasion"
+    ],
     "classes": [
       {
         "name": "Bard",
@@ -2507,9 +2609,21 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
-    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Investigation",
+      "Insight"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -3016,14 +3130,20 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": ["Common", "Halfling"],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -3106,7 +3226,12 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": ["str", "con", "wis", "cha"],
+    "saving_throws": [
+      "str",
+      "con",
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -3115,7 +3240,12 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
+    "languages": [
+      "Common",
+      "Giant",
+      "Celestial",
+      "Sylvan"
+    ],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -3293,7 +3423,10 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3301,7 +3434,11 @@
       "Religion",
       "Athletics"
     ],
-    "languages": ["Common", "Elvish", "Sylvan"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Sylvan"
+    ],
     "features": [
       {
         "name": "Divine Sense",
@@ -3497,9 +3634,22 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": ["int", "wis"],
-    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
-    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Nature",
+      "Perception",
+      "Survival",
+      "Medicine"
+    ],
+    "languages": [
+      "Common",
+      "Halfling",
+      "Druidic",
+      "Sylvan"
+    ],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -3764,7 +3914,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3773,7 +3926,11 @@
       "Perception",
       "Performance"
     ],
-    "languages": ["Common", "Elvish", "Celestial"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Celestial"
+    ],
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
@@ -4046,7 +4203,10 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "str"],
+    "saving_throws": [
+      "dex",
+      "str"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -4056,7 +4216,11 @@
       "Survival",
       "Athletics"
     ],
-    "languages": ["Common", "Infernal", "Abyssal"],
+    "languages": [
+      "Common",
+      "Infernal",
+      "Abyssal"
+    ],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -4159,7 +4323,10 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": ["Stealth", "Performance"],
+    "skill_expertise": [
+      "Stealth",
+      "Performance"
+    ],
     "classes": [
       {
         "name": "Ranger",
@@ -4196,7 +4363,10 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -4206,7 +4376,11 @@
       "Medicine",
       "Acrobatics"
     ],
-    "languages": ["Common", "Elvish", "Solvalean"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Solvalean"
+    ],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -4412,7 +4586,10 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": ["Performance", "Insight"],
+    "skill_expertise": [
+      "Performance",
+      "Insight"
+    ],
     "classes": [
       {
         "name": "Bard",
@@ -4439,9 +4616,20 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
-    "languages": ["Common", "Gnomish"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Persuasion",
+      "Insight",
+      "Religion"
+    ],
+    "languages": [
+      "Common",
+      "Gnomish"
+    ],
     "features": [
       {
         "name": "Divine Sense",
@@ -4615,7 +4803,10 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4625,7 +4816,11 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": ["Common", "Elvish", "Dwarvish"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Two-Weapon Fighting Style",
@@ -4708,7 +4903,7 @@
     "spells": [],
     "active_effects": [],
     "conditions": [],
-    "exhaustion_level": 1,
+    "exhaustion_level": 0,
     "persona_notes": [
       "Younger twin by minutes. Has never once let Rith forget it.",
       "Acts before thinking as a matter of principle.",
@@ -4720,7 +4915,10 @@
     "id": "characters_20",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": ["Stealth", "Acrobatics"],
+    "skill_expertise": [
+      "Stealth",
+      "Acrobatics"
+    ],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 8,
@@ -4756,7 +4954,10 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "cha"],
+    "saving_throws": [
+      "con",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4766,7 +4967,11 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": ["Common", "Elvish", "Dwarvish"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Divine Magic",
@@ -4942,7 +5147,7 @@
     },
     "active_effects": [],
     "conditions": [],
-    "exhaustion_level": 1,
+    "exhaustion_level": 0,
     "persona_notes": [
       "Older twin by minutes. Carries this with complete seriousness.",
       "Thinks before acting. Always. Sometimes frustratingly so to Eldi.",
@@ -4985,10 +5190,22 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "cha"],
-    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
+    "saving_throws": [
+      "con",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Insight",
+      "Religion"
+    ],
     "skill_expertise": [],
-    "languages": ["Common", "Celestial", "Arcanis"],
+    "languages": [
+      "Common",
+      "Celestial",
+      "Arcanis"
+    ],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -5305,9 +5522,12 @@
     "hp_max": 129,
     "hp_current": 129,
     "hit_die": "d8",
-    "hit_dice_current": 12,
+    "hit_dice_current": 1,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -5316,8 +5536,14 @@
       "History",
       "Persuasion"
     ],
-    "skill_expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Dwarvish"],
+    "skill_expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Soulknife — Psychic Blades",

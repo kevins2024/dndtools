@@ -365,24 +365,17 @@ export default new Vuex.Store({
         const hdCurrent = char.hit_dice_current ?? hdMax
         const hdRecover = Math.ceil(hdMax / 2)
         updated.hit_dice_current = Math.min(hdMax, hdCurrent + hdRecover)
-        // Conditions: clear everything except Exhaustion; reduce Exhaustion by 1 level
+        // Exhaustion: reduce by 1 level on successful long rest
+        if (char.exhaustion_level > 0) {
+          updated.exhaustion_level = char.exhaustion_level - 1
+        }
+        // Conditions: clear all non-exhaustion conditions
         if (char.conditions?.length) {
-          let exhaustion = char.conditions.filter((c) =>
+          updated.conditions = char.conditions.filter((c) =>
             typeof c === 'string'
               ? c === 'Exhaustion'
               : c?.name === 'Exhaustion'
           )
-          // Reduce by one level: remove one string entry, or decrement object stacks
-          if (exhaustion.length > 0) {
-            if (typeof exhaustion[0] === 'string') {
-              exhaustion = exhaustion.slice(1) // each entry = one level
-            } else {
-              const e = { ...exhaustion[0] }
-              const lvl = (e.stacks ?? e.level ?? 1) - 1
-              exhaustion = lvl > 0 ? [{ ...e, stacks: lvl, level: lvl }] : []
-            }
-          }
-          updated.conditions = exhaustion
         }
         return updated
       })

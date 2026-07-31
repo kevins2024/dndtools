@@ -1620,11 +1620,30 @@ function pickN(arr, n) {
   return copy.slice(0, Math.min(n, copy.length))
 }
 
+// How easily the party should hit enemies at each difficulty tier
+const PARTY_HIT_PCT = {
+  trivial: 0.8,
+  easy: 0.7,
+  medium: 0.6,
+  hard: 0.5,
+  deadly: 0.4,
+}
+// How often party spells should land (enemy fails save) at each tier
+const SPELL_LAND_PCT = {
+  trivial: 0.75,
+  easy: 0.65,
+  medium: 0.55,
+  hard: 0.45,
+  deadly: 0.35,
+}
+
 export function analyzeParty(partyCharacters) {
   if (!partyCharacters?.length) {
     return {
       avgLevel: 5,
       estimatedAC: 17,
+      avgAtkBonus: 7,
+      avgSpellDC: 14,
       hasHealer: false,
       hasArcane: false,
       hasMartial: true,
@@ -1655,14 +1674,60 @@ export function analyzeParty(partyCharacters) {
     ['sorcerer', 'wizard', 'druid', 'bard'].includes(c)
   )
 
+  // Per-character best attack bonus (higher of physical or spell attack)
+  const atkBonuses = partyCharacters.map((c) => {
+    const prof = c.proficiency_bonus ?? Math.ceil((c.level ?? 1) / 4) + 1
+    const strMod = c.stat_str ? Math.floor((c.stat_str - 10) / 2) : 0
+    const dexMod = c.stat_dex ? Math.floor((c.stat_dex - 10) / 2) : 0
+    const physAtk = Math.max(strMod, dexMod) + prof
+    return c.spell_attack_bonus != null
+      ? Math.max(physAtk, c.spell_attack_bonus)
+      : physAtk
+  })
+
+  // Per-character best spell save DC (explicit or estimated from best casting stat)
+  const dcValues = partyCharacters.map((c) => {
+    if (c.spell_save_dc != null) return c.spell_save_dc
+    const prof = c.proficiency_bonus ?? Math.ceil((c.level ?? 1) / 4) + 1
+    const intMod = c.stat_int ? Math.floor((c.stat_int - 10) / 2) : 0
+    const wisMod = c.stat_wis ? Math.floor((c.stat_wis - 10) / 2) : 0
+    const chaMod = c.stat_cha ? Math.floor((c.stat_cha - 10) / 2) : 0
+    return 8 + prof + Math.max(intMod, wisMod, chaMod)
+  })
+
+  const avgAtkBonus = Math.round(
+    atkBonuses.reduce((a, b) => a + b, 0) / atkBonuses.length
+  )
+  const avgSpellDC = Math.round(
+    dcValues.reduce((a, b) => a + b, 0) / dcValues.length
+  )
+
   return {
     avgLevel,
     estimatedAC,
+    avgAtkBonus,
+    avgSpellDC,
     hasHealer,
     hasArcane,
     hasMartial,
     hasControl,
     hasAOE,
+  }
+}
+
+// What enemy stats should look like at a given difficulty, given the party profile
+export function enemyBenchmarks(profile, difficulty) {
+  const partyHitPct = PARTY_HIT_PCT[difficulty] ?? 0.6
+  const spellLandPct = SPELL_LAND_PCT[difficulty] ?? 0.55
+  return {
+    // Enemy atk bonus to hit party AC at this difficulty's target hit rate
+    enemyAtk: Math.round(
+      profile.estimatedAC - (21 - (TARGET_HIT_PCT[difficulty] ?? 0.55) * 20)
+    ),
+    // Enemy AC such that party hits at the target rate
+    enemyAC: Math.round(profile.avgAtkBonus + (21 - partyHitPct * 20)),
+    // Enemy save mod such that party spells land at the target rate
+    enemySave: Math.round(profile.avgSpellDC - spellLandPct * 20 - 1),
   }
 }
 

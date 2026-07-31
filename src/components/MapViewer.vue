@@ -36,27 +36,6 @@
 
       <span class="toolbar-sep"></span>
 
-      <!-- Place Party -->
-      <template v-if="!placingParty">
-        <button class="map-btn map-btn--place" @click="startPlacing">
-          Place Party
-        </button>
-      </template>
-      <template v-else>
-        <select
-          v-model="placingPartyId"
-          class="placing-select"
-          @keydown.escape="placingParty = false"
-        >
-          <option v-for="p in parties" :key="p.id" :value="p.id">
-            {{ p.name }}
-          </option>
-        </select>
-        <button class="map-btn" @click="placingParty = false">Cancel</button>
-      </template>
-
-      <span class="toolbar-sep"></span>
-
       <button
         class="map-btn"
         :class="{ active: pointInfoMode }"
@@ -133,6 +112,144 @@
             {{ r.name }}
           </button>
         </div>
+
+        <!-- Pins panel -->
+        <div class="sidebar-pins">
+          <div class="pins-panel-label">Pins</div>
+
+          <!-- Parties -->
+          <div v-if="parties.length" class="pins-group">
+            <div class="pins-group-header">Parties</div>
+            <div
+              v-for="party in parties"
+              :key="'party-' + party.id"
+              class="pin-row"
+              :class="{
+                'pin-row--placing':
+                  placingPin && placingPin.entityId === party.id,
+              }"
+            >
+              <button
+                class="pin-vis-btn"
+                :class="{ 'pin-vis-btn--hidden': hiddenPins[party.id] }"
+                :title="hiddenPins[party.id] ? 'Show pin' : 'Hide pin'"
+                @click="togglePinVisibility(party.id)"
+              >
+                {{ hiddenPins[party.id] ? '○' : '●' }}
+              </button>
+              <span class="pin-row-label">{{ party.name }}</span>
+              <button
+                class="pin-place-btn"
+                :class="{
+                  'pin-place-btn--active':
+                    placingPin && placingPin.entityId === party.id,
+                }"
+                @click="startPlacingPin('party', party.id, party.name)"
+              >
+                {{ markerByEntity(party.id) ? 'Move' : 'Place' }}
+              </button>
+              <button
+                v-if="markerByEntity(party.id)"
+                class="pin-remove-btn"
+                title="Remove pin"
+                @click="removePin(party.id)"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <!-- Solo characters -->
+          <div v-if="soloCharacters.length" class="pins-group">
+            <div class="pins-group-header">Characters</div>
+            <div
+              v-for="char in soloCharacters"
+              :key="'char-' + char.id"
+              class="pin-row"
+              :class="{
+                'pin-row--placing':
+                  placingPin && placingPin.entityId === char.id,
+              }"
+            >
+              <button
+                class="pin-vis-btn"
+                :class="{ 'pin-vis-btn--hidden': hiddenPins[char.id] }"
+                :title="hiddenPins[char.id] ? 'Show pin' : 'Hide pin'"
+                @click="togglePinVisibility(char.id)"
+              >
+                {{ hiddenPins[char.id] ? '○' : '●' }}
+              </button>
+              <span class="pin-row-label">{{ char.name }}</span>
+              <button
+                class="pin-place-btn"
+                :class="{
+                  'pin-place-btn--active':
+                    placingPin && placingPin.entityId === char.id,
+                }"
+                @click="startPlacingPin('character', char.id, char.name)"
+              >
+                {{ markerByEntity(char.id) ? 'Move' : 'Place' }}
+              </button>
+              <button
+                v-if="markerByEntity(char.id)"
+                class="pin-remove-btn"
+                title="Remove pin"
+                @click="removePin(char.id)"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <!-- NPCs -->
+          <div v-if="npcCharacters.length" class="pins-group">
+            <div class="pins-group-header">NPCs</div>
+            <div
+              v-for="char in npcCharacters"
+              :key="'npc-' + char.id"
+              class="pin-row"
+              :class="{
+                'pin-row--placing':
+                  placingPin && placingPin.entityId === char.id,
+              }"
+            >
+              <button
+                class="pin-vis-btn"
+                :class="{ 'pin-vis-btn--hidden': hiddenPins[char.id] }"
+                :title="hiddenPins[char.id] ? 'Show pin' : 'Hide pin'"
+                @click="togglePinVisibility(char.id)"
+              >
+                {{ hiddenPins[char.id] ? '○' : '●' }}
+              </button>
+              <span class="pin-row-label">{{ char.name }}</span>
+              <button
+                class="pin-place-btn"
+                :class="{
+                  'pin-place-btn--active':
+                    placingPin && placingPin.entityId === char.id,
+                }"
+                @click="startPlacingPin('npc', char.id, char.name)"
+              >
+                {{ markerByEntity(char.id) ? 'Move' : 'Place' }}
+              </button>
+              <button
+                v-if="markerByEntity(char.id)"
+                class="pin-remove-btn"
+                title="Remove pin"
+                @click="removePin(char.id)"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <div v-if="placingPin" class="pins-placing-hint">
+            Click map to place <strong>{{ placingPin.label }}</strong>
+            <button class="pin-cancel-btn" @click="placingPin = null">
+              Cancel
+            </button>
+          </div>
+        </div>
       </aside>
 
       <div class="map-container">
@@ -145,7 +262,7 @@
           :style="{
             cursor: isDragging
               ? 'grabbing'
-              : placingParty || pointInfoMode
+              : placingPin || pointInfoMode
               ? 'crosshair'
               : 'grab',
           }"
@@ -244,17 +361,30 @@
               </g>
             </template>
 
-            <!-- Party markers -->
+            <!-- Pins (parties, characters, NPCs) -->
             <g
-              v-for="marker in markersForMap"
+              v-for="marker in visibleMarkersForMap"
               :key="marker.id"
               class="party-marker"
               :transform="`translate(${marker.x}, ${marker.y})`"
-              @click.stop="removeMarker(marker.id)"
+              @click.stop="
+                startPlacingPin(
+                  marker.entityType,
+                  marker.entityId,
+                  marker.label
+                )
+              "
+              @contextmenu.prevent.stop="removePin(marker.entityId)"
             >
               <polygon
                 points="0,-7 6,0 0,7 -6,0"
-                fill="#e8c14f"
+                :fill="
+                  marker.entityType === 'party'
+                    ? '#e8c14f'
+                    : marker.entityType === 'character'
+                    ? '#6ab3e8'
+                    : '#b06ae8'
+                "
                 stroke="#1a1a2e"
                 stroke-width="0.6"
               />
@@ -263,7 +393,13 @@
                 y="-10"
                 text-anchor="middle"
                 font-size="4"
-                fill="#e8c14f"
+                :fill="
+                  marker.entityType === 'party'
+                    ? '#e8c14f'
+                    : marker.entityType === 'character'
+                    ? '#6ab3e8'
+                    : '#b06ae8'
+                "
                 stroke="#1a1a2e"
                 stroke-width="0.6"
                 paint-order="stroke"
@@ -690,9 +826,9 @@ export default {
       isDragging: false,
       dragStart: null,
       dragMoved: false,
-      placingParty: false,
-      placingPartyId: null,
+      placingPin: null,
       markers: [],
+      hiddenPins: {},
       pointInfoMode: false,
       pointInfoVisible: false,
       pointInfoResults: [],
@@ -708,6 +844,7 @@ export default {
     await this.loadMap('kaemahz_complete_normalized')
     const prefs = await dataService.getUserPrefs()
     this.markers = prefs.mapMarkers ?? []
+    this.hiddenPins = prefs.mapHiddenPins ?? {}
   },
 
   computed: {
@@ -717,6 +854,10 @@ export default {
 
     markersForMap() {
       return this.markers.filter((m) => m.mapId === this.currentMapId)
+    },
+
+    visibleMarkersForMap() {
+      return this.markersForMap.filter((m) => !this.hiddenPins[m.entityId])
     },
 
     distanceResult() {
@@ -747,6 +888,29 @@ export default {
 
     parties() {
       return this.$store.state.parties ?? []
+    },
+
+    allCharacters() {
+      return this.$store.state.characters ?? []
+    },
+
+    partyMemberNames() {
+      const set = new Set()
+      for (const p of this.parties) {
+        for (const m of p.members ?? []) set.add(m)
+      }
+      return set
+    },
+
+    soloCharacters() {
+      return this.allCharacters.filter(
+        (c) =>
+          !c.is_npc && c.type !== 'npc' && !this.partyMemberNames.has(c.name)
+      )
+    },
+
+    npcCharacters() {
+      return this.allCharacters.filter((c) => c.is_npc || c.type === 'npc')
     },
 
     currentMapName() {
@@ -1352,9 +1516,9 @@ export default {
 
     onMouseUp(e, isLeave = false) {
       if (!this.dragMoved && !isLeave) {
-        if (this.placingParty) {
+        if (this.placingPin) {
           const { x, y } = this.clientToSvg(e)
-          this.placeMarker(x, y)
+          this.placePin(x, y)
         } else if (this.pointInfoMode) {
           this.doPointInfo(e)
         } else if (this.distanceMode) {
@@ -1389,27 +1553,48 @@ export default {
       return i < letters.length ? letters[i] : `P${i}`
     },
 
-    startPlacing() {
-      const active = this.parties.find((p) => p.active) ?? this.parties[0]
-      this.placingPartyId = active?.id ?? null
-      this.placingParty = true
+    startPlacingPin(entityType, entityId, label) {
+      if (this.placingPin?.entityId === entityId) {
+        this.placingPin = null
+        return
+      }
+      this.placingPin = { entityType, entityId, label }
     },
 
-    placeMarker(x, y) {
-      const party = this.parties.find((p) => p.id === this.placingPartyId)
-      if (!party) return
+    placePin(x, y) {
+      if (!this.placingPin) return
+      const { entityType, entityId, label } = this.placingPin
+      const existing = this.markers.findIndex((m) => m.entityId === entityId)
       const marker = {
-        id: `marker_${Date.now()}`,
+        id: existing >= 0 ? this.markers[existing].id : `marker_${Date.now()}`,
         mapId: this.currentMapId,
         x,
         y,
-        label: party.name,
-        partyId: party.id,
-        type: 'party',
+        label,
+        entityId,
+        entityType,
       }
-      this.markers = [...this.markers, marker]
+      if (existing >= 0) {
+        this.markers = this.markers.map((m, i) => (i === existing ? marker : m))
+      } else {
+        this.markers = [...this.markers, marker]
+      }
       dataService.patchUserPrefs({ mapMarkers: this.markers })
-      this.placingParty = false
+      this.placingPin = null
+    },
+
+    markerByEntity(entityId) {
+      return this.markersForMap.find((m) => m.entityId === entityId) ?? null
+    },
+
+    removePin(entityId) {
+      this.markers = this.markers.filter((m) => m.entityId !== entityId)
+      dataService.patchUserPrefs({ mapMarkers: this.markers })
+    },
+
+    togglePinVisibility(entityId) {
+      this.$set(this.hiddenPins, entityId, !this.hiddenPins[entityId])
+      dataService.patchUserPrefs({ mapHiddenPins: this.hiddenPins })
     },
 
     doPointInfo(e) {
@@ -1468,12 +1653,6 @@ export default {
         if (layer) return this.toDisplayName(layer.label)
       }
       return this.toDisplayName(pathEl.id)
-    },
-
-    removeMarker(id) {
-      if (this.placingParty) return
-      this.markers = this.markers.filter((m) => m.id !== id)
-      dataService.patchUserPrefs({ mapMarkers: this.markers })
     },
 
     onWheel(e) {
@@ -1652,6 +1831,139 @@ export default {
   background: var(--color-bg-surface);
 }
 
+.sidebar-pins {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+  padding: 0.4rem;
+  gap: 0.4rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.pins-panel-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-low);
+  padding: 0.2rem 0.2rem 0;
+}
+
+.pins-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.pins-group-header {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.2rem 0.1rem;
+}
+
+.pin-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.2rem;
+  border-radius: 3px;
+}
+
+.pin-row--placing {
+  background: var(--color-bg-surface);
+  outline: 1px solid var(--color-accent);
+}
+
+.pin-vis-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.65rem;
+  color: var(--color-accent);
+  padding: 0 0.1rem;
+  line-height: 1;
+}
+
+.pin-vis-btn--hidden {
+  color: var(--color-text-low);
+}
+
+.pin-row-label {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pin-place-btn {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  padding: 0.15rem 0.4rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.pin-place-btn:hover,
+.pin-place-btn--active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.pin-remove-btn {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  padding: 0.15rem 0.3rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--color-text-low);
+  cursor: pointer;
+}
+
+.pin-remove-btn:hover {
+  border-color: var(--color-danger, #c0392b);
+  color: var(--color-danger, #c0392b);
+}
+
+.pins-placing-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.4rem 0.5rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+}
+
+.pin-cancel-btn {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  padding: 0.1rem 0.4rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.pin-cancel-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
 .map-container {
   flex: 1;
   overflow: hidden;
@@ -1682,27 +1994,8 @@ export default {
   pointer-events: none;
 }
 
-.placing-select {
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-accent);
-  border-radius: 4px;
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: var(--font-size-base);
-  padding: 0.15rem 0.5rem;
-  outline: none;
-}
-
-.map-btn--place:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
 .party-marker {
   cursor: pointer;
-}
-.party-marker:hover polygon {
-  fill: #f5d87a;
 }
 
 .scale-input {

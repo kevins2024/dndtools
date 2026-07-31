@@ -98,6 +98,73 @@
           {{ t }}
         </label>
       </section>
+
+      <!-- Party profile & enemy benchmarks -->
+      <section
+        class="opt-section profile-section"
+        v-if="partyMode !== 'manual'"
+      >
+        <div class="opt-header">Profile</div>
+
+        <div class="profile-block">
+          <div class="profile-block-label">Party</div>
+          <div class="profile-stat">
+            <span class="pstat-label">Level</span>
+            <span class="pstat-value">{{
+              partyProfile.avgLevel.toFixed(1)
+            }}</span>
+          </div>
+          <div class="profile-stat">
+            <span class="pstat-label">AC</span>
+            <span class="pstat-value">{{ partyProfile.estimatedAC }}</span>
+          </div>
+          <div class="profile-stat">
+            <span class="pstat-label">Atk</span>
+            <span class="pstat-value">+{{ partyProfile.avgAtkBonus }}</span>
+          </div>
+          <div class="profile-stat">
+            <span class="pstat-label">DC</span>
+            <span class="pstat-value">{{ partyProfile.avgSpellDC }}</span>
+          </div>
+        </div>
+
+        <div class="profile-block profile-block--targets">
+          <div class="profile-block-label">
+            Enemy targets <span class="profile-diff-tag">{{ difficulty }}</span>
+          </div>
+          <div class="profile-stat">
+            <span class="pstat-label">Atk</span>
+            <span class="pstat-value">+{{ partyBenchmarks.enemyAtk }}</span>
+            <span class="pstat-hint">to hit party</span>
+          </div>
+          <div class="profile-stat">
+            <span class="pstat-label">AC</span>
+            <span class="pstat-value">{{ partyBenchmarks.enemyAC }}</span>
+            <span class="pstat-hint"
+              >party hits ~{{
+                Math.round(
+                  ((21 - (partyBenchmarks.enemyAC - partyProfile.avgAtkBonus)) /
+                    20) *
+                    100
+                )
+              }}%</span
+            >
+          </div>
+          <div class="profile-stat">
+            <span class="pstat-label">Save</span>
+            <span class="pstat-value">+{{ partyBenchmarks.enemySave }}</span>
+            <span class="pstat-hint"
+              >spells land ~{{
+                Math.round(
+                  ((partyProfile.avgSpellDC - partyBenchmarks.enemySave - 1) /
+                    20) *
+                    100
+                )
+              }}%</span
+            >
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- â"€â"€ Result panel â"€â"€ -->
@@ -534,6 +601,7 @@ import {
   getBestiaryPool,
   estimatePartyHP,
   analyzeParty,
+  enemyBenchmarks,
 } from '../utils/encounter_utils.js'
 import { GENDERS, RACES } from '../utils/character_utils.js'
 import { STAT_KEYS } from '../utils/dnd_utils.js'
@@ -632,6 +700,10 @@ export default {
 
     partyProfile() {
       return analyzeParty(this.partyCharacters)
+    },
+
+    partyBenchmarks() {
+      return enemyBenchmarks(this.partyProfile, this.difficulty)
     },
 
     effectiveParty() {
@@ -1097,6 +1169,69 @@ export default {
 
 .types-section {
   min-width: 180px;
+}
+
+.profile-section {
+  min-width: 160px;
+  gap: 0.6rem;
+}
+
+.profile-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.profile-block--targets {
+  margin-top: 0.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.profile-block-label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-low);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profile-diff-tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.profile-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  line-height: 1.5;
+}
+
+.pstat-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  width: 2.4rem;
+  flex-shrink: 0;
+}
+
+.pstat-value {
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 2rem;
+}
+
+.pstat-hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  white-space: nowrap;
 }
 
 .opt-header {

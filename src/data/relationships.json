@@ -5,8 +5,8 @@
       "rhuna",
       "vaz"
     ],
-    "type": "sibling-bond",
-    "notes": "Communicate without words.",
+    "type": "sibling",
+    "notes": "Mechanism still needs defining — what actually makes this read as a sibling bond? (shared history, specific teasing, protectiveness, something else)",
     "renown": 0
   },
   {
@@ -15,7 +15,7 @@
       "denna",
       "vaz"
     ],
-    "type": "growing-complicated",
+    "type": null,
     "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly.",
     "renown": 0
   },
@@ -25,7 +25,7 @@
       "petra",
       "vaz"
     ],
-    "type": "warm-complicated",
+    "type": null,
     "notes": "Turns sexual as companionship from time-to-time. No jealousy or expectations.",
     "renown": 0
   },
@@ -35,8 +35,8 @@
       "kessara",
       "vaz"
     ],
-    "type": "loyalty-forming",
-    "notes": "Fast-forming loyalty.",
+    "type": null,
+    "notes": "Fast-forming loyalty. [needs more detail — what is the actual mechanism of this loyalty?]",
     "renown": 0
   },
   {
@@ -45,18 +45,8 @@
       "galealzre",
       "vaz"
     ],
-    "type": "warm-distant",
-    "notes": "His brother.",
-    "renown": 0
-  },
-  {
-    "id": "rel_5",
-    "people": [
-      "rhuna",
-      "vaz"
-    ],
-    "type": "sibling-bond",
-    "notes": "Communicate without words.",
+    "type": null,
+    "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so.",
     "renown": 0
   },
   {
@@ -65,18 +55,8 @@
       "jaygar",
       "rhuna"
     ],
-    "type": "unexpected-friendship",
-    "notes": "Watches him work with genuine fascination.",
-    "renown": 0
-  },
-  {
-    "id": "rel_7",
-    "people": [
-      "denna",
-      "vaz"
-    ],
-    "type": "unaddressed",
-    "notes": "Something unaddressed between them.",
+    "type": null,
+    "notes": "Watches him work with genuine fascination. She watches him work with genuine fascination.",
     "renown": 0
   },
   {
@@ -85,18 +65,8 @@
       "denna",
       "pirra"
     ],
-    "type": "instant-recognition",
+    "type": null,
     "notes": "Resonance beyond the paired blades.",
-    "renown": 0
-  },
-  {
-    "id": "rel_9",
-    "people": [
-      "jaygar",
-      "rhuna"
-    ],
-    "type": "unexpected-friendship",
-    "notes": "She watches him work with genuine fascination.",
     "renown": 0
   },
   {
@@ -105,7 +75,7 @@
       "kessara",
       "lenn"
     ],
-    "type": "collegial-warmth",
+    "type": null,
     "notes": "",
     "renown": 0
   },
@@ -115,18 +85,8 @@
       "lenn",
       "lyria"
     ],
-    "type": "affectionate-partnership",
-    "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic.",
-    "renown": 0
-  },
-  {
-    "id": "rel_12",
-    "people": [
-      "kessara",
-      "lenn"
-    ],
-    "type": "collegial-warmth",
-    "notes": "",
+    "type": null,
+    "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic. Magical commonality and complementary personalities, it just fell into place.",
     "renown": 0
   },
   {
@@ -135,8 +95,8 @@
       "kessara",
       "petra"
     ],
-    "type": "careful-fascination",
-    "notes": "Finds her oddly reassuring.",
+    "type": null,
+    "notes": "Finds her oddly reassuring. Kessara finds her oddly reassuring.",
     "renown": 0
   },
   {
@@ -145,18 +105,8 @@
       "kessara",
       "rhuna"
     ],
-    "type": "mutual-respect",
+    "type": null,
     "notes": "Immediate.",
-    "renown": 0
-  },
-  {
-    "id": "rel_15",
-    "people": [
-      "kessara",
-      "vaz"
-    ],
-    "type": "loyalty-forming",
-    "notes": "",
     "renown": 0
   },
   {
@@ -165,48 +115,8 @@
       "galealzre",
       "kessara"
     ],
-    "type": "sent-by",
-    "notes": "Sent by Galealzre — relationship not yet detailed.",
-    "renown": 0
-  },
-  {
-    "id": "rel_17",
-    "people": [
-      "petra",
-      "vaz"
-    ],
-    "type": "warm-complicated",
-    "notes": "",
-    "renown": 0
-  },
-  {
-    "id": "rel_18",
-    "people": [
-      "kessara",
-      "petra"
-    ],
-    "type": "careful-fascination",
-    "notes": "Kessara finds her oddly reassuring.",
-    "renown": 0
-  },
-  {
-    "id": "rel_19",
-    "people": [
-      "denna",
-      "pirra"
-    ],
-    "type": "instant-recognition",
-    "notes": "Resonance beyond the paired blades.",
-    "renown": 0
-  },
-  {
-    "id": "rel_20",
-    "people": [
-      "lenn",
-      "lyria"
-    ],
-    "type": "affectionate-partnership",
-    "notes": "Magical commonality and complementary personalities, it just fell into place.",
+    "type": null,
+    "notes": "Sent by Galealzre — relationship not yet detailed. Sent Kessara to the party.",
     "renown": 0
   },
   {
@@ -235,7 +145,7 @@
       "corwin",
       "wren"
     ],
-    "type": "growing-romance",
+    "type": null,
     "notes": "Met her at the first halfweek festival attended in Argentveil. Mutual attraction, still in early stages but promising.",
     "renown": 0
   },
@@ -285,7 +195,7 @@
       "rhuna",
       "tormund coalbeard"
     ],
-    "type": "meeting-arranged",
+    "type": null,
     "notes": "Millhaven approach planning. Jessyl arranged.",
     "renown": 0
   },
@@ -295,7 +205,7 @@
       "morrow",
       "selt"
     ],
-    "type": "business-partner",
+    "type": null,
     "notes": "",
     "renown": 0
   },
@@ -305,7 +215,7 @@
       "marcus freeborn",
       "petra"
     ],
-    "type": "protective-warmth",
+    "type": null,
     "notes": "Petra's protective warmth toward him.",
     "renown": 0
   },
@@ -315,7 +225,7 @@
       "denna",
       "sarith vex"
     ],
-    "type": "complicated-history",
+    "type": null,
     "notes": "Ran Denna's network when Denna was sixteen. Professional respect.",
     "renown": 0
   },
@@ -346,7 +256,7 @@
       "petra",
       "sovi"
     ],
-    "type": "communication",
+    "type": null,
     "notes": "Petra has partial fluency in her language.",
     "renown": 0
   },
@@ -356,8 +266,8 @@
       "sovi",
       "vaz"
     ],
-    "type": "communication",
-    "notes": "These two have a great connection.",
+    "type": null,
+    "notes": "Great connection. [needs more detail — what is the actual basis of this connection?]",
     "renown": 0
   },
   {
@@ -376,28 +286,8 @@
       "aldric",
       "merren"
     ],
-    "type": "traveled-with",
+    "type": null,
     "notes": "",
-    "renown": 0
-  },
-  {
-    "id": "rel_49",
-    "people": [
-      "galealzre",
-      "vaz"
-    ],
-    "type": "family",
-    "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so.",
-    "renown": 0
-  },
-  {
-    "id": "rel_50",
-    "people": [
-      "galealzre",
-      "kessara"
-    ],
-    "type": "sent",
-    "notes": "Sent Kessara to the party.",
     "renown": 0
   },
   {
@@ -406,7 +296,7 @@
       "aldous fenn",
       "oswin belverbridge"
     ],
-    "type": "colleague",
+    "type": null,
     "notes": "Coordinating on council matters.",
     "renown": 0
   },
@@ -426,7 +316,7 @@
       "dov carren",
       "vaz"
     ],
-    "type": "warm",
+    "type": null,
     "notes": "Vaz pressed coins into his hand. If Vaz comes to Valdmere, Dov knows where to find him.",
     "renown": 0
   },
@@ -446,7 +336,7 @@
       "revven",
       "veleth"
     ],
-    "type": "devotion",
+    "type": null,
     "notes": "Genuine, uncomplicated faith. Found the right deity on the first try. May be on a path toward becoming the first paladin of Veleth though he doesn't know it yet.",
     "renown": 0
   },
@@ -456,27 +346,27 @@
       "elucyne",
       "vaz"
     ],
-    "type": "new-warm",
+    "type": null,
     "notes": "Met at the Thorncast table during the Spring Festival. He came to find her himself rather than sending someone. That mattered.",
     "renown": 0
   },
   {
     "id": "rel_63",
     "people": [
-      "sorra",
-      "elucyne"
+      "elucyne",
+      "sorra"
     ],
-    "type": "old-friend",
+    "type": null,
     "notes": "Traveling performance circuit, southeastern region. Elucyne not running anymore was the signal that the world Elucyne is in is worth being in.",
     "renown": 0
   },
   {
     "id": "rel_64",
     "people": [
-      "sorra",
-      "revven"
+      "revven",
+      "sorra"
     ],
-    "type": "complicated-beginning",
+    "type": null,
     "notes": "He said something unexpectedly perceptive about what she was playing and she forgot to be composed about it. Still processing.",
     "renown": 0
   }

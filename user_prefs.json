@@ -127,10 +127,28 @@
         "Rith"
       ],
       "active": true,
-      "game_day": 280,
+      "game_day": 286,
       "marching_order": [
-        "Eldi",
-        "Rith"
+        "Rith",
+        "Eldi"
+      ],
+      "watch_assignments": [
+        [
+          "Eldi",
+          null
+        ],
+        [
+          "Rith",
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
       ]
     }
   ],

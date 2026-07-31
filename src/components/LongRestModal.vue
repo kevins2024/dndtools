@@ -154,7 +154,8 @@
       <!-- ══ STEP 2: Marching Order ═══════════════════ -->
       <template v-else>
         <div class="march-intro">
-          Drag or use arrows to set today's marching order. Perception shown.
+          Drag or use arrows to set today's marching order. Perception and
+          Survival shown — the character in front leads travel rolls.
         </div>
         <div class="march-body">
           <div class="march-list">
@@ -162,18 +163,31 @@
               v-for="(name, idx) in marchOrder"
               :key="name"
               class="march-row"
+              :class="{ 'is-tracker': idx === 0 }"
             >
               <span class="march-pos">{{ idx + 1 }}</span>
               <div class="march-avatar">
                 <img :src="charImage(name)" class="avatar-img" />
               </div>
               <div class="march-info">
-                <div class="march-name">{{ name }}</div>
+                <div class="march-name">
+                  {{ name }}
+                  <span v-if="idx === 0" class="tracker-badge">Tracker</span>
+                </div>
                 <div class="march-class">{{ charClass(name) }}</div>
               </div>
-              <div class="march-perc">
-                <span class="perc-label">Perc</span>
-                <span class="perc-val">{{ signedPercByName(name) }}</span>
+              <div class="march-stats">
+                <div class="march-perc">
+                  <span class="perc-label">Perc</span>
+                  <span class="perc-val">{{ signedPercByName(name) }}</span>
+                </div>
+                <div
+                  class="march-perc"
+                  :class="{ 'is-tracker-stat': idx === 0 }"
+                >
+                  <span class="perc-label">Surv</span>
+                  <span class="perc-val">{{ signedSurvByName(name) }}</span>
+                </div>
               </div>
               <div class="march-btns">
                 <button
@@ -376,6 +390,17 @@ export default {
       const char = this.characters.find((c) => c.name === name)
       if (!char) return '—'
       return this.signedPerc(char)
+    },
+
+    signedSurv(char) {
+      const val = dnd.skill(char, 'Survival', this.party_items)
+      return val >= 0 ? `+${val}` : `${val}`
+    },
+
+    signedSurvByName(name) {
+      const char = this.characters.find((c) => c.name === name)
+      if (!char) return '—'
+      return this.signedSurv(char)
     },
 
     charImage(name) {
@@ -868,6 +893,9 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 5px;
 }
+.march-row.is-tracker {
+  border-color: var(--color-accent);
+}
 .march-pos {
   font-family: var(--font-display, serif);
   font-size: var(--font-size-xs);
@@ -898,10 +926,28 @@ export default {
   font-size: 0.82rem;
   color: var(--color-text-muted);
   font-family: var(--font-display, serif);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
 }
 .march-class {
   font-size: var(--font-size-xs);
   color: var(--color-text-low);
+}
+.tracker-badge {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  padding: 0.05rem 0.3rem;
+}
+.march-stats {
+  display: flex;
+  gap: 0.7rem;
+  flex-shrink: 0;
 }
 .march-perc {
   display: flex;
@@ -920,6 +966,13 @@ export default {
   font-weight: 600;
   color: var(--color-accent);
   font-family: var(--font-display, serif);
+}
+.is-tracker-stat .perc-label,
+.is-tracker-stat .perc-val {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 .march-btns {
   display: flex;

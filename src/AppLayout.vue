@@ -18,7 +18,7 @@
       <div class="header-context" v-if="activeParty">
         <span class="hctx-party">{{ activeParty.name }}</span>
         <span class="hctx-sep">·</span>
-        <span class="hctx-day">Day {{ activePartyDay }}</span>
+        <span class="hctx-day">Day {{ activePartyDayOfYear }}</span>
       </div>
 
       <!-- Currency badges -->
@@ -81,6 +81,13 @@
           >
             Long Rest
           </button>
+          <button
+            class="bar-btn"
+            @click="rollTravel"
+            title="Roll Survival for the party's best tracker"
+          >
+            Travel Roll
+          </button>
           <button class="bar-btn accent" @click="partyEditOpen = true">
             Manage Parties
           </button>
@@ -138,7 +145,22 @@
     <!-- Long rest date toast -->
     <div v-if="restToast" class="rest-toast" @animationend="restToast = false">
       <div class="rest-toast-label">Long Rest Complete</div>
+      <div class="rest-toast-day">Day {{ restDayNumber }}</div>
       <div class="rest-toast-date">{{ restDateLabel }}</div>
+    </div>
+
+    <!-- Travel roll toast -->
+    <div
+      v-if="travelToast"
+      class="travel-toast"
+      @animationend="travelToast = false"
+    >
+      <div class="rest-toast-label">Travel Roll — Survival</div>
+      <div class="rest-toast-day">{{ travelRollResult.total }}</div>
+      <div class="rest-toast-date">
+        {{ travelRollResult.name }} · d20 ({{ travelRollResult.roll }})
+        {{ travelRollResult.modLabel }}
+      </div>
     </div>
   </div>
 </template>
@@ -218,6 +240,10 @@ export default {
     activePartyDay() {
       return this.$store.getters.activePartyDay
     },
+    activePartyDayOfYear() {
+      const currentDay = this.activePartyDay || 1
+      return ((currentDay - 1) % 204) + 1
+    },
     partyGold() {
       return this.$store.state.finances?.party_purse?.gold ?? 0
     },
@@ -226,6 +252,11 @@ export default {
     },
     diceOpen() {
       return this.$store.state.diceDrawerOpen
+    },
+    restDayNumber() {
+      const currentDay =
+        this.$store.getters.activePartyDay || this.$store.state.game_day || 1
+      return ((currentDay - 1) % 204) + 1
     },
     restDateLabel() {
       const DAYS_PER_YEAR = 204
@@ -269,6 +300,8 @@ export default {
       saveDialogOpen: false,
       saveFlash: false,
       restToast: false,
+      travelToast: false,
+      travelRollResult: null,
       partyEditOpen: false,
       shortRestOpen: false,
       longRestOpen: false,
@@ -305,6 +338,32 @@ export default {
       setTimeout(() => {
         this.saveFlash = false
       }, 600)
+    },
+    rollTravel() {
+      // RAW: the character at the front of the marching order makes travel
+      // (Survival) checks for the group, not whoever has the highest score.
+      const memberNames = this.activeParty?.members ?? []
+      const order = this.activeParty?.marching_order ?? []
+      const leadName =
+        order.find((name) => memberNames.includes(name)) ?? memberNames[0]
+      const leader = this.allCharacters.find((c) => c.name === leadName)
+      if (!leader) return
+
+      const partyItems = this.$store.state.party_items ?? []
+      const mod = this.$dnd.skill(leader, 'Survival', partyItems)
+      const roll = Math.floor(Math.random() * 20) + 1
+      this.travelRollResult = {
+        name: leader.name,
+        mod,
+        roll,
+        total: roll + mod,
+        modLabel: mod >= 0 ? `+${mod}` : `${mod}`,
+      }
+
+      this.travelToast = false
+      this.$nextTick(() => {
+        this.travelToast = true
+      })
     },
     onRested() {
       this.restToast = false
@@ -658,11 +717,56 @@ export default {
   margin-bottom: 0.3rem;
 }
 
+.rest-toast-day {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
 .rest-toast-date {
   font-family: var(--font-display);
   font-size: var(--font-size-md);
   font-weight: 600;
   color: var(--color-accent);
   letter-spacing: 0.03em;
+}
+
+/* ── Travel roll toast ── */
+@keyframes travel-toast-anim {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+
+.travel-toast {
+  position: fixed;
+  top: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  pointer-events: none;
+  text-align: center;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 10px;
+  padding: 0.7rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  animation: travel-toast-anim 5s ease forwards;
 }
 </style>

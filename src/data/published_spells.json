@@ -3030,5 +3030,41 @@
       "Sorcerer",
       "Wizard"
     ]
+  },
+  {
+    "name": "Divine Prestidigitation",
+    "level": 0,
+    "school": "Transmutation",
+    "casting_time": "1 action",
+    "range": "10 feet",
+    "components": [
+      "V",
+      "S"
+    ],
+    "duration": "Instantaneous or up to 1 hour",
+    "description": "You call upon a sliver of divine grace to work a minor miracle. The effect must be small, non-harmful, and flavored by your faith — the scent of incense, a candle lighting itself, bread emerging warm from cold hands, a holy symbol glowing softly, water becoming suitable for a ritual. Nothing created or changed by this spell lasts longer than 1 hour, and it cannot replicate any spell effect of 1st level or higher.",
+    "source": "Homebrew — Caster Prestidigitation Rule",
+    "concentration": false,
+    "classes": [
+      "Cleric"
+    ]
+  },
+  {
+    "name": "Dark Prestidigitation",
+    "level": 0,
+    "school": "Transmutation",
+    "casting_time": "1 action",
+    "range": "10 feet",
+    "components": [
+      "V",
+      "S"
+    ],
+    "duration": "Instantaneous or up to 1 hour",
+    "description": "Your patron reaches through you to make a small impression on the world. The effect must be minor, non-harmful, and consistent with your patron's nature — shadows shifting at your gesture, a voice that isn't quite yours whispering something that was already known, a mark only you can see, a flame guttering without wind. This ability does not draw from the Weave; it is an extension of your pact, and cannot be suppressed by antimagic that targets arcane sources. Nothing created or changed lasts longer than 1 hour, and it cannot replicate any spell effect of 1st level or higher.",
+    "source": "Homebrew — Caster Prestidigitation Rule",
+    "concentration": false,
+    "classes": [
+      "Warlock"
+    ]
   }
 ]
