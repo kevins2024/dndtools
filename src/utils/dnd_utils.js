@@ -52,13 +52,15 @@ export const dnd = {
   },
 
   // Full subtitle: "Fighter 4 / Warlock 5 · Level 9" or "Monk (Way of the Open Hand) · Level 9"
-  classBreakdownLabel(character) {
+  // Pass { includeSubclass: false } to omit the parenthetical subclass, e.g.
+  // when the caller renders the subclass on its own line instead.
+  classBreakdownLabel(character, { includeSubclass = true } = {}) {
     const classes = character?.classes ?? []
     if (classes.length === 1) {
       const c = classes[0]
-      return `${c.name}${c.subclass ? ` (${c.subclass})` : ''} · Level ${
-        character.level
-      }`
+      const subclassPart =
+        includeSubclass && c.subclass ? ` (${c.subclass})` : ''
+      return `${c.name}${subclassPart} · Level ${character.level}`
     }
     return (
       classes.map((c) => `${c.name} ${c.level}`).join(' / ') +

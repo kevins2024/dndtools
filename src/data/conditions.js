@@ -94,8 +94,15 @@ export const CONDITIONS = {
     ],
   },
   Poisoned: {
-    summary: 'Disadvantage on attack rolls and ability checks.',
-    rules: ['Disadvantage on attack rolls.', 'Disadvantage on ability checks.'],
+    summary:
+      'Leveled 1-2 (homebrew, tracked like Exhaustion). Level 1: disadvantage on attack rolls and ability checks. Level 2: also 1d4 poison damage at the start of each of your turns, and the first attack against you each round has advantage.',
+    rules: [
+      'Level 1 — Disadvantage on attack rolls.',
+      'Level 1 — Disadvantage on ability checks.',
+      'Level 2 (homebrew) — Reached by failing a saving throw against a poison effect with a natural 1 on the die.',
+      'Level 2 (homebrew) — All Level 1 effects, plus: take 1d4 poison damage at the start of each of your turns.',
+      'Level 2 (homebrew) — The first attack roll made against you each round has advantage.',
+    ],
   },
   Prone: {
     summary:
@@ -162,6 +169,27 @@ export const CONDITIONS = {
     summary: '+1d4 to attack rolls and saving throws.',
     rules: ['Add 1d4 to attack rolls.', 'Add 1d4 to saving throws.'],
   },
+  Bardic: {
+    summary:
+      'Holding a Bardic Inspiration die. Add it to one attack roll, ability check, or saving throw.',
+    rules: [
+      'Add the inspiration die to one ability check, attack roll, or saving throw made within the next 10 minutes (or longer with Font of Inspiration).',
+      'Choose to add it after making the roll but before the result is announced.',
+      'A creature can hold only one Bardic Inspiration die at a time.',
+    ],
+  },
+  Haste: {
+    summary:
+      'Speed doubled, +2 AC, advantage on DEX saves, one extra action each turn.',
+    rules: [
+      'Speed is doubled.',
+      '+2 bonus to AC.',
+      'Advantage on Dexterity saving throws.',
+      'Gains one additional action each turn: Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object.',
+      "Can't cast spells with the extra action.",
+      "When the effect ends, the target can't move or take actions or reactions until after its next turn (unless the haste was ended by the target being reduced to 0 HP or otherwise incapacitated).",
+    ],
+  },
   Hexed: {
     summary:
       'Caster deals +1d6 necrotic to chosen target; disadvantage on chosen ability checks.',
@@ -172,27 +200,57 @@ export const CONDITIONS = {
   },
 }
 
-// Ordered list for display (matches existing chip order in the app)
-export const CONDITION_NAMES = [
-  'Concentrating',
+// Beneficial vs. detrimental classification, used to visually separate
+// condition chips (pill = beneficial, pointed = detrimental) and to order
+// them: beneficial first, then detrimental, alphabetical within each group.
+export const POSITIVE_CONDITION_NAMES = [
+  'Bardic',
   'Blessed',
+  'Concentrating',
+  'Haste',
+]
+
+export const NEGATIVE_CONDITION_NAMES = [
+  'Blinded',
+  'Charmed',
+  'Deafened',
+  'Exhaustion',
+  'Frightened',
+  'Grappled',
   'Hexed',
+  'Incapacitated',
+  'Invisible',
+  'Muddled',
+  'Paralyzed',
+  'Petrified',
   'Poisoned',
   'Prone',
-  'Frightened',
-  'Charmed',
-  'Stunned',
-  'Paralyzed',
-  'Grappled',
   'Restrained',
-  'Blinded',
-  'Deafened',
-  'Invisible',
-  'Incapacitated',
-  'Exhaustion',
+  'Stunned',
   'Unconscious',
-  'Petrified',
 ]
+
+export function isPositiveCondition(name) {
+  return POSITIVE_CONDITION_NAMES.includes(name)
+}
+
+// Sorts a list of condition names beneficial-first, alphabetically within
+// each group. Unrecognized names (e.g. custom GM-typed conditions) sort as
+// detrimental, last.
+export function sortConditionNames(names) {
+  return [...names].sort((a, b) => {
+    const pa = isPositiveCondition(a)
+    const pb = isPositiveCondition(b)
+    if (pa !== pb) return pa ? -1 : 1
+    return a.localeCompare(b)
+  })
+}
+
+// Ordered list for display (beneficial first, alphabetical within each group)
+export const CONDITION_NAMES = sortConditionNames([
+  ...POSITIVE_CONDITION_NAMES,
+  ...NEGATIVE_CONDITION_NAMES,
+])
 
 export function conditionTooltip(name) {
   const c = CONDITIONS[name]

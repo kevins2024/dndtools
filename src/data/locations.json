@@ -931,6 +931,16 @@
     "flair": "The capital of a culture that has decided it represents authentic tradition. Everything here is done the right way — which is also the old way. Impressive in the manner of things preserved with great care. Visitors often feel they are being judged against a standard they were never told about."
   },
   {
+    "name": "Gindellan",
+    "type": "town",
+    "region": "Torwald",
+    "description": "Far northwest Torwald, deep into the mountain fringe. Named for the Gindel family — trappers or prospectors, most likely — who carved out the first real foothold this far into the mountains, whether as a hunting lodge or a prospecting camp that others followed. 'Gindellan' reads as 'Gindel's holding,' the kind of name that outlasts the family that earned it. Started as an outpost and still functions as one for anyone working the deeper mountains — hunters, prospectors, and anyone with reason to move through this territory quietly.",
+    "notes": "Pronounced with a soft G — \"Jindellan.\"",
+    "districts": [],
+    "locations": [],
+    "flair": "A town that never quite stopped being an outpost. The permanent buildings and the seasonal ones aren't always easy to tell apart, and neither is anyone's actual business here."
+  },
+  {
     "name": "Feldtazur",
     "type": "city",
     "region": "Aranwald",

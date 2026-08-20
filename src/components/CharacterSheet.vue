@@ -24,7 +24,11 @@
         <h2 class="char-name">{{ character.name }}</h2>
         <div class="char-fullname">{{ character.full_name }}</div>
         <div class="char-subtitle">
-          {{ character.race }} · {{ $dnd.classBreakdownLabel(character) }}
+          {{ character.race }} ·
+          {{ $dnd.classBreakdownLabel(character, { includeSubclass: false }) }}
+        </div>
+        <div v-if="$dnd.subclassLabel(character)" class="char-subclass">
+          {{ $dnd.subclassLabel(character) }}
         </div>
         <div class="char-appearance">{{ character.appearance }}</div>
       </div>
@@ -339,6 +343,12 @@ export default {
 .char-subtitle {
   font-size: var(--font-size-lg);
   color: var(--color-accent);
+}
+
+.char-subclass {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  margin-top: -0.1vh;
 }
 
 .char-appearance {

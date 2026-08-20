@@ -239,11 +239,21 @@ export async function lookupFeature(name) {
   // 1. Session edits
   if (homebrewEdits.has(lower)) return homebrewEdits.get(lower)
 
-  // 2. SRD class features — exact match first, then startsWith for variants
-  //    e.g. character "Action Surge" → cache "Action Surge (1 use)"
+  // 2. SRD class features — exact match first, then startsWith in either
+  //    direction for variants: cache "Action Surge (1 use)" for character
+  //    "Action Surge", or character "Sneak Attack (2d6)" for cache
+  //    "Sneak Attack". The reverse direction requires a space/paren right
+  //    after the cache name so "Sneak Attack" doesn't match "Sneak Attacker".
   const found =
     featuresData.find((f) => f.name.toLowerCase() === lower) ??
-    featuresData.find((f) => f.name.toLowerCase().startsWith(lower))
+    featuresData.find((f) => f.name.toLowerCase().startsWith(lower)) ??
+    featuresData.find((f) => {
+      const cacheLower = f.name.toLowerCase()
+      return (
+        lower.startsWith(cacheLower) &&
+        /^[\s(]/.test(lower.slice(cacheLower.length))
+      )
+    })
 
   if (found) {
     return {

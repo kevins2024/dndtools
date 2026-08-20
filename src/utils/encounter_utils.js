@@ -1951,6 +1951,12 @@ function generateHumanoidEnemy(
     partyProfile
   )
 
+  // Proficient in their primary stat's save plus CON (near-universal on real
+  // stat blocks, matters most for concentration).
+  const savingThrows = [...new Set([profile.primary, 'con'])]
+  // Only casters (roles with an assigned spell list) need a save DC.
+  const spellSaveDC = spells.length > 0 ? 8 + profBonus + primaryMod : null
+
   return {
     id: `enc_enemy_${_eid++}`,
     name: `${isBoss ? 'Boss — ' : ''}${race} ${profile.label}`,
@@ -1963,7 +1969,10 @@ function generateHumanoidEnemy(
     hp,
     maxHp: hp,
     ac,
+    speed: 30,
     stats,
+    savingThrows,
+    spellSaveDC,
     weapon,
     attackBonus: totalAtk >= 0 ? `+${totalAtk}` : `${totalAtk}`,
     features,
@@ -2045,6 +2054,9 @@ function generateBestiaryEnemy(
     partyProfile
   )
 
+  const savingThrows = [...new Set([profile.primary, 'con'])]
+  const spellSaveDC = spells.length > 0 ? 8 + profBonus + primaryMod : null
+
   return {
     id: `enc_enemy_${_eid++}`,
     name: displayName,
@@ -2060,7 +2072,10 @@ function generateBestiaryEnemy(
     hp,
     maxHp: hp,
     ac,
+    speed: 30,
     stats,
+    savingThrows,
+    spellSaveDC,
     weapon: {
       baseName: attackName,
       damageDice: isBoss ? '2d8' : '1d8',

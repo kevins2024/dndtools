@@ -127,7 +127,7 @@
         "Rith"
       ],
       "active": true,
-      "game_day": 286,
+      "game_day": 292,
       "marching_order": [
         "Rith",
         "Eldi"
@@ -149,7 +149,12 @@
           null,
           null
         ]
-      ]
+      ],
+      "travel_prefs": {
+        "continent": "Kaemahz",
+        "terrain": "forest",
+        "knowsWay": "general_direction"
+      }
     }
   ],
   "mapMarkers": [],

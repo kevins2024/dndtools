@@ -7,7 +7,7 @@
     ],
     "type": "sibling",
     "notes": "Mechanism still needs defining — what actually makes this read as a sibling bond? (shared history, specific teasing, protectiveness, something else)",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_1",
@@ -17,7 +17,7 @@
     ],
     "type": null,
     "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_2",
@@ -27,7 +27,7 @@
     ],
     "type": null,
     "notes": "Turns sexual as companionship from time-to-time. No jealousy or expectations.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_3",
@@ -37,7 +37,7 @@
     ],
     "type": null,
     "notes": "Fast-forming loyalty. [needs more detail — what is the actual mechanism of this loyalty?]",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_4",
@@ -47,7 +47,7 @@
     ],
     "type": null,
     "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_6",
@@ -57,7 +57,7 @@
     ],
     "type": null,
     "notes": "Watches him work with genuine fascination. She watches him work with genuine fascination.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_8",
@@ -67,7 +67,7 @@
     ],
     "type": null,
     "notes": "Resonance beyond the paired blades.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_10",
@@ -77,7 +77,7 @@
     ],
     "type": null,
     "notes": "",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_11",
@@ -87,7 +87,7 @@
     ],
     "type": null,
     "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic. Magical commonality and complementary personalities, it just fell into place.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_13",
@@ -97,7 +97,7 @@
     ],
     "type": null,
     "notes": "Finds her oddly reassuring. Kessara finds her oddly reassuring.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_14",
@@ -107,7 +107,7 @@
     ],
     "type": null,
     "notes": "Immediate.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_16",
@@ -117,7 +117,7 @@
     ],
     "type": null,
     "notes": "Sent by Galealzre — relationship not yet detailed. Sent Kessara to the party.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_21",
@@ -127,7 +127,7 @@
     ],
     "type": "family",
     "notes": "Her daughter. Twenty years of complicated and fond. The war was between them before it was between clans.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_22",
@@ -137,7 +137,7 @@
     ],
     "type": "family-clan",
     "notes": "Niece by clan rather than blood. The daughter who always wanted to leave, sent south with more hope than Vrethka shows.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_25",
@@ -147,7 +147,7 @@
     ],
     "type": null,
     "notes": "Met her at the first halfweek festival attended in Argentveil. Mutual attraction, still in early stages but promising.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_26",
@@ -157,7 +157,7 @@
     ],
     "type": "family",
     "notes": "Her niece.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_27",
@@ -167,7 +167,7 @@
     ],
     "type": "works-for",
     "notes": "",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_28",
@@ -177,7 +177,7 @@
     ],
     "type": "works-for",
     "notes": "",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_29",
@@ -187,7 +187,7 @@
     ],
     "type": "ward",
     "notes": "He's in Rhuna's care.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_30",
@@ -197,7 +197,7 @@
     ],
     "type": null,
     "notes": "Millhaven approach planning. Jessyl arranged.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_31",
@@ -207,7 +207,7 @@
     ],
     "type": null,
     "notes": "",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_33",
@@ -217,7 +217,7 @@
     ],
     "type": null,
     "notes": "Petra's protective warmth toward him.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_34",
@@ -227,7 +227,7 @@
     ],
     "type": null,
     "notes": "Ran Denna's network when Denna was sixteen. Professional respect.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_39",
@@ -238,7 +238,7 @@
     ],
     "type": "sibling",
     "notes": "Guard brothers.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_41",
@@ -248,7 +248,7 @@
     ],
     "type": "sibling",
     "notes": "Sisters.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_42",
@@ -258,7 +258,7 @@
     ],
     "type": null,
     "notes": "Petra has partial fluency in her language.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_43",
@@ -268,7 +268,7 @@
     ],
     "type": null,
     "notes": "Great connection. [needs more detail — what is the actual basis of this connection?]",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_44",
@@ -278,7 +278,7 @@
     ],
     "type": "sibling",
     "notes": "Brothers.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_47",
@@ -288,7 +288,7 @@
     ],
     "type": null,
     "notes": "",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_51",
@@ -298,7 +298,7 @@
     ],
     "type": null,
     "notes": "Coordinating on council matters.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_52",
@@ -308,7 +308,7 @@
     ],
     "type": "family",
     "notes": "His older daughter.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_54",
@@ -318,7 +318,7 @@
     ],
     "type": null,
     "notes": "Vaz pressed coins into his hand. If Vaz comes to Valdmere, Dov knows where to find him.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_55",
@@ -328,7 +328,7 @@
     ],
     "type": "family",
     "notes": "siblings",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_56",
@@ -338,7 +338,7 @@
     ],
     "type": null,
     "notes": "Genuine, uncomplicated faith. Found the right deity on the first try. May be on a path toward becoming the first paladin of Veleth though he doesn't know it yet.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_59",
@@ -348,7 +348,7 @@
     ],
     "type": null,
     "notes": "Met at the Thorncast table during the Spring Festival. He came to find her himself rather than sending someone. That mattered.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_63",
@@ -358,7 +358,7 @@
     ],
     "type": null,
     "notes": "Traveling performance circuit, southeastern region. Elucyne not running anymore was the signal that the world Elucyne is in is worth being in.",
-    "renown": 0
+    "strength": 0
   },
   {
     "id": "rel_64",
@@ -368,6 +368,16 @@
     ],
     "type": null,
     "notes": "He said something unexpectedly perceptive about what she was playing and she forgot to be composed about it. Still processing.",
-    "renown": 0
+    "strength": 0
+  },
+  {
+    "id": "rel_65",
+    "people": [
+      "eldi",
+      "rith"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
   }
 ]

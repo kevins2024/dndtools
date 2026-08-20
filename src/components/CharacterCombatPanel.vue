@@ -66,11 +66,19 @@
           'cond-chip--active':
             cond === 'Exhaustion'
               ? exhaustionLevel > 0
+              : cond === 'Poisoned'
+              ? poisonLevel > 0
               : activeConditions.includes(cond),
+          'cond-chip--positive': isPositiveCondition(cond),
+          'cond-chip--negative': !isPositiveCondition(cond),
         }"
         :title="conditionTooltip(cond)"
         @click="
-          cond === 'Exhaustion' ? cycleExhaustion() : toggleCondition(cond)
+          cond === 'Exhaustion'
+            ? cycleExhaustion()
+            : cond === 'Poisoned'
+            ? cyclePoison()
+            : toggleCondition(cond)
         "
         >{{ cond
         }}<span
@@ -78,6 +86,11 @@
           class="exhaustion-level"
         >
           {{ exhaustionLevel }}</span
+        ><span
+          v-if="cond === 'Poisoned' && poisonLevel > 0"
+          class="exhaustion-level"
+        >
+          {{ poisonLevel }}</span
         ></span
       >
     </div>
@@ -236,33 +249,33 @@
       </div>
     </template>
 
-    <!-- Woven Phase selector (Woven Sorcerer only) -->
-    <template v-if="character.woven_phase !== undefined">
+    <!-- Weave Phase selector (Weave Attunement Sorcerer only) -->
+    <template v-if="character.weave_phase !== undefined">
       <div class="section-label woven-label">
-        Woven Phase
+        Weave Phase
         <span class="woven-hint">Metamagic -1 SP for active schools</span>
       </div>
       <div class="woven-phases">
         <button
-          v-for="(ph, key) in wovenPhases"
+          v-for="(ph, key) in weavePhases"
           :key="key"
           class="woven-phase-btn"
-          :class="{ 'woven-phase-btn--active': character.woven_phase === key }"
+          :class="{ 'woven-phase-btn--active': character.weave_phase === key }"
           :style="
-            character.woven_phase === key
+            character.weave_phase === key
               ? { borderColor: ph.color, backgroundColor: ph.color + '20' }
               : {}
           "
           :title="`${ph.schools.join(
             ' + '
-          )}: Metamagic costs 1 fewer SP when applied to spells of these schools.\n\nLoom spells: ${ph.spells.join(
+          )}: Metamagic costs 1 fewer SP when applied to spells of these schools.\n\nGrid spells: ${ph.spells.join(
             ', '
           )}`"
-          @click="setWovenPhase(key)"
+          @click="setWeavePhase(key)"
         >
           <span
             class="woven-phase-name"
-            :style="character.woven_phase === key ? { color: ph.color } : {}"
+            :style="character.weave_phase === key ? { color: ph.color } : {}"
             >{{ ph.name }}</span
           >
           <span class="woven-phase-abbr">{{ ph.abbr }}</span>
@@ -295,10 +308,18 @@
             :key="spell.name"
             class="spell-pill"
             :class="{ 'spell-pill--domain': spell.domain }"
-            :title="spell.domain ? 'Domain spell — always prepared' : null"
+            :title="
+              spell.domain
+                ? 'Domain spell — always prepared'
+                : spell.featureGranted
+                ? `Free cast via ${spell._source} (doesn't count against spells known)`
+                : null
+            "
             @click="openSpellPopup(spell)"
             >{{ spell.name
-            }}<Sparkle
+            }}<span v-if="spell.featureGranted" class="spell-granted-mark"
+              >*</span
+            ><Sparkle
               v-if="
                 spellMeta[spell.name] && spellMeta[spell.name].concentration
               "
@@ -327,7 +348,13 @@
 
 <script>
 import { dnd, STAT_KEYS } from '@/utils/dnd_utils.js'
-import { conditionTooltip } from '@/data/conditions.js'
+import {
+  conditionTooltip,
+  isPositiveCondition,
+  POSITIVE_CONDITION_NAMES,
+  NEGATIVE_CONDITION_NAMES,
+  sortConditionNames,
+} from '@/data/conditions.js'
 import { DEFAULT_SPEED_FT } from '@/utils/dnd_constants.js'
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
 import { getCharacterSpells } from '@/utils/spellUtils.js'
@@ -335,26 +362,10 @@ import DetailPopup from '@/components/DetailPopup.vue'
 import StatChip from '@/components/StatChip.vue'
 import { Sparkle } from 'lucide-vue'
 
-const CONDITIONS = [
-  'Concentrating',
-  'Haste',
-  'Bardic',
-  'Blessed',
-  'Hexed',
-  'Poisoned',
-  'Prone',
-  'Frightened',
-  'Charmed',
-  'Stunned',
-  'Paralyzed',
-  'Grappled',
-  'Restrained',
-  'Blinded',
-  'Deafened',
-  'Invisible',
-  'Incapacitated',
-  'Exhaustion',
-]
+const CONDITIONS = sortConditionNames([
+  ...POSITIVE_CONDITION_NAMES,
+  ...NEGATIVE_CONDITION_NAMES,
+])
 
 const FEATURE_FILTER_OPTIONS = [
   { value: 'all', label: 'All' },
@@ -367,46 +378,15 @@ const FEATURE_FILTER_OPTIONS = [
 const FEATURE_TYPE_ORDER = ['feature', 'maneuver']
 const FEATURE_TYPE_LABEL = { feature: 'Features', maneuver: 'Maneuvers' }
 
-const WOVEN_PHASES = {
-  leno: {
-    name: 'Leno',
-    abbr: 'Abj · Div',
-    schools: ['Abjuration', 'Divination'],
-    color: '#7ec8e3',
-    spells: [
-      'Faerie Fire',
-      'Moonbeam',
-      'Clairvoyance',
-      'Death Ward',
-      'Scrying',
-    ],
-  },
-  satin: {
-    name: 'Satin',
-    abbr: 'Ill · Trs',
-    schools: ['Illusion', 'Transmutation'],
-    color: '#b88fe0',
-    spells: [
-      'Silent Image',
-      'Invisibility',
-      'Blink',
-      'Hallucinatory Terrain',
-      'Dream',
-    ],
-  },
-  twill: {
-    name: 'Twill',
-    abbr: 'Enc · Cnj',
-    schools: ['Enchantment', 'Conjuration'],
-    color: '#e8a860',
-    spells: [
-      'Dissonant Whispers',
-      'Web',
-      'Hunger of Hadar',
-      'Confusion',
-      'Hold Monster',
-    ],
-  },
+// Presentational-only per-phase display (color, abbreviation). Schools and
+// granted spells are NOT hardcoded here — they're read live from the
+// character's own "<Phase> Phase (<Schools>)" features, so this can never
+// drift out of sync with what's actually on the sheet (see homebrew.json's
+// "Weave Attunement" subclass entry for the canonical mechanics).
+const WEAVE_PHASE_DISPLAY = {
+  leno: { name: 'Leno', abbr: 'Abj · Div', color: '#7ec8e3' },
+  twill: { name: 'Twill', abbr: 'Enc · Nec', color: '#e8a860' },
+  satin: { name: 'Satin', abbr: 'Ill · Trs', color: '#b88fe0' },
 }
 
 function nextSlotValue(max, current, clickedIndex) {
@@ -426,6 +406,8 @@ export default {
     character: { type: Object, required: true },
     hideSpells: { type: Boolean, default: false },
   },
+
+  emits: ['condition-changed'],
 
   watch: {
     'character.id'(newId, oldId) {
@@ -512,6 +494,9 @@ export default {
     },
     exhaustionLevel() {
       return this.character.exhaustion_level ?? 0
+    },
+    poisonLevel() {
+      return this.character.poison_level ?? 0
     },
 
     ac() {
@@ -783,18 +768,35 @@ export default {
       )
     },
 
-    wovenPhases() {
-      return WOVEN_PHASES
+    weavePhases() {
+      const result = {}
+      for (const [key, display] of Object.entries(WEAVE_PHASE_DISPLAY)) {
+        const feature = (this.character.features ?? []).find((f) =>
+          f.name.toLowerCase().startsWith(`${display.name.toLowerCase()} phase`)
+        )
+        const schoolMatch = feature?.name.match(/\(([^)]+)\)/)
+        result[key] = {
+          name: display.name,
+          abbr: display.abbr,
+          color: display.color,
+          schools: schoolMatch
+            ? schoolMatch[1].split('/').map((s) => s.trim())
+            : [],
+          spells: feature?.spells_granted ?? [],
+        }
+      }
+      return result
     },
   },
 
   methods: {
     conditionTooltip,
+    isPositiveCondition,
 
-    setWovenPhase(key) {
+    setWeavePhase(key) {
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
-        updatedItem: { ...this.character, woven_phase: key },
+        updatedItem: { ...this.character, weave_phase: key },
       })
     },
 
@@ -882,17 +884,38 @@ export default {
         table: 'characters',
         updatedItem: { ...this.character, exhaustion_level: next },
       })
+      this.$emit(
+        'condition-changed',
+        next === 0 ? 'Exhaustion removed' : `Exhaustion ${next}`
+      )
+    },
+
+    cyclePoison() {
+      const next = this.poisonLevel >= 2 ? 0 : this.poisonLevel + 1
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, poison_level: next },
+      })
+      this.$emit(
+        'condition-changed',
+        next === 0 ? 'Poisoned removed' : `Poisoned ${next}`
+      )
     },
 
     toggleCondition(cond) {
       const current = [...this.activeConditions]
       const idx = current.indexOf(cond)
-      if (idx >= 0) current.splice(idx, 1)
+      const had = idx >= 0
+      if (had) current.splice(idx, 1)
       else current.push(cond)
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
         updatedItem: { ...this.character, conditions: current },
       })
+      this.$emit(
+        'condition-changed',
+        had ? `removed ${cond}` : `gained ${cond}`
+      )
     },
 
     async loadSpellMeta() {
@@ -1198,6 +1221,12 @@ export default {
   border-style: dashed;
 }
 
+.spell-granted-mark {
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-left: 1px;
+}
+
 .conc-icon {
   width: 0.75em;
   height: 0.75em;
@@ -1309,7 +1338,7 @@ export default {
 .cond-chip {
   font-size: var(--font-size-xs);
   padding: 2px 7px;
-  border-radius: 999px;
+  border-radius: 3px;
   border: 1px solid var(--color-border);
   background: transparent;
   color: var(--color-text-low);
@@ -1328,6 +1357,45 @@ export default {
   border-color: var(--color-condition);
   color: var(--color-condition);
   background: rgba(230, 126, 34, 0.12);
+}
+
+/* Beneficial conditions: pill shape */
+.cond-chip--positive {
+  border-radius: 999px;
+}
+.cond-chip--positive.cond-chip--active {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  background: rgba(74, 158, 107, 0.15);
+}
+
+/* Detrimental conditions: pointed ends.
+   clip-path cuts away a plain border on the diagonal edges, so the outline
+   is drawn as a shape-following silhouette via stacked drop-shadows instead. */
+.cond-chip--negative {
+  --cond-outline: var(--color-border);
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 50%,
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 50%
+  );
+  padding: 2px 13px;
+  border: none;
+  background: var(--color-bg-surface);
+  filter: drop-shadow(1px 0 0 var(--cond-outline))
+    drop-shadow(-1px 0 0 var(--cond-outline))
+    drop-shadow(0 1px 0 var(--cond-outline))
+    drop-shadow(0 -1px 0 var(--cond-outline));
+}
+.cond-chip--negative:hover {
+  --cond-outline: var(--color-text-muted);
+}
+.cond-chip--negative.cond-chip--active {
+  --cond-outline: var(--color-condition);
+  background: rgba(230, 126, 34, 0.2);
 }
 
 .exhaustion-level {

@@ -192,6 +192,7 @@ import VehicleCombatWizard from './VehicleCombatWizard.vue'
 import VehicleCombatPanel from './VehicleCombatPanel.vue'
 import ShipCombat from './ShipCombat.vue'
 import { dnd } from '@/utils/dnd_utils.js'
+import { generateEncounter, analyzeParty } from '@/utils/encounter_utils.js'
 
 export default {
   name: 'CombatContext',
@@ -302,9 +303,60 @@ export default {
       this.$store.commit('CLEAR_PENDING_COMBAT_ENEMIES')
       this.showEncounterModal = false
     },
+    '$store.state.openEncounterGeneratorRequest'(val) {
+      if (val) {
+        const seed = this.$store.state.encounterSeed
+        if (seed) this.generateSeededEncounter(seed)
+        this.showEncounterModal = true
+        this.$store.commit('CLEAR_OPEN_ENCOUNTER_GENERATOR')
+      }
+    },
   },
 
   methods: {
+    // Generates an encounter directly from a Travel Event's seed (terrain,
+    // continent, and combat-flagged topic already established the scene) and
+    // commits it straight to SET_ENCOUNTER — skipping the Encounter
+    // Generator's wizard screens entirely. The generator's result/review
+    // card renders as soon as `currentEncounter` is populated, so the DM
+    // lands directly on "reroll if needed, then Load into Combat."
+    generateSeededEncounter(seed) {
+      const chars = this.playerNames
+        .map((name) => this.characters.find((c) => c.name === name))
+        .filter(Boolean)
+      if (!chars.length) return
+
+      const levels = chars.map((c) => c.level)
+      const hps = chars.map((c) => c.hp_max)
+      const partyLevel = Math.round(
+        levels.reduce((a, b) => a + b, 0) / levels.length
+      )
+      const partySize = chars.length
+      const minPartyHP = Math.min(...hps)
+      const maxPartyHP = Math.max(...hps)
+      const partyProfile = analyzeParty(chars)
+
+      const slotCount =
+        seed.size === 'group' ? Math.max(2, Math.min(4, partySize)) : 1
+      const slots = Array.from({ length: slotCount }, () => ({
+        source: seed.source,
+        isBoss: seed.size === 'solo',
+      }))
+
+      const encounter = generateEncounter({
+        resolvedDifficulty: seed.difficulty,
+        resolvedType: 'Travel Encounter',
+        partySize,
+        partyLevel,
+        minPartyHP,
+        maxPartyHP,
+        slots,
+        partyProfile,
+      })
+      encounter.typeConfig = `Generated from a travel event (${seed.terrain}, ${seed.continent}).`
+      this.$store.commit('SET_ENCOUNTER', encounter)
+    },
+
     onVehicleBtn() {
       if (!this.hasVehicleSession) {
         this.$store.commit('OPEN_VEHICLE_WIZARD')

@@ -221,7 +221,10 @@
             </div>
           </template>
 
-          <CharacterCombatPanel :character="activeChar" />
+          <CharacterCombatPanel
+            :character="activeChar"
+            @condition-changed="log"
+          />
         </template>
 
         <!-- Enemy turn -->
@@ -308,6 +311,49 @@
                 "
               />
               <span class="enemy-chip-lbl">Attacks</span>
+            </div>
+            <div class="enemy-stat-chip">
+              <input
+                class="enemy-stat-input"
+                type="number"
+                min="0"
+                max="120"
+                :value="activeEnemyMeta.speed ?? ''"
+                placeholder="30"
+                @change="
+                  setEnemyMeta('speed', $event.target.valueAsNumber || null)
+                "
+              />
+              <span class="enemy-chip-lbl">Speed</span>
+            </div>
+            <div class="enemy-stat-chip">
+              <input
+                class="enemy-stat-input"
+                type="number"
+                min="1"
+                max="30"
+                :value="activeEnemyMeta.spellSaveDC ?? ''"
+                placeholder="—"
+                @change="
+                  setEnemyMeta(
+                    'spellSaveDC',
+                    $event.target.valueAsNumber || null
+                  )
+                "
+              />
+              <span class="enemy-chip-lbl">Save DC</span>
+            </div>
+            <div class="enemy-stat-chip">
+              <input
+                class="enemy-stat-input enemy-stat-input--text"
+                type="text"
+                :value="activeEnemyMeta.savingThrows ?? ''"
+                placeholder="—"
+                @change="
+                  setEnemyMeta('savingThrows', $event.target.value || null)
+                "
+              />
+              <span class="enemy-chip-lbl">Saves</span>
             </div>
           </div>
 
@@ -503,22 +549,14 @@
           <div class="section-label">Conditions</div>
           <div class="enemy-cond-row">
             <button
-              v-for="cond in POSITIVE_CONDITIONS"
+              v-for="cond in CONDITIONS"
               :key="cond"
-              class="enemy-cond-chip enemy-cond-chip--positive"
-              :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
-              :title="conditionTooltip(cond)"
-              @click="toggleEnemyCondition(cond)"
-            >
-              {{ cond }}
-            </button>
-          </div>
-          <div class="enemy-cond-row">
-            <button
-              v-for="cond in NEGATIVE_CONDITIONS"
-              :key="cond"
-              class="enemy-cond-chip"
-              :class="{ 'enemy-cond-chip--active': hasEnemyCondition(cond) }"
+              class="cond-chip"
+              :class="{
+                'cond-chip--active': hasEnemyCondition(cond),
+                'cond-chip--positive': isPositiveCondition(cond),
+                'cond-chip--negative': !isPositiveCondition(cond),
+              }"
               :title="conditionTooltip(cond)"
               @click="toggleEnemyCondition(cond)"
             >
@@ -529,7 +567,7 @@
                 (c) => !CONDITIONS.includes(c)
               )"
               :key="'custom-' + cond"
-              class="enemy-cond-chip enemy-cond-chip--active enemy-cond-chip--custom"
+              class="cond-chip cond-chip--active cond-chip--custom"
               @click="toggleEnemyCondition(cond)"
             >
               {{ cond }} ✕
@@ -622,33 +660,19 @@
 
 <script>
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
-import { conditionTooltip } from '@/data/conditions.js'
+import {
+  conditionTooltip,
+  isPositiveCondition,
+  POSITIVE_CONDITION_NAMES,
+  NEGATIVE_CONDITION_NAMES,
+  sortConditionNames,
+} from '@/data/conditions.js'
 import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
-const POSITIVE_CONDITIONS = Object.freeze(['Bardic', 'Concentrating', 'Haste'])
-const NEGATIVE_CONDITIONS = Object.freeze([
-  'Blinded',
-  'Charmed',
-  'Deafened',
-  'Exhaustion',
-  'Frightened',
-  'Grappled',
-  'Incapacitated',
-  'Invisible',
-  'Muddled',
-  'Paralyzed',
-  'Petrified',
-  'Poisoned',
-  'Prone',
-  'Restrained',
-  'Stunned',
-  'Unconscious',
-])
-const CONDITIONS = Object.freeze([
-  ...POSITIVE_CONDITIONS,
-  ...NEGATIVE_CONDITIONS,
-])
+const CONDITIONS = Object.freeze(
+  sortConditionNames([...POSITIVE_CONDITION_NAMES, ...NEGATIVE_CONDITION_NAMES])
+)
 
 export default {
   name: 'Battle',
@@ -691,8 +715,6 @@ export default {
       newEnemyMod: 0,
       statKeys: STAT_KEY_LIST,
       CONDITIONS,
-      POSITIVE_CONDITIONS,
-      NEGATIVE_CONDITIONS,
       deathSaves: {},
       pendingStateCopy: null,
       bestiaryMode: false,
@@ -757,6 +779,13 @@ export default {
             ? ov.damageLabel
             : enc.weapon?.displayName ?? null,
         numAttacks: 'numAttacks' in ov ? ov.numAttacks : null,
+        speed: 'speed' in ov ? ov.speed : enc.speed ?? 30,
+        spellSaveDC:
+          'spellSaveDC' in ov ? ov.spellSaveDC : enc.spellSaveDC ?? null,
+        savingThrows:
+          'savingThrows' in ov
+            ? ov.savingThrows
+            : enc.savingThrows?.map((s) => s.toUpperCase()).join(', ') ?? null,
         notes: 'notes' in ov ? ov.notes : '',
       }
     },
@@ -816,6 +845,7 @@ export default {
 
   methods: {
     conditionTooltip,
+    isPositiveCondition,
 
     log(msg) {
       const who = this.activeEntry?.name ?? '?'
@@ -1930,7 +1960,7 @@ export default {
   gap: 0.3rem;
 }
 
-.enemy-cond-chip {
+.cond-chip {
   font-size: var(--font-size-xs);
   font-family: var(--font-body);
   padding: 2px 7px;
@@ -1941,19 +1971,34 @@ export default {
   cursor: pointer;
   transition: border-color 0.1s, color 0.1s, background 0.1s;
 }
-.enemy-cond-chip:hover {
+.cond-chip:hover {
   border-color: var(--color-text-muted);
   color: var(--color-text-muted);
 }
-.enemy-cond-chip--active {
+.cond-chip--active {
   border-color: var(--color-condition);
   color: var(--color-condition);
   background: rgba(230, 126, 34, 0.08);
 }
-.enemy-cond-chip--custom {
+.cond-chip--custom {
   font-size: var(--font-size-xs);
 }
-.enemy-cond-chip--positive {
+
+/* Beneficial conditions: pill shape */
+.cond-chip--positive {
+  border-radius: 999px;
+}
+.cond-chip--positive.cond-chip--active {
+  background: rgba(74, 158, 107, 0.2);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+/* Detrimental conditions: pointed ends.
+   clip-path cuts away a plain border on the diagonal edges, so the outline
+   is drawn as a shape-following silhouette via stacked drop-shadows instead. */
+.cond-chip--negative {
+  --cond-outline: var(--color-border);
   clip-path: polygon(
     10px 0,
     calc(100% - 10px) 0,
@@ -1965,13 +2010,18 @@ export default {
   padding: 2px 14px;
   border-radius: 0;
   border: none;
-}
-.enemy-cond-chip--positive.enemy-cond-chip--active {
-  background: rgba(74, 158, 107, 0.2);
-  color: var(--color-success);
-}
-.enemy-cond-chip--positive:not(.enemy-cond-chip--active) {
   background: var(--color-bg-surface);
+  filter: drop-shadow(1px 0 0 var(--cond-outline))
+    drop-shadow(-1px 0 0 var(--cond-outline))
+    drop-shadow(0 1px 0 var(--cond-outline))
+    drop-shadow(0 -1px 0 var(--cond-outline));
+}
+.cond-chip--negative:hover {
+  --cond-outline: var(--color-text-muted);
+}
+.cond-chip--negative.cond-chip--active {
+  --cond-outline: var(--color-condition);
+  background: rgba(230, 126, 34, 0.2);
 }
 
 /* ── Death saving throws ── */

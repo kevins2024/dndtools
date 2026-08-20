@@ -12,8 +12,9 @@
         :value="relationship.type"
         @change="saveField('type', $event.target.value)"
       >
+        <option value="">— Unset —</option>
         <option
-          v-if="!knownTypes.includes(relationship.type)"
+          v-if="relationship.type && !knownTypes.includes(relationship.type)"
           :value="relationship.type"
         >
           {{ formatType(relationship.type) }}
@@ -68,10 +69,10 @@
         </optgroup>
       </select>
       <span
-        class="renown-score-inline"
-        :class="renownClass(relationship.renown)"
+        class="strength-score-inline"
+        :class="strengthClass(relationship.strength)"
       >
-        {{ relationship.renown }} · {{ renownLabel(relationship.renown) }}
+        {{ relationship.strength }} · {{ strengthLabel(relationship.strength) }}
       </span>
     </div>
 
@@ -84,26 +85,26 @@
     />
 
     <div class="rel-footer">
-      <div class="renown-controls">
-        <button class="renown-btn" title="−1" @click="adjustRenown(-1)">
+      <div class="strength-controls">
+        <button class="strength-btn" title="−1" @click="adjustStrength(-1)">
           −
         </button>
         <button
-          class="renown-btn renown-btn--sm"
+          class="strength-btn strength-btn--sm"
           title="−5"
-          @click="adjustRenown(-5)"
+          @click="adjustStrength(-5)"
         >
           −5
         </button>
-        <span class="renown-label-full">Renown</span>
+        <span class="strength-label-full">Strength</span>
         <button
-          class="renown-btn renown-btn--sm"
+          class="strength-btn strength-btn--sm"
           title="+5"
-          @click="adjustRenown(5)"
+          @click="adjustStrength(5)"
         >
           +5
         </button>
-        <button class="renown-btn" title="+1" @click="adjustRenown(1)">
+        <button class="strength-btn" title="+1" @click="adjustStrength(1)">
           +
         </button>
       </div>
@@ -161,6 +162,7 @@ export default {
 
   methods: {
     formatType(val) {
+      if (!val) return ''
       return val.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
     },
 
@@ -173,17 +175,17 @@ export default {
       })
     },
 
-    adjustRenown(delta) {
+    adjustStrength(delta) {
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'relationships',
         updatedItem: {
           ...this.relationship,
-          renown: this.relationship.renown + delta,
+          strength: this.relationship.strength + delta,
         },
       })
     },
 
-    renownLabel(score) {
+    strengthLabel(score) {
       if (score <= -10) return 'Strained'
       if (score < 0) return 'Cool'
       if (score === 0) return 'Neutral'
@@ -193,14 +195,14 @@ export default {
       return 'Devoted'
     },
 
-    renownClass(score) {
-      if (score <= -10) return 'renown--strained'
-      if (score < 0) return 'renown--cool'
-      if (score === 0) return 'renown--neutral'
-      if (score <= 10) return 'renown--warm'
-      if (score <= 25) return 'renown--trusted'
-      if (score <= 50) return 'renown--close'
-      return 'renown--devoted'
+    strengthClass(score) {
+      if (score <= -10) return 'strength--strained'
+      if (score < 0) return 'strength--cool'
+      if (score === 0) return 'strength--neutral'
+      if (score <= 10) return 'strength--warm'
+      if (score <= 25) return 'strength--trusted'
+      if (score <= 50) return 'strength--close'
+      return 'strength--devoted'
     },
   },
 }
@@ -243,7 +245,7 @@ export default {
   font-size: var(--font-size-sm);
 }
 
-.renown-score-inline {
+.strength-score-inline {
   font-size: var(--font-size-sm);
   white-space: nowrap;
   flex-shrink: 0;
@@ -279,26 +281,26 @@ export default {
   line-height: 1.4;
 }
 
-/* ── Renown controls ── */
+/* ── Strength controls ── */
 .rel-footer {
   border-top: 1px solid var(--color-border);
   padding-top: 0.4vh;
 }
 
-.renown-controls {
+.strength-controls {
   display: flex;
   align-items: center;
   gap: 0.3vw;
 }
 
-.renown-label-full {
+.strength-label-full {
   font-size: var(--font-size-sm);
   color: var(--color-text-low);
   flex: 1;
   text-align: center;
 }
 
-.renown-btn {
+.strength-btn {
   background: var(--color-bg-panel-dark);
   border: 1px solid var(--color-border);
   border-radius: 3px;
@@ -310,35 +312,35 @@ export default {
   padding: 2px 7px;
   transition: border-color 0.1s, color 0.1s;
 }
-.renown-btn:hover {
+.strength-btn:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
-.renown-btn--sm {
+.strength-btn--sm {
   font-size: var(--font-size-sm);
   color: var(--color-text-low);
   padding: 2px 5px;
 }
 
-.renown--strained {
+.strength--strained {
   color: var(--color-text-danger);
 }
-.renown--cool {
+.strength--cool {
   color: var(--color-text-low);
 }
-.renown--neutral {
+.strength--neutral {
   color: var(--color-text-low);
 }
-.renown--warm {
+.strength--warm {
   color: var(--color-text-muted);
 }
-.renown--trusted {
+.strength--trusted {
   color: var(--color-accent);
 }
-.renown--close {
+.strength--close {
   color: var(--color-accent-strong);
 }
-.renown--devoted {
+.strength--devoted {
   color: var(--color-highlight);
 }
 </style>

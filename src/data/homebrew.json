@@ -8,10 +8,7 @@
       "range": "Self",
       "area": "10ft radius",
       "duration": "Up to 10 minutes",
-      "components": [
-        "V",
-        "S"
-      ],
+      "components": ["V", "S"],
       "description": "Creates a 10ft radius ward around the caster. Undead must make a WIS saving throw against the caster's spell save DC or be unable to enter the warded area. Does not destroy or turn undead — only prevents entry.",
       "save": {
         "stat": "wis",
@@ -27,9 +24,7 @@
       "school": "Evocation",
       "casting_time": "1 action",
       "range": "120 feet",
-      "components": [
-        "S"
-      ],
+      "components": ["S"],
       "duration": "Instantaneous (Starfall Ground persists 1 minute)",
       "description": "Call down a beam of starlight on any point visible to you within range. All creatures within a 10-foot radius of that point must make a Dexterity saving throw. On a failed save, a creature takes 6d6 radiant damage and is blinded until the end of its next turn. On a successful save, a creature takes half damage and is not blinded.\nThe impact point becomes Starfall Ground — a 10-foot radius patch of solidified starlight that persists for 1 minute. Creatures moving through Starfall Ground take 2d6 radiant damage and have their movement speed halved until the start of their next turn.\nThis spell can only be cast once per dawn. It does not consume a spell slot.",
       "source": "Homebrew — Ring of the Fallen Star",
@@ -42,10 +37,7 @@
       "casting_time": "1 bonus action",
       "range": "Self",
       "duration": "Until end of turn",
-      "components": [
-        "V",
-        "S"
-      ],
+      "components": ["V", "S"],
       "description": "Until the end of your turn, the next thrown or ranged weapon attack you make deals an additional 1d8 damage. Roll 1d8 to determine the damage type: 1 — Fire, 2 — Cold, 3 — Lightning, 4 — Thunder, 5 — Acid, 6 — Poison, 7 — Radiant, 8 — Force. This spell expends a spell slot as normal.",
       "source": "Homebrew — Cold Valley Axe attunement",
       "concentration": false
@@ -678,48 +670,160 @@
       "description": "Divine Soul Sorcerer feature. When you or an ally within 5 feet of you rolls dice to determine hit points restored by a spell, you may spend 1 sorcery point to reroll any number of those dice once, taking the new result.",
       "type": "feature",
       "source": "Divine Soul (Sorcerer subclass)"
+    },
+    {
+      "name": "Weave Embodiment",
+      "description": "Once per long rest, cast your CURRENT phase's level-1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) — up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three.",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's Lunar Embodiment. Mechanically identical to RAW (a free cast of your current phase's spell; reaching another phase's free cast requires paying to shift into it first)."
+    },
+    {
+      "name": "Loom Fire",
+      "description": "You know Sacred Flame (doesn't count against cantrips known). When you cast it, you may target one creature as normal OR target two creatures within range that are within 5 feet of each other, each making its own DEX save.",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's Moon Fire, mechanically identical."
+    },
+    {
+      "name": "Mother's Whim",
+      "description": "Two separate effects bundled into one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus per long rest, refreshing on a long rest — independent of how many times you've shifted phase.",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin combining Lunar Sorcery's Waxing and Waning and Lunar Boons into a single named feature. Numbers unchanged from RAW."
+    },
+    {
+      "name": "Leno Phase (Abjuration / Divination)",
+      "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Shield (1st), Lesser Restoration (2nd), Dispel Magic (3rd), Death Ward (4th), Rary's Telepathic Bond (5th).",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's Full Moon phase. Identical to official in every grid slot — a pure rename, no spell substitutions."
+    },
+    {
+      "name": "Twill Phase (Enchantment / Necromancy)",
+      "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Silvery Barbs (1st), Blindness/Deafness (2nd), Vampiric Touch (3rd), Confusion (4th), Synaptic Static (5th).",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's New Moon phase. School pairing matches the final published subclass exactly (Evocation, present in the 2022 Unearthed Arcana: Heroes of Krynn playtest pairing, was deliberately dropped when this subclass was built, to avoid stacking cheap Metamagic on an already blast-heavy school). Two of five grid slots (1st and 5th) were deliberately reselected within the Enchantment/Necromancy pairing rather than kept at RAW's defaults (Ray of Sickness and Hold Monster) — an intentional house-rule choice under this subclass's grid-selection rule, not an error."
+    },
+    {
+      "name": "Satin Phase (Illusion / Transmutation)",
+      "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Color Spray (1st), Alter Self (2nd), Phantom Steed (3rd), Fabricate (4th), Telekinesis (5th).",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's Crescent Moon phase. School pairing matches official exactly. Two of five grid slots (4th and 5th) were deliberately reselected within the Illusion/Transmutation pairing rather than kept at RAW's defaults (Hallucinatory Terrain and Mislead). The 5th slot was originally set to Far Step, but Far Step is Conjuration and doesn't belong to either of this phase's schools — it was swapped for Telekinesis (Transmutation), and Far Step moved to the character's ordinary known-spell list instead."
+    },
+    {
+      "name": "Weave Empowerment",
+      "description": "Passive, tied to your currently active phase. Leno: as a bonus action, your markings blaze — shed bright light in a 10ft radius and dim light 10ft beyond; you and creatures of your choice within that light gain advantage on Investigation and Perception checks. Twill: advantage on Stealth checks; while you are entirely in an area of darkness, attack rolls against you have disadvantage. Satin: resistance to necrotic and radiant damage.",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's Lunar Empowerment (14th level). Flavor-only skin, prepared ahead of when it's needed; mechanically identical to RAW. Not yet unlocked on any character."
+    },
+    {
+      "name": "Unraveling",
+      "description": "Bonus action, usable once per long rest (or spend 5 Sorcery Points to use it again), and can be combined with a Mother's Whim phase shift. Leno: 30ft radius burst of unweaving light — each creature in the area makes a CON save or is blinded until the end of its next turn; choose one creature in range to regain 3d8 hit points. Twill: 30ft radius burst of unraveling shadow-thread — each creature in the area makes a DEX save or takes 3d10 necrotic damage and has its speed reduced to 0; you become invisible until the end of your next turn. Satin: the Weave folds — teleport up to 60ft to an unoccupied space you can see, bringing one willing creature within 5ft of you along; you and that creature gain resistance to all damage until the start of your next turn.",
+      "type": "feature",
+      "source": "Weave Attunement (Sorcerer subclass) — reskin of Lunar Sorcery's Lunar Phenomenon (18th level capstone). Flavor-only skin, prepared ahead of when it's needed; mechanically identical to RAW. Not yet unlocked on any character."
+    },
+    {
+      "name": "Manifest Echo",
+      "description": "As a bonus action, manifest an echo of yourself — a translucent gray image — in an unoccupied space you can see within 15ft. Echo stats: AC 14 + your proficiency bonus, 1 HP, immune to all conditions, uses your saving throws, same size as you. It lasts until destroyed, until dismissed as a bonus action, until you manifest another echo, until you're incapacitated, or until it ends your turn more than 30ft from you. While it exists you also have access to Echo: Reposition, Echo: Swap Places, Echo: Attack From, and Echo: Opportunity Attack.",
+      "type": "feature",
+      "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. Split into separate entries below so each shows up correctly under the action/bonus action/reaction filter instead of being buried as prose inside one feature."
+    },
+    {
+      "name": "Echo: Reposition",
+      "description": "No action required — while your echo exists, mentally move it up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends your turn more than 30ft from you.",
+      "type": "feature",
+      "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level."
+    },
+    {
+      "name": "Echo: Swap Places",
+      "description": "As a bonus action, teleport-swap positions with your echo, regardless of the distance between you. Costs 15ft of your movement for that turn in addition to the bonus action.",
+      "type": "feature",
+      "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level."
+    },
+    {
+      "name": "Echo: Attack From",
+      "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — a targeting option within the Attack action itself, distinct from Unleash Incarnation's separate bonus attack.",
+      "type": "feature",
+      "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level.",
+      "table_ruling": "RAW is genuinely ambiguous about how far 'the attack originates from the echo's space' extends. Locked in as the table ruling: for a standard attack made this way, it only affects range/targeting for that attack — the character's real body stays where it actually is for every other purpose (reach against them, opportunity attacks against them, etc.). Contrast with Unleash Incarnation below, which is ruled differently."
+    },
+    {
+      "name": "Echo: Opportunity Attack",
+      "description": "When a creature you can see within 5ft of your echo moves at least 5ft away from it, you can use your reaction to make an opportunity attack against that creature as if you were standing in the echo's space.",
+      "type": "feature",
+      "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level."
+    },
+    {
+      "name": "Unleash Incarnation",
+      "description": "Whenever you take the Attack action, you can make one additional melee attack from your echo's position. Usable a number of times equal to your Constitution modifier (minimum once), regaining all expended uses on a long rest.",
+      "type": "feature",
+      "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level.",
+      "table_ruling": "Ruled differently from Echo: Attack From's standard attacks: this genuinely treats the character as positioned at the echo for that one attack, full stop — not just range/targeting, but for any purpose that specific attack would care about."
+    },
+    {
+      "name": "Fancy Footwork",
+      "description": "If you make a melee attack against a creature on your turn, that creature can't make opportunity attacks against you for the rest of your turn.",
+      "type": "feature",
+      "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
+    },
+    {
+      "name": "Rakish Audacity",
+      "description": "You gain a bonus to your Initiative rolls equal to your Charisma modifier. In addition, you don't need advantage on the attack roll to use Sneak Attack against a creature if you're within 5ft of it, no other creature is within 5ft of you, and you don't have disadvantage on the attack roll — this replaces the normal Sneak Attack requirement of advantage or an ally adjacent to the target.",
+      "type": "feature",
+      "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
+    },
+    {
+      "name": "Elven Accuracy",
+      "description": "Prerequisite: Elf or half-elf. Increase Dexterity, Intelligence, Wisdom, or Charisma by 1 (max 20). Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once.",
+      "type": "feature",
+      "source": "Feat, Xanathar's Guide to Everything."
+    },
+    {
+      "name": "Fey Ancestry",
+      "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep.",
+      "type": "feature",
+      "source": "Elf / Half-Elf racial trait."
+    },
+    {
+      "name": "Darkvision",
+      "description": "You can see in dim light within 60ft as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray. Range may vary by race — check the character's own darkvision field for their actual range.",
+      "type": "feature",
+      "source": "Common racial trait (Elf, Half-Elf, Dwarf, Tiefling, Aasimar, and others). Registered generically since the mechanic is identical across races; only the range occasionally differs."
     }
   ],
   "domain_spells": {
     "life": [
       {
         "level": 1,
-        "spells": [
-          "Bless",
-          "Cure Wounds"
-        ]
+        "spells": ["Bless", "Cure Wounds"]
       },
       {
         "level": 3,
-        "spells": [
-          "Lesser Restoration",
-          "Spiritual Weapon"
-        ]
+        "spells": ["Lesser Restoration", "Spiritual Weapon"]
       },
       {
         "level": 5,
-        "spells": [
-          "Beacon of Hope",
-          "Revivify"
-        ]
+        "spells": ["Beacon of Hope", "Revivify"]
       },
       {
         "level": 7,
-        "spells": [
-          "Death Ward",
-          "Guardian of Faith"
-        ]
+        "spells": ["Death Ward", "Guardian of Faith"]
       },
       {
         "level": 9,
-        "spells": [
-          "Mass Cure Wounds",
-          "Raise Dead"
-        ]
+        "spells": ["Mass Cure Wounds", "Raise Dead"]
       }
     ]
   },
   "weapon_types": [
+    {
+      "id": "saber",
+      "name": "Saber",
+      "weapon_type": "melee",
+      "damage_dice": "1d8",
+      "damage_type": "slashing",
+      "finesse": true,
+      "light": true,
+      "versatile": false,
+      "notes": "30 gp, 4 lb. This elegant weapon is most famously wielded by duelists and swashbucklers. Anyone proficient with a rapier can proficiently wield a saber."
+    },
     {
       "id": "yetgrese_shortsword",
       "name": "Yetgrese Throwing Sword",
@@ -746,10 +850,7 @@
       "size": "Medium",
       "speed": 30,
       "appearance": "Taller and broader than humans. Squared facial features. Mottled and ridged skin along lower jaw and chin instead of facial hair. Skin tones similar to human range but extending further into pink and yellow. Culturally tend toward very long hair.",
-      "languages": [
-        "Yetgresian Common",
-        "Catrinese"
-      ],
+      "languages": ["Yetgresian Common", "Catrinese"],
       "ability_score_bonus": "Player's choice",
       "traits": [
         {
@@ -785,10 +886,7 @@
       "size": "Small",
       "speed": 25,
       "appearance": "Humanoid pomeranian appearance. Average height 2.5 feet. Expressive faces, full fur covering. Tilawam subculture tends toward punk aesthetic — leather, piercings, dramatically dyed fur, shaved patches for tattoos.",
-      "languages": [
-        "Yetgresian Common",
-        "Drevani"
-      ],
+      "languages": ["Yetgresian Common", "Drevani"],
       "ability_score_bonus": "Player's choice",
       "traits": [
         {
@@ -819,10 +917,7 @@
       "size": "Medium",
       "speed": 30,
       "appearance": "Grey-undertoned skin, warmer than standard Duergar after generations of surface living. More varied hair than their Duergar kin. Enlarged pupils adapted to both darkness and daylight. Stocky, durable build.",
-      "languages": [
-        "Yetgresian Common",
-        "Undercommon"
-      ],
+      "languages": ["Yetgresian Common", "Undercommon"],
       "ability_score_bonus": "Player's choice",
       "traits": [
         {
@@ -868,10 +963,7 @@
       "name": "Solvalean",
       "type": "regional",
       "description": "The official language of the Solvale Empire.",
-      "speakers": [
-        "Solvale Empire citizens",
-        "Southeastern regional peoples"
-      ]
+      "speakers": ["Solvale Empire citizens", "Southeastern regional peoples"]
     }
   ],
   "rules": [
@@ -904,6 +996,42 @@
       "name": "Caster Prestidigitation",
       "description": "All arcane and divine casters receive a free, flavor-appropriate form of Prestidigitation that does not count against their spell allotment. Sorcerers and Wizards receive standard Prestidigitation. Druids receive standard Druidcraft. Clerics receive Divine Prestidigitation (a divine-flavored equivalent). Warlocks receive Dark Prestidigitation (a patron-flavored equivalent that does not draw from the Weave). These spells are always prepared and cannot be removed.",
       "notes": "Casters should feel like casters without spending a cantrip slot on it. Mages wave their hand and make a small change in the world; druids make a flower bloom. These spells are the mechanical expression of that identity."
+    }
+  ],
+  "subclasses": [
+    {
+      "name": "Weave Attunement",
+      "class": "Sorcerer",
+      "reskin_of": "Lunar Sorcery",
+      "source": "Dragonlance: Shadow of the Dragon Queen (2023, final published version)",
+      "lineage_notes": "Weave Attunement is a direct mechanical reskin of the official Lunar Sorcery sorcerous origin — moon phases become Weave phases, moon/celestial imagery becomes fabric-and-loom imagery tied to Ne'auveothrin, ancient demigod of the Weave. Two of the three phases (Leno = Full Moon, Satin = Crescent Moon) use school pairings identical to the final published subclass. The third (Twill = New Moon) also matches the final published pairing (Enchantment + Necromancy) rather than the earlier Unearthed Arcana: Heroes of Krynn (2022) playtest pairing of Evocation + Necromancy — Evocation was deliberately excluded when this subclass was built, to avoid stacking cheap Metamagic discounts on top of an already blast-heavy school. That choice happens to match what the final published book independently settled on too.",
+      "house_rules": [
+        "Grid spell selection is not locked to RAW's fixed table. At each phase/level slot, any spell of the correct level from one of that phase's two associated schools may be chosen in place of the RAW default. Every substitution made for Iyani follows this rule — see each Phase feature's entry in the features catalog above for exactly which slots were changed and why."
+      ],
+      "features": [
+        "Weave Embodiment",
+        "Loom Fire",
+        "Mother's Whim",
+        "Leno Phase (Abjuration / Divination)",
+        "Twill Phase (Enchantment / Necromancy)",
+        "Satin Phase (Illusion / Transmutation)",
+        "Weave Empowerment",
+        "Unraveling"
+      ],
+      "levels": {
+        "1": [
+          "Weave Embodiment",
+          "Loom Fire",
+          "Leno Phase (Abjuration / Divination)",
+          "Twill Phase (Enchantment / Necromancy)",
+          "Satin Phase (Illusion / Transmutation)"
+        ],
+        "6": ["Mother's Whim"],
+        "14": ["Weave Empowerment"],
+        "18": ["Unraveling"]
+      },
+      "used_by": ["Iyani"],
+      "notes": "Levels 14 and 18 features already exist in the features catalog as flavor-ready placeholders — mechanically identical to RAW Lunar Empowerment / Lunar Phenomenon, just renamed. Not yet added to any character's sheet; add them (and update the character's own feature list) once a Weave Attunement sorcerer actually reaches that level."
     }
   ]
 }

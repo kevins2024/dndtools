@@ -3,9 +3,7 @@
     <div class="modal-panel">
       <!-- ── Header ── -->
       <div class="modal-header">
-        <span class="modal-title">{{
-          step === 'watches' ? 'Long Rest — Watch Assignment' : 'Marching Order'
-        }}</span>
+        <span class="modal-title">{{ stepTitle }}</span>
         <button class="close-btn" @click="$emit('close')">✕</button>
       </div>
 
@@ -152,7 +150,7 @@
       </template>
 
       <!-- ══ STEP 2: Marching Order ═══════════════════ -->
-      <template v-else>
+      <template v-else-if="step === 'marching'">
         <div class="march-intro">
           Drag or use arrows to set today's marching order. Perception and
           Survival shown — the character in front leads travel rolls.
@@ -212,6 +210,64 @@
           <button class="skip-btn" @click="skipAndSave">Skip</button>
           <button class="rest-btn" @click="saveMarchingOrder">
             Set Marching Order
+          </button>
+        </div>
+      </template>
+
+      <!-- ══ STEP 3: Relationships ═══════════════════ -->
+      <template v-else-if="step === 'relationships'">
+        <div class="rel-step-intro">
+          Everyone in the party spent today together. Adjust how each pair's
+          bond changed — defaults to +1.
+        </div>
+        <div class="rel-step-body">
+          <div v-if="!relationshipPairs.length" class="rel-step-empty">
+            Not enough party members to track a relationship.
+          </div>
+          <div v-else class="rel-pair-list">
+            <div
+              v-for="pair in relationshipPairs"
+              :key="pair.key"
+              class="rel-pair-row"
+            >
+              <div class="rel-pair-names">
+                {{ pair.nameA }} ↔ {{ pair.nameB }}
+              </div>
+              <div class="rel-pair-current">{{ pair.currentScore }}</div>
+              <div class="rel-pair-delta">
+                <button
+                  class="rel-delta-btn rel-delta-btn--sm"
+                  @click="adjustDelta(pair.key, -5)"
+                >
+                  −5
+                </button>
+                <button
+                  class="rel-delta-btn"
+                  @click="adjustDelta(pair.key, -1)"
+                >
+                  −
+                </button>
+                <span class="rel-delta-val">{{
+                  signedDelta(relationshipDeltas[pair.key] || 0)
+                }}</span>
+                <button class="rel-delta-btn" @click="adjustDelta(pair.key, 1)">
+                  +
+                </button>
+                <button
+                  class="rel-delta-btn rel-delta-btn--sm"
+                  @click="adjustDelta(pair.key, 5)"
+                >
+                  +5
+                </button>
+              </div>
+              <div class="rel-pair-preview">→ {{ previewScore(pair) }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="skip-btn" @click="skipRelationships">Skip</button>
+          <button class="rest-btn" @click="saveRelationships">
+            Save Relationships
           </button>
         </div>
       </template>
@@ -276,12 +332,47 @@ export default {
       ],
       pickerTarget: null, // { si, pi }
       marchOrder: [],
+      relationshipDeltas: {}, // pair key → staged delta, set when entering the step
     }
   },
 
   computed: {
-    ...mapState(['characters', 'party_items', 'parties', 'calendar_notes']),
+    ...mapState([
+      'characters',
+      'party_items',
+      'parties',
+      'calendar_notes',
+      'relationships',
+    ]),
     ...mapGetters(['activeParty', 'activePartyDay']),
+
+    stepTitle() {
+      if (this.step === 'watches') return 'Long Rest — Watch Assignment'
+      if (this.step === 'marching') return 'Marching Order'
+      return 'Relationship Check-in'
+    },
+
+    // Every unique pair of current party members, with their current
+    // relationship strength (0 if no relationship record exists yet).
+    relationshipPairs() {
+      const members = this.members
+      const pairs = []
+      for (let i = 0; i < members.length; i++) {
+        for (let j = i + 1; j < members.length; j++) {
+          const nameA = members[i].name
+          const nameB = members[j].name
+          const existing = this.findRelationship(nameA, nameB)
+          pairs.push({
+            key: `${nameA}|${nameB}`,
+            nameA,
+            nameB,
+            currentScore: existing?.strength ?? 0,
+            existing: existing ?? null,
+          })
+        }
+      }
+      return pairs
+    },
 
     todaysNotes() {
       const currentDay = this.activePartyDay || 1
@@ -379,7 +470,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['LONG_REST', 'SET_PARTIES']),
+    ...mapMutations(['LONG_REST', 'SET_PARTIES', 'UPDATE_TABLE_ITEM']),
 
     signedPerc(char) {
       const val = dnd.skill(char, 'Perception', this.party_items)
@@ -483,7 +574,7 @@ export default {
     skipAndSave() {
       // Persist game_day increment from LONG_REST without changing marching order
       this.SET_PARTIES([...this.parties])
-      this.$emit('close')
+      this.enterRelationshipsStep()
     },
 
     saveMarchingOrder() {
@@ -491,6 +582,97 @@ export default {
         p.active ? { ...p, marching_order: [...this.marchOrder] } : p
       )
       this.SET_PARTIES(updated)
+      this.enterRelationshipsStep()
+    },
+
+    // ── Relationships ──
+
+    findRelationship(nameA, nameB) {
+      const a = nameA.toLowerCase()
+      const b = nameB.toLowerCase()
+      return (this.relationships ?? []).find(
+        (r) => r.people.includes(a) && r.people.includes(b)
+      )
+    },
+
+    signedDelta(n) {
+      return dnd.signed(n)
+    },
+
+    clampStrength(n) {
+      return Math.max(-200, Math.min(200, n))
+    },
+
+    previewScore(pair) {
+      const delta = this.relationshipDeltas[pair.key] ?? 0
+      return this.clampStrength(pair.currentScore + delta)
+    },
+
+    enterRelationshipsStep() {
+      const deltas = {}
+      for (const pair of this.relationshipPairs) {
+        deltas[pair.key] = 1
+      }
+      this.relationshipDeltas = deltas
+      this.step = 'relationships'
+    },
+
+    adjustDelta(key, delta) {
+      this.relationshipDeltas[key] = (this.relationshipDeltas[key] ?? 0) + delta
+    },
+
+    nextRelationshipId() {
+      const maxNum = this.relationships.reduce((max, r) => {
+        const m = /^rel_(\d+)$/.exec(r.id ?? '')
+        return m ? Math.max(max, parseInt(m[1], 10)) : max
+      }, 0)
+      return `rel_${maxNum + 1}`
+    },
+
+    saveRelationships() {
+      for (const pair of this.relationshipPairs) {
+        const delta = this.relationshipDeltas[pair.key] ?? 0
+        if (pair.existing) {
+          if (delta === 0) continue
+          this.UPDATE_TABLE_ITEM({
+            table: 'relationships',
+            updatedItem: {
+              ...pair.existing,
+              strength: this.clampStrength(pair.existing.strength + delta),
+            },
+          })
+        } else {
+          this.UPDATE_TABLE_ITEM({
+            table: 'relationships',
+            updatedItem: {
+              id: this.nextRelationshipId(),
+              people: [pair.nameA.toLowerCase(), pair.nameB.toLowerCase()],
+              type: null,
+              notes: '',
+              strength: this.clampStrength(delta),
+            },
+          })
+        }
+      }
+      this.$emit('close')
+    },
+
+    skipRelationships() {
+      // "No changes" means no score adjustment — but every party pair should
+      // still end up with at least a bare relationship record.
+      for (const pair of this.relationshipPairs) {
+        if (pair.existing) continue
+        this.UPDATE_TABLE_ITEM({
+          table: 'relationships',
+          updatedItem: {
+            id: this.nextRelationshipId(),
+            people: [pair.nameA.toLowerCase(), pair.nameB.toLowerCase()],
+            type: null,
+            notes: '',
+            strength: 0,
+          },
+        })
+      }
       this.$emit('close')
     },
   },
@@ -1002,5 +1184,96 @@ export default {
 .arrow-btn:disabled {
   opacity: 0.25;
   cursor: not-allowed;
+}
+
+/* ── Relationships ── */
+.rel-step-intro {
+  font-size: 0.78rem;
+  color: var(--color-text-low);
+  padding: 0.6rem 1.1rem 0;
+  flex-shrink: 0;
+}
+.rel-step-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 1.1rem;
+}
+.rel-step-empty {
+  color: var(--color-text-low);
+  font-size: 0.82rem;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+.rel-pair-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rel-pair-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+}
+.rel-pair-names {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-display, serif);
+}
+.rel-pair-current {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: right;
+}
+.rel-pair-delta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+.rel-delta-val {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  font-family: var(--font-display, serif);
+  width: 2.2rem;
+  text-align: center;
+}
+.rel-delta-btn {
+  min-width: 1.6rem;
+  height: 1.4rem;
+  padding: 0 0.3rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-low);
+  font-size: 0.72rem;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.1s, border-color 0.1s;
+}
+.rel-delta-btn--sm {
+  font-size: 0.62rem;
+  color: var(--color-text-low);
+}
+.rel-delta-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.rel-pair-preview {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  flex-shrink: 0;
+  width: 2.2rem;
 }
 </style>

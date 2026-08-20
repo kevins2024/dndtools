@@ -83,8 +83,8 @@
           </button>
           <button
             class="bar-btn"
-            @click="rollTravel"
-            title="Roll Survival for the party's best tracker"
+            @click="travelEventOpen = true"
+            title="Roll a travel event for the party's best tracker"
           >
             Travel Roll
           </button>
@@ -120,6 +120,9 @@
       @rested="onRested"
     />
 
+    <!-- Travel event modal -->
+    <TravelEventModal v-if="travelEventOpen" @close="travelEventOpen = false" />
+
     <!-- Save Dialog -->
     <SaveDialog
       :open="saveDialogOpen"
@@ -148,20 +151,6 @@
       <div class="rest-toast-day">Day {{ restDayNumber }}</div>
       <div class="rest-toast-date">{{ restDateLabel }}</div>
     </div>
-
-    <!-- Travel roll toast -->
-    <div
-      v-if="travelToast"
-      class="travel-toast"
-      @animationend="travelToast = false"
-    >
-      <div class="rest-toast-label">Travel Roll — Survival</div>
-      <div class="rest-toast-day">{{ travelRollResult.total }}</div>
-      <div class="rest-toast-date">
-        {{ travelRollResult.name }} · d20 ({{ travelRollResult.roll }})
-        {{ travelRollResult.modLabel }}
-      </div>
-    </div>
   </div>
 </template>
 
@@ -182,6 +171,7 @@ import PartyContext from './components/PartyContext.vue'
 import PartyEditModal from './components/PartyEditModal.vue'
 import LongRestModal from './components/LongRestModal.vue'
 import ShortRestModal from './components/ShortRestModal.vue'
+import TravelEventModal from './components/TravelEventModal.vue'
 import CommandPalette from './components/CommandPalette.vue'
 
 export default {
@@ -201,6 +191,7 @@ export default {
     PartyEditModal,
     LongRestModal,
     ShortRestModal,
+    TravelEventModal,
     CommandPalette,
   },
 
@@ -300,8 +291,7 @@ export default {
       saveDialogOpen: false,
       saveFlash: false,
       restToast: false,
-      travelToast: false,
-      travelRollResult: null,
+      travelEventOpen: false,
       partyEditOpen: false,
       shortRestOpen: false,
       longRestOpen: false,
@@ -338,32 +328,6 @@ export default {
       setTimeout(() => {
         this.saveFlash = false
       }, 600)
-    },
-    rollTravel() {
-      // RAW: the character at the front of the marching order makes travel
-      // (Survival) checks for the group, not whoever has the highest score.
-      const memberNames = this.activeParty?.members ?? []
-      const order = this.activeParty?.marching_order ?? []
-      const leadName =
-        order.find((name) => memberNames.includes(name)) ?? memberNames[0]
-      const leader = this.allCharacters.find((c) => c.name === leadName)
-      if (!leader) return
-
-      const partyItems = this.$store.state.party_items ?? []
-      const mod = this.$dnd.skill(leader, 'Survival', partyItems)
-      const roll = Math.floor(Math.random() * 20) + 1
-      this.travelRollResult = {
-        name: leader.name,
-        mod,
-        roll,
-        total: roll + mod,
-        modLabel: mod >= 0 ? `+${mod}` : `${mod}`,
-      }
-
-      this.travelToast = false
-      this.$nextTick(() => {
-        this.travelToast = true
-      })
     },
     onRested() {
       this.restToast = false
@@ -732,41 +696,5 @@ export default {
   font-weight: 600;
   color: var(--color-accent);
   letter-spacing: 0.03em;
-}
-
-/* ── Travel roll toast ── */
-@keyframes travel-toast-anim {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -12px);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  85% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -8px);
-  }
-}
-
-.travel-toast {
-  position: fixed;
-  top: 4.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 200;
-  pointer-events: none;
-  text-align: center;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-accent);
-  border-radius: 10px;
-  padding: 0.7rem 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-  animation: travel-toast-anim 5s ease forwards;
 }
 </style>

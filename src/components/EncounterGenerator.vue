@@ -596,7 +596,6 @@ import {
   ROLE_PROFILES,
   ROLE_KEYS,
   planEncounter,
-  generateEncounter,
   regenerateEnemy,
   getBestiaryPool,
   estimatePartyHP,
@@ -658,6 +657,10 @@ export default {
       showOverride: null,
       // wizard preview state
       previewEnemy: null,
+      // Enemy actually shown for each wizard step (index → enemy object),
+      // so the finalized encounter uses what the user saw/rerolled instead
+      // of re-rolling from scratch.
+      wizardPreviewEnemies: {},
       monsterSearch: '',
       // ability visibility — false by default (hidden); true when DM reveals
       revealedAbilities: {},
@@ -737,11 +740,12 @@ export default {
       return this.wizardSlots[this.wizardStep] ?? {}
     },
 
-    // Pool of bestiary types available for the wizard's source selector
+    // Pool of bestiary types available for the wizard's source selector.
+    // Not restricted to the encounter type's theme pool — picking a source
+    // chip is a deliberate manual choice, so every type should be available,
+    // the same as the post-generation override (see overridePool).
     wizardPoolTypes() {
-      const cfg = ENC_CONFIG[this.wizardType]
-      if (!cfg) return this.allBestiaryTypes
-      return cfg.pool.filter((p) => p !== 'humanoid')
+      return this.allBestiaryTypes
     },
 
     wizardBestiaryPool() {
@@ -763,13 +767,12 @@ export default {
       return pool.filter((m) => m.name.toLowerCase().includes(q)).slice(0, 60)
     },
 
-    // Pool for per-enemy override selector in the encounter card
+    // Pool for per-enemy override selector in the encounter card.
+    // Deliberately NOT restricted to the encounter type's theme pool — the
+    // override is a manual escape hatch, so every bestiary type should be
+    // selectable regardless of what the auto-generator would normally pick.
     overridePool() {
-      const cfg = this.encounter ? ENC_CONFIG[this.encounter.type] : null
-      if (!cfg) return this.allBestiaryTypes
-      return cfg.pool.filter((p) => p !== 'humanoid').length
-        ? cfg.pool.filter((p) => p !== 'humanoid')
-        : this.allBestiaryTypes
+      return this.allBestiaryTypes
     },
   },
 
@@ -823,6 +826,7 @@ export default {
       const slot = this.currentSlot
       if (!slot || !slot.source) {
         this.previewEnemy = null
+        this.$set(this.wizardPreviewEnemies, this.wizardStep, null)
         return
       }
       const { level } = this.effectiveParty
@@ -842,6 +846,9 @@ export default {
         difficulty: this.wizardDifficulty || this.difficulty,
         partyProfile: this.partyProfile,
       })
+      // Remember exactly what was shown for this step (including rerolls)
+      // so finishWizard() finalizes this enemy instead of re-rolling it.
+      this.$set(this.wizardPreviewEnemies, this.wizardStep, this.previewEnemy)
     },
 
     rerollPreview() {
@@ -894,6 +901,7 @@ export default {
       this.wizardType = resolvedType
       this.monsterSearch = ''
       this.previewEnemy = null
+      this.wizardPreviewEnemies = {}
       this.showWizard = true
       this.$nextTick(() => this.generatePreview())
     },
@@ -902,18 +910,44 @@ export default {
       this.showWizard = false
       this.revealedAbilities = {}
       this.exportOutput = ''
-      const { size, level, minHP, maxHP } = this.effectiveParty
-      const encounter = generateEncounter({
-        resolvedDifficulty: this.wizardDifficulty,
-        resolvedType: this.wizardType,
+      const { size, level } = this.effectiveParty
+      const { hpMin, hpMax } = this._hpRange()
+      const typeConfig = ENC_CONFIG[this.wizardType] ?? null
+
+      // Use whatever was actually previewed (and possibly rerolled) for each
+      // step — only slots that were never previewed (e.g. skipped by
+      // "randomize remaining") get a fresh roll here.
+      const enemies = this.wizardSlots.map((slot, i) => {
+        const previewed = this.wizardPreviewEnemies[i]
+        if (previewed) return previewed
+        return regenerateEnemy({
+          source: slot.source ?? 'humanoid',
+          partyLevel: level,
+          hpMin,
+          hpMax,
+          isBoss: slot.isBoss,
+          typeConfig,
+          specificMonster: slot.specificMonster ?? null,
+          role: slot.role,
+          race: slot.race,
+          gender: slot.gender,
+          difficulty: this.wizardDifficulty,
+          partyProfile: this.partyProfile,
+        })
+      })
+
+      const encounter = {
+        id: `encounter_${Date.now()}`,
+        generatedAt: Date.now(),
+        difficulty: this.wizardDifficulty,
+        type: this.wizardType,
+        typeConfig: typeConfig?.notes ?? '',
         partySize: size,
         partyLevel: level,
-        minPartyHP: minHP,
-        maxPartyHP: maxHP,
-        slots: this.wizardSlots,
-        partyProfile: this.partyProfile,
-      })
+        enemies,
+      }
       this.$store.commit('SET_ENCOUNTER', encounter)
+      this.wizardPreviewEnemies = {}
     },
 
     wizardNext() {
@@ -942,6 +976,9 @@ export default {
           race: null,
           gender: null,
         })
+        // Drop any stale preview from a prior visit to this step so
+        // finishWizard() actually rerolls it instead of reusing the old one.
+        this.$delete(this.wizardPreviewEnemies, i)
       }
       this.finishWizard()
     },

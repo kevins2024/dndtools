@@ -72,6 +72,8 @@ export default new Vuex.Store({
     ),
     combatNavRequest: false,
     pendingCombatEnemies: null,
+    openEncounterGeneratorRequest: false,
+    encounterSeed: null,
   },
 
   mutations: {
@@ -281,6 +283,14 @@ export default new Vuex.Store({
     CLEAR_PENDING_COMBAT_ENEMIES(state) {
       state.pendingCombatEnemies = null
     },
+    REQUEST_OPEN_ENCOUNTER_GENERATOR(state, seed = null) {
+      state.encounterSeed = seed
+      state.openEncounterGeneratorRequest = true
+    },
+    CLEAR_OPEN_ENCOUNTER_GENERATOR(state) {
+      state.openEncounterGeneratorRequest = false
+      state.encounterSeed = null
+    },
     LOAD_CALENDAR_NOTES(state, notes) {
       state.calendar_notes = notes ?? []
     },
@@ -360,10 +370,10 @@ export default new Vuex.Store({
               : r
           )
         }
-        // Hit dice: recover up to half max (rounded up), capped at level
+        // Hit dice: recover half max, rounded down, minimum 1 (PHB "Resting")
         const hdMax = char.level ?? 1
         const hdCurrent = char.hit_dice_current ?? hdMax
-        const hdRecover = Math.ceil(hdMax / 2)
+        const hdRecover = Math.max(1, Math.floor(hdMax / 2))
         updated.hit_dice_current = Math.min(hdMax, hdCurrent + hdRecover)
         // Exhaustion: reduce by 1 level on successful long rest
         if (char.exhaustion_level > 0) {

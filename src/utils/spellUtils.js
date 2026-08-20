@@ -80,9 +80,12 @@ export function getCharacterSpells(character, partyItems = []) {
     result.push(spell)
   }
 
-  // 1. Main class spell list
+  // 1. Main class spell list. Default _source to 'class', but respect a
+  // source/featureGranted already set directly on the spell entry (e.g. a
+  // feat-granted free-cast spell recorded inline rather than via a
+  // feature's spells_granted array).
   for (const s of character.spells ?? []) {
-    add({ ...s, _source: 'class' })
+    add({ _source: 'class', ...s })
   }
 
   // 2. Artillerist subclass spells (always prepared, don't count against limit)

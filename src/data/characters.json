@@ -19,20 +19,14 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -136,20 +130,14 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -242,10 +230,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -254,11 +239,7 @@
       "Deception",
       "Investigation"
     ],
-    "languages": [
-      "Common",
-      "Thieves Cant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Thieves Cant", "Dwarvish"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -291,10 +272,7 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Invisibility",
-          "Inflict Wounds"
-        ]
+        "spells_granted": ["Invisibility", "Inflict Wounds"]
       }
     ],
     "spells": [],
@@ -350,10 +328,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int"
-    ],
+    "saving_throws": ["con", "int"],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -361,11 +336,7 @@
       "Perception"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish"],
     "features": [
       {
         "name": "Magical Tinkering",
@@ -460,10 +431,7 @@
         "type": "feat",
         "recharge": "long_rest",
         "description": "Learn Misty Step and Command. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Misty Step",
-          "Command"
-        ]
+        "spells_granted": ["Misty Step", "Command"]
       },
       {
         "name": "Gnome Cunning",
@@ -584,21 +552,9 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1129,10 +1085,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -1140,11 +1093,7 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1660,21 +1609,9 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Medicine",
-      "Insight",
-      "Religion",
-      "History"
-    ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Solvalean"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
+    "languages": ["Common", "Celestial", "Solvalean"],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1929,10 +1866,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1941,10 +1875,7 @@
       "Deception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -2002,12 +1933,7 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "SleightOfHand",
-      "Insight",
-      "Perception"
-    ],
+    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
     "classes": [
       {
         "name": "Rogue",
@@ -2035,10 +1961,7 @@
     "hp_max": 63,
     "hp_current": 63,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -2047,14 +1970,10 @@
       "Persuasion",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orcish",
-      "Deep Speech"
-    ],
+    "languages": ["Common", "Orcish", "Deep Speech"],
     "features": [
       {
-        "name": "Fighting Style — Duelling",
+        "name": "Fighting Style: Dueling",
         "type": "feature",
         "stat_bonuses": {
           "melee_damage": 2
@@ -2247,20 +2166,9 @@
     "hp_max": 61,
     "hp_current": 61,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Survival",
-      "Acrobatics",
-      "Nature"
-    ],
-    "languages": [
-      "Common",
-      "Goblin"
-    ],
+    "saving_throws": ["str", "con"],
+    "skill_proficiencies": ["Athletics", "Survival", "Acrobatics", "Nature"],
+    "languages": ["Common", "Goblin"],
     "features": [
       {
         "name": "Extra Attack",
@@ -2294,7 +2202,7 @@
         "type": "feature"
       },
       {
-        "name": "Archery Fighting Style",
+        "name": "Fighting Style: Archery",
         "type": "feature",
         "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
         "stat_bonuses": {
@@ -2371,10 +2279,7 @@
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -2387,11 +2292,7 @@
       "Nature",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -2578,10 +2479,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Perception",
-      "Persuasion"
-    ],
+    "skill_expertise": ["Perception", "Persuasion"],
     "classes": [
       {
         "name": "Bard",
@@ -2609,21 +2507,9 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -3130,20 +3016,14 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Extra Attack",
@@ -3226,12 +3106,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": [
-      "str",
-      "con",
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["str", "con", "wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -3240,12 +3115,7 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Celestial",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -3423,10 +3293,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3434,18 +3301,14 @@
       "Religion",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Elvish", "Sylvan"],
     "features": [
       {
         "name": "Divine Sense",
         "type": "feature"
       },
       {
-        "name": "Protection Fighting Style",
+        "name": "Fighting Style: Protection",
         "type": "feature",
         "action_type": "reaction"
       },
@@ -3634,22 +3497,9 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Nature",
-      "Perception",
-      "Survival",
-      "Medicine"
-    ],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -3914,10 +3764,7 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3926,11 +3773,7 @@
       "Perception",
       "Performance"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
@@ -4203,10 +4046,7 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
+    "saving_throws": ["dex", "str"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -4216,11 +4056,7 @@
       "Survival",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Infernal",
-      "Abyssal"
-    ],
+    "languages": ["Common", "Infernal", "Abyssal"],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -4323,10 +4159,7 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "skill_expertise": ["Stealth", "Performance"],
     "classes": [
       {
         "name": "Ranger",
@@ -4363,10 +4196,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -4376,11 +4206,7 @@
       "Medicine",
       "Acrobatics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Solvalean"
-    ],
+    "languages": ["Common", "Elvish", "Solvalean"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -4586,10 +4412,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Performance",
-      "Insight"
-    ],
+    "skill_expertise": ["Performance", "Insight"],
     "classes": [
       {
         "name": "Bard",
@@ -4616,20 +4439,9 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Persuasion",
-      "Insight",
-      "Religion"
-    ],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
+    "languages": ["Common", "Gnomish"],
     "features": [
       {
         "name": "Divine Sense",
@@ -4803,10 +4615,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4816,14 +4625,10 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
-        "name": "Two-Weapon Fighting Style",
+        "name": "Fighting Style: Two-Weapon Fighting",
         "type": "feature"
       },
       {
@@ -4845,14 +4650,38 @@
       {
         "name": "Manifest Echo",
         "type": "feature",
-        "action_type": "bonus_action"
+        "action_type": "bonus_action",
+        "description": "Create the echo (or dismiss/re-place an existing one) within 15ft. Echo stats: AC 14 + proficiency bonus, 1 HP, immune to all conditions, uses your saving throws, same size as you. Destroyed if it ends your turn more than 30ft from you. See Echo: Reposition, Echo: Swap Places, Echo: Attack From, and Echo: Opportunity Attack for what you can do with it once it exists."
+      },
+      {
+        "name": "Echo: Reposition",
+        "type": "feature",
+        "description": "No action required — mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
+      },
+      {
+        "name": "Echo: Swap Places",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "description": "Teleport-swap positions with your echo, regardless of the distance between you. Costs 15ft of your movement for that turn, in addition to the bonus action."
+      },
+      {
+        "name": "Echo: Attack From",
+        "type": "feature",
+        "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack — Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
+      },
+      {
+        "name": "Echo: Opportunity Attack",
+        "type": "feature",
+        "action_type": "reaction",
+        "description": "When a creature you can see within 5ft of your echo moves at least 5ft away from it, make an opportunity attack against that creature as if you were standing in the echo's space."
       },
       {
         "name": "Unleash Incarnation",
         "type": "feature",
         "recharge": "long_rest",
         "uses_max": 3,
-        "uses_current": 3
+        "uses_current": 3,
+        "description": "Table ruling: unlike Echo: Attack From, this genuinely treats Eldi as positioned at the echo for that one attack, full stop — not just range/targeting."
       },
       {
         "name": "Extra Attack",
@@ -4915,10 +4744,7 @@
     "id": "characters_20",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": [
-      "Stealth",
-      "Acrobatics"
-    ],
+    "skill_expertise": ["Stealth", "Acrobatics"],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 8,
@@ -4954,10 +4780,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
+    "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4967,11 +4790,7 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Divine Magic",
@@ -5031,7 +4850,7 @@
         "name": "Sorcery Points",
         "label": "SP",
         "max": 8,
-        "current": 8
+        "current": 0
       }
     ],
     "spells": [
@@ -5054,7 +4873,13 @@
         "type": "cantrip"
       },
       {
-        "name": "Fire Bolt",
+        "name": "Resistance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Mind Sliver",
         "level": 0,
         "prepared": true,
         "type": "cantrip"
@@ -5085,8 +4910,8 @@
         "_source": "Fey Touched"
       },
       {
-        "name": "Aid",
-        "level": 2,
+        "name": "Guiding Bolt",
+        "level": 1,
         "prepared": true,
         "type": "prepared"
       },
@@ -5094,7 +4919,8 @@
         "name": "Misty Step",
         "level": 2,
         "prepared": true,
-        "type": "prepared"
+        "featureGranted": true,
+        "_source": "Fey Touched"
       },
       {
         "name": "Counterspell",
@@ -5125,6 +4951,12 @@
         "level": 4,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Polymorph",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
       }
     ],
     "spell_slots": {
@@ -5134,15 +4966,15 @@
       },
       "level_2": {
         "max": 3,
-        "current": 3
+        "current": 1
       },
       "level_3": {
         "max": 3,
-        "current": 3
+        "current": 2
       },
       "level_4": {
         "max": 2,
-        "current": 2
+        "current": 0
       }
     },
     "active_effects": [],
@@ -5190,22 +5022,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Religion"
-    ],
+    "saving_throws": ["con", "cha"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Arcanis"
-    ],
+    "languages": ["Common", "Celestial", "Arcanis"],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -5255,7 +5075,7 @@
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
-        "description": "Three times per long rest (once per phase), you may cast that phase's L1 grid spell without expending a spell slot: Shield (Leno), Ray of Sickness (Twill), Color Spray (Satin). Each use is phase-specific."
+        "description": "Once per long rest, cast your CURRENT phase's L1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) — up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three."
       },
       {
         "name": "Font of Magic",
@@ -5276,12 +5096,12 @@
         "name": "Mother's Whim",
         "type": "feature",
         "action_type": "bonus_action",
-        "description": "Spend 1 Sorcery Point to instantly shift your active Weave Phase (Leno, Twill, or Satin). The active phase grants a 1 SP discount on Metamagic for spells of that phase's school pair, usable up to 4 times per long rest (proficiency bonus). Subclass level 6 feature."
+        "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest — this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
       },
       {
         "name": "Leno Phase (Abjuration / Divination)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells. All five grid spells are always prepared regardless of active phase.",
+        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Shield",
           "Lesser Restoration",
@@ -5293,7 +5113,7 @@
       {
         "name": "Twill Phase (Enchantment / Necromancy)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells. All five grid spells are always prepared regardless of active phase.",
+        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Silvery Barbs",
           "Blindness/Deafness",
@@ -5305,13 +5125,13 @@
       {
         "name": "Satin Phase (Illusion / Transmutation)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells. All five grid spells are always prepared regardless of active phase.",
+        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Color Spray",
           "Alter Self",
           "Phantom Steed",
           "Fabricate",
-          "Far Step"
+          "Telekinesis"
         ]
       }
     ],
@@ -5427,7 +5247,7 @@
         "type": "prepared"
       },
       {
-        "name": "Telekinesis",
+        "name": "Far Step",
         "level": 5,
         "prepared": true,
         "type": "prepared"
@@ -5524,10 +5344,7 @@
     "hit_die": "d8",
     "hit_dice_current": 1,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -5536,14 +5353,8 @@
       "History",
       "Persuasion"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "skill_expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
     "features": [
       {
         "name": "Soulknife — Psychic Blades",

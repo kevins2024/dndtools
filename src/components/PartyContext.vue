@@ -23,6 +23,26 @@
 
       <!-- Party tab -->
       <template v-else>
+        <!-- Characters not currently in any party -->
+        <div v-if="unassignedCharacters.length" class="unassigned-section">
+          <div class="unassigned-heading">
+            <span class="unassigned-title">Not in a Party</span>
+            <span class="member-count">{{ unassignedCharacters.length }}</span>
+          </div>
+          <div class="unassigned-list">
+            <div
+              v-for="char in unassignedCharacters"
+              :key="char.name"
+              class="unassigned-chip"
+              :title="`View ${char.name}`"
+              @click="goTo(char.name)"
+            >
+              <img :src="char.image" class="unassigned-face" />
+              <span class="unassigned-name">{{ char.name }}</span>
+            </div>
+          </div>
+        </div>
+
         <!-- Inactive party strips (same height as nav bar, with margin) -->
         <div v-if="inactiveParties.length" class="strip-list">
           <div
@@ -216,6 +236,12 @@ export default {
         .map((name) => this.characters.find((c) => c.name === name))
         .filter(Boolean)
     },
+
+    // Characters not listed as a member of any party, active or otherwise
+    unassignedCharacters() {
+      const assigned = new Set(this.parties.flatMap((p) => p.members))
+      return this.characters.filter((c) => !assigned.has(c.name))
+    },
   },
 
   methods: {
@@ -386,6 +412,63 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+/* ── Unassigned characters ─────────────────── */
+.unassigned-section {
+  flex-shrink: 0;
+  padding: 1vh 1vw 0.4vh;
+}
+
+.unassigned-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4vh;
+}
+
+.unassigned-title {
+  font-family: var(--font-display, serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.unassigned-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.unassigned-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.6rem 0.15rem 0.15rem;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+}
+.unassigned-chip:hover {
+  border-color: var(--color-accent);
+  background: var(--color-bg-surface);
+}
+
+.unassigned-face {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  flex-shrink: 0;
+}
+
+.unassigned-name {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
 }
 
 /* ── Inactive party strips ────────────────── */
