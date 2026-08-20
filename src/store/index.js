@@ -565,8 +565,21 @@ export default new Vuex.Store({
       }
     },
 
-    async save({ state }, table) {
-      await dataService.save(table, state[table])
+    // Saves one table via a 3-way merge against whatever's currently on
+    // disk (see dataService.save / server.js). The server may return a
+    // merged result that differs from what we sent — e.g. a row a direct
+    // file edit added that this tab never loaded — so we resync local
+    // state to that merged truth rather than assuming our copy was final.
+    async save({ state, commit }, table) {
+      const result = await dataService.save(
+        table,
+        state[table],
+        state.originals[table]
+      )
+      if (result && result.data !== undefined) {
+        commit('SET_TABLE', { table, data: result.data })
+      }
+      return result
     },
 
     async saveAll({ dispatch, commit, state }) {
@@ -581,10 +594,18 @@ export default new Vuex.Store({
             'homebrew',
             'finances',
           ]
+      const conflicts = []
       for (const table of tables) {
-        await dispatch('save', table)
+        const result = await dispatch('save', table)
+        if (result?.conflicts?.length) {
+          conflicts.push(
+            ...result.conflicts.map((path) => `${table}${path.slice(1)}`)
+          )
+        }
       }
-      // Update originals to current state and clear dirty tracking
+      // Update originals to the merged (post-save) state and clear dirty
+      // tracking — state[table] now reflects the merged truth on disk,
+      // written by each 'save' dispatch above.
       const newOriginals = {}
       tables.forEach((table) => {
         newOriginals[table] = JSON.parse(JSON.stringify(state[table]))
@@ -594,6 +615,7 @@ export default new Vuex.Store({
         ...newOriginals,
       })
       commit('CLEAR_DIRTY_TABLES')
+      return { conflicts }
     },
   },
 

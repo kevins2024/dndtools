@@ -3006,7 +3006,7 @@
     "weapon_category": "hand crossbow",
     "rarity": "uncommon/rare",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Rith",
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
@@ -3019,7 +3019,7 @@
     "battle_effect": true,
     "effect": "+2 to attack and damage rolls. Marked Shot: once per short rest, when firing a bolt, choose one rider effect: (a) target must succeed on a Constitution save or have speed halved until the end of its next turn, or (b) wielder gains advantage on their next attack roll against that target within 1 minute.",
     "stored_at": null,
-    "party_id": "party_1782820688153"
+    "party_id": null
   },
   {
     "name": "Signet Ring",

@@ -55,9 +55,9 @@ export default {
   methods: {
     async confirmSave() {
       try {
-        await this.$store.dispatch('saveAll')
+        const result = await this.$store.dispatch('saveAll')
         this.$emit('close')
-        this.$emit('saved')
+        this.$emit('saved', result?.conflicts)
       } catch (error) {
         alert('Error saving changes: ' + error.message)
       }

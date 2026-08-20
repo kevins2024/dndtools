@@ -145,6 +145,19 @@
       <div v-if="saveFlash" class="save-flash">✓ Saved</div>
     </transition>
 
+    <!-- Merge conflict notice: a stale tab and a direct file edit disagreed
+         on the same field(s); disk won. Rare — most merges are silent. -->
+    <transition name="save-flash">
+      <div
+        v-if="mergeConflicts.length"
+        class="merge-notice"
+        :title="mergeConflicts.join('\n')"
+      >
+        ⚠ Kept disk's version for {{ mergeConflicts.length }} conflicting
+        change{{ mergeConflicts.length === 1 ? '' : 's' }} — check console
+      </div>
+    </transition>
+
     <!-- Long rest date toast -->
     <div v-if="restToast" class="rest-toast" @animationend="restToast = false">
       <div class="rest-toast-label">Long Rest Complete</div>
@@ -290,6 +303,7 @@ export default {
       activeContext: 'party',
       saveDialogOpen: false,
       saveFlash: false,
+      mergeConflicts: [],
       restToast: false,
       travelEventOpen: false,
       partyEditOpen: false,
@@ -323,11 +337,19 @@ export default {
     setCurrency(key, value) {
       this.$store.commit('SET_CURRENCY', { key, value })
     },
-    onSaved() {
+    onSaved(conflicts) {
       this.saveFlash = true
       setTimeout(() => {
         this.saveFlash = false
       }, 600)
+      if (conflicts?.length) {
+        console.warn('Save conflicts resolved in favor of disk:', conflicts)
+        this.mergeConflicts = conflicts
+        clearTimeout(this._mergeNoticeTimer)
+        this._mergeNoticeTimer = setTimeout(() => {
+          this.mergeConflicts = []
+        }, 6000)
+      }
     },
     onRested() {
       this.restToast = false
@@ -354,8 +376,8 @@ export default {
       if (!val) return
       clearTimeout(this._autosaveTimer)
       this._autosaveTimer = setTimeout(async () => {
-        await this.$store.dispatch('saveAll')
-        this.onSaved()
+        const result = await this.$store.dispatch('saveAll')
+        this.onSaved(result?.conflicts)
       }, 1500)
     },
   },
@@ -634,6 +656,22 @@ export default {
 .save-flash-enter,
 .save-flash-leave-to {
   opacity: 0;
+}
+
+.merge-notice {
+  position: fixed;
+  bottom: calc(1vh + 44px);
+  right: 5vw;
+  max-width: 320px;
+  padding: 8px 16px;
+  background: #8a5a1f;
+  border: 1px solid #c8963a;
+  border-radius: 8px;
+  color: white;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  z-index: 102;
+  cursor: default;
 }
 
 /* ── Long rest toast ── */

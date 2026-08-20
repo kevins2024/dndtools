@@ -7,9 +7,10 @@ const express = require('express')
 const fs = require('fs')
 const path = require('path')
 const cors = require('cors')
+const { threeWayMerge } = require('./merge-utils')
 
 const app = express()
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 const DATA_DIR = path.resolve(__dirname, './src/data')
 const PREFS_FILE = path.resolve(__dirname, './user_prefs.json')
 
@@ -87,6 +88,14 @@ app.get('/api/:table', (req, res) => {
 })
 
 // ── POST /api/:table ─────────────────────────────────────
+// Body is { current, base }: `current` is the client's in-memory value for
+// this table, `base` is what the client loaded/last synced (the common
+// ancestor). The file on disk is re-read fresh right here and 3-way merged
+// against those two, so a save from a stale browser tab only ever applies
+// the rows/fields that tab actually changed — it can't clobber rows that
+// changed on disk (e.g. a direct edit) since it last loaded. The merged
+// result is written to disk and echoed back so the client can resync its
+// local state to match what was actually persisted.
 app.post('/api/:table', (req, res) => {
   const { table } = req.params
 
@@ -94,27 +103,53 @@ app.post('/api/:table', (req, res) => {
     return res.status(400).json({ error: `Unknown table: ${table}` })
   }
 
-  if (!req.body || (typeof req.body !== 'object' && !Array.isArray(req.body))) {
+  const body = req.body
+  const isMergeShape =
+    body &&
+    typeof body === 'object' &&
+    !Array.isArray(body) &&
+    'current' in body
+
+  if (!body || typeof body !== 'object') {
     return res
       .status(400)
       .json({ error: 'Request body must be a JSON object or array' })
   }
 
+  const current = isMergeShape ? body.current : body
+  const base = isMergeShape ? body.base : undefined
+
+  if (
+    current == null ||
+    (typeof current !== 'object' && !Array.isArray(current))
+  ) {
+    return res
+      .status(400)
+      .json({ error: '"current" must be a JSON object or array' })
+  }
+
   const file = path.join(DATA_DIR, `${table}.json`)
 
-  // Write a timestamped backup before overwriting
-  // if (fs.existsSync(file)) {
-  //   const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-  //   const backupDir = path.join(DATA_DIR, '.backups')
-  //   if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir)
-  //   const backup = path.join(backupDir, `${table}.${timestamp}.json`)
-  //   fs.copyFileSync(file, backup)
-  // }
-
   try {
-    fs.writeFileSync(file, JSON.stringify(req.body, null, 2), 'utf8')
-    console.log(`Saved: ${table}.json`)
-    res.json({ ok: true })
+    const theirs = fs.existsSync(file)
+      ? readJSON(file)
+      : Array.isArray(current)
+      ? []
+      : {}
+
+    const { merged, conflicts } = threeWayMerge(base, current, theirs)
+
+    fs.writeFileSync(file, JSON.stringify(merged, null, 2), 'utf8')
+    console.log(
+      `Saved: ${table}.json${
+        conflicts.length
+          ? ` (${
+              conflicts.length
+            } conflict(s) resolved in favor of disk: ${conflicts.join(', ')})`
+          : ''
+      }`
+    )
+    res.json({ ok: true, data: merged, conflicts })
   } catch (err) {
     console.error(`Error writing ${table}.json:`, err.message)
     res.status(500).json({ error: `Failed to write ${table}.json` })

@@ -53,7 +53,13 @@ const dataService = {
     return staticTables[table]
   },
 
-  async save(table, data) {
+  // `base` is the last-loaded/last-synced snapshot of this table (used as
+  // the common ancestor for a 3-way merge on the server, so this save can't
+  // clobber rows/fields that changed on disk since `base` was captured but
+  // that `current` never touched). The server writes the merged result and
+  // echoes it back — callers should resync their local copy of the table
+  // (and their own `base`) to `data` in the response.
+  async save(table, current, base) {
     if (!isDev) {
       console.warn('dataService.save() is not available in production')
       return
@@ -61,12 +67,13 @@ const dataService = {
     const res = await fetch(`${SERVER_URL}/api/${table}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ current, base }),
     })
     if (!res.ok) {
       const err = await res.json()
       throw new Error(err.error ?? `Server returned ${res.status}`)
     }
+    return res.json()
   },
 
   // ── User preferences ──────────────────────────────────
