@@ -32,6 +32,7 @@ const ALLOWED_TABLES = [
   'networks',
   'assets',
   'relationships',
+  'companions',
 ]
 
 app.use(cors())

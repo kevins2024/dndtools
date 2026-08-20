@@ -21,7 +21,7 @@
         >
           <div class="card-portrait">
             <img
-              v-if="entry.type === 'player'"
+              v-if="entry.type === 'player' || entry.type === 'companion'"
               :src="entry.image"
               class="portrait-img"
             />
@@ -46,6 +46,9 @@
               <span class="card-turn">{{ i + 1 }}</span>
               <span v-if="entry.type === 'player'" class="card-hp">
                 {{ playerHp(entry.name) }}
+              </span>
+              <span v-else-if="entry.type === 'companion'" class="card-hp">
+                {{ companionHp(entry.name) }}
               </span>
               <span v-else class="card-dmg">
                 {{ enemyDmgLabel(entry.key) }}
@@ -223,6 +226,93 @@
 
           <CharacterCombatPanel
             :character="activeChar"
+            @condition-changed="log"
+          />
+        </template>
+
+        <!-- Companion turn -->
+        <template
+          v-else-if="
+            activeEntry && activeEntry.type === 'companion' && activeCompanion
+          "
+        >
+          <div class="panel-header">
+            <span class="panel-name">{{ activeCompanion.name }}</span>
+            <span class="panel-subtitle"
+              >{{ activeCompanion.species }} companion —
+              {{ activeCompanion.owner }}</span
+            >
+            <span class="panel-hp"
+              >{{ companionHp(activeCompanion.name) }} HP</span
+            >
+          </div>
+
+          <div class="section-label">HP</div>
+          <div class="damage-tracker">
+            <div class="damage-summary">
+              <span
+                class="damage-taken"
+                :class="{
+                  'hp-low': companionCurrentHp(activeCompanion.name) <= 0,
+                }"
+                >{{ companionCurrentHp(activeCompanion.name) }}</span
+              >
+              <span class="damage-taken-label"
+                >/ {{ activeCompanion.hp_max }} HP</span
+              >
+            </div>
+            <div class="damage-row">
+              <input
+                v-model.number="companionDmgInput"
+                class="field dmg-field"
+                type="number"
+                placeholder="Damage"
+                min="0"
+                @keyup.enter="applyCompanionDamage"
+              />
+              <button
+                class="add-btn"
+                :disabled="!companionDmgInput"
+                @click="applyCompanionDamage"
+              >
+                Apply
+              </button>
+              <input
+                v-model.number="companionHealInput"
+                class="field dmg-field heal-field"
+                type="number"
+                placeholder="Heal"
+                min="0"
+                @keyup.enter="applyCompanionHeal"
+              />
+              <button
+                class="heal-btn"
+                :disabled="!companionHealInput"
+                @click="applyCompanionHeal"
+              >
+                Heal
+              </button>
+              <input
+                v-model.number="companionTempInput"
+                class="field dmg-field temp-field"
+                type="number"
+                placeholder="Temp HP"
+                min="0"
+                @keyup.enter="applyCompanionTemp"
+              />
+              <button
+                class="temp-btn"
+                :disabled="!companionTempInput"
+                @click="applyCompanionTemp"
+              >
+                Tmp
+              </button>
+            </div>
+          </div>
+
+          <CharacterCombatPanel
+            :character="activeCompanion"
+            table="companions"
             @condition-changed="log"
           />
         </template>
@@ -709,6 +799,11 @@ export default {
       playerDmgInput: null,
       playerHealInput: null,
       playerTempInput: null,
+      companionHpDelta: {},
+      companionTempHp: {},
+      companionDmgInput: null,
+      companionHealInput: null,
+      companionTempInput: null,
       enemyCustomCond: {},
       newCustomCond: '',
       newEnemyName: '',
@@ -734,6 +829,15 @@ export default {
       if (!this.activeEntry || this.activeEntry.type !== 'player') return null
       return (
         this.$store.state.characters.find(
+          (c) => c.name === this.activeEntry.name
+        ) ?? null
+      )
+    },
+    activeCompanion() {
+      if (!this.activeEntry || this.activeEntry.type !== 'companion')
+        return null
+      return (
+        (this.$store.state.companions ?? []).find(
           (c) => c.name === this.activeEntry.name
         ) ?? null
       )
@@ -969,7 +1073,75 @@ export default {
       this.playerTempInput = null
     },
 
-    // â”€â”€ Enemy damage display (sidebar) â”€â”€
+    // ── Companion HP display (mirrors player HP tracking above) ──
+    companionHp(name) {
+      const c = (this.$store.state.companions ?? []).find(
+        (x) => x.name === name
+      )
+      if (!c) return '—'
+      const delta = this.companionHpDelta[name] ?? 0
+      const temp = this.companionTempHp[name] ?? 0
+      const base = `${c.hp_current - delta}/${c.hp_max}`
+      return temp ? `${base} +${temp}tmp` : base
+    },
+    companionCurrentHp(name) {
+      const c = (this.$store.state.companions ?? []).find(
+        (x) => x.name === name
+      )
+      if (!c) return null
+      return c.hp_current - (this.companionHpDelta[name] ?? 0)
+    },
+    applyCompanionDamage() {
+      const amount = Number(this.companionDmgInput)
+      if (!amount || amount <= 0 || !this.activeCompanion) return
+      const name = this.activeCompanion.name
+      const temp = this.companionTempHp[name] ?? 0
+      if (temp > 0) {
+        const absorbed = Math.min(temp, amount)
+        this.$set(this.companionTempHp, name, temp - absorbed)
+        if (amount - absorbed > 0)
+          this.$set(
+            this.companionHpDelta,
+            name,
+            (this.companionHpDelta[name] ?? 0) + amount - absorbed
+          )
+        this.log(`${amount} dmg (${absorbed} absorbed by temp HP)`)
+      } else {
+        this.$set(
+          this.companionHpDelta,
+          name,
+          (this.companionHpDelta[name] ?? 0) + amount
+        )
+        this.log(`${amount} damage`)
+      }
+      this.companionDmgInput = null
+    },
+    applyCompanionHeal() {
+      const amount = Number(this.companionHealInput)
+      if (!amount || amount <= 0 || !this.activeCompanion) return
+      const name = this.activeCompanion.name
+      this.$set(
+        this.companionHpDelta,
+        name,
+        Math.max(0, (this.companionHpDelta[name] ?? 0) - amount)
+      )
+      this.log(`healed ${amount}`)
+      this.companionHealInput = null
+    },
+    applyCompanionTemp() {
+      const amount = Number(this.companionTempInput)
+      if (!amount || amount <= 0 || !this.activeCompanion) return
+      const name = this.activeCompanion.name
+      this.$set(
+        this.companionTempHp,
+        name,
+        Math.max(this.companionTempHp[name] ?? 0, amount)
+      )
+      this.log(`+${amount} temp HP`)
+      this.companionTempInput = null
+    },
+
+    // ── Enemy damage display (sidebar) ──
     enemyDmgLabel(key) {
       const hp = this.enemyHp[key]
       if (!hp) return ''

@@ -4789,19 +4789,19 @@
     "full_name": "Eldi'taevyn Brandeldeen",
     "campaign_start": "Year 468, day 87",
     "race": "Half-Elf",
-    "level": 8,
-    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Moves like she's already decided where she's going. Twin sabers, light on her feet, the kind of person who finds the exit before she needs it.",
-    "proficiency_bonus": 3,
+    "level": 9,
+    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Twin blades (usually). Light skin, a tattoo sleeve on one arm, purple corset style vest, green tricorne hat with a feather, red swashbuckler style boots over blue tight-fitting pants.",
+    "proficiency_bonus": 4,
     "spellcasting_ability": null,
-    "notes": "Next level: Fighter 6 — second ASI, planning DEX 18→20. Long-term build: Fighter heavy.",
+    "notes": "Long-term build note: Fighter heavy.",
     "stat_str": 10,
-    "stat_dex": 17,
+    "stat_dex": 19,
     "stat_con": 16,
     "stat_int": 8,
     "stat_wis": 8,
     "stat_cha": 14,
-    "hp_max": 69,
-    "hp_current": 69,
+    "hp_max": 78,
+    "hp_current": 78,
     "unarmored_ac_formula": "default",
     "saving_throws": [
       "str",
@@ -4831,8 +4831,8 @@
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
-        "uses_max": 2,
-        "uses_current": 2
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Action Surge",
@@ -4945,12 +4945,12 @@
     ],
     "darkvision": 60,
     "hit_die": "d10",
-    "hit_dice_current": 8,
+    "hit_dice_current": 9,
     "classes": [
       {
         "name": "Fighter",
         "subclass": "Echo Knight",
-        "level": 5
+        "level": 6
       },
       {
         "name": "Rogue",
@@ -4964,9 +4964,9 @@
     "full_name": "Rith'taevyn Brandeldeen",
     "campaign_start": "Year 468, day 87",
     "race": "Half-Elf",
-    "level": 8,
+    "level": 9,
     "appearance": "Half-elf man, early twenties. Same bone structure as his sister but quieter in how he holds it. Stands slightly back from whatever is happening, watching. The kind of person a room does not notice until he speaks.",
-    "proficiency_bonus": 3,
+    "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
     "image": "./characters/rith.jpg",
     "stat_str": 8,
@@ -4975,8 +4975,8 @@
     "stat_int": 12,
     "stat_wis": 10,
     "stat_cha": 17,
-    "hp_max": 44,
-    "hp_current": 44,
+    "hp_max": 50,
+    "hp_current": 50,
     "unarmored_ac_formula": "default",
     "saving_throws": [
       "con",
@@ -5038,7 +5038,7 @@
       },
       {
         "name": "War Caster",
-        "type": "feat"
+        "type": "feature"
       },
       {
         "name": "Fey Ancestry",
@@ -5054,7 +5054,7 @@
         "key": "sorcery_points",
         "name": "Sorcery Points",
         "label": "SP",
-        "max": 8,
+        "max": 9,
         "current": 0
       }
     ],
@@ -5090,19 +5090,7 @@
         "type": "cantrip"
       },
       {
-        "name": "Test Spell",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Healing Word",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Shield",
         "level": 1,
         "prepared": true,
         "type": "prepared"
@@ -5132,6 +5120,12 @@
         "prepared": true,
         "featureGranted": true,
         "_source": "Fey Touched"
+      },
+      {
+        "name": "Invisibility",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
       },
       {
         "name": "Counterspell",
@@ -5168,6 +5162,12 @@
         "level": 4,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Greater Restoration",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
       }
     ],
     "spell_slots": {
@@ -5184,7 +5184,11 @@
         "current": 1
       },
       "level_4": {
-        "max": 2,
+        "max": 3,
+        "current": 1
+      },
+      "level_5": {
+        "max": 1,
         "current": 1
       }
     },
@@ -5202,12 +5206,12 @@
     "id": "characters_21",
     "darkvision": 60,
     "hit_die": "d6",
-    "hit_dice_current": 8,
+    "hit_dice_current": 9,
     "classes": [
       {
         "name": "Sorcerer",
         "subclass": "Divine Soul",
-        "level": 8
+        "level": 9
       }
     ]
   },

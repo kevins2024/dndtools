@@ -34,6 +34,26 @@
       </div>
     </div>
 
+    <!-- Companion (compact — only shown if this character owns one) -->
+    <div v-if="companion" class="companion-strip">
+      <img :src="companion.image" class="companion-thumb" />
+      <span class="companion-name">{{ companion.name }}</span>
+      <span class="companion-meta"
+        >AC {{ companion.ac }} · {{ companion.hp_current }}/{{
+          companion.hp_max
+        }}
+        HP</span
+      >
+      <label class="companion-summon">
+        <input
+          type="checkbox"
+          :checked="companion.summoned"
+          @change="toggleCompanionSummoned"
+        />
+        Summoned
+      </label>
+    </div>
+
     <!-- Stats -->
     <div class="sheet-section">
       <div class="section-title">Ability Scores</div>
@@ -193,6 +213,14 @@ export default {
       return this.$store.state.party_items ?? []
     },
 
+    companion() {
+      return (
+        (this.$store.state.companions ?? []).find(
+          (c) => c.owner === this.character.name
+        ) ?? null
+      )
+    },
+
     stats() {
       return dnd.statArray(this.character, this.partyItems)
     },
@@ -247,6 +275,13 @@ export default {
   },
 
   methods: {
+    toggleCompanionSummoned() {
+      if (!this.companion) return
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'companions',
+        updatedItem: { ...this.companion, summoned: !this.companion.summoned },
+      })
+    },
     saveModStr(key) {
       return dnd.signed(dnd.savingThrow(this.character, key, this.partyItems))
     },
@@ -356,6 +391,51 @@ export default {
   color: var(--color-text-low);
   margin-top: 0.4vh;
   line-height: 1.4;
+}
+
+/* ── Companion strip (compact) ── */
+.companion-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  padding: 0.3vh 0.5vw;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg-panel);
+  font-size: var(--font-size-sm);
+}
+
+.companion-thumb {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.companion-name {
+  font-weight: 600;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.companion-meta {
+  color: var(--color-text-low);
+  flex: 1;
+}
+
+.companion-summon {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.companion-summon input {
+  cursor: pointer;
 }
 
 /* ── Sections ── */

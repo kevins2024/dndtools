@@ -47,6 +47,7 @@ export default new Vuex.Store({
     npcs: [],
     locations: [],
     party_items: [],
+    companions: [],
     world: [],
     networks: {
       sending_stone_networks: [],
@@ -524,6 +525,7 @@ export default new Vuex.Store({
         'npcs',
         'locations',
         'party_items',
+        'companions',
         'world',
         'homebrew',
         'finances',

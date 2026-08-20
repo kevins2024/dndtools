@@ -405,6 +405,10 @@ export default {
   props: {
     character: { type: Object, required: true },
     hideSpells: { type: Boolean, default: false },
+    // Which store table `character` actually lives in — lets this panel be
+    // reused for non-character combatants (e.g. companions) without their
+    // condition/spell-slot/exhaustion edits leaking into state.characters.
+    table: { type: String, default: 'characters' },
   },
 
   emits: ['condition-changed'],
@@ -795,7 +799,7 @@ export default {
 
     setWeavePhase(key) {
       this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
+        table: this.table,
         updatedItem: { ...this.character, weave_phase: key },
       })
     },
@@ -824,7 +828,7 @@ export default {
       if (levelKey === 'pact') {
         const pm = this.character.pact_magic
         this.$store.commit('UPDATE_TABLE_ITEM', {
-          table: 'characters',
+          table: this.table,
           updatedItem: {
             ...this.character,
             pact_magic: {
@@ -837,7 +841,7 @@ export default {
       }
       const slot = this.character.spell_slots[levelKey]
       this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
+        table: this.table,
         updatedItem: {
           ...this.character,
           spell_slots: {
@@ -859,7 +863,7 @@ export default {
       const newCurrent = nextSlotValue(res.max, res.current, slotIndex)
       if (res.key === 'ki_points') {
         this.$store.commit('UPDATE_TABLE_ITEM', {
-          table: 'characters',
+          table: this.table,
           updatedItem: {
             ...this.character,
             ki_points: { ...this.character.ki_points, current: newCurrent },
@@ -868,7 +872,7 @@ export default {
         return
       }
       this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
+        table: this.table,
         updatedItem: {
           ...this.character,
           resources: (this.character.resources ?? []).map((r) =>
@@ -881,7 +885,7 @@ export default {
     cycleExhaustion() {
       const next = this.exhaustionLevel >= 6 ? 0 : this.exhaustionLevel + 1
       this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
+        table: this.table,
         updatedItem: { ...this.character, exhaustion_level: next },
       })
       this.$emit(
@@ -893,7 +897,7 @@ export default {
     cyclePoison() {
       const next = this.poisonLevel >= 2 ? 0 : this.poisonLevel + 1
       this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
+        table: this.table,
         updatedItem: { ...this.character, poison_level: next },
       })
       this.$emit(
@@ -909,7 +913,7 @@ export default {
       if (had) current.splice(idx, 1)
       else current.push(cond)
       this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
+        table: this.table,
         updatedItem: { ...this.character, conditions: current },
       })
       this.$emit(

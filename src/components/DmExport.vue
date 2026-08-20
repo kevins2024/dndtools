@@ -140,8 +140,7 @@ export default {
         (item) =>
           names.has(item.carried_by) ||
           names.has(item.equipped_by) ||
-          (item.carried_by === 'party' &&
-            (item.party_id === this.activeParty.id || !item.party_id))
+          (item.carried_by === 'party' && item.party_id === this.activeParty.id)
       )
     },
     topLevelLocations() {

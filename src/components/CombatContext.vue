@@ -46,6 +46,25 @@
             No players on-deck
           </div>
         </div>
+
+        <!-- Companions belonging to whoever's currently on-deck -->
+        <div v-if="availableCompanions.length" class="companion-list">
+          <div class="col-label companion-list-label">Companions</div>
+          <label
+            v-for="c in availableCompanions"
+            :key="c.id"
+            class="companion-toggle-row"
+            :title="`${c.owner}'s companion`"
+          >
+            <input
+              type="checkbox"
+              :checked="c.summoned"
+              @change="toggleCompanionSummoned(c)"
+            />
+            <span class="companion-toggle-name">{{ c.name }}</span>
+            <span class="companion-toggle-owner">({{ c.owner }})</span>
+          </label>
+        </div>
       </aside>
 
       <section class="col enemy-col scrollable">
@@ -252,6 +271,11 @@ export default {
     parties() {
       return this.$store.state.parties
     },
+    availableCompanions() {
+      return (this.$store.state.companions ?? []).filter((c) =>
+        this.playerNames.includes(c.owner)
+      )
+    },
     allEntries() {
       const players = this.playerNames.map((name) => {
         const char = this.characters.find((c) => c.name === name)
@@ -263,6 +287,18 @@ export default {
           image: char?.image ?? '',
         }
       })
+      // Summoned companions whose owner is actually in the fight — unsummon
+      // (or send the owner home) and they drop out of initiative on the
+      // next roll, same as any other roster change.
+      const companions = (this.$store.state.companions ?? [])
+        .filter((c) => c.summoned && this.playerNames.includes(c.owner))
+        .map((c) => ({
+          key: `companion-${c.name}`,
+          type: 'companion',
+          name: c.name,
+          mod: dnd.initiative(c),
+          image: c.image ?? '',
+        }))
       const enemies = this.enemies.map((e) => ({
         key: `enemy-${e.id}`,
         type: 'enemy',
@@ -271,7 +307,7 @@ export default {
         image: '',
         encounterData: e.encounterData ?? null,
       }))
-      return [...players, ...enemies]
+      return [...players, ...companions, ...enemies]
     },
     initiativeOrder() {
       return this.allEntries
@@ -363,6 +399,13 @@ export default {
       } else {
         this.$store.commit('TOGGLE_VEHICLE_COMBAT')
       }
+    },
+
+    toggleCompanionSummoned(companion) {
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'companions',
+        updatedItem: { ...companion, summoned: !companion.summoned },
+      })
     },
 
     loadParty(party) {
@@ -627,6 +670,39 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ── Companion toggles (compact, on-deck sidebar) ── */
+.companion-list {
+  padding: 4px 8px 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+.companion-list-label {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.companion-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.companion-toggle-row input {
+  cursor: pointer;
+}
+
+.companion-toggle-name {
+  color: var(--color-accent);
+}
+
+.companion-toggle-owner {
+  color: var(--color-text-low);
 }
 
 /* Saved Parties */

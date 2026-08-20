@@ -351,8 +351,7 @@ export default {
         (item) =>
           memberNames.has(item.carried_by) ||
           memberNames.has(item.equipped_by) ||
-          (item.carried_by === 'party' &&
-            (item.party_id === this.activeParty.id || !item.party_id))
+          (item.carried_by === 'party' && item.party_id === this.activeParty.id)
       )
       const payload = {
         party: this.activeParty,
