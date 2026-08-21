@@ -17,21 +17,21 @@
           </p>
           <div class="vcw-class-grid">
             <div class="vcw-class-card vcw-class-card--active">
-              <span class="vcw-class-icon">⚓</span>
+              <Anchor class="vcw-class-icon" />
               <span class="vcw-class-name">Ships</span>
             </div>
             <div class="vcw-class-card vcw-class-card--soon">
-              <span class="vcw-class-icon">🐴</span>
+              <i class="ra ra-horseshoe vcw-class-icon"></i>
               <span class="vcw-class-name">Mounts</span>
               <span class="vcw-soon-badge">soon</span>
             </div>
             <div class="vcw-class-card vcw-class-card--soon">
-              <span class="vcw-class-icon">🎈</span>
+              <Wind class="vcw-class-icon" />
               <span class="vcw-class-name">Airships</span>
               <span class="vcw-soon-badge">soon</span>
             </div>
             <div class="vcw-class-card vcw-class-card--soon">
-              <span class="vcw-class-icon">🐉</span>
+              <i class="ra ra-dragon vcw-class-icon"></i>
               <span class="vcw-class-name">Mounts (flying)</span>
               <span class="vcw-soon-badge">soon</span>
             </div>
@@ -462,7 +462,7 @@
           Next →
         </button>
         <button v-else class="vcw-start-btn" @click="startCombat">
-          ⚓ Start Vehicle Combat
+          <Anchor class="vcw-start-btn-icon" /> Start Vehicle Combat
         </button>
       </div>
     </div>
@@ -472,6 +472,7 @@
 <script>
 import { CONFIGS } from '@/utils/shipConfigs.js'
 import { generateSailorNpc } from '@/utils/encounter_utils.js'
+import { Anchor, Wind } from 'lucide-vue'
 
 const SHIP_TYPES = ['Rowboat', 'Keelboat', 'Sailing Ship', 'Warship', 'Galley']
 
@@ -490,6 +491,8 @@ let vcwSeq = 1
 
 export default {
   name: 'VehicleCombatWizard',
+
+  components: { Anchor, Wind },
 
   data() {
     return {
@@ -1009,6 +1012,8 @@ export default {
 .vcw-class-icon {
   font-size: 2rem;
   line-height: 1;
+  width: 2rem;
+  height: 2rem;
 }
 .vcw-class-name {
   font-family: var(--font-display, serif);
@@ -1718,6 +1723,13 @@ export default {
   cursor: pointer;
   transition: all 0.1s;
   letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.vcw-start-btn-icon {
+  width: 1rem;
+  height: 1rem;
 }
 .vcw-start-btn:hover {
   background: var(--color-accent-strong);

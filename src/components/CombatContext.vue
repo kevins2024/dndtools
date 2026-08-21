@@ -123,7 +123,7 @@
           :class="{ active: hasVehicleSession }"
           @click="onVehicleBtn"
         >
-          {{ vehicleBtnLabel }}
+          <Anchor class="vehicles-btn-icon" /> {{ vehicleBtnLabel }}
         </button>
         <button
           class="roll-btn"
@@ -160,7 +160,7 @@
             :class="{ active: hasVehicleSession }"
             @click="onVehicleBtn"
           >
-            {{ vehicleBtnLabel }}
+            <Anchor class="vehicles-btn-icon" /> {{ vehicleBtnLabel }}
           </button>
           <button class="map-btn" @click="showBattleMap = true">
             Battle Map
@@ -212,6 +212,7 @@ import VehicleCombatPanel from './VehicleCombatPanel.vue'
 import ShipCombat from './ShipCombat.vue'
 import { dnd } from '@/utils/dnd_utils.js'
 import { generateEncounter, analyzeParty } from '@/utils/encounter_utils.js'
+import { Anchor } from 'lucide-vue'
 
 export default {
   name: 'CombatContext',
@@ -223,6 +224,7 @@ export default {
     VehicleCombatWizard,
     VehicleCombatPanel,
     ShipCombat,
+    Anchor,
   },
 
   data() {
@@ -253,8 +255,8 @@ export default {
       return !!this.$store.state.vehicleCombatSession
     },
     vehicleBtnLabel() {
-      if (!this.hasVehicleSession) return '⚓ Vehicle Combat'
-      return this.showVehicleCombat ? '⚓ Ships ▾' : '⚓ Ships ▸'
+      if (!this.hasVehicleSession) return 'Vehicle Combat'
+      return this.showVehicleCombat ? 'Ships ▾' : 'Ships ▸'
     },
     characters() {
       return this.$store.state.characters
@@ -1021,6 +1023,13 @@ export default {
   letter-spacing: 0.04em;
   cursor: pointer;
   transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.vehicles-btn-icon {
+  width: 0.9rem;
+  height: 0.9rem;
 }
 .vehicles-btn:hover {
   border-color: var(--color-info);

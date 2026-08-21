@@ -74,12 +74,11 @@
             <span class="item-name">{{ item.name }}</span>
             <span class="item-slot">{{ item.slot || item.type }}</span>
             <span class="item-tag">{{ item.type }}</span>
-            <span
+            <Zap
               v-if="item.needs_attunement"
               class="attunement-indicator"
               title="Requires attunement"
-              >⚡</span
-            >
+            />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
                 class="charge-btn"
@@ -109,7 +108,7 @@
                 @click.stop="inspectItem(item)"
                 title="View item details"
               >
-                🔍
+                <Search class="act-icon" />
               </button>
               <button
                 class="act-btn"
@@ -142,12 +141,11 @@
               {{ item.name }}
             </span>
             <span class="item-tag">{{ item.type }}</span>
-            <span
+            <Zap
               v-if="item.needs_attunement"
               class="attunement-indicator"
               title="Requires attunement"
-              >⚡</span
-            >
+            />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
                 class="charge-btn"
@@ -177,7 +175,7 @@
                 @click.stop="inspectItem(item)"
                 title="View item details"
               >
-                🔍
+                <Search class="act-icon" />
               </button>
               <button
                 class="act-btn"
@@ -286,12 +284,11 @@
           >
             <span class="item-name">{{ item.name }}</span>
             <span class="item-tag">{{ item.type }}</span>
-            <span
+            <Zap
               v-if="item.needs_attunement"
               class="attunement-indicator"
               title="Requires attunement"
-              >⚡</span
-            >
+            />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
                 class="charge-btn"
@@ -320,7 +317,7 @@
               @click.stop="inspectItem(item)"
               title="View item details"
             >
-              🔍
+              <Search class="act-icon" />
             </button>
 
             <!-- Party pool actions -->
@@ -332,7 +329,7 @@
                 @click.stop="assignToParty(item)"
                 :title="`Assign to ${activeParty.name}`"
               >
-                ✓
+                <Check class="act-icon" />
               </button>
               <select
                 class="store-select"
@@ -340,7 +337,7 @@
                 @click.stop
                 @change.stop="handleStoreSelect(item, $event)"
               >
-                <option value="">📦</option>
+                <option value="">Store…</option>
                 <optgroup v-if="shipAssets.length" label="Ships">
                   <option v-for="a in shipAssets" :key="a.id" :value="a.name">
                     {{ a.name }}
@@ -651,8 +648,12 @@
 </template>
 
 <script>
+import { Zap, Check, Search } from 'lucide-vue'
+
 export default {
   name: 'CharacterInventory',
+
+  components: { Zap, Check, Search },
 
   props: {
     character: { type: Object, required: true },
@@ -1196,9 +1197,11 @@ export default {
 }
 
 .attunement-indicator {
-  font-size: var(--font-size-base);
+  width: 0.85rem;
+  height: 0.85rem;
   color: var(--color-accent);
   margin-left: 2px;
+  flex-shrink: 0;
 }
 
 .item-charges {
@@ -1273,6 +1276,12 @@ export default {
 
 .act-btn:hover {
   color: var(--color-accent);
+}
+
+.act-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  vertical-align: middle;
 }
 
 .act-btn.dim:hover {

@@ -100,6 +100,7 @@
       <table class="weapon-table">
         <thead>
           <tr>
+            <th class="col-inspect"></th>
             <th>Name</th>
             <th class="col-num" title="Attack bonus">Atk</th>
             <th class="col-num" title="Damage dice + modifier">Dmg</th>
@@ -113,6 +114,16 @@
             :class="{ 'weapon-extra-row': row.extra }"
           >
             <template v-if="!row.extra">
+              <td class="col-inspect">
+                <button
+                  v-if="weaponItem(row.name)"
+                  class="weapon-inspect-btn"
+                  title="View weapon details"
+                  @click="openItemPopup(weaponItem(row.name))"
+                >
+                  <Search class="weapon-inspect-icon" />
+                </button>
+              </td>
               <td class="weapon-name">{{ row.name }}</td>
               <td class="col-num">
                 <span class="has-tip" :title="row.atkTooltip">{{
@@ -127,6 +138,7 @@
               <td class="col-tag">{{ row.type }}</td>
             </template>
             <template v-else>
+              <td class="col-inspect"></td>
               <td class="weapon-extra-name" :title="row.source">
                 + {{ row.source }}
               </td>
@@ -360,7 +372,7 @@ import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
 import { getCharacterSpells } from '@/utils/spellUtils.js'
 import DetailPopup from '@/components/DetailPopup.vue'
 import StatChip from '@/components/StatChip.vue'
-import { Sparkle } from 'lucide-vue'
+import { Sparkle, Search } from 'lucide-vue'
 
 const CONDITIONS = sortConditionNames([
   ...POSITIVE_CONDITION_NAMES,
@@ -400,7 +412,7 @@ function nextSlotValue(max, current, clickedIndex) {
 export default {
   name: 'CharacterCombatPanel',
 
-  components: { DetailPopup, StatChip, Sparkle },
+  components: { DetailPopup, StatChip, Sparkle, Search },
 
   props: {
     character: { type: Object, required: true },
@@ -763,9 +775,12 @@ export default {
     },
 
     battleItems() {
+      // Weapons get their own inspect icon in the Weapons table — excluded
+      // here so an equipped weapon doesn't also show up as a duplicate pill.
       return this.partyItems.filter(
         (i) =>
           i.battle_effect &&
+          i.type !== 'weapon' &&
           (i.equipped_by === this.character.name ||
             (i.carried_by === this.character.name &&
               i.equipped_by === 'disallowed'))
@@ -1020,13 +1035,29 @@ export default {
       this.popupOpen = true
     },
 
+    weaponItem(name) {
+      return (
+        this.partyItems.find(
+          (i) =>
+            i.name === name &&
+            i.type === 'weapon' &&
+            i.equipped_by === this.character.name
+        ) ?? null
+      )
+    },
+
     openItemPopup(item) {
       const fields = []
       if (item.effect) fields.push({ label: 'Effect', value: item.effect })
       if (item.description)
         fields.push({ label: 'Description', value: item.description })
       if (item.notes) fields.push({ label: 'Notes', value: item.notes })
-      const subtitleParts = [item.subtype ?? item.type]
+      if (item.enhancement_bonus)
+        fields.push({
+          label: 'Enhancement',
+          value: dnd.signed(item.enhancement_bonus),
+        })
+      const subtitleParts = [item.weapon_category ?? item.subtype ?? item.type]
       if (item.needs_attunement) subtitleParts.push('requires attunement')
       this.popupItem = {
         title: item.name,
@@ -1152,6 +1183,31 @@ export default {
   color: var(--color-text-muted);
   font-size: var(--font-size-base);
   padding-left: 0.5rem;
+}
+
+.weapon-table th.col-inspect,
+.weapon-table td.col-inspect {
+  width: 1.4rem;
+  padding-right: 0.3rem;
+}
+
+.weapon-inspect-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-text-low);
+  transition: color 0.1s;
+}
+
+.weapon-inspect-btn:hover {
+  color: var(--color-accent);
+}
+
+.weapon-inspect-icon {
+  width: 0.85rem;
+  height: 0.85rem;
 }
 
 .weapon-name {

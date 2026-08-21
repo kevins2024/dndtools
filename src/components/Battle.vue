@@ -475,11 +475,21 @@
           <div class="section-label">Damage Tracker</div>
           <div class="damage-tracker">
             <div class="damage-summary">
-              <span class="damage-taken">{{ activeEnemyHp.damage }}</span>
-              <span class="damage-taken-label">damage taken</span>
               <template v-if="activeEnemyHp.maxHp !== null">
-                <span class="damage-sep">/</span>
-                <span class="damage-max">{{ activeEnemyHp.maxHp }} HP</span>
+                <span class="damage-taken">{{
+                  activeEnemyHp.maxHp - activeEnemyHp.damage
+                }}</span>
+                <span class="damage-taken-label"
+                  >/ {{ activeEnemyHp.maxHp }} HP</span
+                >
+                <span class="damage-sep">·</span>
+                <span class="damage-max"
+                  >{{ activeEnemyHp.damage }} dmg taken</span
+                >
+              </template>
+              <template v-else>
+                <span class="damage-taken">{{ activeEnemyHp.damage }}</span>
+                <span class="damage-taken-label">damage taken</span>
               </template>
             </div>
 
@@ -1960,6 +1970,9 @@ export default {
   resize: vertical;
   outline: none;
   box-sizing: border-box;
+  /* Without this, a drag-resize gets fought/reset by the parent
+     flex-column's own sizing pass on the next render. */
+  flex-shrink: 0;
 }
 .enemy-notes:focus {
   border-color: var(--color-accent);

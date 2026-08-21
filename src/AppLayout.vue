@@ -142,7 +142,9 @@
 
     <!-- Save flash -->
     <transition name="save-flash">
-      <div v-if="saveFlash" class="save-flash">✓ Saved</div>
+      <div v-if="saveFlash" class="save-flash">
+        <Check class="save-flash-icon" /> Saved
+      </div>
     </transition>
 
     <!-- Merge conflict notice: a stale tab and a direct file edit disagreed
@@ -168,6 +170,7 @@
 </template>
 
 <script>
+import { Check } from 'lucide-vue'
 import d20 from '@/assets/dice/d20.svg'
 import goldIcon from '@/assets/icons/icon-gold.svg'
 import dustIcon from '@/assets/icons/icon-dust.svg'
@@ -191,6 +194,7 @@ export default {
   name: 'AppLayout',
 
   components: {
+    Check,
     DiceRoller,
     Drawer,
     SaveDialog,
@@ -646,8 +650,15 @@ export default {
   color: white;
   font-size: var(--font-size-md);
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   z-index: 102;
   pointer-events: none;
+}
+.save-flash-icon {
+  width: 1rem;
+  height: 1rem;
 }
 .save-flash-enter-active,
 .save-flash-leave-active {

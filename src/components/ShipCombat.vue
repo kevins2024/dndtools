@@ -2,7 +2,9 @@
   <div class="sco" v-if="hasSession && show">
     <!-- Header -->
     <div class="sco-header">
-      <span class="sco-title">⚓ Ship Combat</span>
+      <span class="sco-title"
+        ><Anchor class="sco-title-icon" /> Ship Combat</span
+      >
       <span class="sco-round">Round {{ round }}</span>
       <button class="sco-next-btn" @click="nextTurn" :disabled="!hasRolled">
         Next Turn ▶
@@ -42,7 +44,8 @@
               class="sco-init-badge"
               :class="'sco-init-badge--' + (c.team || 'player')"
             >
-              {{ typeGlyph(c) }}
+              <Anchor v-if="c.type === 'ship'" class="sco-init-icon" />
+              <template v-else>{{ typeGlyph(c) }}</template>
             </span>
             <span class="sco-init-name">{{ c.name }}</span>
             <input
@@ -325,6 +328,7 @@
 import { CONFIGS } from '@/utils/shipConfigs.js'
 import ShipDetailModal from './ShipDetailModal.vue'
 import { dnd } from '@/utils/dnd_utils.js'
+import { Anchor } from 'lucide-vue'
 
 const CONDITIONS = [
   { key: 'on_fire', short: 'Fire', cls: 'fire' },
@@ -358,7 +362,7 @@ const TEAM_COLORS = {
 
 export default {
   name: 'ShipCombat',
-  components: { ShipDetailModal },
+  components: { ShipDetailModal, Anchor },
 
   data() {
     return {
@@ -557,7 +561,6 @@ export default {
     },
 
     typeGlyph(c) {
-      if (c.type === 'ship') return '⚓'
       if (c.type === 'npc') return '•'
       return '◆'
     },
@@ -643,6 +646,13 @@ export default {
   font-size: var(--font-size-md);
   color: var(--color-accent-strong);
   letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.sco-title-icon {
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .sco-round {
@@ -792,6 +802,10 @@ export default {
   justify-content: center;
   font-size: 0.6rem;
   flex-shrink: 0;
+}
+.sco-init-icon {
+  width: 0.7rem;
+  height: 0.7rem;
 }
 .sco-init-badge--player {
   background: var(--color-accent);

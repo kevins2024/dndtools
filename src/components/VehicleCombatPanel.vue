@@ -2,7 +2,9 @@
   <div class="vcp" v-if="hasSession" :class="{ 'vcp--collapsed': !show }">
     <!-- Header -->
     <div class="vcp-header">
-      <span class="vcp-title">⚓ Vehicle Combat</span>
+      <span class="vcp-title"
+        ><Anchor class="vcp-title-icon" /> Vehicle Combat</span
+      >
       <button class="vcp-end-btn" @click="$store.commit('END_VEHICLE_COMBAT')">
         End Combat
       </button>
@@ -119,6 +121,7 @@
 
 <script>
 import ShipDetailModal from './ShipDetailModal.vue'
+import { Anchor } from 'lucide-vue'
 
 const CONDITIONS = [
   { key: 'on_fire', short: 'Fire', label: 'On Fire', cls: 'fire' },
@@ -137,7 +140,7 @@ const FACING_ARROWS = { N: '↑', E: '→', S: '↓', W: '←' }
 
 export default {
   name: 'VehicleCombatPanel',
-  components: { ShipDetailModal },
+  components: { ShipDetailModal, Anchor },
 
   data() {
     return { CONDITIONS, detailShip: null }
@@ -254,6 +257,13 @@ export default {
   letter-spacing: 0.08em;
   color: var(--color-text-low);
   flex: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.vcp-title-icon {
+  width: 0.85rem;
+  height: 0.85rem;
 }
 
 .vcp-end-btn {
