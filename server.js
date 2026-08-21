@@ -22,7 +22,7 @@ const readJSON = (file) =>
 const ALLOWED_TABLES = [
   'characters',
   'npcs',
-  'locations',
+  'places',
   'party_items',
   'world',
   'homebrew',

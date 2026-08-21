@@ -144,7 +144,7 @@ export default {
       )
     },
     topLevelLocations() {
-      return this.$store.state.locations ?? []
+      return this.$store.state.places ?? []
     },
     selectedLocationData() {
       if (!this.selectedLocation) return null

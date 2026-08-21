@@ -12,7 +12,7 @@ const FILES = [
   'assets',
   'companions',
   'events',
-  'locations',
+  'places',
   'npcs',
   'party_items',
   'religions',

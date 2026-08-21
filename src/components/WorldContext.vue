@@ -24,6 +24,7 @@ import MonsterBrowser from './MonsterBrowser.vue'
 import TellondeCalendar from './TellondeCalendar.vue'
 import HomebrewBrowser from './HomebrewBrowser.vue'
 import SpellBrowser from './SpellBrowser.vue'
+import LocationBrowser from './LocationBrowser.vue'
 
 export default {
   name: 'WorldContext',
@@ -32,6 +33,7 @@ export default {
     TellondeCalendar,
     HomebrewBrowser,
     SpellBrowser,
+    LocationBrowser,
   },
 
   data() {
@@ -40,6 +42,7 @@ export default {
       tabs: [
         { id: 'monsters', label: 'Monsters', component: 'MonsterBrowser' },
         { id: 'spells', label: 'Spells', component: 'SpellBrowser' },
+        { id: 'locations', label: 'Locations', component: 'LocationBrowser' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
         { id: 'homebrew', label: 'Homebrew', component: 'HomebrewBrowser' },
       ],
@@ -50,6 +53,16 @@ export default {
     activeComponent() {
       return this.tabs.find((t) => t.id === this.activeTab)?.component ?? null
     },
+  },
+
+  watch: {
+    '$store.state.placeNavRequest'(req) {
+      if (req) this.activeTab = 'locations'
+    },
+  },
+
+  created() {
+    if (this.$store.state.placeNavRequest) this.activeTab = 'locations'
   },
 }
 </script>

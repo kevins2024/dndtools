@@ -43,9 +43,10 @@ export default new Vuex.Store({
     game_day: Number(localStorage.getItem('game_day')) || 1,
     parties: [],
     characterNavRequest: null,
+    placeNavRequest: null,
     characters: [],
     npcs: [],
-    locations: [],
+    places: [],
     party_items: [],
     companions: [],
     world: [],
@@ -123,6 +124,12 @@ export default new Vuex.Store({
     },
     CLEAR_CHARACTER_NAV(state) {
       state.characterNavRequest = null
+    },
+    NAV_TO_PLACE(state, placeName) {
+      state.placeNavRequest = placeName
+    },
+    CLEAR_PLACE_NAV(state) {
+      state.placeNavRequest = null
     },
     SET_SELECTED_PLAYERS(state, players) {
       state.selectedPlayers = players
@@ -523,7 +530,7 @@ export default new Vuex.Store({
       const tables = [
         'characters',
         'npcs',
-        'locations',
+        'places',
         'party_items',
         'companions',
         'world',
@@ -590,7 +597,7 @@ export default new Vuex.Store({
         : [
             'characters',
             'npcs',
-            'locations',
+            'places',
             'party_items',
             'world',
             'homebrew',

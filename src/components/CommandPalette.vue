@@ -5,7 +5,7 @@
         ref="input"
         v-model="query"
         class="cp-input"
-        placeholder="Go to context or character…"
+        placeholder="Go to context, character, or location…"
         autocomplete="off"
         spellcheck="false"
         @keydown.esc.prevent="$emit('close')"
@@ -23,7 +23,13 @@
           @mousemove="cursor = i"
         >
           <span class="cp-badge" :class="`cp-badge--${item.type}`">
-            {{ item.type === 'context' ? 'ctx' : 'chr' }}
+            {{
+              item.type === 'context'
+                ? 'ctx'
+                : item.type === 'place'
+                ? 'loc'
+                : 'chr'
+            }}
           </span>
           <span class="cp-label">{{ item.label }}</span>
         </li>
@@ -41,9 +47,10 @@ export default {
     open: { type: Boolean, required: true },
     contexts: { type: Array, required: true },
     characters: { type: Array, required: true },
+    places: { type: Array, default: () => [] },
   },
 
-  emits: ['close', 'navigate-context', 'navigate-character'],
+  emits: ['close', 'navigate-context', 'navigate-character', 'navigate-place'],
 
   data() {
     return { query: '', cursor: 0 }
@@ -68,7 +75,29 @@ export default {
           name: c.name,
           label: c.name,
         }))
-      return [...ctxItems, ...chrItems]
+      const placeItems = this.placeIndex
+        .filter((p) => !q || p.name.toLowerCase().includes(q))
+        .map((p) => ({
+          type: 'place',
+          key: `place:${p.name}|${p.placeName}`,
+          name: p.placeName,
+          label: p.breadcrumb ? `${p.name} — ${p.breadcrumb}` : p.name,
+        }))
+      return [...ctxItems, ...chrItems, ...placeItems]
+    },
+    // Settlements plus their inner locations (taverns, shops, etc.), each
+    // resolving to its containing settlement — the palette navigates to
+    // that settlement's entry in the Locations tab, same granularity the
+    // browser itself supports.
+    placeIndex() {
+      const idx = []
+      for (const p of this.places) {
+        idx.push({ name: p.name, placeName: p.name, breadcrumb: '' })
+        for (const loc of p.locations ?? []) {
+          idx.push({ name: loc.name, placeName: p.name, breadcrumb: p.name })
+        }
+      }
+      return idx
     },
   },
 
@@ -105,6 +134,7 @@ export default {
       const item = this.results[i]
       if (!item) return
       if (item.type === 'context') this.$emit('navigate-context', item.id)
+      else if (item.type === 'place') this.$emit('navigate-place', item.name)
       else this.$emit('navigate-character', item.name)
     },
   },
@@ -186,6 +216,11 @@ export default {
   background: rgba(160, 120, 60, 0.15);
   color: #c9a05a;
   border: 1px solid rgba(160, 120, 60, 0.3);
+}
+.cp-badge--place {
+  background: rgba(90, 160, 140, 0.15);
+  color: #5aab93;
+  border: 1px solid rgba(90, 160, 140, 0.3);
 }
 
 .cp-label {

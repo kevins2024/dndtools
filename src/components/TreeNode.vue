@@ -33,9 +33,10 @@ export default {
   name: 'TreeNode',
   props: {
     node: { type: Object, required: true },
+    defaultOpen: { type: Boolean, default: false },
   },
   data() {
-    return { open: false }
+    return { open: this.defaultOpen }
   },
   computed: {
     hasChildren() {

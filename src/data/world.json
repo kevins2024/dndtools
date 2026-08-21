@@ -121,74 +121,7 @@
     "climate": "Temperate maritime overall, distinct microclimates city to city.",
     "shape_note": "Wide and shallow — twice as far east-west as north-south.",
     "naming_conventions": "Literal and descriptive. Place names directly reflect observable features — Cindermarch is a fortress (march) near ashen terrain from the Inkaba volcano. This pattern should guide generation of new place names consistently.",
-    "notes": "Primary campaign region. Cindermarch on its northeastern border served as a fortress during past conflict with Fol — that conflict has ended. Cindermarch is now both a fortress and a functioning city.",
-    "cities": [
-      {
-        "name": "Ravenquay",
-        "type": "city",
-        "description": "River delta. Dawn Blades home base.",
-        "notes": "1 day sail south of Trevash, 3 days sail south of Khemrise."
-      },
-      {
-        "name": "Trevash",
-        "type": "port",
-        "description": "Small working port.",
-        "notes": "2 days sail south of Khemrise, 1 day sail north of Ravenquay."
-      },
-      {
-        "name": "Khemrise",
-        "type": "city",
-        "description": "Major coastal city, vineyards. Pivot point where the coast turns north-south.",
-        "notes": "2 days sail north of Trevash, 3 days sail north of Ravenquay."
-      },
-      {
-        "name": "Brennswick",
-        "type": "village",
-        "description": "Farming village.",
-        "notes": "Half day east of Khemrise."
-      },
-      {
-        "name": "Millhaven",
-        "type": "town",
-        "description": "Mining town, inland.",
-        "notes": "2 days northeast of Khemrise, 1 day south of Cindermarch, 4 days north of Ravenquay."
-      },
-      {
-        "name": "Argentveil",
-        "type": "city",
-        "description": "Southern coast after eastward bend. Warmest, most cosmopolitan.",
-        "notes": "4-5 days sail east of Ravenquay."
-      },
-      {
-        "name": "Cindermarch",
-        "type": "fortress_city",
-        "description": "Military fortress and city on the Fol border.",
-        "notes": "1 day north of Millhaven, 3 days northeast of Khemrise, 4-5 days ride from Ravenquay."
-      },
-      {
-        "name": "Valdmere",
-        "type": "city",
-        "description": "Northwest coast, faces south. Frontier port.",
-        "notes": "Two weeks sail to Khemrise."
-      },
-      {
-        "name": "Halvenmoren",
-        "type": "town",
-        "description": "Border town at the mouth of Dunric Pass."
-      }
-    ],
-    "wilderness": [
-      {
-        "name": "Crossroads Rest",
-        "type": "waystation",
-        "description": "Waystation on main road. 2 days north of Ravenquay toward Millhaven."
-      },
-      {
-        "name": "Verath Ohn",
-        "type": "island_or_landmark",
-        "description": "Off southern coast, in the water."
-      }
-    ]
+    "notes": "Primary campaign region. Cindermarch on its northeastern border served as a fortress during past conflict with Fol — that conflict has ended. Cindermarch is now both a fortress and a functioning city."
   },
   {
     "name": "Fol",
@@ -275,14 +208,7 @@
     "climate": "Temperate.",
     "culture": "Anglo-Saxon cultural feel. Considers itself the keeper of original culture — both its own and what Aranwald set aside. Slightly smug about this. Never occupied by Solvale.",
     "relationship_with_aranwald": "Familial and good overall, with a persistent tension. Torwald finds Aranwald's embrace of Solvaran aesthetics gauche — sees it as celebrating the style of an occupier. Torwald views itself as the keeper of what both kingdoms once were; Aranwald regards this position as provincial.",
-    "history": "Once a single kingdom with what is now Aranwald. The Solvale Empire occupied the southern half for approximately 200 years, effectively splitting the territory. A prince eventually recaptured the occupied territory and renamed it Aranwald, formalizing the split. A sibling on the Torwald side was reportedly indignant about not being the one to recapture it — the kingdoms separated formally but retained familial connection. See Aranwald for the full account.",
-    "cities": [
-      {
-        "name": "Filian's Keep",
-        "type": "city",
-        "description": "Capital of Torwald."
-      }
-    ]
+    "history": "Once a single kingdom with what is now Aranwald. The Solvale Empire occupied the southern half for approximately 200 years, effectively splitting the territory. A prince eventually recaptured the occupied territory and renamed it Aranwald, formalizing the split. A sibling on the Torwald side was reportedly indignant about not being the one to recapture it — the kingdoms separated formally but retained familial connection. See Aranwald for the full account."
   },
   {
     "name": "Aranwald",
@@ -293,14 +219,7 @@
     "solvaran_cultural_inheritance": "The occupation left a deep imprint that Aranwald has deliberately reclaimed rather than erased: domed buildings and arched courtyards, elaborate geometric gardens, rich textiles and ornate metalwork, a strong poetry and oral tradition, possible fire worship or fire-adjacent religious practice, a taste for court intrigue, and a sophisticated bureaucratic tradition. These elements are visible throughout Feldtazur's architecture and the aristocratic culture of the region.",
     "relationship_with_torwald": "Familial and good overall. Aranwald regards Torwald's insistence on pre-Solvaran tradition as provincial — clinging to what was rather than mastering what is. Both views are stated with family fondness rather than hostility.",
     "split_history": "Torwald and Aranwald were once a single kingdom. The Solvare Empire's occupation of the southern half lasted approximately 200 years before a prince recaptured the territory and renamed it Aranwald, breaking formal unity permanently. A sibling on the Torwald side was reportedly indignant about not being the hero of that moment. The kingdoms split but retained familial connection. The naming of Aranwald was a deliberate philosophical act, not merely a geographic one.",
-    "notes": "Capital name Feldtazur coined by the prince — Anglo 'feld' + Persian-derived 'tazur'.",
-    "cities": [
-      {
-        "name": "Feldtazur",
-        "type": "city",
-        "description": "Capital of Aranwald."
-      }
-    ]
+    "notes": "Capital name Feldtazur coined by the prince — Anglo 'feld' + Persian-derived 'tazur'."
   },
   {
     "name": "Orvath",
@@ -311,14 +230,7 @@
     "culture": "Primarily elven population. Mongolian-inspired — what this means in practice is TBD (nomadic heritage expressed in a settled city? clan-based social structure? horse culture adapted to desert context?). Question-free banking is the defining feature to outsiders.",
     "banking": "Anonymous deposits, no extradition, no questions asked — by design, not accident. The most secure financial institution on Kaemahz. How this status was established and maintained is TBD, but the implication is either significant political neutrality, deep historical precedent, or a power arrangement that makes interference more costly than cooperation.",
     "origin_notes": "How a question-free banking haven came to exist in the middle of a high desert is TBD — worth developing as a campaign or world-building element.",
-    "notes": "Contains only one city, also called Orvath. 6 days north/northeast of Argentveil overland.",
-    "cities": [
-      {
-        "name": "Orvath",
-        "type": "city",
-        "description": "Only city in the region."
-      }
-    ]
+    "notes": "Contains only one city, also called Orvath. 6 days north/northeast of Argentveil overland."
   },
   {
     "name": "Birindal",
@@ -328,19 +240,7 @@
     "climate": "Northeastern coastal, likely cooler.",
     "culture": "Two distinct communities maintain separate but cooperative identities. Coastal (Drinaell): Celtic/Nordic seafaring culture — merchant marine and raiding heritage, community governance by harbor council or similar. Mountain (Brakvunder): Dwarven stronghold culture — deep craft tradition, independent governance, minimal interest in maritime affairs.",
     "governance": "No capital because the coastal and mountain communities govern themselves independently. No central authority both sides would accept — and neither has pushed for one. The arrangement works because their needs are complementary rather than competitive.",
-    "drinaell_brakvunder_relationship": "Maritime trade partnership. Brakvunder produces metal, stone, and finished craft goods; Drinaell moves them. Drinaell provides sea access and external trade networks; Brakvunder provides inland security and resources. How Drinaell became the dominant maritime force on Kaemahz is TBD — likely geography, shipbuilding tradition, and absence of strong competition from other regions.",
-    "cities": [
-      {
-        "name": "Drinaell",
-        "type": "city",
-        "description": "Coastal seafaring city."
-      },
-      {
-        "name": "Brakvunder",
-        "type": "city",
-        "description": "Dwarven mountain city, inland."
-      }
-    ]
+    "drinaell_brakvunder_relationship": "Maritime trade partnership. Brakvunder produces metal, stone, and finished craft goods; Drinaell moves them. Drinaell provides sea access and external trade networks; Brakvunder provides inland security and resources. How Drinaell became the dominant maritime force on Kaemahz is TBD — likely geography, shipbuilding tradition, and absence of strong competition from other regions."
   },
   {
     "name": "Solvale",
@@ -351,13 +251,6 @@
     "culture": "Once the heart of the Solvale Empire — still uses the imperial name. People are called Solvaran. At its height: architecturally stunning, culturally sophisticated, center of learning and trade. Cultural exports — art, poetry, bureaucratic method, architectural style — shaped Aranwald for generations of occupation.",
     "collapse": "The empire extracted Aranwald's resources for approximately 200 years, then lost it. The entire economic engine collapsed without that resource base. Dictatorial leadership that had built the empire proved unable to adapt — the same structures that enabled expansion prevented recovery.",
     "current_state": "Yshavar is now a city built for more people than inhabit it. Public buildings maintained by habit more than necessity. The grandeur is still visible — the bones of empire are impressive — but the scale no longer matches the population.",
-    "notes": "Southernmost region of Kaemahz. A recovery path exists but is politically nearly impossible without outside intervention or significant leadership change. Potential campaign arc.",
-    "cities": [
-      {
-        "name": "Yshavar",
-        "type": "city",
-        "description": "Capital of the Solvale Empire."
-      }
-    ]
+    "notes": "Southernmost region of Kaemahz. A recovery path exists but is politically nearly impossible without outside intervention or significant leadership change. Potential campaign arc."
   }
 ]

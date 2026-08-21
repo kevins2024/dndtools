@@ -135,9 +135,11 @@
       :open="commandPaletteOpen"
       :contexts="contexts"
       :characters="allCharacters"
+      :places="allPlaces"
       @close="commandPaletteOpen = false"
       @navigate-context="paletteNavigateContext"
       @navigate-character="paletteNavigateCharacter"
+      @navigate-place="paletteNavigatePlace"
     />
 
     <!-- Save flash -->
@@ -229,6 +231,9 @@ export default {
   computed: {
     allCharacters() {
       return this.$store.state.characters ?? []
+    },
+    allPlaces() {
+      return this.$store.state.places ?? []
     },
     activeContextLabel() {
       return this.contexts.find((c) => c.id === this.activeContext)?.label ?? ''
@@ -335,6 +340,10 @@ export default {
       this.$store.commit('NAV_TO_CHARACTER', { name, tab: 'sheet' })
       this.commandPaletteOpen = false
     },
+    paletteNavigatePlace(name) {
+      this.$store.commit('NAV_TO_PLACE', name)
+      this.commandPaletteOpen = false
+    },
     toggleDice() {
       this.$store.commit('SET_DICE_DRAWER_OPEN', !this.diceOpen)
     },
@@ -374,6 +383,12 @@ export default {
       if (req) {
         this.activeContext = 'character'
         // Do NOT clear here — CharacterContext reads it on mount and clears it itself
+      }
+    },
+    '$store.state.placeNavRequest'(req) {
+      if (req) {
+        this.activeContext = 'world'
+        // Do NOT clear here — WorldContext/LocationBrowser read it and clear it themselves
       }
     },
     hasChanges(val) {
