@@ -1,0 +1,10 @@
+{
+  "class": "Artificer",
+  "name": "Artillerist",
+  "features_by_level": {
+    "3": ["Eldritch Cannon"],
+    "5": ["Arcane Firearm"],
+    "9": ["Eldritch Cannon — Explosive Cannon"],
+    "15": ["Fortified Position"]
+  }
+}

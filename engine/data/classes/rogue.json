@@ -1,0 +1,40 @@
+{
+  "name": "Rogue",
+  "saving_throw_proficiencies": ["dex", "int"],
+  "armor_proficiencies": ["light"],
+  "weapon_proficiencies": [
+    "simple",
+    "hand crossbow",
+    "longsword",
+    "rapier",
+    "shortsword"
+  ],
+  "subclass_name": "Roguish Archetype",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [3, 9, 13, 17],
+  "spellcasting": { "type": "none" },
+  "sneak_attack_dice_by_level": {
+    "1": 1,
+    "3": 2,
+    "5": 3,
+    "7": 4,
+    "9": 5,
+    "11": 6,
+    "13": 7,
+    "15": 8,
+    "17": 9,
+    "19": 10
+  },
+  "features_by_level": {
+    "1": ["Expertise", "Sneak Attack", "Thieves' Cant"],
+    "2": ["Cunning Action"],
+    "5": ["Uncanny Dodge"],
+    "6": ["Expertise"],
+    "7": ["Evasion"],
+    "11": ["Reliable Talent"],
+    "14": ["Blindsense"],
+    "15": ["Slippery Mind"],
+    "18": ["Elusive"],
+    "20": ["Stroke of Luck"]
+  }
+}

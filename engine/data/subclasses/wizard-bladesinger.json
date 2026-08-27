@@ -1,0 +1,10 @@
+{
+  "class": "Wizard",
+  "name": "Bladesinger",
+  "features_by_level": {
+    "2": ["Bladesinger — Training in War and Song", "Bladesong"],
+    "6": ["Extra Attack (Bladesinger)"],
+    "10": ["Song of Defense"],
+    "14": ["Song of Victory"]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "class": "Rogue",
+  "name": "Inquisitive",
+  "features_by_level": {
+    "3": ["Ear for Deceit", "Eye for Detail", "Insightful Fighting"],
+    "9": ["Steady Eye"],
+    "13": ["Unerring Eye"],
+    "17": ["Eye for Weakness"]
+  }
+}

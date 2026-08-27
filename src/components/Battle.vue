@@ -320,7 +320,22 @@
         <!-- Enemy turn -->
         <template v-else-if="activeEntry && activeEntry.type === 'enemy'">
           <div class="panel-header">
-            <span class="panel-name">{{ activeEntry.name }}</span>
+            <input
+              v-if="renamingKey === activeEntry.key"
+              :ref="`renameInput-${activeEntry.key}`"
+              v-model="renameValue"
+              class="panel-name panel-name-input"
+              @blur="commitRename(activeEntry.key)"
+              @keyup.enter="commitRename(activeEntry.key)"
+              @keyup.escape="cancelRename"
+            />
+            <span
+              v-else
+              class="panel-name panel-name-editable"
+              title="Click to rename"
+              @click="startRename(activeEntry.key, activeEntry.name)"
+              >{{ activeEntry.name }}</span
+            >
             <span class="panel-subtitle">{{
               activeEntry.encounterData
                 ? activeEntry.encounterData.roleLabel
@@ -797,6 +812,8 @@ export default {
       activeTurn: 0,
       editingKey: null,
       overrideValue: null,
+      renamingKey: null,
+      renameValue: '',
       enemyHp: {},
       enemyConditions: {},
       enemyStats: {},
@@ -1360,6 +1377,28 @@ export default {
       this.overrideValue = null
     },
 
+    // ── Enemy rename (especially useful after Duplicate leaves identical names) ──
+    startRename(key, currentName) {
+      this.renamingKey = key
+      this.renameValue = currentName
+      this.$nextTick(() => {
+        const ref = this.$refs[`renameInput-${key}`]
+        const el = Array.isArray(ref) ? ref[0] : ref
+        el?.focus()
+        el?.select()
+      })
+    },
+    commitRename(key) {
+      const name = this.renameValue.trim()
+      if (name) this.$emit('rename-enemy', { key, name })
+      this.renamingKey = null
+      this.renameValue = ''
+    },
+    cancelRename() {
+      this.renamingKey = null
+      this.renameValue = ''
+    },
+
     deathSaveCount(name, type) {
       return this.deathSaves[name]?.[type] ?? 0
     },
@@ -1748,6 +1787,24 @@ export default {
   font-family: var(--font-display);
   font-size: var(--font-size-xl);
   color: var(--color-text);
+}
+
+.panel-name-editable {
+  cursor: text;
+  border-bottom: 1px dashed transparent;
+}
+
+.panel-name-editable:hover {
+  border-bottom-color: var(--color-border);
+}
+
+.panel-name-input {
+  font-family: inherit;
+  font-weight: inherit;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0 4px;
 }
 
 .panel-subtitle {

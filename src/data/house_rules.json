@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Critical Hits",
+    "description": "On a critical hit, double the total damage of the attack after all modifiers are applied, rather than doubling the damage dice only.",
+    "notes": "Implemented because crits don't feel rewarding or powerful."
+  },
+  {
+    "name": "Critical Fail on Saving Throws",
+    "description": "A natural 1 on a saving throw results in double damage taken, rather than just a failed save.",
+    "notes": "Applies to both enemy and player saving throws for consistency."
+  },
+  {
+    "name": "Critical Roll Consequences",
+    "description": "A natural 1 or natural 20 carries an additional consequence beyond automatic failure or success, at the DM's discretion. On a critical 1 attack roll, the attacker typically disarms themselves. On a critical 20, the consequence is a dramatic positive outcome suited to the moment — not just a hit, but something memorable. The nature of the consequence should fit the fiction and scale with the stakes.",
+    "notes": "Keeps the extremes of the dice meaningful and dramatic in both directions. The DM has full latitude to interpret the consequence; consistency matters more than strict rules."
+  },
+  {
+    "name": "Stealth Awareness",
+    "description": "While Hidden, a character gains advantage on Wisdom (Perception) checks to notice hidden creatures or objects, and on Intelligence (Investigation) checks to find traps.",
+    "notes": "From Solasta. Moving carefully and quietly also means moving attentively. Rewards players who choose stealth as a playstyle beyond just avoiding detection."
+  },
+  {
+    "name": "Spell Material Components",
+    "description": "Material components (M) are not required to cast spells. In their place, spellcasters may use Weave Dust — a fine crystalline powder that serves as a universal substitute for all material components. Weave Dust can be purchased from alchemists, magic shops, and certain temples, or produced by breaking down traditional spell components or certain animal parts through a distillation process. The spell's original material cost roughly dictates how much dust is required. Dust is stored in small capsules, almost excluisvely made of silver, that hold enough for a simple spell. Weave Dust is sold in small vials and larger pouches; exact pricing varies by region but is generally 'per capsule'.",
+    "notes": "Introduced to streamline play. Hunting for obscure specific components is more friction than fun at this table. Characters must still buy or otherwise procure the powder.."
+  },
+  {
+    "name": "Caster Prestidigitation",
+    "description": "All arcane and divine casters receive a free, flavor-appropriate form of Prestidigitation that does not count against their spell allotment. Sorcerers and Wizards receive standard Prestidigitation. Druids receive standard Druidcraft. Clerics receive Divine Prestidigitation (a divine-flavored equivalent). Warlocks receive Dark Prestidigitation (a patron-flavored equivalent that does not draw from the Weave). These spells are always prepared and cannot be removed.",
+    "notes": "Casters should feel like casters without spending a cantrip slot on it. Mages wave their hand and make a small change in the world; druids make a flower bloom. These spells are the mechanical expression of that identity."
+  },
+  {
+    "name": "Attuned Stone Backlash",
+    "description": "Whenever the bearer of the Stone of the Rootbound Ward or the Stone of the Broken Vein uses one of the stone's active abilities — including the shared combo ability The Stones Agree — the bearer must succeed on a DC 12 Constitution saving throw or take 1d6 damage: feedback from channeling power they were never actually trained to hold. Does not apply to the stones' passive tremorsense, since standing near ground the stone already senses isn't 'using' anything.",
+    "notes": "Applies per-use, per-bearer. When both bearers trigger The Stones Agree together, each makes their own separate backlash save."
+  }
+]

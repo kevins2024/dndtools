@@ -1,0 +1,18 @@
+{
+  "class": "Cleric",
+  "name": "Life Domain",
+  "features_by_level": {
+    "1": ["Bonus Proficiency", "Disciple of Life"],
+    "2": ["Channel Divinity: Preserve Life"],
+    "6": ["Blessed Healer"],
+    "8": ["Divine Strike"],
+    "17": ["Supreme Healing"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Bless", "Cure Wounds"],
+    "3": ["Lesser Restoration", "Spiritual Weapon"],
+    "5": ["Beacon of Hope", "Revivify"],
+    "7": ["Death Ward", "Guardian of Faith"],
+    "9": ["Mass Cure Wounds", "Raise Dead"]
+  }
+}

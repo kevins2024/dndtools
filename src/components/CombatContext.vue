@@ -96,7 +96,11 @@
         </div>
         <div class="enemy-list">
           <div v-for="e in enemies" :key="e.id" class="enemy-row">
-            <span class="enemy-name">{{ e.name }}</span>
+            <input
+              v-model="e.name"
+              class="enemy-name enemy-name-input"
+              title="Rename"
+            />
             <span class="enemy-mod">{{ formatMod(e.mod) }}</span>
             <button
               class="dupe-btn"
@@ -144,6 +148,7 @@
         @override-roll="onOverrideRoll"
         @add-enemy="onAddEnemyMidFight"
         @duplicate-enemy="onDuplicateEnemy"
+        @rename-enemy="onRenameEnemy"
         @toggle-friendly="onToggleFriendly"
         @remove-enemy="onRemoveEnemy"
       />
@@ -492,6 +497,12 @@ export default {
         total: dnd.roll() + src.mod,
         tiebreakOrder: 0,
       })
+    },
+
+    onRenameEnemy({ key, name }) {
+      const id = parseInt(key.replace('enemy-', ''))
+      const enemy = this.enemies.find((e) => e.id === id)
+      if (enemy) enemy.name = name
     },
 
     rollInitiative() {
@@ -863,6 +874,24 @@ export default {
   flex: 1;
   font-size: var(--font-size-md);
   color: var(--color-text);
+}
+
+.enemy-name-input {
+  font-family: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.enemy-name-input:hover {
+  border-color: var(--color-border);
+}
+
+.enemy-name-input:focus {
+  background: var(--color-bg-surface);
+  border-color: var(--color-border);
+  outline: none;
 }
 
 .enemy-mod {

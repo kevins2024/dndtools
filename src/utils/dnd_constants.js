@@ -15,6 +15,7 @@ export const WEAPON_PROPS = {
     damage_dice: '1d4',
     finesse: true,
     versatile: false,
+    thrown: { normal: 20, long: 60 },
   },
   greatclub: {
     weapon_type: 'melee',
@@ -27,18 +28,21 @@ export const WEAPON_PROPS = {
     damage_dice: '1d6',
     finesse: false,
     versatile: false,
+    thrown: { normal: 20, long: 60 },
   },
   javelin: {
     weapon_type: 'melee',
     damage_dice: '1d6',
     finesse: false,
     versatile: false,
+    thrown: { normal: 30, long: 120 },
   },
   'light hammer': {
     weapon_type: 'melee',
     damage_dice: '1d4',
     finesse: false,
     versatile: false,
+    thrown: { normal: 20, long: 60 },
   },
   mace: {
     weapon_type: 'melee',
@@ -72,6 +76,7 @@ export const WEAPON_PROPS = {
     finesse: false,
     versatile: true,
     damage_dice_2h: '1d8',
+    thrown: { normal: 20, long: 60 },
   },
 
   // ── Martial melee ──
@@ -167,6 +172,7 @@ export const WEAPON_PROPS = {
     finesse: false,
     versatile: true,
     damage_dice_2h: '1d8',
+    thrown: { normal: 20, long: 60 },
   },
   'war pick': {
     weapon_type: 'melee',
@@ -194,6 +200,7 @@ export const WEAPON_PROPS = {
     damage_dice: '1d4',
     finesse: true,
     versatile: false,
+    thrown: { normal: 20, long: 60 },
   },
   shortbow: {
     weapon_type: 'ranged',

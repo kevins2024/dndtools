@@ -124,7 +124,21 @@
                   <Search class="weapon-inspect-icon" />
                 </button>
               </td>
-              <td class="weapon-name">{{ row.name }}</td>
+              <td class="weapon-name">
+                {{ row.name }}
+                <span
+                  v-if="row.thrown"
+                  class="weapon-tag-badge"
+                  :title="`Thrown weapon — range ${row.thrown.normal}/${row.thrown.long} ft.`"
+                  >Thrown</span
+                >
+                <span
+                  v-if="row.returning"
+                  class="weapon-tag-badge weapon-tag-returning"
+                  title="Returning — flies back to the wielder's hand immediately after it is thrown"
+                  >Returning</span
+                >
+              </td>
               <td class="col-num">
                 <span class="has-tip" :title="row.atkTooltip">{{
                   row.attack
@@ -151,6 +165,33 @@
       </table>
     </template>
     <div v-else class="section-empty">No weapons equipped</div>
+
+    <!-- Weapon Effects — active abilities granted by an equipped weapon, shown
+         right here so they don't require clicking into the weapon's own
+         detail popup to discover they exist. -->
+    <template v-if="weaponEffects.length">
+      <div class="section-label">Weapon Effects</div>
+      <div class="pill-row">
+        <span
+          v-for="e in weaponEffects"
+          :key="e.weaponName + '|' + e.name"
+          class="feature-pill"
+          :title="e.weaponName"
+          @click="openFeaturePopup(e)"
+          >{{ e.name
+          }}<span
+            v-if="e.uses_max"
+            class="pill-uses has-tip"
+            :title="`${e.uses_current ?? e.uses_max} of ${
+              e.uses_max
+            } uses remaining · recharges ${rechargeLabel(e.recharge)}`"
+            >{{ e.uses_current ?? e.uses_max }}/{{ e.uses_max }}</span
+          ><span v-if="e.recharge" class="pill-recharge">{{
+            rechargeLabel(e.recharge)
+          }}</span></span
+        >
+      </div>
+    </template>
 
     <!-- Features & Spells filter -->
     <div v-if="hasFilterableContent" class="feature-filter-row">
@@ -632,6 +673,22 @@ export default {
 
     weaponSummaries() {
       return dnd.buildWeaponRows(this.character, this.partyItems)
+    },
+
+    // Active abilities granted by currently-equipped weapons (e.g. a 1/day
+    // bonus-damage strike) — pulled straight onto the sheet instead of being
+    // buried behind the weapon's own inspect popup.
+    weaponEffects() {
+      const equipped = (this.partyItems ?? []).filter(
+        (i) => i.equipped_by === this.character.name && i.type === 'weapon'
+      )
+      const effects = []
+      for (const w of equipped) {
+        for (const e of w.weapon_effects ?? []) {
+          effects.push({ ...e, weaponName: w.name })
+        }
+      }
+      return effects
     },
 
     weaponRows() {
@@ -1212,6 +1269,23 @@ export default {
 
 .weapon-name {
   color: var(--color-text);
+}
+
+.weapon-tag-badge {
+  margin-left: 0.4rem;
+  font-size: 0.7em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
+.weapon-tag-returning {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* â”€â”€ Features & Spells â”€â”€ */

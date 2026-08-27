@@ -1,0 +1,209 @@
+[
+  {
+    "name": "Acolyte",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["insight", "religion"]
+  },
+  {
+    "name": "Charlatan",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["deception", "sleight_of_hand"]
+  },
+  {
+    "name": "Criminal",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["deception", "stealth"]
+  },
+  {
+    "name": "Entertainer",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["acrobatics", "performance"]
+  },
+  {
+    "name": "Folk Hero",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["animal_handling", "survival"]
+  },
+  {
+    "name": "Guild Artisan",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["insight", "persuasion"]
+  },
+  {
+    "name": "Hermit",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["medicine", "religion"]
+  },
+  {
+    "name": "Noble",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["history", "persuasion"]
+  },
+  {
+    "name": "Outlander",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["athletics", "survival"]
+  },
+  {
+    "name": "Sage",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["arcana", "history"]
+  },
+  {
+    "name": "Sailor",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["athletics", "perception"]
+  },
+  {
+    "name": "Soldier",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["athletics", "intimidation"]
+  },
+  {
+    "name": "Urchin",
+    "source": "Player's Handbook (2014)",
+    "skill_proficiencies": ["sleight_of_hand", "stealth"]
+  },
+  {
+    "name": "Gladiator",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["acrobatics", "performance"]
+  },
+  {
+    "name": "Clan Crafter",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["history", "insight"]
+  },
+  {
+    "name": "Courtier",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["insight", "persuasion"]
+  },
+  {
+    "name": "Far Traveler",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["insight", "perception"]
+  },
+  {
+    "name": "Mercenary Veteran",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["athletics", "persuasion"]
+  },
+  {
+    "name": "Uthgardt Tribe Member",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["athletics", "survival"]
+  },
+  {
+    "name": "Waterdhavian Noble",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["history", "persuasion"]
+  },
+  {
+    "name": "Knight",
+    "source": "Sword Coast Adventurer's Guide",
+    "skill_proficiencies": ["history", "persuasion"]
+  },
+  {
+    "name": "Marine",
+    "source": "Ghosts of Saltmarsh",
+    "skill_proficiencies": ["athletics", "survival"]
+  },
+  {
+    "name": "Pirate",
+    "source": "Ghosts of Saltmarsh",
+    "skill_proficiencies": ["athletics", "perception"]
+  },
+  {
+    "name": "Shipwright",
+    "source": "Ghosts of Saltmarsh",
+    "skill_proficiencies": ["history", "perception"]
+  },
+  {
+    "name": "Fisher",
+    "source": "Ghosts of Saltmarsh",
+    "skill_proficiencies": ["history", "survival"]
+  },
+  {
+    "name": "Smuggler",
+    "source": "Ghosts of Saltmarsh",
+    "skill_proficiencies": ["athletics", "deception"]
+  },
+  {
+    "name": "Anthropologist",
+    "source": "Tomb of Annihilation",
+    "skill_proficiencies": ["insight", "religion"]
+  },
+  {
+    "name": "Archaeologist",
+    "source": "Tomb of Annihilation",
+    "skill_proficiencies": ["history", "survival"]
+  },
+  {
+    "name": "Investigator",
+    "source": "Ravenloft: The Horrors Within",
+    "skill_proficiencies": ["insight", "investigation"]
+  },
+  {
+    "name": "Haunted One",
+    "source": "Ravenloft: The Horrors Within",
+    "skill_proficiencies": ["arcana", "survival"]
+  },
+  {
+    "name": "Spirit Medium",
+    "source": "Ravenloft: The Horrors Within",
+    "skill_proficiencies": ["insight", "religion"]
+  },
+  {
+    "name": "Mist Wanderer",
+    "source": "Ravenloft: The Horrors Within",
+    "skill_proficiencies": ["survival", "stealth"]
+  },
+  {
+    "name": "Guard",
+    "source": "Player's Handbook (2024)",
+    "skill_proficiencies": ["athletics", "perception"]
+  },
+  {
+    "name": "Merchant",
+    "source": "Player's Handbook (2024)",
+    "skill_proficiencies": ["animal_handling", "persuasion"]
+  },
+  {
+    "name": "Scribe",
+    "source": "Player's Handbook (2024)",
+    "skill_proficiencies": ["investigation", "perception"]
+  },
+  {
+    "name": "Wayfarer",
+    "source": "Player's Handbook (2024)",
+    "skill_proficiencies": ["insight", "stealth"]
+  },
+  {
+    "name": "Farmer",
+    "source": "Player's Handbook (2024)",
+    "skill_proficiencies": ["animal_handling", "nature"]
+  },
+  {
+    "name": "Artisan",
+    "source": "Player's Handbook (2024)",
+    "skill_proficiencies": ["investigation", "persuasion"]
+  },
+  {
+    "name": "Izzet Engineer",
+    "source": "Guildmasters' Guide to Ravnica",
+    "skill_proficiencies": ["arcana", "investigation"]
+  },
+  {
+    "name": "Simic Scientist",
+    "source": "Guildmasters' Guide to Ravnica",
+    "skill_proficiencies": ["arcana", "medicine"]
+  },
+  {
+    "name": "Born Adventurer",
+    "source": "Homebrew — no real background lets you freely pick any two skills; every published one has a fixed (or narrowly-choice-limited) list.",
+    "homebrew": true,
+    "skill_proficiencies": [],
+    "free_choice": { "count": 2 }
+  }
+]

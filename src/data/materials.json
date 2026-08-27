@@ -1,0 +1,9 @@
+[
+  {
+    "id": "vixivirite",
+    "name": "Vixivirite",
+    "type": "living mineral",
+    "description": "A living mineral — not a plant or animal product, but genuinely alive in its own right, found in small veins that pulse faintly warm to the touch. It's prized by druids specifically because it defies the usual organic/mineral divide: grown rather than mined, in the same spirit as pearl, coral, or amber, despite looking like ordinary stone.",
+    "notes": "Counts as a qualifying \"natural, organically-originated material\" for Wild Symbiosis (Circle of the Moon, 8th level) — see published_features.json entry \"hb_druid_wild_symbiosis\", the same as wood, leather, bone, or shell."
+  }
+]

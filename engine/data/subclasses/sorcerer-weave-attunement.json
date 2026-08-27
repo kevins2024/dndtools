@@ -1,0 +1,17 @@
+{
+  "class": "Sorcerer",
+  "name": "Weave Attunement",
+  "_notes": "Fully homebrew — a direct mechanical reskin of the official Lunar Sorcery sorcerous origin (Dragonlance: Shadow of the Dragon Queen, 2023 final published version). Moon phases become Weave phases tied to Ne'auveothrin, ancient demigod of the Weave. Two of three phases (Leno=Full Moon, Satin=Crescent Moon) use the same school pairings as the final published subclass; the third (Twill=New Moon) also matches the final book's Enchantment+Necromancy pairing rather than the earlier 2022 UA playtest's Evocation+Necromancy — Evocation was deliberately excluded when this was built to avoid stacking cheap Metamagic discounts on an already blast-heavy school, which happened to match what the final book independently settled on too. House rule: grid spell selection isn't locked to RAW's fixed table — at each phase/level slot, any spell of the correct level from that phase's two associated schools may be chosen instead of the RAW default; every substitution on Iyani's sheet follows this rule. Levels 14/18 were prepped ahead of need (mechanically identical to RAW Lunar Empowerment/Lunar Phenomenon, just reskinned) and had never been added to any character or to this subclass file until this recovery pass found them sitting in homebrew.json's design notes.",
+  "features_by_level": {
+    "1": [
+      "Leno Phase (Abjuration / Divination)",
+      "Twill Phase (Enchantment / Necromancy)",
+      "Satin Phase (Illusion / Transmutation)",
+      "Weave Embodiment",
+      "Healing Touch"
+    ],
+    "6": ["Mother's Whim"],
+    "14": ["Weave Empowerment"],
+    "18": ["Unraveling"]
+  }
+}

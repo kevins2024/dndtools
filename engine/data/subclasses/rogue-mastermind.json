@@ -1,0 +1,10 @@
+{
+  "class": "Rogue",
+  "name": "Mastermind",
+  "features_by_level": {
+    "3": ["Master of Intrigue", "Master of Tactics"],
+    "9": ["Insightful Manipulator"],
+    "13": ["Misdirection"],
+    "17": ["Soul of Deceit"]
+  }
+}

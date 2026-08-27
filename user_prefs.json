@@ -124,13 +124,17 @@
       "name": "Twins",
       "members": [
         "Eldi",
-        "Rith"
+        "Rith",
+        "Therynv'l",
+        "Lyria"
       ],
       "active": true,
-      "game_day": 294,
+      "game_day": 296,
       "marching_order": [
+        "Therynv'l",
+        "Eldi",
         "Rith",
-        "Eldi"
+        "Lyria"
       ],
       "watch_assignments": [
         [
@@ -142,7 +146,7 @@
           null
         ],
         [
-          null,
+          "Lyria",
           null
         ],
         [

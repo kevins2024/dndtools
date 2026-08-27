@@ -1,0 +1,10 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Giant",
+  "features_by_level": {
+    "3": ["Giant's Power", "Giant's Havoc"],
+    "6": ["Elemental Cleaver"],
+    "10": ["Mighty Impel"],
+    "14": ["Demiurgic Colossus"]
+  }
+}

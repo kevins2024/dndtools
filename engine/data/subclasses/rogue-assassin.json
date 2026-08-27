@@ -1,0 +1,10 @@
+{
+  "class": "Rogue",
+  "name": "Assassin",
+  "features_by_level": {
+    "3": ["Bonus Proficiencies (Assassin)", "Assassinate"],
+    "9": ["Assassin — Infiltration Expertise"],
+    "13": ["Impostor"],
+    "17": ["Death Strike"]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Barbarian",
+  "saving_throw_proficiencies": ["str", "con"],
+  "armor_proficiencies": ["light", "medium", "shields"],
+  "weapon_proficiencies": ["simple", "martial"],
+  "subclass_name": "Primal Path",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [3, 6, 10, 14],
+  "spellcasting": { "type": "none" },
+  "rages_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 3,
+    "4": 3,
+    "5": 3,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": "unlimited"
+  },
+  "rage_damage_by_level": {
+    "1": 2,
+    "9": 3,
+    "16": 4
+  },
+  "features_by_level": {
+    "1": ["Rage", "Unarmored Defense"],
+    "2": ["Reckless Attack", "Danger Sense"],
+    "5": ["Extra Attack", "Fast Movement"],
+    "7": ["Feral Instinct"],
+    "9": ["Brutal Critical (1 die)"],
+    "11": ["Relentless Rage"],
+    "13": ["Brutal Critical (2 dice)"],
+    "15": ["Persistent Rage"],
+    "17": ["Brutal Critical (3 dice)"],
+    "18": ["Indomitable Might"],
+    "20": ["Primal Champion"]
+  }
+}

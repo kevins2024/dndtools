@@ -1,0 +1,21 @@
+{
+  "name": "Paladin",
+  "saving_throw_proficiencies": ["wis", "cha"],
+  "armor_proficiencies": ["light", "medium", "heavy", "shields"],
+  "weapon_proficiencies": ["simple", "martial"],
+  "subclass_name": "Sacred Oath",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [3, 7, 15, 20],
+  "spellcasting": { "type": "half", "ability": "cha" },
+  "features_by_level": {
+    "1": ["Divine Sense", "Lay on Hands"],
+    "2": ["Fighting Style", "Spellcasting", "Divine Smite"],
+    "3": ["Divine Health"],
+    "5": ["Extra Attack"],
+    "6": ["Aura of Protection"],
+    "10": ["Aura of Courage"],
+    "11": ["Improved Divine Smite"],
+    "14": ["Cleansing Touch"],
+    "18": ["Aura improvements (30ft radius)"]
+  }
+}

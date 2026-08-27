@@ -1,0 +1,16 @@
+{
+  "class": "Fighter",
+  "name": "Battle Master",
+  "features_by_level": {
+    "3": ["Combat Superiority", "Student of War"],
+    "7": ["Know Your Enemy"],
+    "10": ["Improved Combat Superiority (d10)"],
+    "15": ["Relentless"],
+    "18": ["Improved Combat Superiority (d12)"]
+  },
+  "superiority_dice_by_level": {
+    "3": 4,
+    "7": 5,
+    "15": 6
+  }
+}

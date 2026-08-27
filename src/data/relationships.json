@@ -378,6 +378,56 @@
     ],
     "type": "sibling",
     "notes": "",
-    "strength": 131
+    "strength": 133
+  },
+  {
+    "id": "rel_66",
+    "people": [
+      "eldi",
+      "therynv'l"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 6
+  },
+  {
+    "id": "rel_67",
+    "people": [
+      "eldi",
+      "lyria"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_68",
+    "people": [
+      "rith",
+      "therynv'l"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 6
+  },
+  {
+    "id": "rel_69",
+    "people": [
+      "rith",
+      "lyria"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_70",
+    "people": [
+      "therynv'l",
+      "lyria"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
   }
 ]

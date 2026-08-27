@@ -6,11 +6,30 @@
 
 <script>
 import TreeNode from './TreeNode.vue'
-import homebrew from '@/data/homebrew.json'
+import houseRules from '@/data/house_rules.json'
+import weaponTypesAndLanguages from '@/data/weapon_types_and_languages.json'
 
 export default {
   name: 'HomebrewBrowser',
   components: { TreeNode },
+
+  data() {
+    return {
+      // species.json is the full SRD species cache (~1.7MB) — this browser
+      // only ever shows the project's own 4 custom races, so it's loaded via
+      // a dynamic import (its own lazy webpack chunk) instead of a static
+      // import, which would otherwise bundle the whole SRD cache into the
+      // main app.js just to filter it down to a handful of entries.
+      homebrewRaces: [],
+    }
+  },
+
+  created() {
+    import('@/data/api_data_cache/species.json').then((mod) => {
+      const allSpecies = mod.default ?? mod
+      this.homebrewRaces = allSpecies.filter((s) => s.homebrew)
+    })
+  },
 
   computed: {
     tree() {
@@ -32,7 +51,7 @@ export default {
       return {
         label: 'Rules',
         type: 'section',
-        children: (homebrew.rules ?? []).map((r) => ({
+        children: (houseRules ?? []).map((r) => ({
           label: r.name,
           type: 'item',
           children: [
@@ -48,7 +67,7 @@ export default {
       return {
         label: 'Races',
         type: 'section',
-        children: (homebrew.races ?? []).map((r) => ({
+        children: (this.homebrewRaces ?? []).map((r) => ({
           label: r.name,
           type: 'item',
           tags: [r.size, r.speed + 'ft', r.origin].filter(Boolean),
@@ -86,7 +105,7 @@ export default {
       return {
         label: 'Weapon Types',
         type: 'section',
-        children: (homebrew.weapon_types ?? []).map((w) => ({
+        children: (weaponTypesAndLanguages.weapon_types ?? []).map((w) => ({
           label: w.name,
           type: 'item',
           tags: [w.damage_dice + ' ' + w.damage_type, w.weapon_type],
@@ -116,7 +135,7 @@ export default {
       return {
         label: 'Languages',
         type: 'section',
-        children: (homebrew.languages ?? []).map((l) => ({
+        children: (weaponTypesAndLanguages.languages ?? []).map((l) => ({
           label: l.name,
           type: 'item',
           tags: l.type ? [l.type] : [],

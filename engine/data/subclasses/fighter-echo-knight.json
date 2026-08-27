@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Echo Knight",
+  "features_by_level": {
+    "3": ["Manifest Echo", "Unleash Incarnation"],
+    "7": ["Echo Avatar"],
+    "10": ["Shadow Martyr"],
+    "15": ["Reclaim Potential"],
+    "18": ["Legion of One"]
+  }
+}

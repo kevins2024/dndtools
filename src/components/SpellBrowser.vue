@@ -267,7 +267,6 @@
 <script>
 import srdSpellsRaw from '@/data/api_data_cache/srd_spells_full.json'
 import publishedSpellsRaw from '@/data/published_spells.json'
-import homebrewDataRaw from '@/data/homebrew.json'
 import { lookupSpell } from '@/utils/lookupService'
 
 const CLASSES = [
@@ -310,29 +309,36 @@ const ORDINALS = [
 const PAGE_SIZE = 60
 
 function buildAllSpells() {
-  const published = publishedSpellsRaw.map((s) => ({
-    name: s.name,
-    level: s.level,
-    school: s.school ?? null,
-    classes: Array.isArray(s.classes) ? s.classes : [],
-    concentration: s.concentration ?? false,
-    ritual: s.ritual ?? false,
-    source: 'published',
-    source_book: s.source ?? 'Published',
-    _raw: s,
-  }))
+  // published_spells.json now holds real non-SRD content and homebrew spells
+  // side by side — each entry's own `homebrew` flag tells them apart, so the
+  // SRD/Published/Homebrew filter still splits into the same three buckets.
+  const published = publishedSpellsRaw
+    .filter((s) => !s.homebrew)
+    .map((s) => ({
+      name: s.name,
+      level: s.level,
+      school: s.school ?? null,
+      classes: Array.isArray(s.classes) ? s.classes : [],
+      concentration: s.concentration ?? false,
+      ritual: s.ritual ?? false,
+      source: 'published',
+      source_book: s.source ?? 'Published',
+      _raw: s,
+    }))
 
-  const homebrew = (homebrewDataRaw.spells ?? []).map((s) => ({
-    name: s.name,
-    level: s.level,
-    school: s.school ?? null,
-    classes: Array.isArray(s.classes) ? s.classes : [],
-    concentration: s.concentration ?? false,
-    ritual: s.ritual ?? false,
-    source: 'homebrew',
-    source_book: 'Homebrew',
-    _raw: s,
-  }))
+  const homebrew = publishedSpellsRaw
+    .filter((s) => s.homebrew)
+    .map((s) => ({
+      name: s.name,
+      level: s.level,
+      school: s.school ?? null,
+      classes: Array.isArray(s.classes) ? s.classes : [],
+      concentration: s.concentration ?? false,
+      ritual: s.ritual ?? false,
+      source: 'homebrew',
+      source_book: 'Homebrew',
+      _raw: s,
+    }))
 
   // SRD: full pre-fetched data, skip names already covered by published/homebrew
   const localNames = new Set(

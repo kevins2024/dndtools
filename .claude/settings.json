@@ -27,9 +27,12 @@
       "Bash(node add_notes.js)",
       "Bash(npm install *)",
       "Bash(mkdir -p \"c:\\\\GitHub\\\\dndtools\\\\scripts\")",
-      "Bash(node scripts/normalize-svg.js public/maps/lymesmarch_base.svg public/maps/lymesmarch_test_normalized.svg)"
+      "Bash(node scripts/normalize-svg.js public/maps/lymesmarch_base.svg public/maps/lymesmarch_test_normalized.svg)",
+      "Bash(node --test test/pointBuy.test.js test/species.test.js)"
     ],
-    "additionalDirectories": ["c:\\GitHub\\dndtools"]
+    "additionalDirectories": [
+      "c:\\GitHub\\dndtools"
+    ]
   },
   "hooks": {
     "PostToolUse": [

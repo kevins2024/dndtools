@@ -1,0 +1,17 @@
+{
+  "class": "Warlock",
+  "name": "Great Old One",
+  "features_by_level": {
+    "1": ["Awakened Mind"],
+    "6": ["Entropic Ward"],
+    "10": ["Thought Shield"],
+    "14": ["Create Thrall"]
+  },
+  "expanded_spell_list": {
+    "1": ["Dissonant Whispers", "Tasha's Hideous Laughter"],
+    "2": ["Detect Thoughts", "Phantasmal Force"],
+    "3": ["Clairvoyance", "Sending"],
+    "4": ["Dominate Beast", "Evard's Black Tentacles"],
+    "5": ["Dominate Person", "Telekinesis"]
+  }
+}

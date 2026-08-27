@@ -1,0 +1,20 @@
+{
+  "class": "Rogue",
+  "name": "Soulknife",
+  "features_by_level": {
+    "3": [
+      "Soulknife — Psychic Blades",
+      "Soulknife — Psi-Bolstered Knack",
+      "Soulknife — Psychic Whispers"
+    ],
+    "9": ["Soulknife — Soul Blades"],
+    "13": ["Soulknife — Psychic Veil"],
+    "17": ["Soulknife — Rend Mind"]
+  },
+  "psionic_energy_die_by_level": {
+    "3": 6,
+    "5": 8,
+    "11": 10,
+    "17": 12
+  }
+}

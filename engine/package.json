@@ -1,0 +1,10 @@
+{
+  "name": "dnd-rules-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-free D&D 5e rules engine: character progression data and pure logic, decoupled from any UI so it can be reused as-is (Vue now, a Godot port later).",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  }
+}

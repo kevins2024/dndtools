@@ -1,0 +1,9 @@
+{
+  "class": "Bard",
+  "name": "College of Lore",
+  "features_by_level": {
+    "3": ["Bonus Proficiencies", "Cutting Words"],
+    "6": ["Additional Magical Secrets"],
+    "14": ["Peerless Skill"]
+  }
+}

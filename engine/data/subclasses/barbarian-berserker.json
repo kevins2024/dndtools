@@ -1,0 +1,10 @@
+{
+  "class": "Barbarian",
+  "name": "Berserker",
+  "features_by_level": {
+    "3": ["Frenzy"],
+    "6": ["Mindless Rage"],
+    "10": ["Intimidating Presence"],
+    "14": ["Retaliation"]
+  }
+}

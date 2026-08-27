@@ -1,0 +1,10 @@
+{
+  "class": "Ranger",
+  "name": "Gloom Stalker",
+  "features_by_level": {
+    "3": ["Gloom Stalker Magic", "Dread Ambusher", "Umbral Sight"],
+    "7": ["Iron Mind"],
+    "11": ["Stalker's Flurry"],
+    "15": ["Shadowy Dodge"]
+  }
+}

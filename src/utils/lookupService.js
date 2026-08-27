@@ -5,16 +5,18 @@
 //   2. localStorage    — survives page refreshes, keyed by CACHE_VERSION so a
 //                        version bump here wipes all stale entries automatically
 //
-// Spell data: homebrew.json first, then public dnd5eapi.co REST API.
-// Feature data: local features.json → homebrew.json → traits API.
+// Spell data: published_spells.json (real non-SRD content and homebrew,
+// side by side — each entry's own `homebrew` flag tells them apart, see
+// engine/CHECKLIST.md) first, then public dnd5eapi.co REST API.
+// Feature data: local features.json (SRD) → published_features.json → traits API.
 
 import featuresData from '@/data/api_data_cache/features.json'
-import staticHomebrewData from '@/data/homebrew.json'
+import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
-const CACHE_VERSION = 'v2'
+const CACHE_VERSION = 'v4'
 const CACHE_PREFIX = `dndtools_${CACHE_VERSION}_`
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -25,19 +27,24 @@ const memCache = new Map()
 // Updated by saveToHomebrew so changes are visible immediately without page reload.
 const homebrewEdits = new Map()
 
-// In dev, homebrew.json is fetched live from the server so edits saved during a
-// previous session are visible immediately without restarting webpack.
-// In prod, the static bundle is used (saves are not available anyway).
+// In dev, published_spells.json/published_features.json are fetched live from
+// the server so edits saved during a previous session are visible immediately
+// without restarting webpack. In prod, the static bundle is used (saves are
+// not available anyway).
+const staticPublished = {
+  spells: staticPublishedSpells,
+  features: staticPublishedFeatures,
+}
 let _homebrewPromise = null
 
 function getHomebrew() {
   if (_homebrewPromise) return _homebrewPromise
   if (isDev) {
     _homebrewPromise = fetch(`${DATA_SERVER}/api/homebrew`)
-      .then((r) => (r.ok ? r.json() : staticHomebrewData))
-      .catch(() => staticHomebrewData)
+      .then((r) => (r.ok ? r.json() : staticPublished))
+      .catch(() => staticPublished)
   } else {
-    _homebrewPromise = Promise.resolve(staticHomebrewData)
+    _homebrewPromise = Promise.resolve(staticPublished)
   }
   return _homebrewPromise
 }
@@ -167,7 +174,7 @@ export async function lookupSpell(name) {
   // so the base name can be matched against homebrew and API entries.
   const baseName = name.replace(/\s*\([^)]*\)\s*$/, '').trim()
 
-  // 3. Homebrew spells (including items saved this session via homebrewEdits)
+  // 3. Session edits (saved this session via saveToHomebrew)
   const hbEdit =
     homebrewEdits.get(name.toLowerCase()) ??
     (baseName !== name ? homebrewEdits.get(baseName.toLowerCase()) : undefined)
@@ -175,22 +182,14 @@ export async function lookupSpell(name) {
     memCache.set(cacheKey, hbEdit)
     return hbEdit
   }
-  const homebrewData = await getHomebrew()
+
+  // 4. Published spells — real non-SRD content and homebrew side by side
+  // (each entry's own `homebrew` flag tells them apart), live-fetched in dev
+  // so edits show up without a rebuild, static bundle otherwise.
   const nameLower = name.toLowerCase()
   const baseNameLower = baseName.toLowerCase()
-  const hbSpell = (homebrewData.spells ?? []).find(
-    (s) =>
-      s.name.toLowerCase() === nameLower ||
-      (baseName !== name && s.name.toLowerCase() === baseNameLower)
-  )
-  if (hbSpell) {
-    const normalized = normalizeSpell(hbSpell)
-    memCache.set(cacheKey, normalized)
-    return normalized
-  }
-
-  // 4. Published (non-SRD) spells bundled locally — XGE, TCoE, PHB, EGW, SCC, FTD, etc.
-  const pubSpell = staticPublishedSpells.find(
+  const published = await getHomebrew()
+  const pubSpell = (published.spells ?? []).find(
     (s) =>
       s.name.toLowerCase() === nameLower ||
       (baseName !== name && s.name.toLowerCase() === baseNameLower)
@@ -229,9 +228,9 @@ export async function lookupSpell(name) {
 // ── Feature lookup ────────────────────────────────────────────────────────────
 // Lookup order:
 //   1. Session edits (homebrewEdits)
-//   2. Local features.json  (SRD class features, bundled)
-//   3. Local homebrew.json  (homebrew + non-SRD published features, bundled)
-//   4. /api/2014/traits     (racial/species traits — Fey Ancestry, Darkvision, etc.)
+//   2. Local features.json           (SRD class features, bundled)
+//   3. Local published_features.json (real non-SRD content + homebrew, bundled)
+//   4. /api/2014/traits               (racial/species traits — Fey Ancestry, Darkvision, etc.)
 
 export async function lookupFeature(name) {
   const lower = name.toLowerCase()
@@ -239,13 +238,40 @@ export async function lookupFeature(name) {
   // 1. Session edits
   if (homebrewEdits.has(lower)) return homebrewEdits.get(lower)
 
-  // 2. SRD class features — exact match first, then startsWith in either
-  //    direction for variants: cache "Action Surge (1 use)" for character
-  //    "Action Surge", or character "Sneak Attack (2d6)" for cache
+  // 2. Exact matches first, wherever they come from — an exact match always
+  //    wins over a fuzzy one. Without this, a feat like "Metamagic Adept"
+  //    gets swallowed by a fuzzy match against the SRD's "Metamagic" class
+  //    feature (since "Metamagic Adept".startsWith("Metamagic")) before its
+  //    own homebrew entry is ever checked.
+  const srdExact = featuresData.find((f) => f.name.toLowerCase() === lower)
+  if (srdExact) {
+    return {
+      subtitle: `${srdExact.class.name} · Level ${srdExact.level}`,
+      description: srdExact.desc.join('\n\n'),
+    }
+  }
+
+  const published = await getHomebrew()
+  const pubExact = published.features?.find(
+    (f) => f.name.toLowerCase() === lower
+  )
+  if (pubExact) {
+    return {
+      subtitle:
+        pubExact.category ||
+        pubExact.class ||
+        pubExact.source ||
+        (pubExact.homebrew ? 'Homebrew' : 'Published'),
+      description: pubExact.description,
+    }
+  }
+
+  // 3. SRD fuzzy match (only once no exact match exists anywhere) — startsWith
+  //    in either direction for variants: cache "Action Surge (1 use)" for
+  //    character "Action Surge", or character "Sneak Attack (2d6)" for cache
   //    "Sneak Attack". The reverse direction requires a space/paren right
   //    after the cache name so "Sneak Attack" doesn't match "Sneak Attacker".
   const found =
-    featuresData.find((f) => f.name.toLowerCase() === lower) ??
     featuresData.find((f) => f.name.toLowerCase().startsWith(lower)) ??
     featuresData.find((f) => {
       const cacheLower = f.name.toLowerCase()
@@ -259,16 +285,6 @@ export async function lookupFeature(name) {
     return {
       subtitle: `${found.class.name} · Level ${found.level}`,
       description: found.desc.join('\n\n'),
-    }
-  }
-
-  // 3. Homebrew / non-SRD published features
-  const homebrewData = await getHomebrew()
-  const hb = homebrewData.features?.find((f) => f.name.toLowerCase() === lower)
-  if (hb) {
-    return {
-      subtitle: hb.category || hb.class || 'Homebrew',
-      description: hb.description,
     }
   }
 
@@ -383,8 +399,9 @@ export async function lookupMonster(name) {
 }
 
 // ── Save to homebrew ──────────────────────────────────────────────────────────
-// Persists a spell or feature to homebrew.json via the dev server, then
-// updates in-memory caches so the change is visible immediately.
+// Persists a spell or feature to published_spells.json / published_features.json
+// via the dev server, then updates in-memory caches so the change is visible
+// immediately.
 
 export async function saveToHomebrew(section, data) {
   try {

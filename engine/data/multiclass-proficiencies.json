@@ -1,0 +1,61 @@
+{
+  "_notes": "PHB 'Multiclassing Proficiencies' table — verified via WebFetch against 5thsrd.org 2026-08-25. Only applies to a class gained by MULTICLASSING into it (not your starting class, which gets the class's full normal 1st-level proficiency list instead — see engine/data/classes/<class>.json for those).",
+  "Barbarian": {
+    "armor": ["shields"],
+    "weapons": ["simple", "martial"]
+  },
+  "Bard": {
+    "armor": ["light"],
+    "weapons": [],
+    "skills": { "choose": 1, "from": "class skill list" },
+    "tools": { "choose": 1, "from": "musical instruments" }
+  },
+  "Cleric": {
+    "armor": ["light", "medium", "shields"],
+    "weapons": []
+  },
+  "Druid": {
+    "armor": ["light", "medium (nonmetal)", "shields (nonmetal)"],
+    "weapons": []
+  },
+  "Fighter": {
+    "armor": ["light", "medium", "shields"],
+    "weapons": ["simple", "martial"]
+  },
+  "Monk": {
+    "armor": [],
+    "weapons": ["simple", "shortsword"]
+  },
+  "Paladin": {
+    "armor": ["light", "medium", "shields"],
+    "weapons": ["simple", "martial"]
+  },
+  "Ranger": {
+    "armor": ["light", "medium", "shields"],
+    "weapons": ["simple", "martial"],
+    "skills": { "choose": 1, "from": "class skill list" }
+  },
+  "Rogue": {
+    "armor": ["light"],
+    "weapons": [],
+    "skills": { "choose": 1, "from": "class skill list" },
+    "tools": ["thieves' tools"]
+  },
+  "Sorcerer": {
+    "armor": [],
+    "weapons": []
+  },
+  "Warlock": {
+    "armor": ["light"],
+    "weapons": ["simple"]
+  },
+  "Wizard": {
+    "armor": [],
+    "weapons": []
+  },
+  "Artificer": {
+    "_notes": "Not in the original PHB table (Artificer is from Tasha's/Eberron) — not yet verified against Tasha's own multiclassing rules text. Don't trust this until checked.",
+    "armor": null,
+    "weapons": null
+  }
+}

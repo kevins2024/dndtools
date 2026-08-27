@@ -15,10 +15,10 @@
 //   dnd.signed(n)   → "+3" or "-1"
 
 import { ARMOR_BASE_AC, WEAPON_PROPS } from './dnd_constants.js'
-import homebrew from '../data/homebrew.json'
+import weaponTypesAndLanguages from '../data/weapon_types_and_languages.json'
 
 const HOMEBREW_WEAPON_PROPS = Object.fromEntries(
-  (homebrew.weapon_types ?? []).map((w) => [w.id, w])
+  (weaponTypesAndLanguages.weapon_types ?? []).map((w) => [w.id, w])
 )
 
 export const STAT_KEYS = [
@@ -454,6 +454,8 @@ export const dnd = {
       damage_dice_2h: weapon.damage_dice_2h ?? base.damage_dice_2h ?? null,
       finesse: weapon.finesse ?? base.finesse ?? false,
       versatile: weapon.versatile ?? base.versatile ?? false,
+      thrown: weapon.thrown ?? base.thrown ?? null,
+      returning: weapon.returning ?? false,
     }
   },
 
@@ -608,6 +610,8 @@ export const dnd = {
           atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
           dmgTooltip: dmgParts.join(' + '),
           extras,
+          thrown: props.thrown,
+          returning: props.returning,
         }
       })
 

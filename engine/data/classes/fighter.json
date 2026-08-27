@@ -1,0 +1,20 @@
+{
+  "name": "Fighter",
+  "saving_throw_proficiencies": ["str", "con"],
+  "armor_proficiencies": ["light", "medium", "heavy", "shields"],
+  "weapon_proficiencies": ["simple", "martial"],
+  "subclass_name": "Martial Archetype",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [3, 7, 10, 15, 18],
+  "spellcasting": { "type": "none" },
+  "features_by_level": {
+    "1": ["Fighting Style", "Second Wind"],
+    "2": ["Action Surge (1 use)"],
+    "5": ["Extra Attack (1)"],
+    "9": ["Indomitable (1 use)"],
+    "11": ["Extra Attack (2)"],
+    "13": ["Indomitable (2 uses)"],
+    "17": ["Action Surge (2 uses)", "Indomitable (3 uses)"],
+    "20": ["Extra Attack (3)"]
+  }
+}

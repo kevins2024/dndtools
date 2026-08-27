@@ -1,0 +1,29 @@
+{
+  "name": "Druid",
+  "saving_throw_proficiencies": ["int", "wis"],
+  "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"],
+  "weapon_proficiencies": [
+    "club",
+    "dagger",
+    "dart",
+    "javelin",
+    "mace",
+    "quarterstaff",
+    "scimitar",
+    "sickle",
+    "sling",
+    "spear"
+  ],
+  "subclass_name": "Druid Circle",
+  "subclass_choice_level": 2,
+  "subclass_feature_levels": [2, 6, 10, 14],
+  "spellcasting": { "type": "full", "ability": "wis" },
+  "features_by_level": {
+    "1": ["Druidic", "Spellcasting"],
+    "2": ["Wild Shape"],
+    "4": ["Wild Shape improvement (CR 1/2, swim speed)"],
+    "8": ["Wild Shape improvement (flying speed)"],
+    "18": ["Timeless Body", "Beast Spells"],
+    "20": ["Archdruid"]
+  }
+}

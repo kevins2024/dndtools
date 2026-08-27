@@ -25,6 +25,8 @@ import EncounterGenerator from './EncounterGenerator.vue'
 import WeeklyEvents from './WeeklyEvents.vue'
 import ItemGenerator from './ItemGenerator.vue'
 import DmExport from './DmExport.vue'
+import LevelUpTool from './LevelUpTool.vue'
+import NewCharacterTool from './NewCharacterTool.vue'
 
 export default {
   name: 'ToolsContext',
@@ -35,6 +37,8 @@ export default {
     WeeklyEvents,
     ItemGenerator,
     DmExport,
+    LevelUpTool,
+    NewCharacterTool,
   },
 
   data() {
@@ -56,6 +60,16 @@ export default {
           id: 'items',
           label: 'Item Generator',
           component: 'ItemGenerator',
+        },
+        {
+          id: 'new-character',
+          label: 'New Character',
+          component: 'NewCharacterTool',
+        },
+        {
+          id: 'level-up',
+          label: 'Level Up',
+          component: 'LevelUpTool',
         },
         {
           id: 'dm-export',

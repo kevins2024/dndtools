@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Champion",
+  "features_by_level": {
+    "3": ["Improved Critical (19-20)"],
+    "7": ["Remarkable Athlete"],
+    "10": ["Additional Fighting Style"],
+    "15": ["Superior Critical (18-20)"],
+    "18": ["Survivor"]
+  }
+}

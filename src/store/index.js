@@ -57,7 +57,6 @@ export default new Vuex.Store({
     },
     assets: [],
     relationships: [],
-    homebrew: {},
     finances: {},
     calendar_notes: [],
     loaded: false,
@@ -143,6 +142,37 @@ export default new Vuex.Store({
     SET_ORIGINALS(state, originals) {
       state.originals = originals
       state.dirtyTables = []
+    },
+    // Updates the 3-way-merge base for ONE table without touching
+    // dirtyTables — unlike SET_ORIGINALS (which always clears ALL of it, the
+    // right call after a full saveAll, the wrong one after a single
+    // out-of-band save like LevelUpTool.vue's, which shouldn't wipe out some
+    // OTHER table's unrelated pending changes).
+    SET_ORIGINAL_TABLE(state, { table, data }) {
+      state.originals = { ...state.originals, [table]: data }
+    },
+    // Replaces ONE row of a table by `name` — either in the live table itself
+    // (revert-to-baseline, or adopt a just-saved row) or in that table's
+    // 3-way-merge base (after a per-row save). Used by LevelUpTool.vue so a
+    // single character can be saved or reverted without touching any other
+    // character's independent in-progress edits, in either the live table or
+    // its saved baseline.
+    SET_TABLE_ROW(state, { table, name, data }) {
+      const rows = state[table] || []
+      const idx = rows.findIndex((r) => r.name === name)
+      state[table] =
+        idx === -1
+          ? [...rows, data]
+          : rows.map((r, i) => (i === idx ? data : r))
+    },
+    SET_ORIGINAL_ROW(state, { table, name, data }) {
+      const rows = state.originals[table] || []
+      const idx = rows.findIndex((r) => r.name === name)
+      const updated =
+        idx === -1
+          ? [...rows, data]
+          : rows.map((r, i) => (i === idx ? data : r))
+      state.originals = { ...state.originals, [table]: updated }
     },
     MARK_DIRTY_TABLE(state, table) {
       if (!state.dirtyTables.includes(table)) {
@@ -472,6 +502,36 @@ export default new Vuex.Store({
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
     },
+    // patch: the `patch` object returned by engine.diffLevelUp (see
+    // /api/engine/preview-level-up and LevelUpTool.vue) — applied as-is via
+    // a shallow merge, since diffLevelUp already computed every field that
+    // actually changed (level, hp, classes, features, spell_slots/pact_magic,
+    // stat_* if an ASI/feat was resolved).
+    //
+    // Deliberately does NOT mark 'characters' dirty — a level-up is a big
+    // enough edit that the project owner wants it exempt from the ambient
+    // 1.5s autosave (AppLayout.vue's `hasChanges` watcher) and persisted only
+    // via LevelUpTool.vue's explicit "Save Changes" button instead.
+    APPLY_LEVEL_UP(state, { characterName, patch }) {
+      state.characters = state.characters.map((char) =>
+        char.name === characterName ? { ...char, ...patch } : char
+      )
+    },
+    // A brand-new character built by NewCharacterTool.vue. Deliberately does
+    // NOT mark 'characters' dirty, same reasoning as APPLY_LEVEL_UP — new
+    // characters go through the explicit save/revert bar
+    // (pendingCharacterSaves.js), not the ambient autosave.
+    ADD_CHARACTER(state, character) {
+      state.characters = [...state.characters, character]
+    },
+    // Discards a character that was never saved — 'characters' has no
+    // matching row in `originals` for it at all, so reverting it means
+    // removing it, not restoring some baseline that doesn't exist.
+    REMOVE_CHARACTER(state, { characterName }) {
+      state.characters = state.characters.filter(
+        (c) => c.name !== characterName
+      )
+    },
     SPEND_CHARGE(state, itemId) {
       state.party_items = state.party_items.map((item) =>
         item.id === itemId && item.charges_current > 0
@@ -534,7 +594,6 @@ export default new Vuex.Store({
         'party_items',
         'companions',
         'world',
-        'homebrew',
         'finances',
         'networks',
         'assets',
@@ -594,15 +653,7 @@ export default new Vuex.Store({
     async saveAll({ dispatch, commit, state }) {
       const tables = state.dirtyTables.length
         ? [...state.dirtyTables]
-        : [
-            'characters',
-            'npcs',
-            'places',
-            'party_items',
-            'world',
-            'homebrew',
-            'finances',
-          ]
+        : ['characters', 'npcs', 'places', 'party_items', 'world', 'finances']
       const conflicts = []
       for (const table of tables) {
         const result = await dispatch('save', table)

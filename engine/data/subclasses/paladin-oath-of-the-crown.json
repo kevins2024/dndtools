@@ -1,0 +1,13 @@
+{
+  "class": "Paladin",
+  "name": "Oath of the Crown",
+  "features_by_level": {
+    "3": [
+      "Channel Divinity: Champion Challenge",
+      "Channel Divinity: Turn the Tide"
+    ],
+    "7": ["Crown — Divine Allegiance"],
+    "15": ["Unyielding Spirit"],
+    "20": ["Exalted Champion"]
+  }
+}

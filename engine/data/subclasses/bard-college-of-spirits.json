@@ -1,0 +1,9 @@
+{
+  "class": "Bard",
+  "name": "College of Spirits",
+  "features_by_level": {
+    "3": ["Guiding Whispers", "Spiritual Focus", "Tales from Beyond"],
+    "6": ["Spirit Session"],
+    "14": ["Mystical Connection"]
+  }
+}

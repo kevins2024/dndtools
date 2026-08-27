@@ -1,0 +1,39 @@
+{
+  "_notes": "Structured mechanical grants for feats, so a character's spellbook/known-spell count can be computed from what a feat actually gives instead of trusting a freeform note. Verified via WebSearch against dnd5e.wikidot.com / rpgbot.net 2026-08-25. Only feats actually in use on the roster are here so far (see engine/CHECKLIST.md Phase 3) — add more as they come up, verifying RAW text before writing.",
+
+  "Fey Touched": {
+    "ability_score_increase": {
+      "choice_of": ["int", "wis", "cha"],
+      "amount": 1
+    },
+    "grants_spells": {
+      "fixed": ["Misty Step"],
+      "choice": {
+        "count": 1,
+        "level": 1,
+        "schools": ["Divination", "Enchantment"]
+      }
+    },
+    "casting_ability": "the ability increased by this feat",
+    "free_cast_note": "each of the two spells can be cast once without a slot per long rest; otherwise cast normally using slots of the appropriate level",
+    "counts_against_known_spells": false
+  },
+
+  "Shadow Touched": {
+    "ability_score_increase": {
+      "choice_of": ["int", "wis", "cha"],
+      "amount": 1
+    },
+    "grants_spells": {
+      "fixed": ["Invisibility"],
+      "choice": {
+        "count": 1,
+        "level": 1,
+        "schools": ["Illusion", "Necromancy"]
+      }
+    },
+    "casting_ability": "the ability increased by this feat",
+    "free_cast_note": "each of the two spells can be cast once without a slot per long rest; otherwise cast normally using slots of the appropriate level",
+    "counts_against_known_spells": false
+  }
+}

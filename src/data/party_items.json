@@ -109,7 +109,14 @@
     "id": "items_9",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Grants the wielder Sneak Attack: once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage. If you already have Sneak Attack, use the higher value.\n\nSneak Attack dice (half level, rounded down):\nL1: — · L2–3: 1d6 · L4–5: 2d6 · L6–7: 3d6 · L8–9: 4d6 · L10–11: 5d6 · L12–13: 6d6 · L14–15: 7d6 · L16–17: 8d6 · L18–19: 9d6 · L20: 10d6"
+    "effect": "+2 to attack and damage rolls. Grants the wielder Sneak Attack: once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage. If you already have Sneak Attack, use the higher value.\n\nSneak Attack dice (half level, rounded down):\nL1: — · L2–3: 1d6 · L4–5: 2d6 · L6–7: 3d6 · L8–9: 4d6 · L10–11: 5d6 · L12–13: 6d6 · L14–15: 7d6 · L16–17: 8d6 · L18–19: 9d6 · L20: 10d6",
+    "weapon_effects": [
+      {
+        "name": "Sneak Attack",
+        "type": "weapon_effect",
+        "description": "Once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage by half level: L2–3 1d6 · L4–5 2d6 · L6–7 3d6 · L8–9 4d6 · L10–11 5d6 · L12–13 6d6 · L14–15 7d6 · L16–17 8d6 · L18–19 9d6 · L20 10d6. Use the higher value if you already have Sneak Attack."
+      }
+    ]
   },
   {
     "name": "Echo Dagger +2",
@@ -124,7 +131,15 @@
     "id": "items_10",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Once per turn when you hit with this dagger, you may use your reaction to make one off-hand attack."
+    "effect": "+2 to attack and damage rolls. Once per turn when you hit with this dagger, you may use your reaction to make one off-hand attack.",
+    "weapon_effects": [
+      {
+        "name": "Echo Strike",
+        "type": "weapon_effect",
+        "action_type": "reaction",
+        "description": "Once per turn when you hit with this dagger, use your reaction to make one off-hand attack."
+      }
+    ]
   },
   {
     "name": "Warden Dagger",
@@ -138,7 +153,14 @@
     "notes": "Boot dagger backup. Reliable against extraplanar threats.",
     "id": "items_11",
     "slot": "melee1h",
-    "effect": "Deals +2 damage on a hit against fiends, aberrations, undead, and monstrosities."
+    "effect": "Deals +2 damage on a hit against fiends, aberrations, undead, and monstrosities.",
+    "weapon_effects": [
+      {
+        "name": "Warden's Bane",
+        "type": "weapon_effect",
+        "description": "Deals an extra 2 damage on a hit against fiends, aberrations, undead, and monstrosities."
+      }
+    ]
   },
   {
     "name": "Hand Crossbow +2 (Rooting)",
@@ -153,7 +175,14 @@
     "notes": "Sidearm.",
     "id": "items_12",
     "slot": "ranged1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Rooting Shot",
+        "type": "weapon_effect",
+        "description": "Once per turn on a hit, choose to deal damage as normal or root the target in place until the end of its next turn."
+      }
+    ]
   },
   {
     "name": "Hand Crossbow (standard)",
@@ -443,7 +472,14 @@
     "notes": "",
     "id": "items_34",
     "slot": "melee2h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Toppling Blow",
+        "type": "weapon_effect",
+        "description": "On a critical hit, the target must succeed on a Strength saving throw or be knocked prone."
+      }
+    ]
   },
   {
     "name": "Ceremonial Horn",
@@ -483,7 +519,14 @@
     "notes": "",
     "id": "items_38",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Swift Strike",
+        "type": "weapon_effect",
+        "description": "Once per turn on a hit, immediately make a second strike with this dagger as part of the same attack, without using a bonus action."
+      }
+    ]
   },
   {
     "name": "Leather Armor +2",
@@ -585,20 +628,29 @@
       "applies_to": "weapon",
       "trigger": "on hit"
     },
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Chilling Strike",
+        "type": "weapon_effect",
+        "description": "On a hit, deals an extra 1d6 cold damage and the target's speed is reduced by 10ft until the start of its next turn."
+      }
+    ]
   },
   {
     "name": "Gloves of Missile Snaring",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Therynv'l",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Reaction when hit by ranged attack: reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
     "notes": "",
     "id": "items_46",
     "slot": "hands",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Alchemical Dagger",
@@ -612,7 +664,14 @@
     "id": "items_47",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "When dipped into any liquid, identifies its properties (potion, poison, magical substance, etc.) within 1 round. After identification, the blade retains a coating of that liquid — the next attack with this dagger delivers the substance to the target. Effect could be beneficial or harmful depending on the liquid."
+    "effect": "When dipped into any liquid, identifies its properties (potion, poison, magical substance, etc.) within 1 round. After identification, the blade retains a coating of that liquid — the next attack with this dagger delivers the substance to the target. Effect could be beneficial or harmful depending on the liquid.",
+    "weapon_effects": [
+      {
+        "name": "Alchemical Coating",
+        "type": "weapon_effect",
+        "description": "Dip the blade into a liquid to identify its properties within 1 round. The blade retains a coating of that liquid — the next hit with this dagger delivers the substance to the target, for better or worse."
+      }
+    ]
   },
   {
     "name": "Alchemical Heavy Crossbow",
@@ -905,13 +964,20 @@
     "notes": "",
     "id": "items_70",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Mind Blade",
+        "type": "weapon_effect",
+        "description": "On a hit, choose to deal psychic damage instead of piercing damage."
+      }
+    ]
   },
   {
     "name": "Bracers of Defense",
     "type": "armor",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Therynv'l",
     "needs_attunement": true,
     "attuned": false,
     "unarmored_stat_bonuses": {
@@ -923,7 +989,9 @@
     "effect": "+2 bonus to AC when not wearing armor or using a shield.",
     "stat_bonuses": {
       "ac": 2
-    }
+    },
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Concentration Robes",
@@ -1038,7 +1106,14 @@
     "notes": "",
     "id": "items_78",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Overflowing Cure",
+        "type": "weapon_effect",
+        "description": "Whenever the bearer casts a healing spell, all other creatures within 15ft are healed for 2 hp."
+      }
+    ]
   },
   {
     "name": "Shield of Expression",
@@ -1162,11 +1237,18 @@
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "On a roll of 20: severs a limb and deals extra 14 damage.",
+    "effect": "On a natural 20 attack roll: deal an extra 14 slashing damage, then roll another d20 — a second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), with the GM determining the effect. Against an object, maximize the weapon's damage dice on a hit.",
     "notes": "",
     "id": "items_88",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Sharpness",
+        "type": "weapon_effect",
+        "description": "On a natural 20 attack roll, deal an extra 14 slashing damage, then roll another d20. A second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), effect determined by the GM. Against an object hit, maximize the weapon's damage dice instead."
+      }
+    ]
   },
   {
     "name": "Gloves of Dueling",
@@ -1242,7 +1324,14 @@
     "notes": "",
     "id": "items_93",
     "slot": "ranged2h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Force Arrow",
+        "type": "weapon_effect",
+        "description": "Deals force damage instead of piercing damage."
+      }
+    ]
   },
   {
     "name": "Bow Grip",
@@ -1377,14 +1466,16 @@
     "name": "Cloak of Elvenkind",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Therynv'l",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on Stealth checks outdoors. Color shifting.",
     "notes": "",
     "id": "items_103",
     "slot": "back",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Rope of Climbing and Entanglement",
@@ -1527,11 +1618,18 @@
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "Cannot be surprised, advantage on initiative. Wakes wielder if danger approaches during sleep.",
+    "effect": "While the weapon is on your person, you have advantage on initiative rolls. In addition, you and any companions within 30ft of you can't be surprised, except when incapacitated by something other than nonmagical sleep.",
     "notes": "",
     "id": "items_113",
     "slot": "melee2h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Warning",
+        "type": "weapon_effect",
+        "description": "While carried, grants advantage on initiative rolls. You and any companions within 30ft of you can't be surprised, except when incapacitated by something other than nonmagical sleep."
+      }
+    ]
   },
   {
     "name": "Longsword +2 (Bronze Flame)",
@@ -1546,7 +1644,15 @@
     "notes": "",
     "id": "items_114",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Bronze Flame",
+        "type": "weapon_effect",
+        "action_type": "bonus_action",
+        "description": "Speak the command word to ignite the bronze edges. While active, each hit deals an extra 2d6 fire damage. A second use of the command word ends the effect early."
+      }
+    ]
   },
   {
     "name": "Collapsible Shield +2",
@@ -1673,7 +1779,7 @@
     "name": "Ring of Transmutation",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Therynv'l",
     "needs_attunement": true,
     "attuned": false,
     "charges_current": 3,
@@ -1683,7 +1789,9 @@
     "notes": "",
     "id": "items_123",
     "slot": "ring",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Ring of Jumping",
@@ -1813,7 +1921,15 @@
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
+    "returning": true,
     "effect": "Returns to hand after thrown. On crit: target knocked prone regardless of size.",
+    "weapon_effects": [
+      {
+        "name": "Toppling Throw",
+        "type": "weapon_effect",
+        "description": "On a critical hit, the target is knocked prone regardless of its size."
+      }
+    ],
     "notes": "",
     "id": "items_135",
     "slot": "melee1h",
@@ -1832,7 +1948,14 @@
     "notes": "",
     "id": "items_136",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Cleaving Edge",
+        "type": "weapon_effect",
+        "description": "On a critical hit, this weapon deals a flat 2d6 slashing damage instead of doubling its damage dice."
+      }
+    ]
   },
   {
     "name": "Whisper Longbow +2",
@@ -2008,7 +2131,14 @@
     "effect": "On a critical hit: target is knocked prone.",
     "notes": "",
     "id": "items_148",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_effects": [
+      {
+        "name": "Toppling Maul",
+        "type": "weapon_effect",
+        "description": "On a critical hit, the target is knocked prone."
+      }
+    ]
   },
   {
     "name": "Bracers of Swiftness",
@@ -2198,7 +2328,39 @@
     "notes": "",
     "id": "items_163",
     "slot": "none",
-    "effect": "6 spinel gems and 2 sapphires."
+    "effect": "6 spinel (100gp each), 2 sapphires (1,000gp each), 2 diamonds (5,000gp each), 2 rubies (5,000gp each), 4 fire opal (1,000gp each), 4 garnet (100gp each).",
+    "contents": [
+      {
+        "type": "Spinel",
+        "value_gp": 100,
+        "quantity": 6
+      },
+      {
+        "type": "Sapphire",
+        "value_gp": 1000,
+        "quantity": 2
+      },
+      {
+        "type": "Diamond",
+        "value_gp": 5000,
+        "quantity": 2
+      },
+      {
+        "type": "Ruby",
+        "value_gp": 5000,
+        "quantity": 2
+      },
+      {
+        "type": "Fire Opal",
+        "value_gp": 1000,
+        "quantity": 4
+      },
+      {
+        "type": "Garnet",
+        "value_gp": 100,
+        "quantity": 4
+      }
+    ]
   },
   {
     "name": "Tome of Clear Thought",
@@ -2362,7 +2524,35 @@
     "effect": "MELEE: +3 quarterstaff. Automatically deals the most harmful damage type to the target. Once per short rest on a hit: vines root the target until the end of their next turn.\n\nSPELLCASTING FOCUS: Spell save DC +2. Once per long rest: cast any one spell without expending a spell slot.\n\nWILDSHAPE: Staff merges into the druid's non-halfling forms. While merged: +3 to attack and damage rolls, HP maximum increases by druid level, once per wildshape cast one cantrip as a bonus action. In Circle of Stars form the staff remains physical.",
     "stat_bonuses": {
       "spell_save_dc": 2
-    }
+    },
+    "weapon_effects": [
+      {
+        "name": "Adaptive Damage",
+        "type": "weapon_effect",
+        "description": "Automatically deals whichever damage type is most harmful to the target."
+      },
+      {
+        "name": "Root",
+        "type": "weapon_effect",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "On a hit, vines erupt from the staff and root the target in place until the end of its next turn."
+      },
+      {
+        "name": "Focused Casting",
+        "type": "weapon_effect",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "As a spellcasting focus: cast any one spell without expending a spell slot."
+      },
+      {
+        "name": "Wildshape Merge",
+        "type": "weapon_effect",
+        "description": "Merges into the druid's non-halfling wildshape forms. While merged: +3 to attack and damage rolls, HP maximum increases by druid level, and once per wildshape you may cast one cantrip as a bonus action. In Circle of Stars form the staff remains physical."
+      }
+    ]
   },
   {
     "name": "Shadowgrain Leather",
@@ -2478,6 +2668,7 @@
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
+    "returning": true,
     "effect": "Returns instantly to thrower's hand after a thrown attack, whether it hits or misses.",
     "notes": "Saltborn steel — no mechanical effect, flavor only.",
     "id": "items_182",
@@ -2516,15 +2707,17 @@
   {
     "name": "Robe of Stilled Thought",
     "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Rith",
+    "carried_by": "Rith",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "notes": "Made by Ssivanak herself. Significant item — effectively frees concentration slot while one spell runs autonomously.",
     "id": "items_186",
     "slot": "body",
     "battle_effect": true,
-    "effect": "One concentration spell cast while wearing this robe does not require concentration — it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately."
+    "effect": "One concentration spell cast while wearing this robe does not require concentration — it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately.",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Bracers of Spell Mastery",
@@ -2919,19 +3112,29 @@
     "battle_effect": false
   },
   {
-    "name": "Saber",
+    "name": "Stormcaller's Cutlass",
     "type": "weapon",
     "weapon_category": "saber",
     "equipped_by": "Eldi",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "enhancement_bonus": 0,
-    "notes": "30 gp, 4 lb.",
+    "enhancement_bonus": 1,
+    "notes": "",
     "id": "items_221",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "Finesse weapon. 1d8 slashing damage."
+    "effect": "+1 to attack and damage rolls. Once per day, channel a strike that adds 2d6 lightning damage on a hit, accompanied by a genuine thunderclap loud enough to be heard across the deck.",
+    "weapon_effects": [
+      {
+        "name": "Stormcaller's Strike",
+        "type": "weapon_effect",
+        "recharge": "dawn",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "On a hit, deal an extra 2d6 lightning damage, accompanied by a thunderclap loud enough to be heard across the deck."
+      }
+    ]
   },
   {
     "name": "Poison Shortsword +1",
@@ -2946,15 +3149,22 @@
     "id": "items_223",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "+1 to attack and damage rolls. On a hit: extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute."
+    "effect": "+1 to attack and damage rolls. On a hit: extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute.",
+    "weapon_effects": [
+      {
+        "name": "Poison Strike",
+        "type": "weapon_effect",
+        "description": "On a hit, deal an extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute."
+      }
+    ]
   },
   {
     "name": "Wolf Hunter's Rags",
     "type": "wondrous",
-    "equipped_by": "Eldi",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Eldi",
     "needs_attunement": true,
-    "attuned": true,
+    "attuned": false,
     "notes": "",
     "id": "items_224",
     "slot": "shoulders",
@@ -2966,10 +3176,10 @@
     "type": "armor",
     "armor_type": "breastplate",
     "rarity": "rare",
-    "equipped_by": "Eldi",
+    "equipped_by": null,
     "carried_by": "Eldi",
     "needs_attunement": true,
-    "attuned": true,
+    "attuned": false,
     "charges_current": 0,
     "charges_max": 1,
     "charges_recharge": "none",
@@ -3006,7 +3216,7 @@
     "weapon_category": "hand crossbow",
     "rarity": "uncommon/rare",
     "equipped_by": null,
-    "carried_by": "Rith",
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
@@ -3019,7 +3229,17 @@
     "battle_effect": true,
     "effect": "+2 to attack and damage rolls. Marked Shot: once per short rest, when firing a bolt, choose one rider effect: (a) target must succeed on a Constitution save or have speed halved until the end of its next turn, or (b) wielder gains advantage on their next attack roll against that target within 1 minute.",
     "stored_at": null,
-    "party_id": null
+    "party_id": "party_1782820688153",
+    "weapon_effects": [
+      {
+        "name": "Marked Shot",
+        "type": "weapon_effect",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "On a hit, choose one: the target makes a Constitution save or has its speed halved until the end of its next turn, or you gain advantage on your next attack roll against that target within 1 minute."
+      }
+    ]
   },
   {
     "name": "Signet Ring",
@@ -3027,8 +3247,8 @@
     "rarity": "uncommon",
     "equipped_by": "Rith",
     "carried_by": "Rith",
-    "needs_attunement": false,
-    "attuned": false,
+    "needs_attunement": true,
+    "attuned": true,
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "long_rest",
@@ -3039,5 +3259,43 @@
     "effect": "Warding Press: once per long rest, press the ring to your skin to gain resistance to one damage type of your choice for 1 hour.",
     "stored_at": null,
     "party_id": null
+  },
+  {
+    "name": "Stone of the Rootbound Ward",
+    "type": "wondrous",
+    "rarity": "very rare",
+    "equipped_by": "Rith",
+    "carried_by": null,
+    "needs_attunement": true,
+    "attuned": true,
+    "slot": "held",
+    "battle_effect": true,
+    "spells_granted": [
+      "Mold Earth",
+      "Wall of Stone",
+      "The Stones Agree"
+    ],
+    "id": "items_229",
+    "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
+    "effect": "Mold Earth (cantrip, 3/day): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/day): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it."
+  },
+  {
+    "name": "Stone of the Broken Vein",
+    "type": "wondrous",
+    "rarity": "very rare",
+    "equipped_by": "Eldi",
+    "carried_by": null,
+    "needs_attunement": true,
+    "attuned": true,
+    "slot": "held",
+    "battle_effect": true,
+    "spells_granted": [
+      "Spike Growth",
+      "Erupting Earth",
+      "The Stones Agree"
+    ],
+    "id": "items_230",
+    "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
+    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/day): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it."
   }
 ]

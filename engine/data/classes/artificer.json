@@ -1,0 +1,22 @@
+{
+  "name": "Artificer",
+  "saving_throw_proficiencies": ["con", "int"],
+  "armor_proficiencies": ["light", "medium", "shields"],
+  "weapon_proficiencies": ["simple"],
+  "subclass_name": "Artificer Specialist",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [3, 5, 9, 15],
+  "spellcasting": { "type": "artificer", "ability": "int" },
+  "features_by_level": {
+    "1": ["Magical Tinkering", "Spellcasting"],
+    "2": ["Infuse Item"],
+    "3": ["The Right Tool for the Job"],
+    "6": ["Tool Expertise"],
+    "7": ["Flash of Genius"],
+    "10": ["Magic Item Adept"],
+    "11": ["Spell-Storing Item"],
+    "14": ["Magic Item Savant"],
+    "18": ["Magic Item Master"],
+    "20": ["Soul of Artifice"]
+  }
+}

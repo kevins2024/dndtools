@@ -19,20 +19,14 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -136,20 +130,14 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -242,10 +230,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -254,11 +239,7 @@
       "Deception",
       "Investigation"
     ],
-    "languages": [
-      "Common",
-      "Thieves Cant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Thieves Cant", "Dwarvish"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -291,13 +272,25 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Invisibility",
-          "Inflict Wounds"
-        ]
+        "spells_granted": ["Invisibility", "Inflict Wounds"]
       }
     ],
-    "spells": [],
+    "spells": [
+      {
+        "name": "Invisibility",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Shadow Touched"
+      },
+      {
+        "name": "Inflict Wounds",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Shadow Touched"
+      }
+    ],
     "active_effects": [],
     "persona_notes": [
       "Always at the window or the edge. Always listening.",
@@ -350,10 +343,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int"
-    ],
+    "saving_throws": ["con", "int"],
     "skill_proficiencies": [
       "Arcana",
       "Investigation",
@@ -361,11 +351,7 @@
       "Perception"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish"],
     "features": [
       {
         "name": "Magical Tinkering",
@@ -460,10 +446,7 @@
         "type": "feat",
         "recharge": "long_rest",
         "description": "Learn Misty Step and Command. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Misty Step",
-          "Command"
-        ]
+        "spells_granted": ["Misty Step", "Command"]
       },
       {
         "name": "Gnome Cunning",
@@ -493,6 +476,22 @@
         "type": "infusion",
         "action_type": "action",
         "description": "Single-use vial. Apply as an action — for 1 hour the wearer has advantage on Charisma checks directed at humanoids of CR 1 or lower."
+      }
+    ],
+    "spells": [
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Fey Touched"
+      },
+      {
+        "name": "Command",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Fey Touched"
       }
     ],
     "spell_slots": {
@@ -584,21 +583,9 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1129,10 +1116,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -1140,11 +1124,7 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1660,21 +1640,9 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Medicine",
-      "Insight",
-      "Religion",
-      "History"
-    ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Solvalean"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
+    "languages": ["Common", "Celestial", "Solvalean"],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1929,10 +1897,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1941,10 +1906,7 @@
       "Deception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -2002,12 +1964,7 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "SleightOfHand",
-      "Insight",
-      "Perception"
-    ],
+    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
     "classes": [
       {
         "name": "Rogue",
@@ -2035,10 +1992,7 @@
     "hp_max": 63,
     "hp_current": 63,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -2047,11 +2001,7 @@
       "Persuasion",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orcish",
-      "Deep Speech"
-    ],
+    "languages": ["Common", "Orcish", "Deep Speech"],
     "features": [
       {
         "name": "Fighting Style: Dueling",
@@ -2219,7 +2169,8 @@
       {
         "name": "Fighter",
         "subclass": "Champion",
-        "level": 4
+        "level": 4,
+        "started": true
       },
       {
         "name": "Warlock",
@@ -2247,20 +2198,9 @@
     "hp_max": 61,
     "hp_current": 61,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Survival",
-      "Acrobatics",
-      "Nature"
-    ],
-    "languages": [
-      "Common",
-      "Goblin"
-    ],
+    "saving_throws": ["str", "con"],
+    "skill_proficiencies": ["Athletics", "Survival", "Acrobatics", "Nature"],
+    "languages": ["Common", "Goblin"],
     "features": [
       {
         "name": "Extra Attack",
@@ -2371,10 +2311,7 @@
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -2387,11 +2324,7 @@
       "Nature",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -2578,10 +2511,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Perception",
-      "Persuasion"
-    ],
+    "skill_expertise": ["Perception", "Persuasion"],
     "classes": [
       {
         "name": "Bard",
@@ -2609,21 +2539,9 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -2634,11 +2552,11 @@
         "type": "feature"
       },
       {
-        "name": "Abjuration Wizard — Arcane Ward (18HP max)",
+        "name": "Arcane Ward",
         "type": "feature"
       },
       {
-        "name": "Abjuration Wizard — Projected Ward",
+        "name": "Projected Ward",
         "type": "feature"
       },
       {
@@ -2717,7 +2635,7 @@
       {
         "name": "Alarm",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2759,13 +2677,13 @@
       {
         "name": "Protection from Evil and Good",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Shield",
         "level": 1,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2777,7 +2695,7 @@
       {
         "name": "Arcane Lock",
         "level": 2,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2849,7 +2767,7 @@
       {
         "name": "Dispel Magic",
         "level": 3,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2867,7 +2785,7 @@
       {
         "name": "Haste",
         "level": 3,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2897,7 +2815,7 @@
       {
         "name": "Remove Curse",
         "level": 3,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2927,7 +2845,7 @@
       {
         "name": "Arcane Eye",
         "level": 4,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -2945,7 +2863,7 @@
       {
         "name": "Evard's Black Tentacles",
         "level": 4,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -3017,19 +2935,19 @@
       {
         "name": "Danse Macabre",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Mislead",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
         "name": "Modify Memory",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -3041,7 +2959,7 @@
       {
         "name": "Rary's Telepathic Bond",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -3053,7 +2971,7 @@
       {
         "name": "Synaptic Static",
         "level": 5,
-        "prepared": true,
+        "prepared": false,
         "type": "prepared"
       },
       {
@@ -3130,20 +3048,14 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Extra Attack",
@@ -3226,12 +3138,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": [
-      "str",
-      "con",
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["str", "con", "wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -3240,12 +3147,7 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Celestial",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -3258,7 +3160,8 @@
       {
         "name": "Paladin",
         "subclass": "Oath of the Ancients",
-        "level": 3
+        "level": 3,
+        "started": true
       }
     ],
     "features": [
@@ -3276,6 +3179,10 @@
       },
       {
         "name": "Mountain Born",
+        "type": "feature"
+      },
+      {
+        "name": "Unarmored Defense",
         "type": "feature"
       },
       {
@@ -3359,8 +3266,8 @@
     ],
     "spell_slots": {
       "level_1": {
-        "max": 3,
-        "current": 3
+        "max": 2,
+        "current": 2
       }
     },
     "spells": [
@@ -3423,10 +3330,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3434,11 +3338,7 @@
       "Religion",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Elvish", "Sylvan"],
     "features": [
       {
         "name": "Divine Sense",
@@ -3493,10 +3393,6 @@
         "name": "Crown — Divine Allegiance",
         "type": "feature",
         "action_type": "reaction"
-      },
-      {
-        "name": "Daunting Strike",
-        "type": "feature"
       },
       {
         "name": "Fey Step",
@@ -3634,22 +3530,9 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Nature",
-      "Perception",
-      "Survival",
-      "Medicine"
-    ],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -3705,6 +3588,10 @@
         "recharge": "short_rest",
         "uses_max": 2,
         "uses_current": 2
+      },
+      {
+        "name": "Primal Companion",
+        "type": "feature"
       },
       {
         "name": "Lucky",
@@ -3914,10 +3801,7 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3926,11 +3810,7 @@
       "Perception",
       "Performance"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
@@ -3971,6 +3851,20 @@
       }
     ],
     "spells": [
+      {
+        "name": "Misty Step",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Fey Touched"
+      },
+      {
+        "name": "Comprehend Languages",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Fey Touched"
+      },
       {
         "name": "Thunderwave",
         "level": 1,
@@ -4058,12 +3952,6 @@
       {
         "name": "Bless",
         "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Fast Friends",
-        "level": 2,
         "prepared": true,
         "type": "prepared"
       },
@@ -4203,10 +4091,7 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
+    "saving_throws": ["dex", "str"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -4216,11 +4101,7 @@
       "Survival",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Infernal",
-      "Abyssal"
-    ],
+    "languages": ["Common", "Infernal", "Abyssal"],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -4323,15 +4204,13 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "skill_expertise": ["Stealth", "Performance"],
     "classes": [
       {
         "name": "Ranger",
         "subclass": "Gloom Stalker",
-        "level": 5
+        "level": 5,
+        "started": true
       },
       {
         "name": "Rogue",
@@ -4363,10 +4242,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -4376,11 +4252,7 @@
       "Medicine",
       "Acrobatics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Solvalean"
-    ],
+    "languages": ["Common", "Elvish", "Solvalean"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -4586,10 +4458,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Performance",
-      "Insight"
-    ],
+    "skill_expertise": ["Performance", "Insight"],
     "classes": [
       {
         "name": "Bard",
@@ -4616,20 +4485,9 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Persuasion",
-      "Insight",
-      "Religion"
-    ],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
+    "languages": ["Common", "Gnomish"],
     "features": [
       {
         "name": "Divine Sense",
@@ -4803,10 +4661,7 @@
     "hp_max": 78,
     "hp_current": 78,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4816,11 +4671,7 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Fighting Style: Two-Weapon Fighting",
@@ -4939,10 +4790,7 @@
     "id": "characters_20",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": [
-      "Stealth",
-      "Acrobatics"
-    ],
+    "skill_expertise": ["Stealth", "Acrobatics"],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -4950,7 +4798,8 @@
       {
         "name": "Fighter",
         "subclass": "Echo Knight",
-        "level": 6
+        "level": 6,
+        "started": true
       },
       {
         "name": "Rogue",
@@ -4978,10 +4827,7 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
+    "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4991,11 +4837,7 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Divine Magic",
@@ -5100,7 +4942,8 @@
         "name": "Bless",
         "level": 1,
         "prepared": true,
-        "type": "prepared"
+        "featureGranted": true,
+        "_source": "Divine Magic (Law affinity)"
       },
       {
         "name": "Silvery Barbs",
@@ -5238,22 +5081,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Religion"
-    ],
+    "saving_throws": ["con", "cha"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Arcanis"
-    ],
+    "languages": ["Common", "Celestial", "Arcanis"],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -5572,10 +5403,7 @@
     "hit_die": "d8",
     "hit_dice_current": 1,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -5584,14 +5412,8 @@
       "History",
       "Persuasion"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "skill_expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
     "features": [
       {
         "name": "Soulknife — Psychic Blades",
@@ -5602,7 +5424,23 @@
         "type": "feature"
       },
       {
+        "name": "Soulknife — Psychic Whispers",
+        "type": "feature"
+      },
+      {
+        "name": "Soulknife — Soul Blades",
+        "type": "feature"
+      },
+      {
+        "name": "Master of Intrigue",
+        "type": "feature"
+      },
+      {
         "name": "Master of Tactics",
+        "type": "feature"
+      },
+      {
+        "name": "Insightful Manipulator",
         "type": "feature"
       },
       {
@@ -5622,6 +5460,11 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Once per long rest, when an ally within 30ft is hit by an attack: expend your reaction to toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss if they are now out of range or the attacker no longer has line of effect."
+      },
+      {
+        "name": "Old Scores",
+        "type": "feature",
+        "recharge": "session"
       }
     ],
     "spells": [],
@@ -5632,5 +5475,228 @@
       "Legendary rogue, now retired.",
       "Applies 156 years of tactical memory to leatherworking."
     ]
+  },
+  {
+    "name": "Therynv'l",
+    "race": "Wood Elf",
+    "level": 9,
+    "image": "./characters/therynvl.jpg",
+    "proficiency_bonus": 4,
+    "spellcasting_ability": "wis",
+    "stat_str": 10,
+    "stat_dex": 14,
+    "stat_con": 16,
+    "stat_int": 8,
+    "stat_wis": 18,
+    "stat_cha": 12,
+    "hp_max": 75,
+    "hp_current": 75,
+    "unarmored_ac_formula": "default",
+    "saving_throws": ["con", "int", "wis"],
+    "skill_proficiencies": [
+      "Animal Handling",
+      "Athletics",
+      "Nature",
+      "Perception",
+      "Survival"
+    ],
+    "skill_expertise": [],
+    "languages": ["Common", "Elvish"],
+    "darkvision": 60,
+    "hit_die": "d8",
+    "hit_dice_current": 9,
+    "classes": [
+      {
+        "name": "Druid",
+        "subclass": "Circle of the Moon",
+        "level": 9
+      }
+    ],
+    "features": [
+      {
+        "name": "Fey Ancestry",
+        "type": "feature"
+      },
+      {
+        "name": "Darkvision",
+        "type": "feature"
+      },
+      {
+        "name": "Elven Weapon Training",
+        "type": "feature",
+        "description": "Proficiency with longswords, shortswords, shortbows, and longbows."
+      },
+      {
+        "name": "Fleet of Foot",
+        "type": "feature",
+        "description": "Base walking speed increases to 35 feet."
+      },
+      {
+        "name": "Mask of the Wild",
+        "type": "feature",
+        "description": "Can attempt to hide even when only lightly obscured by foliage, heavy rain, falling snow, mist, or other natural phenomena."
+      },
+      {
+        "name": "Combat Wild Shape",
+        "type": "feature",
+        "description": "Can use Wild Shape as a bonus action rather than an action. While shaped, can cast a druid spell with a casting time of 1 action by expending a spell slot, or use a bonus action to expend a spell slot and regain 1d8 HP per level of the slot expended."
+      },
+      {
+        "name": "Wild Shape",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 2,
+        "uses_current": 2,
+        "description": "Transform into a beast you've seen before with a challenge rating of 1 or lower (Circle of the Moon — reached at 2nd level, doesn't increase further). Swimming-speed beasts allowed from 4th level; flying-speed beasts allowed from 8th level. Two uses; regain both on a short or long rest."
+      },
+      {
+        "name": "Primal Strike",
+        "type": "feature",
+        "description": "Attacks made in beast form (via Wild Shape) count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage."
+      },
+      {
+        "name": "Resilient (Constitution)",
+        "type": "feat",
+        "stat_bonuses": {
+          "con": 1
+        },
+        "note": "Grants proficiency in Constitution saving throws. +1 CON applied via stat_bonuses."
+      },
+      {
+        "name": "Sixty Leagues Before Dusk",
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "1 action, touch, up to 4 mounts within 30ft. Devised across centuries spent alone tending ground too vast for any one warden to walk twice. Each target's speed increases by 20 feet for 8 hours.",
+        "source": "Signature feature, unique to Therynv'l."
+      }
+    ],
+    "spells": [
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Thorn Whip",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Poison Spray",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Speak with Animals",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Faerie Fire",
+        "level": 1,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Hold Person",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Barkskin",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Heat Metal",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Pass without Trace",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Enhance Ability",
+        "level": 2,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Protection from Energy",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Blight",
+        "level": 4,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Summon Elemental",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Mass Cure Wounds",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      },
+      {
+        "name": "Greater Restoration",
+        "level": 5,
+        "prepared": true,
+        "type": "prepared"
+      }
+    ],
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 3,
+        "current": 3
+      },
+      "level_5": {
+        "max": 1,
+        "current": 1
+      }
+    },
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "id": "characters_24"
   }
 ]

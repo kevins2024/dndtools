@@ -8,6 +8,7 @@ const fs = require('fs')
 const path = require('path')
 const cors = require('cors')
 const { threeWayMerge } = require('./merge-utils')
+const engine = require('./engine/index')
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -25,7 +26,6 @@ const ALLOWED_TABLES = [
   'places',
   'party_items',
   'world',
-  'homebrew',
   'factions',
   'quests',
   'finances',
@@ -62,6 +62,25 @@ app.post('/api/user_prefs', (req, res) => {
     res.json({ ok: true })
   } catch (err) {
     res.status(500).json({ error: 'Failed to write user_prefs.json' })
+  }
+})
+
+// ── GET /api/homebrew ─────────────────────────────────────
+// Combined read for lookupService's dev-mode freshness check — returns both
+// files in the shape the client already expects ({ spells, features }).
+// Registered BEFORE the generic /api/:table route below so it isn't shadowed
+// (Express tries routes in registration order; the generic handler would
+// otherwise 400 on "homebrew" once it's removed from ALLOWED_TABLES).
+app.get('/api/homebrew', (req, res) => {
+  try {
+    const spells = readJSON(path.join(DATA_DIR, 'published_spells.json'))
+    const features = readJSON(path.join(DATA_DIR, 'published_features.json'))
+    res.json({ spells, features })
+  } catch (err) {
+    console.error('Error reading published spells/features:', err.message)
+    res.status(500).json({
+      error: 'Failed to read published_spells.json / published_features.json',
+    })
   }
 })
 
@@ -158,10 +177,19 @@ app.post('/api/:table', (req, res) => {
 })
 
 // ── PATCH /api/homebrew/:section ─────────────────────────
-// Upsert a single spell or feature into homebrew.json by name.
+// Upsert a single spell or feature by name. "Homebrew" here means "the
+// project's own catalog of non-SRD content" — spells/features now live
+// directly alongside their RAW counterparts (published_spells.json /
+// published_features.json), each entry marked `homebrew: true` only if it's
+// genuinely custom rather than real official content missing from the SRD
+// cache. See engine/CHECKLIST.md for the full reorg story.
+const SECTION_FILES = {
+  spells: 'published_spells.json',
+  features: 'published_features.json',
+}
 app.patch('/api/homebrew/:section', (req, res) => {
   const { section } = req.params
-  if (!['spells', 'features'].includes(section)) {
+  if (!SECTION_FILES[section]) {
     return res
       .status(400)
       .json({ error: 'Section must be "spells" or "features"' })
@@ -170,24 +198,25 @@ app.patch('/api/homebrew/:section', (req, res) => {
   if (!item?.name) {
     return res.status(400).json({ error: 'Item must have a name field' })
   }
-  const file = path.join(DATA_DIR, 'homebrew.json')
+  const file = path.join(DATA_DIR, SECTION_FILES[section])
   try {
-    const homebrew = readJSON(file)
-    if (!Array.isArray(homebrew[section])) homebrew[section] = []
-    const idx = homebrew[section].findIndex(
+    const list = readJSON(file)
+    const idx = list.findIndex(
       (x) => x.name.toLowerCase() === item.name.toLowerCase()
     )
     if (idx >= 0) {
-      homebrew[section][idx] = { ...homebrew[section][idx], ...item }
+      list[idx] = { ...list[idx], ...item }
     } else {
-      homebrew[section].push(item)
+      list.push(item)
     }
-    fs.writeFileSync(file, JSON.stringify(homebrew, null, 2), 'utf8')
-    console.log(`Saved homebrew ${section}: ${item.name}`)
+    fs.writeFileSync(file, JSON.stringify(list, null, 2), 'utf8')
+    console.log(`Saved ${section}: ${item.name}`)
     res.json({ ok: true })
   } catch (err) {
-    console.error(`Error updating homebrew ${section}:`, err.message)
-    res.status(500).json({ error: 'Failed to update homebrew.json' })
+    console.error(`Error updating ${section}:`, err.message)
+    res
+      .status(500)
+      .json({ error: `Failed to update ${SECTION_FILES[section]}` })
   }
 })
 
@@ -239,6 +268,151 @@ app.post('/api/dm-context', (req, res) => {
     res.json({ ok: true, path: `/dm-context/${safe}.md` })
   } catch (err) {
     console.error('Error writing DM context:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── POST /api/engine/preview-level-up ────────────────────
+// Wraps engine/rules/diffLevelUp.js. Pure computation, no disk writes — the
+// client sends its own in-memory copy of the character plus whatever
+// level-up choices have been made so far (HP roll/average, resolved ASI/feat
+// picks), gets back { patch, pendingChoices, warnings, description }, and
+// applies `patch` to its own store once the DM confirms (APPLY_LEVEL_UP
+// mutation in store/index.js) — persisted through the normal characters.json
+// save path like any other character edit, not a separate write endpoint.
+app.post('/api/engine/preview-level-up', (req, res) => {
+  const {
+    character,
+    className,
+    toLevel,
+    hpMethod,
+    hpRolls,
+    asiOrFeatResolutions,
+  } = req.body
+  if (!character || !className) {
+    return res
+      .status(400)
+      .json({ error: '"character" and "className" are required' })
+  }
+  try {
+    const result = engine.diffLevelUp(character, {
+      className,
+      toLevel,
+      hpMethod,
+      hpRolls,
+      asiOrFeatResolutions,
+    })
+    res.json(result)
+  } catch (err) {
+    console.error('Error computing level-up preview:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/subclasses/:className ────────────────
+// Lists the subclasses the engine actually has data for, so the UI can offer
+// real choices instead of free text when a subclass pick is needed.
+app.get('/api/engine/subclasses/:className', (req, res) => {
+  try {
+    const all = engine.listSubclasses()
+    res.json(
+      all.filter(
+        (s) => s.class.toLowerCase() === req.params.className.toLowerCase()
+      )
+    )
+  } catch (err) {
+    console.error('Error listing subclasses:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/feats ─────────────────────────────────
+// Only feats with structured mechanical data (engine/data/feats.json) —
+// currently a small, deliberately incomplete catalog (see CHECKLIST.md
+// Phase 3). The UI uses this to offer real choices for feats that grant a
+// catalogued ability score bump, and falls back to free text otherwise.
+app.get('/api/engine/feats', (req, res) => {
+  try {
+    const raw = require('./engine/data/feats.json')
+    const feats = Object.entries(raw)
+      .filter(([name]) => name !== '_notes')
+      .map(([name, data]) => ({
+        name,
+        ability_score_increase: data.ability_score_increase ?? null,
+      }))
+    res.json(feats)
+  } catch (err) {
+    console.error('Error listing feats:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/classes ───────────────────────────────
+// Full class records (hit die, spellcasting ability/type, saving throws,
+// subclass timing), not just names — the New Character tool needs
+// spellcasting.ability to build a correct character shell before it can even
+// call preview-level-up.
+app.get('/api/engine/classes', (req, res) => {
+  try {
+    const classes = engine.listClasses().map((name) => ({
+      name,
+      ...engine.loadClass(name),
+      hitDie: engine.hitDieForClass(name),
+    }))
+    res.json(classes)
+  } catch (err) {
+    console.error('Error listing classes:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/species ───────────────────────────────
+// Combines the engine's own mechanical species catalog (9 standard PHB
+// species — real ability score bonuses, speed, darkvision) with this
+// project's homebrew species — Catrin, Drevani, Hei'ugar, Dhovari — pulled
+// live from api_data_cache/species.json, which already carries their own
+// ability_score_bonus/traits/speed (added when homebrew.json was split up,
+// see engine/CHECKLIST.md). The other ~380 entries in that cache are pure
+// SRD flavor text with no mechanical fields, so they're deliberately
+// excluded here rather than offered as a choice that silently does nothing.
+app.get('/api/engine/species', (req, res) => {
+  try {
+    const standard = engine.listSpecies().map((s) => ({
+      ...engine.loadSpecies(s.name),
+      homebrew: false,
+    }))
+    const cache = readJSON(
+      path.join(DATA_DIR, 'api_data_cache', 'species.json')
+    )
+    const cacheArr = Array.isArray(cache) ? cache : Object.values(cache)[0]
+    const homebrew = cacheArr.filter((s) => s.homebrew === true)
+    res.json([...standard, ...homebrew])
+  } catch (err) {
+    console.error('Error listing species:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/backgrounds ───────────────────────────
+// A curated 40 real backgrounds with verified RAW skill proficiencies (see
+// engine/data/backgrounds.json / CHECKLIST.md) — replaces the raw
+// api_data_cache/backgrounds.json (405 entries, ~360 unique names, no skill
+// data at all) as the New Character tool's background picker.
+app.get('/api/engine/backgrounds', (req, res) => {
+  try {
+    res.json(engine.listBackgrounds())
+  } catch (err) {
+    console.error('Error listing backgrounds:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/skills ────────────────────────────────
+app.get('/api/engine/skills', (req, res) => {
+  try {
+    res.json(engine.listSkills())
+  } catch (err) {
+    console.error('Error listing skills:', err.message)
     res.status(500).json({ error: err.message })
   }
 })

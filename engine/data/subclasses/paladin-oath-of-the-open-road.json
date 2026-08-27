@@ -1,0 +1,12 @@
+{
+  "class": "Paladin",
+  "name": "Oath of the Open Road",
+  "_notes": "Fully homebrew — not official WotC content, and not the same as the third-party 'Oath of the Open Road' published elsewhere (that one uses entirely different feature names). This is the project owner's own oath, for Ferghus, a Paladin of Carix, god of mischief and unexpected consequences. Recovered from git history 2026-08-26 after its mechanical text was accidentally lost during a 2026-04-23 cleanup commit — see the 'Vow of the Open Road' entry in homebrew.json for the full recovery story. Only one Channel Divinity pair is confirmed (3rd level); this subclass may have had additional tenets or higher-level features that were never written down at all, not just lost — worth asking the project owner rather than assuming this is complete.",
+  "features_by_level": {
+    "3": ["Sacred Weapon", "Vow of the Open Road"]
+  },
+  "oath_spells_by_level": {
+    "1": ["Bane", "Suggestion"],
+    "_notes": "These are Ferghus's actual tagged type:'oath' spells at 1st/2nd level — fitting picks for a mischief/chaos deity, but not verified against any 'official' Oath Spells table since none exists for this oath. Higher-level oath spell picks (5th/9th/13th/17th) may exist in the player's head but aren't in the data."
+  }
+}
