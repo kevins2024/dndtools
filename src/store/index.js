@@ -40,6 +40,7 @@ export default new Vuex.Store({
     selectedPlayers: [],
     selectedItem: null,
     diceDrawerOpen: false,
+    pendingRoll: null,
     game_day: Number(localStorage.getItem('game_day')) || 1,
     parties: [],
     characterNavRequest: null,
@@ -80,6 +81,16 @@ export default new Vuex.Store({
   mutations: {
     SET_DICE_DRAWER_OPEN(state, val) {
       state.diceDrawerOpen = val
+    },
+    // Hands the dice drawer a pre-filled d20 roll (a check or save from
+    // AbilityScoreGrid) and opens the drawer as a side effect, so callers
+    // don't have to also commit SET_DICE_DRAWER_OPEN themselves.
+    SET_PENDING_ROLL(state, roll) {
+      state.pendingRoll = roll
+      state.diceDrawerOpen = true
+    },
+    CLEAR_PENDING_ROLL(state) {
+      state.pendingRoll = null
     },
     SET_GAME_DAY(state, day) {
       // Per-party day — update the active party object and persist

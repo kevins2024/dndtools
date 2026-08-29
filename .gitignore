@@ -18,3 +18,6 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Obsidian local workspace state (if lore/ is opened as a vault)
+lore/.obsidian/

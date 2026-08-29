@@ -2,53 +2,8 @@
   <div class="spellbook" v-if="character">
     <!-- ── Top bar: slots + preparation counter ── -->
     <div class="sb-topbar">
-      <!-- Spell slots -->
-      <div v-if="slotEntries.length" class="sb-slots-bar">
-        <div
-          v-for="[key, slot] in slotEntries"
-          :key="key"
-          class="sb-slot-level"
-        >
-          <span class="sb-slot-label">{{ levelLabel(key) }}</span>
-          <span
-            v-for="i in slot.max"
-            :key="i"
-            class="sb-slot-pip"
-            :class="{ spent: i <= slot.max - slotCurrent(slot) }"
-            :title="
-              i <= slot.max - slotCurrent(slot)
-                ? 'Spent — click to recover'
-                : 'Available — click to spend'
-            "
-            @click="toggleSlot(key, i - 1)"
-          ></span>
-        </div>
-      </div>
-
-      <!-- Pact magic -->
-      <div v-if="character.pact_magic" class="sb-slots-bar">
-        <div class="sb-slot-level">
-          <span class="sb-slot-label"
-            >Pact L{{ character.pact_magic.level ?? '?' }}</span
-          >
-          <span
-            v-for="i in character.pact_magic.max"
-            :key="i"
-            class="sb-slot-pip sb-slot-pip--pact"
-            :class="{
-              spent:
-                i <=
-                character.pact_magic.max - slotCurrent(character.pact_magic),
-            }"
-            :title="
-              i <= character.pact_magic.max - slotCurrent(character.pact_magic)
-                ? 'Spent — click to recover'
-                : 'Available — click to spend'
-            "
-            @click="togglePact(i - 1)"
-          ></span>
-        </div>
-      </div>
+      <!-- Spell slots (includes pact magic, if any) -->
+      <SpellSlotsTracker :character="character" />
 
       <!-- Preparation counter (only for classes that prepare) -->
       <div v-if="preparationInfo" class="sb-prep-counter">
@@ -365,6 +320,7 @@ import {
 } from '@/utils/spellUtils.js'
 import DetailPopup from '@/components/DetailPopup.vue'
 import WeavePhaseGrid from '@/components/WeavePhaseGrid.vue'
+import SpellSlotsTracker from '@/components/SpellSlotsTracker.vue'
 
 // Classes that choose prepared spells daily from a full class list.
 // All others are "known spells" casters where every spell on their list is always ready.
@@ -381,7 +337,7 @@ const HALF_CASTER_CLASSES = ['paladin', 'ranger', 'artificer']
 
 export default {
   name: 'CharacterSpellbook',
-  components: { DetailPopup, WeavePhaseGrid },
+  components: { DetailPopup, WeavePhaseGrid, SpellSlotsTracker },
 
   props: {
     character: { type: Object, required: true },
@@ -443,17 +399,6 @@ export default {
           return false
         if (search && !s.name.toLowerCase().includes(search)) return false
         return true
-      })
-    },
-
-    slotEntries() {
-      const slots = this.character.spell_slots
-      if (!slots) return []
-      return Object.entries(slots).sort((a, b) => {
-        return (
-          Number(a[0].replace('level_', '')) -
-          Number(b[0].replace('level_', ''))
-        )
       })
     },
 
@@ -521,7 +466,7 @@ export default {
             if (slots[slotKey]) {
               const s = slots[slotKey]
               slotInfo = `${this.slotCurrent(s)}/${s.max} slots`
-            } else if (pm && pm.level === lvl) {
+            } else if (pm && pm.slot_level === lvl) {
               slotInfo = `${this.slotCurrent(pm)}/${pm.max} pact`
             }
           }
@@ -635,10 +580,6 @@ export default {
       return slot.current ?? slot.max
     },
 
-    levelLabel(key) {
-      return `L${key.replace('level_', '')}`
-    },
-
     isReady(spell) {
       if (spell.level === 0) return true
       if (
@@ -746,40 +687,6 @@ export default {
       })
     },
 
-    toggleSlot(key, idx) {
-      const slot = this.character.spell_slots[key]
-      const cur = this.slotCurrent(slot)
-      const used = slot.max - cur
-      const newCur = idx < used ? cur + 1 : cur - 1
-      this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
-        updatedItem: {
-          ...this.character,
-          spell_slots: {
-            ...this.character.spell_slots,
-            [key]: {
-              ...slot,
-              current: Math.min(slot.max, Math.max(0, newCur)),
-            },
-          },
-        },
-      })
-    },
-
-    togglePact(idx) {
-      const pm = this.character.pact_magic
-      const cur = this.slotCurrent(pm)
-      const used = pm.max - cur
-      const newCur = idx < used ? cur + 1 : cur - 1
-      this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'characters',
-        updatedItem: {
-          ...this.character,
-          pact_magic: { ...pm, current: Math.min(pm.max, Math.max(0, newCur)) },
-        },
-      })
-    },
-
     async loadMeta() {
       const meta = {}
       const levels = {}
@@ -868,52 +775,6 @@ export default {
   gap: 0.75rem 2rem;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--color-border);
-}
-
-.sb-slots-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1rem;
-}
-
-.sb-slot-level {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.sb-slot-label {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-low);
-  min-width: 1.8rem;
-}
-
-.sb-slot-pip {
-  width: 11px;
-  height: 11px;
-  border-radius: 2px;
-  border: 1.5px solid var(--color-accent);
-  background: rgba(200, 169, 110, 0.3);
-  cursor: pointer;
-  transition: background 0.1s;
-}
-.sb-slot-pip:hover {
-  background: rgba(200, 169, 110, 0.6);
-}
-.sb-slot-pip.spent {
-  background: transparent;
-  border-color: var(--color-border);
-}
-.sb-slot-pip--pact {
-  border-color: #8866dd;
-  background: rgba(136, 102, 221, 0.3);
-}
-.sb-slot-pip--pact:hover {
-  background: rgba(136, 102, 221, 0.6);
-}
-.sb-slot-pip--pact.spent {
-  background: transparent;
-  border-color: var(--color-border);
 }
 
 /* Preparation counter */

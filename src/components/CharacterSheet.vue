@@ -1,218 +1,131 @@
 <template>
   <div class="character-sheet" v-if="character">
-    <!-- Header: portrait + identity -->
-    <div class="sheet-header">
-      <div
-        class="portrait"
-        :style="{ backgroundImage: `url(${character.image})` }"
-        @click="lightboxOpen = true"
-      >
-        <span class="class-badge" :title="$dnd.classLabel(character)">
-          <ClassIcon :character="character" />
-        </span>
+    <div class="top-row">
+      <VitalsSection :character="character" />
+      <div class="chips-box">
+        <VitalsChipRow :character="character" />
       </div>
-
-      <!-- Full-size image lightbox -->
-      <div
-        v-if="lightboxOpen"
-        class="lightbox-overlay"
-        @click="lightboxOpen = false"
-      >
-        <img :src="character.image" class="lightbox-img" @click.stop />
-      </div>
-      <div class="identity">
-        <h2 class="char-name">{{ character.name }}</h2>
-        <div class="char-fullname">{{ character.full_name }}</div>
-        <div class="char-subtitle">
-          {{ character.race }} ·
-          {{ $dnd.classBreakdownLabel(character, { includeSubclass: false }) }}
-        </div>
-        <div v-if="$dnd.subclassLabel(character)" class="char-subclass">
-          {{ $dnd.subclassLabel(character) }}
-        </div>
-        <div class="char-appearance">{{ character.appearance }}</div>
+      <div class="conditions-box">
+        <ConditionsRow :character="character" />
       </div>
     </div>
 
-    <!-- Companion (compact — only shown if this character owns one) -->
-    <div v-if="companion" class="companion-strip">
-      <img :src="companion.image" class="companion-thumb" />
-      <span class="companion-name">{{ companion.name }}</span>
-      <span class="companion-meta"
-        >AC {{ companion.ac }} · {{ companion.hp_current }}/{{
-          companion.hp_max
-        }}
-        HP</span
-      >
-      <label class="companion-summon">
-        <input
-          type="checkbox"
-          :checked="companion.summoned"
-          @change="toggleCompanionSummoned"
-        />
-        Summoned
-      </label>
+    <AbilityScoreGrid :character="character" show-saving-throws />
+
+    <template v-if="companion">
+      <CompanionSummonStrip :character="character" />
+      <CompanionPanel v-if="companion.summoned" :companion="companion" />
+    </template>
+
+    <div class="skills-box">
+      <SkillList :character="character" />
     </div>
 
-    <!-- Stats -->
-    <div class="sheet-section">
-      <div class="section-title">Ability Scores</div>
-      <div class="stat-grid">
-        <div
-          v-for="stat in stats"
-          :key="stat.key"
-          class="stat-block"
-          :class="{ 'stat-block--boosted': stat.modified }"
-          :title="stat.tooltip"
-        >
-          <div class="stat-label">{{ stat.label }}</div>
-          <div class="stat-score">{{ stat.score }}</div>
-          <div class="stat-mod" :class="stat.mod >= 0 ? 'pos' : 'neg'">
-            {{ stat.modStr }}
-          </div>
-        </div>
-      </div>
+    <WeaponTable :character="character" @inspect="showPopup" />
+    <BattleItemsPanel :character="character" @inspect="showPopup" />
+
+    <ContentFilterRow v-if="someFeatures" v-model="featureFilter" />
+    <FeaturePillsPanel
+      :character="character"
+      :filter="featureFilter"
+      @inspect="showPopup"
+    />
+
+    <div class="resource-cluster">
+      <ClassResourcesPanel :character="character" />
+      <WeavePhaseSelector :character="character" />
     </div>
 
-    <!-- Combat stats -->
-    <CharacterCombatPanel :character="character" :hide-spells="true" />
-
-    <!-- Saving throws + Skills (3-column layout) -->
-    <div class="sheet-section saves-skills-row">
-      <div class="saves-col">
-        <div class="section-title">Saves</div>
-        <div class="save-list">
-          <div
-            v-for="s in allSaves"
-            :key="s.key"
-            class="save-row"
-            :class="{
-              proficient: (character.saving_throws ?? []).includes(s.key),
-            }"
-          >
-            <span
-              class="save-dot"
-              :class="{
-                filled: (character.saving_throws ?? []).includes(s.key),
-              }"
-            ></span>
-            <span class="save-label">{{ s.label }}</span>
-            <span class="save-mod has-tip" :title="savingThrowTooltip(s.key)">{{
-              saveModStr(s.key)
-            }}</span>
-          </div>
-        </div>
-      </div>
-      <div class="skills-col">
-        <div class="section-title">Skills</div>
-        <div class="skill-grid">
-          <div
-            v-for="skill in skills"
-            :key="skill.name"
-            class="skill-row"
-            :class="{
-              'skill-prof': skill.isProficient,
-              'skill-expert': skill.hasExpertise,
-            }"
-            :title="skill.tooltip"
-          >
-            <span class="skill-dots">
-              <span
-                class="skill-dot"
-                :class="{ filled: skill.isProficient || skill.hasExpertise }"
-              ></span>
-              <span
-                class="skill-dot"
-                :class="{ filled: skill.hasExpertise }"
-              ></span>
-            </span>
-            <span class="skill-name">{{ skill.displayName }}</span>
-            <span class="skill-stat">{{ skill.statLabel }}</span>
-            <span class="skill-mod" :class="skill.value >= 0 ? 'pos' : 'neg'">{{
-              skill.valueStr
-            }}</span>
-          </div>
-        </div>
-      </div>
+    <div class="flavor-grid">
+      <LanguagesPanel :character="character" />
+      <PersonalityPanel :character="character" />
+      <ActiveEffectsPanel :character="character" />
+      <NotesPanel :character="character" />
     </div>
 
-    <!-- Languages -->
-    <div class="sheet-section">
-      <div class="section-title">Languages</div>
-      <div class="pill-list">
-        <span
-          v-for="lang in character.languages ?? []"
-          :key="lang"
-          class="pill"
-          >{{ lang }}</span
-        >
-      </div>
-    </div>
+    <AppearancePanel :character="character" />
 
-    <!-- Personality -->
-    <div
-      class="sheet-section"
-      v-if="character.personality_traits || character.personality_quirks"
-    >
-      <div class="section-title">Personality</div>
-      <p v-if="character.personality_traits" class="flavor-text">
-        {{ character.personality_traits }}
-      </p>
-      <p v-if="character.personality_quirks" class="flavor-text quirk">
-        {{ character.personality_quirks }}
-      </p>
-    </div>
-
-    <!-- Active effects -->
-    <div
-      class="sheet-section"
-      v-if="character.active_effects && character.active_effects.length"
-    >
-      <div class="section-title">Active Effects</div>
-      <div class="feature-list">
-        <div
-          v-for="effect in character.active_effects"
-          :key="effect.name"
-          class="feature-item"
-        >
-          <span class="feature-name">{{ effect.name }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notes -->
-    <div class="sheet-section" v-if="character.notes">
-      <div class="section-title">Notes</div>
-      <p class="flavor-text">{{ character.notes }}</p>
-    </div>
+    <DetailPopup
+      v-if="popupItem"
+      :open="popupOpen"
+      :readonly="true"
+      :item="popupItem"
+      @close="popupOpen = false"
+    />
   </div>
 </template>
 
 <script>
-import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
-import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
-import ClassIcon from '@/components/ClassIcon.vue'
+import DetailPopup from '@/components/DetailPopup.vue'
+import VitalsSection from '@/components/VitalsSection.vue'
+import VitalsChipRow from '@/components/VitalsChipRow.vue'
+import ConditionsRow from '@/components/ConditionsRow.vue'
+import CompanionSummonStrip from '@/components/CompanionSummonStrip.vue'
+import CompanionPanel from '@/components/CompanionPanel.vue'
+import AbilityScoreGrid from '@/components/AbilityScoreGrid.vue'
+import SkillList from '@/components/SkillList.vue'
+import WeaponTable from '@/components/WeaponTable.vue'
+import ContentFilterRow from '@/components/ContentFilterRow.vue'
+import FeaturePillsPanel from '@/components/FeaturePillsPanel.vue'
+import ClassResourcesPanel from '@/components/ClassResourcesPanel.vue'
+import WeavePhaseSelector from '@/components/WeavePhaseSelector.vue'
+import BattleItemsPanel from '@/components/BattleItemsPanel.vue'
+import LanguagesPanel from '@/components/LanguagesPanel.vue'
+import PersonalityPanel from '@/components/PersonalityPanel.vue'
+import ActiveEffectsPanel from '@/components/ActiveEffectsPanel.vue'
+import NotesPanel from '@/components/NotesPanel.vue'
+import AppearancePanel from '@/components/AppearancePanel.vue'
 
-const SAVE_KEYS = STAT_KEYS
-
+// Thin composition of shared atoms — see CharacterCombatPanel.vue, which
+// shares most of the same pieces for the compact combat view. No spell
+// slots/spell-by-level pills here (same as before the split): the full spell
+// list has its own home in the Spellbook tab.
+//
+// No portrait here — it lives in the character-select sidebar (CharacterContext.vue),
+// viewable full-size via a magnify button on hover, so the sheet isn't stuck
+// with a fixed-size image column when everyone's other details vary in length.
+// Top row is three boxes: name/class/HP, AC/Speed/etc chips, conditions —
+// the things referenced constantly. Full name moves down to sit with
+// appearance (read occasionally, not during play) rather than crowding the
+// name line, and ability scores get their own full-width section below.
 export default {
   name: 'CharacterSheet',
 
-  components: { CharacterCombatPanel, ClassIcon },
+  components: {
+    DetailPopup,
+    VitalsSection,
+    VitalsChipRow,
+    ConditionsRow,
+    CompanionSummonStrip,
+    CompanionPanel,
+    AbilityScoreGrid,
+    SkillList,
+    WeaponTable,
+    ContentFilterRow,
+    FeaturePillsPanel,
+    ClassResourcesPanel,
+    WeavePhaseSelector,
+    BattleItemsPanel,
+    LanguagesPanel,
+    PersonalityPanel,
+    ActiveEffectsPanel,
+    NotesPanel,
+    AppearancePanel,
+  },
 
   props: {
     character: { type: Object, required: true },
   },
 
   data() {
-    return { lightboxOpen: false }
+    return {
+      featureFilter: 'all',
+      popupOpen: false,
+      popupItem: null,
+    }
   },
 
   computed: {
-    partyItems() {
-      return this.$store.state.party_items ?? []
-    },
-
     companion() {
       return (
         (this.$store.state.companions ?? []).find(
@@ -220,86 +133,15 @@ export default {
         ) ?? null
       )
     },
-
-    stats() {
-      return dnd.statArray(this.character, this.partyItems)
-    },
-
-    allSaves() {
-      return SAVE_KEYS
-    },
-
-    skills() {
-      const { stats, bonuses } = dnd.resolveStats(
-        this.character,
-        this.partyItems
-      )
-      const prof = dnd._prof(this.character, bonuses)
-      const proficiencies = this.character.skill_proficiencies ?? []
-      const expertises = this.character.skill_expertise ?? []
-
-      return Object.entries(dnd.SKILL_MAP).map(([skillName, statKey]) => {
-        const base = dnd.mod(stats[statKey])
-        const isProficient = proficiencies.includes(skillName)
-        const hasExpertise = expertises.includes(skillName)
-        const itemBonus = bonuses[`skill_${skillName}`] ?? 0
-        const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
-        const total = base + profBonus + itemBonus
-
-        const displayName = skillName.replace(/([A-Z])/g, ' $1').trim()
-        const statLabel = statKey.toUpperCase()
-
-        const lines = [
-          `${displayName} (${statLabel})`,
-          `${statLabel} ${dnd.signed(base)}`,
-        ]
-        if (hasExpertise)
-          lines.push(`Expertise ${dnd.signed(prof * 2)} (Prof ×2)`)
-        else if (isProficient) lines.push(`Prof ${dnd.signed(prof)}`)
-        if (itemBonus) lines.push(`Items ${dnd.signed(itemBonus)}`)
-        lines.push(`= ${dnd.signed(total)}`)
-
-        return {
-          name: skillName,
-          displayName,
-          statKey,
-          statLabel,
-          value: total,
-          valueStr: dnd.signed(total),
-          isProficient,
-          hasExpertise,
-          tooltip: lines.join('\n'),
-        }
-      })
+    someFeatures() {
+      return (this.character.features ?? []).some((f) => f.type !== 'feat')
     },
   },
 
   methods: {
-    toggleCompanionSummoned() {
-      if (!this.companion) return
-      this.$store.commit('UPDATE_TABLE_ITEM', {
-        table: 'companions',
-        updatedItem: { ...this.companion, summoned: !this.companion.summoned },
-      })
-    },
-    saveModStr(key) {
-      return dnd.signed(dnd.savingThrow(this.character, key, this.partyItems))
-    },
-    savingThrowTooltip(key) {
-      const { stats, bonuses } = dnd.resolveStats(
-        this.character,
-        this.partyItems
-      )
-      const mod = dnd.mod(stats[key])
-      const prof = dnd._prof(this.character, bonuses)
-      const isProficient = (this.character.saving_throws ?? []).includes(key)
-      const flatBonus = bonuses.saving_throws ?? 0
-      const total = mod + (isProficient ? prof : 0) + flatBonus
-      const parts = [`${key.toUpperCase()} ${dnd.signed(mod)}`]
-      if (isProficient) parts.push(`Prof ${dnd.signed(prof)}`)
-      if (flatBonus) parts.push(`Bonus ${dnd.signed(flatBonus)}`)
-      parts.push(`= ${dnd.signed(total)}`)
-      return parts.join('\n')
+    showPopup(popupData) {
+      this.popupItem = popupData
+      this.popupOpen = true
     },
   },
 }
@@ -315,443 +157,49 @@ export default {
   font-family: var(--font-body);
 }
 
-/* ── Header ── */
-.sheet-header {
+.top-row {
   display: flex;
   gap: 1.5vw;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
-.portrait {
-  position: relative;
-  width: 10vw;
-  min-width: 100px;
-  aspect-ratio: 13 / 16;
-  background-size: cover;
-  background-position: 50% 0%;
+.chips-box {
+  flex: 0 0 430px;
+  background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  flex-shrink: 0;
+  padding: 0.8rem 1rem;
 }
 
-.class-badge {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: rgba(0, 0, 0, 0.65);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  width: 1.6rem;
-  height: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-accent);
-  backdrop-filter: blur(2px);
-}
-
-.class-badge .class-icon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.identity {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3vh;
-}
-
-.char-name {
-  font-family: var(--font-display);
-  font-size: var(--font-size-2xl);
-  font-weight: 600;
-  color: var(--color-accent-strong);
-  margin: 0;
-}
-
-.char-fullname {
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
-.char-subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-accent);
-}
-
-.char-subclass {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-low);
-  margin-top: -0.1vh;
-}
-
-.char-appearance {
-  font-size: var(--font-size-md);
-  color: var(--color-text-low);
-  margin-top: 0.4vh;
-  line-height: 1.4;
-}
-
-/* ── Companion strip (compact) ── */
-.companion-strip {
-  display: flex;
-  align-items: center;
-  gap: 0.5vw;
-  padding: 0.3vh 0.5vw;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
+.conditions-box {
+  flex: 0 0 265px;
   background: var(--color-bg-panel);
-  font-size: var(--font-size-sm);
-}
-
-.companion-thumb {
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 50%;
-  object-fit: cover;
   border: 1px solid var(--color-border);
-  flex-shrink: 0;
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
 }
 
-.companion-name {
-  font-weight: 600;
-  color: var(--color-accent);
-  flex-shrink: 0;
-}
-
-.companion-meta {
-  color: var(--color-text-low);
-  flex: 1;
-}
-
-.companion-summon {
-  display: flex;
-  align-items: center;
-  gap: 0.3em;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.companion-summon input {
-  cursor: pointer;
-}
-
-/* ── Sections ── */
-.sheet-section {
-  border-top: 1px solid var(--color-bg-surface-alt);
-  padding-top: 0.8vh;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.6vh;
-}
-
-/* ── Stat grid ── */
-.stat-grid {
-  display: flex;
-  gap: 0.8vw;
-}
-
-.stat-block {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.skills-box {
+  background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: var(--color-bg-panel);
-  padding: 0.4vh 0;
+  padding: 0.6rem 0.8rem;
 }
 
-.stat-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-low);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.stat-score {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  color: var(--color-text);
-  line-height: 1.2;
-  border-bottom: 1px dotted currentColor;
-  cursor: default;
-}
-.stat-block--boosted .stat-score {
-  color: var(--color-accent);
-  border-bottom-color: currentColor;
-}
-
-.stat-mod {
-  font-size: var(--font-size-md);
-}
-
-.stat-mod.pos {
-  color: var(--color-accent);
-}
-.stat-mod.neg {
-  color: var(--color-text-danger);
-}
-
-/* ── Pills (languages etc.) ── */
-.pill-list {
+/* These sections used to each claim a full-width row regardless of how
+   little content they held — the main source of the dead space in the old
+   layout. Letting them share a row when there's room fixes that without
+   forcing a rigid grid on content that varies a lot in length. */
+.resource-cluster {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4vw;
-}
-
-.pill {
-  font-size: var(--font-size-base);
-  padding: 2px 8px;
-  border-radius: 3px;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-panel);
-  color: var(--color-text-low);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.pill.proficient {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-.pill-mod {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-base);
-}
-
-/* ── Saves + Skills 3-column layout ── */
-.saves-skills-row {
-  display: flex;
-  gap: 1.5vw;
   align-items: flex-start;
+  gap: 0.8rem 1.5rem;
 }
 
-.saves-col {
-  flex-shrink: 0;
-  min-width: 7rem;
-}
-
-.skills-col {
-  flex: 1;
-  min-width: 0;
-}
-
-.save-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.save-row {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 1px 0;
-}
-
-.save-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background: transparent;
-  flex-shrink: 0;
-  transition: background 0.1s, border-color 0.1s;
-}
-
-.save-dot.filled {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.save-label {
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  flex: 1;
-}
-
-.save-row.proficient .save-label {
-  color: var(--color-accent);
-}
-
-.save-mod {
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  color: var(--color-text-muted);
-  min-width: 2rem;
-  text-align: right;
-}
-
-.save-row.proficient .save-mod {
-  color: var(--color-accent);
-}
-
-/* ── Skills ── */
-.skill-grid {
+.flavor-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 1.5vw;
-}
-
-.skill-row {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 1px 0;
-  cursor: default;
-}
-
-.skill-dots {
-  display: flex;
-  gap: 2px;
-  flex-shrink: 0;
-}
-
-.skill-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background: transparent;
-  transition: background 0.1s, border-color 0.1s;
-}
-
-.skill-dot.filled {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.skill-row.skill-expert .skill-dot.filled {
-  background: var(--color-accent-strong);
-  border-color: var(--color-accent-strong);
-}
-
-.skill-name {
-  flex: 1;
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-}
-
-.skill-row.skill-prof .skill-name {
-  color: var(--color-accent);
-}
-
-.skill-row.skill-expert .skill-name {
-  color: var(--color-accent-strong);
-}
-
-.skill-stat {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-low);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  flex-shrink: 0;
-  min-width: 2rem;
-  text-align: right;
-}
-
-.skill-mod {
-  font-size: var(--font-size-base);
-  font-weight: 600;
-  min-width: 2.5rem;
-  text-align: right;
-  flex-shrink: 0;
-  border-bottom: 1px dotted currentColor;
-  cursor: default;
-}
-
-.skill-mod.pos {
-  color: var(--color-text-muted);
-}
-.skill-mod.neg {
-  color: var(--color-text-danger);
-}
-
-.skill-row.skill-prof .skill-mod {
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
-}
-.skill-row.skill-expert .skill-mod {
-  color: var(--color-accent-strong);
-  border-bottom-color: var(--color-accent-strong);
-}
-
-.has-tip {
-  border-bottom: 1px dotted currentColor;
-  cursor: default;
-}
-
-/* ── Features ── */
-.feature-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3vh;
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6vw;
-  font-size: var(--font-size-md);
-}
-
-.feature-name {
-  color: var(--color-text);
-  flex: 1;
-}
-
-/* ── Flavor text ── */
-.flavor-text {
-  font-size: var(--font-size-md);
-  color: var(--color-text-low);
-  line-height: 1.5;
-  margin: 0;
-  font-style: italic;
-}
-
-.flavor-text.quirk {
-  color: var(--color-text-low);
-  margin-top: 0.4vh;
-}
-
-.flavor-text.quirk {
-  color: var(--color-text-low);
-  margin-top: 0.4vh;
-}
-
-.portrait {
-  cursor: pointer;
-}
-</style>
-
-<style>
-.lightbox-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  cursor: zoom-out;
-}
-
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem 1.5rem;
 }
 </style>

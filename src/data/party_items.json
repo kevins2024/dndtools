@@ -223,7 +223,9 @@
     "id": "items_15",
     "slot": "wrists",
     "battle_effect": true,
-    "effect": "Once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction."
+    "effect": "Swift Strike: once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
+    "action_type": "reaction",
+    "features_granted": ["Swift Strike"]
   },
   {
     "name": "Amulet of Proof against Detection",
@@ -260,7 +262,8 @@
     "notes": "",
     "id": "items_18",
     "slot": "feet",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "bonus_action"
   },
   {
     "name": "Hat of Disguise",
@@ -361,7 +364,7 @@
     "needs_attunement": false,
     "attuned": false,
     "quantity": 8,
-    "notes": "Large gold coins, unfamiliar crest. Not Fynesmarch minting.",
+    "notes": "",
     "id": "items_27",
     "slot": "none",
     "effect": "Eight large gold coins bearing an unfamiliar crest. Not Fynesmarch minting. Origin unknown."
@@ -607,7 +610,9 @@
     "notes": "",
     "id": "items_44",
     "slot": "back",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": ["Web"]
   },
   {
     "name": "Cold Dagger +2",
@@ -644,13 +649,15 @@
     "carried_by": "Therynv'l",
     "needs_attunement": true,
     "attuned": false,
-    "effect": "Reaction when hit by ranged attack: reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
+    "effect": "Missile Snaring: reaction when hit by ranged attack, reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
     "notes": "",
     "id": "items_46",
     "slot": "hands",
     "battle_effect": true,
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "action_type": "reaction",
+    "features_granted": ["Missile Snaring"]
   },
   {
     "name": "Alchemical Dagger",
@@ -856,7 +863,8 @@
     "notes": "",
     "id": "items_61",
     "slot": "held",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action"
   },
   {
     "name": "Ring of Feather Falling",
@@ -1305,11 +1313,13 @@
     "needs_attunement": true,
     "attuned": true,
     "paired_with": "The Farreach (B)",
-    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus to ability or skill check.",
+    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus to an ability or skill check.",
     "notes": "",
     "id": "items_92",
     "slot": "ring",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "free",
+    "features_granted": ["Ring's Answer"]
   },
   {
     "name": "Longbow +2 (Force)",
@@ -1395,13 +1405,15 @@
     "needs_attunement": true,
     "attuned": true,
     "paired_with": "The Farreach (A)",
-    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Once per day: responsive bonus.",
+    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus.",
     "notes": "",
     "id": "items_98",
     "slot": "ring",
     "battle_effect": true,
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "action_type": "free",
+    "features_granted": ["Ring's Answer"]
   },
   {
     "name": "Hand Crossbow +1",
@@ -1555,7 +1567,9 @@
     "notes": "",
     "id": "items_108",
     "slot": "body",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": ["Magic Missile", "Plane Shift"]
   },
   {
     "name": "Staff of Power",
@@ -1593,7 +1607,9 @@
     "notes": "",
     "id": "items_111",
     "slot": "head",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": ["Scorching Ray"]
   },
   {
     "name": "Plate +2",
@@ -1791,7 +1807,9 @@
     "slot": "ring",
     "battle_effect": true,
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "action_type": "action",
+    "spells_granted": ["Alter Self", "Polymorph", "Gaseous Form"]
   },
   {
     "name": "Ring of Jumping",
@@ -1822,7 +1840,14 @@
     "charges_recharge": "daily",
     "charges_label": "The Retired Special",
     "slot": "none",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "reaction",
+    "features_granted": [
+      "Psionic Reinforcement",
+      "Tactical Foresight",
+      "Grandmaster's Stitch",
+      "The Retired Special"
+    ]
   },
   {
     "name": "Stormsplit",
@@ -1868,7 +1893,9 @@
     "notes": "",
     "id": "items_131",
     "slot": "held",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": ["Magic Missile"]
   },
   {
     "name": "Hand Crossbow +2",
@@ -2013,11 +2040,13 @@
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "short_rest",
-    "effect": "Reaction when ally within 30ft drops to 0hp: grant 1d8 + proficiency bonus temp HP. Advantage on death saving throws.",
+    "effect": "Steadfast Response: reaction when an ally within 30ft drops to 0hp, grant 1d8 + proficiency bonus temp HP. Advantage on death saving throws.",
     "notes": "",
     "id": "items_140",
     "slot": "neck",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "reaction",
+    "features_granted": ["Steadfast Response"]
   },
   {
     "name": "Greatsword +2",
@@ -2062,7 +2091,8 @@
     "notes": "",
     "id": "items_143",
     "slot": "back",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action"
   },
   {
     "name": "Necklace of Prayer Beads",
@@ -2075,7 +2105,14 @@
     "notes": "",
     "id": "items_144",
     "slot": "neck",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": [
+      "Bless",
+      "Greater Restoration",
+      "Cure Wounds",
+      "Wind Walk"
+    ]
   },
   {
     "name": "Helmet of Proof",
@@ -2154,7 +2191,8 @@
     "notes": "",
     "id": "items_149",
     "slot": "wrists",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "bonus_action"
   },
   {
     "name": "Berserker's Fang +1",
@@ -2184,7 +2222,7 @@
     "needs_attunement": true,
     "attuned": false,
     "effect": "Holds up to 5 levels worth of spells. Any creature can cast a stored spell using the original caster spell save DC and spell attack bonus.",
-    "notes": "Holds up to 5 levels worth of spells. Any creature can cast stored spell.",
+    "notes": "",
     "id": "items_151",
     "charges_current": 0,
     "charges_max": 5,
@@ -2196,7 +2234,8 @@
         "name": "Cone of Cold",
         "level": 5
       }
-    ]
+    ],
+    "action_type": "action"
   },
   {
     "name": "Ring of Spell Storing (3rd level)",
@@ -2206,7 +2245,7 @@
     "needs_attunement": true,
     "attuned": true,
     "effect": "Holds one spell of up to 3rd level. Any creature attuned to the ring can cast the stored spell.",
-    "notes": "Holds one spell up to 3rd level.",
+    "notes": "",
     "id": "items_152",
     "charges_current": 3,
     "charges_max": 3,
@@ -2218,7 +2257,8 @@
         "name": "Haste",
         "level": 3
       }
-    ]
+    ],
+    "action_type": "action"
   },
   {
     "name": "Bracers of Spell Storing",
@@ -2228,7 +2268,7 @@
     "needs_attunement": true,
     "attuned": true,
     "effect": "Holds up to 5 levels worth of spells. The attuned creature can cast stored spells.",
-    "notes": "Holds spells up to 5th level.",
+    "notes": "",
     "id": "items_153",
     "charges_current": 0,
     "charges_max": 5,
@@ -2240,7 +2280,8 @@
         "name": "Mass Cure Wounds",
         "level": 5
       }
-    ]
+    ],
+    "action_type": "action"
   },
   {
     "name": "Carved Bone Totem",
@@ -2249,10 +2290,10 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Spellcasting focus. Thirty years old.",
+    "notes": "Thirty years old; carries a quiet attunement to its owner.",
     "id": "items_157",
     "slot": "held",
-    "effect": "Spellcasting focus. Can be used in place of material components with no GP cost. Thirty years old; carries a quiet attunement to its owner."
+    "effect": "Spellcasting focus. Can be used in place of material components with no GP cost."
   },
   {
     "name": "Hide Armor",
@@ -2402,7 +2443,8 @@
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
     "notes": "Unassigned.",
     "id": "items_166",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "bonus_action"
   },
   {
     "name": "Ring of Spell Turning",
@@ -2478,10 +2520,12 @@
     "charges_current": 20,
     "charges_max": 20,
     "charges_recharge": "none",
-    "effect": "6 opals cast Daylight. 9 rubies cast Fireball. 5 diamonds cast Wall of Light. Undead within 30ft have disadvantage on attacks. On 1 in sunlight: explodes.",
+    "effect": "6 opals cast Daylight. 9 rubies cast Fireball. 5 diamonds cast Wall of Fire. Undead within 30ft have disadvantage on attacks. On 1 in sunlight: explodes.",
     "notes": "Unassigned.",
     "id": "items_171",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": ["Daylight", "Fireball", "Wall of Fire"]
   },
   {
     "name": "Scroll of Ice Storm",
@@ -2577,10 +2621,11 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": false,
-    "effect": "Immunity to charm and fear. Once per day when wearer does something that genuinely surprises an enemy, gain advantage on next attack roll.",
+    "effect": "Immunity to charm and fear. Seize the Opening: once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
     "id": "items_176",
-    "battle_effect": true
+    "battle_effect": true,
+    "features_granted": ["Seize the Opening"]
   },
   {
     "name": "Helm of the Reaching Hand",
@@ -2590,10 +2635,12 @@
     "carried_by": "Revven",
     "needs_attunement": true,
     "attuned": false,
-    "effect": "Advantage on Insight checks. Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "effect": "Advantage on Insight checks. Reaching Hand: once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet — the smith let it.",
     "id": "items_177",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "reaction",
+    "features_granted": ["Reaching Hand"]
   },
   {
     "name": "Helm of the Open Eye",
@@ -2657,7 +2704,9 @@
     "notes": "Forged from meteorite iron by a civilization that no longer exists. Warm to the touch regardless of temperature. Constellation patterns visible in the metal only in darkness or starlight. Responds to celestial/star magic.",
     "id": "items_181",
     "slot": "ring",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "action",
+    "spells_granted": ["Starfall"]
   },
   {
     "name": "Yetgrese Throwing Sword +2",
@@ -2689,7 +2738,8 @@
     "effect": "+1 small shield (+1 AC). Command word 'viel'bi-ra' transforms it into a construct guardian (HP 142, AC 17) that stands between you and harm, intercepting damage directed at the attuned wearer. The construct cannot attack. Command word 'chk'TO' returns it to shield form. Also stores one spell up to 4th level.",
     "stat_bonuses": {
       "ac": 1
-    }
+    },
+    "action_type": "action"
   },
   {
     "name": "Robe of the Tide",
@@ -2702,7 +2752,9 @@
     "id": "items_185",
     "slot": "body",
     "battle_effect": true,
-    "effect": "When wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed."
+    "action_type": "free",
+    "effect": "Tidal Surge: when the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
+    "features_granted": ["Tidal Surge"]
   },
   {
     "name": "Robe of Stilled Thought",
@@ -2923,7 +2975,8 @@
     "notes": "Pale green oval stone on silver chain. Carved with unidentified script.",
     "id": "items_204",
     "slot": "neck",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "bonus_action"
   },
   {
     "name": "Lexica's Enchanted Instrument",
@@ -2937,7 +2990,9 @@
     "effect": "While Bardic Inspiration is active on a creature, the wielder may use their reaction to cast Shield on that creature or on herself.",
     "notes": "Enchanted by DUVRAK, Upper Merchant Quarter, Argentveil.",
     "id": "items_205",
-    "battle_effect": true
+    "battle_effect": true,
+    "action_type": "reaction",
+    "spells_granted": ["Shield"]
   },
   {
     "name": "Ring of the Knowing",
@@ -2965,9 +3020,7 @@
     "notes": "",
     "id": "items_209",
     "battle_effect": true,
-    "spells_granted": [
-      "Smite From Afar"
-    ]
+    "spells_granted": ["Smite From Afar"]
   },
   {
     "name": "Breastplate of Planes",
@@ -3007,9 +3060,9 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Oldest of the four. Heavier than the others, different stone. Angular markings read 'breath of the first wind.' Keys to the ruins arch northeast of Valdmere.",
+    "notes": "Oldest of the four. Heavier than the others, different stone. Angular markings read 'breath of the first wind.'",
     "id": "items_212",
-    "effect": "When placed in a teleportation arch, keys the arch to the ruins northeast of Valdmere. Markings read 'breath of the first wind.' Oldest of the four discs."
+    "effect": "When placed in a teleportation arch, keys the arch to the ruins northeast of Valdmere."
   },
   {
     "name": "Disc of the Unnamed Plane",
@@ -3020,9 +3073,9 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Middle weight. Markings identify a destination neither Lenn nor Ilwuoshim recognized. Old. Destination unknown.",
+    "notes": "Middle weight, old. Markings identify a destination neither Lenn nor Ilwuoshim recognized.",
     "id": "items_213",
-    "effect": "When placed in a teleportation arch, keys the arch to an unknown destination. Markings were not recognized by Lenn or Ilwuoshim. Destination is uncharted."
+    "effect": "When placed in a teleportation arch, keys the arch to an unknown, uncharted destination."
   },
   {
     "name": "Disc of the Junction",
@@ -3033,7 +3086,7 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Lightest of the four. Markings identify a waypoint arch built between two others as a transit point. Destination functions as a hub rather than a final location.",
+    "notes": "Lightest of the four. Markings identify it as a waypoint between two others.",
     "id": "items_214",
     "effect": "When placed in a teleportation arch, keys the arch to a waypoint hub built between two other arches — a transit point rather than a final destination."
   },
@@ -3046,9 +3099,9 @@
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Ilwuoshim's own making, identified by the djinn personally. Keys to an arch built before the Liliveth was finished and never used. Ilwuoshim wants to go there when free. Keep safe.",
+    "notes": "Ilwuoshim's own making, identified by the djinn personally. Ilwuoshim wishes to visit when free. Keep safe.",
     "id": "items_215",
-    "effect": "When placed in a teleportation arch, keys to an arch built by Ilwuoshim before the Liliveth was completed — never previously used. Ilwuoshim wishes to visit when free."
+    "effect": "When placed in a teleportation arch, keys to an arch built by Ilwuoshim before the Liliveth was completed — never previously used."
   },
   {
     "name": "Ring of Amity",
@@ -3189,7 +3242,9 @@
     "battle_effect": true,
     "effect": "AC 14 + DEX modifier (max 2). Stormbreak Reserve: whenever the wearer takes 15 or more damage from a single attack or effect, the armor stores one charge (max 1 stored, tracked via charges above). As a bonus action, release a stored charge: 10ft radius force burst centered on self, 2d6 force damage (DC 15 DEX save for half) to all other creatures in range, each creature that fails is pushed 10ft away. Recharges automatically on the next qualifying hit.",
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "action_type": "bonus_action",
+    "features_granted": ["Stormbreak Reserve"]
   },
   {
     "name": "Gauntlet of the Sundering Blow",
@@ -3206,9 +3261,11 @@
     "id": "items_226",
     "slot": "hands",
     "battle_effect": true,
+    "action_type": "free",
     "effect": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet — the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "features_granted": ["Sundering Strike"]
   },
   {
     "name": "Hand Crossbow of the Old Trail",
@@ -3258,7 +3315,9 @@
     "battle_effect": true,
     "effect": "Warding Press: once per long rest, press the ring to your skin to gain resistance to one damage type of your choice for 1 hour.",
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "action_type": "action",
+    "features_granted": ["Warding Press"]
   },
   {
     "name": "Stone of the Rootbound Ward",
@@ -3270,14 +3329,11 @@
     "attuned": true,
     "slot": "held",
     "battle_effect": true,
-    "spells_granted": [
-      "Mold Earth",
-      "Wall of Stone",
-      "The Stones Agree"
-    ],
+    "spells_granted": ["Mold Earth", "Wall of Stone", "The Stones Agree"],
     "id": "items_229",
     "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Mold Earth (cantrip, 3/day): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/day): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it."
+    "effect": "Mold Earth (cantrip, 3/day): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/day): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "action_type": "action"
   },
   {
     "name": "Stone of the Broken Vein",
@@ -3289,13 +3345,48 @@
     "attuned": true,
     "slot": "held",
     "battle_effect": true,
-    "spells_granted": [
-      "Spike Growth",
-      "Erupting Earth",
-      "The Stones Agree"
-    ],
+    "spells_granted": ["Spike Growth", "Erupting Earth", "The Stones Agree"],
     "id": "items_230",
     "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/day): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it."
+    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/day): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "action_type": "action"
+  },
+  {
+    "name": "Purple Ribbed Leather +2",
+    "type": "armor",
+    "armor_type": "light",
+    "equipped_by": "Eldi",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "enhancement_bonus": 2,
+    "id": "items_231",
+    "notes": "Purchased from Vethran & Son, Commerce District, Argentveil. Base AC 12 (studded-leather tier, reflavored as ribbed rather than studded), no DEX cap. Distinctive purple dye — the shopkeeper was glad to be rid of it.",
+    "slot": "body",
+    "effect": "+2 bonus to AC from armor."
+  },
+  {
+    "name": "Staff of the Wild's Balance",
+    "type": "focus",
+    "rarity": "rare",
+    "equipped_by": "Therynv'l",
+    "carried_by": null,
+    "needs_attunement": true,
+    "attuned": true,
+    "finesse": false,
+    "damage_dice": "1d6",
+    "enhancement_bonus": 1,
+    "stat_bonuses": {
+      "spell_attack": 1,
+      "spell_save_dc": 1
+    },
+    "charges_current": 6,
+    "charges_max": 6,
+    "charges_recharge": "1d6",
+    "id": "items_232",
+    "notes": "A gift from Orrin, ancient tortle caretaker of the Verdant Hollow, Argentveil. Recovered from a sealed cache predating the city itself. Qualifies for Wild Symbiosis (wood construction).",
+    "slot": "held",
+    "battle_effect": true,
+    "effect": "Acts as a +1 quarterstaff and druidic focus. While attuned, +1 to druid spell attack rolls and spell save DC. While in Wild Shape, grants Primal Surge (see homebrew features)."
   }
 ]

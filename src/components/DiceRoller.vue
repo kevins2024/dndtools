@@ -90,6 +90,9 @@
             <div class="die-icon-wrap">
               <img :src="current.image" class="die-bg-img" />
               <div class="die-overlay">
+                <div v-if="current.label" class="die-roll-label">
+                  {{ current.label }}
+                </div>
                 <div class="die-result">{{ current.display }}</div>
                 <div v-if="current.advantage" class="die-sub">
                   {{ current.rolls[0] }} / {{ current.rolls[1] }}
@@ -148,7 +151,48 @@ export default {
     },
   },
 
+  watch: {
+    // Another component (e.g. AbilityScoreGrid's check/save roll icons)
+    // hands over a labeled d20 + modifier via the store instead of the
+    // player manually picking dice and doing the math themselves.
+    '$store.state.pendingRoll'(roll) {
+      if (!roll) return
+      this.rollPending(roll)
+      this.$store.commit('CLEAR_PENDING_ROLL')
+    },
+  },
+
   methods: {
+    rollPending({ label, mod = 0 }) {
+      const rand = () => Math.floor(Math.random() * 20) + 1
+      const useAdv = this.advantage
+      const useDisadv = this.disadvantage
+      const rolls = useAdv || useDisadv ? [rand(), rand()] : [rand()]
+      const natural = useAdv
+        ? Math.max(...rolls)
+        : useDisadv
+        ? Math.min(...rolls)
+        : rolls[0]
+      const total = natural + mod
+
+      const entry = {
+        id: rollId++,
+        die: 'd20',
+        sides: 20,
+        rolls,
+        result: total,
+        display: mod
+          ? `${natural}${mod >= 0 ? '+' : ''}${mod} = ${total}`
+          : `${total}`,
+        image: this.diceImages[20],
+        advantage: useAdv || useDisadv,
+        label,
+      }
+
+      if (this.current) this.history.unshift(this.current)
+      this.current = entry
+    },
+
     onAdvantageChange() {
       if (this.advantage) this.disadvantage = false
     },
@@ -498,6 +542,14 @@ export default {
   font-size: var(--font-size-sm);
   color: var(--color-text-low);
   margin-top: 2px;
+}
+
+.die-roll-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* ── Transitions ── */

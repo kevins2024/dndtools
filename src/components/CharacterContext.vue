@@ -28,7 +28,24 @@
             <div
               class="char-img"
               :style="{ backgroundImage: `url(${char.image})` }"
-            ></div>
+            >
+              <button
+                class="magnify-btn"
+                title="View full image"
+                @click.stop="lightboxChar = char"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M21 21l-4.35-4.35" />
+                  <path d="M8 11h6M11 8v6" />
+                </svg>
+              </button>
+            </div>
             <div class="char-name">
               <ClassIcon :character="char" class="char-class-icon" />{{
                 char.name
@@ -45,6 +62,15 @@
         :requested-tab="navTab"
       />
     </section>
+
+    <!-- Full-size image lightbox, opened via a card's magnify button -->
+    <div
+      v-if="lightboxChar"
+      class="lightbox-overlay"
+      @click="lightboxChar = null"
+    >
+      <img :src="lightboxChar.image" class="lightbox-img" @click.stop />
+    </div>
   </div>
 </template>
 
@@ -62,6 +88,7 @@ export default {
       selectedName: null,
       navTab: null,
       hideDuplicates: true, // default overwritten in created()
+      lightboxChar: null,
     }
   },
 
@@ -224,11 +251,44 @@ export default {
 }
 
 .char-img {
+  position: relative;
   width: 100%;
   aspect-ratio: 13 / 16;
   background-position: 50% 0%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.magnify-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  backdrop-filter: blur(2px);
+}
+
+.magnify-btn svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.char-card:hover .magnify-btn {
+  opacity: 1;
+}
+
+.magnify-btn:hover {
+  color: var(--color-accent-strong);
+  border-color: var(--color-accent);
 }
 
 .char-name {
@@ -262,5 +322,26 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+</style>
+
+<style>
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
 }
 </style>

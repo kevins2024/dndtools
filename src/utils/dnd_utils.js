@@ -88,6 +88,29 @@ export const dnd = {
     return dnd.signed(n)
   },
 
+  // Shared pill-display formatting — used by WeaponTable, FeaturePillsPanel,
+  // and SpellPillsByLevel so there's one implementation instead of three
+  // copies.
+  rechargeLabel(recharge) {
+    if (recharge === 'short_rest') return 'SR'
+    if (recharge === 'long_rest') return 'LR'
+    return recharge.replace(/_/g, ' ')
+  },
+
+  schoolAbbr(school) {
+    const map = {
+      abjuration: 'Abj',
+      conjuration: 'Con',
+      divination: 'Div',
+      enchantment: 'Enc',
+      evocation: 'Evo',
+      illusion: 'Ill',
+      necromancy: 'Nec',
+      transmutation: 'Tra',
+    }
+    return map[school.toLowerCase()] ?? school.slice(0, 3)
+  },
+
   proficiencyBonus(level) {
     return Math.ceil(level / 4) + 1
   },

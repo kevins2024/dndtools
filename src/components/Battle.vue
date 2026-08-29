@@ -129,72 +129,10 @@
             <span class="panel-subtitle">{{
               $dnd.classBreakdownLabel(activeChar)
             }}</span>
-            <span class="panel-hp">{{ playerHp(activeChar.name) }} HP</span>
-          </div>
-
-          <div class="section-label">HP</div>
-          <div class="damage-tracker">
-            <div class="damage-summary">
-              <span
-                class="damage-taken"
-                :class="{ 'hp-low': playerCurrentHp(activeChar.name) <= 0 }"
-                >{{ playerCurrentHp(activeChar.name) }}</span
-              >
-              <span class="damage-taken-label"
-                >/ {{ activeChar.hp_max }} HP</span
-              >
-            </div>
-            <div class="damage-row">
-              <input
-                v-model.number="playerDmgInput"
-                class="field dmg-field"
-                type="number"
-                placeholder="Damage"
-                min="0"
-                @keyup.enter="applyPlayerDamage"
-              />
-              <button
-                class="add-btn"
-                :disabled="!playerDmgInput"
-                @click="applyPlayerDamage"
-              >
-                Apply
-              </button>
-              <input
-                v-model.number="playerHealInput"
-                class="field dmg-field heal-field"
-                type="number"
-                placeholder="Heal"
-                min="0"
-                @keyup.enter="applyPlayerHeal"
-              />
-              <button
-                class="heal-btn"
-                :disabled="!playerHealInput"
-                @click="applyPlayerHeal"
-              >
-                Heal
-              </button>
-              <input
-                v-model.number="playerTempInput"
-                class="field dmg-field temp-field"
-                type="number"
-                placeholder="Temp HP"
-                min="0"
-                @keyup.enter="applyPlayerTemp"
-              />
-              <button
-                class="temp-btn"
-                :disabled="!playerTempInput"
-                @click="applyPlayerTemp"
-              >
-                Tmp
-              </button>
-            </div>
           </div>
 
           <!-- Death saving throws (shown when downed) -->
-          <template v-if="playerCurrentHp(activeChar.name) <= 0">
+          <template v-if="activeChar.hp_current <= 0">
             <div class="section-label">Death Saving Throws</div>
             <div class="dst-row">
               <span class="dst-label dst-success">Successes</span>
@@ -242,72 +180,6 @@
               >{{ activeCompanion.species }} companion —
               {{ activeCompanion.owner }}</span
             >
-            <span class="panel-hp"
-              >{{ companionHp(activeCompanion.name) }} HP</span
-            >
-          </div>
-
-          <div class="section-label">HP</div>
-          <div class="damage-tracker">
-            <div class="damage-summary">
-              <span
-                class="damage-taken"
-                :class="{
-                  'hp-low': companionCurrentHp(activeCompanion.name) <= 0,
-                }"
-                >{{ companionCurrentHp(activeCompanion.name) }}</span
-              >
-              <span class="damage-taken-label"
-                >/ {{ activeCompanion.hp_max }} HP</span
-              >
-            </div>
-            <div class="damage-row">
-              <input
-                v-model.number="companionDmgInput"
-                class="field dmg-field"
-                type="number"
-                placeholder="Damage"
-                min="0"
-                @keyup.enter="applyCompanionDamage"
-              />
-              <button
-                class="add-btn"
-                :disabled="!companionDmgInput"
-                @click="applyCompanionDamage"
-              >
-                Apply
-              </button>
-              <input
-                v-model.number="companionHealInput"
-                class="field dmg-field heal-field"
-                type="number"
-                placeholder="Heal"
-                min="0"
-                @keyup.enter="applyCompanionHeal"
-              />
-              <button
-                class="heal-btn"
-                :disabled="!companionHealInput"
-                @click="applyCompanionHeal"
-              >
-                Heal
-              </button>
-              <input
-                v-model.number="companionTempInput"
-                class="field dmg-field temp-field"
-                type="number"
-                placeholder="Temp HP"
-                min="0"
-                @keyup.enter="applyCompanionTemp"
-              />
-              <button
-                class="temp-btn"
-                :disabled="!companionTempInput"
-                @click="applyCompanionTemp"
-              >
-                Tmp
-              </button>
-            </div>
           </div>
 
           <CharacterCombatPanel
@@ -359,227 +231,48 @@
             </div>
           </div>
 
-          <!-- Combat stats — always shown, editable -->
-          <div class="section-label">Stats</div>
-          <div class="enemy-stat-chips">
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input"
-                type="number"
-                min="1"
-                max="40"
-                :value="activeEnemyMeta.ac ?? ''"
-                placeholder="—"
-                @change="
-                  setEnemyMeta('ac', $event.target.valueAsNumber || null)
-                "
+          <!-- Combat stats + HP + Conditions — always shown, editable -->
+          <div class="enemy-top-row">
+            <div class="enemy-stats-box">
+              <div class="section-label">Stats</div>
+              <EnemyStatsChipRow
+                :meta="activeEnemyMeta"
+                @update-field="setEnemyMeta($event.field, $event.value)"
               />
-              <span class="enemy-chip-lbl">AC</span>
             </div>
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input enemy-stat-input--text"
-                type="text"
-                :value="activeEnemyMeta.attackBonus ?? ''"
-                placeholder="—"
-                @change="
-                  setEnemyMeta('attackBonus', $event.target.value || null)
-                "
-              />
-              <span class="enemy-chip-lbl">Attack</span>
-            </div>
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input enemy-stat-input--text"
-                type="text"
-                :value="activeEnemyMeta.damage ?? ''"
-                placeholder="—"
-                @change="setEnemyMeta('damage', $event.target.value || null)"
-              />
-              <span class="enemy-chip-lbl">{{
-                activeEnemyMeta.damageLabel || 'Damage'
-              }}</span>
-            </div>
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input"
-                type="number"
-                min="1"
-                max="10"
-                :value="activeEnemyMeta.numAttacks ?? ''"
-                placeholder="—"
-                @change="
-                  setEnemyMeta(
-                    'numAttacks',
-                    $event.target.valueAsNumber || null
-                  )
-                "
-              />
-              <span class="enemy-chip-lbl">Attacks</span>
-            </div>
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input"
-                type="number"
-                min="0"
-                max="120"
-                :value="activeEnemyMeta.speed ?? ''"
-                placeholder="30"
-                @change="
-                  setEnemyMeta('speed', $event.target.valueAsNumber || null)
-                "
-              />
-              <span class="enemy-chip-lbl">Speed</span>
-            </div>
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input"
-                type="number"
-                min="1"
-                max="30"
-                :value="activeEnemyMeta.spellSaveDC ?? ''"
-                placeholder="—"
-                @change="
-                  setEnemyMeta(
-                    'spellSaveDC',
-                    $event.target.valueAsNumber || null
-                  )
-                "
-              />
-              <span class="enemy-chip-lbl">Save DC</span>
-            </div>
-            <div class="enemy-stat-chip">
-              <input
-                class="enemy-stat-input enemy-stat-input--text"
-                type="text"
-                :value="activeEnemyMeta.savingThrows ?? ''"
-                placeholder="—"
-                @change="
-                  setEnemyMeta('savingThrows', $event.target.value || null)
-                "
-              />
-              <span class="enemy-chip-lbl">Saves</span>
-            </div>
-          </div>
-
-          <!-- Ability scores — always shown, always editable -->
-          <div class="section-label">Ability Scores</div>
-          <div class="enemy-ability-row">
-            <div v-for="s in statKeys" :key="s" class="ability-chip">
-              <span class="ability-lbl">{{ s.toUpperCase() }}</span>
-              <button class="ability-adj-btn" @click="adjustEnemyStat(s, 1)">
-                +
-              </button>
-              <input
-                class="ability-score-input"
-                type="number"
-                min="1"
-                max="30"
-                :value="activeEnemyStats[s]"
-                @change="setEnemyStat(s, $event.target.valueAsNumber)"
-              />
-              <button class="ability-adj-btn" @click="adjustEnemyStat(s, -1)">
-                −
-              </button>
-              <span class="ability-mod">{{
-                scoreMod(activeEnemyStats[s])
-              }}</span>
-            </div>
-          </div>
-
-          <div class="section-label">Damage Tracker</div>
-          <div class="damage-tracker">
-            <div class="damage-summary">
-              <template v-if="activeEnemyHp.maxHp !== null">
-                <span class="damage-taken">{{
-                  activeEnemyHp.maxHp - activeEnemyHp.damage
-                }}</span>
-                <span class="damage-taken-label"
-                  >/ {{ activeEnemyHp.maxHp }} HP</span
-                >
-                <span class="damage-sep">·</span>
-                <span class="damage-max"
-                  >{{ activeEnemyHp.damage }} dmg taken</span
-                >
-              </template>
-              <template v-else>
-                <span class="damage-taken">{{ activeEnemyHp.damage }}</span>
-                <span class="damage-taken-label">damage taken</span>
-              </template>
-            </div>
-
-            <div class="damage-row">
-              <input
-                v-model.number="damageInput"
-                class="field dmg-field"
-                type="number"
-                placeholder="Damage amount"
-                min="0"
-                @keyup.enter="applyDamage"
+            <div class="enemy-hp-box">
+              <div class="section-label">HP</div>
+              <EnemyHpTracker
+                :hp="activeEnemyHp"
+                @damage="applyDamage"
+                @heal="applyHeal"
+                @temp="applyEnemyTemp"
+                @set-max-hp="saveMaxHp"
               />
               <button
-                class="add-btn"
-                :disabled="!damageInput"
-                @click="applyDamage"
-              >
-                Apply
-              </button>
-              <button
-                class="reset-btn"
-                title="Reset damage to 0"
-                :disabled="activeEnemyHp.damage === 0"
-                @click="resetDamage"
-              >
-                Reset
-              </button>
-            </div>
-
-            <div class="damage-row">
-              <input
-                v-model.number="healInput"
-                class="field dmg-field heal-field"
-                type="number"
-                placeholder="Heal / Temp HP"
-                min="0"
-                @keyup.enter="applyHeal"
-              />
-              <button
-                class="heal-btn"
-                :disabled="!healInput"
-                @click="applyHeal"
-              >
-                Heal
-              </button>
-              <button
-                class="temp-btn"
-                :disabled="!healInput"
-                @click="applyEnemyTemp"
-                title="Grant temp HP"
-              >
-                Tmp
-              </button>
-            </div>
-
-            <div class="max-hp-row">
-              <input
-                v-model.number="maxHpInput"
-                class="field dmg-field"
-                type="number"
-                placeholder="Max HP (optional)"
-                min="1"
-                @blur="saveMaxHp"
-                @keyup.enter="saveMaxHp"
-              />
-              <button
-                class="reset-btn"
-                title="Reset all damage and temp HP"
+                class="reset-btn enemy-hp-reset"
+                title="Reset damage and temp HP to 0"
                 :disabled="activeEnemyHp.damage === 0 && !activeEnemyHp.tempHp"
                 @click="resetDamage"
               >
                 Reset
               </button>
             </div>
+            <div class="enemy-conditions-box">
+              <div class="section-label">Conditions</div>
+              <EnemyConditionsRow
+                :conditions="enemyConditions[activeEntry.key] || []"
+                @toggle="toggleEnemyCondition"
+                @add="addCustomCondition"
+              />
+            </div>
           </div>
+
+          <EnemyAbilityScoreGrid
+            :name="activeEntry.name"
+            :stats="activeEnemyStats"
+            @update-stat="setEnemyStat($event.key, $event.value)"
+          />
 
           <!-- Generated features & spells from encounter generator -->
           <template
@@ -659,50 +352,6 @@
             placeholder="Traits, abilities, resistances, reminders…"
             @input="setEnemyMeta('notes', $event.target.value)"
           ></textarea>
-
-          <!-- Conditions -->
-          <div class="section-label">Conditions</div>
-          <div class="enemy-cond-row">
-            <button
-              v-for="cond in CONDITIONS"
-              :key="cond"
-              class="cond-chip"
-              :class="{
-                'cond-chip--active': hasEnemyCondition(cond),
-                'cond-chip--positive': isPositiveCondition(cond),
-                'cond-chip--negative': !isPositiveCondition(cond),
-              }"
-              :title="conditionTooltip(cond)"
-              @click="toggleEnemyCondition(cond)"
-            >
-              {{ cond }}
-            </button>
-            <button
-              v-for="cond in (enemyConditions[activeEntry.key] || []).filter(
-                (c) => !CONDITIONS.includes(c)
-              )"
-              :key="'custom-' + cond"
-              class="cond-chip cond-chip--active cond-chip--custom"
-              @click="toggleEnemyCondition(cond)"
-            >
-              {{ cond }} ✕
-            </button>
-          </div>
-          <div class="custom-cond-row">
-            <input
-              v-model="newCustomCond"
-              class="field custom-cond-input"
-              placeholder="Add condition…"
-              @keyup.enter="addCustomCondition"
-            />
-            <button
-              class="add-btn"
-              :disabled="!newCustomCond.trim()"
-              @click="addCustomCondition"
-            >
-              +
-            </button>
-          </div>
         </template>
 
         <div v-else class="empty-state">
@@ -775,24 +424,24 @@
 
 <script>
 import CharacterCombatPanel from '@/components/CharacterCombatPanel.vue'
-import {
-  conditionTooltip,
-  isPositiveCondition,
-  POSITIVE_CONDITION_NAMES,
-  NEGATIVE_CONDITION_NAMES,
-  sortConditionNames,
-} from '@/data/conditions.js'
+import EnemyStatsChipRow from '@/components/EnemyStatsChipRow.vue'
+import EnemyHpTracker from '@/components/EnemyHpTracker.vue'
+import EnemyConditionsRow from '@/components/EnemyConditionsRow.vue'
+import EnemyAbilityScoreGrid from '@/components/EnemyAbilityScoreGrid.vue'
 import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
-const CONDITIONS = Object.freeze(
-  sortConditionNames([...POSITIVE_CONDITION_NAMES, ...NEGATIVE_CONDITION_NAMES])
-)
 
 export default {
   name: 'Battle',
 
-  components: { CharacterCombatPanel },
+  components: {
+    CharacterCombatPanel,
+    EnemyStatsChipRow,
+    EnemyHpTracker,
+    EnemyConditionsRow,
+    EnemyAbilityScoreGrid,
+  },
 
   props: {
     order: { type: Array, required: true },
@@ -818,25 +467,9 @@ export default {
       enemyConditions: {},
       enemyStats: {},
       enemyMeta: {},
-      damageInput: null,
-      healInput: null,
-      maxHpInput: null,
-      playerHpDelta: {},
-      playerTempHp: {},
-      playerDmgInput: null,
-      playerHealInput: null,
-      playerTempInput: null,
-      companionHpDelta: {},
-      companionTempHp: {},
-      companionDmgInput: null,
-      companionHealInput: null,
-      companionTempInput: null,
-      enemyCustomCond: {},
-      newCustomCond: '',
       newEnemyName: '',
       newEnemyMod: 0,
       statKeys: STAT_KEY_LIST,
-      CONDITIONS,
       deathSaves: {},
       pendingStateCopy: null,
       bestiaryMode: false,
@@ -930,9 +563,6 @@ export default {
   },
 
   watch: {
-    '$store.state.restVersion'() {
-      this.playerHpDelta = {}
-    },
     order: {
       immediate: true,
       handler(entries, oldEntries) {
@@ -966,18 +596,9 @@ export default {
         }
       },
     },
-    activeEntry(entry) {
-      if (entry?.type === 'enemy') {
-        this.maxHpInput = this.enemyHp[entry.key]?.maxHp ?? null
-        this.damageInput = null
-      }
-    },
   },
 
   methods: {
-    conditionTooltip,
-    isPositiveCondition,
-
     log(msg) {
       const who = this.activeEntry?.name ?? '?'
       this.battleLog.unshift({
@@ -1036,136 +657,22 @@ export default {
       }
     },
 
-    // ── Player HP display ──
+    // ── Player/companion HP display (sidebar) — reads the real persisted
+    // fields directly; HpTracker inside CharacterCombatPanel is the only
+    // thing that mutates them now. ──
     playerHp(name) {
       const char = this.$store.state.characters.find((c) => c.name === name)
       if (!char) return '—'
-      const delta = this.playerHpDelta[name] ?? 0
-      const temp = this.playerTempHp[name] ?? 0
-      const base = `${char.hp_current - delta}/${char.hp_max}`
-      return temp ? `${base} +${temp}tmp` : base
+      const base = `${char.hp_current}/${char.hp_max}`
+      return char.hp_temp ? `${base} +${char.hp_temp}tmp` : base
     },
-    playerCurrentHp(name) {
-      const char = this.$store.state.characters.find((c) => c.name === name)
-      if (!char) return null
-      return char.hp_current - (this.playerHpDelta[name] ?? 0)
-    },
-    applyPlayerDamage() {
-      const amount = Number(this.playerDmgInput)
-      if (!amount || amount <= 0 || !this.activeChar) return
-      const name = this.activeChar.name
-      const temp = this.playerTempHp[name] ?? 0
-      if (temp > 0) {
-        const absorbed = Math.min(temp, amount)
-        this.$set(this.playerTempHp, name, temp - absorbed)
-        if (amount - absorbed > 0)
-          this.$set(
-            this.playerHpDelta,
-            name,
-            (this.playerHpDelta[name] ?? 0) + amount - absorbed
-          )
-        this.log(`${amount} dmg (${absorbed} absorbed by temp HP)`)
-      } else {
-        this.$set(
-          this.playerHpDelta,
-          name,
-          (this.playerHpDelta[name] ?? 0) + amount
-        )
-        this.log(`${amount} damage`)
-      }
-      this.playerDmgInput = null
-    },
-    applyPlayerHeal() {
-      const amount = Number(this.playerHealInput)
-      if (!amount || amount <= 0 || !this.activeChar) return
-      const name = this.activeChar.name
-      this.$set(
-        this.playerHpDelta,
-        name,
-        Math.max(0, (this.playerHpDelta[name] ?? 0) - amount)
-      )
-      this.log(`healed ${amount}`)
-      this.playerHealInput = null
-    },
-    applyPlayerTemp() {
-      const amount = Number(this.playerTempInput)
-      if (!amount || amount <= 0 || !this.activeChar) return
-      const name = this.activeChar.name
-      this.$set(
-        this.playerTempHp,
-        name,
-        Math.max(this.playerTempHp[name] ?? 0, amount)
-      )
-      this.log(`+${amount} temp HP`)
-      this.playerTempInput = null
-    },
-
-    // ── Companion HP display (mirrors player HP tracking above) ──
     companionHp(name) {
       const c = (this.$store.state.companions ?? []).find(
         (x) => x.name === name
       )
       if (!c) return '—'
-      const delta = this.companionHpDelta[name] ?? 0
-      const temp = this.companionTempHp[name] ?? 0
-      const base = `${c.hp_current - delta}/${c.hp_max}`
-      return temp ? `${base} +${temp}tmp` : base
-    },
-    companionCurrentHp(name) {
-      const c = (this.$store.state.companions ?? []).find(
-        (x) => x.name === name
-      )
-      if (!c) return null
-      return c.hp_current - (this.companionHpDelta[name] ?? 0)
-    },
-    applyCompanionDamage() {
-      const amount = Number(this.companionDmgInput)
-      if (!amount || amount <= 0 || !this.activeCompanion) return
-      const name = this.activeCompanion.name
-      const temp = this.companionTempHp[name] ?? 0
-      if (temp > 0) {
-        const absorbed = Math.min(temp, amount)
-        this.$set(this.companionTempHp, name, temp - absorbed)
-        if (amount - absorbed > 0)
-          this.$set(
-            this.companionHpDelta,
-            name,
-            (this.companionHpDelta[name] ?? 0) + amount - absorbed
-          )
-        this.log(`${amount} dmg (${absorbed} absorbed by temp HP)`)
-      } else {
-        this.$set(
-          this.companionHpDelta,
-          name,
-          (this.companionHpDelta[name] ?? 0) + amount
-        )
-        this.log(`${amount} damage`)
-      }
-      this.companionDmgInput = null
-    },
-    applyCompanionHeal() {
-      const amount = Number(this.companionHealInput)
-      if (!amount || amount <= 0 || !this.activeCompanion) return
-      const name = this.activeCompanion.name
-      this.$set(
-        this.companionHpDelta,
-        name,
-        Math.max(0, (this.companionHpDelta[name] ?? 0) - amount)
-      )
-      this.log(`healed ${amount}`)
-      this.companionHealInput = null
-    },
-    applyCompanionTemp() {
-      const amount = Number(this.companionTempInput)
-      if (!amount || amount <= 0 || !this.activeCompanion) return
-      const name = this.activeCompanion.name
-      this.$set(
-        this.companionTempHp,
-        name,
-        Math.max(this.companionTempHp[name] ?? 0, amount)
-      )
-      this.log(`+${amount} temp HP`)
-      this.companionTempInput = null
+      const base = `${c.hp_current}/${c.hp_max}`
+      return c.hp_temp ? `${base} +${c.hp_temp}tmp` : base
     },
 
     // ── Enemy damage display (sidebar) ──
@@ -1182,8 +689,7 @@ export default {
       if (!this.enemyHp[key])
         this.$set(this.enemyHp, key, { damage: 0, maxHp: null, tempHp: 0 })
     },
-    applyDamage() {
-      const amount = Number(this.damageInput)
+    applyDamage(amount) {
       if (!amount || amount <= 0 || !this.activeEntry) return
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
@@ -1201,10 +707,8 @@ export default {
         this.$set(this.enemyHp, key, { ...hp, damage: hp.damage + amount })
         this.log(`${amount} damage`)
       }
-      this.damageInput = null
     },
-    applyHeal() {
-      const amount = Number(this.healInput)
+    applyHeal(amount) {
       if (!amount || amount <= 0 || !this.activeEntry) return
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
@@ -1214,10 +718,8 @@ export default {
         damage: Math.max(0, hp.damage - amount),
       })
       this.log(`healed ${amount}`)
-      this.healInput = null
     },
-    applyEnemyTemp() {
-      const amount = Number(this.healInput)
+    applyEnemyTemp(amount) {
       if (!amount || amount <= 0 || !this.activeEntry) return
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
@@ -1227,7 +729,6 @@ export default {
         tempHp: Math.max(hp.tempHp ?? 0, amount),
       })
       this.log(`+${amount} temp HP`)
-      this.healInput = null
     },
     resetDamage() {
       const key = this.activeEntry.key
@@ -1239,17 +740,14 @@ export default {
       })
       this.log('damage reset')
     },
-    saveMaxHp() {
+    saveMaxHp(value) {
       if (!this.activeEntry) return
       const key = this.activeEntry.key
-      const val = this.maxHpInput > 0 ? this.maxHpInput : null
+      const val = value > 0 ? value : null
       this._ensureEnemyHp(key)
       this.$set(this.enemyHp, key, { ...this.enemyHp[key], maxHp: val })
     },
 
-    hasEnemyCondition(cond) {
-      return (this.enemyConditions[this.activeEntry?.key] ?? []).includes(cond)
-    },
     toggleEnemyCondition(cond) {
       const key = this.activeEntry.key
       const current = this.enemyConditions[key] ?? []
@@ -1261,8 +759,7 @@ export default {
       )
       this.log(had ? `removed ${cond}` : `gained ${cond}`)
     },
-    addCustomCondition() {
-      const cond = this.newCustomCond.trim()
+    addCustomCondition(cond) {
       if (!cond || !this.activeEntry) return
       const key = this.activeEntry.key
       const current = this.enemyConditions[key] ?? []
@@ -1270,7 +767,6 @@ export default {
         this.$set(this.enemyConditions, key, [...current, cond])
         this.log(`gained ${cond}`)
       }
-      this.newCustomCond = ''
     },
 
     // ── Enemy ability scores ──
@@ -1280,14 +776,7 @@ export default {
       const clamped = isNaN(value) ? 10 : Math.min(30, Math.max(1, value))
       this.$set(this.enemyStats[key], stat, clamped)
     },
-    adjustEnemyStat(stat, delta) {
-      this.setEnemyStat(stat, (this.activeEnemyStats[stat] ?? 10) + delta)
-    },
 
-    scoreMod(score) {
-      const m = Math.floor(((score ?? 10) - 10) / 2)
-      return m >= 0 ? `+${m}` : `${m}`
-    },
     signed(n) {
       return n >= 0 ? `+${n}` : `${n}`
     },
@@ -1812,90 +1301,36 @@ export default {
   color: var(--color-text-muted);
 }
 
-.panel-hp {
-  margin-left: auto;
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
+/* ── Enemy combat panel boxes ── */
+.enemy-top-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-/* â”€â”€ Damage Tracker â”€â”€ */
-.damage-tracker {
+.enemy-stats-box,
+.enemy-hp-box,
+.enemy-conditions-box {
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-}
-
-.damage-summary {
-  display: flex;
-  align-items: baseline;
   gap: 0.4rem;
 }
 
-.damage-taken {
-  font-family: var(--font-display);
-  font-size: var(--font-size-2xl);
-  color: var(--color-text-danger);
+.enemy-conditions-box {
+  flex: 1;
+  min-width: 240px;
 }
 
-.damage-taken-label {
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
+.enemy-hp-box {
+  align-items: flex-start;
 }
 
-.damage-sep {
-  color: var(--color-text-low);
-}
-
-.damage-max {
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
-}
-
-.damage-row,
-.max-hp-row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.field {
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text);
-  font-size: var(--font-size-md);
-  font-family: var(--font-body);
-  padding: 0.35rem 0.5rem;
-}
-
-.field:focus {
-  outline: none;
-  border-color: var(--color-accent);
-}
-
-.dmg-field {
-  width: 8rem;
-}
-
-.add-btn {
-  padding: 0.35rem 0.75rem;
-  background: var(--color-bg-surface-alt);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-md);
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.add-btn:hover:not(:disabled) {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-.add-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.enemy-hp-reset {
+  align-self: flex-end;
 }
 
 .reset-btn {
@@ -1917,101 +1352,6 @@ export default {
 .reset-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-}
-
-.heal-field {
-  border-color: var(--color-success-border);
-}
-.heal-field:focus {
-  border-color: var(--color-success);
-}
-
-.heal-btn {
-  padding: 0.35rem 0.75rem;
-  background: var(--color-bg-surface-alt);
-  border: 1px solid var(--color-success-border);
-  border-radius: 4px;
-  color: var(--color-success);
-  font-size: var(--font-size-md);
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.heal-btn:hover:not(:disabled) {
-  background: var(--color-success-dark);
-  border-color: var(--color-success);
-}
-.heal-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.hp-low {
-  color: var(--color-text-danger);
-}
-
-/* â”€â”€ Enemy combat stats â”€â”€ */
-.enemy-stat-chips {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.enemy-stat-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.35rem 0.75rem;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  min-width: 3.5rem;
-}
-
-.weapon-chip {
-  min-width: unset;
-  max-width: 12rem;
-}
-
-.enemy-chip-val {
-  font-family: var(--font-display);
-  font-size: var(--font-size-lg);
-  color: var(--color-accent-strong);
-  line-height: 1;
-}
-
-.enemy-stat-input {
-  width: 3.5rem;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-accent-strong);
-  font-family: var(--font-display);
-  font-size: var(--font-size-lg);
-  text-align: center;
-  outline: none;
-  padding: 0;
-  line-height: 1;
-}
-.enemy-stat-input--text {
-  width: 5rem;
-}
-.enemy-stat-input:focus {
-  border-bottom-color: var(--color-accent);
-}
-.enemy-stat-input::placeholder {
-  color: var(--color-text-low);
-  font-size: var(--font-size-md);
-}
-
-.enemy-chip-lbl {
-  font-size: var(--font-size-base);
-  color: var(--color-text-low);
-  margin-top: 0.15rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
 }
 
 .enemy-notes {
@@ -2121,151 +1461,6 @@ export default {
   margin-bottom: 0.25rem;
 }
 
-.enemy-ability-row {
-  display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-}
-
-.ability-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 0.2rem 0.4rem;
-  min-width: 38px;
-}
-
-.ability-lbl {
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  color: var(--color-text-low);
-  letter-spacing: 0.05em;
-}
-
-.ability-val {
-  font-size: var(--font-size-md);
-  color: var(--color-text);
-  font-weight: 600;
-  line-height: 1.1;
-}
-
-.ability-mod {
-  font-size: var(--font-size-xs);
-  color: var(--color-accent);
-}
-
-.ability-score-input {
-  width: 2.4rem;
-  background: var(--color-bg);
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  border-radius: 0;
-  color: var(--color-text);
-  font-size: var(--font-size-md);
-  font-weight: 600;
-  text-align: center;
-  padding: 0.05rem 0;
-  line-height: 1.1;
-  -moz-appearance: textfield;
-}
-.ability-score-input::-webkit-inner-spin-button,
-.ability-score-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-.ability-score-input:focus {
-  outline: none;
-  border-bottom-color: var(--color-accent);
-}
-
-.ability-adj-btn {
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--color-text-low);
-  font-size: var(--font-size-base);
-  line-height: 1;
-  padding: 0;
-  cursor: pointer;
-  transition: color 0.1s;
-}
-.ability-adj-btn:hover {
-  color: var(--color-accent);
-}
-
-/* ── Enemy Conditions ── */
-.enemy-cond-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-}
-
-.cond-chip {
-  font-size: var(--font-size-xs);
-  font-family: var(--font-body);
-  padding: 2px 7px;
-  border-radius: 3px;
-  border: 1px solid var(--color-border);
-  background: transparent;
-  color: var(--color-text-low);
-  cursor: pointer;
-  transition: border-color 0.1s, color 0.1s, background 0.1s;
-}
-.cond-chip:hover {
-  border-color: var(--color-text-muted);
-  color: var(--color-text-muted);
-}
-.cond-chip--active {
-  border-color: var(--color-condition);
-  color: var(--color-condition);
-  background: rgba(230, 126, 34, 0.08);
-}
-.cond-chip--custom {
-  font-size: var(--font-size-xs);
-}
-
-/* Beneficial conditions: pill shape */
-.cond-chip--positive {
-  border-radius: 999px;
-}
-.cond-chip--positive.cond-chip--active {
-  background: rgba(74, 158, 107, 0.2);
-  border-color: var(--color-success);
-  color: var(--color-success);
-}
-
-/* Detrimental conditions: pointed ends.
-   clip-path cuts away a plain border on the diagonal edges, so the outline
-   is drawn as a shape-following silhouette via stacked drop-shadows instead. */
-.cond-chip--negative {
-  --cond-outline: var(--color-border);
-  clip-path: polygon(
-    10px 0,
-    calc(100% - 10px) 0,
-    100% 50%,
-    calc(100% - 10px) 100%,
-    10px 100%,
-    0 50%
-  );
-  padding: 2px 14px;
-  border-radius: 0;
-  border: none;
-  background: var(--color-bg-surface);
-  filter: drop-shadow(1px 0 0 var(--cond-outline))
-    drop-shadow(-1px 0 0 var(--cond-outline))
-    drop-shadow(0 1px 0 var(--cond-outline))
-    drop-shadow(0 -1px 0 var(--cond-outline));
-}
-.cond-chip--negative:hover {
-  --cond-outline: var(--color-text-muted);
-}
-.cond-chip--negative.cond-chip--active {
-  --cond-outline: var(--color-condition);
-  background: rgba(230, 126, 34, 0.2);
-}
-
 /* ── Death saving throws ── */
 .dst-row {
   display: flex;
@@ -2302,38 +1497,6 @@ export default {
 .dst-pip--failure {
   background: var(--color-text-danger);
   border-color: var(--color-text-danger);
-}
-
-.custom-cond-row {
-  display: flex;
-  gap: 0.3rem;
-  margin-top: 0.3rem;
-}
-.custom-cond-input {
-  flex: 1;
-  min-width: 0;
-}
-
-.temp-field {
-  border-color: var(--color-info);
-}
-.temp-btn {
-  padding: 0.25rem 0.5rem;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-info);
-  border-radius: 4px;
-  color: var(--color-info);
-  font-size: var(--font-size-base);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-.temp-btn:hover:not(:disabled) {
-  background: var(--color-info);
-  color: var(--color-bg);
-}
-.temp-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 
 /* ── Battle log ── */

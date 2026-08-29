@@ -1540,5 +1540,128 @@
     "description": "When you roll on the Spirit Tales table, you can roll twice and choose which of the two results to use. If both rolls come up the same, you can instead choose any effect on the table.",
     "type": "feature",
     "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 14th level."
+  },
+  {
+    "id": "hb_primal_surge",
+    "name": "Primal Surge",
+    "category": "item_feature",
+    "action_type": "bonus_action",
+    "description": "While in Wild Shape, expend 1 charge from the Staff of the Wild's Balance as a bonus action: the next attack made this turn has advantage and deals an extra 1d6 damage on a hit.",
+    "note": "Granted by Therynv'l's Staff of the Wild's Balance (party_items.json) — the charge pool is the staff's own (6 charges max, regains 1d6 charges daily), not an independent character resource.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Therynv'l — tied to the Staff of the Wild's Balance."
+  },
+  {
+    "id": "hb_psionic_reinforcement",
+    "name": "Psionic Reinforcement",
+    "category": "item_feature",
+    "description": "Passive +2 bonus to attack and damage rolls with Psychic Blades (Soulknife).",
+    "note": "Granted by Torrin's Weaver's Master-Awl (party_items.json), one of its four properties.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Torrin — tied to the Weaver's Master-Awl."
+  },
+  {
+    "id": "hb_stormbreak_reserve",
+    "name": "Stormbreak Reserve",
+    "category": "item_feature",
+    "action_type": "bonus_action",
+    "description": "As a bonus action, release a stored charge: a 10ft radius force burst centered on self deals 2d6 force damage (DC 15 DEX save for half) to all other creatures in range, pushing each creature that fails 10ft away. The armor stores one charge (max 1) automatically whenever the wearer takes 15 or more damage from a single attack or effect.",
+    "note": "Granted by Eldi's Breastplate of the Broken Scale (party_items.json) — the charge is the armor's own, gained by taking a big hit rather than on a rest.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Eldi — tied to the Breastplate of the Broken Scale."
+  },
+  {
+    "id": "hb_sundering_strike",
+    "name": "Sundering Strike",
+    "category": "item_feature",
+    "action_type": "free",
+    "recharge": "short_rest",
+    "description": "Once per short rest, as part of a melee attack that hits, channel the gauntlet: the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
+    "note": "Granted by Eldi's Gauntlet of the Sundering Blow (party_items.json) — no separate action, just a decision made mid-attack.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Eldi — tied to the Gauntlet of the Sundering Blow."
+  },
+  {
+    "id": "hb_warding_press",
+    "name": "Warding Press",
+    "category": "item_feature",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "description": "Once per long rest, press the ring to your skin to gain resistance to one damage type of your choice for 1 hour.",
+    "note": "Granted by Rith's Signet Ring (party_items.json).",
+    "homebrew": true,
+    "source": "Homebrew, unique to Rith — tied to the Signet Ring."
+  },
+  {
+    "id": "hb_swift_strike",
+    "name": "Swift Strike",
+    "category": "item_feature",
+    "action_type": "reaction",
+    "description": "Once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
+    "note": "Granted by Vaz's Bracer of Swift Strikes (party_items.json).",
+    "homebrew": true,
+    "source": "Homebrew, unique to Vaz — tied to the Bracer of Swift Strikes."
+  },
+  {
+    "id": "hb_missile_snaring",
+    "name": "Missile Snaring",
+    "category": "item_feature",
+    "action_type": "reaction",
+    "description": "Reaction when hit by a ranged attack: reduce the damage by 1d10 + DEX modifier. If the damage is reduced to 0, catch the missile instead of being hit.",
+    "note": "Granted by Therynv'l's Gloves of Missile Snaring (party_items.json) — matches the real 5e item's actual ability name.",
+    "source": "Gloves of Missile Snaring (real 5e magic item)."
+  },
+  {
+    "id": "hb_steadfast_response",
+    "name": "Steadfast Response",
+    "category": "item_feature",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "description": "Reaction when an ally within 30ft drops to 0hp: grant them 1d8 + proficiency bonus temporary HP, and they gain advantage on death saving throws.",
+    "note": "Granted by Sorra's The Steadfast (party_items.json).",
+    "homebrew": true,
+    "source": "Homebrew, unique to Sorra — tied to The Steadfast."
+  },
+  {
+    "id": "hb_seize_the_opening",
+    "name": "Seize the Opening",
+    "category": "item_feature",
+    "recharge": "daily",
+    "description": "Once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
+    "note": "Granted by Ferghus's Helm of Carix (party_items.json) — triggers on a narrative surprise, not a chosen action, so it's not tagged with an action cost.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Ferghus — tied to the Helm of Carix."
+  },
+  {
+    "id": "hb_reaching_hand",
+    "name": "Reaching Hand",
+    "category": "item_feature",
+    "action_type": "reaction",
+    "recharge": "daily",
+    "description": "Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "note": "Granted by Revven's Helm of the Reaching Hand (party_items.json).",
+    "homebrew": true,
+    "source": "Homebrew, unique to Revven — tied to the Helm of the Reaching Hand."
+  },
+  {
+    "id": "hb_tidal_surge",
+    "name": "Tidal Surge",
+    "category": "item_feature",
+    "action_type": "free",
+    "description": "When the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type, once per turn.",
+    "note": "Granted by the Robe of the Tide (party_items.json) — currently unassigned/held by the party.",
+    "homebrew": true,
+    "source": "Homebrew — tied to the Robe of the Tide."
+  },
+  {
+    "id": "hb_rings_answer",
+    "name": "Ring's Answer",
+    "category": "item_feature",
+    "action_type": "free",
+    "recharge": "daily",
+    "description": "Once per day, gain a responsive bonus to an ability check or skill check.",
+    "note": "Granted by The Farreach (A) and (B) (party_items.json) — a paired-ring set worn by Siv and Pirra respectively; each ring grants its own bearer this once-per-day use.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Siv/Pirra — tied to the paired Farreach rings."
   }
 ]

@@ -3,6 +3,15 @@
 Backlog for "when we've got tokens to burn" — not urgent, not scheduled, just things
 worth coming back to. Add freely; check off or delete when done or no longer wanted.
 
+- [ ] **[USER ACTION] Mine other chats for lore.** User has a lot of world
+      lore (history, locations, factions, etc.) scattered across other chat
+      conversations, not in this repo. Action item is on the user: go
+      through those chats, pull out the lore/location/history content, and
+      get it into `lore/` (see `lore/README.md` for the convention —
+      `places/`, `history/`, `beasts/`, `factions/`, `people/`). Not
+      something Claude can do — the source material only exists in those
+      other conversations.
+
 - [ ] **Finish Iyani's Weave Attunement reskin past level 9.** The homebrew
       subclass (`engine/data/subclasses/sorcerer-weave-attunement.json`) only
       covers up to level 9 in real detail — it's basically a reskin of a real
