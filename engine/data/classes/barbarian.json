@@ -1,5 +1,6 @@
 {
   "name": "Barbarian",
+  "description": "A fierce warrior who channels primal rage into unmatched physical power in battle.",
   "saving_throw_proficiencies": [
     "str",
     "con"

@@ -1,5 +1,6 @@
 {
   "name": "Ranger",
+  "description": "A warrior of the wilds, skilled at hunting the natural world's greatest threats.",
   "saving_throw_proficiencies": [
     "str",
     "dex"

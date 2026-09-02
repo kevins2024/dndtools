@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Nature Domain",
+  "description": "A cleric of a god associated with the natural world.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_acolyte-of-nature"
+    ]
+  }
+}

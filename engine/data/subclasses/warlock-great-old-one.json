@@ -1,6 +1,7 @@
 {
   "class": "Warlock",
   "name": "Great Old One",
+  "description": "A warlock whose patron is an incomprehensible entity from beyond reality, granting telepathic and mind-bending power.",
   "features_by_level": {
     "1": [
       "pub_awakened-mind"

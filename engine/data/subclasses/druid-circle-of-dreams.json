@@ -1,0 +1,11 @@
+{
+  "class": "Druid",
+  "name": "Circle of Dreams",
+  "description": "A druid connected to the Feywild's restorative, dreamlike side of nature.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_balm-of-the-summer-court"
+    ]
+  }
+}

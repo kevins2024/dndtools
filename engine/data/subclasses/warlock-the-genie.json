@@ -1,0 +1,11 @@
+{
+  "class": "Warlock",
+  "name": "The Genie",
+  "description": "A warlock bound to a powerful genie, granted a vessel tied to its home plane.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_genie-s-vessel-and-genie-s-wrath"
+    ]
+  }
+}

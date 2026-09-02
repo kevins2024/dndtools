@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Forge Domain",
+  "description": "A cleric of a god of the forge, craft, and fire.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_bonus-proficiencies-and-blessing-of-the-forge"
+    ]
+  }
+}

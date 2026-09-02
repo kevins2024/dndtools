@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "School of Transmutation",
+  "description": "A wizard who alters the fundamental properties of matter and creatures.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_minor-alchemy"
+    ]
+  }
+}

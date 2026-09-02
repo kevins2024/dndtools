@@ -1,0 +1,43 @@
+{
+  "class": "Artificer",
+  "name": "Armorer",
+  "description": "An artificer who turns worn armor itself into a magic weapon and defensive system.",
+  "features_by_level": {
+    "3": [
+      "pub_tools-of-the-trade",
+      "pub_arcane-armor",
+      "pub_armor-model"
+    ],
+    "5": [
+      "pub_armorer-extra-attack"
+    ],
+    "9": [
+      "pub_armor-modifications"
+    ],
+    "15": [
+      "pub_perfected-armor"
+    ]
+  },
+  "expanded_spell_list": {
+    "3": [
+      "Magic Missile",
+      "Thunderwave"
+    ],
+    "5": [
+      "Mirror Image",
+      "Shatter"
+    ],
+    "9": [
+      "Hypnotic Pattern",
+      "Lightning Bolt"
+    ],
+    "13": [
+      "Fire Shield",
+      "Greater Invisibility"
+    ],
+    "17": [
+      "Passwall",
+      "Wall of Force"
+    ]
+  }
+}

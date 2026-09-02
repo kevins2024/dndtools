@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Sun Soul",
+  "description": "A monk who channels ki into bolts of searing radiant light.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_radiant-sun-bolt"
+    ]
+  }
+}

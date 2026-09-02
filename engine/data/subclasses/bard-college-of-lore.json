@@ -1,6 +1,7 @@
 {
   "class": "Bard",
   "name": "College of Lore",
+  "description": "A bard who collects secrets and knowledge from every corner of the world, using them to undermine and outwit enemies.",
   "features_by_level": {
     "3": [
       "bonus-proficiencies",

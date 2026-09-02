@@ -1,8 +1,10 @@
 {
   "class": "Artificer",
   "name": "Artillerist",
+  "description": "An artificer who builds and commands a deployable magical cannon.",
   "features_by_level": {
     "3": [
+      "hb_artillerist_bonus_spells",
       "hb_artillerist_eldritch_cannon"
     ],
     "5": [
@@ -13,6 +15,28 @@
     ],
     "15": [
       "hb_artillerist_fortified_position"
+    ]
+  },
+  "expanded_spell_list": {
+    "3": [
+      "Shield",
+      "Thunderwave"
+    ],
+    "5": [
+      "Scorching Ray",
+      "Shatter"
+    ],
+    "9": [
+      "Fireball",
+      "Wind Wall"
+    ],
+    "13": [
+      "Ice Storm",
+      "Wall of Fire"
+    ],
+    "17": [
+      "Cone of Cold",
+      "Wall of Force"
     ]
   }
 }

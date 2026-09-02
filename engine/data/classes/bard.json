@@ -1,5 +1,6 @@
 {
   "name": "Bard",
+  "description": "A performer whose music and words carry real magical power, equally at home supporting allies or manipulating a crowd.",
   "saving_throw_proficiencies": [
     "dex",
     "cha"

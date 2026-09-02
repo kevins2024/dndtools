@@ -1,0 +1,11 @@
+{
+  "class": "Warlock",
+  "name": "The Undying",
+  "description": "A warlock whose patron has cheated death, granting resilience against it in turn.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_among-the-dead"
+    ]
+  }
+}

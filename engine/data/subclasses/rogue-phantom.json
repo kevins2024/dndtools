@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Phantom",
+  "description": "A rogue touched by death itself, channeling the knowledge and dread of departed souls.",
   "features_by_level": {
     "3": [
       "hb_rogue_phantom_whispers_of_the_dead",

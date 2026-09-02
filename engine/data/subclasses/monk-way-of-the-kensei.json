@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Kensei",
+  "description": "A monk who treats weapons as an extension of their body and ki.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_path-of-the-kensei"
+    ]
+  }
+}

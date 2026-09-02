@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Order Domain",
+  "description": "A cleric of a god of law, civilization, and order.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_bonus-proficiencies-and-voice-of-authority"
+    ]
+  }
+}

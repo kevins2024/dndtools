@@ -3,12 +3,21 @@
 Backlog for "when we've got tokens to burn" — not urgent, not scheduled, just things
 worth coming back to. Add freely; check off or delete when done or no longer wanted.
 
+- [ ] **Torrin needs a full rebuild — not a priority.** Project owner
+      (2026-09-02): "I don't even use him, it was a bad concept." His
+      `subclass` field is literally the string `"Soulknife / Mastermind"`
+      (both real Rogue subclasses, combined into one string that doesn't
+      resolve via `loadSubclass`) — a deliberate homebrew dual-subclass
+      hack from an earlier session, not worth preserving or cleaning up
+      since he's getting rebuilt from scratch eventually. No action needed
+      until the project owner actually wants to rebuild him.
+
 - [ ] **New Character tool has no class-level skill picker at all.** Found
       auditing Siv (Rogue 9, real level-up through the tool) — she only has
       2 of her expected 4 Rogue skill proficiencies. Turned out
       `selectedSkills` in `NewCharacterTool.vue` is wired only to the
       background's fixed 2-skill grant; no class file (`engine/data/
-  classes/*.json`) has any "choose N skills from this list" data at
+classes/*.json`) has any "choose N skills from this list" data at
       all, so there's genuinely nothing to prompt from yet. Needs: (1) real
       skill-choice data added per class (count + eligible list, verified
       RAW per class — 13 classes), (2) a second picker section in

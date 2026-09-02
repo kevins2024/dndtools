@@ -1,0 +1,11 @@
+{
+  "class": "Bard",
+  "name": "College of Swords",
+  "description": "A bard who fights as a blade-dancing duelist, weaving magic and swordplay together.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_bonus-proficiencies-and-blade-flourish"
+    ]
+  }
+}

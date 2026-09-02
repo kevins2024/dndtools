@@ -1,0 +1,11 @@
+{
+  "class": "Ranger",
+  "name": "Horizon Walker",
+  "description": "A ranger who guards the boundaries between the planes, hunting creatures that slip through.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_detect-portal-and-planar-warrior"
+    ]
+  }
+}

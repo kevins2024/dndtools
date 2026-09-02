@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Battlerager",
+  "description": "A dwarven tradition of raging while wearing spiked armor, turning the barbarian into a living weapon against anyone who grapples them.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_battlerager-armor"
+    ]
+  }
+}

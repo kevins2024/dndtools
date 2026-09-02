@@ -1,6 +1,7 @@
 {
   "class": "Cleric",
   "name": "Life Domain",
+  "description": "A cleric focused on the vibrant positive energy that sustains life, excelling at healing.",
   "features_by_level": {
     "1": [
       "bonus-proficiency",

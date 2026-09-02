@@ -1,6 +1,7 @@
 {
   "class": "Fighter",
   "name": "Battle Master",
+  "description": "A fighter who studies the art of combat itself, using tactical maneuvers fueled by superiority dice.",
   "features_by_level": {
     "3": [
       "pub_combat-superiority",

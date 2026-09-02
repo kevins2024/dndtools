@@ -1,5 +1,6 @@
 {
   "name": "Artificer",
+  "description": "A master of invention who turns magic into gadgetry \u2014 infusing mundane objects with lasting magical properties.",
   "saving_throw_proficiencies": [
     "con",
     "int"

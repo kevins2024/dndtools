@@ -1,0 +1,11 @@
+{
+  "class": "Druid",
+  "name": "Circle of the Land",
+  "description": "A druid steeped in the ancient knowledge and magic of a particular terrain.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_bonus-cantrip-and-natural-recovery"
+    ]
+  }
+}

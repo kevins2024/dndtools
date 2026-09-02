@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Assassin",
+  "description": "A rogue who specializes in infiltration, disguise, and eliminating targets before a fight even begins.",
   "features_by_level": {
     "3": [
       "pub_bonus-proficiencies-assassin",

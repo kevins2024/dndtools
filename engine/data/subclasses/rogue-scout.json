@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Scout",
+  "description": "A rogue trained for wilderness survival and reconnaissance, blending stealth with a ranger's woodcraft.",
   "features_by_level": {
     "3": [
       "hb_rogue_scout_skirmisher",

@@ -1,0 +1,11 @@
+{
+  "class": "Sorcerer",
+  "name": "Draconic Bloodline",
+  "description": "A sorcerer whose magic stems from draconic ancestry.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_dragon-ancestor-and-draconic-resilience"
+    ]
+  }
+}

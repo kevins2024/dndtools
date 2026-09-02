@@ -1,5 +1,6 @@
 {
   "name": "Fighter",
+  "description": "A master of martial combat, skilled with a wide array of weapons and armor.",
   "saving_throw_proficiencies": [
     "str",
     "con"

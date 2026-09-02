@@ -1,0 +1,11 @@
+{
+  "class": "Sorcerer",
+  "name": "Aberrant Mind",
+  "description": "A sorcerer whose power comes from a psionic connection to alien, extradimensional influence.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_psionic-spells-and-telepathic-speech"
+    ]
+  }
+}

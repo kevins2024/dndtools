@@ -1,0 +1,11 @@
+{
+  "class": "Sorcerer",
+  "name": "Shadow Magic",
+  "description": "A sorcerer who has brushed against the Shadowfell, gaining power over darkness and death.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_eyes-of-the-dark-and-strength-of-the-grave"
+    ]
+  }
+}

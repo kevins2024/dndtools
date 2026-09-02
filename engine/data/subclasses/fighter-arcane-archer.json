@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Arcane Archer",
+  "description": "A fighter trained by elven traditions to infuse arrows with magic.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_arcane-archer-lore-and-arcane-shot"
+    ]
+  }
+}

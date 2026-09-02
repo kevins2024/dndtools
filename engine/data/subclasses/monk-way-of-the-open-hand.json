@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Open Hand",
+  "description": "A monk who masters unarmed combat above all else, controlling the flow of battle with every strike.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_open-hand-technique"
+    ]
+  }
+}

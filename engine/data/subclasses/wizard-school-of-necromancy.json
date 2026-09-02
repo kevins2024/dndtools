@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "School of Necromancy",
+  "description": "A wizard who studies the forces of life, death, and undeath.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_grim-harvest"
+    ]
+  }
+}

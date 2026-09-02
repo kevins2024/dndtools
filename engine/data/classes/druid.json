@@ -1,5 +1,6 @@
 {
   "name": "Druid",
+  "description": "A guardian of the natural world, wielding primal magic and the ability to transform into beasts.",
   "saving_throw_proficiencies": [
     "int",
     "wis"

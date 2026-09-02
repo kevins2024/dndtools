@@ -1,6 +1,7 @@
 {
   "class": "Cleric",
   "name": "Tempest Domain",
+  "description": "A cleric of a god of storms, thunder, and the sea, wielding destructive elemental power.",
   "features_by_level": {
     "1": [
       "pub_bonus-proficiencies-tempest-domain-martial-weapons-heavy-armor",

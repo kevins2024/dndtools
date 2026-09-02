@@ -1,5 +1,6 @@
 {
   "name": "Wizard",
+  "description": "A scholar of the arcane who learns spells through diligent study, recorded in a personal spellbook.",
   "saving_throw_proficiencies": [
     "int",
     "wis"

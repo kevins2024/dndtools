@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Totem Warrior",
+  "description": "The barbarian draws on the power of a totem animal spirit while raging.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_totem-spirit"
+    ]
+  }
+}

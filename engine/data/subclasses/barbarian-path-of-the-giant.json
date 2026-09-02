@@ -1,6 +1,7 @@
 {
   "class": "Barbarian",
   "name": "Path of the Giant",
+  "description": "A barbarian empowered by the blood or ways of giants, growing in size and elemental power.",
   "features_by_level": {
     "3": [
       "pub_giant-s-power",

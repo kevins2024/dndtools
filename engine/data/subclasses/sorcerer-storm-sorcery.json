@@ -1,0 +1,11 @@
+{
+  "class": "Sorcerer",
+  "name": "Storm Sorcery",
+  "description": "A sorcerer descended from or touched by elemental air and storm magic.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_wind-speaker-and-tempestuous-magic"
+    ]
+  }
+}

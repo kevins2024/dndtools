@@ -5,8 +5,198 @@ dependencies, no Vue/Vuex imports anywhere in this folder, meant to be portable 
 a future Godot port). If this work gets interrupted, **this file is the resume
 point** — check what's ticked, read the "Notes" under the current phase, and
 continue from the first unchecked item. Run `node --test` from inside `engine/`
-to confirm everything still passes before continuing (125 tests as of this
+to confirm everything still passes before continuing (138 tests as of this
 writing, all green).
+
+## Phase 7 — Full RAW content coverage (2026-09-02, project owner: "the engine
+
+## is meant to be ported into a Godot game eventually so we do need it all...
+
+## I would like to have all the subclasses pulled and ready to use so that
+
+## when I'm building characters we don't end up with illegal stuff like what
+
+## we have now")
+
+Scope change from Phase 2 ("only the subclasses currently on the roster") —
+this project now wants full coverage of the classic 5e (2014 PHB/SCAG/XGE/
+TCE/VRGR — NOT the 2024 revised PHB; matches existing content like "Circle
+of the Moon," "Bladesinger," "Great Old One") ruleset, not just what's
+in active use, so character creation never has to reach for something
+unbuilt. This is genuinely a many-session undertaking — sized honestly
+below rather than faked. Started from the Jaygar Artificer audit, which
+found the same "roster-only" gap pattern repeating everywhere: missing
+subclasses, missing feats, missing feature descriptions.
+
+### 7a — Subclasses (started 2026-09-02, Artificer 4/4 done this session)
+
+`Rogue` (9/9) and `Artificer` (4/4) are complete. Everything else has real
+gaps — exact counts as of this session:
+
+- [x] **Artificer — 4/4 done.** Alchemist, Armorer, Battle Smith built this
+      session (Artillerist already existed but had 2 real bugs — see the
+      Jaygar audit section above — now fixed). All verified against 2
+      independent sources, covered by `test/artificerSubclasses.test.js`.
+- [ ] **Barbarian — 2/9 done** (Berserker, Path of the Giant). Missing:
+      Ancestral Guardian (XGE), Beast (TCE), Storm Herald (XGE), Totem
+      Warrior (PHB), Wild Magic (XGE), Zealot (XGE). (Battlerager (SCAG) is
+      Forgotten-Realms/Zariel-specific — lower priority, skip unless asked.)
+- [ ] **Bard — 2/8 done** (College of Lore, College of Spirits). Missing:
+      College of Creation (TCE), College of Eloquence (TCE), College of
+      Glamour (XGE), College of Swords (XGE), College of Valor (PHB),
+      College of Whispers (XGE).
+- [ ] **Cleric — 2/~14 done** (Life, Tempest). The biggest gap of any class.
+      Missing: Arcana (SCAG), Death (DMG), Forge (XGE), Grave (XGE),
+      Knowledge (PHB), Light (SCAG), Nature (PHB), Order (TCE), Peace
+      (TCE), Trickery (PHB), Twilight (TCE), War (PHB).
+- [ ] **Druid — 2/7 done** (Circle of the Moon, Circle of Stars). Missing:
+      Circle of Dreams (XGE), Circle of the Land (PHB), Circle of the
+      Shepherd (XGE), Circle of Spores (TCE), Circle of Wildfire (TCE).
+- [ ] **Fighter — 4/10 done** (Battle Master, Champion, Echo Knight,
+      Eldritch Knight). Missing: Arcane Archer (XGE), Cavalier (XGE), Psi
+      Warrior (TCE), Purple Dragon Knight/Banneret (SCAG), Rune Knight
+      (TCE), Samurai (XGE).
+- [ ] **Monk — 0/9 done.** Fully empty — `classes/monk.json` exists but zero
+      subclasses. Missing: Way of the Astral Self (TCE), Way of the Drunken
+      Master (XGE), Way of the Four Elements (PHB), Way of the Kensei
+      (XGE), Way of the Long Death (SCAG), Way of Mercy (TCE), Way of the
+      Open Hand (PHB), Way of Shadow (PHB), Way of the Sun Soul (SCAG/XGE).
+- [x] **Paladin — 8/8 done, 2026-09-02.** Oath of Devotion, Vengeance,
+      Conquest, Redemption, and Glory built this session (on top of the
+      existing Oath of the Ancients, Oath of the Crown, and homebrew Oath
+      of the Open Road [Ferghus's]) — all verified against
+      dnd5e.wikidot.com, covered by `test/paladinOaths.test.js`. Found and
+      fixed a real content gap along the way: Oath of Conquest's 3rd-level
+      oath spell **Armor of Agathys didn't exist anywhere in the local
+      spell catalog at all** — added to `published_spells.json` with real
+      text. First concrete evidence for the 7c spell-audit question below —
+      the "504 unique spells, probably fine" guess was optimistic; expect
+      more gaps like this as the remaining classes get built out, not just
+      missing descriptions on things that already resolve.
+- [ ] **Ranger — 1/7 done** (Gloom Stalker). Missing: Beast Master (PHB),
+      Fey Wanderer (TCE), Horizon Walker (XGE), Monster Slayer (XGE),
+      Swarmkeeper (TCE). (Drakewarden (Fizban's) is dragon-setting-flavored
+      — lower priority, skip unless asked.)
+- [ ] **Sorcerer — 2/8 done** (Divine Soul, Weave Attunement [homebrew,
+      Iyani's]). Missing: Aberrant Mind (TCE), Clockwork Soul (TCE),
+      Draconic Bloodline (PHB), Shadow Magic (XGE), Storm Sorcery
+      (XGE/SCAG), Wild Magic (PHB).
+- [ ] **Warlock — 1/9 done** (Great Old One). Missing: Archfey (PHB),
+      Celestial (XGE), Fathomless (TCE), Fiend (PHB), Genie (TCE), Hexblade
+      (XGE), Undead (VRGR), Undying (SCAG).
+- [ ] **Wizard — 3/9 done** (Abjuration, Bladesinger, Evocation). Missing:
+      Conjuration (PHB), Divination (PHB), Enchantment (PHB), Illusion
+      (PHB), Necromancy (PHB), Transmutation (PHB), War Magic (XGE), Order
+      of Scribes (TCE). (Chronurgy/Graviturgy (Explorer's Guide to
+      Wildemount) are setting-specific — lower priority, skip unless asked.)
+
+Total remaining for the FULL treatment: **~60 subclasses** across 9 classes
+(skipping the setting-specific handful noted above). Each still needs the
+same rigor as Artificer/Paladin: 2-independent-source verification, real
+`published_features.json` entries (not stubs), all 4 tiers filled in, and a
+coverage test — don't shortcut verification just to move faster, that's
+exactly what produced Jaygar's mess in the first place.
+
+- [x] **2026-09-02: all ~72 remaining subclasses (every class except
+      Rogue/Artificer/Paladin, which were already complete) got a STUB
+      entry** — project owner wants every real subclass visible and
+      pickable in the Level Up tool immediately, even before the full
+      multi-tier treatment lands, "so if I go to the level up tool I at
+      least can see the options for subclassing." Each stub has: a real
+      `class`/`name`, a short flavor `description`, `stub: true`, and
+      ONLY the class's first real `subclass_choice_level` filled in with
+      real (not hallucinated) feature text — written from training
+      knowledge rather than the 2-source-verified pass the complete ones
+      get, and each stub feature entry in `published_features.json`
+      carries a `verification` field saying so explicitly, plus
+      `category: "subclass_feature_stub"` so they're easy to find and
+      queue for the real pass later. Covered by
+      `test/stubSubclasses.test.js` (every file resolves, has a
+      description, first-tier features match the class's real
+      `subclass_choice_level`, and every referenced feature actually
+      exists in the catalog).
+- [x] **Also added: `description` field on every class (`engine/data/
+classes/*.json`, all 12) and every previously-built subclass (40 files
+      — the ones that predate this stub pass, including the Artificer and
+      Paladin sets built earlier this session) that didn't already have
+      one** — direct answer to "are there descriptions for classes and
+      subclasses we should have and display in the UI?" There wasn't one
+      anywhere before this. Short 1-2 sentence flavor/identity text, not
+      mechanics (mechanics still live on individual features).
+- [x] **UI wired to actually show it**: `LevelUpTool.vue`'s subclass
+      picker now has a `title` tooltip per `<option>` (hover before
+      picking) and shows the picked subclass's `description` above its
+      feature list once selected, with a small "(early preview...)" flag
+      when the picked subclass is a stub (`isSubclassChoiceStub`) so a
+      player isn't misled into thinking a stub's 1-tier preview is the
+      whole subclass. No server changes needed — `GET /api/engine/classes`
+      and `GET /api/engine/subclasses/:className` already spread the full
+      class/subclass record, so `description`/`stub` flow through
+      automatically. `NewCharacterTool.vue` NOT touched yet — same
+      treatment would apply there, just not done this pass.
+
+### 7b — Feats (audited 2026-09-02, not yet built out)
+
+Two different things exist and are both incomplete for different reasons:
+
+- `engine/data/feats.json` — deliberately narrow, structured mechanical
+  grants for feats that GRANT SPELLS (so known-spell-count math works).
+  Only 2 entries (Fey Touched, Shadow Touched) — correct as scoped (still
+  "only feats actually in use on the roster," per its own `_notes`), but
+  real TCE also added Telekinetic, Telepathic, Metamagic Adept
+  (grants-none-directly, already catalogued separately), Skill Expert,
+  Fighting Initiate, etc. — expand as they come up, same as before.
+- `published_features.json` (`type: "feat"`) — the general feat-text
+  catalog, same roster-only pattern as subclasses. **14 entries exist**
+  (Sentinel, Dual Wielder, Great Weapon Master, Sharpshooter, War Caster,
+  Mobile, Observant, Inspiring Leader, Slasher, Fey Touched, Shadow
+  Touched, Lucky, Metamagic Adept, Resilient (Constitution)) against a real
+  PHB+TCE total of **~50 feats**. Missing roughly **36**, including some
+  very commonly-wanted ones: Alert, Athlete, Actor, Charger, Crossbow
+  Expert, Defensive Duelist, Dungeon Delver, Durable, Elemental Adept,
+  Grappler, Healer, Heavy Armor Master, Herd Whip? (no), Keen Mind, Linguist,
+  Lightly/Moderately/Heavily Armored, Magic Initiate, Martial Adept, Medium
+  Armor Master, Mounted Combatant, Polearm Master, Resilient (other 5
+  abilities — only CON built so far), Ritual Caster, Savage Attacker,
+  Skilled, Skulker, Speedy? (no), Spell Sniper, Tavern Brawler, Tough,
+  Weapon Master, plus TCE's Artificer Initiate, Chef, Fey Touched (have),
+  Gunner, Metamagic Adept (have), Shadow Touched (have), Skill Expert,
+  Telekinetic, Telepathic. Not started — needs the same real-text,
+  2-source-verified treatment, not stubs.
+
+### 7c — Feature/spell descriptions
+
+- [x] **All 25 remaining `needs_description: true` stub entries filled
+      in**, 2026-09-02 (base Bard/Cleric/Druid/Fighter/Monk/Paladin/
+      Ranger/Sorcerer/Wizard Spellcasting and other core features, plus
+      Champion's Improved/Superior Critical). One real naming bug caught
+      and fixed in the process: the Monk 9th-level Unarmored Movement
+      stub was mislabeled "(nonmagical difficult terrain)" — verified via
+      web search that the real 9th-level text is about vertical
+      surfaces/liquids, not difficult terrain; renamed and fixed
+      (`feature-catalog.json`'s id→name entry updated to match).
+- [ ] **Spells — likely in decent shape, not urgent.** Local caches
+      (`api_data_cache/srd_spells_full.json` + `published_spells.json`)
+      cover **504 unique spell names** combined, which is in the right
+      ballpark for the full classic-5e spell list (~500 across all
+      sourcebooks through TCE) — probably close to complete already
+      thanks to the `scripts/build-srd-cache.js` rebuild earlier this
+      session. Not spot-checked spell-by-spell for missing/blank
+      descriptions — lower priority than subclasses/feats unless a real
+      gap turns up in play.
+
+### Priority order for picking this back up
+
+Subclasses first (highest character-creation-legality risk, matches why
+this session started), roughly smallest-gap-first for quick wins along the
+way: ~~Paladin (done 2026-09-02)~~ → Druid (5 left) → Ranger (5) → Bard (6)
+→ Sorcerer (6) → Fighter (6) → Wizard (8) → Warlock (8) → Barbarian (6) →
+Monk (9) → Cleric (12, biggest, save for when there's a big block of time).
+Feats (7b) can interleave whenever — they're independent of any specific
+class's subclass work. Expect real spell-catalog gaps (7c) to keep turning
+up as a side effect of each class's oath/domain/expanded spell lists
+getting verified — fix them inline when found (like Armor of Agathys
+above), same as everything else in this phase.
 
 ## Homebrew monster support — first two creatures, Ravine Stalker + Greyback (2026-09-01)
 
@@ -30,7 +220,7 @@ stat blocks, not just lore text.
       (by exact name), same pattern as spells/features, before ever hitting
       the live API.
 - [x] **2 lightweight entries added to `monsters_index.json`** (`publisher:
-  "Homebrew"`) so they actually show up in `MonsterBrowser.vue`'s
+"Homebrew"`) so they actually show up in `MonsterBrowser.vue`'s
       search/list — that component only ever reads this one file for its
       browsable list.
 - [x] **New "Homebrew" filter chip** in `MonsterBrowser.vue` (previously

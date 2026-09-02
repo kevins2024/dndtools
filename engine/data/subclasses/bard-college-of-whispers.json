@@ -1,0 +1,11 @@
+{
+  "class": "Bard",
+  "name": "College of Whispers",
+  "description": "A bard who trades in fear and secrets, wielding dread as a weapon.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_psychic-blades"
+    ]
+  }
+}

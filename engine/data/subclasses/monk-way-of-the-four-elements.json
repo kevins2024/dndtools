@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Four Elements",
+  "description": "A monk who channels ki into elemental magic, wielding fire, water, earth, and air.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_disciple-of-the-elements"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Redemption",
+  "description": "A paladin who believes violence is a last resort, seeking to protect and redeem even their enemies.",
+  "features_by_level": {
+    "3": [
+      "pub_channel-divinity-emissary-of-peace",
+      "pub_channel-divinity-rebuke-the-violent"
+    ],
+    "7": [
+      "pub_aura-of-the-guardian"
+    ],
+    "15": [
+      "pub_protective-spirit"
+    ],
+    "20": [
+      "pub_emissary-of-redemption"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Sanctuary",
+      "Sleep"
+    ],
+    "5": [
+      "Calm Emotions",
+      "Hold Person"
+    ],
+    "9": [
+      "Counterspell",
+      "Hypnotic Pattern"
+    ],
+    "13": [
+      "Otiluke's Resilient Sphere",
+      "Stoneskin"
+    ],
+    "17": [
+      "Hold Monster",
+      "Wall of Force"
+    ]
+  }
+}

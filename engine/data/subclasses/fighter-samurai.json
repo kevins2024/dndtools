@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Samurai",
+  "description": "A fighter who draws on inner resolve and fighting spirit to overcome the odds.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_bonus-proficiency-and-fighting-spirit"
+    ]
+  }
+}

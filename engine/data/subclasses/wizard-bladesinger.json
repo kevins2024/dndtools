@@ -1,6 +1,7 @@
 {
   "class": "Wizard",
   "name": "Bladesinger",
+  "description": "A wizard who blends swordplay and spellcasting into a single, graceful martial art.",
   "features_by_level": {
     "2": [
       "pub_bladesinger-training-in-war-and-song",

@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Arcana Domain",
+  "description": "A cleric whose god is a source of arcane knowledge, blending divine and arcane magic.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_arcane-initiate"
+    ]
+  }
+}

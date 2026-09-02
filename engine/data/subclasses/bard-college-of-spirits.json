@@ -1,6 +1,7 @@
 {
   "class": "Bard",
   "name": "College of Spirits",
+  "description": "A bard who channels stories and spirits bound to a magical item, drawing prophetic and protective power from them.",
   "features_by_level": {
     "3": [
       "pub_guiding-whispers",

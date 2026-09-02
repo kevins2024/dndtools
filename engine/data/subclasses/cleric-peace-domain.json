@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Peace Domain",
+  "description": "A cleric of a god of peace, community, and cooperation between people.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_emboldening-bond"
+    ]
+  }
+}

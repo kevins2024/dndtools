@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Purple Dragon Knight (Banneret)",
+  "description": "A fighter who leads and inspires allies through martial example, tied to the Purple Dragons of Cormyr.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_rallying-cry"
+    ]
+  }
+}

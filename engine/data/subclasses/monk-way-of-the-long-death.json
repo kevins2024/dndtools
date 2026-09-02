@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Long Death",
+  "description": "A monk who has stared into death itself and returned, wielding its power.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_touch-of-death"
+    ]
+  }
+}

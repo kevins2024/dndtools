@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Drunken Master",
+  "description": "A monk whose unpredictable, swaying fighting style makes them hard to pin down.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_bonus-proficiencies-and-drunken-technique"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Rune Knight",
+  "description": "A fighter who carves ancient giant runes into their gear, gaining magical power (and sometimes size) from them.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_bonus-proficiencies-and-rune-carver"
+    ]
+  }
+}

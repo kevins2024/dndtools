@@ -1,0 +1,11 @@
+{
+  "class": "Ranger",
+  "name": "Beast Master",
+  "description": "A ranger who bonds with an animal companion that fights at their side.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_ranger-s-companion"
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 {
   "class": "Paladin",
   "name": "Oath of the Ancients",
+  "description": "A paladin bound to the ancient forces of light and life, protecting beauty, joy, and the natural world against encroaching darkness.",
   "features_by_level": {
     "3": [
       "pub_channel-divinity-nature-s-wrath",

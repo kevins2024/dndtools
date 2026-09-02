@@ -1,0 +1,11 @@
+{
+  "class": "Ranger",
+  "name": "Fey Wanderer",
+  "description": "A ranger touched by the Feywild, blending martial skill with fey charm and menace.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_dreadful-strikes"
+    ]
+  }
+}

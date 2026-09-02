@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Grave Domain",
+  "description": "A cleric who stands as a sentinel against death itself, guiding the dying and dead.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_circle-of-mortality-and-eyes-of-the-grave"
+    ]
+  }
+}

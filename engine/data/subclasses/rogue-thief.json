@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Thief",
+  "description": "A rogue focused on pure technical skill \u2014 climbing, sleight of hand, and squeezing every use out of magic items.",
   "features_by_level": {
     "3": [
       "hb_rogue_thief_fast_hands",

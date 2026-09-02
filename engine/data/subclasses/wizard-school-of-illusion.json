@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "School of Illusion",
+  "description": "A wizard who bends and fabricates reality itself through sight and sound.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_improved-minor-illusion"
+    ]
+  }
+}

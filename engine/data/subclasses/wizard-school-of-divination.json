@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "School of Divination",
+  "description": "A wizard who has learned to see beyond the present, glimpsing fate itself.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_portent"
+    ]
+  }
+}

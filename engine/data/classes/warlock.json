@@ -1,5 +1,6 @@
 {
   "name": "Warlock",
+  "description": "A wielder of magic granted through a pact with a powerful otherworldly patron.",
   "saving_throw_proficiencies": [
     "wis",
     "cha"

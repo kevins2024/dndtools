@@ -1,0 +1,42 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Glory",
+  "description": "A paladin who strives toward greatness and legend, inspired by the great heroes and champions of myth.",
+  "features_by_level": {
+    "3": [
+      "pub_channel-divinity-peerless-athlete",
+      "pub_channel-divinity-inspiring-smite"
+    ],
+    "7": [
+      "pub_aura-of-alacrity"
+    ],
+    "15": [
+      "pub_glorious-defense"
+    ],
+    "20": [
+      "pub_living-legend"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Guiding Bolt",
+      "Heroism"
+    ],
+    "5": [
+      "Enhance Ability",
+      "Magic Weapon"
+    ],
+    "9": [
+      "Haste",
+      "Protection from Energy"
+    ],
+    "13": [
+      "Compulsion",
+      "Freedom of Movement"
+    ],
+    "17": [
+      "Commune",
+      "Flame Strike"
+    ]
+  }
+}

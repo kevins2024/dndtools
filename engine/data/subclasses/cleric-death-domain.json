@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Death Domain",
+  "description": "A cleric of a god of death, decay, or murder - this domain is typically reserved for evil-aligned clerics.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_bonus-proficiency-and-reaper"
+    ]
+  }
+}

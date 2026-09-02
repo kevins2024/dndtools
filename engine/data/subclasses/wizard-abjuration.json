@@ -1,6 +1,7 @@
 {
   "class": "Wizard",
   "name": "Abjuration",
+  "description": "A wizard who specializes in protective and defensive magic, shielding themselves and others from harm.",
   "features_by_level": {
     "2": [
       "pub_abjuration-savant",

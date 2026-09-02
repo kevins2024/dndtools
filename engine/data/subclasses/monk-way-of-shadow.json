@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of Shadow",
+  "description": "A monk trained in stealth and shadow magic, ideal for infiltration and assassination.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_shadow-arts"
+    ]
+  }
+}

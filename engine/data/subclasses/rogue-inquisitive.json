@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Inquisitive",
+  "description": "A rogue trained as an investigator, reading people and evidence to see through lies and deception.",
   "features_by_level": {
     "3": [
       "pub_ear-for-deceit",

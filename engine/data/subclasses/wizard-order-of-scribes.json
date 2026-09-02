@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "Order of Scribes",
+  "description": "A wizard whose magic is bound up in the living, ever-changing power of the written word.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_wizardly-quill-and-awakened-spellbook"
+    ]
+  }
+}

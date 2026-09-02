@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Light Domain",
+  "description": "A cleric of a god of light, truth, vigilance, or beauty.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_warding-flare"
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 {
   "name": "Paladin",
+  "description": "A holy warrior bound by a sacred oath, wielding divine magic in service of that vow.",
   "saving_throw_proficiencies": [
     "wis",
     "cha"

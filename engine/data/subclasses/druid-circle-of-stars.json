@@ -1,6 +1,7 @@
 {
   "class": "Druid",
   "name": "Circle of Stars",
+  "description": "A druid who reads the night sky's constellations, drawing on their power through a magical Starry Form.",
   "features_by_level": {
     "2": [
       "pub_stars-druid-star-map",

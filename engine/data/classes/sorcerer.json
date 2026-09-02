@@ -1,5 +1,6 @@
 {
   "name": "Sorcerer",
+  "description": "A spellcaster whose magic is innate, born of a bloodline or an event that infused them with raw magical power.",
   "saving_throw_proficiencies": [
     "con",
     "cha"

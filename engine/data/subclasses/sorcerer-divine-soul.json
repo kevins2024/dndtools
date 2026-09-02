@@ -1,6 +1,7 @@
 {
   "class": "Sorcerer",
   "name": "Divine Soul",
+  "description": "A sorcerer whose innate magic stems from a divine or celestial source, blending sorcerous and divine spellcasting.",
   "features_by_level": {
     "1": [
       "pub_divine-magic",

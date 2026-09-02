@@ -183,12 +183,20 @@
                     v-for="s in availableSubclasses"
                     :key="s.name"
                     :value="s.name"
+                    :title="s.description"
                   >
                     {{ s.name }}
                   </option>
                 </select>
               </div>
               <div v-if="subclassChoiceDraft" class="lut-subclass-summary">
+                <p v-if="subclassChoiceDescription" class="lut-subclass-desc">
+                  {{ subclassChoiceDescription }}
+                  <span v-if="isSubclassChoiceStub" class="lut-stub-flag">
+                    (early preview — only this subclass's first tier is built so
+                    far, not the full progression)</span
+                  >
+                </p>
                 <div
                   v-if="subclassFeaturesForChoice.length === 0"
                   class="lut-note"
@@ -522,6 +530,25 @@ export default {
     subclassFeaturesForChoice() {
       const groups = this.preview?.description?.subclassFeaturesGained ?? []
       return groups.flatMap((g) => g.names)
+    },
+    // The flavor blurb for whichever subclass is currently picked in the
+    // dropdown (or highlighted before picking, via subclassChoiceDraft) —
+    // available subclasses come straight from GET /api/engine/subclasses/
+    // :className, which already includes each one's `description` field.
+    subclassChoiceDescription() {
+      const picked = this.availableSubclasses.find(
+        (s) => s.name === this.subclassChoiceDraft
+      )
+      return picked?.description ?? null
+    },
+    // True for the 2026-09-02 stub-pass subclasses (engine/CHECKLIST.md
+    // Phase 7) — only their first real subclass tier is built, so the
+    // level-up preview shouldn't be presented as the complete picture.
+    isSubclassChoiceStub() {
+      const picked = this.availableSubclasses.find(
+        (s) => s.name === this.subclassChoiceDraft
+      )
+      return !!picked?.stub
     },
     pendingAsiChoice() {
       return (
@@ -1085,6 +1112,17 @@ export default {
 .lut-subclass-summary .lut-feature-list li {
   margin-bottom: 0.35rem;
   color: var(--color-text);
+}
+
+.lut-subclass-desc {
+  margin: 0 0 0.6rem;
+  font-style: italic;
+  color: var(--color-text-secondary, var(--color-text));
+}
+
+.lut-stub-flag {
+  font-style: normal;
+  opacity: 0.75;
 }
 
 .lut-choice-tabs {

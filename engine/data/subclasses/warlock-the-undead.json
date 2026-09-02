@@ -1,0 +1,11 @@
+{
+  "class": "Warlock",
+  "name": "The Undead",
+  "description": "A warlock whose patron is an undying, deathless entity.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_form-of-dread"
+    ]
+  }
+}

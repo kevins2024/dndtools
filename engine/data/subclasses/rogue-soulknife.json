@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Soulknife",
+  "description": "A rogue who manifests psionic blades of pure mental force instead of relying on steel.",
   "features_by_level": {
     "3": [
       "pub_soulknife-psychic-blades",

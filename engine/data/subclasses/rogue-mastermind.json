@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Mastermind",
+  "description": "A rogue who leads from the shadows, directing allies in combat and manipulating people through connections and words.",
   "features_by_level": {
     "3": [
       "pub_master-of-intrigue",

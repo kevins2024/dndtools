@@ -1,0 +1,42 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Vengeance",
+  "description": "A paladin who has sworn to hunt down and destroy a great evil, whatever the cost to themselves.",
+  "features_by_level": {
+    "3": [
+      "pub_channel-divinity-abjure-enemy",
+      "pub_channel-divinity-vow-of-enmity"
+    ],
+    "7": [
+      "pub_relentless-avenger"
+    ],
+    "15": [
+      "pub_soul-of-vengeance"
+    ],
+    "20": [
+      "pub_avenging-angel"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Bane",
+      "Hunter's Mark"
+    ],
+    "5": [
+      "Hold Person",
+      "Misty Step"
+    ],
+    "9": [
+      "Haste",
+      "Protection from Energy"
+    ],
+    "13": [
+      "Banishment",
+      "Dimension Door"
+    ],
+    "17": [
+      "Hold Monster",
+      "Scrying"
+    ]
+  }
+}

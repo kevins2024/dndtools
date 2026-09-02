@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "War Magic",
+  "description": "A wizard trained by battle mages to weave spellcasting directly into combat.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_arcane-deflection-and-tactical-wit"
+    ]
+  }
+}

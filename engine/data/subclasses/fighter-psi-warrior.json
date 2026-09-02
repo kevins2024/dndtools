@@ -1,0 +1,11 @@
+{
+  "class": "Fighter",
+  "name": "Psi Warrior",
+  "description": "A fighter who augments their combat prowess with psionic power.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_psionic-power"
+    ]
+  }
+}

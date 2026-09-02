@@ -1,0 +1,11 @@
+{
+  "class": "Warlock",
+  "name": "The Archfey",
+  "description": "A warlock whose patron is a lord or lady of the Feywild.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_fey-presence"
+    ]
+  }
+}

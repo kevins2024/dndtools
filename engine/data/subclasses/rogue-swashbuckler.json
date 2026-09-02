@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Swashbuckler",
+  "description": "A rogue who duels with flair and charisma, using charm and mobility to fight one-on-one.",
   "features_by_level": {
     "3": [
       "pub_fancy-footwork",

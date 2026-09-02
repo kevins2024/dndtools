@@ -1,0 +1,42 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Devotion",
+  "description": "A paladin who holds to the classic ideals of honesty, courage, compassion, and honor above all else.",
+  "features_by_level": {
+    "3": [
+      "pub_channel-divinity-sacred-weapon",
+      "pub_channel-divinity-turn-the-unholy"
+    ],
+    "7": [
+      "pub_aura-of-devotion"
+    ],
+    "15": [
+      "pub_purity-of-spirit"
+    ],
+    "20": [
+      "pub_holy-nimbus"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Protection from Evil and Good",
+      "Sanctuary"
+    ],
+    "5": [
+      "Lesser Restoration",
+      "Zone of Truth"
+    ],
+    "9": [
+      "Beacon of Hope",
+      "Dispel Magic"
+    ],
+    "13": [
+      "Freedom of Movement",
+      "Guardian of Faith"
+    ],
+    "17": [
+      "Commune",
+      "Flame Strike"
+    ]
+  }
+}

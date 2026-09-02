@@ -1,0 +1,41 @@
+{
+  "class": "Artificer",
+  "name": "Alchemist",
+  "description": "An artificer who brews magical elixirs from alchemist's supplies, healing and buffing allies through chemistry.",
+  "features_by_level": {
+    "3": [
+      "pub_experimental-elixir"
+    ],
+    "5": [
+      "pub_alchemical-savant"
+    ],
+    "9": [
+      "pub_restorative-reagents"
+    ],
+    "15": [
+      "pub_chemical-mastery"
+    ]
+  },
+  "expanded_spell_list": {
+    "3": [
+      "Healing Word",
+      "Ray of Sickness"
+    ],
+    "5": [
+      "Flaming Sphere",
+      "Acid Arrow"
+    ],
+    "9": [
+      "Gaseous Form",
+      "Mass Healing Word"
+    ],
+    "13": [
+      "Blight",
+      "Death Ward"
+    ],
+    "17": [
+      "Cloudkill",
+      "Raise Dead"
+    ]
+  }
+}

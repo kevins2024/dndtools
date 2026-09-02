@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Ancestral Guardian",
+  "description": "Calls on spirit guardians to protect allies and punish those who ignore the barbarian to attack someone else.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_ancestral-protectors"
+    ]
+  }
+}

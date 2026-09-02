@@ -1,6 +1,7 @@
 {
   "class": "Fighter",
   "name": "Champion",
+  "description": "A fighter who hones raw physical excellence above all else, striking true more often than anyone else on the battlefield.",
   "features_by_level": {
     "3": [
       "gen_fighter_champion_improved-critical-19-20"

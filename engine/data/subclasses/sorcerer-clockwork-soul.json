@@ -1,0 +1,11 @@
+{
+  "class": "Sorcerer",
+  "name": "Clockwork Soul",
+  "description": "A sorcerer attuned to the plane of Mechanus, drawing on the power of pure order.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_clockwork-magic-and-restore-balance"
+    ]
+  }
+}

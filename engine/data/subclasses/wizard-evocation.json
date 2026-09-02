@@ -1,6 +1,7 @@
 {
   "class": "Wizard",
   "name": "Evocation",
+  "description": "A wizard who specializes in the raw, elemental destructive power of magic, sculpting spells to spare allies from the blast.",
   "features_by_level": {
     "2": [
       "evocation-savant",

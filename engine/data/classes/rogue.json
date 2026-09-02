@@ -1,5 +1,6 @@
 {
   "name": "Rogue",
+  "description": "A scoundrel who relies on skill, stealth, and precision strikes rather than brute force.",
   "saving_throw_proficiencies": [
     "dex",
     "int"

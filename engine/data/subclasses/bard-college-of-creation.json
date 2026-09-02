@@ -1,0 +1,11 @@
+{
+  "class": "Bard",
+  "name": "College of Creation",
+  "description": "A bard who sings the world itself into being, echoing the First Song that created the multiverse.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_mote-of-potential"
+    ]
+  }
+}

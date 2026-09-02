@@ -1,6 +1,7 @@
 {
   "class": "Paladin",
   "name": "Oath of the Crown",
+  "description": "A paladin sworn to a nation, order, or throne, upholding law, loyalty, and duty above personal ambition.",
   "features_by_level": {
     "3": [
       "pub_channel-divinity-champion-challenge",

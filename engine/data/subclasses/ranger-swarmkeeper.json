@@ -1,0 +1,11 @@
+{
+  "class": "Ranger",
+  "name": "Swarmkeeper",
+  "description": "A ranger accompanied by a swarm of spirits - insects, birds, leaves - that fights alongside them.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_gathered-swarm"
+    ]
+  }
+}

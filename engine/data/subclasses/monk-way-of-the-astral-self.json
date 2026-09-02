@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of the Astral Self",
+  "description": "A monk who manifests a spectral avatar of their own soul to fight alongside them.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_arms-of-the-astral-self"
+    ]
+  }
+}

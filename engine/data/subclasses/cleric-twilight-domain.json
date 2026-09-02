@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Twilight Domain",
+  "description": "A cleric of a god who watches over the border between life and death, light and dark.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_bonus-proficiencies-and-eyes-of-night"
+    ]
+  }
+}

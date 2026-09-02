@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "School of Enchantment",
+  "description": "A wizard who bends minds and wills through subtle, potent magic.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_hypnotic-gaze"
+    ]
+  }
+}

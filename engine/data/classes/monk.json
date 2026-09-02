@@ -1,5 +1,6 @@
 {
   "name": "Monk",
+  "description": "A martial artist who channels ki \u2014 inner spiritual energy \u2014 into supernatural feats of speed and strength.",
   "saving_throw_proficiencies": [
     "str",
     "dex"

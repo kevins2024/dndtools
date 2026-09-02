@@ -1,6 +1,7 @@
 {
   "class": "Ranger",
   "name": "Gloom Stalker",
+  "description": "A ranger who specializes in ambushing enemies from darkness, striking first and fastest.",
   "features_by_level": {
     "3": [
       "pub_gloom-stalker-magic",

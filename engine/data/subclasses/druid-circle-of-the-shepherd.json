@@ -1,0 +1,11 @@
+{
+  "class": "Druid",
+  "name": "Circle of the Shepherd",
+  "description": "A druid devoted to protecting and empowering beasts, fey, and the spirits of nature.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_speech-of-the-woods-and-spirit-totem"
+    ]
+  }
+}

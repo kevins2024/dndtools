@@ -1,0 +1,42 @@
+{
+  "class": "Artificer",
+  "name": "Battle Smith",
+  "description": "An artificer who builds a Steel Defender companion and fights alongside it with an INT-empowered magic weapon.",
+  "features_by_level": {
+    "3": [
+      "pub_battle-ready",
+      "pub_steel-defender"
+    ],
+    "5": [
+      "pub_battle-smith-extra-attack"
+    ],
+    "9": [
+      "pub_arcane-jolt"
+    ],
+    "15": [
+      "pub_improved-defender"
+    ]
+  },
+  "expanded_spell_list": {
+    "3": [
+      "Heroism",
+      "Shield"
+    ],
+    "5": [
+      "Branding Smite",
+      "Warding Bond"
+    ],
+    "9": [
+      "Aura of Vitality",
+      "Conjure Barrage"
+    ],
+    "13": [
+      "Aura of Purity",
+      "Fire Shield"
+    ],
+    "17": [
+      "Banishing Smite",
+      "Mass Cure Wounds"
+    ]
+  }
+}

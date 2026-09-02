@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Zealot",
+  "description": "A barbarian whose rage is a gift from their god, making them a terrifying weapon of divine fury.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_divine-fury"
+    ]
+  }
+}

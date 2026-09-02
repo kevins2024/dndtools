@@ -1,6 +1,7 @@
 {
   "class": "Paladin",
   "name": "Oath of the Open Road",
+  "description": "Homebrew \u2014 a paladin whose oath is to travelers, wanderers, and the roads that connect them, protecting journeys rather than any single throne or cause.",
   "_notes": "Fully homebrew \u2014 not official WotC content, and not the same as the third-party 'Oath of the Open Road' published elsewhere (that one uses entirely different feature names). This is the project owner's own oath, for Ferghus, a Paladin of Carix, god of mischief and unexpected consequences. Recovered from git history 2026-08-26 after its mechanical text was accidentally lost during a 2026-04-23 cleanup commit \u2014 see the 'Vow of the Open Road' entry in homebrew.json for the full recovery story. Only one Channel Divinity pair is confirmed (3rd level); this subclass may have had additional tenets or higher-level features that were never written down at all, not just lost \u2014 worth asking the project owner rather than assuming this is complete.",
   "features_by_level": {
     "3": [

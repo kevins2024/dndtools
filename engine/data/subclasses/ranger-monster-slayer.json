@@ -1,0 +1,11 @@
+{
+  "class": "Ranger",
+  "name": "Monster Slayer",
+  "description": "A ranger dedicated to hunting down creatures of the occult and supernatural.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_hunter-s-sense-and-slayer-s-prey"
+    ]
+  }
+}

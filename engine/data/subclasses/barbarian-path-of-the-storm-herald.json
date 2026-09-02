@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Storm Herald",
+  "description": "The barbarian's rage radiates an elemental aura tied to the environment that first tempered them.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_storm-aura"
+    ]
+  }
+}

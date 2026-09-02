@@ -1,6 +1,7 @@
 {
   "class": "Barbarian",
   "name": "Berserker",
+  "description": "A barbarian who gives themselves over entirely to a terrifying, single-minded frenzy in battle.",
   "features_by_level": {
     "3": [
       "frenzy"

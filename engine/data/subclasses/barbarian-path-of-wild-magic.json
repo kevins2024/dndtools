@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of Wild Magic",
+  "description": "A barbarian whose rage is fed by raw, unpredictable magic rather than pure fury.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_magic-awareness"
+    ]
+  }
+}

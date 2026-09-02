@@ -1,6 +1,7 @@
 {
   "class": "Fighter",
   "name": "Echo Knight",
+  "description": "A fighter who manifests a spectral echo of themselves from a nearby dimension, using it to strike, defend, and reposition.",
   "features_by_level": {
     "3": [
       "pub_manifest-echo",

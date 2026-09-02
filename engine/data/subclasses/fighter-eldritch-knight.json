@@ -1,6 +1,7 @@
 {
   "class": "Fighter",
   "name": "Eldritch Knight",
+  "description": "A fighter who supplements martial skill with a select few, mostly abjuration and evocation, wizard spells.",
   "spellcasting": {
     "type": "third",
     "ability": "int"

@@ -1,6 +1,7 @@
 {
   "class": "Rogue",
   "name": "Arcane Trickster",
+  "description": "A rogue who supplements stealth and skill with a select few illusion and enchantment wizard spells.",
   "spellcasting": {
     "type": "third",
     "ability": "int"

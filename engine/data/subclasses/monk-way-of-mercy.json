@@ -1,0 +1,11 @@
+{
+  "class": "Monk",
+  "name": "Way of Mercy",
+  "description": "A monk who channels ki to heal or harm with a touch, balancing life and death.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_implements-of-mercy-and-hand-of-healing-harm"
+    ]
+  }
+}

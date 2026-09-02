@@ -1,0 +1,11 @@
+{
+  "class": "Druid",
+  "name": "Circle of Spores",
+  "description": "A druid who has embraced decay and the cycle of death and rebirth through fungal symbiosis.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_halo-of-spores-and-symbiotic-entity"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "class": "Wizard",
+  "name": "School of Conjuration",
+  "description": "A wizard who specializes in bringing creatures and objects into being from thin air, or across space.",
+  "stub": true,
+  "features_by_level": {
+    "2": [
+      "pub_minor-conjuration"
+    ]
+  }
+}

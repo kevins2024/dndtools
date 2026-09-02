@@ -1,0 +1,11 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Beast",
+  "description": "The barbarian's rage manifests a bestial weapon grown from their own body.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_form-of-the-beast"
+    ]
+  }
+}

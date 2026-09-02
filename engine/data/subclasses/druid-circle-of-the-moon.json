@@ -1,6 +1,7 @@
 {
   "class": "Druid",
   "name": "Circle of the Moon",
+  "description": "A druid who masters Wild Shape as a means of powerful, combat-capable transformation.",
   "features_by_level": {
     "2": [
       "pub_combat-wild-shape",

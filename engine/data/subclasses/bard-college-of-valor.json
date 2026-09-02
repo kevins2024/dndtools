@@ -1,0 +1,11 @@
+{
+  "class": "Bard",
+  "name": "College of Valor",
+  "description": "A bard who takes the stage of battle itself, inspiring allies mid-combat.",
+  "stub": true,
+  "features_by_level": {
+    "3": [
+      "pub_bonus-proficiencies-and-combat-inspiration"
+    ]
+  }
+}

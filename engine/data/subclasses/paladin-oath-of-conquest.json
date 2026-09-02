@@ -1,0 +1,42 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Conquest",
+  "description": "A paladin who believes evil is best countered by overwhelming, terrifying force, breaking enemies' will to fight.",
+  "features_by_level": {
+    "3": [
+      "pub_channel-divinity-conquering-presence",
+      "pub_channel-divinity-guided-strike"
+    ],
+    "7": [
+      "pub_aura-of-conquest"
+    ],
+    "15": [
+      "pub_scornful-rebuke"
+    ],
+    "20": [
+      "pub_invincible-conqueror"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Armor of Agathys",
+      "Command"
+    ],
+    "5": [
+      "Hold Person",
+      "Spiritual Weapon"
+    ],
+    "9": [
+      "Bestow Curse",
+      "Fear"
+    ],
+    "13": [
+      "Dominate Beast",
+      "Stoneskin"
+    ],
+    "17": [
+      "Cloudkill",
+      "Dominate Person"
+    ]
+  }
+}

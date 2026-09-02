@@ -1,0 +1,11 @@
+{
+  "class": "Cleric",
+  "name": "Trickery Domain",
+  "description": "A cleric of a god of deception, thievery, or mischief.",
+  "stub": true,
+  "features_by_level": {
+    "1": [
+      "pub_blessing-of-the-trickster"
+    ]
+  }
+}
