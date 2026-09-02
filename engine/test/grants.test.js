@@ -50,7 +50,7 @@ test('Shadow Touched grants data matches verified RAW text', () => {
   ])
 })
 
-test("Jaygar, Denna, and Revven's feat-granted spells now sync with what their own feature entries already documented", () => {
+test("Denna and Revven's feat-granted spells now sync with what their own feature entries already documented", () => {
   const path = require('path')
   const characters = require(path.join(
     __dirname,
@@ -61,13 +61,14 @@ test("Jaygar, Denna, and Revven's feat-granted spells now sync with what their o
     'characters.json'
   ))
 
-  const jaygar = characters.find((c) => c.name === 'Jaygar')
-  const jaygarMisty = jaygar.spells.find((s) => s.name === 'Misty Step')
-  assert.ok(jaygarMisty)
-  assert.equal(engine.isFeatGrantedSpell('Fey Touched', jaygarMisty.name), true)
-  // "Command" was jaygar's documented choice pick (see his Fey Touched feature's
-  // spells_granted) — Command is 1st-level Enchantment, a legal choice.
-  assert.ok(jaygar.spells.some((s) => s.name === 'Command'))
+  // Jaygar's own assertions were removed 2026-09-02 when his character
+  // record was deleted for a from-scratch rebuild (New Character + Level
+  // Up tools, Infused Arbalist subclass). Rebuild is now complete (through
+  // level 9) — not re-added because his new build genuinely doesn't use
+  // Fey Touched at all: both his ASIs (levels 4, 8) went straight into
+  // stats instead of feats, which is also what makes his INT 20 legally
+  // reachable this time (the old build spent both ASIs on feats, leaving no
+  // legal path to INT 20 under this table's point-buy rules).
 
   const denna = characters.find((c) => c.name === 'Denna')
   const dennaInvis = denna.spells.find((s) => s.name === 'Invisibility')

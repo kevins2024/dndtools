@@ -214,6 +214,12 @@ export const WEAPON_PROPS = {
     finesse: false,
     versatile: false,
   },
+  'light crossbow': {
+    weapon_type: 'ranged',
+    damage_dice: '1d8',
+    finesse: false,
+    versatile: false,
+  },
 
   // ── Martial ranged ──
   'hand crossbow': {

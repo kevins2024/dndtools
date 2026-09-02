@@ -174,6 +174,9 @@ function diffLevelUp(
   // Apply every SUPPLIED resolution in level order; anything crossed without
   // one is a pending choice, not a guess.
   let scores = extractScores(character)
+  const featFeatures = [] // {name, level, feature} — feat-granted feature entries to merge into patch.features
+  const featGrantedSpells = [] // {name, level: null, prepared: true, featureGranted: true, _source}
+  const featSavingThrowProfs = [] // ability keys to add to patch.saving_throws
   for (const lvl of description.asiOrFeatLevels) {
     const resolution = asiOrFeatResolutions[lvl]
     if (!resolution) {
@@ -183,6 +186,49 @@ function diffLevelUp(
     const result = resolveAsiOrFeat(scores, resolution)
     scores = result.scores
     notes.push(...result.notes.map((n) => `Level ${lvl}: ${n}`))
+
+    if (resolution.type === 'feat' && result.feature) {
+      const { feature } = result
+      featFeatures.push({
+        name: feature.name,
+        id: null,
+        type: 'feat',
+        level_gained: lvl,
+        ability_choice: feature.ability_choice,
+        choices: feature.choices,
+        ...(feature.stat_bonuses ? { stat_bonuses: feature.stat_bonuses } : {}),
+      })
+      if (feature.grants_saving_throw_proficiency) {
+        featSavingThrowProfs.push(feature.grants_saving_throw_proficiency)
+      }
+      if (feature.grants_spells) {
+        for (const spellName of feature.grants_spells.fixed ?? []) {
+          featGrantedSpells.push({
+            name: spellName,
+            level: null,
+            prepared: true,
+            featureGranted: true,
+            _source: feature.name,
+          })
+        }
+        // The "choice" half of grants_spells (e.g. Fey Touched's 1st-level
+        // Divination/Enchantment pick) isn't enumerable from feats.json alone
+        // (it's any matching spell in the whole catalog) — the level-up UI
+        // collects it as a free-text pick under the reserved
+        // `__grantedSpellChoice` key, same as every other "type: spell_text"
+        // choice.
+        const chosen = resolution.choices?.__grantedSpellChoice
+        if (chosen) {
+          featGrantedSpells.push({
+            name: chosen,
+            level: null,
+            prepared: true,
+            featureGranted: true,
+            _source: feature.name,
+          })
+        }
+      }
+    }
   }
 
   // Only add a feature the character doesn't already have — but "already
@@ -229,6 +275,17 @@ function diffLevelUp(
     })
   }
 
+  // Feat-granted feature entries (built above from resolveAsiOrFeat) go
+  // through the SAME existingByLevel/existingNoLevel dedup as class-table
+  // features — a re-run preview shouldn't double them either.
+  for (const f of featFeatures) {
+    const n = normalizeName(f.name)
+    if (existingByLevel.has(`${n}@${f.level_gained}`) || existingNoLevel.has(n))
+      continue
+    newFeatures.push(f)
+    existingByLevel.add(`${n}@${f.level_gained}`)
+  }
+
   if (description.subclassChoiceNeeded) {
     const cls = loadClass(classEntry.name)
     pendingChoices.push({
@@ -264,6 +321,34 @@ function diffLevelUp(
 
   if (newFeatures.length) {
     patch.features = [...(character.features || []), ...newFeatures]
+  }
+
+  // Resilient is the only cataloged feat with grants_saving_throw_proficiency
+  // — add the chosen ability to the character's saving-throw proficiency
+  // list if it isn't already there (a re-run preview shouldn't duplicate it).
+  if (featSavingThrowProfs.length) {
+    const existing = new Set(character.saving_throws || [])
+    for (const ability of featSavingThrowProfs) existing.add(ability)
+    patch.saving_throws = [...existing]
+  }
+
+  // Feat-granted spells (Fey Touched/Shadow Touched's fixed + chosen spell,
+  // Telekinetic's Mage Hand, etc.) — same shape a human currently enters by
+  // hand on character.spells (see spellUtils.js's getCharacterSpells step 1
+  // and any real character's Fey Touched/Shadow Touched entries): {name,
+  // level: null, prepared, featureGranted, _source: featName}. `level: null`
+  // is resolved asynchronously by the UI the same way spellUtils.js's own
+  // feature-granted-spell path already documents.
+  if (featGrantedSpells.length) {
+    const existingSpellKeys = new Set(
+      (character.spells || []).map((s) => `${s.name}\0${s._source ?? ''}`)
+    )
+    const toAdd = featGrantedSpells.filter(
+      (s) => !existingSpellKeys.has(`${s.name}\0${s._source}`)
+    )
+    if (toAdd.length) {
+      patch.spells = [...(character.spells || []), ...toAdd]
+    }
   }
 
   // A class gained by MULTICLASSING grants only the PHB's reduced

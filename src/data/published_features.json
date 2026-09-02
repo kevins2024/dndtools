@@ -5,8 +5,8 @@
     "class": "Druid (Circle of the Moon)",
     "level_gained": 8,
     "homebrew": true,
-    "source": "Homebrew \u2014 table house rule, not real 5e Circle of the Moon text. Also modeled in engine/data/subclasses/druid-circle-of-the-moon.json for level-up tooling.",
-    "description": "While in Wild Shape, a Circle of the Moon druid retains the numerical bonuses from equipped magic gear made of natural, organically-originated materials \u2014 wood, cloth, leather, bone, antler, horn, shell, pearl, coral, amber, woven plant fiber, or Vixivirite (see materials.json) \u2014 or from any item that explicitly states it functions in Wild Shape. Mined/cut minerals and gemstones (diamond, ruby, sapphire, crystal, jade, obsidian, etc.), worked metal armor, and metal weapons never qualify, consistent with existing druid tradition around avoiding worked metal. Qualifying AC bonuses apply directly to the beast form's AC. Qualifying weapon attack/damage bonuses apply directly to the beast's attack and damage rolls, representing the magic empowering the druid's natural weapons even though nothing is physically wielded. Other item effects \u2014 activated abilities, granted spells, utility properties \u2014 still require their normal trigger and don't function while shapeshifted unless the item explicitly states otherwise.",
+    "source": "Homebrew — table house rule, not real 5e Circle of the Moon text. Also modeled in engine/data/subclasses/druid-circle-of-the-moon.json for level-up tooling.",
+    "description": "While in Wild Shape, a Circle of the Moon druid retains the numerical bonuses from equipped magic gear made of natural, organically-originated materials — wood, cloth, leather, bone, antler, horn, shell, pearl, coral, amber, woven plant fiber, or Vixivirite (see materials.json) — or from any item that explicitly states it functions in Wild Shape. Mined/cut minerals and gemstones (diamond, ruby, sapphire, crystal, jade, obsidian, etc.), worked metal armor, and metal weapons never qualify, consistent with existing druid tradition around avoiding worked metal. Qualifying AC bonuses apply directly to the beast form's AC. Qualifying weapon attack/damage bonuses apply directly to the beast's attack and damage rolls, representing the magic empowering the druid's natural weapons even though nothing is physically wielded. Other item effects — activated abilities, granted spells, utility properties — still require their normal trigger and don't function while shapeshifted unless the item explicitly states otherwise.",
     "notes": "Adopted because this campaign runs gear-forward itemization rather than feat/subclass-forward power, and Wild Shape's flat stat-block numbers otherwise fall behind as the rest of the party's gear scales. Restricted to Circle of the Moon since that subclass's identity depends on Wild Shape staying combat-relevant, unlike circles built around spellcasting."
   },
   {
@@ -16,7 +16,7 @@
     "source": "Tasha's Cauldron of Everything",
     "level_gained": 2,
     "action_type": null,
-    "description": "At the end of a long rest, touch nonmagical objects and infuse them with magic. Each infusion can only be in one object at a time. If you try to exceed your infusion limit, the oldest infusion ends. Infusions last until you die, at which point they fade at the next dawn. Number of infusions known and active scale with artificer level.",
+    "description": "At the end of a long rest, touch nonmagical objects and infuse them with magic. Each infusion can only be in one object at a time. If you try to exceed your infusion limit, the oldest infusion ends. An infusion remains in an item indefinitely, but when you die, it vanishes after a number of days equal to your Intelligence modifier (minimum 1 day). Number of infusions known and active scale with artificer level.",
     "infusions_by_level": {
       "2": {
         "known": 4,
@@ -32,7 +32,7 @@
       },
       "8": {
         "known": 6,
-        "active": 4
+        "active": 3
       },
       "10": {
         "known": 8,
@@ -40,7 +40,7 @@
       },
       "12": {
         "known": 8,
-        "active": 5
+        "active": 4
       },
       "14": {
         "known": 10,
@@ -48,7 +48,7 @@
       },
       "16": {
         "known": 10,
-        "active": 6
+        "active": 5
       },
       "18": {
         "known": 12,
@@ -77,8 +77,9 @@
     "level_gained": 3,
     "action_type": "action",
     "recharge": "long_rest",
-    "uses_max": 2,
-    "description": "Use your action and expend a spell slot to create a magical cannon in an unoccupied space on a horizontal surface within 5ft of you. The cannon is a magical object of size Small or Tiny that has AC 18 and HP equal to 5 times your artificer level. It is immune to poison and psychic damage. If it drops to 0hp it explodes \u2014 each creature within 5ft makes a DEX save DC equal to your spell save DC or takes 3d8 force damage, half on success. As a bonus action command the cannon to activate. It disappears after 1 hour, when reduced to 0hp, or when you create another \u2014 you can have only one cannon at a time until Fortified Position at 15th level. Choose one of three modes when creating:",
+    "uses_max": 1,
+    "uses_note": "One free creation per long rest. You can create additional cannons beyond that at any time by expending a spell slot for each one — not limited by a flat charge pool.",
+    "description": "Using woodcarver's tools or smith's tools in hand, use your action to create a magical cannon in an unoccupied space on a horizontal surface within 5ft of you. Once you create a cannon this way, you can't do so again until you finish a long rest, unless you expend a spell slot to create another. The cannon is a magical object of size Small or Tiny that has AC 18 and HP equal to 5 times your artificer level. It is immune to poison and psychic damage. It disappears if it is reduced to 0hp or after 1 hour. As a bonus action, you can command the cannon to activate if you are within 60ft of it. It disappears when you create another — you can have only one cannon at a time until Fortified Position at 15th level. Choose one of three modes when creating:",
     "modes": [
       {
         "name": "Flamethrower",
@@ -90,7 +91,7 @@
       },
       {
         "name": "Protector",
-        "description": "Emits a burst of positive energy. You and all allies within 10ft of the cannon gain temporary HP equal to 1d8 plus your INT modifier."
+        "description": "The cannon emits a burst of positive energy that grants itself and each creature of your choice within 10ft of it temporary hit points equal to 1d8 + your Intelligence modifier (minimum of +1)."
       }
     ],
     "note": "For Jaygar specifically, his custom alchemical heavy crossbow serves as his Eldritch Cannon in Force Ballista mode. The crossbow is the cannon."
@@ -106,13 +107,78 @@
     "note": "For Jaygar specifically, his custom alchemical heavy crossbow is his arcane firearm. Homebrew extension of the feature from wand/staff/rod to crossbow to fit his established character concept."
   },
   {
+    "id": "hb_infused_arbalist_bonus_spells",
+    "name": "Arbalist Bonus Spells",
+    "category": "infused_arbalist_feature",
+    "source": "Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass.",
+    "level_gained": 3,
+    "action_type": null,
+    "homebrew": true,
+    "description": "You always have certain spells prepared once you reach a certain level in this class, as shown below. These spells count as artificer spells for you, but they don't count against the number of artificer spells you prepare. 3rd level: Shield, Thunderwave. 5th level: Scorching Ray, Shatter. 9th level: Fireball, Wind Wall. 13th level: Ice Storm, Wall of Fire. 17th level: Cone of Cold, Wall of Force."
+  },
+  {
+    "id": "hb_infused_arbalist_calculating_arbalister",
+    "name": "Calculating Arbalister",
+    "category": "infused_arbalist_feature",
+    "source": "Homebrew — Infused Arbalist (built on Tasha's Cauldron of Everything's Artillerist framework, heavily modified). No direct RAW equivalent; loosely modeled on Battle Smith's real Battle Ready (Intelligence for attack/damage rolls with a magic weapon), scoped to a single bonded weapon.",
+    "level_gained": 3,
+    "action_type": null,
+    "homebrew": true,
+    "description": "You form a permanent bond with a single ranged weapon. While wielding your bonded weapon, you use your Intelligence modifier in place of Strength or Dexterity for its attack and damage rolls. This applies at all times, whether or not Infuse Weapon is currently active on it.",
+    "note": "For Jaygar specifically, his bonded weapon is his custom alchemical heavy crossbow."
+  },
+  {
+    "id": "hb_infused_arbalist_infuse_weapon",
+    "name": "Infuse Weapon",
+    "category": "infused_arbalist_feature",
+    "source": "Homebrew — Infused Arbalist. Replaces Artillerist's Eldritch Cannon (Tasha's Cauldron of Everything): the bonded weapon itself carries the magic instead of a separately summoned object.",
+    "level_gained": 3,
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "uses_note": "One free (re)binding per long rest. If your bonded weapon is destroyed and you want it back before your next long rest, rebinding costs your action and a spell slot instead.",
+    "homebrew": true,
+    "description": "Use your action to infuse your bonded weapon. While infused, it gains a pool of shots (6 at 3rd level, 9 at 9th, 12 at 15th — refills on a long rest), split evenly among fire, acid, and thunder damage. Making a shot is a ranged spell attack using your spell attack modifier, range 120ft, dealing 2d8 damage of the chosen type on a hit (3d8 at 9th level — see Unstable Rounds). Your action can be spent to fire a shot instead of a normal weapon attack, and your bonus action can also fire a shot — up to 2 shots per turn, each consuming one from the pool. You can always make an ordinary weapon attack with the bonded weapon instead (using Calculating Arbalister's Intelligence bonus, normal weapon damage, no elemental type) without spending a shot. While infused, the weapon has hit points equal to 5 times your artificer level, tracking cumulative damage you personally take while it remains bound — healing you receive doesn't reduce this total, and Mending can physically repair the weapon but can't restore what it's lost magically (per Mending's own rules). If these hit points reach 0, the infusion ends immediately and the weapon detonates: the attack that reduced it to 0 and the explosion resolve as a single combined event. Each creature within 10ft makes a Dexterity saving throw against your spell save DC, taking damage equal to the weapon's explosion dice (2d8 at 3rd level, 3d8 at 9th, 4d8 at 15th — doubled at 15th via Twin Barrels) on a failure, half as much on a success.",
+    "note": "For Jaygar specifically, this replaces Eldritch Cannon — his custom alchemical heavy crossbow is both the infused weapon and, from 15th level (Twin Barrels), effectively two cannons in one."
+  },
+  {
+    "id": "hb_infused_arbalist_arcane_payload",
+    "name": "Arcane Payload",
+    "category": "infused_arbalist_feature",
+    "source": "Homebrew — Infused Arbalist. Renamed/reflavored from Artillerist's real Arcane Firearm (Tasha's Cauldron of Everything) — mechanically identical, reflavored from a wand/staff/rod focus to the bonded weapon.",
+    "level_gained": 5,
+    "action_type": null,
+    "homebrew": true,
+    "description": "Your bonded weapon can serve as your spellcasting focus for your artificer spells. When you cast an artificer spell through it, roll a d8 and gain a bonus to one of the spell's damage rolls equal to the number rolled."
+  },
+  {
+    "id": "hb_infused_arbalist_unstable_rounds",
+    "name": "Unstable Rounds",
+    "category": "infused_arbalist_feature",
+    "source": "Homebrew — Infused Arbalist. Renamed/reflavored from Artillerist's real Explosive Cannon (Tasha's Cauldron of Everything), 9th level — keeps the damage-die increase, drops the voluntary self-detonate (doesn't fit a weapon that's meant to stay intact).",
+    "level_gained": 9,
+    "action_type": null,
+    "homebrew": true,
+    "description": "Your Infuse Weapon shots become more dangerous: their damage die increases from 2d8 to 3d8."
+  },
+  {
+    "id": "hb_infused_arbalist_twin_barrels",
+    "name": "Twin Barrels",
+    "category": "infused_arbalist_feature",
+    "source": "Homebrew — Infused Arbalist. Renamed/reflavored from Artillerist's real Fortified Position (Tasha's Cauldron of Everything), 15th level — keeps both real clauses (bigger destruction-explosion, half cover), reflavored to fit a personal weapon instead of a standalone emplacement.",
+    "level_gained": 15,
+    "action_type": null,
+    "homebrew": true,
+    "description": "Your bonded weapon's second barrel awakens. Its destruction-explosion (see Infuse Weapon) doubles, from 4d8 to 8d8. Additionally, while your weapon is infused, you and any creatures of your choice within 10ft of you gain half cover, shielded by the magical barrier the weapon projects."
+  },
+  {
     "id": "hb_artillerist_fortified_position",
     "name": "Fortified Position",
     "category": "artillerist_feature",
     "source": "Tasha's Cauldron of Everything",
     "level_gained": 15,
     "action_type": null,
-    "description": "You're a master at forming well-defended emplacements using Eldritch Cannon. You and your allies have half cover while within 10ft of a cannon you create with Eldritch Cannon, taking into account only a cannon that you can see. Additionally, you can now have two cannons out at the same time \u2014 you can create a second cannon without first destroying the one you already have."
+    "description": "You're a master at forming well-defended emplacements using Eldritch Cannon. You and your allies have half cover while within 10ft of a cannon you create with Eldritch Cannon, taking into account only a cannon that you can see. Additionally, you can now have two cannons out at the same time — you can create a second cannon without first destroying the one you already have."
   },
   {
     "id": "hb_infusion_repeating_shot",
@@ -120,7 +186,7 @@
     "category": "artificer_infusion",
     "source": "Tasha's Cauldron of Everything",
     "item_requirement": "A simple or martial weapon with the ammunition property",
-    "description": "The weapon requires no ammunition. It produces its own magical ammunition when used. The weapon gains a +1 bonus to attack and damage rolls unless it already has a bonus to those rolls. The ammunition produced by the weapon vanishes the instant after it hits or misses a target."
+    "description": "This magic weapon grants a +1 bonus to attack and damage rolls made with it when it's used to make a ranged attack, and it ignores the loading property if it has it. If the weapon lacks ammunition, it produces its own, automatically creating one piece of magic ammunition when the wielder makes a ranged attack with it. The ammunition produced by the weapon vanishes the instant after it hits or misses a target."
   },
   {
     "id": "hb_infusion_enhanced_arcane_focus",
@@ -129,7 +195,7 @@
     "source": "Tasha's Cauldron of Everything",
     "item_requirement": "A rod, staff, or wand",
     "description": "While holding this item, a creature gains a +1 bonus to spell attack rolls. At artificer level 10 this increases to +2. The holder also ignores half cover when making spell attacks.",
-    "note": "For Jaygar applied to his crossbow as arcane firearm \u2014 bonus increases to +2 at level 10."
+    "note": "For Jaygar applied to his crossbow as arcane firearm — bonus increases to +2 at level 10."
   },
   {
     "id": "hb_infusion_armor_magical_strength",
@@ -137,7 +203,7 @@
     "category": "artificer_infusion",
     "source": "Tasha's Cauldron of Everything",
     "item_requirement": "A suit of armor",
-    "description": "This armor has 6 charges. The wearer can use the armor's charges in the following ways: spend 1 charge as a reaction when the wearer fails a STR check or saving throw to add their INT modifier to the total, potentially turning the failure into a success. Spend 1 charge as a reaction when the wearer would be knocked prone to instead remain standing. The armor regains 1d6 charges daily at dawn."
+    "description": "This armor has 6 charges. The wearer can use the armor's charges in the following ways: when the wearer makes a Strength check or a Strength saving throw, it can expend 1 charge to add a bonus to the roll equal to its Intelligence modifier (this is not a reaction — the bonus is added when the roll is made, before the outcome is known). If the wearer would be knocked prone, it can use its reaction to expend 1 charge to avoid being knocked prone. The armor regains 1d6 expended charges daily at dawn."
   },
   {
     "id": "hb_infusion_lantern_revealing",
@@ -145,7 +211,7 @@
     "category": "artificer_infusion",
     "source": "Tasha's Cauldron of Everything",
     "item_requirement": "A hooded lantern",
-    "description": "While lit this lantern sheds bright light in a 30ft radius and dim light for an additional 30ft. Invisible creatures and objects within the bright light area are revealed \u2014 they are visible and can be seen clearly for the duration the lantern remains lit. The lantern burns for 6 hours on a flask of oil."
+    "description": "While lit this lantern sheds bright light in a 30ft radius and dim light for an additional 30ft. Invisible creatures and objects within the bright light area are revealed — they are visible and can be seen clearly for the duration the lantern remains lit. The lantern burns for 6 hours on a flask of oil."
   },
   {
     "id": "hb_artillerist_bonus_spells",
@@ -245,7 +311,7 @@
     "name": "Dagger of Swift Strike",
     "class": null,
     "description": "Once per turn on a hit with this dagger, immediately make a second strike with it as part of the same attack. No bonus action required.",
-    "note": "Item feature, not a class feature \u2014 stored here because it has a rules definition that needs to be referenced.",
+    "note": "Item feature, not a class feature — stored here because it has a rules definition that needs to be referenced.",
     "needs_review": true
   },
   {
@@ -254,7 +320,7 @@
     "class": "Rogue (Mastermind / Weaver's Master-Awl synergy)",
     "description": "When using Master of Tactics Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier.",
     "homebrew": true,
-    "source": "Homebrew, unique to Torrin \u2014 built on top of the real Master of Tactics (Mastermind, Xanathar's Guide to Everything), but this specific two-ally/INT-mod-bonus version is custom."
+    "source": "Homebrew, unique to Torrin — built on top of the real Master of Tactics (Mastermind, Xanathar's Guide to Everything), but this specific two-ally/INT-mod-bonus version is custom."
   },
   {
     "id": "pub_commander-s-presence",
@@ -276,8 +342,8 @@
   {
     "id": "pub_grandmaster-s-stitch",
     "name": "Grandmaster's Stitch",
-    "class": "Rogue (Legendary \u2014 Weaver's Master-Awl)",
-    "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours \u2014 wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened.",
+    "class": "Rogue (Legendary — Weaver's Master-Awl)",
+    "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours — wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened.",
     "needs_review": true
   },
   {
@@ -317,7 +383,7 @@
     "name": "War Caster",
     "category": "feat",
     "action_type": "reaction",
-    "description": "Advantage on CON saving throws to maintain concentration. Can perform somatic components with hands full. Can cast a spell as an opportunity attack \u2014 must target only the provoking creature, casting time must be 1 action.",
+    "description": "Advantage on CON saving throws to maintain concentration. Can perform somatic components with hands full. Can cast a spell as an opportunity attack — must target only the provoking creature, casting time must be 1 action.",
     "source": "Player's Handbook"
   },
   {
@@ -341,7 +407,7 @@
     "action_type": "action",
     "recharge": "short_rest",
     "description": "Spend 10 minutes speaking to up to 6 friendly creatures who can hear and understand you. Each gains temporary HP equal to your level + CHA modifier. Creatures cannot benefit again until they finish a short or long rest.",
-    "note": "Must spend 10 minutes \u2014 plan before combat, not during.",
+    "note": "Must spend 10 minutes — plan before combat, not during.",
     "source": "Player's Handbook"
   },
   {
@@ -359,6 +425,14 @@
     "description": "+1 INT, WIS, or CHA. Learn Misty Step and one 1st level divination or enchantment spell. Cast each once per long rest without a spell slot. Can also cast using spell slots.",
     "note": "Specify which 1st level spell each character chose.",
     "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_fade-away",
+    "name": "Fade Away",
+    "category": "feat",
+    "recharge": "short_rest",
+    "description": "Prerequisite: Gnome. +1 DEX or INT (max 20). Immediately after taking damage, use your reaction to turn invisible until the end of your next turn or until you attack, deal damage, or force a saving throw. Once per short or long rest.",
+    "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_shadow-touched",
@@ -422,7 +496,7 @@
     "id": "pub_devil-s-sight",
     "name": "Devil's Sight",
     "category": "warlock_invocation",
-    "description": "See normally in darkness \u2014 both magical and nonmagical \u2014 to 120ft.",
+    "description": "See normally in darkness — both magical and nonmagical — to 120ft.",
     "note": "Pairs exceptionally well with Hunger of Hadar.",
     "source": "Player's Handbook"
   },
@@ -497,7 +571,7 @@
     "category": "alchemist_feature",
     "class": "Artificer (Alchemist)",
     "level_gained": 9,
-    "description": "Whenever a creature drinks an experimental elixir you created, the creature gains temporary hit points equal to 2d6 + your Intelligence modifier (minimum 1). Additionally, you can cast Lesser Restoration without expending a spell slot and without preparing it, provided you use your alchemist's supplies as the spellcasting focus \u2014 a number of times equal to your Intelligence modifier (minimum once), regaining all expended uses on a long rest.",
+    "description": "Whenever a creature drinks an experimental elixir you created, the creature gains temporary hit points equal to 2d6 + your Intelligence modifier (minimum 1). Additionally, you can cast Lesser Restoration without expending a spell slot and without preparing it, provided you use your alchemist's supplies as the spellcasting focus — a number of times equal to your Intelligence modifier (minimum once), regaining all expended uses on a long rest.",
     "source": "Tasha's Cauldron of Everything"
   },
   {
@@ -525,7 +599,7 @@
     "class": "Artificer (Armorer)",
     "level_gained": 3,
     "action_type": "action",
-    "description": "Using smith's tools, you can turn a suit of armor you're wearing into a magical arcane armor. Whenever you don this armor, it magically attaches to you and can't be removed against your will; doffing it also requires an action. While wearing it: it counts as heavy armor that doesn't require Strength to wear and doesn't impose disadvantage on Stealth checks, it can serve as your spellcasting focus for artificer spells, and if you have no hands or feet, it fills in a set (with a retractable helmet as a bonus action). You choose an armor model \u2014 Guardian or Infiltrator \u2014 the first time you create arcane armor; you can change your model whenever you finish a long rest with smith's tools in hand."
+    "description": "Using smith's tools, you can turn a suit of armor you're wearing into a magical arcane armor. Whenever you don this armor, it magically attaches to you and can't be removed against your will; doffing it also requires an action. While wearing it: it counts as heavy armor that doesn't require Strength to wear, it can serve as your spellcasting focus for artificer spells, and if you have no hands or feet, it fills in a set (with a retractable helmet as a bonus action). You choose an armor model — Guardian or Infiltrator — the first time you create arcane armor; you can change your model whenever you finish a long rest with smith's tools in hand."
   },
   {
     "id": "pub_armor-model",
@@ -559,7 +633,7 @@
     "category": "armorer_feature",
     "class": "Artificer (Armorer)",
     "level_gained": 9,
-    "description": "You've learned how to permanently mount magic items onto your arcane armor. The armor now counts as four separate magic items for the purpose of your Infuse Item and other magic item limits: one item for the armor itself, one for its boots, one for its helmet, and one for its special weapon \u2014 infusions or other magic bonuses applied to it apply only while it's part of the armor. Additionally, the maximum number of items you can infuse increases by 2."
+    "description": "You've learned how to permanently mount magic items onto your arcane armor. The armor now counts as four separate magic items for the purpose of your Infuse Item and other magic item limits: one item for the armor itself, one for its boots, one for its helmet, and one for its special weapon — infusions or other magic bonuses applied to it apply only while it's part of the armor. Additionally, the maximum number of items you can infuse increases by 2."
   },
   {
     "id": "pub_perfected-armor",
@@ -595,7 +669,7 @@
     "class": "Artificer (Battle Smith)",
     "level_gained": 3,
     "action_type": "bonus_action",
-    "description": "Using smith's tools over the course of 1 hour, you can build a Steel Defender \u2014 a Medium construct that follows your verbal commands and shares your initiative. It has AC 15, HP equal to 2 + your Intelligence modifier + five times your artificer level (regaining all HP on your long rest), and a 40-foot speed. As a bonus action you can command it to take the Attack (one Force-Empowered Rend, 1d8 + your proficiency bonus force damage), Dash, Disengage, Help, or Repair action; without a command it takes the Dodge action. Repair (usable 2 times per short or long rest) restores 2d8 + your proficiency bonus HP to it as an action. As a reaction when a creature the defender can see hits a target other than the defender within 5 feet of it, the defender can impose disadvantage on that attack roll (Deflect Attack). If it dies, you can spend 1 hour and materials worth 200gp to build a new one.",
+    "description": "Using smith's tools over the course of 1 hour, you can build a Steel Defender — a Medium construct that follows your verbal commands and shares your initiative. It has AC 15, HP equal to 2 + your Intelligence modifier + five times your artificer level (regaining all HP on your long rest), and a 40-foot speed. As a bonus action you can command it to take the Attack (one Force-Empowered Rend, 1d8 + your proficiency bonus force damage), Dash, Disengage, Help, or Repair action; without a command it takes the Dodge action. Repair (3/Day) restores 2d8 + your proficiency bonus HP, as an action, to itself or to one construct or object within 5 feet of it — regaining all expended uses on a long rest. As a reaction when a creature the defender can see hits a target other than the defender within 5 feet of it, the defender can impose disadvantage on that attack roll (Deflect Attack). If it dies, you can spend 1 hour and materials worth 200gp to build a new one.",
     "source": "Tasha's Cauldron of Everything"
   },
   {
@@ -646,27 +720,27 @@
     "action_type": "bonus_action",
     "description": "As a bonus action, make an Insight check contested by a target's Charisma/Deception check. On a success, you identify and vocally expose a weakness in the target's defense. While this effect is active: Sneak Attack applies to attacks against this target without requiring advantage or an adjacent ally. Any attack roll against this target, by anyone, whose d20 result equals the unmodified Insight die roll (or standard natural 20) is treated as a critical hit. If the Insight die result was a natural 20, critical hits against this target deal triple damage. This effect lasts for 1 minute or until successfully used against a different target.",
     "homebrew": true,
-    "source": "Homebrew \u2014 a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW."
+    "source": "Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW."
   },
   {
     "id": "pub_inquisitive-steady-eye",
-    "name": "Inquisitive \u2014 Steady Eye",
+    "name": "Inquisitive — Steady Eye",
     "category": "subclass_feature",
     "description": "Advantage on Perception and Investigation checks if you don't move more than half your speed on the same turn.",
     "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_inquisitive-unerring-eye",
-    "name": "Inquisitive \u2014 Unerring Eye",
+    "name": "Inquisitive — Unerring Eye",
     "category": "subclass_feature",
     "action_type": "action",
     "recharge": "wis_mod_per_long_rest",
-    "description": "Sense magical illusions, shapechanger in disguise, or other magical deception within 30ft. Not exact \u2014 you sense something is off, not necessarily what.",
+    "description": "Sense magical illusions, shapechanger in disguise, or other magical deception within 30ft. Not exact — you sense something is off, not necessarily what.",
     "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_scout-skirmisher",
-    "name": "Scout \u2014 Skirmisher",
+    "name": "Scout — Skirmisher",
     "category": "subclass_feature",
     "action_type": "reaction",
     "description": "When an enemy ends its turn within 5ft of you: move up to half your speed without provoking opportunity attacks.",
@@ -674,21 +748,21 @@
   },
   {
     "id": "pub_scout-survivalist",
-    "name": "Scout \u2014 Survivalist",
+    "name": "Scout — Survivalist",
     "category": "subclass_feature",
     "description": "Gain proficiency in Nature and Survival. Proficiency bonus doubled for these skills.",
     "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_scout-superior-mobility",
-    "name": "Scout \u2014 Superior Mobility",
+    "name": "Scout — Superior Mobility",
     "category": "subclass_feature",
     "description": "+10ft movement speed. If no armor worn, +10ft additionally.",
     "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_soulknife-psychic-blades",
-    "name": "Soulknife \u2014 Psychic Blades",
+    "name": "Soulknife — Psychic Blades",
     "category": "subclass_feature",
     "action_type": "action",
     "description": "Manifest a psychic blade as part of an attack. 1d6 psychic damage, finesse, thrown (60ft). Second blade as bonus action on same turn deals 1d4 psychic. No material component, appear and vanish instantly.",
@@ -696,7 +770,7 @@
   },
   {
     "id": "pub_soulknife-psionic-energy",
-    "name": "Soulknife \u2014 Psionic Energy",
+    "name": "Soulknife — Psionic Energy",
     "category": "subclass_feature",
     "recharge": "long_rest",
     "description": "Pool of Psionic Energy dice (d6s). Used for Soul Blades, Psychic Whispers, Psychic Veil, and Psi-Bolstered Knack. Regain one die as bonus action once per short rest.",
@@ -705,7 +779,7 @@
   },
   {
     "id": "pub_soulknife-psi-bolstered-knack",
-    "name": "Soulknife \u2014 Psi-Bolstered Knack",
+    "name": "Soulknife — Psi-Bolstered Knack",
     "category": "subclass_feature",
     "description": "When failing an ability check using a skill or tool proficiency: expend one Psionic Energy die and add it to the check, potentially turning failure into success.",
     "note": "Expend after seeing the roll.",
@@ -713,7 +787,7 @@
   },
   {
     "id": "pub_soulknife-psychic-whispers",
-    "name": "Soulknife \u2014 Psychic Whispers",
+    "name": "Soulknife — Psychic Whispers",
     "category": "subclass_feature",
     "action_type": "action",
     "description": "Expend one Psionic Energy die. Choose creatures equal to proficiency bonus. Telepathic link for a number of hours equal to die roll. Communicate silently at any range as long as on same plane.",
@@ -721,44 +795,44 @@
   },
   {
     "id": "pub_stars-druid-starry-form",
-    "name": "Stars Druid \u2014 Starry Form",
+    "name": "Stars Druid — Starry Form",
     "category": "subclass_feature",
     "action_type": "bonus_action",
     "recharge": "short_rest",
-    "description": "Transform into a starry form for 10 minutes. Choose constellation: Archer (bonus radiant damage on spells, 1d8+WIS as bonus action each turn), Chalice (healing spells heal Tackett for 1d8+WIS mod), Dragon (concentration checks auto-succeed on rolls of 9 or lower). Unbroken (legendary \u2014 see separate entry).",
+    "description": "Transform into a starry form for 10 minutes. Choose constellation: Archer (bonus radiant damage on spells, 1d8+WIS as bonus action each turn), Chalice (healing spells heal Tackett for 1d8+WIS mod), Dragon (concentration checks auto-succeed on rolls of 9 or lower). Unbroken (legendary — see separate entry).",
     "source": "Tasha's Cauldron of Everything"
   },
   {
     "id": "pub_stars-druid-cosmic-omen",
-    "name": "Stars Druid \u2014 Cosmic Omen",
+    "name": "Stars Druid — Cosmic Omen",
     "category": "subclass_feature",
     "action_type": "reaction",
     "recharge": "long_rest",
-    "description": "After a long rest roll a d6. Odd: Weal \u2014 use reaction to add 1d6 to an attack roll, ability check, or saving throw of a creature within 30ft. Even: Woe \u2014 use reaction to subtract 1d6 from a roll of a creature within 30ft.",
+    "description": "After a long rest roll a d6. Odd: Weal — use reaction to add 1d6 to an attack roll, ability check, or saving throw of a creature within 30ft. Even: Woe — use reaction to subtract 1d6 from a roll of a creature within 30ft.",
     "note": "Roll at start of each long rest to determine Weal or Woe.",
     "source": "Tasha's Cauldron of Everything"
   },
   {
     "id": "pub_stars-druid-full-of-stars",
-    "name": "Stars Druid \u2014 Full of Stars",
+    "name": "Stars Druid — Full of Stars",
     "category": "subclass_feature",
     "description": "While in Starry Form: become partially incorporeal. Resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
     "source": "Tasha's Cauldron of Everything"
   },
   {
     "id": "pub_stars-druid-unbroken-legendary",
-    "name": "Stars Druid \u2014 Unbroken (Legendary)",
+    "name": "Stars Druid — Unbroken (Legendary)",
     "category": "subclass_feature",
     "action_type": "bonus_action",
     "recharge": "long_rest",
     "description": "Legendary fourth constellation. While active: can maintain concentration on two spells simultaneously, advantage on all concentration saving throws. Duration 10 minutes. Once per long rest.",
-    "note": "Cannot stack with other Starry Form constellations \u2014 this replaces them for the duration.",
+    "note": "Cannot stack with other Starry Form constellations — this replaces them for the duration.",
     "homebrew": true,
-    "source": "Homebrew \u2014 a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything)."
+    "source": "Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything)."
   },
   {
     "id": "pub_tempest-cleric-wrath-of-the-storm",
-    "name": "Tempest Cleric \u2014 Wrath of the Storm",
+    "name": "Tempest Cleric — Wrath of the Storm",
     "category": "subclass_feature",
     "action_type": "reaction",
     "recharge": "wis_mod_per_long_rest",
@@ -767,7 +841,7 @@
   },
   {
     "id": "pub_tempest-cleric-destructive-wrath",
-    "name": "Tempest Cleric \u2014 Destructive Wrath",
+    "name": "Tempest Cleric — Destructive Wrath",
     "category": "subclass_feature",
     "recharge": "channel_divinity",
     "description": "When rolling lightning or thunder damage: replace any roll with maximum damage instead of rolling.",
@@ -776,7 +850,7 @@
   },
   {
     "id": "pub_tempest-cleric-thunderbolt-strike",
-    "name": "Tempest Cleric \u2014 Thunderbolt Strike",
+    "name": "Tempest Cleric — Thunderbolt Strike",
     "category": "subclass_feature",
     "description": "When dealing lightning damage to a Large or smaller creature: push it up to 10ft away.",
     "needs_review": true
@@ -794,11 +868,12 @@
   {
     "id": "pub_bountiful-luck",
     "name": "Bountiful Luck",
-    "category": "racial_feature",
+    "category": "feat",
     "action_type": "reaction",
     "description": "When an ally within 30ft rolls a 1 on an attack roll, ability check, or saving throw: use reaction to let them reroll. They must use the new roll.",
     "note": "Halfling racial feat. Does not cost Tackett's Lucky feature.",
-    "source": "Sword Coast Adventurer's Guide"
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Halfling"
   },
   {
     "id": "pub_vow-of-the-open-road",
@@ -807,12 +882,12 @@
     "action_type": "action",
     "recharge": "channel_divinity",
     "description": "As an action, expend one use of Channel Divinity to force a creature within 30 feet that you can see to make a Wisdom saving throw. On a failure, the creature is compelled to move in an unexpected direction (DM's choice, in the spirit of Carix's unpredictable influence) on its next turn.",
-    "source": "Homebrew \u2014 Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag).",
+    "source": "Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag).",
     "homebrew": true
   },
   {
     "id": "pub_inquisitive-ear-for-deceit",
-    "name": "Inquisitive \u2014 Ear for Deceit",
+    "name": "Inquisitive — Ear for Deceit",
     "category": "subclass_feature",
     "action_type": null,
     "description": "Gain proficiency in Insight. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of 7 or lower as an 8.",
@@ -820,7 +895,7 @@
   },
   {
     "id": "pub_inquisitive-eye-for-detail",
-    "name": "Inquisitive \u2014 Eye for Detail",
+    "name": "Inquisitive — Eye for Detail",
     "category": "subclass_feature",
     "action_type": "bonus_action",
     "description": "Use a bonus action to take the Search action, or to make a Wisdom (Perception) check to spot a hidden creature or object, or an Intelligence (Investigation) check to uncover or decipher clues.",
@@ -828,10 +903,10 @@
   },
   {
     "id": "pub_scout-ambush-master",
-    "name": "Scout \u2014 Ambush Master",
+    "name": "Scout — Ambush Master",
     "category": "subclass_feature",
     "action_type": null,
-    "description": "Advantage on initiative rolls. Creatures you hit during the first round of combat become easier targets \u2014 each ally has advantage on attack rolls against them until the start of your next turn.",
+    "description": "Advantage on initiative rolls. Creatures you hit during the first round of combat become easier targets — each ally has advantage on attack rolls against them until the start of your next turn.",
     "source": "Xanathar's Guide to Everything"
   },
   {
@@ -846,7 +921,7 @@
     "id": "pub_old-scores",
     "name": "Old Scores",
     "type": "feature",
-    "description": "Once per session, Torrin knows someone wherever the party currently is \u2014 that person owes him a favor. Purely narrative: opens doors, creates opportunities, no mechanical bonus. 156 years of living leaves marks everywhere.",
+    "description": "Once per session, Torrin knows someone wherever the party currently is — that person owes him a favor. Purely narrative: opens doors, creates opportunities, no mechanical bonus. 156 years of living leaves marks everywhere.",
     "source": "Homebrew, unique to Torrin. Purely narrative, no mechanical effect.",
     "homebrew": true
   },
@@ -854,8 +929,8 @@
     "id": "pub_primal-companion",
     "name": "Primal Companion",
     "type": "feature",
-    "description": "Grants a beast companion that fights alongside you, sharing your initiative and following your commands. At this table, the companion's exact combat mechanics live on its own character-like sheet (see the Independent feature and the companion's own stat block) rather than being fully reproduced here \u2014 this entry is the marker that the character has the feature at all.",
-    "source": "Real Ranger feature (Tasha's Cauldron of Everything) as a base, but homebrew-extended at this table \u2014 see the 'Independent' feature for the house-rule upgrade (full independent turn instead of Dodge + bonus-action command).",
+    "description": "Grants a beast companion that fights alongside you, sharing your initiative and following your commands. At this table, the companion's exact combat mechanics live on its own character-like sheet (see the Independent feature and the companion's own stat block) rather than being fully reproduced here — this entry is the marker that the character has the feature at all.",
+    "source": "Real Ranger feature (Tasha's Cauldron of Everything) as a base, but homebrew-extended at this table — see the 'Independent' feature for the house-rule upgrade (full independent turn instead of Dodge + bonus-action command).",
     "homebrew": true
   },
   {
@@ -863,36 +938,36 @@
     "name": "Master of Intrigue",
     "type": "feature",
     "description": "You gain proficiency with the disguise kit, the forgery kit, and one gaming set of your choice. You also learn two languages of your choice. Additionally, you can unerringly mimic the speech patterns and accent of a creature that you hear speak for at least 1 minute, though you must know the language to pass yourself off as a speaker of it.",
-    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) \u2014 3rd level."
+    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
     "id": "pub_soulknife-soul-blades",
-    "name": "Soulknife \u2014 Soul Blades",
+    "name": "Soulknife — Soul Blades",
     "type": "feature",
-    "description": "Two benefits: Homing Strikes \u2014 when you miss with a psychic blade attack, you can expend one Psionic Energy die, rolling it and adding the result to the attack roll, possibly turning the miss into a hit. Psychic Teleportation \u2014 as a bonus action, expend one Psionic Energy die, roll it, and teleport up to 10 feet times the number rolled to an unoccupied space you can see, then make one psychic blade attack against a creature within 5 feet of your destination.",
-    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) \u2014 9th level."
+    "description": "Two benefits: Homing Strikes — when you miss with a psychic blade attack, you can expend one Psionic Energy die, rolling it and adding the result to the attack roll, possibly turning the miss into a hit. Psychic Teleportation — as a bonus action, expend one Psionic Energy die, roll it, and teleport up to 10 feet times the number rolled to an unoccupied space you can see, then make one psychic blade attack against a creature within 5 feet of your destination.",
+    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level."
   },
   {
     "id": "pub_soulknife-psychic-veil",
-    "name": "Soulknife \u2014 Psychic Veil",
+    "name": "Soulknife — Psychic Veil",
     "type": "feature",
     "action_type": "action",
     "description": "As an action, you can magically become invisible, along with anything you are wearing or carrying, for up to 1 hour. This invisibility ends early if you make an attack, cast a spell, or force a creature to make a saving throw.",
-    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) \u2014 13th level."
+    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 13th level."
   },
   {
     "id": "pub_soulknife-rend-mind",
-    "name": "Soulknife \u2014 Rend Mind",
+    "name": "Soulknife — Rend Mind",
     "type": "feature",
-    "description": "When you hit a creature with a Sneak Attack, you can force that target to make a Wisdom saving throw. On a failure, it's stunned for 1 minute \u2014 it can repeat the save at the end of each of its turns, ending the effect on a success.",
-    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) \u2014 17th level."
+    "description": "When you hit a creature with a Sneak Attack, you can force that target to make a Wisdom saving throw. On a failure, it's stunned for 1 minute — it can repeat the save at the end of each of its turns, ending the effect on a success.",
+    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 17th level."
   },
   {
     "id": "pub_insightful-manipulator",
     "name": "Insightful Manipulator",
     "type": "feature",
-    "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own \u2014 whether it's your equal, superior, or inferior in two of the following characteristics of your choice: Intelligence score, Wisdom score, Charisma score, class levels (if any).",
-    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) \u2014 9th level."
+    "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own — whether it's your equal, superior, or inferior in two of the following characteristics of your choice: Intelligence score, Wisdom score, Charisma score, class levels (if any).",
+    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) — 9th level."
   },
   {
     "id": "pub_misdirection",
@@ -900,14 +975,14 @@
     "type": "feature",
     "action_type": "reaction",
     "description": "If a creature you can see targets you with an attack, you can use your reaction to designate another creature within 5 feet of you as the recipient of that attack instead, provided that other creature is granting you cover from the attack.",
-    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) \u2014 13th level."
+    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) — 13th level."
   },
   {
     "id": "pub_soul-of-deceit",
     "name": "Soul of Deceit",
     "type": "feature",
     "description": "Your thoughts can't be read by telepathy or other means unless you allow it, and you can present false thoughts to a creature attempting to read them by succeeding on a Charisma (Deception) check against the creature's Wisdom (Insight) check. You can also fool magic that would determine whether you're telling the truth and can't be compelled to tell the truth by magic.",
-    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) \u2014 17th level."
+    "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) — 17th level."
   },
   {
     "id": "pub_blessed-strikes",
@@ -957,7 +1032,7 @@
   {
     "id": "pub_tattoo-of-warding",
     "name": "Tattoo of Warding",
-    "description": "Once per long rest, as a reaction, you may completely block one incoming ranged attack \u2014 negating all damage and effects from that attack. The tattoo is inscribed on the sword arm and activates instinctively.",
+    "description": "Once per long rest, as a reaction, you may completely block one incoming ranged attack — negating all damage and effects from that attack. The tattoo is inscribed on the sword arm and activates instinctively.",
     "type": "feature",
     "source": "Campaign homebrew.",
     "homebrew": true
@@ -986,9 +1061,9 @@
   {
     "id": "pub_weave-embodiment",
     "name": "Weave Embodiment",
-    "description": "Once per long rest, cast your CURRENT phase's level-1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) \u2014 up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three.",
+    "description": "Once per long rest, cast your CURRENT phase's level-1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) — up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three.",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
@@ -996,121 +1071,122 @@
     "name": "Loom Fire",
     "description": "You know Sacred Flame (doesn't count against cantrips known). When you cast it, you may target one creature as normal OR target two creatures within range that are within 5 feet of each other, each making its own DEX save.",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
     "id": "pub_mother-s-whim",
     "name": "Mother's Whim",
-    "description": "Two separate effects bundled into one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) \u2014 costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus per long rest, refreshing on a long rest \u2014 independent of how many times you've shifted phase.",
+    "description": "Two separate effects bundled into one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus per long rest, refreshing on a long rest — independent of how many times you've shifted phase.",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
     "id": "pub_leno-phase-abjuration-divination",
     "name": "Leno Phase (Abjuration / Divination)",
-    "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active \u2014 cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Shield (1st), Lesser Restoration (2nd), Dispel Magic (3rd), Death Ward (4th), Rary's Telepathic Bond (5th).",
+    "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Shield (1st), Lesser Restoration (2nd), Dispel Magic (3rd), Death Ward (4th), Rary's Telepathic Bond (5th).",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
     "id": "pub_twill-phase-enchantment-necromancy",
     "name": "Twill Phase (Enchantment / Necromancy)",
-    "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active \u2014 cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Silvery Barbs (1st), Blindness/Deafness (2nd), Vampiric Touch (3rd), Confusion (4th), Synaptic Static (5th).",
+    "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Silvery Barbs (1st), Blindness/Deafness (2nd), Vampiric Touch (3rd), Confusion (4th), Synaptic Static (5th).",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
     "id": "pub_satin-phase-illusion-transmutation",
     "name": "Satin Phase (Illusion / Transmutation)",
-    "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active \u2014 cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Color Spray (1st), Alter Self (2nd), Phantom Steed (3rd), Fabricate (4th), Telekinesis (5th).",
+    "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Color Spray (1st), Alter Self (2nd), Phantom Steed (3rd), Fabricate (4th), Telekinesis (5th).",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
     "id": "pub_weave-empowerment",
     "name": "Weave Empowerment",
-    "description": "Passive, tied to your currently active phase. Leno: as a bonus action, your markings blaze \u2014 shed bright light in a 10ft radius and dim light 10ft beyond; you and creatures of your choice within that light gain advantage on Investigation and Perception checks. Twill: advantage on Stealth checks; while you are entirely in an area of darkness, attack rolls against you have disadvantage. Satin: resistance to necrotic and radiant damage.",
+    "description": "Passive, tied to your currently active phase. Leno: as a bonus action, your markings blaze — shed bright light in a 10ft radius and dim light 10ft beyond; you and creatures of your choice within that light gain advantage on Investigation and Perception checks. Twill: advantage on Stealth checks; while you are entirely in an area of darkness, attack rolls against you have disadvantage. Satin: resistance to necrotic and radiant damage.",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery's Lunar Empowerment.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery's Lunar Empowerment.",
     "homebrew": true
   },
   {
     "id": "pub_unraveling",
     "name": "Unraveling",
-    "description": "Bonus action, usable once per long rest (or spend 5 Sorcery Points to use it again), and can be combined with a Mother's Whim phase shift. Leno: 30ft radius burst of unweaving light \u2014 each creature in the area makes a CON save or is blinded until the end of its next turn; choose one creature in range to regain 3d8 hit points. Twill: 30ft radius burst of unraveling shadow-thread \u2014 each creature in the area makes a DEX save or takes 3d10 necrotic damage and has its speed reduced to 0; you become invisible until the end of your next turn. Satin: the Weave folds \u2014 teleport up to 60ft to an unoccupied space you can see, bringing one willing creature within 5ft of you along; you and that creature gain resistance to all damage until the start of your next turn.",
+    "description": "Bonus action, usable once per long rest (or spend 5 Sorcery Points to use it again), and can be combined with a Mother's Whim phase shift. Leno: 30ft radius burst of unweaving light — each creature in the area makes a CON save or is blinded until the end of its next turn; choose one creature in range to regain 3d8 hit points. Twill: 30ft radius burst of unraveling shadow-thread — each creature in the area makes a DEX save or takes 3d10 necrotic damage and has its speed reduced to 0; you become invisible until the end of your next turn. Satin: the Weave folds — teleport up to 60ft to an unoccupied space you can see, bringing one willing creature within 5ft of you along; you and that creature gain resistance to all damage until the start of your next turn.",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery's Lunar Phenomenon.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery's Lunar Phenomenon.",
     "homebrew": true
   },
   {
     "id": "pub_manifest-echo",
     "name": "Manifest Echo",
-    "description": "As a bonus action, manifest an echo of yourself \u2014 a translucent gray image \u2014 in an unoccupied space you can see within 15ft. Echo stats: AC 14 + your proficiency bonus, 1 HP, immune to all conditions, uses your saving throws, same size as you. It lasts until destroyed, until dismissed as a bonus action, until you manifest another echo, until you're incapacitated, or until it ends your turn more than 30ft from you. While it exists you also have access to Echo: Reposition, Echo: Swap Places, Echo: Attack From, and Echo: Opportunity Attack.",
+    "description": "As a bonus action, manifest an echo of yourself — a translucent gray image — in an unoccupied space you can see within 15ft. Echo stats: AC 14 + your proficiency bonus, 1 HP, immune to all conditions, uses your saving throws, same size as you. It lasts until destroyed, until dismissed as a bonus action, until you manifest another echo, until you're incapacitated, or until it ends your turn more than 30ft from you. While it exists you also have access to Echo: Reposition, Echo: Swap Places, Echo: Attack From, and Echo: Opportunity Attack.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 3rd level. Split into separate entries below so each shows up correctly under the action/bonus action/reaction filter instead of being buried as prose inside one feature."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. Split into separate entries below so each shows up correctly under the action/bonus action/reaction filter instead of being buried as prose inside one feature."
   },
   {
     "id": "pub_echo-reposition",
     "name": "Echo: Reposition",
-    "description": "No action required \u2014 while your echo exists, mentally move it up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends your turn more than 30ft from you.",
+    "description": "No action required — while your echo exists, mentally move it up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends your turn more than 30ft from you.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 part of Manifest Echo, 3rd level."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level."
   },
   {
     "id": "pub_echo-swap-places",
     "name": "Echo: Swap Places",
     "description": "As a bonus action, teleport-swap positions with your echo, regardless of the distance between you. Costs 15ft of your movement for that turn in addition to the bonus action.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 part of Manifest Echo, 3rd level."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level."
   },
   {
     "id": "pub_echo-attack-from",
     "name": "Echo: Attack From",
-    "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost \u2014 a targeting option within the Attack action itself, distinct from Unleash Incarnation's separate bonus attack.",
+    "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — a targeting option within the Attack action itself, distinct from Unleash Incarnation's separate bonus attack.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 part of Manifest Echo, 3rd level.",
-    "table_ruling": "RAW is genuinely ambiguous about how far 'the attack originates from the echo's space' extends. Locked in as the table ruling: for a standard attack made this way, it only affects range/targeting for that attack \u2014 the character's real body stays where it actually is for every other purpose (reach against them, opportunity attacks against them, etc.). Contrast with Unleash Incarnation below, which is ruled differently."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level.",
+    "table_ruling": "RAW is genuinely ambiguous about how far 'the attack originates from the echo's space' extends. Locked in as the table ruling: for a standard attack made this way, it only affects range/targeting for that attack — the character's real body stays where it actually is for every other purpose (reach against them, opportunity attacks against them, etc.). Contrast with Unleash Incarnation below, which is ruled differently."
   },
   {
     "id": "pub_echo-opportunity-attack",
     "name": "Echo: Opportunity Attack",
     "description": "When a creature you can see within 5ft of your echo moves at least 5ft away from it, you can use your reaction to make an opportunity attack against that creature as if you were standing in the echo's space.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 part of Manifest Echo, 3rd level."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level."
   },
   {
     "id": "pub_unleash-incarnation",
     "name": "Unleash Incarnation",
     "description": "Whenever you take the Attack action, you can make one additional melee attack from your echo's position. Usable a number of times equal to your Constitution modifier (minimum once), regaining all expended uses on a long rest.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 3rd level.",
-    "table_ruling": "Ruled differently from Echo: Attack From's standard attacks: this genuinely treats the character as positioned at the echo for that one attack, full stop \u2014 not just range/targeting, but for any purpose that specific attack would care about."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level.",
+    "table_ruling": "Ruled differently from Echo: Attack From's standard attacks: this genuinely treats the character as positioned at the echo for that one attack, full stop — not just range/targeting, but for any purpose that specific attack would care about."
   },
   {
     "id": "pub_fancy-footwork",
     "name": "Fancy Footwork",
     "description": "If you make a melee attack against a creature on your turn, that creature can't make opportunity attacks against you for the rest of your turn.",
     "type": "feature",
-    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) \u2014 3rd level."
+    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
     "id": "pub_rakish-audacity",
     "name": "Rakish Audacity",
-    "description": "You gain a bonus to your Initiative rolls equal to your Charisma modifier. In addition, you don't need advantage on the attack roll to use Sneak Attack against a creature if you're within 5ft of it, no other creature is within 5ft of you, and you don't have disadvantage on the attack roll \u2014 this replaces the normal Sneak Attack requirement of advantage or an ally adjacent to the target.",
+    "description": "You gain a bonus to your Initiative rolls equal to your Charisma modifier. In addition, you don't need advantage on the attack roll to use Sneak Attack against a creature if you're within 5ft of it, no other creature is within 5ft of you, and you don't have disadvantage on the attack roll — this replaces the normal Sneak Attack requirement of advantage or an ally adjacent to the target.",
     "type": "feature",
-    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) \u2014 3rd level."
+    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
     "id": "pub_elven-accuracy",
     "name": "Elven Accuracy",
     "description": "Prerequisite: Elf or half-elf. Increase Dexterity, Intelligence, Wisdom, or Charisma by 1 (max 20). Whenever you have advantage on an attack roll using Dexterity, Intelligence, Wisdom, or Charisma, you can reroll one of the dice once.",
-    "type": "feature",
-    "source": "Feat, Xanathar's Guide to Everything."
+    "source": "Xanathar's Guide to Everything",
+    "category": "feat",
+    "prerequisite_note": "Elf or Half-Elf"
   },
   {
     "id": "pub_fey-ancestry",
@@ -1122,7 +1198,7 @@
   {
     "id": "pub_darkvision",
     "name": "Darkvision",
-    "description": "You can see in dim light within 60ft as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray. Range may vary by race \u2014 check the character's own darkvision field for their actual range.",
+    "description": "You can see in dim light within 60ft as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray. Range may vary by race — check the character's own darkvision field for their actual range.",
     "type": "feature",
     "source": "Player's Handbook"
   },
@@ -1135,7 +1211,7 @@
     "recharge": "long_rest",
     "uses_max": 1,
     "uses_current": 1,
-    "source": "Homebrew \u2014 signature feature unique to Therynv'l.",
+    "source": "Homebrew — signature feature unique to Therynv'l.",
     "homebrew": true
   },
   {
@@ -1159,7 +1235,7 @@
   },
   {
     "id": "pub_assassin-infiltration-expertise",
-    "name": "Assassin \u2014 Infiltration Expertise",
+    "name": "Assassin — Infiltration Expertise",
     "description": "You can unfailingly create false identities for yourself. This process requires 7 days and 25gp, establishing history, profession, and affiliations for the identity, including appropriate documents, letters, and disguise materials. You can't establish an identity that belongs to someone else. If you adopt the new identity as a disguise, other creatures believe you to be that person until given an obvious reason not to.",
     "type": "feature",
     "source": "Player's Handbook"
@@ -1173,10 +1249,10 @@
   },
   {
     "id": "pub_bladesinger-training-in-war-and-song",
-    "name": "Bladesinger \u2014 Training in War and Song",
+    "name": "Bladesinger — Training in War and Song",
     "description": "You gain proficiency with light armor, and proficiency with one type of one-handed melee weapon of your choice. You also gain proficiency in the Performance skill if you don't already have it.",
     "type": "feature",
-    "source": "Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) \u2014 2nd level."
+    "source": "Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) — 2nd level."
   },
   {
     "id": "pub_brave",
@@ -1215,8 +1291,8 @@
   },
   {
     "id": "pub_crown-divine-allegiance",
-    "name": "Crown \u2014 Divine Allegiance",
-    "description": "When a creature within 5ft of you takes damage, you can use your reaction to magically substitute your own health for that creature's \u2014 the creature takes no damage, and you take the damage instead. This damage to you can't be reduced or prevented in any way.",
+    "name": "Crown — Divine Allegiance",
+    "description": "When a creature within 5ft of you takes damage, you can use your reaction to magically substitute your own health for that creature's — the creature takes no damage, and you take the damage instead. This damage to you can't be reduced or prevented in any way.",
     "type": "feature",
     "source": "Sword Coast Adventurer's Guide"
   },
@@ -1229,16 +1305,16 @@
   },
   {
     "id": "pub_eldritch-cannon-explosive-cannon",
-    "name": "Eldritch Cannon \u2014 Explosive Cannon",
-    "description": "Cannon damage upgraded to 3d8. As an action, the cannon can be detonated \u2014 each creature within 20ft makes a DEX save (DC 17) or takes 3d8 force damage, half on success. The cannon is destroyed after detonating.",
+    "name": "Eldritch Cannon — Explosive Cannon",
+    "description": "Cannon damage upgraded to 3d8. As an action, if you are within 60ft of the cannon, you can command it to detonate — each creature within 20ft makes a DEX save against your spell save DC or takes 3d8 force damage, half on success. The cannon is destroyed after detonating.",
     "type": "feature",
-    "source": "Homebrew extension of the real Eldritch Cannon (Artillerist, Tasha's Cauldron of Everything) \u2014 this specific higher-level detonate option is custom.",
-    "homebrew": true
+    "source": "Tasha's Cauldron of Everything — Artillerist, 9th level (Explosive Cannon).",
+    "homebrew": false
   },
   {
     "id": "pub_elemental-cleaver",
     "name": "Elemental Cleaver",
-    "description": "When you enter your rage, you can infuse one weapon you're holding with acid, cold, fire, lightning, or thunder damage. While you wield it during your rage, the weapon's damage type changes to the chosen type, it deals an extra 1d6 damage of that type on a hit, and it gains the thrown property (normal range 20ft, long range 60ft) \u2014 if thrown, it reappears in your hand the instant after it hits or misses. The benefits are suppressed while another creature wields it. While raging and holding it, you can use a bonus action to change its damage type.",
+    "description": "When you enter your rage, you can infuse one weapon you're holding with acid, cold, fire, lightning, or thunder damage. While you wield it during your rage, the weapon's damage type changes to the chosen type, it deals an extra 1d6 damage of that type on a hit, and it gains the thrown property (normal range 20ft, long range 60ft) — if thrown, it reappears in your hand the instant after it hits or misses. The benefits are suppressed while another creature wields it. While raging and holding it, you can use a bonus action to change its damage type.",
     "type": "feature",
     "source": "Bigby Presents: Glory of the Giants"
   },
@@ -1296,14 +1372,14 @@
     "name": "Guiding Whispers",
     "description": "You learn the Guidance cantrip, and you can cast it at a range of up to 60ft (rather than the normal touch range).",
     "type": "feature",
-    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) \u2014 3rd level."
+    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level."
   },
   {
     "id": "pub_healing-touch",
     "name": "Healing Touch",
     "description": "Touch a creature to restore hit points equal to your proficiency bonus + CHA modifier.",
     "type": "feature",
-    "source": "Homebrew \u2014 Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
+    "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
   },
   {
@@ -1316,9 +1392,9 @@
   {
     "id": "pub_independent",
     "name": "Independent",
-    "description": "The companion acts on its own initiative, entirely independent of its bonded character \u2014 it does not require the character's action or bonus action to act, and does not share the character's turn. Table houserule: this is a stronger version of the published Primal Companion 'Independent' feature (which normally keeps the beast acting only on the ranger's turn); here the companion gets a full, separate turn in the initiative order.",
+    "description": "The companion acts on its own initiative, entirely independent of its bonded character — it does not require the character's action or bonus action to act, and does not share the character's turn. Table houserule: this is a stronger version of the published Primal Companion 'Independent' feature (which normally keeps the beast acting only on the ranger's turn); here the companion gets a full, separate turn in the initiative order.",
     "type": "feature",
-    "source": "Homebrew companion feature (upgraded from Ranger Primal Companion, Tasha's Cauldron of Everything) \u2014 used by Perch."
+    "source": "Homebrew companion feature (upgraded from Ranger Primal Companion, Tasha's Cauldron of Everything) — used by Perch."
   },
   {
     "id": "pub_infernal-legacy",
@@ -1332,7 +1408,7 @@
     "name": "Infusion: Clockwork Amulet",
     "description": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10.",
     "type": "infusion",
-    "source": "Homebrew \u2014 custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
+    "source": "Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
     "homebrew": true
   },
   {
@@ -1340,15 +1416,15 @@
     "name": "Infusion: Helm of Comprehending Languages",
     "description": "While wearing this helm, the wearer can read any written language.",
     "type": "infusion",
-    "source": "Homebrew \u2014 custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
+    "source": "Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
     "homebrew": true
   },
   {
     "id": "pub_infusion-perfume-of-bewitching",
     "name": "Infusion: Perfume of Bewitching",
-    "description": "Single-use vial. Apply as an action \u2014 for 1 hour the wearer has advantage on Charisma checks directed at humanoids of CR 1 or lower.",
+    "description": "Single-use vial. Apply as an action — for 1 hour the wearer has advantage on Charisma checks directed at humanoids of CR 1 or lower.",
     "type": "infusion",
-    "source": "Homebrew \u2014 custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
+    "source": "Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
     "homebrew": true
   },
   {
@@ -1361,7 +1437,7 @@
   {
     "id": "pub_know-your-enemy",
     "name": "Know Your Enemy",
-    "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own \u2014 whether it's your equal, superior, or inferior in one or more of the following: Strength score, Dexterity score, Constitution score, AC, current hit points, total class levels (if any), fighter class levels (if any).",
+    "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own — whether it's your equal, superior, or inferior in one or more of the following: Strength score, Dexterity score, Constitution score, AC, current hit points, total class levels (if any), fighter class levels (if any).",
     "type": "feature",
     "source": "Player's Handbook"
   },
@@ -1370,27 +1446,36 @@
     "name": "Linked Spellbook",
     "description": "A yellow mark on the spine connects this spellbook permanently to two others. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list.",
     "type": "feature",
-    "source": "Homebrew \u2014 bonded spellbook set unique to Lyria, Lenn, and Kessara.",
+    "source": "Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara.",
     "homebrew": true
   },
   {
     "id": "pub_lucky",
     "name": "Lucky",
     "description": "You have 3 luck points. Whenever you make an attack roll, ability check, or saving throw, you can spend one luck point to roll an additional d20, deciding after the original roll but before the outcome. You can choose which of the d20s is used. You can also spend a luck point when a creature makes an attack roll against you, rolling a d20 and choosing whether the attack uses its roll or yours. If two creatures each spend a luck point on the same roll, the points cancel out. Regain all spent luck points on a long rest.",
-    "type": "feat",
-    "source": "Feat, Player's Handbook."
+    "source": "Player's Handbook",
+    "category": "feat"
+  },
+  {
+    "id": "pub_lucky-halfling",
+    "name": "Lucky (Halfling)",
+    "description": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+    "type": "feature",
+    "source": "Player's Handbook",
+    "note": "Halfling racial trait — distinct from, and easily confused with, the unrelated Lucky feat (pub_lucky): this is a passive reroll-on-a-1 that every Halfling has automatically, not an optional 3-point resource."
   },
   {
     "id": "pub_metamagic-adept",
     "name": "Metamagic Adept",
     "description": "You learn two Metamagic options of your choice from the sorcerer class. You can use only one Metamagic option on a spell when you cast it, unless the option says otherwise. Whenever you reach a level that grants the Ability Score Improvement feature, you can replace one of these Metamagic options with another one from the sorcerer class. You gain 2 sorcery points to spend on Metamagic (added to any sorcery points from another source, but usable only on Metamagic). You regain all spent sorcery points when you finish a long rest.",
-    "type": "feat",
-    "source": "Feat, Tasha's Cauldron of Everything. Usable by any spellcaster, not just sorcerers."
+    "source": "Tasha's Cauldron of Everything",
+    "category": "feat",
+    "prerequisite_note": "Spellcasting or Pact Magic feature"
   },
   {
     "id": "pub_magical-tinkering",
     "name": "Magical Tinkering",
-    "description": "You've learned to invest a spark of magic into mundane objects. With thieves' tools or artisan's tools in hand, touch a Tiny nonmagical object as an action and give it one of the following properties of your choice: it sheds bright light in a 5ft radius and dim light for an additional 5ft; it emits a recorded message up to 6 seconds long whenever tapped, audible up to 10ft away; it continuously emits a chosen odor or nonverbal sound, perceivable up to 10ft away; or a static visual effect (picture, up to 25 words of text, or shapes) appears on one of its surfaces. The chosen property lasts indefinitely \u2014 you can bestow a new property whenever you like, ending the previous one, and you can affect up to your Intelligence modifier's worth of objects (minimum one) at a time.",
+    "description": "You've learned to invest a spark of magic into mundane objects. With thieves' tools or artisan's tools in hand, touch a Tiny nonmagical object as an action and give it one of the following properties of your choice: it sheds bright light in a 5ft radius and dim light for an additional 5ft; it emits a recorded message up to 6 seconds long whenever tapped, audible up to 10ft away; it continuously emits a chosen odor or nonverbal sound, perceivable up to 10ft away; or a static visual effect (picture, up to 25 words of text, or shapes) appears on one of its surfaces. The chosen property lasts indefinitely — you can bestow a new property whenever you like, ending the previous one, and you can affect up to your Intelligence modifier's worth of objects (minimum one) at a time.",
     "type": "feature",
     "source": "Tasha's Cauldron of Everything"
   },
@@ -1444,11 +1529,11 @@
     "source": "Player's Handbook"
   },
   {
-    "id": "pub_resilient-constitution",
-    "name": "Resilient (Constitution)",
-    "description": "Increase Constitution by 1 (max 20) and gain proficiency in Constitution saving throws. (The Resilient feat can be taken for any ability score \u2014 this entry documents the Constitution version specifically; the same feat applies to other abilities with the chosen score substituted.)",
-    "type": "feat",
-    "source": "Feat, Player's Handbook."
+    "id": "pub_resilient",
+    "name": "Resilient",
+    "description": "Increase one ability score of your choice by 1, to a maximum of 20. You gain proficiency in saving throws using the chosen ability.",
+    "source": "Player's Handbook",
+    "category": "feat"
   },
   {
     "id": "pub_rock-gnome-artificer-s-lore",
@@ -1467,30 +1552,30 @@
   {
     "id": "pub_spirit-session",
     "name": "Spirit Session",
-    "description": "Once per long rest, you can conduct an hour-long ritual (usable during a short or long rest) channeling spirits through your Spiritual Focus. At the end of the ritual, you temporarily learn one spell of your choice from any class \u2014 the spell's level can't exceed the number of creatures who took part in the ritual, must be a level you can cast, and must be from the Divination or Necromancy school.",
+    "description": "Once per long rest, you can conduct an hour-long ritual (usable during a short or long rest) channeling spirits through your Spiritual Focus. At the end of the ritual, you temporarily learn one spell of your choice from any class — the spell's level can't exceed the number of creatures who took part in the ritual, must be a level you can cast, and must be from the Divination or Necromancy school.",
     "type": "feature",
-    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) \u2014 6th level ritual, DM's name for the Spiritual Focus 6th-level benefit."
+    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level ritual, DM's name for the Spiritual Focus 6th-level benefit."
   },
   {
     "id": "pub_spiritual-focus",
     "name": "Spiritual Focus",
     "description": "You can use a candle, crystal ball, skull, spirit board, or tarokka deck as a spellcasting focus for your bard spells. Starting at 6th level, whenever you cast a bard spell that deals damage or restores hit points through your Spiritual Focus, roll a d6 and add the result to one damage or healing roll of the spell.",
     "type": "feature",
-    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) \u2014 3rd level (focus) and 6th level (bonus roll)."
+    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level (focus) and 6th level (bonus roll)."
   },
   {
     "id": "pub_stars-druid-star-map",
-    "name": "Stars Druid \u2014 Star Map",
+    "name": "Stars Druid — Star Map",
     "description": "You create a star chart that serves as your spellcasting focus for druid spells (a scroll, stone tablet, bound maps, projecting crystal, glass disk, or similar). While you hold or wear it, you gain benefits tied to your Starry Form (see Twinkling Constellations and related features), and you can use it to help guide divinatory insight.",
     "type": "feature",
-    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) \u2014 2nd level."
+    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level."
   },
   {
     "id": "pub_stars-druid-twinkling-constellations",
-    "name": "Stars Druid \u2014 Twinkling Constellations",
+    "name": "Stars Druid — Twinkling Constellations",
     "description": "Your Starry Form improves: the Archer's damage die and the Chalice's healing die both increase by 1d8, and the Dragon form gains a flying speed of 20ft.",
     "type": "feature",
-    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) \u2014 10th level."
+    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level."
   },
   {
     "id": "pub_steel-will",
@@ -1502,16 +1587,16 @@
   {
     "id": "pub_superiority-dice-5d8",
     "name": "Superiority Dice (5d8)",
-    "description": "A pool of d8s spent to fuel Battle Master maneuvers. Regain all expended superiority dice on a short or long rest. (Base pool is 4 dice; gains a 5th at 7th level and a 6th at 15th level \u2014 the number in this entry's name reflects the character's current total.)",
+    "description": "A pool of d8s spent to fuel Battle Master maneuvers. Regain all expended superiority dice on a short or long rest. (Base pool is 4 dice; gains a 5th at 7th level and a 6th at 15th level — the number in this entry's name reflects the character's current total.)",
     "type": "feature",
     "source": "Player's Handbook"
   },
   {
     "id": "pub_tales-from-beyond",
     "name": "Tales from Beyond",
-    "description": "While holding your Spiritual Focus, you can use a bonus action to expend one use of Bardic Inspiration and roll on the Spirit Tales table, using the Bardic Inspiration die rolled to determine which tale the spirits direct you to tell \u2014 each tale grants a different narrative/mechanical effect.",
+    "description": "While holding your Spiritual Focus, you can use a bonus action to expend one use of Bardic Inspiration and roll on the Spirit Tales table, using the Bardic Inspiration die rolled to determine which tale the spirits direct you to tell — each tale grants a different narrative/mechanical effect.",
     "type": "feature",
-    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) \u2014 3rd level."
+    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level."
   },
   {
     "id": "pub_thirsting-blade",
@@ -1523,7 +1608,7 @@
   {
     "id": "pub_giant-s-power",
     "name": "Giant's Power",
-    "description": "You learn to speak, read, and write Giant, or one other language of your choice if you already know Giant. You also learn one cantrip of your choice from the wizard spell list \u2014 druidcraft or thaumaturgy replaced with an elemental variant flavor is common, but any wizard cantrip is legal. You can cast it without material components, and Strength is your spellcasting ability for it.",
+    "description": "You learn to speak, read, and write Giant, or one other language of your choice if you already know Giant. You also learn one cantrip of your choice from the wizard spell list — druidcraft or thaumaturgy replaced with an elemental variant flavor is common, but any wizard cantrip is legal. You can cast it without material components, and Strength is your spellcasting ability for it.",
     "type": "feature",
     "source": "Bigby Presents: Glory of the Giants"
   },
@@ -1544,58 +1629,58 @@
   {
     "id": "pub_echo-avatar",
     "name": "Echo Avatar",
-    "description": "As an action, you temporarily transfer your senses to your Manifest Echo \u2014 you can see and hear through it as long as it's within 1,000 feet of you, though you're deafened and blinded regarding your own surroundings while doing so.",
+    "description": "As an action, you temporarily transfer your senses to your Manifest Echo — you can see and hear through it as long as it's within 1,000 feet of you, though you're deafened and blinded regarding your own surroundings while doing so.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 7th level."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 7th level."
   },
   {
     "id": "pub_shadow-martyr",
     "name": "Shadow Martyr",
-    "description": "As a reaction when a creature you can see within 30 feet of your echo is about to be hit by an attack, you can teleport your echo into the attack's path to intercept it in the target's place \u2014 the attack automatically hits the echo instead, and the echo is destroyed if it can't survive the damage.",
+    "description": "As a reaction when a creature you can see within 30 feet of your echo is about to be hit by an attack, you can teleport your echo into the attack's path to intercept it in the target's place — the attack automatically hits the echo instead, and the echo is destroyed if it can't survive the damage.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 10th level."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 10th level."
   },
   {
     "id": "pub_reclaim-potential",
     "name": "Reclaim Potential",
     "description": "When your echo is destroyed (by damage, by being dismissed, or by manifesting a new one), you gain temporary hit points equal to your fighter level.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 15th level."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 15th level."
   },
   {
     "id": "pub_legion-of-one",
     "name": "Legion of One",
     "description": "You can have two Manifest Echoes active at the same time. In addition, if you roll initiative and have no uses of Unleash Incarnation remaining, you regain one use.",
     "type": "feature",
-    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) \u2014 18th level (capstone)."
+    "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 18th level (capstone)."
   },
   {
     "id": "pub_gloom-stalker-magic",
     "name": "Gloom Stalker Magic",
-    "description": "You learn an additional spell at each of the following ranger levels, which doesn't count against your ranger spells known: 3rd \u2014 Disguise Self; 5th \u2014 Rope Trick; 9th \u2014 Fear; 13th \u2014 Greater Invisibility; 17th \u2014 Seeming.",
+    "description": "You learn an additional spell at each of the following ranger levels, which doesn't count against your ranger spells known: 3rd — Disguise Self; 5th — Rope Trick; 9th — Fear; 13th — Greater Invisibility; 17th — Seeming.",
     "type": "feature",
-    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) \u2014 3rd level and beyond."
+    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 3rd level and beyond."
   },
   {
     "id": "pub_iron-mind",
     "name": "Iron Mind",
     "description": "You gain proficiency in Wisdom saving throws. If you already have this proficiency, you instead gain proficiency in Intelligence or Charisma saving throws (your choice).",
     "type": "feature",
-    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) \u2014 7th level."
+    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 7th level."
   },
   {
     "id": "pub_stalker-s-flurry",
     "name": "Stalker's Flurry",
     "description": "Once on each of your turns when you miss with an attack roll, you can make another weapon attack as part of the same action.",
     "type": "feature",
-    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) \u2014 11th level."
+    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 11th level."
   },
   {
     "id": "pub_shadowy-dodge",
     "name": "Shadowy Dodge",
     "description": "Whenever a creature makes an attack roll against you, you can use your reaction to impose disadvantage on that roll.",
     "type": "feature",
-    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) \u2014 15th level."
+    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 15th level."
   },
   {
     "id": "pub_entropic-ward",
@@ -1614,21 +1699,21 @@
   {
     "id": "pub_create-thrall",
     "name": "Create Thrall",
-    "description": "As an action, touch an incapacitated humanoid \u2014 it's charmed by you until a remove curse spell is cast on it, the charmed condition is removed some other way, or you use this feature again. While charmed this way, the creature is telepathically linked to you as long as the two of you are on the same plane, can't consciously resist the link, and takes whatever actions you silently direct it toward (though it can't be directed to harm itself).",
+    "description": "As an action, touch an incapacitated humanoid — it's charmed by you until a remove curse spell is cast on it, the charmed condition is removed some other way, or you use this feature again. While charmed this way, the creature is telepathically linked to you as long as the two of you are on the same plane, can't consciously resist the link, and takes whatever actions you silently direct it toward (though it can't be directed to harm itself).",
     "type": "feature",
     "source": "Player's Handbook"
   },
   {
     "id": "pub_channel-divinity-nature-s-wrath",
     "name": "Channel Divinity: Nature's Wrath",
-    "description": "As an action, present your holy symbol and call on the spirits of nature to ensnare a creature within 10 feet of you that you can see \u2014 the target must succeed on a Strength or Dexterity saving throw (its choice) or become restrained until the effect ends. A restrained target can repeat the save at the end of each of its turns, ending the effect on itself with a success.",
+    "description": "As an action, present your holy symbol and call on the spirits of nature to ensnare a creature within 10 feet of you that you can see — the target must succeed on a Strength or Dexterity saving throw (its choice) or become restrained until the effect ends. A restrained target can repeat the save at the end of each of its turns, ending the effect on itself with a success.",
     "type": "feature",
     "source": "Sword Coast Adventurer's Guide"
   },
   {
     "id": "pub_channel-divinity-turn-the-faithless",
     "name": "Channel Divinity: Turn the Faithless",
-    "description": "As an action, present your holy symbol and speak a prayer to force each fey or fiend within 30 feet that can see or hear you to make a Wisdom saving throw. On a failure, the creature is turned for 1 minute or until it takes damage \u2014 a turned creature must spend its turns trying to move as far from you as it can, and can't willingly move within 30 feet of you.",
+    "description": "As an action, present your holy symbol and speak a prayer to force each fey or fiend within 30 feet that can see or hear you to make a Wisdom saving throw. On a failure, the creature is turned for 1 minute or until it takes damage — a turned creature must spend its turns trying to move as far from you as it can, and can't willingly move within 30 feet of you.",
     "type": "feature",
     "source": "Sword Coast Adventurer's Guide"
   },
@@ -1656,7 +1741,7 @@
   {
     "id": "pub_combat-superiority",
     "name": "Combat Superiority",
-    "description": "You learn maneuvers fueled by superiority dice (starting at 4d8, growing to 5d8 at 7th level and 6d8 at 15th level, all regained on a short or long rest). You learn maneuvers as you level (3 at 3rd, more at 7th and 15th) \u2014 each requires you to expend a superiority die, added to an attack's damage roll or to fuel the maneuver's other effect, and the target (if any) can often make a saving throw to resist.",
+    "description": "You learn maneuvers fueled by superiority dice (starting at 4d8, growing to 5d8 at 7th level and 6d8 at 15th level, all regained on a short or long rest). You learn maneuvers as you level (3 at 3rd, more at 7th and 15th) — each requires you to expend a superiority die, added to an attack's damage roll or to fuel the maneuver's other effect, and the target (if any) can often make a saving throw to resist.",
     "type": "feature",
     "source": "Player's Handbook"
   },
@@ -1676,7 +1761,7 @@
   },
   {
     "id": "pub_bonus-proficiencies-tempest-domain-martial-weapons-heavy-armor",
-    "name": "Bonus Proficiencies (Tempest Domain \u2014 Martial Weapons, Heavy Armor)",
+    "name": "Bonus Proficiencies (Tempest Domain — Martial Weapons, Heavy Armor)",
     "description": "You gain proficiency with martial weapons and heavy armor.",
     "type": "feature",
     "source": "Player's Handbook"
@@ -1777,14 +1862,14 @@
     "name": "Angelic Form",
     "description": "As a bonus action, manifest a pair of spectral wings from your back, granting a flying speed of 30 feet. The wings last until you're incapacitated, you die, or you dismiss them as a bonus action.",
     "type": "feature",
-    "source": "Divine Soul (Sorcerer subclass, Xanathar's Guide to Everything) \u2014 14th level."
+    "source": "Divine Soul (Sorcerer subclass, Xanathar's Guide to Everything) — 14th level."
   },
   {
     "id": "pub_unearthly-recovery",
     "name": "Unearthly Recovery",
     "description": "As a bonus action when you have fewer than half your hit points remaining, you can regain hit points equal to half your hit point maximum. Once used, you can't use this feature again until you finish a long rest.",
     "type": "feature",
-    "source": "Divine Soul (Sorcerer subclass, Xanathar's Guide to Everything) \u2014 18th level."
+    "source": "Divine Soul (Sorcerer subclass, Xanathar's Guide to Everything) — 18th level."
   },
   {
     "id": "pub_improved-combat-superiority-d10",
@@ -1833,91 +1918,91 @@
     "name": "Ear for Deceit",
     "description": "Any time you make a Wisdom (Insight) check to determine whether a creature is lying, treat a roll of 7 or lower on the d20 as an 8.",
     "type": "feature",
-    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) \u2014 3rd level."
+    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
     "id": "pub_eye-for-detail",
     "name": "Eye for Detail",
     "description": "You can use a bonus action to make a Wisdom (Perception) check to spot a hidden creature or object, or an Intelligence (Investigation) check to uncover or decipher clues.",
     "type": "feature",
-    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) \u2014 3rd level."
+    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
     "id": "pub_insightful-fighting",
     "name": "Insightful Fighting",
     "description": "As a bonus action, make a Wisdom (Insight) check contested by a creature's Charisma (Deception) check to size it up in combat. If you succeed, you can use Sneak Attack against that creature without needing advantage, as long as it isn't incapacitated, until the end of your next turn.",
     "type": "feature",
-    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) \u2014 3rd level."
+    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
     "id": "pub_steady-eye",
     "name": "Steady Eye",
     "description": "You have advantage on any Wisdom (Perception) or Intelligence (Investigation) check if you moved no more than half your speed on the same turn.",
     "type": "feature",
-    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) \u2014 9th level."
+    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) — 9th level."
   },
   {
     "id": "pub_unerring-eye",
     "name": "Unerring Eye",
     "description": "As an action, you can sense whether a creature within 30 feet is disguising or concealing itself magically, or is a shapechanger, though not the specific nature of the disguise or concealment. Usable a number of times equal to your Wisdom modifier (minimum once), regained on a long rest.",
     "type": "feature",
-    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) \u2014 13th level."
+    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) — 13th level."
   },
   {
     "id": "pub_eye-for-weakness",
     "name": "Eye for Weakness",
     "description": "Your Sneak Attack deals an extra 3d6 damage against any creature you have successfully sized up with Insightful Fighting.",
     "type": "feature",
-    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) \u2014 17th level."
+    "source": "Inquisitive (Rogue subclass, Xanathar's Guide to Everything) — 17th level."
   },
   {
     "id": "pub_panache",
     "name": "Panache",
     "description": "As an action, make a Charisma (Persuasion) check contested by a creature's Wisdom (Insight) check. If the target is hostile, on a success it has disadvantage on attack rolls against anyone but you, and can't make opportunity attacks against anyone but you, until the end of your next turn. If the target isn't hostile, on a success it's charmed by you for 1 minute or until you or your companions do anything harmful to it.",
     "type": "feature",
-    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) \u2014 9th level."
+    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 9th level."
   },
   {
     "id": "pub_elegant-maneuver",
     "name": "Elegant Maneuver",
     "description": "As a bonus action, gain advantage on the next Dexterity (Acrobatics) or Strength (Athletics) check you make this turn.",
     "type": "feature",
-    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) \u2014 13th level."
+    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 13th level."
   },
   {
     "id": "pub_master-duelist",
     "name": "Master Duelist",
     "description": "When you miss with an attack roll, you can roll it again with advantage. Once used, you can't use this feature again until you finish a short or long rest.",
     "type": "feature",
-    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) \u2014 17th level."
+    "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 17th level."
   },
   {
     "id": "pub_extra-attack-bladesinger",
     "name": "Extra Attack (Bladesinger)",
     "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn. In addition, when you use your action to cast a Bladesinger cantrip, you can make one weapon attack as a bonus action.",
     "type": "feature",
-    "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) \u2014 6th level."
+    "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 6th level."
   },
   {
     "id": "pub_song-of-defense",
     "name": "Song of Defense",
     "description": "While your Bladesong is active, you can use your reaction to expend a spell slot and reduce damage you take by an amount equal to five times the level of the spell slot expended.",
     "type": "feature",
-    "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) \u2014 10th level."
+    "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 10th level."
   },
   {
     "id": "pub_song-of-victory",
     "name": "Song of Victory",
     "description": "While your Bladesong is active, you add your Intelligence modifier (minimum of +1) to the damage of your melee weapon attacks.",
     "type": "feature",
-    "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) \u2014 14th level."
+    "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 14th level."
   },
   {
     "id": "pub_mystical-connection",
     "name": "Mystical Connection",
     "description": "When you roll on the Spirit Tales table, you can roll twice and choose which of the two results to use. If both rolls come up the same, you can instead choose any effect on the table.",
     "type": "feature",
-    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) \u2014 14th level."
+    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 14th level."
   },
   {
     "id": "hb_primal_surge",
@@ -1925,9 +2010,9 @@
     "category": "item_feature",
     "action_type": "bonus_action",
     "description": "While in Wild Shape, expend 1 charge from the Staff of the Wild's Balance as a bonus action: the next attack made this turn has advantage and deals an extra 1d6 damage on a hit.",
-    "note": "Granted by Therynv'l's Staff of the Wild's Balance (party_items.json) \u2014 the charge pool is the staff's own (6 charges max, regains 1d6 charges daily), not an independent character resource.",
+    "note": "Granted by Therynv'l's Staff of the Wild's Balance (party_items.json) — the charge pool is the staff's own (6 charges max, regains 1d6 charges daily), not an independent character resource.",
     "homebrew": true,
-    "source": "Homebrew, unique to Therynv'l \u2014 tied to the Staff of the Wild's Balance."
+    "source": "Homebrew, unique to Therynv'l — tied to the Staff of the Wild's Balance."
   },
   {
     "id": "hb_psionic_reinforcement",
@@ -1936,7 +2021,7 @@
     "description": "Passive +2 bonus to attack and damage rolls with Psychic Blades (Soulknife).",
     "note": "Granted by Torrin's Weaver's Master-Awl (party_items.json), one of its four properties.",
     "homebrew": true,
-    "source": "Homebrew, unique to Torrin \u2014 tied to the Weaver's Master-Awl."
+    "source": "Homebrew, unique to Torrin — tied to the Weaver's Master-Awl."
   },
   {
     "id": "hb_stormbreak_reserve",
@@ -1944,9 +2029,9 @@
     "category": "item_feature",
     "action_type": "bonus_action",
     "description": "As a bonus action, release a stored charge: a 10ft radius force burst centered on self deals 2d6 force damage (DC 15 DEX save for half) to all other creatures in range, pushing each creature that fails 10ft away. The armor stores one charge (max 1) automatically whenever the wearer takes 15 or more damage from a single attack or effect.",
-    "note": "Granted by Eldi's Breastplate of the Broken Scale (party_items.json) \u2014 the charge is the armor's own, gained by taking a big hit rather than on a rest.",
+    "note": "Granted by Eldi's Breastplate of the Broken Scale (party_items.json) — the charge is the armor's own, gained by taking a big hit rather than on a rest.",
     "homebrew": true,
-    "source": "Homebrew, unique to Eldi \u2014 tied to the Breastplate of the Broken Scale."
+    "source": "Homebrew, unique to Eldi — tied to the Breastplate of the Broken Scale."
   },
   {
     "id": "hb_sundering_strike",
@@ -1955,9 +2040,9 @@
     "action_type": "free",
     "recharge": "short_rest",
     "description": "Once per short rest, as part of a melee attack that hits, channel the gauntlet: the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
-    "note": "Granted by Eldi's Gauntlet of the Sundering Blow (party_items.json) \u2014 no separate action, just a decision made mid-attack.",
+    "note": "Granted by Eldi's Gauntlet of the Sundering Blow (party_items.json) — no separate action, just a decision made mid-attack.",
     "homebrew": true,
-    "source": "Homebrew, unique to Eldi \u2014 tied to the Gauntlet of the Sundering Blow."
+    "source": "Homebrew, unique to Eldi — tied to the Gauntlet of the Sundering Blow."
   },
   {
     "id": "hb_warding_press",
@@ -1968,7 +2053,7 @@
     "description": "Once per long rest, press the ring to your skin to gain resistance to one damage type of your choice for 1 hour.",
     "note": "Granted by Rith's Signet Ring (party_items.json).",
     "homebrew": true,
-    "source": "Homebrew, unique to Rith \u2014 tied to the Signet Ring."
+    "source": "Homebrew, unique to Rith — tied to the Signet Ring."
   },
   {
     "id": "hb_swift_strike",
@@ -1978,7 +2063,7 @@
     "description": "Once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
     "note": "Granted by Vaz's Bracer of Swift Strikes (party_items.json).",
     "homebrew": true,
-    "source": "Homebrew, unique to Vaz \u2014 tied to the Bracer of Swift Strikes."
+    "source": "Homebrew, unique to Vaz — tied to the Bracer of Swift Strikes."
   },
   {
     "id": "hb_missile_snaring",
@@ -1986,7 +2071,7 @@
     "category": "item_feature",
     "action_type": "reaction",
     "description": "Reaction when hit by a ranged attack: reduce the damage by 1d10 + DEX modifier. If the damage is reduced to 0, catch the missile instead of being hit.",
-    "note": "Granted by Therynv'l's Gloves of Missile Snaring (party_items.json) \u2014 matches the real 5e item's actual ability name.",
+    "note": "Granted by Therynv'l's Gloves of Missile Snaring (party_items.json) — matches the real 5e item's actual ability name.",
     "source": "Gloves of Missile Snaring (real 5e magic item)."
   },
   {
@@ -1998,7 +2083,7 @@
     "description": "Reaction when an ally within 30ft drops to 0hp: grant them 1d8 + proficiency bonus temporary HP, and they gain advantage on death saving throws.",
     "note": "Granted by Sorra's The Steadfast (party_items.json).",
     "homebrew": true,
-    "source": "Homebrew, unique to Sorra \u2014 tied to The Steadfast."
+    "source": "Homebrew, unique to Sorra — tied to The Steadfast."
   },
   {
     "id": "hb_seize_the_opening",
@@ -2006,9 +2091,9 @@
     "category": "item_feature",
     "recharge": "daily",
     "description": "Once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
-    "note": "Granted by Ferghus's Helm of Carix (party_items.json) \u2014 triggers on a narrative surprise, not a chosen action, so it's not tagged with an action cost.",
+    "note": "Granted by Ferghus's Helm of Carix (party_items.json) — triggers on a narrative surprise, not a chosen action, so it's not tagged with an action cost.",
     "homebrew": true,
-    "source": "Homebrew, unique to Ferghus \u2014 tied to the Helm of Carix."
+    "source": "Homebrew, unique to Ferghus — tied to the Helm of Carix."
   },
   {
     "id": "hb_reaching_hand",
@@ -2019,7 +2104,7 @@
     "description": "Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "note": "Granted by Revven's Helm of the Reaching Hand (party_items.json).",
     "homebrew": true,
-    "source": "Homebrew, unique to Revven \u2014 tied to the Helm of the Reaching Hand."
+    "source": "Homebrew, unique to Revven — tied to the Helm of the Reaching Hand."
   },
   {
     "id": "hb_tidal_surge",
@@ -2027,9 +2112,9 @@
     "category": "item_feature",
     "action_type": "free",
     "description": "When the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type, once per turn.",
-    "note": "Granted by the Robe of the Tide (party_items.json) \u2014 currently unassigned/held by the party.",
+    "note": "Granted by the Robe of the Tide (party_items.json) — currently unassigned/held by the party.",
     "homebrew": true,
-    "source": "Homebrew \u2014 tied to the Robe of the Tide."
+    "source": "Homebrew — tied to the Robe of the Tide."
   },
   {
     "id": "hb_rings_answer",
@@ -2038,9 +2123,9 @@
     "action_type": "free",
     "recharge": "daily",
     "description": "Once per day, gain a responsive bonus to an ability check or skill check.",
-    "note": "Granted by The Farreach (A) and (B) (party_items.json) \u2014 a paired-ring set worn by Siv and Pirra respectively; each ring grants its own bearer this once-per-day use.",
+    "note": "Granted by The Farreach (A) and (B) (party_items.json) — a paired-ring set worn by Siv and Pirra respectively; each ring grants its own bearer this once-per-day use.",
     "homebrew": true,
-    "source": "Homebrew, unique to Siv/Pirra \u2014 tied to the paired Farreach rings."
+    "source": "Homebrew, unique to Siv/Pirra — tied to the paired Farreach rings."
   },
   {
     "id": "hb_rogue_thief_fast_hands",
@@ -2139,7 +2224,7 @@
     "level_gained": 3,
     "homebrew": false,
     "source": "Tasha's Cauldron of Everything",
-    "description": "After a short or long rest, gain proficiency in one skill (Athletics, Deception, History, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Religion, or Stealth) or one tool/instrument you don't already have, borrowed from a spirit \u2014 swappable at your next rest."
+    "description": "After a short or long rest, gain proficiency in one skill (Athletics, Deception, History, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Religion, or Stealth) or one tool/instrument you don't already have, borrowed from a spirit — swappable at your next rest."
   },
   {
     "id": "hb_rogue_phantom_wails_from_the_grave",
@@ -2166,7 +2251,7 @@
     "level_gained": 13,
     "homebrew": false,
     "source": "Tasha's Cauldron of Everything",
-    "description": "Bonus action: become spectral for up to 10 minutes \u2014 gain a 10ft flying speed, hover, advantage on Dexterity (Stealth) checks, can't be heard unless you wish it, and can move through creatures/objects as difficult terrain (1d10 force damage if you end your turn inside one). Once per long rest, or by spending a token from Tokens of the Departed."
+    "description": "Bonus action: become spectral for up to 10 minutes — gain a 10ft flying speed, hover, advantage on Dexterity (Stealth) checks, can't be heard unless you wish it, and can move through creatures/objects as difficult terrain (1d10 force damage if you end your turn inside one). Once per long rest, or by spending a token from Tokens of the Departed."
   },
   {
     "id": "hb_rogue_phantom_deaths_friend",
@@ -2184,7 +2269,7 @@
     "level_gained": 3,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Cast wizard spells using INT, learned from the Wizard spell list (2 cantrips, then more per the class table). Most learned spells must be Abjuration or Evocation \u2014 spells picked at 8th, 14th, and 20th level can be from any school. A third-caster: spell slots start at 3rd character level and cap at 4th-level spells."
+    "description": "Cast wizard spells using INT, learned from the Wizard spell list (2 cantrips, then more per the class table). Most learned spells must be Abjuration or Evocation — spells picked at 8th, 14th, and 20th level can be from any school. A third-caster: spell slots start at 3rd character level and cap at 4th-level spells."
   },
   {
     "id": "hb_fighter_ek_weapon_bond",
@@ -2238,7 +2323,7 @@
     "level_gained": 3,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Cast wizard spells using INT, learned from the Wizard spell list (3 cantrips, then more per the class table). Most learned spells must be Enchantment or Illusion \u2014 spells picked at 8th, 14th, and 20th level can be from any school. A third-caster: spell slots start at 3rd character level and cap at 4th-level spells."
+    "description": "Cast wizard spells using INT, learned from the Wizard spell list (3 cantrips, then more per the class table). Most learned spells must be Enchantment or Illusion — spells picked at 8th, 14th, and 20th level can be from any school. A third-caster: spell slots start at 3rd character level and cap at 4th-level spells."
   },
   {
     "id": "hb_rogue_at_mage_hand_legerdemain",
@@ -2265,7 +2350,7 @@
     "level_gained": 13,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "As a bonus action while your Mage Hand is active, designate a creature within 5 feet of the hand \u2014 you gain advantage on attack rolls against that creature until the end of your turn."
+    "description": "As a bonus action while your Mage Hand is active, designate a creature within 5 feet of the hand — you gain advantage on attack rolls against that creature until the end of your turn."
   },
   {
     "id": "hb_rogue_at_spell_thief",
@@ -2274,7 +2359,7 @@
     "level_gained": 17,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Reaction, immediately after a creature casts a spell that targets you or includes you in its area: force an INT save (your spell save DC). On a fail, negate the spell's effect on you and steal it \u2014 for 8 hours you can cast that spell (if you have slots/it's on your list) at its original level without expending a slot or material components; once per long rest."
+    "description": "Reaction, immediately after a creature casts a spell that targets you or includes you in its area: force an INT save (your spell save DC). On a fail, negate the spell's effect on you and steal it — for 8 hours you can cast that spell (if you have slots/it's on your list) at its original level without expending a slot or material components; once per long rest."
   },
   {
     "id": "gen_artificer_base_spellcasting",
@@ -2337,7 +2422,7 @@
     "level_gained": 1,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "As a bonus action, inspire another creature within 60 feet who can hear you: it gains one Bardic Inspiration die (a d6, increasing to d8 at 5th level, d10 at 10th, d12 at 15th). Within the next 10 minutes, it can add the die to one ability check, attack roll, or saving throw it makes (rolled after the d20, before or after knowing the outcome) \u2014 the die is then lost even if unused. You can do this a number of times equal to your Charisma modifier (minimum once) per long rest."
+    "description": "As a bonus action, inspire another creature within 60 feet who can hear you: it gains one Bardic Inspiration die (a d6, increasing to d8 at 5th level, d10 at 10th, d12 at 15th). Within the next 10 minutes, it can add the die to one ability check, attack roll, or saving throw it makes (rolled after the d20, before or after knowing the outcome) — the die is then lost even if unused. You can do this a number of times equal to your Charisma modifier (minimum once) per long rest."
   },
   {
     "id": "gen_bard_base_song-of-rest",
@@ -2346,7 +2431,7 @@
     "level_gained": 2,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "If you or any friendly creatures who can hear your performance spend Hit Dice to regain hit points at the end of a short rest, each of them regains an extra 1d6 hit points. The extra amount increases as you gain levels: 1d8 at 9th level, 1d10 at 13th, 1d12 at 17th. You must play music or sing for the duration of the short rest to grant this benefit \u2014 you can use any instrument you're proficient with, or your voice."
+    "description": "If you or any friendly creatures who can hear your performance spend Hit Dice to regain hit points at the end of a short rest, each of them regains an extra 1d6 hit points. The extra amount increases as you gain levels: 1d8 at 9th level, 1d10 at 13th, 1d12 at 17th. You must play music or sing for the duration of the short rest to grant this benefit — you can use any instrument you're proficient with, or your voice."
   },
   {
     "id": "gen_cleric_base_spellcasting",
@@ -2355,7 +2440,7 @@
     "level_gained": 1,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "You must have a holy symbol as a spellcasting focus to cast any cleric spell. You prepare a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum 1) \u2014 every spell on the cleric list is available to prepare, not just ones you've learned, and you can change your prepared list after a long rest. You can cast a prepared spell as a ritual if it has the ritual tag. Wisdom is your spellcasting ability; spell save DC = 8 + proficiency bonus + WIS modifier, spell attack bonus = proficiency bonus + WIS modifier."
+    "description": "You must have a holy symbol as a spellcasting focus to cast any cleric spell. You prepare a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum 1) — every spell on the cleric list is available to prepare, not just ones you've learned, and you can change your prepared list after a long rest. You can cast a prepared spell as a ritual if it has the ritual tag. Wisdom is your spellcasting ability; spell save DC = 8 + proficiency bonus + WIS modifier, spell attack bonus = proficiency bonus + WIS modifier."
   },
   {
     "id": "gen_cleric_base_divine-intervention-improvement",
@@ -2364,7 +2449,7 @@
     "level_gained": 20,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Your Divine Intervention feature succeeds automatically \u2014 no roll required \u2014 any time you use it."
+    "description": "Your Divine Intervention feature succeeds automatically — no roll required — any time you use it."
   },
   {
     "id": "gen_druid_base_spellcasting",
@@ -2373,7 +2458,7 @@
     "level_gained": 1,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "You must have a druidic focus as a spellcasting focus to cast any druid spell. You prepare a number of druid spells equal to your Wisdom modifier + your druid level (minimum 1) \u2014 every spell on the druid list is available to prepare, and you can change your prepared list after a long rest. You can cast a prepared spell as a ritual if it has the ritual tag. Wisdom is your spellcasting ability; spell save DC = 8 + proficiency bonus + WIS modifier, spell attack bonus = proficiency bonus + WIS modifier."
+    "description": "You must have a druidic focus as a spellcasting focus to cast any druid spell. You prepare a number of druid spells equal to your Wisdom modifier + your druid level (minimum 1) — every spell on the druid list is available to prepare, and you can change your prepared list after a long rest. You can cast a prepared spell as a ritual if it has the ritual tag. Wisdom is your spellcasting ability; spell save DC = 8 + proficiency bonus + WIS modifier, spell attack bonus = proficiency bonus + WIS modifier."
   },
   {
     "id": "gen_druid_base_wild-shape",
@@ -2436,7 +2521,7 @@
     "level_gained": 2,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "You must have a holy symbol as a spellcasting focus to cast any paladin spell. You prepare a number of paladin spells equal to your Charisma modifier + half your paladin level rounded down (minimum 1) \u2014 every spell on the paladin list is available to prepare, and you can change your prepared list after a long rest. You can cast a prepared spell as a ritual if it has the ritual tag. Charisma is your spellcasting ability; spell save DC = 8 + proficiency bonus + CHA modifier, spell attack bonus = proficiency bonus + CHA modifier."
+    "description": "You must have a holy symbol as a spellcasting focus to cast any paladin spell. You prepare a number of paladin spells equal to your Charisma modifier + half your paladin level rounded down (minimum 1) — every spell on the paladin list is available to prepare, and you can change your prepared list after a long rest. You can cast a prepared spell as a ritual if it has the ritual tag. Charisma is your spellcasting ability; spell save DC = 8 + proficiency bonus + CHA modifier, spell attack bonus = proficiency bonus + CHA modifier."
   },
   {
     "id": "gen_paladin_base_aura-improvements-30ft-radius",
@@ -2454,7 +2539,7 @@
     "level_gained": 1,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead \u2014 or, alternatively, choose two races of humanoid as your favored enemies. You have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence checks to recall information about them. When you gain this feature, you also learn one language of your choice, typically one spoken by your favored enemy or its associates."
+    "description": "Choose a type of favored enemy: aberrations, beasts, celestials, constructs, dragons, elementals, fey, fiends, giants, monstrosities, oozes, plants, or undead — or, alternatively, choose two races of humanoid as your favored enemies. You have advantage on Wisdom (Survival) checks to track your favored enemies, as well as on Intelligence checks to recall information about them. When you gain this feature, you also learn one language of your choice, typically one spoken by your favored enemy or its associates."
   },
   {
     "id": "gen_ranger_base_natural-explorer",
@@ -2472,7 +2557,7 @@
     "level_gained": 2,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "You know a limited number of ranger spells, chosen from the ranger spell list, per the ranger table (a fixed-known caster, not a prepared one) \u2014 you learn additional spells known as you gain ranger levels, and can swap one known spell for another whenever you gain a ranger level. You must have a druidic focus or component pouch as a spellcasting focus. Wisdom is your spellcasting ability; spell save DC = 8 + proficiency bonus + WIS modifier, spell attack bonus = proficiency bonus + WIS modifier."
+    "description": "You know a limited number of ranger spells, chosen from the ranger spell list, per the ranger table (a fixed-known caster, not a prepared one) — you learn additional spells known as you gain ranger levels, and can swap one known spell for another whenever you gain a ranger level. You must have a druidic focus or component pouch as a spellcasting focus. Wisdom is your spellcasting ability; spell save DC = 8 + proficiency bonus + WIS modifier, spell attack bonus = proficiency bonus + WIS modifier."
   },
   {
     "id": "gen_ranger_base_favored-enemy-improvement",
@@ -2499,7 +2584,7 @@
     "level_gained": 1,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "You must have an arcane focus or component pouch as a spellcasting focus to cast any sorcerer spell. You know a limited number of sorcerer spells, chosen from the sorcerer spell list, per the sorcerer table (a fixed-known caster) \u2014 you learn additional spells known as you gain sorcerer levels, and can swap one known spell for another whenever you gain a sorcerer level. Charisma is your spellcasting ability; spell save DC = 8 + proficiency bonus + CHA modifier, spell attack bonus = proficiency bonus + CHA modifier."
+    "description": "You must have an arcane focus or component pouch as a spellcasting focus to cast any sorcerer spell. You know a limited number of sorcerer spells, chosen from the sorcerer spell list, per the sorcerer table (a fixed-known caster) — you learn additional spells known as you gain sorcerer levels, and can swap one known spell for another whenever you gain a sorcerer level. Charisma is your spellcasting ability; spell save DC = 8 + proficiency bonus + CHA modifier, spell attack bonus = proficiency bonus + CHA modifier."
   },
   {
     "id": "gen_sorcerer_base_metamagic-3rd-option",
@@ -2570,7 +2655,7 @@
     "category": "paladin_channel_divinity",
     "class": "Paladin (Oath of Devotion)",
     "level_gained": 3,
-    "description": "As an action, present your holy symbol and speak a prayer against fiends and undead. Each fiend or undead within 30 feet that can see or hear you must make a Wisdom saving throw, and on a failure is turned for 1 minute or until it takes damage \u2014 a turned creature must spend its turns trying to move as far from you as possible and can't willingly move within 30 feet of you, and it can't take reactions and can only use the Dash action or try to escape an effect preventing it from moving.",
+    "description": "As an action, present your holy symbol and speak a prayer against fiends and undead. Each fiend or undead within 30 feet that can see or hear you must make a Wisdom saving throw, and on a failure is turned for 1 minute or until it takes damage — a turned creature must spend its turns trying to move as far from you as possible and can't willingly move within 30 feet of you, and it can't take reactions and can only use the Dash action or try to escape an effect preventing it from moving.",
     "source": "Player's Handbook"
   },
   {
@@ -2642,7 +2727,7 @@
     "category": "paladin_feature",
     "class": "Paladin (Oath of Vengeance)",
     "level_gained": 20,
-    "description": "As an action, transform for 1 hour: wings sprout from your back, granting a flying speed of 60 feet, and you emanate a 30-foot menacing aura while not incapacitated \u2014 a hostile creature that starts its turn there must succeed on a Wisdom save or be frightened of you for 1 minute (or until it takes damage). A frightened creature has disadvantage on saving throws against your paladin spells. Usable once, regaining the ability on a long rest.",
+    "description": "As an action, transform for 1 hour: wings sprout from your back, granting a flying speed of 60 feet, and you emanate a 30-foot menacing aura while not incapacitated — a hostile creature that starts its turn there must succeed on a Wisdom save or be frightened of you for 1 minute (or until it takes damage). A frightened creature has disadvantage on saving throws against your paladin spells. Usable once, regaining the ability on a long rest.",
     "source": "Player's Handbook"
   },
   {
@@ -2714,7 +2799,7 @@
     "category": "paladin_aura",
     "class": "Paladin (Oath of Redemption)",
     "level_gained": 7,
-    "description": "Whenever a creature within 10 feet of you takes damage, you can use your reaction to magically take that damage yourself instead \u2014 this doesn't reduce the damage, and you can't use this feature if you're incapacitated. At 18th level, the range of this aura increases to 30 feet.",
+    "description": "Whenever a creature within 10 feet of you takes damage, you can use your reaction to magically take that damage yourself instead — this doesn't reduce the damage, and you can't use this feature if you're incapacitated. At 18th level, the range of this aura increases to 30 feet.",
     "source": "Xanathar's Guide to Everything"
   },
   {
@@ -3571,5 +3656,509 @@
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false,
     "verification": "unverified - written 2026-09-02 from training knowledge as part of the full-coverage stub pass (only the first subclass tier is built). Not yet checked against 2 independent sources the way fully-built subclasses are; treat as a solid placeholder, verify before leaning on exact numbers."
+  },
+  {
+    "id": "pub_actor",
+    "name": "Actor",
+    "category": "feat",
+    "description": "+1 CHA (max 20). Advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person. Can mimic the speech, accent, or sounds of a person/creature you've listened to for at least 1 minute (a listener who succeeds on a Wisdom (Insight) check contested by your Charisma (Deception) check can tell it's faked).",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_alert",
+    "name": "Alert",
+    "category": "feat",
+    "description": "You can't be surprised while conscious. +5 bonus to initiative. Other creatures don't gain advantage on attack rolls against you as a result of being unseen by you.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_athlete",
+    "name": "Athlete",
+    "category": "feat",
+    "description": "+1 STR or DEX (max 20). Standing up from prone costs only 5ft of movement instead of half your speed. Climbing doesn't cost extra movement. You can make a running long or high jump after moving only 5ft, instead of 10ft.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_charger",
+    "name": "Charger",
+    "category": "feat",
+    "description": "When you use your action to Dash, you can use a bonus action to make one melee attack or to shove a creature. If you moved at least 10ft in a straight line immediately before that bonus action, you either gain a +5 bonus to the attack's damage roll (if it hits) or push the target up to 10ft away (if the shove succeeds).",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_crossbow-expert",
+    "name": "Crossbow Expert",
+    "category": "feat",
+    "description": "Ignore the loading property of crossbows you're proficient with. Being within 5ft of a hostile creature doesn't impose disadvantage on your ranged attack rolls. When you use the Attack action and attack with a one-handed weapon, you can use a bonus action to attack with a hand crossbow you're holding.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_defensive-duelist",
+    "name": "Defensive Duelist",
+    "category": "feat",
+    "description": "When wielding a finesse weapon you're proficient with and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing it to miss.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Dexterity 13+"
+  },
+  {
+    "id": "pub_dungeon-delver",
+    "name": "Dungeon Delver",
+    "category": "feat",
+    "description": "Advantage on Wisdom (Perception) and Intelligence (Investigation) checks to detect secret doors. Advantage on saving throws to avoid or resist traps. Resistance to damage dealt by traps. Traveling at a fast pace doesn't impose the normal -5 penalty on your passive Perception.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_durable",
+    "name": "Durable",
+    "category": "feat",
+    "description": "+1 CON (max 20). When you roll a Hit Die to regain hit points, the minimum you regain equals twice your Constitution modifier (minimum of 2).",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_grappler",
+    "name": "Grappler",
+    "category": "feat",
+    "description": "Advantage on attack rolls against a creature you are grappling. You can use your action to try to pin a creature grappled by you — make another grapple check; if you succeed, you and the creature are both restrained until the grapple ends.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Strength 13+"
+  },
+  {
+    "id": "pub_healer",
+    "name": "Healer",
+    "category": "feat",
+    "description": "When you use a healer's kit to stabilize a dying creature, that creature also regains 1 hit point. As an action, spend one use of a healer's kit to tend a creature and restore 1d6+4 hit points plus additional hit points equal to its maximum Hit Dice; that creature can't benefit from this feat again until it finishes a short or long rest.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_heavily-armored",
+    "name": "Heavily Armored",
+    "category": "feat",
+    "description": "+1 STR (max 20). Gain proficiency with heavy armor.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Proficiency with medium armor"
+  },
+  {
+    "id": "pub_heavy-armor-master",
+    "name": "Heavy Armor Master",
+    "category": "feat",
+    "description": "+1 STR (max 20). While wearing heavy armor, bludgeoning, piercing, and slashing damage from nonmagical attacks is reduced by 3.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Proficiency with heavy armor"
+  },
+  {
+    "id": "pub_keen-mind",
+    "name": "Keen Mind",
+    "category": "feat",
+    "description": "+1 INT (max 20). You always know which way is north, the number of hours left before the next sunrise or sunset, and can accurately recall anything you've seen or heard within the past month.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_lightly-armored",
+    "name": "Lightly Armored",
+    "category": "feat",
+    "description": "+1 STR or DEX (max 20). Gain proficiency with light armor.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_linguist",
+    "name": "Linguist",
+    "category": "feat",
+    "description": "+1 INT (max 20). Learn three languages of your choice. Can ably create written ciphers — others can't decipher them without your teaching, an Intelligence check (DC = your Intelligence score + proficiency bonus), or magic.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_mage-slayer",
+    "name": "Mage Slayer",
+    "category": "feat",
+    "description": "When a creature within 5ft casts a spell, you can use your reaction to make a melee weapon attack against it. When you damage a creature concentrating on a spell, it has disadvantage on the saving throw to maintain concentration. Advantage on saving throws against spells cast by creatures within 5ft of you.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_magic-initiate",
+    "name": "Magic Initiate",
+    "category": "feat",
+    "description": "Choose bard, cleric, druid, sorcerer, warlock, or wizard. Learn two cantrips of your choice from that class's spell list, plus one 1st-level spell from that list; you can cast the 1st-level spell once at its lowest level without a slot, regaining the ability on a long rest (it can also be cast normally with a spell slot). Spellcasting ability: Charisma (bard/sorcerer/warlock), Wisdom (cleric/druid), or Intelligence (wizard).",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_martial-adept",
+    "name": "Martial Adept",
+    "category": "feat",
+    "description": "Learn two maneuvers of your choice from the Battle Master fighter archetype (save DC = 8 + proficiency bonus + STR or DEX modifier, your choice). Gain one superiority die (a d6), added to any you have from another source; it's expended when used and regained on a short or long rest.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_medium-armor-master",
+    "name": "Medium Armor Master",
+    "category": "feat",
+    "description": "Wearing medium armor no longer imposes disadvantage on Dexterity (Stealth) checks. When wearing medium armor, you can add 3 (instead of 2) to your AC if your Dexterity is 16 or higher.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Proficiency with medium armor"
+  },
+  {
+    "id": "pub_moderately-armored",
+    "name": "Moderately Armored",
+    "category": "feat",
+    "description": "+1 STR or DEX (max 20). Gain proficiency with medium armor and shields.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Proficiency with light armor"
+  },
+  {
+    "id": "pub_mounted-combatant",
+    "name": "Mounted Combatant",
+    "category": "feat",
+    "description": "While mounted and not incapacitated: advantage on melee attack rolls against any unmounted creature smaller than your mount. You can force an attack targeted at your mount to target you instead. If your mount is subjected to an effect that allows it a Dexterity save for half damage, it takes no damage on a success and only half on a failure.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_polearm-master",
+    "name": "Polearm Master",
+    "category": "feat",
+    "description": "When you take the Attack action and attack with only a glaive, halberd, quarterstaff, or spear, you can use a bonus action to make a melee attack with the opposite end of the weapon (d4 bludgeoning, using the same ability modifier). While wielding a glaive, halberd, pike, quarterstaff, or spear, other creatures provoke an opportunity attack from you when they enter the reach you have with that weapon.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_ritual-caster",
+    "name": "Ritual Caster",
+    "category": "feat",
+    "description": "Gain a ritual book holding two 1st-level ritual-tagged spells of your choice from one class's spell list (bard, cleric, druid, sorcerer, warlock, or wizard). Spellcasting ability depends on the class chosen: Charisma (bard/sorcerer/warlock), Wisdom (cleric/druid), or Intelligence (wizard). You can add further ritual spells you discover to the book if they're on your chosen class's list and no higher level than half your character level (rounded up); copying costs 2 hours and 50gp per spell level.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Intelligence 13+ or Wisdom 13+"
+  },
+  {
+    "id": "pub_savage-attacker",
+    "name": "Savage Attacker",
+    "category": "feat",
+    "description": "Once per turn, when you roll damage for a melee weapon attack, you can reroll the weapon's damage dice and use either total.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_shield-master",
+    "name": "Shield Master",
+    "category": "feat",
+    "description": "If you take the Attack action on your turn, you can use a bonus action to shove a creature within 5ft with your shield. If not incapacitated, you can add your shield's AC bonus to any Dexterity save against a spell or effect that targets only you. As a reaction, if subjected to an effect that lets you make a Dexterity save for half damage, you can take no damage on a success by interposing your shield.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_skilled",
+    "name": "Skilled",
+    "category": "feat",
+    "description": "Gain proficiency in any combination of three skills or tools of your choice.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_skulker",
+    "name": "Skulker",
+    "category": "feat",
+    "description": "You can try to hide when only lightly obscured from the creature you're hiding from. Missing with a ranged weapon attack while hidden doesn't reveal your position. Dim light doesn't impose disadvantage on your Wisdom (Perception) checks relying on sight.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "Dexterity 13+"
+  },
+  {
+    "id": "pub_spell-sniper",
+    "name": "Spell Sniper",
+    "category": "feat",
+    "description": "The range of spells you cast that require an attack roll is doubled. Your ranged spell attacks ignore half and three-quarters cover. Learn one cantrip that requires an attack roll, chosen from the bard, cleric, druid, sorcerer, warlock, or wizard spell list (spellcasting ability follows the list chosen).",
+    "source": "Player's Handbook",
+    "prerequisite_note": "The ability to cast at least one spell"
+  },
+  {
+    "id": "pub_tavern-brawler",
+    "name": "Tavern Brawler",
+    "category": "feat",
+    "description": "+1 STR or CON (max 20). Proficient with improvised weapons. Your unarmed strike uses a d4 for damage. When you hit with an unarmed strike or improvised weapon on your turn, you can use a bonus action to attempt to grapple the target.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_tough",
+    "name": "Tough",
+    "category": "feat",
+    "description": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_elemental-adept",
+    "name": "Elemental Adept",
+    "category": "feat",
+    "description": "Choose a damage type: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of that type, and you can treat any 1 rolled on a damage die of that type as a 2. Can be selected multiple times, each time for a different damage type.",
+    "source": "Player's Handbook",
+    "prerequisite_note": "The ability to cast at least one spell"
+  },
+  {
+    "id": "pub_weapon-master",
+    "name": "Weapon Master",
+    "category": "feat",
+    "description": "+1 STR or DEX (max 20). Gain proficiency with four weapons of your choice, each a simple or martial weapon.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_artificer-initiate",
+    "name": "Artificer Initiate",
+    "category": "feat",
+    "description": "Learn one cantrip and one 1st-level spell of your choice from the Artificer spell list (Intelligence is your spellcasting ability for them); the 1st-level spell can be cast once per long rest without expending a slot, and normally otherwise. Gain proficiency with one type of artisan's tools, usable as a spellcasting focus for any Intelligence-based spell you cast.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_chef",
+    "name": "Chef",
+    "category": "feat",
+    "description": "+1 CON or WIS (max 20). Gain proficiency with cook's utensils if you don't have it. As part of a short rest (with ingredients and cook's utensils on hand), cook food for up to 4 + your proficiency bonus creatures — any of them who spend Hit Dice to heal at the end of that rest regain an extra 1d8 hit points. With 1 hour of work or on finishing a long rest, cook a number of treats equal to your proficiency bonus (usable within 8 hours); a creature can eat one as a bonus action to gain temporary hit points equal to your proficiency bonus.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_crusher",
+    "name": "Crusher",
+    "category": "feat",
+    "description": "+1 STR or CON (max 20). Once per turn, when you hit a creature no more than one size larger than you with bludgeoning damage, you can move it 5ft to an unoccupied space. When you score a critical hit that deals bludgeoning damage, attack rolls against that creature have advantage until the start of your next turn.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_eldritch-adept",
+    "name": "Eldritch Adept",
+    "category": "feat",
+    "description": "Learn one Eldritch Invocation of your choice from the warlock class (choosing Intelligence, Wisdom, or Charisma as the ability tied to it; an invocation with its own prerequisites requires meeting them as if you were a warlock). Whenever you gain a level, you can swap the invocation for a different one from the warlock class.",
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite_note": "Spellcasting or Pact Magic feature"
+  },
+  {
+    "id": "pub_fighting-initiate",
+    "name": "Fighting Initiate",
+    "category": "feat",
+    "description": "Learn one Fighting Style of your choice from the fighter class that you don't already have. Whenever you gain an Ability Score Improvement, you can swap it for a different fighter Fighting Style you don't know.",
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite_note": "Proficiency with a martial weapon"
+  },
+  {
+    "id": "pub_gunner",
+    "name": "Gunner",
+    "category": "feat",
+    "description": "+1 DEX (max 20). Gain proficiency with firearms. Ignore the loading property of firearms. Being within 5ft of a hostile creature doesn't impose disadvantage on your ranged attack rolls.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_piercer",
+    "name": "Piercer",
+    "category": "feat",
+    "description": "+1 STR or DEX (max 20). Once per turn, when you hit a creature with a piercing-damage attack, you can reroll one of its damage dice and must use the new roll. On a critical hit that deals piercing damage, roll one additional damage die when determining the extra damage.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_poisoner",
+    "name": "Poisoner",
+    "category": "feat",
+    "description": "Ignore resistance to poison damage when you make a damage roll. Coating a weapon or piece of ammunition with poison takes a bonus action instead of an action. Gain proficiency with the poisoner's kit if you don't have it; with 1 hour and 50gp of materials, create a number of poison doses equal to your proficiency bonus. Applied poison keeps its potency for 1 minute or until you hit with the weapon/ammunition — a creature damaged by it must succeed on a DC 14 Constitution save or take 2d8 poison damage and become poisoned until the end of your next turn.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_skill-expert",
+    "name": "Skill Expert",
+    "category": "feat",
+    "description": "+1 to one ability score of your choice (max 20). Gain proficiency in one skill of your choice. Choose one skill you're proficient in (that doesn't already have its proficiency bonus doubled by another feature) and gain Expertise in it, doubling your proficiency bonus for checks with it.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_telekinetic",
+    "name": "Telekinetic",
+    "category": "feat",
+    "description": "+1 INT, WIS, or CHA (max 20). Learn the Mage Hand cantrip (castable without verbal or somatic components, its spectral hand can be made invisible; if you already knew it, its range increases by 30ft) — spellcasting ability is the one increased by this feat. As a bonus action, telekinetically shove one creature within 30ft: it must succeed on a Strength save (DC 8 + proficiency bonus + the increased ability's modifier) or be moved 5ft toward or away from you (a creature can willingly fail).",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_telepathic",
+    "name": "Telepathic",
+    "category": "feat",
+    "description": "+1 INT, WIS, or CHA (max 20). Speak telepathically to any creature you can see within 60ft, in a language you know (it understands only if it knows that language too; it can't reply telepathically). Cast Detect Thoughts once per long rest without a slot or components (spellcasting ability is the one increased by this feat); can also cast it normally with a 2nd-level+ slot.",
+    "source": "Tasha's Cauldron of Everything"
+  },
+  {
+    "id": "pub_dragon-fear",
+    "name": "Dragon Fear",
+    "category": "feat",
+    "description": "+1 STR, CON, or CHA (max 20). Instead of a normal breath weapon use, you can roar: each creature within 30ft that can see or hear you must succeed on a Wisdom save (DC 8 + proficiency bonus + CHA modifier) or become frightened for 1 minute, repeating the save when it takes damage.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Dragonborn"
+  },
+  {
+    "id": "pub_dragon-hide",
+    "name": "Dragon Hide",
+    "category": "feat",
+    "description": "+1 STR, CON, or CHA (max 20). While unarmored, your AC can be calculated as 13 + Dexterity modifier (a shield can still be used). Grow retractable claws usable as natural weapons — unarmed strikes with them deal 1d4 + Strength modifier slashing damage instead of the normal bludgeoning.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Dragonborn"
+  },
+  {
+    "id": "pub_drow-high-magic",
+    "name": "Drow High Magic",
+    "category": "feat",
+    "description": "Cast Detect Magic at will, without a spell slot. Cast Levitate and Dispel Magic each once per long rest without a slot. Charisma is your spellcasting ability for these.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Elf (drow)"
+  },
+  {
+    "id": "pub_dwarven-fortitude",
+    "name": "Dwarven Fortitude",
+    "category": "feat",
+    "description": "+1 CON (max 20). Whenever you take the Dodge action, you can spend one Hit Die to heal yourself — roll the die, add your Constitution modifier, and regain that many hit points.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Dwarf"
+  },
+  {
+    "id": "pub_fey-teleportation",
+    "name": "Fey Teleportation",
+    "category": "feat",
+    "description": "+1 INT or CHA (max 20). Learn to speak, read, and write Sylvan. Learn the Misty Step spell (Intelligence is your spellcasting ability for it), castable once without a spell slot, regaining the ability on a short or long rest.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Elf (high)"
+  },
+  {
+    "id": "pub_flames-of-phlegethos",
+    "name": "Flames of Phlegethos",
+    "category": "feat",
+    "description": "+1 INT or CHA (max 20). When you roll fire damage for a spell you cast, you can reroll any 1s on the fire damage dice (must keep the new roll). Whenever you cast a spell that deals fire damage, you can wreathe yourself in harmless flames until the end of your next turn — they shed bright light 30ft/dim light 30ft further, and any creature within 5ft that hits you with a melee attack takes 1d4 fire damage.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Tiefling"
+  },
+  {
+    "id": "pub_infernal-constitution",
+    "name": "Infernal Constitution",
+    "category": "feat",
+    "description": "+1 CON (max 20). Resistance to cold and poison damage. Advantage on saving throws against being poisoned.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Tiefling"
+  },
+  {
+    "id": "pub_orcish-fury",
+    "name": "Orcish Fury",
+    "category": "feat",
+    "description": "+1 STR or CON (max 20). When you hit with an attack using a simple or martial weapon, you can roll one of the weapon's damage dice an extra time and add it as extra damage of the same type (once per short or long rest). Immediately after using Relentless Endurance, you can use your reaction to make one weapon attack.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Half-orc"
+  },
+  {
+    "id": "pub_prodigy",
+    "name": "Prodigy",
+    "category": "feat",
+    "description": "Gain one skill proficiency, one tool proficiency, and fluency in one language, all of your choice. Choose one skill you're already proficient in (that doesn't already have its proficiency bonus doubled by another feature) and gain Expertise in it.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Half-elf, half-orc, or human"
+  },
+  {
+    "id": "pub_second-chance",
+    "name": "Second Chance",
+    "category": "feat",
+    "description": "+1 DEX, CON, or CHA (max 20). When a creature you can see hits you with an attack roll, you can use your reaction to force it to reroll. Usable again only after you roll initiative or finish a short or long rest.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Halfling"
+  },
+  {
+    "id": "pub_squat-nimbleness",
+    "name": "Squat Nimbleness",
+    "category": "feat",
+    "description": "+1 STR or DEX (max 20). +5ft walking speed. Gain proficiency in Acrobatics or Athletics (your choice). Advantage on Strength (Athletics) or Dexterity (Acrobatics) checks to escape a grapple.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Dwarf or a Small race"
+  },
+  {
+    "id": "pub_wood-elf-magic",
+    "name": "Wood Elf Magic",
+    "category": "feat",
+    "description": "Learn one druid cantrip of your choice. Learn the Longstrider and Pass without Trace spells, each castable once per long rest without a spell slot; Wisdom is your spellcasting ability for all three spells.",
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite_note": "Elf (wood)"
+  },
+  {
+    "id": "pub_commander-s-strike",
+    "name": "Commander's Strike",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you take the Attack action, you can forgo one of your attacks and use a bonus action to direct a friendly creature to strike. That creature can use its reaction to make one weapon attack, adding the superiority die to the damage roll.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_distracting-strike",
+    "name": "Distracting Strike",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you hit a creature with a weapon attack, you can expend one superiority die to add it to the damage roll. Choose a creature within 5ft of the target other than yourself — that creature has advantage on its next attack roll against the target before the end of your next turn.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_evasive-footwork",
+    "name": "Evasive Footwork",
+    "category": "battlemaster_maneuver",
+    "action_type": "special",
+    "description": "When you move, you can expend one superiority die, adding it to your AC until you stop moving.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_feinting-attack",
+    "name": "Feinting Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "As a bonus action, expend one superiority die and feint against a creature within 5ft. You have advantage on your next attack roll against that creature this turn, and if it hits, add the superiority die to the damage roll.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_goading-attack",
+    "name": "Goading Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you hit a creature with a weapon attack, you can expend one superiority die to add it to the damage roll. The target must make a Wisdom save (DC = 8 + proficiency bonus + STR or DEX modifier) or have disadvantage on any attack roll against a target other than you until the end of your next turn.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_lunging-attack",
+    "name": "Lunging Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you make a melee weapon attack, you can expend one superiority die to increase your reach for that attack by 5ft; if it hits, add the die to the damage roll.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_maneuvering-attack",
+    "name": "Maneuvering Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you hit a creature with a weapon attack, you can expend one superiority die to add it to the damage roll. Then a friendly creature you can see can use its reaction to move up to half its speed without provoking opportunity attacks from the target.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_pushing-attack",
+    "name": "Pushing Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you hit a Large or smaller creature with a weapon attack, you can expend one superiority die to add it to the damage roll. The target must make a STR save (DC = 8 + proficiency bonus + STR or DEX modifier) or be pushed up to 15ft away.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_rally",
+    "name": "Rally",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "As a bonus action, expend one superiority die and choose a friendly creature who can see or hear you. That creature gains temporary hit points equal to the die roll plus your Charisma modifier.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_sweeping-attack",
+    "name": "Sweeping Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you hit a creature with a melee weapon attack, you can expend one superiority die to attempt to damage another creature within 5ft of the original target and within your reach. Roll the superiority die; if the original attack roll would hit the second creature, it takes damage equal to the die roll (of the weapon's damage type).",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_trip-attack",
+    "name": "Trip Attack",
+    "category": "battlemaster_maneuver",
+    "action_type": "action",
+    "description": "Expend one Superiority Die. When you hit a creature with a weapon attack, you can expend one superiority die to add it to the damage roll. The target must make a STR save (DC = 8 + proficiency bonus + STR or DEX modifier) or be knocked prone.",
+    "source": "Player's Handbook"
+  },
+  {
+    "id": "pub_resilient-constitution-legacy",
+    "name": "Resilient (Constitution)",
+    "description": "Increase Constitution by 1 (max 20) and gain proficiency in Constitution saving throws. (Legacy per-ability entry predating the generic \"Resilient\" feat entry above, kept so existing characters whose feature is literally named this way still resolve a description by name.)",
+    "type": "feat",
+    "source": "Feat, Player's Handbook."
   }
 ]

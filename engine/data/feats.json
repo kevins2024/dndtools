@@ -1,5 +1,579 @@
 {
-  "_notes": "Structured mechanical grants for feats, so a character's spellbook/known-spell count can be computed from what a feat actually gives instead of trusting a freeform note. Verified via WebSearch against dnd5e.wikidot.com / rpgbot.net 2026-08-25. Only feats actually in use on the roster are here so far (see engine/CHECKLIST.md Phase 3) — add more as they come up, verifying RAW text before writing.",
+  "_notes": "Structured mechanical grants for feats, so a character's ability scores/spellbook/known-spell count/saving-throw proficiencies can be computed from what a feat actually gives instead of trusting a freeform note. Verified against dnd5e.wikidot.com + aidedd.org 2026-09-02 (full PHB/XGE/TCE 2014-ruleset feat list — see engine/CHECKLIST.md Phase 7b for the session log). Every entry here has a matching src/data/published_features.json entry (category: 'feat') with full RAW text, and a matching engine/data/feature-catalog.json id.",
+
+  "_schema": {
+    "source": "Book this feat is from: 'Player's Handbook' | 'Xanathar's Guide to Everything' | \"Tasha's Cauldron of Everything\".",
+    "prerequisite": "null, or one of: {type:'ability_score', ability, min} | {type:'any_of', options:[{ability,min},...]} (meet ANY one) | {type:'race', races:[...]} (meet ANY listed race/subrace string, matched loosely against character.race/subrace) | {type:'proficiency', proficiency:'light_armor'|'medium_armor'|'heavy_armor'|'martial_weapon'} | {type:'spellcasting'} (character.spellcasting_ability or pact_magic present). Enforced by engine/rules/featPrerequisites.js — see that file for exactly how each type is evaluated, including the deliberate 'unknown proficiency data is permissive' rule (most characters.json entries don't populate armor_proficiencies/weapon_proficiencies at all, so a hard 'not proficient' block would false-negative almost every real character).",
+    "ability_score_increase": "{choice_of:[...abilities], amount} — same mechanism asiFeat.js already had for Fey Touched/Shadow Touched. choice_of.length===1 auto-applies with no dropdown.",
+    "grants_spells": "{fixed:[...names], choice:{count, level, schools}, casting_ability, free_cast_note} — same shape as Fey Touched/Shadow Touched, used both for known-spell-count verification (grants.js/isFeatGrantedSpell) and, new this pass, auto-applied to patch.spells by diffLevelUp when the level-up resolution supplies choices.spell_choice_1 etc.",
+    "choices": "array of {id, label, type, count, options?} — a GENERIC extra-choice schema (beyond ability score) for feats that hand the player a pick. type is one of: 'skill' | 'tool' | 'skill_or_tool' | 'language' | 'damage_type' | 'weapon' | 'maneuver' | 'fighting_style' | 'class_list' | 'spell_text' (free-text spell name — see 7b note on why this isn't a full class-filtered spell-list dropdown) | 'text' (fully free, e.g. an Eldritch Invocation name). 'options' is a concrete array for the enumerable types; omitted for 'spell_text'/'text'. LevelUpTool.vue renders `count` pickers per choice, generically — no per-feat special-casing.",
+    "stat_bonuses": "Copied verbatim onto the character's new feat feature entry when confirmed — same object shape src/utils/dnd_utils.js's resolveStats() already reads off character.features[].stat_bonuses for AC/saves/skills/passive perception/initiative. ONLY used for a flat, UNCONDITIONAL numeric bonus (e.g. Alert's +5 initiative, Observant's +5 passive Perception) — deliberately omitted for anything conditional on loadout/stance (Dual Wielder's +1 AC only while dual-wielding, Medium Armor Master's AC cap change) since the existing stat_bonuses mechanism has no notion of 'only when X' and adding it unconditionally would be a real correctness bug, not a discoverability win.",
+    "grants_saving_throw_proficiency": "true only for Resilient — diffLevelUp adds the ability chosen via ability_score_increase.choice_of to patch.saving_throws.",
+    "hp_bonus_per_level": "Tough only (2). Recorded for discoverability/tooltip text ONLY — deliberately NOT auto-applied to patch.hp_max. RAW is 'immediately +2× current level, then +2 more per level thereafter' — the retroactive lump sum on the level Tough is taken can't be expressed as a simple per-level-up delta without double-counting on every future level-up preview, and this project's existing scope boundary for feats (asiFeat.js's own comment) already draws the line at ability scores + known-spell counts for auto-application. Flagged, not guessed at."
+  },
+
+  "Actor": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["cha"], "amount": 1 }
+  },
+
+  "Alert": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "stat_bonuses": { "initiative": 5 }
+  },
+
+  "Athlete": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 }
+  },
+
+  "Charger": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Crossbow Expert": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Defensive Duelist": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "ability_score", "ability": "dex", "min": 13 }
+  },
+
+  "Dual Wielder": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Dungeon Delver": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Durable": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["con"], "amount": 1 }
+  },
+
+  "Elemental Adept": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "spellcasting" },
+    "choices": [
+      {
+        "id": "damage_type",
+        "label": "Damage type (spells of this type ignore resistance)",
+        "type": "damage_type",
+        "count": 1,
+        "options": ["Acid", "Cold", "Fire", "Lightning", "Thunder"]
+      }
+    ],
+    "note": "Can be taken multiple times, each time for a different damage type — not enforced here (this app doesn't track repeat feat picks)."
+  },
+
+  "Grappler": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "ability_score", "ability": "str", "min": 13 }
+  },
+
+  "Great Weapon Master": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str"], "amount": 1 }
+  },
+
+  "Healer": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Heavily Armored": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "proficiency", "proficiency": "medium_armor" },
+    "ability_score_increase": { "choice_of": ["str"], "amount": 1 }
+  },
+
+  "Heavy Armor Master": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "proficiency", "proficiency": "heavy_armor" },
+    "ability_score_increase": { "choice_of": ["str"], "amount": 1 }
+  },
+
+  "Inspiring Leader": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "ability_score", "ability": "cha", "min": 13 }
+  },
+
+  "Keen Mind": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["int"], "amount": 1 }
+  },
+
+  "Lightly Armored": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 }
+  },
+
+  "Linguist": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["int"], "amount": 1 },
+    "choices": [
+      {
+        "id": "languages",
+        "label": "Languages (3)",
+        "type": "language",
+        "count": 3,
+        "options": [
+          "Common",
+          "Dwarvish",
+          "Elvish",
+          "Giant",
+          "Gnomish",
+          "Goblin",
+          "Halfling",
+          "Orc",
+          "Abyssal",
+          "Celestial",
+          "Draconic",
+          "Deep Speech",
+          "Infernal",
+          "Primordial",
+          "Sylvan",
+          "Undercommon"
+        ]
+      }
+    ]
+  },
+
+  "Lucky": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "luck_points": 3,
+    "note": "Luck points aren't tracked by any resource counter in this app yet — recorded here for discoverability only, spend/regain is manual."
+  },
+
+  "Mage Slayer": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Magic Initiate": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "choices": [
+      {
+        "id": "class",
+        "label": "Spell list",
+        "type": "class_list",
+        "count": 1,
+        "options": ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"]
+      },
+      {
+        "id": "cantrip_1",
+        "label": "Cantrip 1",
+        "type": "spell_text",
+        "count": 1
+      },
+      {
+        "id": "cantrip_2",
+        "label": "Cantrip 2",
+        "type": "spell_text",
+        "count": 1
+      },
+      {
+        "id": "spell_1",
+        "label": "1st-level spell (once per long rest without a slot)",
+        "type": "spell_text",
+        "count": 1
+      }
+    ]
+  },
+
+  "Martial Adept": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "choices": [
+      {
+        "id": "maneuvers",
+        "label": "Battle Master maneuvers (2)",
+        "type": "maneuver",
+        "count": 2,
+        "options": [
+          "Commander's Strike",
+          "Disarming Attack",
+          "Distracting Strike",
+          "Evasive Footwork",
+          "Feinting Attack",
+          "Goading Attack",
+          "Lunging Attack",
+          "Maneuvering Attack",
+          "Menacing Attack",
+          "Parry",
+          "Precision Attack",
+          "Pushing Attack",
+          "Rally",
+          "Riposte",
+          "Sweeping Attack",
+          "Trip Attack"
+        ]
+      }
+    ],
+    "note": "Also grants one d6 superiority die — not a stat_bonuses key that exists yet, recorded in description text only."
+  },
+
+  "Medium Armor Master": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "proficiency", "proficiency": "medium_armor" }
+  },
+
+  "Mobile": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Moderately Armored": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "proficiency", "proficiency": "light_armor" },
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 }
+  },
+
+  "Mounted Combatant": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Observant": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["int", "wis"], "amount": 1 },
+    "stat_bonuses": { "passive_perception": 5 },
+    "note": "RAW also grants +5 passive Investigation — this app has no passiveInvestigation() calculation to surface that on, so only passive Perception is wired."
+  },
+
+  "Polearm Master": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Resilient": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": {
+      "choice_of": ["str", "dex", "con", "int", "wis", "cha"],
+      "amount": 1
+    },
+    "grants_saving_throw_proficiency": true
+  },
+
+  "Ritual Caster": {
+    "source": "Player's Handbook",
+    "prerequisite": {
+      "type": "any_of",
+      "options": [
+        { "ability": "int", "min": 13 },
+        { "ability": "wis", "min": 13 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "class",
+        "label": "Spell list",
+        "type": "class_list",
+        "count": 1,
+        "options": ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"]
+      },
+      {
+        "id": "ritual_1",
+        "label": "1st-level ritual spell 1 (must have the ritual tag)",
+        "type": "spell_text",
+        "count": 1
+      },
+      {
+        "id": "ritual_2",
+        "label": "1st-level ritual spell 2 (must have the ritual tag)",
+        "type": "spell_text",
+        "count": 1
+      }
+    ]
+  },
+
+  "Savage Attacker": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Sentinel": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Sharpshooter": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Shield Master": {
+    "source": "Player's Handbook",
+    "prerequisite": null
+  },
+
+  "Skilled": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "choices": [
+      {
+        "id": "skills_or_tools",
+        "label": "Skills or tools, any combination (3)",
+        "type": "skill_or_tool",
+        "count": 3,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival",
+          "Alchemist's Supplies",
+          "Brewer's Supplies",
+          "Calligrapher's Supplies",
+          "Carpenter's Tools",
+          "Cartographer's Tools",
+          "Cobbler's Tools",
+          "Cook's Utensils",
+          "Glassblower's Tools",
+          "Jeweler's Tools",
+          "Leatherworker's Tools",
+          "Mason's Tools",
+          "Painter's Supplies",
+          "Potter's Tools",
+          "Smith's Tools",
+          "Tinker's Tools",
+          "Weaver's Tools",
+          "Woodcarver's Tools",
+          "Disguise Kit",
+          "Forgery Kit",
+          "Herbalism Kit",
+          "Navigator's Tools",
+          "Poisoner's Kit",
+          "Thieves' Tools",
+          "Gaming Set",
+          "Musical Instrument",
+          "Land Vehicles",
+          "Water Vehicles"
+        ]
+      }
+    ]
+  },
+
+  "Skulker": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "ability_score", "ability": "dex", "min": 13 }
+  },
+
+  "Spell Sniper": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "spellcasting" },
+    "choices": [
+      {
+        "id": "class",
+        "label": "Spell list",
+        "type": "class_list",
+        "count": 1,
+        "options": ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"]
+      },
+      {
+        "id": "cantrip",
+        "label": "Attack-roll cantrip from chosen class",
+        "type": "spell_text",
+        "count": 1
+      }
+    ]
+  },
+
+  "Tavern Brawler": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "con"], "amount": 1 }
+  },
+
+  "Tough": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "hp_bonus_per_level": 2
+  },
+
+  "War Caster": {
+    "source": "Player's Handbook",
+    "prerequisite": { "type": "spellcasting" }
+  },
+
+  "Weapon Master": {
+    "source": "Player's Handbook",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 },
+    "choices": [
+      {
+        "id": "weapons",
+        "label": "Weapons (4, simple or martial)",
+        "type": "weapon",
+        "count": 4,
+        "options": [
+          "Club",
+          "Dagger",
+          "Greatclub",
+          "Handaxe",
+          "Javelin",
+          "Light Hammer",
+          "Mace",
+          "Quarterstaff",
+          "Sickle",
+          "Spear",
+          "Light Crossbow",
+          "Dart",
+          "Shortbow",
+          "Sling",
+          "Battleaxe",
+          "Flail",
+          "Glaive",
+          "Greataxe",
+          "Greatsword",
+          "Halberd",
+          "Lance",
+          "Longsword",
+          "Maul",
+          "Morningstar",
+          "Pike",
+          "Rapier",
+          "Scimitar",
+          "Shortsword",
+          "Trident",
+          "War Pick",
+          "Warhammer",
+          "Whip",
+          "Blowgun",
+          "Hand Crossbow",
+          "Heavy Crossbow",
+          "Longbow",
+          "Net"
+        ]
+      }
+    ]
+  },
+
+  "Artificer Initiate": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "choices": [
+      {
+        "id": "cantrip",
+        "label": "Artificer cantrip",
+        "type": "spell_text",
+        "count": 1
+      },
+      {
+        "id": "spell",
+        "label": "1st-level Artificer spell (once per long rest without a slot)",
+        "type": "spell_text",
+        "count": 1
+      },
+      {
+        "id": "tool",
+        "label": "Artisan's tool proficiency (usable as a spellcasting focus)",
+        "type": "tool",
+        "count": 1,
+        "options": [
+          "Alchemist's Supplies",
+          "Brewer's Supplies",
+          "Calligrapher's Supplies",
+          "Carpenter's Tools",
+          "Cartographer's Tools",
+          "Cobbler's Tools",
+          "Cook's Utensils",
+          "Glassblower's Tools",
+          "Jeweler's Tools",
+          "Leatherworker's Tools",
+          "Mason's Tools",
+          "Painter's Supplies",
+          "Potter's Tools",
+          "Smith's Tools",
+          "Tinker's Tools",
+          "Weaver's Tools",
+          "Woodcarver's Tools"
+        ]
+      }
+    ]
+  },
+
+  "Chef": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["con", "wis"], "amount": 1 }
+  },
+
+  "Crusher": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "con"], "amount": 1 }
+  },
+
+  "Eldritch Adept": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": { "type": "spellcasting" },
+    "choices": [
+      {
+        "id": "invocation",
+        "label": "Eldritch Invocation (from the Warlock class list — must meet its own prerequisites, if any)",
+        "type": "text",
+        "count": 1
+      }
+    ]
+  },
+
+  "Fighting Initiate": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": { "type": "proficiency", "proficiency": "martial_weapon" },
+    "choices": [
+      {
+        "id": "style",
+        "label": "Fighting Style",
+        "type": "fighting_style",
+        "count": 1,
+        "options": [
+          "Archery",
+          "Defense",
+          "Dueling",
+          "Great Weapon Fighting",
+          "Protection",
+          "Two-Weapon Fighting",
+          "Blind Fighting",
+          "Interception",
+          "Superior Technique",
+          "Thrown Weapon Fighting",
+          "Unarmed Fighting"
+        ]
+      }
+    ]
+  },
 
   "Fey Touched": {
     "ability_score_increase": {
@@ -16,7 +590,18 @@
     },
     "casting_ability": "the ability increased by this feat",
     "free_cast_note": "each of the two spells can be cast once without a slot per long rest; otherwise cast normally using slots of the appropriate level",
-    "counts_against_known_spells": false
+    "counts_against_known_spells": false,
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null
+  },
+
+  "Fade Away": {
+    "prerequisite": { "type": "race", "races": ["Gnome"] },
+    "ability_score_increase": {
+      "choice_of": ["dex", "int"],
+      "amount": 1
+    },
+    "source": "Xanathar's Guide to Everything"
   },
 
   "Shadow Touched": {
@@ -34,6 +619,371 @@
     },
     "casting_ability": "the ability increased by this feat",
     "free_cast_note": "each of the two spells can be cast once without a slot per long rest; otherwise cast normally using slots of the appropriate level",
-    "counts_against_known_spells": false
+    "counts_against_known_spells": false,
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null
+  },
+
+  "Gunner": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["dex"], "amount": 1 }
+  },
+
+  "Metamagic Adept": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": { "type": "spellcasting" },
+    "choices": [
+      {
+        "id": "metamagic",
+        "label": "Metamagic option (from the Sorcerer class list)",
+        "type": "text",
+        "count": 2
+      }
+    ]
+  },
+
+  "Piercer": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 }
+  },
+
+  "Poisoner": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null
+  },
+
+  "Skill Expert": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": {
+      "choice_of": ["str", "dex", "con", "int", "wis", "cha"],
+      "amount": 1
+    },
+    "choices": [
+      {
+        "id": "new_skill",
+        "label": "New skill proficiency",
+        "type": "skill",
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival"
+        ]
+      },
+      {
+        "id": "expertise_skill",
+        "label": "Existing proficient skill to gain Expertise in",
+        "type": "skill",
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival"
+        ]
+      }
+    ]
+  },
+
+  "Slasher": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 }
+  },
+
+  "Telekinetic": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": {
+      "choice_of": ["int", "wis", "cha"],
+      "amount": 1
+    },
+    "grants_spells": {
+      "fixed": ["Mage Hand"],
+      "casting_ability": "the ability increased by this feat"
+    },
+    "free_cast_note": "Mage Hand is cast at will, without verbal or somatic components; the hand can be made invisible; if you already knew Mage Hand its range increases by 30 ft"
+  },
+
+  "Telepathic": {
+    "source": "Tasha's Cauldron of Everything",
+    "prerequisite": null,
+    "ability_score_increase": {
+      "choice_of": ["int", "wis", "cha"],
+      "amount": 1
+    },
+    "grants_spells": {
+      "fixed": ["Detect Thoughts"],
+      "casting_ability": "the ability increased by this feat"
+    },
+    "free_cast_note": "Detect Thoughts can be cast once per long rest without a slot or components; can also be cast with a 2nd-level-or-higher slot"
+  },
+
+  "Bountiful Luck": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Halfling"] }
+  },
+
+  "Dragon Fear": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Dragonborn"] },
+    "ability_score_increase": {
+      "choice_of": ["str", "con", "cha"],
+      "amount": 1
+    }
+  },
+
+  "Dragon Hide": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Dragonborn"] },
+    "ability_score_increase": {
+      "choice_of": ["str", "con", "cha"],
+      "amount": 1
+    }
+  },
+
+  "Drow High Magic": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Drow", "Dark Elf"] },
+    "grants_spells": {
+      "fixed": ["Detect Magic", "Levitate", "Dispel Magic"],
+      "casting_ability": "cha"
+    },
+    "free_cast_note": "Detect Magic can be cast at will, without a spell slot; Levitate and Dispel Magic can each be cast once per long rest without a slot"
+  },
+
+  "Dwarven Fortitude": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Dwarf"] },
+    "ability_score_increase": { "choice_of": ["con"], "amount": 1 }
+  },
+
+  "Elven Accuracy": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Elf", "Half-Elf"] },
+    "ability_score_increase": {
+      "choice_of": ["dex", "int", "wis", "cha"],
+      "amount": 1
+    }
+  },
+
+  "Fey Teleportation": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["High Elf"] },
+    "ability_score_increase": { "choice_of": ["int", "cha"], "amount": 1 },
+    "grants_spells": {
+      "fixed": ["Misty Step"],
+      "casting_ability": "int"
+    },
+    "free_cast_note": "Misty Step can be cast once without a spell slot, regaining the ability on a short or long rest; also learns to speak/read/write Sylvan"
+  },
+
+  "Flames of Phlegethos": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Tiefling"] },
+    "ability_score_increase": { "choice_of": ["int", "cha"], "amount": 1 }
+  },
+
+  "Infernal Constitution": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Tiefling"] },
+    "ability_score_increase": { "choice_of": ["con"], "amount": 1 }
+  },
+
+  "Orcish Fury": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Half-Orc"] },
+    "ability_score_increase": { "choice_of": ["str", "con"], "amount": 1 }
+  },
+
+  "Prodigy": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": {
+      "type": "race",
+      "races": ["Half-Elf", "Half-Orc", "Human"]
+    },
+    "choices": [
+      {
+        "id": "skill",
+        "label": "New skill proficiency",
+        "type": "skill",
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival"
+        ]
+      },
+      {
+        "id": "tool",
+        "label": "New tool proficiency",
+        "type": "tool",
+        "count": 1,
+        "options": [
+          "Alchemist's Supplies",
+          "Brewer's Supplies",
+          "Calligrapher's Supplies",
+          "Carpenter's Tools",
+          "Cartographer's Tools",
+          "Cobbler's Tools",
+          "Cook's Utensils",
+          "Glassblower's Tools",
+          "Jeweler's Tools",
+          "Leatherworker's Tools",
+          "Mason's Tools",
+          "Painter's Supplies",
+          "Potter's Tools",
+          "Smith's Tools",
+          "Tinker's Tools",
+          "Weaver's Tools",
+          "Woodcarver's Tools",
+          "Disguise Kit",
+          "Forgery Kit",
+          "Herbalism Kit",
+          "Navigator's Tools",
+          "Poisoner's Kit",
+          "Thieves' Tools"
+        ]
+      },
+      {
+        "id": "language",
+        "label": "New language",
+        "type": "language",
+        "count": 1,
+        "options": [
+          "Common",
+          "Dwarvish",
+          "Elvish",
+          "Giant",
+          "Gnomish",
+          "Goblin",
+          "Halfling",
+          "Orc",
+          "Abyssal",
+          "Celestial",
+          "Draconic",
+          "Deep Speech",
+          "Infernal",
+          "Primordial",
+          "Sylvan",
+          "Undercommon"
+        ]
+      },
+      {
+        "id": "expertise_skill",
+        "label": "Existing proficient skill to gain Expertise in",
+        "type": "skill",
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival"
+        ]
+      }
+    ]
+  },
+
+  "Second Chance": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Halfling"] },
+    "ability_score_increase": {
+      "choice_of": ["dex", "con", "cha"],
+      "amount": 1
+    }
+  },
+
+  "Squat Nimbleness": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Dwarf", "Halfling", "Gnome"] },
+    "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 },
+    "choices": [
+      {
+        "id": "skill",
+        "label": "Skill proficiency",
+        "type": "skill",
+        "count": 1,
+        "options": ["Acrobatics", "Athletics"]
+      }
+    ]
+  },
+
+  "Wood Elf Magic": {
+    "source": "Xanathar's Guide to Everything",
+    "prerequisite": { "type": "race", "races": ["Wood Elf"] },
+    "grants_spells": {
+      "fixed": ["Longstrider", "Pass without Trace"],
+      "casting_ability": "wis"
+    },
+    "choices": [
+      {
+        "id": "cantrip",
+        "label": "Druid cantrip",
+        "type": "spell_text",
+        "count": 1
+      }
+    ],
+    "free_cast_note": "Longstrider and Pass without Trace can each be cast once per long rest without a spell slot"
   }
 }

@@ -309,6 +309,20 @@ app.post('/api/engine/preview-level-up', (req, res) => {
   }
 })
 
+// ── GET /api/engine/subclasses ────────────────────────────
+// Every subclass across every class, unfiltered, expanded_spell_list
+// included — loaded once at app startup so the frontend can derive
+// subclass-granted bonus spells (see spellUtils.js) without a per-character
+// copy of that table living on each character record.
+app.get('/api/engine/subclasses', (req, res) => {
+  try {
+    res.json(engine.listSubclasses())
+  } catch (err) {
+    console.error('Error listing all subclasses:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // ── GET /api/engine/subclasses/:className ────────────────
 // Lists the subclasses the engine actually has data for, so the UI can offer
 // real choices instead of free text when a subclass pick is needed.
@@ -327,22 +341,56 @@ app.get('/api/engine/subclasses/:className', (req, res) => {
 })
 
 // ── GET /api/engine/feats ─────────────────────────────────
-// Only feats with structured mechanical data (engine/data/feats.json) —
-// currently a small, deliberately incomplete catalog (see CHECKLIST.md
-// Phase 3). The UI uses this to offer real choices for feats that grant a
-// catalogued ability score bump, and falls back to free text otherwise.
+// Full PHB/XGE/TCE 2014-ruleset feat catalog (engine/data/feats.json, 72
+// entries — see engine/CHECKLIST.md Phase 7b). The UI uses this to offer
+// real choices for every cataloged feat (ability score bump, the generic
+// `choices` array, prerequisite), falling back to free text for anything
+// not in the catalog.
 app.get('/api/engine/feats', (req, res) => {
   try {
     const raw = require('./engine/data/feats.json')
     const feats = Object.entries(raw)
-      .filter(([name]) => name !== '_notes')
+      .filter(([name]) => !name.startsWith('_'))
       .map(([name, data]) => ({
         name,
+        source: data.source ?? null,
+        prerequisite: data.prerequisite ?? null,
         ability_score_increase: data.ability_score_increase ?? null,
+        grants_spells: data.grants_spells ?? null,
+        choices: data.choices ?? null,
+        stat_bonuses: data.stat_bonuses ?? null,
       }))
     res.json(feats)
   } catch (err) {
     console.error('Error listing feats:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── POST /api/engine/feat-eligibility ─────────────────────
+// Given a character, evaluate every cataloged feat's prerequisite
+// (engine.meetsFeatPrerequisites) and return { featName: {met, reason,
+// unknown} } for all of them. Separate from GET /api/engine/feats (which is
+// character-agnostic and cacheable) — mirrors preview-level-up's own
+// pattern of POSTing the client's in-memory character for a pure
+// computation, no disk access. `unknown: true` means a proficiency-based
+// prerequisite couldn't be reliably checked (most characters don't track
+// armor/weapon proficiencies explicitly) — treated as met, not blocked.
+app.post('/api/engine/feat-eligibility', (req, res) => {
+  const { character } = req.body
+  if (!character) {
+    return res.status(400).json({ error: '"character" is required' })
+  }
+  try {
+    const raw = require('./engine/data/feats.json')
+    const result = {}
+    for (const name of Object.keys(raw)) {
+      if (name.startsWith('_')) continue
+      result[name] = engine.meetsFeatPrerequisites(character, name)
+    }
+    res.json(result)
+  } catch (err) {
+    console.error('Error computing feat eligibility:', err.message)
     res.status(500).json({ error: err.message })
   }
 })

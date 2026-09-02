@@ -1,0 +1,22 @@
+{
+  "class": "Artificer",
+  "name": "Infused Arbalist",
+  "description": "An artificer who bonds with a single ranged weapon and infuses it directly, rather than summoning a separate cannon. Homebrew, built on Tasha's Cauldron of Everything's Artillerist framework.",
+  "features_by_level": {
+    "3": [
+      "hb_infused_arbalist_bonus_spells",
+      "hb_infused_arbalist_calculating_arbalister",
+      "hb_infused_arbalist_infuse_weapon"
+    ],
+    "5": ["hb_infused_arbalist_arcane_payload"],
+    "9": ["hb_infused_arbalist_unstable_rounds"],
+    "15": ["hb_infused_arbalist_twin_barrels"]
+  },
+  "expanded_spell_list": {
+    "3": ["Shield", "Thunderwave"],
+    "5": ["Scorching Ray", "Shatter"],
+    "9": ["Fireball", "Wind Wall"],
+    "13": ["Ice Storm", "Wall of Fire"],
+    "17": ["Cone of Cold", "Wall of Force"]
+  }
+}

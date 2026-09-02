@@ -39,6 +39,10 @@ function loadSubclass(className, subclassName) {
   return data
 }
 
+// expanded_spell_list included so callers (e.g. the frontend's
+// bonus-spell computation in spellUtils.js) can derive "what bonus spells
+// does this character have at their current level" straight from the
+// subclass data instead of a per-character copy that can drift out of sync.
 function listSubclasses() {
   return fs
     .readdirSync(SUBCLASSES_DIR)
@@ -47,7 +51,11 @@ function listSubclasses() {
       const data = JSON.parse(
         fs.readFileSync(path.join(SUBCLASSES_DIR, f), 'utf8')
       )
-      return { class: data.class, name: data.name }
+      return {
+        class: data.class,
+        name: data.name,
+        expanded_spell_list: data.expanded_spell_list ?? null,
+      }
     })
 }
 

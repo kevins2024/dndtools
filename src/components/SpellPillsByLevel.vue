@@ -70,9 +70,11 @@ export default {
       return this.$store.state.party_items ?? []
     },
     spellGroups() {
-      let spells = getCharacterSpells(this.character, this.partyItems).filter(
-        (s) => s.level === 0 || s.prepared
-      )
+      let spells = getCharacterSpells(
+        this.character,
+        this.partyItems,
+        this.$store.state.subclasses
+      ).filter((s) => s.level === 0 || s.prepared)
       if (this.filter !== 'all') {
         spells = spells.filter((s) => {
           const at = this.spellMeta[s.name]?.actionType
@@ -107,7 +109,11 @@ export default {
 
   methods: {
     async loadSpellMeta() {
-      const spells = getCharacterSpells(this.character, this.partyItems)
+      const spells = getCharacterSpells(
+        this.character,
+        this.partyItems,
+        this.$store.state.subclasses
+      )
       const meta = {}
       await Promise.all(
         spells.map(async (s) => {

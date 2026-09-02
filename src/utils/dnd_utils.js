@@ -339,8 +339,8 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   initiative(character, partyItems = []) {
-    const { stats } = dnd.resolveStats(character, partyItems)
-    return dnd.mod(stats.dex)
+    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
+    return dnd.mod(stats.dex) + (bonuses.initiative ?? 0)
   },
 
   // ─────────────────────────────────────────────

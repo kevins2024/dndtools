@@ -5,8 +5,144 @@ dependencies, no Vue/Vuex imports anywhere in this folder, meant to be portable 
 a future Godot port). If this work gets interrupted, **this file is the resume
 point** — check what's ticked, read the "Notes" under the current phase, and
 continue from the first unchecked item. Run `node --test` from inside `engine/`
-to confirm everything still passes before continuing (138 tests as of this
+to confirm everything still passes before continuing (159 tests as of this
 writing, all green).
+
+## Phase 7b — Full feat catalog, "fully wired up" (2026-09-02, project owner:
+
+"build out a full list of feats with the RAW wording and wired up to correctly
+grant bonuses AND the tooltips that show calculations should be able to work
+with all of them... prerequisites must be enforced... i've got tokens and
+nowhere else to go")
+
+Closes out the 7b gap logged below (was: 15 feats catalogued against a real
+~50-72 total). **All 72 feats of the 2014 PHB/XGE/TCE feat list are now
+catalogued** (42 PHB + 15 Tasha's Cauldron of Everything + 15 Xanathar's Guide
+to Everything racial feats), each verified against dnd5e.wikidot.com and
+cross-checked against aidedd.org's feat filter (the project owner's named
+reference — used to confirm the roster is complete, not just as a text
+source). Deliberately did NOT include Glory of the Giants' "Strike of the
+Giants" line or Fizban's Treasury of Dragons' dragon-gift feats — those are
+real WotC content but outside "PHB + the handful of XGE/TCE racial feats"
+scope the project owner set, flagged rather than silently included.
+
+**Three files stay in sync per feat** (unchanged convention, just scaled up):
+`engine/data/feats.json` (structured mechanical data), `src/data/
+published_features.json` (`category: "feat"`, real RAW-paraphrased text +
+`source`), `engine/data/feature-catalog.json` (id→name). A new test,
+`engine/test/featsCatalog.test.js`, asserts the 72-count and the 1:1 name
+match between feats.json and published_features.json's `category:"feat"`
+entries in both directions, plus id resolvability — this is now a real
+regression guard, not just a one-time audit.
+
+**Schema additions to feats.json** (documented inline in its own `_schema`
+key — read that before adding feat #73):
+
+- `prerequisite`: was free-text ("Gnome") before this pass, now structured —
+  `{type:'ability_score'|'any_of'|'race'|'proficiency'|'spellcasting', ...}`.
+  **Enforced**, not just recorded — see below.
+- `choices`: a NEW generic schema for any in-feat pick beyond the ability
+  score (Skilled's 3 skills/tools, Weapon Master's 4 weapons, Martial
+  Adept's 2 maneuvers, Linguist's 3 languages, Elemental Adept's damage
+  type, Fighting Initiate's Fighting Style, etc.) — `{id, label, type,
+count, options?}`. One rendering path in LevelUpTool.vue handles every
+  type generically (a `count`-many `<select>` from `options`, or a
+  `<input>` for the two free-text types) — no per-feat special-casing.
+  `grants_spells.choice` (Fey Touched/Shadow Touched's school-filtered
+  spell pick) is synthesized into this same list client-side rather than
+  duplicated into the choices schema, since it already had its own richer
+  shape.
+- `stat_bonuses`: reuses an EXISTING pattern, doesn't invent one — grepped
+  `src/utils/dnd_utils.js` first and found `character.features[].
+stat_bonuses` already read generically by `resolveStats()` for AC/saves/
+  skills/passive Perception (used today by e.g. Fighting Style: Defense).
+  Only added ONE new key to that vocabulary: `initiative` (Alert's +5) —
+  `dnd.initiative()` didn't read `bonuses.initiative` at all before this
+  pass, a one-line fix mirroring how `passivePerception()` already did.
+  Deliberately did NOT add a `stat_bonuses.ac` for Dual Wielder or a "max
+  Dex bonus" override for Medium Armor Master — those are conditional on
+  current loadout, and the existing mechanism has no "only when X" concept;
+  setting them unconditionally would be a correctness bug, not a
+  discoverability win, so they stay text-only like before.
+- `grants_saving_throw_proficiency` (Resilient only) and `hp_bonus_per_level`
+  (Tough only, **deliberately NOT auto-applied** — RAW is a retroactive
+  lump sum on the level Tough is taken, then +2/level after; expressing
+  that without double-counting on a later re-preview is real complexity for
+  one feat, flagged rather than guessed at, same spirit as the project's
+  existing "feats beyond ASI/known-spell-count are recorded manually"
+  boundary in `asiFeat.js`).
+
+**Auto-application, extended beyond ability scores** (`engine/rules/
+asiFeat.js` + `engine/rules/diffLevelUp.js`): taking a feat via the Level Up
+tool's picker now writes a real `features[]` entry for the feat itself
+(previously it silently applied ONLY the ability bump and added nothing to
+`features[]` at all — the feat's own record, spells, and saving-throw
+proficiency were 100% manual even for Fey Touched/Shadow Touched, despite
+those two already having `grants_spells` data). Now: the ability bump (as
+before), the feat's `stat_bonuses` (flows straight into the existing AC/
+saves/skills/initiative calculators), Resilient's saving-throw proficiency
+(→ `patch.saving_throws`), and `grants_spells` fixed + chosen spells (→
+`patch.spells`, same `{name, level:null, prepared:true, featureGranted:true,
+_source:featName}` shape a human was already hand-entering — verified
+against Denna/Revven/Rith's real Fey Touched/Shadow Touched spell entries
+before choosing this shape, not invented). `level:null` on a feat-granted
+spell resolves the same way `spellUtils.js` already documented for this
+exact case. Everything else about a feat (situational combat text, Weapon
+Master's chosen weapons, Skilled's chosen skills) is recorded on the new
+feature's `choices` field for display, but not further mechanically
+simulated — same deliberate scope boundary as before, just now the feature
+entry actually EXISTS to hold that data instead of nothing being written at
+all.
+
+**Prerequisites are ENFORCED, not just recorded** — project owner's explicit
+call when asked (the honest tradeoff was "record now, enforce later" vs.
+"enforce now"; owner chose enforce). New `engine/rules/featPrerequisites.js`
+(`meetsFeatPrerequisites`, another `diffLevelUp.js`-style adapter — the only
+other place besides that file and `validateCharacter.js` that knows the
+characters.json shape) + `POST /api/engine/feat-eligibility` (mirrors
+`preview-level-up`'s "POST the client's in-memory character, get a pure
+computation back" pattern). LevelUpTool.vue's feat `<select>` filters out
+anything with an unmet prerequisite by default, with a "Show all feats
+(ignore prerequisites)" checkbox DM override (greys the option out with a
+"(prereq not met)" label instead of hiding it, rather than a hard block —
+matches this project's existing soft-override philosophy for multiclass
+prerequisites). One real data-quality call made explicitly: almost no
+character in `characters.json` populates `armor_proficiencies`/
+`weapon_proficiencies` at all (checked before assuming otherwise), so a
+proficiency-type prerequisite (Heavy Armor Master, Fighting Initiate, etc.)
+on a character with no tracked data is treated as **met, with a note** —
+hard-blocking here would hide Heavy Armor Master from a Fighter standing in
+full plate for no reason but a blank field. Ability-score and race
+prerequisites are always reliable (every character has stat_str..stat_cha
+and a race) and ARE hard-enforced. Covered by `featsCatalog.test.js`.
+
+**Live-verified in the browser** (Playwright, backend restarted to pick up
+the `engine/data/` + `server.js` changes, frontend hot-reloaded) against
+Denna (Human Rogue 9→10, a real ASI-level character already on the roster —
+not touched, no Save/Confirm ever clicked): Resilient (ability+saving-throw
+choice), Skilled (3-of-any-combination choice, a genuinely different choice
+shape), Alert (no ASI, pure `stat_bonuses`), and Fey Touched (ability choice
+
+- synthesized spell-text choice) all round-tripped through the picker with
+  zero console/page errors, correct live description-panel updates, and
+  `canConfirm` correctly gated ONLY by the (unrelated, pre-existing) party
+  level cap. Prerequisite filtering confirmed both directions: Denna (Human,
+  DEX 20) correctly sees Defensive Duelist/Skulker but not Grappler/Fade
+  Away/Inspiring Leader/the spellcasting-gated PHB feats; toggling "show all"
+  reveals Fade Away disabled with "(prereq not met)".
+
+**One pre-existing bug found, not caused by this pass, and NOT fixed (flagged
+instead — genuinely out of scope, a racial-trait gap not a feat gap)**: Vaz
+and Tackett (both Halfling) each carry a `features[]` entry literally named
+"Lucky" — the Halfling RACIAL TRAIT (reroll natural 1s), not the PHB feat.
+`published_features.json` has never had a distinct "Lucky (Halfling)" entry,
+so `lookupFeature`'s name-only matching has silently resolved their racial
+trait's tooltip to the FEAT's "3 luck points" text since before this
+session. Confirmed via `characters.json` that this predates any change made
+here (the collision exists whether or not `pub_lucky` carries
+`category:"feat"`) — a real gap in the racial-traits catalog, not
+introduced or worsened by this pass, left for a future racial-traits pass
+rather than guessed at here.
 
 ## Phase 7 — Full RAW content coverage (2026-09-02, project owner: "the engine
 
@@ -135,9 +271,14 @@ classes/*.json`, all 12) and every previously-built subclass (40 files
       automatically. `NewCharacterTool.vue` NOT touched yet — same
       treatment would apply there, just not done this pass.
 
-### 7b — Feats (audited 2026-09-02, not yet built out)
+### 7b — Feats (audited 2026-09-02, ~~not yet built out~~ \*\*DONE 2026-09-02
 
-Two different things exist and are both incomplete for different reasons:
+later same day — see the new "Phase 7b" section above this one for the full
+writeup\*\*: all 72 PHB/XGE/TCE feats catalogued, mechanically wired,
+prerequisite-enforced, live-verified.)
+
+Two different things exist and were both incomplete for different reasons
+(original audit below, kept for history):
 
 - `engine/data/feats.json` — deliberately narrow, structured mechanical
   grants for feats that GRANT SPELLS (so known-spell-count math works).

@@ -5,13 +5,17 @@
  *
  * Sources collected (in priority order for deduplication):
  *   1. character.spells[]                  — main class list; homebrew spells live here too (homebrew: true)
- *   2. character.artillerist_spells.spells — Artificer subclass always-prepared spells
+ *   2. getBonusSpells(character, subclasses) — subclass always-prepared spells
+ *      (Artillerist Bonus Spells, Arbalist Bonus Spells, etc.), derived live
+ *      from the subclass's own expanded_spell_list (store.state.subclasses,
+ *      loaded once from GET /api/engine/subclasses) rather than stored on
+ *      the character — see getBonusSpells's own comment for why.
  *   3. character.features[].spells_granted — feats / race / class features
  *   4. partyItems[].spells_granted         — equipped + attuned magic items
  *
  * Each returned spell object has the original fields plus:
  *   _source      {string}  — human-readable origin label
- *   artillerist  {bool}    — true if from artillerist_spells
+ *   bonusSpell   {bool}    — true if from getBonusSpells
  *   featureGranted {bool}  — true if from a feature's spells_granted
  *   itemGranted  {bool}    — true if from an equipped item's spells_granted
  *   homebrew     {bool}    — true if spell is homebrew (set on the spell entry in character.spells)
@@ -70,7 +74,45 @@ export function usesFullClassList(character) {
   )
 }
 
-export function getCharacterSpells(character, partyItems = []) {
+// Derives a character's subclass-granted bonus spells (Artillerist Bonus
+// Spells, Arbalist Bonus Spells, and any future subclass with the same
+// pattern) straight from the subclass's own expanded_spell_list, rather
+// than trusting a per-character copy that has to be hand-maintained and can
+// drift out of sync (e.g. holding stale entries after a rebuild, or simply
+// never getting backfilled on a new character). `subclasses` is the full
+// list from GET /api/engine/subclasses (store.state.subclasses).
+//
+// expanded_spell_list is keyed by the character level the grant unlocks at
+// (3, 5, 9, 13, 17 for every real/homebrew Artillerist-shaped subclass so
+// far); the spell's own level is derived from that breakpoint via the same
+// formula the engine's own tests already verify
+// (engine/test/artificerSubclasses.test.js): level ÷ 4, rounded up.
+function getBonusSpells(character, subclasses = []) {
+  const result = []
+  for (const cc of character.classes ?? []) {
+    if (!cc.subclass) continue
+    const sub = subclasses.find(
+      (s) =>
+        s.class?.toLowerCase() === cc.name?.toLowerCase() &&
+        s.name?.toLowerCase() === cc.subclass?.toLowerCase()
+    )
+    if (!sub?.expanded_spell_list) continue
+    for (const [atLevel, names] of Object.entries(sub.expanded_spell_list)) {
+      if (Number(atLevel) > (cc.level ?? 0)) continue
+      const spellLevel = Math.ceil(Number(atLevel) / 4)
+      for (const name of names) {
+        result.push({ name, level: spellLevel })
+      }
+    }
+  }
+  return result
+}
+
+export function getCharacterSpells(
+  character,
+  partyItems = [],
+  subclasses = []
+) {
   const seen = new Set()
   const result = []
 
@@ -88,14 +130,16 @@ export function getCharacterSpells(character, partyItems = []) {
     add({ _source: 'class', ...s })
   }
 
-  // 2. Artillerist subclass spells (always prepared, don't count against limit)
-  for (const s of character.artillerist_spells?.spells ?? []) {
+  // 2. Subclass bonus spells (always prepared, don't count against limit) —
+  // e.g. Artillerist Bonus Spells, Arbalist Bonus Spells — derived from the
+  // subclass's own data, not stored per-character (see getBonusSpells above).
+  for (const s of getBonusSpells(character, subclasses)) {
     add({
       name: s.name,
       level: s.level,
       prepared: true,
-      artillerist: true,
-      _source: 'Artillerist Spells',
+      bonusSpell: true,
+      _source: 'Bonus Spells',
     })
   }
 
@@ -144,10 +188,14 @@ export function getCharacterSpells(character, partyItems = []) {
 }
 
 /** Quick boolean — used by tab visibility checks without building the full list. */
-export function characterHasSpells(character, partyItems = []) {
+export function characterHasSpells(
+  character,
+  partyItems = [],
+  subclasses = []
+) {
   if (!character) return false
   if ((character.spells ?? []).length > 0) return true
-  if ((character.artillerist_spells?.spells ?? []).length > 0) return true
+  if (getBonusSpells(character, subclasses).length > 0) return true
   if (
     (character.features ?? []).some((f) => (f.spells_granted ?? []).length > 0)
   )

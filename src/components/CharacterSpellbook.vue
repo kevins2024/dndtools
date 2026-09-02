@@ -92,7 +92,7 @@
       <div class="sb-spell-grid">
         <div
           v-for="spell in group.prepared"
-          :key="spell.name + (spell.artillerist ? '-art' : '')"
+          :key="spell.name + (spell.bonusSpell ? '-bonus' : '')"
           class="sb-spell-entry"
           :class="{
             'sb-entry--match': isMatch(spell),
@@ -121,10 +121,10 @@
             >D</span
           >
           <span
-            v-else-if="spell.artillerist"
-            class="sb-badge sb-badge--artillerist"
-            title="Artillerist spell"
-            >A</span
+            v-else-if="spell.bonusSpell"
+            class="sb-badge sb-badge--bonus"
+            title="Subclass bonus spell"
+            >B</span
           >
           <span
             v-else-if="spell.homebrew"
@@ -360,7 +360,11 @@ export default {
       return this.$store.state.party_items ?? []
     },
     allSpells() {
-      return getCharacterSpells(this.character, this.partyItems)
+      return getCharacterSpells(
+        this.character,
+        this.partyItems,
+        this.$store.state.subclasses
+      )
     },
 
     classSpellList() {
@@ -425,12 +429,12 @@ export default {
       const mod = dnd.mod(stats[ab])
       const max = Math.max(1, mod + effectiveLevel)
 
-      // Only count non-domain, non-artillerist, non-cantrip spells toward the limit
+      // Only count non-domain, non-bonus-spell, non-cantrip spells toward the limit
       const prepared = this.allSpells.filter(
         (s) =>
           s.level > 0 &&
           !s.domain &&
-          !s.artillerist &&
+          !s.bonusSpell &&
           !s.featureGranted &&
           !s.itemGranted &&
           !s.homebrew &&
@@ -584,7 +588,7 @@ export default {
       if (spell.level === 0) return true
       if (
         spell.domain ||
-        spell.artillerist ||
+        spell.bonusSpell ||
         spell.featureGranted ||
         spell.itemGranted ||
         spell.homebrew
@@ -599,7 +603,7 @@ export default {
       if (spell.level === 0) return false
       if (
         spell.domain ||
-        spell.artillerist ||
+        spell.bonusSpell ||
         spell.featureGranted ||
         spell.itemGranted ||
         spell.homebrew
@@ -611,7 +615,7 @@ export default {
     prepTitle(spell) {
       if (spell.level === 0) return 'Cantrips are always available'
       if (spell.domain) return 'Domain spell — always prepared'
-      if (spell.artillerist) return 'Artillerist spell — always prepared'
+      if (spell.bonusSpell) return 'Subclass bonus spell — always prepared'
       if (spell.itemGranted)
         return `Granted by ${spell._source} — always available while attuned`
       if (spell.featureGranted || spell.homebrew)
@@ -1047,7 +1051,7 @@ export default {
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
-.sb-badge--artillerist {
+.sb-badge--bonus {
   border-color: #4488cc;
   color: #4488cc;
 }

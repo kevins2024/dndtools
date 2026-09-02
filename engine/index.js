@@ -30,6 +30,7 @@ const { validateCharacter } = require('./rules/validateCharacter')
 const { describeLevelUp } = require('./rules/levelUp')
 const { diffLevelUp } = require('./rules/diffLevelUp')
 const { loadFeat, isFeatGrantedSpell } = require('./rules/grants')
+const { meetsFeatPrerequisites } = require('./rules/featPrerequisites')
 const { findSpellRecord, isSpellOnClassList } = require('./rules/spellLists')
 const {
   casterLevelContribution,
@@ -84,6 +85,7 @@ module.exports = {
   diffLevelUp,
   loadFeat,
   isFeatGrantedSpell,
+  meetsFeatPrerequisites,
   findSpellRecord,
   isSpellOnClassList,
   casterLevelContribution,

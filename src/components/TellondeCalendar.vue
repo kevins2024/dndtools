@@ -19,6 +19,9 @@
             >Spring Festival · Day {{ dayOfWeek }}</span
           >
           <span v-else>Week {{ weekOfYear }}, Day {{ dayOfWeek }}</span>
+          <span v-if="!isViewingToday" class="viewing-tag"
+            >— browsing, not the real current day</span
+          >
         </div>
       </div>
       <div class="cal-nav">
@@ -26,6 +29,22 @@
         <button class="nav-btn" @click="advance(-1)">−1d</button>
         <button class="nav-btn accent" @click="advance(1)">+1d</button>
         <button class="nav-btn" @click="advance(7)">+7d</button>
+        <button
+          v-if="!isViewingToday"
+          class="nav-btn"
+          title="Snap the view back to the real current day, without changing it"
+          @click="jumpToToday"
+        >
+          Today
+        </button>
+        <button
+          v-if="!isViewingToday"
+          class="nav-btn set-day-btn"
+          :title="setAsCurrentDayTitle"
+          @click="setAsCurrentDay"
+        >
+          Set as current day
+        </button>
       </div>
     </div>
 
@@ -210,6 +229,13 @@ export default {
       noteEditorOpen: false,
       noteEditorDay: null,
       noteDraft: { text: '', recurrence: 'none' },
+      // The day the grid/header currently display — browsing this (nav
+      // buttons, clicking a cell) is deliberately NOT the same as setting
+      // the party's actual current day (that used to happen on every click,
+      // a real bug: just looking ahead at the calendar silently overwrote
+      // the active party's real game_day). Set for real in `created()`,
+      // once `currentDay` (a computed) is available.
+      viewingDay: null,
     }
   },
 
@@ -217,12 +243,25 @@ export default {
     ...mapState(['game_day', 'calendar_notes']),
     ...mapGetters(['activePartyDay', 'activeParty']),
 
+    // The party's real, persisted current day.
     currentDay() {
       return this.activePartyDay || this.game_day
     },
 
+    // Whether you've navigated away from the real current day — gates the
+    // "set as current day" control and the "today" vs. "viewing" cell
+    // markers in the grid.
+    isViewingToday() {
+      return this.viewingDay === this.currentDay
+    },
+
+    setAsCurrentDayTitle() {
+      const whose = this.activeParty ? `${this.activeParty.name}'s` : 'the'
+      return `Actually set ${whose} current day to what's being viewed`
+    },
+
     internalYear() {
-      return Math.floor((this.currentDay - 1) / DAYS_PER_YEAR) + 1
+      return Math.floor((this.viewingDay - 1) / DAYS_PER_YEAR) + 1
     },
 
     currentYear() {
@@ -234,7 +273,18 @@ export default {
     },
 
     dayOfYear() {
+      return ((this.viewingDay - 1) % DAYS_PER_YEAR) + 1
+    },
+
+    // Same as dayOfYear/currentYear but for the REAL current day, regardless
+    // of what's being viewed — used to mark the actual "today" cell even
+    // when browsing a different day (or, once cross-year browsing exists,
+    // a different year).
+    actualDayOfYear() {
       return ((this.currentDay - 1) % DAYS_PER_YEAR) + 1
+    },
+    actualYear() {
+      return Math.floor((this.currentDay - 1) / DAYS_PER_YEAR) + 1 + YEAR_OFFSET
     },
 
     weekOfYear() {
@@ -273,6 +323,20 @@ export default {
     },
   },
 
+  created() {
+    this.viewingDay = this.currentDay
+  },
+
+  watch: {
+    // A different party's calendar was switched to, or its real day changed
+    // elsewhere (e.g. a long rest) — snap the view back to its actual
+    // current day rather than leaving it on a stale browsed-to day from
+    // whatever was being looked at before.
+    currentDay(newVal) {
+      this.viewingDay = newVal
+    },
+  },
+
   methods: {
     ...mapMutations([
       'SET_GAME_DAY',
@@ -281,11 +345,22 @@ export default {
     ]),
 
     advance(delta) {
-      this.SET_GAME_DAY(Math.max(1, this.currentDay + delta))
+      this.viewingDay = Math.max(1, this.viewingDay + delta)
+    },
+
+    jumpToToday() {
+      this.viewingDay = this.currentDay
+    },
+
+    // Deliberate, explicit action — the only place that actually changes
+    // the active party's real current day now. See the viewingDay comment
+    // in data() for why browsing alone no longer does this.
+    setAsCurrentDay() {
+      this.SET_GAME_DAY(this.viewingDay)
     },
 
     selectDay(day) {
-      this.SET_GAME_DAY(this.yearStart + day)
+      this.viewingDay = this.yearStart + day
       this.noteEditorDay = day
       this.noteEditorOpen = true
       this.noteDraft = { text: '', recurrence: 'none' }
@@ -307,7 +382,12 @@ export default {
       return {
         [`season-${s.key}`]: true,
         'festival-day': this.isFestivalDay(day),
-        'current-day': day === this.dayOfYear,
+        'viewing-day': day === this.dayOfYear,
+        // Only mark "today" if the year being browsed is actually the
+        // party's real current year — otherwise every year would show a
+        // "today" cell at the same day-of-year, which is wrong.
+        today:
+          day === this.actualDayOfYear && this.currentYear === this.actualYear,
         'has-note': this.notesForDay(day).length > 0,
       }
     },
@@ -428,6 +508,17 @@ export default {
   background: rgba(200, 160, 80, 0.25);
   color: #c8a050;
   border: 1px solid rgba(200, 160, 80, 0.4);
+}
+
+.viewing-tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+.set-day-btn {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .cal-nav {
@@ -580,14 +671,22 @@ export default {
   color: #d4b060 !important;
 }
 
-/* Current day */
-.current-day {
+/* The party's real current day, regardless of what's being browsed */
+.today {
   outline: 2px solid var(--color-accent);
   outline-offset: 1px;
   font-weight: 700;
   z-index: 2;
   color: #fff !important;
   filter: brightness(1.4);
+}
+
+/* The day currently being browsed/viewed — distinct from .today so
+   navigating the calendar never looks like it changed the real day */
+.viewing-day {
+  outline: 2px dashed var(--color-text-low);
+  outline-offset: 1px;
+  z-index: 1;
 }
 
 /* Season pill colors */

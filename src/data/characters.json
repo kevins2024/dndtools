@@ -49,6 +49,7 @@
       },
       {
         "name": "Lucky",
+        "id": "pub_lucky",
         "type": "feature"
       },
       {
@@ -317,249 +318,6 @@
       {
         "name": "Rogue",
         "subclass": "Assassin",
-        "level": 9
-      }
-    ]
-  },
-  {
-    "name": "Jaygar",
-    "full_name": "Jaygar Waxystache",
-    "race": "Gnome",
-    "subrace": "Rock Gnome",
-    "level": 9,
-    "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
-    "image": "./characters/jaygar.jpg",
-    "proficiency_bonus": 4,
-    "spellcasting_ability": "int",
-    "spell_attack_bonus": 9,
-    "spell_save_dc": 17,
-    "notes": "Converted from Alchemist to Artillerist.",
-    "stat_str": 8,
-    "stat_dex": 12,
-    "stat_con": 11,
-    "stat_int": 20,
-    "stat_wis": 13,
-    "stat_cha": 10,
-    "hp_max": 56,
-    "hp_current": 56,
-    "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "int"],
-    "skill_proficiencies": [
-      "Arcana",
-      "Investigation",
-      "Medicine",
-      "Perception"
-    ],
-    "skill_expertise": [],
-    "languages": ["Common", "Gnomish", "Elvish"],
-    "features": [
-      {
-        "name": "Magical Tinkering",
-        "type": "feature",
-        "action_type": "action",
-        "description": "Touch a tiny nonmagical object and give it one of the following properties until you next use this feature: emit light 5ft, emit recorded message, emit odor or nonverbal sound, or display a visual effect. Can have up to INT modifier (5) objects tinkered simultaneously."
-      },
-      {
-        "name": "Tool Expertise",
-        "type": "feature",
-        "description": "Proficiency bonus doubled for any ability check using a tool you are proficient with."
-      },
-      {
-        "name": "Infuse Item",
-        "type": "feature",
-        "description": "Infusions known: 7. Infusions active simultaneously: 4. Each infusion requires a long rest to create. If you die infusions end at next dawn.",
-        "infusions_known": 7,
-        "infusions_active": 4,
-        "current_infusions": [
-          {
-            "name": "Repeating Shot",
-            "applied_to": "Alchemical Heavy Crossbow",
-            "effect": "Ignore loading property. Weapon never runs out of ammunition. +1 to attack and damage rolls."
-          },
-          {
-            "name": "Enhanced Arcane Focus",
-            "applied_to": "Alchemical Heavy Crossbow",
-            "effect": "+2 to spell attack rolls made through this focus. Ignore half cover on spell attacks."
-          },
-          {
-            "name": "Armor of Magical Strength",
-            "applied_to": "Leather Armor +2",
-            "effect": "Use INT modifier instead of STR for STR checks and saving throws while wearing. Reaction to avoid being knocked prone."
-          },
-          {
-            "name": "Lantern of Revealing",
-            "applied_to": "Lantern",
-            "effect": "While lit reveals invisible creatures and objects within 30ft. Burns for 6 hours on oil flask."
-          }
-        ],
-        "new_infusion_learned": "Bag of Holding"
-      },
-      {
-        "name": "Arcane Firearm",
-        "type": "feature",
-        "description": "Jaygar's custom alchemical heavy crossbow is his arcane firearm. When casting an artificer spell through it add 1d8 to one of the spell's damage rolls. The crossbow must be held to use this property."
-      },
-      {
-        "name": "Eldritch Cannon — Explosive Cannon",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "description": "Cannon damage upgraded to 3d8. As an action, Jaygar can detonate the cannon — each creature within 20ft makes a DEX save DC 17 or takes 3d8 force damage, half on success. Cannon is destroyed after detonating.",
-        "modes": [
-          {
-            "name": "Force Ballista",
-            "description": "Ranged spell attack using INT. Range 120ft. Hit: 3d8 force damage. Pushes target 5ft away on hit."
-          },
-          {
-            "name": "Flamethrower",
-            "description": "15ft cone. DEX save DC 17 or take 3d8 fire damage, half on success. Ignites unattended flammable objects."
-          },
-          {
-            "name": "Protector",
-            "description": "Emits aura of protective energy. Jaygar and allies within 10ft gain 1d8+5 temporary HP when activated."
-          },
-          {
-            "name": "Detonate",
-            "description": "Action to destroy cannon. All creatures within 20ft make DEX save DC 17 or take 3d8 force damage, half on success."
-          }
-        ]
-      },
-      {
-        "name": "Flash of Genius",
-        "type": "feature",
-        "action_type": "reaction",
-        "recharge": "long_rest",
-        "uses_max": 5,
-        "uses_current": 5,
-        "description": "When Jaygar or a creature within 30ft makes an ability check or saving throw, add INT modifier (+5) to the roll. Uses equal to INT modifier per long rest."
-      },
-      {
-        "name": "War Caster",
-        "type": "feat",
-        "action_type": "reaction",
-        "description": "Advantage on CON saving throws to maintain concentration. Can perform somatic components with hands full. Can cast a spell as an opportunity attack."
-      },
-      {
-        "name": "Fey Touched",
-        "type": "feat",
-        "recharge": "long_rest",
-        "description": "Learn Misty Step and Command. Cast each once per long rest without a spell slot.",
-        "spells_granted": ["Misty Step", "Command"]
-      },
-      {
-        "name": "Gnome Cunning",
-        "type": "racial",
-        "description": "Advantage on all INT, WIS, and CHA saving throws against magic."
-      },
-      {
-        "name": "Rock Gnome Artificer's Lore",
-        "type": "racial",
-        "description": "Add twice proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
-      },
-      {
-        "name": "Infusion: Clockwork Amulet",
-        "type": "infusion",
-        "recharge": "dawn",
-        "uses_max": 1,
-        "uses_current": 1,
-        "description": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10."
-      },
-      {
-        "name": "Infusion: Helm of Comprehending Languages",
-        "type": "infusion",
-        "description": "While wearing this helm, the wearer can read any written language."
-      },
-      {
-        "name": "Infusion: Perfume of Bewitching",
-        "type": "infusion",
-        "action_type": "action",
-        "description": "Single-use vial. Apply as an action — for 1 hour the wearer has advantage on Charisma checks directed at humanoids of CR 1 or lower."
-      }
-    ],
-    "spells": [
-      {
-        "name": "Misty Step",
-        "level": 2,
-        "prepared": true,
-        "featureGranted": true,
-        "_source": "Fey Touched"
-      },
-      {
-        "name": "Command",
-        "level": 1,
-        "prepared": true,
-        "featureGranted": true,
-        "_source": "Fey Touched"
-      }
-    ],
-    "spell_slots": {
-      "level_1": {
-        "max": 4,
-        "current": 4
-      },
-      "level_2": {
-        "max": 3,
-        "current": 3
-      },
-      "level_3": {
-        "max": 2,
-        "current": 2
-      }
-    },
-    "artillerist_spells": {
-      "note": "Always prepared, do not count against spell limit",
-      "spells": [
-        {
-          "level": 1,
-          "name": "Shield"
-        },
-        {
-          "level": 1,
-          "name": "Thunderwave"
-        },
-        {
-          "level": 2,
-          "name": "Scorching Ray"
-        },
-        {
-          "level": 2,
-          "name": "Shatter"
-        },
-        {
-          "level": 3,
-          "name": "Fireball"
-        },
-        {
-          "level": 3,
-          "name": "Wind Wall"
-        }
-      ]
-    },
-    "active_effects": [],
-    "persona_notes": [
-      "Finds people who ask good questions more valuable than people who have good answers.",
-      "Thinks better out loud. Explaining solves problems that existing didn't.",
-      "Eats functionally. Food happens between other things and is rarely the point, though he enjoys it when it's delicious.",
-      "Restorative state is uninterrupted work time. Not sleep. Not company. Work.",
-      "Technical precision occasionally producing accidental poetry.",
-      "Understatement.",
-      "Playful.",
-      "Whistles tunelessly while working.",
-      "Attack rolls and spell attacks are INT based — crossbow is his arcane firearm and eldritch cannon simultaneously.",
-      "Two eldritch cannons active at level 9 — can deploy both and command both with a single bonus action.",
-      "Flash of Genius is exceptional and should be used generously — +5 to any roll within 30ft five times per long rest.",
-      "Gnome Cunning gives advantage on all magic saves — he is surprisingly hard to enchant or charm."
-    ],
-    "id": "characters_3",
-    "darkvision": 60,
-    "hit_die": "d8",
-    "hit_dice_current": 9,
-    "classes": [
-      {
-        "name": "Artificer",
-        "subclass": "Artillerist",
         "level": 9
       }
     ]
@@ -3481,7 +3239,8 @@
         "type": "feature"
       },
       {
-        "name": "Lucky",
+        "name": "Lucky (Halfling)",
+        "id": "pub_lucky-halfling",
         "type": "feature"
       },
       {
@@ -5587,6 +5346,7 @@
     "id": "characters_24"
   },
   {
+    "id": "characters_25",
     "name": "Siv",
     "full_name": "Siv Ravencroft",
     "race": "Human",
@@ -5707,5 +5467,175 @@
     ],
     "proficiency_bonus": 4,
     "hit_dice_current": 9
+  },
+  {
+    "id": "characters_26",
+    "name": "Jaygar",
+    "full_name": "Jaygar Waxystache",
+    "race": "Gnome",
+    "subrace": "Rock Gnome",
+    "background": "Sage",
+    "level": 9,
+    "image": "./characters/jaygar.jpg",
+    "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
+    "notes": "Rebuilt from level 1 (2026-09-02) via the New Character + Level Up tools — Infused Arbalist (homebrew, built on Artillerist's framework), RAW-legal through level 9. Replaces the earlier Alchemist-flavored Artillerist build.",
+    "darkvision": 60,
+    "hit_die": "d8",
+    "stat_str": 8,
+    "stat_dex": 12,
+    "stat_con": 14,
+    "stat_int": 20,
+    "stat_wis": 10,
+    "stat_cha": 14,
+    "spellcasting_ability": "int",
+    "hp_max": 67,
+    "hp_current": 67,
+    "saving_throws": ["con", "int"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Perception"],
+    "skill_expertise": [],
+    "languages": ["Common", "Gnomish", "Elvish", "Draconic"],
+    "persona_notes": [
+      "Finds people who ask good questions more valuable than people who have good answers.",
+      "Thinks better out loud. Explaining solves problems that existing didn't.",
+      "Eats functionally. Food happens between other things and is rarely the point, though he enjoys it when it's delicious.",
+      "Restorative state is uninterrupted work time. Not sleep. Not company. Work.",
+      "Technical precision occasionally producing accidental poetry.",
+      "Understatement.",
+      "Playful.",
+      "Whistles tunelessly while working.",
+      "Attack rolls are INT-based via Calculating Arbalister — the crossbow is his bonded weapon, doubling as both Infuse Weapon's focus and (from 5th level) his Arcane Payload spellcasting focus.",
+      "At 9th level the crossbow's shot pool holds 9 rounds (fire/acid/thunder) per long rest — two per turn if he spends both action and bonus action, but pushing it risks the weapon overheating and detonating on him.",
+      "Flash of Genius is exceptional and should be used generously — +5 to any roll within 30ft five times per long rest.",
+      "Gnome Cunning gives advantage on all magic saves — he is surprisingly hard to enchant or charm."
+    ],
+    "features": [
+      {
+        "name": "Magical Tinkering",
+        "id": "pub_magical-tinkering",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "gen_artificer_base_spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Infuse Item",
+        "id": "hb_artificer_infuse_item",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Artificer",
+        "infusions_known": 6,
+        "infusions_active": 3,
+        "current_infusions": [
+          {
+            "name": "Lantern of Revealing",
+            "applied_to": "Lantern",
+            "effect": "While lit reveals invisible creatures and objects within 30ft. Burns for 6 hours on oil flask."
+          },
+          {
+            "name": "Infusion: Helm of Comprehending Languages",
+            "applied_to": "Helm",
+            "effect": "While wearing this helm, the wearer can read any written language."
+          },
+          {
+            "name": "Infusion: Clockwork Amulet",
+            "applied_to": "Amulet",
+            "effect": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10."
+          }
+        ],
+        "new_infusion_learned": "Bag of Holding",
+        "note": "3 of his 6 known infusions are unapplied (available to swap in on a long rest). The crossbow's own properties and the armor's Armor of Magical Strength are enchanter-made, not his own infusions, and don't count against this cap — see persona notes."
+      },
+      {
+        "name": "The Right Tool for the Job",
+        "id": "gen_artificer_base_the-right-tool-for-the-job",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Arbalist Bonus Spells",
+        "id": "hb_infused_arbalist_bonus_spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Calculating Arbalister",
+        "id": "hb_infused_arbalist_calculating_arbalister",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Infuse Weapon",
+        "id": "hb_infused_arbalist_infuse_weapon",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Arcane Payload",
+        "id": "hb_infused_arbalist_arcane_payload",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Tool Expertise",
+        "id": "pub_tool-expertise",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Flash of Genius",
+        "id": "pub_flash-of-genius",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Unstable Rounds",
+        "id": "hb_infused_arbalist_unstable_rounds",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Artificer"
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Artificer",
+        "level": 9,
+        "subclass": "Infused Arbalist"
+      }
+    ],
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9,
+    "armor_proficiencies": ["light", "medium", "shields"],
+    "weapon_proficiencies": ["simple"],
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 2,
+        "current": 2
+      }
+    }
   }
 ]

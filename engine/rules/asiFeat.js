@@ -47,12 +47,21 @@ function applyIncrease(scores, increases) {
   return bumpAbilities(scores, increases)
 }
 
-// Only feats with a catalogued `ability_score_increase` (engine/data/feats.json)
-// apply an ability bump automatically. Everything else about a feat (granted
-// spells, proficiencies, etc.) still has to be added to the character by hand —
-// the feat catalog only covers what's needed to verify known-spell counts so
-// far (see CHECKLIST.md Phase 3), not full mechanical text for every feat.
-function applyFeatChoice(scores, featName, abilityChoice = null) {
+// Only feats with a catalogued entry (engine/data/feats.json) apply anything
+// automatically. What gets auto-applied has grown from "just the ability
+// score bump" to: the ability score bump, a `feature` object the caller
+// (diffLevelUp) merges into character.features[] (carrying stat_bonuses,
+// the resolved extra `choices`, and grants_saving_throw_proficiency), and
+// (in diffLevelUp, not here — this function stays character-shape-agnostic)
+// any grants_spells fixed/choice spells. Everything else about a feat
+// (proficiencies with no structured home yet, situational combat text) is
+// still recorded manually — see feats.json's own `_schema` note.
+function applyFeatChoice(
+  scores,
+  featName,
+  abilityChoice = null,
+  choices = null
+) {
   const feat = loadFeat(featName)
   if (!feat) {
     return {
@@ -60,32 +69,51 @@ function applyFeatChoice(scores, featName, abilityChoice = null) {
       notes: [
         `"${featName}" isn't in the feat catalog yet — record it manually, no automatic ability bump applied.`,
       ],
+      feature: null,
     }
   }
-  if (!feat.ability_score_increase) {
-    return { scores, notes: [] }
-  }
 
-  const { choice_of: choiceOf, amount } = feat.ability_score_increase
   let ability = abilityChoice
-  if (choiceOf && choiceOf.length > 1) {
-    if (!ability || !choiceOf.includes(ability)) {
-      throw new Error(
-        `"${featName}" requires choosing one ability from [${choiceOf.join(
-          ', '
-        )}] — got "${ability || 'none'}".`
-      )
+  let nextScores = scores
+  let notes = []
+
+  if (feat.ability_score_increase) {
+    const { choice_of: choiceOf, amount } = feat.ability_score_increase
+    if (choiceOf && choiceOf.length > 1) {
+      if (!ability || !choiceOf.includes(ability)) {
+        throw new Error(
+          `"${featName}" requires choosing one ability from [${choiceOf.join(
+            ', '
+          )}] — got "${ability || 'none'}".`
+        )
+      }
+    } else {
+      ability = ability || (choiceOf && choiceOf[0])
     }
-  } else {
-    ability = ability || (choiceOf && choiceOf[0])
+    // Not routed through applyIncrease — a feat's own bump (usually +1, not
+    // always) doesn't follow the "+2 total" ASI rule, just the shared cap logic.
+    const bumped = bumpAbilities(scores, { [ability]: amount })
+    nextScores = bumped.scores
+    notes = bumped.notes
   }
 
-  // Not routed through applyIncrease — a feat's own bump (usually +1, not
-  // always) doesn't follow the "+2 total" ASI rule, just the shared cap logic.
-  return bumpAbilities(scores, { [ability]: amount })
+  const feature = {
+    name: featName,
+    type: 'feat',
+    ability_choice: ability ?? null,
+    choices: choices ?? null,
+    stat_bonuses: feat.stat_bonuses ?? null,
+    grants_saving_throw_proficiency: feat.grants_saving_throw_proficiency
+      ? ability
+      : null,
+    grants_spells: feat.grants_spells ?? null,
+  }
+
+  return { scores: nextScores, notes, feature }
 }
 
-// resolution: { type: 'asi', increases: {str:1,dex:1} } | { type: 'feat', featName, abilityChoice? }
+// resolution: { type: 'asi', increases: {str:1,dex:1} }
+//           | { type: 'feat', featName, abilityChoice?, choices? }
 function resolveAsiOrFeat(scores, resolution) {
   if (!resolution || !resolution.type) {
     throw new Error(
@@ -99,7 +127,8 @@ function resolveAsiOrFeat(scores, resolution) {
     return applyFeatChoice(
       scores,
       resolution.featName,
-      resolution.abilityChoice
+      resolution.abilityChoice,
+      resolution.choices
     )
   }
   throw new Error(

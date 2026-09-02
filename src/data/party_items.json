@@ -681,31 +681,31 @@
     ]
   },
   {
-    "name": "Alchemical Heavy Crossbow",
+    "name": "Alchemical Light Crossbow",
     "type": "weapon",
-    "weapon_category": "heavy crossbow",
+    "weapon_category": "light crossbow",
     "equipped_by": "Jaygar",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "Fires custom alchemical bolts. Quieter release.",
-    "notes": "Proficiency resolution still needed.",
+    "effect": "Fires custom alchemical bolts. Quieter release. Bonded weapon for Infused Arbalist's Calculating Arbalister/Infuse Weapon/Arcane Payload.",
+    "notes": "Reflavored from Heavy to Light Crossbow 2026-09-02 to resolve a real proficiency gap: heavy crossbow is a martial weapon and neither base Artificer nor Infused Arbalist grants martial proficiency, so Jaygar wasn't legally proficient with his own signature weapon. Light crossbow is simple, closing the gap without needing a subclass change.",
     "id": "items_48",
     "slot": "ranged2h",
     "battle_effect": true
   },
   {
-    "name": "Alchemical Heavy Crossbow (party copy)",
+    "name": "Alchemical Light Crossbow (party copy)",
     "type": "weapon",
-    "weapon_category": "heavy crossbow",
+    "weapon_category": "light crossbow",
     "equipped_by": null,
     "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "effect": "Fires custom alchemical bolts. Quieter release.",
-    "notes": "Second copy.",
+    "notes": "Second copy. Reflavored from Heavy to Light Crossbow 2026-09-02, matching items_48.",
     "id": "items_49",
     "slot": "ranged2h"
   },
@@ -798,7 +798,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "notes": "Second copy confirmed intentional.",
     "id": "items_57",
     "slot": "back",
@@ -823,15 +823,17 @@
     "name": "Shield of Retribution",
     "type": "armor",
     "armor_type": "shield",
-    "equipped_by": "Jaygar",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "effect": "When bearer is hit by melee attack, attacker takes 1d6 force damage.",
     "notes": "",
     "id": "items_59",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": null,
+    "party_id": "party_1782820688153"
   },
   {
     "name": "Bracer of Steady Aim",
@@ -2727,10 +2729,10 @@
   {
     "name": "Hlifar'dhe'gar",
     "type": "armor",
-    "equipped_by": "Jaygar",
-    "carried_by": "Jaygar",
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
-    "attuned": true,
+    "attuned": false,
     "notes": "Named by Jaygar. Two points of light function as eyes. Previous owner never named it. Ssivanak kept it three years waiting for right owner.",
     "id": "items_184",
     "slot": "offhand",
@@ -2739,7 +2741,9 @@
     "stat_bonuses": {
       "ac": 1
     },
-    "action_type": "action"
+    "action_type": "action",
+    "stored_at": null,
+    "party_id": "party_1782820688153"
   },
   {
     "name": "Robe of the Tide",

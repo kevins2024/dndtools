@@ -37,6 +37,20 @@
       </div>
     </div>
 
+    <div
+      v-if="effectiveLevelCap != null && targetLevel > effectiveLevelCap"
+      class="lut-cap-warning"
+    >
+      <span>
+        Party level cap is {{ effectiveLevelCap }} — level {{ targetLevel }} is
+        above it.
+      </span>
+      <label class="lut-cap-toggle">
+        <input type="checkbox" v-model="ignoreLevelCap" />
+        Ignore cap and allow confirming this level-up anyway
+      </label>
+    </div>
+
     <PendingCharacterSaveBar
       :pending-names="pendingCharacterNames"
       :saving-name="savingName"
@@ -66,7 +80,12 @@
 
       <div class="lut-work">
         <div v-if="loading" class="lut-loading">Computing…</div>
-        <div v-else-if="error" class="lut-error">{{ error }}</div>
+        <div v-else-if="error" class="lut-error">
+          <div>{{ error }}</div>
+          <button class="lut-btn" @click="dismissError">
+            Dismiss — undo the last choice and go back
+          </button>
+        </div>
 
         <template v-else-if="preview">
           <!-- ── Step 1: Hit Points ── -->
@@ -271,21 +290,64 @@
                 </div>
 
                 <div v-else class="lut-feat-form">
+                  <label class="lut-checkbox-row">
+                    <input type="checkbox" v-model="showAllFeats" />
+                    Show all feats (ignore prerequisites)
+                  </label>
                   <select
                     v-model="featChoiceName"
                     class="lut-select"
-                    @change="submitFeat"
+                    @change="onFeatChoiceNameChange"
                   >
                     <option :value="null" disabled>Choose a feat…</option>
                     <option
-                      v-for="f in catalogFeats"
+                      v-for="f in visibleCatalogFeats"
                       :key="f.name"
                       :value="f.name"
+                      :disabled="
+                        !showAllFeats &&
+                        featEligibility[f.name] &&
+                        featEligibility[f.name].met === false
+                      "
                     >
                       {{ f.name }}
+                      <template
+                        v-if="
+                          featEligibility[f.name] &&
+                          featEligibility[f.name].met === false
+                        "
+                      >
+                        (prereq not met)
+                      </template>
                     </option>
                     <option value="__other">Other (not yet catalogued)</option>
                   </select>
+                  <div
+                    v-if="selectedFeat && selectedFeat.prerequisite"
+                    class="lut-note"
+                  >
+                    Prerequisite:
+                    {{ prerequisiteLabel(selectedFeat.prerequisite) }}
+                    <span
+                      v-if="
+                        featEligibility[featChoiceName] &&
+                        featEligibility[featChoiceName].met === false
+                      "
+                      class="lut-error-text"
+                    >
+                      — not met on this character{{ ' ' }} ({{
+                        featEligibility[featChoiceName].reason
+                      }})
+                    </span>
+                    <span
+                      v-else-if="
+                        featEligibility[featChoiceName] &&
+                        featEligibility[featChoiceName].unknown
+                      "
+                    >
+                      — {{ featEligibility[featChoiceName].reason }}
+                    </span>
+                  </div>
                   <input
                     v-if="featChoiceName === '__other'"
                     v-model="customFeatName"
@@ -308,6 +370,46 @@
                       {{ a.toUpperCase() }}
                     </option>
                   </select>
+
+                  <div
+                    v-for="choice in selectedFeatChoices"
+                    :key="choice.id"
+                    class="lut-feat-choice"
+                  >
+                    <div class="lut-choice-label">{{ choice.label }}</div>
+                    <template
+                      v-if="
+                        choice.type === 'spell_text' || choice.type === 'text'
+                      "
+                    >
+                      <input
+                        v-for="i in choice.count"
+                        :key="choice.id + '-' + i"
+                        v-model="featChoiceValues[choice.id][i - 1]"
+                        class="lut-text-input"
+                        :placeholder="
+                          choice.count > 1 ? 'Pick ' + i : 'Name it'
+                        "
+                        @change="submitFeat"
+                      />
+                    </template>
+                    <template v-else>
+                      <select
+                        v-for="i in choice.count"
+                        :key="choice.id + '-' + i"
+                        v-model="featChoiceValues[choice.id][i - 1]"
+                        class="lut-select"
+                        @change="submitFeat"
+                      >
+                        <option :value="null" disabled>
+                          {{ choice.count > 1 ? 'Pick ' + i : 'Choose…' }}
+                        </option>
+                        <option v-for="o in choice.options" :key="o" :value="o">
+                          {{ o }}
+                        </option>
+                      </select>
+                    </template>
+                  </div>
                 </div>
               </div>
 
@@ -402,7 +504,11 @@
         >
           Confirm Level Up
         </button>
-        <span v-if="!canConfirm" class="lut-note">
+        <span v-if="levelCapExceeded" class="lut-note">
+          Above the party level cap — check "ignore cap" above to confirm
+          anyway.
+        </span>
+        <span v-else-if="!canConfirm" class="lut-note">
           Resolve the one-time choices above first.
         </span>
       </div>
@@ -436,6 +542,13 @@ export default {
       loading: false,
       error: null,
       abilities: ABILITIES,
+
+      // Local-only bypass for the party level cap — lets a level-up be
+      // previewed past the cap for experimentation/lookahead without
+      // touching the character record or campaign-wide DM Settings. Never
+      // persisted; resets on reload same as everything else in this tool
+      // before a Save.
+      ignoreLevelCap: false,
 
       // All class names the engine knows about, fetched once — used to
       // offer "multiclass into a class this character doesn't have yet",
@@ -471,6 +584,19 @@ export default {
       featChoiceName: null,
       customFeatName: '',
       featAbilityChoice: null,
+      // featName -> {met, reason, unknown} from POST /api/engine/feat-eligibility,
+      // recomputed against draftCharacter whenever the preview runs.
+      featEligibility: {},
+      // DM override — prerequisites are enforced (the dropdown disables
+      // infeasible feats) by default, but a real table sometimes has a
+      // legitimate exception; this checkbox shows everything anyway.
+      showAllFeats: false,
+      // choice.id -> array of picked values, length === choice.count. Reset
+      // whenever featChoiceName changes. The reserved key
+      // __grantedSpellChoice holds the free-text pick for a feat's
+      // grants_spells.choice (Fey Touched/Shadow Touched-style) — always a
+      // single-element array, same shape as any other count:1 choice.
+      featChoiceValues: {},
 
       // savingName/saveError/justSaved come from the pendingCharacterSaves mixin.
       steps: [
@@ -510,6 +636,24 @@ export default {
     },
     targetLevel() {
       return this.currentLevel != null ? this.currentLevel + 1 : null
+    },
+    // A character's own level_cap_override (a rare, deliberate, saved
+    // exception — e.g. a pair of characters held back to learn a new class)
+    // wins over the campaign-wide DM Settings cap. Either can be absent
+    // (null/undefined), meaning "no cap."
+    effectiveLevelCap() {
+      return (
+        this.selectedCharacter?.level_cap_override ??
+        this.$store.state.level_cap
+      )
+    },
+    levelCapExceeded() {
+      return (
+        this.effectiveLevelCap != null &&
+        this.targetLevel != null &&
+        this.targetLevel > this.effectiveLevelCap &&
+        !this.ignoreLevelCap
+      )
     },
     hitDieGain() {
       return this.preview?.description?.hp?.[0]?.gained ?? null
@@ -596,7 +740,8 @@ export default {
       return (
         Boolean(this.preview?.patch) &&
         !this.pendingSubclassChoice &&
-        !this.pendingAsiChoice
+        !this.pendingAsiChoice &&
+        !this.levelCapExceeded
       )
     },
     slotRows() {
@@ -623,6 +768,54 @@ export default {
       const feat = this.catalogFeats.find((f) => f.name === this.featChoiceName)
       return feat?.ability_score_increase?.choice_of ?? []
     },
+    selectedFeat() {
+      return (
+        this.catalogFeats.find((f) => f.name === this.featChoiceName) ?? null
+      )
+    },
+    // The feat's own `choices` array, plus a synthesized entry for
+    // grants_spells.choice (Fey Touched/Shadow Touched-style — "one 1st
+    // level Divination or Enchantment spell") since that's a catalog-level
+    // concept (feats.json), not itself one of the generic choice entries.
+    selectedFeatChoices() {
+      const feat = this.selectedFeat
+      if (!feat) return []
+      const choices = [...(feat.choices ?? [])]
+      const grantChoice = feat.grants_spells?.choice
+      if (grantChoice) {
+        const schools = (grantChoice.schools ?? []).join(' or ')
+        choices.push({
+          id: '__grantedSpellChoice',
+          label: `Level ${grantChoice.level} ${schools} spell (of your choice)`,
+          type: 'spell_text',
+          count: grantChoice.count ?? 1,
+        })
+      }
+      return choices
+    },
+    // Every choice's every slot has a non-empty value.
+    featChoicesComplete() {
+      return this.selectedFeatChoices.every((c) => {
+        const vals = this.featChoiceValues[c.id]
+        return (
+          Array.isArray(vals) &&
+          vals.length >= c.count &&
+          vals
+            .slice(0, c.count)
+            .every((v) => v != null && String(v).trim() !== '')
+        )
+      })
+    },
+    // Feats whose prerequisite is explicitly unmet get hidden unless
+    // showAllFeats is on; anything with unknown/no eligibility data yet
+    // stays visible (fails open, not closed, while the eligibility POST is
+    // in flight).
+    visibleCatalogFeats() {
+      if (this.showAllFeats) return this.catalogFeats
+      return this.catalogFeats.filter(
+        (f) => this.featEligibility[f.name]?.met !== false
+      )
+    },
     // pendingCharacterNames comes from the pendingCharacterSaves mixin.
   },
 
@@ -640,6 +833,12 @@ export default {
     },
     liveFeatName(name) {
       if (name) this.loadFeatureDescriptions([{ name }])
+    },
+    draftCharacter: {
+      handler() {
+        this.loadFeatEligibility()
+      },
+      deep: false,
     },
   },
 
@@ -677,6 +876,10 @@ export default {
       this.availableSubclasses = []
       this.preview = null
       this.error = null
+      this.featChoiceName = null
+      this.customFeatName = ''
+      this.featAbilityChoice = null
+      this.featChoiceValues = {}
       // Deliberately NOT resetting saveError/justSaved here — pending saves
       // are tracked by comparing the store against `originals`, which
       // outlives switching to a different character/class in the picker
@@ -695,6 +898,62 @@ export default {
         const result = await lookupFeature(name, id)
         this.$set(this.featureDescriptions, name, result?.description ?? null)
       }
+    },
+
+    // POST draftCharacter to /api/engine/feat-eligibility — mirrors
+    // preview-level-up's own "send the client's in-memory character, get a
+    // pure computation back" pattern. Silently gives up (leaves
+    // featEligibility as-is) on any failure, same fallback style as the
+    // catalogFeats/allClasses fetches in created() — the picker still works
+    // unfiltered if this fails, it just won't enforce prerequisites.
+    async loadFeatEligibility() {
+      if (!this.draftCharacter) return
+      try {
+        const res = await fetch('/api/engine/feat-eligibility', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ character: this.draftCharacter }),
+        })
+        if (res.ok) this.featEligibility = await res.json()
+      } catch {
+        // Prerequisite filtering is a nice-to-have — free selection still works.
+      }
+    },
+
+    prerequisiteLabel(prerequisite) {
+      if (!prerequisite) return ''
+      switch (prerequisite.type) {
+        case 'ability_score':
+          return `${prerequisite.ability.toUpperCase()} ${prerequisite.min}+`
+        case 'any_of':
+          return prerequisite.options
+            .map((o) => `${o.ability.toUpperCase()} ${o.min}+`)
+            .join(' or ')
+        case 'race':
+          return prerequisite.races.join(' or ')
+        case 'spellcasting':
+          return 'the ability to cast at least one spell'
+        case 'proficiency':
+          return `proficiency with ${prerequisite.proficiency.replace(
+            '_',
+            ' '
+          )}`
+        default:
+          return ''
+      }
+    },
+
+    // Reset the per-feat choice inputs to `count`-length empty arrays
+    // whenever the picked feat changes — Vue 2 needs array indices to exist
+    // before v-model can bind to them via [i].
+    onFeatChoiceNameChange() {
+      const values = {}
+      for (const choice of this.selectedFeatChoices) {
+        values[choice.id] = new Array(choice.count).fill(null)
+      }
+      this.featChoiceValues = values
+      this.featAbilityChoice = null
+      this.submitFeat()
     },
 
     // The subclass <select> only updates subclassChoiceDraft by itself —
@@ -810,6 +1069,20 @@ export default {
       this.runPreview()
     },
 
+    // Safety net for any error during ASI/feat resolution, not just the
+    // known feat-ability-choice case above (already prevented at the
+    // source) — clears whatever resolution just caused the error and
+    // re-previews, so a bad or unexpected input never leaves the picker UI
+    // permanently hidden behind a bare error message with no way back.
+    dismissError() {
+      this.error = null
+      this.$delete(this.asiOrFeatResolutions, this.asiChoiceLevel)
+      this.featChoiceName = null
+      this.featAbilityChoice = null
+      this.featChoiceValues = {}
+      this.runPreview()
+    },
+
     submitAsi() {
       // Use the sticky asiChoiceLevel, not pendingAsiChoice.level — once a
       // field auto-applies once, pendingAsiChoice goes null (diffLevelUp no
@@ -833,10 +1106,38 @@ export default {
           ? this.customFeatName.trim()
           : this.featChoiceName
       if (!featName) return
+      // A feat needing a choice among multiple abilities (e.g. Fey Touched:
+      // int/wis/cha) isn't resolved yet just by picking the feat name —
+      // wait for that second pick before sending anything to the engine.
+      // Submitting early used to send a guaranteed-incomplete resolution,
+      // which the engine rejects — and that error used to hide the entire
+      // level-up UI (including the ability picker needed to fix it) behind
+      // a bare error message, a real dead end.
+      if (
+        this.selectedFeatAbilityChoices.length > 1 &&
+        !this.featAbilityChoice
+      ) {
+        return
+      }
+      // Same deal for a feat with its own extra choices (Skilled's 3
+      // skills/tools, Fey Touched's spell pick, Weapon Master's 4 weapons,
+      // etc.) — don't submit a half-filled-in resolution.
+      if (this.selectedFeatChoices.length && !this.featChoicesComplete) {
+        return
+      }
+      const choices = {}
+      for (const choice of this.selectedFeatChoices) {
+        const vals = (this.featChoiceValues[choice.id] ?? []).slice(
+          0,
+          choice.count
+        )
+        choices[choice.id] = choice.count === 1 ? vals[0] : vals
+      }
       this.$set(this.asiOrFeatResolutions, this.asiChoiceLevel, {
         type: 'feat',
         featName,
         abilityChoice: this.featAbilityChoice,
+        choices: Object.keys(choices).length ? choices : null,
       })
       this.runPreview()
     },
@@ -968,6 +1269,10 @@ export default {
 
 .lut-error {
   color: var(--color-text-danger);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .lut-step-title {
@@ -1038,6 +1343,27 @@ export default {
 .lut-note {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+}
+
+.lut-cap-warning {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--color-warning);
+  border-radius: 4px;
+  color: var(--color-warning);
+  font-size: var(--font-size-sm);
+}
+
+.lut-cap-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-text-low);
+  cursor: pointer;
 }
 
 .lut-note--action {
@@ -1146,6 +1472,33 @@ export default {
   border-radius: 4px;
   padding: 0.3rem 0.5rem;
   font-family: var(--font-body);
+}
+
+.lut-feat-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.lut-choice-label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-right: 0.25rem;
+}
+
+.lut-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.lut-error-text {
+  color: var(--color-text-warning);
 }
 
 .lut-warnings {

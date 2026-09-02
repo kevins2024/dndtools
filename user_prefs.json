@@ -15,23 +15,11 @@
     },
     {
       "name": "Valdmere",
-      "members": [
-        "Lenn",
-        "Pirra",
-        "Petra",
-        "Siv",
-        "Chuknora"
-      ]
+      "members": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"]
     },
     {
       "name": "Yetgrese",
-      "members": [
-        "Jaygar",
-        "Rhuna",
-        "Kerra",
-        "Revven",
-        "Elucyne"
-      ]
+      "members": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"]
     }
   ],
   "parties": [
@@ -48,8 +36,8 @@
         "Sorra",
         "Ferghus"
       ],
-      "active": false,
-      "game_day": 103,
+      "active": true,
+      "game_day": 297,
       "marching_order": [
         "Denna",
         "Ferghus",
@@ -64,95 +52,37 @@
     {
       "id": "party_1780850600167_1",
       "name": "Valdmere",
-      "members": [
-        "Lenn",
-        "Pirra",
-        "Petra",
-        "Siv",
-        "Chuknora"
-      ],
+      "members": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"],
       "active": false,
-      "game_day": 103,
-      "marching_order": [
-        "Pirra",
-        "Chuknora",
-        "Lenn",
-        "Petra",
-        "Siv"
-      ],
+      "game_day": 297,
+      "marching_order": ["Pirra", "Chuknora", "Lenn", "Petra", "Siv"],
       "watch_assignments": [
-        [
-          "Lenn",
-          "Petra"
-        ],
-        [
-          "Pirra",
-          null
-        ],
-        [
-          "Siv",
-          null
-        ],
-        [
-          "Chuknora",
-          null
-        ]
+        ["Lenn", "Petra"],
+        ["Pirra", null],
+        ["Siv", null],
+        ["Chuknora", null]
       ]
     },
     {
       "id": "party_1780850600167_2",
       "name": "Yetgrese",
-      "members": [
-        "Jaygar",
-        "Rhuna",
-        "Kerra",
-        "Revven",
-        "Elucyne"
-      ],
+      "members": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"],
       "active": false,
-      "game_day": 92,
-      "marching_order": [
-        "Rhuna",
-        "Kerra",
-        "Jaygar",
-        "Revven",
-        "Elucyne"
-      ]
+      "game_day": 297,
+      "marching_order": ["Rhuna", "Kerra", "Jaygar", "Revven", "Elucyne"]
     },
     {
       "id": "party_1782820688153",
       "name": "Twins",
-      "members": [
-        "Eldi",
-        "Rith",
-        "Therynv'l",
-        "Lyria"
-      ],
-      "active": true,
-      "game_day": 296,
-      "marching_order": [
-        "Therynv'l",
-        "Eldi",
-        "Rith",
-        "Lyria"
-      ],
+      "members": ["Eldi", "Rith", "Therynv'l", "Lyria"],
+      "active": false,
+      "game_day": 297,
+      "marching_order": ["Therynv'l", "Eldi", "Rith", "Lyria"],
       "watch_assignments": [
-        [
-          "Eldi",
-          null
-        ],
-        [
-          "Rith",
-          null
-        ],
-        [
-          "Lyria",
-          null
-        ],
-        [
-          null,
-          null
-        ]
+        ["Eldi", null],
+        ["Rith", null],
+        ["Lyria", null],
+        [null, null]
       ],
       "travel_prefs": {
         "continent": "Kaemahz",
@@ -170,5 +100,6 @@
       "day_of_year": 103,
       "absolute_day": 103
     }
-  ]
+  ],
+  "level_cap": 9
 }

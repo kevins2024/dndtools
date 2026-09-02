@@ -115,7 +115,11 @@ export default {
     hasFilterableContent() {
       return (
         this.someFeatures ||
-        getCharacterSpells(this.character, this.partyItems).length > 0
+        getCharacterSpells(
+          this.character,
+          this.partyItems,
+          this.$store.state.subclasses
+        ).length > 0
       )
     },
   },

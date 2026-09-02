@@ -18,21 +18,127 @@
     "ability_score_bonus": { "dex": 2 },
     "choice": null,
     "speed": 30,
-    "darkvision": 60
+    "darkvision": 60,
+    "subraces": [
+      {
+        "name": "High Elf",
+        "ability_score_bonus": { "int": 1 },
+        "traits": [
+          {
+            "name": "Elf Weapon Training",
+            "description": "Proficiency with longsword, shortsword, shortbow, and longbow."
+          },
+          {
+            "name": "Cantrip",
+            "description": "Know one wizard cantrip of your choice; Intelligence is its spellcasting ability."
+          },
+          {
+            "name": "Extra Language",
+            "description": "Speak, read, and write one extra language of your choice."
+          }
+        ]
+      },
+      {
+        "name": "Wood Elf",
+        "ability_score_bonus": { "wis": 1 },
+        "speed": 35,
+        "traits": [
+          {
+            "name": "Elf Weapon Training",
+            "description": "Proficiency with longsword, shortsword, shortbow, and longbow."
+          },
+          {
+            "name": "Fleet of Foot",
+            "description": "Base walking speed increases to 35 feet."
+          },
+          {
+            "name": "Mask of the Wild",
+            "description": "Can attempt to hide even when only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
+          }
+        ]
+      },
+      {
+        "name": "Dark Elf (Drow)",
+        "ability_score_bonus": { "cha": 1 },
+        "darkvision": 120,
+        "traits": [
+          {
+            "name": "Superior Darkvision",
+            "description": "Darkvision extends to 120 feet."
+          },
+          {
+            "name": "Sunlight Sensitivity",
+            "description": "Disadvantage on attack rolls and Wisdom (Perception) checks that rely on sight when the target/you are in direct sunlight."
+          },
+          {
+            "name": "Drow Magic",
+            "description": "Know the Dancing Lights cantrip. At 3rd level, cast Faerie Fire once per long rest; at 5th level, also cast Darkness once per long rest. Charisma is the spellcasting ability."
+          },
+          {
+            "name": "Drow Weapon Training",
+            "description": "Proficiency with rapiers, shortswords, and hand crossbows."
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Dwarf",
     "ability_score_bonus": { "con": 2 },
     "choice": null,
     "speed": 25,
-    "darkvision": 60
+    "darkvision": 60,
+    "subraces": [
+      {
+        "name": "Hill Dwarf",
+        "ability_score_bonus": { "wis": 1 },
+        "traits": [
+          {
+            "name": "Dwarven Toughness",
+            "description": "Hit point maximum increases by 1, and increases by 1 every time you gain a level."
+          }
+        ]
+      },
+      {
+        "name": "Mountain Dwarf",
+        "ability_score_bonus": { "str": 2 },
+        "traits": [
+          {
+            "name": "Dwarven Armor Training",
+            "description": "Proficiency with light and medium armor."
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Halfling",
     "ability_score_bonus": { "dex": 2 },
     "choice": null,
     "speed": 25,
-    "darkvision": 0
+    "darkvision": 0,
+    "subraces": [
+      {
+        "name": "Lightfoot Halfling",
+        "ability_score_bonus": { "cha": 1 },
+        "traits": [
+          {
+            "name": "Naturally Stealthy",
+            "description": "Can attempt to hide even when obscured only by a creature at least one size larger than you."
+          }
+        ]
+      },
+      {
+        "name": "Stout Halfling",
+        "ability_score_bonus": { "con": 1 },
+        "traits": [
+          {
+            "name": "Stout Resilience",
+            "description": "Advantage on saving throws against poison, and resistance to poison damage."
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Dragonborn",
@@ -46,7 +152,37 @@
     "ability_score_bonus": { "int": 2 },
     "choice": null,
     "speed": 25,
-    "darkvision": 60
+    "darkvision": 60,
+    "subraces": [
+      {
+        "name": "Forest Gnome",
+        "ability_score_bonus": { "dex": 1 },
+        "traits": [
+          {
+            "name": "Natural Illusionist",
+            "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability."
+          },
+          {
+            "name": "Speak with Small Beasts",
+            "description": "Communicate simple ideas with Small or smaller beasts, through gestures, sounds, and body language."
+          }
+        ]
+      },
+      {
+        "name": "Rock Gnome",
+        "ability_score_bonus": { "con": 1 },
+        "traits": [
+          {
+            "name": "Artificer's Lore",
+            "description": "Add twice your proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
+          },
+          {
+            "name": "Tinker",
+            "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box."
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Half-Elf",

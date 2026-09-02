@@ -107,7 +107,11 @@ export default {
       return this.$store.state.party_items ?? []
     },
     hasSpells() {
-      return characterHasSpells(this.selected, this.partyItems)
+      return characterHasSpells(
+        this.selected,
+        this.partyItems,
+        this.$store.state.subclasses
+      )
     },
     hasRelationships() {
       if (!this.selected) return false

@@ -42,6 +42,11 @@ export default new Vuex.Store({
     diceDrawerOpen: false,
     pendingRoll: null,
     game_day: Number(localStorage.getItem('game_day')) || 1,
+    level_cap: null,
+    // Every subclass's data (incl. expanded_spell_list), loaded once at
+    // startup — see LOAD_SUBCLASSES and spellUtils.js's bonus-spell
+    // derivation, which reads this instead of a per-character copy.
+    subclasses: [],
     parties: [],
     characterNavRequest: null,
     placeNavRequest: null,
@@ -343,6 +348,16 @@ export default new Vuex.Store({
     LOAD_CALENDAR_NOTES(state, notes) {
       state.calendar_notes = notes ?? []
     },
+    LOAD_LEVEL_CAP(state, cap) {
+      state.level_cap = cap ?? null
+    },
+    LOAD_SUBCLASSES(state, subclasses) {
+      state.subclasses = subclasses ?? []
+    },
+    SET_LEVEL_CAP(state, cap) {
+      state.level_cap = cap
+      dataService.patchUserPrefs({ level_cap: cap }).catch(console.warn)
+    },
     SAVE_CALENDAR_NOTE(state, note) {
       const idx = state.calendar_notes.findIndex((n) => n.id === note.id)
       if (idx !== -1) {
@@ -618,6 +633,13 @@ export default new Vuex.Store({
         commit('SET_TABLE', { table, data })
       }
       commit('SET_ORIGINALS', originals)
+
+      try {
+        const res = await fetch('/api/engine/subclasses')
+        if (res.ok) commit('LOAD_SUBCLASSES', await res.json())
+      } catch (e) {
+        console.warn('Failed to load subclasses', e)
+      }
       commit('SET_LOADED', true)
 
       // Load parties from user_prefs (migrating old savedParties format if needed)
@@ -638,6 +660,9 @@ export default new Vuex.Store({
         }
         if (prefs.calendar_notes) {
           commit('LOAD_CALENDAR_NOTES', prefs.calendar_notes)
+        }
+        if (prefs.level_cap != null) {
+          commit('LOAD_LEVEL_CAP', prefs.level_cap)
         }
       } catch (e) {
         console.warn('Failed to load user_prefs', e)

@@ -6,6 +6,11 @@
         class="nct-text-input nct-name-input"
         placeholder="Character name"
       />
+      <input
+        v-model="fullName"
+        class="nct-text-input nct-name-input"
+        placeholder="Full name (optional — defaults to short name)"
+      />
     </div>
 
     <PendingCharacterSaveBar
@@ -55,6 +60,25 @@
           </optgroup>
         </select>
 
+        <select
+          v-if="
+            selectedSpecies &&
+            selectedSpecies.subraces &&
+            selectedSpecies.subraces.length
+          "
+          v-model="subraceName"
+          class="nct-select"
+        >
+          <option :value="null" disabled>Choose a subrace…</option>
+          <option
+            v-for="sr in selectedSpecies.subraces"
+            :key="sr.name"
+            :value="sr.name"
+          >
+            {{ sr.name }}
+          </option>
+        </select>
+
         <label class="nct-toggle-row">
           <input type="checkbox" v-model="useSpeciesBonus" />
           Apply this species' ability score bonus
@@ -65,9 +89,9 @@
         </div>
 
         <div v-if="selectedSpecies" class="nct-species-summary">
-          <div>Speed {{ selectedSpecies.speed ?? '—' }} ft.</div>
-          <div v-if="selectedSpecies.darkvision">
-            Darkvision {{ selectedSpecies.darkvision }} ft.
+          <div>Speed {{ displaySpeed ?? '—' }} ft.</div>
+          <div v-if="displayDarkvision">
+            Darkvision {{ displayDarkvision }} ft.
           </div>
           <template v-if="useSpeciesBonus">
             <div v-if="fixedBonusText">Ability bonus: {{ fixedBonusText }}</div>
@@ -95,10 +119,10 @@
               </select>
             </div>
           </template>
-          <div v-if="selectedSpecies.traits && selectedSpecies.traits.length">
+          <div v-if="displayTraits.length">
             <div class="nct-note">Traits (flavor/reference only):</div>
             <ul class="nct-trait-list">
-              <li v-for="t in selectedSpecies.traits" :key="t.name">
+              <li v-for="t in displayTraits" :key="t.name">
                 <strong>{{ t.name }}</strong> — {{ t.description }}
               </li>
             </ul>
@@ -355,7 +379,16 @@ export default {
   data() {
     return {
       name: '',
+      // Optional — defaults to `name` on save if left blank. Most character
+      // records have a distinct full_name (e.g. "Vaz" / "Vazseslaad
+      // Thrazak"); `name` is the short form used everywhere else in the app
+      // (combat tracker, item equipped_by, relationship notes).
+      fullName: '',
       speciesName: null,
+      // Only meaningful for the 4 standard species with real 2014-PHB
+      // subraces (Dwarf, Elf, Halfling, Gnome) — null for every other
+      // species, including all homebrew ones, which don't have any.
+      subraceName: null,
       speciesChoiceAbilities: [],
       // When off, the species' fixed/flexible ability bonus is skipped
       // entirely in favor of a free +2/+1 the player assigns to any two
@@ -410,12 +443,47 @@ export default {
     selectedSpecies() {
       return this.speciesList.find((s) => s.name === this.speciesName) ?? null
     },
+    selectedSubrace() {
+      return (
+        this.selectedSpecies?.subraces?.find(
+          (sr) => sr.name === this.subraceName
+        ) ?? null
+      )
+    },
+    // Species' own ability_score_bonus plus the chosen subrace's, merged —
+    // a subrace's bonus stacks on top of (never replaces) the base species
+    // bonus per real RAW (e.g. Rock Gnome = Gnome's +2 INT + subrace's +1
+    // CON).
+    combinedFixedBonus() {
+      const combined = { ...(this.selectedSpecies?.ability_score_bonus ?? {}) }
+      for (const [a, n] of Object.entries(
+        this.selectedSubrace?.ability_score_bonus ?? {}
+      )) {
+        combined[a] = (combined[a] ?? 0) + n
+      }
+      return combined
+    },
     fixedBonusText() {
-      const bonus = this.selectedSpecies?.ability_score_bonus
-      if (!bonus || typeof bonus !== 'object') return null
-      return Object.entries(bonus)
-        .map(([a, n]) => `+${n} ${a.toUpperCase()}`)
-        .join(', ')
+      if (!this.selectedSpecies) return null
+      const entries = Object.entries(this.combinedFixedBonus)
+      if (!entries.length) return null
+      return entries.map(([a, n]) => `+${n} ${a.toUpperCase()}`).join(', ')
+    },
+    displaySpeed() {
+      return this.selectedSubrace?.speed ?? this.selectedSpecies?.speed ?? null
+    },
+    displayDarkvision() {
+      return (
+        this.selectedSubrace?.darkvision ??
+        this.selectedSpecies?.darkvision ??
+        0
+      )
+    },
+    displayTraits() {
+      return [
+        ...(this.selectedSpecies?.traits ?? []),
+        ...(this.selectedSubrace?.traits ?? []),
+      ]
     },
     selectedClass() {
       return this.classList.find((c) => c.name === this.className) ?? null
@@ -448,7 +516,7 @@ export default {
       if (this.useSpeciesBonus) {
         const sp = this.selectedSpecies
         if (sp) {
-          for (const [a, n] of Object.entries(sp.ability_score_bonus || {})) {
+          for (const [a, n] of Object.entries(this.combinedFixedBonus)) {
             scores[a] = (scores[a] ?? 10) + n
           }
           if (sp.choice) {
@@ -488,10 +556,19 @@ export default {
         ) ?? null
       )
     },
+    // A species with real subraces (Dwarf, Elf, Halfling, Gnome) requires
+    // picking one — every other species (including all homebrew ones) has
+    // none, so this is trivially true for them.
+    subraceAssignmentComplete() {
+      return (
+        !this.selectedSpecies?.subraces?.length || Boolean(this.subraceName)
+      )
+    },
     canCreate() {
       return Boolean(
         this.name.trim() &&
           this.speciesName &&
+          this.subraceAssignmentComplete &&
           this.abilityBonusAssignmentComplete &&
           this.className &&
           this.pointsRemaining >= 0 &&
@@ -502,6 +579,7 @@ export default {
 
   watch: {
     speciesName() {
+      this.subraceName = null
       this.speciesChoiceAbilities = []
       this.runPreview()
     },
@@ -566,11 +644,26 @@ export default {
       return this.skillsList.find((s) => s.id === id)?.name ?? null
     },
 
+    // Every other character record has an id ("characters_N") — ADD_CHARACTER
+    // never assigned one, so New Character Tool builds were silently
+    // shipping without it (caught 2026-09-02 on Siv and Jaygar). Compute the
+    // next free number from what's already in the store rather than trusting
+    // a counter, since ids aren't necessarily contiguous.
+    nextCharacterId() {
+      const nums = this.$store.state.characters
+        .map((c) => /^characters_(\d+)$/.exec(c.id ?? '')?.[1])
+        .filter(Boolean)
+        .map(Number)
+      return `characters_${nums.length ? Math.max(...nums) + 1 : 0}`
+    },
+
     characterShell() {
       return {
+        id: this.nextCharacterId(),
         name: this.name.trim(),
-        full_name: this.name.trim(),
+        full_name: this.fullName.trim() || this.name.trim(),
         race: this.speciesName,
+        subrace: this.subraceName,
         background: this.effectiveBackgroundName || null,
         level: 0,
         stat_str: this.finalScores.str,
@@ -670,7 +763,9 @@ export default {
       this.$store.commit('ADD_CHARACTER', character)
 
       this.name = ''
+      this.fullName = ''
       this.speciesName = null
+      this.subraceName = null
       this.speciesChoiceAbilities = []
       this.useSpeciesBonus = true
       this.manualPlusTwoAbility = null
