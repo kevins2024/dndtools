@@ -1,0 +1,23 @@
+{
+  "class": "Rogue",
+  "name": "Arcane Trickster",
+  "spellcasting": {
+    "type": "third",
+    "ability": "int"
+  },
+  "features_by_level": {
+    "3": [
+      "hb_rogue_at_spellcasting",
+      "hb_rogue_at_mage_hand_legerdemain"
+    ],
+    "9": [
+      "hb_rogue_at_magical_ambush"
+    ],
+    "13": [
+      "hb_rogue_at_versatile_trickster"
+    ],
+    "17": [
+      "hb_rogue_at_spell_thief"
+    ]
+  }
+}

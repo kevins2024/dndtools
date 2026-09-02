@@ -182,8 +182,25 @@
             <button class="nct-btn" @click="adjustScore(a, -1)">−</button>
             <span class="nct-ability-score">{{ baseScores[a] }}</span>
             <button class="nct-btn" @click="adjustScore(a, 1)">+</button>
+            <span
+              v-if="nextPointCost(baseScores[a]) !== null"
+              class="nct-ability-next-cost"
+              :title="`Raising ${a.toUpperCase()} to ${
+                baseScores[a] + 1
+              } costs ${nextPointCost(baseScores[a])} point${
+                nextPointCost(baseScores[a]) === 1 ? '' : 's'
+              }`"
+            >
+              next: +{{ nextPointCost(baseScores[a]) }}
+            </span>
+            <span
+              v-else
+              class="nct-ability-next-cost nct-ability-next-cost--maxed"
+            >
+              maxed
+            </span>
             <span class="nct-ability-cost"
-              >{{ scoreCost(baseScores[a]) }} pt{{
+              >total: {{ scoreCost(baseScores[a]) }} pt{{
                 scoreCost(baseScores[a]) === 1 ? '' : 's'
               }}</span
             >
@@ -285,7 +302,14 @@
             </span>
           </div>
           <ul v-if="preview.newFeatures.length" class="nct-feature-list">
-            <li v-for="f in preview.newFeatures" :key="f.name">{{ f.name }}</li>
+            <li v-for="f in preview.newFeatures" :key="f.name">
+              <span
+                :class="{ 'has-tip': featureDescriptions[f.name] }"
+                :title="featureDescriptions[f.name] || ''"
+              >
+                {{ f.name }}
+              </span>
+            </li>
           </ul>
           <div v-if="pendingSubclassChoice" class="nct-note nct-note--action">
             Subclass choice deferred — pick one later via Level Up.
@@ -313,6 +337,7 @@
 <script>
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
+import { lookupFeature } from '@/utils/lookupService.js'
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 // Mirrors engine/rules/pointBuy.js's table — kept local for instant UI
@@ -348,6 +373,10 @@ export default {
       baseScores: { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 },
       abilities: ABILITIES,
       pointBuyBudget: POINT_BUY_BUDGET,
+      // name -> description string, populated as newFeatures resolve via
+      // lookupFeature (async: local SRD/homebrew catalogs first, then the
+      // traits API).
+      featureDescriptions: {},
 
       activeTab: 'species',
       tabs: [
@@ -521,6 +550,12 @@ export default {
     scoreCost(score) {
       return POINT_BUY_COSTS[score] ?? 0
     },
+    // Marginal cost of the NEXT point (e.g. 13->14 costs 2, not 1) — null
+    // once already at the point-buy cap (15), since there's no next point.
+    nextPointCost(score) {
+      if (score >= 15) return null
+      return (POINT_BUY_COSTS[score + 1] ?? 0) - (POINT_BUY_COSTS[score] ?? 0)
+    },
     adjustScore(ability, delta) {
       const next = this.baseScores[ability] + delta
       if (next < 8 || next > 15) return
@@ -547,7 +582,11 @@ export default {
         spellcasting_ability: this.selectedClass?.spellcasting?.ability ?? null,
         hp_max: 0,
         hp_current: 0,
-        saving_throws: [],
+        // Real bug found auditing Siv (Rogue 9): this was always [], even
+        // though selectedClass.saving_throw_proficiencies is right there
+        // and already shown as info text in the Class tab — it just never
+        // got assigned into the actual character record.
+        saving_throws: this.selectedClass?.saving_throw_proficiencies ?? [],
         skill_proficiencies: this.selectedSkills
           .filter(Boolean)
           .map((id) => this.skillNameFor(id))
@@ -590,11 +629,26 @@ export default {
         if (!res.ok)
           throw new Error(data.error || `Server returned ${res.status}`)
         this.preview = data
+        this.loadFeatureDescriptions(
+          data.newFeatures?.map((f) => ({ name: f.name, id: f.id }))
+        )
       } catch (err) {
         this.error = err.message
         this.preview = null
       } finally {
         this.loading = false
+      }
+    },
+
+    // features: array of {name, id} (id optional) — id, when present, skips
+    // straight to an exact catalog match instead of risking a same-named
+    // collision (e.g. two subclasses both having a "Spellcasting" feature).
+    async loadFeatureDescriptions(features) {
+      for (const { name, id } of features ?? []) {
+        if (name in this.featureDescriptions) continue
+        this.$set(this.featureDescriptions, name, null)
+        const result = await lookupFeature(name, id)
+        this.$set(this.featureDescriptions, name, result?.description ?? null)
       }
     },
 
@@ -752,6 +806,16 @@ export default {
   width: 3.5rem;
 }
 
+.nct-ability-next-cost {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  width: 4rem;
+}
+
+.nct-ability-next-cost--maxed {
+  font-style: italic;
+}
+
 .nct-toggle-row {
   display: flex;
   align-items: center;
@@ -844,6 +908,11 @@ export default {
 .nct-feature-list {
   margin: 0.4rem 0;
   padding-left: 1.2rem;
+}
+
+.has-tip {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
 }
 
 .nct-loading {

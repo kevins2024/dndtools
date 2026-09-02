@@ -2,9 +2,18 @@
   "class": "Rogue",
   "name": "Assassin",
   "features_by_level": {
-    "3": ["Bonus Proficiencies (Assassin)", "Assassinate"],
-    "9": ["Assassin — Infiltration Expertise"],
-    "13": ["Impostor"],
-    "17": ["Death Strike"]
+    "3": [
+      "pub_bonus-proficiencies-assassin",
+      "pub_assassinate"
+    ],
+    "9": [
+      "pub_assassin-infiltration-expertise"
+    ],
+    "13": [
+      "pub_impostor"
+    ],
+    "17": [
+      "pub_death-strike"
+    ]
   }
 }

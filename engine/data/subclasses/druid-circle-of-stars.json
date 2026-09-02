@@ -2,9 +2,18 @@
   "class": "Druid",
   "name": "Circle of Stars",
   "features_by_level": {
-    "2": ["Stars Druid — Star Map", "Stars Druid — Starry Form"],
-    "6": ["Stars Druid — Cosmic Omen"],
-    "10": ["Stars Druid — Twinkling Constellations"],
-    "14": ["Stars Druid — Full of Stars"]
+    "2": [
+      "pub_stars-druid-star-map",
+      "pub_stars-druid-starry-form"
+    ],
+    "6": [
+      "pub_stars-druid-cosmic-omen"
+    ],
+    "10": [
+      "pub_stars-druid-twinkling-constellations"
+    ],
+    "14": [
+      "pub_stars-druid-full-of-stars"
+    ]
   }
 }

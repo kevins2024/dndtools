@@ -2,9 +2,18 @@
   "class": "Wizard",
   "name": "Evocation",
   "features_by_level": {
-    "2": ["Evocation Savant", "Sculpt Spells"],
-    "6": ["Potent Cantrip"],
-    "10": ["Empowered Evocation"],
-    "14": ["Overchannel"]
+    "2": [
+      "evocation-savant",
+      "sculpt-spells"
+    ],
+    "6": [
+      "potent-cantrip"
+    ],
+    "10": [
+      "empowered-evocation"
+    ],
+    "14": [
+      "overchannel"
+    ]
   }
 }

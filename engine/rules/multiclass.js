@@ -1,10 +1,41 @@
 const tables = require('../data/spellcasting-tables.json')
 const multiclassProficiencies = require('../data/multiclass-proficiencies.json')
+const multiclassPrerequisites = require('../data/multiclass-prerequisites.json')
 const {
   pactMagicForLevel,
   spellSlotsForClassAtLevel,
 } = require('./spellcasting')
 const { loadClass } = require('./classFeatures')
+
+// PHB p.163: to gain your first level in a class you don't already have,
+// you need the listed ability score(s) at 13+ in the class you're PICKING
+// UP. RAW technically also requires still meeting your existing class's own
+// prerequisite at that moment, but a character's STARTING class is exempt
+// from ever needing to meet its own prerequisite (official designer
+// clarification — you can start as anything regardless of stats), and
+// ability scores essentially never decrease in play — so checking only the
+// new class covers the case that actually matters. Returns { met, required,
+// mode } — mode is 'any' (Fighter's STR-or-DEX, the only PHB any_of case)
+// or 'all'. An unrecognized class name doesn't block — better to let an
+// unknown class through than silently deny a legitimate one over a lookup
+// gap.
+function meetsMulticlassPrerequisites(className, scores) {
+  const req = multiclassPrerequisites[className]
+  if (!req) return { met: true, required: [], mode: null }
+  const meetsAbility = (ability) => (scores[ability] ?? 0) >= 13
+  if (req.any_of) {
+    return {
+      met: req.any_of.some(meetsAbility),
+      required: req.any_of,
+      mode: 'any',
+    }
+  }
+  return {
+    met: req.all_of.every(meetsAbility),
+    required: req.all_of,
+    mode: 'all',
+  }
+}
 
 // PHB multiclass spellcasting rules: round each class's contribution down
 // (except Artificer, which rounds up) BEFORE summing, then look up the total
@@ -95,4 +126,5 @@ module.exports = {
   multiclassSpellSlots,
   multiclassPactSlots,
   expectedProficienciesForCharacter,
+  meetsMulticlassPrerequisites,
 }

@@ -1,0 +1,157 @@
+[
+  {
+    "index": "bless",
+    "name": "Bless",
+    "level": 1
+  },
+  {
+    "index": "command",
+    "name": "Command",
+    "level": 1
+  },
+  {
+    "index": "cure-wounds",
+    "name": "Cure Wounds",
+    "level": 1
+  },
+  {
+    "index": "detect-evil-and-good",
+    "name": "Detect Evil and Good",
+    "level": 1
+  },
+  {
+    "index": "detect-magic",
+    "name": "Detect Magic",
+    "level": 1
+  },
+  {
+    "index": "detect-poison-and-disease",
+    "name": "Detect Poison and Disease",
+    "level": 1
+  },
+  {
+    "index": "divine-favor",
+    "name": "Divine Favor",
+    "level": 1
+  },
+  {
+    "index": "heroism",
+    "name": "Heroism",
+    "level": 1
+  },
+  {
+    "index": "protection-from-evil-and-good",
+    "name": "Protection from Evil and Good",
+    "level": 1
+  },
+  {
+    "index": "purify-food-and-drink",
+    "name": "Purify Food and Drink",
+    "level": 1
+  },
+  {
+    "index": "shield-of-faith",
+    "name": "Shield of Faith",
+    "level": 1
+  },
+  {
+    "index": "aid",
+    "name": "Aid",
+    "level": 2
+  },
+  {
+    "index": "branding-smite",
+    "name": "Branding Smite",
+    "level": 2
+  },
+  {
+    "index": "find-steed",
+    "name": "Find Steed",
+    "level": 2
+  },
+  {
+    "index": "lesser-restoration",
+    "name": "Lesser Restoration",
+    "level": 2
+  },
+  {
+    "index": "locate-object",
+    "name": "Locate Object",
+    "level": 2
+  },
+  {
+    "index": "magic-weapon",
+    "name": "Magic Weapon",
+    "level": 2
+  },
+  {
+    "index": "protection-from-poison",
+    "name": "Protection from Poison",
+    "level": 2
+  },
+  {
+    "index": "zone-of-truth",
+    "name": "Zone of Truth",
+    "level": 2
+  },
+  {
+    "index": "create-food-and-water",
+    "name": "Create Food and Water",
+    "level": 3
+  },
+  {
+    "index": "daylight",
+    "name": "Daylight",
+    "level": 3
+  },
+  {
+    "index": "dispel-magic",
+    "name": "Dispel Magic",
+    "level": 3
+  },
+  {
+    "index": "magic-circle",
+    "name": "Magic Circle",
+    "level": 3
+  },
+  {
+    "index": "remove-curse",
+    "name": "Remove Curse",
+    "level": 3
+  },
+  {
+    "index": "revivify",
+    "name": "Revivify",
+    "level": 3
+  },
+  {
+    "index": "banishment",
+    "name": "Banishment",
+    "level": 4
+  },
+  {
+    "index": "death-ward",
+    "name": "Death Ward",
+    "level": 4
+  },
+  {
+    "index": "locate-creature",
+    "name": "Locate Creature",
+    "level": 4
+  },
+  {
+    "index": "dispel-evil-and-good",
+    "name": "Dispel Evil and Good",
+    "level": 5
+  },
+  {
+    "index": "geas",
+    "name": "Geas",
+    "level": 5
+  },
+  {
+    "index": "raise-dead",
+    "name": "Raise Dead",
+    "level": 5
+  }
+]

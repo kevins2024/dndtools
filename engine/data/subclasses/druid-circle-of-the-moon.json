@@ -2,17 +2,29 @@
   "class": "Druid",
   "name": "Circle of the Moon",
   "features_by_level": {
-    "2": ["Combat Wild Shape", "Circle Forms"],
-    "6": ["Circle Forms improvement", "Primal Strike"],
-    "8": ["Wild Symbiosis"],
-    "10": ["Elemental Wild Shape"],
-    "14": ["Thousand Forms"]
+    "2": [
+      "pub_combat-wild-shape",
+      "pub_circle-forms"
+    ],
+    "6": [
+      "pub_circle-forms-improvement",
+      "pub_primal-strike"
+    ],
+    "8": [
+      "hb_druid_wild_symbiosis"
+    ],
+    "10": [
+      "pub_elemental-wild-shape"
+    ],
+    "14": [
+      "pub_thousand-forms"
+    ]
   },
   "homebrew_features": {
     "Wild Symbiosis": {
       "homebrew": true,
       "level": 8,
-      "description": "While in Wild Shape, a Circle of the Moon druid retains the numerical bonuses from equipped magic gear made of natural, organically-originated materials — wood, cloth, leather, bone, antler, horn, shell, pearl, coral, amber, woven plant fiber, or Vixivirite — or from any item that explicitly states it functions in Wild Shape. Mined/cut minerals and gemstones (diamond, ruby, sapphire, crystal, jade, obsidian, etc.), worked metal armor, and metal weapons never qualify, consistent with existing druid tradition around avoiding worked metal. Qualifying AC bonuses apply directly to the beast form's AC. Qualifying weapon attack/damage bonuses apply directly to the beast's attack and damage rolls, representing the magic empowering the druid's natural weapons even though nothing is physically wielded. Other item effects — activated abilities, granted spells, utility properties — still require their normal trigger and don't function while shapeshifted unless the item explicitly states otherwise.",
+      "description": "While in Wild Shape, a Circle of the Moon druid retains the numerical bonuses from equipped magic gear made of natural, organically-originated materials \u2014 wood, cloth, leather, bone, antler, horn, shell, pearl, coral, amber, woven plant fiber, or Vixivirite \u2014 or from any item that explicitly states it functions in Wild Shape. Mined/cut minerals and gemstones (diamond, ruby, sapphire, crystal, jade, obsidian, etc.), worked metal armor, and metal weapons never qualify, consistent with existing druid tradition around avoiding worked metal. Qualifying AC bonuses apply directly to the beast form's AC. Qualifying weapon attack/damage bonuses apply directly to the beast's attack and damage rolls, representing the magic empowering the druid's natural weapons even though nothing is physically wielded. Other item effects \u2014 activated abilities, granted spells, utility properties \u2014 still require their normal trigger and don't function while shapeshifted unless the item explicitly states otherwise.",
       "table_note": "Adopted because this campaign runs gear-forward itemization rather than feat/subclass-forward power, and Wild Shape's flat stat-block numbers otherwise fall behind as the rest of the party's gear scales. Restricted to Circle of the Moon since that subclass's identity depends on Wild Shape staying combat-relevant, unlike circles built around spellcasting."
     }
   }

@@ -1,0 +1,19 @@
+{
+  "class": "Rogue",
+  "name": "Thief",
+  "features_by_level": {
+    "3": [
+      "hb_rogue_thief_fast_hands",
+      "hb_rogue_thief_second_story_work"
+    ],
+    "9": [
+      "hb_rogue_thief_supreme_sneak"
+    ],
+    "13": [
+      "hb_rogue_thief_use_magic_device"
+    ],
+    "17": [
+      "hb_rogue_thief_reflexes"
+    ]
+  }
+}

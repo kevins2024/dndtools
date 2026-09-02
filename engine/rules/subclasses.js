@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { featureName } = require('./featureCatalog')
 
 const SUBCLASSES_DIR = path.join(__dirname, '..', 'data', 'subclasses')
 
@@ -12,6 +13,19 @@ function slugify(className, subclassName) {
   return `${clean(className)}-${clean(subclassName)}`
 }
 
+// Same treatment as classFeatures.js's loadClass — features_by_level is
+// stored on disk as feature IDs, resolved back to names at load time so
+// every existing consumer keeps seeing name arrays. Raw ids kept alongside
+// under features_by_level_ids.
+function resolveFeatureIds(data) {
+  const ids = data.features_by_level
+  const names = {}
+  for (const [level, levelIds] of Object.entries(ids)) {
+    names[level] = levelIds.map(featureName)
+  }
+  return { ...data, features_by_level: names, features_by_level_ids: ids }
+}
+
 const subclassCache = new Map()
 
 function loadSubclass(className, subclassName) {
@@ -19,7 +33,8 @@ function loadSubclass(className, subclassName) {
   if (subclassCache.has(key)) return subclassCache.get(key)
   const file = path.join(SUBCLASSES_DIR, `${key}.json`)
   if (!fs.existsSync(file)) return null
-  const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+  const raw = JSON.parse(fs.readFileSync(file, 'utf8'))
+  const data = resolveFeatureIds(raw)
   subclassCache.set(key, data)
   return data
 }
@@ -42,9 +57,16 @@ function subclassFeaturesGainedAtLevel(className, subclassName, level) {
   return sub.features_by_level[String(level)] || []
 }
 
+function subclassFeatureIdsGainedAtLevel(className, subclassName, level) {
+  const sub = loadSubclass(className, subclassName)
+  if (!sub) return []
+  return sub.features_by_level_ids[String(level)] || []
+}
+
 module.exports = {
   slugify,
   loadSubclass,
   listSubclasses,
   subclassFeaturesGainedAtLevel,
+  subclassFeatureIdsGainedAtLevel,
 }

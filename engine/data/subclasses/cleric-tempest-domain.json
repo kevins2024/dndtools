@@ -3,19 +3,42 @@
   "name": "Tempest Domain",
   "features_by_level": {
     "1": [
-      "Bonus Proficiencies (Tempest Domain — Martial Weapons, Heavy Armor)",
-      "Wrath of the Storm"
+      "pub_bonus-proficiencies-tempest-domain-martial-weapons-heavy-armor",
+      "pub_wrath-of-the-storm"
     ],
-    "2": ["Channel Divinity: Destructive Wrath"],
-    "6": ["Thunderous Strike"],
-    "8": ["Divine Strike"],
-    "17": ["Stormborn"]
+    "2": [
+      "pub_channel-divinity-destructive-wrath"
+    ],
+    "6": [
+      "pub_thunderous-strike"
+    ],
+    "8": [
+      "divine-strike"
+    ],
+    "17": [
+      "pub_stormborn"
+    ]
   },
   "domain_spells_by_level": {
-    "1": ["Fog Cloud", "Thunderwave"],
-    "3": ["Gust of Wind", "Shatter"],
-    "5": ["Call Lightning", "Sleet Storm"],
-    "7": ["Control Water", "Ice Storm"],
-    "9": ["Destructive Wave", "Insect Plague"]
+    "1": [
+      "Fog Cloud",
+      "Thunderwave"
+    ],
+    "3": [
+      "Gust of Wind",
+      "Shatter"
+    ],
+    "5": [
+      "Call Lightning",
+      "Sleet Storm"
+    ],
+    "7": [
+      "Control Water",
+      "Ice Storm"
+    ],
+    "9": [
+      "Destructive Wave",
+      "Insect Plague"
+    ]
   }
 }

@@ -1,22 +1,65 @@
 {
   "name": "Ranger",
-  "saving_throw_proficiencies": ["str", "dex"],
-  "armor_proficiencies": ["light", "medium", "shields"],
-  "weapon_proficiencies": ["simple", "martial"],
+  "saving_throw_proficiencies": [
+    "str",
+    "dex"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple",
+    "martial"
+  ],
   "subclass_name": "Ranger Archetype",
   "subclass_choice_level": 3,
-  "subclass_feature_levels": [3, 7, 11, 15],
-  "spellcasting": { "type": "half", "ability": "wis" },
+  "subclass_feature_levels": [
+    3,
+    7,
+    11,
+    15
+  ],
+  "spellcasting": {
+    "type": "half",
+    "ability": "wis"
+  },
   "features_by_level": {
-    "1": ["Favored Enemy", "Natural Explorer"],
-    "2": ["Fighting Style", "Spellcasting"],
-    "3": ["Primeval Awareness"],
-    "5": ["Extra Attack"],
-    "6": ["Favored Enemy improvement", "Natural Explorer improvement"],
-    "8": ["Land's Stride"],
-    "10": ["Natural Explorer improvement", "Hide in Plain Sight"],
-    "14": ["Favored Enemy improvement", "Vanish"],
-    "18": ["Feral Senses"],
-    "20": ["Foe Slayer"]
+    "1": [
+      "gen_ranger_base_favored-enemy",
+      "gen_ranger_base_natural-explorer"
+    ],
+    "2": [
+      "ranger-fighting-style",
+      "gen_ranger_base_spellcasting"
+    ],
+    "3": [
+      "primeval-awareness"
+    ],
+    "5": [
+      "ranger-extra-attack"
+    ],
+    "6": [
+      "gen_ranger_base_favored-enemy-improvement",
+      "gen_ranger_base_natural-explorer-improvement"
+    ],
+    "8": [
+      "ranger-lands-stride"
+    ],
+    "10": [
+      "gen_ranger_base_natural-explorer-improvement",
+      "hide-in-plain-sight"
+    ],
+    "14": [
+      "gen_ranger_base_favored-enemy-improvement",
+      "vanish"
+    ],
+    "18": [
+      "feral-senses"
+    ],
+    "20": [
+      "foe-slayer"
+    ]
   }
 }

@@ -1,0 +1,527 @@
+[
+  {
+    "index": "guidance",
+    "name": "Guidance",
+    "level": 0
+  },
+  {
+    "index": "light",
+    "name": "Light",
+    "level": 0
+  },
+  {
+    "index": "mending",
+    "name": "Mending",
+    "level": 0
+  },
+  {
+    "index": "resistance",
+    "name": "Resistance",
+    "level": 0
+  },
+  {
+    "index": "sacred-flame",
+    "name": "Sacred Flame",
+    "level": 0
+  },
+  {
+    "index": "spare-the-dying",
+    "name": "Spare the Dying",
+    "level": 0
+  },
+  {
+    "index": "thaumaturgy",
+    "name": "Thaumaturgy",
+    "level": 0
+  },
+  {
+    "index": "bane",
+    "name": "Bane",
+    "level": 1
+  },
+  {
+    "index": "bless",
+    "name": "Bless",
+    "level": 1
+  },
+  {
+    "index": "command",
+    "name": "Command",
+    "level": 1
+  },
+  {
+    "index": "create-or-destroy-water",
+    "name": "Create or Destroy Water",
+    "level": 1
+  },
+  {
+    "index": "cure-wounds",
+    "name": "Cure Wounds",
+    "level": 1
+  },
+  {
+    "index": "detect-evil-and-good",
+    "name": "Detect Evil and Good",
+    "level": 1
+  },
+  {
+    "index": "detect-magic",
+    "name": "Detect Magic",
+    "level": 1
+  },
+  {
+    "index": "detect-poison-and-disease",
+    "name": "Detect Poison and Disease",
+    "level": 1
+  },
+  {
+    "index": "guiding-bolt",
+    "name": "Guiding Bolt",
+    "level": 1
+  },
+  {
+    "index": "healing-word",
+    "name": "Healing Word",
+    "level": 1
+  },
+  {
+    "index": "inflict-wounds",
+    "name": "Inflict Wounds",
+    "level": 1
+  },
+  {
+    "index": "protection-from-evil-and-good",
+    "name": "Protection from Evil and Good",
+    "level": 1
+  },
+  {
+    "index": "purify-food-and-drink",
+    "name": "Purify Food and Drink",
+    "level": 1
+  },
+  {
+    "index": "sanctuary",
+    "name": "Sanctuary",
+    "level": 1
+  },
+  {
+    "index": "shield-of-faith",
+    "name": "Shield of Faith",
+    "level": 1
+  },
+  {
+    "index": "aid",
+    "name": "Aid",
+    "level": 2
+  },
+  {
+    "index": "augury",
+    "name": "Augury",
+    "level": 2
+  },
+  {
+    "index": "blindness-deafness",
+    "name": "Blindness/Deafness",
+    "level": 2
+  },
+  {
+    "index": "calm-emotions",
+    "name": "Calm Emotions",
+    "level": 2
+  },
+  {
+    "index": "continual-flame",
+    "name": "Continual Flame",
+    "level": 2
+  },
+  {
+    "index": "enhance-ability",
+    "name": "Enhance Ability",
+    "level": 2
+  },
+  {
+    "index": "find-traps",
+    "name": "Find Traps",
+    "level": 2
+  },
+  {
+    "index": "gentle-repose",
+    "name": "Gentle Repose",
+    "level": 2
+  },
+  {
+    "index": "hold-person",
+    "name": "Hold Person",
+    "level": 2
+  },
+  {
+    "index": "lesser-restoration",
+    "name": "Lesser Restoration",
+    "level": 2
+  },
+  {
+    "index": "locate-object",
+    "name": "Locate Object",
+    "level": 2
+  },
+  {
+    "index": "prayer-of-healing",
+    "name": "Prayer of Healing",
+    "level": 2
+  },
+  {
+    "index": "protection-from-poison",
+    "name": "Protection from Poison",
+    "level": 2
+  },
+  {
+    "index": "silence",
+    "name": "Silence",
+    "level": 2
+  },
+  {
+    "index": "spiritual-weapon",
+    "name": "Spiritual Weapon",
+    "level": 2
+  },
+  {
+    "index": "warding-bond",
+    "name": "Warding Bond",
+    "level": 2
+  },
+  {
+    "index": "zone-of-truth",
+    "name": "Zone of Truth",
+    "level": 2
+  },
+  {
+    "index": "animate-dead",
+    "name": "Animate Dead",
+    "level": 3
+  },
+  {
+    "index": "beacon-of-hope",
+    "name": "Beacon of Hope",
+    "level": 3
+  },
+  {
+    "index": "bestow-curse",
+    "name": "Bestow Curse",
+    "level": 3
+  },
+  {
+    "index": "clairvoyance",
+    "name": "Clairvoyance",
+    "level": 3
+  },
+  {
+    "index": "create-food-and-water",
+    "name": "Create Food and Water",
+    "level": 3
+  },
+  {
+    "index": "daylight",
+    "name": "Daylight",
+    "level": 3
+  },
+  {
+    "index": "dispel-magic",
+    "name": "Dispel Magic",
+    "level": 3
+  },
+  {
+    "index": "glyph-of-warding",
+    "name": "Glyph of Warding",
+    "level": 3
+  },
+  {
+    "index": "magic-circle",
+    "name": "Magic Circle",
+    "level": 3
+  },
+  {
+    "index": "mass-healing-word",
+    "name": "Mass Healing Word",
+    "level": 3
+  },
+  {
+    "index": "meld-into-stone",
+    "name": "Meld Into Stone",
+    "level": 3
+  },
+  {
+    "index": "protection-from-energy",
+    "name": "Protection From Energy",
+    "level": 3
+  },
+  {
+    "index": "remove-curse",
+    "name": "Remove Curse",
+    "level": 3
+  },
+  {
+    "index": "revivify",
+    "name": "Revivify",
+    "level": 3
+  },
+  {
+    "index": "sending",
+    "name": "Sending",
+    "level": 3
+  },
+  {
+    "index": "speak-with-dead",
+    "name": "Speak with Dead",
+    "level": 3
+  },
+  {
+    "index": "spirit-guardians",
+    "name": "Spirit Guardians",
+    "level": 3
+  },
+  {
+    "index": "tongues",
+    "name": "Tongues",
+    "level": 3
+  },
+  {
+    "index": "water-walk",
+    "name": "Water Walk",
+    "level": 3
+  },
+  {
+    "index": "arcane-eye",
+    "name": "Arcane Eye",
+    "level": 4
+  },
+  {
+    "index": "banishment",
+    "name": "Banishment",
+    "level": 4
+  },
+  {
+    "index": "control-water",
+    "name": "Control Water",
+    "level": 4
+  },
+  {
+    "index": "death-ward",
+    "name": "Death Ward",
+    "level": 4
+  },
+  {
+    "index": "freedom-of-movement",
+    "name": "Freedom of Movement",
+    "level": 4
+  },
+  {
+    "index": "guardian-of-faith",
+    "name": "Guardian of Faith",
+    "level": 4
+  },
+  {
+    "index": "locate-creature",
+    "name": "Locate Creature",
+    "level": 4
+  },
+  {
+    "index": "stone-shape",
+    "name": "Stone Shape",
+    "level": 4
+  },
+  {
+    "index": "commune",
+    "name": "Commune",
+    "level": 5
+  },
+  {
+    "index": "contagion",
+    "name": "Contagion",
+    "level": 5
+  },
+  {
+    "index": "dispel-evil-and-good",
+    "name": "Dispel Evil and Good",
+    "level": 5
+  },
+  {
+    "index": "flame-strike",
+    "name": "Flame Strike",
+    "level": 5
+  },
+  {
+    "index": "geas",
+    "name": "Geas",
+    "level": 5
+  },
+  {
+    "index": "greater-restoration",
+    "name": "Greater Restoration",
+    "level": 5
+  },
+  {
+    "index": "hallow",
+    "name": "Hallow",
+    "level": 5
+  },
+  {
+    "index": "insect-plague",
+    "name": "Insect Plague",
+    "level": 5
+  },
+  {
+    "index": "legend-lore",
+    "name": "Legend Lore",
+    "level": 5
+  },
+  {
+    "index": "mass-cure-wounds",
+    "name": "Mass Cure Wounds",
+    "level": 5
+  },
+  {
+    "index": "planar-binding",
+    "name": "Planar Binding",
+    "level": 5
+  },
+  {
+    "index": "raise-dead",
+    "name": "Raise Dead",
+    "level": 5
+  },
+  {
+    "index": "scrying",
+    "name": "Scrying",
+    "level": 5
+  },
+  {
+    "index": "blade-barrier",
+    "name": "Blade Barrier",
+    "level": 6
+  },
+  {
+    "index": "create-undead",
+    "name": "Create Undead",
+    "level": 6
+  },
+  {
+    "index": "find-the-path",
+    "name": "Find the Path",
+    "level": 6
+  },
+  {
+    "index": "forbiddance",
+    "name": "Forbiddance",
+    "level": 6
+  },
+  {
+    "index": "harm",
+    "name": "Harm",
+    "level": 6
+  },
+  {
+    "index": "heal",
+    "name": "Heal",
+    "level": 6
+  },
+  {
+    "index": "heroes-feast",
+    "name": "Heroes' Feast",
+    "level": 6
+  },
+  {
+    "index": "planar-ally",
+    "name": "Planar Ally",
+    "level": 6
+  },
+  {
+    "index": "true-seeing",
+    "name": "True Seeing",
+    "level": 6
+  },
+  {
+    "index": "word-of-recall",
+    "name": "Word of Recall",
+    "level": 6
+  },
+  {
+    "index": "conjure-celestial",
+    "name": "Conjure Celestial",
+    "level": 7
+  },
+  {
+    "index": "divine-word",
+    "name": "Divine Word",
+    "level": 7
+  },
+  {
+    "index": "etherealness",
+    "name": "Etherealness",
+    "level": 7
+  },
+  {
+    "index": "fire-storm",
+    "name": "Fire Storm",
+    "level": 7
+  },
+  {
+    "index": "plane-shift",
+    "name": "Plane Shift",
+    "level": 7
+  },
+  {
+    "index": "regenerate",
+    "name": "Regenerate",
+    "level": 7
+  },
+  {
+    "index": "resurrection",
+    "name": "Resurrection",
+    "level": 7
+  },
+  {
+    "index": "symbol",
+    "name": "Symbol",
+    "level": 7
+  },
+  {
+    "index": "antimagic-field",
+    "name": "Antimagic Field",
+    "level": 8
+  },
+  {
+    "index": "control-weather",
+    "name": "Control Weather",
+    "level": 8
+  },
+  {
+    "index": "earthquake",
+    "name": "Earthquake",
+    "level": 8
+  },
+  {
+    "index": "holy-aura",
+    "name": "Holy Aura",
+    "level": 8
+  },
+  {
+    "index": "astral-projection",
+    "name": "Astral Projection",
+    "level": 9
+  },
+  {
+    "index": "gate",
+    "name": "Gate",
+    "level": 9
+  },
+  {
+    "index": "mass-heal",
+    "name": "Mass Heal",
+    "level": 9
+  },
+  {
+    "index": "true-resurrection",
+    "name": "True Resurrection",
+    "level": 9
+  }
+]

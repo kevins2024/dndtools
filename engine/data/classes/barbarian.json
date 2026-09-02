@@ -1,12 +1,29 @@
 {
   "name": "Barbarian",
-  "saving_throw_proficiencies": ["str", "con"],
-  "armor_proficiencies": ["light", "medium", "shields"],
-  "weapon_proficiencies": ["simple", "martial"],
+  "saving_throw_proficiencies": [
+    "str",
+    "con"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple",
+    "martial"
+  ],
   "subclass_name": "Primal Path",
   "subclass_choice_level": 3,
-  "subclass_feature_levels": [3, 6, 10, 14],
-  "spellcasting": { "type": "none" },
+  "subclass_feature_levels": [
+    3,
+    6,
+    10,
+    14
+  ],
+  "spellcasting": {
+    "type": "none"
+  },
   "rages_by_level": {
     "1": 2,
     "2": 2,
@@ -35,16 +52,41 @@
     "16": 4
   },
   "features_by_level": {
-    "1": ["Rage", "Unarmored Defense"],
-    "2": ["Reckless Attack", "Danger Sense"],
-    "5": ["Extra Attack", "Fast Movement"],
-    "7": ["Feral Instinct"],
-    "9": ["Brutal Critical (1 die)"],
-    "11": ["Relentless Rage"],
-    "13": ["Brutal Critical (2 dice)"],
-    "15": ["Persistent Rage"],
-    "17": ["Brutal Critical (3 dice)"],
-    "18": ["Indomitable Might"],
-    "20": ["Primal Champion"]
+    "1": [
+      "rage",
+      "barbarian-unarmored-defense"
+    ],
+    "2": [
+      "reckless-attack",
+      "danger-sense"
+    ],
+    "5": [
+      "barbarian-extra-attack",
+      "fast-movement"
+    ],
+    "7": [
+      "feral-instinct"
+    ],
+    "9": [
+      "brutal-critical-1-die"
+    ],
+    "11": [
+      "relentless-rage"
+    ],
+    "13": [
+      "brutal-critical-2-dice"
+    ],
+    "15": [
+      "persistent-rage"
+    ],
+    "17": [
+      "brutal-critical-3-dice"
+    ],
+    "18": [
+      "indomitable-might"
+    ],
+    "20": [
+      "primal-champion"
+    ]
   }
 }

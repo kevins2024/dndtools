@@ -1,0 +1,187 @@
+[
+  {
+    "index": "alarm",
+    "name": "Alarm",
+    "level": 1
+  },
+  {
+    "index": "animal-friendship",
+    "name": "Animal Friendship",
+    "level": 1
+  },
+  {
+    "index": "cure-wounds",
+    "name": "Cure Wounds",
+    "level": 1
+  },
+  {
+    "index": "detect-magic",
+    "name": "Detect Magic",
+    "level": 1
+  },
+  {
+    "index": "detect-poison-and-disease",
+    "name": "Detect Poison and Disease",
+    "level": 1
+  },
+  {
+    "index": "fog-cloud",
+    "name": "Fog Cloud",
+    "level": 1
+  },
+  {
+    "index": "goodberry",
+    "name": "Goodberry",
+    "level": 1
+  },
+  {
+    "index": "hunters-mark",
+    "name": "Hunter's Mark",
+    "level": 1
+  },
+  {
+    "index": "jump",
+    "name": "Jump",
+    "level": 1
+  },
+  {
+    "index": "longstrider",
+    "name": "Longstrider",
+    "level": 1
+  },
+  {
+    "index": "speak-with-animals",
+    "name": "Speak with Animals",
+    "level": 1
+  },
+  {
+    "index": "animal-messenger",
+    "name": "Animal Messenger",
+    "level": 2
+  },
+  {
+    "index": "barkskin",
+    "name": "Barkskin",
+    "level": 2
+  },
+  {
+    "index": "darkvision",
+    "name": "Darkvision",
+    "level": 2
+  },
+  {
+    "index": "find-traps",
+    "name": "Find Traps",
+    "level": 2
+  },
+  {
+    "index": "lesser-restoration",
+    "name": "Lesser Restoration",
+    "level": 2
+  },
+  {
+    "index": "locate-animals-or-plants",
+    "name": "Locate Animals or Plants",
+    "level": 2
+  },
+  {
+    "index": "locate-object",
+    "name": "Locate Object",
+    "level": 2
+  },
+  {
+    "index": "pass-without-trace",
+    "name": "Pass Without Trace",
+    "level": 2
+  },
+  {
+    "index": "protection-from-poison",
+    "name": "Protection from Poison",
+    "level": 2
+  },
+  {
+    "index": "silence",
+    "name": "Silence",
+    "level": 2
+  },
+  {
+    "index": "spike-growth",
+    "name": "Spike Growth",
+    "level": 2
+  },
+  {
+    "index": "conjure-animals",
+    "name": "Conjure Animals",
+    "level": 3
+  },
+  {
+    "index": "daylight",
+    "name": "Daylight",
+    "level": 3
+  },
+  {
+    "index": "nondetection",
+    "name": "Nondetection",
+    "level": 3
+  },
+  {
+    "index": "plant-growth",
+    "name": "Plant Growth",
+    "level": 3
+  },
+  {
+    "index": "protection-from-energy",
+    "name": "Protection From Energy",
+    "level": 3
+  },
+  {
+    "index": "speak-with-plants",
+    "name": "Speak with Plants",
+    "level": 3
+  },
+  {
+    "index": "water-breathing",
+    "name": "Water Breathing",
+    "level": 3
+  },
+  {
+    "index": "water-walk",
+    "name": "Water Walk",
+    "level": 3
+  },
+  {
+    "index": "wind-wall",
+    "name": "Wind Wall",
+    "level": 3
+  },
+  {
+    "index": "conjure-woodland-beings",
+    "name": "Conjure Woodland Beings",
+    "level": 4
+  },
+  {
+    "index": "freedom-of-movement",
+    "name": "Freedom of Movement",
+    "level": 4
+  },
+  {
+    "index": "locate-creature",
+    "name": "Locate Creature",
+    "level": 4
+  },
+  {
+    "index": "stoneskin",
+    "name": "Stoneskin",
+    "level": 4
+  },
+  {
+    "index": "commune-with-nature",
+    "name": "Commune With Nature",
+    "level": 5
+  },
+  {
+    "index": "tree-stride",
+    "name": "Tree Stride",
+    "level": 5
+  }
+]

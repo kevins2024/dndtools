@@ -1126,7 +1126,7 @@
   },
   {
     "name": "Brix Quellin",
-    "location": "Valdmere, Bluff House",
+    "location": "Valdmere, The Velperaust",
     "faction": null,
     "role": "House Steward, Dawn Blades Valdmere property",
     "status": ["ally", "employed"],
@@ -1208,14 +1208,14 @@
   },
   {
     "name": "Dravan Quelso",
-    "location": "Valdmere, Tetwhistle canal moorings office",
-    "faction": "Clan Tetwhistle",
-    "role": "Moorings office manager, south bank",
-    "status": ["unknown", "person of interest"],
-    "appearance": null,
-    "personality_traits": "Presents as legitimate business operator. Willing to distance himself from associates when circumstances require it.",
-    "personality_quirks": null,
-    "notes": "Used Niattos Fynch as a courier for sensitive cargo three weeks ago. Cargo had an undisclosed escort. Has since cut contact with Fynch entirely. Unclear whether acting independently or on Tetwhistle clan direction.",
+    "location": "Lithcai'nael custody, Valdmere",
+    "faction": null,
+    "role": "Former Tetwhistle moorings manager, fraudster",
+    "status": ["captured", "in custody"],
+    "appearance": "Fifties. Heavy through the shoulders, going soft. Grey hair kept short. Scar along left jaw, old and faded. Slight list to the right when walking — old injury. Uses cedar oil in his hair.",
+    "personality_traits": "Presents as legitimate business operator. Opportunistic rather than organizationally criminal. Acted alone on the Lithcai'nael fraud.",
+    "personality_quirks": "Keeps savings liquid and distributed across his person when running.",
+    "notes": "Arranged sealed cargo escort three weeks before party arrived — four crates delivered to Lithcai'nael district containing dressed stone instead of promised glassblowing equipment. Defrauded Lithcai'nael of 52,000g. Fled by sea toward Khemrise. Apprehended by Tielle off the gangplank in Khemrise with 37,000g on his person. Remaining 15,000g recovered from Calwick Orne. Handed to Lithcai'nael custody along with Orne on Day 77. Owns Greywater Interests, a holding company registered to the third private slip from the south at Valdmere's private docks — the Greyline's mooring point. Crime was opportunistic rather than planned — saw the Lithcai'nael order and executed the switcheroo independently.",
     "id": "npcs_87"
   },
   {
@@ -1304,7 +1304,7 @@
   },
   {
     "name": "Zilivek",
-    "location": "Valdmere, Bluff House",
+    "location": "Valdmere, The Velperaust",
     "faction": "",
     "role": "Maker / craftsperson",
     "appearance": "Lithkin. Small humanoid, smaller even than a halfling, with blue-purple skin that deepens toward indigo at the fingertips from years of pigment work. Long tapered ears, pointed chin, sharp downward-tipped nose, two visible pointed teeth at the corners of the mouth. Diamond-shaped eye openings that make the golden eyes within them appear angular. Indeterminate age — could be forty, could be four hundred. The Liliveth claimed them over a long residence and the coloring never fully reversed.",
@@ -1324,6 +1324,66 @@
     "appearance": "Drow. Unremarkable in presentation for someone who is clearly more than an innkeeper.",
     "personality_traits": "Well connected, discreet, moves through complicated situations with ease. Keeps unusual hours.",
     "personality_quirks": "Already awake when the party knocked late at night. Took them to Quelso's residence without hesitation when asked.",
-    "notes": "Helped the previous Bluff House owner flee Valdmere before the party arrived — that thread was not fully explored. Knew Dravan Quelso well enough to know where he lived and to have opinions about him. Led the party to Quelso's residence the night they investigated. Has been in Valdmere long enough to know the city's undercurrents well. The Tallow and Tar is well positioned for information gathering — anything said there likely reaches Zav'rel eventually."
+    "notes": "Helped the previous Bluff House owner flee Valdmere before the party arrived — that thread was not fully explored. Knew Dravan Quelso well enough to know where he lived and to have opinions about him. Led the party to Quelso's residence the night they investigated. Has been in Valdmere long enough to know the city's undercurrents well. The Tallow and Tar is well positioned for information gathering — anything said there likely reaches Zav'rel eventually. Party has used the Tallow and Tar as a message drop — if the man with the fake story returns to the Velperaust, Brix will send him to find Zav'rel there. Party is deliberately limiting what Zav'rel knows about their operations."
+  },
+  {
+    "id": "npcs_valdmere_10",
+    "name": "Brix Quellin",
+    "location": "Valdmere, The Velperaust",
+    "faction": "Dawn Blades (employed)",
+    "role": "House Steward",
+    "status": ["ally", "employed"],
+    "appearance": "Gnome woman, younger than her competence suggests. Ink on her fingers almost always. Ledger within reach at all times.",
+    "personality_traits": "Thinks in systems. Defines the infrastructure of a situation before engaging with its details. Honest about what she doesn't know. Asks the questions others forget to ask.",
+    "personality_quirks": "Arrived to her interview with notes already made. Turned down two family-aligned positions before accepting this one. Wage ask was specific and justified in a single sentence.",
+    "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons. Turned down Wyllard and one other family approach — told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Handles household accounts, visitor management, supply rotation, and records liaison. Has standing instruction to send anyone asking for the party to find Zav'rel at the Tallow and Tar. Resolved damp issue in left back room using compound from Wrellia's tea shop. Secured materials order and gate contact for 4 silver per week. Managing Wyllard roof repair."
+  },
+  {
+    "id": "npcs_valdmere_11",
+    "name": "Denniver Kosh",
+    "location": "Valdmere, Wyllard materials yard",
+    "faction": "Wyllard",
+    "role": "Master builder, foreman",
+    "status": ["neutral", "contracted"],
+    "appearance": "Large man, red beard gone mostly grey. Commands attention at any table without trying.",
+    "personality_traits": "Asks about constraints before quoting costs. Volunteers opinions only when they're structural. Sets expectations plainly and meets them.",
+    "personality_quirks": "Everyone at whatever table he's at is listening to him even when he's not talking. Noted that keeping the woodland buffer was the right call — first opinion he offered that wasn't structural.",
+    "notes": "Contracted by Dawn Blades for lake plot construction. Both plots building simultaneously, shared foundation wall. Wyllard quote was highest and only one Brix trusted. Site walk scheduled Day 93 sunrise. Engineer meeting pending Jaygar's return from Yetgrese in approximately two weeks. Knows the lake plot location already — did not need to be told."
+  },
+  {
+    "id": "npcs_valdmere_12",
+    "name": "The Enchantress",
+    "location": "Valdmere, unnamed workshop near main street",
+    "faction": "Independent",
+    "role": "Enchanter",
+    "status": ["neutral"],
+    "appearance": "Older woman, late fifties. Broad jaw, deep-set eyes. Tan from somewhere warmer than Valdmere. Hands scarred across knuckles in precise symmetrical pattern — occupational, not from fighting.",
+    "personality_traits": "Reads spellwork the way others read faces. Checks for active magic on strangers as a reflex. Prices quality, not time. Guarantees her work.",
+    "personality_quirks": "Moved Pirra's sword to a rack the moment payment was made — it was hers for three days and she treated it accordingly. Corner of her mouth moved at Pirra's flourish. Only smiled once, briefly, at an honest answer.",
+    "notes": "NAME IS A PLACEHOLDER — character-naming skill not yet run. Only quality enchanter in Valdmere. Completed +2 enhancement on Pirra's paired shortsword and Chuknora's shield for 4,000 gold total, half upfront. Referred party to Cadrith Solne for scrolls. Mentioned Lithcai'nael family library as best avenue for higher tier combat scrolls. Has prior work history with Gaermuion family. Does not take apprentices but open to occasional collaborative work with trained spellcasters."
+  },
+  {
+    "id": "npcs_valdmere_13",
+    "name": "Cadrith Solne",
+    "location": "Valdmere, translation service three streets north of main gate",
+    "faction": "Independent",
+    "role": "Translator, scroll broker",
+    "status": ["neutral"],
+    "appearance": "Woman, thirties, sharp featured, fair skin. Ink on right hand only. Three quills within reach at all times, each a different weight.",
+    "personality_traits": "Values her own time visibly. Reads what people don't say as readily as what they do. Tracks arrivals in the city for her own purposes.",
+    "personality_quirks": "Writes left-to-right in whatever she's currently working on — tells you something about her current contract's language of origin.",
+    "notes": "Sold party a Tongues scroll for 40 gold after brief negotiation. Referral from the enchantress. Reliably stocks Tongues — most requested scroll for her clientele. Offered to flag gate district scroll merchant on next arrival at no cost. Tracks city arrivals as standard practice. Party should follow up when in need of combat scrolls."
+  },
+  {
+    "id": "npcs_valdmere_14",
+    "name": "The Weapon Seller",
+    "location": "Valdmere, market district weapon stall",
+    "faction": "Independent",
+    "role": "Weapons merchant",
+    "status": ["neutral"],
+    "appearance": "Halfling man. Hands of someone who tests everything he sells.",
+    "personality_traits": "Knows the history of his stock. Prices fairly without being pushed to. Wants to know how things perform after they leave his hands.",
+    "personality_quirks": "Included a dozen arrows without being asked. Asked to be told how the bow shoots after she's had it out a few times — not a sales request, genuine interest.",
+    "notes": "NAME IS A PLACEHOLDER — character-naming skill not yet run. Sold Pirra the Laminated Marking Shortbow +1 for 60 gold. Makes his own arrows. Acknowledged the enchantress by name when Pirra mentioned not liking her vibe — confirmed she's the best in the city regardless."
   }
 ]

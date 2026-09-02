@@ -9,10 +9,13 @@
 // side by side — each entry's own `homebrew` flag tells them apart, see
 // engine/CHECKLIST.md) first, then public dnd5eapi.co REST API.
 // Feature data: local features.json (SRD) → published_features.json → traits API.
+// Monster data: published_monsters.json (homebrew, already in the shape the
+// API returns — see normalizeMonster) first, then public dnd5eapi.co REST API.
 
 import featuresData from '@/data/api_data_cache/features.json'
 import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
+import staticPublishedMonsters from '@/data/published_monsters.json'
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
@@ -232,7 +235,36 @@ export async function lookupSpell(name) {
 //   3. Local published_features.json (real non-SRD content + homebrew, bundled)
 //   4. /api/2014/traits               (racial/species traits — Fey Ancestry, Darkvision, etc.)
 
-export async function lookupFeature(name) {
+// id (optional): when the caller has one — e.g. a feature freshly granted
+// by a level-up, which carries the id diffLevelUp resolved it to — this
+// skips straight to an exact, unambiguous match instead of risking a
+// same-named-but-different-thing collision (two subclasses can both have a
+// feature called "Spellcasting"; only one of them is this one). Falls
+// through to the name-based cascade below when no id is given or the id
+// isn't found, so every existing caller keeps working unchanged.
+export async function lookupFeature(name, id) {
+  if (id) {
+    const srdById = featuresData.find((f) => f.index === id)
+    if (srdById) {
+      return {
+        subtitle: `${srdById.class.name} · Level ${srdById.level}`,
+        description: srdById.desc.join('\n\n'),
+      }
+    }
+    const published = await getHomebrew()
+    const pubById = published.features?.find((f) => f.id === id)
+    if (pubById) {
+      return {
+        subtitle:
+          pubById.category ||
+          pubById.class ||
+          pubById.source ||
+          (pubById.homebrew ? 'Homebrew' : 'Published'),
+        description: pubById.description,
+      }
+    }
+  }
+
   const lower = name.toLowerCase()
 
   // 1. Session edits
@@ -375,6 +407,17 @@ export async function lookupMonster(name) {
   const cacheKey = `monster_${slug}`
 
   if (memCache.has(cacheKey)) return memCache.get(cacheKey)
+
+  // Local homebrew first — already in the raw API shape, so it goes through
+  // the same normalizeMonster() a live fetch would, not a hand-rolled shape.
+  const localExact = staticPublishedMonsters.find(
+    (m) => m.name.toLowerCase() === name.toLowerCase()
+  )
+  if (localExact) {
+    const normalized = normalizeMonster(localExact)
+    memCache.set(cacheKey, normalized)
+    return normalized
+  }
 
   const stored = localGet(cacheKey)
   if (stored !== null) {

@@ -330,14 +330,14 @@
   },
   {
     "id": "assets_25",
-    "name": "Bluff House",
+    "name": "The Velperaust",
     "type": "real_estate",
     "subtype": "residence",
     "location": "Valdmere",
     "district": "Northeast Bluff",
-    "status": "newly acquired",
     "ownership": "Dawn Blades",
-    "notes": "Double lot. Two floors, four rooms plus common room and kitchen. Ocean view west. Stone floors suitable for teleportation circle inscription. One street below Voryn temple. Purchased Day 75 Year 468 for 420 gold from Nimbri Tatch."
+    "status": "operational",
+    "notes": "Double lot. Two floors, four rooms plus common room and kitchen. Ocean view west. Stone floors. One street below Voryn temple. Purchased Day 75 Year 468 for 420 gold from Nimbri Tatch. Roof repaired. Damp in left back room resolved. Brix Quellin managing as house steward. Standing guest capacity maintained. Velperaust is an old word for face-in-the-sunset. No teleportation circle — circle is in the Temple of Voryn one street up."
   },
   {
     "id": "assets_26",
@@ -346,9 +346,9 @@
     "subtype": "undeveloped_land",
     "location": "Valdmere",
     "district": "North lake bank",
-    "status": "claimed, undeveloped",
     "ownership": "Dawn Blades",
-    "notes": "Approximately 110ft lake frontage, 400ft depth. Both banks of eastern creek included. Road access on eastern boundary. Abandoned foundation claim next door absorbed. Registered Day 76 Year 468. Annual fee 8 gold. Vision: exclusive high-end establishment. Secondary use: private dock for Dawn Blades vessels. Neighboring plot could be used for something else."
+    "status": "construction beginning",
+    "notes": "Approximately 110ft lake frontage, 400ft depth. Both banks of eastern creek included. Road access on eastern boundary. Abandoned foundation claim next door absorbed — both plots building simultaneously with shared foundation wall. Registered Day 76 Year 468. Annual fee 8 gold. Vision: exclusive high-end members-only establishment with private dock, restaurant, bar, meeting rooms, baths, gaming, library, live music, smoking area. Low Roof scale rooms at same quality. Denniver Kosh (Wyllard) contracted. Creek-fed water with cistern backup. Jaygar to implement heating system on return. Site walk Day 93 sunrise."
   },
   {
     "id": "assets_27",

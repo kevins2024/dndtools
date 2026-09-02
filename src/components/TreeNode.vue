@@ -11,6 +11,15 @@
       <span v-for="tag in node.tags || []" :key="tag" class="tn-tag">{{
         tag
       }}</span>
+      <button
+        v-for="(action, i) in node.copyActions || []"
+        :key="i"
+        class="tn-copy-btn"
+        :title="action.title"
+        @click.stop="copyAction(action, i)"
+      >
+        {{ copiedIndex === i ? '✓ Copied' : action.label }}
+      </button>
     </div>
     <div v-else-if="node.type === 'image'" class="tn-image-wrap">
       <img :src="node.src" :alt="node.label || ''" class="tn-image" />
@@ -21,6 +30,15 @@
       <span v-for="tag in node.tags || []" :key="tag" class="tn-tag">{{
         tag
       }}</span>
+      <button
+        v-for="(action, i) in node.copyActions || []"
+        :key="i"
+        class="tn-copy-btn"
+        :title="action.title"
+        @click.stop="copyAction(action, i)"
+      >
+        {{ copiedIndex === i ? '✓ Copied' : action.label }}
+      </button>
     </div>
     <div v-if="open && hasChildren" class="tn-children">
       <TreeNode v-for="(child, i) in node.children" :key="i" :node="child" />
@@ -36,11 +54,20 @@ export default {
     defaultOpen: { type: Boolean, default: false },
   },
   data() {
-    return { open: this.defaultOpen }
+    return { open: this.defaultOpen, copiedIndex: null }
   },
   computed: {
     hasChildren() {
       return Array.isArray(this.node.children) && this.node.children.length > 0
+    },
+  },
+  methods: {
+    async copyAction(action, i) {
+      await navigator.clipboard.writeText(JSON.stringify(action.data, null, 2))
+      this.copiedIndex = i
+      setTimeout(() => {
+        if (this.copiedIndex === i) this.copiedIndex = null
+      }, 1200)
     },
   },
 }
@@ -88,6 +115,24 @@ export default {
 .tn-spacer {
   flex-shrink: 0;
   width: 14px;
+}
+
+.tn-copy-btn {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0.1rem 0.45rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-low);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tn-copy-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .tn-label {

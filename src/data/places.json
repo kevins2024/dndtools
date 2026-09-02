@@ -589,6 +589,33 @@
         "id": "locations_valdmere_05"
       },
       {
+        "name": "Cadrith Solne — Translation Service",
+        "type": "service",
+        "subtype": "translation and scroll",
+        "district": "Three streets north of main gate",
+        "status": "operational",
+        "description": "Narrow shopfront, multilingual signage, long table covered in documents. Organized, professional.",
+        "notes": "Run by Cadrith Solne. Handles contract translation for merchants. Keeps scroll stock — Tongues reliably available. Tracks arrivals for her own work, offered to flag gate district scroll merchant on next visit. Party purchased Tongues scroll for 40 gold. Referral from the enchantress."
+      },
+      {
+        "name": "Unnamed Weapon Stall",
+        "type": "shop",
+        "subtype": "weapons",
+        "district": "Market district",
+        "status": "operational",
+        "description": "Long open-fronted stall. Rack of blades, wall of bows in three pull weights. Run by a halfling man who tests everything he sells.",
+        "notes": "Sold Pirra the Laminated Marking Shortbow +1 for 60 gold. Makes his own arrows, sells them separately. Knows his stock's history. Needs naming — character-naming skill not yet run."
+      },
+      {
+        "name": "Unnamed Enchanter's Workshop",
+        "type": "shop",
+        "subtype": "enchantment",
+        "district": "Main street adjacent, between chandler and copy-shop",
+        "status": "operational",
+        "description": "Narrow building, low door, shutters half-open. Dense interior. Workbench visible from street. No sign.",
+        "notes": "Run by an unnamed enchantress, older woman, scarred knuckles from occupational work, southern origin. Only quality enchanter in Valdmere. Discreet. Does not advertise. Completed +2 enhancement on Pirra's paired shortsword and Chuknora's shield. Paid 4,000 gold total. Needs naming — character-naming skill not yet run."
+      },
+      {
         "name": "Tallow and Tar",
         "type": "inn",
         "district": "Main street",
@@ -601,7 +628,7 @@
         "type": "temple",
         "district": "Northeast bluff",
         "description": "Modest footprint, single story with partial loft. Living vines cover the eastern face, flowering ahead of season. Raw timber doorframe with carved patterns that almost resolve into animals. Interior blurs the boundary between inside and outside — open southern wall section, living trees incorporated into corners, partial open roof. Has changed hands multiple times — cartographer's guild, merchant collective, current Voryn congregation.",
-        "notes": "Contains an ancient teleportation circle beneath the main hall flagstones. Current Keeper is aware of it. Dawn Blades have negotiated access. Two former enemy operatives now working temple floor restoration as penance. Circle activation planned."
+        "notes": "Dawn Blades own the temple following a quest in which the congregation's clerics perished. Deed bequeathed by the dying keeper. Dawn Blades maintain Voryn's presence as agreed. Ancient teleportation circle beneath main hall flagstones — active, Dawn Blades asset. Temple runs on a volunteer caretaker currently. Quiet recruitment underway for permanent clergy and potentially young initiates. Temple ownership is not publicly advertised."
       },
       {
         "name": "City Gate",

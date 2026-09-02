@@ -3,13 +3,19 @@
   "name": "Soulknife",
   "features_by_level": {
     "3": [
-      "Soulknife — Psychic Blades",
-      "Soulknife — Psi-Bolstered Knack",
-      "Soulknife — Psychic Whispers"
+      "pub_soulknife-psychic-blades",
+      "pub_soulknife-psi-bolstered-knack",
+      "pub_soulknife-psychic-whispers"
     ],
-    "9": ["Soulknife — Soul Blades"],
-    "13": ["Soulknife — Psychic Veil"],
-    "17": ["Soulknife — Rend Mind"]
+    "9": [
+      "pub_soulknife-soul-blades"
+    ],
+    "13": [
+      "pub_soulknife-psychic-veil"
+    ],
+    "17": [
+      "pub_soulknife-rend-mind"
+    ]
   },
   "psionic_energy_die_by_level": {
     "3": 6,

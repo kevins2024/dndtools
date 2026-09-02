@@ -1,6 +1,9 @@
 {
   "name": "Sorcerer",
-  "saving_throw_proficiencies": ["con", "cha"],
+  "saving_throw_proficiencies": [
+    "con",
+    "cha"
+  ],
   "armor_proficiencies": [],
   "weapon_proficiencies": [
     "dagger",
@@ -11,8 +14,16 @@
   ],
   "subclass_name": "Sorcerous Origin",
   "subclass_choice_level": 1,
-  "subclass_feature_levels": [1, 6, 14, 18],
-  "spellcasting": { "type": "full", "ability": "cha" },
+  "subclass_feature_levels": [
+    1,
+    6,
+    14,
+    18
+  ],
+  "spellcasting": {
+    "type": "full",
+    "ability": "cha"
+  },
   "sorcery_points_by_level": {
     "2": 2,
     "3": 3,
@@ -35,11 +46,23 @@
     "20": 20
   },
   "features_by_level": {
-    "1": ["Spellcasting"],
-    "2": ["Font of Magic"],
-    "3": ["Metamagic"],
-    "10": ["Metamagic (3rd option)"],
-    "17": ["Metamagic (4th option)"],
-    "20": ["Sorcerous Restoration"]
+    "1": [
+      "gen_sorcerer_base_spellcasting"
+    ],
+    "2": [
+      "font-of-magic"
+    ],
+    "3": [
+      "metamagic-1"
+    ],
+    "10": [
+      "gen_sorcerer_base_metamagic-3rd-option"
+    ],
+    "17": [
+      "gen_sorcerer_base_metamagic-4th-option"
+    ],
+    "20": [
+      "sorcerous-restoration"
+    ]
   }
 }

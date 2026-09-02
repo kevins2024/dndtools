@@ -2,11 +2,22 @@
   "class": "Fighter",
   "name": "Battle Master",
   "features_by_level": {
-    "3": ["Combat Superiority", "Student of War"],
-    "7": ["Know Your Enemy"],
-    "10": ["Improved Combat Superiority (d10)"],
-    "15": ["Relentless"],
-    "18": ["Improved Combat Superiority (d12)"]
+    "3": [
+      "pub_combat-superiority",
+      "pub_student-of-war"
+    ],
+    "7": [
+      "pub_know-your-enemy"
+    ],
+    "10": [
+      "pub_improved-combat-superiority-d10"
+    ],
+    "15": [
+      "pub_relentless"
+    ],
+    "18": [
+      "pub_improved-combat-superiority-d12"
+    ]
   },
   "superiority_dice_by_level": {
     "3": 4,

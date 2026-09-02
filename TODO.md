@@ -3,6 +3,22 @@
 Backlog for "when we've got tokens to burn" — not urgent, not scheduled, just things
 worth coming back to. Add freely; check off or delete when done or no longer wanted.
 
+- [ ] **New Character tool has no class-level skill picker at all.** Found
+      auditing Siv (Rogue 9, real level-up through the tool) — she only has
+      2 of her expected 4 Rogue skill proficiencies. Turned out
+      `selectedSkills` in `NewCharacterTool.vue` is wired only to the
+      background's fixed 2-skill grant; no class file (`engine/data/
+  classes/*.json`) has any "choose N skills from this list" data at
+      all, so there's genuinely nothing to prompt from yet. Needs: (1) real
+      skill-choice data added per class (count + eligible list, verified
+      RAW per class — 13 classes), (2) a second picker section in
+      NewCharacterTool.vue for it, separate from the background section.
+      Related, same root cause: nothing prompts for which skills get
+      Expertise either (Rogue needs this at both level 1 and level 6), and
+      no feature can grant a skill proficiency as a mechanical effect
+      (Scout's Survivalist does this in real RAW — currently has to be
+      applied by hand). See `engine/CHECKLIST.md` for the full Siv audit.
+
 - [ ] **[USER ACTION] Mine other chats for lore.** User has a lot of world
       lore (history, locations, factions, etc.) scattered across other chat
       conversations, not in this repo. Action item is on the user: go
@@ -12,13 +28,61 @@ worth coming back to. Add freely; check off or delete when done or no longer wan
       something Claude can do — the source material only exists in those
       other conversations.
 
-- [ ] **Finish Iyani's Weave Attunement reskin past level 9.** The homebrew
-      subclass (`engine/data/subclasses/sorcerer-weave-attunement.json`) only
-      covers up to level 9 in real detail — it's basically a reskin of a real
-      subclass, and needs the rest of the levels filled in for completeness
-      (the 14th/18th-level features Weave Empowerment/Unraveling already
-      exist per `engine/CHECKLIST.md`, but the levels between 9 and 14 need
-      a look too).
+- [x] ~~Eldritch Knight / Arcane Trickster (third-caster spellcasting).~~
+      Done 2026-09-01 — a subclass can now grant spellcasting a base class
+      doesn't have (Fighter/Rogue's own `spellcasting.type` is `none`).
+      Third-caster slot/cantrip/known tables added, `spellcasting.js`
+      resolves class-or-subclass. Caught and fixed a real bug before it
+      landed: a mundane subclass (Champion) was briefly resolving to a
+      truthy `{type:'none'}` object instead of `null`, which would've shown
+      an empty spellcasting summary for every mundane subclass in both New
+      Character and Level Up tools. See `engine/CHECKLIST.md` for the
+      full writeup, including the disambiguated "Spellcasting (Eldritch
+      Knight)" / "Spellcasting (Arcane Trickster)" feature-name collision.
+
+- [x] ~~Multiclassing — picking up a brand-new class isn't supported.~~
+      **DONE 2026-09-01.** `diffLevelUp` now handles a genuine pickup
+      (prerequisites checked as a soft warning, reduced proficiency list
+      granted, HP correctly non-max at that "level 1"), and
+      `LevelUpTool.vue` has a second "+ Multiclass into…" selector listing
+      every class the character doesn't already have — including handling
+      Cleric/Sorcerer/Warlock's subclass-at-level-1 case via a level-0
+      placeholder entry. Full writeup in `engine/CHECKLIST.md`'s Phase 6
+      section. Still-open sub-gap, unchanged from before: skill/tool
+      proficiency choices the reduced list grants (Bard/Ranger/Rogue
+      skills; Bard/Rogue/Artificer tools) aren't structurally modeled
+      anywhere — surfaced as a warning telling the player to add it by
+      hand, same as the New Character tool's missing class-skill picker
+      below.
+
+- [x] ~~Feature lookup is name-based, not ID-based — real collision risk.~~
+      Done 2026-09-01, scoped to "data model now, content later" per project
+      owner. All 45 class/subclass files now reference features by id
+      (276 unique names audited: 265 matched an existing catalog entry,
+      31 got new stub entries needing real descriptions later —
+      `needs_description: true` is the filter to find them). 206 of 255
+      `published_features.json` entries were missing an id entirely and got
+      one backfilled. `lookupFeature(name, id)` now takes an optional id
+      that short-circuits to an exact match. Existing character data (~24
+      characters' already-saved `features[]`) intentionally NOT
+      retroactively migrated — only features granted from this point
+      forward carry an id. See `engine/CHECKLIST.md` for the full writeup.
+      Still open: writing real descriptions for the 31 stub entries.
+
+- [x] ~~Finish Iyani's Weave Attunement reskin past level 9.~~ Done
+      2026-09-01 — turned out to be a misconception: Sorcerous Origins only
+      ever get features at 1/6/14/18 (true for every origin, official or
+      homebrew), so there was no 9-14 gap. Audited Iyani's sheet against the
+      engine's real tables instead — already 100% RAW-correct at her actual
+      level (9). What genuinely was missing: the 15-spell Weave Phase grid
+      only existed on her own sheet, not as reusable subclass data — added a
+      `weave_grid` field (+ `house_rules`) to
+      `engine/data/subclasses/sorcerer-weave-attunement.json` so a brand-new
+      Weave Attunement sorcerer has a real default grid to start from, same
+      pattern as Great Old One's `expanded_spell_list`. New test verifies
+      every grid spell resolves, is the right level, and the right school.
+      See `engine/CHECKLIST.md` for the full writeup, including a latent
+      schema bug this caught (SRD spell `school` field needed flattening).
 
 - [ ] **Cantrip audit** (known-cantrip counts vs. RAW caps, similar to the
       known-spell-cap work). User wants to hold off until there's a real UI
@@ -33,12 +97,17 @@ worth coming back to. Add freely; check off or delete when done or no longer wan
       standard PHB species (`engine/data/species.json`) plus the 4 homebrew
       species, and now (2026-08-27) has real skill proficiencies for a
       curated 40 backgrounds (`engine/data/backgrounds.json`, verified against
-      a real reference table, not guessed). Still not covered:
-      `src/data/api_data_cache/species.json`'s other ~380 SRD entries (still
-      pure flavor text) and the ~320 other unique backgrounds beyond the
-      curated 40. Expand the curated background list over time as specific
-      ones are needed — the picker already has an "Other (custom)" escape
-      hatch for anything not yet curated.
+      a real reference table, not guessed). Still not covered: the ~320
+      other unique backgrounds beyond the curated 40, and whatever the real
+      scope of `src/data/api_data_cache/species.json`'s SRD flavor entries
+      should be — that cache went missing and was rebuilt from dnd5eapi.co
+      (2026-09-01, see `engine/CHECKLIST.md`); the rebuild only has the 13
+      real races/subraces the API has, not the ~380 previously noted here,
+      which the project owner says is too many and wants to reconcile
+      against another hard drive before trusting either number. Expand the
+      curated background list over time as specific ones are needed — the
+      picker already has an "Other (custom)" escape hatch for anything not
+      yet curated.
 
 - [ ] **Starting equipment automation.** New characters don't get equipment
       auto-assigned — `backgrounds.json` has a partial equipment/gold list per
@@ -156,18 +225,45 @@ worth coming back to. Add freely; check off or delete when done or no longer wan
       Artificer actually offers — same collaborative process as Therynv'l's
       build-out.
 
-- [ ] **Siv needs a rebuild — her subclass doesn't exist.** She's currently
-      `Fighter` / `subclass: "Scout"`, but Scout is a real Rogue subclass, not
-      a Fighter one. Concept (user's own words): "highly mobile, highly
-      accurate, long range capable, but sometimes stealthy archer" — no
-      sneak attack, so Rogue's out. Decided 2026-08-25: **Battle Master**
-      fits best — fully mundane (no unwanted arcane-magic flavor, unlike
-      Arcane Archer, the other real archer-flavored Fighter subclass), and
-      its maneuvers map directly onto the concept (Precision Attack for
+- [ ] **Siv needs a rebuild — her subclass doesn't exist. IN PROGRESS
+      2026-09-01, currently mid-rebuild with no character record at all.**
+      She was `Fighter` / `subclass: "Scout"`, but Scout is a real Rogue
+      subclass, not a Fighter one. Concept (user's own words): "highly
+      mobile, highly accurate, long range capable, but sometimes stealthy
+      archer" — no sneak attack, so Rogue's out. Decided 2026-08-25: **Battle
+      Master** fits best — fully mundane (no unwanted arcane-magic flavor,
+      unlike Arcane Archer, the other real archer-flavored Fighter subclass),
+      and its maneuvers map directly onto the concept (Precision Attack for
       accuracy, Evasive Footwork for mobility), same as any weapon including
-      a bow. Needs: change her `subclass` field to Battle Master, then pick
-      her actual maneuvers/superiority-die build and verify the rest of her
-      sheet against it — same process as Jaygar's rebuild above.
+      a bow.
+
+      Approach chosen: full from-scratch rebuild via the real tools, both to
+      fix her and to genuinely test the Level Up tool end-to-end (real-world
+      test case, same idea floated for Kerra below). Her old level-9 record
+      is gone — deleted after discovering her DEX 20 wasn't legally reachable
+      via point buy alongside her established Sharpshooter + Mobile feats
+      (would need two full ASIs on DEX alone, leaving no ASI for either
+      feat). Also discovered along the way: the Level Up tool has no
+      ability-score/point-buy step (only Hit Points / New Spells / Feature)
+      — that only exists in the New Character tool, so a genuine from-scratch
+      rebuild needs both tools, in that order, not Level Up tool alone.
+
+      Her narrative fields (appearance, image, persona_notes, languages
+      Common+Goblin) are saved outside the repo pending recreation — **not
+      yet reattached to a new record**. Next steps: (1) create a fresh "Siv"
+      via New Character tool — Human, point buy, Fighter, Fighting Style —
+      user doing point buy live themselves; (2) reattach her saved narrative
+      fields; (3) level her 1→9 via Level Up tool, subclass Battle Master at
+      3 with real maneuver/superiority-die picks, ASI/feat choices at 4/6/8
+      (keeping Sharpshooter + Mobile, one real ASI into DEX) — same
+      collaborative process as Jaygar's rebuild below.
+
+      Also found along the way: the Level Up tool's Hit Points step shows
+      working Roll/Take-Average controls at level 1, but level-1 HP is
+      always forced to max hit die per RAW regardless of what's picked
+      (verified: clicked Roll 6 times live, HP never changed) — the controls
+      just don't apply yet at that level. Minor, but worth a UI pass so
+      level 1 doesn't show controls that silently do nothing.
 
 - [x] ~~Ferghus's Oath of the Open Road and Torrin's Soulknife/Mastermind
       rebuild.~~ Done 2026-08-26 — see `engine/CHECKLIST.md` for the full data-

@@ -31,7 +31,7 @@
     },
     {
       "id": "tc_1783542290374",
-      "location": "Valdmere Bluff House",
+      "location": "Valdmere The Velperaust",
       "sigil_known": false,
       "access": "unknown",
       "permanent": true,
@@ -60,6 +60,22 @@
       "access": "unknown",
       "permanent": true,
       "notes": "Requires a disc to activate which also determines the destination."
+    },
+    {
+      "id": "tc_1788700000001",
+      "location": "Stillwater Harbor",
+      "sigil_known": true,
+      "access": "Dawn Blades",
+      "permanent": true,
+      "notes": "Created by Iyani as a gift, Day 92 Year 468."
+    },
+    {
+      "id": "tc_1788700000002",
+      "location": "Orvath",
+      "sigil_known": true,
+      "access": "Dawn Blades",
+      "permanent": true,
+      "notes": "Created by Iyani as a gift, Day 92 Year 468."
     }
   ],
   "sending_stone_networks": [
@@ -81,7 +97,7 @@
         },
         {
           "holder": "Brix Quellin",
-          "notes": "House Steward, Dawn Blades Valdmere property. Bluff House.",
+          "notes": "House Steward, Dawn Blades Valdmere property. The Velperaust.",
           "status": "active"
         },
         {

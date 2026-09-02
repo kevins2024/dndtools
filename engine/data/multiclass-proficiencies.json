@@ -54,8 +54,9 @@
     "weapons": []
   },
   "Artificer": {
-    "_notes": "Not in the original PHB table (Artificer is from Tasha's/Eberron) — not yet verified against Tasha's own multiclassing rules text. Don't trust this until checked.",
-    "armor": null,
-    "weapons": null
+    "_notes": "Not in the original PHB table (Artificer is Tasha's/Eberron) — verified via WebSearch against Tasha's own multiclassing rules text 2026-09-01.",
+    "armor": ["light", "medium", "shields"],
+    "weapons": [],
+    "tools": ["thieves' tools", "tinker's tools"]
   }
 }

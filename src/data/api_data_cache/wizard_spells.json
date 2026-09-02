@@ -1,0 +1,1022 @@
+[
+  {
+    "index": "acid-splash",
+    "name": "Acid Splash",
+    "level": 0
+  },
+  {
+    "index": "chill-touch",
+    "name": "Chill Touch",
+    "level": 0
+  },
+  {
+    "index": "dancing-lights",
+    "name": "Dancing Lights",
+    "level": 0
+  },
+  {
+    "index": "fire-bolt",
+    "name": "Fire Bolt",
+    "level": 0
+  },
+  {
+    "index": "light",
+    "name": "Light",
+    "level": 0
+  },
+  {
+    "index": "mage-hand",
+    "name": "Mage Hand",
+    "level": 0
+  },
+  {
+    "index": "mending",
+    "name": "Mending",
+    "level": 0
+  },
+  {
+    "index": "message",
+    "name": "Message",
+    "level": 0
+  },
+  {
+    "index": "minor-illusion",
+    "name": "Minor Illusion",
+    "level": 0
+  },
+  {
+    "index": "poison-spray",
+    "name": "Poison Spray",
+    "level": 0
+  },
+  {
+    "index": "prestidigitation",
+    "name": "Prestidigitation",
+    "level": 0
+  },
+  {
+    "index": "ray-of-frost",
+    "name": "Ray of Frost",
+    "level": 0
+  },
+  {
+    "index": "shocking-grasp",
+    "name": "Shocking Grasp",
+    "level": 0
+  },
+  {
+    "index": "true-strike",
+    "name": "True Strike",
+    "level": 0
+  },
+  {
+    "index": "alarm",
+    "name": "Alarm",
+    "level": 1
+  },
+  {
+    "index": "burning-hands",
+    "name": "Burning Hands",
+    "level": 1
+  },
+  {
+    "index": "charm-person",
+    "name": "Charm Person",
+    "level": 1
+  },
+  {
+    "index": "color-spray",
+    "name": "Color Spray",
+    "level": 1
+  },
+  {
+    "index": "comprehend-languages",
+    "name": "Comprehend Languages",
+    "level": 1
+  },
+  {
+    "index": "detect-magic",
+    "name": "Detect Magic",
+    "level": 1
+  },
+  {
+    "index": "disguise-self",
+    "name": "Disguise Self",
+    "level": 1
+  },
+  {
+    "index": "expeditious-retreat",
+    "name": "Expeditious Retreat",
+    "level": 1
+  },
+  {
+    "index": "false-life",
+    "name": "False Life",
+    "level": 1
+  },
+  {
+    "index": "feather-fall",
+    "name": "Feather Fall",
+    "level": 1
+  },
+  {
+    "index": "find-familiar",
+    "name": "Find Familiar",
+    "level": 1
+  },
+  {
+    "index": "floating-disk",
+    "name": "Floating Disk",
+    "level": 1
+  },
+  {
+    "index": "fog-cloud",
+    "name": "Fog Cloud",
+    "level": 1
+  },
+  {
+    "index": "grease",
+    "name": "Grease",
+    "level": 1
+  },
+  {
+    "index": "hideous-laughter",
+    "name": "Hideous Laughter",
+    "level": 1
+  },
+  {
+    "index": "identify",
+    "name": "Identify",
+    "level": 1
+  },
+  {
+    "index": "illusory-script",
+    "name": "Illusory Script",
+    "level": 1
+  },
+  {
+    "index": "jump",
+    "name": "Jump",
+    "level": 1
+  },
+  {
+    "index": "longstrider",
+    "name": "Longstrider",
+    "level": 1
+  },
+  {
+    "index": "mage-armor",
+    "name": "Mage Armor",
+    "level": 1
+  },
+  {
+    "index": "magic-missile",
+    "name": "Magic Missile",
+    "level": 1
+  },
+  {
+    "index": "protection-from-evil-and-good",
+    "name": "Protection from Evil and Good",
+    "level": 1
+  },
+  {
+    "index": "shield",
+    "name": "Shield",
+    "level": 1
+  },
+  {
+    "index": "silent-image",
+    "name": "Silent Image",
+    "level": 1
+  },
+  {
+    "index": "sleep",
+    "name": "Sleep",
+    "level": 1
+  },
+  {
+    "index": "thunderwave",
+    "name": "Thunderwave",
+    "level": 1
+  },
+  {
+    "index": "unseen-servant",
+    "name": "Unseen Servant",
+    "level": 1
+  },
+  {
+    "index": "acid-arrow",
+    "name": "Acid Arrow",
+    "level": 2
+  },
+  {
+    "index": "alter-self",
+    "name": "Alter Self",
+    "level": 2
+  },
+  {
+    "index": "arcane-lock",
+    "name": "Arcane Lock",
+    "level": 2
+  },
+  {
+    "index": "arcanists-magic-aura",
+    "name": "Arcanist's Magic Aura",
+    "level": 2
+  },
+  {
+    "index": "blindness-deafness",
+    "name": "Blindness/Deafness",
+    "level": 2
+  },
+  {
+    "index": "blur",
+    "name": "Blur",
+    "level": 2
+  },
+  {
+    "index": "continual-flame",
+    "name": "Continual Flame",
+    "level": 2
+  },
+  {
+    "index": "darkness",
+    "name": "Darkness",
+    "level": 2
+  },
+  {
+    "index": "darkvision",
+    "name": "Darkvision",
+    "level": 2
+  },
+  {
+    "index": "detect-thoughts",
+    "name": "Detect Thoughts",
+    "level": 2
+  },
+  {
+    "index": "enlarge-reduce",
+    "name": "Enlarge/Reduce",
+    "level": 2
+  },
+  {
+    "index": "flaming-sphere",
+    "name": "Flaming Sphere",
+    "level": 2
+  },
+  {
+    "index": "gentle-repose",
+    "name": "Gentle Repose",
+    "level": 2
+  },
+  {
+    "index": "gust-of-wind",
+    "name": "Gust of Wind",
+    "level": 2
+  },
+  {
+    "index": "hold-person",
+    "name": "Hold Person",
+    "level": 2
+  },
+  {
+    "index": "invisibility",
+    "name": "Invisibility",
+    "level": 2
+  },
+  {
+    "index": "knock",
+    "name": "Knock",
+    "level": 2
+  },
+  {
+    "index": "levitate",
+    "name": "Levitate",
+    "level": 2
+  },
+  {
+    "index": "locate-object",
+    "name": "Locate Object",
+    "level": 2
+  },
+  {
+    "index": "magic-mouth",
+    "name": "Magic Mouth",
+    "level": 2
+  },
+  {
+    "index": "magic-weapon",
+    "name": "Magic Weapon",
+    "level": 2
+  },
+  {
+    "index": "mirror-image",
+    "name": "Mirror Image",
+    "level": 2
+  },
+  {
+    "index": "misty-step",
+    "name": "Misty Step",
+    "level": 2
+  },
+  {
+    "index": "ray-of-enfeeblement",
+    "name": "Ray of Enfeeblement",
+    "level": 2
+  },
+  {
+    "index": "rope-trick",
+    "name": "Rope Trick",
+    "level": 2
+  },
+  {
+    "index": "scorching-ray",
+    "name": "Scorching Ray",
+    "level": 2
+  },
+  {
+    "index": "see-invisibility",
+    "name": "See Invisibility",
+    "level": 2
+  },
+  {
+    "index": "shatter",
+    "name": "Shatter",
+    "level": 2
+  },
+  {
+    "index": "spider-climb",
+    "name": "Spider Climb",
+    "level": 2
+  },
+  {
+    "index": "suggestion",
+    "name": "Suggestion",
+    "level": 2
+  },
+  {
+    "index": "web",
+    "name": "Web",
+    "level": 2
+  },
+  {
+    "index": "animate-dead",
+    "name": "Animate Dead",
+    "level": 3
+  },
+  {
+    "index": "bestow-curse",
+    "name": "Bestow Curse",
+    "level": 3
+  },
+  {
+    "index": "blink",
+    "name": "Blink",
+    "level": 3
+  },
+  {
+    "index": "clairvoyance",
+    "name": "Clairvoyance",
+    "level": 3
+  },
+  {
+    "index": "counterspell",
+    "name": "Counterspell",
+    "level": 3
+  },
+  {
+    "index": "dispel-magic",
+    "name": "Dispel Magic",
+    "level": 3
+  },
+  {
+    "index": "fear",
+    "name": "Fear",
+    "level": 3
+  },
+  {
+    "index": "fireball",
+    "name": "Fireball",
+    "level": 3
+  },
+  {
+    "index": "fly",
+    "name": "Fly",
+    "level": 3
+  },
+  {
+    "index": "gaseous-form",
+    "name": "Gaseous Form",
+    "level": 3
+  },
+  {
+    "index": "glyph-of-warding",
+    "name": "Glyph of Warding",
+    "level": 3
+  },
+  {
+    "index": "haste",
+    "name": "Haste",
+    "level": 3
+  },
+  {
+    "index": "hypnotic-pattern",
+    "name": "Hypnotic Pattern",
+    "level": 3
+  },
+  {
+    "index": "lightning-bolt",
+    "name": "Lightning Bolt",
+    "level": 3
+  },
+  {
+    "index": "magic-circle",
+    "name": "Magic Circle",
+    "level": 3
+  },
+  {
+    "index": "major-image",
+    "name": "Major Image",
+    "level": 3
+  },
+  {
+    "index": "nondetection",
+    "name": "Nondetection",
+    "level": 3
+  },
+  {
+    "index": "phantom-steed",
+    "name": "Phantom Steed",
+    "level": 3
+  },
+  {
+    "index": "protection-from-energy",
+    "name": "Protection From Energy",
+    "level": 3
+  },
+  {
+    "index": "remove-curse",
+    "name": "Remove Curse",
+    "level": 3
+  },
+  {
+    "index": "sending",
+    "name": "Sending",
+    "level": 3
+  },
+  {
+    "index": "sleet-storm",
+    "name": "Sleet Storm",
+    "level": 3
+  },
+  {
+    "index": "slow",
+    "name": "Slow",
+    "level": 3
+  },
+  {
+    "index": "stinking-cloud",
+    "name": "Stinking Cloud",
+    "level": 3
+  },
+  {
+    "index": "tiny-hut",
+    "name": "Tiny Hut",
+    "level": 3
+  },
+  {
+    "index": "tongues",
+    "name": "Tongues",
+    "level": 3
+  },
+  {
+    "index": "vampiric-touch",
+    "name": "Vampiric Touch",
+    "level": 3
+  },
+  {
+    "index": "water-breathing",
+    "name": "Water Breathing",
+    "level": 3
+  },
+  {
+    "index": "arcane-eye",
+    "name": "Arcane Eye",
+    "level": 4
+  },
+  {
+    "index": "banishment",
+    "name": "Banishment",
+    "level": 4
+  },
+  {
+    "index": "black-tentacles",
+    "name": "Black Tentacles",
+    "level": 4
+  },
+  {
+    "index": "blight",
+    "name": "Blight",
+    "level": 4
+  },
+  {
+    "index": "confusion",
+    "name": "Confusion",
+    "level": 4
+  },
+  {
+    "index": "conjure-minor-elementals",
+    "name": "Conjure Minor Elementals",
+    "level": 4
+  },
+  {
+    "index": "control-water",
+    "name": "Control Water",
+    "level": 4
+  },
+  {
+    "index": "dimension-door",
+    "name": "Dimension Door",
+    "level": 4
+  },
+  {
+    "index": "fabricate",
+    "name": "Fabricate",
+    "level": 4
+  },
+  {
+    "index": "faithful-hound",
+    "name": "Faithful Hound",
+    "level": 4
+  },
+  {
+    "index": "fire-shield",
+    "name": "Fire Shield",
+    "level": 4
+  },
+  {
+    "index": "greater-invisibility",
+    "name": "Greater Invisibility",
+    "level": 4
+  },
+  {
+    "index": "hallucinatory-terrain",
+    "name": "Hallucinatory Terrain",
+    "level": 4
+  },
+  {
+    "index": "ice-storm",
+    "name": "Ice Storm",
+    "level": 4
+  },
+  {
+    "index": "locate-creature",
+    "name": "Locate Creature",
+    "level": 4
+  },
+  {
+    "index": "phantasmal-killer",
+    "name": "Phantasmal Killer",
+    "level": 4
+  },
+  {
+    "index": "polymorph",
+    "name": "Polymorph",
+    "level": 4
+  },
+  {
+    "index": "private-sanctum",
+    "name": "Private Sanctum",
+    "level": 4
+  },
+  {
+    "index": "resilient-sphere",
+    "name": "Resilient Sphere",
+    "level": 4
+  },
+  {
+    "index": "secret-chest",
+    "name": "Secret Chest",
+    "level": 4
+  },
+  {
+    "index": "stone-shape",
+    "name": "Stone Shape",
+    "level": 4
+  },
+  {
+    "index": "stoneskin",
+    "name": "Stoneskin",
+    "level": 4
+  },
+  {
+    "index": "wall-of-fire",
+    "name": "Wall of Fire",
+    "level": 4
+  },
+  {
+    "index": "animate-objects",
+    "name": "Animate Objects",
+    "level": 5
+  },
+  {
+    "index": "arcane-hand",
+    "name": "Arcane Hand",
+    "level": 5
+  },
+  {
+    "index": "cloudkill",
+    "name": "Cloudkill",
+    "level": 5
+  },
+  {
+    "index": "cone-of-cold",
+    "name": "Cone of Cold",
+    "level": 5
+  },
+  {
+    "index": "conjure-elemental",
+    "name": "Conjure Elemental",
+    "level": 5
+  },
+  {
+    "index": "contact-other-plane",
+    "name": "Contact Other Plane",
+    "level": 5
+  },
+  {
+    "index": "creation",
+    "name": "Creation",
+    "level": 5
+  },
+  {
+    "index": "dominate-person",
+    "name": "Dominate Person",
+    "level": 5
+  },
+  {
+    "index": "dream",
+    "name": "Dream",
+    "level": 5
+  },
+  {
+    "index": "geas",
+    "name": "Geas",
+    "level": 5
+  },
+  {
+    "index": "hold-monster",
+    "name": "Hold Monster",
+    "level": 5
+  },
+  {
+    "index": "legend-lore",
+    "name": "Legend Lore",
+    "level": 5
+  },
+  {
+    "index": "mislead",
+    "name": "Mislead",
+    "level": 5
+  },
+  {
+    "index": "modify-memory",
+    "name": "Modify Memory",
+    "level": 5
+  },
+  {
+    "index": "passwall",
+    "name": "Passwall",
+    "level": 5
+  },
+  {
+    "index": "planar-binding",
+    "name": "Planar Binding",
+    "level": 5
+  },
+  {
+    "index": "scrying",
+    "name": "Scrying",
+    "level": 5
+  },
+  {
+    "index": "seeming",
+    "name": "Seeming",
+    "level": 5
+  },
+  {
+    "index": "telekinesis",
+    "name": "Telekinesis",
+    "level": 5
+  },
+  {
+    "index": "telepathic-bond",
+    "name": "Telepathic Bond",
+    "level": 5
+  },
+  {
+    "index": "teleportation-circle",
+    "name": "Teleportation Circle",
+    "level": 5
+  },
+  {
+    "index": "wall-of-force",
+    "name": "Wall of Force",
+    "level": 5
+  },
+  {
+    "index": "wall-of-stone",
+    "name": "Wall of Stone",
+    "level": 5
+  },
+  {
+    "index": "chain-lightning",
+    "name": "Chain Lightning",
+    "level": 6
+  },
+  {
+    "index": "circle-of-death",
+    "name": "Circle of Death",
+    "level": 6
+  },
+  {
+    "index": "contingency",
+    "name": "Contingency",
+    "level": 6
+  },
+  {
+    "index": "create-undead",
+    "name": "Create Undead",
+    "level": 6
+  },
+  {
+    "index": "disintegrate",
+    "name": "Disintegrate",
+    "level": 6
+  },
+  {
+    "index": "eyebite",
+    "name": "Eyebite",
+    "level": 6
+  },
+  {
+    "index": "flesh-to-stone",
+    "name": "Flesh to Stone",
+    "level": 6
+  },
+  {
+    "index": "freezing-sphere",
+    "name": "Freezing Sphere",
+    "level": 6
+  },
+  {
+    "index": "globe-of-invulnerability",
+    "name": "Globe of Invulnerability",
+    "level": 6
+  },
+  {
+    "index": "guards-and-wards",
+    "name": "Guards and Wards",
+    "level": 6
+  },
+  {
+    "index": "instant-summons",
+    "name": "Instant Summons",
+    "level": 6
+  },
+  {
+    "index": "irresistible-dance",
+    "name": "Irresistible Dance",
+    "level": 6
+  },
+  {
+    "index": "magic-jar",
+    "name": "Magic Jar",
+    "level": 6
+  },
+  {
+    "index": "mass-suggestion",
+    "name": "Mass Suggestion",
+    "level": 6
+  },
+  {
+    "index": "move-earth",
+    "name": "Move Earth",
+    "level": 6
+  },
+  {
+    "index": "programmed-illusion",
+    "name": "Programmed Illusion",
+    "level": 6
+  },
+  {
+    "index": "sunbeam",
+    "name": "Sunbeam",
+    "level": 6
+  },
+  {
+    "index": "true-seeing",
+    "name": "True Seeing",
+    "level": 6
+  },
+  {
+    "index": "wall-of-ice",
+    "name": "Wall of Ice",
+    "level": 6
+  },
+  {
+    "index": "arcane-sword",
+    "name": "Arcane Sword",
+    "level": 7
+  },
+  {
+    "index": "delayed-blast-fireball",
+    "name": "Delayed Blast Fireball",
+    "level": 7
+  },
+  {
+    "index": "etherealness",
+    "name": "Etherealness",
+    "level": 7
+  },
+  {
+    "index": "finger-of-death",
+    "name": "Finger of Death",
+    "level": 7
+  },
+  {
+    "index": "forcecage",
+    "name": "Forcecage",
+    "level": 7
+  },
+  {
+    "index": "magnificent-mansion",
+    "name": "Magnificent Mansion",
+    "level": 7
+  },
+  {
+    "index": "mirage-arcane",
+    "name": "Mirage Arcane",
+    "level": 7
+  },
+  {
+    "index": "plane-shift",
+    "name": "Plane Shift",
+    "level": 7
+  },
+  {
+    "index": "prismatic-spray",
+    "name": "Prismatic Spray",
+    "level": 7
+  },
+  {
+    "index": "project-image",
+    "name": "Project Image",
+    "level": 7
+  },
+  {
+    "index": "reverse-gravity",
+    "name": "Reverse Gravity",
+    "level": 7
+  },
+  {
+    "index": "sequester",
+    "name": "Sequester",
+    "level": 7
+  },
+  {
+    "index": "simulacrum",
+    "name": "Simulacrum",
+    "level": 7
+  },
+  {
+    "index": "symbol",
+    "name": "Symbol",
+    "level": 7
+  },
+  {
+    "index": "teleport",
+    "name": "Teleport",
+    "level": 7
+  },
+  {
+    "index": "antimagic-field",
+    "name": "Antimagic Field",
+    "level": 8
+  },
+  {
+    "index": "antipathy-sympathy",
+    "name": "Antipathy/Sympathy",
+    "level": 8
+  },
+  {
+    "index": "clone",
+    "name": "Clone",
+    "level": 8
+  },
+  {
+    "index": "control-weather",
+    "name": "Control Weather",
+    "level": 8
+  },
+  {
+    "index": "demiplane",
+    "name": "Demiplane",
+    "level": 8
+  },
+  {
+    "index": "dominate-monster",
+    "name": "Dominate Monster",
+    "level": 8
+  },
+  {
+    "index": "feeblemind",
+    "name": "Feeblemind",
+    "level": 8
+  },
+  {
+    "index": "incendiary-cloud",
+    "name": "Incendiary Cloud",
+    "level": 8
+  },
+  {
+    "index": "maze",
+    "name": "Maze",
+    "level": 8
+  },
+  {
+    "index": "mind-blank",
+    "name": "Mind Blank",
+    "level": 8
+  },
+  {
+    "index": "power-word-stun",
+    "name": "Power Word Stun",
+    "level": 8
+  },
+  {
+    "index": "sunburst",
+    "name": "Sunburst",
+    "level": 8
+  },
+  {
+    "index": "astral-projection",
+    "name": "Astral Projection",
+    "level": 9
+  },
+  {
+    "index": "foresight",
+    "name": "Foresight",
+    "level": 9
+  },
+  {
+    "index": "gate",
+    "name": "Gate",
+    "level": 9
+  },
+  {
+    "index": "imprisonment",
+    "name": "Imprisonment",
+    "level": 9
+  },
+  {
+    "index": "meteor-swarm",
+    "name": "Meteor Swarm",
+    "level": 9
+  },
+  {
+    "index": "power-word-kill",
+    "name": "Power Word Kill",
+    "level": 9
+  },
+  {
+    "index": "prismatic-wall",
+    "name": "Prismatic Wall",
+    "level": 9
+  },
+  {
+    "index": "shapechange",
+    "name": "Shapechange",
+    "level": 9
+  },
+  {
+    "index": "time-stop",
+    "name": "Time Stop",
+    "level": 9
+  },
+  {
+    "index": "true-polymorph",
+    "name": "True Polymorph",
+    "level": 9
+  },
+  {
+    "index": "weird",
+    "name": "Weird",
+    "level": 9
+  },
+  {
+    "index": "wish",
+    "name": "Wish",
+    "level": 9
+  }
+]

@@ -2,9 +2,19 @@
   "class": "Rogue",
   "name": "Inquisitive",
   "features_by_level": {
-    "3": ["Ear for Deceit", "Eye for Detail", "Insightful Fighting"],
-    "9": ["Steady Eye"],
-    "13": ["Unerring Eye"],
-    "17": ["Eye for Weakness"]
+    "3": [
+      "pub_ear-for-deceit",
+      "pub_eye-for-detail",
+      "pub_insightful-fighting"
+    ],
+    "9": [
+      "pub_steady-eye"
+    ],
+    "13": [
+      "pub_unerring-eye"
+    ],
+    "17": [
+      "pub_eye-for-weakness"
+    ]
   }
 }

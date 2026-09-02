@@ -76,6 +76,13 @@
                     dnd.rechargeLabel(e.recharge)
                   }}</span></span
                 >
+                <span
+                  v-for="name in weaponSpellsFor(row.name)"
+                  :key="name"
+                  class="feature-pill"
+                  @click="inspectSpell(name)"
+                  >{{ name }}</span
+                >
               </td>
             </template>
             <template v-else>
@@ -101,6 +108,7 @@ import { dnd } from '@/utils/dnd_utils.js'
 import {
   buildItemPopupData,
   buildFeaturePopupData,
+  buildSpellPopupData,
 } from '@/utils/detailPopupBuilders.js'
 import { Search } from 'lucide-vue'
 
@@ -161,8 +169,18 @@ export default {
     weaponEffectsFor(name) {
       return this.weaponItem(name)?.weapon_effects ?? []
     },
+    // Real spells a weapon can trigger (e.g. a marking shot forcing Faerie
+    // Fire onto the target) — kept separate from weapon_effects so their
+    // tooltip comes from the actual spell data (lookupSpell, via
+    // buildSpellPopupData) instead of hand-copied spell text going stale.
+    weaponSpellsFor(name) {
+      return this.weaponItem(name)?.spells_granted ?? []
+    },
     async inspectEffect(effect) {
       this.$emit('inspect', await buildFeaturePopupData(effect))
+    },
+    async inspectSpell(name) {
+      this.$emit('inspect', await buildSpellPopupData({ name }))
     },
     inspect(item) {
       this.$emit('inspect', buildItemPopupData(item))

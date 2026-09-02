@@ -1,6 +1,9 @@
 {
   "name": "Wizard",
-  "saving_throw_proficiencies": ["int", "wis"],
+  "saving_throw_proficiencies": [
+    "int",
+    "wis"
+  ],
   "armor_proficiencies": [],
   "weapon_proficiencies": [
     "dagger",
@@ -11,11 +14,26 @@
   ],
   "subclass_name": "Arcane Tradition",
   "subclass_choice_level": 2,
-  "subclass_feature_levels": [2, 6, 10, 14],
-  "spellcasting": { "type": "full", "ability": "int" },
+  "subclass_feature_levels": [
+    2,
+    6,
+    10,
+    14
+  ],
+  "spellcasting": {
+    "type": "full",
+    "ability": "int"
+  },
   "features_by_level": {
-    "1": ["Spellcasting", "Arcane Recovery"],
-    "18": ["Spell Mastery"],
-    "20": ["Signature Spells"]
+    "1": [
+      "gen_wizard_base_spellcasting",
+      "arcane-recovery"
+    ],
+    "18": [
+      "spell-mastery"
+    ],
+    "20": [
+      "gen_wizard_base_signature-spells"
+    ]
   }
 }

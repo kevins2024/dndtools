@@ -1,22 +1,60 @@
 {
   "name": "Artificer",
-  "saving_throw_proficiencies": ["con", "int"],
-  "armor_proficiencies": ["light", "medium", "shields"],
-  "weapon_proficiencies": ["simple"],
+  "saving_throw_proficiencies": [
+    "con",
+    "int"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple"
+  ],
   "subclass_name": "Artificer Specialist",
   "subclass_choice_level": 3,
-  "subclass_feature_levels": [3, 5, 9, 15],
-  "spellcasting": { "type": "artificer", "ability": "int" },
+  "subclass_feature_levels": [
+    3,
+    5,
+    9,
+    15
+  ],
+  "spellcasting": {
+    "type": "artificer",
+    "ability": "int"
+  },
   "features_by_level": {
-    "1": ["Magical Tinkering", "Spellcasting"],
-    "2": ["Infuse Item"],
-    "3": ["The Right Tool for the Job"],
-    "6": ["Tool Expertise"],
-    "7": ["Flash of Genius"],
-    "10": ["Magic Item Adept"],
-    "11": ["Spell-Storing Item"],
-    "14": ["Magic Item Savant"],
-    "18": ["Magic Item Master"],
-    "20": ["Soul of Artifice"]
+    "1": [
+      "pub_magical-tinkering",
+      "gen_artificer_base_spellcasting"
+    ],
+    "2": [
+      "hb_artificer_infuse_item"
+    ],
+    "3": [
+      "gen_artificer_base_the-right-tool-for-the-job"
+    ],
+    "6": [
+      "pub_tool-expertise"
+    ],
+    "7": [
+      "pub_flash-of-genius"
+    ],
+    "10": [
+      "hb_artificer_magic_item_adept"
+    ],
+    "11": [
+      "gen_artificer_base_spell-storing-item"
+    ],
+    "14": [
+      "gen_artificer_base_magic-item-savant"
+    ],
+    "18": [
+      "gen_artificer_base_magic-item-master"
+    ],
+    "20": [
+      "gen_artificer_base_soul-of-artifice"
+    ]
   }
 }

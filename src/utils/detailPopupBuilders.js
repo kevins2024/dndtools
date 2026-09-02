@@ -50,7 +50,7 @@ export async function buildSpellPopupData(spell) {
 }
 
 export async function buildFeaturePopupData(feature) {
-  const data = await lookupFeature(feature.name)
+  const data = await lookupFeature(feature.name, feature.id)
   const fields = []
   if (feature.action_type)
     fields.push({ label: 'Action', value: feature.action_type })

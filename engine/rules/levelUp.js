@@ -1,13 +1,17 @@
 const { loadClass } = require('./classFeatures')
 const { isAsiLevel, hitDieForClass, hpGainForLevel } = require('./progression')
 const {
+  resolveSpellcasting,
   spellSlotsForClassAtLevel,
   pactMagicForLevel,
   cantripsKnownForClass,
   spellsKnownForClass,
   preparedSpellCount,
 } = require('./spellcasting')
-const { subclassFeaturesGainedAtLevel } = require('./subclasses')
+const {
+  subclassFeaturesGainedAtLevel,
+  subclassFeatureIdsGainedAtLevel,
+} = require('./subclasses')
 const { multiclassSpellSlots } = require('./multiclass')
 
 // The function the future level-up wizard calls, one level at a time.
@@ -26,6 +30,12 @@ const { multiclassSpellSlots } = require('./multiclass')
 // The returned hp figures are hit-die only — CON modifier per level is the
 // caller's responsibility to add, since this function doesn't know a
 // character's ability scores.
+// isCharactersFirstLevelEver (default true, matching every existing
+// caller's behavior): the "1st level HP is always max" RAW rule applies
+// once, ever, per character — not once per class. Picking up a brand-new
+// class via multiclassing is that class's own level 1, but NOT the
+// character's first level ever, so it must roll/average like any other
+// level. Pass false only from a genuine multiclass-pickup path.
 function describeLevelUp({
   className,
   subclassName,
@@ -35,6 +45,7 @@ function describeLevelUp({
   otherClasses = [],
   hpMethod = 'roll',
   hpRolls = [],
+  isCharactersFirstLevelEver = true,
 }) {
   const cls = loadClass(className)
   if (!cls) return { error: `No rules data for class "${className}"` }
@@ -52,20 +63,22 @@ function describeLevelUp({
   }
 
   for (let lvl = fromLevel + 1; lvl <= toLevel; lvl++) {
+    const forceMax = lvl === 1 && isCharactersFirstLevelEver
     const gained = hpGainForLevel(
       className,
       hpMethod,
       hpRolls[lvl - fromLevel - 1] ?? null,
-      lvl
+      forceMax ? 1 : null
     )
-    result.hp.push({ level: lvl, gained, method: lvl === 1 ? 'max' : hpMethod })
+    result.hp.push({ level: lvl, gained, method: forceMax ? 'max' : hpMethod })
     result.totalHpGained += gained
 
     if (isAsiLevel(className, lvl)) result.asiOrFeatLevels.push(lvl)
 
     const named = cls.features_by_level[String(lvl)] || []
+    const ids = cls.features_by_level_ids[String(lvl)] || []
     if (named.length)
-      result.baseFeaturesGained.push({ level: lvl, names: named })
+      result.baseFeaturesGained.push({ level: lvl, names: named, ids })
 
     if (lvl === cls.subclass_choice_level && !subclassName) {
       result.subclassChoiceNeeded = true
@@ -81,13 +94,28 @@ function describeLevelUp({
         subclassName,
         lvl
       )
-      if (subFeatures.length)
-        result.subclassFeaturesGained.push({ level: lvl, names: subFeatures })
+      if (subFeatures.length) {
+        const subFeatureIds = subclassFeatureIdsGainedAtLevel(
+          className,
+          subclassName,
+          lvl
+        )
+        result.subclassFeaturesGained.push({
+          level: lvl,
+          names: subFeatures,
+          ids: subFeatureIds,
+        })
+      }
     }
   }
 
-  if (cls.spellcasting && cls.spellcasting.type !== 'none') {
-    const type = cls.spellcasting.type
+  // Resolves the class's own spellcasting UNLESS it's 'none'/missing and the
+  // subclass grants it instead (Eldritch Knight, Arcane Trickster) — see
+  // spellcasting.js's resolveSpellcasting for the shared logic every
+  // lookup below goes through via subclassName.
+  const effectiveSpellcasting = resolveSpellcasting(className, subclassName)
+  if (effectiveSpellcasting) {
+    const type = effectiveSpellcasting.type
     const modBefore = abilityModifierAtLevel
       ? abilityModifierAtLevel(fromLevel)
       : 0
@@ -104,33 +132,34 @@ function describeLevelUp({
           : isMulticlassed
           ? multiclassSpellSlots([
               ...otherClasses,
-              { name: className, level: fromLevel },
+              { name: className, level: fromLevel, subclass: subclassName },
             ])
-          : spellSlotsForClassAtLevel(className, fromLevel),
+          : spellSlotsForClassAtLevel(className, fromLevel, subclassName),
       slotsAfter:
         type === 'pact'
           ? null
           : isMulticlassed
           ? multiclassSpellSlots([
               ...otherClasses,
-              { name: className, level: toLevel },
+              { name: className, level: toLevel, subclass: subclassName },
             ])
-          : spellSlotsForClassAtLevel(className, toLevel),
+          : spellSlotsForClassAtLevel(className, toLevel, subclassName),
       // Pact Magic is Warlock's own separate resource — it never joins the
       // normal-slot multiclass pool, so this is always just the Warlock
       // level's own table regardless of what else is on the sheet.
       pactSlotsBefore: type === 'pact' ? pactMagicForLevel(fromLevel) : null,
       pactSlotsAfter: type === 'pact' ? pactMagicForLevel(toLevel) : null,
-      cantripsBefore: cantripsKnownForClass(className, fromLevel),
-      cantripsAfter: cantripsKnownForClass(className, toLevel),
+      cantripsBefore: cantripsKnownForClass(className, fromLevel, subclassName),
+      cantripsAfter: cantripsKnownForClass(className, toLevel, subclassName),
     }
 
-    const knownCapAfter = spellsKnownForClass(className, toLevel)
+    const knownCapAfter = spellsKnownForClass(className, toLevel, subclassName)
     if (knownCapAfter !== null) {
       result.spellcasting.style = 'known'
       result.spellcasting.knownBefore = spellsKnownForClass(
         className,
-        fromLevel
+        fromLevel,
+        subclassName
       )
       result.spellcasting.knownAfter = knownCapAfter
     } else {
@@ -138,12 +167,14 @@ function describeLevelUp({
       result.spellcasting.preparedBefore = preparedSpellCount(
         className,
         fromLevel,
-        modBefore
+        modBefore,
+        subclassName
       )
       result.spellcasting.preparedAfter = preparedSpellCount(
         className,
         toLevel,
-        modAfter
+        modAfter,
+        subclassName
       )
     }
   }

@@ -86308,5 +86308,23 @@
     "alignment": "lawful neutral",
     "publisher": "Wizards of the Coast",
     "book": "Chains of Asmodeus"
+  },
+  {
+    "name": "Ravine Stalker",
+    "cr": 5,
+    "type": "Beast",
+    "size": "Large",
+    "alignment": "unaligned",
+    "publisher": "Homebrew",
+    "book": "Native to Fol"
+  },
+  {
+    "name": "Greyback",
+    "cr": 7,
+    "type": "Beast",
+    "size": "Large",
+    "alignment": "unaligned",
+    "publisher": "Homebrew",
+    "book": "Native to Fol"
   }
 ]

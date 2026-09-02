@@ -1,0 +1,271 @@
+[
+  {
+    "index": "ravine-stalker",
+    "name": "Ravine Stalker",
+    "size": "Large",
+    "type": "beast",
+    "alignment": "unaligned",
+    "armor_class": [
+      {
+        "type": "natural",
+        "value": 16
+      }
+    ],
+    "hit_points": 90,
+    "hit_dice": "12d10",
+    "hit_points_roll": "12d10+24",
+    "speed": {
+      "walk": "40 ft.",
+      "climb": "30 ft."
+    },
+    "strength": 18,
+    "dexterity": 14,
+    "constitution": 14,
+    "intelligence": 4,
+    "wisdom": 13,
+    "charisma": 8,
+    "proficiencies": [
+      {
+        "value": 4,
+        "proficiency": {
+          "index": "skill-perception",
+          "name": "Skill: Perception",
+          "url": "/api/2014/proficiencies/skill-perception"
+        }
+      },
+      {
+        "value": 5,
+        "proficiency": {
+          "index": "skill-stealth",
+          "name": "Skill: Stealth",
+          "url": "/api/2014/proficiencies/skill-stealth"
+        }
+      }
+    ],
+    "damage_vulnerabilities": [],
+    "damage_resistances": [],
+    "damage_immunities": [],
+    "condition_immunities": [],
+    "senses": {
+      "darkvision": "60 ft.",
+      "passive_perception": 14
+    },
+    "languages": "",
+    "challenge_rating": 5,
+    "proficiency_bonus": 3,
+    "xp": 1800,
+    "special_abilities": [
+      {
+        "name": "Ambush Predator",
+        "desc": "The stalker has advantage on attack rolls against any creature it has surprised. Ravine Stalkers hunt in family groups of three, coordinating drop-ambushes from rock faces above a ravine or canyon trail.",
+        "damage": []
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "multiattack_type": "actions",
+        "desc": "The stalker makes two attacks: one with its bite and one with its claw.",
+        "damage": [],
+        "actions": [
+          {
+            "action_name": "Bite",
+            "count": "1",
+            "type": "melee"
+          },
+          {
+            "action_name": "Claw",
+            "count": "1",
+            "type": "melee"
+          }
+        ]
+      },
+      {
+        "name": "Bite",
+        "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) piercing damage.",
+        "attack_bonus": 7,
+        "damage": [
+          {
+            "damage_type": {
+              "index": "piercing",
+              "name": "Piercing",
+              "url": "/api/2014/damage-types/piercing"
+            },
+            "damage_dice": "2d8+4"
+          }
+        ],
+        "actions": []
+      },
+      {
+        "name": "Claw",
+        "desc": "Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 11 (2d6 + 4) slashing damage, and if the target is Large or smaller, it is grappled (escape DC 15). Until this grapple ends, the target is restrained, and the stalker can't claw another target.",
+        "attack_bonus": 7,
+        "damage": [
+          {
+            "damage_type": {
+              "index": "slashing",
+              "name": "Slashing",
+              "url": "/api/2014/damage-types/slashing"
+            },
+            "damage_dice": "2d6+4"
+          }
+        ],
+        "actions": []
+      },
+      {
+        "name": "Crush",
+        "desc": "The stalker crushes a creature it is grappling. The target must succeed on a DC 15 Constitution saving throw or take 18 (4d8) bludgeoning damage. Half as much damage on a successful save. This action can only be used against a creature the stalker is currently grappling.",
+        "damage": [
+          {
+            "damage_type": {
+              "index": "bludgeoning",
+              "name": "Bludgeoning",
+              "url": "/api/2014/damage-types/bludgeoning"
+            },
+            "damage_dice": "4d8"
+          }
+        ],
+        "actions": []
+      }
+    ],
+    "legendary_actions": [],
+    "reactions": [],
+    "forms": [],
+    "homebrew": true,
+    "source": "Homebrew — native to Fol. Large, dark, territorial predators that hunt in family groups of three, coordinating drop-ambushes from rock faces onto prey below."
+  },
+  {
+    "index": "greyback",
+    "name": "Greyback",
+    "size": "Large",
+    "type": "beast",
+    "alignment": "unaligned",
+    "armor_class": [
+      {
+        "type": "natural",
+        "value": 17
+      }
+    ],
+    "hit_points": 142,
+    "hit_dice": "15d10",
+    "hit_points_roll": "15d10+60",
+    "speed": {
+      "walk": "40 ft.",
+      "climb": "30 ft."
+    },
+    "strength": 20,
+    "dexterity": 16,
+    "constitution": 18,
+    "intelligence": 4,
+    "wisdom": 14,
+    "charisma": 9,
+    "proficiencies": [
+      {
+        "value": 6,
+        "proficiency": {
+          "index": "skill-perception",
+          "name": "Skill: Perception",
+          "url": "/api/2014/proficiencies/skill-perception"
+        }
+      },
+      {
+        "value": 7,
+        "proficiency": {
+          "index": "skill-stealth",
+          "name": "Skill: Stealth",
+          "url": "/api/2014/proficiencies/skill-stealth"
+        }
+      }
+    ],
+    "damage_vulnerabilities": [],
+    "damage_resistances": [
+      "cold",
+      "piercing",
+      "slashing"
+    ],
+    "damage_immunities": [],
+    "condition_immunities": [],
+    "senses": {
+      "darkvision": "90 ft.",
+      "passive_perception": 16
+    },
+    "languages": "",
+    "challenge_rating": 7,
+    "proficiency_bonus": 4,
+    "xp": 2900,
+    "special_abilities": [
+      {
+        "name": "Thick Hide",
+        "desc": "The greyback's pale, cold-adapted hide is resistant to piercing and slashing damage — edged weapons bite far less deeply than blunt force or fire. Its hide also makes it highly resistant to cold.",
+        "damage": []
+      },
+      {
+        "name": "Snow Camouflage",
+        "desc": "The greyback has advantage on Dexterity (Stealth) checks made to hide in snowy or icy terrain.",
+        "damage": []
+      },
+      {
+        "name": "Ambush Predator",
+        "desc": "The greyback has advantage on attack rolls against any creature it has surprised. Greybacks den in ice caves and ambush from rock faces above.",
+        "damage": []
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "multiattack_type": "actions",
+        "desc": "The greyback makes three attacks: one with its bite and two with its claws.",
+        "damage": [],
+        "actions": [
+          {
+            "action_name": "Bite",
+            "count": "1",
+            "type": "melee"
+          },
+          {
+            "action_name": "Claw",
+            "count": "2",
+            "type": "melee"
+          }
+        ]
+      },
+      {
+        "name": "Bite",
+        "desc": "Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 16 (2d10 + 5) piercing damage.",
+        "attack_bonus": 9,
+        "damage": [
+          {
+            "damage_type": {
+              "index": "piercing",
+              "name": "Piercing",
+              "url": "/api/2014/damage-types/piercing"
+            },
+            "damage_dice": "2d10+5"
+          }
+        ],
+        "actions": []
+      },
+      {
+        "name": "Claw",
+        "desc": "Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 12 (2d6 + 5) slashing damage.",
+        "attack_bonus": 9,
+        "damage": [
+          {
+            "damage_type": {
+              "index": "slashing",
+              "name": "Slashing",
+              "url": "/api/2014/damage-types/slashing"
+            },
+            "damage_dice": "2d6+5"
+          }
+        ],
+        "actions": []
+      }
+    ],
+    "legendary_actions": [],
+    "reactions": [],
+    "forms": [],
+    "homebrew": true,
+    "source": "Homebrew — native to Fol. Pale, territorial cave hunters that den in ice caves and ambush from rock faces. Elite-tier predators; their cold-resistant hide shrugs off edged weapons far better than blunt force or fire."
+  }
+]

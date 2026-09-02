@@ -2,10 +2,21 @@
   "class": "Fighter",
   "name": "Echo Knight",
   "features_by_level": {
-    "3": ["Manifest Echo", "Unleash Incarnation"],
-    "7": ["Echo Avatar"],
-    "10": ["Shadow Martyr"],
-    "15": ["Reclaim Potential"],
-    "18": ["Legion of One"]
+    "3": [
+      "pub_manifest-echo",
+      "pub_unleash-incarnation"
+    ],
+    "7": [
+      "pub_echo-avatar"
+    ],
+    "10": [
+      "pub_shadow-martyr"
+    ],
+    "15": [
+      "pub_reclaim-potential"
+    ],
+    "18": [
+      "pub_legion-of-one"
+    ]
   }
 }

@@ -2,9 +2,18 @@
   "class": "Rogue",
   "name": "Swashbuckler",
   "features_by_level": {
-    "3": ["Fancy Footwork", "Rakish Audacity"],
-    "9": ["Panache"],
-    "13": ["Elegant Maneuver"],
-    "17": ["Master Duelist"]
+    "3": [
+      "pub_fancy-footwork",
+      "pub_rakish-audacity"
+    ],
+    "9": [
+      "pub_panache"
+    ],
+    "13": [
+      "pub_elegant-maneuver"
+    ],
+    "17": [
+      "pub_master-duelist"
+    ]
   }
 }

@@ -2,8 +2,16 @@
   "class": "Bard",
   "name": "College of Spirits",
   "features_by_level": {
-    "3": ["Guiding Whispers", "Spiritual Focus", "Tales from Beyond"],
-    "6": ["Spirit Session"],
-    "14": ["Mystical Connection"]
+    "3": [
+      "pub_guiding-whispers",
+      "pub_spiritual-focus",
+      "pub_tales-from-beyond"
+    ],
+    "6": [
+      "pub_spirit-session"
+    ],
+    "14": [
+      "pub_mystical-connection"
+    ]
   }
 }

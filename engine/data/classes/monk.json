@@ -1,13 +1,31 @@
 {
   "name": "Monk",
-  "saving_throw_proficiencies": ["str", "dex"],
+  "saving_throw_proficiencies": [
+    "str",
+    "dex"
+  ],
   "armor_proficiencies": [],
-  "weapon_proficiencies": ["simple", "shortsword"],
+  "weapon_proficiencies": [
+    "simple",
+    "shortsword"
+  ],
   "subclass_name": "Monastic Tradition",
   "subclass_choice_level": 3,
-  "subclass_feature_levels": [3, 6, 11, 17],
-  "spellcasting": { "type": "none" },
-  "martial_arts_die_by_level": { "1": 4, "5": 6, "11": 8, "17": 10 },
+  "subclass_feature_levels": [
+    3,
+    6,
+    11,
+    17
+  ],
+  "spellcasting": {
+    "type": "none"
+  },
+  "martial_arts_die_by_level": {
+    "1": 4,
+    "5": 6,
+    "11": 8,
+    "17": 10
+  },
   "ki_points_by_level": {
     "2": 2,
     "3": 3,
@@ -37,19 +55,51 @@
     "18": 30
   },
   "features_by_level": {
-    "1": ["Martial Arts", "Unarmored Defense"],
-    "2": ["Ki", "Unarmored Movement"],
-    "3": ["Deflect Missiles"],
-    "4": ["Slow Fall"],
-    "5": ["Extra Attack", "Stunning Strike"],
-    "6": ["Ki-Empowered Strikes"],
-    "7": ["Evasion", "Stillness of Mind"],
-    "9": ["Unarmored Movement improvement (nonmagical difficult terrain)"],
-    "10": ["Purity of Body"],
-    "13": ["Tongue of the Sun and Moon"],
-    "14": ["Diamond Soul"],
-    "15": ["Timeless Body"],
-    "18": ["Empty Body"],
-    "20": ["Perfect Self"]
+    "1": [
+      "martial-arts",
+      "monk-unarmored-defense"
+    ],
+    "2": [
+      "ki",
+      "unarmored-movement-1"
+    ],
+    "3": [
+      "deflect-missiles"
+    ],
+    "4": [
+      "slow-fall"
+    ],
+    "5": [
+      "monk-extra-attack",
+      "stunning-strike"
+    ],
+    "6": [
+      "gen_monk_base_ki-empowered-strikes"
+    ],
+    "7": [
+      "monk-evasion",
+      "stillness-of-mind"
+    ],
+    "9": [
+      "gen_monk_base_unarmored-movement-improvement-nonmagical-difficult-terrain"
+    ],
+    "10": [
+      "purity-of-body"
+    ],
+    "13": [
+      "tongue-of-the-sun-and-moon"
+    ],
+    "14": [
+      "diamond-soul"
+    ],
+    "15": [
+      "monk-timeless-body"
+    ],
+    "18": [
+      "empty-body"
+    ],
+    "20": [
+      "perfect-self"
+    ]
   }
 }

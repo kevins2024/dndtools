@@ -2180,119 +2180,6 @@
     ]
   },
   {
-    "name": "Siv",
-    "full_name": "Siv Ravencroft",
-    "race": "Human",
-    "level": 9,
-    "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
-    "image": "./characters/siv.jpg",
-    "proficiency_bonus": 4,
-    "spellcasting_ability": null,
-    "notes": "",
-    "stat_str": 12,
-    "stat_dex": 20,
-    "stat_con": 14,
-    "stat_int": 10,
-    "stat_wis": 12,
-    "stat_cha": 10,
-    "hp_max": 61,
-    "hp_current": 61,
-    "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
-    "skill_proficiencies": ["Athletics", "Survival", "Acrobatics", "Nature"],
-    "languages": ["Common", "Goblin"],
-    "features": [
-      {
-        "name": "Extra Attack",
-        "type": "feature"
-      },
-      {
-        "name": "Second Wind",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Action Surge (1 use)",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Indomitable (1 use)",
-        "type": "feature",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Sharpshooter",
-        "type": "feature"
-      },
-      {
-        "name": "Fighting Style: Archery",
-        "type": "feature",
-        "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
-        "stat_bonuses": {
-          "ranged_attack": 2
-        }
-      },
-      {
-        "name": "Scout — Skirmisher",
-        "type": "feature"
-      },
-      {
-        "name": "Scout — Survivalist",
-        "type": "feature"
-      },
-      {
-        "name": "Scout — Superior Mobility",
-        "type": "feature",
-        "stat_bonuses": {
-          "speed": 10
-        }
-      },
-      {
-        "name": "Scout — Ambush Master",
-        "type": "feature",
-        "description": "Advantage on initiative rolls. The first creature you hit each turn grants all allies advantage on attack rolls against it until the start of your next turn."
-      },
-      {
-        "name": "Mobile",
-        "type": "feat",
-        "stat_bonuses": {
-          "speed": 10
-        }
-      }
-    ],
-    "spells": [],
-    "active_effects": [],
-    "persona_notes": [
-      "Tells stories efficiently. Facts in correct order. No embellishment.",
-      "Values things earned specifically. The medallion matters because of the blindfold.",
-      "Complete ease in her own competence. Never performs it.",
-      "Values things earned specifically. The how matters as much as the what.",
-      "Independent and professional."
-    ],
-    "id": "characters_9",
-    "darkvision": 0,
-    "hit_die": "d10",
-    "hit_dice_current": 9,
-    "conditions": [],
-    "skill_expertise": [],
-    "classes": [
-      {
-        "name": "Fighter",
-        "subclass": "Scout",
-        "level": 9
-      }
-    ]
-  },
-  {
     "name": "Lexica",
     "full_name": "Lexica Molerna",
     "race": "Half-Elf",
@@ -5698,5 +5585,127 @@
     "conditions": [],
     "exhaustion_level": 0,
     "id": "characters_24"
+  },
+  {
+    "name": "Siv",
+    "full_name": "Siv Ravencroft",
+    "race": "Human",
+    "background": "Mercenary Veteran",
+    "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
+    "image": "./characters/siv.jpg",
+    "notes": "",
+    "persona_notes": [
+      "Tells stories efficiently. Facts in correct order. No embellishment.",
+      "Values things earned specifically. The medallion matters because of the blindfold.",
+      "Complete ease in her own competence. Never performs it.",
+      "Values things earned specifically. The how matters as much as the what.",
+      "Independent and professional."
+    ],
+    "level": 9,
+    "stat_str": 12,
+    "stat_dex": 20,
+    "stat_con": 15,
+    "stat_int": 11,
+    "stat_wis": 12,
+    "stat_cha": 12,
+    "spellcasting_ability": null,
+    "hp_max": 65,
+    "hp_current": 65,
+    "saving_throws": ["dex", "int"],
+    "skill_proficiencies": [
+      "Athletics",
+      "Persuasion",
+      "Nature",
+      "Survival",
+      "Stealth",
+      "Deception",
+      "Insight",
+      "Perception"
+    ],
+    "skill_expertise": ["Stealth", "Athletics", "Perception", "Deception"],
+    "languages": ["Common", "Goblin"],
+    "features": [
+      {
+        "name": "Expertise",
+        "id": "rogue-expertise-1",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Thieves' Cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Skirmisher",
+        "id": "hb_rogue_scout_skirmisher",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Survivalist",
+        "id": "hb_rogue_scout_survivalist",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Uncanny Dodge",
+        "id": "uncanny-dodge",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise",
+        "id": "rogue-expertise-1",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Evasion",
+        "id": "rogue-evasion",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Superior Mobility",
+        "id": "hb_rogue_scout_superior_mobility",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Rogue"
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Rogue",
+        "level": 9,
+        "subclass": "Scout"
+      }
+    ],
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9
   }
 ]

@@ -1,17 +1,62 @@
 {
   "class": "Sorcerer",
   "name": "Weave Attunement",
-  "_notes": "Fully homebrew — a direct mechanical reskin of the official Lunar Sorcery sorcerous origin (Dragonlance: Shadow of the Dragon Queen, 2023 final published version). Moon phases become Weave phases tied to Ne'auveothrin, ancient demigod of the Weave. Two of three phases (Leno=Full Moon, Satin=Crescent Moon) use the same school pairings as the final published subclass; the third (Twill=New Moon) also matches the final book's Enchantment+Necromancy pairing rather than the earlier 2022 UA playtest's Evocation+Necromancy — Evocation was deliberately excluded when this was built to avoid stacking cheap Metamagic discounts on an already blast-heavy school, which happened to match what the final book independently settled on too. House rule: grid spell selection isn't locked to RAW's fixed table — at each phase/level slot, any spell of the correct level from that phase's two associated schools may be chosen instead of the RAW default; every substitution on Iyani's sheet follows this rule. Levels 14/18 were prepped ahead of need (mechanically identical to RAW Lunar Empowerment/Lunar Phenomenon, just reskinned) and had never been added to any character or to this subclass file until this recovery pass found them sitting in homebrew.json's design notes.",
+  "_notes": "Fully homebrew \u2014 a direct mechanical reskin of the official Lunar Sorcery sorcerous origin (Dragonlance: Shadow of the Dragon Queen, 2023 final published version). Moon phases become Weave phases tied to Ne'auveothrin, ancient demigod of the Weave. Two of three phases (Leno=Full Moon, Satin=Crescent Moon) use the same school pairings as the final published subclass; the third (Twill=New Moon) also matches the final book's Enchantment+Necromancy pairing rather than the earlier 2022 UA playtest's Evocation+Necromancy \u2014 Evocation was deliberately excluded when this was built to avoid stacking cheap Metamagic discounts on an already blast-heavy school, which happened to match what the final book independently settled on too. House rule: grid spell selection isn't locked to RAW's fixed table \u2014 at each phase/level slot, any spell of the correct level from that phase's two associated schools may be chosen instead of the RAW default; every substitution on Iyani's sheet follows this rule. Levels 14/18 were prepped ahead of need (mechanically identical to RAW Lunar Empowerment/Lunar Phenomenon, just reskinned) and had never been added to any character or to this subclass file until this recovery pass found them sitting in homebrew.json's design notes.",
   "features_by_level": {
     "1": [
-      "Leno Phase (Abjuration / Divination)",
-      "Twill Phase (Enchantment / Necromancy)",
-      "Satin Phase (Illusion / Transmutation)",
-      "Weave Embodiment",
-      "Healing Touch"
+      "pub_leno-phase-abjuration-divination",
+      "pub_twill-phase-enchantment-necromancy",
+      "pub_satin-phase-illusion-transmutation",
+      "pub_weave-embodiment",
+      "pub_healing-touch"
     ],
-    "6": ["Mother's Whim"],
-    "14": ["Weave Empowerment"],
-    "18": ["Unraveling"]
+    "6": [
+      "pub_mother-s-whim"
+    ],
+    "14": [
+      "pub_weave-empowerment"
+    ],
+    "18": [
+      "pub_unraveling"
+    ]
+  },
+  "house_rules": [
+    "Grid spell selection is not locked to weave_grid below. At each phase/level slot, any spell of the correct level from that phase's two associated schools may be chosen instead \u2014 weave_grid is a real, verified default (every spell in it checked against its phase's school pair), not a hard requirement."
+  ],
+  "weave_grid": {
+    "_notes": "The default grid \u2014 RAW Lunar Sorcery's table with Iyani's house-rule-permitted substitutions already applied, since her picks were built spell-by-spell against real school data rather than guessed. A new Weave Attunement sorcerer can use this as-is or swap any entry per the house rule above. All five grid spells in a phase are always known and prepared regardless of which phase is active; only the level-1 spell's free (no-slot) cast via Weave Embodiment is phase-gated.",
+    "leno": {
+      "schools": [
+        "Abjuration",
+        "Divination"
+      ],
+      "1": "Shield",
+      "2": "Lesser Restoration",
+      "3": "Dispel Magic",
+      "4": "Death Ward",
+      "5": "Telepathic Bond"
+    },
+    "twill": {
+      "schools": [
+        "Enchantment",
+        "Necromancy"
+      ],
+      "1": "Silvery Barbs",
+      "2": "Blindness/Deafness",
+      "3": "Vampiric Touch",
+      "4": "Confusion",
+      "5": "Synaptic Static"
+    },
+    "satin": {
+      "schools": [
+        "Illusion",
+        "Transmutation"
+      ],
+      "1": "Color Spray",
+      "2": "Alter Self",
+      "3": "Phantom Steed",
+      "4": "Fabricate",
+      "5": "Telekinesis"
+    }
   }
 }

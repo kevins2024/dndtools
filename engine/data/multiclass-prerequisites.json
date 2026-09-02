@@ -1,0 +1,16 @@
+{
+  "_notes": "PHB p.163 'Multiclassing Prerequisites' table, verified via 2 independent WebSearch passes 2026-09-01. all_of = every listed ability needs 13+; any_of = at least one does (Fighter is the only any_of case in the PHB). Artificer isn't in the PHB table (Tasha's/Eberron) — INT 13, matching its spellcasting ability like every other class's prerequisite mirrors its own casting/class stat.",
+  "Barbarian": { "all_of": ["str"] },
+  "Bard": { "all_of": ["cha"] },
+  "Cleric": { "all_of": ["wis"] },
+  "Druid": { "all_of": ["wis"] },
+  "Fighter": { "any_of": ["str", "dex"] },
+  "Monk": { "all_of": ["dex", "wis"] },
+  "Paladin": { "all_of": ["str", "cha"] },
+  "Ranger": { "all_of": ["dex", "wis"] },
+  "Rogue": { "all_of": ["dex"] },
+  "Sorcerer": { "all_of": ["cha"] },
+  "Warlock": { "all_of": ["cha"] },
+  "Wizard": { "all_of": ["int"] },
+  "Artificer": { "all_of": ["int"] }
+}

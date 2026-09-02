@@ -3038,16 +3038,16 @@
     "battle_effect": true
   },
   {
-    "name": "Shield",
+    "name": "Shield +2",
     "type": "armor",
     "armor_type": "shield",
-    "enhancement_bonus": 0,
+    "enhancement_bonus": 2,
     "slot": "offhand",
     "equipped_by": "Chuknora",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
-    "notes": "",
+    "notes": "Standard shield, +2 enhancement.",
     "id": "items_211",
     "effect": "+2 bonus to AC while carried."
   },
@@ -3388,5 +3388,43 @@
     "slot": "held",
     "battle_effect": true,
     "effect": "Acts as a +1 quarterstaff and druidic focus. While attuned, +1 to druid spell attack rolls and spell save DC. While in Wild Shape, grants Primal Surge (see homebrew features)."
+  },
+  {
+    "name": "Paired Shortsword +2",
+    "type": "weapon",
+    "weapon_category": "shortsword",
+    "equipped_by": "Pirra",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "enhancement_bonus": 2,
+    "notes": "Previously +1, upgraded to +2 by the enchantress in Valdmere.",
+    "id": "items_233",
+    "slot": "melee1h",
+    "battle_effect": true,
+    "effect": "+2 bonus to attack and damage rolls. Resonance only works with Denna's paired sword."
+  },
+  {
+    "name": "Laminated Marking Shortbow +1",
+    "type": "weapon",
+    "weapon_category": "shortbow",
+    "equipped_by": "Pirra",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "enhancement_bonus": 1,
+    "notes": "",
+    "id": "items_234",
+    "slot": "ranged2h",
+    "battle_effect": true,
+    "effect": "+1 bonus to attack and damage rolls. Once per combat, the bearer may declare a ranged attack with this bow to be a marking shot before rolling, forcing Faerie Fire onto the target with no save (single target only, not the spell's usual area).",
+    "weapon_effects": [
+      {
+        "name": "Marking Shot",
+        "type": "weapon_effect",
+        "description": "Once per combat, before rolling, the bearer may declare a ranged attack with this bow to be a marking shot. The target is immediately affected by Faerie Fire — no save, single target only (not the spell's usual 20-foot cube)."
+      }
+    ],
+    "spells_granted": ["Faerie Fire"]
   }
 ]

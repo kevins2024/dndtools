@@ -2,13 +2,22 @@
   "class": "Sorcerer",
   "name": "Divine Soul",
   "features_by_level": {
-    "1": ["Divine Magic", "Favored by the Gods"],
-    "6": ["Empowered Healing"],
-    "14": ["Angelic Form"],
-    "18": ["Unearthly Recovery"]
+    "1": [
+      "pub_divine-magic",
+      "pub_favored-by-the-gods"
+    ],
+    "6": [
+      "pub_empowered-healing"
+    ],
+    "14": [
+      "pub_angelic-form"
+    ],
+    "18": [
+      "pub_unearthly-recovery"
+    ]
   },
   "grants_spells": {
-    "_notes": "Divine Magic (1st level, Xanathar's Guide to Everything) does two things: (a) any normal sorcerer known-spell pick can be taken from the Cleric list instead of the Sorcerer list — those still count against the normal known-spell total; (b) separately, choosing an affinity grants ONE additional fixed spell that does NOT count against spells known, chosen once at 1st level and fixed forever.",
+    "_notes": "Divine Magic (1st level, Xanathar's Guide to Everything) does two things: (a) any normal sorcerer known-spell pick can be taken from the Cleric list instead of the Sorcerer list \u2014 those still count against the normal known-spell total; (b) separately, choosing an affinity grants ONE additional fixed spell that does NOT count against spells known, chosen once at 1st level and fixed forever.",
     "affinity_bonus_spell": {
       "good": "Cure Wounds",
       "evil": "Inflict Wounds",

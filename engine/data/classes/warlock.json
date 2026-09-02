@@ -1,20 +1,51 @@
 {
   "name": "Warlock",
-  "saving_throw_proficiencies": ["wis", "cha"],
-  "armor_proficiencies": ["light"],
-  "weapon_proficiencies": ["simple"],
+  "saving_throw_proficiencies": [
+    "wis",
+    "cha"
+  ],
+  "armor_proficiencies": [
+    "light"
+  ],
+  "weapon_proficiencies": [
+    "simple"
+  ],
   "subclass_name": "Otherworldly Patron",
   "subclass_choice_level": 1,
-  "subclass_feature_levels": [1, 6, 10, 14],
-  "spellcasting": { "type": "pact", "ability": "cha" },
+  "subclass_feature_levels": [
+    1,
+    6,
+    10,
+    14
+  ],
+  "spellcasting": {
+    "type": "pact",
+    "ability": "cha"
+  },
   "features_by_level": {
-    "1": ["Pact Magic"],
-    "2": ["Eldritch Invocations"],
-    "3": ["Pact Boon"],
-    "11": ["Mystic Arcanum (6th level)"],
-    "13": ["Mystic Arcanum (7th level)"],
-    "15": ["Mystic Arcanum (8th level)"],
-    "17": ["Mystic Arcanum (9th level)"],
-    "20": ["Eldritch Master"]
+    "1": [
+      "pact-magic"
+    ],
+    "2": [
+      "eldritch-invocations"
+    ],
+    "3": [
+      "pact-boon"
+    ],
+    "11": [
+      "mystic-arcanum-6th-level"
+    ],
+    "13": [
+      "mystic-arcanum-7th-level"
+    ],
+    "15": [
+      "mystic-arcanum-8th-level"
+    ],
+    "17": [
+      "mystic-arcanum-9th-level"
+    ],
+    "20": [
+      "eldritch-master"
+    ]
   }
 }

@@ -366,6 +366,7 @@ const SOURCES = [
   { label: 'WotC', key: 'Wizards of the Coast' },
   { label: 'Kobold', key: 'Kobold Press' },
   { label: 'MCDM', key: 'MCDM Productions' },
+  { label: 'Homebrew', key: 'Homebrew' },
   { label: 'Other', key: '__other__' },
 ]
 
@@ -382,6 +383,7 @@ const MAIN_PUBLISHERS = new Set([
   'Wizards of the Coast',
   'Kobold Press',
   'MCDM Productions',
+  'Homebrew',
 ])
 
 export default {
@@ -473,9 +475,14 @@ export default {
     formatSpeed(speed) {
       if (!speed) return '—'
       if (typeof speed === 'string') return speed
+      // Real API values already include their own unit (e.g. "40 ft.") —
+      // used to append " ft" again here regardless, producing "40 ft. ft"
+      // for every monster with more than a walk speed. Found auditing two
+      // new homebrew monsters, but pre-existing — affects any monster with
+      // a climb/swim/fly/burrow speed, homebrew or SRD.
       return Object.entries(speed)
         .filter(([, v]) => v)
-        .map(([k, v]) => (k === 'walk' ? `${v} ft` : `${k} ${v} ft`))
+        .map(([k, v]) => (k === 'walk' ? `${v}` : `${k} ${v}`))
         .join(', ')
     },
     formatSenses(senses) {

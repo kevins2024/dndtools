@@ -1,7 +1,12 @@
 {
   "name": "Bard",
-  "saving_throw_proficiencies": ["dex", "cha"],
-  "armor_proficiencies": ["light"],
+  "saving_throw_proficiencies": [
+    "dex",
+    "cha"
+  ],
+  "armor_proficiencies": [
+    "light"
+  ],
   "weapon_proficiencies": [
     "simple",
     "hand crossbow",
@@ -11,19 +16,56 @@
   ],
   "subclass_name": "Bard College",
   "subclass_choice_level": 3,
-  "subclass_feature_levels": [3, 6, 14],
-  "spellcasting": { "type": "full", "ability": "cha" },
-  "bardic_inspiration_die_by_level": { "1": 6, "5": 8, "10": 10, "15": 12 },
-  "song_of_rest_die_by_level": { "2": 6, "9": 8, "13": 10, "17": 12 },
+  "subclass_feature_levels": [
+    3,
+    6,
+    14
+  ],
+  "spellcasting": {
+    "type": "full",
+    "ability": "cha"
+  },
+  "bardic_inspiration_die_by_level": {
+    "1": 6,
+    "5": 8,
+    "10": 10,
+    "15": 12
+  },
+  "song_of_rest_die_by_level": {
+    "2": 6,
+    "9": 8,
+    "13": 10,
+    "17": 12
+  },
   "features_by_level": {
-    "1": ["Bardic Inspiration"],
-    "2": ["Jack of All Trades", "Song of Rest"],
-    "3": ["Expertise"],
-    "5": ["Font of Inspiration"],
-    "6": ["Countercharm"],
-    "10": ["Expertise", "Magical Secrets"],
-    "14": ["Magical Secrets"],
-    "18": ["Magical Secrets"],
-    "20": ["Superior Inspiration"]
+    "1": [
+      "gen_bard_base_bardic-inspiration"
+    ],
+    "2": [
+      "jack-of-all-trades",
+      "gen_bard_base_song-of-rest"
+    ],
+    "3": [
+      "bard-expertise-1"
+    ],
+    "5": [
+      "font-of-inspiration"
+    ],
+    "6": [
+      "countercharm"
+    ],
+    "10": [
+      "bard-expertise-1",
+      "magical-secrets-1"
+    ],
+    "14": [
+      "magical-secrets-1"
+    ],
+    "18": [
+      "magical-secrets-1"
+    ],
+    "20": [
+      "superior-inspiration"
+    ]
   }
 }

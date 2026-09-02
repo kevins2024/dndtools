@@ -2,9 +2,19 @@
   "class": "Ranger",
   "name": "Gloom Stalker",
   "features_by_level": {
-    "3": ["Gloom Stalker Magic", "Dread Ambusher", "Umbral Sight"],
-    "7": ["Iron Mind"],
-    "11": ["Stalker's Flurry"],
-    "15": ["Shadowy Dodge"]
+    "3": [
+      "pub_gloom-stalker-magic",
+      "pub_dread-ambusher",
+      "pub_umbral-sight"
+    ],
+    "7": [
+      "pub_iron-mind"
+    ],
+    "11": [
+      "pub_stalker-s-flurry"
+    ],
+    "15": [
+      "pub_shadowy-dodge"
+    ]
   }
 }

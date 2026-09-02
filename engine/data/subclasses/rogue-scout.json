@@ -1,0 +1,19 @@
+{
+  "class": "Rogue",
+  "name": "Scout",
+  "features_by_level": {
+    "3": [
+      "hb_rogue_scout_skirmisher",
+      "hb_rogue_scout_survivalist"
+    ],
+    "9": [
+      "hb_rogue_scout_superior_mobility"
+    ],
+    "13": [
+      "hb_rogue_scout_ambush_master"
+    ],
+    "17": [
+      "hb_rogue_scout_sudden_strike"
+    ]
+  }
+}

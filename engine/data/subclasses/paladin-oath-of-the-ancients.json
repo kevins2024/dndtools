@@ -3,18 +3,39 @@
   "name": "Oath of the Ancients",
   "features_by_level": {
     "3": [
-      "Channel Divinity: Nature's Wrath",
-      "Channel Divinity: Turn the Faithless"
+      "pub_channel-divinity-nature-s-wrath",
+      "pub_channel-divinity-turn-the-faithless"
     ],
-    "7": ["Aura of Warding"],
-    "15": ["Undying Sentinel"],
-    "20": ["Elder Champion"]
+    "7": [
+      "pub_aura-of-warding"
+    ],
+    "15": [
+      "pub_undying-sentinel"
+    ],
+    "20": [
+      "pub_elder-champion"
+    ]
   },
   "oath_spells_by_level": {
-    "3": ["Ensnaring Strike", "Speak with Animals"],
-    "5": ["Moonbeam", "Misty Step"],
-    "9": ["Plant Growth", "Protection from Energy"],
-    "13": ["Ice Storm", "Stoneskin"],
-    "17": ["Commune with Nature", "Tree Stride"]
+    "3": [
+      "Ensnaring Strike",
+      "Speak with Animals"
+    ],
+    "5": [
+      "Moonbeam",
+      "Misty Step"
+    ],
+    "9": [
+      "Plant Growth",
+      "Protection from Energy"
+    ],
+    "13": [
+      "Ice Storm",
+      "Stoneskin"
+    ],
+    "17": [
+      "Commune with Nature",
+      "Tree Stride"
+    ]
   }
 }

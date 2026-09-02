@@ -174,6 +174,9 @@ export default {
     continents() {
       return this.worldRoot?.continents ?? []
     },
+    npcs() {
+      return this.$store.state.npcs ?? []
+    },
 
     tree() {
       return this.continents.map((c) => this.buildContinentNode(c))
@@ -238,6 +241,42 @@ export default {
       this.selectedPlaceName = name
     },
 
+    jsonAction(label, data) {
+      return { label: '📋 JSON', title: `Copy ${label} as JSON`, data }
+    },
+
+    // NPCs a settlement claims are the union of every npcs_present name
+    // across its own locations (districts never carry npcs_present in this
+    // data). Resolved against npcs.json's own records where the name
+    // matches exactly — unresolved names are kept too rather than silently
+    // dropped, since a mismatch there usually means a real data-entry gap
+    // worth noticing.
+    settlementNpcNames(place) {
+      const names = new Set()
+      for (const loc of place.locations ?? []) {
+        for (const n of loc.npcs_present ?? []) names.add(n)
+      }
+      return names
+    },
+
+    settlementNpcAction(place) {
+      const names = this.settlementNpcNames(place)
+      if (!names.size) return null
+      const byName = new Map(this.npcs.map((n) => [n.name, n]))
+      const resolved = []
+      const unresolved = []
+      for (const name of names) {
+        const rec = byName.get(name)
+        if (rec) resolved.push(rec)
+        else unresolved.push(name)
+      }
+      return {
+        label: '👤 NPCs',
+        title: `Copy NPCs present in ${place.name} as JSON`,
+        data: { settlement: place.name, npcs: resolved, unresolved },
+      }
+    },
+
     buildContinentNode(continent) {
       const regions = continent.regions ?? []
       const children = []
@@ -260,7 +299,32 @@ export default {
           children: unmapped.map((p) => this.buildPlaceNode(p)),
         })
       }
-      return { label: continent.name, type: 'section', children }
+      return {
+        label: continent.name,
+        type: 'section',
+        children,
+        copyActions: [
+          this.jsonAction(continent.name, {
+            ...continent,
+            regions: regions.map((r) => this.rawRegionData(r)),
+            ...(unmapped.length ? { unmapped } : {}),
+          }),
+        ],
+      }
+    },
+
+    // The assembled subtree for a region: `world.json`'s own rich record for
+    // it, plus every place from `places.json` whose `region` field matches
+    // (settlements aren't nested under regions in the source data — this is
+    // the same lookup buildRegionNode does for the tree, reused here so the
+    // copy-JSON button gets an identical hierarchy). Each place already
+    // carries its own nested districts/locations/areas as-is.
+    rawRegionData(regionStub) {
+      const rich = this.world.find((w) => w.name === regionStub.name) ?? {}
+      const settlements = this.places.filter(
+        (p) => p.region === regionStub.name
+      )
+      return { ...regionStub, ...rich, settlements }
     },
 
     buildRegionNode(regionStub) {
@@ -292,6 +356,9 @@ export default {
             : null,
         ].filter(Boolean),
         children,
+        copyActions: [
+          this.jsonAction(regionStub.name, this.rawRegionData(regionStub)),
+        ],
       }
     },
 
@@ -323,11 +390,16 @@ export default {
       }
       if (place.flair) children.push({ label: place.flair, type: 'note' })
       if (place.notes) children.push({ label: place.notes, type: 'note' })
+      const npcAction = this.settlementNpcAction(place)
       return {
         label: place.name,
         type: 'item',
         tags: [place.type].filter(Boolean),
         children,
+        copyActions: [
+          this.jsonAction(place.name, place),
+          ...(npcAction ? [npcAction] : []),
+        ],
       }
     },
 
@@ -342,7 +414,12 @@ export default {
       if (d.controller)
         children.push({ label: `Controller: ${d.controller}`, type: 'leaf' })
       children.push(...objectToChildren(d, DISTRICT_KNOWN_KEYS))
-      return { label: d.name, type: 'item', children }
+      return {
+        label: d.name,
+        type: 'item',
+        children,
+        copyActions: [this.jsonAction(d.name, d)],
+      }
     },
 
     buildLocationNode(loc) {
@@ -368,6 +445,7 @@ export default {
         type: 'item',
         tags: [loc.type, loc.district].filter(Boolean),
         children,
+        copyActions: [this.jsonAction(loc.name, loc)],
       }
     },
   },

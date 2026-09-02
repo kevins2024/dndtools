@@ -70,6 +70,28 @@
     "20": [4, 3, 3, 3, 2]
   },
 
+  "third_caster_slots": {
+    "_notes": "Eldritch Knight (Fighter) / Arcane Trickster (Rogue) — identical progression for both, verified against dnd5e.wikidot.com 2026-09-01. Starts at character level 3, caps at 4th-level spells. Below level 3 there's no entry — spellSlotsForClassAtLevel returns [] via the default empty-array fallback, same as any level a table has no key for.",
+    "3": [2],
+    "4": [3],
+    "5": [3],
+    "6": [3],
+    "7": [4, 2],
+    "8": [4, 2],
+    "9": [4, 2],
+    "10": [4, 3],
+    "11": [4, 3],
+    "12": [4, 3],
+    "13": [4, 3, 2],
+    "14": [4, 3, 2],
+    "15": [4, 3, 2],
+    "16": [4, 3, 3],
+    "17": [4, 3, 3],
+    "18": [4, 3, 3],
+    "19": [4, 3, 3, 1],
+    "20": [4, 3, 3, 1]
+  },
+
   "artificer_infusions": {
     "_notes": "known / max infused items, by level",
     "2": { "known": 4, "infused": 2 },
@@ -126,7 +148,9 @@
     "Sorcerer": { "1": 4, "4": 5, "10": 6 },
     "Warlock": { "1": 2, "4": 3, "10": 4 },
     "Wizard": { "1": 3, "4": 4, "10": 5 },
-    "Artificer": { "1": 2, "10": 3, "14": 4 }
+    "Artificer": { "1": 2, "10": 3, "14": 4 },
+    "Eldritch Knight": { "3": 2, "10": 3 },
+    "Arcane Trickster": { "3": 2, "10": 3 }
   },
 
   "spells_known": {
@@ -218,6 +242,50 @@
       "18": 10,
       "19": 11,
       "20": 11
+    },
+    "Eldritch Knight": {
+      "1": 0,
+      "2": 0,
+      "3": 3,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 5,
+      "8": 6,
+      "9": 6,
+      "10": 7,
+      "11": 8,
+      "12": 8,
+      "13": 9,
+      "14": 10,
+      "15": 10,
+      "16": 11,
+      "17": 11,
+      "18": 11,
+      "19": 12,
+      "20": 13
+    },
+    "Arcane Trickster": {
+      "1": 0,
+      "2": 0,
+      "3": 3,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 5,
+      "8": 6,
+      "9": 6,
+      "10": 7,
+      "11": 8,
+      "12": 8,
+      "13": 9,
+      "14": 10,
+      "15": 10,
+      "16": 11,
+      "17": 11,
+      "18": 11,
+      "19": 12,
+      "20": 13
     }
   }
 }

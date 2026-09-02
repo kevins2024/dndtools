@@ -2,9 +2,18 @@
   "class": "Barbarian",
   "name": "Path of the Giant",
   "features_by_level": {
-    "3": ["Giant's Power", "Giant's Havoc"],
-    "6": ["Elemental Cleaver"],
-    "10": ["Mighty Impel"],
-    "14": ["Demiurgic Colossus"]
+    "3": [
+      "pub_giant-s-power",
+      "pub_giant-s-havoc"
+    ],
+    "6": [
+      "pub_elemental-cleaver"
+    ],
+    "10": [
+      "pub_mighty-impel"
+    ],
+    "14": [
+      "pub_demiurgic-colossus"
+    ]
   }
 }

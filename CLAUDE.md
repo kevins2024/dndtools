@@ -1,0 +1,71 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this is
+
+A D&D 5e campaign-management app (character sheets, combat tracker, world/location browser, spell/feature/monster bestiary, level-up tooling) — fully built by AI with guidance and prompting from the project owner. Vue 2 frontend, a small Express dev server, and a standalone rules engine.
+
+## Commands
+
+```bash
+npm run serve          # frontend (webpack-dev-server, :8080) + backend (:3001) together — the normal way to run this locally
+npm run front           # frontend only
+npm run back             # backend only (node server.js)
+npm run build           # production build (vue-cli-service build) — use this to typecheck/verify, not just `serve`
+```
+
+```bash
+cd engine && node --test                    # full engine test suite (~125 tests, seconds to run)
+cd engine && node --test test/foo.test.js   # a single test file
+```
+
+There is no frontend test suite (`npm test` is an unconfigured placeholder). **Engine correctness is verified by `node --test`; there is no automated test runner for `src/`.**
+
+## Verification — run lean by default
+
+For a data-only change (new JSON entries, a new subclass/monster/feature) or a small UI tweak: validate JSON with `python3 -c "import json; json.load(open(...))"`, run `npm run build` to confirm it compiles, and stop there. **Do not spin up a Playwright browser session for this.**
+
+Reserve live browser verification (`npm run serve` + a Playwright script, screenshot-checked) for changes to actual interaction logic — level-up/character-creation flow changes, a new Vue component, anything where a compile pass can't tell you the feature actually works. Even then, keep it to the one interaction that proves the change, not a full click-through.
+
+`cd engine && node --test` is fast and cheap — run it after any `engine/` change, always.
+
+When `npm run serve` was already running from earlier in the session and you need to restart it after an `engine/`-affecting change: the frontend and backend are **separate processes on separate ports** (`8080`/`3001`), and killing one does not kill the other — the backend is the one holding Node's `require()` cache, so it's the one that actually needs restarting for engine changes to take effect. `lsof -ti:8080,8081,3001 -sTCP:LISTEN | xargs -r kill` catches both.
+
+## Architecture
+
+### Two-tier split: `engine/` vs everything else
+
+`engine/` is a standalone, dependency-free rules module (see `engine/package.json`) — no Vue/Vuex imports anywhere in it, deliberately portable to a non-Vue future (a Godot port has been discussed). It knows D&D mechanics; it knows nothing about HTTP, JSON files on disk outside its own `engine/data/`, or the UI. `server.js` is the only thing that calls into it from the app side (`require('./engine/index')`), via a handful of `/api/engine/*` routes — `preview-level-up` is the important one, wrapping `engine.diffLevelUp`.
+
+**`engine/CHECKLIST.md` is the engine's own working log** — every session's engine changes get a dated entry with what was found/built/fixed and why. Read it before starting engine work; it's the fastest way to learn the current state and established conventions without re-deriving them. `TODO.md` (repo root) is the broader, non-engine backlog.
+
+Inside `engine/`:
+
+- `rules/classFeatures.js` / `rules/subclasses.js` — load `data/classes/*.json` / `data/subclasses/*.json`. **Features are referenced by ID, not name** (`features_by_level: {"3": ["some-feature-id"]}`) — resolved back to display names transparently at load time via `rules/featureCatalog.js` (a local id→name index, `data/feature-catalog.json`, merged from the SRD feature cache + `published_features.json`). This exists because multiple real 5e features share a name across different classes/subclasses (e.g. "Spellcasting"), and a name-only lookup can silently resolve to the wrong one. When adding a new class/subclass feature, give it a real id — reuse an SRD index or a `published_features.json` id if one already exists for that exact feature, otherwise write a new `published_features.json` entry and reference its id.
+- `rules/spellcasting.js` — slot/cantrip/known-spell tables per class, resolved via `resolveSpellcasting(className, subclassName)` so a subclass can grant spellcasting a base class doesn't have (Eldritch Knight, Arcane Trickster — "third caster," PHB's level÷3 multiclass rate) without every caller needing to know which case it's in.
+- `rules/levelUp.js` (`describeLevelUp`) computes what a single class's level-up _should_ look like in isolation (pure, no character shape knowledge). `rules/diffLevelUp.js` (`diffLevelUp`) is the adapter — the one other place besides `validateCharacter.js` that knows the `characters.json` shape, diffs `describeLevelUp`'s output against a real character, and returns `{ patch, pendingChoices, warnings }` for a caller to apply. `diffLevelUp` only levels up a class the character already has — picking up a brand-new class via multiclassing isn't supported yet (see TODO.md).
+- Feature-grant deduplication (in `diffLevelUp`) is keyed on **name + level_gained**, not name alone — several classes legitimately grant the identically-named feature more than once at different levels (Rogue/Bard's Expertise, Bard's Magical Secrets, Ranger's Favored Enemy/Natural Explorer improvements). A name-only key silently drops every grant after the first.
+
+### `src/data/*.json` — what's committed vs. regenerated
+
+Most of `src/data/` is hand-authored campaign data (`characters.json`, `places.json`, `npcs.json`, `party_items.json`, `world.json`, etc.) and is the real source of truth — edit it directly, it's just JSON.
+
+`src/data/api_data_cache/` holds bulk SRD reference data (all spells, all features, species/race flavor) — **committed**, not gitignored, rebuilt via `scripts/build-srd-cache.js` when it needs refreshing. It was gitignored once; that caused real data loss (a homebrew migration wrote into it and the content was never committed). Don't re-gitignore it.
+
+`published_spells.json` / `published_features.json` / `published_monsters.json` hold **real non-SRD content and homebrew side by side** — each entry's own `homebrew: true/false` flag (and a real book `source` citation when it's not homebrew) distinguishes them, rather than splitting homebrew into a separate file. `monsters_index.json` is different: a lightweight index-only cache (name/CR/type/size/publisher, no stat block) bulk-imported from external sources — homebrew monsters get a matching lightweight entry here (`publisher: "Homebrew"`) _and_ their full stat block in `published_monsters.json`, since `MonsterBrowser.vue` only reads the index file for its browsable list.
+
+`lore/` (Obsidian-vault-compatible markdown) is the narrative-depth layer for things no UI widget queries — see `lore/README.md`. Don't duplicate mechanical facts there; link out to the `src/data/` name instead.
+
+### Data flow: server ↔ store ↔ components
+
+`server.js` (dev-only, never deployed) serves generic CRUD over a whitelisted table list (`GET`/`POST /api/:table`) with **3-way merge on save** (`current` vs. `base` vs. what's actually on disk right now) so a stale browser tab can't clobber concurrent changes — see the comment above that route for the exact mechanism. `src/utils/dataService.js` is the client-side counterpart. Vuex (`src/store/index.js`) holds the live state; several tools (`LevelUpTool.vue`, `NewCharacterTool.vue`) use a **pending-save / dirty-tracking pattern** (`src/mixins/pendingCharacterSaves.js` + `PendingCharacterSaveBar.vue`) — edits apply to the store immediately for live preview but don't autosave, so a "Save" action is always explicit and revertable.
+
+### `lookupService.js` — the shared external-data cache
+
+`src/utils/lookupService.js`'s `lookupSpell`/`lookupFeature`/`lookupMonster` all follow the same three-tier resolution: local SRD cache → local `published_*.json` → live `dnd5eapi.co` API, each tier cached (in-memory `Map`, then `localStorage`). `lookupFeature(name, id)` and `lookupMonster` both prefer an id/exact match when available before falling back to fuzzy name matching. This is the one place that talks to the outside network; most UI components should go through it rather than fetching the API directly.
+
+### Two "browser" component patterns worth knowing before adding a third
+
+- **Tree browsers** (`LocationBrowser.vue`, `HomebrewBrowser.vue`) share `TreeNode.vue`. A node can carry a `copyActions: [{label, title, data}]` array to get a generic "copy as JSON" button — used for hierarchical hand-off (copy a whole region including its settlements, or just one settlement).
+- **Filterable list + detail browsers** (`SpellBrowser.vue`, `MonsterBrowser.vue`) merge a local SRD cache array with a `published_*.json` array client-side, dedupe by name, and render a filter sidebar + paginated list + detail panel. `MonsterBrowser.vue`'s `formatSpeed`/`formatSenses` helpers assume speed/sense values already carry their own unit string (`"40 ft."`) — don't re-append one.

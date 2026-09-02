@@ -1,0 +1,188 @@
+[
+  {
+    "id": "greyhollow-fall-001",
+    "type": "event",
+    "location_tags": ["greyhollow"],
+    "entity_tags": ["pale_syndicate"],
+    "status": "known_to_party",
+    "summary": "The Fall of Greyhollow",
+    "detail": "Greyhollow was an abandoned border fort from old territorial disputes, sitting empty for 8 years before the Pale Syndicate occupied it as a holding facility for enslaved captives. On this date, a party led by Vaszeslaad Thrazak raided the fort: freed 10 enslaved people, killed or captured the Syndicate personnel stationed there (including two collar-maintaining mages), and burned the main hall to the ground. The raid ended Syndicate operations at the site entirely.",
+    "date": "Year 467, Day 139-140",
+    "source_session": "1"
+  },
+  {
+    "id": "sealed-giant-door-001",
+    "type": "place_history",
+    "location_tags": ["ravenquay", "aqueduct_tunnels"],
+    "entity_tags": ["the_wardens"],
+    "status": "known_to_party",
+    "summary": "Sealed giant-rune door beneath Ravenquay's aqueducts",
+    "detail": "Ravenquay's aqueduct system was dug through pre-existing giant ruins, meaning the city's tunnels connect to structures built by giants over a thousand years before the city's founding. Deep in the tunnels stands a massive stone door (roughly 12 feet tall, 8 feet wide) of dark stone unlike any local quarry, carved with corrupted giant runes that read as warnings: 'sealed,' 'bound,' 'do not open.' Multiple magical wards on the door are still active after centuries. A second, smaller sealed doorway was found nearby via a side passage, apparently a secondary entrance to the same sealed chamber system.",
+    "date": "",
+    "source_session": "1"
+  },
+  {
+    "id": "the-wardens-001",
+    "type": "faction_history",
+    "location_tags": ["ravenquay"],
+    "entity_tags": ["the_wardens"],
+    "status": "known_to_party",
+    "summary": "The Wardens — order that sealed dangerous magic beneath Ravenquay",
+    "detail": "The Wardens were an order that dealt with dangerous magic, sealing away threats deemed too dangerous to destroy but too powerful to leave accessible. They are responsible for sealing the giant-rune chambers beneath Ravenquay's aqueducts. The order disbanded roughly 150 years ago. Evidence of their work includes a Warden's mark (a pendant symbol) found in a collapsed side chamber near the sealed door, alongside a water-damaged journal referencing 'three chambers... sealed by the Wardens... do not disturb.'",
+    "date": "Approx. Year 317 (disbandment)",
+    "source_session": "1"
+  },
+  {
+    "id": "border-wars-fol-001",
+    "type": "event",
+    "location_tags": ["fol"],
+    "entity_tags": [],
+    "status": "rumor",
+    "summary": "The border wars with Fol (TENTATIVE)",
+    "detail": "A past regional conflict along the northern border with the territory later named Fol. Referenced only as background for veterans: Egarryn the Red is said to have 'gone rogue after the border wars,' and Kael (Sarith's bodyguard) was 'captured on a border raid' six months prior to other events — though it's unconfirmed whether these refer to the same conflict. No details on combatants, timeline, or outcome were established in this chat. Flagged tentative — flesh out or discard as more information surfaces.",
+    "date": "",
+    "source_session": "1"
+  },
+  {
+    "id": "nalfeshnee-banishment-001",
+    "type": "legend",
+    "location_tags": ["ravenquay", "aqueduct_tunnels"],
+    "entity_tags": ["the_wardens"],
+    "status": "known_to_party",
+    "summary": "The Nalfeshnee bound beneath Ravenquay's aqueducts",
+    "detail": "The entity sealed behind the giant-rune door beneath Ravenquay's aqueducts was identified as a Nalfeshnee — a greater demon called an 'Abyssal judge' — imprisoned by the Wardens over 2,000 years prior. A party led by Vaszeslaad Thrazak, working with the Aethros justicar Thane, performed a banishment ritual that sent the demon back to the Abyss without breaching the seals, and the ritual's completion reinforced the ancient containment rather than weakening it. The seals, which had been degrading and were estimated at roughly a decade from failure, were left stronger than they'd been in generations.",
+    "date": "Year 467, Day 148",
+    "source_session": "2"
+  },
+  {
+    "id": "pale-syndicate-khemrise-structure-001",
+    "type": "faction_history",
+    "location_tags": ["khemrise", "ravenquay"],
+    "entity_tags": ["pale_syndicate"],
+    "status": "known_to_party",
+    "summary": "The Pale Syndicate's regional command structure exposed",
+    "detail": "Documents and testimony recovered from Syndicate operatives in Ravenquay (a courier's council-authority seal, an accountant's financial ledgers, and an embedded assassin's testimony) revealed that Khemrise serves as the Syndicate's regional headquarters, governed in part by a 'merchant subcouncil' that uses legitimate trade operations as cover for slaving and smuggling. The merchant Aldric Thorne was identified as a sitting member of that subcouncil, holding direct authority over lower operations such as the one dismantled in Ravenquay.",
+    "date": "Year 467, Day 151",
+    "source_session": "2"
+  },
+  {
+    "id": "dawn-blades-founding-001",
+    "type": "faction_history",
+    "location_tags": ["ravenquay"],
+    "entity_tags": ["dawn_blades"],
+    "status": "known_to_party",
+    "summary": "Founding of the Dawn Blades and their eight principles",
+    "detail": "After a run of operations against the Pale Syndicate in Ravenquay, the mercenary company led by Vaszeslaad Thrazak formally named itself the Dawn Blades and drafted a written charter of eight founding principles, signed and witnessed by the full company: (1) We fight slavery in all its forms. (2) We offer mercy to those who surrender. (3) We protect the innocent before pursuing profit. (4) We are accountable to law and to each other. (5) We question our certainty and welcome dissent. (6) We build what we can, destroy only what we must. (7) We remember we could be wrong. (8) Every voice has value.",
+    "date": "Year 467, Day 152",
+    "source_session": "2"
+  },
+  {
+  "id": "ostwick-estate-seizure-001",
+  "type": "place_history",
+  "location_tags": ["khemrise", "khemrise_estate"],
+  "entity_tags": ["ostwick_family", "aldric_thorne", "pale_syndicate"],
+  "status": "known_to_party",
+  "summary": "Thorne's acquisition of the Ostwick family vineyard",
+  "detail": "The Khemrise vineyard estate later used by Aldric Thorne as a Syndicate front was originally the Ostwick family farm. Thorne acquired it under pressure roughly 11 years prior for a fraction of fair market value, forcing the family out. The Ostwicks relocated to the farming village of Brennswick, 30 miles east of Khemrise, where they rebuilt a modest but honest life. The eldest son, Petyr Ostwick, was about twenty at the time.",
+  "date": "Year 456 (approx.)",
+  "source_session": "3"
+},
+{
+  "id": "lore_verath_ohn_001",
+  "type": "place_history",
+  "location_tags": ["Western Reach", "coastal", "southern coast"],
+  "entity_tags": ["fluid people"],
+  "status": "known_to_party",
+  "summary": "Verath Ohn — the oldest city, now confirmed submerged",
+  "detail": "Verath Ohn is the oldest settlement in the Western Reach, predating all current cities by thousands of years. Its location is confirmed: partially submerged off the southern coast, the upper tower still visible above the waterline. The city was not destroyed by war or neglect — a catastrophic geological event submerged it rapidly, the coastline itself shifting in minutes. The city survived structurally due to extraordinary construction quality and remains largely intact underwater. Its districts — harbor, market, residential, administrative, civic — are all identifiable. The name Varath Ohn belonged to a person before it belonged to a place: the individual who chose to remain in the city as it sank rather than escape to the surface. A five-continent world map was found in the city's control room, rendered in tile mosaic, showing two continents known to current Aethermoor residents and three that are not. A stone tablet dictionary was recovered from the market district containing two languages side by side — one unrecognizable, one sharing root words with the Southern Reach tongue. The civic district's gathering space floor contains a detailed mosaic map of the below rather than the above world.",
+  "date": "discovered day 116 of year 468; first recorded as rumor day 157 of year 467",
+  "source_session": "6, 9"
+},
+{
+  "id": "twinrock-drain-coastal-hazard",
+  "type": "place_history",
+  "location_tags": ["western-reach-coast", "khemrise-region"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "Twinrock, a coastal rock formation north of Khemrise, is known locally by sailors as \"The Drain\" for an unusual current that pulls downward rather than across.",
+  "detail": "A pair of rock formations breaking the surface at low tide, resembling a crown from the south. The waters between and around them run a current that pulls down rather than along the coast, a navigational hazard fishermen have avoided for generations independent of any supernatural cause. Old sailors' name for it — \"the Drain\" — predates any known incident there.",
+  "date": "day 160, year 467",
+  "source_session": "7"
+},{
+  "id": "third-western-reach-charter",
+  "type": "political_change",
+  "location_tags": ["khemrise", "argentveil", "ravenquay"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "Khemrise's charter becomes the third of its kind in the Western Reach, following Argentveil (15 years prior) and Ravenquay.",
+  "detail": "Argentveil's Chartered Investigators Act, in force for roughly fifteen years, established the original legal model for licensed private investigative and seizure authority operating alongside city government. Ravenquay adopted its own version some time after. Khemrise's council passed the third such charter by unanimous vote, formally extending the model to a third major Western Reach city and cementing it as a recognized regional legal tradition rather than an Argentveil peculiarity.",
+  "date": "day 160, year 467",
+  "source_session": "7"
+},
+{
+  "id": "lore_008_001",
+  "type": "faction_history",
+  "location_tags": ["Fol"],
+  "entity_tags": ["Varath"],
+  "status": "known_to_party",
+  "summary": "The Varath predate all current Fol clan organization, descended from the Firstwalkers.",
+  "detail": "The Varath are Firstwalker descendants who predate all current clan organization in Fol. They named themselves for what they were doing rather than inheriting the name — earned through action, not lineage.",
+  "date": "",
+  "source_session": "8"
+},
+{
+  "id": "lore_008_002",
+  "type": "political_change",
+  "location_tags": ["Fol", "Cindermarch"],
+  "entity_tags": ["Vethara"],
+  "status": "resolved",
+  "summary": "The two-year Cindermarch-Vethara war ended in Year 467 upon revelation it was manufactured by a southern manipulator.",
+  "detail": "A two-year war between Cindermarch and the Vethara clan ended in Year 467 when it was revealed the conflict had been manufactured by a southern manipulator feeding false intelligence to both sides, convincing each that the other was weak and aggressive.",
+  "date": "Year 467",
+  "source_session": "8"
+},{
+  "id": "lore_008_003",
+  "type": "legend",
+  "location_tags": ["Fol"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "Northern clan tradition holds that a name given prematurely becomes a burden rather than an honor.",
+  "detail": "Northern clan naming tradition holds that a name given prematurely — before it's earned through sustained action — becomes a burden rather than an honor, since it ties collective identity to one person's individual decisions and choices.",
+  "date": "",
+  "source_session": "8"
+},{
+  "id": "lore_fluid_people_001",
+  "type": "faction_history",
+  "location_tags": ["Varath Ohn", "Western Reach"],
+  "entity_tags": ["fluid people"],
+  "status": "known_to_party",
+  "summary": "The fluid people — builders of Varath Ohn",
+  "detail": "The fluid people were a distinct civilization that built and inhabited Varath Ohn. Neither fully aquatic nor fully terrestrial, their architecture reflected this — buildings designed to transition deliberately from above to below the waterline, harbors engineered with the understanding that water was a road rather than an obstacle. They were tall, moved with fluid grace equally comfortable in water and air, and built for permanence rather than aesthetics. When Varath Ohn sank, the fluid people did not perish — they went below voluntarily over many generations following the city's destruction. The last of them disappeared from the surface approximately two thousand years ago. They are understood to continue existing below.",
+  "date": "civilization predates current era by approximately 3000 years; last surface presence approximately 1000 years before current era",
+  "source_session": "9"
+},{
+  "id": "lore_moonveil_seeds_001",
+  "type": "legend",
+  "location_tags": ["Yetgrese"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "Moonveil seeds — healing properties unique to Yetgrese",
+  "detail": "Moonveil seeds grow only in Yetgrese and produce a plant with healing properties beyond anything achievable with Western Reach herbs or standard medicine. The healing is botanical rather than magical. Knowledge of the plant and its cultivation exists only in Yetgrese and has not crossed to Aethermoor in any established form. Seeds survive long ocean voyages if kept dry and cool. At least one crossing has been made — Moonveil seeds were found in a Ravenquay Merchant Quarter estate alongside coins of Yetgrese minting, confirming contact between the continents occurred within living memory.",
+  "date": "day 116 of year 468",
+  "source_session": "9"
+},
+{
+  "id": "valdmere_xyz",
+  "type": "legend",
+  "location_tags": ["Valdmere"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "Valdmere's second settlement founded on a false legend.",
+  "detail": "Roughly 100 years ago a legend circulated that an artifact or font of immense power was located at the site of the abandoned first settlement. Two wealthy families funded expeditions, found nothing — the legend is almost certainly false — but built infrastructure in the process and the settlement stuck. The gossip of opportunity became self-fulfilling regardless of the legend's truth.",
+  "date": "",
+  "source_session": "Valdmere Chat 3"
+}
+]
+// finished at chat 9 so far
+i would like to go chat-by-chat and save the lore that we invented along the way. every chat has interesting things to keep for the long-term (things we want to keep for future players that aren't only relevant to my party) and lots of things that are only relevant to my party and campaign, which we need to ignore. I'm not really after "things my party did or found" as much as I want "stories and interesting notions that were uncovered". Witnesses, seals, boundary, are all off-limits as they were current campaign and not long-standing lore.  the campaign started day 137 of year 467. please use this skill and get started: 
+/dnd-lore-extraction  this is chat 

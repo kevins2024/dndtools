@@ -18,8 +18,22 @@
         </option>
       </select>
 
+      <select
+        v-if="addableClasses.length"
+        v-model="selectedClassName"
+        class="lut-select"
+      >
+        <option :value="null" disabled>+ Multiclass into…</option>
+        <option v-for="c in addableClasses" :key="c.name" :value="c.name">
+          + {{ c.name }}
+        </option>
+      </select>
+
       <div v-if="currentLevel != null" class="lut-level-badge">
-        Level {{ currentLevel }} → {{ targetLevel }}
+        <template v-if="currentLevel === 0"
+          >New class — Level {{ targetLevel }}</template
+        >
+        <template v-else>Level {{ currentLevel }} → {{ targetLevel }}</template>
       </div>
     </div>
 
@@ -48,13 +62,6 @@
         >
           {{ step.label }}
         </button>
-        <span
-          class="lut-toggle-chip"
-          :class="{ on: showOneTimeChoices }"
-          @click="showOneTimeChoices = !showOneTimeChoices"
-        >
-          {{ showOneTimeChoices ? '◐' : '◌' }} show one-time choices
-        </span>
       </div>
 
       <div class="lut-work">
@@ -141,115 +148,189 @@
             </div>
             <ul v-else class="lut-feature-list">
               <li v-for="f in preview.newFeatures" :key="f.name">
-                {{ f.name }}
+                <span
+                  :class="{ 'has-tip': featureDescriptions[f.name] }"
+                  :title="featureDescriptions[f.name] || ''"
+                >
+                  {{ f.name }}
+                </span>
               </li>
             </ul>
           </div>
 
-          <!-- ── One-time choices (ASI/feat, subclass) ── -->
-          <div v-if="showOneTimeChoices" class="lut-onetime">
-            <div v-if="pendingSubclassChoice" class="lut-choice-card">
-              <div class="lut-choice-title">
-                Level {{ pendingSubclassChoice.level }} — choose a subclass
-              </div>
-              <select v-model="subclassChoiceDraft" class="lut-select">
-                <option :value="null" disabled>Choose…</option>
-                <option
-                  v-for="s in availableSubclasses"
-                  :key="s.name"
-                  :value="s.name"
-                >
-                  {{ s.name }}
-                </option>
-              </select>
-            </div>
-
-            <div v-if="pendingAsiChoice" class="lut-choice-card">
-              <div class="lut-choice-title">
-                Level {{ pendingAsiChoice.level }} — Ability Score Improvement
-                or Feat
-              </div>
-              <div class="lut-choice-tabs">
-                <button
-                  class="lut-btn"
-                  :class="{ active: asiFeatMode === 'asi' }"
-                  @click="asiFeatMode = 'asi'"
-                >
-                  ASI
-                </button>
-                <button
-                  class="lut-btn"
-                  :class="{ active: asiFeatMode === 'feat' }"
-                  @click="asiFeatMode = 'feat'"
-                >
-                  Feat
-                </button>
-              </div>
-
-              <div v-if="asiFeatMode === 'asi'" class="lut-asi-form">
-                <select v-model="asiSplit" class="lut-select">
-                  <option value="one">+2 to one ability</option>
-                  <option value="two">+1 to two abilities</option>
-                </select>
-                <select v-model="asiAbility1" class="lut-select">
-                  <option v-for="a in abilities" :key="a" :value="a">
-                    {{ a.toUpperCase() }}
-                  </option>
-                </select>
+          <!-- ── One-time choices (ASI/feat, subclass) — always visible,
+               never behind a toggle: these are required, not optional
+               detail, and hiding them made it look like Confirm Level Up
+               was broken. ── -->
+          <div class="lut-onetime">
+            <div
+              v-if="pendingSubclassChoice || subclassChoiceDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{ pendingSubclassChoice?.level ?? subclassChoiceLevel }} —
+                  choose a subclass
+                </div>
                 <select
-                  v-if="asiSplit === 'two'"
-                  v-model="asiAbility2"
+                  v-model="subclassChoiceDraft"
                   class="lut-select"
+                  @change="applySubclassChoice"
                 >
-                  <option v-for="a in abilities" :key="a" :value="a">
-                    {{ a.toUpperCase() }}
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="s in availableSubclasses"
+                    :key="s.name"
+                    :value="s.name"
+                  >
+                    {{ s.name }}
                   </option>
                 </select>
-                <button class="lut-btn lut-btn--confirm" @click="submitAsi">
-                  Apply
-                </button>
               </div>
-
-              <div v-else class="lut-feat-form">
-                <select v-model="featChoiceName" class="lut-select">
-                  <option :value="null" disabled>Choose a feat…</option>
-                  <option
-                    v-for="f in catalogFeats"
-                    :key="f.name"
-                    :value="f.name"
-                  >
-                    {{ f.name }}
-                  </option>
-                  <option value="__other">Other (not yet catalogued)</option>
-                </select>
-                <input
-                  v-if="featChoiceName === '__other'"
-                  v-model="customFeatName"
-                  class="lut-text-input"
-                  placeholder="Feat name"
-                />
-                <select
-                  v-if="selectedFeatAbilityChoices.length > 1"
-                  v-model="featAbilityChoice"
-                  class="lut-select"
+              <div v-if="subclassChoiceDraft" class="lut-subclass-summary">
+                <div
+                  v-if="subclassFeaturesForChoice.length === 0"
+                  class="lut-note"
                 >
-                  <option :value="null" disabled>Which ability?</option>
-                  <option
-                    v-for="a in selectedFeatAbilityChoices"
-                    :key="a"
-                    :value="a"
-                  >
-                    {{ a.toUpperCase() }}
-                  </option>
-                </select>
-                <button class="lut-btn lut-btn--confirm" @click="submitFeat">
-                  Apply
-                </button>
+                  Computing…
+                </div>
+                <ul v-else class="lut-feature-list">
+                  <li v-for="f in subclassFeaturesForChoice" :key="f">
+                    <strong>{{ f }}</strong>
+                    <span v-if="featureDescriptions[f]">
+                      — {{ featureDescriptions[f] }}</span
+                    >
+                  </li>
+                </ul>
               </div>
             </div>
 
             <div
-              v-if="!pendingSubclassChoice && !pendingAsiChoice"
+              v-if="pendingAsiChoice || asiChoiceLevel"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level {{ pendingAsiChoice?.level ?? asiChoiceLevel }} —
+                  Ability Score Improvement or Feat
+                </div>
+                <div class="lut-choice-tabs">
+                  <button
+                    class="lut-btn"
+                    :class="{ active: asiFeatMode === 'asi' }"
+                    @click="asiFeatMode = 'asi'"
+                  >
+                    ASI
+                  </button>
+                  <button
+                    class="lut-btn"
+                    :class="{ active: asiFeatMode === 'feat' }"
+                    @click="asiFeatMode = 'feat'"
+                  >
+                    Feat
+                  </button>
+                </div>
+
+                <div v-if="asiFeatMode === 'asi'" class="lut-asi-form">
+                  <select
+                    v-model="asiSplit"
+                    class="lut-select"
+                    @change="submitAsi"
+                  >
+                    <option value="one">+2 to one ability</option>
+                    <option value="two">+1 to two abilities</option>
+                  </select>
+                  <select
+                    v-model="asiAbility1"
+                    class="lut-select"
+                    @change="submitAsi"
+                  >
+                    <option v-for="a in abilities" :key="a" :value="a">
+                      {{ a.toUpperCase() }}
+                    </option>
+                  </select>
+                  <select
+                    v-if="asiSplit === 'two'"
+                    v-model="asiAbility2"
+                    class="lut-select"
+                    @change="submitAsi"
+                  >
+                    <option v-for="a in abilities" :key="a" :value="a">
+                      {{ a.toUpperCase() }}
+                    </option>
+                  </select>
+                </div>
+
+                <div v-else class="lut-feat-form">
+                  <select
+                    v-model="featChoiceName"
+                    class="lut-select"
+                    @change="submitFeat"
+                  >
+                    <option :value="null" disabled>Choose a feat…</option>
+                    <option
+                      v-for="f in catalogFeats"
+                      :key="f.name"
+                      :value="f.name"
+                    >
+                      {{ f.name }}
+                    </option>
+                    <option value="__other">Other (not yet catalogued)</option>
+                  </select>
+                  <input
+                    v-if="featChoiceName === '__other'"
+                    v-model="customFeatName"
+                    class="lut-text-input"
+                    placeholder="Feat name"
+                    @change="submitFeat"
+                  />
+                  <select
+                    v-if="selectedFeatAbilityChoices.length > 1"
+                    v-model="featAbilityChoice"
+                    class="lut-select"
+                    @change="submitFeat"
+                  >
+                    <option :value="null" disabled>Which ability?</option>
+                    <option
+                      v-for="a in selectedFeatAbilityChoices"
+                      :key="a"
+                      :value="a"
+                    >
+                      {{ a.toUpperCase() }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="lut-subclass-summary">
+                <ul v-if="asiFeatMode === 'asi'" class="lut-feature-list">
+                  <li v-for="d in liveAsiDeltas" :key="d.ability">
+                    <strong>{{ d.ability.toUpperCase() }}</strong>
+                    {{ d.before }} → {{ d.after }}
+                  </li>
+                </ul>
+                <div v-else>
+                  <div v-if="!liveFeatName" class="lut-note">
+                    Pick a feat to see what it does.
+                  </div>
+                  <template v-else>
+                    <strong>{{ liveFeatName }}</strong>
+                    <span v-if="featureDescriptions[liveFeatName]">
+                      — {{ featureDescriptions[liveFeatName] }}</span
+                    >
+                  </template>
+                </div>
+              </div>
+            </div>
+
+            <div
+              v-if="
+                !pendingSubclassChoice &&
+                !subclassChoiceDraft &&
+                !pendingAsiChoice &&
+                !asiChoiceLevel
+              "
               class="lut-note"
             >
               No one-time choices at this level.
@@ -324,6 +405,7 @@
 <script>
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
+import { lookupFeature } from '@/utils/lookupService.js'
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 
@@ -339,7 +421,6 @@ export default {
       selectedClassName: null,
       draftCharacter: null,
       activeStep: 0,
-      showOneTimeChoices: false,
       hpMethod: 'roll',
       hpRolls: [],
       asiOrFeatResolutions: {},
@@ -348,13 +429,35 @@ export default {
       error: null,
       abilities: ABILITIES,
 
+      // All class names the engine knows about, fetched once — used to
+      // offer "multiclass into a class this character doesn't have yet",
+      // distinct from classOptions (which only lists classes already on
+      // the character).
+      allClasses: [],
+
+      // name -> description string, populated as newFeatures resolve via
+      // lookupFeature (async: local SRD/homebrew catalogs first, then the
+      // traits API) — never cleared between previews, purely additive, so
+      // re-visiting a level already looked up doesn't re-fetch.
+      featureDescriptions: {},
+
       subclassChoiceDraft: null,
       availableSubclasses: [],
+      // Sticky copy of pendingSubclassChoice.level — applying a choice makes
+      // the real pendingSubclassChoice go null (diffLevelUp no longer sees
+      // it as unresolved), which would otherwise make the choice card (and
+      // the title on it) disappear the instant you pick something.
+      subclassChoiceLevel: null,
 
       asiFeatMode: 'asi',
       asiSplit: 'one',
       asiAbility1: 'str',
       asiAbility2: 'dex',
+      // Sticky copy of pendingAsiChoice.level — same reason as
+      // subclassChoiceLevel above: resolving it makes pendingAsiChoice go
+      // null, which would otherwise hide the card (and its outcome) right
+      // when it becomes useful to actually look at.
+      asiChoiceLevel: null,
 
       catalogFeats: [],
       featChoiceName: null,
@@ -380,11 +483,22 @@ export default {
     classOptions() {
       return this.selectedCharacter?.classes ?? []
     },
+    // Classes the selected character does NOT already have — offered as
+    // "multiclass into…" options. Empty (hiding that selector entirely)
+    // until no character is picked or allClasses hasn't loaded yet.
+    addableClasses() {
+      if (!this.selectedCharacter) return []
+      const existing = new Set(this.classOptions.map((c) => c.name))
+      return this.allClasses.filter((c) => !existing.has(c.name))
+    },
     currentLevel() {
+      if (!this.selectedClassName) return null
       const c = this.classOptions.find(
         (cl) => cl.name === this.selectedClassName
       )
-      return c?.level ?? null
+      // 0, not null, for a class not yet on the character — a genuine
+      // multiclass pickup in progress, still worth showing the badge for.
+      return c?.level ?? 0
     },
     targetLevel() {
       return this.currentLevel != null ? this.currentLevel + 1 : null
@@ -399,11 +513,50 @@ export default {
         ) ?? null
       )
     },
+    // Feature names the currently-selected subclass draft actually grants at
+    // this level, straight from diffLevelUp's own subclassFeaturesGained
+    // (already computed against draftCharacter.classes[].subclass by
+    // applySubclassChoice below) — not just the whole newFeatures list, so a
+    // base-class feature that happens to land on the same level doesn't get
+    // shown here as if the subclass granted it.
+    subclassFeaturesForChoice() {
+      const groups = this.preview?.description?.subclassFeaturesGained ?? []
+      return groups.flatMap((g) => g.names)
+    },
     pendingAsiChoice() {
       return (
         this.preview?.pendingChoices?.find((p) => p.type === 'asiOrFeat') ??
         null
       )
+    },
+    // Live "what this gives you" for the ASI form — computed straight off
+    // the current form selection, not waiting for Apply, so picking an
+    // ability shows its effect immediately (matches the subclass card's
+    // pick-and-see behavior). Reads off draftCharacter's current scores, so
+    // it's this level's contribution specifically, not the cumulative
+    // multi-level total.
+    liveAsiDeltas() {
+      if (!this.draftCharacter) return []
+      const picks =
+        this.asiSplit === 'one'
+          ? [{ ability: this.asiAbility1, amount: 2 }]
+          : [
+              { ability: this.asiAbility1, amount: 1 },
+              { ability: this.asiAbility2, amount: 1 },
+            ]
+      return picks
+        .filter((p) => p.ability)
+        .map((p) => {
+          const before = this.draftCharacter[`stat_${p.ability}`] ?? 10
+          return { ability: p.ability, before, after: before + p.amount }
+        })
+    },
+    // Same idea for the Feat form: the name currently selected/typed,
+    // whether or not Apply has been clicked yet.
+    liveFeatName() {
+      return this.featChoiceName === '__other'
+        ? this.customFeatName.trim()
+        : this.featChoiceName
     },
     pendingNewSpells() {
       return (
@@ -458,6 +611,9 @@ export default {
       this.initDraft()
       this.runPreview()
     },
+    liveFeatName(name) {
+      if (name) this.loadFeatureDescriptions([{ name }])
+    },
   },
 
   async created() {
@@ -466,6 +622,13 @@ export default {
       if (res.ok) this.catalogFeats = await res.json()
     } catch {
       // Feat catalog is a nice-to-have for the picker — free text still works.
+    }
+    try {
+      const res = await fetch('/api/engine/classes')
+      if (res.ok) this.allClasses = await res.json()
+    } catch {
+      // Multiclass picker just won't offer anything if this fails — the
+      // normal level-up flow still works fine without it.
     }
   },
 
@@ -478,11 +641,12 @@ export default {
 
     resetChoices() {
       this.activeStep = 0
-      this.showOneTimeChoices = false
       this.hpMethod = 'roll'
       this.hpRolls = []
       this.asiOrFeatResolutions = {}
+      this.asiChoiceLevel = null
       this.subclassChoiceDraft = null
+      this.subclassChoiceLevel = null
       this.availableSubclasses = []
       this.preview = null
       this.error = null
@@ -490,6 +654,54 @@ export default {
       // are tracked by comparing the store against `originals`, which
       // outlives switching to a different character/class in the picker
       // above.
+    },
+
+    // features: array of {name, id} (id optional) — id, when present, skips
+    // straight to an exact catalog match instead of risking a same-named
+    // collision (e.g. two subclasses both having a "Spellcasting" feature).
+    async loadFeatureDescriptions(features) {
+      for (const { name, id } of features ?? []) {
+        if (name in this.featureDescriptions) continue
+        // Placeholder so a second preview tick (e.g. re-rolling HP) doesn't
+        // kick off a duplicate lookup while the first is still in flight.
+        this.$set(this.featureDescriptions, name, null)
+        const result = await lookupFeature(name, id)
+        this.$set(this.featureDescriptions, name, result?.description ?? null)
+      }
+    },
+
+    // The subclass <select> only updates subclassChoiceDraft by itself —
+    // diffLevelUp reads the choice off draftCharacter.classes[].subclass
+    // (same field a saved character carries), not a separate request param,
+    // so picking from the dropdown has to write it there and re-preview.
+    // Without this, newFeatures/subclassFeaturesGained never reflect the
+    // pick at all — the picker looks like it does nothing.
+    applySubclassChoice() {
+      if (!this.draftCharacter) return
+      const exists = this.draftCharacter.classes.some(
+        (c) => c.name === this.selectedClassName
+      )
+      // A multiclass pickup (className not yet on the character) has no
+      // entry to write the subclass draft onto — add a level-0 placeholder
+      // one. diffLevelUp.js still treats a level-0 entry as a fresh pickup
+      // (see its isMulticlassPickup comment); this is the only way to hand
+      // it a subclass choice made at level 1 (Cleric/Sorcerer/Warlock all
+      // pick a subclass on their very first level).
+      this.draftCharacter.classes = exists
+        ? this.draftCharacter.classes.map((c) =>
+            c.name === this.selectedClassName
+              ? { ...c, subclass: this.subclassChoiceDraft }
+              : c
+          )
+        : [
+            ...this.draftCharacter.classes,
+            {
+              name: this.selectedClassName,
+              level: 0,
+              subclass: this.subclassChoiceDraft,
+            },
+          ]
+      this.runPreview()
     },
 
     async fetchSubclasses() {
@@ -527,9 +739,20 @@ export default {
         if (!res.ok)
           throw new Error(data.error || `Server returned ${res.status}`)
         this.preview = data
-        if (data.pendingChoices?.some((p) => p.type === 'subclassChoice')) {
+        const subclassChoice = data.pendingChoices?.find(
+          (p) => p.type === 'subclassChoice'
+        )
+        if (subclassChoice) {
+          this.subclassChoiceLevel = subclassChoice.level
           this.fetchSubclasses()
         }
+        const asiChoice = data.pendingChoices?.find(
+          (p) => p.type === 'asiOrFeat'
+        )
+        if (asiChoice) this.asiChoiceLevel = asiChoice.level
+        this.loadFeatureDescriptions(
+          data.newFeatures?.map((f) => ({ name: f.name, id: f.id }))
+        )
       } catch (err) {
         this.error = err.message
         this.preview = null
@@ -561,11 +784,16 @@ export default {
     },
 
     submitAsi() {
+      // Use the sticky asiChoiceLevel, not pendingAsiChoice.level — once a
+      // field auto-applies once, pendingAsiChoice goes null (diffLevelUp no
+      // longer sees it as unresolved), so a SECOND field edit (e.g.
+      // changing your mind on which ability) would read null.level and
+      // throw if this read pendingAsiChoice directly.
       const increases =
         this.asiSplit === 'one'
           ? { [this.asiAbility1]: 2 }
           : { [this.asiAbility1]: 1, [this.asiAbility2]: 1 }
-      this.$set(this.asiOrFeatResolutions, this.pendingAsiChoice.level, {
+      this.$set(this.asiOrFeatResolutions, this.asiChoiceLevel, {
         type: 'asi',
         increases,
       })
@@ -578,7 +806,7 @@ export default {
           ? this.customFeatName.trim()
           : this.featChoiceName
       if (!featName) return
-      this.$set(this.asiOrFeatResolutions, this.pendingAsiChoice.level, {
+      this.$set(this.asiOrFeatResolutions, this.asiChoiceLevel, {
         type: 'feat',
         featName,
         abilityChoice: this.featAbilityChoice,
@@ -695,23 +923,16 @@ export default {
   background: var(--color-bg-surface);
 }
 
-.lut-toggle-chip {
-  margin-left: auto;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-low);
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid transparent;
-}
-
-.lut-toggle-chip.on {
-  color: var(--color-accent);
-  border-color: var(--color-border);
-}
-
+/* .lut-root is a fixed-height flex column with overflow-y: auto — without
+   flex-shrink: 0 below, .lut-work's explicit min-height (5rem) overrides the
+   browser's automatic "don't shrink below content" floor, so once content
+   here gets taller than the space left in .lut-root (e.g. the subclass
+   choice card once it actually has content — see .lut-choice-card--subclass)
+   it gets squashed and overflows into the next sibling instead of making
+   .lut-root scroll like it should. */
 .lut-work {
   min-height: 5rem;
+  flex-shrink: 0;
 }
 
 .lut-loading {
@@ -751,6 +972,13 @@ export default {
 .lut-btn--confirm {
   color: var(--color-accent-strong);
   border-color: var(--color-accent);
+}
+
+.lut-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: var(--color-text-low);
+  border-color: var(--color-border);
 }
 
 .lut-btn--large {
@@ -803,6 +1031,11 @@ export default {
   color: var(--color-text);
 }
 
+.has-tip {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
+}
+
 .lut-onetime {
   margin-top: 1rem;
   padding-top: 0.75rem;
@@ -824,6 +1057,34 @@ export default {
   color: var(--color-accent-strong);
   font-size: var(--font-size-sm);
   margin-bottom: 0.5rem;
+}
+
+.lut-choice-card--subclass {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.lut-subclass-picker {
+  flex: 0 0 auto;
+  min-width: 12rem;
+}
+
+.lut-subclass-summary {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 1.25rem;
+  border-left: 1px dashed var(--color-border);
+}
+
+.lut-subclass-summary .lut-feature-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.lut-subclass-summary .lut-feature-list li {
+  margin-bottom: 0.35rem;
+  color: var(--color-text);
 }
 
 .lut-choice-tabs {

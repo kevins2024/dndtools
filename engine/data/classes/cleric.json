@@ -1,17 +1,51 @@
 {
   "name": "Cleric",
-  "saving_throw_proficiencies": ["wis", "cha"],
-  "armor_proficiencies": ["light", "medium", "shields"],
-  "weapon_proficiencies": ["simple"],
+  "saving_throw_proficiencies": [
+    "wis",
+    "cha"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple"
+  ],
   "subclass_name": "Divine Domain",
   "subclass_choice_level": 1,
-  "subclass_feature_levels": [1, 2, 6, 8, 17],
-  "spellcasting": { "type": "full", "ability": "wis" },
-  "channel_divinity_uses_by_level": { "2": 1, "6": 2, "18": 3 },
-  "destroy_undead_cr_by_level": { "5": 0.5, "8": 1, "11": 2, "14": 3, "17": 4 },
+  "subclass_feature_levels": [
+    1,
+    2,
+    6,
+    8,
+    17
+  ],
+  "spellcasting": {
+    "type": "full",
+    "ability": "wis"
+  },
+  "channel_divinity_uses_by_level": {
+    "2": 1,
+    "6": 2,
+    "18": 3
+  },
+  "destroy_undead_cr_by_level": {
+    "5": 0.5,
+    "8": 1,
+    "11": 2,
+    "14": 3,
+    "17": 4
+  },
   "features_by_level": {
-    "1": ["Spellcasting"],
-    "10": ["Divine Intervention"],
-    "20": ["Divine Intervention improvement"]
+    "1": [
+      "gen_cleric_base_spellcasting"
+    ],
+    "10": [
+      "divine-intervention"
+    ],
+    "20": [
+      "gen_cleric_base_divine-intervention-improvement"
+    ]
   }
 }

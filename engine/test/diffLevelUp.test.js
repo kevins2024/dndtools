@@ -25,10 +25,12 @@ function baseWizard(overrides = {}) {
   }
 }
 
-test('diffLevelUp: unknown class returns no patch and a clear warning instead of guessing', () => {
-  const result = diffLevelUp(baseWizard(), { className: 'Sorcerer' })
+test('diffLevelUp: a class name with no rules data returns no patch and a clear warning instead of guessing', () => {
+  const result = diffLevelUp(baseWizard(), { className: 'Necromancer' })
   assert.equal(result.patch, null)
-  assert.ok(result.warnings[0].includes('no "Sorcerer" class'))
+  assert.ok(
+    result.warnings[0].includes('No rules data for class "Necromancer"')
+  )
 })
 
 test('diffLevelUp: single-class HP/level/proficiency math with deterministic "average" HP', () => {
@@ -110,6 +112,55 @@ test('diffLevelUp: a genuinely new feature IS added when the character does not 
     result.newFeatures.map((f) => f.name),
     ['Potent Cantrip']
   )
+})
+
+// Real bug caught auditing a live character (Siv, Rogue 9): the dedup above
+// used to match on name alone, so a character who already had "Expertise"
+// on their sheet from level 1 silently never got their real, distinct
+// level-6 Expertise grant — Rogue (and Bard) are the only classes that name
+// the exact same feature twice at different levels, RAW.
+test('diffLevelUp: a same-named feature genuinely granted again at a later level (Rogue Expertise, 1 and 6) is NOT deduped away', () => {
+  const character = {
+    name: 'Test Rogue',
+    level: 5,
+    proficiency_bonus: 3,
+    stat_str: 10,
+    stat_dex: 16,
+    stat_con: 12,
+    stat_int: 10,
+    stat_wis: 10,
+    stat_cha: 10,
+    hp_max: 30,
+    hp_current: 30,
+    hit_dice_current: 5,
+    spellcasting_ability: null,
+    features: [
+      { name: 'Expertise', id: 'rogue-expertise-1', level_gained: 1 },
+      { name: 'Sneak Attack', level_gained: 1 },
+      { name: "Thieves' Cant", level_gained: 1 },
+      { name: 'Cunning Action', level_gained: 2 },
+      { name: 'Uncanny Dodge', level_gained: 5 },
+    ],
+    spells: [],
+    classes: [{ name: 'Rogue', subclass: 'Thief', level: 5 }],
+  }
+  const result = diffLevelUp(character, {
+    className: 'Rogue',
+    toLevel: 6,
+    hpMethod: 'average',
+  })
+  const names = (result.patch.features || []).map((f) => f.name)
+  assert.ok(
+    names.includes('Expertise'),
+    'the level-6 Expertise grant should be added, not silently dropped'
+  )
+  // patch.features is the full merged list (existing + new), so it
+  // legitimately has 2 "Expertise" entries now (level 1 and level 6) — the
+  // real check is that newFeatures (just what's NEW this level-up) has
+  // exactly the one level-6 grant, not a re-added level-1 duplicate.
+  const newExpertise = result.newFeatures.filter((f) => f.name === 'Expertise')
+  assert.equal(newExpertise.length, 1)
+  assert.equal(newExpertise[0].level_gained, 6)
 })
 
 test('diffLevelUp: multiclass spell slots use the combined table when another class also contributes', () => {
@@ -201,4 +252,163 @@ test('diffLevelUp: real roster smoke test against Lenn (single-class Wizard 9) m
     result.patch.hp_max,
     lenn.hp_max + 4 + engine.abilityModifier(lenn.stat_con)
   )
+})
+
+// ── Multiclassing: picking up a brand-new class ─────────────────────────────
+
+function baseFighter(overrides = {}) {
+  return {
+    name: 'Test Fighter',
+    level: 5,
+    proficiency_bonus: 3,
+    stat_str: 16,
+    stat_dex: 12,
+    stat_con: 14,
+    stat_int: 13,
+    stat_wis: 10,
+    stat_cha: 8,
+    hp_max: 44,
+    hp_current: 44,
+    hit_dice_current: 5,
+    spellcasting_ability: null,
+    features: [],
+    spells: [],
+    classes: [{ name: 'Fighter', subclass: 'Champion', level: 5 }],
+    ...overrides,
+  }
+}
+
+test('diffLevelUp: picking up a brand-new class via multiclassing produces a real patch, not a warning-only refusal', () => {
+  const result = diffLevelUp(baseFighter(), {
+    className: 'Wizard',
+    hpMethod: 'average',
+  })
+  assert.ok(result.patch, 'should produce a real patch')
+  assert.equal(result.patch.classes.length, 2)
+  assert.deepEqual(result.patch.classes[1], {
+    name: 'Wizard',
+    level: 1,
+    subclass: null,
+  })
+  // Total character level goes 5 -> 6, not the new class's own level (1)
+  assert.equal(result.patch.level, 6)
+  assert.equal(result.patch.proficiency_bonus, engine.proficiencyBonus(6))
+})
+
+test('diffLevelUp: multiclass pickup HP is never forced to max, even though it is level 1 for that class', () => {
+  // Wizard's hit die is d6 (avg 4). If this incorrectly used the "1st level
+  // is always max HP" rule, it would grant 6, not 4.
+  const conMod = engine.abilityModifier(baseFighter().stat_con)
+  const result = diffLevelUp(baseFighter(), {
+    className: 'Wizard',
+    hpMethod: 'average',
+  })
+  const gained = result.patch.hp_max - baseFighter().hp_max
+  assert.equal(gained, 4 + conMod)
+})
+
+test('diffLevelUp: multiclass pickup grants only the REDUCED proficiency list, and never a new saving throw', () => {
+  // Fighter's own full starting list includes heavy armor; the reduced
+  // multiclass grant does not.
+  const result = diffLevelUp(
+    baseFighter({ classes: [{ name: 'Cleric', level: 5 }] }),
+    {
+      className: 'Fighter',
+      hpMethod: 'average',
+    }
+  )
+  assert.deepEqual(result.patch.armor_proficiencies.sort(), [
+    'light',
+    'medium',
+    'shields',
+  ])
+  assert.ok(!result.patch.armor_proficiencies.includes('heavy'))
+  assert.deepEqual(result.patch.weapon_proficiencies.sort(), [
+    'martial',
+    'simple',
+  ])
+  assert.equal(result.patch.saving_throws, undefined)
+})
+
+test('diffLevelUp: multiclass pickup warns (but does not block) when the prerequisite ability score is not met', () => {
+  // Rogue needs DEX 13+; this Fighter's DEX is 12.
+  const result = diffLevelUp(baseFighter(), {
+    className: 'Rogue',
+    hpMethod: 'average',
+  })
+  assert.ok(
+    result.patch,
+    'should still produce a patch — a soft warning, not a hard block'
+  )
+  assert.ok(
+    result.warnings.some((w) => w.includes('DEX 13')),
+    `expected a DEX 13 prerequisite warning, got: ${JSON.stringify(
+      result.warnings
+    )}`
+  )
+})
+
+test('diffLevelUp: multiclass pickup has no prerequisite warning when the ability score IS met', () => {
+  // This Fighter's STR is 16 — well above Barbarian's STR 13 requirement.
+  const result = diffLevelUp(baseFighter(), {
+    className: 'Barbarian',
+    hpMethod: 'average',
+  })
+  assert.ok(
+    !result.warnings.some((w) => w.toLowerCase().includes('prerequisite'))
+  )
+})
+
+test("diffLevelUp: Fighter's multiclass prerequisite is STR 13 OR DEX 13 (any_of, not all_of)", () => {
+  // DEX 12, STR 8 — fails STR but the Fighter table entry is STR-or-DEX, and
+  // DEX 12 also fails... use a character whose DEX alone clears it.
+  const character = baseFighter({
+    classes: [{ name: 'Wizard', level: 5 }],
+    stat_str: 8,
+    stat_dex: 14,
+  })
+  const result = diffLevelUp(character, {
+    className: 'Fighter',
+    hpMethod: 'average',
+  })
+  assert.ok(
+    !result.warnings.some((w) => w.toLowerCase().includes('prerequisite')),
+    "DEX 14 alone should satisfy Fighter's STR-or-DEX prerequisite"
+  )
+})
+
+test("diffLevelUp: multiclass pickup surfaces a note for skill/tool grants it can't apply automatically", () => {
+  // Rogue's multiclass grant includes a skill choice and thieves' tools.
+  const character = baseFighter({ stat_dex: 14 }) // meets Rogue's DEX 13 prereq
+  const result = diffLevelUp(character, {
+    className: 'Rogue',
+    hpMethod: 'average',
+  })
+  assert.ok(result.warnings.some((w) => w.includes('skill of your choice')))
+  assert.ok(result.warnings.some((w) => w.includes("thieves' tools")))
+})
+
+test('diffLevelUp: a level-0 placeholder class entry (UI subclass-draft mechanism) is still treated as a fresh pickup, and its drafted subclass carries into the patch', () => {
+  // Cleric picks a subclass at level 1 — LevelUpTool.vue has nowhere else to
+  // stash that draft before the pickup is confirmed except a level-0 entry
+  // in character.classes (see diffLevelUp.js's isMulticlassPickup comment).
+  const character = baseFighter({ stat_wis: 14 }) // meets Cleric's WIS 13 prereq
+  character.classes.push({ name: 'Cleric', level: 0, subclass: 'Life Domain' })
+  const result = diffLevelUp(character, {
+    className: 'Cleric',
+    hpMethod: 'average',
+  })
+  assert.ok(result.patch, 'should still produce a real patch, not a refusal')
+  // Exactly one Cleric entry in the result — the placeholder must be
+  // replaced, not left alongside a second new entry.
+  const clericEntries = result.patch.classes.filter((c) => c.name === 'Cleric')
+  assert.equal(clericEntries.length, 1)
+  assert.deepEqual(clericEntries[0], {
+    name: 'Cleric',
+    level: 1,
+    subclass: 'Life Domain',
+  })
+  // Reduced multiclass proficiency list still applies — this is a pickup,
+  // not a "leveling an existing class" no-op.
+  assert.ok(!('saving_throws' in result.patch))
 })

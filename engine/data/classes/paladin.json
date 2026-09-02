@@ -1,21 +1,61 @@
 {
   "name": "Paladin",
-  "saving_throw_proficiencies": ["wis", "cha"],
-  "armor_proficiencies": ["light", "medium", "heavy", "shields"],
-  "weapon_proficiencies": ["simple", "martial"],
+  "saving_throw_proficiencies": [
+    "wis",
+    "cha"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "heavy",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple",
+    "martial"
+  ],
   "subclass_name": "Sacred Oath",
   "subclass_choice_level": 3,
-  "subclass_feature_levels": [3, 7, 15, 20],
-  "spellcasting": { "type": "half", "ability": "cha" },
+  "subclass_feature_levels": [
+    3,
+    7,
+    15,
+    20
+  ],
+  "spellcasting": {
+    "type": "half",
+    "ability": "cha"
+  },
   "features_by_level": {
-    "1": ["Divine Sense", "Lay on Hands"],
-    "2": ["Fighting Style", "Spellcasting", "Divine Smite"],
-    "3": ["Divine Health"],
-    "5": ["Extra Attack"],
-    "6": ["Aura of Protection"],
-    "10": ["Aura of Courage"],
-    "11": ["Improved Divine Smite"],
-    "14": ["Cleansing Touch"],
-    "18": ["Aura improvements (30ft radius)"]
+    "1": [
+      "divine-sense",
+      "lay-on-hands"
+    ],
+    "2": [
+      "paladin-fighting-style",
+      "gen_paladin_base_spellcasting",
+      "divine-smite"
+    ],
+    "3": [
+      "divine-health"
+    ],
+    "5": [
+      "paladin-extra-attack"
+    ],
+    "6": [
+      "aura-of-protection"
+    ],
+    "10": [
+      "aura-of-courage"
+    ],
+    "11": [
+      "improved-divine-smite"
+    ],
+    "14": [
+      "cleansing-touch"
+    ],
+    "18": [
+      "gen_paladin_base_aura-improvements-30ft-radius"
+    ]
   }
 }

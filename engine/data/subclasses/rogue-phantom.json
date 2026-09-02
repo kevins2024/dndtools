@@ -1,0 +1,19 @@
+{
+  "class": "Rogue",
+  "name": "Phantom",
+  "features_by_level": {
+    "3": [
+      "hb_rogue_phantom_whispers_of_the_dead",
+      "hb_rogue_phantom_wails_from_the_grave"
+    ],
+    "9": [
+      "hb_rogue_phantom_tokens_of_the_departed"
+    ],
+    "13": [
+      "hb_rogue_phantom_ghost_walk"
+    ],
+    "17": [
+      "hb_rogue_phantom_deaths_friend"
+    ]
+  }
+}
