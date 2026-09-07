@@ -22,13 +22,19 @@ cd engine && node --test test/foo.test.js   # a single test file
 
 There is no frontend test suite (`npm test` is an unconfigured placeholder). **Engine correctness is verified by `node --test`; there is no automated test runner for `src/`.**
 
-## Verification — run lean by default
+## Verification — run lean by default, Playwright is DISABLED, full stop
 
-For a data-only change (new JSON entries, a new subclass/monster/feature) or a small UI tweak: validate JSON with `python3 -c "import json; json.load(open(...))"`, run `npm run build` to confirm it compiles, and stop there. **Do not spin up a Playwright browser session for this.**
+**Live browser verification (Playwright, screenshot-checked) is disabled entirely for this project. Do not spin one up, for any change, for any reason — not for data-only changes, not for real interaction-logic changes (level-up/character-creation flow, a new Vue component), not even ones that feel like they'd benefit from it.** Decided 2026-09-03. Project owner's exact words: "that's not what i said to do. i said disable playwright entirely." — a prior version of this rule carved out an exception ("unless the project owner explicitly asks for it in that specific instance"); that exception was wrong and has been removed. Treat this as unconditional unless a future instruction from the project owner says otherwise in the moment.
 
-Reserve live browser verification (`npm run serve` + a Playwright script, screenshot-checked) for changes to actual interaction logic — level-up/character-creation flow changes, a new Vue component, anything where a compile pass can't tell you the feature actually works. Even then, keep it to the one interaction that proves the change, not a full click-through.
+Why: a session where four background tasks that each paired code changes with a Playwright verification pass cost roughly 3-4x what a same-sized research-only task cost (285k-380k tokens/176-212 tool calls vs. ~97k tokens/40 calls) — the iterative "write script → run → screenshot → adjust → rerun" loop is the single biggest token multiplier available, because every tool round-trip re-sends the whole accumulated context. Project owner's own words: "if we verify DATA and get the rules and functions and methods correct, i will be able to find UI hiccups much more cheaply than reading a screenshot for you" — they are a capable, present collaborator who checks the actual app themselves; don't spend their tokens re-deriving what one glance from them settles instantly.
 
-`cd engine && node --test` is fast and cheap — run it after any `engine/` change, always.
+What this means in practice: verify via `npm run build` (compiles clean — this is real proof for a Vue app, it catches template/type errors) and careful reading of the diff/logic itself. For a data-only change (new JSON entries, a new subclass/monster/feature) or a small UI tweak: validate JSON with `python3 -c "import json; json.load(open(...))"`, run `npm run build`, and stop there. For an actual interaction-logic change: same (build + logic review), and explicitly say in your response which specific behavior wasn't verified live and is worth the project owner's own quick check (e.g. "I changed X — worth clicking through Y once to confirm, since I'm not running the browser for this").
+
+`cd engine && node --test` is fast and cheap — run it after any `engine/` change, always. This is unaffected by the Playwright change; engine tests are the real, cheap, automated correctness check for `engine/` and should stay thorough.
+
+## Dependencies — ask before installing anything new
+
+Do not install new npm packages, system utilities, or any other new dependency (`npm install`, `pip install`, `brew install`, downloading a tool via `npx` to use ad hoc, etc.) without asking the project owner first, even if it would make a task easier or is normally a low-risk action. Decided 2026-09-03, same conversation as the Playwright decision above. If a task seems to need something not already available, say so and ask, rather than installing it and mentioning it after the fact.
 
 When `npm run serve` was already running from earlier in the session and you need to restart it after an `engine/`-affecting change: the frontend and backend are **separate processes on separate ports** (`8080`/`3001`), and killing one does not kill the other — the backend is the one holding Node's `require()` cache, so it's the one that actually needs restarting for engine changes to take effect. `lsof -ti:8080,8081,3001 -sTCP:LISTEN | xargs -r kill` catches both.
 

@@ -5,8 +5,1429 @@ dependencies, no Vue/Vuex imports anywhere in this folder, meant to be portable 
 a future Godot port). If this work gets interrupted, **this file is the resume
 point** — check what's ticked, read the "Notes" under the current phase, and
 continue from the first unchecked item. Run `node --test` from inside `engine/`
-to confirm everything still passes before continuing (159 tests as of this
+to confirm everything still passes before continuing (179 tests as of this
 writing, all green).
+
+## `diffLevelUp.js`: real multiclass skill-proficiency picker (2026-09-07)
+
+Level Up tool audit finding #9 (see `TODO.md`) — the PHB "Multiclassing
+Proficiencies" table's skill grant (real for Bard/Ranger/Rogue, always
+"choose 1 from the class's own list") only ever surfaced as a warning
+telling the player to add it by hand. The old comment justifying this was
+stale: it claimed "no class has a real skill/tool LIST anywhere in
+engine/data," but `skill_choices.options` was added to every class file
+during the New Character tool's own skill-picker build-out (see that
+entry elsewhere in this file) — the multiclass code path just never got
+updated to use it.
+
+Added a new `multiclassSkillChoice` param (a skill id, e.g. `"stealth"`) —
+on an actual pickup, resolves via `engine/rules/skills.js`'s `loadSkill`
+(new import), validated against the class's own `skill_choices.options`
+(`'any'` for Bard, a fixed array for Ranger/Rogue) via `loadClass`.
+Unresolved → a real `multiclassSkillChoice` pendingChoice (`{count,
+className}`) instead of a warning, matching every other choice type in
+this file. An invalid skill id gets a warning and is re-offered as a
+pendingChoice (doesn't silently apply or crash); a skill the character
+already has gets a no-op note rather than wasting the pick or duplicating
+the proficiency. Resolved into `patch.skill_proficiencies`, deduped
+against the character's existing list.
+
+**Tools deliberately NOT touched** — unlike skills, this app has no
+`tool_proficiencies` field anywhere on the character schema at all (not
+just for multiclassing; a starting class's own tool grants, e.g. Rogue's
+thieves' tools, aren't tracked either). Building a real picker here would
+mean inventing a new schema field used nowhere else in the app — a
+bigger, separate decision than this multiclass-specific gap. Left as the
+existing warning-note behavior.
+
+New `engine/test/multiclassSkillChoice.test.js` (7 tests): unresolved
+choice is a real pendingChoice not a warning; a valid choice resolves and
+adds the real display name while preserving existing proficiencies; an
+invalid skill (not on the class's own list) is rejected with a warning and
+re-offered; an already-known skill is a no-op note, not wasted or
+duplicated; Bard's `'any'` option set allows any real skill; a class with
+no skill grant in the table (Fighter) never produces the pendingChoice;
+and leveling an _existing_ class never offers this choice even if that
+class would grant one on a fresh pickup. Also updated one pre-existing
+test in `diffLevelUp.test.js` that asserted the OLD warning-only behavior
+for Rogue's skill grant — it now asserts the pendingChoice instead (the
+tool grant assertion is unchanged, since tools weren't touched).
+
+New "Multiclass Skill Proficiency" card in `LevelUpTool.vue`, reusing
+`allClasses` (already fetched, includes `skill_choices`) and a newly
+fetched `skillsCatalog` (`GET /api/engine/skills`, same catalog the New
+Character tool's picker uses) — no new server route needed, both already
+existed. `cd engine && node --test` 213/213 (206 before this session's
+spell-swap/spellbook-growth work plus 7 more here), `npm run build` clean.
+
+## `diffLevelUp.js`: added the known-spell swap and Wizard spellbook growth mechanics (2026-09-06)
+
+Found during a full Level Up tool audit (project owner wants to start
+relying on the tool for real characters) — see `TODO.md`'s "Level Up tool
+audit" entry for the complete list of findings; these two were the
+mechanically-missing ones the project owner asked to fix immediately.
+
+**Known-spell swap** (PHB: "when you gain a level in this class, you can
+choose one of the spells you know and replace it with another spell...")
+applies to every known-style caster — the same style==='known' set
+`spellsKnownForClass` already identifies (Bard, Sorcerer, Warlock, Ranger,
+Eldritch Knight, Arcane Trickster). Nothing modeled this at all before now
+— not even a documented "deliberate cut" the way re-picking an Eldritch
+Invocation on a later level is (see the multiclassing/invocations section
+below). Added as a new `spellSwap: {from, to} | null` option on
+`diffLevelUp()`. Deliberately NOT a `pendingChoice` — every other
+`*Choices`/`*Resolution` param in this function becomes a pendingChoice
+when unresolved and blocks `canConfirm` in the UI, but a swap is genuinely
+optional per RAW (a player may simply decline it any given level), so it's
+applied if present and silently skipped if not, same spirit as this file's
+existing tolerance for an unrecognized Pact Boon name. An invalid `from`
+(not actually a known spell) gets a warning, not a thrown error, matching
+the rest of the file's error-tolerant style. Implementation note: the
+removal has to happen on the BASE list `patch.spells` is built from (a new
+`spellSwapRemoval` variable, applied via a `baseSpells` filter right before
+the existing `extraGrantedSpells` merge) — the existing merge logic only
+ever appended, so a straight reuse would have left the old spell sitting
+there alongside the new one instead of replacing it.
+
+**Wizard spellbook growth** (PHB: "whenever you gain a level in this class,
+you can add two wizard spells to your spellbook") is a flat `2 ×
+levelsGained`, entirely independent of any known-spell cap — Wizard is a
+`prepared`-style caster with no known-spell limit at all, so the existing
+`newKnownSpells` pendingChoice (gated on `style === 'known'`) never covered
+it and silently showed nothing. Added as its own `spellbookChoices`/
+`spellbookAdditions` pendingChoice path, Wizard-only (checked via
+`classEntry.name`, not spellcasting style, since it's specific to the one
+class). Critical difference from every other spell-grant path in this
+function: added as `prepared: false`, not `true` — spellbook contents
+still need to be prepared like any other Wizard spell before they're
+castable, unlike a known-caster's known-spell pick (always-available) or a
+cantrip pick (also always-available).
+
+Both new params (`spellSwap`, `spellbookChoices`) threaded through
+`server.js`'s `POST /api/engine/preview-level-up` route, and surfaced in
+`LevelUpTool.vue`: a new non-blocking "Optional — Swap a Known Spell" card
+(shown whenever `description.spellcasting.style === 'known'` and the
+character already knows a leveled spell for that class — a "give up"
+dropdown, then a searchable "learn instead" list fetched via a new
+`spellSwapToOptions` array, reusing the exact same `/api/engine/
+spell-choices` eligibility endpoint the mandatory known-spell picker
+already uses) and a new "Add to Spellbook" card for Wizard, structurally
+identical to the existing "New Spells Known" card (checkbox list + search,
+capped at the pendingChoice's count).
+
+New `engine/test/spellSwapAndSpellbook.test.js` (10 tests): swap applies
+correctly and composes with an unrelated same-level known-spell pick,
+rejects an invalid "from" with a warning rather than crashing, is a true
+no-op when omitted (never a pendingChoice, never touches `patch.spells`),
+and is correctly never offered to a prepared-style caster; spellbook
+growth resolves fully/partially, scales with multiple levels crossed in
+one call, adds spells as `prepared: false`, and is never offered to a
+non-Wizard class. `cd engine && node --test` 206/206 (196 before this
+session's Ranger/Sorcerer/Warlock stub work plus these 10), `npm run
+build` clean.
+
+**Still open** (see `TODO.md` for the full list, not duplicated here): the
+shared `getBonusSpells` utility (`spellUtils.js`) only reads Artificer's
+`expanded_spell_list` field — Cleric/Paladin/Druid/Sorcerer's own
+domain/oath/circle/psionic/clockwork spell-by-level fields aren't read by
+it at all, so leveling into a new spell tier for those subclasses shows
+nothing in the Level Up tool and (near as traced) doesn't auto-surface on
+the live Spellbook either. Bigger than this pass — flagged as its own
+follow-up, not folded in here.
+
+## Standardized naming convention for subclass "known options" tables (2026-09-04)
+
+Partway through the per-class stub build-out (Fighter/Monk done, Barbarian
+in progress), noticed the "learn more options as you level" mechanics —
+Psi Warrior's Psionic Energy dice, Kensei's known weapons, Rune Knight's
+known runes, Four Elements' known disciplines, Arcane Archer's known Arcane
+Shots — had each picked up a bespoke field name
+(`arcane_shot_known_by_level`, `runes_known_by_level`,
+`kensei_weapons_known_by_level`, `elemental_disciplines_known_by_level`).
+Same shape every time (`{level: count}`), different name every time —
+real duplication risk as more classes hit the same pattern (Barbarian's
+Totem Warrior, Storm Herald, Path of the Beast all have it too). Fixed
+before it multiplied further:
+
+- **`known_count_by_level`**: `{level: count}` — how many options from
+  `option_catalog` are known/chosen at each tier. Used by any subclass
+  with a growing "learn N more" mechanic.
+- **`option_catalog`**: the real catalog of choosable options — a flat
+  array of `published_features.json` ids when there's one choice-point
+  (Kensei's runes... wait, Rune Knight's runes; Four Elements' disciplines;
+  Arcane Archer's shots; Barbarian's Wild Magic table), or an object of
+  named arrays when a subclass has multiple genuinely distinct choice
+  points at different tiers (Totem Warrior: `totem_spirit` at 3rd,
+  `aspect_of_the_beast` at 6th, `totemic_attunement` at 14th — each a
+  fresh "choose 1 of N" with different real options, not a growing count).
+- Resource-die-size tables (`psionic_energy_die_by_level`,
+  `martial_arts_die_by_level`, `sneak_attack_dice_by_level`, etc.) are left
+  as their own descriptively-named fields — a die SIZE progression is a
+  different concept from a known-OPTION-COUNT progression, and this naming
+  pattern already existed at the base-class level before this session
+  (`ki_points_by_level`, `unarmored_movement_bonus_by_level`,
+  `channel_divinity_uses_by_level`, `destroy_undead_cr_by_level`), so it's
+  already consistent — nothing to fix there.
+
+Retrofitted the 4 subclasses built before this convention existed
+(`fighter-rune-knight.json`, `fighter-arcane-archer.json`,
+`monk-way-of-the-kensei.json`, `monk-way-of-the-four-elements.json`) to
+match. Nothing in `engine/` or `src/` consumes these fields yet (no
+LevelUpTool UI reads them — they're forward-looking data for whenever that
+UI gets built), so this was a zero-risk rename, not a breaking migration.
+Going forward, every new subclass with this pattern uses these two field
+names, full stop — no new bespoke names.
+
+## Barbarian: all 7 stub Primal Paths built out to full 3/6/10/14 progressions (2026-09-04)
+
+Fourth class in the per-class pass. 2 real characters (Rhuna/Berserker,
+Chuknora/Path of the Giant) already on complete subclasses — no regression
+risk. Base class table checked out on inspection.
+
+4 parallel research passes covered Ancestral Guardian (XGE), Battlerager
+(SCAG), Beast (TCE), Storm Herald (SCAG), Totem Warrior (PHB), Zealot
+(XGE), Wild Magic (TCE). Real corrections found in the existing 3rd-level
+stubs:
+
+- **Ancestral Protectors** — "half damage" corrected to the real
+  "resistance to the damage" (not numerically identical against a
+  resistant creature), removed an invented 5ft-proximity condition.
+- **Battlerager Armor** — real RAW needs no proficiency with the spiked
+  armor and works against ANY target within 5ft, not specifically a
+  grappler; was also missing a real bonus-damage-on-successful-grapple
+  clause entirely.
+- **Form of the Beast** — Bite's healing was wrongly "temp HP on first
+  bite each rage" (real: HP regain once per turn, only while below half
+  HP); Claws' extra attack is part of the Attack action, not a bonus
+  action. Split into 3 catalog entries (`form_of_the_beast_option`).
+- **Storm Aura** — source book was mislabeled (XGE, real: SCAG — same
+  mislabel pattern as Sun Soul/Oath of the Ancients earlier this session).
+  Replaced a vague "sears/pushes/chills" summary with the real per-level
+  damage/temp-HP scaling (3rd/5th/10th/15th/20th). Split into 3 catalog
+  entries (`storm_aura_option`).
+- **Magic Awareness** — action cost was wrong (bonus action, real: action)
+  and so was the use limit (once per short/long rest, real: proficiency
+  bonus per long rest). Wild Surge's trigger was also wrong ("first rage
+  per combat," real: every time you rage).
+- **Divine Fury** — text was already accurate but bundled two real,
+  separately-named 3rd-level features (Divine Fury + Warrior of the Gods)
+  into one entry; split them.
+- **Totem Spirit** — confirmed Spirit Seeker is a real, separate 3rd-level
+  feature granted alongside it. Built out all three animal-choice tiers as
+  their own catalog entries: Totem Spirit (3 options, 3rd), Aspect of the
+  Beast (5 options — Bear/Eagle/Wolf/Elk/Tiger, 6th), Totemic Attunement (5
+  options, 14th) — see the new `option_catalog` convention above, this
+  subclass is the reason the object-of-named-arrays shape exists.
+- **Wild Magic Surge table** — added the complete real d8 table (8 catalog
+  entries, category `wild_magic_surge`) that didn't exist in the data at
+  all before this pass.
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(49 → 42). `node --test` 196/196, `npm run build` clean.
+
+**Fighter, Monk, Wizard, and Barbarian are now fully cleared.** Remaining
+per the survey: Bard (6/8 stub), Cleric (12/14), Druid (5/7), Ranger (5/6),
+Sorcerer (6/8), Warlock (8/9).
+
+## Bard: all 6 stub Colleges built out to full 3/6/14 progressions (2026-09-04)
+
+Fifth class. Bard's colleges only have 3 real tiers (3/6/14, no 10th), so
+this was faster than most. 2 real characters (Lexica/Lore, Sorra/Spirits)
+already on complete colleges — no regression risk.
+
+3 parallel research passes covered Creation (TCE), Eloquence (TCE),
+Glamour (XGE), Swords (XGE), Valor (PHB), Whispers (XGE). The single most
+common correction: **every stub had silently merged 2 real, separately-
+named 3rd-level features into one entry** — Mote of Potential was missing
+Performance of Creation, Silver Tongue was missing Unsettling Words,
+Mantle of Inspiration was missing Enthralling Performance, Psychic Blades
+was missing Words of Terror, Bonus Proficiencies was correctly bundled
+with Combat Inspiration/Blade Flourish (those really are one write-up
+each) — split the four real double-feature cases into separate catalog
+entries. Other real corrections:
+
+- **Mote of Potential** — all three trigger effects were wrong (ability
+  check is reroll-and-choose, not "+max result"; attack roll deals an
+  AoE thunder burst, not flat extra damage; saving throw grants temp HP,
+  which was actually already right).
+- **Mantle of Inspiration** — was missing the real temp-HP-by-level table
+  entirely (5/8/11/14 at 3rd/5th/10th/15th).
+- **Psychic Blades** — was written as if it tracked Bardic Inspiration die
+  size; real RAW has its own independent damage-by-level table
+  (2d6→3d6→5d6→8d6) unrelated to the Inspiration die.
+- **College of Swords** — confirmed the exact 2 Fighting Style options
+  (Dueling, Two-Weapon Fighting — not a free choice of any style) and
+  split all 3 Blade Flourishes into their own catalog entries (category
+  `blade_flourish_option`), following the `option_catalog` convention.
+- **College of Glamour** — 14th-level feature name was guessed wrong
+  ("Mantle of Majesty" — that's actually the 6th-level feature; 14th is
+  Unbreakable Majesty).
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(42 → 36). `node --test` 196/196, `npm run build` clean.
+
+**Fighter, Monk, Wizard, Barbarian, and Bard are now fully cleared.**
+Remaining per the survey: Cleric (12/14 stub — largest remaining gap),
+Druid (5/7), Ranger (5/6), Sorcerer (6/8), Warlock (8/9).
+
+## Cleric: all 12 stub Divine Domains built out to full 1/2/6/8/17 progressions + domain spell lists (2026-09-04)
+
+Sixth class, and the largest single build-out of this pass — Cleric domains
+have 5 tiers (not 3-4 like most subclasses) AND each needed a full 10-spell
+domain spell list from scratch (none existed at all before this, unlike
+every other class where at least the spell-list plumbing was already
+present). 2 real characters (Petra/Life, Revven/Tempest) already on the 2
+pre-existing complete domains — no regression risk.
+
+6 parallel research passes covered all 12 remaining domains: Arcana (SCAG),
+Order (TCE), Death (DMG), Grave (TCE, originally Guildmaster's Guide to
+Ravnica), Forge (TCE), Peace (TCE), Knowledge (PHB), Light (PHB), Nature
+(PHB), Twilight (TCE), Trickery (PHB), War (PHB). Every single domain's 1st
+tier had at least one real gap or error — the most common pattern by far:
+**a domain's 1st level grants 2 (sometimes 3) separately-named features,
+and the stub had silently merged them into one, usually losing the second
+feature's mechanic entirely** (Light's free Light cantrip, Nature's heavy
+armor proficiency, Peace's Implement of Peace, Twilight's Vigilant
+Blessing, Death's bonus necromancy cantrip, Grave's Spare the Dying grant
+were ALL completely missing before this pass, not just under-described).
+Other real corrections:
+
+- **Forge Domain & Grave Domain** — source books were mislabeled (Forge:
+  Xanathar's → real Tasha's Cauldron of Everything; Grave: Xanathar's →
+  real Tasha's/Guildmaster's Guide to Ravnica) — same mislabel pattern as
+  Sun Soul and Oath of the Ancients earlier this session.
+- **Emboldening Bond** (Peace) — action cost was wrong (bonus action, real:
+  action) and the affected-creature count was a flat "5" instead of the
+  real "your proficiency bonus."
+- **Blessing of the Trickster** — allowed self-targeting; real RAW
+  explicitly excludes the caster ("a willing creature other than
+  yourself").
+- **Eyes of Night** (Twilight) — recharge was wrong (a flat per-long-rest
+  count, real: a single use refreshed by a long rest OR an expended spell
+  slot).
+- **Twilight's 6th-level feature name was wrong** — guessed as "Vigilant
+  Blessing" (which is real, but actually a 1st-level feature), the real
+  6th-level grant is Steps of Night (a flight ability).
+- **Peace's 17th-level capstone name was wrong** — guessed "Expert
+  Peacemaker," real name is Expansive Bond.
+
+**De-duplication applied while building, not after**: "Potent
+Spellcasting" (the non-martial-domain 8th-level cantrip-damage feature) is
+verbatim identical text across every domain that grants it. Rather than
+create 5 duplicate `published_features.json` entries, built ONE shared
+`pub_potent-spellcasting-cleric` entry (`class: "Cleric"`, not tied to one
+domain) referenced by id from Arcana/Grave/Knowledge/Light/Peace's
+`features_by_level`. "Divine Strike" by contrast genuinely differs per
+domain (damage type varies — necrotic/fire/psychic/poison/radiant/cold-
+fire-lightning/weapon's-own-type), so those stayed as separate entries;
+that's real content variation, not duplication.
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(36 → 24). `node --test` 196/196, `npm run build` clean.
+
+**Fighter, Monk, Wizard, Barbarian, Bard, and Cleric are now fully
+cleared.** Remaining per the survey: Druid (5/7 stub), Ranger (5/6),
+Sorcerer (6/8), Warlock (8/9).
+
+## Druid: all 5 stub Circles built out to full 2/6/10/14 progressions (2026-09-04)
+
+Seventh class. 2 real characters (Tackett/Stars, Therynv'l/Moon) already on
+complete circles — no regression risk.
+
+3 parallel research passes covered Dreams (XGE), Spores (TCE), the Land
+(PHB — dedicated pass, has a real 8-way sub-table), the Shepherd (XGE),
+Wildfire (TCE). Circle of the Land alone needed all 8 real land types
+(Arctic/Coast/Desert/Forest/Grassland/Mountain/Swamp/Underdark — confirmed
+8, not the 6 first assumed) with their own 8-spell circle-spell lists each
+(64 spells total, `land_spells_by_type` on the subclass file), the largest
+single spell table added this whole pass. Real corrections found:
+
+- **Symbiotic Entity** (Spores) — action cost was wrong (bonus action,
+  real: action), temp HP formula was a flat 10 instead of the real
+  "4 per druid level," and its actual combat benefit was misdescribed
+  (doubles the Halo of Spores damage roll, not a flat die-size bump).
+- **Summon Wildfire Spirit** — action cost was wrong (bonus action, real:
+  action); the spirit was only described in prose with no real stat block
+  (AC/HP/attacks) — added the full block.
+- **Balm of the Summer Court** (Dreams) — per-use spend cap was missing
+  (real: half your druid level, not unlimited) and the temp-HP formula was
+  wrong (flat 1 per die spent, not tied to whether the heal overflowed).
+- **Natural Recovery** (Land) — recharge was "once per day," real RAW is
+  once per long rest (a meaningful difference for a long adventuring day).
+- Circle of the Shepherd's Spirit Totem (Bear/Hawk/Unicorn) and Circle of
+  the Land's land types both split into `option_catalog`/named-table
+  entries per the established convention — Spirit Totem's 3 options as
+  `spirit_totem_option` catalog entries, Land's 8 types as the
+  `land_spells_by_type` table (a different shape than `option_catalog`
+  since it's a fixed "pick one, get its whole spell progression" choice
+  made once at 2nd level, not a growing known-count).
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(24 → 19). `node --test` 196/196, `npm run build` clean.
+
+**Fighter, Monk, Wizard, Barbarian, Bard, Cleric, and Druid are now fully
+cleared.** Remaining per the survey: Ranger (5/6 stub), Sorcerer (6/8),
+Warlock (8/9).
+
+## Ranger: all 5 stub Conclaves built out to full 3/7/11/15 progressions (2026-09-06)
+
+Eighth class. All 5 remaining stubs are Tasha's Cauldron of Everything
+conclaves: Horizon Walker, Monster Slayer, Swarmkeeper, Beast Master
+(revised), Fey Wanderer. No real characters currently on any of these five
+— forward coverage, no regression risk. Base Ranger class table
+(subclass_feature_levels [3,7,11,15]) checked out on inspection.
+
+Parallel WebSearch/WebFetch research passes (dnd5e.wikidot.com, aidedd.org
+stat-block mirrors, D&D Beyond forum quotes reproducing official text,
+cross-checked against each other) covered all 5. Real corrections found in
+the existing 3rd-level stub text, fixed alongside adding the missing
+7th/11th/15th tiers:
+
+- **Gathered Swarm** (Swarmkeeper) — was described as a flat "move target
+  5ft closer/farther," real RAW is a choice of 3 effects on each hit (1d6
+  piercing; move target 15ft on a failed STR save; or move yourself 5ft).
+  The bundled "Swarmkeeper spells + Writhing Tide" text in the same stub
+  entry was two different real features wrongly merged — split out
+  **Swarmkeeper Magic** (a real, separate 3rd-level grant: mage hand +
+  one bonus spell per tier at 3rd/5th/9th/13th/17th) as its own entry, and
+  confirmed **Writhing Tide** is real but is a 7th-level feature, not part
+  of the 3rd-level grant. The guessed Air/Earth/Fire/Water swarm-type
+  choice doesn't exist — the real cosmetic option is a 4-choice Swarm
+  Appearance table (insects/twig blights/birds/pixies), no mechanical
+  effect either way.
+- **Beast Master** — the existing stub used the original PHB "Ranger's
+  Companion" (flat CR 1/4 beast, no scaling). Replaced with Tasha's
+  Cauldron of Everything's revised **Primal Companion**, the standard
+  modern version: beast options scale with proficiency bonus and ranger
+  level, attacks use your own spell attack modifier, and it can't drop
+  below 1 HP without your intervention.
+- **Fey Wanderer** — the existing stub bundled 3 distinct real 3rd-level
+  features (Dreadful Strikes, Otherworldly Glamour, Fey Wanderer Magic)
+  into one entry; split into 3. Fey Wanderer Magic is a fixed 1-spell-per-
+  tier progression (Charm Person/Misty Step/Dispel Magic/Dimension
+  Door/Mislead) — one research pass surfaced a conflicting "2 spells per
+  level" Cleric-domain-style list that didn't match a direct fetch of the
+  primary source and wasn't reproducible on a second attempt; discarded as
+  unreliable rather than treated as a tie needing a 3rd source.
+- **Horizon Walker** / **Monster Slayer** — each also had its 3rd-level
+  stub covering two bundled real features (Detect Portal + Planar
+  Warrior; Hunter's Sense + Slayer's Prey); split each pair into its own
+  catalog entry rather than leaving them merged.
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(19 → 14) and its header history comment extended. `node --test` 196/196,
+`npm run build` clean.
+
+**Fighter, Monk, Wizard, Barbarian, Bard, Cleric, Druid, and Ranger are now
+fully cleared.** Remaining per the survey: Sorcerer (6/8 stub), Warlock
+(8/9 stub).
+
+## Sorcerer: all 6 stub Sorcerous Origins built out to full 1/6/14/18 progressions (2026-09-06)
+
+Ninth class. All 6 remaining stubs: Aberrant Mind, Clockwork Soul (both
+Tasha's Cauldron of Everything), Draconic Bloodline, Wild Magic (both
+Player's Handbook), Shadow Magic, Storm Sorcery (both Xanathar's Guide to
+Everything). No real characters currently on any of these six — forward
+coverage, no regression risk. Base Sorcerer class table
+(subclass_feature_levels [1,6,14,18]) checked out on inspection.
+
+3 parallel WebSearch/WebFetch research passes (dnd5e.wikidot.com primary
+text, cross-checked against dndbeyond.com/enworld.org/roll20.net/
+dnd5ecompendium.wikidot.com secondary sources) covered all 6. Every one of
+these stubs had bundled two real, separately-named 1st-level features
+into a single catalog entry — split all 6 into their real pairs, following
+the same pattern used for Ranger's Horizon Walker/Monster Slayer this
+session:
+
+- **Aberrant Mind**: split into Psionic Spells + Telepathic Speech (1st),
+  added Psionic Sorcery + Psychic Defenses (6th), Revelation in Flesh
+  (14th), Warping Implosion (18th). Psionic Spells' fixed bonus-spell
+  table lives on the subclass file as `psionic_spells_by_level`, following
+  the `oath_spells_by_level` convention already established for Paladins.
+- **Clockwork Soul**: split into Clockwork Magic + Restore Balance (1st),
+  added Bastion of Law (6th), Trance of Order (14th), Clockwork Cavalcade
+  (18th). Clockwork Magic's bonus-spell table is `clockwork_spells_by_level`
+  on the subclass file, same convention.
+- **Draconic Bloodline**: split into Dragon Ancestor + Draconic Resilience
+  (1st) — the existing stub's Dragon Ancestor text was missing the doubled-
+  proficiency-on-dragon-Charisma-checks clause and the full 10-dragon-type
+  damage table, both added. Added Elemental Affinity (6th), Dragon Wings
+  (14th), Draconic Presence (18th, including the 24-hour immunity-on-save
+  clause the stub-pass guess had omitted).
+- **Shadow Magic**: split into Eyes of the Dark + Strength of the Grave
+  (1st) — corrected Strength of the Grave's save from the stub-pass's
+  guessed Constitution to the real Charisma, and added the
+  radiant-damage/critical-hit exclusion clause. Added Hound of Ill Omen
+  (6th), Shadow Walk (14th), Umbral Form (18th — confirmed it grants no
+  flying speed, contrary to an early research-pass misremembering).
+- **Storm Sorcery**: split into Wind Speaker + Tempestuous Magic (1st).
+  Real level-placement correction found: **Storm Guide is 6th level**
+  (paired with Heart of the Storm), not 14th as the original survey
+  guessed — the real 14th-level feature is **Storm's Fury** (reaction
+  lightning riposte + forced push), which the stub pass hadn't listed at
+  all. Added Wind Soul (18th, confirmed immunity not just resistance, and
+  the exact 3+CHA-mod ally count for the shared flying speed).
+- **Wild Magic**: split into Wild Magic Surge + Tides of Chaos (1st).
+  Added Bend Luck (6th, confirmed real cost is 2 sorcery points, not the
+  1 a stub-pass guess might assume), Controlled Chaos (14th), Spell
+  Bombardment (18th). The Wild Magic Surge table itself (a d100 DM-facing
+  random-effect table) is referenced by name in Wild Magic Surge's
+  description but not reproduced as its own catalog entry — it's narrated
+  by the DM rather than a character-sheet-facing mechanic, consistent with
+  how this app scopes other DM-facing random tables.
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(14 → 8) and its header history comment extended. `node --test` 196/196,
+`npm run build` clean.
+
+**Fighter, Monk, Wizard, Barbarian, Bard, Cleric, Druid, Ranger, and
+Sorcerer are now fully cleared.** Remaining per the survey: Warlock (8/9
+stub) — the last class.
+
+## Warlock: all 8 stub Otherworldly Patrons built out to full 1/6/10/14 progressions (2026-09-06)
+
+Tenth and final class in the per-class stub-clearing pass. All 8 remaining
+stubs: The Archfey, The Fiend (both Player's Handbook), The Celestial, The
+Hexblade (both Xanathar's Guide to Everything), The Fathomless, The Genie
+(both Tasha's Cauldron of Everything), The Undead, The Undying (Van
+Richten's Guide to Ravenloft / Sword Coast Adventurer's Guide). No real
+characters currently on any of these eight — forward coverage, no
+regression risk. Base Warlock class table (subclass_feature_levels
+[1,6,10,14]) checked out on inspection.
+
+4 parallel WebSearch/WebFetch research passes (dnd5e.wikidot.com primary
+text, cross-checked against tabletopjoab.com/arcaneeye.com/DDB forums/
+roll20.net/worldanvil.com secondary sources) covered all 8. As with
+Sorcerer, every stub had bundled two real, separately-named 1st-level
+features into one catalog entry — split all 8 into their real pairs.
+Notable corrections found beyond the splits:
+
+- **The Fathomless**: Tentacle of the Deep's attack is a melee spell
+  attack with limited uses (= proficiency bonus per long rest), not
+  at-will as some summaries implied; confirmed Fathomless Plunge (14th)
+  is a pure teleport-into-water utility effect with no attack/burst
+  component, contrary to the original survey's guess.
+- **The Genie**: added the vessel's exact AC (= spell save DC) and HP
+  (= warlock level + proficiency bonus) formulas and the "2× proficiency
+  bonus hours" Bottled Respite duration, none of which were in the
+  original 1st-level guess.
+- **The Celestial**: Healing Light's per-use spend cap was missing (real:
+  up to your Charisma modifier's worth of d6s, not an unbounded spend)
+  and Celestial Resilience's ally formula (half warlock level + CHA mod,
+  distinct from the self formula of full warlock level + CHA mod) needed
+  confirming across sources.
+- **The Undead**: the original stub attributed damage resistance to Form
+  of Dread (1st) — real RAW splits this differently: Form of Dread grants
+  only frightened immunity while transformed, and necrotic resistance
+  (upgraded to immunity while transformed) belongs to 10th-level Necrotic
+  Husk instead; also corrected 6th-level Grave Touched's real effect
+  (change your own damage to necrotic once per turn, not a resistance
+  grant) and confirmed Necrotic Husk's self-destruct recharge is gated
+  behind a 1d4 long-rest roll, not a flat once-per-long-rest.
+- **The Fiend**: corrected Fiendish Resilience's (10th) exclusion clause —
+  it's magical/silvered weapon damage that bypasses the chosen
+  resistance, not a restriction on which damage types can be selected.
+- **The Hexblade**: confirmed Hex Warrior's Charisma substitution applies
+  to one touched, chosen, non-two-handed weapon after a long rest (not a
+  blanket rule for any weapon), Armor of Hexes' (10th) exact threshold is
+  a d6 roll of 4+, and Master of Hexes' (14th) moved curse doesn't
+  retrigger the original target's HP-regain-on-death clause.
+- **The Undying**: Among the Dead's (1st) undead-resistance clause is an
+  active Wisdom save against the app's earlier "passive indifference"
+  framing — an undead attacker must save or retarget/forfeit, it isn't
+  automatic; also found no textual support for an exhaustion-removal
+  clause on Defy Death (6th) and dropped that unverified guess.
+- **The Archfey** and **The Fiend**'s 1st-level guesses were both already
+  accurate on inspection — verified and reclassified from stub to
+  fully-checked without content changes.
+
+`engine/test/stubSubclasses.test.js`'s two stub-count assertions changed
+from lower-bound thresholds (`>= N`) to a hard `=== 0`, since this was the
+last class with any remaining stubs — the header comment was rewritten to
+close out the whole multi-session history rather than append one more
+step. `node --test` 196/196, `npm run build` clean.
+
+**All 13 classes — Fighter, Monk, Wizard, Barbarian, Bard, Cleric, Druid,
+Ranger, Sorcerer, Warlock, Artificer, Rogue, and Paladin — are now fully
+built out.** Every subclass in the app has all of its real feature tiers
+filled in and is 2-source-verified; the stub-subclass pass that began in
+Phase 7 (2026-09-02) is complete.
+
+## Wizard: 8 stub Arcane Traditions built out to full 2/6/10/14 progressions (2026-09-04)
+
+Third class in the per-class pass, right after Monk. Wizard has 3 real
+characters (Lenn/Evocation, Kessara/Bladesinger, Lyria/Abjuration) — all
+three already on already-complete subclasses, so this build-out is forward
+coverage, not a live-character fix; no regression risk. Base Wizard class
+table (subclass_feature_levels [2,6,10,14]) checked out on inspection.
+
+4 parallel WebSearch/WebFetch research passes (dnd5e.wikidot.com) covered
+the remaining 8 schools: Conjuration, Divination, Enchantment, Illusion,
+Necromancy, Transmutation (all PHB), War Magic (XGE), Order of Scribes
+(TCE). Unlike Monk, none of these needed a big sub-table (no Arcane-Shot-
+or Four-Elements-style option lists) — each is 1 named feature per tier,
+so this pass moved faster. Real corrections found in the existing 2nd-level
+stub text, fixed alongside adding the missing 6th/10th/14th tiers:
+
+- **Minor Conjuration** (Conjuration) — missing the dim-light clause and
+  that the object breaks the instant it takes or deals any damage (not
+  just after 1 hour/dismissal/recast).
+- **Portent** (Divination) — said foretelling rolls could replace a d20
+  roll "before or after" it; real RAW is before only. Made the once-per-
+  turn cap explicit.
+- **Hypnotic Gaze** (Enchantment) — missing the maintain-on-subsequent-
+  turns clause, its three break conditions, and the long-rest/spell-slot
+  reuse limitation entirely.
+- **Improved Minor Illusion** (Illusion) — missing the already-know-Minor-
+  Illusion fallback (learn a different cantrip instead).
+- **Minor Alchemy** (Transmutation) — missing the real material list
+  (wood/stone/iron/copper/silver) and the 10-minutes-per-cubic-foot working
+  time.
+- **Arcane Deflection and Tactical Wit** (War Magic) — a real mechanical
+  error, not just missing detail: the stub said the cost of using Arcane
+  Deflection was "disadvantage on your next attack roll." Real RAW cost is
+  losing the ability to cast anything but cantrips until the end of your
+  next turn — a materially different (and more thematically fitting)
+  tradeoff. Cross-verified via a dedicated sageadvice.eu ruling thread, not
+  just wikidot.
+- **Wizardly Quill and Awakened Spellbook** (Order of Scribes) — missing
+  the real quick-copy formula (2 minutes/spell level, not just "faster")
+  and the constraint that the damage-type swap requires a same-level spell
+  already in your spellbook.
+- **Grim Harvest** (Necromancy) — already accurate, just added the missing
+  "spell of 1st level or higher" qualifier and fixed category/verification.
+
+Added all 24 missing higher-tier features (3 per subclass × 8). One item
+flagged, not resolved: Order of Scribes' One with the Word (14th) has a
+documented mechanic (3d6 roll, lose that much combined spell level from
+your spellbook, or drop to 0 HP if it can't cover the cost per most
+secondary sources) but no source gave a verbatim quote for that fallback
+clause — noted in the entry's own `note` field rather than guessed at.
+
+`engine/test/stubSubclasses.test.js` lower-bound counts updated again
+(57 → 49), with the running history now in the file's own comment. `node
+--test` 196/196, `npm run build` clean.
+
+**Wizard now has 0 stub subclasses left** — Fighter, Monk, and Wizard are
+the three classes fully cleared so far. Remaining per the survey:
+Barbarian (7/9 stub), Bard (6/8), Cleric (12/14), Druid (5/7), Ranger
+(5/6), Sorcerer (6/8), Warlock (8/9).
+
+## Monk: all 9 Monastic Traditions built out to full 3/6/11/17 progressions (2026-09-04)
+
+Continuing the per-class pass right after Fighter — Monk was the single
+largest remaining gap in the survey: all 9 subclasses were `stub: true`
+(only the 3rd-level tier existed). Base Monk class table (martial arts die,
+ki points, unarmored movement, features 1-20) checked out against real PHB
+on inspection, no changes needed. No existing characters use Monk at all
+(0 of the roster), so this is pure forward-looking coverage.
+
+5 parallel WebSearch/WebFetch research passes (dnd5e.wikidot.com +
+XGE/TCE/SCAG cross-checks) pulled the complete real 3/6/11/17 progressions
+for all 9 traditions, including three sub-tables of real size: Four
+Elements' 17 elemental disciplines, Kensei's weapon-known progression, and
+several die/ki-cost formulas that turned out to be wrong or missing in the
+original stub guesses. Real corrections found and fixed:
+
+- **Way of the Open Hand / Way of Shadow** (PHB) — both had accurate 3rd-
+  level text already; just needed the 3 missing tiers each (Wholeness of
+  Body/Tranquility/Quivering Palm; Shadow Step/Cloak of Shadows/Opportunist).
+- **Way of the Four Elements** (PHB) — confirmed this subclass has exactly
+  ONE named feature (Disciple of the Elements) across its whole progression;
+  6th/11th/17th grant no new named feature, just another known discipline.
+  Added all 17 real elemental disciplines as their own catalog entries
+  (category `four_elements_discipline`), each with real ki cost and the
+  spell it casts (or, for Elemental Attunement/Fangs of the Fire Snake/Fist
+  of Unbroken Air/Shape the Flowing River/Water Whip, full standalone
+  text) — flagged Fist of Unbroken Air's exact area-of-effect shape as the
+  one detail sources disagreed on (transcribed the better-supported
+  single-target reading, noted in-entry). Known-discipline count (2/3/4/5
+  total by 3rd/6th/11th/17th, including the always-known Elemental
+  Attunement) tracked as `elemental_disciplines_known_by_level`.
+- **Way of the Kensei** (XGE) — real level table didn't match the stub's
+  assumptions at all: Deft Strike is actually a 6th-level feature (under a
+  named feature, "One with the Blade," not "no new feature"), Way of the
+  Brush (calligrapher's/painter's supplies) was missing entirely from the
+  3rd-level grant, and Unerring Accuracy (17th) is worded "monk weapon" in
+  real RAW, not "kensei weapon" — transcribed as printed since kensei
+  weapons already count as monk weapons anyway, but flagged as a widely-
+  noted likely errata point. Known-weapon count (2/3/4 at 3rd/6th/11th)
+  tracked as `kensei_weapons_known_by_level`.
+- **Way of the Long Death** (SCAG) — Touch of Death's trigger was wrong
+  (was "with a melee attack," real RAW is proximity — within 5ft when the
+  creature drops to 0, any means). Added Hour of Reaping/Mastery of
+  Death/Touch of the Long Death.
+- **Way of the Sun Soul** (XGE) — source book was mislabeled as Sword Coast
+  Adventurer's Guide (it's XGE), same mislabel pattern as Oath of the
+  Ancients in the Paladin work. Confirmed Dexterity is correct for Radiant
+  Sun Bolt. Added Searing Arc Strike/Searing Sunburst/Sun Shield.
+- **Way of the Drunken Master** (XGE) — 3rd-level proficiency was wrongly
+  "Performance or Persuasion" (real RAW: flat Performance, no choice).
+  Added Tipsy Sway/Drunkard's Luck/Intoxicated Frenzy.
+- **Way of Mercy** (TCE) — Hand of Healing/Hand of Harm's ki cost and
+  formula were vague in the stub ("spend ki points... heal a creature");
+  real RAW is a flat 1 ki point for Martial Arts die + WIS modifier on
+  both. Added Physician's Touch/Flurry of Healing and Harm/Hand of Ultimate
+  Mercy.
+- **Way of the Astral Self** (TCE) — the biggest single-feature correction
+  this pass: Arms of the Astral Self was stubbed as "usable X times per
+  long rest" (real RAW: purely ki-gated, 1 ki per activation, no per-rest
+  cap at all), was missing the Dexterity-save force-damage burst on
+  activation entirely, was missing Empowered Arms' bonus damage, and had
+  reach wrong (flat 10ft instead of +5ft over normal). Added Visage/Body/
+  Awakened Astral Self.
+
+`engine/test/stubSubclasses.test.js`'s lower-bound counts updated again
+(66 → 57) with the running history now in the file's own comment. `node
+--test` 196/196, `npm run build` clean.
+
+**Fighter and Monk are now both fully built out — 0 stub subclasses in
+either class.** Remaining per the survey: Barbarian (7/9 stub), Bard (6/8),
+Cleric (12/14), Druid (5/7), Ranger (5/6), Sorcerer (6/8), Warlock (8/9),
+Wizard (8/11).
+
+## Fighter: 6 stub subclasses built out to full 3/7/10/15/18 progressions (2026-09-04)
+
+Continuing the per-class pass ("we need them all eventually," project owner)
+after Rogue's audit — Fighter was the next pick: second most-used class on
+the roster (5 characters) with a real gap, 6 of its 10 subclasses were
+still `stub: true` (only the 3rd-level tier existed): Arcane Archer,
+Cavalier, Psi Warrior, Purple Dragon Knight (Banneret), Rune Knight,
+Samurai. Battle Master, Champion, Echo Knight, and Eldritch Knight were
+already complete; base Fighter's class table checked out against real PHB
+on inspection, no changes needed there. None of the 5 existing Fighter
+characters (Vaz/Battle Master, Kerra/Champion, Corwin/Champion,
+Elucyne/Champion, Eldi/Echo Knight) use any of the 6 being built, so this
+is pure forward-looking coverage, not a fix to anything currently in play.
+
+3 parallel WebSearch/WebFetch research passes (dnd5e.wikidot.com + XGE/TCE
+page scans, cross-checked against secondary compendia) pulled the complete
+real levels 3/7/10/15/18 for all 6, plus each subclass's own sub-table:
+Arcane Archer's 8 Arcane Shot options, Rune Knight's 6 runes, Psi Warrior's
+Psionic Energy die-count/size formula. One research-stage correction worth
+flagging: **Purple Dragon Knight has no separate 18th-level feature** —
+real RAW upgrades Inspiring Surge (10th) in place, from one ally to two,
+rather than granting a new named feature; the subclass file's
+`features_by_level` deliberately has no `"18"` key, with a note explaining
+why (would otherwise look like a missed grant).
+
+Built, all in `src/data/published_features.json` + the matching
+`engine/data/subclasses/fighter-*.json` (stub flag removed, full
+`features_by_level`):
+
+- **Arcane Archer** (XGE) — Arcane Archer Lore and Arcane Shot (3rd, fixed
+  the uses-per-rest from a wrong proficiency-bonus-scaled guess to the real
+  flat 2), all 8 Arcane Shot options as their own catalog entries (category
+  `arcane_archer_shot`: Banishing/Beguiling/Bursting/Enfeebling/Grasping/
+  Piercing/Seeking/Shadow Arrow, each with real damage-die-at-18th scaling),
+  Magic Arrow + Curving Shot (7th), Ever-Ready Shot (15th). Known-option
+  count (2/3/4/5/6 at 3/7/10/15/18) tracked as `arcane_shot_known_by_level`
+  on the subclass file rather than fake feature grants at 10th/18th, where
+  RAW adds a shot option but no new named feature.
+- **Cavalier** (XGE) — completed Unwavering Mark's truncated mechanic (the
+  bonus-action counter-attack + Strength-mod use cap), Warding Maneuver
+  (7th), Hold the Line (10th), Ferocious Charger (15th, confirmed no
+  per-rest cap unlike its siblings), Vigilant Defender (18th).
+- **Psi Warrior** (TCE) — completed Psionic Power's three sub-options
+  (Protective Field/Psionic Strike/Telekinetic Movement) and confirmed the
+  die-count formula (twice proficiency bonus — verified specific to Psi
+  Warrior, not just assumed by analogy to Soulknife Rogue) via
+  `psionic_energy_die_by_level` (d6/d8/d10/d12 at 3/5/11/17, same
+  breakpoints as Soulknife), Telekinetic Adept (7th), Guarded Mind (10th),
+  Bulwark of Force (15th), Telekinetic Master (18th).
+- **Purple Dragon Knight (Banneret)** (SCAG) — fixed Rallying Cry's heal
+  amount (flat fighter level, was wrongly tied to the Second Wind roll),
+  Royal Envoy (7th), Inspiring Surge (10th, its own description notes the
+  18th-level two-ally upgrade), Bulwark (15th, Int/Wis/Cha saves only,
+  matching Indomitable's own restriction).
+- **Rune Knight** (TCE) — split Giant's Might out of the combined 3rd-level
+  stub into its own feature entry (it's a big standalone mechanic — bonus
+  action, Large-size, scaling bonus damage — that was previously just a
+  trailing clause), added all 6 runes as individual catalog entries
+  (category `rune_knight_rune`: Cloud/Fire/Frost/Stone available at 3rd,
+  Hill/Storm at 7th), Runic Shield (7th), Great Stature (10th, also bumps
+  Giant's Might's bonus damage to 1d8), Master of Runes (15th), Runic
+  Juggernaut (18th, bumps damage to 1d10 and allows Huge size). Known-rune
+  count (2/3/4/5 at 3/7/10/15) tracked as `runes_known_by_level`.
+- **Samurai** (XGE) — fixed Fighting Spirit's temp-HP scaling (flat 5/10/15
+  by character level breakpoint, not a formula — the original stub's
+  "usable X times per long rest" framing was directionally right but the
+  HP amount was a guess) and confirmed recharge is long-rest-only (the
+  short-rest-like partial refill is the separate Tireless Spirit feature at
+  10th, not part of Fighting Spirit itself), Elegant Courtier (7th),
+  Tireless Spirit (10th), Rapid Strike (15th), Strength before Death
+  (18th).
+
+`engine/test/stubSubclasses.test.js`'s lower-bound counts updated
+accordingly (72 → 66 stub subclass files and stub feature entries) — the
+test file's own comment now says explicitly that this number only ever
+goes DOWN as real build-out lands, so a future increase back toward 72
+would mean something regressed, not "forgot to bump a constant."
+`node --test` 196/196, `npm run build` clean.
+
+**Still stub, not touched this pass**: Fighter has no remaining stubs —
+6/10 done this session, the other 4 were already complete. The next class
+needing this treatment per the earlier survey: Barbarian (7/9 stub), Bard
+(6/8), Cleric (12/14), Druid (5/7), Monk (9/9 — fully stub), Ranger (5/6),
+Sorcerer (6/8), Warlock (8/9), Wizard (8/11).
+
+## Rogue full RAW audit — base class + all 9 subclasses (2026-09-03)
+
+Project owner asked for the same treatment the Artificer audit got, this
+time for Rogue: "pulling all the feats, features, level up choices, etc for
+another full class and all subclasses." Base class data
+(`engine/data/classes/rogue.json`) and all 9 subclass files
+(`engine/data/subclasses/rogue-*.json` — Thief, Assassin, Arcane Trickster,
+Inquisitive, Mastermind, Scout, Swashbuckler, Soulknife, Phantom) turned out
+to already be unusually complete going in: no stub subclasses, no missing
+tiers, no homebrew-flag mislabels (the `hb_rogue_*` id prefixes on several
+real-RAW subclasses — Thief, Arcane Trickster, Scout, Phantom — are just
+leftover naming from whenever those entries were first typed up; every one
+of them is correctly `homebrew: false` with a real source citation). So this
+was a genuine line-by-line accuracy pass (3 parallel WebSearch/WebFetch
+verification agents against dnd5e.wikidot.com, split PHB/XGE/TCE), not a
+build-from-scratch one — closer to the Explosive Cannon pattern (content
+basically right, details subtly wrong) than the original Artificer gaps.
+
+**Base Rogue class table**: verified in full against PHB — saving throws,
+armor/weapon proficiencies, 4-skill choice list, subclass timing
+([3,9,13,17]), sneak attack dice progression (1d6→10d6), and the full
+`features_by_level` table. No discrepancies found.
+
+**Fixed** (all in `src/data/published_features.json` unless noted):
+
+- **Thief — Fast Hands**: was missing the "Use an Object" action entirely
+  (had garbled duplicate disarm/pick-lock text instead) — real PHB text
+  offers Sleight of Hand / thieves'-tools-disarm / Use an Object as the
+  bonus-action options, not two versions of the same thing.
+- **Arcane Trickster — Spell Thief**: added the missing "cantrips can only
+  be negated, never stolen — only a 1st-level-or-higher spell can be
+  captured for reuse" clarification.
+- **Inquisitive — Insightful Fighting**: wrong duration entirely (had "until
+  the end of your next turn"; real text is "1 minute or until you
+  successfully use this feature against a different creature") plus a
+  missing "but not if you have disadvantage on it" exclusion.
+- **Mastermind — Master of Tactics**: missing the "provided the target can
+  see or hear you" condition on the 30ft ranged Help.
+- **Scout — Skirmisher**: wrong trigger — had "when a creature moves to a
+  space within 5ft of you" (any approach), real text is "when an enemy
+  _ends its turn_ within 5ft of you" (meaningfully more restrictive, no
+  free reaction on mid-move passthrough).
+- **Soulknife**, several real mechanical gaps, not just wording:
+  - Psychic Blades damage was flat "1d6"/"1d4" — missing "+ your ability
+    modifier" on both hits, and missing the "other hand must be free" gate
+    on the second-blade bonus action.
+  - Psi-Bolstered Knack had the expend-condition backwards: real RAW rolls
+    the die first and only expends it if the roll turns the failure into a
+    success, not "expend, then add."
+  - Psychic Whispers: range was wrongly stated as "any range" — real cap is
+    1 mile between all linked creatures.
+  - Psychic Veil and Rend Mind were both missing their die-expenditure
+    reuse clauses (Veil: another die to reuse before a rest; Rend Mind:
+    3 dice to reuse before a long rest) and Rend Mind was missing that it
+    only triggers off a Psychic-Blades Sneak Attack specifically.
+  - The dice-**count** formula (twice your proficiency bonus) didn't exist
+    anywhere in the data — only die _size_ did
+    (`psionic_energy_die_by_level`). Added as prose to the
+    `pub_soulknife-psionic-energy` catalog entry rather than a new static
+    table, since the count is a live formula off proficiency bonus, not a
+    fixed per-tier number — a hardcoded table would drift out of sync with
+    `proficiencyBonus()` and risks the exact kind of subtle error this
+    audit pass was for.
+- **Phantom**:
+  - Whispers of the Dead had an invented 11-skill restriction — real RAW is
+    any one skill or tool proficiency, no list.
+  - Ghost Walk was missing "attack rolls against you have disadvantage"
+    while spectral.
+
+**Verified correct, no changes**: base class table in full; Assassin (all 5
+features); Arcane Trickster's other 4 features; Thief's other 4; Inquisitive/
+Mastermind/Scout/Swashbuckler's remaining features; Soul Blades (both
+benefits); Phantom's Wails from the Grave/Tokens of the Departed/Death's
+Friend.
+
+**Characters checked** (read-only, no changes needed): Siv (Rogue 9/Scout) —
+all present-tier Scout features correct, Expertise granted twice (L1/L6)
+matching her 4 `skill_expertise` entries. Torrin (Rogue 12, `subclass:
+"Soulknife / Mastermind"`) — confirmed TODO.md's existing description of him
+still matches reality; still explicitly out of scope for fixing (full
+rebuild, not a priority, per the project owner).
+
+`cd engine && node --test` still 196/196 throughout (this was almost
+entirely `src/data/published_features.json` prose, not `engine/` schema —
+nothing here touched a shape the engine tests exercise). `npm run build`
+clean.
+
+## Ability-score attribution + species/racial trait recording and display (2026-09-03)
+
+The flagship item explicitly deferred earlier this session ("hold this for
+when I have more tokens") — project owner: "They aren't just choosing stats,
+they're choosing feats with effects and abilities, of course they need
+recorded!" Two TODO.md entries closed: Jaygar's INT 20 (2 ASIs + Fade Away,
+no recorded trail — his feat pick predates the mechanism this builds, see
+that entry's own correction) and Siv's DEX 20 (Human racial + 2 ASIs,
+reconstructed from memory, not from any recorded trail) were the motivating
+cases for both halves of this work.
+
+**Schema decision — additive/non-destructive, not a redefinition.** New
+`ability_score_history` array on the character: `{ability, amount, source,
+level_gained}`. `stat_str`/`stat_dex`/etc. keep meaning exactly what they
+always have — "the final number" — so every one of the ~25 existing
+character records stays correct with zero migration risk. History is purely
+explanatory: the tooltip's "implied base" is computed as `stat_X - sum(history
+for X)`, not stored anywhere. Chose this over redefining `stat_*` as
+"base only" per the task's own steer and this session's established "don't
+silently redefine an existing field's meaning" norm (see the feat-catalog
+pass) — the redefinition option would have needed a real migration touching
+every character's actual combat numbers, for a purely cosmetic tooltip
+upgrade. Not retroactive: existing characters simply have no
+`ability_score_history`, same precedent as feats before the catalog pass.
+
+**Populated at two points, both new-data-going-forward only:**
+
+- `engine/rules/diffLevelUp.js`, for every ASI and every feat-with-its-own-
+  bump crossed during a level-up. `engine/rules/asiFeat.js`'s `bumpAbilities`
+  now also returns `deltas` — the ACTUAL applied change per ability (after
+  minus before), not the requested amount, so a bump that gets partially or
+  fully capped at 20 still makes history sum correctly to the final stat
+  (real regression test: an ASI requesting +2 into a 19 that caps at 20
+  records `amount: 1`, not `2`). `applyFeatChoice` returns `deltas: []` for a
+  feat with no `ability_score_increase` at all (Alert, Skilled) — no phantom
+  history entry gets written for those. Source is `'Ability Score
+Improvement'` for a plain ASI, or the feat's own name for a feat's bump —
+  exactly the two cases the project owner asked to be able to tell apart.
+- `NewCharacterTool.vue`'s new `abilityScoreHistorySeed` computed, folded
+  into `characterShell()` — seeds the STARTING bonus (species racial via
+  `useSpeciesBonus`, or the manual free +2/+1 when that toggle is off) at
+  `level_gained: 1`, since a level-1 preview-level-up call never touches
+  ability scores at all (no class grants an ASI at level 1) — diffLevelUp
+  alone can't be the only entry point. `species_bonus_applied` (boolean) is
+  a separate, simpler field recording WHETHER the toggle was on, independent
+  of the amounts/sources in the history array.
+
+**Tooltip breakdown — `dnd_utils.js`'s `statArray`.** Filters
+`ability_score_history` by ability, sums it, and shows `${impliedBase} base
+· +N (source, level N) · ... · = final (mod)` — matches the task's own
+worked example almost verbatim (verified live on a synthetic INT 20 gnome:
+`"INT: 15 base · +2 (Gnome racial, level 1) · +2 (Ability Score Improvement,
+level 4) · +1 (Fade Away, level 8) · = 20 (+5)"`). Degrades gracefully to the
+pre-existing flat `"INT: 20 (no modifiers) = +5"` tooltip when history is
+empty/absent — verified live on Jaygar (real roster character, predates this
+work) that this is exactly what still renders, not something broken.
+
+**Species traits — sourced from `engine/data/species.json`, a real content
+gap filled along the way.** The 4 subraced species (Elf/Dwarf/Halfling/Gnome)
+already had real subrace-level trait data from an earlier session, but NONE
+of the 9 standard species had any BASE-species-level traits at all — meaning
+Fey Ancestry, Lucky, Brave, Gnome Cunning, Dwarven Resilience, etc. (the
+exact named traits TODO.md's own motivating text called out) would never
+have rendered even with the display mechanism built, since the data simply
+didn't exist yet. Added real base-species traits for all 8 non-Human species
+(Human correctly has none — its identity is the flat ability bonus, not
+named traits, confirmed against the SRD cache's own trait list), verified
+against dnd5e.wikidot.com (Dwarf, Dragonborn, Halfling, Half-Orc fetched
+live; Elf/Gnome/Half-Elf/Tiefling cross-checked against this project's own
+existing `published_features.json` entries, which already had real PHB text
+for Fey Ancestry/Brave/Gnome Cunning/Hellish Resistance/Infernal
+Legacy/Lucky (Halfling) from an earlier pass). New data-integrity test in
+`engine/test/species.test.js`: every base + subrace trait has a non-empty
+name/description, and the 4 subraced species specifically have base-level
+traits (not just subrace ones).
+
+**Character schema — `species_traits` array, populated at creation time**
+in `NewCharacterTool.vue`'s new `speciesTraitRecords` computed (species'
+own `traits` + chosen subrace's `traits`, merged — same set already shown
+read-only in the Species tab's "Traits (flavor/reference only)" list, now
+also landing on the actual character record with `type: 'speciesTrait'` and
+which tier each came from). Not retroactive — same precedent as feats and
+`ability_score_history`.
+
+**Render path — deliberately bypasses name-based `lookupFeature` for these,
+not just a new marker.** `FeaturePillsPanel.vue` merges `character.
+species_traits` into the same list `character.features` already renders
+(matching how feats mix in rather than getting a 4th UI location), with a
+`Fingerprint` icon (lucide-vue) + "Species trait" title — visually distinct
+from the feat `Star` in both shape and color, so a player can tell them apart
+at a glance without reading the label. But the real design decision is in
+`detailPopupBuilders.js`'s `buildFeaturePopupData`: a species trait's
+tooltip renders straight from its OWN inline `description` (copied onto the
+character record from `species.json` at creation time), skipping the
+`lookupFeature(name, id)` name-based cascade entirely for this feature type.
+This isn't just convenience — it deliberately sidesteps the exact "Lucky"
+(Halfling racial trait) vs. "Lucky" (PHB feat) collision class of bug this
+project already hit once and left unfixed (see this file's Phase 7b entry).
+Giving every new trait a real catalog `id` to disambiguate by would have
+worked too, but a self-contained description closes the ENTIRE bug class for
+this feature type at once, for every trait (including ones this pass didn't
+personally author), not just the ones that happened to get an id. Verified
+live: opening a species trait's popup on a synthetic fixture character fired
+zero network requests to `dnd5eapi.co`.
+
+**Test coverage**: new `engine/test/abilityScoreHistory.test.js` (6 tests) —
+plain ASI attribution, feat attribution (source = feat name, using Fade Away
+— Jaygar's own real motivating feat), a feat with no ability bump at all
+records nothing, history accumulates correctly across 3 separate level-ups
+and sums back to exactly `starting base + total delta` (Jaygar's real
+2-ASI-plus-feat shape), a capped ASI records the actual applied delta not
+the requested one, and pre-existing history on a character is preserved
+(appended to, not overwritten) on a subsequent level-up. Plus the 2 new
+species-trait data-integrity tests in `species.test.js` described above.
+Full suite green throughout (179 → 188 after this pass's own additions;
+196 by the time of the final check, after other same-day concurrent engine
+work in this same working tree — see below).
+
+**Live-verified in the browser** (Playwright, backend restarted for the
+`engine/` changes): (1) New Character tool, Gnome → Rock Gnome — species
+tab correctly shows "Gnome Cunning" (base) + "Artificer's Lore"/"Tinker"
+(subrace) merged. (2) A synthetic fixture character (Vuex-injected in-memory
+only, same precedent as the Phase 7d invocations verification — never
+written to disk, gone on reload) with `species_traits` + `ability_score_
+history` set: `FeaturePillsPanel` renders "Fade Away" with the feat star and
+"Gnome Cunning"/"Artificer's Lore"/"Tinker" with the trait fingerprint, all
+in one Features list; the INT tooltip renders the full real breakdown; the
+species-trait popup shows real text with zero `dnd5eapi.co` requests. (3) A
+REAL roster character (Denna, Rogue 9→10, draft-preview only) through the
+actual Level Up tool UI: picking STR for her level-10 ASI produced
+`ability_score_history: [{ability:"str", amount:2, source:"Ability Score
+Improvement", level_gained:10}]` in the live server response; switching to
+Feat mode and picking Athlete (+1 STR, a real ability-choice feat) produced
+`{ability:"str", amount:1, source:"Athlete", level_gained:10}`. Confirm
+Level Up was never clicked. `git diff` confirms `characters.json` ended the
+session with Denna's `stat_str` still 10 and no `ability_score_history` —
+her real record was never touched, matching this task's explicit rule.
+`npm run build` compiles clean.
+
+**Concurrent work note**: this session found `engine/data/species.json` and
+`NewCharacterTool.vue` being actively edited by a separate concurrent
+session partway through this pass (a real class-skill-picker +
+background/species language-picker build, its own entry now sits below this
+one) — one intermediate save briefly clobbered this pass's base-species
+`traits` additions while adding its own new `languages` field to the same
+records. Re-applied on top of the newer content rather than reverting it;
+both features now coexist correctly in the file. Also hit that session's
+own in-progress `skillDisabled` render bug mid-edit while probing the New
+Character tool live (not caused by, or fixed by, this pass) — confirmed
+resolved on a later recheck once that other work had landed.
+
+**Deliberately left out of scope**: retroactively backfilling
+`ability_score_history`/`species_traits`/`species_bonus_applied` onto any
+existing roster character (including Jaygar and Siv themselves, the two
+motivating cases) — explicit project-owner rule, same as every prior
+schema addition this session. Also did not add a `species_traits.id` field
+for catalog lookup, per the render-path design decision above — the
+self-contained description makes it unnecessary for this feature, though a
+future pass adding real ids to species.json's traits (for some OTHER
+consumer that isn't the sheet tooltip) would still be safe to layer in
+later without touching anything built here.
+
+## New Character tool: real class-level skill picker + background/species language pickers (2026-09-03)
+
+Closes the gap logged in `TODO.md`'s "New Character tool has no class-level
+skill picker at all" — confirmed twice this session (Siv ended up with 2 of
+her expected 4 Rogue skills; Jaygar needed 2 more skills and all his
+languages backfilled by hand), same root cause both times:
+`NewCharacterTool.vue`'s `selectedSkills` was wired ONLY to the background's
+fixed 2-skill grant, and no class file had any "choose N skills" data at all,
+plus nothing anywhere prompted for a background's or species' language
+grants.
+
+**Real per-class skill_choices data, all 13 classes** — new `skill_choices:
+{count, options}` field on each `engine/data/classes/*.json` (options is
+either an array of real `skills.json` ids, or the literal string `'any'` for
+Bard's "choose any three"). Verified against dnd5e.wikidot.com for all 13,
+cross-checked against a second independent source for a sample: 5thsrd.org
+(Rogue, Ranger, Bard, Monk — all matched exactly) and a WebSearch
+cross-reference for Artificer, which turned out to be the one real surprise —
+its skill list is Arcana/History/Investigation/Medicine/Nature/Perception
+**plus Sleight of Hand** (7 options, not 6), confirmed independently by both
+dnd5e.wikidot.com and a separate WebSearch before writing the data, exactly
+the "don't trust training-knowledge alone" risk the task called out. Final
+counts: Rogue 4 (from 11), Bard 3 (any), Ranger 3 (from 8), everyone else 2
+(from 5-8 depending on class).
+
+**Real per-background language_choices, all 41 curated backgrounds** — new
+`language_choices: <int>` field on `engine/data/backgrounds.json`. The 13
+real PHB backgrounds verified against dnd5e.wikidot.com with every entry
+cross-checked against a second source (dndbeyond.com or an independent
+WebSearch) — Acolyte/Sage both grant 2 (Sage is the exact case TODO.md named
+for Jaygar), Guild Artisan/Hermit/Noble/Outlander grant 1,
+Charlatan/Criminal/Entertainer/Folk Hero/Sailor/Soldier/Urchin grant 0. The
+28 non-PHB backgrounds (SCAG/Ghosts of Saltmarsh/Tomb of Annihilation/
+Guildmasters' Guide to Ravnica/Ravenloft: The Horrors Within/2024 PHB) got
+the same per-entry web verification where a source existed. **One real
+design fact surfaced along the way, not obvious going in**: the 10
+2024-format backgrounds already in this curated list (the 6 real 2024 PHB
+ones — Guard/Merchant/Scribe/Wayfarer/Farmer/Artisan — plus the 4 "Ravenloft:
+The Horrors Within" ones — Investigator/Haunted One/Spirit Medium/Mist
+Wanderer) all correctly get `language_choices: 0` — confirmed via
+Investigator's fully-detailed grant list (no language line) and a WebSearch
+on the 2024 rules change itself: 2024-ruleset backgrounds don't grant
+languages at all anymore, every character just picks 2 free-standing
+languages at creation independent of background/species. That flat
+2024-style grant doesn't map onto this app's per-background/per-species
+picker model (which is deliberately 2014-ruleset, per this file's own Phase
+7 scope note) and is out of scope here — flagged, not built.
+
+**Real per-species language grants, all 9 standard PHB species** — new
+`languages: {automatic: [...], choice: {count} | null}` field on
+`engine/data/species.json`, verified against dnd5e.wikidot.com (Human,
+Half-Elf cross-checked directly — the two with an actual flexible-choice
+component and the highest risk of being wrong). Every species gets Common
+automatically; 7 of 9 also get one more fixed language automatically
+(Dwarvish/Elvish/Halfling/Draconic/Gnomish/Orc/Infernal); Human and Half-Elf
+additionally get 1 free language of choice. High Elf (the one subrace with
+its own extra language per RAW, matching its pre-existing "Extra Language"
+flavor trait) gets its own `languages: {choice: {count: 1}}` that stacks on
+top of Elf's base grant, same additive pattern subrace ability score bonuses
+already use. The 3 homebrew species (Catrin/Drevani/Hei'ugar, in
+`api_data_cache/species.json`, predating this pass) already stored a flat
+`languages: [...]` array with no choice component — left as-is and treated
+as fully automatic (no picker needed) rather than migrated to the new shape,
+since they have no real choice to model.
+
+**New `engine/data/languages.json`** (16 entries: 8 standard + 8 exotic real
+PHB player-choosable languages — Druidic/Thieves' Cant and monster-only
+languages deliberately excluded, same "real options a player would actually
+pick from" scoping `skills.json` already established) +
+`engine/rules/languages.js` (`listLanguages`/`loadLanguage`) +
+`GET /api/engine/languages` in `server.js`. Automatic grants store plain
+language NAMES (not ids) directly, matching how `character.languages` and
+the homebrew species' existing flat array already work — no id resolution
+needed anywhere in the write path.
+
+**`NewCharacterTool.vue`: three new picker sections**, each visually and
+structurally separate from the existing background-skill picker (never
+sharing a `v-model` array with it):
+
+- **Class tab** — a new skill picker below the existing hit-die/saving-throw
+  info, sized to `selectedClass.skill_choices.count`, options filtered to
+  `skill_choices.options` (or the full list for Bard's `'any'`).
+- **Background tab** — a new language picker below the existing skill
+  picker, sized to `pickedBackground.language_choices`.
+- **Species tab** — automatic languages shown as a note ("Languages: Common,
+  Elvish"), plus a picker for the species' (+ subrace's) own flexible choice
+  count when there is one.
+
+**Overlap handling — the deliberate v1 simplification** (explicitly asked
+about in the task): real RAW resolves a background/class skill overlap by
+letting the player pick a replacement skill instead of double-dipping. Built
+exactly that, both directions, via one shared `skillDisabled(skillId,
+sourceArray, currentIndex)` method: an option already selected elsewhere in
+the same array, or anywhere in the OTHER skill array (background vs. class),
+renders `disabled` in the `<select>`. Same mechanism for languages
+(`languageDisabled`) across all three sources at once (species automatic,
+species choice, background choice) — you can't "choose" a language you
+already automatically know either. Verified live: Guild Artisan (grants
+Insight+Persuasion) + Rogue (skill list includes both) correctly disables
+Insight/Persuasion in the class picker; Human's free language pick
+(Draconic) correctly disables Draconic in Guild Artisan's own language
+picker. **Not modeled, deliberately**: the full "which specific skill would
+a real player pick instead" flow — this just prevents the double-grant by
+disabling the option, matching the "flag the simplification rather than
+half-build the nuance" pattern this session has used elsewhere (Tough's
+retroactive HP, invocation swapping).
+
+**Explicitly out of scope, flagged rather than silently skipped** (per the
+task's own instruction to flag rather than guess): (1) Expertise skill
+selection (Rogue needs this at both level 1 and level 6) — a Level Up tool
+concern, not New Character tool, and a materially different mechanism
+(picking AMONG already-known skills, not granting new ones); (2) a feature
+mechanically granting a skill proficiency (Scout's Survivalist) — needs a new
+`grants_skill`-style schema on features generally, a bigger and separate
+lift than wiring up two already-existing choice counts. Both are still open,
+same as before this pass.
+
+**Test coverage**: new `engine/test/skillAndLanguageChoices.test.js` (8
+tests) — every class's `skill_choices` count/options resolve to real skill
+ids with no internal duplicates and `count <= options.length`; every
+background has a valid `language_choices` int; every species has a real
+`languages.automatic` including Common; a `languages.json` integrity check
+(16 entries, no duplicate ids/names); spot-checks citing the verification
+source for Rogue/Bard/Ranger/Wizard/Artificer's skill lists, Acolyte/Sage/
+Hermit/Guild Artisan/Charlatan/Criminal/Soldier's language counts, and
+Human/Half-Elf/Dwarf/Gnome/High Elf's language grants. Full suite: 196/196
+passing (was 188 before this pass; the other 8 new tests since the last
+CHECKLIST entry belong to a different, concurrent pass — see this file's
+Warlock invocations / ability-score-history sections).
+
+**Live-verified in the browser** (Playwright via the
+`/Users/kevinsmith/.npm/_npx/e41f203b7505f1fb/node_modules` cache,
+`NODE_PATH`-injected same as the invocations pass; backend restarted to pick
+up the `engine/data`/`server.js` changes): a Human/Guild Artisan/Rogue
+throwaway character exercised all three pickers and both cross-disable
+directions in one run — Human's automatic-Common + 1-choice note rendered
+correctly, Draconic picked and then correctly shown disabled in Guild
+Artisan's own language select, Guild Artisan's Insight/Persuasion correctly
+pre-filled AND correctly disabled in Rogue's 4-skill class picker, Create
+Character stayed disabled until all choices were complete then enabled
+correctly. Inspected the resulting in-memory character directly off Vuex
+(`document.querySelector('.app-layout').__vue__` → walk `$parent` to
+`$store`, since this app's Vue root replaces `#app` entirely rather than
+preserving the id) — `skill_proficiencies` was the correct 6-skill union
+(Insight, Persuasion, Acrobatics, Athletics, Deception, Stealth) and
+`languages` the correct 3-language union (Common, Draconic, Sylvan), zero
+console errors. **Never saved**: the throwaway character was removed
+straight from the in-memory Vuex array (never through any save/persist
+action), and `grep -c "Zzz Throwaway" src/data/characters.json` confirmed
+zero matches in the file on disk afterward — `characters.json` does show as
+modified in `git status`, but entirely from a separate, concurrent pass
+running in this same working tree this session (the ability-score-history/
+species-traits work logged elsewhere in this file); none of that diff
+contains anything from this pass's test character.
+
+## Homebrew-flag verification audit — findings only, NOT yet fixed (2026-09-03)
+
+Ran the audit scoped in `TODO.md`'s "Homebrew-flag audit" entry, same method as
+the 2026-09-02 Artificer RAW audit that caught `pub_eldritch-cannon-explosive-
+cannon` (WebSearch/WebFetch against real sources — dnd5e.wikidot.com preferred
+— verifying claimed-homebrew content against real published text). **This is
+findings-only. No data files were touched.** Full report handed to the project
+owner for review before any fix is applied.
+
+Pool actually reviewed: all entries with `homebrew: true` — 42 in
+`published_features.json` (count shifted up from the TODO's estimate of 37;
+grew since that note was written) + 4 in `published_spells.json` = 46 total.
+
+**Result: 1 confirmed mislabel, same pattern as Explosive Cannon.**
+`pub_infusion-perfume-of-bewitching` ("Infusion: Perfume of Bewitching," tagged
+as a custom Jaygar infusion) is a near-verbatim match for the real **Perfume of
+Bewitching** — common wondrous item, _Xanathar's Guide to Everything_: apply as
+an action, 1 hour, advantage on Charisma checks against humanoids CR 1 or
+lower, target unaware they were influenced. Our description already matches
+the mechanic almost word-for-word. Should become `homebrew: false` with a real
+`source` citation once the fix pass runs.
+
+One borderline case worth a second look but NOT called a hard mislabel:
+`pub_infusion-helm-of-comprehending-languages` shares its name with a real DMG
+uncommon item (which casts _Comprehend Languages_ at will — both spoken and
+written), but our entry's actual mechanic is narrower (reads written language
+only, no spoken-language comprehension, no spellcasting) — different enough
+from the real item's actual grant that `homebrew: true` is defensible as-is.
+Flagged for the project owner to make the final call.
+
+The other 44 entries checked out as correctly labeled: character-unique
+inventions (Torrin/Therynv'l/etc. signature abilities), unique-magic-item-tied
+features (the `hb_*` entries tied to specific PCs' legendary items), or
+real-base-plus-stated-extension entries whose `source` field already says
+exactly what's custom (Primal Companion + Independent, Tactical Foresight vs.
+the real Master of Tactics, Insightful Fighting (Revised) vs. the real
+Insightful Fighting, Aasimar Transformation combining three real Aasimar forms
+into a choose-one, Circle of Stars' 4th "Unbroken" constellation beyond the
+real 3, and the whole "Infused Arbalist" homebrew-subclass set which openly
+reskins real Artillerist features under a different, non-official subclass).
+Verified each of these against the real source text via WebFetch/WebSearch
+rather than trusting the `source` field's own claim.
+
+**Lighter-touch pass on the unflagged pool** (230+ entries with no `homebrew`
+field at all, per the TODO — grew to 331 in `published_features.json` + 182 in
+`published_spells.json` by now). Spot-checked, not exhaustive, per the TODO's
+own lower-priority framing:
+
+- Random samples (15 spells, 25 features) came back essentially all correctly-
+  cited real content (PHB/XGE/TCE/etc.) — confirms the TODO's own hypothesis
+  that most of this pool is safe.
+- Found a concrete, actionable sub-issue though: **9 entries already carry
+  `needs_review: true` with no `homebrew` field either way** — a stale
+  internal marker from an earlier session that never got resolved. Checked all
+  9:
+  - 7 are genuinely homebrew and should get `homebrew: true`:
+    `pub_totemic-assault`, `pub_life-bearer`, `pub_totemic-blessing`,
+    `pub_spirit-communion`, `pub_sacred-focus-mind` (all tagged class
+    `"Shaman"`/`"Shaman (Witch Doctor)"` — not a real 5e class, so clearly
+    homebrew), `pub_dagger-of-swift-strike` (unique item feature, no source),
+    `pub_grandmaster-s-stitch` (campaign Legendary item, Weaver's Master-Awl).
+  - 2 are verified real published content and should get `homebrew: false`
+    (their own `source`/`note` fields already cite the right book, just never
+    got the boolean set): `pub_tempest-cleric-thunderbolt-strike` (real
+    Tempest Domain Cleric, 8th level, Player's Handbook) and
+    `pub_blessed-strikes` (real optional Cleric feature, _Tasha's Cauldron of
+    Everything_, already correctly noted as "replaces Divine Strike").
+- Separately found `pub_independent` (the companion feature `pub_primal-
+companion`'s own source note points to) has **no `homebrew` field set at
+  all**, despite its own `description`/`source` text explicitly saying "Table
+  houserule" and "Homebrew companion feature" — should get `homebrew: true`
+  added to match what it already says about itself.
+
+Nothing above has been changed in the data files — this entry and the report
+handed back to the project owner are the record, pending a go-ahead to apply
+the fixes.
+
+## Phase 7d — Warlock Eldritch Invocations, Pact Boon, and a GENERIC known-
+
+spell/cantrip picker (2026-09-02, project owner: "Add invocations the hard
+way, please, same with boons... The level up wizard should be able to
+display allowed-to-be-chosen spells and a number that must be selected and
+add them... Make it happen please.")
+
+Motivated by rebuilding Kerra (Fighter 4/Warlock 5 → 8) from scratch to fix
+known bugs on her current sheet — but that rebuild is the project owner's
+own job, done directly, NOT part of this pass; her record was never touched.
+Closes 3 real gaps: no invocation catalog/picker existed at all, no Pact
+Boon catalog/picker existed at all, and `diffLevelUp.js` already computed
+`newKnownSpells` counts but the UI only ever showed a dead note ("pick them
+on the spellbook" — no such flow exists), plus `cantripsBefore/After` was
+computed and then silently thrown away, no pendingChoice at all.
+
+**A lucky find that shaped the whole approach**: `src/data/api_data_cache/
+features.json` (the SRD cache) already had full RAW text + structured
+`prerequisites` for all 32 real PHB Eldritch Invocations, Pact Boon, and
+Pact of the Blade/Chain/Tome — nobody had built a catalog or picker around
+it yet, but the raw material was already sitting there, pre-verified by the
+same source this project already trusts for every other feature tooltip.
+Cross-checked the invocation list + every prerequisite against
+dnd5e.wikidot.com (WebFetch) and the exact "Invocations Known" breakpoint
+table (2:2, 5:3, 7:4, 9:5, 12:6, 15:7, 18:8) against 5thsrd.org's Warlock
+class table — both independent sources, matching the feat-catalog task's
+verification bar. **Deliberately excluded**: Sword Coast Adventurer's
+Guide's 2 additional invocations (Eldritch Smite, Tomb of Levistus) — real
+content, but not in the local SRD cache and not asked for; flagged in
+`invocations.json`'s own `_schema` rather than silently added or silently
+dropped, same "flag, don't guess or over-deliver" pattern as the Battlerager/
+Drakewarden subclass skips elsewhere in this file.
+
+**Schema — new `engine/data/invocations.json`** (32 entries) and
+`engine/data/pact-boons.json` (3 entries), same `name -> {source, id,
+prerequisite}` shape feats.json established. `id` deliberately equals the
+SRD cache's own `index` field (and matches the id already sitting in
+`feature-catalog.json` from an earlier bulk import) — this means
+`lookupFeature(name, id)` resolves full real text straight from the SRD
+cache tier with ZERO new `published_features.json` entries required for the
+mechanism to work. Added them anyway (29 new invocation entries + Pact Boon
+
+- its 3 options — 3 invocations already existed from Kerra's own sheet
+  needing tooltips before this pass) for consistency with the project's
+  established "every catalog gets a published_features.json entry too" rule,
+  using condensed paraphrases matching that file's existing house style (not
+  verbatim WotC text).
+
+**Prerequisite schema — extended `featPrerequisites.js`'s `evaluatePrerequisite`**,
+not a second parallel checker (explicit ask): 3 new condition types
+invocations need that feats never did — `{type:'level', className, level}`
+(a specific CLASS's level, since Warlock levels don't always equal character
+level), `{type:'feature', feature}` (character already has a named feature —
+how Pact Boon prerequisites are checked), `{type:'cantrip', spell}`
+(character knows a specific cantrip — Agonizing Blast/Eldritch Spear/
+Repelling Blast all require Eldritch Blast specifically, not just "any
+cantrip"), plus `{type:'all_of', all:[...]}` for the 3 invocations gated on
+TWO conditions at once (Thirsting Blade/Lifedrinker: level + Pact of the
+Blade; Chains of Carceri: level + Pact of the Chain). `engine/rules/
+invocations.js` is the new adapter (`loadInvocation`, `meetsInvocationPrerequisite`,
+`invocationsKnownForLevel`, `loadPactBoon`, `listPactBoons`) — thin, mostly
+just calling into the shared evaluator.
+
+**Real bug found and fixed while building the live test**: a naive client
+would evaluate invocation eligibility against the character's CURRENTLY
+SAVED level, not the level they're in the middle of leveling UP TO — which
+would make every level-gated invocation (Mire the Mind: "5th level", etc.)
+show as unavailable WHILE picking that exact level's invocations, only
+becoming pickable a level too late. Fixed in `LevelUpTool.vue`'s
+`loadInvocationEligibility`: POSTs a one-off projected copy of the draft
+character with the leveling-up class's level bumped to `targetLevel` before
+asking the engine, without mutating `draftCharacter` itself (that still only
+happens at Confirm, unchanged). Verified both directions live: Thirsting
+Blade (needs level 5 + Pact of the Blade) shows `met: true` for a level 4→5
+preview with Pact of the Blade already on the sheet, and `met: false` with
+the exact "Requires the Pact of the Blade feature" reason for an otherwise-
+identical character missing the boon.
+
+**Pact Boon: strict one-time pick, no swap support** — gated on `!hasPactBoon
+&& finalToLevel >= 3` in `diffLevelUp.js`, checked by scanning
+`character.features` for any `type: 'pactBoon'` entry, ever. **Invocation
+swapping (real RAW: "when you gain a level in this class, you can replace
+one invocation you know with another") is a deliberate v1 cut**, flagged
+here rather than half-built — same spirit as Tough's retroactive HP in the
+feat-catalog pass. The count-owed math (`invocationsKnownForLevel(toLevel) -
+(character's current invocation-typed feature count)`) is self-healing and
+robust to re-running a preview mid-pick, but has no path for "replace X with
+Y" at all yet; a future pass would need a distinct UI action for that, not
+folded into the "pick N new ones" flow.
+
+**Pact of the Tome's bonus cantrips reuse the SAME generic picker
+mechanism**, not a bespoke one-off — `pool: 'any'` on
+`listSpellsForClass`/`POST /api/engine/spell-choices` skips the class-list
+filter entirely (verified live: the picker offered Guidance, a Cleric-only
+cantrip, to a Warlock). Written to `patch.spells` with `featureGranted: true,
+_source: 'Pact of the Tome'` — the same exemption mechanism
+`validateCharacter.js`'s known-spell-cap check already honors for any
+feat-granted spell, so these correctly don't count against the Warlock's own
+known-spell limit, matching real RAW ("don't count against your number of
+cantrips known").
+
+**The generic spell/cantrip picker — the highest-leverage piece, not
+Warlock-specific**: `diffLevelUp.js` now turns a positive
+`cantripsAfter - cantripsBefore` delta into a `newCantrips` pendingChoice for
+ANY spellcasting class (previously computed and silently discarded), and the
+existing-but-dead `newKnownSpells` pendingChoice now actually resolves via
+a picker instead of a note pointing at a spellbook flow that didn't exist.
+New `engine/rules/spellLists.js` functions: `listSpellsForClass(className,
+{maxLevel, cantripsOnly, pool, excludeNames})` (class-list + level-cap
+filtering) and `effectiveMaxSpellLevel({className, subclassName, level,
+otherClasses})` (the highest spell level actually selectable right now —
+pact slot level for Warlock, highest nonzero normal/multiclass slot
+otherwise) — both engine-side per the project's "engine stays the source of
+truth" architecture, not client-side filtering convenience. New
+`POST /api/engine/spell-choices` route composes them; third-caster subclasses
+(Eldritch Knight/Arcane Trickster) are mapped to Wizard's list before
+calling in, matching how every other spellcasting lookup in this codebase
+already handles that case. Verified live: Suggestion (level 2, correctly
+looked up via `findSpellRecord` rather than trusting a client-supplied
+level) written into `patch.spells` with `type: 'chosen'` — the exact shape
+Kerra's own real Eldritch Blast/Hex entries already use, not a new
+convention.
+
+**Real pre-existing data gap found and fixed along the way**: Hex — one of
+the most iconic Warlock spells, and already sitting in Kerra's own real
+`spells[]` — didn't exist ANYWHERE in the local spell catalog (neither the
+SRD cache nor `published_spells.json`), so it could never have been offered
+by the new picker. Verified real PHB text against dnd5e.wikidot.com and
+added to `published_spells.json`. Not a full spell-catalog audit (7c is
+still "not urgent" for the other ~500) — fixed because it directly
+undermined this exact feature's usefulness for the motivating Warlock
+use case, not sought out separately.
+
+**UI (`LevelUpTool.vue`)**: 4 new always-visible one-time-choice cards
+(matching the existing subclass/ASI cards' philosophy — required choices
+live outside the step tabs so they're never mistaken for optional detail),
+all gating `canConfirm` the same way subclass/ASI already do: Eldritch
+Invocations (checkbox list, live description panel, a "Show all invocations
+(ignore prerequisites)" DM-override checkbox identical in spirit to the
+feat picker's own), Pact Boon (a 3-option `<select>`), Pact of the Tome's
+bonus-cantrip sub-picker (appears automatically once Tome is chosen — same
+pendingChoice-driven pattern as everything else, no special-casing), and the
+generic cantrip/known-spell pickers (search-filterable checkbox lists,
+capped at the count owed). New routes: `GET /api/engine/invocations`,
+`POST /api/engine/invocation-eligibility` (mirrors `feat-eligibility`
+exactly), `GET /api/engine/pact-boons`, `POST /api/engine/spell-choices`;
+`preview-level-up` now also accepts `invocationChoices`, `pactBoonChoice`,
+`pactBoonBonusSpells`, `spellChoices`.
+
+**Live-verified in the browser** (Playwright, backend restarted for the
+`engine/`+`server.js` changes): rather than test scenario characters
+against the real roster (the task's own rule — draft-preview-only, no
+Confirm/Save ever clicked, matching the feat-catalog precedent), 4 synthetic
+fixture characters were injected directly into the in-memory Vuex store
+(`$store.state.characters.push(...)`, never written to disk, gone on reload)
+at Warlock levels 1, 2, and 4 — the only way to exercise levels 2/3/5's
+pickers without ever calling `APPLY_LEVEL_UP`. All 4 round-tripped with zero
+console/page errors: Warlock 1→2 (invocation picker count 2 + newKnownSpells
+count 1, both resolved together), Warlock 2→3 (Pact Boon picker → Pact of
+the Tome → 3-cantrip cross-class sub-picker → newKnownSpells, all in one
+screen), Warlock 4→5 with Pact of the Blade already on the sheet (Thirsting
+Blade correctly selectable) vs. an identical fixture without it (Thirsting
+Blade correctly shown disabled with the real reason once "show all" is
+toggled). `characters.json` and `user_prefs.json` confirmed untouched via
+`git diff` after the run.
+
+**Test coverage**: new `engine/test/invocationsAndPactBoon.test.js` (20
+tests) — catalog integrity (32-count, id resolvability against both
+feature-catalog.json and the SRD cache, every `level`/`feature` prerequisite
+reference names something real, the verified known-count table), prerequisite
+evaluation (cantrip-specific gating, `all_of` combinators), and `diffLevelUp`
+behavior (count-owed math including the "already known, never re-offered"
+case, Pact Boon as a true one-time pick, Pact of the Tome's bonus cantrips,
+the generic cantrip pendingChoice firing for a non-Warlock class, and real
+spell-level lookup on write). Full suite: 179/179 passing. `npm run build`
+compiles clean.
 
 ## Phase 7b — Full feat catalog, "fully wired up" (2026-09-02, project owner:
 
