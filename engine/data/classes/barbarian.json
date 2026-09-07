@@ -14,6 +14,17 @@
     "simple",
     "martial"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "animal_handling",
+      "athletics",
+      "intimidation",
+      "nature",
+      "perception",
+      "survival"
+    ]
+  },
   "subclass_name": "Primal Path",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -89,5 +100,50 @@
     "20": [
       "primal-champion"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Explorer's Pack"
+      },
+      {
+        "name": "Javelin",
+        "qty": 4
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Greataxe"
+            }
+          ],
+          [
+            {
+              "name": "Any Martial Melee Weapon",
+              "filter": "martial-melee"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Handaxe",
+              "qty": 2
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "2d4x10"
   }
 }

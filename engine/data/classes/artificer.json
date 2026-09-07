@@ -13,6 +13,18 @@
   "weapon_proficiencies": [
     "simple"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "arcana",
+      "history",
+      "investigation",
+      "medicine",
+      "nature",
+      "perception",
+      "sleight_of_hand"
+    ]
+  },
   "subclass_name": "Artificer Specialist",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -57,5 +69,59 @@
     "20": [
       "gen_artificer_base_soul-of-artifice"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Light Crossbow"
+      },
+      {
+        "name": "Bolts",
+        "qty": 20
+      },
+      {
+        "name": "Thieves' Tools"
+      },
+      {
+        "name": "Dungeoneer's Pack"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Studded Leather Armor"
+            }
+          ],
+          [
+            {
+              "name": "Scale Mail"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "5d4x10"
   }
 }

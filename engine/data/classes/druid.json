@@ -22,6 +22,19 @@
     "sling",
     "spear"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "arcana",
+      "animal_handling",
+      "insight",
+      "medicine",
+      "nature",
+      "perception",
+      "religion",
+      "survival"
+    ]
+  },
   "subclass_name": "Druid Circle",
   "subclass_choice_level": 2,
   "subclass_feature_levels": [
@@ -55,5 +68,51 @@
     "20": [
       "archdruid"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Leather Armor"
+      },
+      {
+        "name": "Explorer's Pack"
+      },
+      {
+        "name": "Druidic Focus"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Wooden Shield"
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Scimitar"
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Melee Weapon",
+              "filter": "simple-melee"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "2d4x10"
   }
 }

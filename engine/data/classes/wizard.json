@@ -13,6 +13,17 @@
     "quarterstaff",
     "light crossbow"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "arcana",
+      "history",
+      "insight",
+      "investigation",
+      "medicine",
+      "religion"
+    ]
+  },
   "subclass_name": "Arcane Tradition",
   "subclass_choice_level": 2,
   "subclass_feature_levels": [
@@ -36,5 +47,57 @@
     "20": [
       "gen_wizard_base_signature-spells"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Spellbook"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Quarterstaff"
+            }
+          ],
+          [
+            {
+              "name": "Dagger"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Component Pouch"
+            }
+          ],
+          [
+            {
+              "name": "Arcane Focus"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Scholar's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "4d4x10"
   }
 }

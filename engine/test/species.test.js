@@ -85,3 +85,57 @@ test('applySpeciesBonus: unknown species leaves scores untouched with a note, no
   assert.deepEqual(result.scores, base)
   assert.ok(result.notes[0].includes("isn't in the species catalog"))
 })
+
+// Species/racial trait data integrity — added alongside the ability-score-
+// history/species-traits attribution work (2026-09-03). Every base species
+// and subrace trait needs a real name + description so
+// NewCharacterTool.vue's speciesTraitRecords (and FeaturePillsPanel's
+// self-contained tooltip — deliberately NOT routed through name-based
+// lookupFeature, see engine/CHECKLIST.md) always has real text to show.
+test('every base species and subrace trait has a non-empty name and description', () => {
+  for (const sp of listSpecies().map((s) => loadSpecies(s.name))) {
+    for (const trait of sp.traits ?? []) {
+      assert.ok(
+        trait.name && trait.name.trim().length > 0,
+        `${sp.name} has a trait with a blank name`
+      )
+      assert.ok(
+        trait.description && trait.description.trim().length > 0,
+        `${sp.name}'s "${trait.name}" trait has a blank description`
+      )
+    }
+    for (const sub of sp.subraces ?? []) {
+      for (const trait of sub.traits ?? []) {
+        assert.ok(
+          trait.name && trait.name.trim().length > 0,
+          `${sp.name}/${sub.name} has a trait with a blank name`
+        )
+        assert.ok(
+          trait.description && trait.description.trim().length > 0,
+          `${sp.name}/${sub.name}'s "${trait.name}" trait has a blank description`
+        )
+      }
+    }
+  }
+})
+
+// The 4 species with real 2014-PHB subraces (Elf, Dwarf, Halfling, Gnome)
+// should each have base-species-level named traits too (Fey Ancestry,
+// Dwarven Resilience, Lucky/Brave, Gnome Cunning, etc.) — not just their
+// subrace's traits — matching the motivating cases from TODO.md (Jaygar's
+// missing Fade Away, Siv's unattributed DEX 20) that named Fey Ancestry and
+// Lucky specifically as real traits that should render.
+test('Elf, Dwarf, Halfling, and Gnome all have base-species traits, not just subrace traits', () => {
+  for (const name of ['Elf', 'Dwarf', 'Halfling', 'Gnome']) {
+    const sp = loadSpecies(name)
+    assert.ok(
+      sp.traits && sp.traits.length > 0,
+      `${name} should have base-species traits`
+    )
+  }
+})
+
+test('Human has no named traits (correct per RAW — its identity is the ability bonus, not named traits)', () => {
+  const sp = loadSpecies('Human')
+  assert.ok(!sp.traits || sp.traits.length === 0)
+})

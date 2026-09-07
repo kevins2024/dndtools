@@ -127,6 +127,33 @@
               </li>
             </ul>
           </div>
+
+          <div v-if="speciesAutomaticLanguages.length" class="nct-note">
+            Languages: {{ speciesAutomaticLanguages.join(', ')
+            }}<template v-if="speciesLanguageChoiceTotal"
+              >, plus {{ speciesLanguageChoiceTotal }} of your choice</template
+            >
+          </div>
+          <div v-if="speciesLanguageChoiceTotal" class="nct-skill-picker">
+            <select
+              v-for="(_, i) in Array(speciesLanguageChoiceTotal)"
+              :key="i"
+              v-model="selectedSpeciesLanguages[i]"
+              class="nct-select"
+            >
+              <option :value="null" disabled>Choose a language…</option>
+              <option
+                v-for="l in languagesList"
+                :key="l.id"
+                :value="l.name"
+                :disabled="
+                  languageDisabled(l.name, selectedSpeciesLanguages, i)
+                "
+              >
+                {{ l.name }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -158,7 +185,7 @@
         </div>
 
         <div class="nct-skill-picker">
-          <div class="nct-note">Skill proficiencies:</div>
+          <div class="nct-note">Skill proficiencies (from background):</div>
           <select
             v-for="(_, i) in [0, 1]"
             :key="i"
@@ -170,9 +197,33 @@
               v-for="s in skillsList"
               :key="s.id"
               :value="s.id"
-              :disabled="s.id === selectedSkills[1 - i]"
+              :disabled="skillDisabled(s.id, selectedSkills, i)"
             >
               {{ s.name }}
+            </option>
+          </select>
+        </div>
+
+        <div v-if="backgroundLanguageChoiceCount" class="nct-skill-picker">
+          <div class="nct-note">
+            Languages ({{ backgroundLanguageChoiceCount }} of your choice):
+          </div>
+          <select
+            v-for="(_, i) in Array(backgroundLanguageChoiceCount)"
+            :key="i"
+            v-model="selectedBackgroundLanguages[i]"
+            class="nct-select"
+          >
+            <option :value="null" disabled>Choose a language…</option>
+            <option
+              v-for="l in languagesList"
+              :key="l.id"
+              :value="l.name"
+              :disabled="
+                languageDisabled(l.name, selectedBackgroundLanguages, i)
+              "
+            >
+              {{ l.name }}
             </option>
           </select>
         </div>
@@ -196,6 +247,141 @@
           No subclass pick here — choose one later via the Level Up tool when
           this class actually offers it.
         </div>
+
+        <div v-if="classSkillChoiceCount" class="nct-skill-picker">
+          <div class="nct-note">
+            {{ selectedClass.name }} skill proficiencies (choose
+            {{ classSkillChoiceCount }}, separate from your background's):
+          </div>
+          <select
+            v-for="(_, i) in Array(classSkillChoiceCount)"
+            :key="i"
+            v-model="selectedClassSkills[i]"
+            class="nct-select"
+          >
+            <option :value="null" disabled>Choose a skill…</option>
+            <option
+              v-for="s in classSkillOptions"
+              :key="s.id"
+              :value="s.id"
+              :disabled="skillDisabled(s.id, selectedClassSkills, i)"
+            >
+              {{ s.name }}
+            </option>
+          </select>
+          <div class="nct-note">
+            A skill already granted by your background is disabled here — pick a
+            different one instead of double-dipping (real RAW: you'd choose a
+            replacement skill).
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Equipment ── -->
+      <div v-else-if="activeTab === 'equipment'" class="nct-tab-body">
+        <div v-if="!selectedClass" class="nct-note">Choose a class first.</div>
+        <template v-else-if="!selectedClass.starting_equipment">
+          <div class="nct-note">
+            No starting equipment table for {{ selectedClass.name }} yet — add
+            gear through the Inventory tab after creating this character.
+          </div>
+        </template>
+        <template v-else>
+          <label class="nct-checkbox-row">
+            <input type="checkbox" v-model="equipmentTakeGold" />
+            Take {{ equipmentGoldAlternative }} gp instead of starting gear
+            (added to the party purse)
+          </label>
+
+          <template v-if="!equipmentTakeGold">
+            <div v-if="equipmentFixed.length" class="nct-note">
+              You start with:
+              {{
+                equipmentFixed
+                  .map((e) => (e.qty > 1 ? `${e.name} x${e.qty}` : e.name))
+                  .join(', ')
+              }}
+            </div>
+
+            <div
+              v-for="(entry, i) in equipmentFixed"
+              :key="'fixed-' + i"
+              class="nct-skill-picker"
+            >
+              <template v-if="entry.filter">
+                <div class="nct-note">{{ entry.name }}:</div>
+                <select
+                  v-model="equipmentWeaponPicks['fixed-' + i]"
+                  class="nct-select"
+                >
+                  <option :value="null" disabled>Choose a weapon…</option>
+                  <option
+                    v-for="opt in weaponOptionsForFilter(entry.filter)"
+                    :key="opt.value"
+                    :value="opt.value"
+                  >
+                    {{ opt.label }}
+                  </option>
+                </select>
+              </template>
+            </div>
+
+            <div
+              v-for="(choice, ci) in equipmentChoices"
+              :key="'choice-' + ci"
+              class="nct-skill-picker"
+            >
+              <div class="nct-note">Choose one:</div>
+              <select
+                v-model="equipmentChoiceSelections[ci]"
+                class="nct-select"
+              >
+                <option :value="null" disabled>Choose…</option>
+                <option
+                  v-for="(opt, oi) in choice.options"
+                  :key="oi"
+                  :value="oi"
+                >
+                  {{ equipmentOptionLabel(opt) }}
+                </option>
+              </select>
+
+              <template v-if="equipmentChoiceSelections[ci] != null">
+                <template
+                  v-for="(entry, ei) in choice.options[
+                    equipmentChoiceSelections[ci]
+                  ]"
+                >
+                  <div
+                    v-if="entry.filter"
+                    :key="ci + '-' + ei"
+                    class="nct-skill-picker"
+                  >
+                    <div class="nct-note">
+                      {{ entry.name
+                      }}{{ entry.qty > 1 ? ` (pick ${entry.qty})` : '' }}:
+                    </div>
+                    <select
+                      v-for="(_, wi) in Array(entry.qty || 1)"
+                      :key="wi"
+                      v-model="equipmentWeaponPicks[ci + '-' + ei + '-' + wi]"
+                      class="nct-select"
+                    >
+                      <option :value="null" disabled>Choose a weapon…</option>
+                      <option
+                        v-for="opt in weaponOptionsForFilter(entry.filter)"
+                        :key="opt.value"
+                        :value="opt.value"
+                      >
+                        {{ opt.label }}
+                      </option>
+                    </select>
+                  </div>
+                </template>
+              </template>
+            </div>
+          </template>
+        </template>
       </div>
 
       <!-- ── Abilities ── -->
@@ -362,6 +548,12 @@
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
 import { lookupFeature } from '@/utils/lookupService.js'
+import {
+  resolveGearEntry,
+  weaponOptionsForFilter,
+  isEquippableType,
+  rollGoldAlternative,
+} from '@/utils/startingGearCatalog.js'
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 // Mirrors engine/rules/pointBuy.js's table — kept local for instant UI
@@ -402,6 +594,21 @@ export default {
       backgroundChoice: null,
       customBackgroundName: '',
       selectedSkills: [null, null],
+      // The class's OWN "choose N skills from this list" grant — separate
+      // from the background's fixed 2-skill grant above. Real gap found
+      // auditing Siv/Jaygar (see TODO.md/engine/CHECKLIST.md): nothing here
+      // ever prompted for this, so every character built through this tool
+      // was silently missing their class skill proficiencies. Sized to
+      // selectedClass.skill_choices.count by the classSkillChoiceCount
+      // watcher below.
+      selectedClassSkills: [],
+      // Species' own "N languages of your choice" beyond its automatic
+      // grant (e.g. Human's free pick, High Elf's extra language) — sized
+      // by the speciesLanguageChoiceTotal watcher.
+      selectedSpeciesLanguages: [],
+      // Background's own "N languages of your choice" (e.g. Sage grants 2)
+      // — sized by the backgroundLanguageChoiceCount watcher.
+      selectedBackgroundLanguages: [],
       className: null,
       baseScores: { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 },
       abilities: ABILITIES,
@@ -416,6 +623,7 @@ export default {
         { id: 'species', label: 'Species' },
         { id: 'background', label: 'Background' },
         { id: 'class', label: 'Class' },
+        { id: 'equipment', label: 'Equipment' },
         { id: 'abilities', label: 'Abilities' },
         { id: 'spells', label: 'Spells & Features' },
       ],
@@ -424,6 +632,17 @@ export default {
       curatedBackgroundList: [],
       skillsList: [],
       classList: [],
+      languagesList: [],
+
+      // Starting equipment (Class tab's starting_equipment table) —
+      // equipmentChoiceSelections[i] holds the chosen option INDEX into
+      // starting_equipment.choices[i].options; equipmentWeaponPicks holds
+      // the resolved weapon_category for any "Any Simple/Martial Weapon"
+      // symbolic entry, keyed 'fixed-<entryIdx>' or '<choiceIdx>-<entryIdx>-<pickIdx>'
+      // (a qty>1 filter entry, e.g. "two martial weapons", needs one key per pick).
+      equipmentTakeGold: false,
+      equipmentChoiceSelections: [],
+      equipmentWeaponPicks: {},
 
       hpMethod: 'roll',
       hpRolls: [],
@@ -485,8 +704,115 @@ export default {
         ...(this.selectedSubrace?.traits ?? []),
       ]
     },
+    // Same traits as displayTraits, reshaped for the character record —
+    // tagged `type: 'speciesTrait'` (FeaturePillsPanel's marker/grouping)
+    // and which tier each came from (species vs. subrace), carrying their
+    // own `description` straight from species.json so the sheet's tooltip
+    // never needs a name-based catalog lookup for these (deliberately
+    // sidesteps the "Lucky" feat vs. "Lucky" Halfling racial trait collision
+    // class of bug — see engine/CHECKLIST.md).
+    speciesTraitRecords() {
+      const fromSpecies = (this.selectedSpecies?.traits ?? []).map((t) => ({
+        ...t,
+        type: 'speciesTrait',
+        source: 'species',
+      }))
+      const fromSubrace = (this.selectedSubrace?.traits ?? []).map((t) => ({
+        ...t,
+        type: 'speciesTrait',
+        source: 'subrace',
+      }))
+      return [...fromSpecies, ...fromSubrace]
+    },
+    // Attributes the STARTING ability-score bonus (species racial, or the
+    // manual free +2/+1 when useSpeciesBonus is off) the same way
+    // diffLevelUp.js attributes a later ASI/feat bump. Seeded here rather
+    // than by the engine because a level-1 preview-level-up call never
+    // touches ability scores at all (no class grants an ASI at level 1) —
+    // this is the one ability_score_history entry point outside diffLevelUp.
+    abilityScoreHistorySeed() {
+      const entries = []
+      if (this.useSpeciesBonus) {
+        const sourceName = this.selectedSpecies?.name
+          ? `${this.selectedSpecies.name} racial`
+          : 'Species racial'
+        for (const [ability, amount] of Object.entries(
+          this.combinedFixedBonus
+        )) {
+          if (amount)
+            entries.push({
+              ability,
+              amount,
+              source: sourceName,
+              level_gained: 1,
+            })
+        }
+        if (this.selectedSpecies?.choice) {
+          this.speciesChoiceAbilities.forEach((ability) => {
+            if (ability) {
+              entries.push({
+                ability,
+                amount: this.selectedSpecies.choice.amount,
+                source: sourceName,
+                level_gained: 1,
+              })
+            }
+          })
+        }
+      } else {
+        if (this.manualPlusTwoAbility) {
+          entries.push({
+            ability: this.manualPlusTwoAbility,
+            amount: 2,
+            source: 'Free ability bonus (manual)',
+            level_gained: 1,
+          })
+        }
+        if (this.manualPlusOneAbility) {
+          entries.push({
+            ability: this.manualPlusOneAbility,
+            amount: 1,
+            source: 'Free ability bonus (manual)',
+            level_gained: 1,
+          })
+        }
+      }
+      return entries
+    },
     selectedClass() {
       return this.classList.find((c) => c.name === this.className) ?? null
+    },
+    equipmentFixed() {
+      return this.selectedClass?.starting_equipment?.fixed ?? []
+    },
+    equipmentChoices() {
+      return this.selectedClass?.starting_equipment?.choices ?? []
+    },
+    equipmentGoldAlternative() {
+      return this.selectedClass?.starting_equipment?.gold_alternative ?? null
+    },
+    // Every choice has picked an option, and every symbolic "Any Simple/
+    // Martial Weapon" entry pulled in by that pick (fixed or chosen) has a
+    // concrete weapon selected. Gold-alternative skips all of this.
+    equipmentAssignmentComplete() {
+      if (!this.selectedClass?.starting_equipment) return true
+      if (this.equipmentTakeGold) return true
+      const fixedOk = this.equipmentFixed.every((entry, i) =>
+        entry.filter ? this.equipmentWeaponPicks[`fixed-${i}`] : true
+      )
+      if (!fixedOk) return false
+      return this.equipmentChoices.every((choice, ci) => {
+        const oi = this.equipmentChoiceSelections[ci]
+        if (oi == null) return false
+        return choice.options[oi].every((entry, ei) => {
+          if (!entry.filter) return true
+          const qty = entry.qty || 1
+          for (let wi = 0; wi < qty; wi++) {
+            if (!this.equipmentWeaponPicks[`${ci}-${ei}-${wi}`]) return false
+          }
+          return true
+        })
+      })
     },
     pickedBackground() {
       if (!this.backgroundChoice || this.backgroundChoice === '__custom')
@@ -501,6 +827,74 @@ export default {
       return this.backgroundChoice === '__custom'
         ? this.customBackgroundName.trim()
         : this.backgroundChoice
+    },
+    // How many skills the CLASS itself grants a choice of (Rogue: 4, most
+    // others: 2, Bard: 3 from any skill) — engine/data/classes/*.json's new
+    // skill_choices field, verified RAW per class (see engine/CHECKLIST.md).
+    // Wholly separate from the background's fixed 2-skill grant above.
+    classSkillChoiceCount() {
+      return this.selectedClass?.skill_choices?.count ?? 0
+    },
+    classSkillOptions() {
+      const options = this.selectedClass?.skill_choices?.options
+      if (!options) return []
+      return options === 'any'
+        ? this.skillsList
+        : this.skillsList.filter((s) => options.includes(s.id))
+    },
+    classSkillAssignmentComplete() {
+      const count = this.classSkillChoiceCount
+      if (!count) return true
+      const picked = this.selectedClassSkills.filter(Boolean)
+      return picked.length === count && new Set(picked).size === count
+    },
+    // Normalizes the two real shapes languages can take in the species
+    // catalog: the standard 9 PHB species use
+    // {automatic:[...], choice:{count}} (engine/data/species.json); the 3
+    // homebrew species (Catrin/Drevani/Hei'ugar, from api_data_cache/
+    // species.json) predate this pass and already store a flat array of
+    // fixed languages with no choice component — treated as fully
+    // automatic, no picker needed.
+    speciesAutomaticLanguages() {
+      const spLang = this.selectedSpecies?.languages
+      const automatic = Array.isArray(spLang) ? spLang : spLang?.automatic ?? []
+      const subLang = this.selectedSubrace?.languages
+      const subAutomatic = Array.isArray(subLang) ? subLang : []
+      return [...automatic, ...subAutomatic]
+    },
+    // Species' own flexible language choice count, PLUS the chosen
+    // subrace's (e.g. High Elf grants one extra on top of Elf's fixed
+    // Common+Elvish — real RAW, matches how ability score bonuses stack).
+    speciesLanguageChoiceTotal() {
+      const spLang = this.selectedSpecies?.languages
+      const speciesCount = Array.isArray(spLang)
+        ? 0
+        : spLang?.choice?.count ?? 0
+      const subLang = this.selectedSubrace?.languages
+      const subraceCount = Array.isArray(subLang)
+        ? 0
+        : subLang?.choice?.count ?? 0
+      return speciesCount + subraceCount
+    },
+    speciesLanguageAssignmentComplete() {
+      const count = this.speciesLanguageChoiceTotal
+      if (!count) return true
+      const picked = this.selectedSpeciesLanguages.filter(Boolean)
+      return picked.length === count && new Set(picked).size === count
+    },
+    // The background's own "N languages of your choice" — e.g. Sage grants
+    // 2 (engine/data/backgrounds.json's new language_choices field,
+    // verified RAW per background). 0 for a custom/free-text background,
+    // matching how its skill picker already has no curated data to pre-fill
+    // from.
+    backgroundLanguageChoiceCount() {
+      return this.pickedBackground?.language_choices ?? 0
+    },
+    backgroundLanguageAssignmentComplete() {
+      const count = this.backgroundLanguageChoiceCount
+      if (!count) return true
+      const picked = this.selectedBackgroundLanguages.filter(Boolean)
+      return picked.length === count && new Set(picked).size === count
     },
     pointsSpent() {
       return this.abilities.reduce(
@@ -571,6 +965,10 @@ export default {
           this.subraceAssignmentComplete &&
           this.abilityBonusAssignmentComplete &&
           this.className &&
+          this.classSkillAssignmentComplete &&
+          this.equipmentAssignmentComplete &&
+          this.speciesLanguageAssignmentComplete &&
+          this.backgroundLanguageAssignmentComplete &&
           this.pointsRemaining >= 0 &&
           this.preview?.patch
       )
@@ -584,6 +982,11 @@ export default {
       this.runPreview()
     },
     className() {
+      this.equipmentTakeGold = false
+      this.equipmentChoiceSelections = Array(this.equipmentChoices.length).fill(
+        null
+      )
+      this.equipmentWeaponPicks = {}
       this.runPreview()
     },
     backgroundChoice() {
@@ -601,20 +1004,38 @@ export default {
         this.runPreview()
       },
     },
+    // Resize the choice arrays whenever what's owed changes — covers a
+    // class change (skill count), and a species OR subrace change for
+    // languages (subrace can add to the species' own choice count, e.g.
+    // High Elf). Existing picks beyond the new length are simply dropped;
+    // Vue's v-model on each <select> re-binds to whatever null/value ends
+    // up at that index.
+    classSkillChoiceCount(count) {
+      this.selectedClassSkills = Array(count).fill(null)
+    },
+    speciesLanguageChoiceTotal(count) {
+      this.selectedSpeciesLanguages = Array(count).fill(null)
+    },
+    backgroundLanguageChoiceCount(count) {
+      this.selectedBackgroundLanguages = Array(count).fill(null)
+    },
   },
 
   async created() {
     try {
-      const [species, backgrounds, skills, classes] = await Promise.all([
-        fetch('/api/engine/species').then((r) => (r.ok ? r.json() : [])),
-        fetch('/api/engine/backgrounds').then((r) => (r.ok ? r.json() : [])),
-        fetch('/api/engine/skills').then((r) => (r.ok ? r.json() : [])),
-        fetch('/api/engine/classes').then((r) => (r.ok ? r.json() : [])),
-      ])
+      const [species, backgrounds, skills, classes, languages] =
+        await Promise.all([
+          fetch('/api/engine/species').then((r) => (r.ok ? r.json() : [])),
+          fetch('/api/engine/backgrounds').then((r) => (r.ok ? r.json() : [])),
+          fetch('/api/engine/skills').then((r) => (r.ok ? r.json() : [])),
+          fetch('/api/engine/classes').then((r) => (r.ok ? r.json() : [])),
+          fetch('/api/engine/languages').then((r) => (r.ok ? r.json() : [])),
+        ])
       this.speciesList = species
       this.curatedBackgroundList = backgrounds
       this.skillsList = skills
       this.classList = classes
+      this.languagesList = languages
     } catch {
       this.error =
         'Could not load species/background/class data from the server.'
@@ -642,6 +1063,52 @@ export default {
 
     skillNameFor(id) {
       return this.skillsList.find((s) => s.id === id)?.name ?? null
+    },
+
+    // Shared duplicate-prevention for BOTH skill pickers (background's
+    // fixed-list selects and the class's own choice selects): a skill is
+    // disabled if it's already taken elsewhere in the SAME array (own
+    // index excluded) or anywhere in the OTHER array. Real RAW handles a
+    // background/class skill overlap by letting the player choose a
+    // replacement skill instead of double-dipping — this models that by
+    // simply not offering the already-granted skill a second time, in
+    // either direction, rather than tracking which side "wins."
+    equipmentOptionLabel(option) {
+      return option
+        .map((e) => (e.qty > 1 ? `${e.name} x${e.qty}` : e.name))
+        .join(', ')
+    },
+    weaponOptionsForFilter(filter) {
+      return weaponOptionsForFilter(filter)
+    },
+
+    skillDisabled(skillId, sourceArray, currentIndex) {
+      const takenInSameArray = sourceArray.some(
+        (v, i) => i !== currentIndex && v === skillId
+      )
+      const otherArray =
+        sourceArray === this.selectedSkills
+          ? this.selectedClassSkills
+          : this.selectedSkills
+      return takenInSameArray || otherArray.includes(skillId)
+    },
+
+    // Same duplicate-prevention for languages, across all three sources at
+    // once (species automatic, species choice, background choice) — you
+    // can't gain anything by "choosing" a language you already know.
+    languageDisabled(languageName, sourceArray, currentIndex) {
+      if (this.speciesAutomaticLanguages.includes(languageName)) return true
+      const takenInSameArray = sourceArray.some(
+        (v, i) => i !== currentIndex && v === languageName
+      )
+      const otherArrays = [
+        this.selectedSpeciesLanguages,
+        this.selectedBackgroundLanguages,
+      ].filter((arr) => arr !== sourceArray)
+      return (
+        takenInSameArray ||
+        otherArrays.some((arr) => arr.includes(languageName))
+      )
     },
 
     // Every other character record has an id ("characters_N") — ADD_CHARACTER
@@ -672,6 +1139,14 @@ export default {
         stat_int: this.finalScores.int,
         stat_wis: this.finalScores.wis,
         stat_cha: this.finalScores.cha,
+        // Real attribution, not just the final numbers — see
+        // engine/CHECKLIST.md's ability-score-history writeup.
+        // species_bonus_applied records WHETHER the standard species bonus
+        // was used at all (vs. the manual free +2/+1 toggle), independent of
+        // ability_score_history (which records the actual amounts/sources).
+        species_bonus_applied: this.useSpeciesBonus,
+        species_traits: this.speciesTraitRecords,
+        ability_score_history: this.abilityScoreHistorySeed,
         spellcasting_ability: this.selectedClass?.spellcasting?.ability ?? null,
         hp_max: 0,
         hp_current: 0,
@@ -680,12 +1155,28 @@ export default {
         // and already shown as info text in the Class tab — it just never
         // got assigned into the actual character record.
         saving_throws: this.selectedClass?.saving_throw_proficiencies ?? [],
-        skill_proficiencies: this.selectedSkills
-          .filter(Boolean)
-          .map((id) => this.skillNameFor(id))
-          .filter(Boolean),
+        // Background's fixed 2-skill grant plus the class's own "choose N"
+        // grant, deduped — the real gap this pass closes (see TODO.md's
+        // "New Character tool has no class-level skill picker" entry).
+        skill_proficiencies: [
+          ...new Set(
+            [...this.selectedSkills, ...this.selectedClassSkills]
+              .filter(Boolean)
+              .map((id) => this.skillNameFor(id))
+              .filter(Boolean)
+          ),
+        ],
         skill_expertise: [],
-        languages: [],
+        // Species' automatic grant (e.g. Dwarf: Common+Dwarvish) plus its
+        // own flexible choice (Human, Half-Elf, High Elf) plus the
+        // background's "N languages of your choice" (e.g. Sage), deduped.
+        languages: [
+          ...new Set([
+            ...this.speciesAutomaticLanguages,
+            ...this.selectedSpeciesLanguages.filter(Boolean),
+            ...this.selectedBackgroundLanguages.filter(Boolean),
+          ]),
+        ],
         features: [],
         spells: [],
         active_effects: [],
@@ -756,11 +1247,67 @@ export default {
       this.runPreview()
     },
 
+    // Resolves the Equipment tab's picks into real party_items.json entries
+    // (weapons/armor/foci carried-but-not-equipped, gear tools disallowed
+    // from equipping — matches CharacterInventory.vue's own convention) plus
+    // any gold-alternative roll. Returns { items, gold } — gold is only
+    // nonzero when equipmentTakeGold was checked.
+    resolveStartingEquipment(characterName) {
+      if (!this.selectedClass?.starting_equipment) return { items: [], gold: 0 }
+      if (this.equipmentTakeGold) {
+        return {
+          items: [],
+          gold: rollGoldAlternative(this.equipmentGoldAlternative),
+        }
+      }
+      const resolved = []
+      const push = (entry, weaponCategory) => {
+        const item = resolveGearEntry(entry, weaponCategory)
+        if (!item) return
+        resolved.push({
+          ...item,
+          carried_by: characterName,
+          equipped_by: isEquippableType(item.type) ? null : 'disallowed',
+          needs_attunement: false,
+          attuned: false,
+          notes: item.notes ?? '',
+        })
+      }
+      this.equipmentFixed.forEach((entry, i) => {
+        push(
+          entry,
+          entry.filter ? this.equipmentWeaponPicks[`fixed-${i}`] : undefined
+        )
+      })
+      this.equipmentChoices.forEach((choice, ci) => {
+        const oi = this.equipmentChoiceSelections[ci]
+        if (oi == null) return
+        choice.options[oi].forEach((entry, ei) => {
+          if (!entry.filter) {
+            push(entry)
+            return
+          }
+          const qty = entry.qty || 1
+          for (let wi = 0; wi < qty; wi++) {
+            push(
+              { ...entry, qty: 1 },
+              this.equipmentWeaponPicks[`${ci}-${ei}-${wi}`]
+            )
+          }
+        })
+      })
+      return { items: resolved, gold: 0 }
+    },
+
     createCharacter() {
       if (!this.canCreate) return
       const shell = this.characterShell()
       const character = { ...shell, ...this.preview.patch }
       this.$store.commit('ADD_CHARACTER', character)
+
+      const { items, gold } = this.resolveStartingEquipment(character.name)
+      if (items.length) this.$store.commit('ADD_PARTY_ITEMS', items)
+      if (gold > 0) this.$store.commit('ADJUST_PARTY_GOLD', gold)
 
       this.name = ''
       this.fullName = ''
@@ -773,6 +1320,9 @@ export default {
       this.backgroundChoice = null
       this.customBackgroundName = ''
       this.selectedSkills = [null, null]
+      this.selectedClassSkills = []
+      this.selectedSpeciesLanguages = []
+      this.selectedBackgroundLanguages = []
       this.className = null
       this.baseScores = { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }
       this.preview = null
@@ -864,6 +1414,15 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+}
+
+.nct-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  cursor: pointer;
 }
 
 .nct-abilities-grid {

@@ -14,6 +14,19 @@
     "simple",
     "martial"
   ],
+  "skill_choices": {
+    "count": 3,
+    "options": [
+      "animal_handling",
+      "athletics",
+      "insight",
+      "investigation",
+      "nature",
+      "perception",
+      "stealth",
+      "survival"
+    ]
+  },
   "subclass_name": "Ranger Archetype",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -62,5 +75,64 @@
     "20": [
       "foe-slayer"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Longbow"
+      },
+      {
+        "name": "Arrows",
+        "qty": 20
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Scale Mail"
+            }
+          ],
+          [
+            {
+              "name": "Leather Armor"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Shortsword",
+              "qty": 2
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Melee Weapon",
+              "filter": "simple-melee",
+              "qty": 2
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Dungeoneer's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "5d4x10"
   }
 }

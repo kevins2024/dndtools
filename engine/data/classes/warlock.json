@@ -11,6 +11,18 @@
   "weapon_proficiencies": [
     "simple"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "arcana",
+      "deception",
+      "history",
+      "intimidation",
+      "investigation",
+      "nature",
+      "religion"
+    ]
+  },
   "subclass_name": "Otherworldly Patron",
   "subclass_choice_level": 1,
   "subclass_feature_levels": [
@@ -48,5 +60,70 @@
     "20": [
       "eldritch-master"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Leather Armor"
+      },
+      {
+        "name": "Any Simple Weapon",
+        "filter": "simple"
+      },
+      {
+        "name": "Dagger",
+        "qty": 2
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Light Crossbow"
+            },
+            {
+              "name": "Bolts",
+              "qty": 20
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Component Pouch"
+            }
+          ],
+          [
+            {
+              "name": "Arcane Focus"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Scholar's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Dungeoneer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "4d4x10"
   }
 }

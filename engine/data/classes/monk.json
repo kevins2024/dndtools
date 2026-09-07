@@ -10,6 +10,17 @@
     "simple",
     "shortsword"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "acrobatics",
+      "athletics",
+      "history",
+      "insight",
+      "religion",
+      "stealth"
+    ]
+  },
   "subclass_name": "Monastic Tradition",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -102,5 +113,45 @@
     "20": [
       "perfect-self"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Dart",
+        "qty": 10
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Shortsword"
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Dungeoneer's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "5d4"
   }
 }

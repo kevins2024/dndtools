@@ -13,6 +13,17 @@
     "quarterstaff",
     "light crossbow"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "arcana",
+      "deception",
+      "insight",
+      "intimidation",
+      "persuasion",
+      "religion"
+    ]
+  },
   "subclass_name": "Sorcerous Origin",
   "subclass_choice_level": 1,
   "subclass_feature_levels": [
@@ -65,5 +76,63 @@
     "20": [
       "sorcerous-restoration"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Dagger",
+        "qty": 2
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Light Crossbow"
+            },
+            {
+              "name": "Bolts",
+              "qty": 20
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Component Pouch"
+            }
+          ],
+          [
+            {
+              "name": "Arcane Focus"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Dungeoneer's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "3d4x10"
   }
 }

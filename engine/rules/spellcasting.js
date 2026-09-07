@@ -2,6 +2,9 @@ const tables = require('../data/spellcasting-tables.json')
 const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 
+// Exported for reuse — invocations.js uses this same breakpoint-table shape
+// for invocations_known, which lives alongside cantrips_known/spells_known
+// in spellcasting-tables.json but isn't itself a spellcasting concept.
 function resolveBreakpoint(map, level) {
   let value
   for (const key of Object.keys(map).sort((a, b) => Number(a) - Number(b))) {
@@ -111,4 +114,5 @@ module.exports = {
   cantripsKnownForClass,
   spellsKnownForClass,
   preparedSpellCount,
+  resolveBreakpoint,
 }

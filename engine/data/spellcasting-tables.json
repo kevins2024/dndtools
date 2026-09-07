@@ -287,5 +287,10 @@
       "19": 12,
       "20": 13
     }
+  },
+
+  "invocations_known": {
+    "_notes": "Breakpoint map, same convention as cantrips_known/spells_known above. Verified against 5thsrd.org's Warlock class table 2026-09-02 (cross-checked against dnd5e.wikidot.com's Eldritch Invocations page for the per-invocation prerequisite levels, which corroborate the same breakpoints). No other class currently has this mechanic.",
+    "Warlock": { "2": 2, "5": 3, "7": 4, "9": 5, "12": 6, "15": 7, "18": 8 }
   }
 }

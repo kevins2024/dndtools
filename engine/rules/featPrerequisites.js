@@ -3,7 +3,16 @@ const { loadFeat } = require('./grants')
 // Adapter, like diffLevelUp.js and validateCharacter.js — the one other place
 // besides those that knows the characters.json shape (race, stat_*,
 // armor_proficiencies, weapon_proficiencies, spellcasting_ability,
-// pact_magic). Everything else in engine/ stays shape-agnostic.
+// pact_magic, classes[], features[], spells[]). Everything else in engine/
+// stays shape-agnostic.
+//
+// Originally feat-only (hence the filename); extended 2026-09-02 to also
+// evaluate Eldritch Invocation / Pact Boon prerequisites (engine/rules/
+// invocations.js calls straight into evaluatePrerequisite below) rather than
+// writing a second parallel checker — invocations need 3 condition types
+// feats never used (level, feature, cantrip) plus an `all_of` combinator for
+// the few invocations gated on two conditions at once (Thirsting Blade:
+// level 5 AND Pact of the Blade); feats only ever needed `any_of`.
 //
 // Deliberately a SOFT-ish evaluator for proficiency-type prerequisites:
 // almost no character in characters.json actually populates
@@ -18,6 +27,10 @@ const { loadFeat } = require('./grants')
 // are hard-enforced.
 function meetsAbility(scores, ability, min) {
   return (scores[ability] ?? 10) >= min
+}
+
+function normalizeName(name) {
+  return (name || '').trim().toLowerCase()
 }
 
 function matchesRace(character, races) {
@@ -129,6 +142,62 @@ function evaluatePrerequisite(character, prerequisite) {
               ' '
             )}.`,
         unknown: false,
+      }
+    }
+    // Below: added for Eldritch Invocations / Pact Boon, not used by any
+    // cataloged feat — see the file header comment.
+    case 'level': {
+      const cls = (character.classes || []).find(
+        (c) => normalizeName(c.name) === normalizeName(prerequisite.className)
+      )
+      const level = cls?.level ?? 0
+      const met = level >= prerequisite.level
+      return {
+        met,
+        reason: met
+          ? null
+          : `Requires ${prerequisite.className} level ${prerequisite.level}+.`,
+        unknown: false,
+      }
+    }
+    case 'feature': {
+      const met = (character.features || []).some(
+        (f) => normalizeName(f.name) === normalizeName(prerequisite.feature)
+      )
+      return {
+        met,
+        reason: met ? null : `Requires the "${prerequisite.feature}" feature.`,
+        unknown: false,
+      }
+    }
+    case 'cantrip': {
+      const met = (character.spells || []).some(
+        (s) =>
+          s.level === 0 &&
+          normalizeName(s.name) === normalizeName(prerequisite.spell)
+      )
+      return {
+        met,
+        reason: met
+          ? null
+          : `Requires knowing the ${prerequisite.spell} cantrip.`,
+        unknown: false,
+      }
+    }
+    case 'all_of': {
+      const results = prerequisite.all.map((p) =>
+        evaluatePrerequisite(character, p)
+      )
+      const met = results.every((r) => r.met)
+      return {
+        met,
+        reason: met
+          ? null
+          : results
+              .filter((r) => !r.met)
+              .map((r) => r.reason)
+              .join(' '),
+        unknown: results.some((r) => r.unknown),
       }
     }
     default:

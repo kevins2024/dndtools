@@ -13,6 +13,16 @@
   "weapon_proficiencies": [
     "simple"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "history",
+      "insight",
+      "medicine",
+      "persuasion",
+      "religion"
+    ]
+  },
   "subclass_name": "Divine Domain",
   "subclass_choice_level": 1,
   "subclass_feature_levels": [
@@ -42,11 +52,103 @@
     "1": [
       "gen_cleric_base_spellcasting"
     ],
+    "2": [
+      "channel-divinity-1-rest",
+      "channel-divinity-turn-undead"
+    ],
+    "5": [
+      "pub_destroy-undead-cr-1"
+    ],
+    "6": [
+      "channel-divinity-2-rest"
+    ],
     "10": [
       "divine-intervention"
+    ],
+    "18": [
+      "channel-divinity-3-rest"
     ],
     "20": [
       "gen_cleric_base_divine-intervention-improvement"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Shield"
+      },
+      {
+        "name": "Holy Symbol"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Mace"
+            }
+          ],
+          [
+            {
+              "name": "Warhammer"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Scale Mail"
+            }
+          ],
+          [
+            {
+              "name": "Leather Armor"
+            }
+          ],
+          [
+            {
+              "name": "Chain Mail"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Light Crossbow"
+            },
+            {
+              "name": "Bolts",
+              "qty": 20
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Priest's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "5d4x10"
   }
 }

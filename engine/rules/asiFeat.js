@@ -7,9 +7,17 @@ const SCORE_CAP = 20 // standard 5e cap; Epic Boons pushing past this are out of
 // caller is allowed to spend in total — that's a rule specific to WHERE the
 // increase came from (a full ASI vs. a feat's own fixed bump), enforced by
 // the caller, not here.
+//
+// Also returns `deltas` — the ACTUAL applied change per ability (after minus
+// before, so a cap reduces the recorded delta below the requested amount).
+// This is what diffLevelUp.js turns into an ability_score_history entry —
+// deltas are the ground truth for "how much did this specific bump really
+// contribute," not the requested amount, so history always sums correctly
+// to the final stat even when a bump gets partially or fully capped.
 function bumpAbilities(scores, increases) {
   const next = { ...scores }
   const notes = []
+  const deltas = []
   for (const [ability, amount] of Object.entries(increases)) {
     if (!ABILITIES.includes(ability)) {
       throw new Error(`Unknown ability "${ability}".`)
@@ -24,8 +32,9 @@ function bumpAbilities(scores, increases) {
       )
     }
     next[ability] = after
+    deltas.push({ ability, amount: after - before })
   }
-  return { scores: next, notes }
+  return { scores: next, notes, deltas }
 }
 
 // The standard Ability Score Improvement: always +2 total, either +2 to one
@@ -70,12 +79,14 @@ function applyFeatChoice(
         `"${featName}" isn't in the feat catalog yet — record it manually, no automatic ability bump applied.`,
       ],
       feature: null,
+      deltas: [],
     }
   }
 
   let ability = abilityChoice
   let nextScores = scores
   let notes = []
+  let deltas = [] // empty when the feat has no ability_score_increase at all (e.g. Alert, Skilled)
 
   if (feat.ability_score_increase) {
     const { choice_of: choiceOf, amount } = feat.ability_score_increase
@@ -95,6 +106,7 @@ function applyFeatChoice(
     const bumped = bumpAbilities(scores, { [ability]: amount })
     nextScores = bumped.scores
     notes = bumped.notes
+    deltas = bumped.deltas
   }
 
   const feature = {
@@ -109,7 +121,7 @@ function applyFeatChoice(
     grants_spells: feat.grants_spells ?? null,
   }
 
-  return { scores: nextScores, notes, feature }
+  return { scores: nextScores, notes, feature, deltas }
 }
 
 // resolution: { type: 'asi', increases: {str:1,dex:1} }

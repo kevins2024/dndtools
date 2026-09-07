@@ -15,6 +15,22 @@
     "rapier",
     "shortsword"
   ],
+  "skill_choices": {
+    "count": 4,
+    "options": [
+      "acrobatics",
+      "athletics",
+      "deception",
+      "insight",
+      "intimidation",
+      "investigation",
+      "perception",
+      "performance",
+      "persuasion",
+      "sleight_of_hand",
+      "stealth"
+    ]
+  },
   "subclass_name": "Roguish Archetype",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -71,5 +87,73 @@
     "20": [
       "stroke-of-luck"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Leather Armor"
+      },
+      {
+        "name": "Dagger",
+        "qty": 2
+      },
+      {
+        "name": "Thieves' Tools"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Rapier"
+            }
+          ],
+          [
+            {
+              "name": "Shortsword"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Shortbow"
+            },
+            {
+              "name": "Arrows",
+              "qty": 20
+            }
+          ],
+          [
+            {
+              "name": "Shortsword"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Burglar's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Dungeoneer's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "4d4x10"
   }
 }

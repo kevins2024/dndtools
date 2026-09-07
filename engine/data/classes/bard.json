@@ -15,6 +15,10 @@
     "rapier",
     "shortsword"
   ],
+  "skill_choices": {
+    "count": 3,
+    "options": "any"
+  },
   "subclass_name": "Bard College",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -68,5 +72,55 @@
     "20": [
       "superior-inspiration"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Leather Armor"
+      },
+      {
+        "name": "Dagger"
+      },
+      {
+        "name": "Musical Instrument"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Rapier"
+            }
+          ],
+          [
+            {
+              "name": "Longsword"
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Weapon",
+              "filter": "simple"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Diplomat's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Entertainer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "5d4x10"
   }
 }

@@ -15,6 +15,17 @@
     "simple",
     "martial"
   ],
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "athletics",
+      "insight",
+      "intimidation",
+      "medicine",
+      "persuasion",
+      "religion"
+    ]
+  },
   "subclass_name": "Sacred Oath",
   "subclass_choice_level": 3,
   "subclass_feature_levels": [
@@ -58,5 +69,68 @@
     "18": [
       "gen_paladin_base_aura-improvements-30ft-radius"
     ]
+  },
+  "starting_equipment": {
+    "fixed": [
+      {
+        "name": "Chain Mail"
+      },
+      {
+        "name": "Holy Symbol"
+      }
+    ],
+    "choices": [
+      {
+        "options": [
+          [
+            {
+              "name": "Any Martial Weapon",
+              "filter": "martial"
+            },
+            {
+              "name": "Shield"
+            }
+          ],
+          [
+            {
+              "name": "Any Martial Weapon",
+              "filter": "martial",
+              "qty": 2
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Javelin",
+              "qty": 5
+            }
+          ],
+          [
+            {
+              "name": "Any Simple Melee Weapon",
+              "filter": "simple-melee"
+            }
+          ]
+        ]
+      },
+      {
+        "options": [
+          [
+            {
+              "name": "Priest's Pack"
+            }
+          ],
+          [
+            {
+              "name": "Explorer's Pack"
+            }
+          ]
+        ]
+      }
+    ],
+    "gold_alternative": "5d4x10"
   }
 }
