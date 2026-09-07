@@ -1385,5 +1385,55 @@
     "personality_traits": "Knows the history of his stock. Prices fairly without being pushed to. Wants to know how things perform after they leave his hands.",
     "personality_quirks": "Included a dozen arrows without being asked. Asked to be told how the bow shoots after she's had it out a few times — not a sales request, genuine interest.",
     "notes": "NAME IS A PLACEHOLDER — character-naming skill not yet run. Sold Pirra the Laminated Marking Shortbow +1 for 60 gold. Makes his own arrows. Acknowledged the enchantress by name when Pirra mentioned not liking her vibe — confirmed she's the best in the city regardless."
+  },
+  {
+    "name": "Griffas",
+    "location": "Tilawam",
+    "faction": "Independent",
+    "role": "Innkeeper",
+    "appearance": "Broader, heavier-featured local woman, older, grey at the temples",
+    "description": "Owner of Repose. Speaks no Common but communicates effectively. Moves through her establishment with the ease of someone who has memorized every creaking board.",
+    "notes": "",
+    "id": "npcs_87"
+  },
+  {
+    "name": "Sevrak",
+    "location": "Tilawam",
+    "faction": "Independent",
+    "role": "Runs underground fight nights",
+    "appearance": "Drevani, yellow streak in thundercloud-grey fur, multiple piercings",
+    "description": "Operates a basement fighting venue in the Drevani neighborhood. Sharp, professional, reads a crowd instinctively.",
+    "notes": "",
+    "id": "npcs_88"
+  },
+  {
+    "name": "Drevna",
+    "location": "Tilawam",
+    "faction": "Dawn Blades",
+    "role": "Captain, Eye of the Deep",
+    "appearance": "Broader, heavier-featured local, tall for her build, stillness of someone who makes decisions for a living",
+    "description": "Hired captain, lost her previous ship six weeks prior to hiring. Direct, professional, doesn't waste words.",
+    "notes": "",
+    "id": "npcs_89"
+  },
+  {
+    "name": "Brathek",
+    "location": "Tilawam",
+    "faction": "Dawn Blades",
+    "role": "Captain, Ocean Huntress",
+    "appearance": "Weathered, economy of movement, answers after finishing his thinking rather than during it",
+    "description": "Hired captain, exceptional knowledge of the southern archipelago. Low voice, few words, deep local expertise.",
+    "notes": "",
+    "id": "npcs_90"
+  },
+  {
+    "name": "Delvanken",
+    "location": "Tilawam",
+    "faction": "Dawn Blades",
+    "role": "Captain, Tilawam Sky",
+    "appearance": "Hei'ugar, sky-watcher's habitual upward glance",
+    "description": "Led the Hei'ugar crew of the seized cargo vessel through the coalition rescue operation. Loyal, capable under pressure, chose to stay with the Dawn Blades afterward.",
+    "notes": "",
+    "id": "npcs_91"
   }
 ]

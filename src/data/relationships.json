@@ -57,7 +57,7 @@
     ],
     "type": null,
     "notes": "Watches him work with genuine fascination. She watches him work with genuine fascination.",
-    "strength": 0
+    "strength": 3
   },
   {
     "id": "rel_8",
@@ -425,6 +425,96 @@
     "people": [
       "therynv'l",
       "lyria"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_71",
+    "people": [
+      "jaygar",
+      "kerra"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_72",
+    "people": [
+      "jaygar",
+      "revven"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_73",
+    "people": [
+      "jaygar",
+      "elucyne"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_74",
+    "people": [
+      "rhuna",
+      "kerra"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_75",
+    "people": [
+      "rhuna",
+      "revven"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_76",
+    "people": [
+      "rhuna",
+      "elucyne"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_77",
+    "people": [
+      "kerra",
+      "revven"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_78",
+    "people": [
+      "kerra",
+      "elucyne"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_79",
+    "people": [
+      "revven",
+      "elucyne"
     ],
     "type": null,
     "notes": "",

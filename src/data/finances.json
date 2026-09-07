@@ -1,8 +1,13 @@
 {
   "party_purse": {
-    "gold": 88732,
+    "gold": 241732,
     "weave_dust": 0,
     "notes": "On hand, accessible immediately."
+  },
+  "crossing_profit": {
+    "pending": null,
+    "awaiting_application": null,
+    "notes": "Tracks the Crossing Profit System (see house_rules.json) between the Weekly Events tool's two-week cycle. `pending` holds week 1's rolled result (or null between cycles). `awaiting_application` holds the computed 2-week combined result once week 2 has been rolled but NOT yet applied to party_purse.gold — that's a deliberate explicit step (an 'Apply to Party Purse' button in the tool), not automatic, since real gold is at stake. Rolling further is blocked while a result is awaiting application, so nothing can be silently overwritten or lost."
   },
   "income": [
     {

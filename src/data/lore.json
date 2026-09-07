@@ -181,6 +181,39 @@
   "detail": "Roughly 100 years ago a legend circulated that an artifact or font of immense power was located at the site of the abandoned first settlement. Two wealthy families funded expeditions, found nothing — the legend is almost certainly false — but built infrastructure in the process and the settlement stuck. The gossip of opportunity became self-fulfilling regardless of the legend's truth.",
   "date": "",
   "source_session": "Valdmere Chat 3"
+},
+{
+  "id": "lore_yetgrese_ghost_battle",
+  "type": "legend",
+  "location_tags": ["yetgrese_crossing"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "A spectral naval battle recurs in the mid-ocean crossing between Aethermoor and Yetgrese — two ghost ships locked in an engagement from centuries past that periodically draws in and destroys living vessels caught in its current.",
+  "detail": "The battle appears without warning, pulling nearby ships into the current surrounding it. The dead crews, still fighting a war they lost long ago, treat any living vessel drawn in as an enemy combatant. No known origin story for the battle has surfaced — only that it is old enough to have become one of the standing reasons the crossing is considered so dangerous.",
+  "date": "",
+  "source_session": "Yetgrese crossing arc"
+},
+{
+  "id": "lore_yetgrese_luminescence",
+  "type": "legend",
+  "location_tags": ["yetgrese_crossing"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "A luminescent phenomenon appears on the northern horizon during the Yetgrese crossing, causing lost time in anyone who looks at it too long. Sailors call it a visual siren.",
+  "detail": "Unlike an audible siren, this phenomenon operates purely through sustained visual attention — minutes pass unnoticed by anyone who stares too long, with no memory of the lost time. It reappears at roughly the same latitude on successive nights of a crossing, suggesting it is tied to a location rather than being random. Experienced navigators know to pair night watches so no one stands watch alone near it.",
+  "date": "",
+  "source_session": "Yetgrese crossing arc"
+},
+{
+  "id": "lore_tilawam_dual_government",
+  "type": "political_change",
+  "location_tags": ["tilawam"],
+  "entity_tags": [],
+  "status": "known_to_party",
+  "summary": "Roughly a century ago (~Year 368), Tilawam's monarchy collapsed following civil unrest. Two factions — an aristocratic conglomerate and a union of working-class officials — both claimed governing authority, and rather than resolve the conflict through further war, evolved over a century into a permanent power-sharing system.",
+  "detail": "The resulting government splits into Magistrates (elected by the upper classes) and Councillors (elected by the lower classes), roughly a 1:4 ratio in seat count but with equal collective voting power. No law can pass on a tied vote — there is no tiebreaker mechanism; deadlocked votes return to discussion and are revisited two weeks later. Banks are responsible for honestly reporting household wealth, which determines voting class eligibility, making Tilawam's banking institutions unusually rigorous and protected by both governments jointly.",
+  "date": "~Year 368",
+  "source_session": "Tilawam arc"
 }
 ]
 // finished at chat 9 so far

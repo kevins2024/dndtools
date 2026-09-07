@@ -26,10 +26,10 @@
     "passengers": null,
     "cargo": null,
     "home_port": "Ravenquay",
-    "current_location": null,
+    "current_location": "Running the Yetgrese-Kaemahz crossing (Crossing Profit System)",
     "armament": null,
     "condition": null,
-    "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5. Flagship. Updated with power source, +60% speed.",
+    "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5. Flagship. Updated with power source, +60% speed. As of 2026-09-03, occupied running the Yetgrese-Kaemahz crossing route until the party decides to stop it — see the Crossing Profit System house rule.",
     "crew": [{ "name": "Seris", "role": "Captain", "initMod": 3 }],
     "type": "ship"
   },
@@ -244,10 +244,10 @@
     "passengers": null,
     "cargo": null,
     "home_port": "Ravenquay",
-    "current_location": null,
+    "current_location": "Running the Yetgrese-Kaemahz crossing (Crossing Profit System)",
     "armament": null,
     "condition": null,
-    "notes": "Manageable with reduced crew of 5. Very dark hull and signs of repairs. Some sections of wood are double-thick.",
+    "notes": "Manageable with reduced crew of 5. Very dark hull and signs of repairs. Some sections of wood are double-thick. As of 2026-09-03, occupied running the Yetgrese-Kaemahz crossing route until the party decides to stop it — see the Crossing Profit System house rule.",
     "crew": [{ "name": "Erren Sault", "role": "Captain", "initMod": 2 }],
     "type": "ship"
   },
@@ -401,5 +401,21 @@
     "status": "acquired",
     "ownership": "Dawn Blades",
     "notes": "A compact waterfront complex comprising two stone buildings flanking a sheltered mooring area. The larger building rises three levels and anchors the eastern end of the property; the smaller stands two levels to the west, with the gap between them forming a natural, partially enclosed berth. A small wooden dock extends from the mooring area into the water. Stone construction throughout the buildings, functional and solid. The layout gives the complex a natural discretion — vessels can moor out of open view, with direct access to both structures."
+  },
+  {
+    "id": "assets_30",
+    "name": "Tilawam Sky",
+    "subtype": "heavy cargo vessel",
+    "captain": "Delvanken",
+    "crew_full": null,
+    "crew_current": null,
+    "passengers": null,
+    "cargo": null,
+    "home_port": "Tilawam",
+    "current_location": "Running the Yetgrese-Kaemahz crossing (Crossing Profit System)",
+    "armament": null,
+    "notes": "Crewed by Hei'ugar sailors who have proven loyal and capable under pressure. Larger cargo capacity than average. Added 2026-09-03, joining Gilt Blades and Argent Sunrise running the Yetgrese-Kaemahz crossing until the party decides to stop it — see the Crossing Profit System house rule.",
+    "crew": [],
+    "type": "ship"
   }
 ]

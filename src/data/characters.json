@@ -3644,6 +3644,13 @@
         "type": "prepared"
       },
       {
+        "name": "Stormward Vow",
+        "level": 3,
+        "prepared": true,
+        "type": "prepared",
+        "_source": "Signature spell — Veleth (love/desire/friendship/physical connection)"
+      },
+      {
         "name": "Sacred Flame",
         "level": 0,
         "prepared": true,
@@ -5605,6 +5612,14 @@
         "id": "hb_infused_arbalist_unstable_rounds",
         "type": "feature",
         "level_gained": 9,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Fade Away",
+        "id": "pub_fade-away",
+        "type": "feat",
+        "level_gained": 8,
+        "ability_choice": "int",
         "_source": "Artificer"
       }
     ],
