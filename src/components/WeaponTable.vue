@@ -77,12 +77,64 @@
                   }}</span></span
                 >
                 <span
-                  v-for="name in weaponSpellsFor(row.name)"
-                  :key="name"
+                  v-for="g in weaponSpellsFor(row.name)"
+                  :key="g.name"
                   class="feature-pill"
-                  @click="inspectSpell(name)"
-                  >{{ name }}</span
                 >
+                  <span @click="inspectSpell(g)">{{ g.name }}</span>
+                  <span v-if="g.actionType" class="pill-action">{{
+                    dnd.actionTypeBadgeLabel(g.actionType)
+                  }}</span>
+                  <span
+                    v-if="typeof g.chargeCost === 'number'"
+                    class="pill-uses has-tip"
+                    :title="`${g.chargeCost} charge(s) from ${row.name}'s pool`"
+                    >{{ g.chargeCost }}⚡</span
+                  >
+                  <template v-else-if="g.chargeCost">
+                    <input
+                      type="number"
+                      class="pill-cast-input"
+                      :min="g.chargeCost.min"
+                      :max="
+                        Math.min(
+                          g.chargeCost.max,
+                          weaponItem(row.name).charges_current ?? 0
+                        )
+                      "
+                      :value="castAmount(weaponItem(row.name), g)"
+                      title="Charges to spend (your choice, higher = cast at a higher effective level)"
+                      @click.stop
+                      @input="
+                        setCastAmount(
+                          weaponItem(row.name),
+                          g,
+                          $event.target.value
+                        )
+                      "
+                    />
+                    <span class="pill-uses">⚡</span>
+                  </template>
+                  <span
+                    v-if="g.usesMax != null"
+                    class="pill-uses has-tip"
+                    :title="`${g.usesCurrent ?? g.usesMax} of ${
+                      g.usesMax
+                    } uses remaining · recharges ${dnd.rechargeLabel(
+                      g.recharge
+                    )}`"
+                    >{{ g.usesCurrent ?? g.usesMax }}/{{ g.usesMax }}</span
+                  >
+                  <button
+                    v-if="isCastable(g)"
+                    class="pill-cast-btn"
+                    :disabled="!canCast(weaponItem(row.name), g)"
+                    title="Spend the cost and cast"
+                    @click.stop="cast(weaponItem(row.name), g)"
+                  >
+                    Cast
+                  </button>
+                </span>
               </td>
             </template>
             <template v-else>
@@ -110,12 +162,15 @@ import {
   buildFeaturePopupData,
   buildSpellPopupData,
 } from '@/utils/detailPopupBuilders.js'
+import itemSpellCasting from '@/mixins/itemSpellCasting.js'
 import { Search } from 'lucide-vue'
 
 export default {
   name: 'WeaponTable',
 
   components: { Search },
+
+  mixins: [itemSpellCasting],
 
   props: {
     character: { type: Object, required: true },
@@ -173,14 +228,23 @@ export default {
     // Fire onto the target) — kept separate from weapon_effects so their
     // tooltip comes from the actual spell data (lookupSpell, via
     // buildSpellPopupData) instead of hand-copied spell text going stale.
+    // Normalized via dnd.normalizeItemSpellGrant so a weapon-slot item like
+    // Staff of Power gets the same accurate per-spell action/cost/material
+    // handling as BattleItemsPanel gives wondrous items.
     weaponSpellsFor(name) {
-      return this.weaponItem(name)?.spells_granted ?? []
+      const item = this.weaponItem(name)
+      return (item?.spells_granted ?? []).map((entry) =>
+        dnd.normalizeItemSpellGrant(entry, item)
+      )
     },
     async inspectEffect(effect) {
       this.$emit('inspect', await buildFeaturePopupData(effect))
     },
-    async inspectSpell(name) {
-      this.$emit('inspect', await buildSpellPopupData({ name }))
+    async inspectSpell(grant) {
+      this.$emit(
+        'inspect',
+        await buildSpellPopupData({ name: grant.name, level: null, grant })
+      )
     },
     inspect(item) {
       this.$emit('inspect', buildItemPopupData(item))
@@ -340,6 +404,52 @@ export default {
   font-size: 0.75em;
   color: var(--color-text-low);
   font-style: italic;
+}
+
+.pill-action {
+  margin-left: 0.35em;
+  font-size: 0.7em;
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-low);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pill-cast-input {
+  width: 2.4em;
+  margin-left: 0.35em;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: 0.75em;
+  padding: 0 0.2em;
+}
+
+.pill-cast-btn {
+  margin-left: 0.35em;
+  font-size: 0.7em;
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+  border: 1px solid var(--color-accent);
+  background: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pill-cast-btn:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.pill-cast-btn:disabled {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
+  cursor: not-allowed;
 }
 
 /* .section-label is a global style (see App.vue) — not redefined here. */

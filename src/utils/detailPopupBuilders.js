@@ -19,6 +19,48 @@ export async function buildSpellPopupData(spell) {
   if (data?.save) fields.push({ label: 'Save', value: data.save })
   if (data?.damage_type) fields.push({ label: 'Dmg', value: data.damage_type })
 
+  // Item-granted spells carry their own real cost/action data (see
+  // dnd.normalizeItemSpellGrant) — this can genuinely differ from the
+  // spell's own casting_time (a magic item can grant a faster or slower
+  // cast than the spell normally has), so it's surfaced as its own field
+  // rather than assumed to match.
+  if (spell.grant) {
+    const g = spell.grant
+    if (g.actionType)
+      fields.push({
+        label: 'Via item',
+        value: dnd.actionTypeBadgeLabel(g.actionType),
+      })
+    if (typeof g.chargeCost === 'number')
+      fields.push({
+        label: 'Cost',
+        value: `${g.chargeCost} charge${g.chargeCost === 1 ? '' : 's'}`,
+      })
+    else if (g.chargeCost && typeof g.chargeCost === 'object')
+      fields.push({
+        label: 'Cost',
+        value: `${g.chargeCost.min}-${g.chargeCost.max} charges (your choice)`,
+      })
+    else if (g.usesMax != null)
+      fields.push({
+        label: 'Uses',
+        value: `${g.usesCurrent ?? g.usesMax}/${g.usesMax}${
+          g.recharge ? ` · ${dnd.rechargeLabel(g.recharge)}` : ''
+        }`,
+      })
+    if (g.materialComponentRequired) {
+      fields.push({
+        label: 'Material',
+        value: data?.material ?? 'Required — bring your own component',
+      })
+    } else if (data?.components?.includes('M')) {
+      fields.push({
+        label: 'Material',
+        value: 'Not required — item substitutes',
+      })
+    }
+  }
+
   // spell.level is null for item/feature-granted spells (the grant doesn't
   // record a level) — fall back to the looked-up spell's own real level
   // rather than showing "Level null".
@@ -50,7 +92,17 @@ export async function buildSpellPopupData(spell) {
 }
 
 export async function buildFeaturePopupData(feature) {
-  const data = await lookupFeature(feature.name, feature.id)
+  // Species traits carry their own real description straight from
+  // engine/data/species.json (copied onto the character record at creation
+  // time — see NewCharacterTool.vue's speciesTraitRecords) — deliberately
+  // skip the name-based lookupFeature cascade for these rather than risk the
+  // exact "Lucky" (Halfling racial trait) vs. "Lucky" (PHB feat) collision
+  // class of bug lookupFeature has already hit once (see
+  // engine/CHECKLIST.md's feat-catalog writeup).
+  const data =
+    feature.type === 'speciesTrait' && feature.description
+      ? { subtitle: null, description: feature.description }
+      : await lookupFeature(feature.name, feature.id)
   const fields = []
   if (feature.action_type)
     fields.push({ label: 'Action', value: feature.action_type })
@@ -63,7 +115,10 @@ export async function buildFeaturePopupData(feature) {
         : String(feature.uses_max)
     fields.push({ label: 'Uses', value: uses })
   }
-  if (feature.description)
+  // Skip for species traits — their description is already the main body
+  // above (data.description), so repeating it as an "Effect" field would
+  // just show the same text twice.
+  if (feature.description && feature.type !== 'speciesTrait')
     fields.push({ label: 'Effect', value: feature.description })
   if (feature.note) fields.push({ label: 'Note', value: feature.note })
   return {

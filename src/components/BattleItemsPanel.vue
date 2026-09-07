@@ -42,9 +42,53 @@
             :key="g.key"
             class="grant-pill"
             :class="`grant-pill--${g.kind}`"
-            @click="inspectGrant(g)"
-            >{{ g.label }}</span
           >
+            <span class="grant-label" @click="inspectGrant(g)">{{
+              g.label
+            }}</span>
+            <template v-if="g.kind === 'spell'">
+              <span
+                v-if="g.grant.actionType"
+                class="cost-badge"
+                :class="`cost-badge--${g.grant.actionType}`"
+                >{{ costLabel(g.grant.actionType) }}</span
+              >
+              <span
+                v-if="typeof g.grant.chargeCost === 'number'"
+                class="resource-note"
+                >{{ g.grant.chargeCost }}⚡</span
+              >
+              <template v-else-if="g.grant.chargeCost">
+                <input
+                  type="number"
+                  class="cast-amount-input"
+                  :min="g.grant.chargeCost.min"
+                  :max="
+                    Math.min(g.grant.chargeCost.max, item.charges_current ?? 0)
+                  "
+                  :value="castAmount(item, g.grant)"
+                  title="Charges to spend (your choice, higher = cast at a higher effective level)"
+                  @click.stop
+                  @input="setCastAmount(item, g.grant, $event.target.value)"
+                />
+                <span class="resource-note">⚡</span>
+              </template>
+              <span v-else-if="g.grant.usesMax != null" class="resource-note"
+                >{{ g.grant.usesCurrent ?? g.grant.usesMax }}/{{
+                  g.grant.usesMax
+                }}</span
+              >
+              <button
+                v-if="isCastable(g.grant)"
+                class="cast-btn"
+                :disabled="!canCast(item, g.grant)"
+                title="Spend the cost and cast"
+                @click.stop="cast(item, g.grant)"
+              >
+                Cast
+              </button>
+            </template>
+          </span>
         </div>
       </div>
     </div>
@@ -57,22 +101,16 @@ import {
   buildSpellPopupData,
   buildFeaturePopupData,
 } from '@/utils/detailPopupBuilders.js'
+import { dnd } from '@/utils/dnd_utils.js'
+import itemSpellCasting from '@/mixins/itemSpellCasting.js'
 import { Search } from 'lucide-vue'
-
-const COST_LABEL = {
-  action: 'Action',
-  bonus_action: 'Bonus',
-  reaction: 'Reaction',
-  // Triggers as part of an action already being taken (an attack, a spell
-  // cast) rather than costing one of its own — distinct from a true
-  // always-on passive bonus, which needs no trigger at all.
-  free: 'Free',
-}
 
 export default {
   name: 'BattleItemsPanel',
 
   components: { Search },
+
+  mixins: [itemSpellCasting],
 
   props: {
     character: { type: Object, required: true },
@@ -98,12 +136,19 @@ export default {
 
   methods: {
     costLabel(actionType) {
-      return COST_LABEL[actionType] ?? 'Passive'
+      return dnd.actionTypeBadgeLabel(actionType)
     },
     grantsFor(item) {
       const grants = []
-      for (const name of item.spells_granted ?? []) {
-        grants.push({ key: `spell:${name}`, kind: 'spell', label: name, name })
+      for (const entry of item.spells_granted ?? []) {
+        const g = dnd.normalizeItemSpellGrant(entry, item)
+        grants.push({
+          key: `spell:${g.name}`,
+          kind: 'spell',
+          label: g.name,
+          name: g.name,
+          grant: g,
+        })
       }
       for (const name of item.features_granted ?? []) {
         grants.push({
@@ -129,7 +174,11 @@ export default {
       const data =
         grant.kind === 'feature'
           ? await buildFeaturePopupData({ name: grant.name })
-          : await buildSpellPopupData({ name: grant.name, level: null })
+          : await buildSpellPopupData({
+              name: grant.name,
+              level: null,
+              grant: grant.grant,
+            })
       this.$emit('inspect', data)
     },
     inspect(item) {
@@ -230,7 +279,9 @@ export default {
 }
 
 .grant-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   margin: 1px 0.3rem 1px 0;
   font-size: var(--font-size-base);
   padding: 0.1rem 0.45rem;
@@ -238,17 +289,65 @@ export default {
   border: 1px solid var(--color-border);
   background: var(--color-bg-panel);
   color: var(--color-text-muted);
-  cursor: pointer;
-  transition: border-color 0.12s ease, color 0.12s ease;
+  transition: border-color 0.12s ease;
 }
 
 .grant-pill:hover {
   border-color: var(--color-accent);
-  color: var(--color-accent);
 }
 
 .grant-pill--stored {
   font-style: italic;
   color: var(--color-text-low);
+}
+
+.grant-label {
+  cursor: pointer;
+  transition: color 0.12s ease;
+}
+
+.grant-label:hover {
+  color: var(--color-accent);
+}
+
+.resource-note {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+}
+
+.cast-amount-input {
+  width: 2.6em;
+  flex-shrink: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: var(--font-size-xs);
+  padding: 0 0.2em;
+}
+
+.cast-btn {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  padding: 0.05rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid var(--color-accent);
+  background: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cast-btn:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.cast-btn:disabled {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
+  cursor: not-allowed;
 }
 </style>

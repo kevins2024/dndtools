@@ -15,23 +15,61 @@ function rollDiceExpr(expr) {
   return Math.max(0, total)
 }
 
+function nextPartyItemNum(items) {
+  const nums = items
+    .map((i) => /^items_(\d+)$/.exec(String(i.id ?? ''))?.[1])
+    .filter(Boolean)
+    .map(Number)
+  return nums.length ? Math.max(...nums) + 1 : 0
+}
+
+function nextPartyItemId(items) {
+  return `items_${nextPartyItemNum(items)}`
+}
+
+// A dice-expression recharge (e.g. a wand's "1d6+1") rolls on any
+// qualifying rest call regardless of which rechargeTypes bucket that call
+// passes — matches this function's pre-existing behavior, kept as-is.
+function shouldGrantRecharge(recharge, rechargeTypes) {
+  if (!recharge || recharge === 'none') return false
+  if (String(recharge).match(/\d+d\d+/)) return true
+  return rechargeTypes.includes(recharge)
+}
+
 function rechargeItems(items, rechargeTypes) {
   return items.map((item) => {
-    if (item.charges_current == null || item.charges_max == null) return item
-    const r = item.charges_recharge
-    if (!r || r === 'none') return item
-    if (!rechargeTypes.includes(r) && !r.match(/\d+d\d+/)) return item
-    if (r.match(/\d+d\d+/)) {
-      const gained = rollDiceExpr(r)
-      return {
-        ...item,
-        charges_current: Math.min(
-          item.charges_max,
-          (item.charges_current ?? 0) + gained
-        ),
+    let next = item
+
+    if (item.charges_current != null && item.charges_max != null) {
+      const r = item.charges_recharge
+      if (shouldGrantRecharge(r, rechargeTypes)) {
+        next = String(r).match(/\d+d\d+/)
+          ? {
+              ...next,
+              charges_current: Math.min(
+                next.charges_max,
+                (next.charges_current ?? 0) + rollDiceExpr(r)
+              ),
+            }
+          : { ...next, charges_current: next.charges_max }
       }
     }
-    return { ...item, charges_current: item.charges_max }
+
+    // Independent per-spell uses (spells_granted objects with their own
+    // uses_max/recharge, not drawn from the item's shared charge pool —
+    // see dnd.normalizeItemSpellGrant) recharge the same way, per-entry.
+    if (Array.isArray(item.spells_granted)) {
+      let changed = false
+      const newGrants = item.spells_granted.map((g) => {
+        if (typeof g === 'string' || g.uses_max == null) return g
+        if (!shouldGrantRecharge(g.recharge, rechargeTypes)) return g
+        changed = true
+        return { ...g, uses_current: g.uses_max }
+      })
+      if (changed) next = { ...next, spells_granted: newGrants }
+    }
+
+    return next
   })
 }
 
@@ -236,17 +274,40 @@ export default new Vuex.Store({
     SET_LOADED(state, value) {
       state.loaded = value
     },
+    // nextPartyItemId: ids are "items_N" strings (every existing entry, per
+    // party_items.json), not bare numbers — Math.max(...ids) against those
+    // silently produces NaN (Number("items_1") is NaN), so every call here
+    // used to mint a broken `id: NaN` item. Parse the numeric suffix instead,
+    // same fix pattern as nextCharacterId() in NewCharacterTool.vue.
     ADD_PARTY_ITEM(state, item) {
-      const nextId =
-        state.party_items.length > 0
-          ? Math.max(...state.party_items.map((i) => i.id)) + 1
-          : 0
+      const nextId = nextPartyItemId(state.party_items)
       const activeParty = state.parties.find((p) => p.active)
       const newItem = { ...item, id: nextId }
       if (newItem.carried_by === 'party' && !newItem.party_id && activeParty) {
         newItem.party_id = activeParty.id
       }
       state.party_items.push(newItem)
+      if (!state.dirtyTables.includes('party_items')) {
+        state.dirtyTables.push('party_items')
+      }
+    },
+    // Batch version — mints sequential ids for a whole loadout (e.g. New
+    // Character Tool's starting equipment) in one commit, rather than N
+    // separate commits each re-scanning party_items for the next id.
+    ADD_PARTY_ITEMS(state, items) {
+      let nextNum = nextPartyItemNum(state.party_items)
+      const activeParty = state.parties.find((p) => p.active)
+      for (const item of items ?? []) {
+        const newItem = { ...item, id: `items_${nextNum++}` }
+        if (
+          newItem.carried_by === 'party' &&
+          !newItem.party_id &&
+          activeParty
+        ) {
+          newItem.party_id = activeParty.id
+        }
+        state.party_items.push(newItem)
+      }
       if (!state.dirtyTables.includes('party_items')) {
         state.dirtyTables.push('party_items')
       }
@@ -457,10 +518,15 @@ export default new Vuex.Store({
         state.dirtyTables.push('characters')
       state.restVersion += 1
 
-      // Item charges — daily and short_rest both recharge on long rest; dice items auto-roll
+      // Item charges — daily and short_rest both recharge on long rest; dice items auto-roll.
+      // 'long_rest' itself was missing from this list (a real pre-existing bug —
+      // items_228's Signet Ring uses charges_recharge: "long_rest" and never
+      // actually recharged on any rest before this fix, since this was the only
+      // call site that could plausibly match it).
       state.party_items = rechargeItems(state.party_items, [
         'daily',
         'short_rest',
+        'long_rest',
       ])
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
@@ -558,21 +624,78 @@ export default new Vuex.Store({
         (c) => c.name !== characterName
       )
     },
-    SPEND_CHARGE(state, itemId) {
+    // Payload is either a bare itemId (spend/restore 1, the original shape —
+    // still what CharacterInventory.vue's flat +/- buttons pass) or
+    // {itemId, amount} for a specific-cost spend, e.g. BattleItemsPanel
+    // casting a spell with a real charge_cost > 1.
+    SPEND_CHARGE(state, payload) {
+      const { itemId, amount = 1 } =
+        typeof payload === 'string' ? { itemId: payload } : payload
       state.party_items = state.party_items.map((item) =>
-        item.id === itemId && item.charges_current > 0
-          ? { ...item, charges_current: item.charges_current - 1 }
+        item.id === itemId
+          ? {
+              ...item,
+              charges_current: Math.max(0, item.charges_current - amount),
+            }
           : item
       )
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
     },
-    RESTORE_CHARGE(state, itemId) {
+    RESTORE_CHARGE(state, payload) {
+      const { itemId, amount = 1 } =
+        typeof payload === 'string' ? { itemId: payload } : payload
       state.party_items = state.party_items.map((item) =>
-        item.id === itemId && item.charges_current < item.charges_max
-          ? { ...item, charges_current: item.charges_current + 1 }
+        item.id === itemId
+          ? {
+              ...item,
+              charges_current: Math.min(
+                item.charges_max,
+                item.charges_current + amount
+              ),
+            }
           : item
       )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    // Spends one use of an independent, non-pooled spell grant (see
+    // dnd.normalizeItemSpellGrant's uses_max/uses_current) — e.g. one bead of
+    // a Necklace of Prayer Beads. When choiceGroup is set, every grant entry
+    // sharing that choice_group is decremented together, since they
+    // represent alternative effects drawn from the SAME single use (e.g. a
+    // Curing bead's choice of Cure Wounds or Lesser Restoration).
+    SPEND_GRANT_USE(state, { itemId, spellName, choiceGroup }) {
+      state.party_items = state.party_items.map((item) => {
+        if (item.id !== itemId || !Array.isArray(item.spells_granted))
+          return item
+        const newGrants = item.spells_granted.map((g) => {
+          if (typeof g === 'string' || g.uses_current == null) return g
+          const matches = choiceGroup
+            ? g.choice_group === choiceGroup
+            : g.name === spellName
+          if (!matches || g.uses_current <= 0) return g
+          return { ...g, uses_current: g.uses_current - 1 }
+        })
+        return { ...item, spells_granted: newGrants }
+      })
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    RESTORE_GRANT_USE(state, { itemId, spellName, choiceGroup }) {
+      state.party_items = state.party_items.map((item) => {
+        if (item.id !== itemId || !Array.isArray(item.spells_granted))
+          return item
+        const newGrants = item.spells_granted.map((g) => {
+          if (typeof g === 'string' || g.uses_current == null) return g
+          const matches = choiceGroup
+            ? g.choice_group === choiceGroup
+            : g.name === spellName
+          if (!matches || g.uses_current >= g.uses_max) return g
+          return { ...g, uses_current: g.uses_current + 1 }
+        })
+        return { ...item, spells_granted: newGrants }
+      })
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
     },
@@ -590,6 +713,35 @@ export default new Vuex.Store({
         state.finances.party_purse = { gold: 0 }
       }
       state.finances.party_purse.gold += Number(amount) || 0
+      if (!state.dirtyTables.includes('finances')) {
+        state.dirtyTables.push('finances')
+      }
+    },
+    // Crossing Profit System (house_rules.json) — `pending` holds week 1's
+    // rolled result across the tool's two-week cycle; null between cycles
+    // (right after week 2 combines, or before week 1 has ever been rolled).
+    // See WeeklyEvents.vue's rollCrossingProfit().
+    SET_CROSSING_PROFIT_PENDING(state, pending) {
+      state.finances = {
+        ...state.finances,
+        crossing_profit: { ...(state.finances.crossing_profit || {}), pending },
+      }
+      if (!state.dirtyTables.includes('finances')) {
+        state.dirtyTables.push('finances')
+      }
+    },
+    // Holds the computed 2-week combined result once week 2 has been
+    // rolled but before it's actually been applied to party_purse.gold —
+    // real gold changing hands is a deliberate explicit action (an "Apply"
+    // button), not automatic. See WeeklyEvents.vue's applyCrossingProfit().
+    SET_CROSSING_PROFIT_AWAITING(state, awaiting) {
+      state.finances = {
+        ...state.finances,
+        crossing_profit: {
+          ...(state.finances.crossing_profit || {}),
+          awaiting_application: awaiting,
+        },
+      }
       if (!state.dirtyTables.includes('finances')) {
         state.dirtyTables.push('finances')
       }

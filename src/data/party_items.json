@@ -418,7 +418,7 @@
     "id": "items_30",
     "slot": "back",
     "battle_effect": true,
-    "effect": "Attacks against you have disadvantage on the first attack roll each turn. Ends if you are incapacitated until the start of your next turn."
+    "effect": "While worn, projects an illusion making you appear to be standing near your actual location, giving any creature disadvantage on attack rolls against you. If you take damage, the property ceases to function until the start of your next turn. Suppressed while incapacitated, restrained, or otherwise unable to move."
   },
   {
     "name": "Ring of Free Action",
@@ -612,7 +612,15 @@
     "slot": "back",
     "battle_effect": true,
     "action_type": "action",
-    "spells_granted": ["Web"]
+    "spells_granted": [
+      {
+        "name": "Web",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ]
   },
   {
     "name": "Cold Dagger +2",
@@ -803,7 +811,7 @@
     "id": "items_57",
     "slot": "back",
     "battle_effect": true,
-    "effect": "Attacks against you have disadvantage on the first attack roll each turn. Ends if you are incapacitated until the start of your next turn."
+    "effect": "While worn, projects an illusion making you appear to be standing near your actual location, giving any creature disadvantage on attack rolls against you. If you take damage, the property ceases to function until the start of your next turn. Suppressed while incapacitated, restrained, or otherwise unable to move."
   },
   {
     "name": "Leather Armor +2",
@@ -830,7 +838,7 @@
     "effect": "When bearer is hit by melee attack, attacker takes 1d6 force damage.",
     "notes": "",
     "id": "items_59",
-    "slot": "melee1h",
+    "slot": "shield",
     "battle_effect": true,
     "stored_at": null,
     "party_id": "party_1782820688153"
@@ -1136,7 +1144,7 @@
     "effect": "Display any image or symbol on shield face.",
     "notes": "Cosmetic.",
     "id": "items_79",
-    "slot": "melee1h"
+    "slot": "shield"
   },
   {
     "name": "Amulet of the Devout +2",
@@ -1565,13 +1573,26 @@
     "charges_current": 6,
     "charges_max": 6,
     "charges_recharge": "daily",
-    "effect": "Cast Magic Missile at 5th level using charges. +1 saving throws. Planewalk to Astral Plane.",
-    "notes": "",
+    "effect": "Touch one of the robe's 6 star-charges to cast Magic Missile as a 5th-level spell (5 darts), no material component needed. +1 saving throws. Once per dawn, use an action to Plane Shift (Astral Plane only) along with everything worn/carried.",
+    "notes": "Real DMG Robe of Stars, from training knowledge — not independently re-verified against a second source this pass (unlike Staff of Power/Wand of Magic Missiles/Helm of Brilliance/Necklace of Prayer Beads, which were); treat as a solid placeholder.",
     "id": "items_108",
     "slot": "body",
     "battle_effect": true,
     "action_type": "action",
-    "spells_granted": ["Magic Missile", "Plane Shift"]
+    "spells_granted": [
+      {
+        "name": "Magic Missile",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "Plane Shift",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ]
   },
   {
     "name": "Staff of Power",
@@ -1588,12 +1609,30 @@
     },
     "charges_current": 20,
     "charges_max": 20,
-    "charges_recharge": "daily",
-    "effect": "Cast from charges: Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC.",
+    "charges_recharge": "2d8+4",
+    "effect": "Cast from charges (no material component needed, the staff is the focus): Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC. If the last charge is expended, roll a d20 — on a 1 the staff keeps its +2 weapon/AC/save bonus but permanently loses all other properties.",
     "notes": "Do not break it.",
     "id": "items_109",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "spells_granted": [
+      { "name": "Magic Missile", "action_type": "action", "charge_cost": 1 },
+      {
+        "name": "Ray of Enfeeblement",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      { "name": "Fireball", "action_type": "action", "charge_cost": 5 },
+      { "name": "Lightning Bolt", "action_type": "action", "charge_cost": 5 },
+      { "name": "Cone of Cold", "action_type": "action", "charge_cost": 5 },
+      { "name": "Hold Monster", "action_type": "action", "charge_cost": 5 },
+      { "name": "Wall of Force", "action_type": "action", "charge_cost": 5 },
+      {
+        "name": "Globe of Invulnerability",
+        "action_type": "action",
+        "charge_cost": 6
+      }
+    ]
   },
   {
     "name": "Circlet of Scorching Ray 3",
@@ -1611,7 +1650,9 @@
     "slot": "head",
     "battle_effect": true,
     "action_type": "action",
-    "spells_granted": ["Scorching Ray"]
+    "spells_granted": [
+      { "name": "Scorching Ray", "action_type": "action", "charge_cost": 1 }
+    ]
   },
   {
     "name": "Plate +2",
@@ -1683,7 +1724,7 @@
     "enhancement_bonus": 2,
     "notes": "",
     "id": "items_115",
-    "slot": "melee1h",
+    "slot": "shield",
     "effect": "+2 bonus to AC from this shield. Can be collapsed for storage."
   },
   {
@@ -1811,7 +1852,11 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "action",
-    "spells_granted": ["Alter Self", "Polymorph", "Gaseous Form"]
+    "spells_granted": [
+      { "name": "Alter Self", "action_type": "action", "charge_cost": 1 },
+      { "name": "Polymorph", "action_type": "action", "charge_cost": 2 },
+      { "name": "Gaseous Form", "action_type": "action", "charge_cost": 3 }
+    ]
   },
   {
     "name": "Ring of Jumping",
@@ -1897,7 +1942,14 @@
     "slot": "held",
     "battle_effect": true,
     "action_type": "action",
-    "spells_granted": ["Magic Missile"]
+    "spells_granted": [
+      {
+        "name": "Magic Missile",
+        "action_type": "action",
+        "charge_cost": { "min": 1, "max": 7 }
+      }
+    ],
+    "description": "Each charge spent increases the effective spell level by one (1 charge = 1st level, up to 7 charges for 7th level if you dump the whole thing at once) — the wand is the spellcasting focus, no material component needed. It regains 1d6+1 charges daily. There's also a small risk — if you expend the wand's last charge, roll a d20; on a 1 the wand crumbles to ash and is destroyed. 1d4+1 force damage per dart, auto-hits."
   },
   {
     "name": "Hand Crossbow +2",
@@ -2103,17 +2155,50 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
-    "effect": "Each bead cast once per day. Rolled spells: Bless, Greater Restoration, Cure Wounds, Wind Walk.",
-    "notes": "",
+    "effect": "4 beads, each usable independently once per day as a bonus action (no shared charge pool): Blessing bead casts Bless; Favor bead casts Greater Restoration; Curing bead casts Cure Wounds (as a 2nd-level spell) or Lesser Restoration, your choice each use; Wind Walking bead casts Wind Walk.",
+    "notes": "Real DMG Necklace of Prayer Beads (a specific necklace has 1d4+2 randomly-typed beads; this one rolled these 4 types) — bonus action per bead, confirmed via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06 as part of the item-granted-spells charge-cost pass. Corrects an earlier assumption that bead use cost a full action and that Curing had multiple escalating tiers rather than one bead offering a Cure Wounds/Lesser Restoration choice.",
     "id": "items_144",
     "slot": "neck",
     "battle_effect": true,
-    "action_type": "action",
+    "action_type": "bonus_action",
     "spells_granted": [
-      "Bless",
-      "Greater Restoration",
-      "Cure Wounds",
-      "Wind Walk"
+      {
+        "name": "Bless",
+        "action_type": "bonus_action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Greater Restoration",
+        "action_type": "bonus_action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Cure Wounds",
+        "action_type": "bonus_action",
+        "choice_group": "curing-bead",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Lesser Restoration",
+        "action_type": "bonus_action",
+        "choice_group": "curing-bead",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Wind Walk",
+        "action_type": "bonus_action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
     ]
   },
   {
@@ -2406,6 +2491,40 @@
     ]
   },
   {
+    "name": "Gemstones",
+    "type": "material",
+    "equipped_by": "disallowed",
+    "carried_by": "party",
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) — priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant.",
+    "id": "items_236",
+    "slot": "none",
+    "effect": "8 bloodstone (50gp each), 6 carnelian (50gp each), 5 chalcedony (50gp each), 7 citrine (50gp each), 6 moonstone (50gp each), 8 onyx (50gp each), 12 amber (100gp each), 10 amethyst (100gp each), 8 garnet (100gp each), 15 jade (100gp each), 9 jet (100gp each), 6 tourmaline (100gp each), 3 aquamarine (500gp each), 2 peridot (500gp each), 2 topaz (500gp each), 1 alexandrite (500gp), 1 sapphire (1,000gp), 1 ruby (5,000gp), 1 emerald (1,000gp), 22 pearl (100gp each). Total value: 21,200gp.",
+    "contents": [
+      { "type": "Bloodstone", "value_gp": 50, "quantity": 8 },
+      { "type": "Carnelian", "value_gp": 50, "quantity": 6 },
+      { "type": "Chalcedony", "value_gp": 50, "quantity": 5 },
+      { "type": "Citrine", "value_gp": 50, "quantity": 7 },
+      { "type": "Moonstone", "value_gp": 50, "quantity": 6 },
+      { "type": "Onyx", "value_gp": 50, "quantity": 8 },
+      { "type": "Amber", "value_gp": 100, "quantity": 12 },
+      { "type": "Amethyst", "value_gp": 100, "quantity": 10 },
+      { "type": "Garnet", "value_gp": 100, "quantity": 8 },
+      { "type": "Jade", "value_gp": 100, "quantity": 15 },
+      { "type": "Jet", "value_gp": 100, "quantity": 9 },
+      { "type": "Tourmaline", "value_gp": 100, "quantity": 6 },
+      { "type": "Aquamarine", "value_gp": 500, "quantity": 3 },
+      { "type": "Peridot", "value_gp": 500, "quantity": 2 },
+      { "type": "Topaz", "value_gp": 500, "quantity": 2 },
+      { "type": "Alexandrite", "value_gp": 500, "quantity": 1 },
+      { "type": "Sapphire", "value_gp": 1000, "quantity": 1 },
+      { "type": "Ruby", "value_gp": 5000, "quantity": 1 },
+      { "type": "Emerald", "value_gp": 1000, "quantity": 1 },
+      { "type": "Pearl", "value_gp": 100, "quantity": 22 }
+    ]
+  },
+  {
     "name": "Tome of Clear Thought",
     "type": "wondrous",
     "equipped_by": null,
@@ -2519,15 +2638,34 @@
     "carried_by": "Sorra",
     "needs_attunement": true,
     "attuned": true,
-    "charges_current": 20,
-    "charges_max": 20,
-    "charges_recharge": "none",
-    "effect": "6 opals cast Daylight. 9 rubies cast Fireball. 5 diamonds cast Wall of Fire. Undead within 30ft have disadvantage on attacks. On 1 in sunlight: explodes.",
-    "notes": "Unassigned.",
+    "effect": "6 opals cast Daylight, 9 rubies cast Fireball, 5 diamonds cast Wall of Fire — each gem is consumed permanently on use (no recharge). Undead within 30ft have disadvantage on attacks. If the wearer fails a save against fire damage from a spell, roll a d20 — on a 1, all remaining gems detonate for radiant damage equal to the number of gems left (DC 17 Dex save, half on success, wearer excluded), and the helm is destroyed.",
+    "notes": "This campaign's Helm of Brilliance is a homebrew-simplified variant of the real DMG item — real RAW rolls gem counts randomly (1d10 diamond/2d10 ruby/3d10 fire opal/4d10 opal) and uses a 4th gem type (fire opal) for Fireball with ruby for Wall of Fire; this one fixes a clean 6/9/5=20 split using only opal/ruby/diamond, which is what's kept here. The destruction trigger (fail a fire save, not \"in sunlight\") is corrected to real RAW — verified via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06.",
     "id": "items_171",
     "battle_effect": true,
     "action_type": "action",
-    "spells_granted": ["Daylight", "Fireball", "Wall of Fire"]
+    "spells_granted": [
+      {
+        "name": "Daylight",
+        "action_type": "action",
+        "uses_max": 6,
+        "uses_current": 6,
+        "recharge": "none"
+      },
+      {
+        "name": "Fireball",
+        "action_type": "action",
+        "uses_max": 9,
+        "uses_current": 9,
+        "recharge": "none"
+      },
+      {
+        "name": "Wall of Fire",
+        "action_type": "action",
+        "uses_max": 5,
+        "uses_current": 5,
+        "recharge": "none"
+      }
+    ]
   },
   {
     "name": "Scroll of Ice Storm",
@@ -2708,7 +2846,15 @@
     "slot": "ring",
     "battle_effect": true,
     "action_type": "action",
-    "spells_granted": ["Starfall"]
+    "spells_granted": [
+      {
+        "name": "Starfall",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ]
   },
   {
     "name": "Yetgrese Throwing Sword +2",
@@ -2729,13 +2875,14 @@
   {
     "name": "Hlifar'dhe'gar",
     "type": "armor",
+    "armor_type": "shield",
     "equipped_by": null,
     "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "notes": "Named by Jaygar. Two points of light function as eyes. Previous owner never named it. Ssivanak kept it three years waiting for right owner.",
     "id": "items_184",
-    "slot": "offhand",
+    "slot": "shield",
     "battle_effect": true,
     "effect": "+1 small shield (+1 AC). Command word 'viel'bi-ra' transforms it into a construct guardian (HP 142, AC 17) that stands between you and harm, intercepting damage directed at the attuned wearer. The construct cannot attack. Command word 'chk'TO' returns it to shield form. Also stores one spell up to 4th level.",
     "stat_bonuses": {
@@ -2996,7 +3143,7 @@
     "id": "items_205",
     "battle_effect": true,
     "action_type": "reaction",
-    "spells_granted": ["Shield"]
+    "spells_granted": [{ "name": "Shield", "action_type": "reaction" }]
   },
   {
     "name": "Ring of the Knowing",
@@ -3024,7 +3171,9 @@
     "notes": "",
     "id": "items_209",
     "battle_effect": true,
-    "spells_granted": ["Smite From Afar"]
+    "spells_granted": [
+      { "name": "Smite From Afar", "action_type": "bonus_action" }
+    ]
   },
   {
     "name": "Breastplate of Planes",
@@ -3046,7 +3195,7 @@
     "type": "armor",
     "armor_type": "shield",
     "enhancement_bonus": 2,
-    "slot": "offhand",
+    "slot": "shield",
     "equipped_by": "Chuknora",
     "carried_by": null,
     "needs_attunement": false,
@@ -3122,7 +3271,24 @@
     "id": "items_216",
     "stored_at": null,
     "party_id": null,
-    "effect": "Once per long rest, attune to one willing creature within reach. Any healing you receive is also received by the bonded creature for the same amount. Once per day as a reaction (within 60 ft), turn any attack roll the bonded creature makes into a critical hit."
+    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit — once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
+  },
+  {
+    "name": "Ring of Amity",
+    "type": "ring",
+    "subtype": "wondrous item",
+    "rarity": "rare",
+    "source": "published",
+    "needs_attunement": true,
+    "attuned": false,
+    "equipped_by": null,
+    "carried_by": "Revven",
+    "slot": "finger",
+    "notes": "Second copy — found, not yet attuned/equipped.",
+    "id": "items_235",
+    "stored_at": null,
+    "party_id": null,
+    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit — once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
   },
   {
     "name": "Longbow",
@@ -3333,10 +3499,29 @@
     "attuned": true,
     "slot": "held",
     "battle_effect": true,
-    "spells_granted": ["Mold Earth", "Wall of Stone", "The Stones Agree"],
+    "charges_current": 1,
+    "charges_max": 1,
+    "charges_recharge": "long_rest",
+    "linked_item_id": "items_230",
+    "spells_granted": [
+      {
+        "name": "Mold Earth",
+        "action_type": "action",
+        "uses_max": 3,
+        "uses_current": 3,
+        "recharge": "daily"
+      },
+      { "name": "Wall of Stone", "action_type": "action", "charge_cost": 1 },
+      {
+        "name": "The Stones Agree",
+        "action_type": "action",
+        "charge_cost": 1,
+        "cost_note": "Spent together with the Broken Vein bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
+      }
+    ],
     "id": "items_229",
-    "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Mold Earth (cantrip, 3/day): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/day): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
+    "effect": "Mold Earth (cantrip, 3/day, independent of the charge below): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/long rest): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
     "action_type": "action"
   },
   {
@@ -3349,10 +3534,29 @@
     "attuned": true,
     "slot": "held",
     "battle_effect": true,
-    "spells_granted": ["Spike Growth", "Erupting Earth", "The Stones Agree"],
+    "charges_current": 1,
+    "charges_max": 1,
+    "charges_recharge": "long_rest",
+    "linked_item_id": "items_229",
+    "spells_granted": [
+      {
+        "name": "Spike Growth",
+        "action_type": "action",
+        "uses_max": 3,
+        "uses_current": 3,
+        "recharge": "daily"
+      },
+      { "name": "Erupting Earth", "action_type": "action", "charge_cost": 1 },
+      {
+        "name": "The Stones Agree",
+        "action_type": "action",
+        "charge_cost": 1,
+        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
+      }
+    ],
     "id": "items_230",
-    "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/day): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
+    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day, independent of the charge below): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/long rest): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
     "action_type": "action"
   },
   {
@@ -3429,6 +3633,6 @@
         "description": "Once per combat, before rolling, the bearer may declare a ranged attack with this bow to be a marking shot. The target is immediately affected by Faerie Fire — no save, single target only (not the spell's usual 20-foot cube)."
       }
     ],
-    "spells_granted": ["Faerie Fire"]
+    "spells_granted": [{ "name": "Faerie Fire", "action_type": "free" }]
   }
 ]

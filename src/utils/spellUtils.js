@@ -6,10 +6,12 @@
  * Sources collected (in priority order for deduplication):
  *   1. character.spells[]                  — main class list; homebrew spells live here too (homebrew: true)
  *   2. getBonusSpells(character, subclasses) — subclass always-prepared spells
- *      (Artillerist Bonus Spells, Arbalist Bonus Spells, etc.), derived live
- *      from the subclass's own expanded_spell_list (store.state.subclasses,
- *      loaded once from GET /api/engine/subclasses) rather than stored on
- *      the character — see getBonusSpells's own comment for why.
+ *      (Artillerist Bonus Spells, Cleric domain spells, Paladin oath spells,
+ *      Druid circle spells, Sorcerer psionic/clockwork spells, etc.), derived
+ *      live from the subclass's own data (store.state.subclasses, loaded
+ *      once from GET /api/engine/subclasses) rather than stored on the
+ *      character — see BONUS_SPELL_FIELDS/getBonusSpells's own comments for
+ *      the full field list and why.
  *   3. character.features[].spells_granted — feats / race / class features
  *   4. partyItems[].spells_granted         — equipped + attuned magic items
  *
@@ -26,6 +28,7 @@
  * so the player can see which is always-prepared vs. counted against their limit.
  */
 
+import { dnd } from '@/utils/dnd_utils.js'
 import clericSpells from '@/data/api_data_cache/cleric_spells.json'
 import druidSpells from '@/data/api_data_cache/druid_spells.json'
 import wizardSpells from '@/data/api_data_cache/wizard_spells.json'
@@ -74,19 +77,56 @@ export function usesFullClassList(character) {
   )
 }
 
+// Every subclass field shape this app uses for "you always have these
+// spells prepared, they don't count against your limit" — one entry per
+// field name, each real subclasses.js field having grown its own name over
+// time rather than converging on one (expanded_spell_list predates the
+// others; see engine/CHECKLIST.md's per-class build-out entries for
+// domain_spells_by_level/oath_spells_by_level/circle_spells_by_level/
+// psionic_spells_by_level/clockwork_spells_by_level). `classOnly` scopes a
+// field to the one class it actually means this for — critical for
+// expanded_spell_list specifically, which Warlock's Great Old One patron
+// ALSO uses for a genuinely different mechanic (spells added to the pool a
+// warlock can choose to LEARN, never automatic — see the note below).
+// `deriveLevel` is only true for expanded_spell_list: Artificer's own real
+// per-4-level slot-access schedule happens to make ceil(atLevel/4) exactly
+// right (verified in engine/test/artificerSubclasses.test.js) — no such
+// universal formula holds for the other fields (e.g. Circle of Spores
+// grants a CANTRIP at 2nd level alongside real leveled spells at other
+// breakpoints), so those are left level:null and resolved asynchronously
+// the same way feature/item-granted spells already are elsewhere in this
+// file (CharacterSpellbook.vue's loadMeta() calls lookupSpell for any
+// spell with level === null).
+const BONUS_SPELL_FIELDS = [
+  { field: 'expanded_spell_list', classOnly: 'artificer', deriveLevel: true },
+  { field: 'domain_spells_by_level', classOnly: 'cleric', deriveLevel: false },
+  { field: 'oath_spells_by_level', classOnly: 'paladin', deriveLevel: false },
+  { field: 'circle_spells_by_level', classOnly: 'druid', deriveLevel: false },
+  {
+    field: 'psionic_spells_by_level',
+    classOnly: 'sorcerer',
+    deriveLevel: false,
+  },
+  {
+    field: 'clockwork_spells_by_level',
+    classOnly: 'sorcerer',
+    deriveLevel: false,
+  },
+  // NOT included: land_spells_by_type (Circle of the Land) — keyed by land
+  // TYPE, not level, so it needs the character's chosen type recorded
+  // somewhere first. No character on the roster has picked this circle yet
+  // and no such field exists on the character schema — add it here once one
+  // does, rather than inventing a schema field with no real example to
+  // build it against.
+]
+
 // Derives a character's subclass-granted bonus spells (Artillerist Bonus
-// Spells, Arbalist Bonus Spells, and any future subclass with the same
-// pattern) straight from the subclass's own expanded_spell_list, rather
-// than trusting a per-character copy that has to be hand-maintained and can
-// drift out of sync (e.g. holding stale entries after a rebuild, or simply
-// never getting backfilled on a new character). `subclasses` is the full
-// list from GET /api/engine/subclasses (store.state.subclasses).
-//
-// expanded_spell_list is keyed by the character level the grant unlocks at
-// (3, 5, 9, 13, 17 for every real/homebrew Artillerist-shaped subclass so
-// far); the spell's own level is derived from that breakpoint via the same
-// formula the engine's own tests already verify
-// (engine/test/artificerSubclasses.test.js): level ÷ 4, rounded up.
+// Spells, Cleric domain spells, Paladin oath spells, etc.) straight from the
+// subclass's own data (see BONUS_SPELL_FIELDS above), rather than trusting a
+// per-character copy that has to be hand-maintained and can drift out of
+// sync (e.g. holding stale entries after a rebuild, or simply never getting
+// backfilled on a new character). `subclasses` is the full list from GET
+// /api/engine/subclasses (store.state.subclasses).
 function getBonusSpells(character, subclasses = []) {
   const result = []
   for (const cc of character.classes ?? []) {
@@ -96,16 +136,42 @@ function getBonusSpells(character, subclasses = []) {
         s.class?.toLowerCase() === cc.name?.toLowerCase() &&
         s.name?.toLowerCase() === cc.subclass?.toLowerCase()
     )
-    if (!sub?.expanded_spell_list) continue
-    for (const [atLevel, names] of Object.entries(sub.expanded_spell_list)) {
-      if (Number(atLevel) > (cc.level ?? 0)) continue
-      const spellLevel = Math.ceil(Number(atLevel) / 4)
-      for (const name of names) {
-        result.push({ name, level: spellLevel })
+    if (!sub) continue
+    const className = cc.name?.toLowerCase()
+    for (const { field, classOnly, deriveLevel } of BONUS_SPELL_FIELDS) {
+      if (className !== classOnly) continue
+      const table = sub[field]
+      if (!table) continue
+      for (const [atLevel, names] of Object.entries(table)) {
+        if (!Array.isArray(names)) continue // defensive: a mis-shaped table entry shouldn't crash the whole spellbook
+        if (Number(atLevel) > (cc.level ?? 0)) continue
+        const spellLevel = deriveLevel ? Math.ceil(Number(atLevel) / 4) : null
+        for (const name of names) {
+          result.push({ name, level: spellLevel })
+        }
       }
     }
   }
   return result
+}
+
+// Spell names ONE of a subclass's bonus-spell fields grants at EXACTLY one
+// character level — used by LevelUpTool.vue to show "you just gained these"
+// at a breakpoint that doesn't re-grant any named feature (true for every
+// field here except expanded_spell_list's own "Bonus Spells" feature, which
+// LevelUpTool.vue handles separately via its own tooltip override). Checks
+// the same BONUS_SPELL_FIELDS list/class-gating getBonusSpells uses, so a
+// Warlock's Great Old One never matches here either. `subclassData` is one
+// entry from store.state.subclasses (already resolved by class+subclass
+// name), not the whole array.
+export function getBonusSpellsAtLevel(subclassData, className, level) {
+  const cls = className?.toLowerCase()
+  for (const { field, classOnly } of BONUS_SPELL_FIELDS) {
+    if (cls !== classOnly) continue
+    const names = subclassData?.[field]?.[String(level)]
+    if (Array.isArray(names) && names.length) return names
+  }
+  return []
 }
 
 export function getCharacterSpells(
@@ -160,8 +226,11 @@ export function getCharacterSpells(
   }
 
   // 4. Equipped item-granted spells
-  //    Items with `spells_granted: ["SpellName", ...]` contribute when equipped by this
-  //    character. If the item requires attunement it must also be attuned.
+  //    Items with `spells_granted` contribute when equipped by this character
+  //    (entries can be bare strings or the richer per-spell grant objects —
+  //    see dnd.normalizeItemSpellGrant, e.g. Staff of Power's differing
+  //    per-spell charge costs). If the item requires attunement it must also
+  //    be attuned.
   //    Item grants are NOT deduplicated against sources 1-3 — if a character knows a
   //    spell through their class AND an item grants it, both entries appear so the player
   //    can distinguish always-prepared (item) from their preparation-limited version.
@@ -170,16 +239,18 @@ export function getCharacterSpells(
       i.equipped_by === character.name && (!i.needs_attunement || i.attuned)
   )
   for (const item of equippedItems) {
-    for (const name of item.spells_granted ?? []) {
-      const key = `\0item\0${item.id}\0${name}`
+    for (const entry of item.spells_granted ?? []) {
+      const grant = dnd.normalizeItemSpellGrant(entry, item)
+      const key = `\0item\0${item.id}\0${grant.name}`
       if (seen.has(key)) continue
       seen.add(key)
       result.push({
-        name,
+        name: grant.name,
         level: null,
         prepared: true,
         itemGranted: true,
         _source: item.name,
+        grant,
       })
     }
   }
