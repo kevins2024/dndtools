@@ -97,6 +97,84 @@ export const dnd = {
     return recharge.replace(/_/g, ' ')
   },
 
+  // Short display label for an action_type value — shared by
+  // BattleItemsPanel's item-cost badge and item/spell detail popups so
+  // there's one mapping instead of one per component.
+  actionTypeBadgeLabel(actionType) {
+    const map = {
+      action: 'Action',
+      bonus_action: 'Bonus',
+      reaction: 'Reaction',
+      // Triggers as part of an action already being taken (an attack, a
+      // spell cast) rather than costing one of its own — distinct from a
+      // true always-on passive bonus, which needs no trigger at all.
+      free: 'Free',
+    }
+    return map[actionType] ?? 'Passive'
+  },
+
+  // Normalizes one entry of an item's `spells_granted` array to a common
+  // shape, regardless of which authoring style it uses:
+  //   - a bare string (legacy/simple grant — exactly one spell, no
+  //     differentiated cost, item-level action_type applies)
+  //   - an object (see engine/CHECKLIST.md's item-granted-spells writeup):
+  //       name                          — spell name
+  //       action_type                   — 'action'|'bonus_action'|'reaction'|'free',
+  //                                       the REAL cost of casting THIS spell via
+  //                                       this item (may differ from the spell's
+  //                                       own casting_time, and from other spells
+  //                                       on the same item)
+  //       charge_cost                   — number, or {min,max} when the player
+  //                                       chooses how many of the item's own
+  //                                       charges_current/charges_max pool to
+  //                                       spend at cast time (e.g. a wand's
+  //                                       variable-level upcast)
+  //       uses_max / uses_current       — an independent per-spell use count,
+  //                                       NOT drawn from the item's shared
+  //                                       charge pool (same shape as
+  //                                       weapon_effects' uses_max/uses_current)
+  //       recharge                      — when this spell's own uses_current
+  //                                       resets (see rechargeLabel) — only
+  //                                       meaningful alongside uses_max
+  //       material_component_required   — true if the wielder must still
+  //                                       provide/consume the spell's own real
+  //                                       material component (per
+  //                                       published_spells.json) even when cast
+  //                                       via the item; omitted/false means the
+  //                                       item itself substitutes, per the DMG's
+  //                                       general "no separate components
+  //                                       needed" rule for magic item casting
+  //       choice_group                  — links 2+ entries that share ONE use
+  //                                       or charge; casting any one of them
+  //                                       spends the shared resource (e.g. a
+  //                                       Necklace of Prayer Beads' Curing bead
+  //                                       offering a choice of Cure Wounds or
+  //                                       Lesser Restoration from the same use)
+  normalizeItemSpellGrant(entry, item) {
+    if (typeof entry === 'string') {
+      return {
+        name: entry,
+        actionType: item?.action_type ?? null,
+        chargeCost: null,
+        usesMax: null,
+        usesCurrent: null,
+        recharge: null,
+        materialComponentRequired: false,
+        choiceGroup: null,
+      }
+    }
+    return {
+      name: entry.name,
+      actionType: entry.action_type ?? item?.action_type ?? null,
+      chargeCost: entry.charge_cost ?? null,
+      usesMax: entry.uses_max ?? null,
+      usesCurrent: entry.uses_current ?? null,
+      recharge: entry.recharge ?? null,
+      materialComponentRequired: entry.material_component_required === true,
+      choiceGroup: entry.choice_group ?? null,
+    }
+  },
+
   schoolAbbr(school) {
     const map = {
       abjuration: 'Abj',
@@ -109,6 +187,49 @@ export const dnd = {
       transmutation: 'Tra',
     }
     return map[school.toLowerCase()] ?? school.slice(0, 3)
+  },
+
+  // CSS var name for a school/class's accent color — see the
+  // --color-school-*/--color-class-* tokens in theme.css. Falls back to the
+  // neutral text-low token so an unrecognized value still renders sanely
+  // instead of an invalid CSS color.
+  schoolColorVar(school) {
+    const known = [
+      'abjuration',
+      'conjuration',
+      'divination',
+      'enchantment',
+      'evocation',
+      'illusion',
+      'necromancy',
+      'transmutation',
+    ]
+    const key = (school ?? '').toLowerCase()
+    return known.includes(key)
+      ? `var(--color-school-${key})`
+      : 'var(--color-text-low)'
+  },
+
+  classColorVar(className) {
+    const known = [
+      'artificer',
+      'barbarian',
+      'bard',
+      'cleric',
+      'druid',
+      'fighter',
+      'monk',
+      'paladin',
+      'ranger',
+      'rogue',
+      'sorcerer',
+      'warlock',
+      'wizard',
+    ]
+    const key = (className ?? '').toLowerCase()
+    return known.includes(key)
+      ? `var(--color-class-${key})`
+      : 'var(--color-text-low)'
   },
 
   proficiencyBonus(level) {
@@ -760,20 +881,36 @@ export const dnd = {
     return STAT_KEYS.map(({ key, label }) => {
       const score = stats[key] ?? 10
       const fx = effects[key]
-      const modified = !!fx?.length
+      // ability_score_history — real attributable ASI/feat/racial-bonus
+      // entries (see engine/rules/diffLevelUp.js + NewCharacterTool.vue's
+      // abilityScoreHistorySeed). stat_str etc. still mean "the final
+      // number" (unchanged, additive-only) — history is purely a display
+      // breakdown of how that number was built, so the implied base is
+      // whatever's left after subtracting every recorded history amount.
+      // Empty/absent on every character built before this existed, in which
+      // case this degrades to exactly the old no-history tooltip.
+      const history = (character.ability_score_history ?? []).filter(
+        (h) => h.ability === key
+      )
+      const historySum = history.reduce((sum, h) => sum + h.amount, 0)
+      const modified = !!fx?.length || !!history.length
       let tooltip
       if (!modified) {
         tooltip = `${label}: ${baseScores[key]} (no modifiers) = ${dnd.signed(
           dnd.mod(score)
         )}`
-      } else if (fx.some((e) => e.type === 'override')) {
+      } else if (fx?.some((e) => e.type === 'override')) {
         const ov = fx.find((e) => e.type === 'override')
         tooltip = `${label}: set to ${ov.value} by ${ov.name} = ${dnd.signed(
           dnd.mod(score)
         )}`
       } else {
-        const parts = [`${label}: ${baseScores[key]} base`]
-        for (const e of fx) parts.push(`+${e.value} (${e.name})`)
+        const impliedBase = baseScores[key] - historySum
+        const parts = [`${label}: ${impliedBase} base`]
+        for (const h of history) {
+          parts.push(`+${h.amount} (${h.source}, level ${h.level_gained})`)
+        }
+        for (const e of fx ?? []) parts.push(`+${e.value} (${e.name})`)
         parts.push(`= ${score} (${dnd.signed(dnd.mod(score))})`)
         tooltip = parts.join(' · ')
       }

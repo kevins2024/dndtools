@@ -150,9 +150,18 @@
         >
           <span class="sb-row-level">{{ formatLevel(s.level) }}</span>
           <span class="sb-row-name">{{ s.name }}</span>
-          <span class="sb-row-school">{{
-            schoolCache[s.name] || s.school || '—'
-          }}</span>
+          <span
+            class="sb-row-school"
+            :style="{
+              color: schoolColorVar(schoolCache[s.name] || s.school),
+            }"
+          >
+            <SchoolIcon
+              :school="schoolCache[s.name] || s.school"
+              class="sb-row-school-icon"
+            />
+            {{ schoolCache[s.name] || s.school || '—' }}
+          </span>
           <span
             class="sb-row-source"
             :class="'src-' + s.source"
@@ -193,7 +202,15 @@
         <div class="sb-detail-name">{{ detail.name }}</div>
         <div class="sb-detail-meta">
           <span>{{ formatLevelFull(detail.level) }}</span>
-          <span v-if="detail.school"> · {{ detail.school }}</span>
+          <span
+            v-if="detail.school"
+            class="sb-detail-school"
+            :style="{ color: schoolColorVar(detail.school) }"
+          >
+            ·
+            <SchoolIcon :school="detail.school" class="sb-detail-school-icon" />
+            {{ detail.school }}</span
+          >
           <span v-if="detail.concentration" class="sb-badge sb-badge--conc"
             >Concentration</span
           >
@@ -268,6 +285,8 @@
 import srdSpellsRaw from '@/data/api_data_cache/srd_spells_full.json'
 import publishedSpellsRaw from '@/data/published_spells.json'
 import { lookupSpell } from '@/utils/lookupService'
+import { dnd } from '@/utils/dnd_utils'
+import SchoolIcon from '@/components/SchoolIcon.vue'
 
 const CLASSES = [
   'Bard',
@@ -367,6 +386,8 @@ const ALL_SPELLS = buildAllSpells()
 
 export default {
   name: 'SpellBrowser',
+
+  components: { SchoolIcon },
 
   data() {
     return {
@@ -471,6 +492,9 @@ export default {
     },
     formatLevelFull(level) {
       return ORDINALS[level] ?? `${level}th`
+    },
+    schoolColorVar(school) {
+      return dnd.schoolColorVar(school)
     },
   },
 }
@@ -614,6 +638,17 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.sb-row-school-icon,
+.sb-detail-school-icon {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  vertical-align: -2px;
 }
 
 .sb-row-source {

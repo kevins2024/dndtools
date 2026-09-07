@@ -42,6 +42,37 @@
   --color-danger: #f05858;
   --color-info: #8888dd;
   --color-condition: #e67e22;
+
+  /* Spell school colors — the app's validated 8-slot categorical order
+     (dark-surface steps only; this app has no light theme), mapped by
+     thematic fit. Icon carries identity (see SchoolIcon.vue); color is a
+     fast-scan accent layered on top. */
+  --color-school-abjuration: #3987e5;
+  --color-school-conjuration: #d95926;
+  --color-school-divination: #199e70;
+  --color-school-transmutation: #c98500;
+  --color-school-enchantment: #d55181;
+  --color-school-necromancy: #008300;
+  --color-school-illusion: #9085e9;
+  --color-school-evocation: #e66767;
+
+  /* Class colors — hand-picked for thematic fit, not a validated
+     categorical set (13 exceeds the 8-slot colorblind-safe ceiling).
+     ClassIcon.vue's existing icon carries the real identity; this is a
+     secondary accent. */
+  --color-class-fighter: #94a3b8;
+  --color-class-barbarian: #ef4444;
+  --color-class-rogue: #a78bfa;
+  --color-class-artificer: #2dd4bf;
+  --color-class-wizard: #60a5fa;
+  --color-class-cleric: var(--color-white);
+  --color-class-warlock: #7c3aed;
+  --color-class-bard: #f472b6;
+  --color-class-monk: #7dd3fc;
+  --color-class-paladin: #eab308;
+  --color-class-druid: #4ade80;
+  --color-class-ranger: #a3e635;
+  --color-class-sorcerer: #fb7185;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.9rem;
   --font-size-base: 1.125rem;

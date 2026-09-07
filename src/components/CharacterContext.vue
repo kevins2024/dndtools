@@ -47,9 +47,15 @@
               </button>
             </div>
             <div class="char-name">
-              <ClassIcon :character="char" class="char-class-icon" />{{
-                char.name
-              }}
+              <ClassIcon
+                :character="char"
+                class="char-class-icon"
+                :style="{
+                  color: $dnd.classColorVar(
+                    char.classes && char.classes[0] && char.classes[0].name
+                  ),
+                }"
+              />{{ char.name }}
             </div>
           </div>
         </div>
