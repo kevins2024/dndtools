@@ -377,14 +377,19 @@ test("diffLevelUp: Fighter's multiclass prerequisite is STR 13 OR DEX 13 (any_of
   )
 })
 
-test("diffLevelUp: multiclass pickup surfaces a note for skill/tool grants it can't apply automatically", () => {
+test('diffLevelUp: multiclass pickup surfaces a real pendingChoice for its skill grant, and a note for its tool grant (untracked on the character schema)', () => {
   // Rogue's multiclass grant includes a skill choice and thieves' tools.
   const character = baseFighter({ stat_dex: 14 }) // meets Rogue's DEX 13 prereq
   const result = diffLevelUp(character, {
     className: 'Rogue',
     hpMethod: 'average',
   })
-  assert.ok(result.warnings.some((w) => w.includes('skill of your choice')))
+  assert.ok(
+    result.pendingChoices.some(
+      (p) => p.type === 'multiclassSkillChoice' && p.className === 'Rogue'
+    ),
+    'the skill grant is a real, resolvable choice now — not just a warning'
+  )
   assert.ok(result.warnings.some((w) => w.includes("thieves' tools")))
 })
 

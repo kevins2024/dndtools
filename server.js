@@ -288,6 +288,13 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     hpMethod,
     hpRolls,
     asiOrFeatResolutions,
+    invocationChoices,
+    pactBoonChoice,
+    pactBoonBonusSpells,
+    spellChoices,
+    spellSwap,
+    spellbookChoices,
+    multiclassSkillChoice,
   } = req.body
   if (!character || !className) {
     return res
@@ -301,6 +308,13 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       hpMethod,
       hpRolls,
       asiOrFeatResolutions,
+      invocationChoices,
+      pactBoonChoice,
+      pactBoonBonusSpells,
+      spellChoices,
+      spellSwap,
+      spellbookChoices,
+      multiclassSkillChoice,
     })
     res.json(result)
   } catch (err) {
@@ -395,6 +409,110 @@ app.post('/api/engine/feat-eligibility', (req, res) => {
   }
 })
 
+// ── GET /api/engine/invocations ───────────────────────────
+// Full 32-entry Eldritch Invocations catalog (engine/data/invocations.json
+// — see engine/CHECKLIST.md). Mirrors GET /api/engine/feats.
+app.get('/api/engine/invocations', (req, res) => {
+  try {
+    res.json(engine.listInvocations())
+  } catch (err) {
+    console.error('Error listing invocations:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── POST /api/engine/invocation-eligibility ───────────────
+// Given a character, evaluate every cataloged invocation's prerequisite
+// against it and return { invocationName: {met, reason, unknown} } for all
+// of them — mirrors POST /api/engine/feat-eligibility exactly (same
+// "POST the client's in-memory draft character, get a pure computation
+// back" pattern, same soft-filter philosophy in the UI).
+app.post('/api/engine/invocation-eligibility', (req, res) => {
+  const { character } = req.body
+  if (!character) {
+    return res.status(400).json({ error: '"character" is required' })
+  }
+  try {
+    const result = {}
+    for (const inv of engine.listInvocations()) {
+      result[inv.name] = engine.meetsInvocationPrerequisite(character, inv.name)
+    }
+    res.json(result)
+  } catch (err) {
+    console.error('Error computing invocation eligibility:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/pact-boons ────────────────────────────
+// The 3 Pact Boon options (engine/data/pact-boons.json).
+app.get('/api/engine/pact-boons', (req, res) => {
+  try {
+    res.json(engine.listPactBoons())
+  } catch (err) {
+    console.error('Error listing pact boons:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── POST /api/engine/spell-choices ────────────────────────
+// Powers the generic known-spell/cantrip picker in LevelUpTool.vue — given
+// a character mid-level-up (className/subclassName/toLevel describe the
+// level-up in progress, same params preview-level-up already takes),
+// returns the real eligible spell/cantrip list to pick from: class-list
+// membership and the character's currently-selectable max spell level are
+// both computed here (engine-side), not client-side, per this project's
+// "engine stays the source of truth" architecture — a future non-Vue
+// frontend gets the same answer. `pool: 'any'` (Pact of the Tome's "3
+// cantrips from any class's list") skips the class-list filter entirely.
+// `excludeNames` lets the caller pass the character's already-known
+// spells/cantrips so the picker doesn't offer a duplicate — normally just
+// character.spells's own names, computed here so the client doesn't have to.
+app.post('/api/engine/spell-choices', (req, res) => {
+  const { character, className, subclassName, toLevel, cantripsOnly, pool } =
+    req.body
+  if (!character || !className) {
+    return res
+      .status(400)
+      .json({ error: '"character" and "className" are required' })
+  }
+  try {
+    // Third-casters (Eldritch Knight/Arcane Trickster) draw from WIZARD's
+    // spell list, not a list of their own — same mapping the rest of this
+    // project's spellcasting code keys off subclass name for.
+    const listClassName =
+      subclassName === 'Eldritch Knight' || subclassName === 'Arcane Trickster'
+        ? 'Wizard'
+        : className
+    const otherClasses = (character.classes || [])
+      .filter((c) => c.name?.toLowerCase() !== className.toLowerCase())
+      .map((c) => ({ name: c.name, level: c.level, subclass: c.subclass }))
+    const existingEntry = (character.classes || []).find(
+      (c) => c.name?.toLowerCase() === className.toLowerCase()
+    )
+    const level = toLevel ?? (existingEntry?.level ?? 0) + 1
+    const maxLevel = cantripsOnly
+      ? 0
+      : engine.effectiveMaxSpellLevel({
+          className,
+          subclassName,
+          level,
+          otherClasses,
+        })
+    const excludeNames = (character.spells || []).map((s) => s.name)
+    const options = engine.listSpellsForClass(listClassName, {
+      maxLevel,
+      cantripsOnly: Boolean(cantripsOnly),
+      pool: pool === 'any' ? 'any' : 'class',
+      excludeNames,
+    })
+    res.json({ maxLevel, options })
+  } catch (err) {
+    console.error('Error computing spell choices:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // ── GET /api/engine/classes ───────────────────────────────
 // Full class records (hit die, spellcasting ability/type, saving throws,
 // subclass timing), not just names — the New Character tool needs
@@ -461,6 +579,19 @@ app.get('/api/engine/skills', (req, res) => {
     res.json(engine.listSkills())
   } catch (err) {
     console.error('Error listing skills:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/languages ─────────────────────────────
+// The 16 real PHB standard/exotic languages a player can pick for a
+// background's or species' "N languages of your choice" grant — see
+// engine/data/languages.json.
+app.get('/api/engine/languages', (req, res) => {
+  try {
+    res.json(engine.listLanguages())
+  } catch (err) {
+    console.error('Error listing languages:', err.message)
     res.status(500).json({ error: err.message })
   }
 })
