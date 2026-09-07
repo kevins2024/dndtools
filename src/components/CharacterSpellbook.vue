@@ -158,6 +158,10 @@
           <span
             v-if="spellMeta[spell.name] && spellMeta[spell.name].school"
             class="sb-badge sb-badge--school"
+            :style="{
+              color: $dnd.schoolColorVar(spellMeta[spell.name].school),
+              borderColor: $dnd.schoolColorVar(spellMeta[spell.name].school),
+            }"
             :title="spellMeta[spell.name].school"
             >{{ schoolAbbr(spellMeta[spell.name].school) }}</span
           >
@@ -217,6 +221,10 @@
             <span
               v-if="spellMeta[spell.name] && spellMeta[spell.name].school"
               class="sb-badge sb-badge--school"
+              :style="{
+                color: $dnd.schoolColorVar(spellMeta[spell.name].school),
+                borderColor: $dnd.schoolColorVar(spellMeta[spell.name].school),
+              }"
               :title="spellMeta[spell.name].school"
               >{{ schoolAbbr(spellMeta[spell.name].school) }}</span
             >

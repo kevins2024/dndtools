@@ -12,6 +12,10 @@
             v-if="f.type === 'feat'"
             class="feat-marker"
             title="Feat"
+          /><Fingerprint
+            v-else-if="f.type === 'speciesTrait'"
+            class="species-trait-marker"
+            title="Species trait"
           /><ActionCostIcon :action-type="f.action_type" />{{ f.name
           }}<span
             v-if="f.uses_max"
@@ -33,7 +37,7 @@
 import { dnd } from '@/utils/dnd_utils.js'
 import { buildFeaturePopupData } from '@/utils/detailPopupBuilders.js'
 import ActionCostIcon from '@/components/ActionCostIcon.vue'
-import { Star } from 'lucide-vue'
+import { Star, Fingerprint } from 'lucide-vue'
 
 const FEATURE_TYPE_ORDER = ['feature', 'maneuver']
 const FEATURE_TYPE_LABEL = { feature: 'Features', maneuver: 'Maneuvers' }
@@ -41,7 +45,7 @@ const FEATURE_TYPE_LABEL = { feature: 'Features', maneuver: 'Maneuvers' }
 export default {
   name: 'FeaturePillsPanel',
 
-  components: { ActionCostIcon, Star },
+  components: { ActionCostIcon, Star, Fingerprint },
 
   props: {
     character: { type: Object, required: true },
@@ -59,7 +63,14 @@ export default {
 
   computed: {
     featureGroups() {
-      let features = this.character.features ?? []
+      // species_traits is a separate character-record array (not part of
+      // character.features — see NewCharacterTool.vue's characterShell()),
+      // merged in here so it renders in the same list rather than a fourth
+      // UI location, matching how feats already mix into this same list.
+      let features = [
+        ...(this.character.features ?? []),
+        ...(this.character.species_traits ?? []),
+      ]
       if (this.filter !== 'all') {
         features = features.filter((f) =>
           this.filter === 'passive'
@@ -69,10 +80,14 @@ export default {
       }
       const map = {}
       for (const f of features) {
-        // Feats mix into the same bucket as plain features (marked with
-        // their own icon instead of a separate "Feats" section) — only
-        // maneuvers and other genuinely distinct types keep their own group.
-        const t = !f.type || f.type === 'feat' ? 'feature' : f.type
+        // Feats and species traits mix into the same bucket as plain
+        // features (marked with their own icon instead of a separate
+        // section) — only maneuvers and other genuinely distinct types keep
+        // their own group.
+        const t =
+          !f.type || f.type === 'feat' || f.type === 'speciesTrait'
+            ? 'feature'
+            : f.type
         ;(map[t] = map[t] ?? []).push(f)
       }
       const known = FEATURE_TYPE_ORDER.filter((t) => map[t]).map((t) => ({
@@ -144,6 +159,13 @@ export default {
   height: 0.8em;
   flex-shrink: 0;
   color: var(--color-accent-strong);
+}
+
+.species-trait-marker {
+  width: 0.8em;
+  height: 0.8em;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
 }
 
 .pill-uses {

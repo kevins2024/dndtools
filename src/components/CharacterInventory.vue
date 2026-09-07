@@ -263,10 +263,13 @@
         <!-- Right: items in selected pool -->
         <div class="pool-items scrollable">
           <!-- Unassigned header -->
-          <div v-if="isUnassignedPool && activeParty" class="unassigned-banner">
+          <div
+            v-if="isUnassignedPool && characterParty"
+            class="unassigned-banner"
+          >
             These items don't belong to any party yet.
             <button class="claim-all-btn" @click="assignAllToParty">
-              Claim all for {{ activeParty.name }}
+              Claim all for {{ characterParty.name }}
             </button>
           </div>
 
@@ -324,10 +327,10 @@
             <template v-if="!isAssetPool">
               <span v-if="!isUnassignedPool" class="item-action">←</span>
               <button
-                v-if="isUnassignedPool && activeParty"
+                v-if="isUnassignedPool && characterParty"
                 class="act-btn"
                 @click.stop="assignToParty(item)"
-                :title="`Assign to ${activeParty.name}`"
+                :title="`Assign to ${characterParty.name}`"
               >
                 <Check class="act-icon" />
               </button>
@@ -361,7 +364,7 @@
                 class="act-btn"
                 @click.stop="retrieveFromStorage(item)"
                 :title="`Retrieve to ${
-                  activeParty ? activeParty.name : 'party'
+                  characterParty ? characterParty.name : 'party'
                 } pool`"
               >
                 ↑
@@ -671,8 +674,22 @@ export default {
         (i) => i.carried_by === this.character.name && !i.equipped_by
       )
     },
-    activeParty() {
-      return this.$store.getters.activeParty
+    // The party THIS character actually belongs to — not whichever party
+    // happens to be globally flagged active elsewhere in the app (Combat,
+    // the World calendar, etc.). Every pool-management action in this
+    // component (toPool, retrieveFromStorage, assignToParty,
+    // assignAllToParty) and every "which party's pool am I looking at"
+    // display used to read the global active party instead, which meant
+    // managing a character whose party wasn't the currently-active one
+    // silently routed/displayed items into the wrong party's pool. See
+    // TODO.md's "Removing an item from a character sends it to the
+    // globally-active party's pool" entry.
+    characterParty() {
+      return (
+        this.$store.state.parties.find((p) =>
+          (p.members ?? []).includes(this.character.name)
+        ) ?? null
+      )
     },
     assets() {
       return this.$store.state.assets
@@ -684,9 +701,9 @@ export default {
       return this.assets.filter((a) => a.type !== 'ship')
     },
     partyPoolItems() {
-      if (!this.activeParty) return []
+      if (!this.characterParty) return []
       return this.allItems.filter(
-        (i) => i.carried_by === 'party' && i.party_id === this.activeParty.id
+        (i) => i.carried_by === 'party' && i.party_id === this.characterParty.id
       )
     },
     unassignedItems() {
@@ -768,7 +785,7 @@ export default {
     effectivePool() {
       return (
         this.selectedPool ??
-        (this.activeParty ? 'party:' + this.activeParty.id : 'unassigned')
+        (this.characterParty ? 'party:' + this.characterParty.id : 'unassigned')
       )
     },
     isAssetPool() {
@@ -906,7 +923,7 @@ export default {
         carried_by: 'party',
         equipped_by: null,
         stored_at: null,
-        party_id: this.activeParty?.id ?? null,
+        party_id: this.characterParty?.id ?? null,
       })
     },
     handleStoreSelect(item, event) {
@@ -930,21 +947,21 @@ export default {
         ...item,
         stored_at: null,
         carried_by: 'party',
-        party_id: this.activeParty?.id ?? null,
+        party_id: this.characterParty?.id ?? null,
       })
     },
     assignToParty(item) {
       this.$store.commit('UPDATE_ITEM', {
         ...item,
-        party_id: this.activeParty?.id ?? null,
+        party_id: this.characterParty?.id ?? null,
       })
     },
     assignAllToParty() {
-      if (!this.activeParty) return
+      if (!this.characterParty) return
       for (const item of this.unassignedItems) {
         this.$store.commit('UPDATE_ITEM', {
           ...item,
-          party_id: this.activeParty.id,
+          party_id: this.characterParty.id,
         })
       }
     },

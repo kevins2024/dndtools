@@ -89,10 +89,11 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.9rem;
+  min-width: 1.9rem;
   height: 1.9rem;
+  padding: 0 0.35em;
   flex-shrink: 0;
-  border-radius: 50%;
+  border-radius: 6px;
   background: var(--color-accent-strong);
   line-height: 1;
   cursor: default;

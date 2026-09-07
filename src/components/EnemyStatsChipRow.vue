@@ -78,6 +78,21 @@
       />
       <span class="chip-label">Saves</span>
     </div>
+    <div
+      class="chip"
+      title="Crowd (house rule): merge up to 5 weak creatures into one tracked unit. Leave blank/1 for a normal enemy."
+    >
+      <input
+        class="chip-input"
+        type="number"
+        min="1"
+        max="5"
+        :value="meta.crowdSize ?? ''"
+        placeholder="—"
+        @change="update('crowdSize', $event.target.valueAsNumber || null)"
+      />
+      <span class="chip-label">Crowd</span>
+    </div>
   </div>
 </template>
 

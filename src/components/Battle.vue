@@ -257,6 +257,15 @@
               >
                 Reset
               </button>
+              <div
+                v-if="activeCrowdStrength !== null"
+                class="crowd-strength-badge"
+                title="Crowd Strength (house rule): steps down as pooled HP crosses thresholds of max HP. AC/ability flavor scales with it; AoE saves always succeed but damage is halved-then-x-Strength."
+              >
+                Strength: {{ activeCrowdStrength }}/{{
+                  activeEnemyMeta.crowdSize
+                }}
+              </div>
             </div>
             <div class="enemy-conditions-box">
               <div class="section-label">Conditions</div>
@@ -551,7 +560,20 @@ export default {
             ? ov.savingThrows
             : enc.savingThrows?.map((s) => s.toUpperCase()).join(', ') ?? null,
         notes: 'notes' in ov ? ov.notes : '',
+        crowdSize: 'crowdSize' in ov ? ov.crowdSize : null,
       }
+    },
+    // "Crowd" house rule (see house_rules.json): up to 5 weak creatures
+    // tracked as one pooled-HP unit. Strength steps down as pooled HP
+    // crosses even thresholds of max — derived purely from HP + crowdSize,
+    // no separate stored state.
+    activeCrowdStrength() {
+      const size = this.activeEnemyMeta.crowdSize
+      if (!size || size <= 1) return null
+      const hp = this.activeEnemyHp
+      if (!hp || !hp.maxHp) return null
+      const current = Math.max(0, hp.maxHp - hp.damage)
+      return Math.ceil((current / hp.maxHp) * size)
     },
     bestiaryResults() {
       if (!this.bestiaryIndex || !this.bestiarySearch.trim()) return []
@@ -1331,6 +1353,17 @@ export default {
 
 .enemy-hp-reset {
   align-self: flex-end;
+}
+
+.crowd-strength-badge {
+  align-self: flex-end;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-accent-strong);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: help;
 }
 
 .reset-btn {
