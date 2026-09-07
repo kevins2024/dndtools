@@ -1,11 +1,25 @@
 {
   "class": "Barbarian",
   "name": "Path of the Storm Herald",
-  "description": "The barbarian's rage radiates an elemental aura tied to the environment that first tempered them.",
-  "stub": true,
+  "description": "A barbarian who channels the fury of a chosen environment — desert, sea, or tundra — into a raging elemental aura.",
   "features_by_level": {
-    "3": [
-      "pub_storm-aura"
+    "3": ["pub_storm-aura"],
+    "6": [
+      "pub_storm-soul-desert",
+      "pub_storm-soul-sea",
+      "pub_storm-soul-tundra"
+    ],
+    "10": ["pub_shielding-storm"],
+    "14": [
+      "pub_raging-storm-desert",
+      "pub_raging-storm-sea",
+      "pub_raging-storm-tundra"
     ]
-  }
+  },
+  "note": "The 6th- and 14th-level features_by_level entries list all 3 environment variants of Storm Soul/Raging Storm — a real character only ever has the ONE matching their Storm Aura environment (chosen once at 3rd level, fixed thereafter), not all three. LevelUpTool-side resolution should filter to the character's chosen environment.",
+  "option_catalog": [
+    "pub_storm-aura-desert",
+    "pub_storm-aura-sea",
+    "pub_storm-aura-tundra"
+  ]
 }

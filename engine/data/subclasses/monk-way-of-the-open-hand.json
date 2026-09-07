@@ -1,11 +1,11 @@
 {
   "class": "Monk",
   "name": "Way of the Open Hand",
-  "description": "A monk who masters unarmed combat above all else, controlling the flow of battle with every strike.",
-  "stub": true,
+  "description": "A martial artist who masters unarmed combat techniques, using precise strikes to control the battlefield.",
   "features_by_level": {
-    "3": [
-      "pub_open-hand-technique"
-    ]
+    "3": ["pub_open-hand-technique"],
+    "6": ["pub_wholeness-of-body"],
+    "11": ["pub_tranquility"],
+    "17": ["pub_quivering-palm"]
   }
 }

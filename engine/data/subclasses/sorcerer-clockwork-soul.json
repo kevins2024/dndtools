@@ -2,10 +2,17 @@
   "class": "Sorcerer",
   "name": "Clockwork Soul",
   "description": "A sorcerer attuned to the plane of Mechanus, drawing on the power of pure order.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_clockwork-magic-and-restore-balance"
-    ]
+    "1": ["pub_clockwork-magic", "pub_restore-balance"],
+    "6": ["pub_bastion-of-law"],
+    "14": ["pub_trance-of-order"],
+    "18": ["pub_clockwork-cavalcade"]
+  },
+  "clockwork_spells_by_level": {
+    "1": ["Alarm", "Protection from Evil and Good"],
+    "3": ["Aid", "Lesser Restoration"],
+    "5": ["Dispel Magic", "Protection from Energy"],
+    "7": ["Freedom of Movement", "Summon Construct"],
+    "9": ["Greater Restoration", "Wall of Force"]
   }
 }

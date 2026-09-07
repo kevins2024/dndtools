@@ -1,11 +1,17 @@
 {
   "class": "Monk",
   "name": "Way of the Kensei",
-  "description": "A monk who treats weapons as an extension of their body and ki.",
-  "stub": true,
+  "description": "A monk who treats weapons as an extension of their martial arts training, mastering a chosen arsenal of kensei weapons.",
   "features_by_level": {
-    "3": [
-      "pub_path-of-the-kensei"
-    ]
-  }
+    "3": ["pub_path-of-the-kensei"],
+    "6": ["pub_one-with-the-blade"],
+    "11": ["pub_sharpen-the-blade"],
+    "17": ["pub_unerring-accuracy"]
+  },
+  "known_count_by_level": {
+    "3": 2,
+    "6": 3,
+    "11": 4
+  },
+  "note": "No option_catalog — kensei weapons are chosen from the general weapon list (any simple/martial weapon lacking heavy/special properties, plus the longbow), not a small fixed catalog like Rune Knight's runes or Four Elements' disciplines."
 }

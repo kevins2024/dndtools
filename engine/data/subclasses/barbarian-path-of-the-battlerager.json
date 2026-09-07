@@ -1,11 +1,11 @@
 {
   "class": "Barbarian",
   "name": "Path of the Battlerager",
-  "description": "A dwarven tradition of raging while wearing spiked armor, turning the barbarian into a living weapon against anyone who grapples them.",
-  "stub": true,
+  "description": "A dwarven barbarian who fights wearing spiked armor, turning their own body into a weapon.",
   "features_by_level": {
-    "3": [
-      "pub_battlerager-armor"
-    ]
+    "3": ["pub_battlerager-armor"],
+    "6": ["pub_reckless-abandon"],
+    "10": ["pub_battlerager-charge"],
+    "14": ["pub_spiked-retribution"]
   }
 }

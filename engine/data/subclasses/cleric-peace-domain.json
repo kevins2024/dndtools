@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Peace Domain",
-  "description": "A cleric of a god of peace, community, and cooperation between people.",
-  "stub": true,
+  "description": "A cleric who forges bonds of cooperation and protection between allies, prizing harmony above conflict.",
   "features_by_level": {
-    "1": [
-      "pub_emboldening-bond"
-    ]
+    "1": ["pub_emboldening-bond", "pub_implement-of-peace"],
+    "2": ["pub_channel-divinity-balm-of-peace"],
+    "6": ["pub_protective-bond"],
+    "8": ["pub_potent-spellcasting-cleric"],
+    "17": ["pub_expansive-bond"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Heroism", "Sanctuary"],
+    "3": ["Aid", "Warding Bond"],
+    "5": ["Beacon of Hope", "Sending"],
+    "7": ["Aura of Purity", "Otiluke's Resilient Sphere"],
+    "9": ["Greater Restoration", "Rary's Telepathic Bond"]
   }
 }

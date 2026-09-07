@@ -1,11 +1,10 @@
 {
   "class": "Bard",
   "name": "College of Whispers",
-  "description": "A bard who trades in fear and secrets, wielding dread as a weapon.",
-  "stub": true,
+  "description": "A bard who wields fear and secrets as weapons, trading noble inspiration for psychological terror.",
   "features_by_level": {
-    "3": [
-      "pub_psychic-blades"
-    ]
+    "3": ["pub_psychic-blades", "pub_words-of-terror"],
+    "6": ["pub_mantle-of-whispers"],
+    "14": ["pub_shadow-lore"]
   }
 }

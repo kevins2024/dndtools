@@ -7,13 +7,34 @@ const engine = require('../index')
 // 2026-09-02: project owner wants every real subclass visible in the Level
 // Up tool's picker (not just roster-driven ones) so character creation
 // never has to reach for something unbuilt — see engine/CHECKLIST.md
-// Phase 7. These 72 are a first pass: only the class's FIRST subclass tier
-// is filled in (marked `stub: true`), written from training knowledge
-// rather than the full 2-source-verified treatment the fully-built
+// Phase 7. These started as 72: a first pass where only the class's FIRST
+// subclass tier was filled in (marked `stub: true`), written from training
+// knowledge rather than the full 2-source-verified treatment the fully-built
 // subclasses get (Artificer, Rogue, Paladin, and the earlier roster-driven
 // ones). Good enough to browse and pick from; still needs the deeper pass
 // (remaining tiers + spell tables + source verification) before being
-// trusted the way the complete ones are.
+// trusted the way the complete ones are. History: 72 -> 66 on 2026-09-04
+// (Fighter's 6 stubs — Arcane Archer, Cavalier, Psi Warrior, Purple Dragon
+// Knight, Rune Knight, Samurai), 66 -> 57 same day (all 9 Monk stubs — Open
+// Hand, Shadow, Four Elements, Kensei, Long Death, Sun Soul, Drunken
+// Master, Mercy, Astral Self), 57 -> 49 same day (all 8 Wizard stubs —
+// Conjuration, Divination, Enchantment, Illusion, Necromancy,
+// Transmutation, War Magic, Order of Scribes), 49 -> 42 same day (all 7
+// Barbarian stubs — Ancestral Guardian, Battlerager, Beast, Storm Herald,
+// Totem Warrior, Zealot, Wild Magic), 42 -> 36 same day (all 6 Bard
+// stubs — Creation, Eloquence, Glamour, Swords, Valor, Whispers), 36 -> 24
+// same day (all 12 Cleric Divine Domain stubs), 24 -> 19 same day (all 5
+// Druid Circle stubs — Dreams, Shepherd, Spores, Stars, Wildfire), 19 -> 14
+// on 2026-09-06 (all 5 Ranger stubs — Beast Master, Fey Wanderer, Horizon
+// Walker, Monster Slayer, Swarmkeeper), 14 -> 8 same day (all 6 Sorcerer
+// stubs — Aberrant Mind, Clockwork Soul, Draconic Bloodline, Shadow Magic,
+// Storm Sorcery, Wild Magic), 8 -> 0 same day (all 8 Warlock stubs — The
+// Archfey, The Celestial, The Fathomless, The Fiend, The Genie, The
+// Hexblade, The Undead, The Undying). This was the last class — every
+// subclass in the app is now fully built out (all real tiers filled in,
+// 2-source-verified). The tests below now assert 0 remaining stubs; if
+// this ever needs to go back up, something regressed a completed
+// subclass back to stub, which would be a real bug, not expected progress.
 function loadAllSubclassFiles() {
   const dir = path.join(__dirname, '..', 'data', 'subclasses')
   return fs
@@ -51,9 +72,10 @@ test("Every stub subclass's first-tier feature(s) match the class's real subclas
   )
   const byName = new Set(publishedFeatures.map((f) => f.name))
   const files = loadAllSubclassFiles().filter((f) => f.stub)
-  assert.ok(
-    files.length >= 72,
-    `expected at least 72 stub subclass files, found ${files.length}`
+  assert.equal(
+    files.length,
+    0,
+    `expected 0 stub subclass files (every subclass is now fully built out), found ${files.length}`
   )
 
   for (const f of files) {
@@ -100,9 +122,10 @@ test('Stub feature entries are honestly flagged as unverified, not presented as 
   const stubFeatures = publishedFeatures.filter(
     (f) => f.category === 'subclass_feature_stub'
   )
-  assert.ok(
-    stubFeatures.length >= 72,
-    `expected at least 72 stub features, found ${stubFeatures.length}`
+  assert.equal(
+    stubFeatures.length,
+    0,
+    `expected 0 stub features (every subclass is now fully built out), found ${stubFeatures.length}`
   )
   for (const f of stubFeatures) {
     assert.ok(f.verification, `${f.name} should carry a verification note`)

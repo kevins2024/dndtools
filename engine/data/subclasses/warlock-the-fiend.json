@@ -2,10 +2,10 @@
   "class": "Warlock",
   "name": "The Fiend",
   "description": "A warlock whose patron is a devil, demon, or other fiend of the Lower Planes.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_dark-one-s-blessing"
-    ]
+    "1": ["pub_dark-one-s-blessing"],
+    "6": ["pub_dark-ones-own-luck"],
+    "10": ["pub_fiendish-resilience"],
+    "14": ["pub_hurl-through-hell"]
   }
 }

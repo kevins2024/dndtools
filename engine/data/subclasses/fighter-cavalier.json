@@ -2,10 +2,11 @@
   "class": "Fighter",
   "name": "Cavalier",
   "description": "A fighter who excels at protecting others and fighting from horseback.",
-  "stub": true,
   "features_by_level": {
-    "3": [
-      "pub_bonus-proficiency-born-to-the-saddle-and-unwavering-mark"
-    ]
+    "3": ["pub_bonus-proficiency-born-to-the-saddle-and-unwavering-mark"],
+    "7": ["pub_warding-maneuver"],
+    "10": ["pub_hold-the-line"],
+    "15": ["pub_ferocious-charger"],
+    "18": ["pub_vigilant-defender"]
   }
 }

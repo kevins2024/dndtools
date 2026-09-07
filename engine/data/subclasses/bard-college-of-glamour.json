@@ -1,11 +1,10 @@
 {
   "class": "Bard",
   "name": "College of Glamour",
-  "description": "A bard trained in the Feywild's Glamour Courts, whose performances captivate and compel.",
-  "stub": true,
+  "description": "A bard trained in the Feywild's courts, wielding an intoxicating, otherworldly charisma.",
   "features_by_level": {
-    "3": [
-      "pub_mantle-of-inspiration"
-    ]
+    "3": ["pub_mantle-of-inspiration", "pub_enthralling-performance"],
+    "6": ["pub_mantle-of-majesty"],
+    "14": ["pub_unbreakable-majesty"]
   }
 }

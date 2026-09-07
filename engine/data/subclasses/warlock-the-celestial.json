@@ -2,10 +2,10 @@
   "class": "Warlock",
   "name": "The Celestial",
   "description": "A warlock whose patron is a powerful being of the Upper Planes.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_bonus-cantrips-and-healing-light"
-    ]
+    "1": ["pub_bonus-cantrips-celestial", "pub_healing-light"],
+    "6": ["pub_radiant-soul"],
+    "10": ["pub_celestial-resilience"],
+    "14": ["pub_searing-vengeance"]
   }
 }

@@ -2,10 +2,25 @@
   "class": "Fighter",
   "name": "Rune Knight",
   "description": "A fighter who carves ancient giant runes into their gear, gaining magical power (and sometimes size) from them.",
-  "stub": true,
   "features_by_level": {
-    "3": [
-      "pub_bonus-proficiencies-and-rune-carver"
-    ]
-  }
+    "3": ["pub_bonus-proficiencies-and-rune-carver", "pub_giants-might"],
+    "7": ["pub_runic-shield"],
+    "10": ["pub_great-stature"],
+    "15": ["pub_master-of-runes"],
+    "18": ["pub_runic-juggernaut"]
+  },
+  "known_count_by_level": {
+    "3": 2,
+    "7": 3,
+    "10": 4,
+    "15": 5
+  },
+  "option_catalog": [
+    "pub_rune-cloud",
+    "pub_rune-fire",
+    "pub_rune-frost",
+    "pub_rune-stone",
+    "pub_rune-hill",
+    "pub_rune-storm"
+  ]
 }

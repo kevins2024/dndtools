@@ -2,10 +2,26 @@
   "class": "Fighter",
   "name": "Arcane Archer",
   "description": "A fighter trained by elven traditions to infuse arrows with magic.",
-  "stub": true,
   "features_by_level": {
-    "3": [
-      "pub_arcane-archer-lore-and-arcane-shot"
-    ]
-  }
+    "3": ["pub_arcane-archer-lore-and-arcane-shot"],
+    "7": ["pub_magic-arrow", "pub_curving-shot"],
+    "15": ["pub_ever-ready-shot"]
+  },
+  "known_count_by_level": {
+    "3": 2,
+    "7": 3,
+    "10": 4,
+    "15": 5,
+    "18": 6
+  },
+  "option_catalog": [
+    "pub_arcane-shot-banishing-arrow",
+    "pub_arcane-shot-beguiling-arrow",
+    "pub_arcane-shot-bursting-arrow",
+    "pub_arcane-shot-enfeebling-arrow",
+    "pub_arcane-shot-grasping-arrow",
+    "pub_arcane-shot-piercing-arrow",
+    "pub_arcane-shot-seeking-arrow",
+    "pub_arcane-shot-shadow-arrow"
+  ]
 }

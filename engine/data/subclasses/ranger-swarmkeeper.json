@@ -1,11 +1,11 @@
 {
   "class": "Ranger",
   "name": "Swarmkeeper",
-  "description": "A ranger accompanied by a swarm of spirits - insects, birds, leaves - that fights alongside them.",
-  "stub": true,
+  "description": "A ranger bonded to a swarm of intangible nature spirits that fights alongside them and lifts them into the air.",
   "features_by_level": {
-    "3": [
-      "pub_gathered-swarm"
-    ]
+    "3": ["pub_gathered-swarm", "pub_swarmkeeper-magic"],
+    "7": ["pub_writhing-tide"],
+    "11": ["pub_mighty-swarm"],
+    "15": ["pub_swarming-dispersal"]
   }
 }

@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "War Domain",
-  "description": "A cleric of a god of war, battle, or conquest.",
-  "stub": true,
+  "description": "A cleric who serves a god of war, battle, or conquest, blessed to fight on the front lines.",
   "features_by_level": {
-    "1": [
-      "pub_bonus-proficiencies-and-war-priest"
-    ]
+    "1": ["pub_bonus-proficiencies-and-war-priest"],
+    "2": ["pub_channel-divinity-guided-strike-cleric"],
+    "6": ["pub_channel-divinity-war-gods-blessing"],
+    "8": ["pub_divine-strike-war"],
+    "17": ["pub_avatar-of-battle"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Divine Favor", "Shield of Faith"],
+    "3": ["Magic Weapon", "Spiritual Weapon"],
+    "5": ["Crusader's Mantle", "Spirit Guardians"],
+    "7": ["Freedom of Movement", "Stoneskin"],
+    "9": ["Flame Strike", "Hold Monster"]
   }
 }

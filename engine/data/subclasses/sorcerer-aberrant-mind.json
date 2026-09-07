@@ -2,10 +2,17 @@
   "class": "Sorcerer",
   "name": "Aberrant Mind",
   "description": "A sorcerer whose power comes from a psionic connection to alien, extradimensional influence.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_psionic-spells-and-telepathic-speech"
-    ]
+    "1": ["pub_psionic-spells", "pub_telepathic-speech"],
+    "6": ["pub_psionic-sorcery", "pub_psychic-defenses"],
+    "14": ["pub_revelation-in-flesh"],
+    "18": ["pub_warping-implosion"]
+  },
+  "psionic_spells_by_level": {
+    "1": ["Arms of Hadar", "Dissonant Whispers", "Mind Sliver"],
+    "3": ["Calm Emotions", "Detect Thoughts"],
+    "5": ["Hunger of Hadar", "Sending"],
+    "7": ["Evard's Black Tentacles", "Summon Aberration"],
+    "9": ["Rary's Telepathic Bond", "Telekinesis"]
   }
 }

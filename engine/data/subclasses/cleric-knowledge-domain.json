@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Knowledge Domain",
-  "description": "A cleric of a god of knowledge, prophecy, or the arcane.",
-  "stub": true,
+  "description": "A cleric devoted to the pursuit and preservation of knowledge, serving a god of learning, wisdom, or memory.",
   "features_by_level": {
-    "1": [
-      "pub_blessings-of-knowledge"
-    ]
+    "1": ["pub_blessings-of-knowledge"],
+    "2": ["pub_channel-divinity-knowledge-of-the-ages"],
+    "6": ["pub_channel-divinity-read-thoughts"],
+    "8": ["pub_potent-spellcasting-cleric"],
+    "17": ["pub_visions-of-the-past"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Command", "Identify"],
+    "3": ["Augury", "Suggestion"],
+    "5": ["Nondetection", "Speak with Dead"],
+    "7": ["Arcane Eye", "Confusion"],
+    "9": ["Legend Lore", "Scrying"]
   }
 }

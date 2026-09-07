@@ -1,11 +1,10 @@
 {
   "class": "Bard",
   "name": "College of Eloquence",
-  "description": "A bard whose words are so precise and persuasive they border on magical compulsion, without ever using actual charm effects.",
-  "stub": true,
+  "description": "A bard whose mastery of rhetoric and wordplay makes their persuasion nearly impossible to resist.",
   "features_by_level": {
-    "3": [
-      "pub_silver-tongue"
-    ]
+    "3": ["pub_silver-tongue", "pub_unsettling-words"],
+    "6": ["pub_unfailing-inspiration"],
+    "14": ["pub_infectious-inspiration"]
   }
 }

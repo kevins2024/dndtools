@@ -1,11 +1,10 @@
 {
   "class": "Bard",
   "name": "College of Valor",
-  "description": "A bard who takes the stage of battle itself, inspiring allies mid-combat.",
-  "stub": true,
+  "description": "A bard who sings the deeds of legendary heroes and joins the front line as one themselves.",
   "features_by_level": {
-    "3": [
-      "pub_bonus-proficiencies-and-combat-inspiration"
-    ]
+    "3": ["pub_bonus-proficiencies-and-combat-inspiration"],
+    "6": ["pub_extra-attack-college-of-valor"],
+    "14": ["pub_battle-magic"]
   }
 }

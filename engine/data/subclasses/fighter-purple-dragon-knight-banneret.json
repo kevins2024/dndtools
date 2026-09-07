@@ -2,10 +2,11 @@
   "class": "Fighter",
   "name": "Purple Dragon Knight (Banneret)",
   "description": "A fighter who leads and inspires allies through martial example, tied to the Purple Dragons of Cormyr.",
-  "stub": true,
   "features_by_level": {
-    "3": [
-      "pub_rallying-cry"
-    ]
-  }
+    "3": ["pub_rallying-cry"],
+    "7": ["pub_royal-envoy"],
+    "10": ["pub_inspiring-surge"],
+    "15": ["pub_bulwark-purple-dragon-knight"]
+  },
+  "note": "No new feature at 18th level — real RAW upgrades Inspiring Surge in place (choose two allies instead of one) rather than granting a separate named feature. See pub_inspiring-surge's own description."
 }

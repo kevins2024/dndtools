@@ -1,11 +1,16 @@
 {
   "class": "Barbarian",
   "name": "Path of the Beast",
-  "description": "The barbarian's rage manifests a bestial weapon grown from their own body.",
-  "stub": true,
+  "description": "A barbarian whose rage transforms them, manifesting a bestial weapon born from primal power.",
   "features_by_level": {
-    "3": [
-      "pub_form-of-the-beast"
-    ]
-  }
+    "3": ["pub_form-of-the-beast"],
+    "6": ["pub_bestial-soul"],
+    "10": ["pub_infectious-fury"],
+    "14": ["pub_call-the-hunt"]
+  },
+  "option_catalog": [
+    "pub_form-of-the-beast-bite",
+    "pub_form-of-the-beast-claws",
+    "pub_form-of-the-beast-tail"
+  ]
 }

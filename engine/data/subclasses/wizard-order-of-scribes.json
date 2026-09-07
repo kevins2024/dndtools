@@ -1,11 +1,11 @@
 {
   "class": "Wizard",
   "name": "Order of Scribes",
-  "description": "A wizard whose magic is bound up in the living, ever-changing power of the written word.",
-  "stub": true,
+  "description": "A wizard bonded to a sentient spellbook, part of a network of scholars devoted to the pursuit and preservation of magical knowledge.",
   "features_by_level": {
-    "2": [
-      "pub_wizardly-quill-and-awakened-spellbook"
-    ]
+    "2": ["pub_wizardly-quill-and-awakened-spellbook"],
+    "6": ["pub_manifest-mind"],
+    "10": ["pub_master-scrivener"],
+    "14": ["pub_one-with-the-word"]
   }
 }

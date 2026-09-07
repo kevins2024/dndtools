@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Light Domain",
-  "description": "A cleric of a god of light, truth, vigilance, or beauty.",
-  "stub": true,
+  "description": "A cleric who wields radiant fire in the service of a god of light, hope, or the sun.",
   "features_by_level": {
-    "1": [
-      "pub_warding-flare"
-    ]
+    "1": ["pub_warding-flare", "pub_light-domain-bonus-cantrip"],
+    "2": ["pub_channel-divinity-radiance-of-the-dawn"],
+    "6": ["pub_improved-flare"],
+    "8": ["pub_potent-spellcasting-cleric"],
+    "17": ["pub_corona-of-light"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Burning Hands", "Faerie Fire"],
+    "3": ["Flaming Sphere", "Scorching Ray"],
+    "5": ["Daylight", "Fireball"],
+    "7": ["Guardian of Faith", "Wall of Fire"],
+    "9": ["Flame Strike", "Scrying"]
   }
 }

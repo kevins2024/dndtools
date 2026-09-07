@@ -2,10 +2,10 @@
   "class": "Warlock",
   "name": "The Fathomless",
   "description": "A warlock whose patron is an ancient, elemental entity of the deep ocean.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_tentacle-of-the-deep-and-gift-of-the-sea"
-    ]
+    "1": ["pub_tentacle-of-the-deep", "pub_gift-of-the-sea"],
+    "6": ["pub_guardian-coil"],
+    "10": ["pub_grasping-tentacles"],
+    "14": ["pub_fathomless-plunge"]
   }
 }

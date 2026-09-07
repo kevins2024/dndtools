@@ -1,11 +1,11 @@
 {
   "class": "Druid",
   "name": "Circle of Wildfire",
-  "description": "A druid whose bond to fire's destructive-yet-renewing nature manifests as a spectral flame companion.",
-  "stub": true,
+  "description": "A druid who has made peace with fire's role in nature's endless cycle of destruction and renewal, bonding with a wildfire spirit.",
   "features_by_level": {
-    "2": [
-      "pub_summon-wildfire-spirit"
-    ]
+    "2": ["pub_summon-wildfire-spirit"],
+    "6": ["pub_enhanced-bond"],
+    "10": ["pub_cauterizing-flames"],
+    "14": ["pub_blazing-revival"]
   }
 }

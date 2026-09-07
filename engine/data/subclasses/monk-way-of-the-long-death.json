@@ -1,11 +1,11 @@
 {
   "class": "Monk",
   "name": "Way of the Long Death",
-  "description": "A monk who has stared into death itself and returned, wielding its power.",
-  "stub": true,
+  "description": "A monk who has stared into death itself and returned, wielding that mastery over mortality as a weapon.",
   "features_by_level": {
-    "3": [
-      "pub_touch-of-death"
-    ]
+    "3": ["pub_touch-of-death"],
+    "6": ["pub_hour-of-reaping"],
+    "11": ["pub_mastery-of-death"],
+    "17": ["pub_touch-of-the-long-death"]
   }
 }

@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Trickery Domain",
-  "description": "A cleric of a god of deception, thievery, or mischief.",
-  "stub": true,
+  "description": "A cleric who serves a god of mischief, deception, or thievery, delighting in trickery and misdirection.",
   "features_by_level": {
-    "1": [
-      "pub_blessing-of-the-trickster"
-    ]
+    "1": ["pub_blessing-of-the-trickster"],
+    "2": ["pub_channel-divinity-invoke-duplicity"],
+    "6": ["pub_channel-divinity-cloak-of-shadows"],
+    "8": ["pub_divine-strike-trickery"],
+    "17": ["pub_improved-duplicity"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Charm Person", "Disguise Self"],
+    "3": ["Mirror Image", "Pass without Trace"],
+    "5": ["Blink", "Dispel Magic"],
+    "7": ["Dimension Door", "Polymorph"],
+    "9": ["Dominate Person", "Modify Memory"]
   }
 }

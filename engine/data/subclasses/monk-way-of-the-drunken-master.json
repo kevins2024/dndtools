@@ -1,11 +1,11 @@
 {
   "class": "Monk",
   "name": "Way of the Drunken Master",
-  "description": "A monk whose unpredictable, swaying fighting style makes them hard to pin down.",
-  "stub": true,
+  "description": "A monk whose unpredictable, staggering fighting style is a deliberate technique, not real intoxication.",
   "features_by_level": {
-    "3": [
-      "pub_bonus-proficiencies-and-drunken-technique"
-    ]
+    "3": ["pub_bonus-proficiencies-and-drunken-technique"],
+    "6": ["pub_tipsy-sway"],
+    "11": ["pub_drunkards-luck"],
+    "17": ["pub_intoxicated-frenzy"]
   }
 }

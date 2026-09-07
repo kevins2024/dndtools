@@ -2,10 +2,10 @@
   "class": "Warlock",
   "name": "The Undead",
   "description": "A warlock whose patron is an undying, deathless entity.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_form-of-dread"
-    ]
+    "1": ["pub_form-of-dread"],
+    "6": ["pub_grave-touched"],
+    "10": ["pub_necrotic-husk"],
+    "14": ["pub_spirit-projection"]
   }
 }

@@ -1,11 +1,11 @@
 {
   "class": "Wizard",
   "name": "School of Conjuration",
-  "description": "A wizard who specializes in bringing creatures and objects into being from thin air, or across space.",
-  "stub": true,
+  "description": "A wizard who specializes in creating objects and creatures from nothing, and in transporting people and things across great distances.",
   "features_by_level": {
-    "2": [
-      "pub_minor-conjuration"
-    ]
+    "2": ["pub_minor-conjuration"],
+    "6": ["pub_benign-transposition"],
+    "10": ["pub_focused-conjuration"],
+    "14": ["pub_durable-summons"]
   }
 }

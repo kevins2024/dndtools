@@ -1,11 +1,11 @@
 {
   "class": "Wizard",
   "name": "School of Enchantment",
-  "description": "A wizard who bends minds and wills through subtle, potent magic.",
-  "stub": true,
+  "description": "A wizard who hones spells that dominate the minds of others, entrancing even the most steadfast will.",
   "features_by_level": {
-    "2": [
-      "pub_hypnotic-gaze"
-    ]
+    "2": ["pub_hypnotic-gaze"],
+    "6": ["pub_instinctive-charm"],
+    "10": ["pub_split-enchantment"],
+    "14": ["pub_alter-memories"]
   }
 }

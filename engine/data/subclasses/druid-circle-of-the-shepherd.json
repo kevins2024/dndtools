@@ -1,11 +1,16 @@
 {
   "class": "Druid",
   "name": "Circle of the Shepherd",
-  "description": "A druid devoted to protecting and empowering beasts, fey, and the spirits of nature.",
-  "stub": true,
+  "description": "A druid who calls forth the spirits of nature to guide and empower their allies and summoned creatures.",
   "features_by_level": {
-    "2": [
-      "pub_speech-of-the-woods-and-spirit-totem"
-    ]
-  }
+    "2": ["pub_speech-of-the-woods", "pub_spirit-totem"],
+    "6": ["pub_mighty-summoner"],
+    "10": ["pub_guardian-spirit"],
+    "14": ["pub_faithful-summons"]
+  },
+  "option_catalog": [
+    "pub_spirit-totem-bear",
+    "pub_spirit-totem-hawk",
+    "pub_spirit-totem-unicorn"
+  ]
 }

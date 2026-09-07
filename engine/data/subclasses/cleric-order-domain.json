@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Order Domain",
-  "description": "A cleric of a god of law, civilization, and order.",
-  "stub": true,
+  "description": "A cleric of law and civilization, enforcing order among mortals in their god's name.",
   "features_by_level": {
-    "1": [
-      "pub_bonus-proficiencies-and-voice-of-authority"
-    ]
+    "1": ["pub_bonus-proficiencies-and-voice-of-authority"],
+    "2": ["pub_channel-divinity-orders-demand"],
+    "6": ["pub_embodiment-of-the-law"],
+    "8": ["pub_divine-strike-order"],
+    "17": ["pub_orders-wrath"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Command", "Heroism"],
+    "3": ["Hold Person", "Zone of Truth"],
+    "5": ["Mass Healing Word", "Slow"],
+    "7": ["Compulsion", "Locate Creature"],
+    "9": ["Commune", "Dominate Person"]
   }
 }

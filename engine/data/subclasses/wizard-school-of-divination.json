@@ -1,11 +1,11 @@
 {
   "class": "Wizard",
   "name": "School of Divination",
-  "description": "A wizard who has learned to see beyond the present, glimpsing fate itself.",
-  "stub": true,
+  "description": "A wizard who catches fleeting glimpses of the future, honing their power to see what is to come.",
   "features_by_level": {
-    "2": [
-      "pub_portent"
-    ]
+    "2": ["pub_portent"],
+    "6": ["pub_expert-divination"],
+    "10": ["pub_the-third-eye"],
+    "14": ["pub_greater-portent"]
   }
 }

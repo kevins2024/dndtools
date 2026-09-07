@@ -1,11 +1,34 @@
 {
   "class": "Monk",
   "name": "Way of the Four Elements",
-  "description": "A monk who channels ki into elemental magic, wielding fire, water, earth, and air.",
-  "stub": true,
+  "description": "A monk who bends the four elements to their will, casting elemental disciplines fueled by ki instead of spell slots.",
   "features_by_level": {
-    "3": [
-      "pub_disciple-of-the-elements"
-    ]
-  }
+    "3": ["pub_disciple-of-the-elements"]
+  },
+  "note": "No new named feature at 6th/11th/17th — Disciple of the Elements is the ONLY feature this subclass grants; those levels just add another known elemental discipline (see known_count_by_level below) via the same feature's own swap-on-level-up text, matching how the class's own confirmed real structure works (verified 2026-09-04).",
+  "known_count_by_level": {
+    "3": 2,
+    "6": 3,
+    "11": 4,
+    "17": 5
+  },
+  "option_catalog": [
+    "pub_discipline-elemental-attunement",
+    "pub_discipline-fangs-of-the-fire-snake",
+    "pub_discipline-fist-of-four-thunders",
+    "pub_discipline-fist-of-unbroken-air",
+    "pub_discipline-rush-of-the-gale-spirits",
+    "pub_discipline-shape-the-flowing-river",
+    "pub_discipline-sweeping-cinder-strike",
+    "pub_discipline-water-whip",
+    "pub_discipline-clench-of-the-north-wind",
+    "pub_discipline-gong-of-the-summit",
+    "pub_discipline-flames-of-the-phoenix",
+    "pub_discipline-mist-stance",
+    "pub_discipline-ride-the-wind",
+    "pub_discipline-breath-of-winter",
+    "pub_discipline-eternal-mountain-defense",
+    "pub_discipline-river-of-hungry-flame",
+    "pub_discipline-wave-of-rolling-earth"
+  ]
 }

@@ -1,11 +1,11 @@
 {
   "class": "Barbarian",
   "name": "Path of the Ancestral Guardian",
-  "description": "Calls on spirit guardians to protect allies and punish those who ignore the barbarian to attack someone else.",
-  "stub": true,
+  "description": "A barbarian who calls on the spirits of ancestral warriors for protection and guidance while raging.",
   "features_by_level": {
-    "3": [
-      "pub_ancestral-protectors"
-    ]
+    "3": ["pub_ancestral-protectors"],
+    "6": ["pub_spirit-shield"],
+    "10": ["pub_consult-the-spirits"],
+    "14": ["pub_vengeful-ancestors"]
   }
 }

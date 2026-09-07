@@ -1,11 +1,62 @@
 {
   "class": "Druid",
   "name": "Circle of the Land",
-  "description": "A druid steeped in the ancient knowledge and magic of a particular terrain.",
-  "stub": true,
+  "description": "A druid steeped in the ancient knowledge and mystical power of a specific type of land where they trained.",
   "features_by_level": {
-    "2": [
-      "pub_bonus-cantrip-and-natural-recovery"
-    ]
+    "2": ["pub_bonus-cantrip-and-natural-recovery"],
+    "6": ["pub_lands-stride"],
+    "10": ["pub_natures-ward"],
+    "14": ["pub_natures-sanctuary"]
+  },
+  "note": "Circle spells (3rd/5th/7th/9th) are chosen once via land_spells_by_type based on the land type picked at 2nd level — a real character only ever has ONE land type's worth of spells, not all eight.",
+  "land_spells_by_type": {
+    "Arctic": {
+      "3": ["Hold Person", "Spike Growth"],
+      "5": ["Sleet Storm", "Slow"],
+      "7": ["Freedom of Movement", "Ice Storm"],
+      "9": ["Commune with Nature", "Cone of Cold"]
+    },
+    "Coast": {
+      "3": ["Mirror Image", "Misty Step"],
+      "5": ["Water Breathing", "Water Walk"],
+      "7": ["Control Water", "Freedom of Movement"],
+      "9": ["Conjure Elemental", "Scrying"]
+    },
+    "Desert": {
+      "3": ["Blur", "Silence"],
+      "5": ["Create Food and Water", "Protection from Energy"],
+      "7": ["Blight", "Hallucinatory Terrain"],
+      "9": ["Insect Plague", "Wall of Stone"]
+    },
+    "Forest": {
+      "3": ["Barkskin", "Spider Climb"],
+      "5": ["Call Lightning", "Plant Growth"],
+      "7": ["Divination", "Freedom of Movement"],
+      "9": ["Commune with Nature", "Tree Stride"]
+    },
+    "Grassland": {
+      "3": ["Invisibility", "Pass without Trace"],
+      "5": ["Daylight", "Haste"],
+      "7": ["Divination", "Freedom of Movement"],
+      "9": ["Dream", "Insect Plague"]
+    },
+    "Mountain": {
+      "3": ["Spider Climb", "Spike Growth"],
+      "5": ["Lightning Bolt", "Meld into Stone"],
+      "7": ["Stone Shape", "Stoneskin"],
+      "9": ["Passwall", "Wall of Stone"]
+    },
+    "Swamp": {
+      "3": ["Darkness", "Melf's Acid Arrow"],
+      "5": ["Water Walk", "Stinking Cloud"],
+      "7": ["Freedom of Movement", "Locate Creature"],
+      "9": ["Insect Plague", "Scrying"]
+    },
+    "Underdark": {
+      "3": ["Spider Climb", "Web"],
+      "5": ["Gaseous Form", "Stinking Cloud"],
+      "7": ["Greater Invisibility", "Stone Shape"],
+      "9": ["Cloudkill", "Insect Plague"]
+    }
   }
 }

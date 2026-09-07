@@ -1,11 +1,11 @@
 {
   "class": "Monk",
   "name": "Way of Mercy",
-  "description": "A monk who channels ki to heal or harm with a touch, balancing life and death.",
-  "stub": true,
+  "description": "A monk who channels ki through both ends of the same coin — healing and harm — as a Master of Mercy or a Master of Pain.",
   "features_by_level": {
-    "3": [
-      "pub_implements-of-mercy-and-hand-of-healing-harm"
-    ]
+    "3": ["pub_implements-of-mercy-and-hand-of-healing-harm"],
+    "6": ["pub_physicians-touch"],
+    "11": ["pub_flurry-of-healing-and-harm"],
+    "17": ["pub_hand-of-ultimate-mercy"]
   }
 }

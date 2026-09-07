@@ -1,11 +1,19 @@
 {
   "class": "Druid",
   "name": "Circle of Spores",
-  "description": "A druid who has embraced decay and the cycle of death and rebirth through fungal symbiosis.",
-  "stub": true,
+  "description": "A druid who sees decay as a vital part of nature's cycle, wielding necrotic spores instead of shrinking from death.",
   "features_by_level": {
-    "2": [
-      "pub_halo-of-spores-and-symbiotic-entity"
-    ]
-  }
+    "2": ["pub_halo-of-spores-and-symbiotic-entity"],
+    "6": ["pub_fungal-infestation"],
+    "10": ["pub_spreading-spores"],
+    "14": ["pub_fungal-body"]
+  },
+  "circle_spells_by_level": {
+    "2": ["Chill Touch"],
+    "3": ["Blindness/Deafness", "Gentle Repose"],
+    "5": ["Animate Dead", "Gaseous Form"],
+    "7": ["Blight", "Confusion"],
+    "9": ["Cloudkill", "Contagion"]
+  },
+  "note": "circle_spells_by_level's \"2\" entry is a bonus cantrip (Chill Touch), not a slotted spell like the 3/5/7/9 pairs — matches real RAW's own irregular structure for this subclass."
 }

@@ -2,10 +2,17 @@
   "class": "Fighter",
   "name": "Psi Warrior",
   "description": "A fighter who augments their combat prowess with psionic power.",
-  "stub": true,
   "features_by_level": {
-    "3": [
-      "pub_psionic-power"
-    ]
+    "3": ["pub_psionic-power"],
+    "7": ["pub_telekinetic-adept"],
+    "10": ["pub_guarded-mind"],
+    "15": ["pub_bulwark-of-force"],
+    "18": ["pub_telekinetic-master"]
+  },
+  "psionic_energy_die_by_level": {
+    "3": 6,
+    "5": 8,
+    "11": 10,
+    "17": 12
   }
 }

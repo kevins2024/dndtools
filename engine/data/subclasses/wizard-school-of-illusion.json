@@ -1,11 +1,11 @@
 {
   "class": "Wizard",
   "name": "School of Illusion",
-  "description": "A wizard who bends and fabricates reality itself through sight and sound.",
-  "stub": true,
+  "description": "A wizard who refines the subtle art of deceiving both mind and senses, making the unreal convincingly real.",
   "features_by_level": {
-    "2": [
-      "pub_improved-minor-illusion"
-    ]
+    "2": ["pub_improved-minor-illusion"],
+    "6": ["pub_malleable-illusions"],
+    "10": ["pub_illusory-self"],
+    "14": ["pub_illusory-reality"]
   }
 }

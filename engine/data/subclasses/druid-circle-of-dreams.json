@@ -1,11 +1,11 @@
 {
   "class": "Druid",
   "name": "Circle of Dreams",
-  "description": "A druid connected to the Feywild's restorative, dreamlike side of nature.",
-  "stub": true,
+  "description": "A druid bonded to the Feywild's Summer Court, drawing on its gentle magic to heal and protect.",
   "features_by_level": {
-    "2": [
-      "pub_balm-of-the-summer-court"
-    ]
+    "2": ["pub_balm-of-the-summer-court"],
+    "6": ["pub_hearth-of-moonlight-and-shadow"],
+    "10": ["pub_hidden-paths"],
+    "14": ["pub_walker-in-dreams"]
   }
 }

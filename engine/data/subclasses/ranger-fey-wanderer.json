@@ -1,11 +1,15 @@
 {
   "class": "Ranger",
   "name": "Fey Wanderer",
-  "description": "A ranger touched by the Feywild, blending martial skill with fey charm and menace.",
-  "stub": true,
+  "description": "A ranger touched by the Feywild who strikes with dreadful, otherworldly force and bends minds to a fey glamour.",
   "features_by_level": {
     "3": [
-      "pub_dreadful-strikes"
-    ]
+      "pub_dreadful-strikes",
+      "pub_otherworldly-glamour",
+      "pub_fey-wanderer-magic"
+    ],
+    "7": ["pub_beguiling-twist"],
+    "11": ["pub_fey-reinforcements"],
+    "15": ["pub_misty-wanderer"]
   }
 }

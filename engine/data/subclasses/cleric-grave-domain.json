@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Grave Domain",
-  "description": "A cleric who stands as a sentinel against death itself, guiding the dying and dead.",
-  "stub": true,
+  "description": "A cleric who watches the boundary between life and death, keeping the dead in their place and easing the passing of the living.",
   "features_by_level": {
-    "1": [
-      "pub_circle-of-mortality-and-eyes-of-the-grave"
-    ]
+    "1": ["pub_circle-of-mortality-and-eyes-of-the-grave"],
+    "2": ["pub_channel-divinity-path-to-the-grave"],
+    "6": ["pub_sentinel-at-deaths-door"],
+    "8": ["pub_potent-spellcasting-cleric"],
+    "17": ["pub_keeper-of-souls"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Bane", "False Life"],
+    "3": ["Gentle Repose", "Ray of Enfeeblement"],
+    "5": ["Revivify", "Vampiric Touch"],
+    "7": ["Blight", "Death Ward"],
+    "9": ["Antilife Shell", "Raise Dead"]
   }
 }

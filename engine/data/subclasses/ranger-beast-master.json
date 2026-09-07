@@ -1,11 +1,11 @@
 {
   "class": "Ranger",
   "name": "Beast Master",
-  "description": "A ranger who bonds with an animal companion that fights at their side.",
-  "stub": true,
+  "description": "A ranger who forges a powerful, magical bond with a beast companion that fights at their side.",
   "features_by_level": {
-    "3": [
-      "pub_ranger-s-companion"
-    ]
+    "3": ["pub_primal-companion"],
+    "7": ["pub_exceptional-training"],
+    "11": ["pub_bestial-fury"],
+    "15": ["pub_share-spells"]
   }
 }

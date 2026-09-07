@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Nature Domain",
-  "description": "A cleric of a god associated with the natural world.",
-  "stub": true,
+  "description": "A cleric who serves a god of the natural world, wielding the wild's protective and destructive power.",
   "features_by_level": {
-    "1": [
-      "pub_acolyte-of-nature"
-    ]
+    "1": ["pub_acolyte-of-nature", "pub_bonus-proficiency-nature-domain"],
+    "2": ["pub_channel-divinity-charm-animals-and-plants"],
+    "6": ["pub_dampen-elements"],
+    "8": ["pub_divine-strike-nature"],
+    "17": ["pub_master-of-nature"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Animal Friendship", "Speak with Animals"],
+    "3": ["Barkskin", "Spike Growth"],
+    "5": ["Plant Growth", "Wind Wall"],
+    "7": ["Dominate Beast", "Grasping Vine"],
+    "9": ["Insect Plague", "Tree Stride"]
   }
 }

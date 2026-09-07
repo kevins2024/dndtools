@@ -1,11 +1,11 @@
 {
   "class": "Barbarian",
   "name": "Path of the Zealot",
-  "description": "A barbarian whose rage is a gift from their god, making them a terrifying weapon of divine fury.",
-  "stub": true,
+  "description": "A barbarian whose rage is a divine gift, channeling the fury of the gods themselves.",
   "features_by_level": {
-    "3": [
-      "pub_divine-fury"
-    ]
+    "3": ["pub_divine-fury", "pub_warrior-of-the-gods"],
+    "6": ["pub_fanatical-focus"],
+    "10": ["pub_zealous-presence"],
+    "14": ["pub_rage-beyond-death"]
   }
 }

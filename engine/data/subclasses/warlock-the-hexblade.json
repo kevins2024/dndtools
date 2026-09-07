@@ -2,10 +2,10 @@
   "class": "Warlock",
   "name": "The Hexblade",
   "description": "A warlock bound to a sentient weapon from the Shadowfell.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_hexblade-s-curse-and-hex-warrior"
-    ]
+    "1": ["pub_hexblades-curse", "pub_hex-warrior"],
+    "6": ["pub_accursed-specter"],
+    "10": ["pub_armor-of-hexes"],
+    "14": ["pub_master-of-hexes"]
   }
 }

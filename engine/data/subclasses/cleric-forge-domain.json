@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Forge Domain",
-  "description": "A cleric of a god of the forge, craft, and fire.",
-  "stub": true,
+  "description": "A cleric of the forge, wielding fire and metal in the service of a god of creation and craft.",
   "features_by_level": {
-    "1": [
-      "pub_bonus-proficiencies-and-blessing-of-the-forge"
-    ]
+    "1": ["pub_bonus-proficiencies-and-blessing-of-the-forge"],
+    "2": ["pub_channel-divinity-artisans-blessing"],
+    "6": ["pub_soul-of-the-forge"],
+    "8": ["pub_divine-strike-forge"],
+    "17": ["pub_saint-of-forge-and-fire"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Identify", "Searing Smite"],
+    "3": ["Heat Metal", "Magic Weapon"],
+    "5": ["Elemental Weapon", "Protection from Energy"],
+    "7": ["Fabricate", "Wall of Fire"],
+    "9": ["Animate Objects", "Creation"]
   }
 }

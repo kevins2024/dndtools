@@ -1,11 +1,11 @@
 {
   "class": "Monk",
   "name": "Way of Shadow",
-  "description": "A monk trained in stealth and shadow magic, ideal for infiltration and assassination.",
-  "stub": true,
+  "description": "A monk who trains in stealth and subterfuge, using ki to duplicate the tricks of shadow magic.",
   "features_by_level": {
-    "3": [
-      "pub_shadow-arts"
-    ]
+    "3": ["pub_shadow-arts"],
+    "6": ["pub_shadow-step"],
+    "11": ["pub_cloak-of-shadows"],
+    "17": ["pub_opportunist"]
   }
 }

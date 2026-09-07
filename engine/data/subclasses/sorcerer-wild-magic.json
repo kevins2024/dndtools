@@ -2,10 +2,10 @@
   "class": "Sorcerer",
   "name": "Wild Magic",
   "description": "A sorcerer whose magic is untamed and unpredictable, occasionally erupting into strange effects.",
-  "stub": true,
   "features_by_level": {
-    "1": [
-      "pub_wild-magic-surge-and-tides-of-chaos"
-    ]
+    "1": ["pub_wild-magic-surge", "pub_tides-of-chaos"],
+    "6": ["pub_bend-luck"],
+    "14": ["pub_controlled-chaos"],
+    "18": ["pub_spell-bombardment"]
   }
 }

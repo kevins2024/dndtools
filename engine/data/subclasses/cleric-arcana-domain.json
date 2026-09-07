@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Arcana Domain",
-  "description": "A cleric whose god is a source of arcane knowledge, blending divine and arcane magic.",
-  "stub": true,
+  "description": "A cleric who draws on arcane knowledge as much as divine power, blurring the line between wizardry and priesthood.",
   "features_by_level": {
-    "1": [
-      "pub_arcane-initiate"
-    ]
+    "1": ["pub_arcane-initiate"],
+    "2": ["pub_channel-divinity-arcane-abjuration"],
+    "6": ["pub_spell-breaker"],
+    "8": ["pub_potent-spellcasting-cleric"],
+    "17": ["pub_arcane-mastery"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Detect Magic", "Magic Missile"],
+    "3": ["Magic Weapon", "Nystul's Magic Aura"],
+    "5": ["Dispel Magic", "Magic Circle"],
+    "7": ["Arcane Eye", "Leomund's Secret Chest"],
+    "9": ["Planar Binding", "Teleportation Circle"]
   }
 }

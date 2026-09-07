@@ -1,11 +1,15 @@
 {
   "class": "Bard",
   "name": "College of Swords",
-  "description": "A bard who fights as a blade-dancing duelist, weaving magic and swordplay together.",
-  "stub": true,
+  "description": "A bard who turns swashbuckling swordplay itself into a performance, weaving Bardic Inspiration into blade flourishes.",
   "features_by_level": {
-    "3": [
-      "pub_bonus-proficiencies-and-blade-flourish"
-    ]
-  }
+    "3": ["pub_bonus-proficiencies-and-blade-flourish"],
+    "6": ["pub_extra-attack-college-of-swords"],
+    "14": ["pub_masters-flourish"]
+  },
+  "option_catalog": [
+    "pub_blade-flourish-defensive",
+    "pub_blade-flourish-slashing",
+    "pub_blade-flourish-mobile"
+  ]
 }

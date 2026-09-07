@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Twilight Domain",
-  "description": "A cleric of a god who watches over the border between life and death, light and dark.",
-  "stub": true,
+  "description": "A cleric who wards the vulnerable against the terrors of the night, serving a god of dusk, stars, or rest.",
   "features_by_level": {
-    "1": [
-      "pub_bonus-proficiencies-and-eyes-of-night"
-    ]
+    "1": ["pub_bonus-proficiencies-and-eyes-of-night", "pub_vigilant-blessing"],
+    "2": ["pub_channel-divinity-twilight-sanctuary"],
+    "6": ["pub_steps-of-night"],
+    "8": ["pub_divine-strike-twilight"],
+    "17": ["pub_twilight-shroud"]
+  },
+  "domain_spells_by_level": {
+    "1": ["Faerie Fire", "Sleep"],
+    "3": ["Moonbeam", "See Invisibility"],
+    "5": ["Aura of Vitality", "Leomund's Tiny Hut"],
+    "7": ["Aura of Life", "Greater Invisibility"],
+    "9": ["Circle of Power", "Mislead"]
   }
 }

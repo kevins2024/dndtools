@@ -1,11 +1,11 @@
 {
   "class": "Wizard",
   "name": "School of Necromancy",
-  "description": "A wizard who studies the forces of life, death, and undeath.",
-  "stub": true,
+  "description": "A wizard who studies the cycle of life and death, mastering the necromantic arts to bend the boundary between the two.",
   "features_by_level": {
-    "2": [
-      "pub_grim-harvest"
-    ]
+    "2": ["pub_grim-harvest"],
+    "6": ["pub_undead-thralls"],
+    "10": ["pub_inured-to-undeath"],
+    "14": ["pub_command-undead"]
   }
 }

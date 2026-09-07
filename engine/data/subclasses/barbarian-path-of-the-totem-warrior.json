@@ -1,11 +1,36 @@
 {
   "class": "Barbarian",
   "name": "Path of the Totem Warrior",
-  "description": "The barbarian draws on the power of a totem animal spirit while raging.",
-  "stub": true,
+  "description": "A barbarian who forges a spiritual bond with animal totems, gaining their gifts while raging.",
   "features_by_level": {
-    "3": [
-      "pub_totem-spirit"
+    "3": ["pub_spirit-seeker", "pub_totem-spirit"],
+    "10": ["pub_spirit-walker"]
+  },
+  "note": "6th-level (Aspect of the Beast) and 14th-level (Totemic Attunement) are each a fresh animal choice using the SAME feature name at every tier — see option_catalog below rather than features_by_level, since these are 'choose one of N options' picks, not a single fixed feature grant like most subclasses. A real character has exactly one Totem Spirit, one Aspect of the Beast, and one Totemic Attunement choice (each independently chosen, can repeat or vary the animal).",
+  "option_catalog": {
+    "totem_spirit": [
+      "pub_totem-spirit-bear",
+      "pub_totem-spirit-eagle",
+      "pub_totem-spirit-wolf"
+    ],
+    "aspect_of_the_beast": [
+      "pub_aspect-of-the-beast-bear",
+      "pub_aspect-of-the-beast-eagle",
+      "pub_aspect-of-the-beast-wolf",
+      "pub_aspect-of-the-beast-elk",
+      "pub_aspect-of-the-beast-tiger"
+    ],
+    "totemic_attunement": [
+      "pub_totemic-attunement-bear",
+      "pub_totemic-attunement-eagle",
+      "pub_totemic-attunement-wolf",
+      "pub_totemic-attunement-elk",
+      "pub_totemic-attunement-tiger"
     ]
+  },
+  "option_catalog_level_gained": {
+    "totem_spirit": 3,
+    "aspect_of_the_beast": 6,
+    "totemic_attunement": 14
   }
 }

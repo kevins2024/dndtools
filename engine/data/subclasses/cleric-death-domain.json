@@ -1,11 +1,19 @@
 {
   "class": "Cleric",
   "name": "Death Domain",
-  "description": "A cleric of a god of death, decay, or murder - this domain is typically reserved for evil-aligned clerics.",
-  "stub": true,
+  "description": "A cleric who serves a god of death or murder, wielding necromantic power against the living.",
   "features_by_level": {
-    "1": [
-      "pub_bonus-proficiency-and-reaper"
-    ]
+    "1": ["pub_bonus-proficiency-and-reaper"],
+    "2": ["pub_channel-divinity-touch-of-death"],
+    "6": ["pub_inescapable-destruction"],
+    "8": ["pub_divine-strike-death"],
+    "17": ["pub_improved-reaper"]
+  },
+  "domain_spells_by_level": {
+    "1": ["False Life", "Ray of Sickness"],
+    "3": ["Blindness/Deafness", "Ray of Enfeeblement"],
+    "5": ["Animate Dead", "Vampiric Touch"],
+    "7": ["Blight", "Death Ward"],
+    "9": ["Antilife Shell", "Cloudkill"]
   }
 }

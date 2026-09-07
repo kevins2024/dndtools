@@ -1,11 +1,22 @@
 {
   "class": "Barbarian",
   "name": "Path of Wild Magic",
-  "description": "A barbarian whose rage is fed by raw, unpredictable magic rather than pure fury.",
-  "stub": true,
+  "description": "A barbarian whose rage is fueled by raw, untamed magic that erupts unpredictably in battle.",
   "features_by_level": {
-    "3": [
-      "pub_magic-awareness"
-    ]
-  }
+    "3": ["pub_magic-awareness", "pub_wild-surge"],
+    "6": ["pub_bolstering-magic"],
+    "10": ["pub_unstable-backlash"],
+    "14": ["pub_controlled-surge"]
+  },
+  "option_catalog": [
+    "pub_wild-magic-table-1",
+    "pub_wild-magic-table-2",
+    "pub_wild-magic-table-3",
+    "pub_wild-magic-table-4",
+    "pub_wild-magic-table-5",
+    "pub_wild-magic-table-6",
+    "pub_wild-magic-table-7",
+    "pub_wild-magic-table-8"
+  ],
+  "note": "option_catalog here is a random-roll table (d8), not a known/chosen list — Wild Surge/Unstable Backlash/Controlled Surge all roll on it rather than picking."
 }

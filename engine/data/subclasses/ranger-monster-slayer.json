@@ -1,11 +1,11 @@
 {
   "class": "Ranger",
   "name": "Monster Slayer",
-  "description": "A ranger dedicated to hunting down creatures of the occult and supernatural.",
-  "stub": true,
+  "description": "A ranger sworn to hunt down creatures of pure evil — undead, fiends, aberrations, and other unnatural horrors.",
   "features_by_level": {
-    "3": [
-      "pub_hunter-s-sense-and-slayer-s-prey"
-    ]
+    "3": ["pub_hunter-s-sense-and-slayer-s-prey"],
+    "7": ["pub_supernatural-defense"],
+    "11": ["pub_magic-users-nemesis"],
+    "15": ["pub_slayers-counter"]
   }
 }
