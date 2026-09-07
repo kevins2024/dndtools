@@ -82,6 +82,100 @@
         >
       </div>
 
+      <!-- ── Crossing Profit System ── -->
+      <div v-if="results.crossingProfit" class="we-section">
+        <div class="we-section-title">
+          Crossing Profit System
+          <span class="we-section-dice">1d20/week</span>
+        </div>
+        <div class="we-row">
+          <span
+            class="we-d20"
+            :class="`we-cps-${
+              results.crossingProfit.week1.band === 'Disaster' ? 'bad' : 'ok'
+            }`"
+            >{{ results.crossingProfit.week1.roll }}</span
+          >
+          <span class="we-row-name"
+            >Week 1: {{ results.crossingProfit.week1.band }} —
+            {{ results.crossingProfit.week1.detail }}</span
+          >
+          <span
+            class="we-row-amount"
+            :class="
+              results.crossingProfit.week1.value >= 0
+                ? 'we-amount--income'
+                : 'we-amount--expense'
+            "
+            >{{ results.crossingProfit.week1.value >= 0 ? '+' : ''
+            }}{{ results.crossingProfit.week1.value.toLocaleString() }} gp</span
+          >
+        </div>
+        <template v-if="results.crossingProfit.stage === 'pending'">
+          <div class="we-cps-note">
+            Week 1 of 2 rolled — carried forward, no payout until next week's
+            roll combines with this one.
+          </div>
+        </template>
+        <template v-else>
+          <div class="we-row">
+            <span
+              class="we-d20"
+              :class="`we-cps-${
+                results.crossingProfit.week2.band === 'Disaster' ? 'bad' : 'ok'
+              }`"
+              >{{ results.crossingProfit.week2.roll }}</span
+            >
+            <span class="we-row-name"
+              >Week 2: {{ results.crossingProfit.week2.band }} —
+              {{ results.crossingProfit.week2.detail }}</span
+            >
+            <span
+              class="we-row-amount"
+              :class="
+                results.crossingProfit.week2.value >= 0
+                  ? 'we-amount--income'
+                  : 'we-amount--expense'
+              "
+              >{{ results.crossingProfit.week2.value >= 0 ? '+' : ''
+              }}{{
+                results.crossingProfit.week2.value.toLocaleString()
+              }}
+              gp</span
+            >
+          </div>
+          <div class="we-section-total">
+            <span
+              >Combined 2-week payout ({{
+                crossingShips.map((s) => s.name).join(', ')
+              }})</span
+            >
+            <span
+              class="we-total-amount"
+              :class="
+                results.crossingProfit.combined >= 0
+                  ? 'we-amount--income'
+                  : 'we-amount--expense'
+              "
+              >{{ results.crossingProfit.combined >= 0 ? '+' : ''
+              }}{{ results.crossingProfit.combined.toLocaleString() }} gp</span
+            >
+          </div>
+          <div v-if="results.crossingProfit.applied" class="we-cps-note">
+            Applied to the party purse.
+          </div>
+          <div v-else class="we-cps-apply-row">
+            <span class="we-cps-note"
+              >Not yet applied to the party purse — rolling further weeks is
+              blocked until you apply this result.</span
+            >
+            <button class="we-cps-apply-btn" @click="applyCrossingProfit">
+              Apply to Party Purse
+            </button>
+          </div>
+        </template>
+      </div>
+
       <!-- ── Revivify refugees ── -->
       <div class="we-section">
         <div class="we-section-title">
@@ -160,8 +254,68 @@ function rollBetween(min, max) {
 function d4() {
   return Math.floor(Math.random() * 4) + 1
 }
+function d6() {
+  return Math.floor(Math.random() * 6) + 1
+}
 function d20() {
   return Math.floor(Math.random() * 20) + 1
+}
+
+// Crossing Profit System — house_rules.json is the source of truth for this
+// table in prose; kept in sync by hand since that file isn't structured
+// data. One week's roll → a band + gold value. Two weeks combine into one
+// payout (see rollCrossingProfit below), so this only ever returns one
+// week's half of that.
+function rollCrossingProfitWeek() {
+  const roll = d20()
+  if (roll === 1) {
+    const sev = d6()
+    let value, detail
+    if (sev <= 2) {
+      value = -500
+      detail = 'Cargo spoiled or lost overboard'
+    } else if (sev <= 4) {
+      value = -1000
+      detail = 'Cargo destroyed outright'
+    } else if (sev === 5) {
+      value = -1500
+      detail = 'Ship damaged badly, needs repair'
+    } else {
+      value = -1500
+      detail = "'Or worse' — a genuine crisis, worth developing as a story beat"
+    }
+    return { roll, band: 'Disaster', value, detail }
+  }
+  if (roll <= 5) {
+    return {
+      roll,
+      band: 'Bad week',
+      value: rollBetween(200, 1200),
+      detail: 'Reduced but recoverable profit',
+    }
+  }
+  if (roll <= 14) {
+    return {
+      roll,
+      band: 'Normal',
+      value: rollBetween(1500, 2500),
+      detail: 'Standard baseline profit',
+    }
+  }
+  if (roll <= 19) {
+    return {
+      roll,
+      band: 'Good week',
+      value: rollBetween(2800, 4200),
+      detail: 'Above-average trade conditions',
+    }
+  }
+  return {
+    roll,
+    band: 'Exceptional',
+    value: rollBetween(8000, 9500),
+    detail: 'Major profit spike or a valuable discovery',
+  }
 }
 
 export default {
@@ -199,9 +353,63 @@ export default {
     weeklyEvents() {
       return eventsData.weekly || []
     },
+
+    crossingShips() {
+      return (this.$store.state.assets || []).filter(
+        (a) =>
+          a.type === 'ship' &&
+          (a.current_location || '').includes('Crossing Profit System')
+      )
+    },
+
+    crossingProfitPending() {
+      return this.finances.crossing_profit?.pending ?? null
+    },
+
+    crossingProfitAwaiting() {
+      return this.finances.crossing_profit?.awaiting_application ?? null
+    },
   },
 
   methods: {
+    rollCrossingProfit() {
+      // A combined result from a prior week 2 is still sitting unapplied —
+      // don't roll further (and definitely don't silently overwrite it).
+      // Just re-surface it so the Apply button stays visible.
+      const awaiting = this.crossingProfitAwaiting
+      if (awaiting) {
+        return { stage: 'awaiting', ...awaiting }
+      }
+
+      const thisWeek = rollCrossingProfitWeek()
+      const pending = this.crossingProfitPending
+      if (!pending) {
+        // Week 1 of the cycle — carry forward, no payout yet.
+        this.$store.commit('SET_CROSSING_PROFIT_PENDING', {
+          ...thisWeek,
+          week: 1,
+        })
+        return { stage: 'pending', week1: thisWeek }
+      }
+      // Week 2 — combine, but don't touch the party purse yet. Applying is
+      // a separate, deliberate action (applyCrossingProfit below).
+      const combined = pending.value + thisWeek.value
+      const result = { week1: pending, week2: thisWeek, combined }
+      this.$store.commit('SET_CROSSING_PROFIT_PENDING', null)
+      this.$store.commit('SET_CROSSING_PROFIT_AWAITING', result)
+      return { stage: 'awaiting', ...result }
+    },
+
+    applyCrossingProfit() {
+      const awaiting = this.crossingProfitAwaiting
+      if (!awaiting) return
+      this.$store.commit('ADJUST_PARTY_GOLD', awaiting.combined)
+      this.$store.commit('SET_CROSSING_PROFIT_AWAITING', null)
+      if (this.results?.crossingProfit) {
+        this.results.crossingProfit.applied = true
+      }
+    },
+
     rollWeek() {
       const income = this.weeklyIncome.map((item) => ({
         ...item,
@@ -223,6 +431,13 @@ export default {
         return { roll, label: tier.label, cls: tier.cls }
       })
 
+      // Only running if at least one ship is currently tagged as on the
+      // route (see assets.json) — stopping the activity is just removing
+      // that tag from the ships, not a separate toggle.
+      const crossingProfit = this.crossingShips.length
+        ? this.rollCrossingProfit()
+        : null
+
       this.results = {
         income,
         expenses,
@@ -230,6 +445,7 @@ export default {
         totalExpenses,
         net: totalIncome - totalExpenses,
         refugees: { count: refugeeCount, rolls: refugeeRolls },
+        crossingProfit,
       }
     },
 
@@ -495,6 +711,49 @@ export default {
   border-color: var(--color-accent);
   color: var(--color-accent-strong);
   background: rgba(200, 169, 110, 0.15);
+}
+
+/* ── Crossing Profit System ── */
+.we-cps-ok {
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+  background: transparent;
+}
+.we-cps-bad {
+  border-color: #8b1a1a;
+  color: #c84444;
+  background: rgba(139, 26, 26, 0.15);
+}
+.we-cps-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-style: italic;
+  padding: 0.25rem;
+}
+
+.we-cps-apply-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.25rem;
+}
+
+.we-cps-apply-btn {
+  padding: 0.3rem 0.9rem;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 5px;
+  color: #1a1610;
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.we-cps-apply-btn:hover {
+  background: var(--color-accent-strong);
 }
 
 .we-refugee-label {
