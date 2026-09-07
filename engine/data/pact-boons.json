@@ -1,0 +1,24 @@
+{
+  "_schema": {
+    "_general": "Warlock's 3rd-level Pact Boon choice — a one-time pick (see engine/CHECKLIST.md for the swap-not-supported decision; unlike Eldritch Invocations, Pact Boon is never re-chosen once made, matching real RAW). Verified against dnd5e.wikidot.com and the local SRD cache (src/data/api_data_cache/features.json) 2026-09-02.",
+    "id": "Same id used in engine/data/feature-catalog.json and the SRD cache's own `index` — see invocations.json's schema note for why (id-based lookupFeature resolves the real text without needing a duplicate published_features.json entry).",
+    "grants_cantrips": "Pact of the Tome only — {count, pool}. `pool:'any'` means the 3 cantrips can come from ANY class's spell list, not just Warlock's — reuses the same generic spell-picker mechanism as a normal known-cantrip pick (engine/rules/spellLists.js's listSpellsForClass with pool:'any'), just with a wider class filter. Chosen cantrips are recorded on patch.spells with featureGranted:true (RAW: 'don't count against your number of cantrips known' — same exemption mechanism validateCharacter.js already applies to any featureGranted:true spell)."
+  },
+
+  "Pact of the Blade": {
+    "source": "Player's Handbook",
+    "id": "pact-of-the-blade"
+  },
+
+  "Pact of the Chain": {
+    "source": "Player's Handbook",
+    "id": "pact-of-the-chain",
+    "familiar_forms_note": "Grants find familiar (doesn't count against spells known) plus access to 4 special forms beyond the normal familiar list: imp, pseudodragon, quasit, sprite. Not modeled as structured data — familiar choice happens at cast-time via the normal find familiar spell, not at level-up, and this project's existing scope boundary for 'flavor vs. mechanically simulated' choices (see feats.json's own _schema, e.g. Weapon Master's chosen weapons) draws the line at recording it as descriptive text, not a second choice picker."
+  },
+
+  "Pact of the Tome": {
+    "source": "Player's Handbook",
+    "id": "pact-of-the-tome",
+    "grants_cantrips": { "count": 3, "pool": "any" }
+  }
+}

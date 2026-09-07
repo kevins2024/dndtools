@@ -30,8 +30,24 @@ const { validateCharacter } = require('./rules/validateCharacter')
 const { describeLevelUp } = require('./rules/levelUp')
 const { diffLevelUp } = require('./rules/diffLevelUp')
 const { loadFeat, isFeatGrantedSpell } = require('./rules/grants')
-const { meetsFeatPrerequisites } = require('./rules/featPrerequisites')
-const { findSpellRecord, isSpellOnClassList } = require('./rules/spellLists')
+const {
+  meetsFeatPrerequisites,
+  evaluatePrerequisite,
+} = require('./rules/featPrerequisites')
+const {
+  findSpellRecord,
+  isSpellOnClassList,
+  listSpellsForClass,
+  effectiveMaxSpellLevel,
+} = require('./rules/spellLists')
+const {
+  listInvocations,
+  loadInvocation,
+  meetsInvocationPrerequisite,
+  invocationsKnownForLevel,
+  listPactBoons,
+  loadPactBoon,
+} = require('./rules/invocations')
 const {
   casterLevelContribution,
   multiclassCasterLevel,
@@ -58,6 +74,7 @@ const {
 } = require('./rules/species')
 const { listBackgrounds, loadBackground } = require('./rules/backgrounds')
 const { listSkills, loadSkill } = require('./rules/skills')
+const { listLanguages, loadLanguage } = require('./rules/languages')
 
 module.exports = {
   data: { leveling },
@@ -86,8 +103,17 @@ module.exports = {
   loadFeat,
   isFeatGrantedSpell,
   meetsFeatPrerequisites,
+  evaluatePrerequisite,
   findSpellRecord,
   isSpellOnClassList,
+  listSpellsForClass,
+  effectiveMaxSpellLevel,
+  listInvocations,
+  loadInvocation,
+  meetsInvocationPrerequisite,
+  invocationsKnownForLevel,
+  listPactBoons,
+  loadPactBoon,
   casterLevelContribution,
   multiclassCasterLevel,
   multiclassSpellSlots,
@@ -108,4 +134,6 @@ module.exports = {
   loadBackground,
   listSkills,
   loadSkill,
+  listLanguages,
+  loadLanguage,
 }

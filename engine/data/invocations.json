@@ -1,0 +1,306 @@
+{
+  "_schema": {
+    "source": "Book this invocation is from \u2014 all 32 here are Player's Handbook (2014 core rules). Sword Coast Adventurer's Guide added 2 more (Eldritch Smite, Tomb of Levistus, both Pact of the Blade-gated) \u2014 deliberately NOT included this pass, same 'flag rather than silently include' treatment as other out-of-scope content in this project (see engine/CHECKLIST.md).",
+    "level": "The warlock level at which this invocation FIRST becomes choosable (matches the SRD's own per-invocation 'level' field) \u2014 informational; the actual enforced gate is `prerequisite`, which already encodes any level requirement structurally.",
+    "id": "engine/data/feature-catalog.json id AND the SRD cache's (src/data/api_data_cache/features.json) own `index` \u2014 identical value, deliberately, so lookupFeature(name, id) resolves the real RAW text straight from the SRD cache tier without needing a separate published_features.json entry (though one exists too, see below, for consistency/browsability).",
+    "prerequisite": "null, or a single condition, or {type:'all_of', all:[...]} (ALL must be met \u2014 Thirsting Blade/Lifedrinker/Chains of Carceri are the 3 real two-condition cases). Condition types: {type:'level', className:'Warlock', level} | {type:'feature', feature: exact feature name \u2014 matched against character.features[].name} | {type:'cantrip', spell: exact spell name \u2014 matched against character.spells[] entries with level===0}. Evaluated by engine/rules/featPrerequisites.js's evaluatePrerequisite (extended this pass to understand these 3 new types, reused rather than duplicated \u2014 see that file's own comment)."
+  },
+  "Agonizing Blast": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-agonizing-blast",
+    "prerequisite": {
+      "type": "cantrip",
+      "spell": "Eldritch Blast"
+    }
+  },
+  "Armor of Shadows": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-armor-of-shadows",
+    "prerequisite": null
+  },
+  "Beast Speech": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-beast-speech",
+    "prerequisite": null
+  },
+  "Beguiling Influence": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-beguiling-influence",
+    "prerequisite": null
+  },
+  "Book of Ancient Secrets": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-book-of-ancient-secrets",
+    "prerequisite": {
+      "type": "feature",
+      "feature": "Pact of the Tome"
+    }
+  },
+  "Devil's Sight": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-devils-sight",
+    "prerequisite": null
+  },
+  "Eldritch Sight": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-eldritch-sight",
+    "prerequisite": null
+  },
+  "Eldritch Spear": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-eldritch-spear",
+    "prerequisite": {
+      "type": "cantrip",
+      "spell": "Eldritch Blast"
+    }
+  },
+  "Eyes of the Rune Keeper": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-eyes-of-the-rune-keeper",
+    "prerequisite": null
+  },
+  "Fiendish Vigor": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-fiendish-vigor",
+    "prerequisite": null
+  },
+  "Gaze of Two Minds": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-gaze-of-two-minds",
+    "prerequisite": null
+  },
+  "Mask of Many Faces": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-mask-of-many-faces",
+    "prerequisite": null
+  },
+  "Misty Visions": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-misty-visions",
+    "prerequisite": null
+  },
+  "Repelling Blast": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-repelling-blast",
+    "prerequisite": {
+      "type": "cantrip",
+      "spell": "Eldritch Blast"
+    }
+  },
+  "Thief of Five Fates": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-thief-of-five-fates",
+    "prerequisite": null
+  },
+  "Voice of the Chain Master": {
+    "source": "Player's Handbook",
+    "level": 2,
+    "id": "eldritch-invocation-voice-of-the-chain-master",
+    "prerequisite": {
+      "type": "feature",
+      "feature": "Pact of the Chain"
+    }
+  },
+  "Mire the Mind": {
+    "source": "Player's Handbook",
+    "level": 5,
+    "id": "eldritch-invocation-mire-the-mind",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 5
+    }
+  },
+  "One with Shadows": {
+    "source": "Player's Handbook",
+    "level": 5,
+    "id": "eldritch-invocation-one-with-shadows",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 5
+    }
+  },
+  "Sign of Ill Omen": {
+    "source": "Player's Handbook",
+    "level": 5,
+    "id": "eldritch-invocation-sign-of-ill-omen",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 5
+    }
+  },
+  "Thirsting Blade": {
+    "source": "Player's Handbook",
+    "level": 5,
+    "id": "eldritch-invocation-thirsting-blade",
+    "prerequisite": {
+      "type": "all_of",
+      "all": [
+        {
+          "type": "level",
+          "className": "Warlock",
+          "level": 5
+        },
+        {
+          "type": "feature",
+          "feature": "Pact of the Blade"
+        }
+      ]
+    }
+  },
+  "Bewitching Whispers": {
+    "source": "Player's Handbook",
+    "level": 7,
+    "id": "eldritch-invocation-bewitching-whispers",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 7
+    }
+  },
+  "Dreadful Word": {
+    "source": "Player's Handbook",
+    "level": 7,
+    "id": "eldritch-invocation-dreadful-word",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 7
+    }
+  },
+  "Sculptor of Flesh": {
+    "source": "Player's Handbook",
+    "level": 7,
+    "id": "eldritch-invocation-sculptor-of-flesh",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 7
+    }
+  },
+  "Ascendant Step": {
+    "source": "Player's Handbook",
+    "level": 9,
+    "id": "eldritch-invocation-ascendant-step",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 9
+    }
+  },
+  "Minions of Chaos": {
+    "source": "Player's Handbook",
+    "level": 9,
+    "id": "eldritch-invocation-minions-of-chaos",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 9
+    }
+  },
+  "Otherworldly Leap": {
+    "source": "Player's Handbook",
+    "level": 9,
+    "id": "eldritch-invocation-otherworldly-leap",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 9
+    }
+  },
+  "Whispers of the Grave": {
+    "source": "Player's Handbook",
+    "level": 9,
+    "id": "eldritch-invocation-whispers-of-the-grave",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 9
+    }
+  },
+  "Lifedrinker": {
+    "source": "Player's Handbook",
+    "level": 12,
+    "id": "eldritch-invocation-lifedrinker",
+    "prerequisite": {
+      "type": "all_of",
+      "all": [
+        {
+          "type": "level",
+          "className": "Warlock",
+          "level": 12
+        },
+        {
+          "type": "feature",
+          "feature": "Pact of the Blade"
+        }
+      ]
+    }
+  },
+  "Chains of Carceri": {
+    "source": "Player's Handbook",
+    "level": 15,
+    "id": "eldritch-invocation-chains-of-carceri",
+    "prerequisite": {
+      "type": "all_of",
+      "all": [
+        {
+          "type": "level",
+          "className": "Warlock",
+          "level": 15
+        },
+        {
+          "type": "feature",
+          "feature": "Pact of the Chain"
+        }
+      ]
+    }
+  },
+  "Master of Myriad Forms": {
+    "source": "Player's Handbook",
+    "level": 15,
+    "id": "eldritch-invocation-master-of-myriad-forms",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 15
+    }
+  },
+  "Visions of Distant Realms": {
+    "source": "Player's Handbook",
+    "level": 15,
+    "id": "eldritch-invocation-visions-of-distant-realms",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 15
+    }
+  },
+  "Witch Sight": {
+    "source": "Player's Handbook",
+    "level": 15,
+    "id": "eldritch-invocation-witch-sight",
+    "prerequisite": {
+      "type": "level",
+      "className": "Warlock",
+      "level": 15
+    }
+  }
+}
