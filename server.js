@@ -33,6 +33,7 @@ const ALLOWED_TABLES = [
   'assets',
   'relationships',
   'companions',
+  'lore',
 ]
 
 app.use(cors())
@@ -295,6 +296,7 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     spellSwap,
     spellbookChoices,
     multiclassSkillChoice,
+    fightingStyleChoice,
   } = req.body
   if (!character || !className) {
     return res
@@ -315,6 +317,7 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       spellSwap,
       spellbookChoices,
       multiclassSkillChoice,
+      fightingStyleChoice,
     })
     res.json(result)
   } catch (err) {
@@ -551,7 +554,14 @@ app.get('/api/engine/species', (req, res) => {
       path.join(DATA_DIR, 'api_data_cache', 'species.json')
     )
     const cacheArr = Array.isArray(cache) ? cache : Object.values(cache)[0]
-    const homebrew = cacheArr.filter((s) => s.homebrew === true)
+    // playable: false is an explicit opt-out for a homebrew species that's
+    // real world-flavor but was never meant to be a player option (Lithkin,
+    // added 2026-09-09 via lore extraction) — same "don't offer a choice
+    // that silently does nothing" spirit as the SRD-flavor-text exclusion
+    // above, just for a homebrew entry instead of a mechanically-empty one.
+    const homebrew = cacheArr.filter(
+      (s) => s.homebrew === true && s.playable !== false
+    )
     res.json([...standard, ...homebrew])
   } catch (err) {
     console.error('Error listing species:', err.message)

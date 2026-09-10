@@ -112,7 +112,7 @@ const HOMEBREW_SPECIES = [
     appearance:
       'Taller and broader than humans. Squared facial features. Mottled and ridged skin along lower jaw and chin instead of facial hair. Skin tones similar to human range but extending further into pink and yellow. Culturally tend toward very long hair.',
     languages: ['Yetgresian Common', 'Catrinese'],
-    ability_score_bonus: "Player's choice",
+    ability_score_bonus: { con: 2, wis: 1 },
     traits: [
       {
         name: 'Broad Build',
@@ -153,7 +153,7 @@ const HOMEBREW_SPECIES = [
     appearance:
       'Humanoid pomeranian appearance. Average height 2.5 feet. Expressive faces, full fur covering. Tilawam subculture tends toward punk aesthetic — leather, piercings, dramatically dyed fur, shaved patches for tattoos.',
     languages: ['Yetgresian Common', 'Drevani'],
-    ability_score_bonus: "Player's choice",
+    ability_score_bonus: { dex: 2, cha: 1 },
     traits: [
       {
         name: 'Sharp Nose',
@@ -188,7 +188,7 @@ const HOMEBREW_SPECIES = [
     appearance:
       'Grey-undertoned skin, warmer than standard Duergar after generations of surface living. More varied hair than their Duergar kin. Enlarged pupils adapted to both darkness and daylight. Stocky, durable build.',
     languages: ['Yetgresian Common', 'Undercommon'],
-    ability_score_bonus: "Player's choice",
+    ability_score_bonus: { wis: 2, con: 1 },
     traits: [
       {
         name: 'Grey Resilience',

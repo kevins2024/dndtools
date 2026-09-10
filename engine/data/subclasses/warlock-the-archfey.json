@@ -7,5 +7,12 @@
     "6": ["pub_misty-escape"],
     "10": ["pub_beguiling-defenses"],
     "14": ["pub_dark-delirium"]
+  },
+  "expanded_spell_list": {
+    "1": ["Faerie Fire", "Sleep"],
+    "2": ["Calm Emotions", "Phantasmal Force"],
+    "3": ["Blink", "Plant Growth"],
+    "4": ["Dominate Beast", "Greater Invisibility"],
+    "5": ["Dominate Person", "Seeming"]
   }
 }

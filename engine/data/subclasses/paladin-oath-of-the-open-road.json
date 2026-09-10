@@ -4,16 +4,14 @@
   "description": "Homebrew \u2014 a paladin whose oath is to travelers, wanderers, and the roads that connect them, protecting journeys rather than any single throne or cause.",
   "_notes": "Fully homebrew \u2014 not official WotC content, and not the same as the third-party 'Oath of the Open Road' published elsewhere (that one uses entirely different feature names). This is the project owner's own oath, for Ferghus, a Paladin of Carix, god of mischief and unexpected consequences. Recovered from git history 2026-08-26 after its mechanical text was accidentally lost during a 2026-04-23 cleanup commit \u2014 see the 'Vow of the Open Road' entry in homebrew.json for the full recovery story. Only one Channel Divinity pair is confirmed (3rd level); this subclass may have had additional tenets or higher-level features that were never written down at all, not just lost \u2014 worth asking the project owner rather than assuming this is complete.",
   "features_by_level": {
-    "3": [
-      "pub_sacred-weapon",
-      "pub_vow-of-the-open-road"
-    ]
+    "3": ["pub_sacred-weapon", "pub_vow-of-the-open-road"]
   },
   "oath_spells_by_level": {
-    "1": [
-      "Bane",
-      "Suggestion"
-    ],
-    "_notes": "These are Ferghus's actual tagged type:'oath' spells at 1st/2nd level \u2014 fitting picks for a mischief/chaos deity, but not verified against any 'official' Oath Spells table since none exists for this oath. Higher-level oath spell picks (5th/9th/13th/17th) may exist in the player's head but aren't in the data."
+    "3": ["Bane", "Suggestion"],
+    "5": ["Enlarge/Reduce", "Silence"],
+    "9": ["Incite Greed", "Galder's Tower"],
+    "13": ["Banishment", "Summon Greater Demon"],
+    "17": ["Temporal Shunt", "Steel Wind Strike"],
+    "_notes": "These are Ferghus's actual tagged type:'oath' spells (the key was wrongly '1' until 2026-09-08 \u2014 every other built-out oath in this project keys by real character level, 3/5/9/13/17, not a 1-indexed tier) \u2014 fitting picks for a mischief/chaos deity, but not verified against any 'official' Oath Spells table since none exists for this homebrew oath (all real spells, verified to exist at these levels via live sources; the level pairing itself is thematic choice, not a lookup). 5th-level picks (Enlarge/Reduce, Silence) chosen 2026-09-08 over the character's previous Misty Step/Shatter \u2014 project owner deliberately avoided Misty Step here despite it fitting 'open road' thematically, wanting to avoid several party paladins all having teleport. 9th/13th/17th chosen 2026-09-09, project owner's own picks: Incite Greed (3rd-level enchantment, Acquisitions Incorporated) + Galder's Tower (3rd-level conjuration, Lost Laboratory of Kwalish \u2014 a wandering paladin conjuring shelter fits 'open road' neatly); Banishment (4th-level abjuration, PHB) + Summon Greater Demon (4th-level conjuration, Mordenkainen's Tome of Foes \u2014 the demon can break free of control each turn and turn hostile, which is exactly the 'unexpected consequences' theming Carix calls for); Temporal Shunt (5th-level transmutation, Explorer's Guide to Wildemount \u2014 a reaction that displaces an attacker in time) + Steel Wind Strike (5th-level conjuration, XGE)."
   }
 }

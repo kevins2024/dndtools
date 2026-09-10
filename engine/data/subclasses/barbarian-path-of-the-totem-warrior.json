@@ -11,7 +11,9 @@
     "totem_spirit": [
       "pub_totem-spirit-bear",
       "pub_totem-spirit-eagle",
-      "pub_totem-spirit-wolf"
+      "pub_totem-spirit-wolf",
+      "pub_totem-spirit-elk",
+      "pub_totem-spirit-tiger"
     ],
     "aspect_of_the_beast": [
       "pub_aspect-of-the-beast-bear",

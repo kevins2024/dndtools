@@ -7,5 +7,44 @@
     "6": ["pub_elemental-gift-genie"],
     "10": ["pub_sanctuary-vessel"],
     "14": ["pub_limited-wish"]
+  },
+  "expanded_spell_list": {
+    "_notes": "The Genie is the one patron whose expanded list genuinely branches — one spell shared by every genie kind at each level, plus a second spell that depends on which kind (Dao/Djinni/Efreeti/Marid) the warlock bonded with via Genie's Vessel (1st level). `all` applies regardless of kind; the kind-keyed arrays are additive on top of it, not a replacement.",
+    "1": {
+      "all": ["Detect Evil and Good"],
+      "dao": ["Sanctuary"],
+      "djinni": ["Thunderwave"],
+      "efreeti": ["Burning Hands"],
+      "marid": ["Fog Cloud"]
+    },
+    "2": {
+      "all": ["Phantasmal Force"],
+      "dao": ["Spike Growth"],
+      "djinni": ["Gust of Wind"],
+      "efreeti": ["Scorching Ray"],
+      "marid": ["Blur"]
+    },
+    "3": {
+      "all": ["Create Food and Water"],
+      "dao": ["Meld into Stone"],
+      "djinni": ["Wind Wall"],
+      "efreeti": ["Fireball"],
+      "marid": ["Sleet Storm"]
+    },
+    "4": {
+      "all": ["Phantasmal Killer"],
+      "dao": ["Stone Shape"],
+      "djinni": ["Greater Invisibility"],
+      "efreeti": ["Fire Shield"],
+      "marid": ["Control Water"]
+    },
+    "5": {
+      "all": ["Creation"],
+      "dao": ["Wall of Stone"],
+      "djinni": ["Seeming"],
+      "efreeti": ["Flame Strike"],
+      "marid": ["Cone of Cold"]
+    },
+    "9": { "all": ["Wish"] }
   }
 }

@@ -11,7 +11,8 @@
     "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update-ids": "node update-ids.js",
-    "copy-world": "node copy-world.js"
+    "copy-world": "node copy-world.js",
+    "postinstall": "node scripts/install-hooks.js"
   },
   "repository": {
     "type": "git",

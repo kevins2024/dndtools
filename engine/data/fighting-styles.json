@@ -1,0 +1,72 @@
+{
+  "_schema": {
+    "_general": "Fighting Style is a pick-one-of-N choice bundled into the class table as a single named feature ('Fighting Style' / 'fighter-fighting-style' etc.) rather than one features_by_level entry per option — structurally the same problem Pact Boon solves (see pact-boons.json), just with a class-specific option list instead of one shared across a class. Granted at Fighter 1st, Paladin 2nd, Ranger 2nd (per each class's features_by_level). Real RAW: never re-chosen after being picked (no swap), matching Pact Boon's precedent.",
+    "id": "Same id used in engine/data/feature-catalog.json and the SRD cache's own `index` (src/data/api_data_cache/features.json) — see invocations.json's schema note for why. Paladin's variant ids intentionally have no 'paladin-' prefix ('fighting-style-defense', not 'paladin-fighting-style-defense') because that's how they're already keyed in the SRD cache — matched rather than renamed to avoid a duplicate/orphaned id.",
+    "found": "2026-09-09 — discovered via a real bug report: the New Character Tool lists 'Fighting Style' under Spells & Features for Fighter/Paladin/Ranger but has no way to actually choose one, because the engine never emitted a pendingChoice for it. Fixed alongside this file."
+  },
+
+  "Fighter": {
+    "Archery": {
+      "source": "Player's Handbook",
+      "id": "fighter-fighting-style-archery"
+    },
+    "Defense": {
+      "source": "Player's Handbook",
+      "id": "fighter-fighting-style-defense"
+    },
+    "Dueling": {
+      "source": "Player's Handbook",
+      "id": "fighter-fighting-style-dueling"
+    },
+    "Great Weapon Fighting": {
+      "source": "Player's Handbook",
+      "id": "fighter-fighting-style-great-weapon-fighting"
+    },
+    "Protection": {
+      "source": "Player's Handbook",
+      "id": "fighter-fighting-style-protection"
+    },
+    "Two-Weapon Fighting": {
+      "source": "Player's Handbook",
+      "id": "fighter-fighting-style-two-weapon-fighting"
+    }
+  },
+
+  "Paladin": {
+    "Defense": {
+      "source": "Player's Handbook",
+      "id": "fighting-style-defense"
+    },
+    "Dueling": {
+      "source": "Player's Handbook",
+      "id": "fighting-style-dueling"
+    },
+    "Great Weapon Fighting": {
+      "source": "Player's Handbook",
+      "id": "fighting-style-great-weapon-fighting"
+    },
+    "Protection": {
+      "source": "Player's Handbook",
+      "id": "fighting-style-protection"
+    }
+  },
+
+  "Ranger": {
+    "Archery": {
+      "source": "Player's Handbook",
+      "id": "ranger-fighting-style-archery"
+    },
+    "Defense": {
+      "source": "Player's Handbook",
+      "id": "ranger-fighting-style-defense"
+    },
+    "Dueling": {
+      "source": "Player's Handbook",
+      "id": "ranger-fighting-style-dueling"
+    },
+    "Two-Weapon Fighting": {
+      "source": "Player's Handbook",
+      "id": "ranger-fighting-style-two-weapon-fighting"
+    }
+  }
+}

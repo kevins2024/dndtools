@@ -80,26 +80,6 @@
         </div>
       </template>
 
-      <!-- BG3 filters -->
-      <template v-if="selectedSources.includes('bg3')">
-        <div class="ig-filter-group">
-          <label class="ig-label">Rarity</label>
-          <div class="ig-pills">
-            <span
-              v-for="r in bg3Rarities"
-              :key="r.key"
-              class="ig-pill"
-              :class="[
-                `rarity-${r.key.replace(' ', '_')}`,
-                { active: selectedBg3Rarity === r.key },
-              ]"
-              @click="toggleBg3Rarity(r.key)"
-              >{{ r.label }}</span
-            >
-          </div>
-        </div>
-      </template>
-
       <!-- Actions row -->
       <div class="ig-actions">
         <div class="ig-mode-tabs">
@@ -252,28 +232,6 @@
         </div>
       </div>
 
-      <div v-else-if="bg3Item" class="ig-result">
-        <div class="ig-result-header">
-          <div class="ig-result-name">{{ bg3Item.name }}</div>
-          <div class="ig-result-meta">
-            <span
-              class="ig-rarity-badge"
-              :class="`rarity-${bg3Item.rarity.replace(' ', '_')}`"
-              >{{ bg3Item.rarity }}</span
-            >
-          </div>
-        </div>
-        <div
-          v-if="bg3Item.desc"
-          class="ig-result-desc"
-          v-html="formatDesc(bg3Item.desc)"
-        ></div>
-        <div class="ig-result-footer">
-          <span class="ig-source">Baldur's Gate 3</span>
-          <button class="ig-reroll-btn" @click="rollItem">Roll Again</button>
-        </div>
-      </div>
-
       <div v-else-if="!loading" class="ig-empty">
         <div class="ig-empty-text">
           Select filters and roll to discover an item.
@@ -388,7 +346,6 @@
 
 <script>
 import customItemsData from '@/data/custom_items.json'
-import bg3ItemsData from '@/data/bg3_items.json'
 
 const OPEN5E_URL = 'https://api.open5e.com/v2/magicitems/'
 const PF_SHEET_ID = '1NQhHjDXhvFZkMiu09epBXsVwCI6YENg-AUQhF-v5ntU'
@@ -434,13 +391,6 @@ export default {
         { key: 'dnd5e', label: 'D&D 5e (Open5e)' },
         { key: 'custom', label: 'D&D 5e (Custom)' },
         { key: 'pathfinder', label: 'Pathfinder (d20pfsrd)' },
-        { key: 'bg3', label: "Baldur's Gate 3" },
-      ],
-      bg3Rarities: [
-        { key: 'uncommon', label: 'Uncommon' },
-        { key: 'rare', label: 'Rare' },
-        { key: 'very rare', label: 'Very Rare' },
-        { key: 'legendary', label: 'Legendary' },
       ],
       rarities: [
         { key: 'common', label: 'Common' },
@@ -489,14 +439,12 @@ export default {
       selectedCategory: null,
       selectedCustomType: null,
       selectedPfGroup: null,
-      selectedBg3Rarity: null,
       // Mode
       mode: 'roll',
       // Roll state
       item: null,
       pfItem: null,
       customItem: null,
-      bg3Item: null,
       poolSize: null,
       loading: false,
       // Browse state
@@ -543,7 +491,6 @@ export default {
       this.item = null
       this.pfItem = null
       this.customItem = null
-      this.bg3Item = null
       this.poolSize = null
       this.browseItems = []
       this.browseTotalCount = 0
@@ -596,10 +543,6 @@ export default {
       this.selectedPfGroup = this.selectedPfGroup === key ? null : key
       this.onFilterChange()
     },
-    toggleBg3Rarity(key) {
-      this.selectedBg3Rarity = this.selectedBg3Rarity === key ? null : key
-      this.onFilterChange()
-    },
 
     // ── Roll mode ──────────────────────────────────────────
 
@@ -609,13 +552,11 @@ export default {
       this.item = null
       this.pfItem = null
       this.customItem = null
-      this.bg3Item = null
       try {
         if (this.selectedSources.length === 1) {
           const src = this.selectedSources[0]
           if (src === 'dnd5e') await this.rollDnd5e()
           else if (src === 'custom') this.rollCustom()
-          else if (src === 'bg3') this.rollBg3()
           else await this.rollPathfinder()
         } else {
           await this.rollMulti()
@@ -632,12 +573,6 @@ export default {
         let pool = customItemsData
         if (this.selectedCustomType)
           pool = pool.filter((i) => i.type === this.selectedCustomType)
-        return pool.length
-      }
-      if (src === 'bg3') {
-        let pool = bg3ItemsData
-        if (this.selectedBg3Rarity)
-          pool = pool.filter((i) => i.rarity === this.selectedBg3Rarity)
         return pool.length
       }
       if (src === 'dnd5e') {
@@ -684,7 +619,6 @@ export default {
       }
       if (chosen === 'dnd5e') await this.rollDnd5e()
       else if (chosen === 'custom') this.rollCustom()
-      else if (chosen === 'bg3') this.rollBg3()
       else await this.rollPathfinder()
       this.poolSize = total
     },
@@ -761,19 +695,6 @@ export default {
       }
     },
 
-    rollBg3() {
-      let pool = bg3ItemsData
-      if (this.selectedBg3Rarity)
-        pool = pool.filter((i) => i.rarity === this.selectedBg3Rarity)
-      this.poolSize = pool.length
-      if (!pool.length) {
-        this.bg3Item = null
-        this.error = 'No items match those filters.'
-        return
-      }
-      this.bg3Item = pool[Math.floor(Math.random() * pool.length)]
-    },
-
     // ── Browse mode ────────────────────────────────────────
 
     normalizeDnd5e(item) {
@@ -814,33 +735,6 @@ export default {
       }
     },
 
-    normalizeBg3(item) {
-      return {
-        name: item.name,
-        rarityLabel: item.rarity,
-        rarityKey: item.rarity.replace(' ', '_'),
-        typeLabel: '',
-        attunement: false,
-        desc: item.desc || '',
-        source: "Baldur's Gate 3",
-      }
-    },
-
-    browseBg3(page) {
-      let pool = bg3ItemsData
-      if (this.selectedBg3Rarity)
-        pool = pool.filter((i) => i.rarity === this.selectedBg3Rarity)
-      if (this.browseSearch) {
-        const s = this.browseSearch.toLowerCase()
-        pool = pool.filter((i) => i.name.toLowerCase().includes(s))
-      }
-      this.browseTotalCount = pool.length
-      const start = page * this.browsePageSize
-      this.browseItems = pool
-        .slice(start, start + this.browsePageSize)
-        .map(this.normalizeBg3)
-    },
-
     async loadBrowsePage(page) {
       if (page < 0) return
       if (this.browseTotalPages > 0 && page >= this.browseTotalPages) return
@@ -851,7 +745,6 @@ export default {
       try {
         if (this.browseSource === 'dnd5e') await this.browseDnd5e(page)
         else if (this.browseSource === 'custom') this.browseCustom(page)
-        else if (this.browseSource === 'bg3') this.browseBg3(page)
         else await this.browsePf(page)
       } catch (e) {
         this.error = e.message || 'Failed to load items.'

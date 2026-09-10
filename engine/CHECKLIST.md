@@ -8,6 +8,160 @@ continue from the first unchecked item. Run `node --test` from inside `engine/`
 to confirm everything still passes before continuing (179 tests as of this
 writing, all green).
 
+## Full RAW audit of the 6 subclasses needed for the Torrin/Kerra/Sorra/Lexica rebuilds (2026-09-09)
+
+Project owner's explicit ask, after the Warlock patron finding: do a real
+✅-grade audit (every feature checked against a live source this session,
+not memory) of whichever subclasses the 4 characters slated for a full
+rebuild will actually need — Fighter Champion + Warlock Great Old One
+(Kerra), Rogue Soulknife + Rogue Mastermind (Torrin — his old
+`subclass: "Soulknife / Mastermind"` string hack needs replacing with one
+real pick), Bard College of Spirits (Sorra), Bard College of Lore (Lexica).
+
+Results: **Champion, Great Old One, Soulknife, and Mastermind all checked
+out completely accurate** — no fixes needed on any of them (Great Old One's
+`expanded_spell_list` was already confirmed correct; this pass added
+verification of its other 4 named features). **College of Lore also checked
+out clean.** **College of Spirits had 3 real, substantive gaps**, not just
+one narrow miss like Swords/Archfey:
+
+- Tales from Beyond's description dropped its entire second step — real
+  RAW is a bonus action to roll on the Spirit Tales table, THEN a separate
+  action to target a creature within 30ft (can target self). Local text
+  only had the bonus-action roll, with no targeting step at all.
+- Guiding Whispers was missing that its free Guidance cantrip explicitly
+  doesn't count against the normal cantrip limit.
+- Spirit Session was missing its "up to proficiency bonus" participant cap
+  and "doesn't count against spells known" clause, and its own source note
+  incorrectly implied it was just an alternate name for Spiritual Focus's
+  6th-level bonus rather than a second, genuinely separate feature that
+  happens to also trigger at 6th level (both are real and both apply).
+
+All 3 fixed in `published_features.json`. `SUBCLASS_AUDIT.md` updated to ✅
+for all 6, with an honest note on Champion's search results nearly getting
+contaminated by 2024-ruleset content (that revision moves Remarkable
+Athlete to 3rd level and changes several breakpoints) — worth remembering
+for any future Fighter/other-post-2024-revised-class searches, since results
+increasingly blend both rulesets without saying so. Verification:
+`npm run build` clean, `node --test` 218/218.
+
+**See `SUBCLASS_AUDIT.md`** for the per-subclass RAW-accuracy checklist — the
+113 subclasses in `data/subclasses/` were built quickly (2026-08-25 through
+2026-09-06) and most have never been verified against real published text.
+Pick unchecked rows from that file when there's budget to spare; update its
+Status column when you do, so the same ones don't get re-checked twice.
+
+## 7 of 8 Warlock patrons were missing their entire Expanded Spell List (2026-09-09)
+
+Project owner grew worried, after finding Lexica/Sorra's character data was
+genuinely corrupted (not just "one bad spell" — see `TODO.md`), that the whole
+low-effort subclass build batch might be similarly unreliable. Asked for a
+couple of random subclasses to be spot-checked at full depth.
+
+Randomly drew **Bard College of Swords** and **Warlock The Archfey** (a real
+random sample via `python3 random.sample`, not cherry-picked). Swords had one
+narrow, real error — Mobile Flourish's description was missing its entire
+second clause ("you can then immediately use your reaction to move up to your
+walking speed to an unoccupied space within 5ft of the target"), fixed in
+`published_features.json`. Archfey had something much bigger: **no
+`expanded_spell_list` field at all** — one of a Warlock patron's two or three
+defining mechanics, entirely absent.
+
+Checked all 8 non-Great-Old-One patrons: **7 of 8 were missing it entirely**
+(only Great Old One, built in an earlier separate pass, had one). Sourced and
+added real tables for all 7 (Archfey, Celestial, Fathomless, Fiend, Genie,
+Hexblade, Undead, Undying), each verified via live web search/fetch this
+session, not trained-knowledge recall — see each file's own content. The
+Genie is a structural outlier worth remembering: its expanded list genuinely
+branches by which genie kind (Dao/Djinni/Efreeti/Marid) the warlock bonded
+with, so it's shaped `{all, dao, djinni, efreeti, marid}` per level instead of
+a flat array like every other patron — any future code reading
+`expanded_spell_list` generically needs to handle both shapes.
+
+Then ran a cheap, zero-web-search **structural sweep** across all 113
+subclasses (comparing `features_by_level`'s keys, plus the documented
+`option_catalog_level_gained`/`known_count_by_level` alternates, against each
+class's real `subclass_feature_levels` table) to see how far this class of
+bug — an entire mechanic silently missing — actually spreads. Found only 3
+more flags, and checking each one individually showed all 3 were legitimate,
+already-documented non-bugs (Circle of the Moon's homebrew level-8 addition,
+Purple Dragon Knight's documented in-place 18th-level upgrade, and Oath of the
+Open Road's already-known incomplete table). **Zero new structural gaps found
+outside the Warlock patrons.**
+
+Explicit scope note, per the project owner: fixing the Warlock patrons' spell
+lists is **not** the same thing as a full RAW audit of those patrons (their
+other 4 named features per patron were never independently re-verified this
+session), and the structural sweep only catches "is a whole mechanic missing
+or a level wrong" — it says nothing about whether existing feature text is
+accurate the way the Mobile Flourish bug was. See `SUBCLASS_AUDIT.md` for the
+honest, per-subclass breakdown of exactly what has and hasn't been checked —
+built specifically so future sessions don't have to re-derive this or
+accidentally re-check the same ones. Verification: `npm run build` clean,
+`node --test` 218/218.
+
+## "Ready for a real game" architecture audit (2026-09-08)
+
+Project owner's framing: this app is a sunset PoC and will eventually hand off
+to a real game (Godot port has been discussed elsewhere — see
+`engine/package.json`'s own description). Asked for an audit of how the data
+and methods are structured toward that, plus small/medium fixes along the way.
+Also did a one-time, explicitly-authorized live Playwright pass over New
+Character / Level Up first (Playwright is normally disabled entirely per
+`CLAUDE.md` — that default resumes immediately after this session; nothing was
+installed into the real `package.json`) and found + fixed 4 real UI bugs; see
+`TODO.md` for that writeup, this entry is the data/architecture half only.
+
+**Findings, roughly most → least actionable:**
+
+1. **No canonical character schema doc existed anywhere** — the shape of a
+   `characters.json` entry was only ever tribal knowledge scattered across
+   `validateCharacter.js` comments, `diffLevelUp.js`, and whichever Vue
+   component last needed a field. This is the actual blocker for a new
+   consumer (Godot or otherwise) — they'd have no starting point. **Fixed**:
+   wrote `engine/CHARACTER_SCHEMA.md`, sourced from what `validateCharacter.js`/
+   `diffLevelUp.js` actually read, including the messy parts called out
+   explicitly rather than smoothed over (3 different "this spell is free"
+   conventions, `classes[].started` being load-bearing but optional, no
+   `tool_proficiencies` field anywhere, spells not tagged by granting class).
+   Deliberately did NOT migrate `characters.json` to fix any of these — that's
+   real roster surgery, a bigger call than this pass's scope, and now has a
+   checklist for whenever that migration actually happens.
+
+2. **`engine/rules/spellLists.js` reaches outside `engine/data/`** into
+   `src/data/api_data_cache/srd_spells_full.json` and
+   `src/data/published_spells.json`. Checked whether this was an oversight —
+   it isn't: the file has its own comment explaining this is deliberate (spell
+   _text_ already lives in `src/data`; copying it into `engine/data` would just
+   be a second copy to drift out of sync). Left as-is; noted here only so a
+   future porter doesn't have to rediscover the reasoning.
+
+3. **`classFeatures.js`'s `listClasses()` and `subclasses.js`'s
+   `listSubclasses()` both use `fs.readdirSync`** to enumerate every file in
+   `data/classes/`/`data/subclasses/` — the one real portability gap in
+   engine/, since "list a directory" is Node/host-filesystem-specific in a way
+   plain "read this named file" isn't (every other engine/ file does the
+   latter). Not fixed — the real fix (a generated static manifest, or bundling
+   every class/subclass into one JSON blob) changes how classes/subclasses get
+   authored day-to-day, which is a bigger call than this pass's scope while
+   this app is still the active editing tool. Added inline comments at both
+   call sites pointing here so it's not rediscovered as a surprise later.
+
+4. **`src/utils/dataService.js` and `server.js` already have the right shape**
+   for this transition and needed no changes — `dataService.save()` already
+   no-ops in production with an explicit "saved parties are a DM/dev tool"
+   comment, `server.js` is explicitly headed "NEVER deployed — development
+   only," and `merge-utils.js`'s 3-way merge is genuinely solid (keys array
+   elements by `id`/`name`, not index). Confirmed rather than assumed by
+   reading both in full.
+
+5. Confirmed `engine/` has zero real Vue/Vuex coupling (one comment in
+   `diffLevelUp.js` mentions `LevelUpTool.vue` by name, not an import) — the
+   "framework-free" promise in `engine/package.json` holds today.
+
+Verification: `node --test` 218/218 (untouched — this pass added a doc file
+and two comments, no logic changes); `npm run build` clean.
+
 ## `diffLevelUp.js`: real multiclass skill-proficiency picker (2026-09-07)
 
 Level Up tool audit finding #9 (see `TODO.md`) — the PHB "Multiclassing

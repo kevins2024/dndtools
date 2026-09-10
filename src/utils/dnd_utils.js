@@ -33,7 +33,63 @@ export const STAT_KEYS = [
 // Ability score keys that live inside stat_bonuses but modify the score itself, not a derived bonus.
 const SCORE_BONUS_KEYS = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha'])
 
+// Short, plain-language reminders of what each ability actually governs —
+// for a tooltip on the ability-score pickers (New Character / Level Up),
+// aimed at players still learning the rules, not a rules-lawyer reference.
+export const ABILITY_DESCRIPTIONS = {
+  str: 'Melee attack & damage rolls (non-finesse weapons), Athletics, carrying/lifting capacity.',
+  dex: 'Armor Class, initiative, ranged & finesse weapon attacks, Acrobatics/Stealth/Sleight of Hand.',
+  con: 'Hit points gained at every level, and Constitution saves (including concentration checks).',
+  int: 'Investigation/Arcana/History/Nature/Religion checks; Wizard spell attacks & save DC.',
+  wis: 'Perception/Insight/Medicine/Survival/Animal Handling checks; Cleric/Druid/Ranger spell attacks & save DC.',
+  cha: 'Persuasion/Deception/Intimidation/Performance checks; Bard/Sorcerer/Warlock/Paladin spell attacks & save DC.',
+}
+
+// PHB's own "Quick Build" suggested ability priority per class (real RAW
+// guidance, not a guess) — melee classes list both str/dex since the book
+// itself treats finesse/ranged builds as equally valid, not a single right
+// answer. A class's actual spellcasting ability (tracked per-class in
+// engine/data, not duplicated here) should always be added on top of this by
+// the caller — see `dnd.priorityAbilitiesForClass`.
+const CLASS_QUICK_BUILD_ABILITIES = {
+  Artificer: ['int', 'dex', 'con'],
+  Barbarian: ['str', 'con'],
+  Bard: ['cha', 'dex'],
+  Cleric: ['wis', 'str'],
+  Druid: ['wis', 'con'],
+  Fighter: ['str', 'dex', 'con'],
+  Monk: ['dex', 'wis'],
+  Paladin: ['str', 'cha'],
+  Ranger: ['dex', 'wis'],
+  Rogue: ['dex'],
+  Sorcerer: ['cha', 'con'],
+  Warlock: ['cha', 'con'],
+  Wizard: ['int', 'con'],
+}
+
+// classData: a loaded class record (needs .name and, for casters, a
+// .spellcasting.ability field) — pass whatever the caller already has from
+// engine/data/classes rather than re-fetching. Returns an ordered, deduped
+// array of ability keys (e.g. ['cha', 'dex']), or [] if the class isn't
+// recognized.
+function priorityAbilitiesForClass(classData) {
+  if (!classData?.name) return []
+  const abilities = []
+  const seen = new Set()
+  const add = (a) => {
+    if (a && !seen.has(a)) {
+      seen.add(a)
+      abilities.push(a)
+    }
+  }
+  add(classData.spellcasting?.ability)
+  for (const a of CLASS_QUICK_BUILD_ABILITIES[classData.name] ?? []) add(a)
+  return abilities
+}
+
 export const dnd = {
+  priorityAbilitiesForClass,
+
   // ─────────────────────────────────────────────
   // CLASS HELPERS
   // ─────────────────────────────────────────────
@@ -74,6 +130,47 @@ export const dnd = {
 
   roll() {
     return Math.floor(Math.random() * 20) + 1
+  },
+
+  // Weave Dust from Broken-Down Magic Items (house_rules.json) — pure given
+  // an item + a specific d20 roll, so the UI can both preview a range (rolls
+  // 2 and 19, the non-crit extremes) and commit one real roll on actual
+  // destruction. Returns null when the item has no recorded value_gp — there's
+  // nothing to calculate from, not a silent 0.
+  weaveDustForRoll(item, roll) {
+    if (!item?.value_gp) return null
+    let base = item.value_gp / 15
+    if (item.charges_max) {
+      const current = item.charges_current ?? item.charges_max
+      const missingFraction = 1 - current / item.charges_max
+      base *= 1 - 0.3 * missingFraction
+      if (
+        item.charges_recharge_type === 'material' &&
+        item.charges_recharge_material_cost_gp
+      ) {
+        const missingCharges = item.charges_max - current
+        base -= (missingCharges * item.charges_recharge_material_cost_gp) / 15
+      }
+    }
+    let adjusted
+    if (roll === 20) adjusted = base * 2
+    else if (roll === 1) adjusted = base / 2
+    else {
+      const pct = roll >= 11 ? roll - 10 : roll - 11
+      adjusted = base * (1 + pct / 100)
+    }
+    return Math.max(0, Math.floor(adjusted))
+  },
+
+  // {low, high} using the non-crit roll extremes (2 and 19) — an at-a-glance
+  // preview before actually destroying the item, which rolls for real
+  // (including the crit 1/20 cases) via weaveDustForRoll.
+  weaveDustEstimateRange(item) {
+    if (!item?.value_gp) return null
+    return {
+      low: dnd.weaveDustForRoll(item, 2),
+      high: dnd.weaveDustForRoll(item, 19),
+    }
   },
 
   mod(score) {
@@ -315,6 +412,53 @@ export const dnd = {
   },
 
   // ─────────────────────────────────────────────
+  // WEAPON SETS
+  // ─────────────────────────────────────────────
+  // A character can have more than 2 weapons flagged equipped_by them at
+  // once (e.g. a melee pair AND a ranged pair carried ready to switch to),
+  // which the old flat "equipped_by === character.name" check treated as
+  // ALL simultaneously in-hand — fine for "is this on my person" (armor,
+  // rings, wondrous items), wrong for "what am I actually holding right
+  // now" (which rules like Dual Wielder's conditional AC bonus need). Added
+  // 2026-09-09. Only `type: 'weapon'` items carry a `weapon_set` (1 or 2);
+  // everything else ignores the concept entirely and stays governed by
+  // equipped_by alone. A weapon with no weapon_set set is treated as active
+  // regardless of which set is current — an unmigrated/legacy item, or a
+  // deliberately set-agnostic one (e.g. a weapon someone always keeps
+  // sheathed on their belt in both loadouts).
+  activeWeaponSet(character) {
+    return character.active_weapon_set ?? 1
+  },
+
+  // True if `item` should count as "in hand right now" for this character —
+  // equipped_by them, and (for weapons specifically) either set-agnostic or
+  // in the currently active set.
+  isActiveEquipped(item, character) {
+    if (item.equipped_by !== character.name) return false
+    if (item.type !== 'weapon' || item.weapon_set == null) return true
+    return item.weapon_set === dnd.activeWeaponSet(character)
+  },
+
+  // Real RAW: Dual Wielder's +1 AC applies only "while wielding a separate
+  // melee weapon in each hand" — two one-handed melee weapons, no shield
+  // (a shield occupies the second hand, which is exactly what the feat's
+  // own wording excludes). Doesn't check the feat itself — callers already
+  // gate on that (see _acCompute below) so this stays a pure "is the
+  // character's current loadout physically dual-wielding melee" check,
+  // reusable anywhere else this same condition matters later (attack
+  // bonuses, flavor text, etc.).
+  isDualWieldingMelee(character, carriedPartyItems = []) {
+    const items = [...(character.items ?? []), ...carriedPartyItems]
+    const active = items.filter((i) => dnd.isActiveEquipped(i, character))
+    const hasShield = active.some((i) => i.armor_type === 'shield')
+    if (hasShield) return false
+    const meleeOneHanded = active.filter(
+      (i) => i.type === 'weapon' && i.slot === 'melee1h'
+    )
+    return meleeOneHanded.length >= 2
+  },
+
+  // ─────────────────────────────────────────────
   // ARMOR CLASS
   // ─────────────────────────────────────────────
 
@@ -429,10 +573,36 @@ export const dnd = {
       if (total) steps.push(`${item.name} (${dnd.signed(total)})`)
     }
 
-    // Per-feature flat AC bonuses (e.g. Fighting Style: Defense)
+    // Per-feature flat AC bonuses (e.g. Fighting Style: Defense) — real bug
+    // found 2026-09-09: this loop computed `bonus` and pushed a breakdown
+    // step describing it, but never actually added it into `value` below
+    // (unlike item stat_bonuses.ac, which resolveStats aggregates into
+    // `bonuses.ac` and IS counted). Chuknora's Fighting Style: Defense
+    // (stat_bonuses.ac: 1) was silently not applying — the tooltip claimed
+    // it while her real computed AC was 1 lower than shown.
+    let featureAcBonus = 0
     for (const feature of character.features ?? []) {
       const bonus = feature.stat_bonuses?.ac ?? 0
-      if (bonus) steps.push(`${feature.name} (${dnd.signed(bonus)})`)
+      if (bonus) {
+        steps.push(`${feature.name} (${dnd.signed(bonus)})`)
+        featureAcBonus += bonus
+      }
+    }
+
+    // Dual Wielder's +1 AC — conditional on the character's CURRENT loadout
+    // (weapon-set aware, see isDualWieldingMelee above), not a flat feat
+    // bonus like the loop just above, so it can't live in stat_bonuses.ac
+    // the same way. Added 2026-09-09 alongside weapon sets.
+    let dualWielderAcBonus = 0
+    const hasDualWielder = (character.features ?? []).some(
+      (f) => (f.name || '').trim().toLowerCase() === 'dual wielder'
+    )
+    if (
+      hasDualWielder &&
+      dnd.isDualWieldingMelee(character, carriedPartyItems)
+    ) {
+      dualWielderAcBonus = 1
+      steps.push(`Dual Wielder (${dnd.signed(dualWielderAcBonus)})`)
     }
 
     if (bladesongActive) steps.push(`Bladesong INT ${dnd.signed(intMod)}`)
@@ -441,7 +611,13 @@ export const dnd = {
       (bonuses.ac ?? 0) + (isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0)
     const bladesongBonus = bladesongActive ? intMod : 0
     const value =
-      base + shieldBonus + itemAcBonus + statUnarmoredBonus + bladesongBonus
+      base +
+      shieldBonus +
+      itemAcBonus +
+      statUnarmoredBonus +
+      bladesongBonus +
+      featureAcBonus +
+      dualWielderAcBonus
     steps.push(`= ${value}`)
     return { value, steps }
   },
@@ -860,7 +1036,7 @@ export const dnd = {
         })
       }
       for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
-        if (SCORE_BONUS_KEYS.has(key));
+        if (!SCORE_BONUS_KEYS.has(key)) continue
         ;(effects[key] = effects[key] ?? []).push({
           name: item.name,
           type: 'bonus',
@@ -870,7 +1046,7 @@ export const dnd = {
     }
     for (const feature of character.features ?? []) {
       for (const [key, val] of Object.entries(feature.stat_bonuses ?? {})) {
-        if (SCORE_BONUS_KEYS.has(key));
+        if (!SCORE_BONUS_KEYS.has(key)) continue
         ;(effects[key] = effects[key] ?? []).push({
           name: feature.name,
           type: 'bonus',

@@ -1,521 +1,364 @@
 [
   {
     "id": "rel_0",
-    "people": [
-      "rhuna",
-      "vaz"
-    ],
+    "people": ["rhuna", "vaz"],
     "type": "sibling",
     "notes": "Mechanism still needs defining — what actually makes this read as a sibling bond? (shared history, specific teasing, protectiveness, something else)",
     "strength": 0
   },
   {
     "id": "rel_1",
-    "people": [
-      "denna",
-      "vaz"
-    ],
+    "people": ["denna", "vaz"],
     "type": null,
     "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly.",
     "strength": 0
   },
   {
     "id": "rel_2",
-    "people": [
-      "petra",
-      "vaz"
-    ],
+    "people": ["petra", "vaz"],
     "type": null,
     "notes": "Turns sexual as companionship from time-to-time. No jealousy or expectations.",
     "strength": 0
   },
   {
     "id": "rel_3",
-    "people": [
-      "kessara",
-      "vaz"
-    ],
+    "people": ["kessara", "vaz"],
     "type": null,
     "notes": "Fast-forming loyalty. [needs more detail — what is the actual mechanism of this loyalty?]",
     "strength": 0
   },
   {
     "id": "rel_4",
-    "people": [
-      "galealzre",
-      "vaz"
-    ],
+    "people": ["galealzre", "vaz"],
     "type": null,
     "notes": "Brothers. Warm but distant — Vaz didn't know his brother trusted him until Kessara said so.",
     "strength": 0
   },
   {
-    "id": "rel_6",
-    "people": [
-      "jaygar",
-      "rhuna"
-    ],
+    "id": "rel_5",
+    "people": ["jaygar", "rhuna"],
     "type": null,
     "notes": "Watches him work with genuine fascination. She watches him work with genuine fascination.",
     "strength": 3
   },
   {
-    "id": "rel_8",
-    "people": [
-      "denna",
-      "pirra"
-    ],
+    "id": "rel_6",
+    "people": ["denna", "pirra"],
     "type": null,
     "notes": "Resonance beyond the paired blades.",
     "strength": 0
   },
   {
-    "id": "rel_10",
-    "people": [
-      "kessara",
-      "lenn"
-    ],
+    "id": "rel_7",
+    "people": ["kessara", "lenn"],
     "type": null,
     "notes": "",
     "strength": 0
   },
   {
-    "id": "rel_11",
-    "people": [
-      "lenn",
-      "lyria"
-    ],
+    "id": "rel_8",
+    "people": ["lenn", "lyria"],
     "type": null,
     "notes": "Never really discussed anything about romance or relationship, it just happened. Like magic. Magical commonality and complementary personalities, it just fell into place.",
     "strength": 0
   },
   {
-    "id": "rel_13",
-    "people": [
-      "kessara",
-      "petra"
-    ],
+    "id": "rel_9",
+    "people": ["kessara", "petra"],
     "type": null,
     "notes": "Finds her oddly reassuring. Kessara finds her oddly reassuring.",
     "strength": 0
   },
   {
-    "id": "rel_14",
-    "people": [
-      "kessara",
-      "rhuna"
-    ],
+    "id": "rel_10",
+    "people": ["kessara", "rhuna"],
     "type": null,
     "notes": "Immediate.",
     "strength": 0
   },
   {
-    "id": "rel_16",
-    "people": [
-      "galealzre",
-      "kessara"
-    ],
+    "id": "rel_11",
+    "people": ["galealzre", "kessara"],
     "type": null,
     "notes": "Sent by Galealzre — relationship not yet detailed. Sent Kessara to the party.",
     "strength": 0
   },
   {
-    "id": "rel_21",
-    "people": [
-      "vethara",
-      "vrethka"
-    ],
+    "id": "rel_12",
+    "people": ["vethara", "vrethka"],
     "type": "family",
     "notes": "Her daughter. Twenty years of complicated and fond. The war was between them before it was between clans.",
     "strength": 0
   },
   {
-    "id": "rel_22",
-    "people": [
-      "varath ichta",
-      "vrethka"
-    ],
+    "id": "rel_13",
+    "people": ["varath ichta", "vrethka"],
     "type": "family-clan",
     "notes": "Niece by clan rather than blood. The daughter who always wanted to leave, sent south with more hope than Vrethka shows.",
     "strength": 0
   },
   {
-    "id": "rel_25",
-    "people": [
-      "corwin",
-      "wren"
-    ],
+    "id": "rel_14",
+    "people": ["corwin", "wren"],
     "type": null,
     "notes": "Met her at the first halfweek festival attended in Argentveil. Mutual attraction, still in early stages but promising.",
     "strength": 0
   },
   {
-    "id": "rel_26",
-    "people": [
-      "helena sable",
-      "pirra"
-    ],
+    "id": "rel_15",
+    "people": ["helena sable", "pirra"],
     "type": "family",
     "notes": "Her niece.",
     "strength": 0
   },
   {
-    "id": "rel_27",
-    "people": [
-      "big tam",
-      "jessyl denmar"
-    ],
+    "id": "rel_16",
+    "people": ["big tam", "jessyl denmar"],
     "type": "works-for",
     "notes": "",
     "strength": 0
   },
   {
-    "id": "rel_28",
-    "people": [
-      "gritch",
-      "jessyl denmar"
-    ],
+    "id": "rel_17",
+    "people": ["gritch", "jessyl denmar"],
     "type": "works-for",
     "notes": "",
     "strength": 0
   },
   {
-    "id": "rel_29",
-    "people": [
-      "pip",
-      "rhuna"
-    ],
+    "id": "rel_18",
+    "people": ["pip", "rhuna"],
     "type": "ward",
     "notes": "He's in Rhuna's care.",
     "strength": 0
   },
   {
-    "id": "rel_30",
-    "people": [
-      "rhuna",
-      "tormund coalbeard"
-    ],
+    "id": "rel_19",
+    "people": ["rhuna", "tormund coalbeard"],
     "type": null,
     "notes": "Millhaven approach planning. Jessyl arranged.",
     "strength": 0
   },
   {
-    "id": "rel_31",
-    "people": [
-      "morrow",
-      "selt"
-    ],
+    "id": "rel_20",
+    "people": ["morrow", "selt"],
     "type": null,
     "notes": "",
     "strength": 0
   },
   {
-    "id": "rel_33",
-    "people": [
-      "marcus freeborn",
-      "petra"
-    ],
+    "id": "rel_21",
+    "people": ["marcus freeborn", "petra"],
     "type": null,
     "notes": "Petra's protective warmth toward him.",
     "strength": 0
   },
   {
-    "id": "rel_34",
-    "people": [
-      "denna",
-      "sarith vex"
-    ],
+    "id": "rel_22",
+    "people": ["denna", "sarith vex"],
     "type": null,
     "notes": "Ran Denna's network when Denna was sixteen. Professional respect.",
     "strength": 0
   },
   {
-    "id": "rel_39",
-    "people": [
-      "cruze",
-      "gunner",
-      "torsten"
-    ],
+    "id": "rel_23",
+    "people": ["cruze", "gunner", "torsten"],
     "type": "sibling",
     "notes": "Guard brothers.",
     "strength": 0
   },
   {
-    "id": "rel_41",
-    "people": [
-      "seris",
-      "tova"
-    ],
+    "id": "rel_24",
+    "people": ["seris", "tova"],
     "type": "sibling",
     "notes": "Sisters.",
     "strength": 0
   },
   {
-    "id": "rel_42",
-    "people": [
-      "petra",
-      "sovi"
-    ],
+    "id": "rel_25",
+    "people": ["petra", "sovi"],
     "type": null,
     "notes": "Petra has partial fluency in her language.",
     "strength": 0
   },
   {
-    "id": "rel_43",
-    "people": [
-      "sovi",
-      "vaz"
-    ],
+    "id": "rel_26",
+    "people": ["sovi", "vaz"],
     "type": null,
     "notes": "Great connection. [needs more detail — what is the actual basis of this connection?]",
     "strength": 0
   },
   {
-    "id": "rel_44",
-    "people": [
-      "aldric",
-      "pell"
-    ],
+    "id": "rel_27",
+    "people": ["aldric", "pell"],
     "type": "sibling",
     "notes": "Brothers.",
     "strength": 0
   },
   {
-    "id": "rel_47",
-    "people": [
-      "aldric",
-      "merren"
-    ],
+    "id": "rel_28",
+    "people": ["aldric", "merren"],
     "type": null,
     "notes": "",
     "strength": 0
   },
   {
-    "id": "rel_51",
-    "people": [
-      "aldous fenn",
-      "oswin belverbridge"
-    ],
+    "id": "rel_29",
+    "people": ["aldous fenn", "oswin belverbridge"],
     "type": null,
     "notes": "Coordinating on council matters.",
     "strength": 0
   },
   {
-    "id": "rel_52",
-    "people": [
-      "oswin belverbridge",
-      "sona belverbridge"
-    ],
+    "id": "rel_30",
+    "people": ["oswin belverbridge", "sona belverbridge"],
     "type": "family",
     "notes": "His older daughter.",
     "strength": 0
   },
   {
-    "id": "rel_54",
-    "people": [
-      "dov carren",
-      "vaz"
-    ],
+    "id": "rel_31",
+    "people": ["dov carren", "vaz"],
     "type": null,
     "notes": "Vaz pressed coins into his hand. If Vaz comes to Valdmere, Dov knows where to find him.",
     "strength": 0
   },
   {
-    "id": "rel_55",
-    "people": [
-      "aldren caluverath",
-      "lyria"
-    ],
+    "id": "rel_32",
+    "people": ["aldren caluverath", "lyria"],
     "type": "family",
     "notes": "siblings",
     "strength": 0
   },
   {
-    "id": "rel_56",
-    "people": [
-      "revven",
-      "veleth"
-    ],
+    "id": "rel_33",
+    "people": ["revven", "veleth"],
     "type": null,
     "notes": "Genuine, uncomplicated faith. Found the right deity on the first try. May be on a path toward becoming the first paladin of Veleth though he doesn't know it yet.",
     "strength": 0
   },
   {
-    "id": "rel_59",
-    "people": [
-      "elucyne",
-      "vaz"
-    ],
+    "id": "rel_34",
+    "people": ["elucyne", "vaz"],
     "type": null,
     "notes": "Met at the Thorncast table during the Spring Festival. He came to find her himself rather than sending someone. That mattered.",
     "strength": 0
   },
   {
-    "id": "rel_63",
-    "people": [
-      "elucyne",
-      "sorra"
-    ],
+    "id": "rel_35",
+    "people": ["elucyne", "sorra"],
     "type": null,
     "notes": "Traveling performance circuit, southeastern region. Elucyne not running anymore was the signal that the world Elucyne is in is worth being in.",
     "strength": 0
   },
   {
-    "id": "rel_64",
-    "people": [
-      "revven",
-      "sorra"
-    ],
+    "id": "rel_36",
+    "people": ["revven", "sorra"],
     "type": null,
     "notes": "He said something unexpectedly perceptive about what she was playing and she forgot to be composed about it. Still processing.",
     "strength": 0
   },
   {
-    "id": "rel_65",
-    "people": [
-      "eldi",
-      "rith"
-    ],
+    "id": "rel_37",
+    "people": ["eldi", "rith"],
     "type": "sibling",
     "notes": "",
     "strength": 133
   },
   {
-    "id": "rel_66",
-    "people": [
-      "eldi",
-      "therynv'l"
-    ],
+    "id": "rel_38",
+    "people": ["eldi", "therynv'l"],
     "type": null,
     "notes": "",
     "strength": 6
   },
   {
-    "id": "rel_67",
-    "people": [
-      "eldi",
-      "lyria"
-    ],
+    "id": "rel_39",
+    "people": ["eldi", "lyria"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_68",
-    "people": [
-      "rith",
-      "therynv'l"
-    ],
+    "id": "rel_40",
+    "people": ["rith", "therynv'l"],
     "type": null,
     "notes": "",
     "strength": 6
   },
   {
-    "id": "rel_69",
-    "people": [
-      "rith",
-      "lyria"
-    ],
+    "id": "rel_41",
+    "people": ["rith", "lyria"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_70",
-    "people": [
-      "therynv'l",
-      "lyria"
-    ],
+    "id": "rel_42",
+    "people": ["therynv'l", "lyria"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_71",
-    "people": [
-      "jaygar",
-      "kerra"
-    ],
+    "id": "rel_43",
+    "people": ["jaygar", "kerra"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_72",
-    "people": [
-      "jaygar",
-      "revven"
-    ],
+    "id": "rel_44",
+    "people": ["jaygar", "revven"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_73",
-    "people": [
-      "jaygar",
-      "elucyne"
-    ],
+    "id": "rel_45",
+    "people": ["jaygar", "elucyne"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_74",
-    "people": [
-      "rhuna",
-      "kerra"
-    ],
+    "id": "rel_46",
+    "people": ["rhuna", "kerra"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_75",
-    "people": [
-      "rhuna",
-      "revven"
-    ],
+    "id": "rel_47",
+    "people": ["rhuna", "revven"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_76",
-    "people": [
-      "rhuna",
-      "elucyne"
-    ],
+    "id": "rel_48",
+    "people": ["rhuna", "elucyne"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_77",
-    "people": [
-      "kerra",
-      "revven"
-    ],
+    "id": "rel_49",
+    "people": ["kerra", "revven"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_78",
-    "people": [
-      "kerra",
-      "elucyne"
-    ],
+    "id": "rel_50",
+    "people": ["kerra", "elucyne"],
     "type": null,
     "notes": "",
     "strength": 3
   },
   {
-    "id": "rel_79",
-    "people": [
-      "revven",
-      "elucyne"
-    ],
+    "id": "rel_51",
+    "people": ["revven", "elucyne"],
     "type": null,
     "notes": "",
     "strength": 3

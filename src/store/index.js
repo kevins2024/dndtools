@@ -27,6 +27,18 @@ function nextPartyItemId(items) {
   return `items_${nextPartyItemNum(items)}`
 }
 
+// Same numeric-suffix-parsing approach as nextPartyItemNum, generalized to
+// any "<prefix>_<N>" id convention (npcs_N, assets_N, ...) — see
+// JsonIntakeTool.vue, the only caller of ADD_TABLE_ROWS below.
+function nextSequentialNum(rows, prefix) {
+  const re = new RegExp(`^${prefix}_(\\d+)$`)
+  const nums = rows
+    .map((r) => re.exec(String(r.id ?? ''))?.[1])
+    .filter(Boolean)
+    .map(Number)
+  return nums.length ? Math.max(...nums) + 1 : 0
+}
+
 // A dice-expression recharge (e.g. a wand's "1d6+1") rolls on any
 // qualifying rest call regardless of which rechargeTypes bucket that call
 // passes — matches this function's pre-existing behavior, kept as-is.
@@ -101,6 +113,7 @@ export default new Vuex.Store({
     },
     assets: [],
     relationships: [],
+    lore: [],
     finances: {},
     calendar_notes: [],
     loaded: false,
@@ -310,6 +323,25 @@ export default new Vuex.Store({
       }
       if (!state.dirtyTables.includes('party_items')) {
         state.dirtyTables.push('party_items')
+      }
+    },
+    // Generic "append N validated new rows to a table" mutation — used by
+    // JsonIntakeTool.vue for the tables that don't already have a dedicated
+    // add-mutation (party_items keeps using ADD_PARTY_ITEMS above, since it
+    // also needs the active-party-id injection that's specific to items).
+    // `idPrefix` mints sequential "<prefix>_<N>" ids the same way
+    // nextPartyItemId does (npcs, assets); pass null for tables that don't
+    // use a synthetic id at all (places, keyed by name) or that already
+    // carry a caller-assigned id (lore's hand-authored slugs).
+    ADD_TABLE_ROWS(state, { table, rows, idPrefix }) {
+      const existing = state[table] || []
+      let nextNum = idPrefix ? nextSequentialNum(existing, idPrefix) : 0
+      const newRows = rows.map((row) =>
+        idPrefix ? { ...row, id: `${idPrefix}_${nextNum++}` } : row
+      )
+      state[table] = [...existing, ...newRows]
+      if (!state.dirtyTables.includes(table)) {
+        state.dirtyTables.push(table)
       }
     },
     UPDATE_ITEM(state, updatedItem) {
@@ -776,6 +808,7 @@ export default new Vuex.Store({
         'networks',
         'assets',
         'relationships',
+        'lore',
       ]
       const originals = {}
       for (const table of tables) {

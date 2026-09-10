@@ -13,7 +13,7 @@
     "stat_str": 10,
     "stat_dex": 20,
     "stat_con": 16,
-    "stat_int": 12,
+    "stat_int": 8,
     "stat_wis": 10,
     "stat_cha": 14,
     "hp_max": 76,
@@ -48,13 +48,16 @@
         "uses_current": 1
       },
       {
-        "name": "Lucky",
-        "id": "pub_lucky",
-        "type": "feature"
+        "name": "Fighting Style: Two-Weapon Fighting",
+        "id": "fighter-fighting-style-two-weapon-fighting",
+        "type": "fightingStyle",
+        "level_gained": 1,
+        "note": "Added 2026-09-09 -- reconciled from the New Character Tool's own TestFighter build, which reproduced Vaz's real DEX/CHA numbers exactly via a legal ASI@4/feat@6/split-ASI@8 history. Two-Weapon Fighting is the obvious pick given Dual Wielder below."
       },
       {
         "name": "Dual Wielder",
-        "type": "feature"
+        "type": "feat",
+        "level_gained": 6
       },
       {
         "name": "Know Your Enemy",
@@ -63,10 +66,6 @@
       {
         "name": "Superiority Dice (5d8)",
         "type": "feature"
-      },
-      {
-        "name": "Sentinel",
-        "type": "feat"
       },
       {
         "name": "Disarming Attack",
@@ -110,6 +109,40 @@
         "subclass": "Battle Master",
         "level": 9
       }
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Reconciled 2026-09-09: real history is unrecoverable (project owner has no record), but the New Character Tool's own TestFighter build demonstrated the ONE legal 27-point-buy history that reproduces Vaz's real DEX 20/CHA 14 exactly -- see ability_score_history below. That reconciliation only has room for ONE feat across his 3 ASI slots (Dual Wielder, confirmed load-bearing since his rapier main-hand isn't Light and can't two-weapon-fight without it) -- Lucky and Sentinel were removed as not fitting a legal history, per project owner's explicit choice between three options. stat_int was also corrected from 12 to 8 (the only real stat discrepancy against TestFighter's reconciliation).",
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "dex",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      },
+      {
+        "ability": "cha",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      }
     ]
   },
   {
@@ -130,7 +163,7 @@
     "stat_cha": 8,
     "hp_max": 104,
     "hp_current": 104,
-    "unarmored_ac_formula": "default",
+    "unarmored_ac_formula": "barbarian",
     "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
@@ -210,7 +243,9 @@
         "subclass": "Berserker",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Denna",
@@ -263,7 +298,7 @@
         "type": "feature"
       },
       {
-        "name": "Assassin — Infiltration Expertise",
+        "name": "Assassin \u2014 Infiltration Expertise",
         "type": "feature"
       },
       {
@@ -320,7 +355,9 @@
         "subclass": "Assassin",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Lenn",
@@ -364,12 +401,13 @@
       {
         "name": "Metamagic Adept",
         "type": "feat",
-        "note": "Pool of 2 sorcery points per long rest — spent on Empowered or Quickened Spell below."
+        "note": "Pool of 2 sorcery points per long rest \u2014 spent on Twinned or Quickened Spell below."
       },
       {
-        "name": "Empowered Spell",
+        "name": "Twinned Spell",
         "type": "metamagic",
-        "description": "Cost: 1 sorcery point. When rolling damage for a spell, reroll up to INT modifier (5) dice and use the new rolls."
+        "description": "Cost: sorcery points equal to the spell's level (1 if a cantrip). When casting a spell that targets only one creature and doesn't have a range of Self, target a second creature in range with the same spell.",
+        "note": "Swapped in 2026-09-09, replacing Empowered Spell. Real history: Empowered Spell was wrongly deleted earlier in the subclass audit as \"mechanically impossible for a pure Wizard,\" without checking whether a feat granted it -- he has Metamagic Adept, which legally grants any spellcaster 2 Sorcerer Metamagic options + a small sorcery point pool regardless of Sorcerer levels, so it wasn't actually a corruption. Restored, then swapped by project owner's choice: Empowered Spell's reroll count is fixed to Charisma modifier in the real rules (not adaptable to the caster's own casting stat), which made it weak for him (his CHA is only +1). Twinned Spell has no ability-score dependency at all, sidestepping the issue and generally regarded as one of the stronger Metamagic picks regardless of caster stat."
       },
       {
         "name": "Quickened Spell",
@@ -831,7 +869,7 @@
       "Studies people like he used to study card games - looking for tells.",
       "Reformed gambling addict."
     ],
-    "id": "characters_4",
+    "id": "characters_3",
     "darkvision": 0,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -853,12 +891,15 @@
         "subclass": "Evocation",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Kessara",
     "full_name": "Kessara Nightwind",
     "race": "Elf",
+    "subrace": "High Elf",
     "level": 9,
     "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant - light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it - it's a distraction and she knows it.",
     "image": "./characters/kessara.jpg",
@@ -889,7 +930,7 @@
         "type": "feature"
       },
       {
-        "name": "Bladesinger — Training in War and Song",
+        "name": "Bladesinger \u2014 Training in War and Song",
         "type": "feature"
       },
       {
@@ -899,9 +940,10 @@
       {
         "name": "Bladesong",
         "type": "feature",
-        "recharge": "short_rest",
-        "uses_max": 2,
-        "uses_current": 2
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4,
+        "note": "Corrected 2026-09-09 \u2014 was tracking the outdated SCAG version (flat 2 uses, short/long rest). Real current Tasha's Cauldron of Everything version: uses = proficiency bonus (4 at her level 9), long rest only."
       },
       {
         "name": "Fey Ancestry",
@@ -959,8 +1001,10 @@
       {
         "name": "Minor Illusion",
         "level": 0,
-        "prepared": false,
-        "type": "cantrip"
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "High Elf racial (Cantrip trait) \u2014 free, doesn't count against her normal Wizard cantrip cap. Subrace set 2026-09-09; her INT 20 fits High Elf's math exactly (15 point-buy + 1 racial + 2 full ASIs), which is why this was the leading guess \u2014 pick a different cantrip here if Minor Illusion doesn't fit her actual play history."
       },
       {
         "name": "Ray of Frost",
@@ -1366,7 +1410,7 @@
       "Delivers assessments without softening but without cruelty.",
       "Runs through combat forms as meditation in corners of rooms - slow, deliberate."
     ],
-    "id": "characters_5",
+    "id": "characters_4",
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -1377,7 +1421,9 @@
         "subclass": "Bladesinger",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Petra",
@@ -1388,7 +1434,7 @@
     "image": "./characters/petra.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "wis",
-    "notes": "Partial fluency in Sovi's southern language — historically significant.",
+    "notes": "Partial fluency in Sovi's southern language \u2014 historically significant.",
     "stat_str": 10,
     "stat_dex": 10,
     "stat_con": 14,
@@ -1622,7 +1668,7 @@
       "Takes words literally.",
       "Opinions on cheese border on philosophical."
     ],
-    "id": "characters_6",
+    "id": "characters_5",
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -1634,7 +1680,9 @@
         "subclass": "Life Domain",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Pirra",
@@ -1683,11 +1731,11 @@
         "type": "feature"
       },
       {
-        "name": "Inquisitive — Ear for Deceit",
+        "name": "Inquisitive \u2014 Ear for Deceit",
         "type": "feature"
       },
       {
-        "name": "Inquisitive — Eye for Detail",
+        "name": "Inquisitive \u2014 Eye for Detail",
         "type": "feature"
       },
       {
@@ -1695,7 +1743,7 @@
         "type": "feature"
       },
       {
-        "name": "Inquisitive — Steady Eye",
+        "name": "Inquisitive \u2014 Steady Eye",
         "type": "feature"
       },
       {
@@ -1718,7 +1766,7 @@
       "Sharp, capable.",
       "Knows the Gilt Rose menu from memory after eight months away."
     ],
-    "id": "characters_7",
+    "id": "characters_6",
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -1729,7 +1777,9 @@
         "subclass": "Inquisitive",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Kerra",
@@ -1918,7 +1968,7 @@
       "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
       "Shadow of Moil + Devil's Sight darkness combo now fully online."
     ],
-    "id": "characters_8",
+    "id": "characters_7",
     "darkvision": 0,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -1935,7 +1985,9 @@
         "subclass": "Great Old One",
         "level": 5
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Lexica",
@@ -1946,13 +1998,33 @@
     "image": "./characters/lexica.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
-    "notes": "",
+    "notes": "Stats corrected 2026-09-08 \u2014 stat_int was permanently stuck at 19, exactly matching the Headband of Intellect's stat_overrides value (party_items.json), which sits unequipped in the general party pool. Someone baked the override's result directly into her base stat instead of it applying live only while worn; she never actually had INT 19 as a real base score. Real stats reconstructed clean under standard 15-cap point buy: CHA 15 + 2 (Half-Elf racial) + 2 (Ability Score Improvement \u2014 her other ASI went to the War Caster feat instead) = 19; DEX 15 + 1 (Half-Elf racial flex) = 16.",
+    "ability_score_history": [
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "dex",
+        "amount": 1,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      }
+    ],
     "stat_str": 8,
-    "stat_dex": 14,
+    "stat_dex": 16,
     "stat_con": 12,
-    "stat_int": 19,
-    "stat_wis": 12,
-    "stat_cha": 20,
+    "stat_int": 10,
+    "stat_wis": 11,
+    "stat_cha": 19,
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
@@ -1995,7 +2067,7 @@
         "type": "feature"
       },
       {
-        "name": "Magical Secrets (level 6 — used)",
+        "name": "Magical Secrets (level 6 \u2014 used)",
         "type": "feature",
         "note": "Counterspell and Scrying chosen at level 6"
       },
@@ -2074,12 +2146,6 @@
         "type": "prepared"
       },
       {
-        "name": "Phantasmal Killer",
-        "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Greater Restoration",
         "level": 5,
         "prepared": true,
@@ -2113,13 +2179,17 @@
         "name": "Counterspell",
         "level": 3,
         "prepared": true,
-        "type": "magical_secret"
+        "type": "magical_secret",
+        "featureGranted": true,
+        "_source": "Additional Magical Secrets (College of Lore, level 6)"
       },
       {
         "name": "Scrying",
         "level": 5,
         "prepared": true,
-        "type": "magical_secret"
+        "type": "magical_secret",
+        "featureGranted": true,
+        "_source": "Additional Magical Secrets (College of Lore, level 6)"
       }
     ],
     "spell_slots": {
@@ -2152,7 +2222,7 @@
       "Joins things rather than leads them when the thing is already good enough without her.",
       "Extraordinary information retention - now supernatural."
     ],
-    "id": "characters_10",
+    "id": "characters_8",
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -2163,7 +2233,9 @@
         "subclass": "College of Lore",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Lyria",
@@ -2174,7 +2246,7 @@
     "image": "./characters/lyria.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "int",
-    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful.",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook \u2014 she can cast it, finds it distasteful.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -2661,7 +2733,7 @@
       "(LENN AND LYRIA TOGETHER) He gives her things without announcement. She receives them the same way.",
       "Watchful, careful."
     ],
-    "id": "characters_11",
+    "id": "characters_9",
     "darkvision": 0,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -2672,7 +2744,9 @@
         "subclass": "Abjuration",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Corwin",
@@ -2740,7 +2814,7 @@
     ],
     "spells": [],
     "active_effects": [],
-    "notes": "Next ASI goal: CON 18 → 20. Corwin holds the Ravenquay relationship network.",
+    "notes": "Next ASI goal: CON 18 \u2192 20. Corwin holds the Ravenquay relationship network.",
     "persona_notes": [
       "Watches every room the way a guard watched his father's workshop. Thirty years. Still.",
       "Straightforward to the point of surprising people. Says true things out loud.",
@@ -2749,7 +2823,7 @@
       "Genuinely content with good conversation and a walk home. Uncomplicated about it.",
       "Reliable, professional."
     ],
-    "id": "characters_12",
+    "id": "characters_10",
     "darkvision": 0,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -2760,7 +2834,9 @@
         "subclass": "Champion",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Chuknora",
@@ -2866,6 +2942,12 @@
         "type": "feature"
       },
       {
+        "name": "Giant's Power",
+        "type": "feature",
+        "description": "Learn the Thaumaturgy cantrip (Wisdom-based regardless of her own casting stat). Already knows Giant, so the feature's language grant is redundant for her.",
+        "note": "Added 2026-09-09 -- this feature was missing entirely, found during the Path of the Giant subclass audit. Cantrip choice (Thaumaturgy over Druidcraft) picked by the project owner to fit her Intimidation proficiency and barbarian presence."
+      },
+      {
         "name": "Divine Sense",
         "type": "feature",
         "action_type": "action",
@@ -2917,6 +2999,13 @@
     },
     "spells": [
       {
+        "name": "Thaumaturgy",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "note": "Granted by Giant's Power (Path of the Giant, 6th level), added 2026-09-09 -- Wisdom-based regardless of her own spellcasting stat."
+      },
+      {
         "name": "Ensnaring Strike",
         "level": 1,
         "prepared": true,
@@ -2954,7 +3043,9 @@
       "If something feels wrong she assumes it is wrong and starts looking for proof.",
       "When still she is in a semi-meditative state. Not absent - more present than usual."
     ],
-    "id": "characters_13"
+    "id": "characters_11",
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Enauweyn",
@@ -3035,7 +3126,7 @@
         "type": "feature"
       },
       {
-        "name": "Crown — Divine Allegiance",
+        "name": "Crown \u2014 Divine Allegiance",
         "type": "feature",
         "action_type": "reaction"
       },
@@ -3076,6 +3167,24 @@
         "type": "oath"
       },
       {
+        "name": "Zone of Truth",
+        "level": 2,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Command",
+        "level": 1,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Compelled Duel",
+        "level": 1,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
         "name": "Bless",
         "level": 1,
         "prepared": true,
@@ -3090,12 +3199,6 @@
       {
         "name": "Cure Wounds",
         "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Misty Step",
-        "level": 2,
         "prepared": true,
         "type": "prepared"
       },
@@ -3138,14 +3241,14 @@
     "deity": "Kexifrext",
     "persona_notes": [
       "Unexpected mix of authoritative commanding presence and whimsical playful oddness depending on mood.",
-      "Former instructor — occasionally slips into teaching mode without noticing.",
+      "Former instructor \u2014 occasionally slips into teaching mode without noticing.",
       "Presence before personality. When Enauweyn enters a room, people feel it before they process it.",
       "The whimsy is real, not a crack in the armor.",
       "She thinks in long time.",
       "She was a teacher and it never fully left her.",
       "The fey in her is not decorative."
     ],
-    "id": "characters_14",
+    "id": "characters_12",
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -3156,7 +3259,9 @@
         "subclass": "Oath of the Crown",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Tackett",
@@ -3181,7 +3286,13 @@
     "spellcasting_ability": "wis",
     "features": [
       {
-        "name": "Stars Druid — Starry Form",
+        "name": "Legendary Repertoire",
+        "id": "hb_tackett_legendary_cantrips",
+        "type": "feature",
+        "note": "Grants 3 cantrips beyond the normal Druid cap \u2014 homebrew, added 2026-09-08 to explain his 6 recorded cantrips."
+      },
+      {
+        "name": "Stars Druid \u2014 Starry Form",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -3190,7 +3301,7 @@
         "modes": [
           {
             "name": "Archer",
-            "description": "Bonus action: constellation bow appears. When casting a spell, make a ranged spell attack — hit deals 1d8+WIS radiant damage."
+            "description": "Bonus action: constellation bow appears. When casting a spell, make a ranged spell attack \u2014 hit deals 1d8+WIS radiant damage."
           },
           {
             "name": "Chalice",
@@ -3203,7 +3314,7 @@
         ]
       },
       {
-        "name": "Stars Druid — Unbroken (Legendary)",
+        "name": "Stars Druid \u2014 Unbroken (Legendary)",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "long_rest",
@@ -3211,20 +3322,16 @@
         "uses_current": 1
       },
       {
-        "name": "Stars Druid — Star Map",
+        "name": "Stars Druid \u2014 Star Map",
         "type": "feature"
       },
       {
-        "name": "Stars Druid — Cosmic Omen",
+        "name": "Stars Druid \u2014 Cosmic Omen",
         "type": "feature",
         "action_type": "reaction",
         "recharge": "long_rest",
-        "uses_max": 1,
+        "uses_max": 4,
         "uses_current": 1
-      },
-      {
-        "name": "Stars Druid — Twinkling Constellations",
-        "type": "feature"
       },
       {
         "name": "Wild Shape (CR 1 or below)",
@@ -3416,7 +3523,7 @@
       "He is comfortable with discomfort in a way that makes other people uncomfortable.",
       "He meddles. Not maliciously - helpfully, which is sometimes worse."
     ],
-    "id": "characters_15",
+    "id": "characters_13",
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -3427,7 +3534,9 @@
         "subclass": "Circle of Stars",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Revven",
@@ -3459,15 +3568,15 @@
     "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
-        "name": "Tempest Cleric — Wrath of the Storm",
+        "name": "Tempest Cleric \u2014 Wrath of the Storm",
         "type": "feature"
       },
       {
-        "name": "Tempest Cleric — Destructive Wrath",
+        "name": "Tempest Cleric \u2014 Destructive Wrath",
         "type": "feature"
       },
       {
-        "name": "Tempest Cleric — Thunderbolt Strike",
+        "name": "Tempest Cleric \u2014 Thunderbolt Strike",
         "type": "feature"
       },
       {
@@ -3593,7 +3702,8 @@
         "name": "Charm Person",
         "level": 1,
         "prepared": true,
-        "type": "prepared"
+        "featureGranted": true,
+        "_source": "Veleth's domain (love, desire, friendship, physical connection)"
       },
       {
         "name": "Bless",
@@ -3648,7 +3758,7 @@
         "level": 3,
         "prepared": true,
         "type": "prepared",
-        "_source": "Signature spell — Veleth (love/desire/friendship/physical connection)"
+        "_source": "Signature spell \u2014 Veleth (love/desire/friendship/physical connection)"
       },
       {
         "name": "Sacred Flame",
@@ -3712,7 +3822,7 @@
       "Calls lightning storms beautiful even when they're dangerous.",
       "Grew up around humans which means he has human impatience in an almost-elven body."
     ],
-    "id": "characters_16",
+    "id": "characters_14",
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -3723,7 +3833,9 @@
         "subclass": "Tempest Domain",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Elucyne",
@@ -3773,7 +3885,7 @@
         "type": "feature"
       },
       {
-        "name": "Sneak Attack (2d6)",
+        "name": "Sneak Attack (1d6)",
         "type": "feature"
       },
       {
@@ -3819,14 +3931,34 @@
         "type": "ranger"
       },
       {
+        "name": "Disguise Self",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Gloom Stalker Magic (3rd level)"
+      },
+      {
         "name": "Rope Trick",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Gloom Stalker Magic (5th level)"
+      },
+      {
+        "name": "Longstrider",
+        "level": 1,
+        "prepared": true,
+        "type": "ranger"
+      },
+      {
+        "name": "Pass without Trace",
         "level": 2,
         "prepared": true,
         "type": "ranger"
       },
       {
-        "name": "Fear",
-        "level": 3,
+        "name": "Hunter's Mark",
+        "level": 1,
         "prepared": true,
         "type": "ranger"
       }
@@ -3842,7 +3974,7 @@
       }
     },
     "active_effects": [],
-    "notes": "Tiefling entertainer from southeast of Argentveil. Level 10: Rogue 3 (Assassin subclass unlocked). Level 11: Fighter 3 (Champion + Improved Critical).",
+    "notes": "Tiefling entertainer from southeast of Argentveil. Target build (corrected 2026-09-08 \u2014 Fighter subclass and Sneak Attack die had been recorded a level early, ahead of when they actually unlock): Level 10 = Rogue 3 (Assassin subclass unlocks, Sneak Attack becomes 2d6). Level 11 = Fighter 3 (Champion unlocks, Improved Critical). From there, every remaining level to 20 goes into Rogue, per a real published build guide for this exact Gloomstalker/Rogue/Fighter archetype (that guide uses Battlemaster, not Champion \u2014 Champion is her own established choice). Final level 20 split: Ranger 5 (Gloom Stalker) / Fighter 3 (Champion) / Rogue 12 (Assassin).",
     "persona_notes": [
       "Bubbly in a way that fills rooms. The happiness is never contained and never performed.",
       "Finds awkwardness genuinely hilarious.",
@@ -3853,7 +3985,7 @@
       "Makes friends with everyone in a room within twenty minutes.",
       "The gilded horns are real and she absolutely uses the moment people realize that."
     ],
-    "id": "characters_17",
+    "id": "characters_15",
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -3872,10 +4004,12 @@
       },
       {
         "name": "Fighter",
-        "subclass": "Champion",
+        "subclass": null,
         "level": 2
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Sorra",
@@ -4051,24 +4185,6 @@
         "level": 0,
         "prepared": true,
         "type": "cantrip"
-      },
-      {
-        "name": "Green-Flame Blade",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Counterspell",
-        "level": 3,
-        "prepared": true,
-        "type": "magical_secret"
-      },
-      {
-        "name": "Revivify",
-        "level": 3,
-        "prepared": true,
-        "type": "magical_secret"
       }
     ],
     "spell_slots": {
@@ -4107,7 +4223,7 @@
       "The dance never fully stops.",
       "Has never stayed anywhere longer than she felt like staying. May be reconsidering that."
     ],
-    "id": "characters_18",
+    "id": "characters_16",
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -4118,7 +4234,9 @@
         "subclass": "College of Spirits",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Ferghus",
@@ -4229,22 +4347,36 @@
         "type": "prepared"
       },
       {
-        "name": "Misty Step",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Lesser Restoration",
         "level": 2,
         "prepared": true,
         "type": "prepared"
       },
       {
-        "name": "Shatter",
+        "name": "Enlarge/Reduce",
         "level": 2,
         "prepared": true,
-        "type": "prepared"
+        "type": "oath"
+      },
+      {
+        "name": "Silence",
+        "level": 2,
+        "prepared": true,
+        "type": "oath"
+      },
+      {
+        "name": "Incite Greed",
+        "level": 3,
+        "prepared": true,
+        "type": "oath",
+        "note": "Added 2026-09-09 -- 9th-level oath spell, project owner's pick."
+      },
+      {
+        "name": "Galder's Tower",
+        "level": 3,
+        "prepared": true,
+        "type": "oath",
+        "note": "Added 2026-09-09 -- 9th-level oath spell, project owner's pick."
       },
       {
         "name": "Divine Favor",
@@ -4282,7 +4414,7 @@
       "Warm laugh that arrives suddenly and fills a room.",
       "Has strong opinions about hospitality and will feed people whether they asked to be fed or not."
     ],
-    "id": "characters_19",
+    "id": "characters_17",
     "darkvision": 0,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -4293,7 +4425,9 @@
         "subclass": "Oath of the Open Road",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Eldi",
@@ -4301,7 +4435,7 @@
     "campaign_start": "Year 468, day 87",
     "race": "Half-Elf",
     "level": 9,
-    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Twin blades (usually). Light skin, a tattoo sleeve on one arm, purple corset style vest, green tricorne hat with a feather, red swashbuckler style boots over blue tight-fitting pants.",
+    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest \u2014 the same face with more forward momentum in it. Twin blades (usually). Light skin, a tattoo sleeve on one arm, purple corset style vest, green tricorne hat with a feather, red swashbuckler style boots over blue tight-fitting pants.",
     "proficiency_bonus": 4,
     "spellcasting_ability": null,
     "notes": "Long-term build note: Fighter heavy.",
@@ -4355,7 +4489,7 @@
       {
         "name": "Echo: Reposition",
         "type": "feature",
-        "description": "No action required — mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
+        "description": "No action required \u2014 mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
       },
       {
         "name": "Echo: Swap Places",
@@ -4366,7 +4500,7 @@
       {
         "name": "Echo: Attack From",
         "type": "feature",
-        "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack — Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
+        "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost \u2014 this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack \u2014 Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
       },
       {
         "name": "Echo: Opportunity Attack",
@@ -4380,7 +4514,7 @@
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
-        "description": "Table ruling: unlike Echo: Attack From, this genuinely treats Eldi as positioned at the echo for that one attack, full stop — not just range/targeting."
+        "description": "Table ruling: unlike Echo: Attack From, this genuinely treats Eldi as positioned at the echo for that one attack, full stop \u2014 not just range/targeting."
       },
       {
         "name": "Extra Attack",
@@ -4440,7 +4574,7 @@
       "Lost everything in the mudslide except Rith and the clothes on her back. Treats this as a reason to travel light.",
       "The echo unsettles people who see it for the first time. She finds this useful."
     ],
-    "id": "characters_20",
+    "id": "characters_18",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
     "skill_expertise": ["Stealth", "Acrobatics"],
@@ -4459,7 +4593,9 @@
         "subclass": "Swashbuckler",
         "level": 3
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Rith",
@@ -4533,7 +4669,7 @@
       },
       {
         "name": "War Caster",
-        "type": "feature"
+        "type": "feat"
       },
       {
         "name": "Fey Ancestry",
@@ -4698,9 +4834,9 @@
       "Protective of his sister in the specific way of someone who knows she won't protect herself.",
       "Warm but measured. Expresses care through preparation rather than words.",
       "The divine power arrived without warning during the mudslide. He has not fully decided what he thinks about that yet.",
-      "Watches a room the way a healer watches patients — looking for what is wrong before anyone says so."
+      "Watches a room the way a healer watches patients \u2014 looking for what is wrong before anyone says so."
     ],
-    "id": "characters_21",
+    "id": "characters_19",
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -4710,19 +4846,21 @@
         "subclass": "Divine Soul",
         "level": 9
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
-    "id": "characters_22",
+    "id": "characters_20",
     "name": "Iyani",
     "full_name": "Iyani",
     "image": "./characters/iyani.png",
     "race": "Aasimar",
     "level": 9,
-    "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms — present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry — choker, layered necklaces, earrings — that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
+    "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms \u2014 present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry \u2014 choker, layered necklaces, earrings \u2014 that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
     "background": "Daughter of the Weave",
-    "background_feature": "Stella-Vision: You observed the material world from within the Weave for years and know many of its inhabitants personally — their mannerisms, abilities, and histories — before ever meeting them in person.",
-    "notes": "Mother is Ne'auveothrin, ancient demigod of the Weave, historically revered especially among genasi and early spellcasters. Father was human — they met during one of Ne'auveothrin's rare days outside the Weave; he is past now, deceased. Iyani grew up in or adjacent to the Weave itself, where time moves differently. She has spent long enough there that she counts time in ways that do not translate cleanly to years.\n\nShe observed the material world for a long time via 'stella-vision' — watching people perform magic is entertainment, and she developed deep familiarity with people she had never met. She recently arrived in the material plane. The air was initially uncomfortable, improving. Eating and drinking are being rediscovered as genuine pleasures — especially garlic lemon spinniks (how she says spinach). Touching physical objects is novel and satisfying.\n\nNe'auveothrin has given specific instructions about what not to reveal. Iyani obeys genuinely, not resentfully, but visibly struggles when excited. Has mentioned holding 'one more gift' for the right moment — unprompted.\n\nAbilities established in play that are NOT on her character sheet are temporary — gifts from her mother, going away soon: instantaneous planar travel (blue flash, desire-based), creation of permanent teleportation circles (Stillwater and Orvath placed casually), permanent shared spellbook synchronization granted to Lenn, Kessara, and Lyria, a self-cast Tongues equivalent, real-time perception of active spellwork in the Weave, and the ability to manifest physical objects from nothing.",
+    "background_feature": "Stella-Vision: You observed the material world from within the Weave for years and know many of its inhabitants personally \u2014 their mannerisms, abilities, and histories \u2014 before ever meeting them in person.",
+    "notes": "Mother is Ne'auveothrin, ancient demigod of the Weave, historically revered especially among genasi and early spellcasters. Father was human \u2014 they met during one of Ne'auveothrin's rare days outside the Weave; he is past now, deceased. Iyani grew up in or adjacent to the Weave itself, where time moves differently. She has spent long enough there that she counts time in ways that do not translate cleanly to years.\n\nShe observed the material world for a long time via 'stella-vision' \u2014 watching people perform magic is entertainment, and she developed deep familiarity with people she had never met. She recently arrived in the material plane. The air was initially uncomfortable, improving. Eating and drinking are being rediscovered as genuine pleasures \u2014 especially garlic lemon spinniks (how she says spinach). Touching physical objects is novel and satisfying.\n\nNe'auveothrin has given specific instructions about what not to reveal. Iyani obeys genuinely, not resentfully, but visibly struggles when excited. Has mentioned holding 'one more gift' for the right moment \u2014 unprompted.\n\nAbilities established in play that are NOT on her character sheet are temporary \u2014 gifts from her mother, going away soon: instantaneous planar travel (blue flash, desire-based), creation of permanent teleportation circles (Stillwater and Orvath placed casually), permanent shared spellbook synchronization granted to Lenn, Kessara, and Lyria, a self-cast Tongues equivalent, real-time perception of active spellwork in the Weave, and the ability to manifest physical objects from nothing.",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
     "stat_str": 10,
@@ -4787,12 +4925,12 @@
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
-        "description": "Once per long rest, cast your CURRENT phase's L1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) — up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three."
+        "description": "Once per long rest, cast your CURRENT phase's L1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) \u2014 up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three."
       },
       {
         "name": "Font of Magic",
         "type": "feature",
-        "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP → 1st-level slot (up to 5th level); convert slots → SP (1 SP per slot level)."
+        "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP \u2192 1st-level slot (up to 5th level); convert slots \u2192 SP (1 SP per slot level)."
       },
       {
         "name": "Metamagic: Twinned Spell",
@@ -4808,12 +4946,12 @@
         "name": "Mother's Whim",
         "type": "feature",
         "action_type": "bonus_action",
-        "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest — this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
+        "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) \u2014 costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest \u2014 this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
       },
       {
         "name": "Leno Phase (Abjuration / Divination)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
+        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active \u2014 cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Shield",
           "Lesser Restoration",
@@ -4825,7 +4963,7 @@
       {
         "name": "Twill Phase (Enchantment / Necromancy)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
+        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active \u2014 cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Silvery Barbs",
           "Blindness/Deafness",
@@ -4837,7 +4975,7 @@
       {
         "name": "Satin Phase (Illusion / Transmutation)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
+        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active \u2014 cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Color Spray",
           "Alter Self",
@@ -4992,11 +5130,11 @@
     "conditions": [],
     "exhaustion_level": 0,
     "persona_notes": [
-      "Warm, excitable, genuinely loving. This is not a performance. Impulse control fails around exciting information — blurted a dragon reference before she could stop herself.",
-      "Non-linear speech. Present-tense dominant. Drops articles and pronouns naturally. Counts time differently — 'many times ago', 'long time', not years.",
+      "Warm, excitable, genuinely loving. This is not a performance. Impulse control fails around exciting information \u2014 blurted a dragon reference before she could stop herself.",
+      "Non-linear speech. Present-tense dominant. Drops articles and pronouns naturally. Counts time differently \u2014 'many times ago', 'long time', not years.",
       "Completely without guile. Cannot deceive. Obeys her mother's restrictions genuinely, not resentfully, but visibly struggles when excited.",
       "Stella-vision means she knows people before meeting them. Petra especially. Finds this completely normal.",
-      "Always touching things — walls, doorframes, empty air. Checking the Weave. Has done this her whole life.",
+      "Always touching things \u2014 walls, doorframes, empty air. Checking the Weave. Has done this her whole life.",
       "Finds humans and their walking habits inefficient but endearing.",
       "When she casts, the yellow markings light up like circuitry firing. She does not find this unusual."
     ],
@@ -5025,10 +5163,12 @@
         "name": "Corwin",
         "note": "Noticed his quiet reaction from across the room. Mentioned it at dinner to his face."
       }
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
-    "id": "characters_23",
+    "id": "characters_21",
     "name": "Torrin",
     "full_name": "Torrin Gallowglass",
     "race": "Dwarf",
@@ -5044,7 +5184,7 @@
     "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
     "image": "./characters/torrin.jpg",
     "spellcasting_ability": null,
-    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
+    "notes": "Legendary character \u2014 can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
     "stat_str": 14,
     "stat_dex": 20,
     "stat_con": 16,
@@ -5069,19 +5209,19 @@
     "languages": ["Common", "Dwarvish"],
     "features": [
       {
-        "name": "Soulknife — Psychic Blades",
+        "name": "Soulknife \u2014 Psychic Blades",
         "type": "feature"
       },
       {
-        "name": "Soulknife — Psi-Bolstered Knack",
+        "name": "Soulknife \u2014 Psi-Bolstered Knack",
         "type": "feature"
       },
       {
-        "name": "Soulknife — Psychic Whispers",
+        "name": "Soulknife \u2014 Psychic Whispers",
         "type": "feature"
       },
       {
-        "name": "Soulknife — Soul Blades",
+        "name": "Soulknife \u2014 Soul Blades",
         "type": "feature"
       },
       {
@@ -5127,7 +5267,9 @@
     "persona_notes": [
       "Legendary rogue, now retired.",
       "Applies 156 years of tactical memory to leatherworking."
-    ]
+    ],
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
     "name": "Therynv'l",
@@ -5201,7 +5343,14 @@
         "recharge": "short_rest",
         "uses_max": 2,
         "uses_current": 2,
-        "description": "Transform into a beast you've seen before with a challenge rating of 1 or lower (Circle of the Moon — reached at 2nd level, doesn't increase further). Swimming-speed beasts allowed from 4th level; flying-speed beasts allowed from 8th level. Two uses; regain both on a short or long rest."
+        "description": "Transform into a beast you've seen before with a challenge rating up to your Circle Forms cap (see Circle Forms improvement). Swimming-speed beasts allowed from 4th level; flying-speed beasts allowed from 8th level. Two uses; regain both on a short or long rest.",
+        "note": "Corrected 2026-09-09 -- description previously claimed the CR cap is fixed at 1 and 'doesn't increase further,' contradicting the real Circle Forms improvement feature (6th level) that raises it to druid level / 3, rounded down. Fixed alongside adding that missing feature below."
+      },
+      {
+        "name": "Circle Forms improvement",
+        "type": "feature",
+        "level_gained": 6,
+        "description": "Your Wild Shape's challenge rating cap increases to your druid level divided by 3, rounded down -- CR 3 at her current level 9."
       },
       {
         "name": "Primal Strike",
@@ -5350,10 +5499,12 @@
     "active_effects": [],
     "conditions": [],
     "exhaustion_level": 0,
-    "id": "characters_24"
+    "id": "characters_22",
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
-    "id": "characters_25",
+    "id": "characters_23",
     "name": "Siv",
     "full_name": "Siv Ravencroft",
     "race": "Human",
@@ -5378,6 +5529,26 @@
     "spellcasting_ability": null,
     "hp_max": 65,
     "hp_current": 65,
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 1,
+        "source": "Human racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      }
+    ],
     "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Athletics",
@@ -5473,10 +5644,12 @@
       }
     ],
     "proficiency_bonus": 4,
-    "hit_dice_current": 9
+    "hit_dice_current": 9,
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
-    "id": "characters_26",
+    "id": "characters_24",
     "name": "Jaygar",
     "full_name": "Jaygar Waxystache",
     "race": "Gnome",
@@ -5485,7 +5658,7 @@
     "level": 9,
     "image": "./characters/jaygar.jpg",
     "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
-    "notes": "Rebuilt from level 1 (2026-09-02) via the New Character + Level Up tools — Infused Arbalist (homebrew, built on Artillerist's framework), RAW-legal through level 9. Replaces the earlier Alchemist-flavored Artillerist build.",
+    "notes": "Rebuilt from level 1 (2026-09-02) via the New Character + Level Up tools \u2014 Infused Arbalist (homebrew, built on Artillerist's framework), RAW-legal through level 9. Replaces the earlier Alchemist-flavored Artillerist build.",
     "darkvision": 60,
     "hit_die": "d8",
     "stat_str": 8,
@@ -5497,6 +5670,26 @@
     "spellcasting_ability": "int",
     "hp_max": 67,
     "hp_current": 67,
+    "ability_score_history": [
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Gnome racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "int",
+        "amount": 1,
+        "source": "Fade Away",
+        "level_gained": 8
+      }
+    ],
     "saving_throws": ["con", "int"],
     "skill_proficiencies": ["Arcana", "History", "Investigation", "Perception"],
     "skill_expertise": [],
@@ -5510,10 +5703,10 @@
       "Understatement.",
       "Playful.",
       "Whistles tunelessly while working.",
-      "Attack rolls are INT-based via Calculating Arbalister — the crossbow is his bonded weapon, doubling as both Infuse Weapon's focus and (from 5th level) his Arcane Payload spellcasting focus.",
-      "At 9th level the crossbow's shot pool holds 9 rounds (fire/acid/thunder) per long rest — two per turn if he spends both action and bonus action, but pushing it risks the weapon overheating and detonating on him.",
-      "Flash of Genius is exceptional and should be used generously — +5 to any roll within 30ft five times per long rest.",
-      "Gnome Cunning gives advantage on all magic saves — he is surprisingly hard to enchant or charm."
+      "Attack rolls are INT-based via Calculating Arbalister \u2014 the crossbow is his bonded weapon, doubling as both Infuse Weapon's focus and (from 5th level) his Arcane Payload spellcasting focus.",
+      "At 9th level the crossbow's shot pool holds 9 rounds (fire/acid/thunder) per long rest \u2014 two per turn if he spends both action and bonus action, but pushing it risks the weapon overheating and detonating on him.",
+      "Flash of Genius is exceptional and should be used generously \u2014 +5 to any roll within 30ft five times per long rest.",
+      "Gnome Cunning gives advantage on all magic saves \u2014 he is surprisingly hard to enchant or charm."
     ],
     "features": [
       {
@@ -5556,7 +5749,7 @@
           }
         ],
         "new_infusion_learned": "Bag of Holding",
-        "note": "3 of his 6 known infusions are unapplied (available to swap in on a long rest). The crossbow's own properties and the armor's Armor of Magical Strength are enchanter-made, not his own infusions, and don't count against this cap — see persona notes."
+        "note": "3 of his 6 known infusions are unapplied (available to swap in on a long rest). The crossbow's own properties and the armor's Armor of Magical Strength are enchanter-made, not his own infusions, and don't count against this cap \u2014 see persona notes."
       },
       {
         "name": "The Right Tool for the Job",
@@ -5623,7 +5816,20 @@
         "_source": "Artificer"
       }
     ],
-    "spells": [],
+    "spells": [
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      },
+      {
+        "name": "Resistance",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip"
+      }
+    ],
     "active_effects": [],
     "conditions": [],
     "exhaustion_level": 0,
@@ -5651,6 +5857,180 @@
         "max": 2,
         "current": 2
       }
-    }
+    },
+    "species_bonus_applied": false,
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+  },
+  {
+    "id": "characters_25",
+    "name": "TestFighter",
+    "full_name": "TestFighter",
+    "race": "Catrin",
+    "subrace": null,
+    "background": "Soldier",
+    "level": 9,
+    "stat_str": 10,
+    "stat_dex": 20,
+    "stat_con": 16,
+    "stat_int": 8,
+    "stat_wis": 10,
+    "stat_cha": 14,
+    "species_bonus_applied": false,
+    "species_traits": [
+      {
+        "name": "Broad Build",
+        "type": "speciesTrait",
+        "description": "Counts as one size larger for the purposes of carrying capacity and grappling.",
+        "source": "species"
+      },
+      {
+        "name": "Settled Presence",
+        "type": "speciesTrait",
+        "description": "Advantage on saving throws against being frightened or charmed.",
+        "source": "species"
+      },
+      {
+        "name": "Brace",
+        "type": "speciesTrait",
+        "recharge": "long_rest",
+        "description": "As a reaction when hit by a melee attack, halve the damage and push the attacker 5ft away if they are Medium or smaller.",
+        "source": "species"
+      },
+      {
+        "name": "Long Memory",
+        "type": "speciesTrait",
+        "description": "Proficiency in the History skill.",
+        "source": "species"
+      }
+    ],
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "dex",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      },
+      {
+        "ability": "cha",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      }
+    ],
+    "spellcasting_ability": null,
+    "hp_max": 93,
+    "hp_current": 93,
+    "saving_throws": ["str", "con"],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Acrobatics",
+      "Perception"
+    ],
+    "skill_expertise": [],
+    "languages": ["Yetgresian Common", "Catrinese"],
+    "speed": 30,
+    "darkvision": 0,
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
+    "tool_proficiencies": [],
+    "resistances": [],
+    "features": [
+      {
+        "name": "Fighting Style: Two-Weapon Fighting",
+        "id": "fighter-fighting-style-two-weapon-fighting",
+        "type": "fightingStyle",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Action Surge (1 use)",
+        "id": "action-surge-1-use",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Combat Superiority",
+        "id": "pub_combat-superiority",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Student of War",
+        "id": "pub_student-of-war",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Extra Attack (1)",
+        "id": "gen_fighter_base_extra-attack-1",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Dual Wielder",
+        "id": null,
+        "type": "feat",
+        "level_gained": 6,
+        "ability_choice": null,
+        "choices": null
+      },
+      {
+        "name": "Know Your Enemy",
+        "id": "pub_know-your-enemy",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Indomitable (1 use)",
+        "id": "indomitable-1-use",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Fighter"
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Fighter",
+        "level": 9,
+        "subclass": "Battle Master"
+      }
+    ],
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9
   }
 ]

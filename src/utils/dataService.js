@@ -13,6 +13,7 @@ import assets from '@/data/assets.json'
 import networks from '@/data/networks.json'
 import relationships from '@/data/relationships.json'
 import companions from '@/data/companions.json'
+import lore from '@/data/lore.json'
 const SERVER_URL = ''
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -27,6 +28,7 @@ const staticTables = {
   networks,
   relationships,
   companions,
+  lore,
 }
 
 const dataService = {

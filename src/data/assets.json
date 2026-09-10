@@ -30,7 +30,13 @@
     "armament": null,
     "condition": null,
     "notes": "Captain's quarters. Portuguese-style. Manageable with reduced crew of 5. Flagship. Updated with power source, +60% speed. As of 2026-09-03, occupied running the Yetgrese-Kaemahz crossing route until the party decides to stop it — see the Crossing Profit System house rule.",
-    "crew": [{ "name": "Seris", "role": "Captain", "initMod": 3 }],
+    "crew": [
+      {
+        "name": "Seris",
+        "role": "Captain",
+        "initMod": 3
+      }
+    ],
     "type": "ship"
   },
   {
@@ -83,7 +89,13 @@
     "condition": null,
     "owned_by": "allied",
     "notes": "Not Dawn Blades property. Allied vessel. Essavane captaining. Updated with power source, +60% speed.",
-    "crew": [{ "name": "Essavane", "role": "Captain", "initMod": 2 }],
+    "crew": [
+      {
+        "name": "Essavane",
+        "role": "Captain",
+        "initMod": 2
+      }
+    ],
     "type": "ship"
   },
   {
@@ -248,7 +260,13 @@
     "armament": null,
     "condition": null,
     "notes": "Manageable with reduced crew of 5. Very dark hull and signs of repairs. Some sections of wood are double-thick. As of 2026-09-03, occupied running the Yetgrese-Kaemahz crossing route until the party decides to stop it — see the Crossing Profit System house rule.",
-    "crew": [{ "name": "Erren Sault", "role": "Captain", "initMod": 2 }],
+    "crew": [
+      {
+        "name": "Erren Sault",
+        "role": "Captain",
+        "initMod": 2
+      }
+    ],
     "type": "ship"
   },
   {
@@ -365,8 +383,16 @@
     "propulsion": "Installed. Being calibrated by Jaygar.",
     "notes": "Captured from Corrath's pirate crew.",
     "crew": [
-      { "name": "Drevna", "role": "Captain", "initMod": 3 },
-      { "name": "Kael Vorth", "role": "First Mate", "initMod": 2 }
+      {
+        "name": "Drevna",
+        "role": "Captain",
+        "initMod": 3
+      },
+      {
+        "name": "Kael Vorth",
+        "role": "First Mate",
+        "initMod": 2
+      }
     ],
     "type": "ship"
   },
@@ -386,8 +412,16 @@
     "hull": "Repaired from prior damage. Completed.",
     "notes": "",
     "crew": [
-      { "name": "Brathek", "role": "Captain", "initMod": 3 },
-      { "name": "Torva", "role": "First Mate", "initMod": 2 }
+      {
+        "name": "Brathek",
+        "role": "Captain",
+        "initMod": 3
+      },
+      {
+        "name": "Torva",
+        "role": "First Mate",
+        "initMod": 2
+      }
     ],
     "type": "ship"
   },

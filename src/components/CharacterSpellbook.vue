@@ -35,6 +35,30 @@
       </div>
     </div>
 
+    <!-- ── Readiness legend — the 3-color dot axis (ready/always-ready/not
+         ready) plus the source-badge letters, so a new reader doesn't have
+         to guess what a colored dot or a lone letter means. ── -->
+    <div class="sb-legend">
+      <span class="sb-legend-item"
+        ><span class="sb-dot sb-dot--ready sb-legend-dot"></span> Prepared</span
+      >
+      <span class="sb-legend-item"
+        ><span class="sb-dot sb-dot--ready sb-dot--fixed sb-legend-dot"></span>
+        Always ready</span
+      >
+      <span class="sb-legend-item"
+        ><span class="sb-dot sb-legend-dot"></span> Not prepared</span
+      >
+      <span class="sb-legend-item sb-legend-badges">
+        <span class="sb-badge sb-badge--domain">D</span>omain
+        <span class="sb-badge sb-badge--oath">O</span>ath
+        <span class="sb-badge sb-badge--bonus">B</span>onus
+        <span class="sb-badge sb-badge--homebrew">H</span>omebrew
+        <span class="sb-badge sb-badge--feat">F</span>eature
+        <span class="sb-badge sb-badge--item">I</span>tem
+      </span>
+    </div>
+
     <!-- ── Weave Phase Grid (Weave Attunement subclass only) ── -->
     <WeavePhaseGrid
       v-if="character.weave_phase !== undefined"
@@ -115,10 +139,16 @@
             >{{ sharers(spell).join(', ') }}</span
           >
           <span
-            v-if="spell.domain"
+            v-if="isDomainSpell(spell)"
             class="sb-badge sb-badge--domain"
             title="Domain — always prepared"
             >D</span
+          >
+          <span
+            v-else-if="isOathSpell(spell)"
+            class="sb-badge sb-badge--oath"
+            title="Oath — always prepared"
+            >O</span
           >
           <span
             v-else-if="spell.bonusSpell"
@@ -437,16 +467,16 @@ export default {
       const mod = dnd.mod(stats[ab])
       const max = Math.max(1, mod + effectiveLevel)
 
-      // Only count non-domain, non-bonus-spell, non-cantrip spells toward the limit
+      // Only count non-domain, non-oath, non-bonus-spell, non-cantrip spells
+      // toward the limit — uses the same isAlwaysReady() union isReady()
+      // itself checks, so a hand-entered domain/oath spell (spell.type ===
+      // 'domain'/'oath', not the boolean spell.domain flag) is correctly
+      // excluded here too. Before this fix, a character like Revven (whose
+      // Tempest Domain spells use the type-string convention) would have
+      // his always-prepared domain spells wrongly counted against his
+      // prepared-spell limit.
       const prepared = this.allSpells.filter(
-        (s) =>
-          s.level > 0 &&
-          !s.domain &&
-          !s.bonusSpell &&
-          !s.featureGranted &&
-          !s.itemGranted &&
-          !s.homebrew &&
-          this.isReady(s)
+        (s) => s.level > 0 && !this.isAlwaysReady(s) && this.isReady(s)
       ).length
 
       return { prepared, max, over: prepared > max, ability: ab }
@@ -592,16 +622,40 @@ export default {
       return slot.current ?? slot.max
     },
 
-    isReady(spell) {
-      if (spell.level === 0) return true
-      if (
-        spell.domain ||
+    // Two different tagging conventions for "always prepared, doesn't
+    // count against the limit" spells have accumulated across characters
+    // built in different sessions: a boolean flag (spell.domain,
+    // spell.bonusSpell — what getBonusSpells' auto-derived entries use) and
+    // a string spell.type ('domain', 'oath' — what several hand-entered
+    // Cleric/Paladin characters use instead, e.g. Revven's Tempest Domain
+    // spells). Only the boolean flags were ever checked here, so a
+    // hand-entered domain/oath spell silently rendered as an ordinary
+    // toggle-it-yourself prepared spell — no badge, no "always ready"
+    // color — even though it's mechanically identical to one
+    // auto-derived via getBonusSpells. This is the real cause of "cantrips
+    // and unprepared spells look the same on some characters, all one
+    // color on others" (see TODO.md's spellbook color-coding entry):
+    // it's a data-tagging inconsistency, not a rendering bug.
+    isDomainSpell(spell) {
+      return !!spell.domain || spell.type === 'domain'
+    },
+    isOathSpell(spell) {
+      return spell.type === 'oath'
+    },
+    isAlwaysReady(spell) {
+      return (
+        this.isDomainSpell(spell) ||
+        this.isOathSpell(spell) ||
         spell.bonusSpell ||
         spell.featureGranted ||
         spell.itemGranted ||
         spell.homebrew
       )
-        return true
+    },
+
+    isReady(spell) {
+      if (spell.level === 0) return true
+      if (this.isAlwaysReady(spell)) return true
       if ('prepared' in spell) return !!spell.prepared
       return true
     },
@@ -609,20 +663,14 @@ export default {
     canToggle(spell) {
       if (!this.preparationInfo) return false
       if (spell.level === 0) return false
-      if (
-        spell.domain ||
-        spell.bonusSpell ||
-        spell.featureGranted ||
-        spell.itemGranted ||
-        spell.homebrew
-      )
-        return false
+      if (this.isAlwaysReady(spell)) return false
       return 'prepared' in spell
     },
 
     prepTitle(spell) {
       if (spell.level === 0) return 'Cantrips are always available'
-      if (spell.domain) return 'Domain spell — always prepared'
+      if (this.isDomainSpell(spell)) return 'Domain spell — always prepared'
+      if (this.isOathSpell(spell)) return 'Oath spell — always prepared'
       if (spell.bonusSpell) return 'Subclass bonus spell — always prepared'
       if (spell.itemGranted)
         return `Granted by ${spell._source} — always available while attuned`
@@ -789,6 +837,37 @@ export default {
   border-bottom: 1px solid var(--color-border);
 }
 
+.sb-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  padding: 0.4rem 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+}
+.sb-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.sb-dot.sb-legend-dot {
+  width: 9px;
+  height: 9px;
+  cursor: default;
+  pointer-events: none;
+}
+.sb-legend-badges {
+  gap: 0.15rem;
+}
+.sb-legend-badges .sb-badge {
+  margin-left: 0.5rem;
+  margin-right: 0.15rem;
+}
+.sb-legend-badges .sb-badge:first-child {
+  margin-left: 0;
+}
+
 /* Preparation counter */
 .sb-prep-counter {
   display: flex;
@@ -805,7 +884,7 @@ export default {
 .sb-prep-fraction {
   font-size: var(--font-size-base);
   font-weight: 600;
-  color: #5a9e5a;
+  color: var(--color-success);
   line-height: 1;
 }
 .sb-prep-fraction.sb-prep-over {
@@ -825,7 +904,7 @@ export default {
 }
 .sb-prep-bar-fill {
   height: 100%;
-  background: #5a9e5a;
+  background: var(--color-success);
   border-radius: 3px;
   transition: width 0.2s;
 }
@@ -984,18 +1063,18 @@ export default {
 }
 /* Unprepared: hover shows green + (will prepare) */
 .sb-dot:not(.sb-dot--ready):not(.sb-dot--fixed):not(:disabled):hover {
-  border-color: #5a9e5a;
-  background: rgba(90, 158, 90, 0.2);
+  border-color: var(--color-success);
+  background: rgba(var(--color-success-rgb), 0.2);
 }
 .sb-dot:not(.sb-dot--ready):not(.sb-dot--fixed):not(:disabled):hover::after {
   content: '+';
-  color: #5a9e5a;
+  color: var(--color-success);
   font-weight: 700;
 }
 /* Prepared toggleable: hover dims to show it will be unprepared */
 .sb-dot--ready:not(.sb-dot--fixed):hover {
-  background: rgba(90, 158, 90, 0.35);
-  border-color: #5a9e5a;
+  background: rgba(var(--color-success-rgb), 0.35);
+  border-color: var(--color-success);
 }
 .sb-dot--ready:not(.sb-dot--fixed):hover::after {
   content: '−';
@@ -1007,8 +1086,8 @@ export default {
   opacity: 0.35;
 }
 .sb-dot--ready {
-  background: #5a9e5a;
-  border-color: #5a9e5a;
+  background: var(--color-success);
+  border-color: var(--color-success);
 }
 .sb-dot--fixed {
   cursor: default;
@@ -1058,6 +1137,10 @@ export default {
 .sb-badge--domain {
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+.sb-badge--oath {
+  border-color: #6699cc;
+  color: #6699cc;
 }
 .sb-badge--bonus {
   border-color: #4488cc;

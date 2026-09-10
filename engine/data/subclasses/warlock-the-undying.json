@@ -7,5 +7,12 @@
     "6": ["pub_defy-death"],
     "10": ["pub_undying-nature"],
     "14": ["pub_indestructible-life"]
+  },
+  "expanded_spell_list": {
+    "1": ["False Life", "Ray of Sickness"],
+    "2": ["Blindness/Deafness", "Silence"],
+    "3": ["Feign Death", "Speak with Dead"],
+    "4": ["Aura of Life", "Death Ward"],
+    "5": ["Contagion", "Legend Lore"]
   }
 }

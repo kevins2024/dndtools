@@ -31,6 +31,13 @@ function loadClass(className) {
   return data
 }
 
+// Directory-scanning (unlike loadClass's read-a-named-file-above) is the one
+// real portability gap in this module — a non-Node host can't just "list a
+// folder," it needs a static manifest instead. Not fixed here since it would
+// mean either a generated index file kept in sync with data/classes/*.json or
+// bundling every class into one JSON blob, either of which is a bigger call
+// than this pass's "small/medium fix" scope — see engine/CHARACTER_SCHEMA.md's
+// sibling note in CHECKLIST.md for the full writeup.
 function listClasses() {
   return fs
     .readdirSync(CLASSES_DIR)

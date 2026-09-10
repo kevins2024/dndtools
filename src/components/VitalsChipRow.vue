@@ -10,6 +10,24 @@
       <span class="chip-val has-tip" :title="speedTooltip">{{ speed }}</span>
       <span class="chip-label">Speed</span>
     </div>
+    <div v-if="darkvision" class="chip">
+      <span class="chip-val">{{ darkvision }} ft</span>
+      <span class="chip-label">Darkvision</span>
+    </div>
+    <div v-if="resistances.length" class="chip">
+      <span class="chip-val has-tip" :title="resistances.join(', ')">{{
+        resistances.length
+      }}</span>
+      <span class="chip-label">Resist</span>
+    </div>
+    <div v-if="savingThrowAdvantageLabels.length" class="chip">
+      <span
+        class="chip-val has-tip"
+        :title="savingThrowAdvantageLabels.join(', ')"
+        >{{ savingThrowAdvantageLabels.length }}</span
+      >
+      <span class="chip-label">Adv. Saves</span>
+    </div>
     <div class="chip">
       <span class="chip-val has-tip" :title="profBonusTooltip"
         >+{{ profBonus }}</span
@@ -107,6 +125,26 @@ export default {
         0
       )
       return `${baseNum + itemBonus + featureBonus} ft`
+    },
+    // Real mechanical wiring for species traits (2026-09-07) — darkvision
+    // and resistances previously had nowhere on the PC-facing sheet to
+    // show at all (darkvision was only ever displayed at New Character
+    // creation time, resistances had no field anywhere in the app).
+    darkvision() {
+      return this.character.darkvision ?? 0
+    },
+    resistances() {
+      return this.character.resistances ?? []
+    },
+    // Informational only, per this app's DM-arbitrated design (see
+    // CLAUDE.md) — advantage isn't a mechanic this app resolves or rolls
+    // for anywhere, so this chip just surfaces a fact for the player/DM to
+    // apply at the table (Fey Ancestry, Brave, Gnome Cunning, etc. — see
+    // TODO.md/species.json's grants_saving_throw_advantage field).
+    savingThrowAdvantageLabels() {
+      return (this.character.saving_throw_advantages ?? []).map((trigger) =>
+        String(trigger).replace(/_/g, ' ')
+      )
     },
     speedTooltip() {
       const hasExplicit = typeof this.character.speed === 'number'

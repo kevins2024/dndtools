@@ -17,8 +17,10 @@ const {
   loadInvocation,
   loadPactBoon,
 } = require('./invocations')
+const { listFightingStyles, loadFightingStyle } = require('./fightingStyles')
 const { findSpellRecord } = require('./spellLists')
 const { loadSkill } = require('./skills')
+const { traitsFor } = require('./species')
 const multiclassProficiencies = require('../data/multiclass-proficiencies.json')
 
 const ABILITY_FIELDS = {
@@ -118,6 +120,15 @@ function diffLevelUp(
     // Rogue, always exactly 1 skill per that table. Only meaningful on a
     // genuine multiclass pickup; ignored otherwise.
     multiclassSkillChoice = null,
+    // fightingStyleChoice: a style name (e.g. "Two-Weapon Fighting") —
+    // resolves Fighter 1st/Paladin 2nd/Ranger 2nd's Fighting Style pick.
+    // Structurally the same problem as pactBoonChoice (a one-time named pick
+    // never re-chosen later, see engine/data/fighting-styles.json's schema
+    // note) except Fighting Style already has its own features_by_level
+    // entry ("fighter-fighting-style" etc.) generating a generic newFeatures
+    // item, which gets replaced with the resolved specific style once
+    // picked, or left as-is (plus a pendingChoice) if not.
+    fightingStyleChoice = null,
   } = {}
 ) {
   const classIndex = (character.classes || []).findIndex(
@@ -156,6 +167,15 @@ function diffLevelUp(
   const otherClasses = character.classes
     .filter((_, i) => i !== classIndex)
     .map((c) => ({ name: c.name, level: c.level, subclass: c.subclass }))
+  // Species/subrace traits (Dwarven Toughness's flat HP-per-level, Drow
+  // Magic/Infernal Legacy's 3rd/5th-level tiered spells below) key off the
+  // character's TOTAL level across every class, not the one being leveled
+  // here — a multiclassed Drow's Faerie Fire arrives at total character
+  // level 3, whether that 3rd level came from her first class or her second.
+  const raceTraits = traitsFor(character.race, character.subrace)
+  const otherClassesLevelSum = otherClasses.reduce((sum, c) => sum + c.level, 0)
+  const totalLevelBefore = otherClassesLevelSum + fromLevel
+  const totalLevelAfter = otherClassesLevelSum + finalToLevel
   // character.spellcasting_ability is set once at character creation from
   // the class's own spellcasting.ability — but a class that grants none of
   // its own (Fighter, Rogue) leaves it null forever, even after the player
@@ -359,6 +379,52 @@ function diffLevelUp(
     })
   }
 
+  // ── Fighting Style — Fighter (1st)/Paladin (2nd)/Ranger (2nd) ────────
+  // Fighting Style already has its own features_by_level entry, so the
+  // generic loop above just pushed a plain "Fighting Style" newFeatures item
+  // with no chosen option — real bug found 2026-09-09, the New Character
+  // Tool listed it with no way to actually pick one, because nothing ever
+  // turned it into a pendingChoice. Structurally the same problem as Pact
+  // Boon (a one-time named pick, never re-chosen later) once resolved here.
+  const fightingStyleGenericIds = {
+    fighter: 'fighter-fighting-style',
+    paladin: 'paladin-fighting-style',
+    ranger: 'ranger-fighting-style',
+  }
+  const fightingStyleGenericId =
+    fightingStyleGenericIds[normalizeName(classEntry.name)]
+  if (fightingStyleGenericId) {
+    const genericIdx = newFeatures.findIndex(
+      (f) => f.id === fightingStyleGenericId
+    )
+    const alreadyHasStyle = (character.features || []).some(
+      (f) => f.type === 'fightingStyle'
+    )
+    if (genericIdx !== -1 && !alreadyHasStyle) {
+      if (fightingStyleChoice) {
+        const style = loadFightingStyle(classEntry.name, fightingStyleChoice)
+        if (!style) {
+          notes.push(
+            `"${fightingStyleChoice}" isn't one of ${classEntry.name}'s cataloged Fighting Styles — recorded as chosen anyway, no automatic effects applied.`
+          )
+        }
+        newFeatures[genericIdx] = {
+          name: style ? `Fighting Style: ${style.name}` : fightingStyleChoice,
+          id: style?.id ?? null,
+          type: 'fightingStyle',
+          level_gained: newFeatures[genericIdx].level_gained,
+          _source: classEntry.name,
+        }
+      } else {
+        pendingChoices.push({
+          type: 'fightingStyleChoice',
+          level: newFeatures[genericIdx].level_gained,
+          options: listFightingStyles(classEntry.name).map((s) => s.name),
+        })
+      }
+    }
+  }
+
   // Feat-granted feature entries (built above from resolveAsiOrFeat) go
   // through the SAME existingByLevel/existingNoLevel dedup as class-table
   // features — a re-run preview shouldn't double them either.
@@ -368,6 +434,33 @@ function diffLevelUp(
       continue
     newFeatures.push(f)
     existingByLevel.add(`${n}@${f.level_gained}`)
+  }
+
+  // ── Species tiered spells (Drow Magic's Faerie Fire/Darkness, Infernal
+  // Legacy's Hellish Rebuke/Darkness) — keyed on TOTAL character level
+  // (totalLevelBefore/After, computed above), not this class's own level, so
+  // a multiclassed character still gets these at the right overall level
+  // regardless of which class happened to cross the threshold. Goes through
+  // the same existingByLevel/existingNoLevel dedup as every other feature
+  // grant, level_gained set to the trait's tier level (not the class level).
+  for (const trait of raceTraits) {
+    for (const tier of trait.grants_spells?.tiered ?? []) {
+      if (tier.level <= totalLevelBefore || tier.level > totalLevelAfter)
+        continue
+      const featureName = `${trait.name}: ${tier.spell}`
+      const n = normalizeName(featureName)
+      if (existingByLevel.has(`${n}@${tier.level}`) || existingNoLevel.has(n))
+        continue
+      newFeatures.push({
+        name: featureName,
+        id: null,
+        type: 'speciesTrait',
+        level_gained: tier.level,
+        spells_granted: [tier.spell],
+        _source: trait.name,
+      })
+      existingByLevel.add(`${n}@${tier.level}`)
+    }
   }
 
   // ── Eldritch Invocations / Pact Boon — Warlock only ──────────────────
@@ -503,7 +596,21 @@ function diffLevelUp(
 
   const levelsGained = finalToLevel - fromLevel
   const conMod = abilityModifier(scores.con)
-  const hpGained = description.totalHpGained + conMod * levelsGained
+  // Flat non-class HP source (Dwarven Toughness: "+1 at 1st, +1 every level
+  // thereafter" — same gap noted for Sorcerer's Draconic Resilience, but
+  // that's a subclass feature, out of scope for this species-only fix).
+  // Multiplying by levelsGained covers the "+1 at 1st" case too: a brand-new
+  // character's very first level-up call is fromLevel 0 -> toLevel 1, i.e.
+  // levelsGained === 1, so it falls out of the same per-level math with no
+  // separate "at creation" special case needed.
+  const hpPerLevelBonus = raceTraits.reduce(
+    (sum, t) => sum + (t.grants_hp_per_level || 0),
+    0
+  )
+  const hpGained =
+    description.totalHpGained +
+    conMod * levelsGained +
+    hpPerLevelBonus * levelsGained
 
   const patch = {
     level: (character.level || 0) + levelsGained,

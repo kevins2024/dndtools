@@ -45,6 +45,23 @@
 
         <div class="col-section">
           <div class="col-section-label">Equipped</div>
+          <div v-if="hasWeaponSets" class="weapon-set-toggle">
+            <span class="weapon-set-label">Active loadout:</span>
+            <button
+              class="act-btn weapon-set-btn"
+              :class="{ active: activeWeaponSet === 1 }"
+              @click="setActiveWeaponSet(1)"
+            >
+              Set 1
+            </button>
+            <button
+              class="act-btn weapon-set-btn"
+              :class="{ active: activeWeaponSet === 2 }"
+              @click="setActiveWeaponSet(2)"
+            >
+              Set 2
+            </button>
+          </div>
           <div v-if="slotSummaries.length > 0" class="slot-summary">
             <span
               v-for="summary in slotSummaries"
@@ -74,10 +91,34 @@
             <span class="item-name">{{ item.name }}</span>
             <span class="item-slot">{{ item.slot || item.type }}</span>
             <span class="item-tag">{{ item.type }}</span>
+            <button
+              v-if="item.type === 'weapon'"
+              class="act-btn weapon-set-item-btn"
+              :class="{
+                'not-in-active-set':
+                  item.weapon_set != null &&
+                  item.weapon_set !== activeWeaponSet,
+              }"
+              :title="
+                item.weapon_set == null
+                  ? 'Not assigned to a loadout — click to assign Set 1'
+                  : `Assigned to Set ${item.weapon_set} — click to change`
+              "
+              @click.stop="cycleItemWeaponSet(item)"
+            >
+              {{
+                item.weapon_set == null ? 'Any set' : `Set ${item.weapon_set}`
+              }}
+            </button>
             <Zap
               v-if="item.needs_attunement"
               class="attunement-indicator"
-              title="Requires attunement"
+              :fill="item.attuned ? 'currentColor' : 'none'"
+              :title="
+                item.attuned
+                  ? 'Attuned'
+                  : 'Requires attunement (not yet attuned)'
+              "
             />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
@@ -144,7 +185,12 @@
             <Zap
               v-if="item.needs_attunement"
               class="attunement-indicator"
-              title="Requires attunement"
+              :fill="item.attuned ? 'currentColor' : 'none'"
+              :title="
+                item.attuned
+                  ? 'Attuned'
+                  : 'Requires attunement (not yet attuned)'
+              "
             />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
@@ -290,7 +336,12 @@
             <Zap
               v-if="item.needs_attunement"
               class="attunement-indicator"
-              title="Requires attunement"
+              :fill="item.attuned ? 'currentColor' : 'none'"
+              :title="
+                item.attuned
+                  ? 'Attuned'
+                  : 'Requires attunement (not yet attuned)'
+              "
             />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
@@ -418,9 +469,13 @@
       @click.self="cancelDelete"
     >
       <div class="dialog-panel">
-        <div class="dialog-title">Confirm delete</div>
+        <div class="dialog-title">
+          {{
+            deleteCurrencyType === 'dust' ? 'Confirm destroy' : 'Confirm delete'
+          }}
+        </div>
         <p>
-          Delete
+          {{ deleteCurrencyType === 'dust' ? 'Destroy' : 'Delete' }}
           <strong>{{ deleteCandidate ? deleteCandidate.name : '' }}</strong
           >?
         </p>
@@ -443,6 +498,16 @@
           </button>
         </div>
 
+        <div
+          v-if="deleteCurrencyType === 'dust' && deleteDustEstimate"
+          class="dialog-note"
+        >
+          Weave Dust from Broken-Down Magic Items: typically
+          {{ deleteDustEstimate.low }}–{{ deleteDustEstimate.high }} dust for
+          this item. Already rolled below — override it if you'd rather set it
+          by hand.
+        </div>
+
         <label class="dialog-field">
           <span v-if="deleteCurrencyType === 'dust'">
             How much weave dust did this yield?
@@ -458,7 +523,8 @@
         <div class="dialog-actions">
           <button class="act-btn dim" @click="cancelDelete">Cancel</button>
           <button class="act-btn" @click="deleteConfirmed">
-            Delete{{
+            {{ deleteCurrencyType === 'dust' ? 'Destroy' : 'Delete'
+            }}{{
               deleteSaleValue > 0
                 ? deleteCurrencyType === 'dust'
                   ? ' + add dust'
@@ -606,6 +672,55 @@
             </div>
           </div>
 
+          <!-- Contents (gem pouches and similar bulk-material items) — a
+               numbered list of {type, value_gp, quantity} rows, editable
+               in-place instead of hand-editing party_items.json. See
+               TODO.md's "Gems need a real system" resolution. -->
+          <div v-if="editDraft.contents" class="inspection-section">
+            <div class="section-label">
+              Contents ({{ contentsTotalValue }} gp total)
+            </div>
+            <div class="contents-list">
+              <div
+                v-for="(row, i) in editDraft.contents"
+                :key="i"
+                class="contents-row"
+              >
+                <input
+                  class="meta-input contents-type"
+                  v-model="row.type"
+                  placeholder="Gem type"
+                />
+                <input
+                  class="meta-input meta-input--num contents-value"
+                  type="number"
+                  min="0"
+                  v-model.number="row.value_gp"
+                  placeholder="gp each"
+                />
+                <button
+                  class="charge-btn"
+                  :disabled="row.quantity <= 0"
+                  @click="row.quantity--"
+                >
+                  −
+                </button>
+                <span class="charge-count">{{ row.quantity }}</span>
+                <button class="charge-btn" @click="row.quantity++">+</button>
+                <button
+                  class="act-btn dim contents-remove"
+                  title="Remove this gem type"
+                  @click="editDraft.contents.splice(i, 1)"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            <button class="act-btn dim" @click="addContentsRow">
+              + Add gem type
+            </button>
+          </div>
+
           <!-- Long text fields -->
           <div class="inspection-section">
             <div class="section-label">Description</div>
@@ -652,6 +767,7 @@
 
 <script>
 import { Zap, Check, Search } from 'lucide-vue'
+import { dnd } from '@/utils/dnd_utils.js'
 
 export default {
   name: 'CharacterInventory',
@@ -751,6 +867,22 @@ export default {
     attunedCount() {
       return this.attunedItems.length
     },
+    // Which of the character's two weapon loadouts is currently "in hand" —
+    // see dnd_utils.js's isActiveEquipped/isDualWieldingMelee for why this
+    // exists (Dual Wielder's conditional AC bonus needed a way to tell "2
+    // melee weapons ready to swap to" apart from "2 melee weapons actually
+    // in hand right now"). Defaults to 1, matching dnd.activeWeaponSet.
+    activeWeaponSet() {
+      return this.character.active_weapon_set ?? 1
+    },
+    // Only show the toggle at all once at least one equipped weapon has
+    // actually been assigned a set — no point cluttering the UI for every
+    // character who's never needed more than one loadout.
+    hasWeaponSets() {
+      return this.equippedItems.some(
+        (i) => i.type === 'weapon' && i.weapon_set != null
+      )
+    },
     searchResults() {
       const q = this.itemSearch.trim().toLowerCase()
       if (!q) return []
@@ -759,9 +891,21 @@ export default {
     inspectedItem() {
       return this.allItems.find((i) => i.id === this.inspectedItemId) || null
     },
+    contentsTotalValue() {
+      return (this.editDraft?.contents ?? []).reduce(
+        (sum, row) => sum + (row.value_gp || 0) * (row.quantity || 0),
+        0
+      )
+    },
     deleteIsMagical() {
       const item = this.deleteCandidate
       return !!(item && (item.rarity || item.needs_attunement))
+    },
+    // Weave Dust from Broken-Down Magic Items (house_rules.json) — only
+    // computable when the item carries a real recorded value_gp; null means
+    // "not enough data, fall back to manual entry" rather than a silent 0.
+    deleteDustEstimate() {
+      return dnd.weaveDustEstimateRange(this.deleteCandidate)
     },
     sortedParties() {
       return [...this.$store.state.parties].sort((a, b) => {
@@ -908,6 +1052,21 @@ export default {
         attuned: false,
       })
     },
+    setActiveWeaponSet(set) {
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...this.character, active_weapon_set: set },
+      })
+    },
+    // Cycles a weapon through Set 1 → Set 2 → Any (null) → Set 1… "Any"
+    // means the weapon counts as in-hand regardless of which loadout is
+    // active — the right default for something that isn't really part of a
+    // swap (e.g. a piece that's just always drawn), but most weapons should
+    // end up tagged 1 or 2.
+    cycleItemWeaponSet(item) {
+      const next = item.weapon_set === 1 ? 2 : item.weapon_set === 2 ? null : 1
+      this.$store.commit('UPDATE_ITEM', { ...item, weapon_set: next })
+    },
     carry(item) {
       this.$store.commit('UPDATE_ITEM', {
         ...item,
@@ -967,8 +1126,19 @@ export default {
     },
     confirmDelete(item) {
       this.deleteCandidate = item
-      this.deleteSaleValue = ''
-      this.deleteCurrencyType = 'gold'
+      const estimate = dnd.weaveDustEstimateRange(item)
+      if (estimate) {
+        // Real value_gp on record — this is a "destroy for dust" candidate
+        // by default, auto-rolled rather than making the DM do the house
+        // rule's math by hand. Still a plain editable number afterward, so
+        // it can be overridden or switched to a gold sale instead.
+        this.deleteCurrencyType = 'dust'
+        const roll = Math.floor(Math.random() * 18) + 2 // 2-19, no crits here
+        this.deleteSaleValue = dnd.weaveDustForRoll(item, roll)
+      } else {
+        this.deleteCurrencyType = 'gold'
+        this.deleteSaleValue = ''
+      }
       this.deleteDialogOpen = true
     },
     cancelDelete() {
@@ -993,7 +1163,15 @@ export default {
     },
     inspectItem(item) {
       this.inspectedItemId = item.id
-      this.editDraft = { ...item }
+      // contents is edited in-place (quantity +/-, splice) below, so it needs
+      // its own copy — otherwise Cancel wouldn't actually discard changes,
+      // since a shallow spread still shares the same nested array reference.
+      this.editDraft = {
+        ...item,
+        contents: item.contents
+          ? item.contents.map((row) => ({ ...row }))
+          : item.contents,
+      }
       this.inspectionOpen = true
     },
     closeInspection() {
@@ -1005,6 +1183,9 @@ export default {
       if (!this.editDraft) return
       this.$store.commit('UPDATE_ITEM', { ...this.editDraft })
       this.closeInspection()
+    },
+    addContentsRow() {
+      this.editDraft.contents.push({ type: '', value_gp: 0, quantity: 0 })
     },
   },
 }
@@ -1221,6 +1402,36 @@ export default {
   flex-shrink: 0;
 }
 
+.weapon-set-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-size: var(--font-size-sm);
+}
+
+.weapon-set-label {
+  color: var(--color-text-muted);
+}
+
+.weapon-set-btn.active {
+  background: var(--color-accent);
+  color: var(--color-bg-surface);
+  border-color: var(--color-accent);
+}
+
+.weapon-set-item-btn {
+  font-size: var(--font-size-sm);
+  padding: 0.1rem 0.4rem;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.weapon-set-item-btn.not-in-active-set {
+  color: var(--color-text-low);
+  opacity: 0.6;
+}
+
 .item-charges {
   display: flex;
   align-items: center;
@@ -1379,6 +1590,27 @@ export default {
   font-style: italic;
 }
 
+.contents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+.contents-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.contents-type {
+  flex: 1;
+}
+.contents-value {
+  width: 70px;
+}
+.contents-remove {
+  margin-left: auto;
+}
+
 .edit-textarea {
   width: 100%;
   box-sizing: border-box;
@@ -1429,6 +1661,12 @@ export default {
   background: var(--color-bg-surface);
   border-color: var(--color-accent);
   color: var(--color-accent);
+}
+
+.dialog-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
 }
 
 .dialog-field {

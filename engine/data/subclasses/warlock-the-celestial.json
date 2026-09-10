@@ -7,5 +7,12 @@
     "6": ["pub_radiant-soul"],
     "10": ["pub_celestial-resilience"],
     "14": ["pub_searing-vengeance"]
+  },
+  "expanded_spell_list": {
+    "1": ["Cure Wounds", "Guiding Bolt"],
+    "2": ["Flaming Sphere", "Lesser Restoration"],
+    "3": ["Daylight", "Revivify"],
+    "4": ["Guardian of Faith", "Wall of Fire"],
+    "5": ["Flame Strike", "Greater Restoration"]
   }
 }

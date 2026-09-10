@@ -77,145 +77,295 @@
     "source_session": "2"
   },
   {
-  "id": "ostwick-estate-seizure-001",
-  "type": "place_history",
-  "location_tags": ["khemrise", "khemrise_estate"],
-  "entity_tags": ["ostwick_family", "aldric_thorne", "pale_syndicate"],
-  "status": "known_to_party",
-  "summary": "Thorne's acquisition of the Ostwick family vineyard",
-  "detail": "The Khemrise vineyard estate later used by Aldric Thorne as a Syndicate front was originally the Ostwick family farm. Thorne acquired it under pressure roughly 11 years prior for a fraction of fair market value, forcing the family out. The Ostwicks relocated to the farming village of Brennswick, 30 miles east of Khemrise, where they rebuilt a modest but honest life. The eldest son, Petyr Ostwick, was about twenty at the time.",
-  "date": "Year 456 (approx.)",
-  "source_session": "3"
-},
-{
-  "id": "lore_verath_ohn_001",
-  "type": "place_history",
-  "location_tags": ["Western Reach", "coastal", "southern coast"],
-  "entity_tags": ["fluid people"],
-  "status": "known_to_party",
-  "summary": "Verath Ohn — the oldest city, now confirmed submerged",
-  "detail": "Verath Ohn is the oldest settlement in the Western Reach, predating all current cities by thousands of years. Its location is confirmed: partially submerged off the southern coast, the upper tower still visible above the waterline. The city was not destroyed by war or neglect — a catastrophic geological event submerged it rapidly, the coastline itself shifting in minutes. The city survived structurally due to extraordinary construction quality and remains largely intact underwater. Its districts — harbor, market, residential, administrative, civic — are all identifiable. The name Varath Ohn belonged to a person before it belonged to a place: the individual who chose to remain in the city as it sank rather than escape to the surface. A five-continent world map was found in the city's control room, rendered in tile mosaic, showing two continents known to current Aethermoor residents and three that are not. A stone tablet dictionary was recovered from the market district containing two languages side by side — one unrecognizable, one sharing root words with the Southern Reach tongue. The civic district's gathering space floor contains a detailed mosaic map of the below rather than the above world.",
-  "date": "discovered day 116 of year 468; first recorded as rumor day 157 of year 467",
-  "source_session": "6, 9"
-},
-{
-  "id": "twinrock-drain-coastal-hazard",
-  "type": "place_history",
-  "location_tags": ["western-reach-coast", "khemrise-region"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "Twinrock, a coastal rock formation north of Khemrise, is known locally by sailors as \"The Drain\" for an unusual current that pulls downward rather than across.",
-  "detail": "A pair of rock formations breaking the surface at low tide, resembling a crown from the south. The waters between and around them run a current that pulls down rather than along the coast, a navigational hazard fishermen have avoided for generations independent of any supernatural cause. Old sailors' name for it — \"the Drain\" — predates any known incident there.",
-  "date": "day 160, year 467",
-  "source_session": "7"
-},{
-  "id": "third-western-reach-charter",
-  "type": "political_change",
-  "location_tags": ["khemrise", "argentveil", "ravenquay"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "Khemrise's charter becomes the third of its kind in the Western Reach, following Argentveil (15 years prior) and Ravenquay.",
-  "detail": "Argentveil's Chartered Investigators Act, in force for roughly fifteen years, established the original legal model for licensed private investigative and seizure authority operating alongside city government. Ravenquay adopted its own version some time after. Khemrise's council passed the third such charter by unanimous vote, formally extending the model to a third major Western Reach city and cementing it as a recognized regional legal tradition rather than an Argentveil peculiarity.",
-  "date": "day 160, year 467",
-  "source_session": "7"
-},
-{
-  "id": "lore_008_001",
-  "type": "faction_history",
-  "location_tags": ["Fol"],
-  "entity_tags": ["Varath"],
-  "status": "known_to_party",
-  "summary": "The Varath predate all current Fol clan organization, descended from the Firstwalkers.",
-  "detail": "The Varath are Firstwalker descendants who predate all current clan organization in Fol. They named themselves for what they were doing rather than inheriting the name — earned through action, not lineage.",
-  "date": "",
-  "source_session": "8"
-},
-{
-  "id": "lore_008_002",
-  "type": "political_change",
-  "location_tags": ["Fol", "Cindermarch"],
-  "entity_tags": ["Vethara"],
-  "status": "resolved",
-  "summary": "The two-year Cindermarch-Vethara war ended in Year 467 upon revelation it was manufactured by a southern manipulator.",
-  "detail": "A two-year war between Cindermarch and the Vethara clan ended in Year 467 when it was revealed the conflict had been manufactured by a southern manipulator feeding false intelligence to both sides, convincing each that the other was weak and aggressive.",
-  "date": "Year 467",
-  "source_session": "8"
-},{
-  "id": "lore_008_003",
-  "type": "legend",
-  "location_tags": ["Fol"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "Northern clan tradition holds that a name given prematurely becomes a burden rather than an honor.",
-  "detail": "Northern clan naming tradition holds that a name given prematurely — before it's earned through sustained action — becomes a burden rather than an honor, since it ties collective identity to one person's individual decisions and choices.",
-  "date": "",
-  "source_session": "8"
-},{
-  "id": "lore_fluid_people_001",
-  "type": "faction_history",
-  "location_tags": ["Varath Ohn", "Western Reach"],
-  "entity_tags": ["fluid people"],
-  "status": "known_to_party",
-  "summary": "The fluid people — builders of Varath Ohn",
-  "detail": "The fluid people were a distinct civilization that built and inhabited Varath Ohn. Neither fully aquatic nor fully terrestrial, their architecture reflected this — buildings designed to transition deliberately from above to below the waterline, harbors engineered with the understanding that water was a road rather than an obstacle. They were tall, moved with fluid grace equally comfortable in water and air, and built for permanence rather than aesthetics. When Varath Ohn sank, the fluid people did not perish — they went below voluntarily over many generations following the city's destruction. The last of them disappeared from the surface approximately two thousand years ago. They are understood to continue existing below.",
-  "date": "civilization predates current era by approximately 3000 years; last surface presence approximately 1000 years before current era",
-  "source_session": "9"
-},{
-  "id": "lore_moonveil_seeds_001",
-  "type": "legend",
-  "location_tags": ["Yetgrese"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "Moonveil seeds — healing properties unique to Yetgrese",
-  "detail": "Moonveil seeds grow only in Yetgrese and produce a plant with healing properties beyond anything achievable with Western Reach herbs or standard medicine. The healing is botanical rather than magical. Knowledge of the plant and its cultivation exists only in Yetgrese and has not crossed to Aethermoor in any established form. Seeds survive long ocean voyages if kept dry and cool. At least one crossing has been made — Moonveil seeds were found in a Ravenquay Merchant Quarter estate alongside coins of Yetgrese minting, confirming contact between the continents occurred within living memory.",
-  "date": "day 116 of year 468",
-  "source_session": "9"
-},
-{
-  "id": "valdmere_xyz",
-  "type": "legend",
-  "location_tags": ["Valdmere"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "Valdmere's second settlement founded on a false legend.",
-  "detail": "Roughly 100 years ago a legend circulated that an artifact or font of immense power was located at the site of the abandoned first settlement. Two wealthy families funded expeditions, found nothing — the legend is almost certainly false — but built infrastructure in the process and the settlement stuck. The gossip of opportunity became self-fulfilling regardless of the legend's truth.",
-  "date": "",
-  "source_session": "Valdmere Chat 3"
-},
-{
-  "id": "lore_yetgrese_ghost_battle",
-  "type": "legend",
-  "location_tags": ["yetgrese_crossing"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "A spectral naval battle recurs in the mid-ocean crossing between Aethermoor and Yetgrese — two ghost ships locked in an engagement from centuries past that periodically draws in and destroys living vessels caught in its current.",
-  "detail": "The battle appears without warning, pulling nearby ships into the current surrounding it. The dead crews, still fighting a war they lost long ago, treat any living vessel drawn in as an enemy combatant. No known origin story for the battle has surfaced — only that it is old enough to have become one of the standing reasons the crossing is considered so dangerous.",
-  "date": "",
-  "source_session": "Yetgrese crossing arc"
-},
-{
-  "id": "lore_yetgrese_luminescence",
-  "type": "legend",
-  "location_tags": ["yetgrese_crossing"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "A luminescent phenomenon appears on the northern horizon during the Yetgrese crossing, causing lost time in anyone who looks at it too long. Sailors call it a visual siren.",
-  "detail": "Unlike an audible siren, this phenomenon operates purely through sustained visual attention — minutes pass unnoticed by anyone who stares too long, with no memory of the lost time. It reappears at roughly the same latitude on successive nights of a crossing, suggesting it is tied to a location rather than being random. Experienced navigators know to pair night watches so no one stands watch alone near it.",
-  "date": "",
-  "source_session": "Yetgrese crossing arc"
-},
-{
-  "id": "lore_tilawam_dual_government",
-  "type": "political_change",
-  "location_tags": ["tilawam"],
-  "entity_tags": [],
-  "status": "known_to_party",
-  "summary": "Roughly a century ago (~Year 368), Tilawam's monarchy collapsed following civil unrest. Two factions — an aristocratic conglomerate and a union of working-class officials — both claimed governing authority, and rather than resolve the conflict through further war, evolved over a century into a permanent power-sharing system.",
-  "detail": "The resulting government splits into Magistrates (elected by the upper classes) and Councillors (elected by the lower classes), roughly a 1:4 ratio in seat count but with equal collective voting power. No law can pass on a tied vote — there is no tiebreaker mechanism; deadlocked votes return to discussion and are revisited two weeks later. Banks are responsible for honestly reporting household wealth, which determines voting class eligibility, making Tilawam's banking institutions unusually rigorous and protected by both governments jointly.",
-  "date": "~Year 368",
-  "source_session": "Tilawam arc"
-}
+    "id": "ostwick-estate-seizure-001",
+    "type": "place_history",
+    "location_tags": ["khemrise", "khemrise_estate"],
+    "entity_tags": ["ostwick_family", "aldric_thorne", "pale_syndicate"],
+    "status": "known_to_party",
+    "summary": "Thorne's acquisition of the Ostwick family vineyard",
+    "detail": "The Khemrise vineyard estate later used by Aldric Thorne as a Syndicate front was originally the Ostwick family farm. Thorne acquired it under pressure roughly 11 years prior for a fraction of fair market value, forcing the family out. The Ostwicks relocated to the farming village of Brennswick, 30 miles east of Khemrise, where they rebuilt a modest but honest life. The eldest son, Petyr Ostwick, was about twenty at the time.",
+    "date": "Year 456 (approx.)",
+    "source_session": "3"
+  },
+  {
+    "id": "lore_verath_ohn_001",
+    "type": "place_history",
+    "location_tags": ["Fynesmarch", "coastal", "southern coast"],
+    "entity_tags": ["fluid people"],
+    "status": "known_to_party",
+    "summary": "Verath Ohn — the oldest city, now confirmed submerged",
+    "detail": "Verath Ohn is the oldest settlement in the Fynesmarch, predating all current cities by thousands of years. Its location is confirmed: partially submerged off the southern coast, the upper tower still visible above the waterline. The city was not destroyed by war or neglect — a catastrophic geological event submerged it rapidly, the coastline itself shifting in minutes. The city survived structurally due to extraordinary construction quality and remains largely intact underwater. Its districts — harbor, market, residential, administrative, civic — are all identifiable. The name Varath Ohn belonged to a person before it belonged to a place: the individual who chose to remain in the city as it sank rather than escape to the surface. A five-continent world map was found in the city's control room, rendered in tile mosaic, showing two continents known to current Aethermoor residents and three that are not. A stone tablet dictionary was recovered from the market district containing two languages side by side — one unrecognizable, one sharing root words with the Southern Reach tongue. The civic district's gathering space floor contains a detailed mosaic map of the below rather than the above world.",
+    "date": "discovered day 116 of year 468; first recorded as rumor day 157 of year 467",
+    "source_session": "6, 9"
+  },
+  {
+    "id": "twinrock-drain-coastal-hazard",
+    "type": "place_history",
+    "location_tags": ["western-reach-coast", "khemrise-region"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Twinrock, a coastal rock formation north of Khemrise, is known locally by sailors as \"The Drain\" for an unusual current that pulls downward rather than across.",
+    "detail": "A pair of rock formations breaking the surface at low tide, resembling a crown from the south. The waters between and around them run a current that pulls down rather than along the coast, a navigational hazard fishermen have avoided for generations independent of any supernatural cause. Old sailors' name for it — \"the Drain\" — predates any known incident there.",
+    "date": "day 160, year 467",
+    "source_session": "7"
+  },
+  {
+    "id": "third-western-reach-charter",
+    "type": "political_change",
+    "location_tags": ["khemrise", "argentveil", "ravenquay"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Khemrise's charter becomes the third of its kind in the Fynesmarch, following Argentveil (15 years prior) and Ravenquay.",
+    "detail": "Argentveil's Chartered Investigators Act, in force for roughly fifteen years, established the original legal model for licensed private investigative and seizure authority operating alongside city government. Ravenquay adopted its own version some time after. Khemrise's council passed the third such charter by unanimous vote, formally extending the model to a third major Fynesmarch city and cementing it as a recognized regional legal tradition rather than an Argentveil peculiarity.",
+    "date": "day 160, year 467",
+    "source_session": "7"
+  },
+  {
+    "id": "lore_008_001",
+    "type": "faction_history",
+    "location_tags": ["Fol"],
+    "entity_tags": ["Varath"],
+    "status": "known_to_party",
+    "summary": "The Varath predate all current Fol clan organization, descended from the Firstwalkers.",
+    "detail": "The Varath are Firstwalker descendants who predate all current clan organization in Fol. They named themselves for what they were doing rather than inheriting the name — earned through action, not lineage.",
+    "date": "",
+    "source_session": "8"
+  },
+  {
+    "id": "lore_008_002",
+    "type": "political_change",
+    "location_tags": ["Fol", "Cindermarch"],
+    "entity_tags": ["Vethara"],
+    "status": "resolved",
+    "summary": "The two-year Cindermarch-Vethara war ended in Year 467 upon revelation it was manufactured by a southern manipulator.",
+    "detail": "A two-year war between Cindermarch and the Vethara clan ended in Year 467 when it was revealed the conflict had been manufactured by a southern manipulator feeding false intelligence to both sides, convincing each that the other was weak and aggressive.",
+    "date": "Year 467",
+    "source_session": "8"
+  },
+  {
+    "id": "lore_008_003",
+    "type": "legend",
+    "location_tags": ["Fol"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Northern clan tradition holds that a name given prematurely becomes a burden rather than an honor.",
+    "detail": "Northern clan naming tradition holds that a name given prematurely — before it's earned through sustained action — becomes a burden rather than an honor, since it ties collective identity to one person's individual decisions and choices.",
+    "date": "",
+    "source_session": "8"
+  },
+  {
+    "id": "lore_fluid_people_001",
+    "type": "faction_history",
+    "location_tags": ["Varath Ohn", "Fynesmarch"],
+    "entity_tags": ["fluid people"],
+    "status": "known_to_party",
+    "summary": "The fluid people — builders of Varath Ohn",
+    "detail": "The fluid people were a distinct civilization that built and inhabited Varath Ohn. Neither fully aquatic nor fully terrestrial, their architecture reflected this — buildings designed to transition deliberately from above to below the waterline, harbors engineered with the understanding that water was a road rather than an obstacle. They were tall, moved with fluid grace equally comfortable in water and air, and built for permanence rather than aesthetics. When Varath Ohn sank, the fluid people did not perish — they went below voluntarily over many generations following the city's destruction. The last of them disappeared from the surface approximately two thousand years ago. They are understood to continue existing below.",
+    "date": "civilization predates current era by approximately 3000 years; last surface presence approximately 1000 years before current era",
+    "source_session": "9"
+  },
+  {
+    "id": "lore_moonveil_seeds_001",
+    "type": "legend",
+    "location_tags": ["Yetgrese"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Moonveil seeds — healing properties unique to Yetgrese",
+    "detail": "Moonveil seeds grow only in Yetgrese and produce a plant with healing properties beyond anything achievable with Fynesmarch herbs or standard medicine. The healing is botanical rather than magical. Knowledge of the plant and its cultivation exists only in Yetgrese and has not crossed to Aethermoor in any established form. Seeds survive long ocean voyages if kept dry and cool. At least one crossing has been made — Moonveil seeds were found in a Ravenquay Merchant Quarter estate alongside coins of Yetgrese minting, confirming contact between the continents occurred within living memory.",
+    "date": "day 116 of year 468",
+    "source_session": "9"
+  },
+  {
+    "id": "valdmere_xyz",
+    "type": "legend",
+    "location_tags": ["Valdmere"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Valdmere's second settlement founded on a false legend.",
+    "detail": "Roughly 100 years ago a legend circulated that an artifact or font of immense power was located at the site of the abandoned first settlement. Two wealthy families funded expeditions, found nothing — the legend is almost certainly false — but built infrastructure in the process and the settlement stuck. The gossip of opportunity became self-fulfilling regardless of the legend's truth.",
+    "date": "",
+    "source_session": "Valdmere Chat 3"
+  },
+  {
+    "id": "lore_yetgrese_ghost_battle",
+    "type": "legend",
+    "location_tags": ["yetgrese_crossing"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "A spectral naval battle recurs in the mid-ocean crossing between Aethermoor and Yetgrese — two ghost ships locked in an engagement from centuries past that periodically draws in and destroys living vessels caught in its current.",
+    "detail": "The battle appears without warning, pulling nearby ships into the current surrounding it. The dead crews, still fighting a war they lost long ago, treat any living vessel drawn in as an enemy combatant. No known origin story for the battle has surfaced — only that it is old enough to have become one of the standing reasons the crossing is considered so dangerous.",
+    "date": "",
+    "source_session": "Yetgrese crossing arc"
+  },
+  {
+    "id": "lore_yetgrese_luminescence",
+    "type": "legend",
+    "location_tags": ["yetgrese_crossing"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "A luminescent phenomenon appears on the northern horizon during the Yetgrese crossing, causing lost time in anyone who looks at it too long. Sailors call it a visual siren.",
+    "detail": "Unlike an audible siren, this phenomenon operates purely through sustained visual attention — minutes pass unnoticed by anyone who stares too long, with no memory of the lost time. It reappears at roughly the same latitude on successive nights of a crossing, suggesting it is tied to a location rather than being random. Experienced navigators know to pair night watches so no one stands watch alone near it.",
+    "date": "",
+    "source_session": "Yetgrese crossing arc"
+  },
+  {
+    "id": "lore_tilawam_dual_government",
+    "type": "political_change",
+    "location_tags": ["tilawam"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Roughly a century ago (~Year 368), Tilawam's monarchy collapsed following civil unrest. Two factions — an aristocratic conglomerate and a union of working-class officials — both claimed governing authority, and rather than resolve the conflict through further war, evolved over a century into a permanent power-sharing system.",
+    "detail": "The resulting government splits into Magistrates (elected by the upper classes) and Councillors (elected by the lower classes), roughly a 1:4 ratio in seat count but with equal collective voting power. No law can pass on a tied vote — there is no tiebreaker mechanism; deadlocked votes return to discussion and are revisited two weeks later. Banks are responsible for honestly reporting household wealth, which determines voting class eligibility, making Tilawam's banking institutions unusually rigorous and protected by both governments jointly.",
+    "date": "~Year 368",
+    "source_session": "Tilawam arc"
+  },
+  {
+    "id": "lore_drevorn_consortium",
+    "type": "faction_history",
+    "location_tags": ["Argentveil", "Drevorn House"],
+    "entity_tags": ["Drevorn family"],
+    "status": "known_to_party",
+    "summary": "The Drevorn merchant consortium controlled significant coastal trade through Argentveil for approximately sixty years across three generations. Their original family home on the cliff line south harbor was the most prestigious address on that stretch.",
+    "detail": "The first generation built the cliff line estate and established the consortium. The second generation maintained and grew it. The third generation made compounding poor decisions — not criminal, simply bad judgment left unchecked — and the entire operation collapsed. At its peak the family owned seven cliff line properties. When the consortium fell they were forced to sell quickly and below value. The family home sat neglected for eight years after the third generation moved out, becoming a neighborhood landmark in decline. Local sentiment around the property remained strong — people remembered what it had been. The house was purchased by the Dawn Blades in Year 468 and renamed Nossa Valessa.",
+    "date": "Consortium active approximately Year 395–408, Year 468 collapse and sale",
+    "source_session": "Chat 10"
+  },
+  {
+    "id": "lore_valdmere_temple",
+    "type": "place_history",
+    "location_tags": ["Valdmere"],
+    "entity_tags": ["Voryn", "Corvel Andris"],
+    "status": "known_to_party",
+    "summary": "An ancient stone building in Valdmere that predates most of the city and has housed at least five distinct purposes over its known history. The building itself may be sacred independent of any occupant.",
+    "detail": "Stone construction when everything around it was wood, the building survived three fires that destroyed neighboring structures. Over sixty or more years it has served as a temple to a minor deity of travelers, a cartographer's guild, a merchant collective, briefly a brothel, and its current use as the Temple of Voryn on the northeast bluff. The building has a modest footprint, single story with partial loft. Living vines cover the eastern face, flowering ahead of season. Raw timber doorframe with carved patterns that almost resolve into animals. Interior blurs inside and outside — open southern wall section, living trees incorporated into corners, partial open roof. Local belief in Valdmere holds the building itself is sacred regardless of who currently worships inside it. When Corvel Andris established a teleportation circle there approximately sixty years ago, she drew on something already present in the foundation that she did not fully understand and has never been able to explain. The circle survives religious changeovers — its signal fluctuates with consecration and deconsecration cycles but never fails entirely. The Dawn Blades acquired the Temple of Voryn following a quest in which the congregation's clerics perished. The deed was bequeathed by the dying keeper. The Dawn Blades maintain Voryn's presence as agreed. Temple ownership is not publicly advertised. The ancient teleportation circle beneath the main hall flagstones is active and a Dawn Blades asset.",
+    "date": "",
+    "source_session": "Chat 10"
+  },
+  {
+    "name": "Dhovari",
+    "type": "species",
+    "location": "Olwood Verge",
+    "status": "uncontacted by wider civilization",
+    "appearance": "Bipedal, digitigrade legs, six to seven feet tall. Broad through chest and shoulders. Patterned fur-feather covering that lies flat when calm and raises when alert — darker along spine and shoulders, lighter at throat and chest. Forward-facing luminescent eyes. Hands with four long flexible fingers, hardened dark fingertips. Vocal anatomy suggests different structure than humanoid — language is tonal and layered, chest and throat operating simultaneously.",
+    "personality_traits": "Patient, hierarchical, deliberate. Think before speaking as deep habit. Not demonstrative but not cold.",
+    "notes": "Ancestors co-built the ridge complex with another civilization (human) long ago. Eleven generations carrying one quarter of a broken disc. Statue from the ruins box depicts them. Name rendered through Helm of Comprehending Languages — pronunciation uncertain.",
+    "id": "lore_species_01"
+  },
+  {
+    "name": "Olwood Trolls",
+    "type": "species",
+    "location": "Fynesmarch, Olwood Verge",
+    "status": "neutral to friendly — individual variance likely",
+    "appearance": "Seven to eight feet tall, lean relative to species reputation, grey-green skin that disappears against bark in low light. More intelligent in bearing than common reputation suggests.",
+    "personality_traits": "Precise with language, patient, dry humor. Complete in their attention. Meditative stillness that is presence rather than absence.",
+    "notes": "Distinct from feral trolls which they do not claim as kin — consider them as a feral dog is to a domestic one. Wend learned Common deliberately. His people know of Vessel's kind from deep northeast — experienced them once, one survivor returned, could not describe the color of the sky there. May have built or used the ridge complex given doorway proportions matching their height. Relationship to Dhovari ancestors unclear but possibly connected.",
+    "id": "lore_species_03"
+  },
+  {
+    "id": "lore_ancient_civ_001",
+    "type": "event",
+    "location_tags": ["ancient_civilization"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "detail": "Thousands of years ago a technologically and magically advanced civilization opened a door to another place. Something came through — some of it returned or died, some of it stayed and never left. The civilization was destroyed as a result. Before this happened, they buried their dead with great care: underground tombs housed the peacefully deceased in preservation chambers, arranged with reverence, hands cupped in a gesture of offering or receiving. A stone bellows mechanism was engineered into the tomb architecture to produce the sound of breathing in perpetuity, a way of keeping the dead's presence alive through sound and air rather than magic. The tombs were meant to be visited regularly by the living; a doorkeeper's role existed specifically to open the seal from within and reseal it after visitors left.",
+    "date": "",
+    "source_session": "Olwood Verge expedition"
+  },
+  {
+    "id": "lore_ancient_civ_002",
+    "type": "place_history",
+    "location_tags": ["ancient_civilization"],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "detail": "Connected to but predating the tomb chambers, deeper archive rooms held hundreds of sealed stone containers arranged along every wall — records, materials, or objects of significance the civilization wanted to survive them. The vaulted ceilings told a single continuous illustrated story circling the whole room, and two suits of armor made of an unidentified dark metal stood as sentinels at the archive's entrance, each bearing the same eye motif and each depicted, by name, within the ceiling's narrative — suggesting they represented real people rather than generic guardians.",
+    "date": "",
+    "source_session": "Olwood Verge expedition"
+  },
+  {
+    "id": "lore_lithcainael_dragon_001",
+    "type": "faction_history",
+    "location_tags": [],
+    "entity_tags": ["lithcainael"],
+    "status": "known_to_party",
+    "detail": "An elven family's ancestors killed a brass dragon and enslaved two more, generations before the present day. One of the enslaved dragons eventually escaped and has never been recaptured or seen since — but the family knows with certainty it is still alive, since a brass dragon's death would be felt. It is understood among those who know brass dragons that the species is compulsively social, drawn to conversation and connection by nature; a brass dragon who has instead gone silent for centuries is not behaving naturally, and is read as a sign that it has made a deliberate decision about when, how, and to whom it will finally speak. The family that wronged it has spent generations building alliances and influence in preparation for that eventual reckoning.",
+    "date": "",
+    "source_session": "Multiple sessions, Valdmere arc"
+  },
+  {
+    "id": "lore_planar_decay",
+    "type": "legend",
+    "location_tags": [],
+    "entity_tags": [],
+    "status": "known_to_party",
+    "summary": "Constructed or maintained planes/pockets of reality are known to degrade slowly and unpredictably once their maker or anchor stops actively tending them.",
+    "detail": "It is generally understood among those who study planar constructs that any deliberately built plane, demiplane, or pocket reality requires ongoing attention from its maker (or an equivalent sustaining force) to remain stable. When that attention is removed — through imprisonment, death, distraction, or abandonment — the construct does not collapse outright. Instead it drifts: geography can shift position gradually (mountain ranges reported closer or farther than originally placed, bodies of water relocating over time), regions can darken or lighten beyond their intended tone, and the overall scale of the place can seem to compress, as though the plane 'forgets' its own dimensions a little at a time. The degradation is slow enough that residents living inside such a plane may not notice it happening in real time, only in retrospect over years, and outside visitors arriving after a long absence of maintenance may find the plane subtly but unmistakably 'off' from how it was originally designed. No reliable method is known for halting or reversing the drift short of restoring the maker's active attention to the plane.",
+    "date": "",
+    "source_session": "The Liliveth arc"
+  },
+  {
+    "id": "lore_lost_civilization_machine",
+    "type": "event",
+    "location_tags": ["confluence_machine"],
+    "entity_tags": ["lost_civilization"],
+    "status": "known_to_party",
+    "summary": "A vanished civilization built a machine at a ley confluence to drain the land's magical potential; overuse caused their own collapse. An internal faction opposed this and failed to stop it. The civilization's true name is never spoken in Common — said to damage the language itself.",
+    "detail": "Roughly twelve centuries before the present campaign, a civilization now entirely gone from history built a machine at a major ley confluence, designed to drain the land's accumulated magical potential (the 'deep collection') for their own power. The exploitation was severe enough that it contributed directly to their own societal collapse — they were not conquered or absorbed, but collapsed inward from the weight of what they had taken from the land beneath them. Within that same civilization, an internal faction existed that opposed leadership's use of the deep collection; they were unable to stop it before the rest of their people ended. At least one member of this opposition — a Circle of Stars druid — died at the confluence itself attempting to halt the machine, and chose to remain in some form at the site for twelve centuries afterward rather than pass on, waiting for someone capable of finishing the work. The civilization's true name for itself is deliberately never rendered in Common; the only attested claim (from a very old, non-humanoid source) is that speaking it in Common would 'damage' the language itself.",
+    "date": "~1200 years before present",
+    "source_session": "Eastern Reach campaign, confluence machine arc"
+  },
+  {
+    "id": "lore_draconic_pre_classification",
+    "type": "legend",
+    "location_tags": [],
+    "entity_tags": ["draconic_lore"],
+    "status": "known_to_party",
+    "summary": "Draconic scholarship treats chromatic/metallic dragon lineages as a relatively recent taxonomic split; older disputed accounts describe 'Void' or 'Prismatic' dragons predating that division, mostly secondhand and originating in the Eastern Interior.",
+    "detail": "Standard draconic taxonomy — chromatic dragons tied to a single elemental breath, metallic dragons with their own distinct lineage — is treated by scholars as a comparatively recent classification system. Rare, disputed accounts exist, mostly out of the Eastern Interior and mostly secondhand, describing dragons that predate this split entirely. These are referred to inconsistently across sources as 'Void Dragons' or 'Prismatic Dragons,' with no settled terminology, since the sources themselves are unreliable and rarely corroborate each other.",
+    "date": "",
+    "source_session": "Eastern Reach campaign, confluence machine arc"
+  },
+  {
+    "id": "lore_draconic_age_threshold",
+    "type": "legend",
+    "location_tags": [],
+    "entity_tags": ["draconic_lore"],
+    "status": "known_to_party",
+    "summary": "A minority position in draconic scholarship holds that sufficiently ancient dragons eventually become a physical liability to the magic sustaining their bodies — unconfirmed, since nothing has lived long enough to observe one and survive to publish.",
+    "detail": "There is a standing (minority) theory in draconic scholarship that beyond a certain age threshold, a dragon's physical form becomes a liability rather than an asset — that the magic sustaining an ancient dragon's body eventually outpaces what the body itself can maintain. The counterargument, and the reason the theory remains unconfirmed, is that no scholar has ever had access to a dragon old enough to test it and lived to record the results.",
+    "date": "",
+    "source_session": "Eastern Reach campaign, confluence machine arc"
+  },
+  {
+    "id": "lore_ancient_prismatic_dragon",
+    "type": "event",
+    "location_tags": ["confluence_machine", "lost_civilization"],
+    "entity_tags": ["draconic_lore"],
+    "status": "known_to_party",
+    "summary": "A living confirmation of the disputed 'Void/Prismatic dragon' legend exists in the Fynesmarch — an individual predating the chromatic/metallic classification, who spent centuries alone trying to reverse the damage done by a lost civilization's draining machine.",
+    "detail": "The disputed scholarly accounts of dragons predating the chromatic/metallic taxonomic split are not merely legend — at least one such dragon exists and is active in the Fynesmarch. Old enough that standard draconic scholarship has no category for it, this dragon spent an unknown span of centuries working alone to reverse the damage caused by an ancient civilization's confluence-draining machine, having been prevented from acting directly for reasons tied to the machine's builders. It is capable of assuming a humanoid form, though doing so is described as something it had not done in a very long time prior to recent events. Its coloration does not correspond to any single element — described as absorbing and returning light 'like oil on water' rather than reflecting a fixed hue.",
+    "date": "",
+    "source_session": "Eastern1"
+  },
+  {
+    "id": "lore_durath_iron",
+    "type": "material",
+    "location_tags": ["ven_durath", "dunric_pass"],
+    "entity_tags": ["dwarven_craft", "lost_technique"],
+    "status": "known_to_party",
+    "summary": "An ancient dwarven alloy with an exceptionally high melting point, used historically for bracket work and containment fittings meant to hold something dangerous in place for centuries. The technique for producing it is lost — no current smith is known to practice it.",
+    "detail": "Durath Iron takes its name from the same linguistic root as the Ven Durath, the ancient mine complex beneath Dunric Pass where the only confirmed examples have been found. The alloy was used to fabricate the bracket mounts securing a Planar Binding Stone to the mine's chamber wall — fittings that survived direct centuries-long proximity to a bound magma elemental without degrading, warping, or losing structural integrity. No dwarven clan currently active in the region claims lineage to whoever produced it; the Ven Durath predates any settlement record Duncavel's oldest families can trace, meaning even the town's deepest oral histories don't reach back far enough to identify the makers. The Dawn Blades removed a pair of Durath Iron brackets intact when extracting the Planar Binding Stone on Day 80, Year 468, giving scholars a rare physical sample to study rather than only the historical mentions previously available.",
+    "date": "Day 80, Year 468 (extraction); origin unknown, predates current settlement",
+    "source_session": "DunricPass1"
+  },
+  {
+    "id": "lore_planar_binding_tradition",
+    "type": "magical_tradition",
+    "location_tags": ["ven_durath", "dunric_pass"],
+    "entity_tags": ["dwarven_craft", "lost_technique", "planar_magic"],
+    "status": "known_to_party",
+    "summary": "A vanished school of ancient dwarven craft-magic capable of anchoring an elemental or planar creature to the material plane against its native pull, using carved stone binding schema seated in worked metal fittings. No living practitioner or documented lineage of this tradition is known to exist.",
+    "detail": "Beneath Dunric Pass, in the ancient dwarven mine known as the Ven Durath, a stone disc roughly eighteen inches across was found embedded in a chamber wall, densely carved on every face with an interlocking rune schema. The schema functioned as a planar anchor — it held a magma elemental bound to this plane against a persistent pull from an elemental plane, keeping the creature physically present rather than allowing it to fully cross back. Removing the stone from its housing did not kill the elemental outright; it triggered a violent reformation as residual planar tension pulled the creature partway back before the connection was permanently severed by further damage to the stone itself. The rune structure is interlocking by design — damaging enough of the carved connections causes the entire schema to lose coherence rather than simply losing partial function, suggesting the makers built in redundancy against exactly the kind of tampering the Dawn Blades ultimately used to destroy it. No current dwarven scholar, smith, or clan archive consulted so far has any record of this specific binding tradition, and the mine itself predates any settlement history in the region. Whether other examples of this craft exist elsewhere in the world is unknown.",
+    "date": "Origin unknown, predates current settlement; disc removed and rendered permanently inert Day 80, Year 468",
+    "source_session": "DunricPass1"
+  }
 ]
-// finished at chat 9 so far
-i would like to go chat-by-chat and save the lore that we invented along the way. every chat has interesting things to keep for the long-term (things we want to keep for future players that aren't only relevant to my party) and lots of things that are only relevant to my party and campaign, which we need to ignore. I'm not really after "things my party did or found" as much as I want "stories and interesting notions that were uncovered". Witnesses, seals, boundary, are all off-limits as they were current campaign and not long-standing lore.  the campaign started day 137 of year 467. please use this skill and get started: 
-/dnd-lore-extraction  this is chat

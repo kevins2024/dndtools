@@ -43,6 +43,8 @@ function loadSubclass(className, subclassName) {
 // bonus-spell computation in spellUtils.js) can derive "what bonus spells
 // does this character have at their current level" straight from the
 // subclass data instead of a per-character copy that can drift out of sync.
+// Same directory-scanning portability caveat as classFeatures.js's
+// listClasses() — see the comment there and engine/CHECKLIST.md.
 function listSubclasses() {
   return fs
     .readdirSync(SUBCLASSES_DIR)

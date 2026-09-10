@@ -51,6 +51,7 @@
 
 <script>
 import TreeNode from './TreeNode.vue'
+import { dnd } from '@/utils/dnd_utils.js'
 
 // Fields already handled explicitly at each tier — everything else on a
 // record gets rendered generically via valueToNodes() so nothing silently
@@ -245,35 +246,21 @@ export default {
       return { label: '📋 JSON', title: `Copy ${label} as JSON`, data }
     },
 
-    // NPCs a settlement claims are the union of every npcs_present name
-    // across its own locations (districts never carry npcs_present in this
-    // data). Resolved against npcs.json's own records where the name
-    // matches exactly — unresolved names are kept too rather than silently
-    // dropped, since a mismatch there usually means a real data-entry gap
-    // worth noticing.
-    settlementNpcNames(place) {
-      const names = new Set()
-      for (const loc of place.locations ?? []) {
-        for (const n of loc.npcs_present ?? []) names.add(n)
-      }
-      return names
-    },
-
+    // NPCs a settlement claims live in npcs.json's own `location` field now
+    // (not a `npcs_present` array on the place/location side, which went
+    // stale — e.g. Argentveil's locations only ever listed 5 npcs_present
+    // names, of which only 1 actually matched an npcs.json record, while
+    // npcs.json itself has 15 real NPCs tagged to Argentveil). Reuses the
+    // same location-matching dnd.npcsAtLocation already powers elsewhere,
+    // so a settlement's copy button and its NPC list stay in sync with one
+    // real source instead of two.
     settlementNpcAction(place) {
-      const names = this.settlementNpcNames(place)
-      if (!names.size) return null
-      const byName = new Map(this.npcs.map((n) => [n.name, n]))
-      const resolved = []
-      const unresolved = []
-      for (const name of names) {
-        const rec = byName.get(name)
-        if (rec) resolved.push(rec)
-        else unresolved.push(name)
-      }
+      const matches = dnd.npcsAtLocation(this.npcs, place.name)
+      if (!matches.length) return null
       return {
         label: '👤 NPCs',
         title: `Copy NPCs present in ${place.name} as JSON`,
-        data: { settlement: place.name, npcs: resolved, unresolved },
+        data: { settlement: place.name, npcs: matches },
       }
     },
 
@@ -426,9 +413,14 @@ export default {
       const children = []
       if (loc.description)
         children.push({ label: loc.description, type: 'text' })
-      if (loc.npcs_present?.length)
+      // Reads npcs.json directly by location match now, not the old
+      // npcs_present array on the location itself — see TODO.md's
+      // "NPC location should live only on the NPC record" entry. Same
+      // dnd.npcsAtLocation helper the settlement-level copy button uses.
+      const locNpcs = dnd.npcsAtLocation(this.npcs, loc.name)
+      if (locNpcs.length)
         children.push({
-          label: `NPCs: ${loc.npcs_present.join(', ')}`,
+          label: `NPCs: ${locNpcs.map((n) => n.name).join(', ')}`,
           type: 'leaf',
         })
       children.push(...objectToChildren(loc, LOCATION_KNOWN_KEYS))

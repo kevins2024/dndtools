@@ -27,6 +27,7 @@ import ItemGenerator from './ItemGenerator.vue'
 import DmExport from './DmExport.vue'
 import LevelUpTool from './LevelUpTool.vue'
 import NewCharacterTool from './NewCharacterTool.vue'
+import JsonIntakeTool from './JsonIntakeTool.vue'
 
 export default {
   name: 'ToolsContext',
@@ -39,6 +40,7 @@ export default {
     DmExport,
     LevelUpTool,
     NewCharacterTool,
+    JsonIntakeTool,
   },
 
   data() {
@@ -75,6 +77,11 @@ export default {
           id: 'dm-export',
           label: 'DM Export',
           component: 'DmExport',
+        },
+        {
+          id: 'json-intake',
+          label: 'JSON Intake',
+          component: 'JsonIntakeTool',
         },
       ],
     }

@@ -120,12 +120,116 @@
             </div>
           </template>
           <div v-if="displayTraits.length">
-            <div class="nct-note">Traits (flavor/reference only):</div>
+            <div class="nct-note">
+              Traits (mechanical grants below apply automatically to the
+              character record; the rest are flavor/reference):
+            </div>
             <ul class="nct-trait-list">
               <li v-for="t in displayTraits" :key="t.name">
                 <strong>{{ t.name }}</strong> — {{ t.description }}
               </li>
             </ul>
+          </div>
+
+          <!-- ── Species/subrace trait choices (skill/tool proficiency,
+               cantrip, dragon ancestry) — see resolvedSpeciesGrants ── -->
+          <div
+            v-if="
+              skillChoiceTraits.length ||
+              toolChoiceTraits.length ||
+              spellChoiceTraits.length ||
+              ancestryChoiceTrait
+            "
+            class="nct-skill-picker"
+          >
+            <template v-for="t in skillChoiceTraits">
+              <div :key="'skill-label-' + t.name" class="nct-note">
+                {{ t.name }} — choose
+                {{ t.grants_skill_proficiency_choice.count }} skill{{
+                  t.grants_skill_proficiency_choice.count === 1 ? '' : 's'
+                }}:
+              </div>
+              <select
+                v-for="(_, i) in Array(t.grants_skill_proficiency_choice.count)"
+                :key="'skill-' + t.name + '-' + i"
+                v-model="speciesSkillChoiceValues[t.name][i]"
+                class="nct-select"
+              >
+                <option :value="null" disabled>Choose a skill…</option>
+                <option
+                  v-for="s in skillsList"
+                  :key="s.id"
+                  :value="s.id"
+                  :disabled="speciesSkillChoiceDisabled(s.id, t.name, i)"
+                >
+                  {{ s.name }}
+                </option>
+              </select>
+            </template>
+
+            <template v-for="t in toolChoiceTraits">
+              <div :key="'tool-label-' + t.name" class="nct-note">
+                {{ t.name }} — choose
+                {{ t.grants_tool_proficiency_choice.count }} tool proficienc{{
+                  t.grants_tool_proficiency_choice.count === 1 ? 'y' : 'ies'
+                }}:
+              </div>
+              <select
+                v-for="(_, i) in Array(t.grants_tool_proficiency_choice.count)"
+                :key="'tool-' + t.name + '-' + i"
+                v-model="speciesToolChoiceValues[t.name][i]"
+                class="nct-select"
+              >
+                <option :value="null" disabled>Choose…</option>
+                <option
+                  v-for="o in t.grants_tool_proficiency_choice.options"
+                  :key="o"
+                  :value="o"
+                >
+                  {{ o }}
+                </option>
+              </select>
+            </template>
+
+            <template v-for="t in spellChoiceTraits">
+              <div :key="'spell-label-' + t.name" class="nct-note">
+                {{ t.name }} — choose {{ t.grants_spells.choice.count }}
+                {{ t.grants_spells.choice.cantrips_only ? 'cantrip' : 'spell'
+                }}{{ t.grants_spells.choice.count === 1 ? '' : 's' }} from the
+                {{ t.grants_spells.choice.class_list }} list:
+              </div>
+              <select
+                v-for="(_, i) in Array(t.grants_spells.choice.count)"
+                :key="'spell-' + t.name + '-' + i"
+                v-model="speciesSpellChoiceValues[t.name][i]"
+                class="nct-select"
+              >
+                <option :value="null" disabled>Choose…</option>
+                <option
+                  v-for="o in speciesSpellOptionsByTrait[t.name] || []"
+                  :key="o.name"
+                  :value="o.name"
+                >
+                  {{ o.name }}
+                </option>
+              </select>
+            </template>
+
+            <template v-if="ancestryChoiceTrait">
+              <div class="nct-note">
+                {{ ancestryChoiceTrait.name }} — choose a dragon type:
+              </div>
+              <select v-model="dragonbornAncestryChoice" class="nct-select">
+                <option :value="null" disabled>Choose…</option>
+                <option
+                  v-for="a in ancestryOptions"
+                  :key="a.type"
+                  :value="a.type"
+                >
+                  {{ a.type }} ({{ a.damage_type }})
+                </option>
+              </select>
+            </template>
           </div>
 
           <div v-if="speciesAutomaticLanguages.length" class="nct-note">
@@ -270,9 +374,11 @@
             </option>
           </select>
           <div class="nct-note">
-            A skill already granted by your background is disabled here — pick a
-            different one instead of double-dipping (real RAW: you'd choose a
-            replacement skill).
+            Yes, this is a second, separate list of skills — your class grants
+            its own skill picks on top of your background's. Any skill your
+            background already gave you is greyed out in this list only because
+            you can't pick the same skill twice: by RAW you'd pick a different
+            skill here instead of gaining nothing from the repeat.
           </div>
         </div>
       </div>
@@ -331,7 +437,9 @@
               :key="'choice-' + ci"
               class="nct-skill-picker"
             >
-              <div class="nct-note">Choose one:</div>
+              <div class="nct-note">
+                Choose one ({{ equipmentChoiceLabel(choice) }}):
+              </div>
               <select
                 v-model="equipmentChoiceSelections[ci]"
                 class="nct-select"
@@ -386,9 +494,26 @@
 
       <!-- ── Abilities ── -->
       <div v-else-if="activeTab === 'abilities'" class="nct-tab-body">
+        <div v-if="priorityAbilities.length" class="nct-note nct-note--action">
+          {{ selectedClass.name }}'s most important abilities are usually
+          <strong>{{
+            priorityAbilities.map((a) => a.toUpperCase()).join(' and ')
+          }}</strong>
+          — consider putting more of your points there. (Hover any ability for
+          what it governs.)
+        </div>
         <div class="nct-abilities-grid">
-          <div v-for="a in abilities" :key="a" class="nct-ability-row">
-            <span class="nct-ability-label">{{ a.toUpperCase() }}</span>
+          <div
+            v-for="a in abilities"
+            :key="a"
+            class="nct-ability-row"
+            :class="{
+              'nct-ability-row--priority': priorityAbilities.includes(a),
+            }"
+          >
+            <span class="nct-ability-label" :title="abilityDescriptions[a]">{{
+              a.toUpperCase()
+            }}</span>
             <button class="nct-btn" @click="adjustScore(a, -1)">−</button>
             <span class="nct-ability-score">{{ baseScores[a] }}</span>
             <button class="nct-btn" @click="adjustScore(a, 1)">+</button>
@@ -479,27 +604,15 @@
         <div v-if="loading" class="nct-loading">Computing…</div>
         <div v-else-if="error" class="nct-error">{{ error }}</div>
         <template v-else-if="preview">
-          <div class="nct-hp-controls">
-            <button
-              class="nct-btn"
-              :class="{ active: hpMethod === 'roll' }"
-              @click="rollHp"
-            >
-              🎲 Roll
-            </button>
-            <button
-              class="nct-btn"
-              :class="{ active: hpMethod === 'average' }"
-              @click="setAverage"
-            >
-              Take Average
-            </button>
-            <span class="nct-note"
-              >HP at level 1 is always max hit die by RAW.</span
-            >
-          </div>
+          <!-- Every character starts at level 1, and level-1 HP is always
+               forced to max hit die per RAW (see levelUp.js's forceMax) —
+               unlike the Level Up tool, there's no LATER level where a
+               roll/average choice would ever apply here, so there's nothing
+               to offer; just show the resulting number with how it was
+               reached. -->
           <div class="nct-note">
-            HP: <strong>{{ preview.patch.hp_max }}</strong>
+            HP:
+            <strong :title="hpBreakdown">{{ preview.patch.hp_max }}</strong>
           </div>
           <div v-if="preview.description.spellcasting" class="nct-note">
             Cantrips: {{ preview.description.spellcasting.cantripsAfter }}
@@ -511,6 +624,108 @@
               {{ preview.description.spellcasting.preparedAfter }}
             </span>
           </div>
+
+          <div v-if="cantripPickCount" class="nct-spell-picker">
+            <div class="nct-note">
+              Pick {{ cantripPickCount }} cantrip{{
+                cantripPickCount === 1 ? '' : 's'
+              }}
+              ({{ cantripDraftPicks.length }}/{{ cantripPickCount }} chosen):
+            </div>
+            <input
+              v-model="cantripSearch"
+              class="nct-text-input"
+              placeholder="Search cantrips…"
+            />
+            <ul class="nct-pick-list">
+              <li v-for="o in filteredCantripOptions" :key="o.name">
+                <label>
+                  <input
+                    type="checkbox"
+                    :checked="cantripDraftPicks.includes(o.name)"
+                    :disabled="
+                      !cantripDraftPicks.includes(o.name) &&
+                      cantripDraftPicks.length >= cantripPickCount
+                    "
+                    @change="
+                      togglePick('cantripDraftPicks', o.name, cantripPickCount)
+                    "
+                  />
+                  {{ o.name }}
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="spellPickCount" class="nct-spell-picker">
+            <div class="nct-note">
+              Pick {{ spellPickCount }} known spell{{
+                spellPickCount === 1 ? '' : 's'
+              }}
+              ({{ spellDraftPicks.length }}/{{ spellPickCount }} chosen):
+            </div>
+            <input
+              v-model="spellSearch"
+              class="nct-text-input"
+              placeholder="Search spells…"
+            />
+            <ul class="nct-pick-list">
+              <li v-for="o in filteredSpellOptions" :key="o.name">
+                <label>
+                  <input
+                    type="checkbox"
+                    :checked="spellDraftPicks.includes(o.name)"
+                    :disabled="
+                      !spellDraftPicks.includes(o.name) &&
+                      spellDraftPicks.length >= spellPickCount
+                    "
+                    @change="
+                      togglePick('spellDraftPicks', o.name, spellPickCount)
+                    "
+                  />
+                  {{ o.name }}
+                  <span class="nct-note-inline"
+                    >(lvl {{ o.level
+                    }}{{ o.school ? ', ' + o.school : '' }})</span
+                  >
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            v-if="pendingFightingStyleChoice || fightingStyleChoice"
+            class="nct-spell-picker"
+          >
+            <div class="nct-note">Choose a Fighting Style:</div>
+            <ul class="nct-pick-list">
+              <li v-for="o in fightingStyleOptions" :key="o">
+                <label
+                  :title="featureDescriptions[`Fighting Style: ${o}`] || ''"
+                >
+                  <input
+                    type="radio"
+                    name="fighting-style"
+                    :value="o"
+                    v-model="fightingStyleChoice"
+                  />
+                  {{ o }}
+                </label>
+              </li>
+            </ul>
+            <p
+              v-if="
+                fightingStyleChoice &&
+                featureDescriptions[`Fighting Style: ${fightingStyleChoice}`]
+              "
+              class="nct-note-inline"
+            >
+              {{
+                featureDescriptions[`Fighting Style: ${fightingStyleChoice}`]
+              }}
+            </p>
+          </div>
+
           <ul v-if="preview.newFeatures.length" class="nct-feature-list">
             <li v-for="f in preview.newFeatures" :key="f.name">
               <span
@@ -525,7 +740,18 @@
             Subclass choice deferred — pick one later via Level Up.
           </div>
         </template>
-        <div v-else class="nct-note">Pick a species and class first.</div>
+        <div v-else-if="!speciesName || !className" class="nct-note">
+          Pick a species and class first.
+        </div>
+        <div v-else-if="!abilityBonusAssignmentComplete" class="nct-note">
+          Finish assigning ability scores on the Abilities tab first —
+          {{
+            useSpeciesBonus
+              ? "this species' flexible ability bonus still needs a choice."
+              : 'both free +2/+1 abilities still need picking.'
+          }}
+        </div>
+        <div v-else class="nct-note">Computing…</div>
       </div>
     </div>
 
@@ -554,6 +780,7 @@ import {
   isEquippableType,
   rollGoldAlternative,
 } from '@/utils/startingGearCatalog.js'
+import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 // Mirrors engine/rules/pointBuy.js's table — kept local for instant UI
@@ -561,6 +788,12 @@ const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 // truth for the actual level-1 computation.
 const POINT_BUY_COSTS = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }
 const POINT_BUY_BUDGET = 27
+
+function filterSpellOptions(options, search) {
+  const q = search.trim().toLowerCase()
+  if (!q) return options
+  return options.filter((o) => o.name.toLowerCase().includes(q))
+}
 
 export default {
   name: 'NewCharacterTool',
@@ -582,11 +815,25 @@ export default {
       // species, including all homebrew ones, which don't have any.
       subraceName: null,
       speciesChoiceAbilities: [],
+      // ── Real mechanical wiring for species/subrace traits (2026-09-07) ──
+      // Every trait with a grants_*_choice/grants_spells.choice/ancestry
+      // choice field needs a picker — keyed by trait name so multiple
+      // traits (rare, but Half-Elf + a future homebrew species could both
+      // need one) never collide. Shape mirrors LevelUpTool.vue's
+      // featChoiceValues: {traitName: [picks]}.
+      speciesSkillChoiceValues: {},
+      speciesToolChoiceValues: {},
+      speciesSpellChoiceValues: {},
+      speciesSpellOptionsByTrait: {}, // traitName -> fetched spell/cantrip options
+      dragonbornAncestryChoice: null,
       // When off, the species' fixed/flexible ability bonus is skipped
       // entirely in favor of a free +2/+1 the player assigns to any two
       // abilities — added because tying ability bonuses to species pushes
       // players toward the same species/class pairings over and over.
-      useSpeciesBonus: true,
+      // Defaults to off (2026-09-09): the project owner confirmed this table
+      // "almost never" uses the species-bonus option in practice, so the
+      // common case shouldn't require a manual toggle every time.
+      useSpeciesBonus: false,
       manualPlusTwoAbility: null,
       manualPlusOneAbility: null,
       // backgroundChoice is either a curated background's name, or the
@@ -649,6 +896,31 @@ export default {
       preview: null,
       loading: false,
       error: null,
+
+      // ── Starting cantrip/known-spell picker (mirrors LevelUpTool.vue's
+      // generic known-spell picker — same /api/engine/spell-choices route,
+      // just for the 0→1 transition instead of a later level-up) ──
+      cantripOptions: [],
+      cantripDraftPicks: [],
+      cantripSearch: '',
+      spellOptions: [],
+      spellDraftPicks: [],
+      spellSearch: '',
+
+      // Fighter's own 1st-level Fighting Style pick — the one pendingChoice
+      // that can actually surface at level 1 (Pact Boon/Invocations only
+      // matter at higher levels, never during creation). Real bug found
+      // 2026-09-09: the tool listed "Fighting Style" as a feature with no
+      // way to choose one at all — see engine/data/fighting-styles.json.
+      // fightingStyleOptions is a sticky cache of the pendingChoice's own
+      // options — needed because pendingFightingStyleChoice itself goes
+      // null the instant a choice is resolved (the whole point of it being
+      // a pendingChoice), which would otherwise yank the picker out from
+      // under the just-made selection. Real bug found 2026-09-09 (again):
+      // the picker used pendingFightingStyleChoice.options directly, so it
+      // visibly disappeared right after picking.
+      fightingStyleOptions: [],
+      fightingStyleChoice: null,
     }
   },
 
@@ -723,6 +995,105 @@ export default {
         source: 'subrace',
       }))
       return [...fromSpecies, ...fromSubrace]
+    },
+    // ── Real mechanical wiring for species/subrace traits (2026-09-07) ──
+    // Traits needing a player choice before their grant can be resolved —
+    // checked generically off displayTraits so a future species/subrace
+    // with the same shape gets a picker for free, no per-trait code.
+    skillChoiceTraits() {
+      return this.displayTraits.filter((t) => t.grants_skill_proficiency_choice)
+    },
+    toolChoiceTraits() {
+      return this.displayTraits.filter((t) => t.grants_tool_proficiency_choice)
+    },
+    spellChoiceTraits() {
+      return this.displayTraits.filter((t) => t.grants_spells?.choice)
+    },
+    // Dragonborn-shaped ancestry choice — a species-level table (not a
+    // subrace one), which the Draconic Ancestry trait's own `choice.from`
+    // points at.
+    ancestryChoiceTrait() {
+      return this.displayTraits.find((t) => t.choice?.from)
+    },
+    ancestryOptions() {
+      const field = this.ancestryChoiceTrait?.choice?.from
+      return field ? this.selectedSpecies?.[field] ?? [] : []
+    },
+    // A species skill choice can't double-dip into the background's or
+    // class's own picks, or a different slot of its own picker.
+    speciesSkillChoiceDisabled() {
+      return (skillId, traitName, index) => {
+        const own = this.speciesSkillChoiceValues[traitName] ?? []
+        const takenInOwn = own.some((v, i) => i !== index && v === skillId)
+        return (
+          takenInOwn ||
+          this.selectedSkills.includes(skillId) ||
+          this.selectedClassSkills.includes(skillId)
+        )
+      }
+    },
+    // Every species/subrace trait resolved into real mechanical grants —
+    // the one thing characterShell() reads for this. Choice-based grants
+    // fall back to nothing if left unpicked (no error) — same tolerance
+    // the rest of this tool has for an in-progress, not-yet-complete form.
+    resolvedSpeciesGrants() {
+      const weapons = new Set()
+      const armor = new Set()
+      const tools = new Set()
+      const skills = new Set()
+      const resistances = new Set()
+      const savingThrowAdvantages = new Set()
+      const spellFeatures = []
+      for (const trait of this.displayTraits) {
+        for (const w of trait.grants_weapon_proficiency ?? []) weapons.add(w)
+        for (const a of trait.grants_armor_proficiency ?? []) armor.add(a)
+        for (const tl of trait.grants_tool_proficiency ?? []) tools.add(tl)
+        if (trait.grants_skill_proficiency)
+          skills.add(trait.grants_skill_proficiency)
+        for (const s of this.speciesSkillChoiceValues[trait.name] ?? [])
+          if (s) skills.add(s)
+        for (const tl of this.speciesToolChoiceValues[trait.name] ?? [])
+          if (tl) tools.add(tl)
+        if (trait.grants_resistance) {
+          if (trait.grants_resistance === 'ancestry') {
+            const chosen = this.ancestryOptions.find(
+              (a) => a.type === this.dragonbornAncestryChoice
+            )
+            if (chosen) resistances.add(chosen.damage_type)
+          } else {
+            resistances.add(trait.grants_resistance)
+          }
+        }
+        if (trait.grants_saving_throw_advantage) {
+          savingThrowAdvantages.add(trait.grants_saving_throw_advantage)
+        }
+        if (trait.grants_spells) {
+          const names = [
+            ...(trait.grants_spells.fixed ?? []),
+            ...(this.speciesSpellChoiceValues[trait.name] ?? []).filter(
+              Boolean
+            ),
+          ]
+          if (names.length) {
+            spellFeatures.push({
+              name: trait.name,
+              id: null,
+              type: 'speciesTrait',
+              spells_granted: names,
+              _source: trait.name,
+            })
+          }
+        }
+      }
+      return {
+        weapons: [...weapons],
+        armor: [...armor],
+        tools: [...tools],
+        skills: [...skills],
+        resistances: [...resistances],
+        savingThrowAdvantages: [...savingThrowAdvantages],
+        spellFeatures,
+      }
     },
     // Attributes the STARTING ability-score bonus (species racial, or the
     // manual free +2/+1 when useSpeciesBonus is off) the same way
@@ -905,6 +1276,38 @@ export default {
     pointsRemaining() {
       return this.pointBuyBudget - this.pointsSpent
     },
+    abilityDescriptions() {
+      return ABILITY_DESCRIPTIONS
+    },
+    priorityAbilities() {
+      return dnd.priorityAbilitiesForClass(this.selectedClass)
+    },
+    // Level 1 HP is always max hit die + CON modifier, no rolling involved —
+    // spelled out here just for the tooltip on the HP number, since the
+    // roll/average controls that would normally show this math don't apply
+    // at character creation.
+    hpBreakdown() {
+      const hitDie = this.selectedClass?.hitDie
+      if (!hitDie) return ''
+      const conMod = dnd.mod(this.finalScores.con)
+      return `d${hitDie} (max) ${dnd.signed(conMod)} CON = ${
+        hitDie + conMod
+      } HP`
+    },
+    cantripPickCount() {
+      return this.preview?.description?.spellcasting?.cantripsAfter ?? 0
+    },
+    spellPickCount() {
+      return this.preview?.description?.spellcasting?.style === 'known'
+        ? this.preview.description.spellcasting.knownAfter ?? 0
+        : 0
+    },
+    filteredCantripOptions() {
+      return filterSpellOptions(this.cantripOptions, this.cantripSearch)
+    },
+    filteredSpellOptions() {
+      return filterSpellOptions(this.spellOptions, this.spellSearch)
+    },
     finalScores() {
       const scores = { ...this.baseScores }
       if (this.useSpeciesBonus) {
@@ -950,6 +1353,13 @@ export default {
         ) ?? null
       )
     },
+    pendingFightingStyleChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'fightingStyleChoice'
+        ) ?? null
+      )
+    },
     // A species with real subraces (Dwarf, Elf, Halfling, Gnome) requires
     // picking one — every other species (including all homebrew ones) has
     // none, so this is trivially true for them.
@@ -970,16 +1380,69 @@ export default {
           this.speciesLanguageAssignmentComplete &&
           this.backgroundLanguageAssignmentComplete &&
           this.pointsRemaining >= 0 &&
+          this.cantripDraftPicks.length >= this.cantripPickCount &&
+          this.spellDraftPicks.length >= this.spellPickCount &&
+          !this.pendingFightingStyleChoice &&
           this.preview?.patch
       )
     },
   },
 
   watch: {
+    fightingStyleChoice() {
+      this.runPreview()
+    },
     speciesName() {
       this.subraceName = null
       this.speciesChoiceAbilities = []
+      this.speciesSkillChoiceValues = {}
+      this.speciesToolChoiceValues = {}
+      this.speciesSpellChoiceValues = {}
+      this.speciesSpellOptionsByTrait = {}
+      this.dragonbornAncestryChoice = null
       this.runPreview()
+    },
+    subraceName() {
+      this.speciesSkillChoiceValues = {}
+      this.speciesToolChoiceValues = {}
+      this.speciesSpellChoiceValues = {}
+      this.speciesSpellOptionsByTrait = {}
+      this.runPreview()
+    },
+    // Sizes each choice-needing trait's value array to match its real
+    // count, and kicks off the spell-options fetch for any spell-choice
+    // trait — same "resize on whatever's owed changes" pattern
+    // classSkillChoiceCount/speciesLanguageChoiceTotal already use below,
+    // just per-trait instead of per-tab since more than one species/subrace
+    // could theoretically need this at once.
+    displayTraits: {
+      immediate: true,
+      handler(traits) {
+        for (const t of traits) {
+          if (t.grants_skill_proficiency_choice) {
+            this.ensureChoiceArray(
+              'speciesSkillChoiceValues',
+              t.name,
+              t.grants_skill_proficiency_choice.count
+            )
+          }
+          if (t.grants_tool_proficiency_choice) {
+            this.ensureChoiceArray(
+              'speciesToolChoiceValues',
+              t.name,
+              t.grants_tool_proficiency_choice.count
+            )
+          }
+          if (t.grants_spells?.choice) {
+            this.ensureChoiceArray(
+              'speciesSpellChoiceValues',
+              t.name,
+              t.grants_spells.choice.count
+            )
+            this.fetchSpeciesSpellOptions(t)
+          }
+        }
+      },
     },
     className() {
       this.equipmentTakeGold = false
@@ -987,6 +1450,10 @@ export default {
         null
       )
       this.equipmentWeaponPicks = {}
+      this.cantripOptions = []
+      this.cantripDraftPicks = []
+      this.spellOptions = []
+      this.spellDraftPicks = []
       this.runPreview()
     },
     backgroundChoice() {
@@ -1078,8 +1545,61 @@ export default {
         .map((e) => (e.qty > 1 ? `${e.name} x${e.qty}` : e.name))
         .join(', ')
     },
+    // A class's starting_equipment.choices has no category name of its
+    // own (engine/data/classes/*.json) — just a bare `options` array — so
+    // every choice on this tab used to say the identical generic "Choose
+    // one:", forcing a player to open both dropdowns just to see which one
+    // was for a weapon vs. a pack. Derived here instead of adding a
+    // `label` field to all 13 classes' data, since it's fully computable
+    // from names already in that data (every real choice across the
+    // roster is one of these 4 shapes — weapon, armor, focus, or pack).
+    equipmentChoiceLabel(choice) {
+      const names = choice.options.map((opt) => opt[0]?.name ?? '').join(' ')
+      if (/pack/i.test(names)) return 'Equipment Pack'
+      if (/armor|mail|shield/i.test(names)) return 'Armor'
+      if (/pouch|focus/i.test(names)) return 'Spellcasting Focus'
+      return 'Weapon'
+    },
     weaponOptionsForFilter(filter) {
       return weaponOptionsForFilter(filter)
+    },
+
+    // Lazily sizes a trait's choice-value array to `count`, via $set so
+    // Vue 2 tracks the new indices reactively — a plain assignment would
+    // work too, but $set matches the pattern the rest of this file's
+    // choice arrays use.
+    ensureChoiceArray(stateKey, traitName, count) {
+      if (this[stateKey][traitName]?.length === count) return
+      this.$set(this[stateKey], traitName, Array(count).fill(null))
+    },
+
+    // Fetches the real eligible spell/cantrip list for a species trait's
+    // grants_spells.choice (High Elf's "one wizard cantrip of your
+    // choice") — same /api/engine/spell-choices endpoint the Level Up
+    // tool's pickers use, just with an empty in-progress character since
+    // this choice never depends on the character's own class.
+    async fetchSpeciesSpellOptions(trait) {
+      const key = trait.name
+      if (this.speciesSpellOptionsByTrait[key]) return
+      const choice = trait.grants_spells.choice
+      try {
+        const res = await fetch('/api/engine/spell-choices', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            character: { classes: [], spells: [] },
+            className: choice.class_list,
+            cantripsOnly: Boolean(choice.cantrips_only),
+          }),
+        })
+        this.$set(
+          this.speciesSpellOptionsByTrait,
+          key,
+          res.ok ? (await res.json()).options : []
+        )
+      } catch {
+        this.$set(this.speciesSpellOptionsByTrait, key, [])
+      }
     },
 
     skillDisabled(skillId, sourceArray, currentIndex) {
@@ -1155,12 +1675,16 @@ export default {
         // and already shown as info text in the Class tab — it just never
         // got assigned into the actual character record.
         saving_throws: this.selectedClass?.saving_throw_proficiencies ?? [],
-        // Background's fixed 2-skill grant plus the class's own "choose N"
-        // grant, deduped — the real gap this pass closes (see TODO.md's
-        // "New Character tool has no class-level skill picker" entry).
+        // Background's fixed 2-skill grant, the class's own "choose N"
+        // grant, and species/subrace traits that grant a skill (Keen
+        // Senses, Menacing, Skill Versatility's choice) — deduped.
         skill_proficiencies: [
           ...new Set(
-            [...this.selectedSkills, ...this.selectedClassSkills]
+            [
+              ...this.selectedSkills,
+              ...this.selectedClassSkills,
+              ...this.resolvedSpeciesGrants.skills,
+            ]
               .filter(Boolean)
               .map((id) => this.skillNameFor(id))
               .filter(Boolean)
@@ -1177,7 +1701,41 @@ export default {
             ...this.selectedBackgroundLanguages.filter(Boolean),
           ]),
         ],
-        features: [],
+        // Real mechanical wiring for species/subrace traits (2026-09-07,
+        // see TODO.md) — previously these fields either didn't exist on
+        // the shell at all (speed, darkvision, weapon/armor proficiencies —
+        // a real pre-existing bug: the class's OWN starting proficiency
+        // list was never written either) or had nowhere to record a
+        // species-granted resistance/tool proficiency (both new fields).
+        speed: this.displaySpeed,
+        darkvision: this.displayDarkvision,
+        weapon_proficiencies: [
+          ...new Set([
+            ...(this.selectedClass?.weapon_proficiencies ?? []),
+            ...this.resolvedSpeciesGrants.weapons,
+          ]),
+        ],
+        armor_proficiencies: [
+          ...new Set([
+            ...(this.selectedClass?.armor_proficiencies ?? []),
+            ...this.resolvedSpeciesGrants.armor,
+          ]),
+        ],
+        tool_proficiencies: this.resolvedSpeciesGrants.tools,
+        resistances: this.resolvedSpeciesGrants.resistances,
+        // Informational only, matching this app's DM-arbitrated design (see
+        // CLAUDE.md) — this app doesn't roll dice or resolve advantage
+        // itself anywhere, so this is a recorded fact for the sheet/DM to
+        // apply at the table, not a mechanic the app enforces.
+        saving_throw_advantages:
+          this.resolvedSpeciesGrants.savingThrowAdvantages,
+        // Species-granted cantrips/spells (High Elf's Cantrip, Forest
+        // Gnome's Natural Illusionist, Drow Magic, Infernal Legacy) ride
+        // in as ordinary features with spells_granted — spellUtils.js's
+        // existing feature-granted-spells aggregation (step 3 of
+        // getCharacterSpells) already picks these up with no engine
+        // changes needed, the same path Fey Touched/Shadow Touched use.
+        features: this.resolvedSpeciesGrants.spellFeatures,
         spells: [],
         active_effects: [],
         conditions: [],
@@ -1207,6 +1765,11 @@ export default {
             toLevel: 1,
             hpMethod: this.hpMethod,
             hpRolls: this.hpRolls,
+            spellChoices: {
+              cantrips: this.cantripDraftPicks,
+              spells: this.spellDraftPicks,
+            },
+            fightingStyleChoice: this.fightingStyleChoice,
           }),
         })
         const data = await res.json()
@@ -1216,12 +1779,75 @@ export default {
         this.loadFeatureDescriptions(
           data.newFeatures?.map((f) => ({ name: f.name, id: f.id }))
         )
+        const fightingStyleChoice = data.pendingChoices?.find(
+          (p) => p.type === 'fightingStyleChoice'
+        )
+        if (fightingStyleChoice) {
+          this.fightingStyleOptions = fightingStyleChoice.options
+          this.loadFeatureDescriptions(
+            fightingStyleChoice.options.map((o) => ({
+              name: `Fighting Style: ${o}`,
+            }))
+          )
+        }
+        if (data.description.spellcasting) {
+          if (!this.cantripOptions.length) {
+            this.fetchSpellOptions('cantripOptions', { cantripsOnly: true })
+          }
+          if (
+            data.description.spellcasting.style === 'known' &&
+            !this.spellOptions.length
+          ) {
+            this.fetchSpellOptions('spellOptions', { cantripsOnly: false })
+          }
+        }
       } catch (err) {
         this.error = err.message
         this.preview = null
       } finally {
         this.loading = false
       }
+    },
+
+    // Same route/shape LevelUpTool.vue's known-spell/cantrip picker uses —
+    // toLevel: 1 and a level-0 classes[] entry (see characterShell()) makes
+    // the engine treat this as the 0→1 transition, so cantripsBefore/
+    // knownBefore are both 0 and the "gained" count is just the full count.
+    async fetchSpellOptions(optionsProp, { cantripsOnly } = {}) {
+      if (!this.className) {
+        this[optionsProp] = []
+        return
+      }
+      try {
+        const res = await fetch('/api/engine/spell-choices', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            character: this.characterShell(),
+            className: this.className,
+            toLevel: 1,
+            cantripsOnly: Boolean(cantripsOnly),
+          }),
+        })
+        const data = await res.json()
+        this[optionsProp] = res.ok ? data.options ?? [] : []
+      } catch {
+        this[optionsProp] = []
+      }
+    },
+
+    // Shared by the cantrip and known-spell pickers — capped at `limit`,
+    // re-previews immediately so the "N more cantrips/spells" count and the
+    // patch.spells summary reflect the pick right away.
+    togglePick(listName, name, limit) {
+      const list = this[listName]
+      const i = list.indexOf(name)
+      if (i !== -1) {
+        list.splice(i, 1)
+      } else if (list.length < limit) {
+        list.push(name)
+      }
+      this.runPreview()
     },
 
     // features: array of {name, id} (id optional) — id, when present, skips
@@ -1234,17 +1860,6 @@ export default {
         const result = await lookupFeature(name, id)
         this.$set(this.featureDescriptions, name, result?.description ?? null)
       }
-    },
-
-    async rollHp() {
-      this.hpMethod = 'roll'
-      this.hpRolls = []
-      await this.runPreview()
-    },
-    setAverage() {
-      this.hpMethod = 'average'
-      this.hpRolls = []
-      this.runPreview()
     },
 
     // Resolves the Equipment tab's picks into real party_items.json entries
@@ -1314,7 +1929,7 @@ export default {
       this.speciesName = null
       this.subraceName = null
       this.speciesChoiceAbilities = []
-      this.useSpeciesBonus = true
+      this.useSpeciesBonus = false
       this.manualPlusTwoAbility = null
       this.manualPlusOneAbility = null
       this.backgroundChoice = null
@@ -1325,6 +1940,11 @@ export default {
       this.selectedBackgroundLanguages = []
       this.className = null
       this.baseScores = { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }
+      this.cantripOptions = []
+      this.cantripDraftPicks = []
+      this.spellOptions = []
+      this.spellDraftPicks = []
+      this.fightingStyleChoice = null
       this.preview = null
       this.activeTab = 'species'
     },
@@ -1435,6 +2055,11 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+.nct-ability-row--priority .nct-ability-label {
+  color: var(--accent, #b8860b);
+  text-decoration: underline dotted;
 }
 
 .nct-ability-label {
@@ -1562,6 +2187,29 @@ export default {
 .nct-feature-list {
   margin: 0.4rem 0;
   padding-left: 1.2rem;
+}
+
+.nct-spell-picker {
+  margin: 0.6rem 0;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.nct-pick-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  max-height: 12rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nct-note-inline {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
 }
 
 .has-tip {

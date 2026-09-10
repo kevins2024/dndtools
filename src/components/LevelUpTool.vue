@@ -20,10 +20,11 @@
 
       <select
         v-if="addableClasses.length"
-        v-model="selectedClassName"
+        :value="multiclassDropdownValue"
         class="lut-select"
+        @change="selectedClassName = $event.target.value || null"
       >
-        <option :value="null" disabled>+ Multiclass into…</option>
+        <option value="">+ Multiclass into…</option>
         <option v-for="c in addableClasses" :key="c.name" :value="c.name">
           + {{ c.name }}
         </option>
@@ -68,11 +69,11 @@
     <template v-else>
       <div class="lut-steps-row">
         <button
-          v-for="(step, i) in steps"
+          v-for="step in visibleSteps"
           :key="step.id"
           class="lut-step"
-          :class="{ active: activeStep === i }"
-          @click="activeStep = i"
+          :class="{ active: activeStep === step.index }"
+          @click="activeStep = step.index"
         >
           {{ step.label }}
         </button>
@@ -211,11 +212,15 @@
             </ul>
           </div>
 
-          <!-- ── One-time choices (ASI/feat, subclass) — always visible,
-               never behind a toggle: these are required, not optional
-               detail, and hiding them made it look like Confirm Level Up
-               was broken. ── -->
-          <div class="lut-onetime">
+          <!-- ── One-time choices (ASI/feat, subclass) — always visible on
+               the Feature tab specifically, never behind a further toggle
+               within it: these are required, not optional detail, and
+               hiding them made it look like Confirm Level Up was broken.
+               Scoped to activeStep===2 as of 2026-09-09 — previously this
+               whole block (spell pickers included) rendered under every
+               tab unconditionally, which is what put a subclass/feat picker
+               under Hit Points and New Spells too. ── -->
+          <div v-if="activeStep === 2" class="lut-onetime">
             <div
               v-if="pendingSubclassChoice || subclassChoiceDraft"
               class="lut-choice-card lut-choice-card--subclass"
@@ -250,20 +255,11 @@
                     far, not the full progression)</span
                   >
                 </p>
-                <div
-                  v-if="subclassFeaturesForChoice.length === 0"
-                  class="lut-note"
-                >
-                  Computing…
-                </div>
-                <ul v-else class="lut-feature-list">
-                  <li v-for="f in subclassFeaturesForChoice" :key="f">
-                    <strong>{{ f }}</strong>
-                    <span v-if="featureDescriptions[f]">
-                      — {{ featureDescriptions[f] }}</span
-                    >
-                  </li>
-                </ul>
+                <!-- The feature-name list used to be repeated here too
+                     (subclassFeaturesForChoice), but it's a strict subset of
+                     what the Feature tab's own newFeatures list already
+                     shows once a subclass is picked — removed 2026-09-09
+                     rather than shown twice. -->
               </div>
             </div>
 
@@ -333,33 +329,56 @@
                 </div>
 
                 <div v-if="asiFeatMode === 'asi'" class="lut-asi-form">
-                  <select
-                    v-model="asiSplit"
-                    class="lut-select"
-                    @change="submitAsi"
-                  >
-                    <option value="one">+2 to one ability</option>
-                    <option value="two">+1 to two abilities</option>
-                  </select>
-                  <select
-                    v-model="asiAbility1"
-                    class="lut-select"
-                    @change="submitAsi"
-                  >
-                    <option v-for="a in abilities" :key="a" :value="a">
-                      {{ a.toUpperCase() }}
-                    </option>
-                  </select>
-                  <select
-                    v-if="asiSplit === 'two'"
-                    v-model="asiAbility2"
-                    class="lut-select"
-                    @change="submitAsi"
-                  >
-                    <option v-for="a in abilities" :key="a" :value="a">
-                      {{ a.toUpperCase() }}
-                    </option>
-                  </select>
+                  <div v-if="priorityAbilities.length" class="lut-note">
+                    {{ selectedClassName }}'s most important abilities are
+                    usually
+                    <strong>{{
+                      priorityAbilities
+                        .map((a) => a.toUpperCase())
+                        .join(' and ')
+                    }}</strong>
+                    — hover any ability below for what it governs.
+                  </div>
+                  <div class="lut-asi-pick-row">
+                    <span class="lut-note-inline">+1</span>
+                    <select
+                      v-model="asiAbility1"
+                      class="lut-select"
+                      :title="abilityDescriptions[asiAbility1]"
+                      @change="submitAsi"
+                    >
+                      <option
+                        v-for="a in abilities"
+                        :key="a"
+                        :value="a"
+                        :title="abilityDescriptions[a]"
+                      >
+                        {{ a.toUpperCase() }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="lut-asi-pick-row">
+                    <span class="lut-note-inline">+1</span>
+                    <select
+                      v-model="asiAbility2"
+                      class="lut-select"
+                      :title="abilityDescriptions[asiAbility2]"
+                      @change="submitAsi"
+                    >
+                      <option
+                        v-for="a in abilities"
+                        :key="a"
+                        :value="a"
+                        :title="abilityDescriptions[a]"
+                      >
+                        {{ a.toUpperCase() }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="lut-note-inline">
+                    Pick the same ability twice for +2 to one ability, or two
+                    different abilities for +1 each.
+                  </div>
                 </div>
 
                 <div v-else class="lut-feat-form">
@@ -617,6 +636,79 @@
               </div>
             </div>
 
+            <!-- ── Fighting Style (Fighter 1st/Paladin 2nd/Ranger 2nd, one-time) ── -->
+            <div
+              v-if="pendingFightingStyleChoice || fightingStyleDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingFightingStyleChoice?.level ??
+                    fightingStyleChoiceLevel
+                  }}
+                  — Fighting Style
+                </div>
+                <select
+                  v-model="fightingStyleDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in fightingStyleOptions"
+                    :key="o"
+                    :value="o"
+                    :title="featureDescriptions[`Fighting Style: ${o}`]"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="fightingStyleDraft" class="lut-subclass-summary">
+                <strong>{{ fightingStyleDraft }}</strong>
+                <span
+                  v-if="
+                    featureDescriptions[`Fighting Style: ${fightingStyleDraft}`]
+                  "
+                >
+                  —
+                  {{
+                    featureDescriptions[`Fighting Style: ${fightingStyleDraft}`]
+                  }}</span
+                >
+              </div>
+            </div>
+
+            <div
+              v-if="
+                !pendingSubclassChoice &&
+                !subclassChoiceDraft &&
+                !pendingMulticlassSkillChoice &&
+                !multiclassSkillDraft &&
+                !pendingAsiChoice &&
+                !asiChoiceLevel &&
+                !pendingInvocationChoice &&
+                !invocationDraftPicks.length &&
+                !pendingPactBoonChoice &&
+                !pactBoonDraft &&
+                !pendingFightingStyleChoice &&
+                !fightingStyleDraft
+              "
+              class="lut-note"
+            >
+              No one-time choices at this level.
+            </div>
+          </div>
+
+          <!-- ── Spell-related one-time choices — always visible on the New
+               Spells tab specifically (moved out of the old always-visible-
+               under-every-tab layout 2026-09-09, which is what put a
+               subclass/feat picker under Hit Points and New Spells and made
+               Feature's own feature list look duplicated against these
+               cards' own summaries). ── -->
+          <div v-if="activeStep === 1" class="lut-onetime">
             <!-- ── Pact of the Tome's bonus cantrips ── -->
             <div
               v-if="pendingBonusSpellChoice || bonusCantripDraftPicks.length"
@@ -925,14 +1017,6 @@
 
             <div
               v-if="
-                !pendingSubclassChoice &&
-                !subclassChoiceDraft &&
-                !pendingAsiChoice &&
-                !asiChoiceLevel &&
-                !pendingInvocationChoice &&
-                !invocationDraftPicks.length &&
-                !pendingPactBoonChoice &&
-                !pactBoonDraft &&
                 !pendingBonusSpellChoice &&
                 !bonusCantripDraftPicks.length &&
                 !pendingNewCantrips &&
@@ -941,13 +1025,11 @@
                 !spellDraftPicks.length &&
                 !pendingSpellbookChoice &&
                 !spellbookDraftPicks.length &&
-                !(canSwapKnownSpell && knownLeveledSpellNames.length) &&
-                !pendingMulticlassSkillChoice &&
-                !multiclassSkillDraft
+                !(canSwapKnownSpell && knownLeveledSpellNames.length)
               "
               class="lut-note"
             >
-              No one-time choices at this level.
+              No new spell choices at this level.
             </div>
           </div>
 
@@ -1025,6 +1107,7 @@ import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
 import { lookupFeature, lookupSpell } from '@/utils/lookupService.js'
 import { getBonusSpellsAtLevel } from '@/utils/spellUtils.js'
+import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 
@@ -1094,7 +1177,6 @@ export default {
       subclassChoiceLevel: null,
 
       asiFeatMode: 'asi',
-      asiSplit: 'one',
       asiAbility1: 'str',
       asiAbility2: 'dex',
       // Sticky copy of pendingAsiChoice.level — same reason as
@@ -1137,6 +1219,19 @@ export default {
       pactBoonDraft: null,
       pactBoonChoiceLevel: null,
 
+      // ── Fighting Style (Fighter 1st/Paladin 2nd/Ranger 2nd, one-time) ──
+      // Options come straight off the pendingChoice itself (diffLevelUp
+      // already resolves the right per-class list), no separate catalog
+      // fetch needed the way Pact Boon's does — but they DO need caching
+      // into their own sticky array the same way pactBoonCatalog is, since
+      // pendingFightingStyleChoice itself goes null the instant a choice is
+      // made (the whole point of it being a pendingChoice), which would
+      // otherwise empty the <select>'s own option list out from under the
+      // just-picked value.
+      fightingStyleOptions: [],
+      fightingStyleDraft: null,
+      fightingStyleChoiceLevel: null,
+
       // ── Pact of the Tome's bonus cantrips (3, any class list) ──
       bonusCantripOptions: [], // fetched from POST /api/engine/spell-choices with pool:'any'
       bonusCantripSearch: '',
@@ -1176,11 +1271,8 @@ export default {
       multiclassSkillChoiceLevel: null,
 
       // savingName/saveError/justSaved come from the pendingCharacterSaves mixin.
-      steps: [
-        { id: 'hp', label: '① Hit Points' },
-        { id: 'spells', label: '② New Spells' },
-        { id: 'feature', label: '③ Feature' },
-      ],
+      // Tab row itself now renders from the `visibleSteps` computed (filters
+      // out an empty New Spells/Feature tab) — see that computed's comment.
     }
   },
 
@@ -1201,6 +1293,23 @@ export default {
       if (!this.selectedCharacter) return []
       const existing = new Set(this.classOptions.map((c) => c.name))
       return this.allClasses.filter((c) => !existing.has(c.name))
+    },
+    // The "+ Multiclass into…" dropdown shares selectedClassName with the
+    // existing-classes dropdown above it (both write to the same field —
+    // whichever was used last wins), but the two aren't always in sync: a
+    // freshly-selected character defaults selectedClassName to their FIRST
+    // existing class, which is never one of THIS dropdown's own options
+    // (addableClasses only lists classes the character doesn't have yet).
+    // A plain v-model there left a real, confirmed bug — a native <select>
+    // whose bound value matches none of its <option>s renders fully blank,
+    // no placeholder text either, not just "unselected" — so this computed
+    // only shows selectedClassName here when it's ACTUALLY one of this
+    // dropdown's own choices, falling back to '' (the placeholder) the
+    // rest of the time.
+    multiclassDropdownValue() {
+      return this.addableClasses.some((c) => c.name === this.selectedClassName)
+        ? this.selectedClassName
+        : ''
     },
     currentLevel() {
       if (!this.selectedClassName) return null
@@ -1271,6 +1380,15 @@ export default {
     // the "gained at this level" section for levels (5th/9th/13th/17th)
     // where expanded_spell_list unlocks more spells WITHOUT a matching
     // feature being re-granted.
+    abilityDescriptions() {
+      return ABILITY_DESCRIPTIONS
+    },
+    priorityAbilities() {
+      const classData = this.allClasses.find(
+        (c) => c.name === this.selectedClassName
+      )
+      return dnd.priorityAbilitiesForClass(classData)
+    },
     currentSubclassData() {
       const subclassName =
         this.subclassChoiceDraft ||
@@ -1331,15 +1449,66 @@ export default {
       const cr = table?.[String(this.targetLevel)]
       return cr == null ? null : this.formatCr(cr)
     },
-    // Feature names the currently-selected subclass draft actually grants at
-    // this level, straight from diffLevelUp's own subclassFeaturesGained
-    // (already computed against draftCharacter.classes[].subclass by
-    // applySubclassChoice below) — not just the whole newFeatures list, so a
-    // base-class feature that happens to land on the same level doesn't get
-    // shown here as if the subclass granted it.
-    subclassFeaturesForChoice() {
-      const groups = this.preview?.description?.subclassFeaturesGained ?? []
-      return groups.flatMap((g) => g.names)
+    // TODO.md polish pass (2026-09-10): whether the New Spells / Feature tabs
+    // have anything to show at the current class/level, so an empty one can
+    // be hidden from the tab row entirely rather than showing a bare "no
+    // changes" note. Hit Points is never hidden — every level grants HP.
+    // Both default to true while `preview` hasn't loaded yet, so tabs don't
+    // flicker in and out during a fetch.
+    newSpellsTabHasContent() {
+      if (!this.preview) return true
+      return !!this.preview.description?.spellcasting
+    },
+    featureTabHasContent() {
+      if (!this.preview) return true
+      const hasListedContent =
+        this.preview.newFeatures.length > 0 ||
+        this.newBonusSpellsThisLevel.length > 0 ||
+        !!this.destroyUndeadCrIncreaseThisLevel
+      // Every one-time choice card that renders under the Feature tab's own
+      // `lut-onetime` block (activeStep === 2) — see that block's own
+      // comment for why it's scoped here and not shared with New Spells.
+      const hasPendingChoice =
+        !!this.pendingSubclassChoice ||
+        !!this.subclassChoiceDraft ||
+        !!this.pendingMulticlassSkillChoice ||
+        !!this.multiclassSkillDraft ||
+        !!this.pendingAsiChoice ||
+        !!this.asiChoiceLevel ||
+        !!this.pendingInvocationChoice ||
+        this.invocationDraftPicks.length > 0 ||
+        !!this.pendingPactBoonChoice ||
+        !!this.pactBoonDraft ||
+        !!this.pendingFightingStyleChoice ||
+        !!this.fightingStyleDraft
+      return hasListedContent || hasPendingChoice
+    },
+    // Replaces the old fixed `steps` data array as the tab row's actual
+    // render source — filters out an empty New Spells/Feature tab and
+    // renumbers the circled digits so they stay sequential (①② instead of
+    // ①③ with a gap). Each entry keeps its real `index` (0/1/2, matching
+    // activeStep's fixed meaning throughout the rest of this component) so
+    // hiding a tab never touches the body's own activeStep === N branches.
+    visibleSteps() {
+      const CIRCLED = ['①', '②', '③']
+      const base = [
+        { id: 'hp', label: 'Hit Points', index: 0, visible: true },
+        {
+          id: 'spells',
+          label: 'New Spells',
+          index: 1,
+          visible: this.newSpellsTabHasContent,
+        },
+        {
+          id: 'feature',
+          label: 'Feature',
+          index: 2,
+          visible: this.featureTabHasContent,
+        },
+      ]
+      return base
+        .filter((s) => s.visible)
+        .map((s, i) => ({ ...s, label: `${CIRCLED[i]} ${s.label}` }))
     },
     // The flavor blurb for whichever subclass is currently picked in the
     // dropdown (or highlighted before picking, via subclassChoiceDraft) —
@@ -1374,27 +1543,24 @@ export default {
     // multi-level total.
     liveAsiDeltas() {
       if (!this.draftCharacter) return []
-      const picks =
-        this.asiSplit === 'one'
-          ? [{ ability: this.asiAbility1, amount: 2 }]
-          : [
-              { ability: this.asiAbility1, amount: 1 },
-              { ability: this.asiAbility2, amount: 1 },
-            ]
-      return picks
-        .filter((p) => p.ability)
-        .map((p) => {
-          const before = this.draftCharacter[`stat_${p.ability}`] ?? 10
-          // Capped at 20 to match asiFeat.js's real SCORE_CAP — otherwise
-          // this live preview could show an impossible "19 → 21" while the
-          // actual submitted resolution (computed server-side) already caps
-          // correctly and explains the cap via a warning after the fact.
-          return {
-            ability: p.ability,
-            before,
-            after: Math.min(20, before + p.amount),
-          }
-        })
+      // Two independent +1 picks, merged by ability so picking the same one
+      // twice correctly shows as a single +2 entry rather than two
+      // conflicting +1 entries both computed off the same "before" value —
+      // real bug found 2026-09-09, see submitAsi's own note for the
+      // matching engine-side half of this fix.
+      const amounts = {}
+      for (const ability of [this.asiAbility1, this.asiAbility2]) {
+        if (!ability) continue
+        amounts[ability] = (amounts[ability] ?? 0) + 1
+      }
+      return Object.entries(amounts).map(([ability, amount]) => {
+        const before = this.draftCharacter[`stat_${ability}`] ?? 10
+        // Capped at 20 to match asiFeat.js's real SCORE_CAP — otherwise
+        // this live preview could show an impossible "19 → 21" while the
+        // actual submitted resolution (computed server-side) already caps
+        // correctly and explains the cap via a warning after the fact.
+        return { ability, before, after: Math.min(20, before + amount) }
+      })
     },
     // Same idea for the Feat form: the name currently selected/typed,
     // whether or not Apply has been clicked yet.
@@ -1427,6 +1593,13 @@ export default {
       return (
         this.preview?.pendingChoices?.find(
           (p) => p.type === 'pactBoonChoice'
+        ) ?? null
+      )
+    },
+    pendingFightingStyleChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'fightingStyleChoice'
         ) ?? null
       )
     },
@@ -1567,6 +1740,7 @@ export default {
         !this.pendingNewKnownSpells &&
         !this.pendingSpellbookChoice &&
         !this.pendingMulticlassSkillChoice &&
+        !this.pendingFightingStyleChoice &&
         !this.levelCapExceeded
       )
     },
@@ -1673,6 +1847,14 @@ export default {
       const boon = this.pactBoonCatalog.find((b) => b.name === name)
       this.loadFeatureDescriptions([{ name, id: boon?.id }])
     },
+    fightingStyleDraft(name) {
+      if (!name) return
+      // No id available client-side (options come straight off the
+      // pendingChoice, no separate catalog fetch) — safe to fuzzy-match on
+      // name alone since every class's version of a given style shares
+      // identical real mechanical text.
+      this.loadFeatureDescriptions([{ name: `Fighting Style: ${name}` }])
+    },
     // Every spell-picking draft array shares loadSpellDescriptions (its own
     // cache, spellDescriptions — see the data() comment) so each picker's
     // summary panel can show what a pick actually does instead of a bare
@@ -1763,6 +1945,9 @@ export default {
       this.showAllInvocations = false
       this.pactBoonDraft = null
       this.pactBoonChoiceLevel = null
+      this.fightingStyleOptions = []
+      this.fightingStyleDraft = null
+      this.fightingStyleChoiceLevel = null
       this.bonusCantripOptions = []
       this.bonusCantripSearch = ''
       this.bonusCantripDraftPicks = []
@@ -2080,6 +2265,7 @@ export default {
                 : null,
             spellbookChoices: this.spellbookDraftPicks,
             multiclassSkillChoice: this.multiclassSkillDraft,
+            fightingStyleChoice: this.fightingStyleDraft,
           }),
         })
         const data = await res.json()
@@ -2108,6 +2294,19 @@ export default {
           (p) => p.type === 'pactBoonChoice'
         )
         if (pactBoonChoice) this.pactBoonChoiceLevel = pactBoonChoice.level
+
+        const fightingStyleChoice = data.pendingChoices?.find(
+          (p) => p.type === 'fightingStyleChoice'
+        )
+        if (fightingStyleChoice) {
+          this.fightingStyleChoiceLevel = fightingStyleChoice.level
+          this.fightingStyleOptions = fightingStyleChoice.options
+          this.loadFeatureDescriptions(
+            fightingStyleChoice.options.map((o) => ({
+              name: `Fighting Style: ${o}`,
+            }))
+          )
+        }
 
         const bonusSpellChoice = data.pendingChoices?.find(
           (p) => p.type === 'bonusSpellChoice'
@@ -2239,10 +2438,23 @@ export default {
       // longer sees it as unresolved), so a SECOND field edit (e.g.
       // changing your mind on which ability) would read null.level and
       // throw if this read pendingAsiChoice directly.
-      const increases =
-        this.asiSplit === 'one'
-          ? { [this.asiAbility1]: 2 }
-          : { [this.asiAbility1]: 1, [this.asiAbility2]: 1 }
+      //
+      // Two independent +1 picks, summed by ability — NOT built as
+      // `{ [asiAbility1]: 1, [asiAbility2]: 1 }`. Real bug found 2026-09-09:
+      // when both dropdowns pick the SAME ability, that object-literal form
+      // silently collides on the duplicate key (JS keeps only the last
+      // write), producing `{str: 1}` instead of `{str: 2}` — a total of 1,
+      // which the engine correctly rejects ("must total +2"), surfacing as
+      // a confusing error for an otherwise-legal +2-to-one-ability pick.
+      // Summing explicitly makes "pick the same ability twice" a valid,
+      // intentional way to reach +2 to one ability, matching the UI's own
+      // two-dropdowns-both-labeled-+1 design (no separate "+2 to one /
+      // +1 to two" mode toggle needed).
+      const increases = {}
+      for (const ability of [this.asiAbility1, this.asiAbility2]) {
+        if (!ability) continue
+        increases[ability] = (increases[ability] ?? 0) + 1
+      }
       this.$set(this.asiOrFeatResolutions, this.asiChoiceLevel, {
         type: 'asi',
         increases,
@@ -2641,6 +2853,17 @@ export default {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.lut-asi-pick-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lut-note-inline {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
 }
 
 .lut-text-input {

@@ -7,5 +7,12 @@
     "6": ["pub_grave-touched"],
     "10": ["pub_necrotic-husk"],
     "14": ["pub_spirit-projection"]
+  },
+  "expanded_spell_list": {
+    "1": ["Bane", "False Life"],
+    "2": ["Blindness/Deafness", "Phantasmal Force"],
+    "3": ["Phantom Steed", "Speak with Dead"],
+    "4": ["Death Ward", "Greater Invisibility"],
+    "5": ["Antilife Shell", "Cloudkill"]
   }
 }

@@ -71,6 +71,7 @@ const {
   loadSpecies,
   listSpecies,
   applySpeciesBonus,
+  traitsFor,
 } = require('./rules/species')
 const { listBackgrounds, loadBackground } = require('./rules/backgrounds')
 const { listSkills, loadSkill } = require('./rules/skills')
@@ -130,6 +131,7 @@ module.exports = {
   loadSpecies,
   listSpecies,
   applySpeciesBonus,
+  traitsFor,
   listBackgrounds,
   loadBackground,
   listSkills,

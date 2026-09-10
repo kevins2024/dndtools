@@ -7,14 +7,16 @@
       "pub_channel-divinity-champion-challenge",
       "pub_channel-divinity-turn-the-tide"
     ],
-    "7": [
-      "pub_crown-divine-allegiance"
-    ],
-    "15": [
-      "pub_unyielding-spirit"
-    ],
-    "20": [
-      "pub_exalted-champion"
-    ]
+    "7": ["pub_crown-divine-allegiance"],
+    "15": ["pub_unyielding-spirit"],
+    "20": ["pub_exalted-champion"]
+  },
+  "oath_spells_by_level": {
+    "3": ["Command", "Compelled Duel"],
+    "5": ["Warding Bond", "Zone of Truth"],
+    "9": ["Aura of Vitality", "Spirit Guardians"],
+    "13": ["Banishment", "Guardian of Faith"],
+    "17": ["Circle of Power", "Geas"],
+    "_notes": "Real PHB/SCAG Oath of the Crown table — missing entirely until 2026-09-08 (this subclass's own features_by_level was built and verified against Enauweyn's real feature list, but its oath-spell table was simply never added in that pass, unlike sibling subclasses built the same session). Enauweyn's own data already had Aura of Vitality/Spirit Guardians (9th) and Warding Bond (5th) correctly tagged type:'oath', confirming this really is the right table — she was just missing Zone of Truth (5th) and both 3rd-level spells."
   }
 }

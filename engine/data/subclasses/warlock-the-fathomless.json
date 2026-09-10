@@ -7,5 +7,13 @@
     "6": ["pub_guardian-coil"],
     "10": ["pub_grasping-tentacles"],
     "14": ["pub_fathomless-plunge"]
+  },
+  "expanded_spell_list": {
+    "1": ["Create or Destroy Water", "Thunderwave"],
+    "2": ["Gust of Wind", "Silence"],
+    "3": ["Lightning Bolt", "Sleet Storm"],
+    "4": ["Control Water", "Summon Elemental"],
+    "5": ["Bigby's Hand", "Cone of Cold"],
+    "_notes": "4th-level Summon Elemental is flavored as water-only for this patron (real text: 'you can only summon a Water elemental'), and 5th-level Bigby's Hand is flavored as a tentacle rather than a hand — both real spell names kept as-is so they resolve against the spell catalog; the reflavor is cosmetic, not a mechanical change."
   }
 }

@@ -57,7 +57,6 @@
           "Workshop space (still needed)"
         ],
         "features": ["Window box outside", "New bench at door"],
-        "npcs_present": ["Marcus Freeborn"],
         "notes": "Marcus managing. Miren and Dav assisting."
       },
       {
@@ -65,7 +64,6 @@
         "district": "Docks Ward",
         "type": "dawn_blades_business",
         "description": "Reformed loan shark operation.",
-        "npcs_present": ["Jessyl Denmar", "Big Tam", "Gritch"],
         "notes": "70/30 split favoring Dawn Blades. Approximately 25-30g/month income."
       },
       {
@@ -73,7 +71,6 @@
         "district": "Merchant Quarter (adjacent)",
         "type": "establishment",
         "description": "Helena's establishment. Discreet, well-appointed, charges enough to keep out trouble. Information brokering center. Regular clientele from upper social layer.",
-        "npcs_present": ["Helena Sable"],
         "notes": ""
       },
       {
@@ -81,7 +78,6 @@
         "district": "Merchant Quarter (adjacent)",
         "type": "tavern",
         "description": "Neutral ground tavern with private Rookery meeting rooms. Near the Gilt Rose.",
-        "npcs_present": ["Idy Rossel"],
         "notes": ""
       },
       {
@@ -89,7 +85,6 @@
         "district": "Docks Ward",
         "type": "tavern",
         "description": "Siv's regular haunt.",
-        "npcs_present": [],
         "notes": ""
       },
       {
@@ -97,7 +92,6 @@
         "district": "Docks Ward",
         "type": "workshop",
         "description": "Leatherworker. Needle and hide sign above door. Smells of leather, oil, and something harder to place underneath.",
-        "npcs_present": ["Calla Denn"],
         "notes": ""
       },
       {
@@ -105,7 +99,6 @@
         "district": "Trade District (adjacent)",
         "type": "workshop",
         "description": "Weaponsmith.",
-        "npcs_present": ["Torvald Ironwood"],
         "notes": ""
       },
       {
@@ -113,7 +106,6 @@
         "district": "Docks Ward",
         "type": "property",
         "description": "Wooden warehouse, medium sized, had a small stone basement with cells in it that is magically reinforced to be waterproofed, necessary for the water table.",
-        "npcs_present": [],
         "notes": "Long Arm Trading property."
       },
       {
@@ -121,7 +113,6 @@
         "district": "Trade District (adjacent)",
         "type": "government",
         "description": "Captain Crane's domain. Holding cells inside.",
-        "npcs_present": ["Captain Crane"],
         "notes": "Duty sergeant recognizes Vaz on sight."
       },
       {
@@ -129,7 +120,6 @@
         "district": "Arena District",
         "type": "venue",
         "description": "Copper, Silver, and Gold tiers. Morning sessions start eighth bell. Betting available.",
-        "npcs_present": [],
         "notes": "Dawn Blades registered a handful of teams."
       },
       {
@@ -137,7 +127,6 @@
         "district": "Harbor front",
         "type": "shop",
         "description": "Chandler's shop. Casvath coastal relay access point.",
-        "npcs_present": ["Morrow", "Selt"],
         "notes": "Ask for Morrow, say 'grey tide is running'. Messages sent within the hour along coastal road north."
       },
       {
@@ -145,7 +134,6 @@
         "district": "Trade District",
         "type": "job_board",
         "description": "Legitimate mercenary job board.",
-        "npcs_present": ["Darius Rent"],
         "notes": "Erasmus probably checks here."
       },
       {
@@ -153,7 +141,6 @@
         "district": "Docks Ward",
         "type": "tavern",
         "description": "Pretty rough and tumble place",
-        "npcs_present": [],
         "notes": "Disrupted after Dren's death."
       },
       {
@@ -161,7 +148,6 @@
         "district": "Academic Quarter",
         "type": "guild",
         "description": "Run by Finwick Gearspring, elderly gnome. Exploration and ruins work.",
-        "npcs_present": [],
         "notes": ""
       },
       {
@@ -169,7 +155,6 @@
         "district": "Merchant Quarter (adjacent)",
         "type": "inn",
         "description": "Cut above typical inn. Quiet. Three streets from the Gilt Rose.",
-        "npcs_present": [],
         "notes": "Ossivane Relk stayed here before departing for Argentveil."
       }
     ],
@@ -259,18 +244,6 @@
             "notes": ""
           }
         ],
-        "npcs_present": [
-          "Ledwent",
-          "Cruze",
-          "Torsten",
-          "Gunner",
-          "Crispin",
-          "Tova",
-          "Sovi",
-          "Davoreen",
-          "Legend",
-          "Kerra Flint"
-        ],
         "notes": ""
       },
       {
@@ -278,7 +251,6 @@
         "district": "Harbor District",
         "type": "government",
         "description": "Solid two-story stone, official signage. Ground floor clerk window with queue. Exterior stairs to upper office. Curtained upper window, heavy door.",
-        "npcs_present": ["Rendall"],
         "notes": "Harbor watch active on all three Dawn Blades ships."
       },
       {
@@ -293,7 +265,6 @@
         "district": "Harbor District",
         "type": "clinic",
         "description": "Coppersalt Lane — narrow street that doesn't appear on official maps. Fish smell, old rope. Blue shutter, grey door, no sign. Everyone knows it, nobody talks about it.",
-        "npcs_present": ["Legend"],
         "notes": "Removes collars."
       },
       {
@@ -301,7 +272,6 @@
         "district": "Harbor District",
         "type": "tavern",
         "description": "Harbor area. Bren the proprietor, no questions asked.",
-        "npcs_present": [],
         "notes": "Vaz has room paid week upfront. Two keys to bank strongbox held by Vaz."
       },
       {
@@ -309,7 +279,6 @@
         "district": "Merchant Quarter",
         "type": "bank",
         "description": "Solid stone, brass fittings, cool interior, wood paneled. Long counter with clerk. Strongbox room private, small, unremarkable.",
-        "npcs_present": [],
         "notes": "Dawn Blades strongbox registered under assumed name, Salt Hook address. Contains: negotiable notes (~39,000g)."
       },
       {
@@ -317,7 +286,6 @@
         "district": "Northern Market",
         "type": "business",
         "description": "Thorngate Row. Ground floor warehouse, office above.",
-        "npcs_present": [],
         "notes": "Went dark. Unoccupied now."
       },
       {
@@ -325,7 +293,6 @@
         "district": "Merchant District",
         "type": "residence",
         "description": "Respectable merchant district. Neither wealthy enough to attract attention nor poor enough to suggest trouble. Front room carefully tidy.",
-        "npcs_present": ["Harwick"],
         "notes": "Relay network documents on table."
       },
       {
@@ -333,7 +300,6 @@
         "district": "Harbor District",
         "type": "workshop",
         "description": "Sailmaker.",
-        "npcs_present": [],
         "notes": "Three sets Dawn Blades flags made here."
       },
       {
@@ -341,7 +307,6 @@
         "district": "Merchant Quarter",
         "type": "shop",
         "description": "Antiquities dealer.",
-        "npcs_present": ["Rosten Alurath"],
         "notes": "Worth a visit."
       }
     ],
@@ -360,21 +325,18 @@
         "name": "Trevash Harbor",
         "type": "harbor",
         "description": "Fisherman's moorings.",
-        "npcs_present": [],
         "notes": "Aldric and Pell tie up at fisherman's moorings."
       },
       {
         "name": "Broken Tooth Cove",
         "type": "hidden_anchorage",
         "description": "2 miles north of Trevash. Rock formation looks like a broken tooth from the water. Deep enough for a ship. Completely hidden from road.",
-        "npcs_present": [],
         "notes": "Only Aldric and Pell know it. Offered to Dawn Blades as hidden anchorage asset."
       },
       {
         "name": "Waystation (Northern Road)",
         "type": "waystation",
         "description": "On the road north of Trevash.",
-        "npcs_present": [],
         "notes": "Wanted poster for Vaz posted here — 400g reward, Meridian Trading House contact. Road guard encounter happened here."
       }
     ],
@@ -405,7 +367,6 @@
         "name": "Petyr Ostwick's Farm",
         "type": "farm",
         "description": "Ostwick family farm.",
-        "npcs_present": [],
         "notes": "Dawn Blades acquired the Khemrise vineyard estate from this family. Petyr based here."
       }
     ],
@@ -425,8 +386,44 @@
         "name": "Argentveil City Council",
         "type": "government",
         "description": "Sitting members include Galealzre.",
-        "npcs_present": [],
         "notes": ""
+      },
+      {
+        "name": "Myderian House",
+        "type": "tea_house",
+        "district": "Upper Merchant Quarter",
+        "notes": "The kind of establishment that has been serving tea to the same caliber of clientele for so long the furniture has opinions. Quiet, warm, serious people come here to think. Corvel Andris drinks tea here every morning. Dawn Blades have had significant meetings here."
+      },
+      {
+        "name": "Silverline Court",
+        "type": "street",
+        "district": "Upper Merchant Quarter",
+        "notes": "Narrow, well-maintained lane between the main commercial streets and the residential areas above. Stone construction, older than neighbors, settled and permanent. Professional rather than commercial — offices, studios, the occasional private residence. Dawn Blades connections: Duvrak's enchantment studio, Hallan's property office at the quiet end. Walking distance to Linden Street, Myderian House, and the harbor end of the merchant quarter. Has become the Dawn Blades' professional neighborhood in Argentveil without anyone planning it."
+      },
+      {
+        "name": "The Open Hand",
+        "type": "mercenary_board",
+        "district": "Merchant Quarter",
+        "notes": "Argentveil's primary legitimate mercenary work board. Three sections: Skilled Labor, Maritime, Combat and Security. Staffed by Breswick, who has run it fifteen years with the organized efficiency of someone who considers chaos a personal failing. Dawn Blades have posted and recruited here."
+      },
+      {
+        "name": "Temple of Torven",
+        "type": "temple",
+        "district": "Temple District",
+        "notes": "Notably less grand than its neighbors. Not neglected — unpretentious. Carving above the door depicts hands exchanging something. Symbol: two roads crossing, small circle at center containing an open hand. Community board near the entrance posts civic needs rather than commercial ones. Where Dovan was found. Torven's followers pay attention to trade routes and people who move along them."
+      },
+      {
+        "name": "Temple of Veleth",
+        "type": "temple",
+        "district": "Temple District",
+        "street": "Lacemaker Street",
+        "notes": "Smaller than its neighbors, warm stone exterior, carved lintel depicting two hands reaching toward each other without quite touching. Warm and candlelit even in the afternoon. Smell of something floral rather than incense. Open at all hours. Three or four worshippers in private contemplation at any given time. Revven based here before joining Dawn Blades."
+      },
+      {
+        "name": "Torven Forge",
+        "type": "forge",
+        "district": "Temple District adjacent",
+        "notes": "Bryndis operates here. Divine commission work only — items made in service of a deity's domain. Two streets from Nossa Valessa."
       },
       {
         "id": "locations_watchtower_island",
@@ -435,7 +432,16 @@
         "subtype": "island",
         "region": "Argentveil coastal waters",
         "status": "protected",
-        "notes": "Small island approximately two hundred yards across at widest point. Ancient stone watchtower at center, highest point on the island. One natural landing spot on the south face, cliff or rock everywhere else. Home to a selkie community with historical and legal claim to the island predating Argentveil's establishment. Claim formalized through Dawn Blades intervention and Galealzre's council work, first legal framework established for aquatic species land rights in Fynesmarch. Selkies maintain the island and the watchtower. Strange lights reported from the tower periodically — confirmed as selkie practice rather than threat. Sael knows the approach well."
+        "notes": "Small island approximately two hundred yards across at widest point. Ancient stone watchtower at center, highest point on the island. One natural landing spot on the south face, cliff or rock everywhere else. Home to a selkie community with historical and legal claim to the island predating Argentveil's establishment. Claim formalized through Dawn Blades intervention and Galealzre's council work — the first legal framework established for aquatic species land rights in Fynesmarch. Selkies maintain the island and the watchtower. Strange lights reported from the tower periodically — confirmed as selkie practice rather than threat. Sael knows the approach well."
+      },
+      {
+        "id": "locations_argentveil_orc_neighborhood",
+        "name": "Orc Neighborhood",
+        "type": "location",
+        "subtype": "district",
+        "region": "Argentveil",
+        "status": "known_to_party",
+        "notes": "A self-contained community within Argentveil with its own internal commerce and social structure. Previously operated without formal external trade relationships. Has an elder smith who works in pre-separation orcish techniques — old style metalwork predating the clan separation. Drevakh serves as internal community contact. Orvha handles all external commercial relationships. Established first formal external trade partnership with Long Arm Trading in Year 468. The neighborhood sources grain and hops from farming families connected through Orvha's network. The community's orc deity is Ghorrakh, god of endurance — worship observed publicly during the Spring Festival, including fire-walking."
       },
       {
         "name": "The Measured Word",
@@ -444,28 +450,24 @@
         "location": "Argentveil",
         "district": "Scholar's Lane",
         "status": "operational",
-        "npcs_present": [],
         "notes": "Behind the transmutation spire. Run by a retired wizard who makes approximately half his own stock. Worth visiting for unusual or crafted magical supplies."
       },
       {
         "name": "The Glass Sipper",
         "type": "tea_house",
         "description": "Next door to a glassblower, all their pots and cups are hand-blown and unique. Some of them supposedly make the tea taste different and you never know what you'll get. The glassblower refuses to make anything he finds ugly, so it has a stamp of his personality inside as well.",
-        "npcs_present": [],
         "notes": ""
       },
       {
         "name": "The Fork & Roger",
         "type": "tavern",
         "description": "Harbor area, good ale, adequate food, good place to keep an eye on the harbor. ",
-        "npcs_present": [],
         "notes": ""
       },
       {
         "name": "Linden Street Antiquities Market",
         "type": "market",
         "description": "Where Ossivane Relk operates.",
-        "npcs_present": ["Ossivane Relk"],
         "notes": ""
       },
       {
@@ -481,36 +483,70 @@
       {
         "name": "Vethran & Son",
         "type": "armorer",
-        "district": "Commerce District",
-        "npcs_present": ["Wainkur (the son)"]
+        "district": "Commerce District"
       },
       {
         "name": "Torvaine's Steel",
         "type": "weapons",
         "district": "Commerce District",
-        "npcs_present": ["Torvaine"],
         "notes": "By referral only"
       },
       {
         "name": "Forged & Found",
         "type": "weapons",
         "district": "Commerce District",
-        "npcs_present": ["Kovran"],
         "notes": "Red awning"
       },
       {
         "name": "DUVRAK",
         "type": "enchanter",
         "district": "Upper Merchant Quarter",
-        "npcs_present": ["Duvrak"],
         "notes": "referral only"
       },
       {
         "name": "The Folded Page",
         "type": "antiquities_shop",
         "description": "Harbor end of the merchant quarter, Argentveil. Older than its neighbors, single room, shelves floor to ceiling on every wall. Stock is curated rather than comprehensive — nothing arrives here accidentally. The owner is an elderly man of indeterminate age.",
-        "npcs_present": [],
         "notes": "Vaz has an open account of sorts — proprietor will contact when something relevant arrives."
+      },
+      {
+        "name": "The Saltknife",
+        "type": "tavern",
+        "region": "Argentveil",
+        "description": "Harbor district tavern — low ceiling, working-class clientele, the kind of place where questions aren't asked because most patrons have reasons not to answer them. Bar along the left wall, rear door to kitchen and alley, stairs to rentable rooms above.",
+        "notes": "Used as the Order of the Pale Road's Argentveil meeting and handler point. Drisna, the Order's regional contact, operated from a corner table here with a defensible sightline to the front door and stairs. She was killed outside the tavern by the party.",
+        "flair": "Unremarkable by design. Nothing about the Saltknife announces what it's used for — good sausage and eggs, a barman with a permanent thousand-yard stare, and a corner table that has quietly hosted more consequential conversations than anyone drinking there would guess."
+      },
+      {
+        "name": "Calven's Retort and Rule",
+        "type": "shop",
+        "subtype": "scientific_supplies",
+        "district": "Academic Quarter, behind the transmutation spire cluster",
+        "status": "operational",
+        "description": "Narrow shopfront shaded most of the day by the spire to its west. Shelves of measuring instruments, graduated glassware, mineral samples in labeled jars, lens sets, reference texts on natural philosophy and elemental theory. The kind of shop that exists because serious researchers need materials that don't fit an apothecary or a magical supplier. Smells of cedar and reagents.",
+        "notes": "Owner Tiersen departed for Torwald Day 92-93. Shop's future ownership undetermined — genuinely useful business with real academic clientele, not purely a front. Worth revisiting if Dawn Blades want a legitimate research supply foothold in Argentveil."
+      },
+      {
+        "name": "The Coppervein Bathhouse",
+        "type": "bathhouse",
+        "district": "Merchant quarter, Coppervein Street",
+        "status": "operational",
+        "description": "Stone building, well maintained, cedar and eucalyptus steam drifting from a low street-level vent. Reception desk, private room rentals available long-term. Corridor of four rooms — three for bathing, one rented as private space ('the reading room') separate from the bath function.",
+        "notes": "Manager took a long-term rental from 'Fetch' network without asking questions — coin was good. Discovered Day 89 as a letter-drop and meeting location for the compound supply chain. Manager cooperative once pressured. Status of the reading room rental now unknown — likely vacated."
+      },
+      {
+        "name": "Crestfall House",
+        "district": "Anchor Row",
+        "type": "residence",
+        "description": "Middle-of-row townhouse, modest but maintained, buildings leaning slightly toward each other overhead. Window boxes doing the work gardens can't in this density. Side passage leads to a rear courtyard, standard for the row.",
+        "notes": "Address of Davan (factor's man, green coat), number seventeen. Used as an operational base for the subsidiary organization's Argentveil cargo arrangements. Two occupants captured here Year 2, Day 88 — Davan released with standing arrangement to find him at the Copper Wheel in Khemrise if needed."
+      },
+      {
+        "name": "Adrift",
+        "type": "inn",
+        "district": "Harbor district",
+        "description": "Loud enough to suggest real business, settled enough to suggest it's never had to prove anything. Salt-heavy air, good dark timber, shutters kept half-closed against harbor glare. The kind of place where a corner table with sightlines to both door and bar isn't hard to find if you know to look for one.",
+        "notes": ""
       }
     ],
     "flair": "The warmest, wealthiest, most cosmopolitan city in Fynesmarch. People come here to be seen, to spend money, and to reinvent themselves. Fashion and ambition move faster here than anywhere else on the coast. Every magic school has an academy here and magical goods and users are commonplace. Very modern and very large.",
@@ -539,7 +575,7 @@
           "wealth_source": "Dragon slaying centuries ago. Hatched and raised two brass dragons, one killed in battle, one escaped into the wilds and has not been seen since. Converted draconic wealth into land, ownership, and taxation.",
           "valdmere_presence": "Largest district in the city. Residents pay a tax to the family. Militaristic, professionally trained forces. Not numerous but exceptionally capable.",
           "appearance": "All family armaments and crests feature polished brass and draconic motifs.",
-          "notes": "Abandoned their original family name so long ago it has been forgotten by all but a few. Renamed themselves Lithcai'nael — roughly 'owners of the sky's wings.' The escaped brass dragon is a permanent liability — brass dragons are famously talkative and it carries centuries of family secrets."
+          "notes": "Abandoned their original family name so long ago it has been forgotten by all but a few. Renamed themselves Lithcai'nael — roughly 'owners of the sky's wings.' The escaped brass dragon is a permanent liability — brass dragons are famously talkative and it carries centuries of family secrets. The family's entire strategy — building alliances, establishing presence in every growing city, making itself indispensable to as many people and factions as possible — is explicitly understood within the family as long-term preparation for an eventual, unpredictable reckoning with the dragon when it finally chooses to reveal itself, since it may return as an enemy or as something else entirely and that uncertainty is treated as its own kind of threat."
         },
         {
           "name": "Gaermuion",
@@ -620,7 +656,6 @@
         "type": "inn",
         "district": "Main street",
         "description": "Better than it sounds. Run by a woman who knows everything worth knowing about Valdmere and a fair amount worth knowing about everything else. Does not share information directly — tells you what she thinks you need when she thinks you need it.",
-        "npcs_present": ["Zav'rel"],
         "notes": "Recommended by Osmer. Tell her Osmer sent you."
       },
       {
@@ -720,7 +755,6 @@
         "name": "Cindermarch Fortress",
         "type": "military",
         "description": "The fortress proper.",
-        "npcs_present": ["Salla Kern"],
         "notes": "Salla Kern is Master-at-Arms. Where Kerra was enslaved before transfer to Khemrise estate. Caravan escort destination early campaign. Salla Kern sent job offer regarding Kerra — follow-up pending."
       }
     ],
@@ -741,7 +775,6 @@
         "name": "Orvath Banking Institution",
         "type": "bank",
         "description": "Anonymous deposits, no personal appearance required for withdrawal.",
-        "npcs_present": [],
         "notes": ""
       }
     ],
@@ -760,35 +793,24 @@
         "name": "Crossroads Rest",
         "type": "waystation",
         "description": "Waystation approximately 2 days north of Ravenquay on the main road.",
-        "npcs_present": [],
         "notes": ""
-      },
-      {
-        "name": "Valley Ambush Site",
-        "type": "wilderness",
-        "description": "Natural funnel in highland terrain north of Ravenquay.",
-        "npcs_present": [],
-        "notes": "Where Malrik and Vess were intercepted by Dawn Blades. Both turned, sent north with false all-clear message."
       },
       {
         "name": "Coastal Road",
         "type": "road",
         "description": "Runs between Ravenquay and Khemrise along the coast.",
-        "npcs_present": [],
         "notes": "Casvath relay network operates along it. Harwick relay network being built alongside it with staging points."
       },
       {
         "name": "Verath Ohn",
         "type": "island_or_landmark",
         "description": "Off the southern coast, in the water.",
-        "npcs_present": [],
         "notes": ""
       },
       {
         "name": "Forest Trolls, roughly",
         "type": "village",
         "description": "Northwest of Khemrise, several days journey.",
-        "npcs_present": ["Wend"],
         "notes": ""
       },
       {
@@ -877,7 +899,6 @@
         "type": "inn",
         "district": "Dock district, three streets back from lower harbour",
         "description": "Quiet older stone building set back from the waterfront. Two stories with internal courtyard. No street signage. Common room with hearth on ground floor. Four rooms — two larger courtyard-facing, two smaller street-facing. Breakfast included, dinner available on request.",
-        "npcs_present": ["Griffas"],
         "price": "Reasonable nightly rate per room",
         "notes": "Recommended by Quiveth. Caters to traders and merchants rather than sailors."
       },
@@ -885,7 +906,6 @@
         "name": "Sorreval and Sons",
         "type": "trading_house",
         "description": "Three generation trading house. Permanent frontage in merchant district. House mark above door in iron.",
-        "npcs_present": ["Taenya Sorreval", "Davan"],
         "notes": "Formal trade partnership with Dawn Blades. Handles Tilawam-side storage, buyers, suppliers.",
         "id": "locations_tilawam_2"
       },
@@ -893,7 +913,6 @@
         "name": "Ssivanak's Workshop",
         "type": "shop",
         "description": "Upper district. Dark green door, no signage. Dense, organized interior. Back room houses large items.",
-        "npcs_present": ["Ssivanak"],
         "notes": "Only magical item dealer in Tilawam.",
         "id": "locations_tilawam_3"
       },
@@ -901,7 +920,6 @@
         "name": "Brama Coinsmith's Office",
         "type": "government_office",
         "description": "Upper district. Identified by copper door.",
-        "npcs_present": ["Brama Coinsmith"],
         "notes": "",
         "id": "locations_tilawam_4"
       },
@@ -909,7 +927,6 @@
         "name": "Artificers Guild",
         "type": "guild",
         "description": "Craftsman district. Workshop-focused, primarily mechanical and alchemical disciplines. Four generation precision instrument family associated.",
-        "npcs_present": [],
         "notes": "Gifted vibration deterrent device to party. Not enchantment-capable.",
         "id": "locations_tilawam_5"
       },
@@ -917,7 +934,6 @@
         "name": "Stillwater Harbour",
         "type": "harbour",
         "description": "Natural deep water anchorage inside southern archipelago island cluster. Invisible from exterior approach. Channel entrance narrow with two turns. Iron chain across inner channel. Two buildings against interior rock face, one partially demolished. Existing dock infrastructure. Capacity for six ships.",
-        "npcs_present": [],
         "notes": "Former Stillwater pirate base. Claimed by Dawn Blades. Eastern gap gated. Chain key held by Dawn Blades. Repair and development project underway.",
         "id": "locations_tilawam_6"
       }
@@ -928,7 +944,7 @@
   {
     "name": "Halvenmoren",
     "type": "town",
-    "description": "Border town on the Fynesmarch side of Dunric Pass. Old enough to have two naming traditions visible in its architecture — the newer Fynesmarch quarter descriptive and practical, the older Torwald-origin buildings heavier, stonework that suggests someone's grandfather built to last. Sits at the mouth of the pass road. Most traffic through here is either going somewhere or coming from somewhere cold.",
+    "description": "Border town on the west side of Dunric Pass. Old enough to have two naming traditions visible in its architecture — the newer Fynesmarch-influenced quarter descriptive and practical, the older Torwald-origin buildings heavier, stonework that suggests someone's grandfather built to last. Sits at the mouth of the pass road. Most traffic through here is either going somewhere or coming from somewhere cold.",
     "climate": "Cooler than Argentveil, exposed to pass weather when the wind turns. Spring arrives late here.",
     "notes": "Primary gateway settlement for Dunric Pass.",
     "districts": [],
@@ -937,26 +953,85 @@
         "name": "The Greyed Lintel",
         "type": "inn_tavern",
         "description": "Two-story stone inn, ground floor tavern. The lintel stone above the main door is noticeably lighter than the surrounding stonework — replaced after a fire three owners ago. Name stuck.",
-        "npcs_present": [],
         "notes": "Primary gathering point for stranded merchants and locals alike. Louder than usual given the pass closure."
       },
       {
         "name": "Pass Road Gate",
         "type": "checkpoint",
         "description": "Stone gatehouse at the north edge of town where the road narrows toward the pass. Maintained by two town guards of variable commitment.",
-        "npcs_present": [],
         "notes": "Merchants have been stacking up here for eleven days. The mood is deteriorating."
       },
       {
         "name": "Jax's Place",
         "type": "residence",
         "description": "Narrow building wedged between a cooperage and a feed store. Original use unclear — too small for a proper shop, too cluttered for a house. Windows papered from inside with what looks like old maps. Completely stacked full with hand-written books that appear to be gibberish.",
-        "npcs_present": ["Scribblin' Jax"],
         "notes": "Jax has lived here four years. Locals treat him as harmless local color. The papered windows are deliberate — nobody can see in."
       }
     ],
     "flair": "A border town defined almost entirely by what it guards against. The Dunric Pass is the reason it exists; everything else about it is secondary to that geographic fact.",
-    "region": "Fynesmarch"
+    "region": "Torwald"
+  },
+  {
+    "name": "Duncavel",
+    "type": "town",
+    "description": "Torwald-side pass town at the northern mouth of Dunric Pass, sitting on a wide flat shelf in the hillside where the pass road finally exhales into open ground. Larger than Halvenmoren, built with the confidence of a town that sits at the receiving end of a profitable pass rather than the sending end. Stone construction throughout, buildings closer together, a market square with infrastructure for regular serious use.",
+    "climate": "Cooler than Fynesmarch coastal towns, sits at the edge of Torwald's harder interior climate. The Dunric Pass cold does not typically reach this far south under normal conditions.",
+    "notes": "Runs on pass traffic — its economic viability depends entirely on Dunric Pass remaining open. Population roughly 40% human, 35% dwarf, 15% halfling, remainder mixed other species. Governed by a Headwoman rather than a lord or council.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Kettvonn's Outfitters",
+        "type": "shop",
+        "description": "Wide frontage on the north side of the square, built to accommodate mountain crews kitting out together. Racks of layered garments graduated by weight, boots sized and stacked by category, gloves and mittens and underlayers folded in precise stacks. Smells of oiled leather, lanolin, and treated wool.",
+        "notes": "Dwarven-run outfitter supplying high altitude mountain crews. Kettvonn's cousin, a dwarven trader, was rescued from the Ven Durath by the party after being missing four days."
+      },
+      {
+        "name": "Duncavel Civic Hall",
+        "type": "administrative",
+        "description": "Stone hall two streets east of the town square, marked by a green door. Interior divided by purpose rather than walls — a long document table on one side, a smaller meeting table on the other, a maintained hearth. Two maps of the pass region on the wall.",
+        "notes": "Seat of Headwoman Bryndavok's administration. Site of the Elementium partnership agreement between Duncavel and the Dawn Blades."
+      },
+      {
+        "name": "Duncavel Inn",
+        "type": "inn_tavern",
+        "description": "Wider common room than Halvenmoren's inn, with a stable yard to one side. Smells of roasting meat, bread, and onions from early in the day.",
+        "notes": "Innkeeper asks no questions of travelers regardless of condition. Name of innkeeper not established."
+      }
+    ],
+    "flair": "A town that has built genuine prosperity on a single geographic accident — the pass — and knows exactly how fragile that makes everything else about it.",
+    "region": "Torwald"
+  },
+  {
+    "name": "Dunric Pass",
+    "type": "mountain_pass",
+    "description": "Narrow mountain pass connecting Halvenmoren (Fynesmarch side) to Duncavel (Torwald side). Under normal conditions a manageable half-day crossing on foot, roughly four hours on horseback, with a waystation at the approximate midpoint. Walls close to single-file width in several sections. Normally mild for the region — the pass being difficult in spring is itself the anomaly that drew the party's attention.",
+    "notes": "Site of the Hearthstone weather manipulation operation conducted by the Order of the Pale Road, Days 69-80 Year 468. Thirty-one anchor stones were placed through the pass walls maintaining an artificial cold network — left in place, inert, following destruction of the Hearthstone device. Two large white cold-adapted creatures were killed in the pass road by the party and left there. Site of the destruction of the magma elemental network's power source.",
+    "flair": "A pass whose entire reputation for mildness was quietly weaponized against it for eleven days, and which nearly cost two towns their trade season before anyone understood why.",
+    "region": "Torwald/Fynesmarch border"
+  },
+  {
+    "name": "Dunric Pass Midstation",
+    "type": "waystation",
+    "description": "Squat stone rectangle built into a natural alcove in the eastern wall of Dunric Pass, roughly the halfway point of the crossing. Single room, stone floor, low ceiling, hearth on the back wall with an attached fuel store. Two rope beds against the walls. Normally staffed by two toll men.",
+    "notes": "Both toll men — brothers Pell and Cavan — disappeared during the pass closure; evidence suggested one guard was drugged via a cup of valerian-laced drink and both were taken through the window rather than the door. Party used the station for two extended rests during the Dunric Pass operation, Day 78-80 Year 468.",
+    "flair": "A waystation built for the ordinary business of tolls and shelter, briefly repurposed as a foothold in something much larger than its two usual occupants ever expected to encounter.",
+    "region": "Torwald/Fynesmarch border"
+  },
+  {
+    "name": "The Ven Durath",
+    "type": "mine",
+    "description": "Ancient dwarven mine complex beneath the plateau above Dunric Pass, predating current Duncavel settlement by centuries. Dressed stone tunnel for the first stretch, transitioning to rougher natural cut deeper in. Descends through multiple natural shelves toward a vertical shaft. Contains an unmined Elementium seam and, further below, an ancient entity of unknown nature that predates the mine itself and was left deliberately undisturbed by the original dwarven miners.",
+    "notes": "Site of the chamber where a Planar Binding Stone (ancient dwarven work, Durath Iron brackets) held the magma elemental Pyrethon bound to this plane for centuries. Order forces cut a rougher secondary tunnel from the main shaft to reach this chamber. Three civilians (two waystation men, one dwarven trader) were held captive on the uppermost shelf for several days before rescue. Party destroyed Pyrethon permanently and removed the Binding Stone on Day 80, Year 468. Bryndavok intends to have the mine sealed. Elementium seam remains unmined — cannot be worked with conventional tools, requires significant sustained heat.",
+    "flair": "A place the old dwarves knew enough to leave alone, that someone newer decided was worth the risk — and nearly wasn't.",
+    "region": "Torwald, beneath Dunric Pass plateau"
+  },
+  {
+    "name": "Standing Stone Plateau",
+    "type": "ancient_site",
+    "description": "A wide plateau accessed via rope ladder from a ledge above the Ven Durath mine entrance, roughly the size of a football pitch, exposed to the elements. Contains a circle of eight or nine ancient standing stones, weathered by centuries, predating any settlement record in the region. At the circle's center sits a stone and iron cradle of recent Order construction — installed to hold the Hearthstone device.",
+    "notes": "Site of the Hearthstone destruction, Day 80 Year 468 — device was smashed beyond recognition by Ferghus to prevent reconstruction. Order guard camp was located in a sheltered depression at the plateau's northeast edge; two guards encountered and killed there, locked box recovered containing operational documents, gold, and correspondence connecting the Order to a larger organization (later identified partially through Evrenath as the 'Valdric Compact'). Standing stones themselves remain unexplained — origin and purpose unknown.",
+    "flair": "Stones old enough to have watched empires rise and fall on this mountain, indifferent to the very modern machine someone built in the middle of them.",
+    "region": "Torwald, above Dunric Pass"
   },
   {
     "name": "Filian's Keep",
@@ -977,6 +1052,21 @@
     "districts": [],
     "locations": [],
     "flair": "A town that never quite stopped being an outpost. The permanent buildings and the seasonal ones aren't always easy to tell apart, and neither is anyone's actual business here."
+  },
+  {
+    "name": "Sennet's Cross",
+    "type": "town",
+    "region": "Torwald",
+    "description": "A real crossroads town further down the mountain from Gindellan, sitting where at least three roads genuinely converge — the first place since Cindermarch that feels built for regular travel rather than isolation. Bigger and busier than Gindellan, with an actual trading post/inn at its center, stables serving real cart and horse traffic, and a mixed population of travelers, traders, and locals used to strangers passing through. Named after a worn-down founder — the kind of half-remembered person a real crossing point tends to accrue a name from over generations.",
+    "notes": "Established as the next town down the mountain from Gindellan, on the way toward more populated country. Its name and function are the direct fix for an earlier naming mistake (Gindellan was correctly isolated/outpost-flavored; Sennet's Cross is where 'crossing point' naming actually belongs).",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Unnamed trading post / inn",
+        "description": "Plain-fronted, no sign, but clearly does steady business — the only real gathering point in town. Combination trading post, inn, and stables. Stable hand here confirmed Balcris's recent passage and his questions about the old shrine north of the fork."
+      }
+    ],
+    "flair": "The first town on this route that feels like it exists because of the road, not despite it."
   },
   {
     "name": "Feldtazur",
@@ -1017,5 +1107,98 @@
     "districts": [],
     "locations": [],
     "flair": "A dwarven mountain city where craft is as close to religion as anything gets, and independence is non-negotiable. Sends finished goods down to Drinaell, takes what it wants from outside, and ignores the rest. Visitors are not unwelcome — just clearly secondary to the work."
+  },
+  {
+    "name": "The Liliveth",
+    "type": "pocket_plane",
+    "description": "A constructed pocket plane, built stone by stone and blade of grass by blade of grass. No sun — light is flat, sourceless, and lavender-toned throughout, casting no shadows anywhere. Clouds are grey with a barely-blue tint, covering roughly 60% of the sky on a typical day. Air carries a faint mineral-sweet smell everywhere, like wet stone mixed with something resinous, and a slight haze limits visibility to a few miles in any direction, hiding the horizon. Periodically the light dims by degrees without ever going fully dark — locals call this 'the dim,' and things on the plane are reportedly bolder and more numerous during it.",
+    "climate": "Constant mild temperature, no wind beyond an almost-absent breeze except on the open plain, where it has real, steady presence. No rain observed.",
+    "faction_presence": [],
+    "notes": "Bounded by black mountains to the west and a silent ocean to the north (waves move correctly but produce no sound at the shore). South and east open into plain, forest, and unconfirmed further territory beyond a haze line. Two years without its maker's attention has left small things failing quietly: the mountains reportedly sit closer than they used to, the ocean has reportedly relocated, the forest has grown darker than intended.",
+    "districts": [
+      {
+        "name": "The Hill Country",
+        "description": "Rolling hills of lavender grass — waxy-bladed, springier than normal turf, making a dry-herb rustle rather than a soft whisper when it moves. Small stones and low shrubs dot the slopes. Flowers grow in scattered, faintly deliberate-looking clusters: deep copper ones, a near-black blue variety, and (denser near water) an iridescent purple type that shifts color at the edges exactly like certain local creatures' scales. All the flowers have a faint metallic sheen and throw back small hard glints of light rather than absorbing it. Old ghost-paths — thin lines where the grass grows shorter and the soil is slightly compressed — cross the hills, remnants of long, regular foot traffic rather than a built road.",
+        "faction_presence": []
+      },
+      {
+        "name": "The Forest",
+        "description": "Black-barked trees, 80-90 feet tall, trunks perfectly straight with no lean, bark smooth except at the base where thick roots grip the ground and interweave seamlessly with neighboring trees' roots, grain running continuous across the joins as if grown from one seed. Canopy is dense, dark green with silver undersides, turning daylight into a dim blue-silver hush at ground level. No birdsong, no insects — the only sounds are a slow, wide river running through it (dark water, faint dimpling current, but silent against the banks) and, in places, something enormous breathing. Ground floor is bare dark soil and root ridges, no undergrowth.",
+        "faction_presence": []
+      },
+      {
+        "name": "The Plain",
+        "description": "Flat grassland east of the forest. Grass here is shorter and stiffer than the hill grass, closer to true purple than lavender, and pushes back against footsteps rather than swishing. Wind here has real steady presence — the only place on the plane it does — carrying the smell of the western mountains and something thin, sweet, and mineral underneath it.",
+        "faction_presence": []
+      },
+      {
+        "name": "The Mountains",
+        "description": "Black stone, striated horizontally with a pale mineral vein that runs through every rock formation on the plane — a material with no name in Common, described as 'the memory of wind in stone.' The striations visibly move, a slow continuous current, and glow faintly when significant events touch the plane's fabric. The stone is cold to the touch, colder than ambient air. No visible passes.",
+        "faction_presence": []
+      }
+    ],
+    "locations": [
+      {
+        "name": "The Arch",
+        "district": "The Hill Country (northern edge)",
+        "type": "portal_structure",
+        "description": "Weathered grey-brown stone, visibly two millennia older than the disc mechanism grafted onto it — different color beneath the surface grime, different texture. Sits on a six-foot stonework circle atop a low hill. Control discs are palm-sized black stone, angular unfamiliar script cut into one face, thickness keyed to specific receptacle grooves. Activation: soft blue lightning crawls the arch's near-invisible grooves and pinholes, a deep hum rises to crescendo in half a second, then a shimmering blue plane fills the archway and the hum drops to near-silence, punctuated by the occasional crackle.",
+        "notes": ""
+      },
+      {
+        "name": "Zilivek's Workshop",
+        "district": "The Hill Country",
+        "type": "residence_workshop",
+        "description": "Underground, single oval room, chisel marks visible everywhere and inconsistent — carved alone, over a long time, by someone learning technique as they went. Ceiling averages six feet, dips lower in places. Lit by four ceramic vessels of a dark compressed resin, burning nearly smokeless with a pine-and-black-pepper smell. Accessed via a grass-covered wooden hatch on a counterweighted lift, opened by a two-pull signal cord running underground to a post by the basin stream. The basin itself is a stone bowl fed by a rock-face seep, water glowing cold blue-white, releasing on a float-triggered stone hinge when full — the release timing is the plane's closest thing to a clock. A quarter of the released flow diverts into a hidden channel that feeds a bellows via a sealed copper vessel, driving air through a duct into a low kiln. Shelving holds stoppered fired-clay vessels (wax seals), bundled dried flowers on iron hooks, and iron tools racked by size.",
+        "notes": ""
+      },
+      {
+        "name": "Ilwuoshim's Complex",
+        "district": "The Plain",
+        "type": "stronghold_prison",
+        "description": "Sprawling, horizontal black stone structure — wider than tall, unlike the tower it appears to be from a distance. Walls smooth-faced, windowless, unbroken by any plant growth despite considerable age (nothing takes root in the joints here). Central courtyard is worn smooth at its center from years of foot traffic, with a dry fountain basin and thirty disc-groove receptacles radiating outward from it, each groove a slightly different width corresponding to specific disc thicknesses. Four archways lead deeper in. One interior room is a domed library, sixty feet across, ringed with stone shelving carved directly from the walls, lit by four shallow basins of glowing water set into the floor. Another is a long rectangular room whose every striation converges toward a three-foot column of cold blue-white light at the far end.",
+        "notes": ""
+      }
+    ],
+    "flair": "A place built with total intention now fraying quietly at the seams — beautiful, slightly too still, smelling of stone and resin and something sweet underneath, every flower a little too perfect, every silence a little too complete.",
+    "region": "Extraplanar — accessed only via the arch northeast of Valdmere"
+  },
+  {
+    "name": "Ashmore",
+    "type": "village",
+    "region": "Fynesmarch",
+    "description": "Small farming village east of the confluence valley, roughly forty structures around a common green and mill stream. The kind of place that has been exactly this size for generations. Fields extend east toward a tree line where a minor ley line intersection runs through the property.",
+    "climate": "Temperate, same as the surrounding valley — early spring planting season.",
+    "faction_presence": [],
+    "notes": "Recently disrupted by a consortium observation construct stationed at the eastern tree line, which had been holding the village elder captive at a nearby monitoring site. Construct destroyed and elder recovered.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Ashmore Common House",
+        "type": "gathering_hall",
+        "description": "Long low building with a central hearth, used for village meetings and communal meals.",
+        "notes": ""
+      }
+    ],
+    "flair": "A village whose ordinary rhythms — planting, market trips, children underfoot — had visibly stalled under three weeks of unexplained fear before the party arrived. Recovery likely resumes quickly once the source is gone; places like this don't stay frightened long once the reason is removed."
+  },
+  {
+    "name": "Cresthollow",
+    "type": "town",
+    "region": "Fynesmarch",
+    "description": "Market town on the eastern side of a mountain pass, larger than the typical farming village — proper central square, a mill, a meeting hall, well-maintained stone construction. Serves as a trade point for the surrounding valley.",
+    "climate": "Highland-adjacent, cooler than the coastal cities, sits just east of a ridge line pass.",
+    "faction_presence": [],
+    "notes": "Isolated for eleven days when the mountain pass above it became impassable following an unknown event further northeast in the mountains. Town itself continued functioning normally throughout — the isolation was a trade/travel disruption, not a direct threat to the town.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Cresthollow Central Square",
+        "type": "square",
+        "description": "Town center, meeting hall fronting onto it.",
+        "notes": ""
+      }
+    ],
+    "flair": "A town defined by its dependency on the pass above it — cut off from westbound trade, market day delayed, families split by whichever side of the pass they happened to be on when it closed. Practical people, more annoyed by the disruption than frightened by it."
   }
 ]

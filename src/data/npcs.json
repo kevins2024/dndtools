@@ -1,7 +1,7 @@
 [
   {
     "name": "Helena Sable",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Gilt Rose",
     "faction": "Independent / Long Arm Trading",
     "role": "Info broker, runs the Gilt Rose",
     "appearance": "Human woman, ~55. Composed, controlled.",
@@ -13,7 +13,7 @@
   },
   {
     "name": "Captain Crane",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Guard HQ",
     "faction": "Ravenquay Guard",
     "role": "Guard Captain",
     "appearance": "Human man, fifties. Practical uniform, nothing decorative.",
@@ -25,7 +25,7 @@
   },
   {
     "name": "Jessyl Denmar",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Loan Dragon",
     "faction": "River Quarter",
     "role": "River Quarter leader, runs Loan Dragon",
     "appearance": "Human woman.",
@@ -73,7 +73,7 @@
   },
   {
     "name": "Big Tam",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Loan Dragon",
     "faction": "Loan Dragon",
     "role": "Enforcer",
     "appearance": null,
@@ -85,7 +85,7 @@
   },
   {
     "name": "Gritch",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Loan Dragon",
     "faction": "Loan Dragon",
     "role": "Enforcer",
     "appearance": null,
@@ -97,7 +97,7 @@
   },
   {
     "name": "Torvald Ironwood",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Torvald Ironwood's Workshop",
     "faction": "Independent",
     "role": "Weaponsmith, Trade District",
     "appearance": null,
@@ -109,7 +109,7 @@
   },
   {
     "name": "Calla Denn",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Calla Denn's Workshop",
     "faction": "Independent",
     "role": "Leatherworker (needle and hide sign)",
     "appearance": null,
@@ -121,7 +121,7 @@
   },
   {
     "name": "Ossivane Relk",
-    "location": "Ravenquay / Argentveil",
+    "location": "Ravenquay / Argentveil, Linden Street Antiquities Market",
     "faction": "Independent",
     "role": "Enchanted communication dealer",
     "appearance": "Sixties, slight, unremarkable face, clever eyes.",
@@ -169,7 +169,7 @@
   },
   {
     "name": "Morrow",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Morrow and Selt",
     "faction": "Casvath Network",
     "role": "Chandler's shop, harbor front",
     "appearance": null,
@@ -181,7 +181,7 @@
   },
   {
     "name": "Selt",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Morrow and Selt",
     "faction": "Casvath Network",
     "role": "Chandler's shop, harbor front",
     "appearance": null,
@@ -193,7 +193,7 @@
   },
   {
     "name": "Idy Rossel",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Shrike's Perch",
     "faction": "Independent",
     "role": "Tavern owner, Shrike's Perch",
     "appearance": null,
@@ -205,7 +205,7 @@
   },
   {
     "name": "Darius Rent",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Wayward Warehouse",
     "faction": "Independent",
     "role": "Runs Wayward Warehouse job board, Trade District",
     "appearance": "Scarred veteran.",
@@ -217,7 +217,7 @@
   },
   {
     "name": "Marcus Freeborn",
-    "location": "Ravenquay",
+    "location": "Ravenquay, Revivify",
     "faction": "Dawn Blades adjacent",
     "role": "Managing Revivify",
     "appearance": "Human man, late twenties. Formerly enslaved. Wears Egarryn's red masterwork leather armor deliberately — nobody has asked why yet.",
@@ -313,7 +313,7 @@
   },
   {
     "name": "Ledwent",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate",
     "role": "Estate head butler",
     "appearance": "Human man, older. Dark complexion. Impeccable bearing and timing.",
@@ -332,7 +332,7 @@
   },
   {
     "name": "Cruze",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
     "appearance": null,
@@ -344,7 +344,7 @@
   },
   {
     "name": "Torsten",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
     "appearance": null,
@@ -356,7 +356,7 @@
   },
   {
     "name": "Gunner",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
     "appearance": null,
@@ -368,7 +368,7 @@
   },
   {
     "name": "Crispin",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate",
     "role": "Estate guard",
     "appearance": "Young guard.",
@@ -380,7 +380,7 @@
   },
   {
     "name": "Tova",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate",
     "role": "Analyst — ledgers and shell company thread",
     "appearance": null,
@@ -404,7 +404,7 @@
   },
   {
     "name": "Rendall",
-    "location": "Khemrise",
+    "location": "Khemrise, Harbormaster Building",
     "faction": "City Government",
     "role": "Acting harbormaster",
     "appearance": "Human man, thirties. Slight, ink on fingers. Clean, competent.",
@@ -416,7 +416,7 @@
   },
   {
     "name": "Harwick",
-    "location": "Khemrise",
+    "location": "Khemrise, Harwick's House",
     "faction": "Long Arm Trading",
     "role": "Logistics manager (joining Long Arm Trading)",
     "appearance": null,
@@ -464,7 +464,7 @@
   },
   {
     "name": "Sovi",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate (guest)",
     "role": "Refugee child",
     "appearance": "Girl, approximately ten. Small, serious assessment eyes. Dark hair. Carries notebook always.",
@@ -483,7 +483,7 @@
   },
   {
     "name": "Davoreen",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate",
     "faction": "Dawn Blades estate (freed captive)",
     "role": "Natural organizer among refugees",
     "appearance": "Human woman, forties.",
@@ -495,7 +495,7 @@
   },
   {
     "name": "Legend",
-    "location": "Khemrise",
+    "location": "Khemrise, Vineyard Estate; Legend's Clinic",
     "faction": "Dawn Blades adjacent",
     "role": "Physician",
     "appearance": "Sixties, lean, precise hands. Medical bag always on hook by door out of long habit.",
@@ -538,7 +538,7 @@
   },
   {
     "name": "Rosten Alurath",
-    "location": "Khemrise",
+    "location": "Khemrise, Rosten Alurath's Antiquities Shop",
     "faction": "Independent",
     "role": "Antiquities dealer",
     "appearance": null,
@@ -621,7 +621,7 @@
   },
   {
     "name": "Salla Kern",
-    "location": "Cindermarch",
+    "location": "Cindermarch, Cindermarch Fortress",
     "faction": "Cindermarch Military",
     "role": "Master-at-Arms",
     "appearance": null,
@@ -830,16 +830,52 @@
     "id": "npcs_61"
   },
   {
+    "name": "Drevakh",
+    "location": "Argentveil",
+    "faction": "Orc Neighborhood",
+    "role": "Internal community contact, orc neighborhood",
+    "appearance": "Orc male, established presence in the neighborhood, carries the particular weight of someone whose word means something inside a community that doesn't extend trust easily.",
+    "status": ["ally"],
+    "personality_traits": "Operates through relationship rather than transaction. Introduced Corwin and Rhuna to the pre-separation smith as a vouching act, not a commercial one.",
+    "personality_quirks": "",
+    "notes": "Internal liaison for the Argentveil orc neighborhood. Not the external commerce handler — that's Orvha. Drevakh handles introductions and community relationships. Brought the Dawn Blades into contact with the neighborhood's elder smith who works in pre-separation orcish techniques. Relationship built through Corwin and Rhuna's direct engagement with the neighborhood.",
+    "id": "npcs_62"
+  },
+  {
+    "name": "Bryndis",
+    "location": "Argentveil",
+    "faction": "Torven Forge",
+    "role": "Divine commission smith",
+    "appearance": "Dwarf woman. The bearing of someone whose work is devotional rather than commercial — she considers what Torven wants from an item before she considers what the client wants.",
+    "status": ["ally"],
+    "personality_traits": "Minimal words. High standards. Does not take commissions she doesn't believe in. When she says a piece is ready, it's ready.",
+    "personality_quirks": "References Torven's preferences as though they were given to her directly, which they may be.",
+    "notes": "Operates out of the Torven forge in Argentveil. Specializes in divine commission work — items made in service of a deity's domain rather than purely for the client. Commissioned three helms for the Dawn Blades: Helm of the Open Road (Ferghus, Carix), Helm of the Reaching Hand (Revven, Veleth), Helm of the Open Eye (Kerra). Price 2,400g total, 800g each. Each helm reflects its wearer's deity and fighting style. She stated that the metal has opinions and opinions take time.",
+    "id": "npcs_63"
+  },
+  {
+    "name": "Gwynn",
+    "location": "Argentveil",
+    "faction": "Dawn Blades adjacent",
+    "role": "Brewer, Veilgarten block",
+    "appearance": "Someone who takes their craft seriously enough that everything else is secondary to it.",
+    "status": ["ally"],
+    "personality_traits": "Recipe autonomy is non-negotiable. Immediately recognized the copper architectural sheets as exceptional brewing vessel plans — the kind of find that a serious brewer treats as a professional windfall.",
+    "personality_quirks": "Will source grain from wherever produces the best result, including the orc neighborhood farming families via Orvha's network.",
+    "notes": "Operating the Veilgarten block brewery under a 20% stake arrangement with full recipe control. Seed money 3,000g from Dawn Blades. Copper architectural sheets from the Nossa Valessa salvage confirmed as brewery vessel plans — Gwynn says the proportions will produce something extraordinary. Courtyard beer garden planned. Approximately 2-3 weeks to first batch. Orc neighborhood grain and hops sourcing in progress via Orvha. Not yet generating income.",
+    "id": "npcs_64"
+  },
+  {
     "name": "Corvel Andris",
     "location": "Argentveil",
     "faction": "Independent",
-    "role": "Retired mage, theoretical magic teacher",
-    "status": ["neutral"],
-    "appearance": null,
-    "personality_traits": "Particular about who she works with. Drinks tea at Meridian House every morning.",
-    "personality_quirks": "",
-    "notes": "Established three permanent Teleportation Circles in her career, all still active. Alurath's referral will get a conversation. Potential Argentveil teleportation anchor.",
-    "id": "npcs_62"
+    "role": "Retired mage, teleportation circle specialist, teacher",
+    "appearance": "Seventies. Spare, the kind of thin that comes from decades of not particularly noticing meals because other things were more interesting. Silver hair. Hands that hold a teacup with the comfortable grip of someone on their third cup. A book open on the table that she isn't reading.",
+    "status": ["ally"],
+    "personality_traits": "Particular about who she works with but makes decisions efficiently once she has enough information. Asks why rather than what — the distinction matters to her. Thinks practically about infrastructure before aesthetics. Was looking at Vaz before he found her in the tea house.",
+    "personality_quirks": "Drinks tea at Myderian House every morning, often past morning. Has been meaning to return to Valdmere for sixty years and hasn't.",
+    "notes": "Established three permanent teleportation circles in her career — Ravenquay (chandler's warehouse harbor front eastern side), Khemrise (Ostwick townhouse merchant quarter), Valdmere (old stone temple). All three confirmed active by her remote detection. Trained Lenn, Lyria, Kessara, and Lexica in circle establishment ritual for 25,000g paid on completion. Was present for supervised first establishment at Nossa Valessa. Has a complicated professional relationship with Sevrath — respect with edges, she finds him capable but less experienced. Noted that the Valdmere circle drew on something already present in the foundation she did not fully understand and has never explained. Knows the names Morrow and Selt (Ravenquay chandler's). Alurath's referral first opened the conversation. Referral from Alurath gets a meeting; quality of that meeting determines everything else.",
+    "id": "npcs_65"
   },
   {
     "name": "Fenkirq Goalt",
@@ -850,8 +886,8 @@
     "appearance": null,
     "personality_traits": "",
     "personality_quirks": "",
-    "notes": "Went by Farendale for a time. Previous owner of the Merchant Quarter estate acquired by Dawn Blades. Ring of Mind Shielding (inhabited) returned to him — contains one of his relatives. This quest/story is complete for now.",
-    "id": "npcs_63"
+    "notes": "Previous owner of the Merchant Quarter estate acquired by Dawn Blades. Ring of Mind Shielding (inhabited) returned to him — contains one of his relatives. This quest/story is complete for now.",
+    "id": "npcs_66"
   },
   {
     "name": "Wren",
@@ -863,7 +899,7 @@
     "personality_traits": "Warm, genuine, professional without being impersonal. Knows everyone on the hill.",
     "personality_quirks": "",
     "notes": "Lives twenty minutes from Dawn Blades rental at Crestline and Vane. Chosen for personality as much as appearance.",
-    "id": "npcs_64"
+    "id": "npcs_67"
   },
   {
     "name": "Sael",
@@ -875,7 +911,7 @@
     "personality_traits": "Straightforwardly kind with no angle to it. Finds what he has sufficient, no apparent desire for more.",
     "personality_quirks": "Has a small sailing boat, fishes when he feels like it, takes people out sometimes. Nothing that requires him to be somewhere specific.",
     "notes": "",
-    "id": "npcs_65"
+    "id": "npcs_68"
   },
   {
     "name": "Hallan",
@@ -885,7 +921,7 @@
     "status": ["neutral"],
     "appearance": null,
     "notes": "Merchant Quarter at the end of Silverline Court.",
-    "id": "npcs_66"
+    "id": "npcs_69"
   },
   {
     "name": "Selvra",
@@ -894,7 +930,7 @@
     "role": "architect",
     "status": ["neutral"],
     "appearance": null,
-    "id": "npcs_67"
+    "id": "npcs_70"
   },
   {
     "name": "Vrethka",
@@ -1021,7 +1057,7 @@
       "4th": 2
     },
     "active_effects": [],
-    "id": "npcs_68"
+    "id": "npcs_71"
   },
   {
     "name": "Maeris",
@@ -1030,7 +1066,7 @@
     "role": "Ship captain",
     "appearance": "Wizened older human woman",
     "notes": "Captained the ship for forty years holding something powerful under a shielding bubble. Dawn Blades freed the entity and returned it to its plane. Sailing is all she knows and has little experience with even other humanoids.",
-    "id": "npcs_69"
+    "id": "npcs_72"
   },
   {
     "name": "Sevrath",
@@ -1039,7 +1075,7 @@
     "role": "Mapmaker and transmutation mage",
     "appearance": "half-elf male, young",
     "description": "A transmutation mage with a side skill of making maps that magically update in real time. He has a studio in the transmutation tower in Argentveil and established a teleportation circle there. Originally from Valdmere, still has family there.",
-    "id": "npcs_70"
+    "id": "npcs_73"
   },
   {
     "name": "Orvha",
@@ -1048,7 +1084,7 @@
     "role": "External commerce handler for the orc neighborhood",
     "appearance": "Orc woman, fifties, broad and capable, dark hair streaked with grey, calm steady eyes that have been reading people across a trading table for twenty years",
     "description": "Handles all external commercial relationships for the Argentveil orc neighborhood. Twenty years experience navigating the city's merchant quarter on behalf of her community. Strong opinions about pricing transparency and has built a reliable detector for the difference between partners and exploiters. Not easily impressed but moves decisively when she decides to trust someone. Agreed to a Long Arm Trading partnership with full pricing transparency as a condition.",
-    "id": "npcs_71"
+    "id": "npcs_74"
   },
   {
     "name": "Thorvane",
@@ -1057,7 +1093,7 @@
     "role": "navigator",
     "appearance": "human man, late forties",
     "description": "has done a Yetgrese crossing twice",
-    "id": "npcs_72"
+    "id": "npcs_75"
   },
   {
     "name": "Sivenne",
@@ -1066,14 +1102,14 @@
     "role": "steward",
     "appearance": "half-elf woman, young",
     "description": "Experienced steward, managing Nossa Valessa in Argentveil.",
-    "id": "npcs_73"
+    "id": "npcs_76"
   },
   {
     "name": "Orvek",
     "location": "Argentveil",
     "faction": "Dawn Blades adjacent",
     "role": "Ship rigger",
-    "id": "npcs_74"
+    "id": "npcs_77"
   },
   {
     "name": "Aeveth",
@@ -1086,7 +1122,7 @@
     "personality_traits": "Precise about things that matter, entirely imprecise about things that don't. Will forget to eat when working. Remembers everything she's read. Asks questions that sound simple and aren't.",
     "personality_quirks": "Has strong opinions about how people misunderstand pre-settlement Argentveil and will share them whether asked or not. Keeps three projects running simultaneously and claims to find this restful. Has been with Galealzre four years and considers their arrangement entirely normal.",
     "notes": "Galealzre's partner of four years, kept private until Vaz asked directly. Specializes in pre-settlement Argentveil history, Galealzre describes her as an academic. She would describe herself as someone trying to stop people from being wrong about history.",
-    "id": "npcs_75"
+    "id": "npcs_78"
   },
   {
     "name": "Osmer",
@@ -1098,7 +1134,7 @@
     "personality_traits": "Gives exactly what's needed, nothing more. Comfortable in solitude.",
     "personality_quirks": "Offers his name only when you've earned the syllables.",
     "notes": "Knows Bren at the logging camp. History there, unspoken. Recommended the Tallow and Tar in Valdmere.",
-    "id": "npcs_76"
+    "id": "npcs_79"
   },
   {
     "name": "Bren",
@@ -1110,7 +1146,7 @@
     "personality_traits": "Practical, fair, thinks in terms of systems and supply lines.",
     "personality_quirks": "Goes quiet when Osmer's name comes up.",
     "notes": "Camp expanding fast. Will need timber markets as western economy grows.",
-    "id": "npcs_77"
+    "id": "npcs_80"
   },
   {
     "name": "Wend",
@@ -1122,7 +1158,7 @@
     "personality_traits": "Measured, precise with language, dry humor that arrives without warning.",
     "personality_quirks": "Learned Common deliberately, not incidentally. Repeats key words back when filing them. Never fully enters spaces built for smaller people.",
     "notes": "Tracked Vessel scout for 17 days alone. His people know of Vessel from deep northeast. Left a handprint on the settlement windowsill before departing.",
-    "id": "npcs_78"
+    "id": "npcs_81"
   },
   {
     "name": "Brix Quellin",
@@ -1134,7 +1170,7 @@
     "personality_traits": "Thinks in systems. Defines the infrastructure of a situation before engaging with its details. Honest about what she doesn't know. Asks the questions others forget to ask.",
     "personality_quirks": "Arrived to her interview with notes already made. Turned down two family-aligned positions before accepting this one. Wage ask was specific and justified in a single sentence.",
     "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons — nothing attached to her. Turned down Wyllard and one other family approach. Told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Zav'rel reads her as impressive rather than suspicious for having no allegiances. Handles household accounts, visitor management, supply rotation, and records office liaison.",
-    "id": "npcs_79"
+    "id": "npcs_82"
   },
   {
     "name": "Quiveth",
@@ -1144,7 +1180,7 @@
     "appearance": "Young, mixed features",
     "description": "Primary translator for the party in Tilawam. Speaks Common and primary Tilawam tongue.",
     "notes": "Based at harbour authority before hired by party. Rates slightly higher than Ossavel.",
-    "id": "npcs_80"
+    "id": "npcs_83"
   },
   {
     "name": "Ossavel",
@@ -1154,37 +1190,37 @@
     "appearance": "Middle aged, weathered",
     "description": "Secondary translator. Speaks Common and primary Tilawam tongue.",
     "notes": "Available on request. Slightly lower rate than Quiveth.",
-    "id": "npcs_81"
+    "id": "npcs_84"
   },
   {
     "name": "Taenya Sorreval",
-    "location": "Tilawam",
+    "location": "Tilawam, Sorreval and Sons",
     "faction": "Sorreval and Sons",
     "role": "Head of trading house",
     "appearance": "Human woman, mid-twenties, ink on right hand",
     "description": "Third generation head of Sorreval and Sons. Practical, composed, difficult to surprise.",
     "notes": "",
-    "id": "npcs_82"
+    "id": "npcs_85"
   },
   {
     "name": "Davan",
-    "location": "Tilawam",
+    "location": "Tilawam, Sorreval and Sons",
     "faction": "Sorreval and Sons",
     "role": "Liaison, navigator",
     "appearance": "Human man, forties",
     "description": "Yetgrese native navigator. Permanent liaison between Dawn Blades and Sorreval and Sons.",
     "notes": "Uncle to Taenya Sorreval.",
-    "id": "npcs_83"
+    "id": "npcs_86"
   },
   {
     "name": "Ssivanak",
-    "location": "Tilawam",
+    "location": "Tilawam, Ssivanak's Workshop",
     "faction": "Independent",
     "role": "Magical item dealer",
     "appearance": "Tall, angular, age difficult to determine",
     "description": "Foremost and only magical item dealer in Tilawam. Practitioner herself — made the Robe of Stilled Thought.",
     "notes": "Speaks no Common. Prefers morning visitors.",
-    "id": "npcs_84"
+    "id": "npcs_87"
   },
   {
     "name": "Rannick Duvask",
@@ -1194,17 +1230,17 @@
     "appearance": "Male halfling, slight build, neat dresser",
     "description": "Eleven year incumbent magistrate. Suspected dealings with dark patron.",
     "notes": "Council removal proceedings underway.",
-    "id": "npcs_85"
+    "id": "npcs_88"
   },
   {
     "name": "Brama Coinsmith",
-    "location": "Tilawam",
+    "location": "Tilawam, Brama Coinsmith's Office",
     "faction": "Councillors",
     "role": "Councillor",
     "appearance": "Female dwarf, white hair cropped close, craftsperson's hands",
     "description": "Councillor with artificer background. Family name derived from ancestral mint operation.",
     "notes": "",
-    "id": "npcs_86"
+    "id": "npcs_89"
   },
   {
     "name": "Dravan Quelso",
@@ -1216,7 +1252,7 @@
     "personality_traits": "Presents as legitimate business operator. Opportunistic rather than organizationally criminal. Acted alone on the Lithcai'nael fraud.",
     "personality_quirks": "Keeps savings liquid and distributed across his person when running.",
     "notes": "Arranged sealed cargo escort three weeks before party arrived — four crates delivered to Lithcai'nael district containing dressed stone instead of promised glassblowing equipment. Defrauded Lithcai'nael of 52,000g. Fled by sea toward Khemrise. Apprehended by Tielle off the gangplank in Khemrise with 37,000g on his person. Remaining 15,000g recovered from Calwick Orne. Handed to Lithcai'nael custody along with Orne on Day 77. Owns Greywater Interests, a holding company registered to the third private slip from the south at Valdmere's private docks — the Greyline's mooring point. Crime was opportunistic rather than planned — saw the Lithcai'nael order and executed the switcheroo independently.",
-    "id": "npcs_87"
+    "id": "npcs_90"
   },
   {
     "name": "Tierna Ashborne",
@@ -1228,7 +1264,7 @@
     "personality_traits": "Measured, precise, accustomed to being listened to. Makes decisions over long timeframes. Comfortable with silence.",
     "personality_quirks": "Moves to the window when thinking. States difficult things without self pity.",
     "notes": "Removed from magistracy four years ago by Calwick Orne's political maneuvering. Has been building a case against Orne since. Believes Orne has an established agent in Valdmere and that sealed cargo delivered to Lithcai'nael district three weeks ago is connected. Provided summary document on Orne. Wants to know what Orne put in the Lithcai'nael district and why. Owes the party a favor if they find out.",
-    "id": "npcs_88"
+    "id": "npcs_91"
   },
   {
     "name": "Aeravel Lithcai'nael",
@@ -1240,7 +1276,7 @@
     "personality_traits": "Patient beyond human comprehension. Thinks in decades at least. Difficulty concealing intensity when something genuinely surprises him.",
     "personality_quirks": "Asks the question underneath the question. Hard to redirect once focused on something.",
     "notes": "Deeply invested in the escaped brass dragon situation. Visibly affected by information about the ancient dragon east of Argentveil. Father to Cariveth.",
-    "id": "npcs_89"
+    "id": "npcs_92"
   },
   {
     "name": "Lirathen Lithcai'nael",
@@ -1252,7 +1288,7 @@
     "personality_traits": "Decision maker. Manages Aeravel's intensity. Thinks strategically across long timeframes.",
     "personality_quirks": "Puts a hand flat on the table to ground conversations that are drifting. Gives nothing away that isn't deliberate.",
     "notes": "Invited Dawn Blades to formal dinner after three days acquaintance — significant for this family. Shared the brass dragon situation openly. Mother to Cariveth.",
-    "id": "npcs_90"
+    "id": "npcs_93"
   },
   {
     "name": "Cariveth Lithcai'nael",
@@ -1264,7 +1300,7 @@
     "personality_traits": "Assigned to or volunteered for the Dawn Blades relationship. Engaged, less guarded than her parents.",
     "personality_quirks": "Speaks when her parents are holding back. Asked Chuknora about goliath fighting traditions with genuine interest.",
     "notes": "Mentioned Fen Bostrom unprompted. Female.",
-    "id": "npcs_91"
+    "id": "npcs_94"
   },
   {
     "name": "Wrellia",
@@ -1276,11 +1312,11 @@
     "personality_traits": "Reads people accurately and quickly. Gives what's needed rather than what's asked for.",
     "personality_quirks": "Her establishment has no sign and no name. People who need it find it.",
     "notes": "Sister lives near the bluff house. Makes compounds and drinks that address what people actually need. Not magical, not medicinal — something between. Worth cultivating as a Low Roof district relationship.",
-    "id": "npcs_92"
+    "id": "npcs_95"
   },
   {
     "name": "Scribblin' Jax",
-    "location": "Halvenmoren",
+    "location": "Halvenmoren, Jax's Place",
     "faction": "Order of the Pale Road",
     "role": "Sleeper informant",
     "status": ["neutral", "civilian"],
@@ -1288,7 +1324,7 @@
     "personality_traits": "Runs a performance of harmless eccentricity that has partially become real after four years. Fundamentally a man of observation and record who has spent a decade pretending otherwise. Lonely in a way he doesn't acknowledge.",
     "personality_quirks": "Fingers move occasionally as if tracing routes on a surface that isn't there. Overcorrects into louder, more erratic behavior when he feels he isn't being dismissed quickly enough.",
     "notes": "Real name Caderith — unknown to anyone in Halvenmoren. Former cartographer's assistant recruited by the Order of the Pale Road. Has operated as a sleeper informant in Halvenmoren for four years.",
-    "id": "npcs_93"
+    "id": "npcs_96"
   },
   {
     "name": "Evrenath",
@@ -1300,7 +1336,7 @@
     "personality_traits": "Operates entirely through calculation rather than sentiment — not coldly, but with the precision of someone who learned early that emotion clouds inputs. Has spent nineteen years being the most controlled person in difficult rooms and holds to this even when it costs her. Will not ask for help directly but will arrange circumstances in which help becomes available.",
     "personality_quirks": "Repeats significant proper nouns back in isolation after conversations end — as though filing them somewhere permanent. Creates records compulsively, even when they serve no strategic purpose. Processes questions in reverse order of difficulty before answering.",
     "notes": "Appeared at Nossa Valessa on night of Day 85, Year 468, having sent a letter via private courier using the consortium's organizational mark — a downward-pointing triangle with a horizontal line through the lower third. Identified herself as E from correspondence found in Order locked box at Dunric Pass plateau camp. Research and intelligence architect for the Order for nineteen years, older than she appears due to unknown means. Provided location and schedule of independent scholar Devreth Ansolm, resulting in his death — this is what crossed her personal line. Knows the Order's internal structure and field operations but not the Compact's true goals or the dragon connection. Sent through Revivify portal to safehouse. Ledwent alerted. Mentioned Ansolm had a daughter whose whereabouts are unknown. Retained her records — did not leave them with the party on first meeting.",
-    "id": "npcs_94"
+    "id": "npcs_97"
   },
   {
     "name": "Zilivek",
@@ -1312,10 +1348,22 @@
     "personality_quirks": "Makes things. Needs materials to work with or becomes restless.",
     "notes": "",
     "status": [],
-    "id": "npcs_95"
+    "id": "npcs_98"
   },
   {
-    "id": "npcs_valdmere_09",
+    "name": "Ilwuoshim",
+    "location": "The Liliveth",
+    "faction": "",
+    "role": "Djinn, maker of the Liliveth",
+    "appearance": "Seven feet tall, severely angular features cut the way stone is cut by something that knew exactly what it wanted before starting. Amber-gold eyes with genuine depth to them — the difference between a candle and a well. Dark robes that catch no light and return none, moving with no wind. Long-fingered hands. Skin tone unclear beneath the robes; presence reads as weight and pressure more than visual detail.",
+    "personality_traits": "Deliberate in movement and speech, unhurried in a way that reads as dangerous rather than calm — the patience of something that has had two years of imprisonment to plan every possible version of every conversation it might have. Intelligent to a degree that makes ordinary caginess look clumsy; catches manipulation attempts immediately and respects them more than it respects flattery. Capable of unexpected warmth toward things it has decided matter (Tessavil, Zilivek, Ssethara) but this does not soften its dealings with anyone else, including the party. Views debts and oaths as absolute and binding but interprets timing and method of repayment entirely on its own terms.",
+    "personality_quirks": "Speaks of itself as something separate from human categories of gratitude or forgiveness — corrects people who assume its emotional responses map onto human ones. Touches or examines physical objects and surfaces slowly when relearning something after time away from it. The almost-smile: a fractional shift around the eyes that appears and vanishes almost before it registers, usually in response to being genuinely impressed.",
+    "notes": "Two years imprisoned by an external cabal using a two-part binding mechanism (internal lock broken via the Seludrak; external lock destroyed at the arch on the party's home plane). Now fully free. Owes the party two nearly-limitless wishes, to be granted on his own initiative and timeline — explicitly refused to be summoned back for this. Built the Liliveth plane itself, including its wildlife, geography, and the surveillance stone network. Companion is Tessavil (remained in the Liliveth). Holds a grudge in proportion to what was taken from him — patient, not forgiving.",
+    "status": [],
+    "id": "npcs_99"
+  },
+  {
+    "id": "npcs_100",
     "name": "Zav'rel",
     "location": "Valdmere, The Tallow and Tar inn",
     "faction": null,
@@ -1327,7 +1375,7 @@
     "notes": "Helped the previous Bluff House owner flee Valdmere before the party arrived — that thread was not fully explored. Knew Dravan Quelso well enough to know where he lived and to have opinions about him. Led the party to Quelso's residence the night they investigated. Has been in Valdmere long enough to know the city's undercurrents well. The Tallow and Tar is well positioned for information gathering — anything said there likely reaches Zav'rel eventually. Party has used the Tallow and Tar as a message drop — if the man with the fake story returns to the Velperaust, Brix will send him to find Zav'rel there. Party is deliberately limiting what Zav'rel knows about their operations."
   },
   {
-    "id": "npcs_valdmere_10",
+    "id": "npcs_101",
     "name": "Brix Quellin",
     "location": "Valdmere, The Velperaust",
     "faction": "Dawn Blades (employed)",
@@ -1339,7 +1387,7 @@
     "notes": "Two years in Valdmere. Previous role dissolved when employer left for personal reasons. Turned down Wyllard and one other family approach — told the Wyllard contact she wanted to work for people whose business she could follow start to finish. Handles household accounts, visitor management, supply rotation, and records liaison. Has standing instruction to send anyone asking for the party to find Zav'rel at the Tallow and Tar. Resolved damp issue in left back room using compound from Wrellia's tea shop. Secured materials order and gate contact for 4 silver per week. Managing Wyllard roof repair."
   },
   {
-    "id": "npcs_valdmere_11",
+    "id": "npcs_102",
     "name": "Denniver Kosh",
     "location": "Valdmere, Wyllard materials yard",
     "faction": "Wyllard",
@@ -1351,7 +1399,7 @@
     "notes": "Contracted by Dawn Blades for lake plot construction. Both plots building simultaneously, shared foundation wall. Wyllard quote was highest and only one Brix trusted. Site walk scheduled Day 93 sunrise. Engineer meeting pending Jaygar's return from Yetgrese in approximately two weeks. Knows the lake plot location already — did not need to be told."
   },
   {
-    "id": "npcs_valdmere_12",
+    "id": "npcs_103",
     "name": "The Enchantress",
     "location": "Valdmere, unnamed workshop near main street",
     "faction": "Independent",
@@ -1363,7 +1411,7 @@
     "notes": "NAME IS A PLACEHOLDER — character-naming skill not yet run. Only quality enchanter in Valdmere. Completed +2 enhancement on Pirra's paired shortsword and Chuknora's shield for 4,000 gold total, half upfront. Referred party to Cadrith Solne for scrolls. Mentioned Lithcai'nael family library as best avenue for higher tier combat scrolls. Has prior work history with Gaermuion family. Does not take apprentices but open to occasional collaborative work with trained spellcasters."
   },
   {
-    "id": "npcs_valdmere_13",
+    "id": "npcs_104",
     "name": "Cadrith Solne",
     "location": "Valdmere, translation service three streets north of main gate",
     "faction": "Independent",
@@ -1375,7 +1423,7 @@
     "notes": "Sold party a Tongues scroll for 40 gold after brief negotiation. Referral from the enchantress. Reliably stocks Tongues — most requested scroll for her clientele. Offered to flag gate district scroll merchant on next arrival at no cost. Tracks city arrivals as standard practice. Party should follow up when in need of combat scrolls."
   },
   {
-    "id": "npcs_valdmere_14",
+    "id": "npcs_105",
     "name": "The Weapon Seller",
     "location": "Valdmere, market district weapon stall",
     "faction": "Independent",
@@ -1388,13 +1436,13 @@
   },
   {
     "name": "Griffas",
-    "location": "Tilawam",
+    "location": "Tilawam, Repose",
     "faction": "Independent",
     "role": "Innkeeper",
     "appearance": "Broader, heavier-featured local woman, older, grey at the temples",
     "description": "Owner of Repose. Speaks no Common but communicates effectively. Moves through her establishment with the ease of someone who has memorized every creaking board.",
     "notes": "",
-    "id": "npcs_87"
+    "id": "npcs_106"
   },
   {
     "name": "Sevrak",
@@ -1404,7 +1452,7 @@
     "appearance": "Drevani, yellow streak in thundercloud-grey fur, multiple piercings",
     "description": "Operates a basement fighting venue in the Drevani neighborhood. Sharp, professional, reads a crowd instinctively.",
     "notes": "",
-    "id": "npcs_88"
+    "id": "npcs_107"
   },
   {
     "name": "Drevna",
@@ -1414,7 +1462,7 @@
     "appearance": "Broader, heavier-featured local, tall for her build, stillness of someone who makes decisions for a living",
     "description": "Hired captain, lost her previous ship six weeks prior to hiring. Direct, professional, doesn't waste words.",
     "notes": "",
-    "id": "npcs_89"
+    "id": "npcs_108"
   },
   {
     "name": "Brathek",
@@ -1424,7 +1472,7 @@
     "appearance": "Weathered, economy of movement, answers after finishing his thinking rather than during it",
     "description": "Hired captain, exceptional knowledge of the southern archipelago. Low voice, few words, deep local expertise.",
     "notes": "",
-    "id": "npcs_90"
+    "id": "npcs_109"
   },
   {
     "name": "Delvanken",
@@ -1434,6 +1482,150 @@
     "appearance": "Hei'ugar, sky-watcher's habitual upward glance",
     "description": "Led the Hei'ugar crew of the seized cargo vessel through the coalition rescue operation. Loyal, capable under pressure, chose to stay with the Dawn Blades afterward.",
     "notes": "",
-    "id": "npcs_91"
+    "id": "npcs_110"
+  },
+  {
+    "name": "Wainkur (the son)",
+    "location": "Argentveil, Vethran & Son",
+    "faction": "Independent",
+    "role": "Shopkeeper, Vethran & Son",
+    "appearance": null,
+    "notes": "STUB — created 2026-09-09 to back the existing 'Vethran & Son' npcs_present reference in places.json; never had a real npcs.json record before. Flesh out appearance/personality when actually used at the table.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_111"
+  },
+  {
+    "name": "Torvaine",
+    "location": "Argentveil, Torvaine's Steel",
+    "faction": "Independent",
+    "role": "Shopkeeper, Torvaine's Steel",
+    "appearance": null,
+    "notes": "STUB — created 2026-09-09 to back the existing 'Torvaine's Steel' npcs_present reference in places.json; never had a real npcs.json record before. Flesh out appearance/personality when actually used at the table.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_112"
+  },
+  {
+    "name": "Kovran",
+    "location": "Argentveil, Forged & Found",
+    "faction": "Independent",
+    "role": "Shopkeeper, Forged & Found",
+    "appearance": null,
+    "notes": "STUB — created 2026-09-09 to back the existing 'Forged & Found' npcs_present reference in places.json; never had a real npcs.json record before. Flesh out appearance/personality when actually used at the table.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_113"
+  },
+  {
+    "name": "Duvrak",
+    "location": "Argentveil, DUVRAK",
+    "faction": "Independent",
+    "role": "Shopkeeper, DUVRAK",
+    "appearance": null,
+    "notes": "STUB — created 2026-09-09 to back the existing 'DUVRAK' npcs_present reference in places.json; never had a real npcs.json record before. Note: also referenced by name as the enchanter of Lexica's 'Lexica's Enchanted Instrument' (party_items.json) — same NPC. Flesh out appearance/personality when actually used at the table.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_114"
+  },
+  {
+    "name": "Edrunvath",
+    "location": "Halvenmoren, Lord's Hall",
+    "faction": "Independent",
+    "role": "Lord of Halvenmoren",
+    "appearance": "Human male, mid-fifties. Broad through the chest, grey-streaked beard kept short and practical. Good wool clothing, well-made, not showy. Moves with the directness of a man in his own hall.",
+    "notes": "Posted the notice to Argentveil requesting aid with the Dunric Pass weather anomaly. Paid 12 silver for the courier. Informed party of missing waystation men Pell and Cavan (brothers). Accepted 34 gold from party for restitution to affected families. Sent word around Halvenmoren for cold weather gear. Has run Halvenmoren for approximately 30 years. Said he would add his voice to those who speak well of the Dawn Blades.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_115"
+  },
+  {
+    "name": "Bryndavok",
+    "location": "Duncavel, Civic Hall",
+    "faction": "Independent",
+    "role": "Headwoman of Duncavel",
+    "appearance": "Dwarf female, past a century in age. Solid, healthy, iron-grey hair kept practically. Good clothes, not showy. Short working beard. Eyes that complete their assessment before most people notice they've started.",
+    "notes": "Headwoman of Duncavel for 22 years. Originally a trade liaison for a dwarven clan. Posted no formal reward but covered party's outfitting costs at Kettvonn's. Her trader (Kettvonn's cousin) was rescued from the Ven Durath mine by the party. Established Elementium partnership with Dawn Blades: 20% to Dawn Blades, joint oversight on methodology and pace, nothing moves without both parties agreeing. Consulting clan archives before any action. Goes by Brynni to people who've earned it — party has not yet earned it.",
+    "status": ["ally"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_116"
+  },
+  {
+    "name": "Edvorn",
+    "location": "Halvenmoren, road",
+    "faction": "Independent",
+    "role": "Merchant teamster",
+    "appearance": "Human male, late forties. Road-lean, weathered without being worn. Ink-stained fingers. Clothes that were once decent and are now just present.",
+    "notes": "Stranded at Halvenmoren during Dunric Pass closure. Spoke with party on arrival, provided first account of the pass conditions including that the cold felt inside you before it got on you. Pointed party toward Sova the tanner, Dunwell's wife for woolens, and Lord Edrunvath. Was preparing to depart when party returned through the pass.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_117"
+  },
+  {
+    "name": "Kettvonn",
+    "location": "Duncavel, north side of square",
+    "faction": "Independent",
+    "role": "Outfitter, mountain gear",
+    "appearance": "Dwarf male, middle years by dwarven reckoning. Broad through the forearms. Short working beard. Measuring tape around neck as a matter of habit.",
+    "notes": "Outfitter on north side of Duncavel square. Supplied party with proper cold weather gear on Bryndavok's authorization — town covered reasonable costs. His cousin was among the civilians rescued from the Ven Durath mine. Gear to be returned to him after use — party honored this on the way back through. Works with treated leather and a mineral compound developed by dwarven mining guilds for unnatural cold conditions.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_118"
+  },
+  {
+    "name": "Mevra",
+    "location": "Halvenmoren, south end of town",
+    "faction": "Independent",
+    "role": "Remedy maker, preparations",
+    "appearance": "Human female, past sixty. Compact, still. Hands stained in overlapping layers of green, brown, and yellow that have become part of her skin. Grey hair pinned back with a sharpened twig.",
+    "notes": "Produced cold-resistance salve for party — rendered fat base with warming agent, analgesic, and altitude preparation compound. Enough for six people, effective four to five hours against unnatural cold. Tackett assisted with preparation. Bristled at being called a wizard. Has been in Halvenmoren longer than Edrunvath. Advised party to move constantly in the pass cold.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_119"
+  },
+  {
+    "name": "Dunnett",
+    "location": "Halvenmoren, dry goods store",
+    "faction": "Independent",
+    "role": "Dry goods merchant",
+    "appearance": "Human female, somewhere in her sixties. Unhurried, careful economy of movement.",
+    "notes": "Sold party cold weather clothing from winter stock — two wool coats, four blanket-cloaks, underlayers, stockings, scarves. Total approximately 16 gold. Had no gloves in stock. Edrunvath sent word ahead that party was coming and paying fair.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_120"
+  },
+  {
+    "name": "Cobbler (Halvenmoren)",
+    "location": "Halvenmoren",
+    "faction": "Independent",
+    "role": "Cobbler",
+    "appearance": "Human female, forties. Lean, works in an open-fronted workshop.",
+    "notes": "Sold party three pairs of ready-made boots and fitted leather panels over existing boots for remaining party members. Strong opinions about feet. Name never established.",
+    "status": ["neutral"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_121"
+  },
+  {
+    "name": "Valdrunek",
+    "location": "Unknown",
+    "faction": "Order of the Pale Road",
+    "role": "Senior Order figure, operational overseer",
+    "appearance": null,
+    "notes": "Name found signed at the bottom of operational log recovered from locked box at Dunric Pass plateau camp, Day 80 Year 468. Oversaw Hearthstone installation operation. Wrote in precise hand. Signed without apparent concern about identification. No further information available.",
+    "status": ["enemy", "unknown"],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_122"
   }
 ]

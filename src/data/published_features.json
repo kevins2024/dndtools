@@ -267,8 +267,8 @@
     "id": "pub_bladesong",
     "name": "Bladesong",
     "class": "Wizard (Bladesinger)",
-    "description": "You invoke an ancient elven magic as a bonus action. While active (up to 1 minute), you gain a bonus to AC equal to your INT modifier, your walking speed increases by 10 ft, you have advantage on Dexterity (Acrobatics) checks, and you gain a bonus to Constitution saves to maintain concentration equal to your INT modifier. Ends early if you are incapacitated, don medium or heavy armor or a shield, or use two hands to make an attack. 2 uses, regained on a short or long rest.",
-    "source": "Sword Coast Adventurer's Guide (introduced), refined in Tasha's Cauldron of Everything"
+    "description": "You invoke an ancient elven magic as a bonus action. While active (up to 1 minute), you gain a bonus to AC equal to your INT modifier, your walking speed increases by 10 ft, you have advantage on Dexterity (Acrobatics) checks, and you gain a bonus to Constitution saves to maintain concentration equal to your INT modifier. Ends early if you are incapacitated, don medium or heavy armor or a shield, or use two hands to make an attack. Usable a number of times equal to your proficiency bonus, all regained on a long rest (the older SCAG version was a flat 2 uses per short/long rest — Tasha's Cauldron of Everything's current version, cited below, replaced that with this formula).",
+    "source": "Tasha's Cauldron of Everything (current version — supersedes the original Sword Coast Adventurer's Guide printing)"
   },
   {
     "id": "pub_totemic-assault",
@@ -994,9 +994,10 @@
     "name": "Stars Druid — Starry Form",
     "category": "subclass_feature",
     "action_type": "bonus_action",
-    "recharge": "short_rest",
-    "description": "Transform into a starry form for 10 minutes. Choose constellation: Archer (bonus radiant damage on spells, 1d8+WIS as bonus action each turn), Chalice (healing spells heal Tackett for 1d8+WIS mod), Dragon (concentration checks auto-succeed on rolls of 9 or lower). Unbroken (legendary — see separate entry).",
-    "source": "Tasha's Cauldron of Everything"
+    "description": "As a bonus action, expend a use of Wild Shape to take on a starry form (instead of a beast shape) for 10 minutes, retaining your own statistics. Choose one constellation: Archer — as the activating bonus action and again as a bonus action on later turns, make a ranged spell attack (a luminous arrow) against one creature within 60ft, dealing 1d8 + Wisdom modifier radiant damage on a hit; Chalice — whenever you cast a spell using a spell slot that restores hit points, you or another creature within 30ft can regain 1d8 + Wisdom modifier extra hit points; Dragon — when you make an Intelligence or Wisdom check, or a Constitution save to maintain concentration, you can treat a roll of 9 or lower as a 10 (this doesn't guarantee success against a high DC, just improves a low roll).",
+    "source": "Tasha's Cauldron of Everything",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10 — all three constellations had real mechanical errors: Archer is its own independent ranged spell attack (activation + every subsequent turn's bonus action), not \"bonus damage added to your spells\"; Chalice specifically requires casting a spell using a SPELL SLOT, and lets you choose to heal an ally within 30ft instead of always healing yourself; Dragon applies to Intelligence/Wisdom checks too, not just concentration saves, and \"treat as a 10\" is not the same as \"automatically succeeds\" (a high enough DC can still fail it). Also removed a fabricated \"recharge: short_rest\" — this feature has no independent charge pool at all; it spends a use of Wild Shape itself, whatever that druid's own Wild Shape recharge/uses currently are. All three confirmed via two independent direct-quote fetches. Tackett (Halfling Druid 9, Circle of Stars) is the only roster user — his own sheet's `modes` text repeats the same three errors, and his sheet also tracks Starry Form as its own separate 1-use pool rather than drawing from his actual Wild Shape uses; flagged for the project owner rather than silently restructured, since merging the pools is a real design choice, not just a text fix. His homebrew 4th \"Unbroken (Legendary)\" mode is a deliberate campaign addition, not RAW, and is unaffected by this correction."
   },
   {
     "id": "pub_stars-druid-cosmic-omen",
@@ -1004,16 +1005,20 @@
     "category": "subclass_feature",
     "action_type": "reaction",
     "recharge": "long_rest",
-    "description": "After a long rest roll a d6. Odd: Weal — use reaction to add 1d6 to an attack roll, ability check, or saving throw of a creature within 30ft. Even: Woe — use reaction to subtract 1d6 from a roll of a creature within 30ft.",
+    "description": "After a long rest roll a d6. Even: Weal — use your reaction to roll a d6 and add it to an attack roll, ability check, or saving throw a creature within 30ft is about to make. Odd: Woe — same, but subtract the d6 instead. Usable a number of times equal to your proficiency bonus, regaining all uses when you finish a long rest.",
     "note": "Roll at start of each long rest to determine Weal or Woe.",
-    "source": "Tasha's Cauldron of Everything"
+    "source": "Tasha's Cauldron of Everything",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: Weal/Woe were backwards (even is Weal/bonus, odd is Woe/penalty — local data had this flipped), and the proficiency-bonus-per-long-rest use cap was missing entirely (local implied unlimited reaction use). Confirmed via two independent sources. Tackett (Halfling Druid 9, Circle of Stars) is the only roster user — his own sheet caps this at a flat 1 use, when his real cap at level 9 (proficiency bonus +4) should be 4; flagged for a follow-up sheet fix since it's a clear, unambiguous numeric correction."
   },
   {
     "id": "pub_stars-druid-full-of-stars",
     "name": "Stars Druid — Full of Stars",
     "category": "subclass_feature",
-    "description": "While in Starry Form: become partially incorporeal. Resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
-    "source": "Tasha's Cauldron of Everything"
+    "description": "While in Starry Form, you become partially incorporeal, giving you resistance to bludgeoning, piercing, and slashing damage — unqualified, not just from nonmagical sources.",
+    "source": "Tasha's Cauldron of Everything",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: removed a fabricated \"from nonmagical attacks\" restriction — the real feature's resistance is unqualified (a real, meaningful power difference), confirmed via a direct-quote fetch. No roster character has reached 14th level in this subclass, so no character-sheet impact."
   },
   {
     "id": "pub_stars-druid-unbroken-legendary",
@@ -1195,8 +1200,10 @@
     "category": "subclass_feature",
     "action_type": "action",
     "recharge": "channel_divinity",
-    "description": "As an action, expend one use of Channel Divinity to imbue one weapon you are holding with positive energy. For 1 minute: add CHA modifier to attack rolls (minimum +1), weapon counts as magical, emits bright light in 20ft radius and dim light 20ft beyond.",
-    "source": "Player's Handbook"
+    "description": "As an action, expend one use of Channel Divinity to imbue one weapon you are holding with positive energy. For 1 minute: add CHA modifier to attack rolls (minimum +1), weapon counts as magical, emits bright light in 20ft radius and dim light 20ft beyond. You can end the effect early as part of any other action; it also ends immediately if you're no longer holding or carrying the weapon, or if you fall unconscious.",
+    "source": "Player's Handbook",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: added two missing early-termination conditions (voluntary end as part of another action; automatic end on dropping the weapon or falling unconscious), confirmed via a direct-quote fetch. This is real PHB content reused by Ferghus's homebrew Oath of the Open Road (paladin-oath-of-the-open-road.json) as well as Oath of Devotion — Ferghus (Paladin 9) has this feature, no local override, so this fix applies to him too."
   },
   {
     "id": "pub_assassinate",
@@ -1236,9 +1243,11 @@
   {
     "id": "pub_divine-magic",
     "name": "Divine Magic",
-    "description": "Divine Soul Sorcerer feature. You have access to the full Cleric spell list in addition to the Sorcerer spell list. When you learn a Sorcerer spell, you may choose from either list.",
+    "description": "Divine Soul Sorcerer feature. You have access to the full Cleric spell list in addition to the Sorcerer spell list — when your Spellcasting feature lets you learn a cantrip or a spell of 1st level or higher, you may choose it from either list. You also gain one bonus spell for free based on your chosen affinity, always prepared and not counting against your spells known: Good grants Cure Wounds, Evil grants Inflict Wounds, Law grants Bless, Chaos grants Bane, and Neutrality grants Protection from Evil and Good.",
     "type": "feature",
-    "source": "Xanathar's Guide to Everything"
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: the affinity-based free bonus spell (Good/Evil/Law/Chaos/Neutrality) was entirely missing from this catalog entry — confirmed via a direct-quote fetch. Rith (Sorcerer 9, Divine Soul) already has this correctly applied on his own character sheet (Bless, tagged as his Law-affinity Divine Magic bonus spell, per an earlier session's character-specific fix) — this fix brings the shared catalog text in line with what his sheet already modeled correctly, rather than the other way around."
   },
   {
     "id": "pub_favored-by-the-gods",
@@ -1250,9 +1259,11 @@
   {
     "id": "pub_empowered-healing",
     "name": "Empowered Healing",
-    "description": "Divine Soul Sorcerer feature. When you or an ally within 5 feet of you rolls dice to determine hit points restored by a spell, you may spend 1 sorcery point to reroll any number of those dice once, taking the new result.",
+    "description": "Divine Soul Sorcerer feature. When you or an ally within 5 feet of you rolls dice to determine hit points restored by a spell, you may spend 1 sorcery point (provided you aren't incapacitated) to reroll any number of those dice once, taking the new result. Usable only once per turn.",
     "type": "feature",
-    "source": "Xanathar's Guide to Everything"
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: added two missing real limiters — you must not be incapacitated to use it, and it's capped at once per turn (local text previously implied unlimited use). Confirmed via a direct-quote fetch. Rith (Sorcerer 9, Divine Soul) has this feature; no numeric tracking exists on his sheet for it (correctly left as a live judgment call, same pattern as other once-per-turn resource limits in this app)."
   },
   {
     "id": "pub_weave-embodiment",
@@ -1566,7 +1577,7 @@
   {
     "id": "pub_guiding-whispers",
     "name": "Guiding Whispers",
-    "description": "You learn the Guidance cantrip, and you can cast it at a range of up to 60ft (rather than the normal touch range).",
+    "description": "You learn the Guidance cantrip without it counting against the number of Bard cantrips you know, and you can cast it at a range of up to 60ft (rather than the normal touch range).",
     "type": "feature",
     "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level."
   },
@@ -1634,9 +1645,10 @@
   {
     "id": "pub_know-your-enemy",
     "name": "Know Your Enemy",
-    "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain information about its capabilities compared to your own — whether it's your equal, superior, or inferior in one or more of the following: Strength score, Dexterity score, Constitution score, AC, current hit points, total class levels (if any), fighter class levels (if any).",
+    "description": "If you spend at least 1 minute observing or interacting with another creature outside combat, you can learn whether it's your equal, superior, or inferior in two characteristics of your choice from the following: Strength score, Dexterity score, Constitution score, AC, current hit points, total class levels (if any), fighter class levels (if any).",
     "type": "feature",
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "note": "Corrected 2026-09-09 -- previously said \"one or more\" characteristics; the real feature caps this at exactly two, chosen from the list."
   },
   {
     "id": "pub_linked-spellbook",
@@ -1749,9 +1761,9 @@
   {
     "id": "pub_spirit-session",
     "name": "Spirit Session",
-    "description": "Once per long rest, you can conduct an hour-long ritual (usable during a short or long rest) channeling spirits through your Spiritual Focus. At the end of the ritual, you temporarily learn one spell of your choice from any class — the spell's level can't exceed the number of creatures who took part in the ritual, must be a level you can cast, and must be from the Divination or Necromancy school.",
+    "description": "Once per long rest, you can conduct an hour-long ritual channeling spirits through your Spiritual Focus with up to your proficiency bonus in other willing creatures. At the end of the ritual, you temporarily learn one Divination or Necromancy spell of your choice from any class — the spell's level can't exceed the number of creatures who took part and must be a level you can cast. The chosen spell counts as a bard spell for you but doesn't count against the number of bard spells you know.",
     "type": "feature",
-    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level ritual, DM's name for the Spiritual Focus 6th-level benefit."
+    "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level, a separate feature from Spiritual Focus's own 6th-level damage/healing bonus roll (both genuinely trigger at 6th level)."
   },
   {
     "id": "pub_spiritual-focus",
@@ -1763,16 +1775,20 @@
   {
     "id": "pub_stars-druid-star-map",
     "name": "Stars Druid — Star Map",
-    "description": "You create a star chart that serves as your spellcasting focus for druid spells (a scroll, stone tablet, bound maps, projecting crystal, glass disk, or similar). While you hold or wear it, you gain benefits tied to your Starry Form (see Twinkling Constellations and related features), and you can use it to help guide divinatory insight.",
+    "description": "You create a Tiny star chart (a scroll, stone tablet, bound maps, projecting crystal, glass disk, or similar) that serves as your spellcasting focus for druid spells. You learn the Guidance cantrip, and you have the Guiding Bolt spell prepared at all times — it doesn't count against your number of spells prepared, and you can cast it without expending a spell slot a number of times equal to your proficiency bonus, regaining all expended uses when you finish a long rest. If you lose the map, you can perform a 1-hour ceremony during a short or long rest to magically create a replacement, destroying the old one.",
     "type": "feature",
-    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level."
+    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level.",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10 — the previous description omitted the feature's entire mechanical payload (it only described the star chart as a vague spellcasting focus with hand-wavy \"divinatory insight\" flavor). Real RAW: it grants the Guidance cantrip and a free, always-prepared, slot-free-castable Guiding Bolt (proficiency bonus uses per long rest). Confirmed via two independent sources. Tackett (Halfling Druid 9, Circle of Stars) is the only roster user — his own sheet's Star Map entry has no spells_granted, so he's likely missing these two real spell grants; flagged for a follow-up fix on his character record, not guessed at here since it changes his effective spell list."
   },
   {
     "id": "pub_stars-druid-twinkling-constellations",
     "name": "Stars Druid — Twinkling Constellations",
-    "description": "Your Starry Form improves: the Archer's damage die and the Chalice's healing die both increase by 1d8, and the Dragon form gains a flying speed of 20ft.",
+    "description": "Your Starry Form improves: the Archer's and Chalice's dice both become 2d8, and the Dragon form gains a 20ft flying speed with the ability to hover. Additionally, at the start of each of your turns while in Starry Form, you can freely change which constellation is currently active — no extra Wild Shape use required.",
     "type": "feature",
-    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level."
+    "source": "Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level.",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10 — missing two real clauses: Dragon's flying speed also grants the ability to hover, and (the more significant omission) this feature lets you freely swap constellations each turn while in Starry Form at no extra cost, a real tactical feature entirely absent from the old description. Confirmed via two independent sources. FLAGGED, not fixed: Tackett (Halfling Druid 9, Circle of Stars) already has this 10th-level feature on his sheet despite being Druid 9, one level early — worth a project-owner decision on whether that's intentional (he's previously been noted as a \"legendary character\" where strict RAW-accuracy isn't the goal) before removing it."
   },
   {
     "id": "pub_steel-will",
@@ -1791,7 +1807,7 @@
   {
     "id": "pub_tales-from-beyond",
     "name": "Tales from Beyond",
-    "description": "While holding your Spiritual Focus, you can use a bonus action to expend one use of Bardic Inspiration and roll on the Spirit Tales table, using the Bardic Inspiration die rolled to determine which tale the spirits direct you to tell — each tale grants a different narrative/mechanical effect.",
+    "description": "While holding your Spiritual Focus, you can use a bonus action to expend one use of Bardic Inspiration and roll on the Spirit Tales table, using the Bardic Inspiration die rolled to determine which tale the spirits direct you to tell. You can then use an action to choose one creature you can see within 30ft of you (this can be you) as the target of the tale's effect — each tale grants a different narrative/mechanical effect.",
     "type": "feature",
     "source": "College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level."
   },
@@ -1805,14 +1821,14 @@
   {
     "id": "pub_giant-s-power",
     "name": "Giant's Power",
-    "description": "You learn to speak, read, and write Giant, or one other language of your choice if you already know Giant. You also learn one cantrip of your choice from the wizard spell list — druidcraft or thaumaturgy replaced with an elemental variant flavor is common, but any wizard cantrip is legal. You can cast it without material components, and Strength is your spellcasting ability for it.",
+    "description": "You learn to speak, read, and write Giant, or one other language of your choice if you already know Giant. You also learn a cantrip of your choice: either Druidcraft or Thaumaturgy (real RAW limits it to these two — not any wizard cantrip). Wisdom is your spellcasting ability for it.",
     "type": "feature",
     "source": "Bigby Presents: Glory of the Giants"
   },
   {
     "id": "pub_mighty-impel",
     "name": "Mighty Impel",
-    "description": "While raging, you can use a bonus action to hurl a Medium or smaller creature within 30 feet of you up to 30 feet in a horizontal line, or 15 feet straight up, ending in an unoccupied space. If the target is unwilling, it must succeed on a Strength saving throw (DC 8 + proficiency bonus + Strength modifier) or be moved this way. A creature moved into a hazard (like off a cliff) takes falling/collision damage as normal.",
+    "description": "While raging, you can use a bonus action to hurl a Medium or smaller creature within YOUR REACH (not 30ft — you have to be able to touch it, melee range plus whatever this subclass's own reach bonuses add) to an unoccupied space you can see within 30ft of yourself. If the target is unwilling, it must succeed on a Strength saving throw (DC 8 + proficiency bonus + Strength modifier) or be moved this way. A creature moved into a hazard (like off a cliff) takes falling/collision damage as normal.",
     "type": "feature",
     "source": "Bigby Presents: Glory of the Giants"
   },
@@ -1833,14 +1849,14 @@
   {
     "id": "pub_shadow-martyr",
     "name": "Shadow Martyr",
-    "description": "As a reaction when a creature you can see within 30 feet of your echo is about to be hit by an attack, you can teleport your echo into the attack's path to intercept it in the target's place — the attack automatically hits the echo instead, and the echo is destroyed if it can't survive the damage.",
+    "description": "Before an attack roll is made against another creature you can see (including you), you can use your reaction to teleport your echo to an unoccupied space within 5ft of the targeted creature — the attack is made against your echo instead. No range limit on the trigger itself, just line of sight. Once used, you can't use it again until you finish a short or long rest.",
     "type": "feature",
     "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 10th level."
   },
   {
     "id": "pub_reclaim-potential",
     "name": "Reclaim Potential",
-    "description": "When your echo is destroyed (by damage, by being dismissed, or by manifesting a new one), you gain temporary hit points equal to your fighter level.",
+    "description": "When an echo of yours is destroyed by taking damage, you can gain 2d6 + your Constitution modifier temporary hit points. Usable a number of times equal to your Constitution modifier (minimum once), regaining all expended uses on a long rest.",
     "type": "feature",
     "source": "Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 15th level."
   },
@@ -1868,16 +1884,20 @@
   {
     "id": "pub_stalker-s-flurry",
     "name": "Stalker's Flurry",
-    "description": "Once on each of your turns when you miss with an attack roll, you can make another weapon attack as part of the same action.",
+    "description": "Once on each of your turns when you miss with a weapon attack, you can make another weapon attack as part of the same action.",
     "type": "feature",
-    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 11th level."
+    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 11th level.",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: the trigger is missing specifically with a WEAPON attack, not any attack roll (a spell attack miss doesn't qualify) — confirmed via two independent sources. Elucyne (Ranger 5, Gloom Stalker) hasn't reached 11th level yet, so no character-sheet impact."
   },
   {
     "id": "pub_shadowy-dodge",
     "name": "Shadowy Dodge",
-    "description": "Whenever a creature makes an attack roll against you, you can use your reaction to impose disadvantage on that roll.",
+    "description": "Whenever a creature makes an attack roll against you and doesn't have advantage on the roll, you can use your reaction to impose disadvantage on it. You must use this feature before you know whether the attack hits.",
     "type": "feature",
-    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 15th level."
+    "source": "Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 15th level.",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: added two missing real clauses — it doesn't work against an attack that already has advantage, and it must be used before the attack roll's outcome is known (can't wait to see if it hits first). Confirmed via two independent sources. Elucyne (Ranger 5, Gloom Stalker) hasn't reached 15th level yet, so no character-sheet impact."
   },
   {
     "id": "pub_entropic-ward",
@@ -1910,9 +1930,11 @@
   {
     "id": "pub_channel-divinity-turn-the-faithless",
     "name": "Channel Divinity: Turn the Faithless",
-    "description": "As an action, present your holy symbol and speak a prayer to force each fey or fiend within 30 feet that can see or hear you to make a Wisdom saving throw. On a failure, the creature is turned for 1 minute or until it takes damage — a turned creature must spend its turns trying to move as far from you as it can, and can't willingly move within 30 feet of you.",
+    "description": "As an action, present your holy symbol and speak a prayer to force each fey or fiend within 30 feet that can hear you to make a Wisdom saving throw. On a failure, the creature is turned for 1 minute or until it takes damage — a turned creature must spend its turns trying to move as far from you as it can, can't willingly move within 30 feet of you, and can't take reactions (only the Dash action or an action to escape whatever's restraining it). If the creature's true form is concealed by a shapeshifting or illusion effect, that form is revealed for as long as it's turned.",
     "type": "feature",
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10: the save trigger is \"can hear you\" only, not \"can see or hear you\" as previously written; added the missing true-form-revealed clause for disguised/shapeshifted targets and the fuller Turned-condition detail (no reactions, Dash/escape only) — confirmed via two independent sources. Chuknora (Barbarian 6/Paladin 3, Oath of the Ancients) is the only roster user of this subclass and hasn't reached 7th-level Paladin yet, so only this 3rd-level Channel Divinity option is currently relevant to her."
   },
   {
     "id": "pub_aura-of-warding",
@@ -1924,9 +1946,11 @@
   {
     "id": "pub_undying-sentinel",
     "name": "Undying Sentinel",
-    "description": "When you're reduced to 0 hit points and not killed outright, you can choose to instead drop to 1 hit point. Once used, you can't use this feature again until you finish a long rest. In addition, you no longer suffer the frailty of old age and can't be aged magically.",
+    "description": "When you're reduced to 0 hit points and not killed outright, you can choose to instead drop to 1 hit point. Once used, you can't use this feature again until you finish a long rest. In addition, you suffer none of the drawbacks of old age and can't be aged magically.",
     "type": "feature",
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10, minor wording precision: real text says \"drawbacks of old age,\" not \"frailty of old age\" (that phrasing belongs to Monk's separate Timeless Body feature). Notably, unlike Timeless Body, this feature carries no \"you can still die of old age\" caveat — per Jeremy Crawford's own designer clarification, this genuinely protects against dying of old age entirely, a stronger effect than it looks at a glance. Local text's phrasing already correctly omitted that caveat."
   },
   {
     "id": "pub_elder-champion",
@@ -1938,9 +1962,10 @@
   {
     "id": "pub_combat-superiority",
     "name": "Combat Superiority",
-    "description": "You learn maneuvers fueled by superiority dice (starting at 4d8, growing to 5d8 at 7th level and 6d8 at 15th level, all regained on a short or long rest). You learn maneuvers as you level (3 at 3rd, more at 7th and 15th) — each requires you to expend a superiority die, added to an attack's damage roll or to fuel the maneuver's other effect, and the target (if any) can often make a saving throw to resist.",
+    "description": "You learn maneuvers fueled by superiority dice (starting at 4d8, growing to 5d8 at 7th level and 6d8 at 15th level, all regained on a short or long rest). You learn maneuvers as you level: 3 at 3rd, +2 at 7th, +2 at 10th, +2 at 15th (9 total by 15th level) — each time you learn new maneuvers you can also replace one you know with a different one. Each maneuver requires you to expend a superiority die, added to an attack's damage roll or to fuel the maneuver's other effect, and the target (if any) can often make a saving throw to resist.",
     "type": "feature",
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "note": "Corrected 2026-09-09 -- maneuver-count progression previously omitted the 10th-level gain entirely (said only \"3 at 3rd, more at 7th and 15th\")."
   },
   {
     "id": "pub_student-of-war",
@@ -1979,10 +2004,12 @@
   },
   {
     "id": "pub_thunderous-strike",
-    "name": "Thunderous Strike",
-    "description": "Once per turn when you hit a creature with a weapon attack, you can cause the target to take an extra 1d8 thunder damage and be pushed 10 feet away from you and knocked prone, if it's Large or smaller.",
+    "name": "Thunderbolt Strike",
+    "description": "When you deal lightning damage to a Large or smaller creature, you can also push it up to 10 feet away from you.",
     "type": "feature",
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "homebrew": false,
+    "verification": "CORRECTED 2026-09-10 — this entry was significantly wrong on four counts, confirmed via multiple independent sources (D&D Beyond forum threads, bg3.wiki, a direct wikidot quote): (1) the real name is \"Thunderbolt Strike\", not \"Thunderous Strike\"; (2) it has no extra-damage-die clause at all — the fabricated \"extra 1d8 thunder damage\" was actually Divine Strike's effect (a separate, correctly-modeled feature at 8th level), meaning this bug would have double-granted the same kind of bonus damage twice; (3) there's no \"knocked prone\" effect — push only; (4) it triggers on ANY lightning damage you deal (a notoriously narrow real RAW limitation players complain about — it does NOT also work on thunder damage despite the class's general lightning-or-thunder theme), not specifically a weapon attack, and has no stated once-per-turn cap. Revven (Cleric 9, Tempest Domain) already had the correct name on his own sheet (\"Thunderbolt Strike\") despite this catalog entry being wrong — his sheet needed no fix, only this shared catalog data did."
   },
   {
     "id": "pub_stormborn",
@@ -2042,10 +2069,12 @@
   },
   {
     "id": "pub_unyielding-spirit",
-    "name": "Unyielding Spirit",
+    "name": "Unyielding Saint",
     "description": "You have advantage on saving throws to avoid becoming paralyzed or stunned.",
     "type": "feature",
-    "source": "Sword Coast Adventurer's Guide"
+    "source": "Sword Coast Adventurer's Guide",
+    "homebrew": false,
+    "verification": "Name corrected 2026-09-10 from \"Unyielding Spirit\" to the real \"Unyielding Saint\" (mechanics were always right, just mistitled) — confirmed via two independent sources. No roster character uses this subclass at 15th level or higher."
   },
   {
     "id": "pub_exalted-champion",
@@ -2155,7 +2184,7 @@
   {
     "id": "pub_panache",
     "name": "Panache",
-    "description": "As an action, make a Charisma (Persuasion) check contested by a creature's Wisdom (Insight) check. If the target is hostile, on a success it has disadvantage on attack rolls against anyone but you, and can't make opportunity attacks against anyone but you, until the end of your next turn. If the target isn't hostile, on a success it's charmed by you for 1 minute or until you or your companions do anything harmful to it.",
+    "description": "As an action, make a Charisma (Persuasion) check contested by a creature's Wisdom (Insight) check — the creature must be able to hear you and share a language with you. If the target is hostile, on a success it has disadvantage on attack rolls against anyone but you and can't make opportunity attacks against anyone but you, for 1 minute, until a companion of yours attacks it or affects it with a spell, or until you and it are more than 60ft apart (NOT just 'until the end of your next turn'). If the target isn't hostile, on a success it's charmed by you for 1 minute (regards you as a friendly acquaintance), ending immediately if you or a companion does anything harmful to it.",
     "type": "feature",
     "source": "Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 9th level."
   },
@@ -2176,7 +2205,7 @@
   {
     "id": "pub_extra-attack-bladesinger",
     "name": "Extra Attack (Bladesinger)",
-    "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn. In addition, when you use your action to cast a Bladesinger cantrip, you can make one weapon attack as a bonus action.",
+    "description": "You can attack twice, instead of once, whenever you take the Attack action on your turn. Moreover, you can cast one of your cantrips in place of one of those attacks — a substitution for one of the two attacks, not an extra bonus-action attack on top of casting a cantrip.",
     "type": "feature",
     "source": "Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 6th level."
   },
@@ -2439,7 +2468,7 @@
     "level_gained": 9,
     "homebrew": false,
     "source": "Tasha's Cauldron of Everything",
-    "description": "Reaction, when a creature you can see dies within 30 feet: create a spectral token of its soul. Consuming a token grants advantage on a death save or a CON save to maintain concentration, fuels an extra use of Wails from the Grave, or lets you ask the departed spirit one question it would have answered honestly in life."
+    "description": "Reaction, when a creature you can see dies within 30ft: create a Tiny soul trinket in your free hand. You can hold a number of these equal to your proficiency bonus (can't create a new one at that cap). While you're carrying at least one, you have advantage on death saving throws AND Constitution saving throws (passively, from just having it — not consumed for this). Destroy one to either: immediately use Wails from the Grave without spending one of its own uses, or cast Augury. To use this whole feature again once you're at your trinket cap, you must finish a long rest or destroy a trinket as part of Ghost Walk's activation."
   },
   {
     "id": "hb_rogue_phantom_ghost_walk",
@@ -2529,7 +2558,7 @@
     "level_gained": 3,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Learn Mage Hand automatically (doesn't count against cantrips known); cast it as a bonus action, make its spectral hand invisible, and use it to stow/retrieve an item from a container or another creature, or pick a lock/disarm a trap remotely, all without provoking an attack of opportunity."
+    "description": "Mage Hand is one of your 3 starting cantrips automatically — not an optional pick, but not extra on top of your normal cantrip count either. When you cast it, its spectral hand is invisible, and you can use the bonus action granted by Cunning Action to command it to perform an additional task on your turn: stow/retrieve an item from a container or another creature, or use thieves' tools to pick a lock or disarm a trap remotely — all without the creature noticing if you succeed on a Sleight of Hand check contested by its passive Perception."
   },
   {
     "id": "hb_rogue_at_magical_ambush",
@@ -2556,7 +2585,7 @@
     "level_gained": 17,
     "homebrew": false,
     "source": "Player's Handbook",
-    "description": "Reaction, immediately after a creature casts a spell that targets you or includes you in its area: force an INT save (your spell save DC). On a fail, negate the spell's effect on you — if the spell was 1st level or higher and is on the wizard spell list, you also steal its knowledge: for the next 8 hours you can cast that spell (if you have a slot of the right level, or it's a spell you know/have prepared) at its original level without expending a slot or material components. A cantrip can only be negated this way, never stolen. Once per long rest."
+    "description": "Reaction, immediately after a creature casts a spell that targets you or includes you in its area: force it to save using its own spellcasting ability modifier against your spell save DC. On a fail, negate the spell's effect on you — if the spell was 1st level or higher and a level you can cast, you also steal its knowledge for 8 hours (it does NOT need to be a wizard spell): you can cast it using one of your own spell slots of the appropriate level, and the original caster can't cast that spell themselves until the 8 hours are up. A cantrip can only be negated this way, never stolen. Once per long rest."
   },
   {
     "id": "gen_artificer_base_spellcasting",
@@ -3041,7 +3070,7 @@
     "category": "paladin_aura",
     "class": "Paladin (Oath of Glory)",
     "level_gained": 7,
-    "description": "Your walking speed increases by 10 feet while you're not incapacitated. Additionally, when combat starts (or another creature enters this aura on its turn for the first time), that creature's walking speed increases by 10 feet until the end of its turn if it's within 5 feet of you. At 18th level, the range at which allies gain this bonus increases to 10 feet.",
+    "description": "Your walking speed increases by 10 feet. Additionally, if you aren't incapacitated, any ally who starts their own turn within 5ft of you also gets +10ft walking speed until the end of that turn — this recurs every turn an ally starts near you, not just once at combat start. At 18th level, the range for this ally bonus increases to 10ft.",
     "source": "Tasha's Cauldron of Everything"
   },
   {
@@ -3208,9 +3237,10 @@
     "category": "subclass_feature",
     "class": "Barbarian (Path of the Beast)",
     "level_gained": 14,
-    "description": "When you enter your rage, choose other willing creatures you can see within 30ft up to your Constitution modifier (minimum 1) — you gain 5 temporary hit points per creature that accepts. Until your rage ends, each chosen creature can, once on each of its turns when it hits with an attack and deals damage, roll a d6 and add it as bonus damage.",
+    "description": "When you enter your rage, choose other willing creatures you can see within 30ft up to your Constitution modifier (minimum 1) — you gain 5 temporary hit points per creature that accepts. Until your rage ends, each chosen creature can, once on each of its turns when it hits with an attack and deals damage, roll a d6 and add it as bonus damage. Usable a number of times equal to your proficiency bonus, all regained on a long rest — a separate cap from Rage's own uses.",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously omitted this feature's own proficiency-bonus use cap per long rest, distinct from the barbarian's Rage uses."
   },
   {
     "id": "pub_storm-aura",
@@ -3370,6 +3400,26 @@
     "homebrew": false
   },
   {
+    "id": "pub_totem-spirit-elk",
+    "name": "Totem Spirit: Elk",
+    "category": "totem_spirit_option",
+    "class": "Barbarian (Path of the Totem Warrior)",
+    "description": "While raging and not wearing heavy armor, your walking speed increases by 15ft.",
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "note": "Added 2026-09-09 -- this option existed in the option_catalog implicitly via Aspect/Attunement but had no Totem Spirit (3rd-level) entry of its own; the option_catalog's totem_spirit list was also missing Elk entirely."
+  },
+  {
+    "id": "pub_totem-spirit-tiger",
+    "name": "Totem Spirit: Tiger",
+    "category": "totem_spirit_option",
+    "class": "Barbarian (Path of the Totem Warrior)",
+    "description": "While raging, you can add 10ft to your long jump distance and 3ft to your high jump distance, with or without a running start.",
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "note": "Added 2026-09-09 -- same gap as Elk above; the option_catalog's totem_spirit list was missing Tiger entirely."
+  },
+  {
     "id": "pub_aspect-of-the-beast-bear",
     "name": "Aspect of the Beast: Bear",
     "category": "aspect_of_the_beast_option",
@@ -3405,9 +3455,10 @@
     "category": "aspect_of_the_beast_option",
     "class": "Barbarian (Path of the Totem Warrior)",
     "level_gained": 6,
-    "description": "Your walking speed increases by 15ft. Difficult terrain doesn't cost extra movement when you Dash.",
-    "source": "Player's Handbook",
-    "homebrew": false
+    "description": "Whether mounted or on foot, your travel pace is doubled, as is the travel pace of up to ten companions while they're within 60ft of you and you're not incapacitated.",
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously carried Elk's 3rd-level Totem Spirit text (walking speed +15ft) instead of the real 6th-level ability."
   },
   {
     "id": "pub_aspect-of-the-beast-tiger",
@@ -3415,9 +3466,10 @@
     "category": "aspect_of_the_beast_option",
     "class": "Barbarian (Path of the Totem Warrior)",
     "level_gained": 6,
-    "description": "Gain proficiency in Athletics and Acrobatics, and a climbing speed and swimming speed equal to your walking speed.",
-    "source": "Player's Handbook",
-    "homebrew": false
+    "description": "Gain proficiency in two skills of your choice from the following list: Athletics, Acrobatics, Stealth, Survival.",
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously fabricated a fixed Athletics+Acrobatics proficiency plus a climbing/swimming speed that doesn't exist on this feature."
   },
   {
     "id": "pub_spirit-walker",
@@ -3465,9 +3517,10 @@
     "category": "totemic_attunement_option",
     "class": "Barbarian (Path of the Totem Warrior)",
     "level_gained": 14,
-    "description": "While raging, other hostile creatures within 5ft have disadvantage on opportunity attacks against you and your allies.",
-    "source": "Player's Handbook",
-    "homebrew": false
+    "description": "While raging, use a bonus action during your move to pass through the space of a Large or smaller creature. That creature must succeed on a Strength save (DC 8 + your Strength bonus + your proficiency bonus) or be knocked prone and take 1d12 + your Strength modifier bludgeoning damage.",
+    "source": "Xanathar's Guide to Everything",
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previous text (\"disadvantage on opportunity attacks\") was an entirely different, non-existent ability."
   },
   {
     "id": "pub_totemic-attunement-tiger",
@@ -3476,9 +3529,9 @@
     "class": "Barbarian (Path of the Totem Warrior)",
     "level_gained": 14,
     "description": "While raging, if you move at least 20ft in a straight line right before making a melee weapon attack, use a bonus action to make an additional melee attack against a Large or smaller target.",
-    "source": "Player's Handbook",
+    "source": "Xanathar's Guide to Everything",
     "homebrew": false,
-    "note": "Reflects the errata-corrected wording (target size capped at Large or smaller)."
+    "note": "Reflects the errata-corrected wording (target size capped at Large or smaller). Source corrected 2026-09-09 (XGE, not PHB)."
   },
   {
     "id": "pub_magic-awareness",
@@ -3724,9 +3777,10 @@
     "category": "subclass_feature",
     "class": "Bard (College of Creation)",
     "level_gained": 6,
-    "description": "As an action, animate one Large or smaller nonmagical item within 30ft that isn't worn or carried, into a Dancing Item (AC 16, HP 10 + 5x your bard level, Speed 30ft/fly 30ft hover, immune to poison/psychic damage and charmed/frightened/paralyzed/petrified/poisoned; Force-Empowered Slam: your spell attack modifier to hit, reach 5ft, 1d10 + proficiency bonus force damage). It obeys your verbal commands (no action needed from you) for 1 hour, until reduced to 0 HP, until you die, or until you use this again. Usable once, regaining the ability on a long rest, or earlier by expending a spell slot of 3rd level or higher.",
+    "description": "As an action, animate one Large or smaller nonmagical item within 30ft that isn't worn or carried, into a Dancing Item (AC 16, HP 10 + 5x your bard level, Speed 30ft/fly 30ft hover, immune to poison/psychic damage and charmed/exhaustion/frightened/poisoned; Force-Empowered Slam: your spell attack modifier to hit, reach 5ft, 1d10 + proficiency bonus force damage). It obeys your verbal commands (no action needed from you) for 1 hour, until reduced to 0 HP, until you die, or until you use this again. Usable once, regaining the ability on a long rest, or earlier by expending a spell slot of 3rd level or higher.",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- condition immunity list wrongly included paralyzed/petrified and omitted exhaustion; the real list is charmed/exhaustion/frightened/poisoned."
   },
   {
     "id": "pub_creative-crescendo",
@@ -3734,9 +3788,10 @@
     "category": "subclass_feature",
     "class": "Bard (College of Creation)",
     "level_gained": 14,
-    "description": "Performance of Creation improves: create a number of nonmagical items at once equal to your Charisma modifier (minimum 2), which no longer need to match each other, and the gp value limit no longer applies (still Medium or smaller each).",
+    "description": "Performance of Creation improves: create a number of nonmagical items at once equal to your Charisma modifier (minimum 2), which no longer need to match each other, and the gp value limit no longer applies. Only one of the items can be Medium size; the rest must be Small or Tiny.",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously said all items could each independently be Medium or smaller; the real rule caps only one item at Medium, with the rest restricted to Small or Tiny."
   },
   {
     "id": "pub_mantle-of-inspiration",
@@ -3813,7 +3868,7 @@
     "name": "Mobile Flourish",
     "category": "blade_flourish_option",
     "class": "Bard (College of Swords)",
-    "description": "The triggering weapon attack deals extra damage equal to your Bardic Inspiration die roll, and you can push the target up to 5 feet away plus a number of feet equal to the die roll.",
+    "description": "The triggering weapon attack deals extra damage equal to your Bardic Inspiration die roll, and you can push the target up to 5 feet away plus a number of feet equal to the die roll. You can then immediately use your reaction to move up to your walking speed to an unoccupied space within 5 feet of the target.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false
   },
@@ -3895,7 +3950,7 @@
     "category": "subclass_feature",
     "class": "Bard (College of Whispers)",
     "level_gained": 6,
-    "description": "When a humanoid dies within 30ft of you, use your reaction to capture its shadow, keeping it until used or until your next long rest. As an action, create an illusory duplicate of that shadow within 30ft, letting you take on the dead creature's appearance and voice for 1 hour, and access to the surface-level personal/background information it would share with a casual acquaintance (not secrets). A creature can see through the disguise by opposing your Deception with its own Insight check (plus a bonus for you). Once used, you can't use it again until you finish a long rest, unless you expend a spell slot of 1st level or higher to use it again.",
+    "description": "When a humanoid dies within 30ft of you, use your reaction to capture its shadow, keeping it until used or until you finish a long rest. As an action, use the shadow to transform it into a disguise that makes you look like the dead person (but healthy and alive), lasting 1 hour or until you end it as a bonus action, and giving access to the surface-level personal/background information it would share with a casual acquaintance (not secrets). A creature can see through the disguise by opposing your Deception with its own Insight check, but you gain a +5 bonus to your check. Once you capture a shadow with this feature, you can't capture another one until you finish a short or long rest.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false,
     "verification": "The exact operative wording (especially the Deception-vs-Insight contest bonus) varied across secondary sources during research and wasn't pinned to one clean verbatim quote — worth a check against a physical/PDF XGE copy if precision on that detail matters."
@@ -3968,7 +4023,7 @@
     "category": "subclass_feature",
     "class": "Cleric (Order Domain)",
     "level_gained": 2,
-    "description": "As an action, present your holy symbol — each creature of your choice that can see or hear you within 30ft must succeed on a Wisdom save or be charmed by you until the end of your next turn or until it takes any damage; a creature that fails also drops whatever it's holding, if you choose.",
+    "description": "As an action, present your holy symbol — each creature of your choice that can see or hear you within 30ft must succeed on a Wisdom save or be charmed by you until the end of your next turn or until it takes any damage; a creature that fails automatically drops whatever it's holding too (not optional).",
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false
   },
@@ -4315,7 +4370,7 @@
     "category": "subclass_feature",
     "class": "Cleric (Peace Domain)",
     "level_gained": 1,
-    "description": "As an action, choose willing creatures (can include yourself) within 30ft up to your proficiency bonus, and bond them for 10 minutes or until you use this again. While any bonded creature is within 30ft of another, it can roll a d4 and add it to an attack roll, ability check, or saving throw — no more than once per turn per creature.",
+    "description": "As an action, choose willing creatures (can include yourself) within 30ft up to your proficiency bonus, and bond them for 10 minutes or until you use this again. While any bonded creature is within 30ft of another, it can roll a d4 and add it to an attack roll, ability check, or saving throw — no more than once per turn per creature. Usable a number of times equal to your proficiency bonus, all regained on a long rest (a separate limit from the proficiency-bonus cap on how many creatures you can bond at once).",
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false,
     "verification": "Verified 2026-09-04 via WebSearch/WebFetch (dnd5e.wikidot.com) as part of building this subclass out from stub to a full 1/2/6/8/17 progression + domain spell list — corrected action cost (action, not bonus action) and target count (proficiency bonus, not flat 5), and added the missing Implement of Peace feature (see pub_implement-of-peace), a real separate 1st-level grant."
@@ -4512,6 +4567,17 @@
     "description": "Once on each of your turns when you hit with a weapon attack, deal extra damage of the same type as the weapon: 1d8, rising to 2d8 at 14th level.",
     "source": "Player's Handbook",
     "homebrew": false
+  },
+  {
+    "id": "pub_divine-strike-tempest",
+    "name": "Divine Strike",
+    "category": "subclass_feature",
+    "class": "Cleric (Tempest Domain)",
+    "level_gained": 8,
+    "description": "Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 thunder damage to the target. When you reach 14th level, the extra damage increases to 2d8.",
+    "source": "Player's Handbook",
+    "homebrew": false,
+    "verification": "Added 2026-09-10 — Tempest Domain's `features_by_level` was wrongly pointing at the bare `divine-strike` id, which resolves to the SRD cache's Life Domain-flavored text (radiant damage). Nature and War Domain already had their own correctly-differentiated `pub_divine-strike-*` entries (cold/fire/lightning choice, and weapon's-own-type respectively) — Tempest's real damage type is thunder, confirmed via a direct wikidot quote fetch this session. Revven (Cleric 9, Tempest Domain) has this feature on his sheet with no local override, so he was actually affected by this — his sheet needed no direct edit since it just references the feature by name, but the catalog now resolves correctly for him."
   },
   {
     "id": "pub_avatar-of-battle",
@@ -4760,7 +4826,7 @@
     "category": "subclass_feature",
     "class": "Druid (Circle of the Shepherd)",
     "level_gained": 14,
-    "description": "If reduced to 0 hit points or incapacitated against your will (and you have a spell slot remaining), immediately and without using an action summon spectral beasts as Conjure Animals would, except it summons four CR 2 or lower beasts within 20ft of you, no spell slot spent, that disappear after 1 hour, at 0 HP, or when you die — roll their initiative as a group. Once used, you can't use it again until you finish a long rest.",
+    "description": "If reduced to 0 hit points or incapacitated against your will, immediately and without using an action gain the benefit of Conjure Animals as if cast with a 9th-level slot — no spell slot required or spent — except it summons four CR 2 or lower beasts within 20ft of you that disappear after 1 hour, at 0 HP, or when you die — roll their initiative as a group. Once used, you can't use it again until you finish a long rest.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false
   },
@@ -4934,7 +5000,7 @@
     "category": "subclass_feature",
     "class": "Fighter (Psi Warrior)",
     "level_gained": 3,
-    "description": "You have a pool of Psionic Energy dice (all d6s at 3rd level, growing to d8 at 5th, d10 at 11th, d12 at 17th — see psionic_energy_die_by_level). You have a number of these dice equal to twice your proficiency bonus, all regained on a long rest. Three options: Protective Field (reaction, when you or a creature within 30ft you can see takes damage: expend a die, reduce the damage by the roll + your INT modifier, minimum 1) — Psionic Strike (once per turn, immediately after you hit a target within 30ft with a weapon attack: expend a die, deal extra force damage equal to the roll + your INT modifier) — Telekinetic Movement (action, expend a die to move a Large-or-smaller object or a willing creature other than yourself, if you can see it and it's within 30ft, up to 30ft to an unoccupied space you can see; a Tiny object can instead move to/from your hand; once per short/long rest without expending a die, otherwise expend a die to use it again).",
+    "description": "You have a pool of Psionic Energy dice (all d6s at 3rd level, growing to d8 at 5th, d10 at 11th, d12 at 17th — see psionic_energy_die_by_level). You have a number of these dice equal to twice your proficiency bonus, all regained on a long rest — additionally, as a bonus action you can regain one expended die, usable once per short or long rest. Three options: Protective Field (reaction, when you or a creature within 30ft you can see takes damage: expend a die, reduce the damage by the roll + your INT modifier, minimum 1) — Psionic Strike (once per turn, immediately after you hit a target within 30ft with a weapon attack: expend a die, deal extra force damage equal to the roll + your INT modifier) — Telekinetic Movement (action, expend a die to move a Large-or-smaller object or a willing creature other than yourself, if you can see it and it's within 30ft, up to 30ft to an unoccupied space you can see; a Tiny object can instead move to/from your hand; once per short/long rest without expending a die, otherwise expend a die to use it again).",
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false,
     "verification": "Verified 2026-09-04 via WebSearch/WebFetch (dnd5e.wikidot.com) as part of building Psi Warrior out from stub to a full 3/7/10/15/18 progression."
@@ -5058,9 +5124,10 @@
     "category": "rune_knight_rune",
     "class": "Fighter (Rune Knight)",
     "level_gained": 3,
-    "description": "While worn/carried: doubled proficiency bonus on ability checks with a tool you're proficient with. When you hit with a weapon attack: invoke the rune to force a Strength save — on a failure the target is restrained by fiery shackles for 1 minute and takes 2d6 fire damage at the start of each of its turns, repeating the save at the end of each of its turns (ending the effect on a success). Once per short/long rest.",
+    "description": "While worn/carried: doubled proficiency bonus on ability checks with a tool you're proficient with. When you hit with a weapon attack: invoke the rune to deal an extra 2d6 fire damage immediately (unconditional) and force a Strength save — on a failure the target is also restrained by fiery shackles for 1 minute and takes a further 2d6 fire damage at the start of each of its turns, repeating the save at the end of each of its turns (ending the effect on a success). Once per short/long rest.",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously omitted the immediate, unconditional 2d6 fire damage on the triggering hit itself, only describing the conditional repeating damage on a failed save."
   },
   {
     "id": "pub_rune-frost",
@@ -5128,9 +5195,10 @@
     "category": "subclass_feature",
     "class": "Fighter (Rune Knight)",
     "level_gained": 15,
-    "description": "You can invoke each of your runes twice, instead of once, between rests — and you regain all expended uses when you finish a short or long rest (not just a long rest).",
+    "description": "You can invoke each of your runes twice, instead of once, between rests — you already regained expended uses on a short or long rest before this feature (that part isn't new here).",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously implied this feature upgrades the recharge from long-rest-only to short-or-long-rest; each individual rune's own text already specifies short-or-long-rest recharge at 3rd level, so the only real change here is the doubled use count."
   },
   {
     "id": "pub_runic-juggernaut",
@@ -5179,9 +5247,10 @@
     "category": "subclass_feature",
     "class": "Fighter (Samurai)",
     "level_gained": 15,
-    "description": "If you forgo advantage on an attack roll you have advantage on, and that attack hits, you can make one additional weapon attack against the same target as part of the same action. No more than once per turn.",
+    "description": "If you take the Attack action and have advantage on an attack roll against one of the targets, you can forgo the advantage for that roll to make an additional weapon attack against that target, as part of the same action — the extra attack isn't contingent on the first one hitting. No more than once per turn.",
     "source": "Xanathar's Guide to Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously fabricated an \"and that attack hits\" prerequisite for the extra attack; the real feature has no such condition."
   },
   {
     "id": "pub_strength-before-death",
@@ -5199,10 +5268,11 @@
     "category": "subclass_feature",
     "class": "Monk (Way of the Astral Self)",
     "level_gained": 3,
-    "description": "As a bonus action, spend 1 ki point to summon spectral arms for 10 minutes — no per-long-rest use cap, purely ki-gated. On summon, each creature of your choice you can see within 10ft must succeed on a Dexterity save or take force damage equal to two rolls of your Martial Arts die. While the arms persist: use your Wisdom modifier in place of Strength for Strength checks/saves; make unarmed strikes with the arms at 5ft more reach than normal, using Wisdom for the attack/damage roll and dealing force damage equal to your Martial Arts die. Empowered Arms: once per turn on a hit with the arms, deal extra damage equal to your Martial Arts die.",
+    "description": "As a bonus action, spend 1 ki point to summon spectral arms for 10 minutes — no per-long-rest use cap, purely ki-gated. On summon, each creature of your choice you can see within 10ft must succeed on a Dexterity save or take force damage equal to two rolls of your Martial Arts die. While the arms persist: use your Wisdom modifier in place of Strength for Strength checks/saves; make unarmed strikes with the arms at 5ft more reach than normal, using Wisdom for the attack/damage roll and dealing force damage equal to your Martial Arts die.",
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false,
-    "verification": "Verified 2026-09-04 via WebSearch/WebFetch (dnd5e.wikidot.com) as part of building this subclass out from stub to a full 3/6/11/17 progression — corrected the recharge (ki-gated only, no per-long-rest cap), added the missing Dex-save activation burst and Empowered Arms bonus damage, and fixed reach (+5ft over normal, not a flat 10ft)."
+    "verification": "Verified 2026-09-04 via WebSearch/WebFetch (dnd5e.wikidot.com) as part of building this subclass out from stub to a full 3/6/11/17 progression — corrected the recharge (ki-gated only, no per-long-rest cap), added the missing Dex-save activation burst, and fixed reach (+5ft over normal, not a flat 10ft).",
+    "note": "Corrected 2026-09-09 -- Empowered Arms was wrongly bundled into this 3rd-level feature; it's actually part of Body of the Astral Self at 11th level (see pub_body-of-the-astral-self). Moved there."
   },
   {
     "id": "pub_visage-of-the-astral-self",
@@ -5220,9 +5290,10 @@
     "category": "subclass_feature",
     "class": "Monk (Way of the Astral Self)",
     "level_gained": 11,
-    "description": "Requires both the arms and the visage active — the body appears automatically once both are, no action required. Deflect Energy: when you take acid, cold, fire, force, lightning, or thunder damage, use your reaction to reduce it by 1d10 + your Wisdom modifier (minimum 1).",
+    "description": "Requires both the arms and the visage active — the body appears automatically once both are, no action required. Deflect Energy: when you take acid, cold, fire, force, lightning, or thunder damage, use your reaction to reduce it by 1d10 + your Wisdom modifier (minimum 1). Empowered Arms: once per turn on a hit with the arms, deal extra damage equal to your Martial Arts die.",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- Empowered Arms moved here from pub_arms-of-the-astral-self (3rd level), where it was wrongly bundled; it's actually granted at 11th level alongside Deflect Energy."
   },
   {
     "id": "pub_awakened-astral-self",
@@ -5281,7 +5352,7 @@
     "category": "subclass_feature",
     "class": "Monk (Way of the Four Elements)",
     "level_gained": 3,
-    "description": "Learn magical elemental disciplines, each cast by spending ki points instead of a spell slot — Wisdom is your ability for them (spell save DC = 8 + proficiency bonus + WIS modifier; attack modifier = proficiency bonus + WIS modifier). Know Elemental Attunement (always known, free to use) plus 1 chosen discipline at 3rd level — 2 total known. Learn 1 more chosen discipline at 6th, 11th, and 17th (3/4/5 total known by those tiers) — swap one known discipline for a different one each time you learn a new one (see elemental_disciplines_known_by_level on the subclass file for the exact total-known count per tier). From 5th level on, spend extra ki to upcast a discipline that casts a leveled spell, 1 ki per extra spell level, capped at 3 extra ki (levels 5-8), 4 (9-12), 5 (13-16), 6 (17-20). This is the ONLY named feature in the subclass — 6th/11th/17th grant no separate feature, just another known discipline. See each discipline's own catalog entry, category four_elements_discipline.",
+    "description": "Learn magical elemental disciplines, each cast by spending ki points instead of a spell slot — Wisdom is your ability for them (spell save DC = 8 + proficiency bonus + WIS modifier; attack modifier = proficiency bonus + WIS modifier). Know Elemental Attunement (always known, free to use) plus 1 chosen discipline at 3rd level — 2 total known. Learn 1 more chosen discipline at 6th, 11th, and 17th (3/4/5 total known by those tiers) — swap one known discipline for a different one each time you learn a new one (see known_count_by_level on the subclass file for the exact total-known count per tier). From 5th level on, spend extra ki to upcast a discipline that casts a leveled spell, 1 ki per extra spell level — but the cap is on TOTAL ki spent on that casting (base discipline cost included, not extra on top of it): 3 total (levels 5-8), 4 (9-12), 5 (13-16), 6 (17-20). This is the ONLY named feature in the subclass — 6th/11th/17th grant no separate feature, just another known discipline. See each discipline's own catalog entry, category four_elements_discipline.",
     "source": "Player's Handbook",
     "homebrew": false,
     "verification": "Verified 2026-09-04 via WebSearch/WebFetch (dnd5e.wikidot.com) as part of building this subclass out from stub to a full 3/6/11/17 progression."
@@ -5702,10 +5773,11 @@
     "category": "subclass_feature",
     "class": "Ranger (Beast Master)",
     "level_gained": 3,
-    "description": "You gain a beast companion (Beast of the Land, Sea, or Sky — choose or swap after a long rest), which follows Tasha's revised companion rules. It acts on your turn: without a command it only Dodges, but as a bonus action you can command it to take an action from its stat block or another action (or command it as part of your own Attack action by sacrificing one of your own attacks). Its attack rolls use your spell attack modifier, and its AC/HP/damage scale with your proficiency bonus and ranger level. Primal Bond: add your proficiency bonus to any ability check or save it makes. If it drops to 0 HP, you can revive it at 1 HP by spending your action and a spell slot of 1st level or higher.",
+    "description": "You gain a beast companion (Beast of the Land, Sea, or Sky — choose or swap after a long rest), which follows Tasha's revised companion rules. It acts on your turn: without a command it only Dodges, but as a bonus action you can command it to take an action from its stat block or another action (or command it as part of your own Attack action by sacrificing one of your own attacks). Its attack rolls use your spell attack modifier, and its AC/HP/damage scale with your proficiency bonus and ranger level. Primal Bond: add your proficiency bonus to any ability check or save it makes. If it has died within the last hour, you can revive it by touching it, spending your action, and expending a spell slot of 1st level or higher — it returns to life after 1 minute with all its hit points restored.",
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch (dnd5e.wikidot.com, aidedd.org stat-block mirrors, D&D Beyond forum quotes, cross-checked across multiple sources) as part of building this subclass out from stub to a full 3/7/11/15 progression. Replaced the PHB-era \"Ranger's Companion\" stub with Tasha's Cauldron of Everything's revised Primal Companion, since that's the standard modern version. Beast of the Land/Sea/Sky full stat blocks (AC 13+PB, HP scaling by ranger level, unique attack per type) are summarized here rather than reproduced as separate catalog entries."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch (dnd5e.wikidot.com, aidedd.org stat-block mirrors, D&D Beyond forum quotes, cross-checked across multiple sources) as part of building this subclass out from stub to a full 3/7/11/15 progression. Replaced the PHB-era \"Ranger's Companion\" stub with Tasha's Cauldron of Everything's revised Primal Companion, since that's the standard modern version. Beast of the Land/Sea/Sky full stat blocks (AC 13+PB, HP scaling by ranger level, unique attack per type) are summarized here rather than reproduced as separate catalog entries.",
+    "note": "Corrected 2026-09-09 -- the revival clause was wrong in three ways: it omitted the \"died within the last hour\" time limit, omitted the touch requirement, said the beast returns at 1 HP instantly instead of the real full-HP restoration after a 1-minute delay."
   },
   {
     "id": "pub_exceptional-training",
@@ -5874,9 +5946,10 @@
     "category": "subclass_feature",
     "class": "Ranger (Monster Slayer)",
     "level_gained": 11,
-    "description": "When you see a creature casting a spell or teleporting within 60ft, use your reaction to force a Wisdom save (your spell save DC) — on a failure its spell or teleportation fails and is wasted. Usable a number of times equal to your Wisdom modifier (minimum 1), all regained on a long rest.",
+    "description": "When you see a creature casting a spell or teleporting within 60ft, use your reaction to force a Wisdom save (your spell save DC) — on a failure its spell or teleportation fails and is wasted. Once used, you can't use it again until you finish a short or long rest.",
     "source": "Xanathar's Guide to Everything",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously described a Wisdom-modifier-count pool regained on a long rest; the real feature is single-use, recharging on a short OR long rest."
   },
   {
     "id": "pub_slayers-counter",
@@ -6147,10 +6220,11 @@
     "category": "subclass_feature",
     "class": "Sorcerer (Shadow Magic)",
     "level_gained": 6,
-    "description": "As a bonus action, you spend 3 sorcery points to summon a Large spectral hound that appears within 30ft of a creature you can see within 120ft of you. The hound has temporary hit points equal to half your sorcerer level, and while it's within 5ft of its target, that target has disadvantage on saving throws against spells you cast. The hound disappears after 5 minutes, or sooner if it or its target drops to 0 hit points.",
+    "description": "As a bonus action, you spend 3 sorcery points to summon a Medium spectral hound that appears within 30ft of a creature you can see within 120ft of you. At the start of its turn the hound automatically knows its target's location, and the target is no longer hidden from it even if it was. The hound has temporary hit points equal to half your sorcerer level, and while it's within 5ft of its target, that target has disadvantage on saving throws against spells you cast. The hound disappears after 5 minutes, or sooner if it or its target drops to 0 hit points.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources.",
+    "note": "Corrected 2026-09-09 -- previously said the hound is Large; the real published (XGE) size is Medium despite using a dire wolf's base statistics. Also added the missing \"automatically knows target's location / target no longer hidden\" clause."
   },
   {
     "id": "pub_shadow-walk",
@@ -6374,14 +6448,14 @@
   },
   {
     "id": "pub_celestial-resilience",
-    "name": "Celestial Resilience",
+    "name": "Celestial Resistance",
     "category": "subclass_feature",
     "class": "Warlock (The Celestial)",
     "level_gained": 10,
     "description": "Whenever you finish a short or long rest, you gain temporary hit points equal to your warlock level + your Charisma modifier. You can also choose up to 5 creatures you can see; each of them gains temporary hit points equal to half your warlock level + your Charisma modifier.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources — confirmed the self-formula is the full warlock level + CHA mod (not half), while the up-to-5-ally formula uses half warlock level + CHA mod."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources — confirmed the self-formula is the full warlock level + CHA mod (not half), while the up-to-5-ally formula uses half warlock level + CHA mod. Name corrected 2026-09-10 from \"Celestial Resilience\" to the real \"Celestial Resistance\" (mechanics were always right, just mistitled) — confirmed via two independent sources."
   },
   {
     "id": "pub_searing-vengeance",
@@ -6565,10 +6639,10 @@
     "category": "subclass_feature",
     "class": "Warlock (The Hexblade)",
     "level_gained": 1,
-    "description": "You gain proficiency with medium armor, shields, and martial weapons. When you finish a long rest, you can touch one weapon that isn't two-handed and become proficient with it if you aren't already, and use your Charisma modifier instead of Strength or Dexterity for its attack and damage rolls while you wield it. This benefit extends automatically to any weapon you conjure via Pact of the Blade.",
+    "description": "You gain proficiency with medium armor, shields, and martial weapons. When you finish a long rest, you can touch one weapon you're already proficient with that isn't two-handed, and use your Charisma modifier instead of Strength or Dexterity for its attack and damage rolls while you wield it. This benefit extends automatically to any weapon you conjure via Pact of the Blade.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources — confirmed the Charisma substitution applies to one touched, chosen, non-two-handed weapon after a long rest, not a blanket rule for any weapon. Split out from the original bundled stub, which merged this with Hexblade's Curse under one id/name."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources — confirmed the Charisma substitution applies to one touched, chosen, non-two-handed weapon after a long rest, not a blanket rule for any weapon. Split out from the original bundled stub, which merged this with Hexblade's Curse under one id/name. CORRECTED 2026-09-10: the touched weapon must be one you're ALREADY proficient with — the feature does not grant new weapon proficiency, only the Charisma substitution (real text: \"touch one weapon that you are proficient with\"). The old \"become proficient with it if you aren't already\" clause was a fabrication with no real basis, confirmed via two independent sources. No roster character uses this subclass, so no character-sheet impact."
   },
   {
     "id": "pub_accursed-specter",
@@ -6598,10 +6672,10 @@
     "category": "subclass_feature",
     "class": "Warlock (The Hexblade)",
     "level_gained": 14,
-    "description": "When the creature affected by your Hexblade's Curse dies, you can, as long as another creature is within 30ft of you, apply the curse to that new creature without expending a use of Hexblade's Curse. You don't regain hit points from the original target's death when you do this — the hit-point-regain clause only triggers for the target the curse was originally placed on.",
+    "description": "When the creature affected by your Hexblade's Curse dies, you can — provided you aren't incapacitated — apply the curse to a different creature you can see within 30ft of you, without expending a use of Hexblade's Curse. You don't regain hit points from the original target's death when you do this — the hit-point-regain clause only triggers for the target the curse was originally placed on.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources — confirmed the moved curse doesn't retrigger the HP-regain-on-death clause."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources — confirmed the moved curse doesn't retrigger the HP-regain-on-death clause. CORRECTED 2026-09-10: added the missing \"provided you aren't incapacitated\" prerequisite, confirmed via two independent sources — the ability doesn't work unconditionally. No roster character uses this subclass, so no character-sheet impact."
   },
   {
     "id": "pub_form-of-dread",
@@ -6642,10 +6716,10 @@
     "category": "subclass_feature",
     "class": "Warlock (The Undead)",
     "level_gained": 14,
-    "description": "As an action, you project your spirit out of your body for up to 1 hour, requiring concentration as if concentrating on a spell; your body is left behind, incapacitated. Your spirit gains a flying speed equal to your walking speed, can move through objects and other creatures, and has resistance to bludgeoning, piercing, and slashing damage. While projected, you can cast conjuration and necromancy spells without material components (unless they're consumed or have a gold cost), and if you deal necrotic damage with Form of Dread while projected, you regain hit points equal to half the necrotic damage dealt. You can use this feature once, regaining the use when you finish a long rest.",
+    "description": "As an action, you project your spirit out of your body for up to 1 hour, requiring concentration as if concentrating on a spell; your body is left behind unconscious, in a state of suspended animation. Your spirit gains a flying speed equal to your walking speed, can move through objects and other creatures as difficult terrain (taking 1d10 force damage if you end your turn inside one), and has resistance to bludgeoning, piercing, and slashing damage. While projected, conjuration and necromancy spells you cast don't require verbal or somatic components, or material components that lack a gold cost, and if you deal necrotic damage with Form of Dread while projected, you regain hit points equal to half the necrotic damage dealt. You can use this feature once, regaining the use when you finish a long rest.",
     "source": "Van Richten's Guide to Ravenloft",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources. CORRECTED 2026-09-10, three real gaps found on re-audit and confirmed via two independent direct-quote fetches: (1) the body left behind is UNCONSCIOUS, not just incapacitated — a meaningfully different, more severe state; (2) projected spells also waive verbal and somatic components, not just material ones; (3) the 1d10 force-damage penalty for ending your turn inside a creature/object was missing entirely. No roster character uses this subclass, so no character-sheet impact."
   },
   {
     "id": "pub_among-the-dead",
@@ -6653,10 +6727,10 @@
     "category": "subclass_feature",
     "class": "Warlock (The Undying)",
     "level_gained": 1,
-    "description": "You learn the Spare the Dying cantrip, which doesn't count against your number of cantrips known and counts as a warlock cantrip for you. You have advantage on saving throws against disease. Additionally, if an undead creature targets you directly with an attack or a harmful spell, it must succeed on a Wisdom save against your spell save DC or it must choose a new target for that attack or spell (or forfeit the attack/spell if no other target is available).",
+    "description": "You learn the Spare the Dying cantrip, which doesn't count against your number of cantrips known and counts as a warlock cantrip for you. You have advantage on saving throws against disease. Additionally, if an undead creature targets you directly with an attack or a harmful spell (not an area effect that merely includes you, like a Fireball), it must succeed on a Wisdom save against your spell save DC or choose a new target for that attack or spell (or forfeit it if no other target is available) — on a successful save, that creature is immune to this effect for 24 hours.",
     "source": "Sword Coast Adventurer's Guide",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch (dnd5e.wikidot.com, cross-checked against tabletopjoab.com/DDB forums) as part of building this subclass out from stub to a full 1/6/10/14 progression. Corrected the original stub's claims: this is an active Wisdom-save mechanic against hostile undead targeting, not passive necrotic resistance or blanket attack disadvantage — no necrotic resistance is granted by this feature."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch (dnd5e.wikidot.com, cross-checked against tabletopjoab.com/DDB forums) as part of building this subclass out from stub to a full 1/6/10/14 progression. Corrected the original stub's claims: this is an active Wisdom-save mechanic against hostile undead targeting, not passive necrotic resistance or blanket attack disadvantage — no necrotic resistance is granted by this feature. CORRECTED 2026-09-10, two more real gaps found on re-audit and confirmed via a direct-quote fetch: missing the \"immune for 24 hours on a successful save\" clause, and missing the area-effect exception (undead don't need to save at all for something like a Fireball that merely includes you). No roster character uses this subclass, so no character-sheet impact."
   },
   {
     "id": "pub_defy-death",
@@ -6675,10 +6749,10 @@
     "category": "subclass_feature",
     "class": "Warlock (The Undying)",
     "level_gained": 10,
-    "description": "You no longer need to eat, drink, or breathe, though you still benefit normally from finishing a rest. You age at a drastically reduced rate — 1 year for every 10 years that actually pass — and you're immune to magical effects that would age you.",
+    "description": "You can hold your breath indefinitely, and you no longer need food, water, or sleep — though you still need rest to reduce exhaustion and still benefit normally from finishing a short or long rest. You age at a drastically reduced rate — 1 year for every 10 years that actually pass — and you're immune to magical effects that would age you.",
     "source": "Sword Coast Adventurer's Guide",
     "homebrew": false,
-    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources."
+    "verification": "Verified 2026-09-06 via WebSearch/WebFetch, cross-checked across multiple sources. CORRECTED 2026-09-10: local text omitted \"sleep\" entirely (a real, meaningfully different clause from just food/water/breath) and the clarification that rest still works normally for exhaustion/short-and-long-rest benefits — confirmed via a direct-quote fetch. No roster character uses this subclass, so no character-sheet impact."
   },
   {
     "id": "pub_indestructible-life",
@@ -6719,9 +6793,10 @@
     "category": "subclass_feature",
     "class": "Wizard (School of Conjuration)",
     "level_gained": 6,
-    "description": "As an action, teleport up to 30 feet to an unoccupied space you can see, or swap places with a willing Small or Medium creature within range. Once used, you can't use it again until you finish a long rest, unless you expend a spell slot of 1st level or higher to use it again.",
+    "description": "As an action, teleport up to 30 feet to an unoccupied space you can see, or swap places with a willing Small or Medium creature within range. Once used, you can't use it again until you finish a long rest or you cast a conjuration spell of 1st level or higher.",
     "source": "Player's Handbook",
-    "homebrew": false
+    "homebrew": false,
+    "note": "Corrected 2026-09-09 -- previously described the recharge as expending any spell slot of 1st level or higher; the real condition is specifically casting a conjuration spell of 1st level or higher (school-specific, not slot-level-generic)."
   },
   {
     "id": "pub_focused-conjuration",
@@ -6954,7 +7029,7 @@
     "category": "subclass_feature",
     "class": "Wizard (War Magic)",
     "level_gained": 6,
-    "description": "Gain a pool of power surges, max equal to your Intelligence modifier (minimum 1) — gain one whenever you successfully counter or dispel a spell with Counterspell or Dispel Magic, and regain all expended surges on a short or long rest. Once per turn, when you deal damage to a creature with a wizard spell, spend one surge to deal extra force damage equal to half your wizard level.",
+    "description": "Gain a pool of power surges, max equal to your Intelligence modifier (minimum 1) — gain one whenever you successfully counter or dispel a spell with Counterspell or Dispel Magic; a long rest resets your surges to 1 (not a full refill), and a short rest only grants 1 surge if you have zero. Once per turn, when you deal damage to a creature with a wizard spell, spend one surge to deal extra force damage equal to half your wizard level.",
     "source": "Xanathar's Guide to Everything",
     "homebrew": false
   },
@@ -7523,5 +7598,14 @@
     "description": "Increase Constitution by 1 (max 20) and gain proficiency in Constitution saving throws. (Legacy per-ability entry predating the generic \"Resilient\" feat entry above, kept so existing characters whose feature is literally named this way still resolve a description by name.)",
     "type": "feat",
     "source": "Feat, Player's Handbook."
+  },
+  {
+    "id": "hb_tackett_legendary_cantrips",
+    "name": "Legendary Repertoire",
+    "category": "class_feature",
+    "description": "Grants 3 additional cantrips known beyond the normal Druid cantrip cap for your level.",
+    "note": "Homebrew, unique to Tackett — added 2026-09-08 to explain his 6 recorded cantrips against a Circle of Stars Druid 9's normal cap of 3, per the project owner's explicit call: Tackett is a \"legendary\" character and being RAW-cantrip-count-accurate isn't the goal here, a clean in-fiction reason to keep all 6 is. Not tied to any real class table — purely a flat +3.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Tackett."
   }
 ]

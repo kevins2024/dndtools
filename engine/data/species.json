@@ -30,7 +30,8 @@
     "traits": [
       {
         "name": "Fey Ancestry",
-        "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep."
+        "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep.",
+        "grants_saving_throw_advantage": "being_charmed"
       },
       {
         "name": "Trance",
@@ -38,7 +39,8 @@
       },
       {
         "name": "Keen Senses",
-        "description": "Proficiency in the Perception skill."
+        "description": "Proficiency in the Perception skill.",
+        "grants_skill_proficiency": "perception"
       }
     ],
     "subraces": [
@@ -48,11 +50,25 @@
         "traits": [
           {
             "name": "Elf Weapon Training",
-            "description": "Proficiency with longsword, shortsword, shortbow, and longbow."
+            "description": "Proficiency with longsword, shortsword, shortbow, and longbow.",
+            "grants_weapon_proficiency": [
+              "longsword",
+              "shortsword",
+              "shortbow",
+              "longbow"
+            ]
           },
           {
             "name": "Cantrip",
-            "description": "Know one wizard cantrip of your choice; Intelligence is its spellcasting ability."
+            "description": "Know one wizard cantrip of your choice; Intelligence is its spellcasting ability.",
+            "grants_spells": {
+              "choice": {
+                "count": 1,
+                "class_list": "Wizard",
+                "cantrips_only": true
+              },
+              "ability": "int"
+            }
           },
           {
             "name": "Extra Language",
@@ -70,7 +86,13 @@
         "traits": [
           {
             "name": "Elf Weapon Training",
-            "description": "Proficiency with longsword, shortsword, shortbow, and longbow."
+            "description": "Proficiency with longsword, shortsword, shortbow, and longbow.",
+            "grants_weapon_proficiency": [
+              "longsword",
+              "shortsword",
+              "shortbow",
+              "longbow"
+            ]
           },
           {
             "name": "Fleet of Foot",
@@ -97,11 +119,32 @@
           },
           {
             "name": "Drow Magic",
-            "description": "Know the Dancing Lights cantrip. At 3rd level, cast Faerie Fire once per long rest; at 5th level, also cast Darkness once per long rest. Charisma is the spellcasting ability."
+            "description": "Know the Dancing Lights cantrip. At 3rd level, cast Faerie Fire once per long rest; at 5th level, also cast Darkness once per long rest. Charisma is the spellcasting ability.",
+            "grants_spells": {
+              "fixed": ["Dancing Lights"],
+              "ability": "cha",
+              "tiered": [
+                {
+                  "level": 3,
+                  "spell": "Faerie Fire",
+                  "uses": "1/long_rest"
+                },
+                {
+                  "level": 5,
+                  "spell": "Darkness",
+                  "uses": "1/long_rest"
+                }
+              ]
+            }
           },
           {
             "name": "Drow Weapon Training",
-            "description": "Proficiency with rapiers, shortswords, and hand crossbows."
+            "description": "Proficiency with rapiers, shortswords, and hand crossbows.",
+            "grants_weapon_proficiency": [
+              "rapier",
+              "shortsword",
+              "hand crossbow"
+            ]
           }
         ]
       }
@@ -120,15 +163,27 @@
     "traits": [
       {
         "name": "Dwarven Resilience",
-        "description": "Advantage on saving throws against poison, and resistance to poison damage."
+        "description": "Advantage on saving throws against poison, and resistance to poison damage.",
+        "grants_resistance": "poison",
+        "grants_saving_throw_advantage": "poison"
       },
       {
         "name": "Dwarven Combat Training",
-        "description": "Proficiency with the battleaxe, handaxe, light hammer, and warhammer."
+        "description": "Proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+        "grants_weapon_proficiency": [
+          "battleaxe",
+          "handaxe",
+          "light hammer",
+          "warhammer"
+        ]
       },
       {
         "name": "Tool Proficiency",
-        "description": "Proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
+        "description": "Proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
+        "grants_tool_proficiency_choice": {
+          "count": 1,
+          "options": ["smith's tools", "brewer's supplies", "mason's tools"]
+        }
       },
       {
         "name": "Stonecunning",
@@ -142,7 +197,8 @@
         "traits": [
           {
             "name": "Dwarven Toughness",
-            "description": "Hit point maximum increases by 1, and increases by 1 every time you gain a level."
+            "description": "Hit point maximum increases by 1, and increases by 1 every time you gain a level.",
+            "grants_hp_per_level": 1
           }
         ]
       },
@@ -152,7 +208,8 @@
         "traits": [
           {
             "name": "Dwarven Armor Training",
-            "description": "Proficiency with light and medium armor."
+            "description": "Proficiency with light and medium armor.",
+            "grants_armor_proficiency": ["light", "medium"]
           }
         ]
       }
@@ -175,7 +232,8 @@
       },
       {
         "name": "Brave",
-        "description": "Advantage on saving throws against being frightened."
+        "description": "Advantage on saving throws against being frightened.",
+        "grants_saving_throw_advantage": "being_frightened"
       },
       {
         "name": "Halfling Nimbleness",
@@ -199,7 +257,9 @@
         "traits": [
           {
             "name": "Stout Resilience",
-            "description": "Advantage on saving throws against poison, and resistance to poison damage."
+            "description": "Advantage on saving throws against poison, and resistance to poison damage.",
+            "grants_resistance": "poison",
+            "grants_saving_throw_advantage": "poison"
           }
         ]
       }
@@ -215,10 +275,73 @@
       "automatic": ["Common", "Draconic"],
       "choice": null
     },
+    "ancestry_options": [
+      {
+        "type": "Black",
+        "damage_type": "acid",
+        "breath_shape": "5 ft. by 30 ft. line",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Blue",
+        "damage_type": "lightning",
+        "breath_shape": "5 ft. by 30 ft. line",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Brass",
+        "damage_type": "fire",
+        "breath_shape": "5 ft. by 30 ft. line",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Bronze",
+        "damage_type": "lightning",
+        "breath_shape": "5 ft. by 30 ft. line",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Copper",
+        "damage_type": "acid",
+        "breath_shape": "5 ft. by 30 ft. line",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Gold",
+        "damage_type": "fire",
+        "breath_shape": "15 ft. cone",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Green",
+        "damage_type": "poison",
+        "breath_shape": "15 ft. cone",
+        "breath_save": "con"
+      },
+      {
+        "type": "Red",
+        "damage_type": "fire",
+        "breath_shape": "15 ft. cone",
+        "breath_save": "dex"
+      },
+      {
+        "type": "Silver",
+        "damage_type": "cold",
+        "breath_shape": "15 ft. cone",
+        "breath_save": "con"
+      },
+      {
+        "type": "White",
+        "damage_type": "cold",
+        "breath_shape": "15 ft. cone",
+        "breath_save": "con"
+      }
+    ],
     "traits": [
       {
         "name": "Draconic Ancestry",
-        "description": "Choose a dragon type (black, blue, brass, bronze, copper, gold, green, red, silver, or white) — determines your Breath Weapon's damage type/shape and your Damage Resistance."
+        "description": "Choose a dragon type (black, blue, brass, bronze, copper, gold, green, red, silver, or white) — determines your Breath Weapon's damage type/shape and your Damage Resistance.",
+        "choice": { "count": 1, "from": "ancestry_options" }
       },
       {
         "name": "Breath Weapon",
@@ -226,7 +349,8 @@
       },
       {
         "name": "Damage Resistance",
-        "description": "Resistance to the damage type associated with your draconic ancestry."
+        "description": "Resistance to the damage type associated with your draconic ancestry.",
+        "grants_resistance": "ancestry"
       }
     ]
   },
@@ -243,7 +367,8 @@
     "traits": [
       {
         "name": "Gnome Cunning",
-        "description": "Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+        "description": "Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+        "grants_saving_throw_advantage": "magic"
       }
     ],
     "subraces": [
@@ -253,7 +378,8 @@
         "traits": [
           {
             "name": "Natural Illusionist",
-            "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability."
+            "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability.",
+            "grants_spells": { "fixed": ["Minor Illusion"], "ability": "int" }
           },
           {
             "name": "Speak with Small Beasts",
@@ -271,7 +397,8 @@
           },
           {
             "name": "Tinker",
-            "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box."
+            "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box.",
+            "grants_tool_proficiency": ["tinker's tools"]
           }
         ]
       }
@@ -294,11 +421,13 @@
     "traits": [
       {
         "name": "Fey Ancestry",
-        "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep."
+        "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep.",
+        "grants_saving_throw_advantage": "being_charmed"
       },
       {
         "name": "Skill Versatility",
-        "description": "Proficiency in two skills of your choice."
+        "description": "Proficiency in two skills of your choice.",
+        "grants_skill_proficiency_choice": { "count": 2, "options": "any" }
       }
     ]
   },
@@ -323,7 +452,8 @@
       },
       {
         "name": "Menacing",
-        "description": "Proficiency in the Intimidation skill."
+        "description": "Proficiency in the Intimidation skill.",
+        "grants_skill_proficiency": "intimidation"
       }
     ]
   },
@@ -340,11 +470,29 @@
     "traits": [
       {
         "name": "Hellish Resistance",
-        "description": "Resistance to fire damage."
+        "description": "Resistance to fire damage.",
+        "grants_resistance": "fire"
       },
       {
         "name": "Infernal Legacy",
-        "description": "Know the Thaumaturgy cantrip. At 3rd level, cast Hellish Rebuke once as a 2nd-level spell, regaining the ability on a long rest. At 5th level, also cast Darkness once, regaining the ability on a long rest. Charisma is your spellcasting ability for these."
+        "description": "Know the Thaumaturgy cantrip. At 3rd level, cast Hellish Rebuke once as a 2nd-level spell, regaining the ability on a long rest. At 5th level, also cast Darkness once, regaining the ability on a long rest. Charisma is your spellcasting ability for these.",
+        "grants_spells": {
+          "fixed": ["Thaumaturgy"],
+          "ability": "cha",
+          "tiered": [
+            {
+              "level": 3,
+              "spell": "Hellish Rebuke",
+              "uses": "1/long_rest",
+              "cast_as_level": 2
+            },
+            {
+              "level": 5,
+              "spell": "Darkness",
+              "uses": "1/long_rest"
+            }
+          ]
+        }
       }
     ]
   }

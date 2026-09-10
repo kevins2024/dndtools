@@ -7,5 +7,12 @@
     "6": ["pub_accursed-specter"],
     "10": ["pub_armor-of-hexes"],
     "14": ["pub_master-of-hexes"]
+  },
+  "expanded_spell_list": {
+    "1": ["Shield", "Wrathful Smite"],
+    "2": ["Blur", "Branding Smite"],
+    "3": ["Blink", "Elemental Weapon"],
+    "4": ["Phantasmal Killer", "Staggering Smite"],
+    "5": ["Banishing Smite", "Cone of Cold"]
   }
 }

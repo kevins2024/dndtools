@@ -13,6 +13,26 @@ function listSpecies() {
   return species.map((s) => ({ name: s.name }))
 }
 
+// Every trait a character of this species/subrace actually has — species-
+// level traits plus the matching subrace's own, flattened into one array.
+// Mirrors NewCharacterTool.vue's client-side `displayTraits` computed, but
+// as a reusable engine helper for diffLevelUp.js (which needs this for a
+// character already built, not just at creation time). Returns [] for an
+// unknown species/subrace rather than throwing — callers treat "no traits"
+// and "no species" the same way (nothing to apply).
+function traitsFor(speciesName, subraceName) {
+  const sp = loadSpecies(speciesName)
+  if (!sp) return []
+  const traits = [...(sp.traits || [])]
+  if (subraceName) {
+    const sub = (sp.subraces || []).find(
+      (s) => s.name.toLowerCase() === String(subraceName).toLowerCase()
+    )
+    if (sub) traits.push(...(sub.traits || []))
+  }
+  return traits
+}
+
 // scores: {str,dex,con,int,wis,cha}. `choice`: { abilities: [...] } — required only
 // when the species has a flexible bonus (e.g. Half-Elf's +1 to two of your choice).
 function applySpeciesBonus(scores, speciesName, choice = {}) {
@@ -55,4 +75,4 @@ function applySpeciesBonus(scores, speciesName, choice = {}) {
   return { scores: next, notes: [] }
 }
 
-module.exports = { loadSpecies, listSpecies, applySpeciesBonus }
+module.exports = { loadSpecies, listSpecies, applySpeciesBonus, traitsFor }
