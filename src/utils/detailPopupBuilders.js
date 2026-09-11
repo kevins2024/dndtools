@@ -137,8 +137,57 @@ export async function buildFeaturePopupData(feature) {
   }
 }
 
-export function buildItemPopupData(item) {
+// character/partyItems are optional — only weapons get attack/damage fields,
+// and only when a character is passed (attack/damage bonuses need STR/DEX
+// mod + proficiency, which live on the character, not the item). Versatile
+// and thrown get their own separate lines rather than a single blended one —
+// they're mechanically different attacks (different die, and a thrown attack
+// always uses the base one-handed die even if the weapon's current grip is
+// two-handed — real RAW, not modeled elsewhere in the app yet either, see
+// TODO.md). When a weapon is BOTH versatile and thrown (Spear, Trident),
+// the thrown attack's numbers are identical to the one-handed melee attack's
+// (same ability mod, same base die), so those two are combined into one line
+// instead of showing the same numbers twice.
+export function buildItemPopupData(item, character = null, partyItems = []) {
   const fields = []
+
+  if (item.type === 'weapon' && character) {
+    const props = dnd._weaponProps(item)
+    const dmgType = props.damage_type ? ` ${props.damage_type}` : ''
+    const dmgBonus = dnd.damageBonus(character, item, partyItems)
+    const dmgSuffix = dnd.signed(dmgBonus) + dmgType
+    fields.push({
+      label: 'Attack',
+      value: dnd.signed(dnd.attackBonus(character, item, partyItems)),
+    })
+    const oneHandLabel =
+      props.versatile && props.thrown
+        ? 'One-Handed / Thrown'
+        : props.versatile
+        ? 'One-Handed'
+        : props.thrown
+        ? 'Thrown'
+        : 'Damage'
+    const range = props.thrown
+      ? ` (range ${props.thrown.normal}/${props.thrown.long} ft.)`
+      : ''
+    fields.push({
+      label: oneHandLabel,
+      value: `${props.damage_dice}${dmgSuffix}${range}`,
+    })
+    if (props.versatile) {
+      fields.push({
+        label: 'Two-Handed',
+        value: `${props.damage_dice_2h}${dmgSuffix}`,
+      })
+    }
+    const propTags = []
+    if (props.finesse) propTags.push('Finesse')
+    if (props.returning) propTags.push('Returning')
+    if (propTags.length)
+      fields.push({ label: 'Properties', value: propTags.join(', ') })
+  }
+
   if (item.effect) fields.push({ label: 'Effect', value: item.effect })
   if (item.description)
     fields.push({ label: 'Description', value: item.description })

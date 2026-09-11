@@ -37,6 +37,10 @@
         >
       </div>
     </div>
+
+    <div v-if="companion.notes" class="companion-notes">
+      {{ companion.notes }}
+    </div>
   </div>
 </template>
 
@@ -138,6 +142,12 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+}
+
+.companion-notes {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
 }
 
 .attack-row {

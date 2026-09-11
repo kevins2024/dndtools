@@ -42,7 +42,10 @@ test("Oath of the Open Road subclass file loads and matches Ferghus's actual fea
 })
 
 test("Torrin's rebuilt feature list now includes all real 3rd/9th-level Soulknife + Mastermind features (not just half of each)", () => {
-  const torrin = characters.find((c) => c.name === 'Torrin')
+  // Renamed to "Torrin (Old)" 2026-09-11 when archived ahead of a real
+  // rebuild (see TODO.md) — same record, same features, just a different
+  // `name` field, so only the lookup needs updating here.
+  const torrin = characters.find((c) => c.name === 'Torrin (Old)')
   const soulknife = engine.loadSubclass('Rogue', 'Soulknife')
   const mastermind = engine.loadSubclass('Rogue', 'Mastermind')
   assert.ok(soulknife)

@@ -3,13 +3,13 @@
     {
       "name": "East_full",
       "members": [
-        "Lexica",
+        "Lexica (Old)",
         "Kessara",
         "Vaz",
         "Denna",
         "Enauweyn",
         "Tackett",
-        "Sorra",
+        "Sorra (Old)",
         "Ferghus"
       ]
     },
@@ -39,13 +39,13 @@
       "id": "party_1780850600167_0",
       "name": "East Full",
       "members": [
-        "Lexica",
+        "Lexica (Old)",
         "Kessara",
         "Vaz",
         "Denna",
         "Enauweyn",
         "Tackett",
-        "Sorra",
+        "Sorra (Old)",
         "Ferghus"
       ],
       "active": false,
@@ -56,9 +56,9 @@
         "Vaz",
         "Kessara",
         "Enauweyn",
-        "Lexica",
+        "Lexica (Old)",
         "Tackett",
-        "Sorra"
+        "Sorra (Old)"
       ]
     },
     {
@@ -182,6 +182,60 @@
         "terrain": "forest",
         "knowsWay": "yes"
       }
+    },
+    {
+      "id": "party_1789138172013",
+      "name": "Orvath Full",
+      "members": [
+        "Corwin",
+        "Chuknora",
+        "Revven",
+        "Elucyne",
+        "Eldi",
+        "Rith",
+        "Iyani",
+        "Torrin (Old)"
+      ],
+      "active": false,
+      "game_day": 1,
+      "marching_order": [
+        "Corwin",
+        "Chuknora",
+        "Revven",
+        "Elucyne",
+        "Eldi",
+        "Rith",
+        "Iyani",
+        "Torrin (Old)"
+      ]
+    },
+    {
+      "id": "party_1789138172014",
+      "name": "Homefront",
+      "members": [
+        "Kerra",
+        "Jaygar",
+        "Siv",
+        "Therynv'l",
+        "Pirra",
+        "Lyria",
+        "Petra",
+        "Lenn",
+        "Rhuna"
+      ],
+      "active": false,
+      "game_day": 1,
+      "marching_order": [
+        "Kerra",
+        "Jaygar",
+        "Siv",
+        "Therynv'l",
+        "Pirra",
+        "Lyria",
+        "Petra",
+        "Lenn",
+        "Rhuna"
+      ]
     }
   ],
   "mapMarkers": [],

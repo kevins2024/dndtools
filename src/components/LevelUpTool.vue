@@ -80,7 +80,15 @@
       </div>
 
       <div class="lut-work">
-        <div v-if="loading" class="lut-loading">Computing…</div>
+        <!-- Only shows on the very first computation (no preview to keep
+             displayed yet). Once a preview exists, re-runs (every spell/
+             cantrip/invocation checkbox toggle calls runPreview) keep the
+             existing tree mounted instead of tearing it down to this
+             placeholder and back — that swap was destroying scroll position
+             and any open picker state on every single click (real bug found
+             2026-09-11, reported as "the view jumps around a lot" while
+             picking spells). See the small "Updating…" badge below instead. -->
+        <div v-if="loading && !preview" class="lut-loading">Computing…</div>
         <div v-else-if="error" class="lut-error">
           <div>{{ error }}</div>
           <button class="lut-btn" @click="dismissError">
@@ -89,6 +97,7 @@
         </div>
 
         <template v-else-if="preview">
+          <div v-if="loading" class="lut-updating-badge">Updating…</div>
           <!-- ── Step 1: Hit Points ── -->
           <div v-if="activeStep === 0" class="lut-step-body">
             <div class="lut-step-title">
@@ -310,6 +319,18 @@
                 <div class="lut-choice-title">
                   Level {{ pendingAsiChoice?.level ?? asiChoiceLevel }} —
                   Ability Score Improvement or Feat
+                </div>
+                <div class="lut-current-scores">
+                  <span
+                    v-for="a in currentAbilityScores"
+                    :key="a.ability"
+                    class="lut-current-score"
+                    :title="abilityDescriptions[a.ability]"
+                  >
+                    {{ a.ability.toUpperCase() }} {{ a.score }} ({{
+                      a.modLabel
+                    }})
+                  </span>
                 </div>
                 <div class="lut-choice-tabs">
                   <button
@@ -1383,6 +1404,17 @@ export default {
     abilityDescriptions() {
       return ABILITY_DESCRIPTIONS
     },
+    // Current scores, shown alongside the ASI/feat picker so a player isn't
+    // guessing from memory which abilities are already high vs. worth
+    // raising (or which feat prerequisites they clear) — requested
+    // 2026-09-11.
+    currentAbilityScores() {
+      if (!this.draftCharacter) return []
+      return this.abilities.map((a) => {
+        const score = this.draftCharacter[`stat_${a}`] ?? 10
+        return { ability: a, score, modLabel: dnd.signed(dnd.mod(score)) }
+      })
+    },
     priorityAbilities() {
       const classData = this.allClasses.find(
         (c) => c.name === this.selectedClassName
@@ -1667,13 +1699,30 @@ export default {
       )
       return c?.subclass ?? null
     },
+    // Invocations already known from a PRIOR level — excluded unconditionally,
+    // even under showAllInvocations: unlike feats, no cataloged invocation can
+    // be taken twice (real bug found 2026-09-11, the picker let you select
+    // the same invocation again). Doesn't touch invocationDraftPicks (this
+    // level-up's own in-progress picks) — those must stay visible/checked so
+    // a pick can still be unchecked.
+    knownInvocationNames() {
+      return new Set(
+        (this.draftCharacter?.features ?? [])
+          .filter((f) => f.type === 'invocation')
+          .map((f) => f.name)
+      )
+    },
     // Invocations whose prerequisite is explicitly unmet get hidden unless
     // showAllInvocations is on — same "fail open while eligibility data is
     // still loading" behavior as visibleCatalogFeats.
     visibleInvocations() {
-      if (this.showAllInvocations) return this.invocationCatalog
+      const notAlreadyKnown = (i) => !this.knownInvocationNames.has(i.name)
+      if (this.showAllInvocations)
+        return this.invocationCatalog.filter(notAlreadyKnown)
       return this.invocationCatalog.filter(
-        (i) => this.invocationEligibility[i.name]?.met !== false
+        (i) =>
+          notAlreadyKnown(i) &&
+          this.invocationEligibility[i.name]?.met !== false
       )
     },
     filteredCantripOptions() {
@@ -2629,6 +2678,20 @@ export default {
   color: var(--color-text-muted);
 }
 
+.lut-updating-badge {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  align-self: flex-start;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
 .lut-error {
   color: var(--color-text-danger);
   display: flex;
@@ -2800,6 +2863,23 @@ export default {
   color: var(--color-accent-strong);
   font-size: var(--font-size-sm);
   margin-bottom: 0.5rem;
+}
+
+.lut-current-scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.lut-current-score {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display);
+  color: var(--color-text-muted);
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
 }
 
 .lut-choice-card--subclass {

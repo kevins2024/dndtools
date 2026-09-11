@@ -22,10 +22,10 @@
             <template v-if="!row.extra">
               <td class="col-inspect">
                 <button
-                  v-if="weaponItem(row.name)"
+                  v-if="weaponItem(row.id)"
                   class="weapon-inspect-btn"
                   title="View weapon details"
-                  @click="inspect(weaponItem(row.name))"
+                  @click="inspect(weaponItem(row.id))"
                 >
                   <Search class="weapon-inspect-icon" />
                 </button>
@@ -58,7 +58,7 @@
               <td class="col-tag">{{ row.type }}</td>
               <td class="col-effects">
                 <span
-                  v-for="e in weaponEffectsFor(row.name)"
+                  v-for="e in weaponEffectsFor(row.id)"
                   :key="e.name"
                   class="feature-pill"
                   @click="inspectEffect(e)"
@@ -77,7 +77,7 @@
                   }}</span></span
                 >
                 <span
-                  v-for="g in weaponSpellsFor(row.name)"
+                  v-for="g in weaponSpellsFor(row.id)"
                   :key="g.name"
                   class="feature-pill"
                 >
@@ -99,15 +99,15 @@
                       :max="
                         Math.min(
                           g.chargeCost.max,
-                          weaponItem(row.name).charges_current ?? 0
+                          weaponItem(row.id).charges_current ?? 0
                         )
                       "
-                      :value="castAmount(weaponItem(row.name), g)"
+                      :value="castAmount(weaponItem(row.id), g)"
                       title="Charges to spend (your choice, higher = cast at a higher effective level)"
                       @click.stop
                       @input="
                         setCastAmount(
-                          weaponItem(row.name),
+                          weaponItem(row.id),
                           g,
                           $event.target.value
                         )
@@ -128,9 +128,9 @@
                   <button
                     v-if="isCastable(g)"
                     class="pill-cast-btn"
-                    :disabled="!canCast(weaponItem(row.name), g)"
+                    :disabled="!canCast(weaponItem(row.id), g)"
                     title="Spend the cost and cast"
-                    @click.stop="cast(weaponItem(row.name), g)"
+                    @click.stop="cast(weaponItem(row.id), g)"
                   >
                     Cast
                   </button>
@@ -192,10 +192,14 @@ export default {
     weaponRows() {
       const rows = []
       for (const w of this.weaponSummaries) {
-        rows.push({ key: w.name, extra: false, ...w })
+        // Keyed by id, not name — two equipped weapons can share a name
+        // (e.g. dual-wielding a matched pair), and a name-based key/lookup
+        // would silently collapse them onto whichever came first. Real bug
+        // found 2026-09-11.
+        rows.push({ key: w.id, extra: false, ...w })
         for (const ex of w.extras ?? []) {
           rows.push({
-            key: w.name + '|' + ex.source,
+            key: w.id + '|' + ex.source,
             extra: true,
             source: ex.source,
             die: ex.die,
@@ -208,21 +212,17 @@ export default {
   },
 
   methods: {
-    weaponItem(name) {
-      return (
-        this.partyItems.find(
-          (i) =>
-            i.name === name &&
-            i.type === 'weapon' &&
-            i.equipped_by === this.character.name
-        ) ?? null
-      )
+    // Matched by id, not name+type+equipped_by — see weaponRows' comment on
+    // why a name-based lookup isn't safe once two equipped weapons can share
+    // a name.
+    weaponItem(id) {
+      return this.partyItems.find((i) => i.id === id) ?? null
     },
     // Effects live on the weapon that grants them (item.weapon_effects), so
     // showing them in the weapon's own row instead of a separate list makes
     // that association visible instead of implicit.
-    weaponEffectsFor(name) {
-      return this.weaponItem(name)?.weapon_effects ?? []
+    weaponEffectsFor(id) {
+      return this.weaponItem(id)?.weapon_effects ?? []
     },
     // Real spells a weapon can trigger (e.g. a marking shot forcing Faerie
     // Fire onto the target) — kept separate from weapon_effects so their
@@ -231,8 +231,8 @@ export default {
     // Normalized via dnd.normalizeItemSpellGrant so a weapon-slot item like
     // Staff of Power gets the same accurate per-spell action/cost/material
     // handling as BattleItemsPanel gives wondrous items.
-    weaponSpellsFor(name) {
-      const item = this.weaponItem(name)
+    weaponSpellsFor(id) {
+      const item = this.weaponItem(id)
       return (item?.spells_granted ?? []).map((entry) =>
         dnd.normalizeItemSpellGrant(entry, item)
       )
@@ -247,7 +247,10 @@ export default {
       )
     },
     inspect(item) {
-      this.$emit('inspect', buildItemPopupData(item))
+      this.$emit(
+        'inspect',
+        buildItemPopupData(item, this.character, this.partyItems)
+      )
     },
   },
 }

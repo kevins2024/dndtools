@@ -217,7 +217,7 @@
     "summary": "Roughly a century ago (~Year 368), Tilawam's monarchy collapsed following civil unrest. Two factions — an aristocratic conglomerate and a union of working-class officials — both claimed governing authority, and rather than resolve the conflict through further war, evolved over a century into a permanent power-sharing system.",
     "detail": "The resulting government splits into Magistrates (elected by the upper classes) and Councillors (elected by the lower classes), roughly a 1:4 ratio in seat count but with equal collective voting power. No law can pass on a tied vote — there is no tiebreaker mechanism; deadlocked votes return to discussion and are revisited two weeks later. Banks are responsible for honestly reporting household wealth, which determines voting class eligibility, making Tilawam's banking institutions unusually rigorous and protected by both governments jointly.",
     "date": "~Year 368",
-    "source_session": "Tilawam arc"
+    "source_session": "Yetgrese1"
   },
   {
     "id": "lore_drevorn_consortium",
@@ -242,24 +242,24 @@
     "source_session": "Chat 10"
   },
   {
-    "name": "Dhovari",
+    "id": "lore_species_01",
     "type": "species",
+    "name": "Dhovari",
     "location": "Olwood Verge",
     "status": "uncontacted by wider civilization",
     "appearance": "Bipedal, digitigrade legs, six to seven feet tall. Broad through chest and shoulders. Patterned fur-feather covering that lies flat when calm and raises when alert — darker along spine and shoulders, lighter at throat and chest. Forward-facing luminescent eyes. Hands with four long flexible fingers, hardened dark fingertips. Vocal anatomy suggests different structure than humanoid — language is tonal and layered, chest and throat operating simultaneously.",
     "personality_traits": "Patient, hierarchical, deliberate. Think before speaking as deep habit. Not demonstrative but not cold.",
-    "notes": "Ancestors co-built the ridge complex with another civilization (human) long ago. Eleven generations carrying one quarter of a broken disc. Statue from the ruins box depicts them. Name rendered through Helm of Comprehending Languages — pronunciation uncertain.",
-    "id": "lore_species_01"
+    "notes": "Ancestors co-built the ridge complex with another civilization (human) long ago. Eleven generations carrying one quarter of a broken disc. Statue from the ruins box depicts them. Name rendered through Helm of Comprehending Languages — pronunciation uncertain."
   },
   {
-    "name": "Olwood Trolls",
+    "id": "lore_species_03",
     "type": "species",
+    "name": "Olwood Trolls",
     "location": "Fynesmarch, Olwood Verge",
     "status": "neutral to friendly — individual variance likely",
     "appearance": "Seven to eight feet tall, lean relative to species reputation, grey-green skin that disappears against bark in low light. More intelligent in bearing than common reputation suggests.",
     "personality_traits": "Precise with language, patient, dry humor. Complete in their attention. Meditative stillness that is presence rather than absence.",
-    "notes": "Distinct from feral trolls which they do not claim as kin — consider them as a feral dog is to a domestic one. Wend learned Common deliberately. His people know of Vessel's kind from deep northeast — experienced them once, one survivor returned, could not describe the color of the sky there. May have built or used the ridge complex given doorway proportions matching their height. Relationship to Dhovari ancestors unclear but possibly connected.",
-    "id": "lore_species_03"
+    "notes": "Distinct from feral trolls which they do not claim as kin — consider them as a feral dog is to a domestic one. Wend learned Common deliberately. His people know of Vessel's kind from deep northeast — experienced them once, one survivor returned, could not describe the color of the sky there. May have built or used the ridge complex given doorway proportions matching their height. Relationship to Dhovari ancestors unclear but possibly connected."
   },
   {
     "id": "lore_ancient_civ_001",
@@ -355,7 +355,7 @@
     "summary": "An ancient dwarven alloy with an exceptionally high melting point, used historically for bracket work and containment fittings meant to hold something dangerous in place for centuries. The technique for producing it is lost — no current smith is known to practice it.",
     "detail": "Durath Iron takes its name from the same linguistic root as the Ven Durath, the ancient mine complex beneath Dunric Pass where the only confirmed examples have been found. The alloy was used to fabricate the bracket mounts securing a Planar Binding Stone to the mine's chamber wall — fittings that survived direct centuries-long proximity to a bound magma elemental without degrading, warping, or losing structural integrity. No dwarven clan currently active in the region claims lineage to whoever produced it; the Ven Durath predates any settlement record Duncavel's oldest families can trace, meaning even the town's deepest oral histories don't reach back far enough to identify the makers. The Dawn Blades removed a pair of Durath Iron brackets intact when extracting the Planar Binding Stone on Day 80, Year 468, giving scholars a rare physical sample to study rather than only the historical mentions previously available.",
     "date": "Day 80, Year 468 (extraction); origin unknown, predates current settlement",
-    "source_session": "DunricPass1"
+    "source_session": "Eastern2"
   },
   {
     "id": "lore_planar_binding_tradition",
@@ -366,6 +366,6 @@
     "summary": "A vanished school of ancient dwarven craft-magic capable of anchoring an elemental or planar creature to the material plane against its native pull, using carved stone binding schema seated in worked metal fittings. No living practitioner or documented lineage of this tradition is known to exist.",
     "detail": "Beneath Dunric Pass, in the ancient dwarven mine known as the Ven Durath, a stone disc roughly eighteen inches across was found embedded in a chamber wall, densely carved on every face with an interlocking rune schema. The schema functioned as a planar anchor — it held a magma elemental bound to this plane against a persistent pull from an elemental plane, keeping the creature physically present rather than allowing it to fully cross back. Removing the stone from its housing did not kill the elemental outright; it triggered a violent reformation as residual planar tension pulled the creature partway back before the connection was permanently severed by further damage to the stone itself. The rune structure is interlocking by design — damaging enough of the carved connections causes the entire schema to lose coherence rather than simply losing partial function, suggesting the makers built in redundancy against exactly the kind of tampering the Dawn Blades ultimately used to destroy it. No current dwarven scholar, smith, or clan archive consulted so far has any record of this specific binding tradition, and the mine itself predates any settlement history in the region. Whether other examples of this craft exist elsewhere in the world is unknown.",
     "date": "Origin unknown, predates current settlement; disc removed and rendered permanently inert Day 80, Year 468",
-    "source_session": "DunricPass1"
+    "source_session": "Eastern2"
   }
 ]

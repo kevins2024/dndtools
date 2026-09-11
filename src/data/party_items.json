@@ -6,7 +6,7 @@
     "carried_by": "Jaygar",
     "needs_attunement": false,
     "attuned": false,
-    "description": "Portable enchanting station \u2014 a toolkit rather than a fixed station.",
+    "description": "Portable enchanting station — a toolkit rather than a fixed station.",
     "effect": "A specialized set of enchanting tools used for crafting and identifying magical items. Provides proficiency on Arcana checks made to enchant or inspect magic items.",
     "notes": "",
     "id": "items_0",
@@ -15,15 +15,17 @@
   {
     "name": "Oil of Sharpness",
     "type": "consumable",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": "Kerra",
     "needs_attunement": false,
     "attuned": false,
     "description": "",
     "effect": "For 1 hour: weapon gains +3 to attack and damage rolls. Piercing and slashing attacks score a critical hit on a 19 or 20.",
     "notes": "",
     "id": "items_1",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Oil of Sharpness",
@@ -54,8 +56,8 @@
   {
     "name": "Everlasting Blue Candles",
     "type": "wondrous",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
     "quantity": 6,
@@ -63,7 +65,9 @@
     "effect": "Candles that never extinguish and cannot be blown out by wind or water. Each candle sheds dim light in a 5ft radius.",
     "notes": "",
     "id": "items_4",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": "Farendale House",
+    "party_id": null
   },
   {
     "name": "Boots of the Tireless North",
@@ -110,12 +114,12 @@
     "slot": "melee1h",
     "weapon_set": 1,
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Grants the wielder Sneak Attack: once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage. If you already have Sneak Attack, use the higher value.\n\nSneak Attack dice (half level, rounded down):\nL1: \u2014 \u00b7 L2\u20133: 1d6 \u00b7 L4\u20135: 2d6 \u00b7 L6\u20137: 3d6 \u00b7 L8\u20139: 4d6 \u00b7 L10\u201311: 5d6 \u00b7 L12\u201313: 6d6 \u00b7 L14\u201315: 7d6 \u00b7 L16\u201317: 8d6 \u00b7 L18\u201319: 9d6 \u00b7 L20: 10d6",
+    "effect": "+2 to attack and damage rolls. Grants the wielder Sneak Attack: once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage. If you already have Sneak Attack, use the higher value.\n\nSneak Attack dice (half level, rounded down):\nL1: — · L2–3: 1d6 · L4–5: 2d6 · L6–7: 3d6 · L8–9: 4d6 · L10–11: 5d6 · L12–13: 6d6 · L14–15: 7d6 · L16–17: 8d6 · L18–19: 9d6 · L20: 10d6",
     "weapon_effects": [
       {
         "name": "Sneak Attack",
         "type": "weapon_effect",
-        "description": "Once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage by half level: L2\u20133 1d6 \u00b7 L4\u20135 2d6 \u00b7 L6\u20137 3d6 \u00b7 L8\u20139 4d6 \u00b7 L10\u201311 5d6 \u00b7 L12\u201313 6d6 \u00b7 L14\u201315 7d6 \u00b7 L16\u201317 8d6 \u00b7 L18\u201319 9d6 \u00b7 L20 10d6. Use the higher value if you already have Sneak Attack."
+        "description": "Once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage by half level: L2–3 1d6 · L4–5 2d6 · L6–7 3d6 · L8–9 4d6 · L10–11 5d6 · L12–13 6d6 · L14–15 7d6 · L16–17 8d6 · L18–19 9d6 · L20 10d6. Use the higher value if you already have Sneak Attack."
       }
     ]
   },
@@ -229,7 +233,9 @@
     "battle_effect": true,
     "effect": "Swift Strike: once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
     "action_type": "reaction",
-    "features_granted": ["Swift Strike"]
+    "features_granted": [
+      "Swift Strike"
+    ]
   },
   {
     "name": "Amulet of Proof against Detection",
@@ -296,14 +302,16 @@
   {
     "name": "Green Cloak of Presence",
     "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Iyani",
+    "carried_by": "Iyani",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
     "notes": "",
     "id": "items_19",
-    "slot": "back"
+    "slot": "back",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Ioun Stone of Mastery",
@@ -328,7 +336,7 @@
     "carried_by": "Vaz",
     "needs_attunement": false,
     "attuned": false,
-    "effect": "Wearer becomes visually uncompelling \u2014 the eye slides past without focusing.",
+    "effect": "Wearer becomes visually uncompelling — the eye slides past without focusing.",
     "notes": "",
     "id": "items_21",
     "slot": "back"
@@ -379,7 +387,7 @@
     "equipped_by": "Rhuna",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "unarmored_stat_bonuses": {
       "ac": 2
     },
@@ -411,15 +419,17 @@
   {
     "name": "Cloak of Displacement",
     "type": "wondrous",
-    "equipped_by": "Rhuna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_27",
     "slot": "back",
     "battle_effect": true,
-    "effect": "While worn, projects an illusion making you appear to be standing near your actual location, giving any creature disadvantage on attack rolls against you. If you take damage, the property ceases to function until the start of your next turn. Suppressed while incapacitated, restrained, or otherwise unable to move."
+    "effect": "While worn, projects an illusion making you appear to be standing near your actual location, giving any creature disadvantage on attack rolls against you. If you take damage, the property ceases to function until the start of your next turn. Suppressed while incapacitated, restrained, or otherwise unable to move.",
+    "stored_at": null,
+    "party_id": "party_1780850600167_2"
   },
   {
     "name": "Ring of Free Action",
@@ -440,7 +450,7 @@
     "equipped_by": "Rhuna",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_overrides": {
       "str": 27
     },
@@ -453,8 +463,8 @@
   {
     "name": "Vest of Resistance (Cold)",
     "type": "wondrous",
-    "equipped_by": "Rhuna",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Rhuna",
     "needs_attunement": true,
     "attuned": false,
     "notes": "",
@@ -483,7 +493,8 @@
         "type": "weapon_effect",
         "description": "On a critical hit, the target must succeed on a Strength saving throw or be knocked prone."
       }
-    ]
+    ],
+    "weapon_set": 1
   },
   {
     "name": "Ceremonial Horn",
@@ -666,7 +677,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "reaction",
-    "features_granted": ["Missile Snaring"]
+    "features_granted": [
+      "Missile Snaring"
+    ]
   },
   {
     "name": "Alchemical Dagger",
@@ -680,14 +693,15 @@
     "id": "items_43",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "When dipped into any liquid, identifies its properties (potion, poison, magical substance, etc.) within 1 round. After identification, the blade retains a coating of that liquid \u2014 the next attack with this dagger delivers the substance to the target. Effect could be beneficial or harmful depending on the liquid.",
+    "effect": "When dipped into any liquid, identifies its properties (potion, poison, magical substance, etc.) within 1 round. After identification, the blade retains a coating of that liquid — the next attack with this dagger delivers the substance to the target. Effect could be beneficial or harmful depending on the liquid.",
     "weapon_effects": [
       {
         "name": "Alchemical Coating",
         "type": "weapon_effect",
-        "description": "Dip the blade into a liquid to identify its properties within 1 round. The blade retains a coating of that liquid \u2014 the next hit with this dagger delivers the substance to the target, for better or worse."
+        "description": "Dip the blade into a liquid to identify its properties within 1 round. The blade retains a coating of that liquid — the next hit with this dagger delivers the substance to the target, for better or worse."
       }
-    ]
+    ],
+    "weapon_set": 2
   },
   {
     "name": "Alchemical Light Crossbow",
@@ -702,7 +716,8 @@
     "notes": "Reflavored from Heavy to Light Crossbow 2026-09-02 to resolve a real proficiency gap: heavy crossbow is a martial weapon and neither base Artificer nor Infused Arbalist grants martial proficiency, so Jaygar wasn't legally proficient with his own signature weapon. Light crossbow is simple, closing the gap without needing a subclass change.",
     "id": "items_44",
     "slot": "ranged2h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_set": 1
   },
   {
     "name": "Alchemical Light Crossbow (party copy)",
@@ -789,9 +804,9 @@
     "name": "Amulet of Health",
     "type": "wondrous",
     "equipped_by": "Jaygar",
-    "carried_by": null,
+    "carried_by": "Jaygar",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_overrides": {
       "con": 19
     },
@@ -850,7 +865,7 @@
     "equipped_by": "Jaygar",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_bonuses": {
       "ranged_attack": 1
     },
@@ -863,8 +878,8 @@
   {
     "name": "Wand of Wonder",
     "type": "wondrous",
-    "equipped_by": "Jaygar",
-    "carried_by": "Jaygar",
+    "equipped_by": null,
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "charges_current": 7,
@@ -875,7 +890,9 @@
     "id": "items_57",
     "slot": "held",
     "battle_effect": true,
-    "action_type": "action"
+    "action_type": "action",
+    "stored_at": null,
+    "party_id": "party_1780850600167_2"
   },
   {
     "name": "Ring of Feather Falling",
@@ -1043,8 +1060,8 @@
   {
     "name": "The Lexicon",
     "type": "focus",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Iyani",
+    "carried_by": "Iyani",
     "needs_attunement": true,
     "attuned": false,
     "finesse": true,
@@ -1060,7 +1077,9 @@
     "notes": "",
     "id": "items_69",
     "slot": "held",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Robe of the Archmagi",
@@ -1153,7 +1172,7 @@
     "equipped_by": "Kerra",
     "carried_by": "Kerra",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_bonuses": {
       "spell_attack": 2,
       "spell_save_dc": 2
@@ -1256,7 +1275,7 @@
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "On a natural 20 attack roll: deal an extra 14 slashing damage, then roll another d20 \u2014 a second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), with the GM determining the effect. Against an object, maximize the weapon's damage dice on a hit.",
+    "effect": "On a natural 20 attack roll: deal an extra 14 slashing damage, then roll another d20 — a second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), with the GM determining the effect. Against an object, maximize the weapon's damage dice on a hit.",
     "notes": "",
     "id": "items_82",
     "slot": "melee1h",
@@ -1267,7 +1286,8 @@
         "type": "weapon_effect",
         "description": "On a natural 20 attack roll, deal an extra 14 slashing damage, then roll another d20. A second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), effect determined by the GM. Against an object hit, maximize the weapon's damage dice instead."
       }
-    ]
+    ],
+    "weapon_set": null
   },
   {
     "name": "Gloves of Dueling",
@@ -1275,7 +1295,7 @@
     "equipped_by": "Kerra",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_bonuses": {
       "melee_attack": 2
     },
@@ -1291,7 +1311,7 @@
     "equipped_by": "Kerra",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_bonuses": {
       "ac": 2,
       "saving_throws": 2
@@ -1330,7 +1350,9 @@
     "slot": "ring",
     "battle_effect": true,
     "action_type": "free",
-    "features_granted": ["Ring's Answer"]
+    "features_granted": [
+      "Ring's Answer"
+    ]
   },
   {
     "name": "Longbow +2 (Force)",
@@ -1424,13 +1446,15 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "free",
-    "features_granted": ["Ring's Answer"]
+    "features_granted": [
+      "Ring's Answer"
+    ]
   },
   {
     "name": "Hand Crossbow +1",
     "type": "weapon",
     "weapon_category": "hand crossbow",
-    "equipped_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -1445,7 +1469,7 @@
     "name": "Rapier",
     "type": "weapon",
     "weapon_category": "rapier",
-    "equipped_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -1461,7 +1485,7 @@
     "type": "armor",
     "armor_type": "leather",
     "enhancement_bonus": 2,
-    "equipped_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -1473,8 +1497,8 @@
   {
     "name": "Hat of Perception",
     "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
+    "carried_by": "Lexica (Old)",
     "needs_attunement": false,
     "attuned": false,
     "stat_bonuses": {
@@ -1504,7 +1528,7 @@
     "name": "Rope of Climbing and Entanglement",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Lexica",
+    "carried_by": "Lexica (Old)",
     "needs_attunement": false,
     "attuned": false,
     "effect": "60ft rope, animates on command. Restrain target 1/day.",
@@ -1515,8 +1539,8 @@
   {
     "name": "Cloak of Protection",
     "type": "wondrous",
-    "equipped_by": "Lexica",
-    "carried_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
+    "carried_by": "Lexica (Old)",
     "needs_attunement": true,
     "attuned": true,
     "stat_bonuses": {
@@ -1575,7 +1599,7 @@
     "charges_max": 6,
     "charges_recharge": "daily",
     "effect": "Touch one of the robe's 6 star-charges to cast Magic Missile as a 5th-level spell (5 darts), no material component needed. +1 saving throws. Once per dawn, use an action to Plane Shift (Astral Plane only) along with everything worn/carried.",
-    "notes": "Real DMG Robe of Stars, from training knowledge \u2014 not independently re-verified against a second source this pass (unlike Staff of Power/Wand of Magic Missiles/Helm of Brilliance/Necklace of Prayer Beads, which were); treat as a solid placeholder.",
+    "notes": "Real DMG Robe of Stars, from training knowledge — not independently re-verified against a second source this pass (unlike Staff of Power/Wand of Magic Missiles/Helm of Brilliance/Necklace of Prayer Beads, which were); treat as a solid placeholder.",
     "id": "items_102",
     "slot": "body",
     "battle_effect": true,
@@ -1611,7 +1635,7 @@
     "charges_current": 20,
     "charges_max": 20,
     "charges_recharge": "2d8+4",
-    "effect": "Cast from charges (no material component needed, the staff is the focus): Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC. If the last charge is expended, roll a d20 \u2014 on a 1 the staff keeps its +2 weapon/AC/save bonus but permanently loses all other properties.",
+    "effect": "Cast from charges (no material component needed, the staff is the focus): Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC. If the last charge is expended, roll a d20 — on a 1 the staff keeps its +2 weapon/AC/save bonus but permanently loses all other properties.",
     "notes": "Do not break it.",
     "id": "items_103",
     "slot": "melee1h",
@@ -1698,7 +1722,7 @@
     "effect": "+2 bonus to AC from armor."
   },
   {
-    "name": "Halberd of Warning",
+    "name": "Halberd of Warning +2",
     "type": "weapon",
     "weapon_category": "halberd",
     "equipped_by": "Corwin",
@@ -1728,7 +1752,7 @@
     "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
-    "effect": "Command word ignites bronze edges \u2014 adds 2d6 fire damage to each hit while active.",
+    "effect": "Command word ignites bronze edges — adds 2d6 fire damage to each hit while active.",
     "notes": "",
     "id": "items_107",
     "slot": "melee1h",
@@ -1760,9 +1784,9 @@
     "name": "Gauntlets of Ogre Power",
     "type": "wondrous",
     "equipped_by": "Corwin",
-    "carried_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_overrides": {
       "str": 19
     },
@@ -1778,7 +1802,7 @@
     "equipped_by": "Corwin",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_bonuses": {
       "ac": 1,
       "saving_throws": 1
@@ -1795,7 +1819,7 @@
     "equipped_by": "Corwin",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "Advantage on INT, WIS, CHA saving throws. Resistance to psychic damage.",
     "notes": "",
     "id": "items_111",
@@ -1805,8 +1829,8 @@
   {
     "name": "Amulet of Health",
     "type": "wondrous",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
@@ -1821,8 +1845,8 @@
   {
     "name": "Bone Ring of Weapon Retention",
     "type": "wondrous",
-    "equipped_by": "Corwin",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Corwin",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Cannot be disarmed.",
@@ -1834,8 +1858,8 @@
   {
     "name": "Bracers of Defense +2",
     "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Iyani",
+    "carried_by": "Iyani",
     "needs_attunement": true,
     "attuned": false,
     "unarmored_stat_bonuses": {
@@ -1848,7 +1872,9 @@
     "battle_effect": true,
     "stat_bonuses": {
       "ac": 2
-    }
+    },
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Elemental Resistance Robes",
@@ -1915,12 +1941,12 @@
   {
     "name": "The Weaver's Master-Awl",
     "type": "wondrous",
-    "equipped_by": "Torrin",
+    "equipped_by": "Torrin (Old)",
     "carried_by": null,
     "needs_attunement": true,
     "attuned": false,
     "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue.",
-    "effect": "Four properties: (1) Psionic Reinforcement \u2014 Psychic Blades +2 attack and damage. (2) Tactical Foresight \u2014 Help targets two allies. (3) Grandmaster's Stitch \u2014 infuse leather item during long rest. (4) The Retired Special \u2014 once per day reaction pull ally up to 15ft.",
+    "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades +2 attack and damage. (2) Tactical Foresight — Help targets two allies. (3) Grandmaster's Stitch — infuse leather item during long rest. (4) The Retired Special — once per day reaction pull ally up to 15ft.",
     "notes": "",
     "id": "items_118",
     "charges_current": 1,
@@ -1961,7 +1987,7 @@
     "equipped_by": "Revven",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "Resistance to lightning and thunder damage.",
     "notes": "",
     "id": "items_120",
@@ -1993,7 +2019,7 @@
         }
       }
     ],
-    "description": "Each charge spent increases the effective spell level by one (1 charge = 1st level, up to 7 charges for 7th level if you dump the whole thing at once) \u2014 the wand is the spellcasting focus, no material component needed. It regains 1d6+1 charges daily. There's also a small risk \u2014 if you expend the wand's last charge, roll a d20; on a 1 the wand crumbles to ash and is destroyed. 1d4+1 force damage per dart, auto-hits."
+    "description": "Each charge spent increases the effective spell level by one (1 charge = 1st level, up to 7 charges for 7th level if you dump the whole thing at once) — the wand is the spellcasting focus, no material component needed. It regains 1d6+1 charges daily. There's also a small risk — if you expend the wand's last charge, roll a d20; on a 1 the wand crumbles to ash and is destroyed. 1d4+1 force damage per dart, auto-hits."
   },
   {
     "name": "Hand Crossbow +2",
@@ -2008,13 +2034,14 @@
     "id": "items_122",
     "slot": "ranged1h",
     "battle_effect": true,
-    "effect": "+2 bonus to attack and damage rolls."
+    "effect": "+2 bonus to attack and damage rolls.",
+    "weapon_set": 2
   },
   {
     "name": "Ring of Lightning Resistance",
     "type": "wondrous",
-    "equipped_by": "Elucyne",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Elucyne",
     "needs_attunement": true,
     "attuned": false,
     "notes": "",
@@ -2044,7 +2071,7 @@
     "equipped_by": "Rhuna",
     "carried_by": "Rhuna",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "enhancement_bonus": 2,
     "returning": true,
     "effect": "Returns to hand after thrown. On crit: target knocked prone regardless of size.",
@@ -2058,14 +2085,15 @@
     "notes": "",
     "id": "items_125",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_set": 2
   },
   {
     "name": "Curved Blade +2",
     "type": "weapon",
     "weapon_category": "scimitar",
-    "equipped_by": "Sorra",
-    "carried_by": "Sorra",
+    "equipped_by": "Sorra (Old)",
+    "carried_by": "Sorra (Old)",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
@@ -2086,7 +2114,7 @@
     "name": "Whisper Longbow +2",
     "type": "weapon",
     "weapon_category": "longbow",
-    "equipped_by": "Sorra",
+    "equipped_by": "Sorra (Old)",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -2095,12 +2123,12 @@
     "id": "items_127",
     "slot": "ranged2h",
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Arrows fired from this bow make no sound \u2014 twang, flight, and impact are completely silent. The shot\u2019s origin cannot be determined by sound alone."
+    "effect": "+2 to attack and damage rolls. Arrows fired from this bow make no sound — twang, flight, and impact are completely silent. The shot’s origin cannot be determined by sound alone."
   },
   {
     "name": "Bracers of Archery",
     "type": "armor",
-    "equipped_by": "Sorra",
+    "equipped_by": "Sorra (Old)",
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
@@ -2116,7 +2144,7 @@
   {
     "name": "Leather Armor +2 (Southern)",
     "type": "armor",
-    "equipped_by": "Sorra",
+    "equipped_by": "Sorra (Old)",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -2131,7 +2159,7 @@
   {
     "name": "The Steadfast",
     "type": "wondrous",
-    "equipped_by": "Sorra",
+    "equipped_by": "Sorra (Old)",
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
@@ -2144,7 +2172,9 @@
     "slot": "neck",
     "battle_effect": true,
     "action_type": "reaction",
-    "features_granted": ["Steadfast Response"]
+    "features_granted": [
+      "Steadfast Response"
+    ]
   },
   {
     "name": "Greatsword +2",
@@ -2200,7 +2230,7 @@
     "needs_attunement": true,
     "attuned": true,
     "effect": "4 beads, each usable independently once per day as a bonus action (no shared charge pool): Blessing bead casts Bless; Favor bead casts Greater Restoration; Curing bead casts Cure Wounds (as a 2nd-level spell) or Lesser Restoration, your choice each use; Wind Walking bead casts Wind Walk.",
-    "notes": "Real DMG Necklace of Prayer Beads (a specific necklace has 1d4+2 randomly-typed beads; this one rolled these 4 types) \u2014 bonus action per bead, confirmed via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06 as part of the item-granted-spells charge-cost pass. Corrects an earlier assumption that bead use cost a full action and that Curing had multiple escalating tiers rather than one bead offering a Cure Wounds/Lesser Restoration choice.",
+    "notes": "Real DMG Necklace of Prayer Beads (a specific necklace has 1d4+2 randomly-typed beads; this one rolled these 4 types) — bonus action per bead, confirmed via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06 as part of the item-granted-spells charge-cost pass. Corrects an earlier assumption that bead use cost a full action and that Curing had multiple escalating tiers rather than one bead offering a Cure Wounds/Lesser Restoration choice.",
     "id": "items_134",
     "slot": "neck",
     "battle_effect": true,
@@ -2401,7 +2431,7 @@
     "effect": "Holds up to 5 levels worth of spells. The attuned creature can cast stored spells.",
     "notes": "",
     "id": "items_143",
-    "charges_current": 0,
+    "charges_current": 5,
     "charges_max": 5,
     "charges_unit": "spell_levels",
     "slot": "wrists",
@@ -2470,7 +2500,7 @@
     "name": "Potion of Greater Healing",
     "type": "consumable",
     "equipped_by": null,
-    "carried_by": "Lexica",
+    "carried_by": "Lexica (Old)",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP.",
@@ -2543,7 +2573,7 @@
     "party_id": "party_1780850600167_0",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) \u2014 priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant. Consolidated 2026-09-08 into the per-party Gem Pouch pattern (see TODO.md) \u2014 assigned to East Full per project owner (initially misheard as \"Eastern1\" and left unassigned; corrected same day).",
+    "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) — priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant. Consolidated 2026-09-08 into the per-party Gem Pouch pattern (see TODO.md) — assigned to East Full per project owner (initially misheard as \"Eastern1\" and left unassigned; corrected same day).",
     "id": "items_151",
     "slot": "none",
     "effect": "8 bloodstone (50gp each), 6 carnelian (50gp each), 5 chalcedony (50gp each), 7 citrine (50gp each), 6 moonstone (50gp each), 8 onyx (50gp each), 12 amber (100gp each), 10 amethyst (100gp each), 8 garnet (100gp each), 15 jade (100gp each), 9 jet (100gp each), 6 tourmaline (100gp each), 3 aquamarine (500gp each), 2 peridot (500gp each), 2 topaz (500gp each), 1 alexandrite (500gp), 1 sapphire (1,000gp), 1 ruby (5,000gp), 1 emerald (1,000gp), 22 pearl (100gp each). Total value: 21,200gp.",
@@ -2684,7 +2714,7 @@
     "type": "wondrous",
     "slot": "feet",
     "equipped_by": null,
-    "carried_by": "Sorra",
+    "carried_by": "Sorra (Old)",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
@@ -2713,7 +2743,7 @@
     "equipped_by": "Elucyne",
     "carried_by": "Elucyne",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_bonuses": {
       "con": 2,
       "darkvision": 60
@@ -2760,12 +2790,12 @@
     "name": "Helm of Brilliance",
     "type": "wondrous",
     "slot": "head",
-    "equipped_by": "Sorra",
-    "carried_by": "Sorra",
+    "equipped_by": "Sorra (Old)",
+    "carried_by": "Sorra (Old)",
     "needs_attunement": true,
     "attuned": true,
-    "effect": "6 opals cast Daylight, 9 rubies cast Fireball, 5 diamonds cast Wall of Fire \u2014 each gem is consumed permanently on use (no recharge). Undead within 30ft have disadvantage on attacks. If the wearer fails a save against fire damage from a spell, roll a d20 \u2014 on a 1, all remaining gems detonate for radiant damage equal to the number of gems left (DC 17 Dex save, half on success, wearer excluded), and the helm is destroyed.",
-    "notes": "This campaign's Helm of Brilliance is a homebrew-simplified variant of the real DMG item \u2014 real RAW rolls gem counts randomly (1d10 diamond/2d10 ruby/3d10 fire opal/4d10 opal) and uses a 4th gem type (fire opal) for Fireball with ruby for Wall of Fire; this one fixes a clean 6/9/5=20 split using only opal/ruby/diamond, which is what's kept here. The destruction trigger (fail a fire save, not \"in sunlight\") is corrected to real RAW \u2014 verified via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06.",
+    "effect": "6 opals cast Daylight, 9 rubies cast Fireball, 5 diamonds cast Wall of Fire — each gem is consumed permanently on use (no recharge). Undead within 30ft have disadvantage on attacks. If the wearer fails a save against fire damage from a spell, roll a d20 — on a 1, all remaining gems detonate for radiant damage equal to the number of gems left (DC 17 Dex save, half on success, wearer excluded), and the helm is destroyed.",
+    "notes": "This campaign's Helm of Brilliance is a homebrew-simplified variant of the real DMG item — real RAW rolls gem counts randomly (1d10 diamond/2d10 ruby/3d10 fire opal/4d10 opal) and uses a 4th gem type (fire opal) for Fireball with ruby for Wall of Fire; this one fixes a clean 6/9/5=20 split using only opal/ruby/diamond, which is what's kept here. The destruction trigger (fail a fire save, not \"in sunlight\") is corrected to real RAW — verified via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06.",
     "id": "items_159",
     "battle_effect": true,
     "action_type": "action",
@@ -2876,7 +2906,7 @@
     "needs_attunement": false,
     "attuned": false,
     "effect": "Always +1 to AC. Additional +1 to AC while in dim light or darkness, for a total of +2.",
-    "notes": "Commission from Torrin Gallowglass. Dark green-brown leather, forest floor coloring, grain patterns that shift with the light. Melds into wildshape forms per druid rules \u2014 AC bonus applies in halfling form only. Torrin's signature: made for someone who knows how to use shadow.",
+    "notes": "Commission from Torrin Gallowglass. Dark green-brown leather, forest floor coloring, grain patterns that shift with the light. Melds into wildshape forms per druid rules — AC bonus applies in halfling form only. Torrin's signature: made for someone who knows how to use shadow.",
     "id": "items_163"
   },
   {
@@ -2891,33 +2921,39 @@
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
     "id": "items_164",
     "battle_effect": true,
-    "features_granted": ["Seize the Opening"]
+    "features_granted": [
+      "Seize the Opening"
+    ]
   },
   {
     "name": "Helm of the Reaching Hand",
     "type": "wondrous",
     "slot": "head",
     "equipped_by": null,
-    "carried_by": "Revven",
+    "carried_by": "party",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Advantage on Insight checks. Reaching Hand: once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
-    "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet \u2014 the smith let it.",
+    "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet — the smith let it.",
     "id": "items_165",
     "battle_effect": true,
     "action_type": "reaction",
-    "features_granted": ["Reaching Hand"]
+    "features_granted": [
+      "Reaching Hand"
+    ],
+    "stored_at": null,
+    "party_id": "party_1780850600167_2"
   },
   {
     "name": "Helm of the Open Eye",
     "type": "wondrous",
     "slot": "head",
-    "equipped_by": "Kerra",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Kerra",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
-    "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow \u2014 no deity symbol, the metal didn't want one. It wanted a window.",
+    "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow — no deity symbol, the metal didn't want one. It wanted a window.",
     "id": "items_166",
     "battle_effect": true,
     "stat_bonuses": {
@@ -2953,7 +2989,7 @@
       "cha": 1
     },
     "effect": "Counts as half plate (AC 15 + DEX mod max 2). Appears revealing but magical protection extends invisibly for full coverage. +1 CHA while attuned. Only Enauweyn can attune to this item.",
-    "description": "Green armor of fey construction. Revealing in appearance but the magical protection extends invisibly \u2014 coverage is complete. Luxurious flowing cloth around legs and sleeves gives a mystical quality. The green deepens or lightens subtly with her mood.",
+    "description": "Green armor of fey construction. Revealing in appearance but the magical protection extends invisibly — coverage is complete. Luxurious flowing cloth around legs and sleeves gives a mystical quality. The green deepens or lightens subtly with her mood.",
     "notes": "Attunement restricted to Enauweyn only.",
     "id": "items_168",
     "battle_effect": true
@@ -2993,10 +3029,11 @@
     "enhancement_bonus": 2,
     "returning": true,
     "effect": "Returns instantly to thrower's hand after a thrown attack, whether it hits or misses.",
-    "notes": "Saltborn steel \u2014 no mechanical effect, flavor only.",
+    "notes": "Saltborn steel — no mechanical effect, flavor only.",
     "id": "items_170",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "weapon_set": 1
   },
   {
     "name": "Hlifar'dhe'gar",
@@ -3031,7 +3068,9 @@
     "battle_effect": true,
     "action_type": "free",
     "effect": "Tidal Surge: when the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
-    "features_granted": ["Tidal Surge"]
+    "features_granted": [
+      "Tidal Surge"
+    ]
   },
   {
     "name": "Robe of Stilled Thought",
@@ -3040,11 +3079,11 @@
     "carried_by": "Rith",
     "needs_attunement": true,
     "attuned": true,
-    "notes": "Made by Ssivanak herself. Significant item \u2014 effectively frees concentration slot while one spell runs autonomously.",
+    "notes": "Made by Ssivanak herself. Significant item — effectively frees concentration slot while one spell runs autonomously.",
     "id": "items_173",
     "slot": "body",
     "battle_effect": true,
-    "effect": "One concentration spell cast while wearing this robe does not require concentration \u2014 it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately.",
+    "effect": "One concentration spell cast while wearing this robe does not require concentration — it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately.",
     "stored_at": null,
     "party_id": null
   },
@@ -3054,7 +3093,7 @@
     "equipped_by": "Revven",
     "carried_by": "Revven",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "+2 to spell save DC.",
     "notes": "Intended for Elucyne to enhance Fear and other save-based spells.",
     "id": "items_174",
@@ -3142,7 +3181,7 @@
     "equipped_by": "Elucyne",
     "carried_by": "Elucyne",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "Resistance to force damage. Immunity to Magic Missile.",
     "notes": "Given by Ssivanak as part of Stillwater reward, her choice of item.",
     "id": "items_181",
@@ -3152,13 +3191,15 @@
   {
     "name": "Potion of Greater Healing",
     "type": "consumable",
-    "equipped_by": "disallowed",
-    "carried_by": "party",
+    "equipped_by": null,
+    "carried_by": "Iyani",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_182",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Potion of Greater Healing",
@@ -3187,13 +3228,15 @@
   {
     "name": "Potion of Greater Healing",
     "type": "consumable",
-    "equipped_by": "disallowed",
+    "equipped_by": null,
     "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_185",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": "party_1789138172013"
   },
   {
     "name": "Potion of Greater Healing (Measured Word formulation)",
@@ -3211,24 +3254,28 @@
   {
     "name": "Potion of Greater Healing (Measured Word formulation)",
     "type": "consumable",
-    "equipped_by": "disallowed",
+    "equipped_by": null,
     "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 4d4+4 HP with advantage on the roll. Bonus action to self-administer.",
     "id": "items_187",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": "party_1789138172013"
   },
   {
     "name": "Potion of Superior Healing",
     "type": "consumable",
-    "equipped_by": "disallowed",
+    "equipped_by": null,
     "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
     "effect": "Restores 8d4+8 HP. Bonus action to self-administer.",
     "id": "items_188",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": "party_1789138172013"
   },
   {
     "name": "Potion of Superior Healing",
@@ -3244,7 +3291,7 @@
   {
     "name": "Amulet of Restoration",
     "type": "wondrous",
-    "equipped_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
@@ -3260,7 +3307,7 @@
     "type": "focus",
     "subtype": "instrument",
     "slot": "held",
-    "equipped_by": "Lexica",
+    "equipped_by": "Lexica (Old)",
     "needs_attunement": true,
     "attuned": true,
     "description": "A lyre-like instrument of unusual construction, typical of no known tradition on Kaemahz. Acquired from a travelling vendor at the Halfweek Festival. One of two such instruments held by the same vendor. Dark wood with unfamiliar inlays, the resonance fuller than the size suggests.",
@@ -3284,8 +3331,8 @@
     "needs_attunement": true,
     "attuned": true,
     "description": "Simple band of dark metal of unknown continental origin. Single flat face bearing a symbol worn almost to suggestion by time. Warm to the touch. Eleven years in Ossivane Relk's possession before purchase.",
-    "effect": "Once per day the wearer may ask one specific, answerable question. The answer arrives in the wearer's own voice as though remembered rather than received. Answers are truthful. The ring occasionally volunteers additional relevant information beyond the question asked \u2014 treat this as significant. Questions must be specific: a location, a name, a fact. Abstract questions yield nothing.",
-    "notes": "Purchased from Ossivane Relk, Linden Street Antiquities Market, Argentveil. Day 89, Year 468. Cost 12,000 gold. Origin unknown \u2014 metal not from Kaemahz. Pre-existing symbol unidentified. First use: located factor's man Davan (green coat) to Crestfall House, Seventeen Anchor Row. Ring volunteered 'he is not alone' unprompted. Second use pending.",
+    "effect": "Once per day the wearer may ask one specific, answerable question. The answer arrives in the wearer's own voice as though remembered rather than received. Answers are truthful. The ring occasionally volunteers additional relevant information beyond the question asked — treat this as significant. Questions must be specific: a location, a name, a fact. Abstract questions yield nothing.",
+    "notes": "Purchased from Ossivane Relk, Linden Street Antiquities Market, Argentveil. Day 89, Year 468. Cost 12,000 gold. Origin unknown — metal not from Kaemahz. Pre-existing symbol unidentified. First use: located factor's man Davan (green coat) to Crestfall House, Seventeen Anchor Row. Ring volunteered 'he is not alone' unprompted. Second use pending.",
     "id": "items_192"
   },
   {
@@ -3375,7 +3422,7 @@
     "attuned": false,
     "notes": "Lightest of the four. Markings identify it as a waypoint between two others.",
     "id": "items_198",
-    "effect": "When placed in a teleportation arch, keys the arch to a waypoint hub built between two other arches \u2014 a transit point rather than a final destination."
+    "effect": "When placed in a teleportation arch, keys the arch to a waypoint hub built between two other arches — a transit point rather than a final destination."
   },
   {
     "name": "Disc of Ilwuoshim's Second Arch",
@@ -3388,7 +3435,7 @@
     "attuned": false,
     "notes": "Ilwuoshim's own making, identified by the djinn personally. Ilwuoshim wishes to visit when free. Keep safe.",
     "id": "items_199",
-    "effect": "When placed in a teleportation arch, keys to an arch built by Ilwuoshim before the Liliveth was completed \u2014 never previously used."
+    "effect": "When placed in a teleportation arch, keys to an arch built by Ilwuoshim before the Liliveth was completed — never previously used."
   },
   {
     "name": "Ring of Amity",
@@ -3405,7 +3452,7 @@
     "id": "items_200",
     "stored_at": null,
     "party_id": null,
-    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit \u2014 once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
+    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit — once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
   },
   {
     "name": "Ring of Amity",
@@ -3414,15 +3461,15 @@
     "rarity": "rare",
     "source": "published",
     "needs_attunement": true,
-    "attuned": false,
-    "equipped_by": null,
+    "attuned": true,
+    "equipped_by": "Revven",
     "carried_by": "Revven",
     "slot": "finger",
-    "notes": "Second copy \u2014 found, not yet attuned/equipped.",
+    "notes": "Second copy — found",
     "id": "items_201",
     "stored_at": null,
     "party_id": null,
-    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit \u2014 once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
+    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit — once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
   },
   {
     "name": "Longbow",
@@ -3548,7 +3595,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "bonus_action",
-    "features_granted": ["Stormbreak Reserve"]
+    "features_granted": [
+      "Stormbreak Reserve"
+    ]
   },
   {
     "name": "Gauntlet of the Sundering Blow",
@@ -3566,10 +3615,12 @@
     "slot": "hands",
     "battle_effect": true,
     "action_type": "free",
-    "effect": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet \u2014 the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
+    "effect": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet — the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
     "stored_at": null,
     "party_id": null,
-    "features_granted": ["Sundering Strike"]
+    "features_granted": [
+      "Sundering Strike"
+    ]
   },
   {
     "name": "Hand Crossbow of the Old Trail",
@@ -3613,7 +3664,7 @@
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "long_rest",
-    "notes": "Unidentified origin/bloodline \u2014 foreign craftsmanship, doesn't match Fol, Fynesmarch, or Torwald design conventions seen so far. Found on remains inside a territorial Dire Pangolin's den.",
+    "notes": "Unidentified origin/bloodline — foreign craftsmanship, doesn't match Fol, Fynesmarch, or Torwald design conventions seen so far. Found on remains inside a territorial Dire Pangolin's den.",
     "id": "items_211",
     "slot": "finger",
     "battle_effect": true,
@@ -3621,7 +3672,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "action",
-    "features_granted": ["Warding Press"]
+    "features_granted": [
+      "Warding Press"
+    ]
   },
   {
     "name": "Stone of the Rootbound Ward",
@@ -3654,12 +3707,12 @@
         "name": "The Stones Agree",
         "action_type": "action",
         "charge_cost": 1,
-        "cost_note": "Spent together with the Broken Vein bearer's own charge (see linked_item_id) \u2014 each bearer spends their own stone's charge, not a merged pool."
+        "cost_note": "Spent together with the Broken Vein bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
       }
     ],
     "id": "items_212",
-    "notes": "Paired item \u2014 see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels \u2014 see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Mold Earth (cantrip, 3/day, independent of the charge below): as the spell \u2014 reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/long rest): as the spell \u2014 conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) \u2014 spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash \u2014 DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
+    "effect": "Mold Earth (cantrip, 3/day, independent of the charge below): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/long rest): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
     "action_type": "action"
   },
   {
@@ -3693,12 +3746,12 @@
         "name": "The Stones Agree",
         "action_type": "action",
         "charge_cost": 1,
-        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see linked_item_id) \u2014 each bearer spends their own stone's charge, not a merged pool."
+        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
       }
     ],
     "id": "items_213",
-    "notes": "Paired item \u2014 see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels \u2014 see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day, independent of the charge below): as the spell \u2014 ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/long rest): as the spell \u2014 choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) \u2014 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous \u2014 no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) \u2014 spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash \u2014 DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
+    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day, independent of the charge below): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/long rest): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
     "action_type": "action"
   },
   {
@@ -3711,7 +3764,7 @@
     "attuned": false,
     "enhancement_bonus": 2,
     "id": "items_214",
-    "notes": "Purchased from Vethran & Son, Commerce District, Argentveil. Base AC 12 (studded-leather tier, reflavored as ribbed rather than studded), no DEX cap. Distinctive purple dye \u2014 the shopkeeper was glad to be rid of it.",
+    "notes": "Purchased from Vethran & Son, Commerce District, Argentveil. Base AC 12 (studded-leather tier, reflavored as ribbed rather than studded), no DEX cap. Distinctive purple dye — the shopkeeper was glad to be rid of it.",
     "slot": "body",
     "effect": "+2 bonus to AC from armor."
   },
@@ -3772,7 +3825,7 @@
       {
         "name": "Marking Shot",
         "type": "weapon_effect",
-        "description": "Once per combat, before rolling, the bearer may declare a ranged attack with this bow to be a marking shot. The target is immediately affected by Faerie Fire \u2014 no save, single target only (not the spell's usual 20-foot cube)."
+        "description": "Once per combat, before rolling, the bearer may declare a ranged attack with this bow to be a marking shot. The target is immediately affected by Faerie Fire — no save, single target only (not the spell's usual 20-foot cube)."
       }
     ],
     "spells_granted": [
@@ -3786,7 +3839,7 @@
     "name": "TEST Wand of Magic Missiles",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Jaygar",
+    "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
     "value_gp": 500,
@@ -3794,8 +3847,8 @@
     "charges_max": 7,
     "charges_recharge": "1d6+1",
     "charges_recharge_type": "rest",
-    "effect": "TEST ITEM \u2014 added to check whether an item that's carried but not equipped (no equipped_by, not equipped_by:'disallowed') shows up as usable in the Battle tab. Also doubles as a test of the Weave Dust destroy flow (value_gp set). Delete once verified.",
-    "notes": "TEST ITEM \u2014 delete after verifying BattleItemsPanel.vue's carried-but-unequipped behavior and the destroy-for-dust dialog. See TODO.md.",
+    "effect": "TEST ITEM — added to check whether an item that's carried but not equipped (no equipped_by, not equipped_by:'disallowed') shows up as usable in the Battle tab. Also doubles as a test of the Weave Dust destroy flow (value_gp set). Delete once verified.",
+    "notes": "TEST ITEM — delete after verifying BattleItemsPanel.vue's carried-but-unequipped behavior and the destroy-for-dust dialog. See TODO.md.",
     "id": "items_218",
     "slot": "held",
     "battle_effect": true,
@@ -3809,7 +3862,9 @@
           "max": 7
         }
       }
-    ]
+    ],
+    "stored_at": null,
+    "party_id": "party_1780850600167_2"
   },
   {
     "name": "Bag of Holding",
@@ -3819,7 +3874,7 @@
     "party_id": "party_1780850600167_0",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "One per party, homebrew \u2014 see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
+    "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_219",
     "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
@@ -3832,7 +3887,7 @@
     "party_id": "party_1780850600167_1",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "One per party, homebrew \u2014 see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
+    "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_220",
     "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
@@ -3845,7 +3900,7 @@
     "party_id": "party_1780850600167_1",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Added 2026-09-08 \u2014 Valdmere's gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
+    "notes": "Added 2026-09-08 — Valdmere's gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
     "id": "items_221",
     "slot": "none",
     "effect": "No gems recorded yet.",
@@ -3859,7 +3914,7 @@
     "party_id": "party_1780850600167_2",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "One per party, homebrew \u2014 see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
+    "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_222",
     "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
@@ -3872,7 +3927,7 @@
     "party_id": "party_1782820688153",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "One per party, homebrew \u2014 see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
+    "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_223",
     "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
@@ -3885,10 +3940,48 @@
     "party_id": "party_1782820688153",
     "needs_attunement": false,
     "attuned": false,
-    "notes": "Added 2026-09-08 \u2014 Twins' gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
+    "notes": "Added 2026-09-08 — Twins' gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
     "id": "items_224",
     "slot": "none",
     "effect": "No gems recorded yet.",
     "contents": []
+  },
+  {
+    "name": "Studded Leather Armor",
+    "type": "armor",
+    "armor_type": "studded leather",
+    "equipped_by": "Torrin (Claude)",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Mundane. Best light armor available so nothing caps his DEX-based AC.",
+    "id": "items_225",
+    "slot": "body"
+  },
+  {
+    "name": "Dagger",
+    "type": "weapon",
+    "weapon_category": "dagger",
+    "equipped_by": "Torrin (Claude)",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Backup mundane weapon — his real damage comes from Psychic Blades (no material component, manifest/vanish at will), so this mostly never gets drawn.",
+    "id": "items_226",
+    "slot": "melee1h",
+    "weapon_set": 2
+  },
+  {
+    "name": "Dagger",
+    "type": "weapon",
+    "weapon_category": "dagger",
+    "equipped_by": "Torrin (Claude)",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "notes": "Backup mundane weapon, second of a pair.",
+    "id": "items_227",
+    "slot": "melee1h",
+    "weapon_set": 2
   }
 ]

@@ -133,6 +133,32 @@
         </div>
       </div>
 
+      <div class="sb-filter-section">
+        <div class="sb-filter-label">Ritual</div>
+        <div class="sb-chip-row">
+          <button
+            class="sb-chip"
+            :class="{ active: !filterRitualOnly }"
+            @click="
+              filterRitualOnly = false
+              resetPage()
+            "
+          >
+            All
+          </button>
+          <button
+            class="sb-chip"
+            :class="{ active: filterRitualOnly }"
+            @click="
+              filterRitualOnly = true
+              resetPage()
+            "
+          >
+            Ritual only
+          </button>
+        </div>
+      </div>
+
       <div class="sb-result-count">
         {{ filteredSpells.length.toLocaleString() }} spells
       </div>
@@ -399,6 +425,7 @@ export default {
       filterClass: null,
       filterSchool: null,
       filterSource: null,
+      filterRitualOnly: false,
       page: 0,
       selected: null,
       detail: null,
@@ -415,6 +442,7 @@ export default {
         filterClass,
         filterSchool,
         filterSource,
+        filterRitualOnly,
         schoolCache,
       } = this
       return ALL_SPELLS.filter((s) => {
@@ -433,6 +461,7 @@ export default {
             return false
         }
         if (filterSource && s.source !== filterSource) return false
+        if (filterRitualOnly && !s.ritual) return false
         return true
       })
     },

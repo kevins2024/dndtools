@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A D&D 5e campaign-management app (character sheets, combat tracker, world/location browser, spell/feature/monster bestiary, level-up tooling) — fully built by AI with guidance and prompting from the project owner. Vue 2 frontend, a small Express dev server, and a standalone rules engine.
 
+## Commits
+
+The project owner commits their own work frequently, so most sessions will start with a mix of committed and uncommitted changes already in the working tree — that's normal, not a sign of abandoned work. When the project owner asks you to make a commit, just make it — no need to pause and double-check first (2026-09-11: "don't worry about commits... I do commits quite often but I want you to be able to if asked"). This doesn't relax the general rule against committing unprompted.
+
 ## Commands
 
 ```bash

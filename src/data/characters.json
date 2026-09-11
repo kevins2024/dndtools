@@ -19,14 +19,20 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": ["Common", "Draconic"],
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -164,14 +170,20 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "barbarian",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": ["Common", "Orc"],
+    "languages": [
+      "Common",
+      "Orc"
+    ],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -266,7 +278,10 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -275,7 +290,11 @@
       "Deception",
       "Investigation"
     ],
-    "languages": ["Common", "Thieves Cant", "Dwarvish"],
+    "languages": [
+      "Common",
+      "Thieves Cant",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -298,7 +317,7 @@
         "type": "feature"
       },
       {
-        "name": "Assassin \u2014 Infiltration Expertise",
+        "name": "Assassin — Infiltration Expertise",
         "type": "feature"
       },
       {
@@ -308,7 +327,10 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": ["Invisibility", "Inflict Wounds"]
+        "spells_granted": [
+          "Invisibility",
+          "Inflict Wounds"
+        ]
       }
     ],
     "spells": [
@@ -378,9 +400,21 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
-    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Insight",
+      "Persuasion"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -401,7 +435,7 @@
       {
         "name": "Metamagic Adept",
         "type": "feat",
-        "note": "Pool of 2 sorcery points per long rest \u2014 spent on Twinned or Quickened Spell below."
+        "note": "Pool of 2 sorcery points per long rest — spent on Twinned or Quickened Spell below."
       },
       {
         "name": "Twinned Spell",
@@ -915,7 +949,10 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -923,14 +960,18 @@
       "Athletics",
       "History"
     ],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
         "type": "feature"
       },
       {
-        "name": "Bladesinger \u2014 Training in War and Song",
+        "name": "Bladesinger — Training in War and Song",
         "type": "feature"
       },
       {
@@ -943,7 +984,7 @@
         "recharge": "long_rest",
         "uses_max": 4,
         "uses_current": 4,
-        "note": "Corrected 2026-09-09 \u2014 was tracking the outdated SCAG version (flat 2 uses, short/long rest). Real current Tasha's Cauldron of Everything version: uses = proficiency bonus (4 at her level 9), long rest only."
+        "note": "Corrected 2026-09-09 — was tracking the outdated SCAG version (flat 2 uses, short/long rest). Real current Tasha's Cauldron of Everything version: uses = proficiency bonus (4 at her level 9), long rest only."
       },
       {
         "name": "Fey Ancestry",
@@ -1004,7 +1045,7 @@
         "prepared": true,
         "type": "cantrip",
         "featureGranted": true,
-        "_source": "High Elf racial (Cantrip trait) \u2014 free, doesn't count against her normal Wizard cantrip cap. Subrace set 2026-09-09; her INT 20 fits High Elf's math exactly (15 point-buy + 1 racial + 2 full ASIs), which is why this was the leading guess \u2014 pick a different cantrip here if Minor Illusion doesn't fit her actual play history."
+        "_source": "High Elf racial (Cantrip trait) — free, doesn't count against her normal Wizard cantrip cap. Subrace set 2026-09-09; her INT 20 fits High Elf's math exactly (15 point-buy + 1 racial + 2 full ASIs), which is why this was the leading guess — pick a different cantrip here if Minor Illusion doesn't fit her actual play history."
       },
       {
         "name": "Ray of Frost",
@@ -1434,7 +1475,7 @@
     "image": "./characters/petra.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "wis",
-    "notes": "Partial fluency in Sovi's southern language \u2014 historically significant.",
+    "notes": "Partial fluency in Sovi's southern language — historically significant.",
     "stat_str": 10,
     "stat_dex": 10,
     "stat_con": 14,
@@ -1444,9 +1485,21 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
-    "languages": ["Common", "Celestial", "Solvalean"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Medicine",
+      "Insight",
+      "Religion",
+      "History"
+    ],
+    "languages": [
+      "Common",
+      "Celestial",
+      "Solvalean"
+    ],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1703,7 +1756,10 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1712,7 +1768,10 @@
       "Deception",
       "Insight"
     ],
-    "languages": ["Common", "Halfling"],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -1731,11 +1790,11 @@
         "type": "feature"
       },
       {
-        "name": "Inquisitive \u2014 Ear for Deceit",
+        "name": "Inquisitive — Ear for Deceit",
         "type": "feature"
       },
       {
-        "name": "Inquisitive \u2014 Eye for Detail",
+        "name": "Inquisitive — Eye for Detail",
         "type": "feature"
       },
       {
@@ -1743,7 +1802,7 @@
         "type": "feature"
       },
       {
-        "name": "Inquisitive \u2014 Steady Eye",
+        "name": "Inquisitive — Steady Eye",
         "type": "feature"
       },
       {
@@ -1770,7 +1829,12 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
+    "skill_expertise": [
+      "Stealth",
+      "SleightOfHand",
+      "Insight",
+      "Perception"
+    ],
     "classes": [
       {
         "name": "Rogue",
@@ -1782,215 +1846,7 @@
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
-    "name": "Kerra",
-    "full_name": "Kerra Flint",
-    "race": "Human",
-    "level": 9,
-    "appearance": "human woman with distant orcish heritage - quarter or eighth orc, not enough to read as half-orc. Big muscular build, faint green tinge to otherwise white/tan skin, dark straight hair. Mercenary bearing.",
-    "image": "./characters/kerra.jpg",
-    "proficiency_bonus": 4,
-    "spellcasting_ability": "cha",
-    "notes": "Target build: 4 Fighter / 8 Warlock.",
-    "stat_str": 20,
-    "stat_dex": 12,
-    "stat_con": 14,
-    "stat_int": 12,
-    "stat_wis": 10,
-    "stat_cha": 16,
-    "hp_max": 63,
-    "hp_current": 63,
-    "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": [
-      "Athletics",
-      "Intimidation",
-      "Arcana",
-      "Deception",
-      "Persuasion",
-      "Survival"
-    ],
-    "languages": ["Common", "Orcish", "Deep Speech"],
-    "features": [
-      {
-        "name": "Fighting Style: Dueling",
-        "type": "feature",
-        "stat_bonuses": {
-          "melee_damage": 2
-        }
-      },
-      {
-        "name": "Pact of the Blade",
-        "type": "feature"
-      },
-      {
-        "name": "Thirsting Blade",
-        "type": "invocation",
-        "description": "Attack twice with pact weapon when taking the Attack action."
-      },
-      {
-        "name": "Second Wind",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Action Surge (1 use)",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Improved Critical",
-        "type": "feature"
-      },
-      {
-        "name": "Agonizing Blast",
-        "type": "invocation"
-      },
-      {
-        "name": "Devil's Sight",
-        "type": "invocation"
-      },
-      {
-        "name": "Eyes of the Rune Keeper",
-        "type": "invocation"
-      },
-      {
-        "name": "Awakened Mind",
-        "type": "feature"
-      }
-    ],
-    "spells": [
-      {
-        "name": "Dissonant Whispers",
-        "level": 1,
-        "prepared": true,
-        "type": "patron"
-      },
-      {
-        "name": "Tasha's Hideous Laughter",
-        "level": 1,
-        "prepared": true,
-        "type": "patron"
-      },
-      {
-        "name": "Detect Thoughts",
-        "level": 2,
-        "prepared": true,
-        "type": "patron"
-      },
-      {
-        "name": "Phantasmal Force",
-        "level": 2,
-        "prepared": true,
-        "type": "patron"
-      },
-      {
-        "name": "Clairvoyance",
-        "level": 3,
-        "prepared": true,
-        "type": "patron"
-      },
-      {
-        "name": "Sending",
-        "level": 3,
-        "prepared": true,
-        "type": "patron"
-      },
-      {
-        "name": "Eldritch Blast",
-        "level": 0,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Hex",
-        "level": 1,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Misty Step",
-        "level": 2,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Hellish Rebuke",
-        "level": 1,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Shatter",
-        "level": 2,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Armor of Agathys",
-        "level": 1,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Hunger of Hadar",
-        "level": 3,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
-        "name": "Arms of Hadar",
-        "level": 1,
-        "prepared": true,
-        "type": "chosen"
-      }
-    ],
-    "pact_magic": {
-      "slot_level": 3,
-      "max": 2,
-      "current": 2,
-      "recharge": "short_rest"
-    },
-    "active_effects": [],
-    "persona_notes": [
-      "Observational integration. Quiet, professional, thorough.",
-      "Notices when things work and finds it slightly unsettling because she's used to things not working.",
-      "The composure is becoming less armor and more just - her.",
-      "The mercenary composure is architecture built over something younger and more open.",
-      "Kindness with no angle surprises and disarms her completely every time.",
-      "Enough is a concept she has never had access to and is only beginning to understand exists.",
-      "Self-contained, professional.",
-      "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
-      "Shadow of Moil + Devil's Sight darkness combo now fully online."
-    ],
-    "id": "characters_7",
-    "darkvision": 0,
-    "hit_die": "d10",
-    "hit_dice_current": 9,
-    "skill_expertise": [],
-    "classes": [
-      {
-        "name": "Fighter",
-        "subclass": "Champion",
-        "level": 4,
-        "started": true
-      },
-      {
-        "name": "Warlock",
-        "subclass": "Great Old One",
-        "level": 5
-      }
-    ],
-    "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
-  },
-  {
-    "name": "Lexica",
+    "name": "Lexica (Old)",
     "full_name": "Lexica Molerna",
     "race": "Half-Elf",
     "level": 9,
@@ -1998,7 +1854,7 @@
     "image": "./characters/lexica.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
-    "notes": "Stats corrected 2026-09-08 \u2014 stat_int was permanently stuck at 19, exactly matching the Headband of Intellect's stat_overrides value (party_items.json), which sits unequipped in the general party pool. Someone baked the override's result directly into her base stat instead of it applying live only while worn; she never actually had INT 19 as a real base score. Real stats reconstructed clean under standard 15-cap point buy: CHA 15 + 2 (Half-Elf racial) + 2 (Ability Score Improvement \u2014 her other ASI went to the War Caster feat instead) = 19; DEX 15 + 1 (Half-Elf racial flex) = 16.",
+    "notes": "Stats corrected 2026-09-08 — stat_int was permanently stuck at 19, exactly matching the Headband of Intellect's stat_overrides value (party_items.json), which sits unequipped in the general party pool. Someone baked the override's result directly into her base stat instead of it applying live only while worn; she never actually had INT 19 as a real base score. Real stats reconstructed clean under standard 15-cap point buy: CHA 15 + 2 (Half-Elf racial) + 2 (Ability Score Improvement — her other ASI went to the War Caster feat instead) = 19; DEX 15 + 1 (Half-Elf racial flex) = 16.",
     "ability_score_history": [
       {
         "ability": "cha",
@@ -2028,7 +1884,10 @@
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -2041,7 +1900,11 @@
       "Nature",
       "Survival"
     ],
-    "languages": ["Common", "Elvish", "Celestial"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Celestial"
+    ],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -2067,7 +1930,7 @@
         "type": "feature"
       },
       {
-        "name": "Magical Secrets (level 6 \u2014 used)",
+        "name": "Magical Secrets (level 6 — used)",
         "type": "feature",
         "note": "Counterspell and Scrying chosen at level 6"
       },
@@ -2226,7 +2089,10 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": ["Perception", "Persuasion"],
+    "skill_expertise": [
+      "Perception",
+      "Persuasion"
+    ],
     "classes": [
       {
         "name": "Bard",
@@ -2246,7 +2112,7 @@
     "image": "./characters/lyria.jpg",
     "proficiency_bonus": 4,
     "spellcasting_ability": "int",
-    "notes": "Danse Macabre recovered from a necromancer's spellbook \u2014 she can cast it, finds it distasteful.",
+    "notes": "Danse Macabre recovered from a necromancer's spellbook — she can cast it, finds it distasteful.",
     "stat_str": 8,
     "stat_dex": 14,
     "stat_con": 12,
@@ -2256,9 +2122,21 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["int", "wis"],
-    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
-    "languages": ["Common", "Elvish", "Draconic"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Investigation",
+      "Insight"
+    ],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -2767,14 +2645,20 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": ["Common", "Halfling"],
+    "languages": [
+      "Common",
+      "Halfling"
+    ],
     "features": [
       {
         "name": "Extra Attack",
@@ -2814,7 +2698,7 @@
     ],
     "spells": [],
     "active_effects": [],
-    "notes": "Next ASI goal: CON 18 \u2192 20. Corwin holds the Ravenquay relationship network.",
+    "notes": "Next ASI goal: CON 18 → 20. Corwin holds the Ravenquay relationship network.",
     "persona_notes": [
       "Watches every room the way a guard watched his father's workshop. Thirty years. Still.",
       "Straightforward to the point of surprising people. Says true things out loud.",
@@ -2859,7 +2743,12 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": ["str", "con", "wis", "cha"],
+    "saving_throws": [
+      "str",
+      "con",
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -2868,7 +2757,12 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
+    "languages": [
+      "Common",
+      "Giant",
+      "Celestial",
+      "Sylvan"
+    ],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -3003,7 +2897,8 @@
         "level": 0,
         "prepared": true,
         "type": "cantrip",
-        "note": "Granted by Giant's Power (Path of the Giant, 6th level), added 2026-09-09 -- Wisdom-based regardless of her own spellcasting stat."
+        "featureGranted": true,
+        "_source": "Giant's Power (Path of the Giant, 6th level) -- Wisdom-based regardless of her own spellcasting stat."
       },
       {
         "name": "Ensnaring Strike",
@@ -3066,7 +2961,10 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3074,7 +2972,11 @@
       "Religion",
       "Athletics"
     ],
-    "languages": ["Common", "Elvish", "Sylvan"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Sylvan"
+    ],
     "features": [
       {
         "name": "Divine Sense",
@@ -3126,7 +3028,7 @@
         "type": "feature"
       },
       {
-        "name": "Crown \u2014 Divine Allegiance",
+        "name": "Crown — Divine Allegiance",
         "type": "feature",
         "action_type": "reaction"
       },
@@ -3241,7 +3143,7 @@
     "deity": "Kexifrext",
     "persona_notes": [
       "Unexpected mix of authoritative commanding presence and whimsical playful oddness depending on mood.",
-      "Former instructor \u2014 occasionally slips into teaching mode without noticing.",
+      "Former instructor — occasionally slips into teaching mode without noticing.",
       "Presence before personality. When Enauweyn enters a room, people feel it before they process it.",
       "The whimsy is real, not a crack in the armor.",
       "She thinks in long time.",
@@ -3280,19 +3182,32 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": ["int", "wis"],
-    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
-    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Nature",
+      "Perception",
+      "Survival",
+      "Medicine"
+    ],
+    "languages": [
+      "Common",
+      "Halfling",
+      "Druidic",
+      "Sylvan"
+    ],
     "spellcasting_ability": "wis",
     "features": [
       {
         "name": "Legendary Repertoire",
         "id": "hb_tackett_legendary_cantrips",
         "type": "feature",
-        "note": "Grants 3 cantrips beyond the normal Druid cap \u2014 homebrew, added 2026-09-08 to explain his 6 recorded cantrips."
+        "note": "Grants 3 cantrips beyond the normal Druid cap — homebrew, added 2026-09-08 to explain his 6 recorded cantrips."
       },
       {
-        "name": "Stars Druid \u2014 Starry Form",
+        "name": "Stars Druid — Starry Form",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "short_rest",
@@ -3301,7 +3216,7 @@
         "modes": [
           {
             "name": "Archer",
-            "description": "Bonus action: constellation bow appears. When casting a spell, make a ranged spell attack \u2014 hit deals 1d8+WIS radiant damage."
+            "description": "Bonus action: constellation bow appears. When casting a spell, make a ranged spell attack — hit deals 1d8+WIS radiant damage."
           },
           {
             "name": "Chalice",
@@ -3314,7 +3229,7 @@
         ]
       },
       {
-        "name": "Stars Druid \u2014 Unbroken (Legendary)",
+        "name": "Stars Druid — Unbroken (Legendary)",
         "type": "feature",
         "action_type": "bonus_action",
         "recharge": "long_rest",
@@ -3322,11 +3237,11 @@
         "uses_current": 1
       },
       {
-        "name": "Stars Druid \u2014 Star Map",
+        "name": "Stars Druid — Star Map",
         "type": "feature"
       },
       {
-        "name": "Stars Druid \u2014 Cosmic Omen",
+        "name": "Stars Druid — Cosmic Omen",
         "type": "feature",
         "action_type": "reaction",
         "recharge": "long_rest",
@@ -3556,7 +3471,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3565,18 +3483,22 @@
       "Perception",
       "Performance"
     ],
-    "languages": ["Common", "Elvish", "Celestial"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Celestial"
+    ],
     "features": [
       {
-        "name": "Tempest Cleric \u2014 Wrath of the Storm",
+        "name": "Tempest Cleric — Wrath of the Storm",
         "type": "feature"
       },
       {
-        "name": "Tempest Cleric \u2014 Destructive Wrath",
+        "name": "Tempest Cleric — Destructive Wrath",
         "type": "feature"
       },
       {
-        "name": "Tempest Cleric \u2014 Thunderbolt Strike",
+        "name": "Tempest Cleric — Thunderbolt Strike",
         "type": "feature"
       },
       {
@@ -3758,7 +3680,7 @@
         "level": 3,
         "prepared": true,
         "type": "prepared",
-        "_source": "Signature spell \u2014 Veleth (love/desire/friendship/physical connection)"
+        "_source": "Signature spell — Veleth (love/desire/friendship/physical connection)"
       },
       {
         "name": "Sacred Flame",
@@ -3856,7 +3778,10 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "str"],
+    "saving_throws": [
+      "dex",
+      "str"
+    ],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -3866,7 +3791,11 @@
       "Survival",
       "Athletics"
     ],
-    "languages": ["Common", "Infernal", "Abyssal"],
+    "languages": [
+      "Common",
+      "Infernal",
+      "Abyssal"
+    ],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -3974,7 +3903,7 @@
       }
     },
     "active_effects": [],
-    "notes": "Tiefling entertainer from southeast of Argentveil. Target build (corrected 2026-09-08 \u2014 Fighter subclass and Sneak Attack die had been recorded a level early, ahead of when they actually unlock): Level 10 = Rogue 3 (Assassin subclass unlocks, Sneak Attack becomes 2d6). Level 11 = Fighter 3 (Champion unlocks, Improved Critical). From there, every remaining level to 20 goes into Rogue, per a real published build guide for this exact Gloomstalker/Rogue/Fighter archetype (that guide uses Battlemaster, not Champion \u2014 Champion is her own established choice). Final level 20 split: Ranger 5 (Gloom Stalker) / Fighter 3 (Champion) / Rogue 12 (Assassin).",
+    "notes": "Tiefling entertainer from southeast of Argentveil. Target build (corrected 2026-09-08 — Fighter subclass and Sneak Attack die had been recorded a level early, ahead of when they actually unlock): Level 10 = Rogue 3 (Assassin subclass unlocks, Sneak Attack becomes 2d6). Level 11 = Fighter 3 (Champion unlocks, Improved Critical). From there, every remaining level to 20 goes into Rogue, per a real published build guide for this exact Gloomstalker/Rogue/Fighter archetype (that guide uses Battlemaster, not Champion — Champion is her own established choice). Final level 20 split: Ranger 5 (Gloom Stalker) / Fighter 3 (Champion) / Rogue 12 (Assassin).",
     "persona_notes": [
       "Bubbly in a way that fills rooms. The happiness is never contained and never performed.",
       "Finds awkwardness genuinely hilarious.",
@@ -3989,7 +3918,10 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": ["Stealth", "Performance"],
+    "skill_expertise": [
+      "Stealth",
+      "Performance"
+    ],
     "classes": [
       {
         "name": "Ranger",
@@ -4012,7 +3944,7 @@
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
   },
   {
-    "name": "Sorra",
+    "name": "Sorra (Old)",
     "full_name": "Oul'sorra'i",
     "race": "Half-Elf",
     "level": 9,
@@ -4029,7 +3961,10 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "cha"],
+    "saving_throws": [
+      "dex",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -4039,7 +3974,11 @@
       "Medicine",
       "Acrobatics"
     ],
-    "languages": ["Common", "Elvish", "Solvalean"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Solvalean"
+    ],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -4227,7 +4166,10 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": ["Performance", "Insight"],
+    "skill_expertise": [
+      "Performance",
+      "Insight"
+    ],
     "classes": [
       {
         "name": "Bard",
@@ -4256,9 +4198,20 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["wis", "cha"],
-    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
-    "languages": ["Common", "Gnomish"],
+    "saving_throws": [
+      "wis",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Persuasion",
+      "Insight",
+      "Religion"
+    ],
+    "languages": [
+      "Common",
+      "Gnomish"
+    ],
     "features": [
       {
         "name": "Divine Sense",
@@ -4435,7 +4388,7 @@
     "campaign_start": "Year 468, day 87",
     "race": "Half-Elf",
     "level": 9,
-    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest \u2014 the same face with more forward momentum in it. Twin blades (usually). Light skin, a tattoo sleeve on one arm, purple corset style vest, green tricorne hat with a feather, red swashbuckler style boots over blue tight-fitting pants.",
+    "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Twin blades (usually). Light skin, a tattoo sleeve on one arm, purple corset style vest, green tricorne hat with a feather, red swashbuckler style boots over blue tight-fitting pants.",
     "proficiency_bonus": 4,
     "spellcasting_ability": null,
     "notes": "Long-term build note: Fighter heavy.",
@@ -4448,7 +4401,10 @@
     "hp_max": 78,
     "hp_current": 78,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4458,7 +4414,11 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": ["Common", "Elvish", "Dwarvish"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Fighting Style: Two-Weapon Fighting",
@@ -4489,7 +4449,7 @@
       {
         "name": "Echo: Reposition",
         "type": "feature",
-        "description": "No action required \u2014 mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
+        "description": "No action required — mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
       },
       {
         "name": "Echo: Swap Places",
@@ -4500,7 +4460,7 @@
       {
         "name": "Echo: Attack From",
         "type": "feature",
-        "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost \u2014 this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack \u2014 Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
+        "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack — Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
       },
       {
         "name": "Echo: Opportunity Attack",
@@ -4514,7 +4474,7 @@
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
-        "description": "Table ruling: unlike Echo: Attack From, this genuinely treats Eldi as positioned at the echo for that one attack, full stop \u2014 not just range/targeting."
+        "description": "Table ruling: unlike Echo: Attack From, this genuinely treats Eldi as positioned at the echo for that one attack, full stop — not just range/targeting."
       },
       {
         "name": "Extra Attack",
@@ -4577,7 +4537,10 @@
     "id": "characters_18",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": ["Stealth", "Acrobatics"],
+    "skill_expertise": [
+      "Stealth",
+      "Acrobatics"
+    ],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -4616,7 +4579,10 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "cha"],
+    "saving_throws": [
+      "con",
+      "cha"
+    ],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4626,7 +4592,11 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": ["Common", "Elvish", "Dwarvish"],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Dwarvish"
+    ],
     "features": [
       {
         "name": "Divine Magic",
@@ -4834,7 +4804,7 @@
       "Protective of his sister in the specific way of someone who knows she won't protect herself.",
       "Warm but measured. Expresses care through preparation rather than words.",
       "The divine power arrived without warning during the mudslide. He has not fully decided what he thinks about that yet.",
-      "Watches a room the way a healer watches patients \u2014 looking for what is wrong before anyone says so."
+      "Watches a room the way a healer watches patients — looking for what is wrong before anyone says so."
     ],
     "id": "characters_19",
     "darkvision": 60,
@@ -4857,10 +4827,10 @@
     "image": "./characters/iyani.png",
     "race": "Aasimar",
     "level": 9,
-    "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms \u2014 present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry \u2014 choker, layered necklaces, earrings \u2014 that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
+    "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms — present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry — choker, layered necklaces, earrings — that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
     "background": "Daughter of the Weave",
-    "background_feature": "Stella-Vision: You observed the material world from within the Weave for years and know many of its inhabitants personally \u2014 their mannerisms, abilities, and histories \u2014 before ever meeting them in person.",
-    "notes": "Mother is Ne'auveothrin, ancient demigod of the Weave, historically revered especially among genasi and early spellcasters. Father was human \u2014 they met during one of Ne'auveothrin's rare days outside the Weave; he is past now, deceased. Iyani grew up in or adjacent to the Weave itself, where time moves differently. She has spent long enough there that she counts time in ways that do not translate cleanly to years.\n\nShe observed the material world for a long time via 'stella-vision' \u2014 watching people perform magic is entertainment, and she developed deep familiarity with people she had never met. She recently arrived in the material plane. The air was initially uncomfortable, improving. Eating and drinking are being rediscovered as genuine pleasures \u2014 especially garlic lemon spinniks (how she says spinach). Touching physical objects is novel and satisfying.\n\nNe'auveothrin has given specific instructions about what not to reveal. Iyani obeys genuinely, not resentfully, but visibly struggles when excited. Has mentioned holding 'one more gift' for the right moment \u2014 unprompted.\n\nAbilities established in play that are NOT on her character sheet are temporary \u2014 gifts from her mother, going away soon: instantaneous planar travel (blue flash, desire-based), creation of permanent teleportation circles (Stillwater and Orvath placed casually), permanent shared spellbook synchronization granted to Lenn, Kessara, and Lyria, a self-cast Tongues equivalent, real-time perception of active spellwork in the Weave, and the ability to manifest physical objects from nothing.",
+    "background_feature": "Stella-Vision: You observed the material world from within the Weave for years and know many of its inhabitants personally — their mannerisms, abilities, and histories — before ever meeting them in person.",
+    "notes": "Mother is Ne'auveothrin, ancient demigod of the Weave, historically revered especially among genasi and early spellcasters. Father was human — they met during one of Ne'auveothrin's rare days outside the Weave; he is past now, deceased. Iyani grew up in or adjacent to the Weave itself, where time moves differently. She has spent long enough there that she counts time in ways that do not translate cleanly to years.\n\nShe observed the material world for a long time via 'stella-vision' — watching people perform magic is entertainment, and she developed deep familiarity with people she had never met. She recently arrived in the material plane. The air was initially uncomfortable, improving. Eating and drinking are being rediscovered as genuine pleasures — especially garlic lemon spinniks (how she says spinach). Touching physical objects is novel and satisfying.\n\nNe'auveothrin has given specific instructions about what not to reveal. Iyani obeys genuinely, not resentfully, but visibly struggles when excited. Has mentioned holding 'one more gift' for the right moment — unprompted.\n\nAbilities established in play that are NOT on her character sheet are temporary — gifts from her mother, going away soon: instantaneous planar travel (blue flash, desire-based), creation of permanent teleportation circles (Stillwater and Orvath placed casually), permanent shared spellbook synchronization granted to Lenn, Kessara, and Lyria, a self-cast Tongues equivalent, real-time perception of active spellwork in the Weave, and the ability to manifest physical objects from nothing.",
     "proficiency_bonus": 4,
     "spellcasting_ability": "cha",
     "stat_str": 10,
@@ -4872,10 +4842,22 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "cha"],
-    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
+    "saving_throws": [
+      "con",
+      "cha"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Insight",
+      "Religion"
+    ],
     "skill_expertise": [],
-    "languages": ["Common", "Celestial", "Arcanis"],
+    "languages": [
+      "Common",
+      "Celestial",
+      "Arcanis"
+    ],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -4925,12 +4907,12 @@
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
-        "description": "Once per long rest, cast your CURRENT phase's L1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) \u2014 up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three."
+        "description": "Once per long rest, cast your CURRENT phase's L1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) — up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three."
       },
       {
         "name": "Font of Magic",
         "type": "feature",
-        "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP \u2192 1st-level slot (up to 5th level); convert slots \u2192 SP (1 SP per slot level)."
+        "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP → 1st-level slot (up to 5th level); convert slots → SP (1 SP per slot level)."
       },
       {
         "name": "Metamagic: Twinned Spell",
@@ -4946,12 +4928,12 @@
         "name": "Mother's Whim",
         "type": "feature",
         "action_type": "bonus_action",
-        "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) \u2014 costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest \u2014 this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
+        "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest — this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
       },
       {
         "name": "Leno Phase (Abjuration / Divination)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active \u2014 cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
+        "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Shield",
           "Lesser Restoration",
@@ -4963,7 +4945,7 @@
       {
         "name": "Twill Phase (Enchantment / Necromancy)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active \u2014 cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
+        "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Silvery Barbs",
           "Blindness/Deafness",
@@ -4975,7 +4957,7 @@
       {
         "name": "Satin Phase (Illusion / Transmutation)",
         "type": "feature",
-        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active \u2014 cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
+        "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Color Spray",
           "Alter Self",
@@ -5130,11 +5112,11 @@
     "conditions": [],
     "exhaustion_level": 0,
     "persona_notes": [
-      "Warm, excitable, genuinely loving. This is not a performance. Impulse control fails around exciting information \u2014 blurted a dragon reference before she could stop herself.",
-      "Non-linear speech. Present-tense dominant. Drops articles and pronouns naturally. Counts time differently \u2014 'many times ago', 'long time', not years.",
+      "Warm, excitable, genuinely loving. This is not a performance. Impulse control fails around exciting information — blurted a dragon reference before she could stop herself.",
+      "Non-linear speech. Present-tense dominant. Drops articles and pronouns naturally. Counts time differently — 'many times ago', 'long time', not years.",
       "Completely without guile. Cannot deceive. Obeys her mother's restrictions genuinely, not resentfully, but visibly struggles when excited.",
       "Stella-vision means she knows people before meeting them. Petra especially. Finds this completely normal.",
-      "Always touching things \u2014 walls, doorframes, empty air. Checking the Weave. Has done this her whole life.",
+      "Always touching things — walls, doorframes, empty air. Checking the Weave. Has done this her whole life.",
       "Finds humans and their walking habits inefficient but endearing.",
       "When she casts, the yellow markings light up like circuitry firing. She does not find this unusual."
     ],
@@ -5169,7 +5151,7 @@
   },
   {
     "id": "characters_21",
-    "name": "Torrin",
+    "name": "Torrin (Old)",
     "full_name": "Torrin Gallowglass",
     "race": "Dwarf",
     "classes": [
@@ -5184,7 +5166,7 @@
     "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
     "image": "./characters/torrin.jpg",
     "spellcasting_ability": null,
-    "notes": "Legendary character \u2014 can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
+    "notes": "Legendary character — can only be with the party occasionally. All benefits of both Soulknife and Mastermind subclasses. Treat as level 12 for all purposes.",
     "stat_str": 14,
     "stat_dex": 20,
     "stat_con": 16,
@@ -5196,7 +5178,10 @@
     "hit_die": "d8",
     "hit_dice_current": 1,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -5205,23 +5190,29 @@
       "History",
       "Persuasion"
     ],
-    "skill_expertise": ["Stealth", "Perception"],
-    "languages": ["Common", "Dwarvish"],
+    "skill_expertise": [
+      "Stealth",
+      "Perception"
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
     "features": [
       {
-        "name": "Soulknife \u2014 Psychic Blades",
+        "name": "Soulknife — Psychic Blades",
         "type": "feature"
       },
       {
-        "name": "Soulknife \u2014 Psi-Bolstered Knack",
+        "name": "Soulknife — Psi-Bolstered Knack",
         "type": "feature"
       },
       {
-        "name": "Soulknife \u2014 Psychic Whispers",
+        "name": "Soulknife — Psychic Whispers",
         "type": "feature"
       },
       {
-        "name": "Soulknife \u2014 Soul Blades",
+        "name": "Soulknife — Soul Blades",
         "type": "feature"
       },
       {
@@ -5287,7 +5278,11 @@
     "hp_max": 75,
     "hp_current": 75,
     "unarmored_ac_formula": "default",
-    "saving_throws": ["con", "int", "wis"],
+    "saving_throws": [
+      "con",
+      "int",
+      "wis"
+    ],
     "skill_proficiencies": [
       "Animal Handling",
       "Athletics",
@@ -5296,7 +5291,10 @@
       "Survival"
     ],
     "skill_expertise": [],
-    "languages": ["Common", "Elvish"],
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -5549,7 +5547,10 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": ["dex", "int"],
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -5560,8 +5561,16 @@
       "Insight",
       "Perception"
     ],
-    "skill_expertise": ["Stealth", "Athletics", "Perception", "Deception"],
-    "languages": ["Common", "Goblin"],
+    "skill_expertise": [
+      "Stealth",
+      "Athletics",
+      "Perception",
+      "Deception"
+    ],
+    "languages": [
+      "Common",
+      "Goblin"
+    ],
     "features": [
       {
         "name": "Expertise",
@@ -5658,7 +5667,7 @@
     "level": 9,
     "image": "./characters/jaygar.jpg",
     "appearance": "gnome, ink-stained fingers, magnificent waxed moustache, bright calculating eyes, never fully still.",
-    "notes": "Rebuilt from level 1 (2026-09-02) via the New Character + Level Up tools \u2014 Infused Arbalist (homebrew, built on Artillerist's framework), RAW-legal through level 9. Replaces the earlier Alchemist-flavored Artillerist build.",
+    "notes": "Rebuilt from level 1 (2026-09-02) via the New Character + Level Up tools — Infused Arbalist (homebrew, built on Artillerist's framework), RAW-legal through level 9. Replaces the earlier Alchemist-flavored Artillerist build.",
     "darkvision": 60,
     "hit_die": "d8",
     "stat_str": 8,
@@ -5690,10 +5699,23 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": ["con", "int"],
-    "skill_proficiencies": ["Arcana", "History", "Investigation", "Perception"],
+    "saving_throws": [
+      "con",
+      "int"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Investigation",
+      "Perception"
+    ],
     "skill_expertise": [],
-    "languages": ["Common", "Gnomish", "Elvish", "Draconic"],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Elvish",
+      "Draconic"
+    ],
     "persona_notes": [
       "Finds people who ask good questions more valuable than people who have good answers.",
       "Thinks better out loud. Explaining solves problems that existing didn't.",
@@ -5703,10 +5725,10 @@
       "Understatement.",
       "Playful.",
       "Whistles tunelessly while working.",
-      "Attack rolls are INT-based via Calculating Arbalister \u2014 the crossbow is his bonded weapon, doubling as both Infuse Weapon's focus and (from 5th level) his Arcane Payload spellcasting focus.",
-      "At 9th level the crossbow's shot pool holds 9 rounds (fire/acid/thunder) per long rest \u2014 two per turn if he spends both action and bonus action, but pushing it risks the weapon overheating and detonating on him.",
-      "Flash of Genius is exceptional and should be used generously \u2014 +5 to any roll within 30ft five times per long rest.",
-      "Gnome Cunning gives advantage on all magic saves \u2014 he is surprisingly hard to enchant or charm."
+      "Attack rolls are INT-based via Calculating Arbalister — the crossbow is his bonded weapon, doubling as both Infuse Weapon's focus and (from 5th level) his Arcane Payload spellcasting focus.",
+      "At 9th level the crossbow's shot pool holds 9 rounds (fire/acid/thunder) per long rest — two per turn if he spends both action and bonus action, but pushing it risks the weapon overheating and detonating on him.",
+      "Flash of Genius is exceptional and should be used generously — +5 to any roll within 30ft five times per long rest.",
+      "Gnome Cunning gives advantage on all magic saves — he is surprisingly hard to enchant or charm."
     ],
     "features": [
       {
@@ -5749,7 +5771,7 @@
           }
         ],
         "new_infusion_learned": "Bag of Holding",
-        "note": "3 of his 6 known infusions are unapplied (available to swap in on a long rest). The crossbow's own properties and the armor's Armor of Magical Strength are enchanter-made, not his own infusions, and don't count against this cap \u2014 see persona notes."
+        "note": "3 of his 6 known infusions are unapplied (available to swap in on a long rest). The crossbow's own properties and the armor's Armor of Magical Strength are enchanter-made, not his own infusions, and don't count against this cap — see persona notes."
       },
       {
         "name": "The Right Tool for the Job",
@@ -5828,6 +5850,54 @@
         "level": 0,
         "prepared": true,
         "type": "cantrip"
+      },
+      {
+        "name": "Shield",
+        "level": 1,
+        "prepared": true,
+        "type": "subclass",
+        "featureGranted": true,
+        "_source": "Infused Arbalist expanded spell list (3rd level) -- always prepared, doesn't count against his normal prepared total"
+      },
+      {
+        "name": "Thunderwave",
+        "level": 1,
+        "prepared": true,
+        "type": "subclass",
+        "featureGranted": true,
+        "_source": "Infused Arbalist expanded spell list (3rd level) -- always prepared, doesn't count against his normal prepared total"
+      },
+      {
+        "name": "Scorching Ray",
+        "level": 2,
+        "prepared": true,
+        "type": "subclass",
+        "featureGranted": true,
+        "_source": "Infused Arbalist expanded spell list (5th level) -- always prepared, doesn't count against his normal prepared total"
+      },
+      {
+        "name": "Shatter",
+        "level": 2,
+        "prepared": true,
+        "type": "subclass",
+        "featureGranted": true,
+        "_source": "Infused Arbalist expanded spell list (5th level) -- always prepared, doesn't count against his normal prepared total"
+      },
+      {
+        "name": "Fireball",
+        "level": 3,
+        "prepared": true,
+        "type": "subclass",
+        "featureGranted": true,
+        "_source": "Infused Arbalist expanded spell list (9th level) -- always prepared, doesn't count against his normal prepared total"
+      },
+      {
+        "name": "Wind Wall",
+        "level": 3,
+        "prepared": true,
+        "type": "subclass",
+        "featureGranted": true,
+        "_source": "Infused Arbalist expanded spell list (9th level) -- always prepared, doesn't count against his normal prepared total"
       }
     ],
     "active_effects": [],
@@ -5842,8 +5912,14 @@
     ],
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
-    "armor_proficiencies": ["light", "medium", "shields"],
-    "weapon_proficiencies": ["simple"],
+    "armor_proficiencies": [
+      "light",
+      "medium",
+      "shields"
+    ],
+    "weapon_proficiencies": [
+      "simple"
+    ],
     "spell_slots": {
       "level_1": {
         "max": 4,
@@ -5938,7 +6014,10 @@
     "spellcasting_ability": null,
     "hp_max": 93,
     "hp_current": 93,
-    "saving_throws": ["str", "con"],
+    "saving_throws": [
+      "str",
+      "con"
+    ],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -5946,11 +6025,22 @@
       "Perception"
     ],
     "skill_expertise": [],
-    "languages": ["Yetgresian Common", "Catrinese"],
+    "languages": [
+      "Yetgresian Common",
+      "Catrinese"
+    ],
     "speed": 30,
     "darkvision": 0,
-    "weapon_proficiencies": ["simple", "martial"],
-    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
+    "weapon_proficiencies": [
+      "simple",
+      "martial"
+    ],
+    "armor_proficiencies": [
+      "light",
+      "medium",
+      "heavy",
+      "shields"
+    ],
     "tool_proficiencies": [],
     "resistances": [],
     "features": [
@@ -6032,5 +6122,554 @@
     ],
     "proficiency_bonus": 4,
     "hit_dice_current": 9
+  },
+  {
+    "id": "characters_26",
+    "name": "Kerra",
+    "full_name": "Kerra Flint",
+    "race": "Half-Orc",
+    "subrace": null,
+    "background": "Mercenary Veteran",
+    "level": 9,
+    "stat_str": 20,
+    "stat_dex": 8,
+    "stat_con": 14,
+    "stat_int": 10,
+    "stat_wis": 8,
+    "stat_cha": 17,
+    "species_bonus_applied": false,
+    "species_traits": [
+      {
+        "name": "Relentless Endurance",
+        "description": "When reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Usable again only after a long rest.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Savage Attacks",
+        "description": "When you score a critical hit with a melee weapon attack, roll one additional weapon damage die and add it to the extra critical-hit damage.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Menacing",
+        "description": "Proficiency in the Intimidation skill.",
+        "grants_skill_proficiency": "intimidation",
+        "type": "speciesTrait",
+        "source": "species"
+      }
+    ],
+    "ability_score_history": [
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "cha",
+        "amount": 1,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "str",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "cha",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      }
+    ],
+    "spellcasting_ability": null,
+    "hp_max": 70,
+    "hp_current": 70,
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Deception",
+      "Persuasion",
+      "Athletics",
+      "Intimidation"
+    ],
+    "skill_expertise": [],
+    "languages": [
+      "Common",
+      "Orc"
+    ],
+    "speed": 30,
+    "darkvision": 60,
+    "weapon_proficiencies": [
+      "simple",
+      "martial"
+    ],
+    "armor_proficiencies": [
+      "light",
+      "medium",
+      "heavy",
+      "shields"
+    ],
+    "tool_proficiencies": [],
+    "resistances": [],
+    "saving_throw_advantages": [],
+    "features": [
+      {
+        "name": "Fighting Style: Dueling",
+        "id": "fighter-fighting-style-dueling",
+        "type": "fightingStyle",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "stat_bonuses": {
+          "melee_damage": 2
+        }
+      },
+      {
+        "name": "Second Wind",
+        "id": "second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Action Surge (1 use)",
+        "id": "action-surge-1-use",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Improved Critical (19-20)",
+        "id": "gen_fighter_champion_improved-critical-19-20",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Pact Magic",
+        "id": "pact-magic",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Awakened Mind",
+        "id": "pub_awakened-mind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Eldritch Invocations",
+        "id": "eldritch-invocations",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Agonizing Blast",
+        "id": "eldritch-invocation-agonizing-blast",
+        "type": "invocation",
+        "level_gained": 2,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Eyes of the Rune Keeper",
+        "id": "eldritch-invocation-eyes-of-the-rune-keeper",
+        "type": "invocation",
+        "level_gained": 2,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Pact Boon",
+        "id": "pact-boon",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Pact of the Tome",
+        "id": "pact-of-the-tome",
+        "type": "pactBoon",
+        "level_gained": 3,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Book of Ancient Secrets",
+        "id": "eldritch-invocation-book-of-ancient-secrets",
+        "type": "invocation",
+        "level_gained": 5,
+        "_source": "Warlock"
+      }
+    ],
+    "spells": [
+      {
+        "name": "Eldritch Blast",
+        "level": 0,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Green-Flame Blade",
+        "level": 0,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Hellish Rebuke",
+        "level": 1,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Sword Burst",
+        "level": 0,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Pact of the Tome"
+      },
+      {
+        "name": "Blade Ward",
+        "level": 0,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Pact of the Tome"
+      },
+      {
+        "name": "Guidance",
+        "level": 0,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Pact of the Tome"
+      },
+      {
+        "name": "Hold Person",
+        "level": 2,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Invisibility",
+        "level": 2,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Spider Climb",
+        "level": 2,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Tongues",
+        "level": 3,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Thunder step",
+        "level": 3,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Identify",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Book of Ancient Secrets -- ritual casting only (can't be cast as a normal spell, no spell slot needed), doesn't count against known-spell cap"
+      },
+      {
+        "name": "Find Familiar",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Book of Ancient Secrets -- ritual casting only (can't be cast as a normal spell, no spell slot needed), doesn't count against known-spell cap"
+      }
+    ],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Fighter",
+        "level": 4,
+        "subclass": "Champion"
+      },
+      {
+        "name": "Warlock",
+        "level": 5,
+        "subclass": "Great Old One"
+      }
+    ],
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9,
+    "pact_magic": {
+      "slot_level": 3,
+      "max": 2,
+      "current": 2,
+      "recharge": "short_rest"
+    },
+    "image": "./characters/kerra.jpg",
+    "persona_notes": [
+      "Observational integration. Quiet, professional, thorough.",
+      "Notices when things work and finds it slightly unsettling because she's used to things not working.",
+      "The composure is becoming less armor and more just - her.",
+      "The mercenary composure is architecture built over something younger and more open.",
+      "Kindness with no angle surprises and disarms her completely every time.",
+      "Enough is a concept she has never had access to and is only beginning to understand exists.",
+      "Self-contained, professional.",
+      "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
+      "Shadow of Moil + Devil's Sight darkness combo now fully online."
+    ],
+    "notes": "Target build: 4 Fighter / 8 Warlock."
+  },
+  {
+    "id": "characters_27",
+    "name": "Torrin (Claude)",
+    "full_name": "Torrin Gallowglass (Claude's optimized build, for comparison)",
+    "race": "Dwarf",
+    "subrace": "Hill Dwarf",
+    "background": "Criminal",
+    "level": 9,
+    "appearance": "Same Dwarf, hypothetical alternate build — a from-scratch level 1-9 Soulknife optimized for comparison against the project owner's own build. Not a real roster character; not meant to replace Torrin (Old) or the eventual real rebuild.",
+    "image": "./characters/torrin.jpg",
+    "notes": "Built 2026-09-11 as an optimization comparison exercise, per project owner's request: 'Make Torrin (Claude) into a level 9 Soulknife as optimized as he can be and let's see how it compares to what I would build.' Same species (Dwarf) as the real Torrin, Hill Dwarf picked as the objectively better subrace for a DEX-primary Soulknife (Dwarven Toughness's +1 HP/level beats Mountain Dwarf's dump-stat STR and armor training this build doesn't want). Ability bonus placement uses this campaign's usual flexible reassignment (see Kerra/other recent builds) rather than Hill Dwarf's fixed +2 CON/+1 WIS. Full reasoning in the chat writeup, not duplicated here.",
+    "spellcasting_ability": null,
+    "stat_str": 8,
+    "stat_dex": 20,
+    "stat_con": 16,
+    "stat_int": 12,
+    "stat_wis": 13,
+    "stat_cha": 10,
+    "hp_max": 77,
+    "hp_current": 77,
+    "hit_die": "d8",
+    "hit_dice_current": 9,
+    "unarmored_ac_formula": "default",
+    "proficiency_bonus": 4,
+    "speed": 25,
+    "darkvision": 60,
+    "saving_throws": [
+      "dex",
+      "int"
+    ],
+    "saving_throw_advantages": [
+      "poison"
+    ],
+    "resistances": [
+      "poison"
+    ],
+    "skill_proficiencies": [
+      "Deception",
+      "Stealth",
+      "Acrobatics",
+      "Perception",
+      "Insight",
+      "Sleight of Hand"
+    ],
+    "skill_expertise": [
+      "Stealth",
+      "Perception",
+      "Deception",
+      "Insight"
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ],
+    "weapon_proficiencies": [
+      "simple",
+      "hand crossbow",
+      "longsword",
+      "rapier",
+      "shortsword",
+      "battleaxe",
+      "handaxe",
+      "light hammer",
+      "warhammer"
+    ],
+    "armor_proficiencies": [
+      "light"
+    ],
+    "tool_proficiencies": [
+      "Thieves' Tools",
+      "Smith's Tools"
+    ],
+    "species_bonus_applied": false,
+    "species_traits": [
+      {
+        "name": "Dwarven Resilience",
+        "description": "Advantage on saving throws against poison, and resistance to poison damage.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Dwarven Combat Training",
+        "description": "Proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Stonecunning",
+        "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Dwarven Toughness",
+        "description": "Hit point maximum increases by 1, and increases by 1 every time you gain a level.",
+        "type": "speciesTrait",
+        "source": "species",
+        "grants_hp_per_level": 1
+      }
+    ],
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Free ability bonus (manual, Hill Dwarf)",
+        "level_gained": 1
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Free ability bonus (manual, Hill Dwarf)",
+        "level_gained": 1
+      },
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "dex",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      }
+    ],
+    "features": [
+      {
+        "name": "Expertise",
+        "id": "rogue-expertise-1",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Soulknife — Psychic Blades",
+        "id": "pub_soulknife-psychic-blades",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Soulknife — Psionic Energy",
+        "id": "pub_soulknife-psionic-energy",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue",
+        "notes": "8 d8 Psionic Energy dice (2x proficiency bonus at level 9); regain all on long rest, or 1 as a bonus action (not again until next short/long rest)."
+      },
+      {
+        "name": "Soulknife — Psi-Bolstered Knack",
+        "id": "pub_soulknife-psi-bolstered-knack",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Soulknife — Psychic Whispers",
+        "id": "pub_soulknife-psychic-whispers",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Uncanny Dodge",
+        "id": "uncanny-dodge",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise",
+        "id": "rogue-expertise-1",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Evasion",
+        "id": "rogue-evasion",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Soulknife — Soul Blades",
+        "id": "pub_soulknife-soul-blades",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Rogue"
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Rogue",
+        "level": 9,
+        "subclass": "Soulknife"
+      }
+    ]
   }
 ]

@@ -86,7 +86,7 @@
             v-for="item in equippedItems"
             :key="item.id"
             class="inv-item equipped"
-            :class="{ overloaded: isSlotOverfilled(item.slot || item.type) }"
+            :class="{ overloaded: isSlotOverfilled(item) }"
           >
             <span class="item-name">{{ item.name }}</span>
             <span class="item-slot">{{ item.slot || item.type }}</span>
@@ -109,6 +109,18 @@
               {{
                 item.weapon_set == null ? 'Any set' : `Set ${item.weapon_set}`
               }}
+            </button>
+            <button
+              v-if="isVersatileWeapon(item)"
+              class="act-btn grip-toggle-btn"
+              :title="
+                item.slot === 'melee2h'
+                  ? 'Wielded two-handed — click to switch to one-handed'
+                  : 'Wielded one-handed — click to switch to two-handed'
+              "
+              @click.stop="toggleGrip(item)"
+            >
+              {{ item.slot === 'melee2h' ? '2H' : '1H' }}
             </button>
             <Zap
               v-if="item.needs_attunement"
@@ -453,7 +465,7 @@
             <button
               class="act-btn dim delete-btn"
               @click.stop="confirmDelete(item)"
-              title="Delete item"
+              title="Sell, destroy, or delete this item"
             >
               ✕
             </button>
@@ -471,11 +483,21 @@
       <div class="dialog-panel">
         <div class="dialog-title">
           {{
-            deleteCurrencyType === 'dust' ? 'Confirm destroy' : 'Confirm delete'
+            deleteCurrencyType === 'dust'
+              ? 'Destroy item'
+              : deleteSaleValue > 0
+              ? 'Sell item'
+              : 'Delete item'
           }}
         </div>
         <p>
-          {{ deleteCurrencyType === 'dust' ? 'Destroy' : 'Delete' }}
+          {{
+            deleteCurrencyType === 'dust'
+              ? 'Destroy'
+              : deleteSaleValue > 0
+              ? 'Sell'
+              : 'Delete'
+          }}
           <strong>{{ deleteCandidate ? deleteCandidate.name : '' }}</strong
           >?
         </p>
@@ -487,7 +509,7 @@
             :class="{ active: deleteCurrencyType === 'gold' }"
             @click="deleteCurrencyType = 'gold'"
           >
-            Gold
+            Sell for Gold
           </button>
           <button
             class="curr-btn"
@@ -523,7 +545,12 @@
         <div class="dialog-actions">
           <button class="act-btn dim" @click="cancelDelete">Cancel</button>
           <button class="act-btn" @click="deleteConfirmed">
-            {{ deleteCurrencyType === 'dust' ? 'Destroy' : 'Delete'
+            {{
+              deleteCurrencyType === 'dust'
+                ? 'Destroy'
+                : deleteSaleValue > 0
+                ? 'Sell'
+                : 'Delete'
             }}{{
               deleteSaleValue > 0
                 ? deleteCurrencyType === 'dust'
@@ -565,6 +592,14 @@
                 class="meta-input"
                 v-model="editDraft.slot"
                 placeholder="e.g. hand, neck…"
+              />
+            </div>
+            <div class="meta-row" v-if="editDraft.type === 'weapon'">
+              <span class="meta-label">Weapon Type</span>
+              <input
+                class="meta-input"
+                v-model="editDraft.weapon_category"
+                placeholder="e.g. longsword, shortbow…"
               />
             </div>
 
@@ -840,26 +875,69 @@ export default {
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([assetName, items]) => ({ assetName, items }))
     },
+    // melee1h/melee2h/ranged1h are the slots a weapon set actually swaps —
+    // two two-handed weapons in different sets were false-flagging as
+    // "overloaded" because capacity used to be counted globally across both
+    // sets at once, even though only one set is ever in-hand simultaneously.
+    // Real bug found 2026-09-11. Non-weapon slots (rings, armor, etc.)
+    // aren't set-dependent and keep a single global count below.
+    weaponSlotTypes() {
+      return ['melee1h', 'melee2h', 'ranged1h']
+    },
     slotCounts() {
       return this.equippedItems.reduce((counts, item) => {
         const slot = item.slot || item.type || 'unknown'
+        if (this.weaponSlotTypes.includes(slot)) return counts
         counts[slot] = (counts[slot] || 0) + 1
         return counts
       }, {})
+    },
+    // { 1: {melee1h: n, ...}, 2: {...} } — a weapon_set: null ("Any") item
+    // counts toward BOTH sets, matching cycleItemWeaponSet's own comment
+    // that "Any" means always in-hand regardless of active loadout.
+    weaponSlotCountsBySet() {
+      const bySet = { 1: {}, 2: {} }
+      for (const item of this.equippedItems) {
+        const slot = item.slot || item.type || 'unknown'
+        if (!this.weaponSlotTypes.includes(slot)) continue
+        for (const setNum of [1, 2]) {
+          if (item.weapon_set == null || item.weapon_set === setNum) {
+            bySet[setNum][slot] = (bySet[setNum][slot] || 0) + 1
+          }
+        }
+      }
+      return bySet
     },
     multiSlotTypes() {
       return ['ring', 'melee1h', 'ranged1h']
     },
     slotSummaries() {
-      return Object.entries(this.slotCounts).map(([slot, count]) => {
-        const cap = this.multiSlotTypes.includes(slot) ? 2 : 1
-        return {
-          slot,
-          count,
-          cap,
-          over: count > cap,
-        }
+      const nonWeapon = Object.entries(this.slotCounts).map(([slot, count]) => {
+        const cap = this.slotCapacity(slot)
+        return { slot, count, cap, over: count > cap }
       })
+      // Only split into per-set chips once sets are actually in use —
+      // otherwise every weapon is "Any" and both sets' counts are identical,
+      // so showing them twice would just be confusing duplication.
+      const weapon = this.hasWeaponSets
+        ? [1, 2].flatMap((setNum) =>
+            Object.entries(this.weaponSlotCountsBySet[setNum]).map(
+              ([slot, count]) => {
+                const cap = this.slotCapacity(slot)
+                return {
+                  slot: `${slot} (Set ${setNum})`,
+                  count,
+                  cap,
+                  over: count > cap,
+                }
+              }
+            )
+          )
+        : Object.entries(this.weaponSlotCountsBySet[1]).map(([slot, count]) => {
+            const cap = this.slotCapacity(slot)
+            return { slot, count, cap, over: count > cap }
+          })
+      return [...nonWeapon, ...weapon]
     },
     attunedItems() {
       return this.equippedItems.filter((i) => i.attuned)
@@ -1015,16 +1093,34 @@ export default {
     slotCapacity(slot) {
       return this.multiSlotTypes.includes(slot) ? 2 : 1
     },
-    isSlotOverfilled(slot) {
+    // Weapon slots check the item's OWN set bucket (an "Any"/null item is
+    // checked against Set 1 as a stable proxy, since it's in-hand under
+    // every set anyway — if set 1's bucket overflows the real conflict is
+    // visible there). Non-weapon slots use the simple global count.
+    isSlotOverfilled(item) {
+      const slot = item.slot || item.type || 'unknown'
+      if (this.weaponSlotTypes.includes(slot)) {
+        const setNum = item.weapon_set ?? 1
+        const count = this.weaponSlotCountsBySet[setNum][slot] || 0
+        return count > this.slotCapacity(slot)
+      }
       const count = this.slotCounts[slot] || 0
       return count > this.slotCapacity(slot)
     },
     isPoolItem(item) {
       return item.carried_by === 'party' && !item.stored_at
     },
+    // Weapon slots never hard-block equipping: a weapon defaults to "Any"
+    // set until deliberately assigned via cycleItemWeaponSet, so equipping a
+    // second two-handed weapon meant for Set 2 would otherwise get blocked
+    // here before the player ever gets a chance to assign it — the set
+    // toggle is a two-step flow (equip, then assign), not one step. Rely on
+    // isSlotOverfilled's visual warning instead of blocking outright. Only
+    // non-weapon slots (rings, armor, etc.) still hard-block.
     canEquip(item) {
       if (item.equipped_by === 'disallowed') return false
       const slot = item.slot || item.type || 'unknown'
+      if (this.weaponSlotTypes.includes(slot)) return true
       const count = this.slotCounts[slot] || 0
       if (count >= this.slotCapacity(slot)) return false
       return true
@@ -1032,6 +1128,7 @@ export default {
     cannotEquipReason(item) {
       if (item.equipped_by === 'disallowed') return 'Item cannot be equipped'
       const slot = item.slot || item.type || 'unknown'
+      if (this.weaponSlotTypes.includes(slot)) return null
       const count = this.slotCounts[slot] || 0
       if (count >= this.slotCapacity(slot)) return `${slot} slot full`
       return null
@@ -1066,6 +1163,26 @@ export default {
     cycleItemWeaponSet(item) {
       const next = item.weapon_set === 1 ? 2 : item.weapon_set === 2 ? null : 1
       this.$store.commit('UPDATE_ITEM', { ...item, weapon_set: next })
+    },
+    // Versatile weapons (longsword, etc.) were only ever equippable in the
+    // one-handed slot — dnd_utils.js's gripDie() already infers two-handed
+    // damage when nothing else occupies the other melee1h slot, but that
+    // inference can't see a shield and gives no way to deliberately choose
+    // two-handed when a second one-hander IS equipped. Real gap found
+    // 2026-09-11. This toggle sets item.slot explicitly instead of relying
+    // on the inference.
+    isVersatileWeapon(item) {
+      return (
+        item.type === 'weapon' &&
+        (item.slot === 'melee1h' || item.slot === 'melee2h') &&
+        dnd._weaponProps(item).versatile
+      )
+    },
+    toggleGrip(item) {
+      this.$store.commit('UPDATE_ITEM', {
+        ...item,
+        slot: item.slot === 'melee2h' ? 'melee1h' : 'melee2h',
+      })
     },
     carry(item) {
       this.$store.commit('UPDATE_ITEM', {

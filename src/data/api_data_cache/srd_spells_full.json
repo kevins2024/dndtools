@@ -5187,7 +5187,8 @@
     "classes": [
       "Cleric",
       "Sorcerer",
-      "Wizard"
+      "Wizard",
+      "Warlock"
     ],
     "subclasses": [],
     "url": "/api/2014/spells/gate",
@@ -7998,7 +7999,8 @@
     "school": "Illusion",
     "classes": [
       "Bard",
-      "Wizard"
+      "Wizard",
+      "Warlock"
     ],
     "subclasses": [],
     "url": "/api/2014/spells/mislead",
@@ -8403,7 +8405,8 @@
       "Bard",
       "Cleric",
       "Druid",
-      "Wizard"
+      "Wizard",
+      "Warlock"
     ],
     "subclasses": [],
     "url": "/api/2014/spells/planar-binding",
@@ -11064,7 +11067,8 @@
     "classes": [
       "Bard",
       "Sorcerer",
-      "Wizard"
+      "Wizard",
+      "Warlock"
     ],
     "subclasses": [],
     "url": "/api/2014/spells/teleportation-circle",
@@ -11969,7 +11973,8 @@
     },
     "school": "Illusion",
     "classes": [
-      "Wizard"
+      "Wizard",
+      "Warlock"
     ],
     "subclasses": [],
     "url": "/api/2014/spells/weird",

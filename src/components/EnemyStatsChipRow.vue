@@ -32,6 +32,15 @@
       />
       <span class="chip-label">{{ meta.damageLabel || 'Damage' }}</span>
     </div>
+    <div
+      class="chip chip--toggle"
+      :class="{ active: meta.magical }"
+      title="Counts as magical for bypassing resistance/immunity to nonmagical damage"
+      @click="update('magical', !meta.magical)"
+    >
+      <span class="chip-input">{{ meta.magical ? 'Yes' : 'No' }}</span>
+      <span class="chip-label">Magical</span>
+    </div>
     <div class="chip">
       <input
         class="chip-input"
@@ -140,6 +149,19 @@ export default {
 
 .chip--wide {
   min-width: 6rem;
+}
+
+.chip--toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.chip--toggle.active {
+  border-color: var(--color-accent);
+}
+
+.chip--toggle.active .chip-input {
+  color: var(--color-accent);
 }
 
 .chip-input {

@@ -11,6 +11,11 @@
         class="nct-text-input nct-name-input"
         placeholder="Full name (optional — defaults to short name)"
       />
+      <input
+        v-model="imagePath"
+        class="nct-text-input nct-name-input"
+        :placeholder="`Image path (optional — defaults to ${defaultImagePath})`"
+      />
     </div>
 
     <PendingCharacterSaveBar
@@ -809,6 +814,12 @@ export default {
       // Thrazak"); `name` is the short form used everywhere else in the app
       // (combat tracker, item equipped_by, relationship notes).
       fullName: '',
+      // Optional — defaults to defaultImagePath on save if left blank. No
+      // upload here: portraits live as static files under `public/characters/`
+      // and this tool doesn't have a way to write one there, just to point
+      // at whatever filename the project owner drops in (existing roster is
+      // 23 .jpg vs. 2 .png, hence the default guess's extension).
+      imagePath: '',
       speciesName: null,
       // Only meaningful for the 4 standard species with real 2014-PHB
       // subraces (Dwarf, Elf, Halfling, Gnome) — null for every other
@@ -925,6 +936,12 @@ export default {
   },
 
   computed: {
+    // Matches the existing roster's real convention: lowercase, spaces
+    // stripped, .jpg (23 of 25 current portraits use .jpg, not .png).
+    defaultImagePath() {
+      const slug = this.name.trim().toLowerCase().replace(/\s+/g, '')
+      return slug ? `./characters/${slug}.jpg` : ''
+    },
     standardSpeciesList() {
       return this.speciesList.filter((s) => !s.homebrew)
     },
@@ -1649,6 +1666,7 @@ export default {
         id: this.nextCharacterId(),
         name: this.name.trim(),
         full_name: this.fullName.trim() || this.name.trim(),
+        image: this.imagePath.trim() || this.defaultImagePath,
         race: this.speciesName,
         subrace: this.subraceName,
         background: this.effectiveBackgroundName || null,

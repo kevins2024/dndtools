@@ -16,6 +16,7 @@
       <CompanionSummonStrip :character="character" />
       <CompanionPanel v-if="companion.summoned" :companion="companion" />
     </template>
+    <FamiliarSummon v-else-if="knowsFindFamiliar" :character="character" />
 
     <div class="skills-box">
       <SkillList :character="character" />
@@ -62,6 +63,7 @@ import VitalsChipRow from '@/components/VitalsChipRow.vue'
 import ConditionsRow from '@/components/ConditionsRow.vue'
 import CompanionSummonStrip from '@/components/CompanionSummonStrip.vue'
 import CompanionPanel from '@/components/CompanionPanel.vue'
+import FamiliarSummon from '@/components/FamiliarSummon.vue'
 import AbilityScoreGrid from '@/components/AbilityScoreGrid.vue'
 import SkillList from '@/components/SkillList.vue'
 import WeaponTable from '@/components/WeaponTable.vue'
@@ -98,6 +100,7 @@ export default {
     ConditionsRow,
     CompanionSummonStrip,
     CompanionPanel,
+    FamiliarSummon,
     AbilityScoreGrid,
     SkillList,
     WeaponTable,
@@ -135,6 +138,15 @@ export default {
     },
     someFeatures() {
       return (this.character.features ?? []).some((f) => f.type !== 'feat')
+    },
+    // Find Familiar is the one spell that needs its own summon UI — everything
+    // else granted by a spell is either instantaneous or already covered by
+    // the existing companion/effects panels. Named exactly (not "familiar" in
+    // general) since other spells could mention the word without granting one.
+    knowsFindFamiliar() {
+      return (this.character.spells ?? []).some(
+        (s) => s.name.toLowerCase() === 'find familiar'
+      )
     },
   },
 

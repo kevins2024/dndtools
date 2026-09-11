@@ -52,18 +52,26 @@ test('validateCharacter finds no known-spell-cap issues on Rith, now that Bless 
 })
 
 test('validateCharacter checks saving throws against the `started: true` class for multiclass characters', () => {
-  // 2026-08-26: `started: true` moved from Warlock to Fighter — the project
-  // owner confirmed Kerra really was Fighter first (her own notes field says
-  // "Target build: 4 Fighter / 8 Warlock", and that's the actual level-up
-  // order it happened in). That surfaced a REAL, previously-hidden data
-  // inconsistency: her recorded saving_throws are ["wis","cha"] (Warlock's),
-  // but RAW only ever grants saving-throw proficiencies from your first
-  // class — a Fighter-started character should show str/con instead. This
-  // is now flagged rather than hidden; whether to correct her saves or
-  // treat this as a deliberate deviation is a project-owner call, not
-  // something to guess at here.
-  const kerra = find('Kerra')
-  const issues = engine.validateCharacter(kerra)
+  // Originally used the real Kerra as a fixture (2026-08-26: `started: true`
+  // moved from Warlock to Fighter, surfacing a real saving_throws mismatch —
+  // wis/cha recorded instead of the expected str/con). That bug was fixed
+  // for real during her 2026-09-11 from-scratch rebuild (saving_throws now
+  // correctly str/con), which broke this test — a real roster character is
+  // a moving target, not a stable fixture for "a bug exists" regression
+  // tests. Switched to a synthetic fixture (same shape as the two tests
+  // below) so this test still verifies the validation logic itself without
+  // depending on some real character staying broken indefinitely.
+  const fakeMulticlass = {
+    name: 'Test Fixture',
+    level: 9,
+    proficiency_bonus: 4,
+    classes: [
+      { name: 'Fighter', level: 4, started: true },
+      { name: 'Warlock', level: 5 },
+    ],
+    saving_throws: ['wis', 'cha'], // Warlock's, not Fighter's str/con
+  }
+  const issues = engine.validateCharacter(fakeMulticlass)
   assert.ok(
     issues.some(
       (i) =>

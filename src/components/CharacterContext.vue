@@ -6,7 +6,7 @@
         <input v-model="hideDuplicates" type="checkbox" />
         Hide duplicates
       </label>
-      <div class="char-list">
+      <div ref="charList" class="char-list">
         <div
           v-for="group in groupedCharacters"
           :key="group.label"
@@ -23,6 +23,7 @@
             :key="char.name"
             class="char-card"
             :class="{ selected: selectedName === char.name }"
+            :data-char-name="char.name"
             @click="selectedName = char.name"
           >
             <div
@@ -159,6 +160,7 @@ export default {
           this.$store.commit('CLEAR_CHARACTER_NAV')
           this.$nextTick(() => {
             this.navTab = null
+            this.scrollSelectedIntoView()
           })
         }
       },
@@ -168,7 +170,16 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    scrollSelectedIntoView() {
+      const list = this.$refs.charList
+      if (!list) return
+      const card = Array.from(list.querySelectorAll('.char-card')).find(
+        (el) => el.dataset.charName === this.selectedName
+      )
+      card?.scrollIntoView({ block: 'nearest' })
+    },
+  },
 }
 </script>
 

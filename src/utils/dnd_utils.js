@@ -772,6 +772,7 @@ export const dnd = {
         (weapon.slot?.startsWith('ranged') ? 'ranged' : 'melee'),
       damage_dice: weapon.damage_dice ?? base.damage_dice ?? '1d4',
       damage_dice_2h: weapon.damage_dice_2h ?? base.damage_dice_2h ?? null,
+      damage_type: weapon.damage_type ?? base.damage_type ?? null,
       finesse: weapon.finesse ?? base.finesse ?? false,
       versatile: weapon.versatile ?? base.versatile ?? false,
       thrown: weapon.thrown ?? base.thrown ?? null,
@@ -923,6 +924,7 @@ export const dnd = {
           : []
 
         return {
+          id: w.id,
           name: w.name,
           attack: dnd.signed(atkTotal),
           damage: `${die}${dnd.signed(dmgBonus)}`,

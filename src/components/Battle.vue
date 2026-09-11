@@ -540,8 +540,19 @@ export default {
       const enc = this.activeEntry.encounterData ?? {}
       const ov = this.enemyMeta[key] ?? {}
       const encDamage = enc.weapon
-        ? `${enc.weapon.damageDice}${this.signed(enc.weapon.damageMod)}`
+        ? `${enc.weapon.damageDice}${this.signed(enc.weapon.damageMod)}${
+            enc.weapon.damageType ? ' ' + enc.weapon.damageType : ''
+          }`
         : null
+      // Whether this enemy's attacks count as magical for the purposes of
+      // resistance/immunity to nonmagical damage — real RAW, not cosmetic:
+      // a weapon with an enhancement bonus is magical by definition, and a
+      // monster with a special ability named "Magic Weapons" (a common
+      // trait on higher-CR fiends/celestials/etc.) makes its natural
+      // attacks count too. Requested 2026-09-11 alongside damage type.
+      const encMagical = enc.weapon
+        ? Boolean(enc.weapon.magical) || (enc.weapon.enhancement ?? 0) > 0
+        : false
       return {
         ac: 'ac' in ov ? ov.ac : enc.ac ?? null,
         attackBonus:
@@ -551,6 +562,7 @@ export default {
           'damageLabel' in ov
             ? ov.damageLabel
             : enc.weapon?.displayName ?? null,
+        magical: 'magical' in ov ? ov.magical : encMagical,
         numAttacks: 'numAttacks' in ov ? ov.numAttacks : null,
         speed: 'speed' in ov ? ov.speed : enc.speed ?? 30,
         spellSaveDC:
@@ -656,7 +668,9 @@ export default {
           enc.attackBonus ?? '?'
         }  |  ${enc.weapon?.displayName ?? ''} (${
           enc.weapon?.damageDice ?? ''
-        } ${enc.weapon?.damageType ?? ''})`,
+        } ${enc.weapon?.damageType ?? ''}${
+          enc.weapon?.magical ? ', magical' : ''
+        })`,
       ]
       if (enc.stats) {
         const s = enc.stats
@@ -833,6 +847,13 @@ export default {
       const data = await lookupMonster(monster.name)
       const weaponAction = data?.actions?.find((a) => a.damage?.length)
       const dmg = weaponAction?.damage?.[0]
+      // A "Magic Weapons" special ability (common on higher-CR fiends,
+      // celestials, etc.) makes a monster's own natural attacks count as
+      // magical for bypassing resistance/immunity — real RAW, checked here
+      // since dnd5eapi doesn't expose a plain boolean for it.
+      const hasMagicWeapons = (data?.special_abilities ?? []).some((sa) =>
+        /magic weapon/i.test(sa.name ?? '')
+      )
       const encounterData = {
         roleLabel: `${monster.type ?? ''} CR ${monster.cr ?? '?'}`,
         ac: data?.ac ?? null,
@@ -846,11 +867,13 @@ export default {
           wis: data?.wis ?? 10,
           cha: data?.cha ?? 10,
         },
-        attackBonus: null,
+        attackBonus: weaponAction?.attack_bonus ?? null,
         weapon: dmg
           ? {
               damageDice: dmg.damage_dice,
               damageMod: 0,
+              damageType: dmg.damage_type?.name ?? null,
+              magical: hasMagicWeapons,
               displayName: weaponAction.name,
             }
           : null,

@@ -182,7 +182,10 @@ export default {
       this.$emit('inspect', data)
     },
     inspect(item) {
-      this.$emit('inspect', buildItemPopupData(item))
+      this.$emit(
+        'inspect',
+        buildItemPopupData(item, this.character, this.partyItems)
+      )
     },
   },
 }
