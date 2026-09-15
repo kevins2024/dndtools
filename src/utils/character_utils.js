@@ -1,4 +1,4 @@
-export const GENDERS = ['Male', 'Female', 'Nonbinary']
+export const GENDERS = ['Male', 'Female']
 
 export const RACES = [
   'Human',

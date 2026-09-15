@@ -1912,6 +1912,88 @@ export function pickBestiaryMonster(
 
 let _eid = 1
 
+// The 3 roles a synthetic boss is ever drawn from.
+const BOSS_ROLE_POOL = ['melee_str', 'melee_dex', 'ranged']
+
+// The 5 roles engine/rules/npcBuilder.js's ROLE_TABLE actually supports —
+// duplicated here (small, stable list) since this is browser code and that
+// module isn't reachable from here (see buildRealEnemy below). healer/
+// support are the two ROLE_POOL entries with no real-class equivalent yet,
+// so a slot that rolls either one always stays on the synthetic path
+// regardless of useRealEnemies.
+const REAL_BUILD_ROLES = new Set([
+  'melee_str',
+  'melee_dex',
+  'ranged',
+  'caster_int',
+  'caster_cha',
+])
+
+// Real class-built enemies only make sense once a fight is actually
+// dangerous enough to want them — trivial/easy encounters stay on the fast
+// synthetic path even with the option on.
+const REAL_ENEMY_DIFFICULTIES = new Set(['medium', 'hard', 'deadly'])
+
+// Same role-pick a slot would get either way — resolved ONCE per slot so
+// the real-build/synthetic decision and the actual generation always agree
+// on which role was rolled, instead of the two paths rolling independently.
+function resolveHumanoidRole(isBoss, roleOverride, rolePool) {
+  return (
+    roleOverride ??
+    (isBoss ? pick(BOSS_ROLE_POOL) : pick(rolePool ?? ROLE_POOL))
+  )
+}
+
+function canBuildReal(useRealEnemies, difficulty, roleKey) {
+  return (
+    useRealEnemies &&
+    REAL_ENEMY_DIFFICULTIES.has(difficulty) &&
+    REAL_BUILD_ROLES.has(roleKey)
+  )
+}
+
+// Real, level-appropriate combatant via engine/rules/npcBuilder.js (POST
+// /api/engine/build-npc) instead of the synthetic FEATURE_POOLS/
+// SPELL_POOLS system above — see that module for why (this file's own
+// enemy generation is level-insensitive: same feature count/pool at party
+// level 1 as level 20, AC formula-capped regardless of level). Maps the
+// response into the same field names generateHumanoidEnemy returns so
+// callers don't need to branch on shape.
+async function buildRealEnemy(level, roleKey, isBoss) {
+  const res = await fetch('/api/engine/build-npc', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ role: roleKey, targetLevel: level, isBoss }),
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'build-npc failed')
+  const { character, encounterData, gender } = data
+  return {
+    id: `enc_enemy_${_eid++}`,
+    name: `${isBoss ? 'Boss — ' : ''}${character.race} ${
+      encounterData.roleLabel
+    }`,
+    gender,
+    race: character.race,
+    role: roleKey,
+    roleLabel: encounterData.roleLabel,
+    isBoss,
+    source: 'humanoid',
+    hp: encounterData.hp,
+    maxHp: encounterData.maxHp,
+    ac: encounterData.ac,
+    speed: 30,
+    stats: encounterData.stats,
+    savingThrows: [],
+    spellSaveDC: encounterData.spellSaveDC,
+    weapon: encounterData.weapon,
+    attackBonus: encounterData.attackBonus,
+    features: character.features,
+    spells: character.spells,
+    realClassBuilt: true, // distinguishes a real build from the synthetic path, for UI/debugging
+  }
+}
+
 function generateHumanoidEnemy(
   level,
   hpMin,
@@ -1925,9 +2007,7 @@ function generateHumanoidEnemy(
   partyProfile = null
 ) {
   const rolePool = typeRoleWeights ?? ROLE_POOL
-  const roleKey =
-    roleOverride ??
-    (isBoss ? pick(['melee_str', 'melee_dex', 'ranged']) : pick(rolePool))
+  const roleKey = resolveHumanoidRole(isBoss, roleOverride, rolePool)
   const profile = ROLE_PROFILES[roleKey]
   const stats = generateStats(profile)
 
@@ -2181,7 +2261,12 @@ export function planEncounter({ difficulty, partySize, type }) {
 
 // ── Encounter generation ──────────────────────────────────────────────────────
 
-export function generateEncounter({
+// Async because a real-classed enemy (useRealEnemies) is a genuine network
+// round-trip to /api/engine/build-npc, fired in parallel for every eligible
+// slot via Promise.all below — a synthetic-only slot resolves instantly.
+// Callers (EncounterGenerator.vue's finishWizard/regenerateEnemy) already
+// await this.
+export async function generateEncounter({
   resolvedDifficulty,
   resolvedType,
   type, // kept for backwards compat; resolvedType takes precedence
@@ -2191,6 +2276,7 @@ export function generateEncounter({
   maxPartyHP,
   slots,
   partyProfile = null,
+  useRealEnemies = false,
 }) {
   const finalType =
     resolvedType ?? (type === 'random' ? pick(ENCOUNTER_TYPES) : type)
@@ -2202,34 +2288,58 @@ export function generateEncounter({
   const hpMin = Math.max(1, minPartyHP + params.hpMinOffset)
   const hpMax = Math.max(hpMin + 5, maxPartyHP + params.hpMaxOffset)
 
-  const enemies = slots.map((slot) => {
-    const src = slot.source ?? 'humanoid'
-    if (src === 'humanoid') {
-      return generateHumanoidEnemy(
+  const enemies = await Promise.all(
+    slots.map((slot) => {
+      const src = slot.source ?? 'humanoid'
+      if (src === 'humanoid') {
+        const roleKey = resolveHumanoidRole(slot.isBoss, slot.role, roleWeights)
+        if (canBuildReal(useRealEnemies, resolvedDifficulty, roleKey)) {
+          const level = slot.isBoss ? partyLevel + 2 : partyLevel
+          return buildRealEnemy(level, roleKey, slot.isBoss).catch((err) => {
+            console.error(
+              'Real enemy build failed, falling back to synthetic:',
+              err.message
+            )
+            return generateHumanoidEnemy(
+              partyLevel,
+              hpMin,
+              hpMax,
+              slot.isBoss,
+              roleKey,
+              slot.race,
+              slot.gender,
+              roleWeights,
+              resolvedDifficulty,
+              partyProfile
+            )
+          })
+        }
+        return generateHumanoidEnemy(
+          partyLevel,
+          hpMin,
+          hpMax,
+          slot.isBoss,
+          roleKey,
+          slot.race,
+          slot.gender,
+          roleWeights,
+          resolvedDifficulty,
+          partyProfile
+        )
+      }
+      return generateBestiaryEnemy(
         partyLevel,
         hpMin,
         hpMax,
         slot.isBoss,
-        slot.role,
-        slot.race,
-        slot.gender,
-        roleWeights,
+        src,
+        sizeMax,
+        null,
         resolvedDifficulty,
         partyProfile
       )
-    }
-    return generateBestiaryEnemy(
-      partyLevel,
-      hpMin,
-      hpMax,
-      slot.isBoss,
-      src,
-      sizeMax,
-      null,
-      resolvedDifficulty,
-      partyProfile
-    )
-  })
+    })
+  )
 
   return {
     id: `encounter_${Date.now()}`,
@@ -2245,7 +2355,7 @@ export function generateEncounter({
 
 // ── Single-enemy regeneration (for override UI) ───────────────────────────────
 
-export function regenerateEnemy({
+export async function regenerateEnemy({
   source,
   partyLevel,
   hpMin,
@@ -2258,16 +2368,29 @@ export function regenerateEnemy({
   gender = null,
   difficulty = 'medium',
   partyProfile = null,
+  useRealEnemies = false,
 }) {
   const sizeMax = typeConfig?.sizeMax ?? null
   const roleWeights = typeConfig?.roleWeights ?? null
   if (source === 'humanoid') {
+    const roleKey = resolveHumanoidRole(isBoss, role, roleWeights)
+    if (canBuildReal(useRealEnemies, difficulty, roleKey)) {
+      try {
+        const level = isBoss ? partyLevel + 2 : partyLevel
+        return await buildRealEnemy(level, roleKey, isBoss)
+      } catch (err) {
+        console.error(
+          'Real enemy build failed, falling back to synthetic:',
+          err.message
+        )
+      }
+    }
     return generateHumanoidEnemy(
       partyLevel,
       hpMin,
       hpMax,
       isBoss,
-      role,
+      roleKey,
       race,
       gender,
       roleWeights,

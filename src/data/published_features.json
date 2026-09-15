@@ -317,33 +317,35 @@
   {
     "id": "pub_tactical-foresight",
     "name": "Tactical Foresight",
-    "class": "Rogue (Mastermind / Weaver's Master-Awl synergy)",
-    "description": "When using Master of Tactics Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier.",
+    "category": "item_feature",
+    "description": "When using the Help action, target two allies instead of one. Each gains a bonus to their next saving throw equal to the user's INT modifier.",
     "homebrew": true,
-    "source": "Homebrew, unique to Torrin — built on top of the real Master of Tactics (Mastermind, Xanathar's Guide to Everything), but this specific two-ally/INT-mod-bonus version is custom."
+    "source": "Homebrew, granted by The Weaver's Master-Awl — flavor-inspired by Master of Tactics (Mastermind, Xanathar's Guide to Everything), but grants its own enhanced Help action to whoever wields the awl, regardless of class or subclass (confirmed: Torrin himself is Soulknife, not Mastermind, and this already works for him)."
   },
   {
     "id": "pub_commander-s-presence",
     "name": "Commander's Presence",
-    "class": "Rogue (Legendary)",
-    "description": "Passive aura, 30ft radius. Allies within range gain +1 to AC and +1 to all saving throws from Torrin's constant tactical whispers, threat assessment, and battlefield positioning advice. Does not require an action or concentration.",
+    "category": "feature",
+    "description": "Passive aura, 30ft radius. Allies within range gain +1 to AC and +1 to all saving throws from the user's constant tactical direction, threat assessment, and battlefield positioning advice. Does not require an action or concentration.",
     "homebrew": true,
-    "source": "Homebrew, unique to Torrin (Legendary)."
+    "source": "Homebrew legendary trait, first granted to Torrin — no class dependency, reusable for other characters."
   },
   {
     "id": "pub_the-retired-special",
     "name": "The Retired Special",
-    "class": "Rogue (Legendary)",
+    "category": "item_feature",
     "description": "Once per day, reaction when an ally is hit: toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss.",
     "recharge": "daily",
     "homebrew": true,
-    "source": "Homebrew, unique to Torrin (Legendary)."
+    "source": "Homebrew, granted by The Weaver's Master-Awl to whoever wields it — no class dependency."
   },
   {
     "id": "pub_grandmaster-s-stitch",
     "name": "Grandmaster's Stitch",
-    "class": "Rogue (Legendary — Weaver's Master-Awl)",
+    "category": "item_feature",
     "description": "During a long rest, touch a leather armor or leather item. That item becomes infused for 24 hours — wearer gains resistance to Psychic damage and advantage on saving throws against Charmed and Frightened.",
+    "homebrew": true,
+    "source": "Homebrew, granted by The Weaver's Master-Awl to whoever wields it — no class dependency.",
     "needs_review": true
   },
   {
@@ -2245,9 +2247,9 @@
     "name": "Psionic Reinforcement",
     "category": "item_feature",
     "description": "Passive +2 bonus to attack and damage rolls with Psychic Blades (Soulknife).",
-    "note": "Granted by Torrin's Weaver's Master-Awl (party_items.json), one of its four properties.",
+    "note": "",
     "homebrew": true,
-    "source": "Homebrew, unique to Torrin — tied to the Weaver's Master-Awl."
+    "source": "Homebrew, unique to Torrin — tied to his awl, O' M'Tandra."
   },
   {
     "id": "hb_stormbreak_reserve",

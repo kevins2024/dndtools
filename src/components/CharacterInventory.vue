@@ -87,10 +87,30 @@
             :key="item.id"
             class="inv-item equipped"
             :class="{ overloaded: isSlotOverfilled(item) }"
+            title="Click for item details"
+            @click="inspectItem(item)"
           >
-            <span class="item-name">{{ item.name }}</span>
+            <span class="item-name clickable">{{ item.name }}</span>
             <span class="item-slot">{{ item.slot || item.type }}</span>
             <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="isVersatileWeapon(item)"
+              class="item-badge versatile-badge"
+              title="Versatile — can be wielded one- or two-handed"
+              >Versatile</span
+            >
+            <span
+              v-if="weaponProficiencyStatus(item) === 'not-proficient'"
+              class="item-badge prof-badge prof-badge--warning"
+              title="Not proficient with this weapon (per this character's recorded weapon_proficiencies)"
+              >⚠ Not proficient</span
+            >
+            <span
+              v-else-if="weaponProficiencyStatus(item) === 'unknown'"
+              class="item-badge prof-badge prof-badge--unknown"
+              title="This character has no weapon_proficiencies on record — proficiency can't be checked"
+              >Proficiency?</span
+            >
             <button
               v-if="item.type === 'weapon'"
               class="act-btn weapon-set-item-btn"
@@ -124,13 +144,14 @@
             </button>
             <Zap
               v-if="item.needs_attunement"
-              class="attunement-indicator"
+              class="attunement-indicator clickable"
               :fill="item.attuned ? 'currentColor' : 'none'"
               :title="
                 item.attuned
-                  ? 'Attuned'
-                  : 'Requires attunement (not yet attuned)'
+                  ? 'Attuned — click to unattune'
+                  : 'Requires attunement — click to mark attuned'
               "
+              @click.stop="toggleAttuned(item)"
             />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
@@ -156,13 +177,6 @@
               </button>
             </div>
             <div class="item-actions">
-              <button
-                class="act-btn inspect-btn"
-                @click.stop="inspectItem(item)"
-                title="View item details"
-              >
-                <Search class="act-icon" />
-              </button>
               <button
                 class="act-btn"
                 @click.stop="unequip(item)"
@@ -183,26 +197,39 @@
             v-for="item in carriedItems"
             :key="item.id"
             class="inv-item carried"
+            title="Click for item details"
+            @click="inspectItem(item)"
           >
-            <span
-              class="item-name"
-              @click="canEquip(item) && equip(item)"
-              :title="
-                canEquip(item) ? 'Click to equip' : cannotEquipReason(item)
-              "
-            >
-              {{ item.name }}
-            </span>
+            <span class="item-name clickable">{{ item.name }}</span>
             <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="isVersatileWeapon(item)"
+              class="item-badge versatile-badge"
+              title="Versatile — can be wielded one- or two-handed"
+              >Versatile</span
+            >
+            <span
+              v-if="weaponProficiencyStatus(item) === 'not-proficient'"
+              class="item-badge prof-badge prof-badge--warning"
+              title="Not proficient with this weapon (per this character's recorded weapon_proficiencies)"
+              >⚠ Not proficient</span
+            >
+            <span
+              v-else-if="weaponProficiencyStatus(item) === 'unknown'"
+              class="item-badge prof-badge prof-badge--unknown"
+              title="This character has no weapon_proficiencies on record — proficiency can't be checked"
+              >Proficiency?</span
+            >
             <Zap
               v-if="item.needs_attunement"
-              class="attunement-indicator"
+              class="attunement-indicator clickable"
               :fill="item.attuned ? 'currentColor' : 'none'"
               :title="
                 item.attuned
-                  ? 'Attuned'
-                  : 'Requires attunement (not yet attuned)'
+                  ? 'Attuned — click to unattune'
+                  : 'Requires attunement — click to mark attuned'
               "
+              @click.stop="toggleAttuned(item)"
             />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
@@ -229,15 +256,8 @@
             </div>
             <div class="item-actions">
               <button
-                class="act-btn inspect-btn"
-                @click.stop="inspectItem(item)"
-                title="View item details"
-              >
-                <Search class="act-icon" />
-              </button>
-              <button
                 class="act-btn"
-                @click="equip(item)"
+                @click.stop="equip(item)"
                 :disabled="!canEquip(item)"
                 :title="canEquip(item) ? 'Equip' : cannotEquipReason(item)"
               >
@@ -245,7 +265,7 @@
               </button>
               <button
                 class="act-btn dim"
-                @click="toPool(item)"
+                @click.stop="toPool(item)"
                 title="Return to party pool"
               >
                 ✕
@@ -343,17 +363,41 @@
             @click="!isAssetPool && carry(item)"
             :title="!isAssetPool ? 'Click to carry' : ''"
           >
-            <span class="item-name">{{ item.name }}</span>
+            <span
+              class="item-name clickable"
+              title="Click for item details"
+              @click.stop="inspectItem(item)"
+              >{{ item.name }}</span
+            >
             <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="isVersatileWeapon(item)"
+              class="item-badge versatile-badge"
+              title="Versatile — can be wielded one- or two-handed"
+              >Versatile</span
+            >
+            <span
+              v-if="weaponProficiencyStatus(item) === 'not-proficient'"
+              class="item-badge prof-badge prof-badge--warning"
+              title="Not proficient with this weapon (per this character's recorded weapon_proficiencies)"
+              >⚠ Not proficient</span
+            >
+            <span
+              v-else-if="weaponProficiencyStatus(item) === 'unknown'"
+              class="item-badge prof-badge prof-badge--unknown"
+              title="This character has no weapon_proficiencies on record — proficiency can't be checked"
+              >Proficiency?</span
+            >
             <Zap
               v-if="item.needs_attunement"
-              class="attunement-indicator"
+              class="attunement-indicator clickable"
               :fill="item.attuned ? 'currentColor' : 'none'"
               :title="
                 item.attuned
-                  ? 'Attuned'
-                  : 'Requires attunement (not yet attuned)'
+                  ? 'Attuned — click to unattune'
+                  : 'Requires attunement — click to mark attuned'
               "
+              @click.stop="toggleAttuned(item)"
             />
             <div v-if="item.charges_max != null" class="item-charges">
               <button
@@ -378,13 +422,6 @@
                 +
               </button>
             </div>
-            <button
-              class="act-btn inspect-btn"
-              @click.stop="inspectItem(item)"
-              title="View item details"
-            >
-              <Search class="act-icon" />
-            </button>
 
             <!-- Party pool actions -->
             <template v-if="!isAssetPool">
@@ -801,13 +838,13 @@
 </template>
 
 <script>
-import { Zap, Check, Search } from 'lucide-vue'
+import { Zap, Check } from 'lucide-vue'
 import { dnd } from '@/utils/dnd_utils.js'
 
 export default {
   name: 'CharacterInventory',
 
-  components: { Zap, Check, Search },
+  components: { Zap, Check },
 
   props: {
     character: { type: Object, required: true },
@@ -1059,6 +1096,10 @@ export default {
   },
 
   methods: {
+    toggleAttuned(item) {
+      if (!item.needs_attunement) return
+      this.$store.commit('UPDATE_ITEM', { ...item, attuned: !item.attuned })
+    },
     spendCharge(item) {
       this.$store.commit('SPEND_CHARGE', item.id)
     },
@@ -1177,6 +1218,19 @@ export default {
         (item.slot === 'melee1h' || item.slot === 'melee2h') &&
         dnd._weaponProps(item).versatile
       )
+    },
+    // 'not-proficient' | 'unknown' | null (proficient, or not a weapon —
+    // no badge shown either way). 'unknown' instead of a false
+    // "not-proficient" alarm when the character has no weapon_proficiencies
+    // recorded at all — that's a real, common data gap on this roster (most
+    // characters predate this field), and showing every weapon as a
+    // violation would just be noise, not signal.
+    weaponProficiencyStatus(item) {
+      if (item.type !== 'weapon') return null
+      if (!this.character.weapon_proficiencies) return 'unknown'
+      return dnd.isProficientWithWeapon(this.character, item)
+        ? null
+        : 'not-proficient'
     },
     toggleGrip(item) {
       this.$store.commit('UPDATE_ITEM', {
@@ -1499,6 +1553,38 @@ export default {
   color: var(--color-text);
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+.item-name.clickable:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.item-badge {
+  font-size: var(--font-size-sm);
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.versatile-badge {
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.prof-badge--warning {
+  color: var(--color-text-danger);
+  border: 1px solid var(--color-text-danger);
+}
+
+.prof-badge--unknown {
+  color: var(--color-text-low);
+  border: 1px dashed var(--color-text-low);
+}
+
 .item-slot {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
@@ -1517,6 +1603,7 @@ export default {
   color: var(--color-accent);
   margin-left: 2px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .weapon-set-toggle {
@@ -1809,16 +1896,6 @@ export default {
 }
 
 /* ── Item Inspection ── */
-.inspect-btn {
-  font-size: var(--font-size-md) !important;
-  color: var(--color-accent-muted) !important;
-  padding: 0 4px !important;
-}
-
-.inspect-btn:hover {
-  color: var(--color-accent) !important;
-}
-
 .inspection-panel {
   width: min(92vw, 540px);
   max-height: 80vh;

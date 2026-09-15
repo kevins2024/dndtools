@@ -12,13 +12,18 @@
           :class="[
             entry.type,
             {
-              'is-active': activeTurn === i,
+              'is-active': combatTurn.turnIndex === i,
               friendly: combatantStates[entry.key] === 'friendly',
               neutral: combatantStates[entry.key] === 'neutral',
             },
           ]"
-          @click="activeTurn = i"
+          @click="$emit('set-turn', i)"
         >
+          <BugOff
+            v-if="i !== combatTurn.turnIndex && i !== nextTurnIndex"
+            class="debug-icon card-debug-badge"
+            title="Debug/testing only — jumps the turn out of initiative sequence"
+          />
           <div class="card-portrait">
             <img
               v-if="entry.type === 'player' || entry.type === 'companion'"
@@ -119,6 +124,41 @@
 
     <!-- Right column: turn panel -->
     <div class="battle-right">
+      <div class="turn-controls">
+        <div class="round-display">
+          <span class="round-label">Round</span>
+          <button
+            class="debug-control"
+            title="Debug/testing only — a real game never moves the round backward"
+            @click="$emit('set-round', combatTurn.round - 1)"
+          >
+            <BugOff class="debug-icon" />−
+          </button>
+          <span class="round-value">{{ combatTurn.round }}</span>
+          <button
+            class="debug-control"
+            title="Debug/testing only — rounds should normally only advance via Next Turn"
+            @click="$emit('set-round', combatTurn.round + 1)"
+          >
+            <BugOff class="debug-icon" />+
+          </button>
+        </div>
+        <button class="next-turn-btn" @click="$emit('next-turn')">
+          Next Turn →
+        </button>
+        <ActionEconomyRow
+          v-if="activeEntry"
+          :resources="
+            combatTurn.resources[activeEntry.key] || {
+              action: true,
+              bonusAction: true,
+              reaction: true,
+            }
+          "
+          @toggle="onToggleResource"
+          @reset="$emit('reset-resources', activeEntry.key)"
+        />
+      </div>
       <main class="turn-panel">
         <!-- Player turn -->
         <template
@@ -437,6 +477,8 @@ import EnemyStatsChipRow from '@/components/EnemyStatsChipRow.vue'
 import EnemyHpTracker from '@/components/EnemyHpTracker.vue'
 import EnemyConditionsRow from '@/components/EnemyConditionsRow.vue'
 import EnemyAbilityScoreGrid from '@/components/EnemyAbilityScoreGrid.vue'
+import ActionEconomyRow from '@/components/ActionEconomyRow.vue'
+import { BugOff } from 'lucide-vue'
 import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
@@ -450,11 +492,16 @@ export default {
     EnemyHpTracker,
     EnemyConditionsRow,
     EnemyAbilityScoreGrid,
+    ActionEconomyRow,
+    BugOff,
   },
 
   props: {
     order: { type: Array, required: true },
     combatantStates: { type: Object, default: () => ({}) },
+    // { round, turnIndex, order, resources } from engine/rules/combatTurn.js
+    // via CombatContext.vue — see src/utils/combatTurn.js.
+    combatTurn: { type: Object, required: true },
   },
 
   emits: [
@@ -463,11 +510,15 @@ export default {
     'duplicate-enemy',
     'toggle-friendly',
     'remove-enemy',
+    'next-turn',
+    'set-turn',
+    'toggle-resource',
+    'reset-resources',
+    'set-round',
   ],
 
   data() {
     return {
-      activeTurn: 0,
       editingKey: null,
       overrideValue: null,
       renamingKey: null,
@@ -492,7 +543,14 @@ export default {
 
   computed: {
     activeEntry() {
-      return this.order[this.activeTurn] ?? null
+      return this.order[this.combatTurn.turnIndex] ?? null
+    },
+    // The card clicking "Next Turn" would land on — clicking any OTHER card
+    // is a debug/testing jump out of initiative sequence (see the BugOff
+    // badge in the template), not something a real game lets you do.
+    nextTurnIndex() {
+      if (!this.order.length) return null
+      return (this.combatTurn.turnIndex + 1) % this.order.length
     },
     activeChar() {
       if (!this.activeEntry || this.activeEntry.type !== 'player') return null
@@ -633,11 +691,15 @@ export default {
   },
 
   methods: {
+    onToggleResource(resource) {
+      if (!this.activeEntry) return
+      this.$emit('toggle-resource', { key: this.activeEntry.key, resource })
+    },
     log(msg) {
       const who = this.activeEntry?.name ?? '?'
       this.battleLog.unshift({
         id: Date.now(),
-        turn: this.activeTurn + 1,
+        turn: this.combatTurn.round,
         who,
         msg,
         time: new Date().toLocaleTimeString([], {
@@ -856,6 +918,7 @@ export default {
       )
       const encounterData = {
         roleLabel: `${monster.type ?? ''} CR ${monster.cr ?? '?'}`,
+        size: monster.size ?? null,
         ac: data?.ac ?? null,
         maxHp: data?.hp ?? null,
         hp: data?.hp ?? null,
@@ -987,6 +1050,7 @@ export default {
 }
 
 .initiative-card {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1280,6 +1344,86 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.turn-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.round-display {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+}
+
+.round-label {
+  color: var(--color-text-low);
+  font-size: var(--font-size-sm);
+}
+
+.round-value {
+  font-size: var(--font-size-lg);
+  color: var(--color-accent-strong);
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.next-turn-btn {
+  padding: 0.4rem 0.9rem;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-bg);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.next-turn-btn:hover {
+  background: var(--color-accent-strong);
+}
+
+/* Debug/testing-only controls — anything that manipulates combat state a
+   real game never would (rewinding the round, un-spending a resource,
+   jumping the turn out of initiative sequence) gets this treatment so it
+   never reads as a normal part of play. */
+/* Pink tinge is deliberate — a plain muted-gray outline read as just
+   another normal control at a glance. Pink doesn't appear anywhere else in
+   this app's palette, so it reads unambiguously as "not a real game
+   action" the instant you see it, not just on hover/tooltip. */
+.debug-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  background: transparent;
+  border: 1px dashed var(--color-debug, #e0629e);
+  border-radius: 4px;
+  color: var(--color-debug, #e0629e);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.debug-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--color-debug, #e0629e);
+}
+
+.card-debug-badge {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--color-debug, #e0629e);
+  opacity: 0.85;
 }
 
 .panel-header {

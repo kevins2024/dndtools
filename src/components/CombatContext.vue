@@ -145,12 +145,18 @@
         class="battle-fill"
         :order="initiativeOrder"
         :combatant-states="combatantStates"
+        :combat-turn="combatTurnState"
         @override-roll="onOverrideRoll"
         @add-enemy="onAddEnemyMidFight"
         @duplicate-enemy="onDuplicateEnemy"
         @rename-enemy="onRenameEnemy"
         @toggle-friendly="onToggleFriendly"
         @remove-enemy="onRemoveEnemy"
+        @next-turn="onNextTurn"
+        @set-turn="onSetTurn"
+        @toggle-resource="onToggleResource"
+        @reset-resources="onResetResources"
+        @set-round="onSetRound"
       />
       <div class="roll-bar">
         <div class="roll-bar-left">
@@ -177,6 +183,7 @@
         :visible="showBattleMap"
         :order="initiativeOrder"
         :combatant-states="combatantStates"
+        :combat-turn="combatTurnState"
         @close="showBattleMap = false"
       />
     </template>
@@ -217,6 +224,7 @@ import VehicleCombatPanel from './VehicleCombatPanel.vue'
 import ShipCombat from './ShipCombat.vue'
 import { dnd } from '@/utils/dnd_utils.js'
 import { generateEncounter, analyzeParty } from '@/utils/encounter_utils.js'
+import { combatTurn } from '@/utils/combatTurn.js'
 import { Anchor } from 'lucide-vue'
 
 export default {
@@ -238,6 +246,10 @@ export default {
       enemies: [],
       rolls: {},
       combatantStates: {},
+      // { round, turnIndex, order, resources } — engine/rules/combatTurn.js
+      // state. Ephemeral/session-local like everything else here, not
+      // persisted to disk. Null before combat starts.
+      combatTurnState: null,
       enemyName: '',
       enemyMod: 0,
       nextEnemyId: 1,
@@ -330,6 +342,13 @@ export default {
             a.tiebreakOrder - b.tiebreakOrder
         )
     },
+    // Cheap, stable trigger for the combatTurnState sync watcher below —
+    // changes whenever membership OR sort order changes (a roll override
+    // reshuffles tiebreak position too), which is exactly when syncOrder
+    // needs to run.
+    initiativeOrderKeys() {
+      return this.initiativeOrder.map((e) => e.key)
+    },
   },
 
   created() {
@@ -340,6 +359,13 @@ export default {
   },
 
   watch: {
+    initiativeOrderKeys(newKeys) {
+      // Nothing to sync before combat has actually started (rollInitiative
+      // seeds combatTurnState) — this watcher can fire from unrelated
+      // pre-fight computed changes too.
+      if (!this.combatTurnState) return
+      this.combatTurnState = combatTurn.syncOrder(this.combatTurnState, newKeys)
+    },
     '$store.state.pendingCombatEnemies'(enemies) {
       if (!enemies) return
       this.enemies = enemies.map((e) => ({ ...e, id: this.nextEnemyId++ }))
@@ -354,6 +380,16 @@ export default {
         this.$store.commit('CLEAR_OPEN_ENCOUNTER_GENERATOR')
       }
     },
+    // A single enemy handed off from a different context (NpcGenerator's
+    // "Add to Combat") — appends to the live roster via the same push this
+    // component already uses for a bestiary add mid-fight, rather than
+    // pendingCombatEnemies' full-replace (which would wipe everyone already
+    // in the fight).
+    '$store.state.queuedReinforcement'(enemy) {
+      if (!enemy) return
+      this.onAddEnemyMidFight(enemy)
+      this.$store.commit('CLEAR_REINFORCEMENT')
+    },
   },
 
   methods: {
@@ -363,7 +399,7 @@ export default {
     // Generator's wizard screens entirely. The generator's result/review
     // card renders as soon as `currentEncounter` is populated, so the DM
     // lands directly on "reroll if needed, then Load into Combat."
-    generateSeededEncounter(seed) {
+    async generateSeededEncounter(seed) {
       const chars = this.playerNames
         .map((name) => this.characters.find((c) => c.name === name))
         .filter(Boolean)
@@ -386,7 +422,7 @@ export default {
         isBoss: seed.size === 'solo',
       }))
 
-      const encounter = generateEncounter({
+      const encounter = await generateEncounter({
         resolvedDifficulty: seed.difficulty,
         resolvedType: 'Travel Encounter',
         partySize,
@@ -395,6 +431,7 @@ export default {
         maxPartyHP,
         slots,
         partyProfile,
+        useRealEnemies: true,
       })
       encounter.typeConfig = `Generated from a travel event (${seed.terrain}, ${seed.continent}).`
       this.$store.commit('SET_ENCOUNTER', encounter)
@@ -534,6 +571,10 @@ export default {
 
       this.rolls = newRolls
       this.phase = 'battle'
+      this.$store.commit('SET_COMBAT_PHASE', 'battle')
+      this.combatTurnState = combatTurn.createCombatTurnState(
+        this.initiativeOrder.map((e) => e.key)
+      )
     },
 
     onToggleFriendly(key) {
@@ -585,13 +626,46 @@ export default {
 
     exitCombat() {
       this.phase = 'setup'
+      this.$store.commit('SET_COMBAT_PHASE', 'setup')
       this.enemies = []
       this.rolls = {}
       this.combatantStates = {}
+      this.combatTurnState = null
       this.enemyName = ''
       this.enemyMod = 0
       this.nextEnemyId = 1
       this.$store.commit('SET_SELECTED_PLAYERS', [])
+    },
+
+    onNextTurn() {
+      this.combatTurnState = combatTurn.advanceTurn(this.combatTurnState)
+    },
+    onSetTurn(index) {
+      this.combatTurnState = combatTurn.setActiveTurnIndex(
+        this.combatTurnState,
+        index
+      )
+    },
+    onToggleResource({ key, resource }) {
+      const current = this.combatTurnState.resources[key]?.[resource] ?? true
+      this.combatTurnState = combatTurn.setResource(
+        this.combatTurnState,
+        key,
+        resource,
+        !current
+      )
+    },
+    onResetResources(key) {
+      this.combatTurnState = combatTurn.resetResourcesFor(
+        this.combatTurnState,
+        key
+      )
+    },
+    onSetRound(round) {
+      this.combatTurnState = {
+        ...this.combatTurnState,
+        round: Math.max(1, round),
+      }
     },
 
     formatMod: (mod) => dnd.signed(mod),

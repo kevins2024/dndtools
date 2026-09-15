@@ -54,6 +54,12 @@
                 <span class="has-tip" :title="row.dmgTooltip">{{
                   row.damage
                 }}</span>
+                <span
+                  v-if="row.thrownDamage"
+                  class="thrown-damage-note"
+                  :title="`Thrown attacks always use the base one-handed die, even while gripped two-handed for melee — ${row.thrownDamage} thrown vs. ${row.damage} melee.`"
+                  >({{ row.thrownDamage }} thrown)</span
+                >
               </td>
               <td class="col-tag">{{ row.type }}</td>
               <td class="col-effects">
@@ -361,6 +367,13 @@ export default {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   vertical-align: middle;
+}
+
+.thrown-damage-note {
+  display: block;
+  font-size: 0.7em;
+  color: var(--color-text-low);
+  white-space: nowrap;
 }
 
 .weapon-tag-returning {

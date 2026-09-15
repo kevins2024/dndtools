@@ -54,10 +54,18 @@ export default {
       const prof = dnd._prof(this.character, bonuses)
       const proficiencies = this.character.skill_proficiencies ?? []
       const expertises = this.character.skill_expertise ?? []
+      const characterName = this.character.name
+      const itemGrantedProficiencies = new Set(
+        this.partyItems
+          .filter((i) => i.equipped_by === characterName)
+          .flatMap((i) => i.grants_skill_proficiency ?? [])
+      )
 
       return Object.entries(dnd.SKILL_MAP).map(([skillName, statKey]) => {
         const base = dnd.mod(stats[statKey])
-        const isProficient = proficiencies.includes(skillName)
+        const isProficient =
+          proficiencies.includes(skillName) ||
+          itemGrantedProficiencies.has(skillName)
         const hasExpertise = expertises.includes(skillName)
         const itemBonus = bonuses[`skill_${skillName}`] ?? 0
         const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0

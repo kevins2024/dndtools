@@ -786,6 +786,24 @@ import {
   rollGoldAlternative,
 } from '@/utils/startingGearCatalog.js'
 import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
+import weaponTypesAndLanguages from '@/data/weapon_types_and_languages.json'
+
+// Homebrew languages (e.g. Solvalean) live alongside the homebrew weapon
+// types in the same file — HOMEBREW_WEAPON_PROPS in dnd_utils.js already
+// reads that file's weapon_types half; this is the languages half, merged
+// into the real /api/engine/languages catalog below since the engine only
+// knows the SRD's 16 standard/exotic languages. Given a synthetic id (the
+// engine catalog's entries have real ids, but these only need one for the
+// picker's :key) and tagged 'homebrew' for anything that wants to show
+// that later, even though the current picker only renders the name.
+const HOMEBREW_LANGUAGES = (weaponTypesAndLanguages.languages ?? []).map(
+  (l) => ({
+    id: `homebrew_${l.name.toLowerCase().replace(/\s+/g, '_')}`,
+    name: l.name,
+    type: 'homebrew',
+    description: l.description,
+  })
+)
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 // Mirrors engine/rules/pointBuy.js's table — kept local for instant UI
@@ -1406,6 +1424,15 @@ export default {
   },
 
   watch: {
+    '$store.state.newCharacterNavRequest': {
+      immediate: true,
+      handler(req) {
+        if (!req) return
+        if (req.species) this.speciesName = req.species
+        if (req.className) this.className = req.className
+        this.$store.commit('CLEAR_NEW_CHARACTER_NAV')
+      },
+    },
     fightingStyleChoice() {
       this.runPreview()
     },
@@ -1519,7 +1546,7 @@ export default {
       this.curatedBackgroundList = backgrounds
       this.skillsList = skills
       this.classList = classes
-      this.languagesList = languages
+      this.languagesList = [...languages, ...HOMEBREW_LANGUAGES]
     } catch {
       this.error =
         'Could not load species/background/class data from the server.'

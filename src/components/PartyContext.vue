@@ -257,10 +257,15 @@ export default {
     },
 
     topStat(char) {
-      let best = { name: STAT_NAMES[0], score: char[STAT_FIELDS[0]] }
+      // Effective scores (dnd.resolveStats), not raw stat_* fields directly —
+      // those miss feature-granted bonuses (e.g. Elven Accuracy's +1 DEX)
+      // and item stat_bonuses, which don't get baked into stat_* the way a
+      // permanent ASI/feat ability increase does.
+      const { stats } = dnd.resolveStats(char, this.party_items)
+      let best = { name: STAT_NAMES[0], score: stats.str }
       STAT_NAMES.forEach((name, i) => {
-        if (char[STAT_FIELDS[i]] > best.score)
-          best = { name, score: char[STAT_FIELDS[i]] }
+        const score = stats[STAT_FIELDS[i].replace('stat_', '')]
+        if (score > best.score) best = { name, score }
       })
       return best
     },
@@ -580,6 +585,15 @@ export default {
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  /* Default grid-auto-rows:auto behaves like minmax(min-content,max-content)
+     — a RANGE, not a fixed size, so when the grid doesn't have enough
+     height (confirmed via the Firefox grid overlay: rows visibly smaller
+     than their card content) rows are allowed to compress toward that
+     range's lower bound instead of the grid overflowing/scrolling. Pinning
+     rows to a fixed min-content size removes that compressible range
+     entirely, so overflow-y:auto above finally has real overflow to
+     scroll instead of the grid always fitting by squeezing rows first. */
+  grid-auto-rows: min-content;
   gap: 0.75rem;
   padding: 0.5rem 1rem 1rem;
   align-content: start;
@@ -587,6 +601,21 @@ export default {
 
 /* ── Member card ──────────────────────────── */
 .member-card {
+  /* Grid items default to min-height:auto, which normally protects them
+     from shrinking below their content's natural size — but that
+     protection is spec'd to switch off the instant overflow is anything
+     but visible (CSS Sizing L3 "automatic minimum size"). This card sets
+     overflow:hidden below (to clip .card-portrait's square corners to the
+     card's own rounded ones), which silently re-enabled shrinking: when
+     .member-grid ran short on row height, the grid compressed each card
+     below its content's real height instead of the grid scrolling, and
+     overflow:hidden clipped the difference away instead of showing a
+     scrollbar. min-content restores the "never shrink below content"
+     floor without reintroducing a scrollbar — .member-grid's own
+     overflow-y:auto is what scrolls when the whole grid runs long, not
+     the individual card.
+  */
+  min-height: min-content;
   background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
   border-radius: 7px;

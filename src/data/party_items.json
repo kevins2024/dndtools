@@ -233,9 +233,7 @@
     "battle_effect": true,
     "effect": "Swift Strike: once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
     "action_type": "reaction",
-    "features_granted": [
-      "Swift Strike"
-    ]
+    "features_granted": ["Swift Strike"]
   },
   {
     "name": "Amulet of Proof against Detection",
@@ -264,16 +262,18 @@
   {
     "name": "Boots of Speed",
     "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Chuknora",
+    "carried_by": "Chuknora",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
     "notes": "",
     "id": "items_16",
     "slot": "feet",
     "battle_effect": true,
-    "action_type": "bonus_action"
+    "action_type": "bonus_action",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Hat of Disguise",
@@ -677,9 +677,7 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "reaction",
-    "features_granted": [
-      "Missile Snaring"
-    ]
+    "features_granted": ["Missile Snaring"]
   },
   {
     "name": "Alchemical Dagger",
@@ -844,20 +842,20 @@
     "effect": "+2 bonus to AC from armor."
   },
   {
-    "name": "Shield of Retribution",
+    "name": "Shield of Reprisal",
     "type": "armor",
     "armor_type": "shield",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": false,
-    "effect": "When bearer is hit by melee attack, attacker takes 1d6 force damage.",
-    "notes": "",
+    "effect": "No bonus to AC (base shield +2 only). When bearer is hit by a melee attack, the attacker takes 1d6 force damage.",
+    "notes": "Renamed from \"Shield of Retribution\" 2026-09-12 to avoid confusion with the real item of that name (a Critical Role campaign item with a materially different effect: +1 AC, triggers on the attacker missing rather than hitting, 4d6 force damage, plus a push). This is a deliberate, kept-as-is homebrew/lighter version, not that item.",
     "id": "items_55",
     "slot": "shield",
     "battle_effect": true,
     "stored_at": null,
-    "party_id": "party_1782820688153"
+    "party_id": null
   },
   {
     "name": "Bracer of Steady Aim",
@@ -1023,9 +1021,6 @@
     "id": "items_66",
     "slot": "wrists",
     "effect": "+2 bonus to AC when not wearing armor or using a shield.",
-    "stat_bonuses": {
-      "ac": 2
-    },
     "stored_at": null,
     "party_id": null
   },
@@ -1256,15 +1251,18 @@
     "name": "Longsword +2",
     "type": "weapon",
     "weapon_category": "longsword",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Eldi",
+    "carried_by": "Eldi",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Party backup.",
     "id": "items_81",
     "slot": "melee1h",
-    "effect": "+2 bonus to attack and damage rolls."
+    "effect": "+2 bonus to attack and damage rolls.",
+    "stored_at": null,
+    "party_id": null,
+    "weapon_set": 2
   },
   {
     "name": "Sword of Sharpness",
@@ -1350,9 +1348,7 @@
     "slot": "ring",
     "battle_effect": true,
     "action_type": "free",
-    "features_granted": [
-      "Ring's Answer"
-    ]
+    "features_granted": ["Ring's Answer"]
   },
   {
     "name": "Longbow +2 (Force)",
@@ -1446,9 +1442,7 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "free",
-    "features_granted": [
-      "Ring's Answer"
-    ]
+    "features_granted": ["Ring's Answer"]
   },
   {
     "name": "Hand Crossbow +1",
@@ -1856,7 +1850,7 @@
     "battle_effect": true
   },
   {
-    "name": "Bracers of Defense +2",
+    "name": "Bracers of Defense",
     "type": "wondrous",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
@@ -1870,9 +1864,6 @@
     "id": "items_114",
     "slot": "wrists",
     "battle_effect": true,
-    "stat_bonuses": {
-      "ac": 2
-    },
     "stored_at": null,
     "party_id": null
   },
@@ -1939,15 +1930,15 @@
     "battle_effect": true
   },
   {
-    "name": "The Weaver's Master-Awl",
+    "name": "O' M'Tandra",
     "type": "wondrous",
-    "equipped_by": "Torrin (Old)",
+    "equipped_by": "Torrin",
     "carried_by": null,
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue.",
-    "effect": "Four properties: (1) Psionic Reinforcement — Psychic Blades +2 attack and damage. (2) Tactical Foresight — Help targets two allies. (3) Grandmaster's Stitch — infuse leather item during long rest. (4) The Retired Special — once per day reaction pull ally up to 15ft.",
-    "notes": "",
+    "effect": "Three properties: (1) Tactical Foresight — Help targets two allies. (2) Grandmaster's Stitch — infuse leather item during long rest. (3) The Retired Special — once per day reaction pull ally up to 15ft.",
+    "notes": "Its Psionic Reinforcement property (Psychic Blades +2 attack and damage) was too strong stacked with everything else it does — retired 2026-09-15 and rebuilt into his armor instead via this awl's own Grandmaster's Stitch property. Named 'Oh my Vantandra' after a person with a close relationship and shortened to his accent. This story is not yet written.",
     "id": "items_118",
     "charges_current": 1,
     "charges_max": 1,
@@ -1957,7 +1948,6 @@
     "battle_effect": true,
     "action_type": "reaction",
     "features_granted": [
-      "Psionic Reinforcement",
       "Tactical Foresight",
       "Grandmaster's Stitch",
       "The Retired Special"
@@ -1976,7 +1966,8 @@
     "id": "items_119",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. A flail that can be held rigid by rubbing the handle, giving it the appearance and weight of a mace. Mechanically identical in either form."
+    "effect": "+2 to attack and damage rolls. A flail that can be held rigid by rubbing the handle, giving it the appearance and weight of a mace. Mechanically identical in either form.",
+    "weapon_set": 1
   },
   {
     "name": "Half Plate +2 (Lightning)",
@@ -2172,15 +2163,13 @@
     "slot": "neck",
     "battle_effect": true,
     "action_type": "reaction",
-    "features_granted": [
-      "Steadfast Response"
-    ]
+    "features_granted": ["Steadfast Response"]
   },
   {
     "name": "Greatsword +2",
     "type": "weapon",
     "weapon_category": "greatsword",
-    "equipped_by": null,
+    "equipped_by": "Chuknora",
     "carried_by": "Chuknora",
     "needs_attunement": false,
     "attuned": false,
@@ -2190,7 +2179,8 @@
     "slot": "melee2h",
     "stored_at": null,
     "party_id": null,
-    "effect": "+2 bonus to attack and damage rolls."
+    "effect": "+2 bonus to attack and damage rolls.",
+    "weapon_set": 2
   },
   {
     "name": "Belt of Giant Strength",
@@ -2921,9 +2911,7 @@
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
     "id": "items_164",
     "battle_effect": true,
-    "features_granted": [
-      "Seize the Opening"
-    ]
+    "features_granted": ["Seize the Opening"]
   },
   {
     "name": "Helm of the Reaching Hand",
@@ -2938,9 +2926,7 @@
     "id": "items_165",
     "battle_effect": true,
     "action_type": "reaction",
-    "features_granted": [
-      "Reaching Hand"
-    ],
+    "features_granted": ["Reaching Hand"],
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
@@ -2964,16 +2950,18 @@
     "name": "Headband of Intellect",
     "type": "wondrous",
     "slot": "head",
-    "equipped_by": null,
-    "carried_by": "party",
+    "equipped_by": "Torrin",
+    "carried_by": "Torrin",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "stat_overrides": {
       "int": 19
     },
     "effect": "Sets INT to 19.",
     "notes": "",
-    "id": "items_167"
+    "id": "items_167",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Green Fey Armor",
@@ -3040,7 +3028,7 @@
     "type": "armor",
     "armor_type": "shield",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": false,
     "notes": "Named by Jaygar. Two points of light function as eyes. Previous owner never named it. Ssivanak kept it three years waiting for right owner.",
@@ -3053,7 +3041,7 @@
     },
     "action_type": "action",
     "stored_at": null,
-    "party_id": "party_1782820688153"
+    "party_id": null
   },
   {
     "name": "Robe of the Tide",
@@ -3068,9 +3056,7 @@
     "battle_effect": true,
     "action_type": "free",
     "effect": "Tidal Surge: when the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
-    "features_granted": [
-      "Tidal Surge"
-    ]
+    "features_granted": ["Tidal Surge"]
   },
   {
     "name": "Robe of Stilled Thought",
@@ -3354,7 +3340,8 @@
         "name": "Smite From Afar",
         "action_type": "bonus_action"
       }
-    ]
+    ],
+    "weapon_set": 1
   },
   {
     "name": "Breastplate of Planes",
@@ -3476,12 +3463,12 @@
     "type": "weapon",
     "weapon_category": "longbow",
     "slot": "ranged2h",
-    "equipped_by": "Elucyne",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Elucyne",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 0,
-    "notes": "",
+    "notes": "Unequipped — replaced by Windsong in the same slot.",
     "id": "items_202",
     "battle_effect": true,
     "effect": "Standard longbow. 1d8 piercing. Range 150/600ft. Requires two hands."
@@ -3538,7 +3525,8 @@
         "uses_current": 1,
         "description": "On a hit, deal an extra 2d6 lightning damage, accompanied by a thunderclap loud enough to be heard across the deck."
       }
-    ]
+    ],
+    "weapon_set": 1
   },
   {
     "name": "Poison Shortsword +1",
@@ -3560,20 +3548,23 @@
         "type": "weapon_effect",
         "description": "On a hit, deal an extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute."
       }
-    ]
+    ],
+    "weapon_set": 1
   },
   {
     "name": "Wolf Hunter's Rags",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Eldi",
+    "carried_by": "Torrin",
     "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_207",
     "slot": "shoulders",
     "battle_effect": false,
-    "effect": "While worn: the wearer gives off no scent and cannot be tracked by scent. The wearer cannot be detected, targeted, or perceived by divination magic (as per the nondetection spell)."
+    "effect": "While worn: the wearer gives off no scent and cannot be tracked by scent. The wearer cannot be detected, targeted, or perceived by divination magic (as per the nondetection spell).",
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Breastplate of the Broken Scale",
@@ -3581,7 +3572,7 @@
     "armor_type": "breastplate",
     "rarity": "rare",
     "equipped_by": null,
-    "carried_by": "Eldi",
+    "carried_by": "Chuknora",
     "needs_attunement": true,
     "attuned": false,
     "charges_current": 0,
@@ -3595,9 +3586,7 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "bonus_action",
-    "features_granted": [
-      "Stormbreak Reserve"
-    ]
+    "features_granted": ["Stormbreak Reserve"]
   },
   {
     "name": "Gauntlet of the Sundering Blow",
@@ -3618,9 +3607,7 @@
     "effect": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet — the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
     "stored_at": null,
     "party_id": null,
-    "features_granted": [
-      "Sundering Strike"
-    ]
+    "features_granted": ["Sundering Strike"]
   },
   {
     "name": "Hand Crossbow of the Old Trail",
@@ -3628,7 +3615,7 @@
     "weapon_category": "hand crossbow",
     "rarity": "uncommon/rare",
     "equipped_by": null,
-    "carried_by": "party",
+    "carried_by": "Torrin",
     "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
@@ -3641,7 +3628,7 @@
     "battle_effect": true,
     "effect": "+2 to attack and damage rolls. Marked Shot: once per short rest, when firing a bolt, choose one rider effect: (a) target must succeed on a Constitution save or have speed halved until the end of its next turn, or (b) wielder gains advantage on their next attack roll against that target within 1 minute.",
     "stored_at": null,
-    "party_id": "party_1782820688153",
+    "party_id": null,
     "weapon_effects": [
       {
         "name": "Marked Shot",
@@ -3657,10 +3644,10 @@
     "name": "Signet Ring",
     "type": "ring",
     "rarity": "uncommon",
-    "equipped_by": "Rith",
+    "equipped_by": null,
     "carried_by": "Rith",
     "needs_attunement": true,
-    "attuned": true,
+    "attuned": false,
     "charges_current": 1,
     "charges_max": 1,
     "charges_recharge": "long_rest",
@@ -3672,9 +3659,7 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "action",
-    "features_granted": [
-      "Warding Press"
-    ]
+    "features_granted": ["Warding Press"]
   },
   {
     "name": "Stone of the Rootbound Ward",
@@ -3947,22 +3932,24 @@
     "contents": []
   },
   {
-    "name": "Studded Leather Armor",
+    "name": "The Eighth Redress",
     "type": "armor",
     "armor_type": "studded leather",
-    "equipped_by": "Torrin (Claude)",
+    "equipped_by": "Torrin",
     "carried_by": null,
-    "needs_attunement": false,
-    "attuned": false,
-    "notes": "Mundane. Best light armor available so nothing caps his DEX-based AC.",
+    "needs_attunement": true,
+    "attuned": true,
+    "grants_skill_proficiency": ["History"],
+    "notes": "Bonded to Torrin specifically — stitched by his own hand with the Master-Awl's Grandmaster's Stitch property, so it won't function the same way for anyone else (no mechanical enforcement for this yet, just a note for now). Best light armor available so nothing caps his DEX-based AC. Name refers to the seven other times he made armor for himself and it didn't go as well as this one.",
     "id": "items_225",
-    "slot": "body"
+    "slot": "body",
+    "effect": "Studded leather armor infused with psionic thread. Grants proficiency in History. +2 bonus to attack and damage rolls made with Psychic Blades (moved here 2026-09-15 from O' M'Tandra's retired Psionic Reinforcement property)."
   },
   {
     "name": "Dagger",
     "type": "weapon",
     "weapon_category": "dagger",
-    "equipped_by": "Torrin (Claude)",
+    "equipped_by": "Torrin",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -3975,7 +3962,7 @@
     "name": "Dagger",
     "type": "weapon",
     "weapon_category": "dagger",
-    "equipped_by": "Torrin (Claude)",
+    "equipped_by": "Torrin",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -3983,5 +3970,43 @@
     "id": "items_227",
     "slot": "melee1h",
     "weapon_set": 2
+  },
+  {
+    "name": "Bracers of Defense",
+    "type": "wondrous",
+    "equipped_by": "Rith",
+    "carried_by": "Rith",
+    "needs_attunement": true,
+    "attuned": false,
+    "unarmored_stat_bonuses": {
+      "ac": 2
+    },
+    "effect": "+2 bonus to AC when not wearing armor or using a shield.",
+    "notes": "",
+    "id": "items_228",
+    "slot": "wrists",
+    "battle_effect": true
+  },
+  {
+    "name": "Windsong",
+    "type": "weapon",
+    "weapon_category": "longbow",
+    "slot": "ranged2h",
+    "equipped_by": "Elucyne",
+    "carried_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "enhancement_bonus": 1,
+    "notes": "Homebrew.",
+    "id": "items_229",
+    "battle_effect": true,
+    "effect": "+1 longbow. Once per turn, when you hit a target at least 60ft away, it takes an extra 1d8 force damage. Ignores three-quarters and half cover.",
+    "weapon_effects": [
+      {
+        "name": "Longshot Strike",
+        "type": "weapon_effect",
+        "description": "Once per turn, when you hit a target at least 60 feet away with this weapon, it takes an extra 1d8 force damage. This weapon ignores three-quarters cover and half cover."
+      }
+    ]
   }
 ]

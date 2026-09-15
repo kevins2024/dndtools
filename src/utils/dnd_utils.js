@@ -693,9 +693,20 @@ export const dnd = {
 
     const base = dnd.mod(stats[statKey])
     const prof = dnd._prof(character, bonuses)
-    const isProficient = (character.skill_proficiencies ?? []).includes(
-      skillName
+    // Proficiency can come from the character's own training OR from an
+    // equipped item (item.grants_skill_proficiency: [names]) — e.g. an
+    // armor/wondrous item that teaches a skill while worn. Item-granted
+    // proficiency only counts while equipped, unlike a character's own
+    // skill_proficiencies, which is why this checks partyItems separately
+    // rather than just merging onto the character record.
+    const itemGrantsProficiency = partyItems.some(
+      (i) =>
+        i.equipped_by === character.name &&
+        (i.grants_skill_proficiency ?? []).includes(skillName)
     )
+    const isProficient =
+      itemGrantsProficiency ||
+      (character.skill_proficiencies ?? []).includes(skillName)
     const hasExpertise = (character.skill_expertise ?? []).includes(skillName)
     const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
     const itemBonus = bonuses[`skill_${skillName}`] ?? 0
@@ -773,11 +784,46 @@ export const dnd = {
       damage_dice: weapon.damage_dice ?? base.damage_dice ?? '1d4',
       damage_dice_2h: weapon.damage_dice_2h ?? base.damage_dice_2h ?? null,
       damage_type: weapon.damage_type ?? base.damage_type ?? null,
+      // 'simple' | 'martial' | null (null only for old items predating this
+      // field, or a homebrew weapon that never got one set) — used by
+      // isProficientWithWeapon below.
+      category: weapon.category ?? base.category ?? null,
+      // A homebrew weapon can piggyback on a real weapon's proficiency
+      // instead of (or in addition to) its own category — e.g. the Saber's
+      // real text: "Anyone proficient with a rapier can proficiently wield
+      // a saber."
+      counts_as_proficiency:
+        weapon.counts_as_proficiency ?? base.counts_as_proficiency ?? null,
       finesse: weapon.finesse ?? base.finesse ?? false,
       versatile: weapon.versatile ?? base.versatile ?? false,
       thrown: weapon.thrown ?? base.thrown ?? null,
       returning: weapon.returning ?? false,
     }
+  },
+
+  // Whether `character` is proficient with `weapon` — checks the broad
+  // simple/martial category, the weapon's own category-name as a specific
+  // proficiency (e.g. "longbow"), and any counts_as_proficiency alias
+  // (homebrew weapons piggybacking on a real weapon's proficiency).
+  // Case-insensitive since weapon_proficiencies has historically mixed
+  // casing across characters.
+  isProficientWithWeapon(character, weapon) {
+    const props = dnd._weaponProps(weapon)
+    const profs = new Set(
+      (character.weapon_proficiencies ?? []).map((p) => p.toLowerCase())
+    )
+    if (props.category && profs.has(props.category)) return true
+    if (
+      weapon.weapon_category &&
+      profs.has(weapon.weapon_category.toLowerCase())
+    )
+      return true
+    if (
+      props.counts_as_proficiency &&
+      profs.has(props.counts_as_proficiency.toLowerCase())
+    )
+      return true
+    return false
   },
 
   _weaponStatMod(character, weapon, partyItems = []) {
@@ -923,11 +969,28 @@ export const dnd = {
             ]
           : []
 
+        // A thrown attack always uses the weapon's base one-handed die, even
+        // if it's currently gripped two-handed for melee — real RAW, the
+        // versatile bonus die only applies to a melee attack made with two
+        // hands (see the weapon detail popup, which already shows this
+        // split). `gripDie()` above answers "what die for however it's
+        // CURRENTLY held," which is right for the main melee number but
+        // wrong for a thrown attack whenever that current grip is 2H. Only
+        // surfaced when it actually differs from the main line — a
+        // thrown-and-currently-1H weapon has nothing extra worth showing.
+        const thrownDie = props.thrown ? props.damage_dice : null
+        const mainDamage = `${die}${dnd.signed(dmgBonus)}`
+        const thrownDamage =
+          thrownDie && thrownDie !== die
+            ? `${thrownDie}${dnd.signed(dmgBonus)}`
+            : null
+
         return {
           id: w.id,
           name: w.name,
           attack: dnd.signed(atkTotal),
-          damage: `${die}${dnd.signed(dmgBonus)}`,
+          damage: mainDamage,
+          thrownDamage,
           type: props.weapon_type,
           atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
           dmgTooltip: dmgParts.join(' + '),

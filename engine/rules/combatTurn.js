@@ -1,0 +1,126 @@
+// Pure turn/round/action-economy state for the combat tracker — no Vue, no
+// character/monster knowledge, just abstract string keys in an order. Kept
+// framework-free deliberately: this is core D&D turn-structure logic, and
+// per CLAUDE.md's standing rule, anything that's a real game mechanic
+// (independent of how it's displayed) belongs here so it ports cleanly to
+// the planned Godot version rather than living inside a Vue component.
+//
+// Every function takes a state object and returns a NEW one — no mutation —
+// matching the immutable-update style used elsewhere in this engine (see
+// diffLevelUp.js).
+
+function freshResources() {
+  return { action: true, bonusAction: true, reaction: true }
+}
+
+function createCombatTurnState(orderKeys) {
+  const resources = {}
+  for (const key of orderKeys) resources[key] = freshResources()
+  return { round: 1, turnIndex: 0, order: [...orderKeys], resources }
+}
+
+// Advances to the next combatant. Increments the round only when wrapping
+// back to the start of the order. Real RAW: a combatant's action, bonus
+// action, AND reaction all refresh at the start of THEIR OWN turn — a
+// reaction persists across everyone else's turns in between — so only the
+// newly active combatant's resources reset here, nobody else's.
+function advanceTurn(state) {
+  if (state.order.length === 0) return state
+  const turnIndex = (state.turnIndex + 1) % state.order.length
+  const round = turnIndex === 0 ? state.round + 1 : state.round
+  const activeKey = state.order[turnIndex]
+  return {
+    ...state,
+    turnIndex,
+    round,
+    resources: { ...state.resources, [activeKey]: freshResources() },
+  }
+}
+
+// Manual DM override (e.g. clicking a different combatant's card). Changes
+// only which combatant is active — never touches resources. Per this app's
+// DM-flexibility-over-automation design, looking at (or narratively jumping
+// to) a different combatant must not silently refresh or spend anyone's
+// action economy; only advanceTurn and explicit resource calls do that.
+function setActiveTurnIndex(state, index) {
+  return { ...state, turnIndex: index }
+}
+
+function setResource(state, key, resource, value) {
+  if (!state.resources[key]) return state
+  return {
+    ...state,
+    resources: {
+      ...state.resources,
+      [key]: { ...state.resources[key], [resource]: value },
+    },
+  }
+}
+
+function spendResource(state, key, resource) {
+  return setResource(state, key, resource, false)
+}
+
+function resetResourcesFor(state, key) {
+  if (!state.resources[key]) return state
+  return {
+    ...state,
+    resources: { ...state.resources, [key]: freshResources() },
+  }
+}
+
+// Handles the initiative order changing mid-fight — a combatant added,
+// removed, or the whole list re-sorted (e.g. a late roll override changes
+// tiebreak position). Round is never touched here; only advanceTurn changes
+// it. The active combatant is tracked by IDENTITY (their key), not by
+// numeric position, so a pure reorder never silently hands the turn to
+// whoever now happens to sit at the old index.
+function syncOrder(state, newOrderKeys) {
+  const activeKey = state.order[state.turnIndex] ?? null
+
+  const resources = {}
+  for (const key of newOrderKeys) {
+    resources[key] = state.resources[key]
+      ? { ...state.resources[key] }
+      : freshResources()
+  }
+
+  let turnIndex
+  if (newOrderKeys.length === 0) {
+    turnIndex = 0
+  } else if (activeKey !== null && newOrderKeys.includes(activeKey)) {
+    turnIndex = newOrderKeys.indexOf(activeKey)
+  } else {
+    // The active combatant themself was removed. Clamping the old numeric
+    // index is deliberate, not a fallback: removing an entry shifts
+    // everyone after it down one slot, so the same index now naturally
+    // lands on "whoever was next" — exactly the right behavior here, even
+    // though identity-tracking (above) is correct for the reorder case.
+    turnIndex = Math.min(state.turnIndex, newOrderKeys.length - 1)
+  }
+
+  return { round: state.round, turnIndex, order: [...newOrderKeys], resources }
+}
+
+// True once a combatant's turn has passed this round — i.e. their slot in
+// `order` is behind the current `turnIndex`. The active combatant themself
+// (index === turnIndex) has not "acted" yet by this definition; they're
+// acting now. Purely derived from state already tracked, but exposed as its
+// own function since "who has gone this round" is a fact a Godot-side UI
+// would need too, not just this app's battle map.
+function hasActedThisRound(state, key) {
+  const idx = state.order.indexOf(key)
+  if (idx === -1) return false
+  return idx < state.turnIndex
+}
+
+module.exports = {
+  createCombatTurnState,
+  advanceTurn,
+  setActiveTurnIndex,
+  setResource,
+  spendResource,
+  resetResourcesFor,
+  syncOrder,
+  hasActedThisRound,
+}

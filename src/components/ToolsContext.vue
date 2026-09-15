@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import CharacterGenerator from './CharacterGenerator.vue'
+import NpcGenerator from './NpcGenerator.vue'
 import EncounterGenerator from './EncounterGenerator.vue'
 import WeeklyEvents from './WeeklyEvents.vue'
 import ItemGenerator from './ItemGenerator.vue'
@@ -28,12 +28,13 @@ import DmExport from './DmExport.vue'
 import LevelUpTool from './LevelUpTool.vue'
 import NewCharacterTool from './NewCharacterTool.vue'
 import JsonIntakeTool from './JsonIntakeTool.vue'
+import DmSettings from './DmSettings.vue'
 
 export default {
   name: 'ToolsContext',
 
   components: {
-    CharacterGenerator,
+    NpcGenerator,
     EncounterGenerator,
     WeeklyEvents,
     ItemGenerator,
@@ -41,6 +42,7 @@ export default {
     LevelUpTool,
     NewCharacterTool,
     JsonIntakeTool,
+    DmSettings,
   },
 
   data() {
@@ -54,14 +56,14 @@ export default {
           component: 'EncounterGenerator',
         },
         {
-          id: 'character',
-          label: 'Character Generator',
-          component: 'CharacterGenerator',
-        },
-        {
           id: 'items',
           label: 'Item Generator',
           component: 'ItemGenerator',
+        },
+        {
+          id: 'npc',
+          label: 'NPC Generator',
+          component: 'NpcGenerator',
         },
         {
           id: 'new-character',
@@ -72,6 +74,11 @@ export default {
           id: 'level-up',
           label: 'Level Up',
           component: 'LevelUpTool',
+        },
+        {
+          id: 'dm-settings',
+          label: 'DM Settings',
+          component: 'DmSettings',
         },
         {
           id: 'dm-export',
@@ -91,6 +98,21 @@ export default {
     activeComponent() {
       return this.tools.find((t) => t.id === this.activeTool)?.component ?? null
     },
+  },
+
+  watch: {
+    '$store.state.levelUpNavRequest'(req) {
+      if (req) this.activeTool = 'level-up'
+    },
+    '$store.state.newCharacterNavRequest'(req) {
+      if (req) this.activeTool = 'new-character'
+    },
+  },
+
+  created() {
+    if (this.$store.state.levelUpNavRequest) this.activeTool = 'level-up'
+    if (this.$store.state.newCharacterNavRequest)
+      this.activeTool = 'new-character'
   },
 }
 </script>

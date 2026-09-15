@@ -76,6 +76,21 @@ const {
 const { listBackgrounds, loadBackground } = require('./rules/backgrounds')
 const { listSkills, loadSkill } = require('./rules/skills')
 const { listLanguages, loadLanguage } = require('./rules/languages')
+const {
+  createCombatTurnState,
+  advanceTurn,
+  setActiveTurnIndex,
+  setResource,
+  spendResource,
+  resetResourcesFor,
+  syncOrder,
+  hasActedThisRound,
+} = require('./rules/combatTurn')
+const {
+  buildCombatant,
+  toEncounterData,
+  listRoles,
+} = require('./rules/npcBuilder')
 
 module.exports = {
   data: { leveling },
@@ -138,4 +153,15 @@ module.exports = {
   loadSkill,
   listLanguages,
   loadLanguage,
+  createCombatTurnState,
+  advanceTurn,
+  setActiveTurnIndex,
+  setResource,
+  spendResource,
+  resetResourcesFor,
+  syncOrder,
+  hasActedThisRound,
+  buildCombatant,
+  toEncounterData,
+  listRoles,
 }

@@ -88,7 +88,7 @@ famous (or notorious, depending who's asked) among lowlanders for an
 essentially nonexistent fear of heights and a corresponding total inability
 to sleep well indoors on solid ground.
 
-**The Shroud** (mistbelt, middle band) — a near-permanent fog layer where the
+**The Shroud** (mistbelt, middle band) (doesn't make sense to be the middle band, it would block sun from the lower band; tree canopy would also, so unless we want the lower band to be really dark all the time this might needed changedd) — a near-permanent fog layer where the
 living crown gives way to the petrified stonewood trunk-mass beneath it,
 thick enough that direct sunlight is a rumor and most navigation is done by
 sound, smell, and the bioluminescent fungal colonies that carpet every

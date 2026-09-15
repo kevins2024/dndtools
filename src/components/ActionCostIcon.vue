@@ -2,7 +2,13 @@
   <span
     v-if="isKnown"
     class="action-cost-icon"
-    :class="actionType"
+    :class="[
+      actionType,
+      {
+        'toggle-available': toggled === true,
+        'toggle-spent': toggled === false,
+      },
+    ]"
     :style="{ width: size + 'px', height: size + 'px' }"
     :title="title"
   >
@@ -49,6 +55,15 @@ export default {
   props: {
     actionType: { type: String, default: null },
     size: { type: Number, default: 14 },
+    // When set (not null), overrides the normal per-type color with a
+    // spent/available toggle color instead — true reads as "available",
+    // false as "spent". Existing callers (feature/spell pills, the
+    // action-type filter row) don't pass this and keep their per-type
+    // colors; added for ActionEconomyRow.vue's action-economy tracker,
+    // which reuses these same action/bonus-action/reaction shapes to show
+    // whether each has been spent this turn rather than what type a
+    // feature costs.
+    toggled: { type: Boolean, default: null },
   },
 
   computed: {
@@ -86,5 +101,15 @@ export default {
 
 .action-cost-icon.reaction {
   color: var(--color-text-danger);
+}
+
+/* Toggle-state colors win over the per-type ones above (same specificity,
+   later in source order) — used only when `toggled` is explicitly set. */
+.action-cost-icon.toggle-available {
+  color: var(--color-text-danger);
+}
+
+.action-cost-icon.toggle-spent {
+  color: var(--color-text-low);
 }
 </style>

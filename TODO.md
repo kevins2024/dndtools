@@ -5,6 +5,200 @@ worth coming back to. Add freely; check off or delete when done or no longer wan
 
 See `TODO_ARCHIVE.md` for completed items (kept for the record, out of this file so it stays short to read).
 
+- [x] **Homebrew languages weren't offered in New Character's language
+      pickers — fixed 2026-09-12.** `NewCharacterTool.vue`'s
+      `languagesList` came straight from `/api/engine/languages` (the
+      SRD's 16 standard/exotic languages only) — `src/data/
+weapon_types_and_languages.json`'s `languages` array (the same file
+      `HOMEBREW_WEAPON_PROPS` already reads for homebrew weapon types)
+      was never merged in anywhere. Now merged client-side in `created()`,
+      feeding both the species and background language pickers (they
+      share the same `languagesList`). `npm run build` clean.
+
+        **Real finding worth flagging**: that file currently holds exactly
+        **one** homebrew language — Solvalean ("official language of the
+        Solvale Empire"). Checked `world.json` and `lore/` for any other
+        named language mentioned anywhere in the setting and found none. If
+        there are more homebrew languages that exist only in the project
+        owner's head (or in chats not yet mined into this repo — see the
+        standing "[USER ACTION] Mine other chats for lore" item), they need
+        to actually be added to `weapon_types_and_languages.json`'s
+        `languages` array before they can show up here — the plumbing is
+        ready, the content isn't. Same shape as an existing entry: `{name,
+        type, description, speakers}`.
+
+- [x] **Weapon proficiency indicator — 2026-09-11, project owner's high-
+      priority request ("I have no idea if Elucyne can use a longbow
+      properly").** Added `category: 'simple'|'martial'` to all 36 weapon
+      categories in `dnd_constants.js` (mirroring the earlier damage_type
+      pass) plus the 2 homebrew weapon types (Saber correctly piggybacks on
+      real rapier proficiency per its own documented text via a new
+      `counts_as_proficiency` field). New `dnd.isProficientWithWeapon
+(character, weapon)` in `dnd_utils.js`; a "⚠ Not proficient" badge now
+      shows on equipped/carried/pool weapon rows in `CharacterInventory.
+vue` when the character's `weapon_proficiencies` doesn't cover it.
+
+                    **Real finding while building this, bigger than Elucyne alone: 23 of
+                    27 roster characters have no `weapon_proficiencies` field at all** —
+                    only Kerra, Jaygar, and this session's 2 new builds have it. Showing
+                    "not proficient" for a missing field would've been noise, not signal
+                    (every weapon on 23 characters would falsely warn), so the badge
+                    distinguishes a confirmed violation from "Proficiency?" (dashed,
+                    neutral) when the field is simply absent. **Fixed Elucyne specifically**
+                    (the project owner's own example) — Ranger is her `started` class, so
+                    her real proficiencies are the full `["simple", "martial"]`, added
+                    along with her also-missing `armor_proficiencies` (`light, medium,
+                    shields`). Confirms she legitimately can use a longbow.
+                    **Backfilled 2026-09-12** for the 19 active-roster characters that had
+                    it (skipped the 3 archived `(Old)` characters slated for rebuild —
+                    Lexica, Sorra, Torrin — not worth the effort on records about to be
+                    replaced). Used `engine/data/classes/*.json`'s real per-class
+                    proficiency lists (already engine-verified) as the source, plus
+                    `engine/data/multiclass-proficiencies.json`'s reduced grant table for
+                    the 2 actual multiclass characters (Chuknora: started Paladin +
+                    multiclass Barbarian; Eldi: started Fighter + multiclass Rogue — in
+                    both cases the multiclass addition turned out to add nothing beyond
+                    what the starting class already covered). Also accounted for 2 real
+                    subclass-granted bonus proficiencies found via each subclass's own
+                    recorded feature text rather than guessed from memory (Cleric Tempest
+                    Domain: martial weapons + heavy armor; Wizard Bladesinger: light
+                    armor + one chosen one-handed weapon — Kessara's is a rapier, matching
+                    her actual equipped weapon) and 1 item-granted proficiency (Siv's
+                    equipped, attuned Bracers of Archery: longbow + shortbow). Also found
+                    and fixed a small related gap while validating: Kerra's Fighter class
+                    was missing its `started: true` flag (present since her rebuild, just
+                    never set) — `engine.validateCharacter` was correctly flagging it.
+                    `engine.validateCharacter` clean across the whole roster except
+                    Sorra (Old)'s already-documented, unrelated spell-cap overage.
+                    `node --test` 260/260, `npm run build` clean.
+
+- [ ] **Character sheet weapon-set toggle UI — 2026-09-11 request.** Project
+      owner's spec: Set 1 on the left, Set 2 on the right, the _active_ set
+      gets 70% width + normal text size, the inactive one 30% width +
+      small text (so you can still see what's in it), with a smooth
+      animation on switch. Lives next to the weapons in `CharacterInventory.
+vue` (or wherever the character sheet's own weapon display ends up —
+      check `WeaponTable.vue` too, it also reads `weapon_set`). Not started.
+
+- [x] **Shield of Retribution — resolved 2026-09-12.** Confirmed real item
+      (Critical Role campaign, not core PHB/DMG/Xanathar's), verified
+      against `dnd5e.wikidot.com/wondrous-items:shield-of-retribution`, but
+      the local copy's effect (1d6 force on the wearer being hit, no AC
+      bonus) is materially weaker/different than the real one (+1 AC,
+      triggers on a miss instead, 4d6 force, plus a push) — see the earlier
+      note in this file for the full comparison. Project owner's call: kept
+      the existing lighter homebrew effect as-is, but **renamed the item to
+      "Shield of Reprisal"** to stop it colliding with the real item's name,
+      and made the AC situation explicit in its own `effect` text ("No
+      bonus to AC (base shield +2 only)") instead of just staying silent on
+      it. `notes` field records why/when it was renamed for anyone who
+      finds the old name in old session logs or memory. `npm run build`
+      clean.
+
+- [ ] **Combat screen layout pass — project owner's first-glance feedback
+      after using turn/round tracking, 2026-09-11.** Nothing broken, just
+      real space/ergonomics notes from actually using it, to talk through
+      when the project owner is back (they'll be remoting in over the
+      weekend to discuss next steps — this needs a conversation, not a
+      unilateral redesign):
+
+  - **`DiceRoller.vue` (mounted globally in `AppLayout.vue`, not
+    combat-specific) is a full-width bottom drawer that eats a lot of
+    vertical space during combat.** Project owner's suggestion: the new
+    `.turn-controls` row (round counter, Next Turn, `ActionEconomyRow`)
+    added to `Battle.vue` this session could sit _beside_ the dice
+    roller instead of taking its own separate row, reclaiming real
+    space. Nontrivial because these are two unrelated components in
+    different parts of the tree today (`DiceRoller` at the `AppLayout`
+    level, `.turn-controls` inside `Battle.vue` inside `CombatContext.
+vue`) — needs a real layout decision, not a CSS tweak, on how/
+    whether to coordinate them.
+  - **The "Add enemy mid-fight" sidebar section in `Battle.vue`** (manual
+    name/mod inputs + a Manual/Bestiary mode toggle + bestiary search,
+    `sidebar-add-enemy` block) **takes up a lot of permanent sidebar
+    space for something used occasionally.** Project owner's
+    suggestion: collapse it to a single button that opens a wizard
+    instead. `VehicleCombatWizard.vue` already has a real reusable
+    step-wizard shape in this codebase (`step` data property, `v-if=
+"step === N"` panels, back/next buttons) worth pattern-matching
+    rather than inventing a new wizard shell from scratch — the actual
+    step content would obviously differ (add-enemy needs name/mod or
+    bestiary search, not ship selection), but the wizard _shell_
+    (modal, step indicator, back/next) could plausibly be extracted
+    and shared.
+  - **Action economy resources are tracked as a single boolean today**
+    (available/spent) — the project owner floated, as a hedge rather
+    than a firm request ("or two if the player for some reason has
+    two"), that some feature could plausibly grant a second action/
+    bonus action/reaction in a turn. Not built — `engine/rules/
+combatTurn.js`'s resources are booleans, not counts, and changing
+    that is a real engine-level model change (plus a UI change to show
+    N pips instead of 1), not a quick add. Worth a real example coming
+    up at the table before building speculatively.
+  - Not started — flagged for discussion first per the project owner's own
+    request, then implementation.
+
+- [ ] **Battle Map and Vehicle Combat both flagged as "good but basic,"
+      2026-09-11.** Direct project owner quote: "make the battle map more
+      robust and user friendly. It's already very good but very basic."
+      and "The vehicle combat is also really cool but perhaps needs to
+      support more variety." No specifics yet on what "more robust" or
+      "more variety" means concretely — worth a real conversation before
+      guessing at scope, this is a discovery task, not a defined feature.
+
+- [x] **Real turn/round tracking + action/bonus-action/reaction economy
+      added to the combat tracker — 2026-09-11.** Previously `Battle.vue`
+      had only a local `activeTurn` index (set by clicking a card) with no
+      round counter, no wraparound, and no resource tracking anywhere.
+      Planned via a full Plan-mode session (see the approved plan for full
+      design reasoning) specifically because the project owner wants this
+      logic reusable for the Godot port planned to start next week — see
+      CLAUDE.md's new standing rule about core D&D logic living in
+      `engine/`, not Vue components.
+
+      New `engine/rules/combatTurn.js`: pure, framework-free state/
+      transition functions (`createCombatTurnState`, `advanceTurn`,
+      `setActiveTurnIndex`, `setResource`, `spendResource`,
+      `resetResourcesFor`, `syncOrder`) — round increments only on
+      wraparound, a combatant's action/bonus action/reaction all refresh
+      only at the start of *their own* turn (real RAW), manual DM overrides
+      never silently reset resources. 17 new engine tests (243 → 260
+      passing). State lives in `CombatContext.vue` (already the real owner
+      of ephemeral combat-session state) and flows down to `Battle.vue` via
+      a new `combat-turn` prop + 5 new emits, mirroring the existing
+      `@override-roll`/`@add-enemy` pattern. New `ActionEconomyRow.vue`
+      shows the active combatant's 3 resources as clickable chips.
+
+      **Real technical finding, worth remembering for any future engine/
+      module meant for direct browser use**: `src/utils/combatTurn.js`
+      originally imported the whole `engine/index.js` barrel (mirroring
+      `server.js`'s own `require('./engine/index')`) and broke `npm run
+      build` — several other rule modules (`classFeatures.js`, etc.) call
+      Node's `fs`/`path` at require-time to read `engine/data/*.json` off
+      disk, which webpack can't bundle for a browser build ("Can't resolve
+      'fs'"/"'path'"). Fixed by requiring `engine/rules/combatTurn.js`
+      directly instead of the barrel — it has zero dependencies on any
+      other rule file, so it bundles cleanly alone. Documented as a
+      standing constraint in CLAUDE.md.
+
+      Per project owner's explicit coaching mid-plan: this UI doubles as a
+      testing/debugging surface that can do things a real game never would
+      (rewind the round, un-spend a resource, jump the turn out of
+      sequence) — those specific controls (round ±, Reset Resources, and
+      an out-of-sequence initiative-card click) are marked with lucide-vue's
+      `BugOff` icon + a tooltip, visually distinct from the real-game
+      controls (Next Turn, resource toggle-on-your-turn).
+
+      `cd engine && node --test`: 260/260. `npm run build` clean. Real
+      interaction logic — Playwright stays off per CLAUDE.md, so this needs
+      the project owner's own click-through; the approved plan file lists 8
+      specific scenarios worth checking (round increments exactly on
+      wraparound, reaction persists across others' turns but refreshes on
+      your own, manual card-click doesn't reset resources, add/remove
+      mid-fight, roll-override reorder keeps the active highlight on the
+      same person not the same row, round ± only touches the round, fresh
+      state on a new fight).
+
 - [x] **"Torrin (Claude)" — a hand-built, fully optimized level 9 Rogue
       Soulknife added 2026-09-11** as a comparison exercise against the
       project owner's own build attempt, per their request. Same species
@@ -111,19 +305,19 @@ build` clean.
       two-hander at all before you got the chance to put it in Set 2.
       `npm run build` clean.
 
-- [ ] **Thrown attacks with a versatile+thrown weapon (Spear, Trident) show
-      the wrong damage die when the weapon's grip is set to two-handed —
-      found 2026-09-11, not fixed.** Real RAW: versatile's bigger die only
-      applies to a melee attack made while gripping with two hands; a thrown
-      attack is inherently one-handed and should always use the base die
-      regardless of how the weapon's `slot` is currently set. Confirmed
-      `WeaponTable.vue` doesn't model this distinction — it shows one
-      `damage` value per weapon (from `dnd_utils.js`'s `gripDie()`) plus a
-      thrown-range badge, so a Spear set to `melee2h` would incorrectly show
-      1d8 for a thrown attack instead of the real 1d6. Narrow edge case
-      (versatile-and-thrown is just Spear and Trident in core rules) — needs
-      a design decision (two damage lines? a conditional based on which
-      attack mode is being made?) before fixing, not a quick tweak.
+- [x] **Thrown attacks with a versatile+thrown weapon (Spear, Trident)
+      showed the wrong damage die when gripped two-handed — fixed
+      2026-09-12** (grabbed off this list as a bonus fix, having already
+      designed the fix shape while building the weapon detail popup
+      earlier). `dnd.buildWeaponRows` now also computes `thrownDamage`
+      (always the base one-handed die, per real RAW — the versatile bonus
+      die only applies to a two-handed melee attack, never a thrown one),
+      surfaced only when it actually differs from the main melee `damage`
+      value shown (a thrown-and-currently-1H weapon has nothing extra worth
+      displaying — the two numbers are identical). `WeaponTable.vue` shows
+      it as a small "(Xd\_ thrown)" note under the main damage number when
+      relevant, with a tooltip explaining why the two differ. `npm run
+build` clean.
 
 - [x] **"Selling an item" appeared to have disappeared — actually a labeling
       bug, not a missing feature, fixed 2026-09-11.** Project owner reported
@@ -214,8 +408,8 @@ build` clean. Same class of bug as the Artificer spell-list gap found
       alone and need to be preserved through the rebuild rather than
       dropped as "extra."
 
-- [ ] **Character rebuild queue: Sorra, Lexica, Torrin still open; Kerra DONE
-      2026-09-11 (see below).** All four were renamed to `"<Name> (Old)"`
+- [ ] **Character rebuild queue: Sorra, Lexica still open; Kerra and Torrin
+      DONE (see below).** All four were renamed to `"<Name> (Old)"`
       2026-09-11 to free up the real name for a fresh build. Project owner is
       building the replacements themselves;
       once each new character exists, delete the corresponding `(Old)`
@@ -253,16 +447,46 @@ build` clean. Same class of bug as the Artificer spell-list gap found
   - **Lexica (Bard, College of Lore).** Spell audit came back clean (see
     below) — this rebuild is for a different reason the project owner
     has, not spell-related.
-  - **Torrin (Rogue, `subclass: "Soulknife / Mastermind"`).** Project owner
-    (2026-09-02): "I don't even use him, it was a bad concept." His
-    subclass field is literally two real Rogue subclass names mashed into
-    one string that doesn't resolve via `loadSubclass` — a deliberate
-    homebrew dual-subclass hack from an earlier session. He has 0
-    recorded spells, which is fine/expected for this subclass
-    combination — the subclass string itself is the only real problem.
+  - **Torrin — DONE, 2026-09-12.** The hand-built "Torrin (Claude)"
+    comparison build (real level 9 Rogue Soulknife, single clean subclass)
+    was promoted to the real `Torrin` record — project owner: "good enough
+    to keep live." Flavor fields (image, appearance, location, alignment,
+    a trimmed persona_notes) transferred from `Torrin (Old)`; his 3 real
+    established items (The Weaver's Master-Awl, Wolf Hunter's Rags, Hand
+    Crossbow of the Old Trail) moved over too, alongside the 2 mundane
+    placeholder items from the original build (Studded Leather Armor, 2
+    Daggers) — no slot conflicts, so both stayed. Nice continuity find:
+    the Weaver's Master-Awl's "Psionic Reinforcement" property (+2 to
+    Psychic Blades attack/damage) was clearly written for a Soulknife
+    already, well before this rebuild — the old homebrew dual-subclass
+    build and the new clean one were pointing at the same character the
+    whole time. That bonus isn't mechanically wired into the app yet
+    (Psychic Blades aren't a `party_items.json` entry to attach an
+    enhancement_bonus to) — DM-tracked for now. `Torrin (Old)` not
+    deleted yet — ask before removing. `engine.validateCharacter` clean,
+    `node --test` 260/260, `npm run build` clean.
 
-    No priority order set between the remaining three yet — ask before
-    starting one.
+    No priority order set between the remaining two (Sorra, Lexica) — ask
+    before starting one. Project owner's own call: since both need real
+    spellcasting choices worked through (a much bigger set of decisions
+    than Torrin needed), they'll likely build those two themselves.
+
+- [x] **Party membership + inventory-pool ambiguity when a character is
+      listed in more than one party — raised 2026-09-12, resolved
+      2026-09-14.** Project owner decided the `active_party_id` design (and
+      its alternative) was "too much to worry about" — punted on solving
+      multi-party membership itself. Instead, shipped the specific pain
+      point that made deletion risky: deleting a party
+      (`PartyEditModal.vue`'s `deleteParty`) used to silently orphan any
+      pool item (`carried_by:'party'`) still pointing at that party's now-
+      gone id. It now checks for pool items first — zero, and delete stays
+      one click; any, and a confirmation dialog asks where they go (another
+      remaining party, or "Unassigned" — the existing no-party pool bucket
+      `CharacterInventory.vue` already supports) via a new
+      `REASSIGN_PARTY_POOL` mutation, before the party record itself is
+      removed. Characters' own personal gear (`equipped_by`/`carried_by`
+      keyed by character name) is untouched by any of this — only party-
+      pool items were ever at risk.
 
 - [ ] **Full spell/cantrip audit across the roster (2026-09-08, re-verified
       2026-09-11) — mostly resolved now, see below for what's still open.**
@@ -381,16 +605,16 @@ build` clean. Same class of bug as the Artificer spell-list gap found
     the Artificer list — project owner is choosing these via the Spell
     Browser and will report back.
 
-                                                        Also surfaced a **data gap worth fixing separately, not urgent**:
-                                                        the local Artificer spell-list tagging (the `classes` field on SRD/
-                                                        published spell entries) is badly incomplete — only 29 spells total
-                                                        carry an `Artificer` class tag across every level, versus the real
-                                                        Tasha's list's 60+ entries through 5th level (confirmed against
-                                                        `dnd5e.wikidot.com/spells:artificer`). This means the Spell
-                                                        Browser's "Class: Artificer" filter under-reports for now — anyone
-                                                        filtering by Artificer there should know the shortlist is a cache
-                                                        gap, not the real set of legal options. Not fixed this session;
-                                                        would mean re-tagging dozens of existing SRD entries.
+                                                                                                                Also surfaced a **data gap worth fixing separately, not urgent**:
+                                                                                                                the local Artificer spell-list tagging (the `classes` field on SRD/
+                                                                                                                published spell entries) is badly incomplete — only 29 spells total
+                                                                                                                carry an `Artificer` class tag across every level, versus the real
+                                                                                                                Tasha's list's 60+ entries through 5th level (confirmed against
+                                                                                                                `dnd5e.wikidot.com/spells:artificer`). This means the Spell
+                                                                                                                Browser's "Class: Artificer" filter under-reports for now — anyone
+                                                                                                                filtering by Artificer there should know the shortlist is a cache
+                                                                                                                gap, not the real set of legal options. Not fixed this session;
+                                                                                                                would mean re-tagging dozens of existing SRD entries.
 
   - **Tackett (Druid, Circle of Stars) — DONE.** Project owner's call: he's
     a "legendary" character, RAW-accuracy isn't the goal, just a clean
@@ -426,6 +650,27 @@ build` clean. Same class of bug as the Artificer spell-list gap found
       `places/`, `history/`, `beasts/`, `factions/`, `people/`). Not
       something Claude can do — the source material only exists in those
       other conversations.
+
+- [ ] **[USER ACTION] Add more homebrew languages — the New Character
+      picker only has one to offer.** 2026-09-12: New Character's language
+      pickers now correctly pull in homebrew languages from
+      `src/data/weapon_types_and_languages.json`'s `languages` array (they
+      previously didn't at all — see the fixed entry in `TODO_ARCHIVE.md`
+      once this session's work is archived, or search this file's history
+      for "Homebrew languages weren't offered"). But that array currently
+      holds exactly **one** entry — Solvalean (Solvale Empire's official
+      language) — and nothing else in `world.json` or `lore/` names a
+      second one. If Kaemahz's other regions, Senkolai's five Boles (each
+      already flagged in `lore/places/Senkolai.md` as culturally distinct
+      enough to want their own naming conventions), Yetgrese, or anywhere
+      else in the setting have their own languages in the project owner's
+      head — or sitting in one of the other chats covered by the "Mine
+      other chats for lore" item above — they need to be written into that
+      array before they can show up anywhere. Same shape as the existing
+      entry: `{"name": "...", "type": "regional"|"exotic"|whatever fits,
+"description": "...", "speakers": ["...", "..."]}`. Hand Claude the
+      names/flavor and this is a fast add; inventing campaign languages
+      unprompted isn't something to do without that input.
 
 - [ ] **Background expansion + species.json SRD-scope reconciliation — both intentionally on hold, not forgotten.** Two separate, unrelated gaps left over after the racial-mechanics work below was completed (now archived, see TODO_ARCHIVE.md): (1) only 40 of ~360 backgrounds have real curated skill data (`engine/data/backgrounds.json`) — explicitly deprioritized 2026-09-07 (project owner: "I don't think we need that many more backgrounds. skip them for now"); the picker's "Other (custom)" escape hatch covers the gap for now. (2) `src/data/api_data_cache/species.json`'s SRD flavor-entry scope is unresolved — the cache went missing and was rebuilt from dnd5eapi.co with only the 13 real races/subraces the API has, not the ~380 previously noted here; project owner wants to reconcile against another hard drive before trusting either number, not something Claude can resolve alone.
 - [ ] **[LOW PRIORITY] "Plan all levels ahead" preview toggle**, per the

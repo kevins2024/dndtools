@@ -32,6 +32,14 @@
       >
         Relationships
       </button>
+      <button
+        v-if="canLevelUp"
+        class="tab-btn tab-btn--jump"
+        title="Jump to the Level Up tool with this character selected"
+        @click="goToLevelUp"
+      >
+        Level Up ↗
+      </button>
     </div>
 
     <!-- Content -->
@@ -120,6 +128,21 @@ export default {
         r.people.includes(key)
       )
     },
+    // Mirrors LevelUpTool's own effectiveLevelCap check (level_cap_override
+    // wins over the campaign-wide DM Settings cap) so this shortcut only
+    // appears when there's actually a level to give.
+    canLevelUp() {
+      if (!this.selected) return false
+      const cap =
+        this.selected.level_cap_override ?? this.$store.state.level_cap
+      return cap == null || this.selected.level < cap
+    },
+  },
+
+  methods: {
+    goToLevelUp() {
+      this.$store.commit('NAV_TO_LEVEL_UP', this.selected.name)
+    },
   },
 }
 </script>
@@ -158,6 +181,17 @@ export default {
 .tab-btn.active {
   color: var(--color-accent-strong);
   border-bottom-color: var(--color-accent);
+}
+
+/* Jumps to a different context entirely rather than swapping content in
+   place — pushed to the far side and given its own color so it doesn't read
+   as just another view of this same character. */
+.tab-btn--jump {
+  margin-left: auto;
+  color: var(--color-accent);
+}
+.tab-btn--jump:hover {
+  color: var(--color-accent-strong);
 }
 
 /* ── Content ── */

@@ -391,6 +391,18 @@ export default {
         // Do NOT clear here — WorldContext/LocationBrowser read it and clear it themselves
       }
     },
+    '$store.state.levelUpNavRequest'(req) {
+      if (req) {
+        this.activeContext = 'tools'
+        // Do NOT clear here — ToolsContext/LevelUpTool read it and clear it themselves
+      }
+    },
+    '$store.state.newCharacterNavRequest'(req) {
+      if (req) {
+        this.activeContext = 'tools'
+        // Do NOT clear here — ToolsContext/NewCharacterTool read it and clear it themselves
+      }
+    },
     hasChanges(val) {
       if (!val) return
       clearTimeout(this._autosaveTimer)

@@ -569,6 +569,62 @@ app.get('/api/engine/species', (req, res) => {
   }
 })
 
+// ── POST /api/engine/build-npc ────────────────────────────
+// Headless "real class-built enemy" — engine.buildCombatant drives the same
+// diffLevelUp engine LevelUpTool.vue uses, with an automatic chooser instead
+// of a human, so NpcGenerator.vue / EncounterGenerator.vue can get a
+// mechanically real, level-appropriate combatant (real class features, real
+// spells, real subclass) instead of encounter_utils.js's level-insensitive
+// synthetic generator. See engine/rules/npcBuilder.js for the "why."
+//
+// Species is randomized HERE, not inside buildCombatant, and deliberately
+// restricted to engine.listSpecies()'s 9 real SRD entries — NOT the full
+// 13-entry merged catalog /api/engine/species exposes. applySpeciesBonus
+// (called inside buildCombatant) only reads engine/data/species.json itself;
+// it has no access to the 4 homebrew species that live in
+// api_data_cache/species.json and only get merged in by the /species route
+// above. Randomizing across the full 13 would silently build a homebrew-
+// species NPC with a ZERO ability-score bonus applied — a real species
+// picker for the auto-builder is a reasonable fast-follow, not this pass.
+//
+// Gender is cosmetic flavor only (nothing in this app reads it
+// mechanically) — GENDERS is duplicated from src/utils/character_utils.js
+// rather than required, since that file is an ES module (webpack-bundled
+// for the browser) and this is a plain CommonJS server file.
+const GENDERS = ['Male', 'Female']
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+app.post('/api/engine/build-npc', (req, res) => {
+  const { role, targetLevel, isBoss, speciesName } = req.body
+  if (!role || !targetLevel) {
+    return res
+      .status(400)
+      .json({ error: '"role" and "targetLevel" are required' })
+  }
+  try {
+    const species = speciesName || pick(engine.listSpecies()).name
+    const gender = pick(GENDERS)
+    const { character, warnings } = engine.buildCombatant({
+      speciesName: species,
+      role,
+      targetLevel,
+    })
+    const encounterData = engine.toEncounterData(character, role, !!isBoss)
+    res.json({ character, encounterData, gender, warnings })
+  } catch (err) {
+    console.error('Error building NPC:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/roles ─────────────────────────────────
+// Catalog for NpcGenerator.vue's / EncounterGenerator.vue's role pickers —
+// the 5 role→class→subclass combos build-npc actually supports.
+app.get('/api/engine/roles', (req, res) => {
+  res.json(engine.listRoles())
+})
+
 // ── GET /api/engine/backgrounds ───────────────────────────
 // A curated 40 real backgrounds with verified RAW skill proficiencies (see
 // engine/data/backgrounds.json / CHECKLIST.md) — replaces the raw

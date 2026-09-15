@@ -100,6 +100,8 @@ export default new Vuex.Store({
     parties: [],
     characterNavRequest: null,
     placeNavRequest: null,
+    levelUpNavRequest: null,
+    newCharacterNavRequest: null,
     characters: [],
     npcs: [],
     places: [],
@@ -132,6 +134,15 @@ export default new Vuex.Store({
     pendingCombatEnemies: null,
     openEncounterGeneratorRequest: false,
     encounterSeed: null,
+    // Mirrors CombatContext.vue's local `phase` ('setup'|'battle') so a
+    // different top-level context (Tools) can tell whether a live fight is
+    // running, without CombatContext needing to be mounted at all.
+    combatPhase: 'setup',
+    // A single enemy to push into a LIVE fight's existing roster — distinct
+    // from pendingCombatEnemies, which REPLACES the whole enemy list (built
+    // for "load a freshly generated encounter", wrong for "reinforcements
+    // arrive mid-fight").
+    queuedReinforcement: null,
   },
 
   mutations: {
@@ -196,6 +207,18 @@ export default new Vuex.Store({
     },
     CLEAR_PLACE_NAV(state) {
       state.placeNavRequest = null
+    },
+    NAV_TO_LEVEL_UP(state, name) {
+      state.levelUpNavRequest = { name }
+    },
+    CLEAR_LEVEL_UP_NAV(state) {
+      state.levelUpNavRequest = null
+    },
+    NAV_TO_NEW_CHARACTER(state, seed) {
+      state.newCharacterNavRequest = seed ?? {}
+    },
+    CLEAR_NEW_CHARACTER_NAV(state) {
+      state.newCharacterNavRequest = null
     },
     SET_SELECTED_PLAYERS(state, players) {
       state.selectedPlayers = players
@@ -344,6 +367,20 @@ export default new Vuex.Store({
         state.dirtyTables.push(table)
       }
     },
+    // Reassigns every party-pool item (carried_by:'party') from one party to
+    // another (or to null — "Unassigned", the existing no-party pool bucket
+    // CharacterInventory.vue already treats as a valid state) — used when a
+    // party is deleted, so its loose gear doesn't silently orphan onto a
+    // party_id that no longer exists.
+    REASSIGN_PARTY_POOL(state, { fromPartyId, toPartyId }) {
+      state.party_items = state.party_items.map((item) =>
+        item.carried_by === 'party' && item.party_id === fromPartyId
+          ? { ...item, party_id: toPartyId }
+          : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
     UPDATE_ITEM(state, updatedItem) {
       const idx = state.party_items.findIndex((i) => i.id === updatedItem.id)
       if (idx !== -1) {
@@ -384,6 +421,35 @@ export default new Vuex.Store({
     SET_ENCOUNTER(state, encounter) {
       state.lastEncounter = state.currentEncounter
       state.currentEncounter = encounter
+    },
+    SET_COMBAT_PHASE(state, phase) {
+      state.combatPhase = phase
+    },
+    QUEUE_REINFORCEMENT(state, enemy) {
+      state.queuedReinforcement = enemy
+    },
+    CLEAR_REINFORCEMENT(state) {
+      state.queuedReinforcement = null
+    },
+    // Pushes one enemy onto the encounter a DM hasn't started yet — creates
+    // a minimal encounter shell first if none exists. Surfaces automatically
+    // through CombatContext's existing "Load Encounter" button, no new UI
+    // needed to consume it.
+    ENQUEUE_ENCOUNTER_ENEMY(state, enemy) {
+      const base = state.currentEncounter ?? {
+        id: 'enc_custom_' + Date.now(),
+        generatedAt: new Date().toISOString(),
+        difficulty: null,
+        type: 'Custom',
+        typeConfig: 'Enemies added individually via NPC Generator.',
+        partySize: null,
+        partyLevel: null,
+        enemies: [],
+      }
+      state.currentEncounter = {
+        ...base,
+        enemies: [...base.enemies, enemy],
+      }
     },
     SAVE_ENCOUNTER_SLOT(state, { name, encounter }) {
       state.savedEncounters = [

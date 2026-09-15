@@ -1869,6 +1869,14 @@ export default {
   },
 
   watch: {
+    '$store.state.levelUpNavRequest': {
+      immediate: true,
+      handler(req) {
+        if (!req) return
+        this.selectedCharacterName = req.name
+        this.$store.commit('CLEAR_LEVEL_UP_NAV')
+      },
+    },
     selectedCharacterName() {
       this.selectedClassName = this.classOptions[0]?.name ?? null
       this.resetChoices()

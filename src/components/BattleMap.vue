@@ -35,6 +35,11 @@
           ></span
           >Neutral
           <span class="bm-legend-dot" style="background: #a05030"></span>Enemy
+          <span v-if="combatTurn" class="bm-legend-note"
+            >· <span class="bm-legend-ring"></span> current turn ·
+            <span class="bm-legend-check">✓</span> already acted this
+            round</span
+          >
         </div>
 
         <button
@@ -208,9 +213,24 @@
 </template>
 
 <script>
+import { combatTurn as combatTurnEngine } from '@/utils/combatTurn'
+
 const GRID = 90
 const MAJOR = 5
 const SUPER_MAJOR = 30
+
+// 5e footprint-by-size, in grid cells per side (Tiny/Small/Medium all share
+// the standard 1x1 square). Purely a rendering size — occupancy/collision
+// (byCell, freeCell, move-target checks) still tracks a single anchor cell,
+// so a Large+ token's extra cells aren't yet occupancy-aware.
+const SIZE_SPAN = {
+  Tiny: 1,
+  Small: 1,
+  Medium: 1,
+  Large: 2,
+  Huge: 3,
+  Gargantuan: 4,
+}
 
 const ZONE_COLORS = [
   { key: 'yellow', color: '#ffdd00', label: 'Silence / Radiant' },
@@ -253,6 +273,7 @@ export default {
   props: {
     order: { type: Array, default: () => [] },
     combatantStates: { type: Object, default: () => ({}) },
+    combatTurn: { type: Object, default: null },
     visible: { type: Boolean, default: false },
   },
 
@@ -314,7 +335,9 @@ export default {
     order: {
       immediate: true,
       handler(entries) {
-        const players = entries.filter((e) => e.type === 'player')
+        const players = entries.filter(
+          (e) => e.type === 'player' || e.type === 'companion'
+        )
         const enemies = entries.filter((e) => e.type === 'enemy')
         const pos = { ...this.positions }
         const occupied = () =>
@@ -576,11 +599,51 @@ export default {
       }
     },
 
+    tokenSpan(entry) {
+      return SIZE_SPAN[entry.encounterData?.size] ?? 1
+    },
+
+    isActiveTurn(entry) {
+      if (!this.combatTurn) return false
+      return this.combatTurn.order[this.combatTurn.turnIndex] === entry.key
+    },
+
+    hasActed(entry) {
+      if (!this.combatTurn) return false
+      return combatTurnEngine.hasActedThisRound(this.combatTurn, entry.key)
+    },
+
+    tokenLabel(entry) {
+      const name = entry.name.trim()
+      // Duplicated enemies are named "Base N" (e.g. "Goblin 2") — use the
+      // base name's first letter plus the number so duplicates stay
+      // distinguishable rather than colliding on the same two letters.
+      const numbered = name.match(/^(.*\S)\s+(\d+)$/)
+      if (numbered)
+        return `${numbered[1].charAt(0).toUpperCase()}${numbered[2]}`
+      const words = name.split(/\s+/)
+      if (words.length >= 2) {
+        return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase()
+      }
+      return name.slice(0, 2).toUpperCase()
+    },
+
     drawToken(ctx, entry, col, row, cs) {
-      const cx = (col + 0.5) * cs
-      const cy = (row + 0.5) * cs
-      const r = Math.max(cs * 0.38, 3)
+      const span = this.tokenSpan(entry)
+      const cx = (col + span / 2) * cs
+      const cy = (row + span / 2) * cs
+      const r = Math.max(cs * span * 0.42, 3)
       const selected = entry.key === this.selectedKey
+      const active = this.isActiveTurn(entry)
+      const acted = this.hasActed(entry)
+
+      if (active) {
+        ctx.strokeStyle = '#ffd54a'
+        ctx.lineWidth = 3
+        ctx.beginPath()
+        ctx.arc(cx, cy, r + 5, 0, Math.PI * 2)
+        ctx.stroke()
+      }
 
       if (selected) {
         ctx.strokeStyle = '#ffffff'
@@ -590,6 +653,7 @@ export default {
         ctx.stroke()
       }
 
+      ctx.globalAlpha = acted ? 0.5 : 1
       ctx.fillStyle = this.tokenColor(entry)
       ctx.beginPath()
       ctx.arc(cx, cy, r, 0, Math.PI * 2)
@@ -600,17 +664,40 @@ export default {
       ctx.stroke()
 
       if (cs >= 12) {
-        const fontSize = Math.max(Math.round(r * 1.1), 6)
+        const fontSize = Math.max(Math.round(r * 0.7), 6)
         ctx.fillStyle = 'rgba(255,255,255,0.9)'
         ctx.font = `bold ${fontSize}px sans-serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillText(entry.name.charAt(0).toUpperCase(), cx, cy)
+        ctx.fillText(this.tokenLabel(entry), cx, cy)
+      }
+      ctx.globalAlpha = 1
+
+      if (acted) {
+        ctx.fillStyle = '#3a3a3a'
+        ctx.beginPath()
+        ctx.arc(
+          cx + r * 0.65,
+          cy - r * 0.65,
+          Math.max(cs * 0.14, 5),
+          0,
+          Math.PI * 2
+        )
+        ctx.fill()
+        ctx.strokeStyle = 'rgba(0,0,0,0.6)'
+        ctx.lineWidth = 0.5
+        ctx.stroke()
+        ctx.fillStyle = '#a8d8a8'
+        ctx.font = `bold ${Math.max(Math.round(cs * 0.16), 7)}px sans-serif`
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('✓', cx + r * 0.65, cy - r * 0.65 + 0.5)
       }
     },
 
     tokenColor(entry) {
       if (entry.type === 'player') return '#c8a96e'
+      if (entry.type === 'companion') return '#4a9e6b'
       const s = this.combatantStates[entry.key]
       return s === 'friendly'
         ? '#4a9e6b'
@@ -780,6 +867,10 @@ export default {
         if (this.isPainting) this.paintCell(col, row)
         return
       }
+      const occupant = this.byCell[`${col},${row}`]
+      if (this.$refs.canvas) {
+        this.$refs.canvas.title = occupant ? occupant.name : ''
+      }
       if (!this.selectedKey) return
       if (col !== this.hoverCol || row !== this.hoverRow) {
         this.hoverCol = col
@@ -792,6 +883,7 @@ export default {
       this.isPainting = false
       this.hoverCol = null
       this.hoverRow = null
+      if (this.$refs.canvas) this.$refs.canvas.title = ''
       if (this.selectedKey || this.paintMode || this.zoneMode) this.draw()
     },
 
@@ -956,6 +1048,25 @@ export default {
   height: 8px;
   border-radius: 50%;
   margin-left: 0.6rem;
+}
+
+.bm-legend-note {
+  margin-left: 0.6rem;
+}
+
+.bm-legend-ring {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #ffd54a;
+  margin: 0 0.15rem;
+}
+
+.bm-legend-check {
+  display: inline-block;
+  color: #a8d8a8;
+  font-weight: bold;
 }
 
 .bm-zoom-row {

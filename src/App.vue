@@ -21,6 +21,20 @@ export default {
 <style>
 @import './theme.css';
 
+/* No box-sizing reset existed anywhere in the app before this — every
+   element defaulted to content-box, so any component pairing an explicit
+   height:100%/flex sizing with its own padding/border rendered a few
+   pixels taller than its allotted box. Inside the many overflow:hidden
+   flex containers this app is built from (AppLayout's .context-area and
+   its own view-level equivalents), that excess silently clips off the
+   bottom edge — the "lowest few pixels covered by the footer bar" and
+   "character cards clipped" reports both match this exactly. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
 }

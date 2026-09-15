@@ -25,7 +25,6 @@ import TellondeCalendar from './TellondeCalendar.vue'
 import HomebrewBrowser from './HomebrewBrowser.vue'
 import SpellBrowser from './SpellBrowser.vue'
 import LocationBrowser from './LocationBrowser.vue'
-import DmSettings from './DmSettings.vue'
 
 export default {
   name: 'WorldContext',
@@ -35,7 +34,6 @@ export default {
     HomebrewBrowser,
     SpellBrowser,
     LocationBrowser,
-    DmSettings,
   },
 
   data() {
@@ -47,7 +45,6 @@ export default {
         { id: 'locations', label: 'Locations', component: 'LocationBrowser' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
         { id: 'homebrew', label: 'Homebrew', component: 'HomebrewBrowser' },
-        { id: 'dm-settings', label: 'DM Settings', component: 'DmSettings' },
       ],
     }
   },

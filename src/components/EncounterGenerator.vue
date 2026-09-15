@@ -84,6 +84,22 @@
           <input type="radio" v-model="difficulty" :value="d" />
           {{ d }}
         </label>
+        <label
+          class="opt-label nudge"
+          :class="{ 'opt-label--disabled': !realEnemiesAvailable }"
+          :title="
+            realEnemiesAvailable
+              ? 'Builds eligible humanoid enemies (melee/ranged/Wizard/Warlock roles) through the real level-up engine — real class features, spells, and subclass, scaled to party level — instead of the quick synthetic generator. Bosses always qualify; grunts qualify at this difficulty too.'
+              : 'Only available at Medium difficulty and above — Trivial/Easy fights stay on the fast synthetic generator.'
+          "
+        >
+          <input
+            type="checkbox"
+            v-model="useRealEnemies"
+            :disabled="!realEnemiesAvailable"
+          />
+          Give enemies real class features
+        </label>
       </section>
 
       <!-- Encounter type -->
@@ -637,6 +653,12 @@ export default {
       manualLevel: 5,
       manualCount: 4,
       difficulty: 'medium',
+      // Real class-built bosses via engine/rules/npcBuilder.js instead of
+      // the synthetic FEATURE_POOLS system — see encounter_utils.js's
+      // buildRealBoss for why. Default on: this is the direct fix for
+      // "enemies are too boring and too easy," and it only ever touches the
+      // boss slot (grunts stay on the fast synthetic path).
+      useRealEnemies: true,
       encounterType: 'random',
       encounterTypes: ENC_TYPES,
       difficulties: DIFFICULTIES,
@@ -670,6 +692,13 @@ export default {
   },
 
   computed: {
+    // Mirrors encounter_utils.js's REAL_ENEMY_DIFFICULTIES — kept in sync by
+    // hand since it's a tiny, stable set on both sides of an already-async
+    // boundary; not worth a round-trip just to fetch 3 strings.
+    realEnemiesAvailable() {
+      return ['medium', 'hard', 'deadly'].includes(this.difficulty)
+    },
+
     allParties() {
       return this.$store.state.parties
     },
@@ -822,7 +851,7 @@ export default {
       return { hpMin, hpMax }
     },
 
-    generatePreview() {
+    async generatePreview() {
       const slot = this.currentSlot
       if (!slot || !slot.source) {
         this.previewEnemy = null
@@ -832,7 +861,8 @@ export default {
       const { level } = this.effectiveParty
       const { hpMin, hpMax } = this._hpRange()
       const typeConfig = ENC_CONFIG[this.wizardType] ?? null
-      this.previewEnemy = regenerateEnemy({
+      const step = this.wizardStep
+      const enemy = await regenerateEnemy({
         source: slot.source,
         partyLevel: level,
         hpMin,
@@ -845,13 +875,18 @@ export default {
         gender: slot.gender,
         difficulty: this.wizardDifficulty || this.difficulty,
         partyProfile: this.partyProfile,
+        useRealEnemies: this.useRealEnemies,
       })
+      // The DM may have stepped away from this slot while the (async, for a
+      // real boss) build was in flight — only apply it if still relevant.
+      if (step !== this.wizardStep) return
+      this.previewEnemy = enemy
       // Remember exactly what was shown for this step (including rerolls)
       // so finishWizard() finalizes this enemy instead of re-rolling it.
       this.$set(this.wizardPreviewEnemies, this.wizardStep, this.previewEnemy)
     },
 
-    rerollPreview() {
+    async rerollPreview() {
       // Clear specific monster then regenerate
       const slot = this.wizardSlots[this.wizardStep]
       if (slot.specificMonster) {
@@ -860,7 +895,7 @@ export default {
           specificMonster: null,
         })
       }
-      this.generatePreview()
+      await this.generatePreview()
     },
 
     selectSpecificMonster(monster) {
@@ -906,7 +941,7 @@ export default {
       this.$nextTick(() => this.generatePreview())
     },
 
-    finishWizard() {
+    async finishWizard() {
       this.showWizard = false
       this.revealedAbilities = {}
       this.exportOutput = ''
@@ -917,24 +952,27 @@ export default {
       // Use whatever was actually previewed (and possibly rerolled) for each
       // step — only slots that were never previewed (e.g. skipped by
       // "randomize remaining") get a fresh roll here.
-      const enemies = this.wizardSlots.map((slot, i) => {
-        const previewed = this.wizardPreviewEnemies[i]
-        if (previewed) return previewed
-        return regenerateEnemy({
-          source: slot.source ?? 'humanoid',
-          partyLevel: level,
-          hpMin,
-          hpMax,
-          isBoss: slot.isBoss,
-          typeConfig,
-          specificMonster: slot.specificMonster ?? null,
-          role: slot.role,
-          race: slot.race,
-          gender: slot.gender,
-          difficulty: this.wizardDifficulty,
-          partyProfile: this.partyProfile,
+      const enemies = await Promise.all(
+        this.wizardSlots.map((slot, i) => {
+          const previewed = this.wizardPreviewEnemies[i]
+          if (previewed) return previewed
+          return regenerateEnemy({
+            source: slot.source ?? 'humanoid',
+            partyLevel: level,
+            hpMin,
+            hpMax,
+            isBoss: slot.isBoss,
+            typeConfig,
+            specificMonster: slot.specificMonster ?? null,
+            role: slot.role,
+            race: slot.race,
+            gender: slot.gender,
+            difficulty: this.wizardDifficulty,
+            partyProfile: this.partyProfile,
+            useRealEnemies: this.useRealEnemies,
+          })
         })
-      })
+      )
 
       const encounter = {
         id: `encounter_${Date.now()}`,
@@ -1049,7 +1087,7 @@ export default {
       this.showOverride = this.showOverride === enemyId ? null : enemyId
     },
 
-    rerollEnemy(enemy) {
+    async rerollEnemy(enemy) {
       this.showOverride = null
       const enc = this.encounter
       if (!enc) return
@@ -1065,7 +1103,7 @@ export default {
       const hpMin = Math.max(1, minHP + p.hpMinOffset)
       const hpMax = Math.max(hpMin + 5, maxHP + p.hpMaxOffset)
       const typeConfig = ENC_CONFIG[enc.type] ?? null
-      const newEnemy = regenerateEnemy({
+      const newEnemy = await regenerateEnemy({
         source: enemy.source,
         partyLevel: level,
         hpMin,
@@ -1074,6 +1112,7 @@ export default {
         typeConfig,
         difficulty: enc.difficulty,
         partyProfile: this.partyProfile,
+        useRealEnemies: this.useRealEnemies,
       })
       newEnemy.id = enemy.id // keep same id so the list doesn't re-order
       this.$store.commit('UPDATE_ENCOUNTER_ENEMY', {
@@ -1082,7 +1121,7 @@ export default {
       })
     },
 
-    overrideSource(enemy, newSource) {
+    async overrideSource(enemy, newSource) {
       this.showOverride = null
       const enc = this.encounter
       if (!enc) return
@@ -1098,7 +1137,7 @@ export default {
       const hpMin = Math.max(1, minHP + p.hpMinOffset)
       const hpMax = Math.max(hpMin + 5, maxHP + p.hpMaxOffset)
       const typeConfig = ENC_CONFIG[enc.type] ?? null
-      const newEnemy = regenerateEnemy({
+      const newEnemy = await regenerateEnemy({
         source: newSource,
         partyLevel: level,
         hpMin,
@@ -1107,6 +1146,7 @@ export default {
         typeConfig,
         difficulty: enc.difficulty,
         partyProfile: this.partyProfile,
+        useRealEnemies: this.useRealEnemies,
       })
       newEnemy.id = enemy.id
       this.$store.commit('UPDATE_ENCOUNTER_ENEMY', {
@@ -1303,6 +1343,13 @@ export default {
 }
 .opt-label.nudge {
   margin-top: 0.4rem;
+}
+.opt-label--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.opt-label--disabled input {
+  cursor: not-allowed;
 }
 
 .num-input {

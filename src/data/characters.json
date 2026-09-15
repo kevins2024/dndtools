@@ -19,20 +19,14 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
@@ -149,7 +143,9 @@
         "source": "Ability Score Improvement",
         "level_gained": 8
       }
-    ]
+    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Rhuna",
@@ -170,20 +166,14 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "barbarian",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -257,7 +247,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"]
   },
   {
     "name": "Denna",
@@ -278,10 +270,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -290,11 +279,7 @@
       "Deception",
       "Investigation"
     ],
-    "languages": [
-      "Common",
-      "Thieves Cant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Thieves Cant", "Dwarvish"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -327,10 +312,7 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Invisibility",
-          "Inflict Wounds"
-        ]
+        "spells_granted": ["Invisibility", "Inflict Wounds"]
       }
     ],
     "spells": [
@@ -379,7 +361,15 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "simple",
+      "hand crossbow",
+      "longsword",
+      "rapier",
+      "shortsword"
+    ],
+    "armor_proficiencies": ["light"]
   },
   {
     "name": "Lenn",
@@ -400,21 +390,9 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -927,7 +905,15 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light crossbow"
+    ],
+    "armor_proficiencies": []
   },
   {
     "name": "Kessara",
@@ -949,10 +935,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -960,11 +943,7 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -1464,7 +1443,16 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light crossbow",
+      "rapier"
+    ],
+    "armor_proficiencies": ["light"]
   },
   {
     "name": "Petra",
@@ -1485,21 +1473,9 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Medicine",
-      "Insight",
-      "Religion",
-      "History"
-    ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Solvalean"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
+    "languages": ["Common", "Celestial", "Solvalean"],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1735,7 +1711,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple"],
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"]
   },
   {
     "name": "Pirra",
@@ -1756,10 +1734,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1768,10 +1743,7 @@
       "Deception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Sneak Attack (5d6)",
@@ -1829,12 +1801,7 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "SleightOfHand",
-      "Insight",
-      "Perception"
-    ],
+    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
     "classes": [
       {
         "name": "Rogue",
@@ -1843,7 +1810,15 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "simple",
+      "hand crossbow",
+      "longsword",
+      "rapier",
+      "shortsword"
+    ],
+    "armor_proficiencies": ["light"]
   },
   {
     "name": "Lexica (Old)",
@@ -1884,10 +1859,7 @@
     "hp_max": 55,
     "hp_current": 55,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Perception",
       "Persuasion",
@@ -1900,11 +1872,7 @@
       "Nature",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -2089,10 +2057,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Perception",
-      "Persuasion"
-    ],
+    "skill_expertise": ["Perception", "Persuasion"],
     "classes": [
       {
         "name": "Bard",
@@ -2122,21 +2087,9 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
@@ -2624,7 +2577,15 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light crossbow"
+    ],
+    "armor_proficiencies": []
   },
   {
     "name": "Corwin",
@@ -2645,20 +2606,14 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Extra Attack",
@@ -2720,7 +2675,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Chuknora",
@@ -2743,12 +2700,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": [
-      "str",
-      "con",
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["str", "con", "wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -2757,12 +2709,7 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Celestial",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -2940,7 +2887,9 @@
     ],
     "id": "characters_11",
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Enauweyn",
@@ -2961,10 +2910,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -2972,11 +2918,7 @@
       "Religion",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Elvish", "Sylvan"],
     "features": [
       {
         "name": "Divine Sense",
@@ -3163,7 +3105,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Tackett",
@@ -3182,22 +3126,9 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Nature",
-      "Perception",
-      "Survival",
-      "Medicine"
-    ],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -3451,7 +3382,20 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "club",
+      "dagger",
+      "dart",
+      "javelin",
+      "mace",
+      "quarterstaff",
+      "scimitar",
+      "sickle",
+      "sling",
+      "spear"
+    ],
+    "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"]
   },
   {
     "name": "Revven",
@@ -3471,10 +3415,7 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3483,11 +3424,7 @@
       "Perception",
       "Performance"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
@@ -3757,7 +3694,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"]
   },
   {
     "name": "Elucyne",
@@ -3778,10 +3717,9 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
+    "saving_throws": ["dex", "str"],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -3791,11 +3729,7 @@
       "Survival",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Infernal",
-      "Abyssal"
-    ],
+    "languages": ["Common", "Infernal", "Abyssal"],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -3918,10 +3852,7 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "skill_expertise": ["Stealth", "Performance"],
     "classes": [
       {
         "name": "Ranger",
@@ -3961,10 +3892,7 @@
     "hp_max": 56,
     "hp_current": 56,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Performance",
       "Insight",
@@ -3974,11 +3902,7 @@
       "Medicine",
       "Acrobatics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Solvalean"
-    ],
+    "languages": ["Common", "Elvish", "Solvalean"],
     "features": [
       {
         "name": "Bardic Inspiration (d8)",
@@ -4166,10 +4090,7 @@
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Performance",
-      "Insight"
-    ],
+    "skill_expertise": ["Performance", "Insight"],
     "classes": [
       {
         "name": "Bard",
@@ -4198,20 +4119,9 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Persuasion",
-      "Insight",
-      "Religion"
-    ],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
+    "languages": ["Common", "Gnomish"],
     "features": [
       {
         "name": "Divine Sense",
@@ -4380,7 +4290,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Eldi",
@@ -4401,10 +4313,7 @@
     "hp_max": 78,
     "hp_current": 78,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4414,11 +4323,7 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Fighting Style: Two-Weapon Fighting",
@@ -4537,10 +4442,7 @@
     "id": "characters_18",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": [
-      "Stealth",
-      "Acrobatics"
-    ],
+    "skill_expertise": ["Stealth", "Acrobatics"],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -4558,7 +4460,9 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Rith",
@@ -4579,10 +4483,7 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
+    "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4592,11 +4493,7 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Divine Magic",
@@ -4818,7 +4715,15 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light crossbow"
+    ],
+    "armor_proficiencies": []
   },
   {
     "id": "characters_20",
@@ -4842,22 +4747,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Religion"
-    ],
+    "saving_throws": ["con", "cha"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Arcanis"
-    ],
+    "languages": ["Common", "Celestial", "Arcanis"],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -5147,7 +5040,15 @@
       }
     ],
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light crossbow"
+    ],
+    "armor_proficiencies": []
   },
   {
     "id": "characters_21",
@@ -5178,10 +5079,7 @@
     "hit_die": "d8",
     "hit_dice_current": 1,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Insight",
       "Stealth",
@@ -5190,14 +5088,8 @@
       "History",
       "Persuasion"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "skill_expertise": ["Stealth", "Perception"],
+    "languages": ["Common", "Dwarvish"],
     "features": [
       {
         "name": "Soulknife — Psychic Blades",
@@ -5278,11 +5170,7 @@
     "hp_max": 75,
     "hp_current": 75,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["con", "int", "wis"],
     "skill_proficiencies": [
       "Animal Handling",
       "Athletics",
@@ -5291,10 +5179,7 @@
       "Survival"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish"
-    ],
+    "languages": ["Common", "Elvish"],
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -5499,7 +5384,20 @@
     "exhaustion_level": 0,
     "id": "characters_22",
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "club",
+      "dagger",
+      "dart",
+      "javelin",
+      "mace",
+      "quarterstaff",
+      "scimitar",
+      "sickle",
+      "sling",
+      "spear"
+    ],
+    "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"]
   },
   {
     "id": "characters_23",
@@ -5547,10 +5445,7 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -5561,16 +5456,8 @@
       "Insight",
       "Perception"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Athletics",
-      "Perception",
-      "Deception"
-    ],
-    "languages": [
-      "Common",
-      "Goblin"
-    ],
+    "skill_expertise": ["Stealth", "Athletics", "Perception", "Deception"],
+    "languages": ["Common", "Goblin"],
     "features": [
       {
         "name": "Expertise",
@@ -5655,7 +5542,17 @@
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
     "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "weapon_proficiencies": [
+      "simple",
+      "hand crossbow",
+      "longsword",
+      "rapier",
+      "shortsword",
+      "longbow",
+      "shortbow"
+    ],
+    "armor_proficiencies": ["light"]
   },
   {
     "id": "characters_24",
@@ -5699,23 +5596,10 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": [
-      "con",
-      "int"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Perception"
-    ],
+    "saving_throws": ["con", "int"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Perception"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish", "Draconic"],
     "persona_notes": [
       "Finds people who ask good questions more valuable than people who have good answers.",
       "Thinks better out loud. Explaining solves problems that existing didn't.",
@@ -5912,14 +5796,8 @@
     ],
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
-    "weapon_proficiencies": [
-      "simple"
-    ],
+    "armor_proficiencies": ["light", "medium", "shields"],
+    "weapon_proficiencies": ["simple"],
     "spell_slots": {
       "level_1": {
         "max": 4,
@@ -6014,10 +5892,7 @@
     "spellcasting_ability": null,
     "hp_max": 93,
     "hp_current": 93,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -6025,22 +5900,11 @@
       "Perception"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Yetgresian Common",
-      "Catrinese"
-    ],
+    "languages": ["Yetgresian Common", "Catrinese"],
     "speed": 30,
     "darkvision": 0,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "tool_proficiencies": [],
     "resistances": [],
     "features": [
@@ -6194,10 +6058,7 @@
     "spellcasting_ability": null,
     "hp_max": 70,
     "hp_current": 70,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Deception",
       "Persuasion",
@@ -6205,22 +6066,11 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "speed": 30,
     "darkvision": 60,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "tool_proficiencies": [],
     "resistances": [],
     "saving_throw_advantages": [],
@@ -6411,7 +6261,8 @@
       {
         "name": "Fighter",
         "level": 4,
-        "subclass": "Champion"
+        "subclass": "Champion",
+        "started": true
       },
       {
         "name": "Warlock",
@@ -6443,15 +6294,15 @@
   },
   {
     "id": "characters_27",
-    "name": "Torrin (Claude)",
-    "full_name": "Torrin Gallowglass (Claude's optimized build, for comparison)",
+    "name": "Torrin",
+    "full_name": "Torrin Gallowglass",
     "race": "Dwarf",
     "subrace": "Hill Dwarf",
     "background": "Criminal",
     "level": 9,
-    "appearance": "Same Dwarf, hypothetical alternate build — a from-scratch level 1-9 Soulknife optimized for comparison against the project owner's own build. Not a real roster character; not meant to replace Torrin (Old) or the eventual real rebuild.",
+    "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",
     "image": "./characters/torrin.jpg",
-    "notes": "Built 2026-09-11 as an optimization comparison exercise, per project owner's request: 'Make Torrin (Claude) into a level 9 Soulknife as optimized as he can be and let's see how it compares to what I would build.' Same species (Dwarf) as the real Torrin, Hill Dwarf picked as the objectively better subrace for a DEX-primary Soulknife (Dwarven Toughness's +1 HP/level beats Mountain Dwarf's dump-stat STR and armor training this build doesn't want). Ability bonus placement uses this campaign's usual flexible reassignment (see Kerra/other recent builds) rather than Hill Dwarf's fixed +2 CON/+1 WIS. Full reasoning in the chat writeup, not duplicated here.",
+    "notes": "Rebuilt 2026-09-12 as a real level 9 Rogue (Soulknife), replacing the old homebrew dual-subclass (Soulknife/Mastermind) 'legendary, level 12, occasional' build -- project owner confirmed this build is good to keep live and put him in an active party, so the old 'legendary/retired/occasional' framing no longer applies.",
     "spellcasting_ability": null,
     "stat_str": 8,
     "stat_dex": 20,
@@ -6467,16 +6318,9 @@
     "proficiency_bonus": 4,
     "speed": 25,
     "darkvision": 60,
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
-    "saving_throw_advantages": [
-      "poison"
-    ],
-    "resistances": [
-      "poison"
-    ],
+    "saving_throws": ["dex", "int"],
+    "saving_throw_advantages": ["poison"],
+    "resistances": ["poison"],
     "skill_proficiencies": [
       "Deception",
       "Stealth",
@@ -6485,16 +6329,8 @@
       "Insight",
       "Sleight of Hand"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Perception",
-      "Deception",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "skill_expertise": ["Stealth", "Perception", "Deception", "Insight"],
+    "languages": ["Common", "Dwarvish"],
     "weapon_proficiencies": [
       "simple",
       "hand crossbow",
@@ -6506,13 +6342,8 @@
       "light hammer",
       "warhammer"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
-    "tool_proficiencies": [
-      "Thieves' Tools",
-      "Smith's Tools"
-    ],
+    "armor_proficiencies": ["light"],
+    "tool_proficiencies": ["Thieves' Tools", "Smith's Tools"],
     "species_bonus_applied": false,
     "species_traits": [
       {
@@ -6670,6 +6501,10 @@
         "level": 9,
         "subclass": "Soulknife"
       }
-    ]
+    ],
+    "active_weapon_set": 1,
+    "location": "Khemrise",
+    "alignment": "Chaotic Neutral",
+    "persona_notes": ["Applies 156 years of tactical memory to leatherworking."]
   }
 ]
