@@ -5,7 +5,28 @@ worth coming back to. Add freely; check off or delete when done or no longer wan
 
 See `TODO_ARCHIVE.md` for completed items (kept for the record, out of this file so it stays short to read).
 
-- [ ] **Full class/subclass feature audit: verify every choice-bearing feature actually has a real UI picker, not just a generic feature-catalog name — found 2026-09-17.** This is now a confirmed _pattern_, not a one-off: Fighting Style (fixed 2026-09-09), Favored Enemy + Natural Explorer (fixed 2026-09-16), and Expertise (fixed 2026-09-17) were ALL the same root bug independently — a class's `features_by_level` entry resolves to a generic catalog name ("Fighting Style", "Expertise", etc.) with zero mechanism ever turning it into a real `pendingChoice`, so the New Character/Level Up tools just list a bare, unpickable feature name forever. Three found by accident (a project owner report each time) strongly suggests more are still lurking uncaught. Needs a systematic pass: walk every class's `features_by_level` in `engine/data/classes/*.json`, cross-reference `engine/data/feature-catalog.json` for anything whose real PHB/XGE/TCE text says "choose..."/"pick..."/"select..." (Bard's Magical Secrets already has a picker per the diffLevelUp dedup comments — worth confirming it's real and not just planned; Sorcerer's Metamagic; Warlock's Eldritch Invocations already has one; Wizard's Arcane Tradition-specific saves like Abjuration's Projected Ward; Druid's Wild Shape form choices; any subclass-specific "choose N of these M options" feature), and confirm each one either has a working `*Choice` pendingChoice + UI picker in both `NewCharacterTool.vue` and `LevelUpTool.vue`, or gets one. Not started — this is the audit itself, not a fix for a specific feature.
+- [ ] **Full class/subclass feature audit — discovery pass done 2026-09-16, real fixes not started.** Confirmed pattern: Fighting Style (fixed 2026-09-09), Favored Enemy + Natural Explorer (fixed 2026-09-16), and Expertise (fixed 2026-09-17) were all the same root bug — a `features_by_level` entry resolves to a generic catalog name with zero mechanism turning it into a real `pendingChoice`, so New Character/Level Up just list a bare, unpickable feature forever. Ran a systematic scan of every base class (`engine/data/classes/*.json`) and every subclass (`engine/data/subclasses/*.json`) against `diffLevelUp.js`'s actual `pendingChoices.push({type: ...})` call sites (the only reliable ground truth — currently: `asiOrFeat`, `fightingStyleChoice`, `expertiseChoice`, `favoredEnemyChoice`, `naturalExplorerChoice`, `invocationChoice`, `pactBoonChoice`, `bonusSpellChoice`, `subclassChoice`, `multiclassSkillChoice` — anything else is unwired by definition).
+
+  **Confirmed real gaps, base classes** (verified against each feature's actual stored description text, not just guessed from a keyword match):
+
+  - **Sorcerer's Metamagic** (L3: pick 2 options; L10/L17: +1 each) — zero wiring anywhere (`grep -n metamagic engine/rules/diffLevelUp.js` returns nothing). High value — Metamagic is Sorcerer's core identity and every Sorcerer hits L3.
+  - **Bard's Magical Secrets** (L10/14/18: pick 2 spells from ANY class's list) — also zero wiring, despite this file previously assuming CLAUDE.md's dedup-comment mention meant a picker existed; that comment is about level-keyed dedup only, not a real choice mechanism. High value — directly relevant to Lexica/Sorra's already-documented spell-cap history above.
+  - **Warlock's Mystic Arcanum** (L11/13/15/17: pick 1 specific spell per tier, always-castable once/long rest) — zero wiring. Medium value, only matters at high Warlock levels.
+  - **Wizard's Spell Mastery** (L18: pick a specific 1st- and 2nd-level spell) and **Signature Spells** (L20: pick two specific 3rd-level spells) — zero wiring. Low value in practice (rarely reached) but real.
+
+  **Confirmed real gaps, subclasses** (spot-checked, not exhaustive — see methodology note below):
+
+  - **Fighter Battle Master's Combat Superiority** (L3: learn 3 maneuvers from the real ~16-option list; +2 more at L7/L10/L15, can also swap a known one each time you learn new ones) — zero wiring. This is a **major miss**: Battle Master is one of the most commonly played Fighter subclasses and maneuvers are its whole mechanical identity, yet it never surfaced in the initial "choose/pick/select" keyword scan because its stored description doesn't use those words ("You learn maneuvers... you can also replace one you know with a different one") — see the methodology note below, this is exactly the kind of miss a keyword-only scan produces.
+  - **Fighter Champion's Additional Fighting Style** (L10) — same underlying mechanism as base Fighting Style but a second, separate grant; needs the same per-class/per-level dedup treatment already built for the base feature, not yet confirmed to actually fire correctly for Champions specifically.
+  - **Rogue Mastermind's Master of Intrigue** (L3: extra languages of your choice + accent mimicry) — a real one-time pick, unwired.
+  - **Sorcerer Divine Soul's Divine Magic** (L1: pick a Cleric-domain affinity — Life/Light/Nature/Storm/Tempest/Trickery/War — that determines a bonus spell) and **Draconic Bloodline's Dragon Ancestor** (L1: pick a dragon type, same shape as Dragonborn's own Draconic Ancestry) — both unwired. Rith (Divine Soul) already has this resolved correctly in his own data per the earlier spell audit, but that was a manual fix, not something the level-up tool can currently reproduce for the next Divine Soul/Draconic Bloodline sorcerer built.
+  - **Wizard Bladesinger's Training in War and Song** (L2: pick one one-handed weapon type for the Bladesong proficiency) — unwired; Kessara's rapier pick was set by hand, same caveat as above.
+  - **Bard College of Lore's Additional Magical Secrets** (L6: same shape as base Magical Secrets, doesn't count against known-spell total) — unwired, shares a fix with the base Magical Secrets item above.
+  - **Ranger Gloom Stalker's Iron Mind** (L7: Wisdom save proficiency, or Int/Cha instead if already Wisdom-proficient) — a narrow conditional choice, only matters for a Ranger multiclassed with something that already grants Wis saves.
+
+  **Methodology note, important for whoever continues this**: the discovery pass used a regex over each feature's stored description text (`choose|pick one|pick two|of your choice|select one|select two`) across `src/data/api_data_cache/features.json` + `src/data/published_features.json`, filtered against `diffLevelUp.js`'s real pendingChoice types. This produced ~15 confirmed hits above but also **~70 further "REVIEW" hits across nearly every subclass that were NOT individually verified** (most are very likely false positives — in-play tactical choices like "deal damage of a type of your choice" or "you can choose to end it early," not build-time picks) — AND it has a proven false-negative problem: Combat Superiority (above) was missed entirely because its real text doesn't contain any of those keywords. A trustworthy full audit needs either a much smarter heuristic or a manual read of every subclass's actual feature text against `dnd5e.wikidot.com`/a second source per this project's usual RAW-verification standard (CLAUDE.md) — not another keyword pass. The raw REVIEW list from this scan wasn't preserved verbatim in this file (it's reproducible by re-running the same scan), to keep this entry from becoming unreadable.
+
+  Not started: implementing any of the confirmed fixes above. Recommended order matches value: Metamagic and Combat Superiority first (highest player impact), then Magical Secrets (both base and College of Lore's early version, same fix), then the rest as time allows.
 
 - [ ] **`fighting-styles.json` only has the 6 core PHB styles — missing Tasha's Cauldron of Everything's 5 additions, found 2026-09-16.** Current catalog (Fighter 6/Paladin 4/Ranger 4, all core PHB) doesn't include Blind Fighting, Interception, Superior Technique, Thrown Weapon Fighting, or Unarmed Fighting. Per a web check, Blind Fighting is available to all three classes but the other four aren't necessarily universal — exact per-class availability needs verifying against `dnd5e.wikidot.com` (per this project's usual RAW-verification standard) before adding, not assumed from a blended search summary. Also needs a project owner call on whether TCE content is actually in bounds for this campaign at all (this table runs 2014 rules generally, but TCE is a 2014-ruleset splatbook, not the 2024 revision — still a real "is this book allowed" question, not an automatic yes). Not started.
 
@@ -27,17 +48,17 @@ weapon_types_and_languages.json`'s `languages` array (the same file
       feeding both the species and background language pickers (they
       share the same `languagesList`). `npm run build` clean.
 
-                  **Real finding worth flagging**: that file currently holds exactly
-                  **one** homebrew language — Solvalean ("official language of the
-                  Solvale Empire"). Checked `world.json` and `lore/` for any other
-                  named language mentioned anywhere in the setting and found none. If
-                  there are more homebrew languages that exist only in the project
-                  owner's head (or in chats not yet mined into this repo — see the
-                  standing "[USER ACTION] Mine other chats for lore" item), they need
-                  to actually be added to `weapon_types_and_languages.json`'s
-                  `languages` array before they can show up here — the plumbing is
-                  ready, the content isn't. Same shape as an existing entry: `{name,
-                  type, description, speakers}`.
+                      **Real finding worth flagging**: that file currently holds exactly
+                      **one** homebrew language — Solvalean ("official language of the
+                      Solvale Empire"). Checked `world.json` and `lore/` for any other
+                      named language mentioned anywhere in the setting and found none. If
+                      there are more homebrew languages that exist only in the project
+                      owner's head (or in chats not yet mined into this repo — see the
+                      standing "[USER ACTION] Mine other chats for lore" item), they need
+                      to actually be added to `weapon_types_and_languages.json`'s
+                      `languages` array before they can show up here — the plumbing is
+                      ready, the content isn't. Same shape as an existing entry: `{name,
+                      type, description, speakers}`.
 
 - [x] **Weapon proficiency indicator — 2026-09-11, project owner's high-
       priority request ("I have no idea if Elucyne can use a longbow
@@ -50,39 +71,39 @@ weapon_types_and_languages.json`'s `languages` array (the same file
       shows on equipped/carried/pool weapon rows in `CharacterInventory.
 vue` when the character's `weapon_proficiencies` doesn't cover it.
 
-                              **Real finding while building this, bigger than Elucyne alone: 23 of
-                              27 roster characters have no `weapon_proficiencies` field at all** —
-                              only Kerra, Jaygar, and this session's 2 new builds have it. Showing
-                              "not proficient" for a missing field would've been noise, not signal
-                              (every weapon on 23 characters would falsely warn), so the badge
-                              distinguishes a confirmed violation from "Proficiency?" (dashed,
-                              neutral) when the field is simply absent. **Fixed Elucyne specifically**
-                              (the project owner's own example) — Ranger is her `started` class, so
-                              her real proficiencies are the full `["simple", "martial"]`, added
-                              along with her also-missing `armor_proficiencies` (`light, medium,
-                              shields`). Confirms she legitimately can use a longbow.
-                              **Backfilled 2026-09-12** for the 19 active-roster characters that had
-                              it (skipped the 3 archived `(Old)` characters slated for rebuild —
-                              Lexica, Sorra, Torrin — not worth the effort on records about to be
-                              replaced). Used `engine/data/classes/*.json`'s real per-class
-                              proficiency lists (already engine-verified) as the source, plus
-                              `engine/data/multiclass-proficiencies.json`'s reduced grant table for
-                              the 2 actual multiclass characters (Chuknora: started Paladin +
-                              multiclass Barbarian; Eldi: started Fighter + multiclass Rogue — in
-                              both cases the multiclass addition turned out to add nothing beyond
-                              what the starting class already covered). Also accounted for 2 real
-                              subclass-granted bonus proficiencies found via each subclass's own
-                              recorded feature text rather than guessed from memory (Cleric Tempest
-                              Domain: martial weapons + heavy armor; Wizard Bladesinger: light
-                              armor + one chosen one-handed weapon — Kessara's is a rapier, matching
-                              her actual equipped weapon) and 1 item-granted proficiency (Siv's
-                              equipped, attuned Bracers of Archery: longbow + shortbow). Also found
-                              and fixed a small related gap while validating: Kerra's Fighter class
-                              was missing its `started: true` flag (present since her rebuild, just
-                              never set) — `engine.validateCharacter` was correctly flagging it.
-                              `engine.validateCharacter` clean across the whole roster except
-                              Sorra (Old)'s already-documented, unrelated spell-cap overage.
-                              `node --test` 260/260, `npm run build` clean.
+                                  **Real finding while building this, bigger than Elucyne alone: 23 of
+                                  27 roster characters have no `weapon_proficiencies` field at all** —
+                                  only Kerra, Jaygar, and this session's 2 new builds have it. Showing
+                                  "not proficient" for a missing field would've been noise, not signal
+                                  (every weapon on 23 characters would falsely warn), so the badge
+                                  distinguishes a confirmed violation from "Proficiency?" (dashed,
+                                  neutral) when the field is simply absent. **Fixed Elucyne specifically**
+                                  (the project owner's own example) — Ranger is her `started` class, so
+                                  her real proficiencies are the full `["simple", "martial"]`, added
+                                  along with her also-missing `armor_proficiencies` (`light, medium,
+                                  shields`). Confirms she legitimately can use a longbow.
+                                  **Backfilled 2026-09-12** for the 19 active-roster characters that had
+                                  it (skipped the 3 archived `(Old)` characters slated for rebuild —
+                                  Lexica, Sorra, Torrin — not worth the effort on records about to be
+                                  replaced). Used `engine/data/classes/*.json`'s real per-class
+                                  proficiency lists (already engine-verified) as the source, plus
+                                  `engine/data/multiclass-proficiencies.json`'s reduced grant table for
+                                  the 2 actual multiclass characters (Chuknora: started Paladin +
+                                  multiclass Barbarian; Eldi: started Fighter + multiclass Rogue — in
+                                  both cases the multiclass addition turned out to add nothing beyond
+                                  what the starting class already covered). Also accounted for 2 real
+                                  subclass-granted bonus proficiencies found via each subclass's own
+                                  recorded feature text rather than guessed from memory (Cleric Tempest
+                                  Domain: martial weapons + heavy armor; Wizard Bladesinger: light
+                                  armor + one chosen one-handed weapon — Kessara's is a rapier, matching
+                                  her actual equipped weapon) and 1 item-granted proficiency (Siv's
+                                  equipped, attuned Bracers of Archery: longbow + shortbow). Also found
+                                  and fixed a small related gap while validating: Kerra's Fighter class
+                                  was missing its `started: true` flag (present since her rebuild, just
+                                  never set) — `engine.validateCharacter` was correctly flagging it.
+                                  `engine.validateCharacter` clean across the whole roster except
+                                  Sorra (Old)'s already-documented, unrelated spell-cap overage.
+                                  `node --test` 260/260, `npm run build` clean.
 
 - [ ] **Character sheet weapon-set toggle UI — 2026-09-11 request.** Project
       owner's spec: Set 1 on the left, Set 2 on the right, the _active_ set
@@ -617,16 +638,16 @@ build` clean. Same class of bug as the Artificer spell-list gap found
     the Artificer list — project owner is choosing these via the Spell
     Browser and will report back.
 
-                                                                                                                                    Also surfaced a **data gap worth fixing separately, not urgent**:
-                                                                                                                                    the local Artificer spell-list tagging (the `classes` field on SRD/
-                                                                                                                                    published spell entries) is badly incomplete — only 29 spells total
-                                                                                                                                    carry an `Artificer` class tag across every level, versus the real
-                                                                                                                                    Tasha's list's 60+ entries through 5th level (confirmed against
-                                                                                                                                    `dnd5e.wikidot.com/spells:artificer`). This means the Spell
-                                                                                                                                    Browser's "Class: Artificer" filter under-reports for now — anyone
-                                                                                                                                    filtering by Artificer there should know the shortlist is a cache
-                                                                                                                                    gap, not the real set of legal options. Not fixed this session;
-                                                                                                                                    would mean re-tagging dozens of existing SRD entries.
+                                                                                                                                            Also surfaced a **data gap worth fixing separately, not urgent**:
+                                                                                                                                            the local Artificer spell-list tagging (the `classes` field on SRD/
+                                                                                                                                            published spell entries) is badly incomplete — only 29 spells total
+                                                                                                                                            carry an `Artificer` class tag across every level, versus the real
+                                                                                                                                            Tasha's list's 60+ entries through 5th level (confirmed against
+                                                                                                                                            `dnd5e.wikidot.com/spells:artificer`). This means the Spell
+                                                                                                                                            Browser's "Class: Artificer" filter under-reports for now — anyone
+                                                                                                                                            filtering by Artificer there should know the shortlist is a cache
+                                                                                                                                            gap, not the real set of legal options. Not fixed this session;
+                                                                                                                                            would mean re-tagging dozens of existing SRD entries.
 
   - **Tackett (Druid, Circle of Stars) — DONE.** Project owner's call: he's
     a "legendary" character, RAW-accuracy isn't the goal, just a clean
