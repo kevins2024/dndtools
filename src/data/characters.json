@@ -432,6 +432,27 @@
         "description": "A yellow mark on the spine connects this spellbook permanently to Lyria's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       }
     ],
+    "spellbook_id": "sb_1",
+    "prepared_spells": [
+      "Fire Bolt",
+      "Mage Hand",
+      "Message",
+      "Mind Sliver",
+      "Identify",
+      "Shield",
+      "Silvery Barbs",
+      "Hold Person",
+      "Misty Step",
+      "Web",
+      "Counterspell",
+      "Fireball",
+      "Fly",
+      "Hypnotic Pattern",
+      "Protection from Energy",
+      "Sickening Radiance",
+      "Stoneskin",
+      "Synaptic Static"
+    ],
     "spells": [
       {
         "name": "Blade Ward",
@@ -974,6 +995,38 @@
         "type": "feature",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Lyria's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       }
+    ],
+    "spellbook_id": "sb_1",
+    "prepared_spells": [
+      "Booming Blade",
+      "Fire Bolt",
+      "Minor Illusion",
+      "Ray of Frost",
+      "Shocking Grasp",
+      "Absorb Elements",
+      "Comprehend Languages",
+      "Feather Fall",
+      "Find Familiar",
+      "Mage Armor",
+      "Shield",
+      "Silvery Barbs",
+      "Blur",
+      "Intellect Fortress",
+      "Mirror Image",
+      "Misty Step",
+      "See Invisibility",
+      "Shadow Blade",
+      "Counterspell",
+      "Haste",
+      "Hypnotic Pattern",
+      "Pulse Wave",
+      "Vampiric Touch",
+      "Dimension Door",
+      "Greater Invisibility",
+      "Stone Shape",
+      "Cone of Cold",
+      "Summon Draconic Spirit",
+      "Synaptic Static"
     ],
     "spells": [
       {
@@ -1719,6 +1772,7 @@
     "name": "Pirra",
     "full_name": "Pirra",
     "race": "Halfling",
+    "subrace": "Lightfoot Halfling",
     "level": 9,
     "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood - the resemblance is purely in the intelligence and awareness.",
     "image": "./characters/pirra.jpg",
@@ -1799,6 +1853,7 @@
     ],
     "id": "characters_6",
     "darkvision": 0,
+    "speed": 25,
     "hit_die": "d8",
     "hit_dice_current": 9,
     "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
@@ -1818,7 +1873,35 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": ["light"]
+    "armor_proficiencies": ["light"],
+    "species_traits": [
+      {
+        "name": "Lucky",
+        "description": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Brave",
+        "description": "Advantage on saving throws against being frightened.",
+        "grants_saving_throw_advantage": "being_frightened",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Halfling Nimbleness",
+        "description": "Can move through the space of any creature that is of a size larger than yours.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Naturally Stealthy",
+        "description": "Can attempt to hide even when obscured only by a creature at least one size larger than you.",
+        "type": "speciesTrait",
+        "source": "subrace"
+      }
+    ],
+    "saving_throw_advantages": ["being_frightened"]
   },
   {
     "name": "Lexica (Old)",
@@ -2112,6 +2195,28 @@
         "type": "feature",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       }
+    ],
+    "spellbook_id": "sb_1",
+    "prepared_spells": [
+      "Blade Ward",
+      "Mage Hand",
+      "Mind Sliver",
+      "Minor Illusion",
+      "Identify",
+      "Mage Armor",
+      "Silvery Barbs",
+      "Blur",
+      "Misty Step",
+      "Counterspell",
+      "Magic Circle",
+      "Slow",
+      "Undead Ward",
+      "Banishment",
+      "Otiluke's Resilient Sphere",
+      "Phantasmal Killer",
+      "Wall of Force",
+      "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+      "Telekinesis"
     ],
     "spells": [
       {
@@ -3113,6 +3218,7 @@
     "name": "Tackett",
     "full_name": "Tackett",
     "race": "Halfling",
+    "subrace": "Lightfoot Halfling",
     "level": 9,
     "image": "./characters/tackett.jpg",
     "appearance": "Male halfling.",
@@ -3120,7 +3226,7 @@
     "stat_dex": 14,
     "stat_con": 16,
     "stat_int": 12,
-    "stat_wis": 22,
+    "stat_wis": 20,
     "stat_cha": 12,
     "hp_max": 80,
     "hp_current": 80,
@@ -3189,19 +3295,6 @@
       },
       {
         "name": "Primal Companion",
-        "type": "feature"
-      },
-      {
-        "name": "Lucky (Halfling)",
-        "id": "pub_lucky-halfling",
-        "type": "feature"
-      },
-      {
-        "name": "Brave",
-        "type": "feature"
-      },
-      {
-        "name": "Naturally Stealthy",
         "type": "feature"
       },
       {
@@ -3371,6 +3464,7 @@
     ],
     "id": "characters_13",
     "darkvision": 0,
+    "speed": 25,
     "hit_die": "d8",
     "hit_dice_current": 9,
     "skill_expertise": [],
@@ -3395,7 +3489,35 @@
       "sling",
       "spear"
     ],
-    "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"]
+    "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"],
+    "species_traits": [
+      {
+        "name": "Lucky",
+        "description": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Brave",
+        "description": "Advantage on saving throws against being frightened.",
+        "grants_saving_throw_advantage": "being_frightened",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Halfling Nimbleness",
+        "description": "Can move through the space of any creature that is of a size larger than yours.",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Naturally Stealthy",
+        "description": "Can attempt to hide even when obscured only by a creature at least one size larger than you.",
+        "type": "speciesTrait",
+        "source": "subrace"
+      }
+    ],
+    "saving_throw_advantages": ["being_frightened"]
   },
   {
     "name": "Revven",
