@@ -7,5 +7,13 @@
     "7": ["pub_writhing-tide"],
     "11": ["pub_mighty-swarm"],
     "15": ["pub_swarming-dispersal"]
+  },
+  "bonus_spells_by_level": {
+    "3": ["Faerie Fire"],
+    "5": ["Web"],
+    "9": ["Gaseous Form"],
+    "13": ["Arcane Eye"],
+    "17": ["Insect Plague"],
+    "_notes": "Real Tasha's Cauldron of Everything Swarmkeeper Magic tiers, from the feature's own stored description text (pub_swarmkeeper-magic). Found and wired 2026-09-17, same pass as Gloom Stalker's identical gap — see TODO.md. Doesn't include the same feature's separate, non-tiered Mage Hand cantrip grant (known from 3rd level on, no per-level table needed) — out of scope for this fix."
   }
 }

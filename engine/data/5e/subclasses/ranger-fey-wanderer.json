@@ -11,5 +11,13 @@
     "7": ["pub_beguiling-twist"],
     "11": ["pub_fey-reinforcements"],
     "15": ["pub_misty-wanderer"]
+  },
+  "bonus_spells_by_level": {
+    "3": ["Charm Person"],
+    "5": ["Misty Step"],
+    "9": ["Dispel Magic"],
+    "13": ["Dimension Door"],
+    "17": ["Mislead"],
+    "_notes": "Real Tasha's Cauldron of Everything Fey Wanderer Magic tiers, from the feature's own stored description text (pub_fey-wanderer-magic) and cross-checked against a live web search confirming the real source book and the '5 thematic spells' shape. Found and wired 2026-09-17, same pass as Gloom Stalker's identical gap — see TODO.md."
   }
 }

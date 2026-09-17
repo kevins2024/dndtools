@@ -123,6 +123,23 @@ const BONUS_SPELL_FIELDS = [
     classOnly: 'sorcerer',
     deriveLevel: false,
   },
+  // bonus_spells_by_level: a shared field name across multiple subclasses/
+  // classes (Ranger's Gloom Stalker/Fey Wanderer/Swarmkeeper, Sorcerer's
+  // Shadow Magic) that never had a swap mechanic or multi-spell-per-tier
+  // shape to justify their own flavor-named field the way psionic/clockwork
+  // did — one shared name, one entry per class here (getBonusSpells already
+  // resolves the character's own specific subclass object first, so two
+  // classes sharing a field name is safe, not a collision). Found and wired
+  // 2026-09-17 — these 4 subclasses each grant fixed always-prepared spells
+  // at real levels but had no BONUS_SPELL_FIELDS entry at all, so none of
+  // them ever showed up in a spellbook or a Level Up "you just gained
+  // these" breakpoint. See TODO.md and each subclass file's own _notes.
+  { field: 'bonus_spells_by_level', classOnly: 'ranger', deriveLevel: false },
+  {
+    field: 'bonus_spells_by_level',
+    classOnly: 'sorcerer',
+    deriveLevel: false,
+  },
   // NOT included: land_spells_by_type (Circle of the Land) — keyed by land
   // TYPE, not level, so it needs the character's chosen type recorded
   // somewhere first. No character on the roster has picked this circle yet

@@ -7,5 +7,9 @@
     "6": ["pub_hound-of-ill-omen"],
     "14": ["pub_shadow-walk"],
     "18": ["pub_umbral-form"]
+  },
+  "bonus_spells_by_level": {
+    "3": ["Darkness"],
+    "_notes": "Eyes of the Dark (granted at 1st level) itself specifies the Darkness spell arrives 'when you reach 3rd level' — keyed here at 3, not 1, to match. Verified against the feature's own stored description text (pub_eyes-of-the-dark), confirmed via web search as real Xanathar's Guide to Everything content (2017), predating Tasha's Cauldron. Found and wired 2026-09-17, same pass as Gloom Stalker's identical gap — see TODO.md."
   }
 }

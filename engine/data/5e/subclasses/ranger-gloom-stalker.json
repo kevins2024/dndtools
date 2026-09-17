@@ -3,19 +3,17 @@
   "name": "Gloom Stalker",
   "description": "A ranger who specializes in ambushing enemies from darkness, striking first and fastest.",
   "features_by_level": {
-    "3": [
-      "pub_gloom-stalker-magic",
-      "pub_dread-ambusher",
-      "pub_umbral-sight"
-    ],
-    "7": [
-      "pub_iron-mind"
-    ],
-    "11": [
-      "pub_stalker-s-flurry"
-    ],
-    "15": [
-      "pub_shadowy-dodge"
-    ]
+    "3": ["pub_gloom-stalker-magic", "pub_dread-ambusher", "pub_umbral-sight"],
+    "7": ["pub_iron-mind"],
+    "11": ["pub_stalker-s-flurry"],
+    "15": ["pub_shadowy-dodge"]
+  },
+  "bonus_spells_by_level": {
+    "3": ["Disguise Self"],
+    "5": ["Rope Trick"],
+    "9": ["Fear"],
+    "13": ["Greater Invisibility"],
+    "17": ["Seeming"],
+    "_notes": "Real PHB/XGE Gloom Stalker Magic tiers — verified 2026-09-16/17 against the feature's own stored description text (pub_gloom-stalker-magic) and confirmed as the real 2014 XGE version, not a 2024/UA substitution. Found and wired 2026-09-17: this table was previously undocumented data-side and unwired code-side (see TODO.md's 'Gloom Stalker Ranger's tiered bonus spells' entry) — src/utils/spellUtils.js's BONUS_SPELL_FIELDS now reads this field the same way it already reads oath_spells_by_level/domain_spells_by_level/psionic_spells_by_level, so these 5 spells now surface correctly in the spellbook and in LevelUpTool's 'you just gained these' breakpoint display, keyed off the character's own Ranger level (not total character level — this is bound to one class/subclass, unlike species-granted tiered spells)."
   }
 }
