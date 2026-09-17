@@ -3,29 +3,230 @@
     <template v-if="weaponSummaries.length || usesWeaponSets">
       <div class="weapon-table-header">
         <div class="section-label">Weapons</div>
-        <div v-if="usesWeaponSets" class="weapon-set-toggle">
-          <button
-            class="weapon-set-btn"
-            :class="{ active: activeWeaponSet === 1 }"
-            title="Switch to loadout Set 1"
-            @click="setActiveWeaponSet(1)"
-          >
-            Set 1
-          </button>
-          <button
-            class="weapon-set-btn"
-            :class="{ active: activeWeaponSet === 2 }"
-            title="Switch to loadout Set 2"
-            @click="setActiveWeaponSet(2)"
-          >
-            Set 2
-          </button>
+      </div>
+
+      <!-- Both loadouts visible at once once sets are actually in use — the
+      active one full-size and interactive, the inactive one a condensed
+      preview you can glance at (or click to swap to) without losing sight
+      of your current loadout. Project owner's 2026-09-11 spec: 70/30 width
+      split, smooth transition on switch. -->
+      <div v-if="usesWeaponSets" class="weapon-set-split">
+        <div
+          v-for="setNum in [1, 2]"
+          :key="setNum"
+          class="weapon-set-pane"
+          :class="{ 'pane-active': activeWeaponSet === setNum }"
+          @click="activeWeaponSet !== setNum && setActiveWeaponSet(setNum)"
+        >
+          <div class="pane-header">
+            <span class="pane-title">Set {{ setNum }}</span>
+            <span v-if="activeWeaponSet !== setNum" class="pane-switch-hint"
+              >click to switch</span
+            >
+          </div>
+
+          <template v-if="activeWeaponSet === setNum">
+            <div v-if="!rowsFor(setNum).length" class="empty">
+              No weapons assigned to Set {{ setNum }}.
+            </div>
+            <table v-else class="weapon-table">
+              <thead>
+                <tr>
+                  <th class="col-inspect"></th>
+                  <th>Name</th>
+                  <th class="col-num" title="Attack bonus">Atk</th>
+                  <th class="col-num" title="Damage dice + modifier">Dmg</th>
+                  <th class="col-tag">Type</th>
+                  <th>Effects</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="row in rowsFor(setNum)"
+                  :key="row.key"
+                  :class="{ 'weapon-extra-row': row.extra }"
+                >
+                  <template v-if="!row.extra">
+                    <td class="col-inspect">
+                      <button
+                        v-if="weaponItem(row.id)"
+                        class="weapon-inspect-btn"
+                        title="View weapon details"
+                        @click.stop="inspect(weaponItem(row.id))"
+                      >
+                        <Search class="weapon-inspect-icon" />
+                      </button>
+                    </td>
+                    <td class="weapon-name">
+                      {{ row.name }}
+                      <button
+                        v-if="row.grip"
+                        class="weapon-tag-badge weapon-grip-btn"
+                        :title="
+                          row.grip === 'melee2h'
+                            ? 'Versatile — wielded two-handed, click to switch to one-handed'
+                            : 'Versatile — wielded one-handed, click to switch to two-handed'
+                        "
+                        @click.stop="toggleGrip(weaponItem(row.id))"
+                      >
+                        {{ row.grip === 'melee2h' ? '2H' : '1H' }}
+                      </button>
+                      <span
+                        v-if="row.thrown"
+                        class="weapon-tag-badge"
+                        :title="`Thrown weapon — range ${row.thrown.normal}/${row.thrown.long} ft.`"
+                        >Thrown</span
+                      >
+                      <span
+                        v-if="row.returning"
+                        class="weapon-tag-badge weapon-tag-returning"
+                        title="Returning — flies back to the wielder's hand immediately after it is thrown"
+                        >Returning</span
+                      >
+                    </td>
+                    <td class="col-num">
+                      <span class="has-tip" :title="row.atkTooltip">{{
+                        row.attack
+                      }}</span>
+                    </td>
+                    <td class="col-num">
+                      <span class="has-tip" :title="row.dmgTooltip">{{
+                        row.damage
+                      }}</span>
+                      <span
+                        v-if="row.thrownDamage"
+                        class="thrown-damage-note"
+                        :title="`Thrown attacks always use the base one-handed die, even while gripped two-handed for melee — ${row.thrownDamage} thrown vs. ${row.damage} melee.`"
+                        >({{ row.thrownDamage }} thrown)</span
+                      >
+                    </td>
+                    <td class="col-tag">{{ row.type }}</td>
+                    <td class="col-effects">
+                      <span
+                        v-for="e in weaponEffectsFor(row.id)"
+                        :key="e.name"
+                        class="feature-pill"
+                        @click.stop="inspectEffect(e)"
+                        >{{ e.name
+                        }}<span
+                          v-if="e.uses_max"
+                          class="pill-uses has-tip"
+                          :title="`${e.uses_current ?? e.uses_max} of ${
+                            e.uses_max
+                          } uses remaining · recharges ${dnd.rechargeLabel(
+                            e.recharge
+                          )}`"
+                          >{{ e.uses_current ?? e.uses_max }}/{{
+                            e.uses_max
+                          }}</span
+                        ><span v-if="e.recharge" class="pill-recharge">{{
+                          dnd.rechargeLabel(e.recharge)
+                        }}</span></span
+                      >
+                      <span
+                        v-for="g in weaponSpellsFor(row.id)"
+                        :key="g.name"
+                        class="feature-pill"
+                      >
+                        <span @click.stop="inspectSpell(g)">{{ g.name }}</span>
+                        <span v-if="g.actionType" class="pill-action">{{
+                          dnd.actionTypeBadgeLabel(g.actionType)
+                        }}</span>
+                        <span
+                          v-if="typeof g.chargeCost === 'number'"
+                          class="pill-uses has-tip"
+                          :title="`${g.chargeCost} charge(s) from ${row.name}'s pool`"
+                          >{{ g.chargeCost }}⚡</span
+                        >
+                        <template v-else-if="g.chargeCost">
+                          <input
+                            type="number"
+                            class="pill-cast-input"
+                            :min="g.chargeCost.min"
+                            :max="
+                              Math.min(
+                                g.chargeCost.max,
+                                weaponItem(row.id).charges_current ?? 0
+                              )
+                            "
+                            :value="castAmount(weaponItem(row.id), g)"
+                            title="Charges to spend (your choice, higher = cast at a higher effective level)"
+                            @click.stop
+                            @input="
+                              setCastAmount(
+                                weaponItem(row.id),
+                                g,
+                                $event.target.value
+                              )
+                            "
+                          />
+                          <span class="pill-uses">⚡</span>
+                        </template>
+                        <span
+                          v-if="g.usesMax != null"
+                          class="pill-uses has-tip"
+                          :title="`${g.usesCurrent ?? g.usesMax} of ${
+                            g.usesMax
+                          } uses remaining · recharges ${dnd.rechargeLabel(
+                            g.recharge
+                          )}`"
+                          >{{ g.usesCurrent ?? g.usesMax }}/{{
+                            g.usesMax
+                          }}</span
+                        >
+                        <button
+                          v-if="isCastable(g)"
+                          class="pill-cast-btn"
+                          :disabled="!canCast(weaponItem(row.id), g)"
+                          title="Spend the cost and cast"
+                          @click.stop="cast(weaponItem(row.id), g)"
+                        >
+                          Cast
+                        </button>
+                      </span>
+                    </td>
+                  </template>
+                  <template v-else>
+                    <td class="col-inspect"></td>
+                    <td class="weapon-extra-name" :title="row.source">
+                      + {{ row.source }}
+                    </td>
+                    <td></td>
+                    <td class="col-num weapon-extra-dmg">{{ row.die }}</td>
+                    <td class="col-tag">{{ row.dmgType }}</td>
+                    <td></td>
+                  </template>
+                </tr>
+              </tbody>
+            </table>
+          </template>
+          <template v-else>
+            <div
+              v-if="!rowsFor(setNum).filter((r) => !r.extra).length"
+              class="empty pane-empty-compact"
+            >
+              Empty
+            </div>
+            <ul v-else class="weapon-compact-list">
+              <li
+                v-for="row in rowsFor(setNum).filter((r) => !r.extra)"
+                :key="row.key"
+                class="weapon-compact-row"
+              >
+                <span class="wc-name">{{ row.name }}</span>
+                <span class="wc-stats"
+                  >{{ row.attack }} / {{ row.damage }}</span
+                >
+              </li>
+            </ul>
+          </template>
         </div>
       </div>
-      <div v-if="usesWeaponSets && !weaponSummaries.length" class="empty">
-        No weapons assigned to Set {{ activeWeaponSet }}.
-      </div>
-      <table v-if="weaponSummaries.length" class="weapon-table">
+
+      <!-- No weapon sets in use at all yet — same single flat list as
+      always, no toggle/split clutter for a character who's never assigned
+      a weapon to a set. -->
+      <table v-else-if="weaponSummaries.length" class="weapon-table">
         <thead>
           <tr>
             <th class="col-inspect"></th>
@@ -249,12 +450,20 @@ export default {
       return dnd.activeWeaponSet(this.character)
     },
     weaponRows() {
+      return this.buildRows(this.weaponSummaries)
+    },
+  },
+
+  methods: {
+    // Keyed by id, not name — two equipped weapons can share a name (e.g.
+    // dual-wielding a matched pair), and a name-based key/lookup would
+    // silently collapse them onto whichever came first. Real bug found
+    // 2026-09-11. Extracted to its own method (was inline in the
+    // `weaponRows` computed) so the Set 1/Set 2 split view can build each
+    // set's own row list the same way — see `rowsFor`.
+    buildRows(summaries) {
       const rows = []
-      for (const w of this.weaponSummaries) {
-        // Keyed by id, not name — two equipped weapons can share a name
-        // (e.g. dual-wielding a matched pair), and a name-based key/lookup
-        // would silently collapse them onto whichever came first. Real bug
-        // found 2026-09-11.
+      for (const w of summaries) {
         rows.push({ key: w.id, extra: false, ...w })
         for (const ex of w.extras ?? []) {
           rows.push({
@@ -268,9 +477,19 @@ export default {
       }
       return rows
     },
-  },
-
-  methods: {
+    // Recomputes buildWeaponRows as if `setNum` were the active set — reuses
+    // dnd.buildWeaponRows/isActiveEquipped unchanged (no dnd_utils.js
+    // changes needed) by handing it a shallow-cloned character with
+    // active_weapon_set overridden. Lets the split view show BOTH sets'
+    // real attack/damage numbers side by side, not just whichever is
+    // actually active on the character record.
+    rowsFor(setNum) {
+      const summaries = dnd.buildWeaponRows(
+        { ...this.character, active_weapon_set: setNum },
+        this.partyItems
+      )
+      return this.buildRows(summaries)
+    },
     // Mirrors CharacterInventory.vue's own toggleGrip — same mechanic
     // (item.slot literally switches between melee1h/melee2h), just also
     // reachable from the combat view instead of only the inventory tab.
@@ -559,31 +778,120 @@ export default {
   gap: 0.5rem;
 }
 
-.weapon-set-toggle {
-  display: flex;
-  gap: 0.25rem;
-}
-
-.weapon-set-btn {
-  padding: 0.1rem 0.5rem;
-  font-size: var(--font-size-xs);
-  font-family: var(--font-display, serif);
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  color: var(--color-text-low);
-  cursor: pointer;
-}
-
-.weapon-set-btn.active {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
 .empty {
   font-size: var(--font-size-base);
   color: var(--color-text-low);
   font-style: italic;
   padding: 2px 0;
+}
+
+/* ── Set 1 / Set 2 split view (2026-09-11 project owner spec) ──────────
+   Active pane: 70% width, full-size interactive table. Inactive pane: 30%
+   width, small-text read-only preview, click to swap. `flex-grow`
+   transitions on the shared flex container so the width change animates
+   smoothly instead of snapping. */
+.weapon-set-split {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.weapon-set-pane {
+  flex-grow: 3;
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 0;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg-panel);
+  transition: flex-grow 0.35s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.weapon-set-pane.pane-active {
+  flex-grow: 7;
+  background: var(--color-bg);
+  cursor: default;
+}
+
+.pane-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.pane-title {
+  font-family: var(--font-display, serif);
+  letter-spacing: 0.04em;
+  color: var(--color-text-low);
+  transition: font-size 0.25s ease, color 0.25s ease;
+}
+
+.weapon-set-pane.pane-active .pane-title {
+  font-size: var(--font-size-md);
+  color: var(--color-accent);
+}
+
+.weapon-set-pane:not(.pane-active) .pane-title {
+  font-size: var(--font-size-xs);
+}
+
+.pane-switch-hint {
+  font-size: 0.65rem;
+  color: var(--color-text-low);
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.weapon-set-pane:not(.pane-active):hover .pane-switch-hint {
+  opacity: 1;
+}
+
+.weapon-set-pane:not(.pane-active):hover {
+  border-color: var(--color-accent);
+}
+
+/* Inactive pane's own table shrinks with it via the transition above — no
+extra rule needed, `.weapon-table`'s font-size already inherits. */
+.weapon-set-pane:not(.pane-active) .weapon-table {
+  font-size: 0.7em;
+}
+
+.pane-empty-compact {
+  font-size: var(--font-size-xs);
+}
+
+.weapon-compact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.weapon-compact-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wc-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wc-stats {
+  flex-shrink: 0;
+  font-family: var(--font-display, serif);
+  color: var(--color-text-low);
 }
 </style>
