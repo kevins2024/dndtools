@@ -23,13 +23,17 @@ function classStyles(name) {
   }))
 }
 
-test('fighting-styles.json has the real per-class option counts (Fighter 6, Paladin 4, Ranger 4)', () => {
-  assert.equal(classStyles('Fighter').length, 6)
-  assert.equal(classStyles('Paladin').length, 4)
-  assert.equal(classStyles('Ranger').length, 4)
+test("fighting-styles.json has the real per-class option counts (Fighter 11, Paladin 7, Ranger 8) — 6/4/4 PHB-only plus Tasha's Cauldron's 7 additions, split unevenly since 2 of the 7 (Blessed Warrior, Druidic Warrior) are single-class-exclusive (2026-09-17)", () => {
+  assert.equal(classStyles('Fighter').length, 11)
+  assert.equal(classStyles('Paladin').length, 7)
+  assert.equal(classStyles('Ranger').length, 8)
 })
 
-test('every fighting-style id resolves to itself in feature-catalog.json AND to a real SRD cache entry with matching name', () => {
+const publishedById = new Map(
+  require('../../src/data/published_features.json').map((f) => [f.id, f])
+)
+
+test("every fighting-style id resolves to itself in feature-catalog.json AND to a real backing entry (SRD cache for PHB styles, published_features.json for Tasha's Cauldron ones) with matching name", () => {
   for (const className of ['Fighter', 'Paladin', 'Ranger']) {
     for (const style of classStyles(className)) {
       assert.equal(
@@ -37,14 +41,23 @@ test('every fighting-style id resolves to itself in feature-catalog.json AND to 
         `Fighting Style: ${style.name}`,
         `${className}'s ${style.name} id "${style.id}" should resolve to its display name in feature-catalog.json`
       )
-      const srd = srdById.get(style.id)
-      assert.ok(srd, `${style.id} should exist in the SRD feature cache`)
-      assert.equal(srd.name, `Fighting Style: ${style.name}`)
+      if (style.source === "Player's Handbook") {
+        const srd = srdById.get(style.id)
+        assert.ok(srd, `${style.id} should exist in the SRD feature cache`)
+        assert.equal(srd.name, `Fighting Style: ${style.name}`)
+      } else {
+        // Tasha's Cauldron of Everything isn't SRD content — these live in
+        // published_features.json instead (see fighting-styles.json's own
+        // _schema.tce_additions note).
+        const pub = publishedById.get(style.id)
+        assert.ok(pub, `${style.id} should exist in published_features.json`)
+        assert.equal(pub.name, `Fighting Style: ${style.name}`)
+      }
     }
   }
 })
 
-test('diffLevelUp: Fighter 1st level with no fightingStyleChoice surfaces a pendingChoice with all 6 real options', () => {
+test('diffLevelUp: Fighter 1st level with no fightingStyleChoice surfaces a pendingChoice with all 11 real options', () => {
   const character = { classes: [], features: [], spells: [] }
   const result = engine.diffLevelUp(character, {
     className: 'Fighter',
@@ -62,6 +75,11 @@ test('diffLevelUp: Fighter 1st level with no fightingStyleChoice surfaces a pend
         'Great Weapon Fighting',
         'Protection',
         'Two-Weapon Fighting',
+        'Blind Fighting',
+        'Interception',
+        'Superior Technique',
+        'Thrown Weapon Fighting',
+        'Unarmed Fighting',
       ],
     }
   )
@@ -93,7 +111,7 @@ test('diffLevelUp: choosing a Fighting Style resolves the generic entry into the
   )
 })
 
-test("diffLevelUp: Paladin's 2nd-level Fighting Style only offers Paladin's real 4 options (no Archery/Two-Weapon Fighting)", () => {
+test("diffLevelUp: Paladin's 2nd-level Fighting Style only offers Paladin's real 7 options (no Archery/Two-Weapon Fighting/Superior Technique/Druidic Warrior)", () => {
   const character = {
     classes: [{ name: 'Paladin', level: 1 }],
     features: [],
@@ -108,7 +126,15 @@ test("diffLevelUp: Paladin's 2nd-level Fighting Style only offers Paladin's real
     {
       type: 'fightingStyleChoice',
       level: 2,
-      options: ['Defense', 'Dueling', 'Great Weapon Fighting', 'Protection'],
+      options: [
+        'Defense',
+        'Dueling',
+        'Great Weapon Fighting',
+        'Protection',
+        'Blind Fighting',
+        'Interception',
+        'Blessed Warrior',
+      ],
     }
   )
 })
@@ -181,6 +207,11 @@ test("diffLevelUp: multiclassing Ranger (already has a Fighting Style) into Figh
         'Dueling',
         'Great Weapon Fighting',
         'Protection',
+        'Blind Fighting',
+        'Interception',
+        'Superior Technique',
+        'Thrown Weapon Fighting',
+        'Unarmed Fighting',
       ],
     }
   )
@@ -213,6 +244,11 @@ test("diffLevelUp: Fighter's Fighting Style options exclude a style already know
     'Great Weapon Fighting',
     'Protection',
     'Two-Weapon Fighting',
+    'Blind Fighting',
+    'Interception',
+    'Superior Technique',
+    'Thrown Weapon Fighting',
+    'Unarmed Fighting',
   ])
   assert.ok(!choice.options.includes('Archery'))
 })

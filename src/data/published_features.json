@@ -7609,5 +7609,61 @@
     "note": "Homebrew, unique to Tackett — added 2026-09-08 to explain his 6 recorded cantrips against a Circle of Stars Druid 9's normal cap of 3, per the project owner's explicit call: Tackett is a \"legendary\" character and being RAW-cantrip-count-accurate isn't the goal here, a clean in-fiction reason to keep all 6 is. Not tied to any real class table — purely a flat +3.",
     "homebrew": true,
     "source": "Homebrew, unique to Tackett."
+  },
+  {
+    "id": "fighting-style-blind-fighting",
+    "name": "Fighting Style: Blind Fighting",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything",
+    "description": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover, even if you're blinded or in darkness. Moreover, you can see an invisible creature within that range, unless the creature successfully hides from you."
+  },
+  {
+    "id": "fighting-style-interception",
+    "name": "Fighting Style: Interception",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything",
+    "description": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to reduce the damage the target takes by 1d10 + your proficiency bonus (to a minimum of 0). You must be wielding a shield or a simple or martial weapon to use this reaction."
+  },
+  {
+    "id": "fighter-fighting-style-superior-technique",
+    "name": "Fighting Style: Superior Technique",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything — Fighter only.",
+    "description": "You learn one maneuver of your choice from among those available to the Battle Master archetype. If a maneuver you use requires a saving throw, the DC equals 8 + your proficiency bonus + your Strength or Dexterity modifier (your choice). You gain one superiority die, a d6 (added to any superiority dice you have from another source), used to fuel that maneuver — expended when used, regained on finishing a short or long rest."
+  },
+  {
+    "id": "fighting-style-thrown-weapon-fighting",
+    "name": "Fighting Style: Thrown Weapon Fighting",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything",
+    "description": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon. In addition, when you hit with a ranged attack using a thrown weapon, you gain a +2 bonus to the damage roll."
+  },
+  {
+    "id": "fighting-style-unarmed-fighting",
+    "name": "Fighting Style: Unarmed Fighting",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything",
+    "description": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit (1d8 instead if you aren't wielding any weapon or shield when you make the attack roll). Additionally, when you use the Attack action on your turn to make an unarmed strike, you can make one extra unarmed strike as a bonus action — or attempt a grapple or shove instead, if you prefer."
+  },
+  {
+    "id": "paladin-fighting-style-blessed-warrior",
+    "name": "Fighting Style: Blessed Warrior",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything — Paladin only.",
+    "description": "You learn two cantrips of your choice from the cleric spell list. They count as paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a level in this class, you can replace one of these cantrips with another cantrip from the cleric spell list."
+  },
+  {
+    "id": "ranger-fighting-style-druidic-warrior",
+    "name": "Fighting Style: Druidic Warrior",
+    "category": "fighting_style",
+    "homebrew": false,
+    "source": "Tasha's Cauldron of Everything — Ranger only.",
+    "description": "You learn two cantrips of your choice from the druid spell list. They count as ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a level in this class, you can replace one of these cantrips with another cantrip from the druid spell list."
   }
 ]
