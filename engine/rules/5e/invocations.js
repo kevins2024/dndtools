@@ -1,6 +1,6 @@
-const invocations = require('../data/invocations.json')
-const pactBoons = require('../data/pact-boons.json')
-const tables = require('../data/spellcasting-tables.json')
+const invocations = require('../../data/5e/invocations.json')
+const pactBoons = require('../../data/5e/pact-boons.json')
+const tables = require('../../data/5e/spellcasting-tables.json')
 const { resolveBreakpoint } = require('./spellcasting')
 const { evaluatePrerequisite } = require('./featPrerequisites')
 

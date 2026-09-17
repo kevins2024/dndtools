@@ -1,7 +1,7 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const engine = require('../index')
-const languages = require('../data/languages.json')
+const languages = require('../data/5e/languages.json')
 
 // New Character tool skill/language picker data — added 2026-09-03 to close
 // the real, twice-confirmed gap logged in TODO.md ("New Character tool has

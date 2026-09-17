@@ -1,4 +1,4 @@
-const backgrounds = require('../data/backgrounds.json')
+const backgrounds = require('../../data/5e/backgrounds.json')
 
 // A deliberately curated subset (40, see engine/CHECKLIST.md) of the ~360
 // unique backgrounds across all published sourcebooks — each real, verified

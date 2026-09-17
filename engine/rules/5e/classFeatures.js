@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const { featureName } = require('./featureCatalog')
 
-const CLASSES_DIR = path.join(__dirname, '..', 'data', 'classes')
+const CLASSES_DIR = path.join(__dirname, '..', '..', 'data', '5e', 'classes')
 
 const classCache = new Map()
 

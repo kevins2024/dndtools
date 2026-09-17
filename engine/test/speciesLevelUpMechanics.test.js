@@ -1,6 +1,6 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
-const { diffLevelUp } = require('../rules/diffLevelUp')
+const { diffLevelUp } = require('../rules/5e/diffLevelUp')
 
 // Covers the two "deliberately not built" gaps closed 2026-09-10 (see
 // TODO.md's "Real racial/background mechanical data" entry): a flat

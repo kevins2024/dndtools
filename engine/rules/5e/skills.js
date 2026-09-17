@@ -1,4 +1,4 @@
-const skills = require('../data/skills.json')
+const skills = require('../../data/5e/skills.json')
 
 function listSkills() {
   return skills

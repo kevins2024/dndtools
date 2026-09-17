@@ -1,4 +1,4 @@
-const species = require('../data/species.json')
+const species = require('../../data/5e/species.json')
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 

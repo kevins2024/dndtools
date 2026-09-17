@@ -2,7 +2,7 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const path = require('path')
 const engine = require('../index')
-const feats = require('../data/feats.json')
+const feats = require('../data/5e/feats.json')
 
 const publishedFeatures = require(path.join(
   __dirname,
@@ -12,7 +12,7 @@ const publishedFeatures = require(path.join(
   'data',
   'published_features.json'
 ))
-const featureCatalog = require('../data/feature-catalog.json')
+const featureCatalog = require('../data/5e/feature-catalog.json')
 
 const FEAT_NAMES = Object.keys(feats).filter((k) => !k.startsWith('_'))
 

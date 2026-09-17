@@ -1,8 +1,8 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const engine = require('../index')
-const { multiclassSpellSlots } = require('../rules/multiclass')
-const { spellSlotsForClassAtLevel } = require('../rules/spellcasting')
+const { multiclassSpellSlots } = require('../rules/5e/multiclass')
+const { spellSlotsForClassAtLevel } = require('../rules/5e/spellcasting')
 const { validateCharacter } = require('../rules/validateCharacter')
 
 // ---- HP roll vs average ----
@@ -167,7 +167,7 @@ test('multiclassSpellSlots: a genuine two-caster combo (Cleric3/Wizard2) DOES us
     { name: 'Wizard', level: 2 },
   ]
   // Both full casters, combined level 5 -> full_caster_slots["5"]
-  const tables = require('../data/spellcasting-tables.json')
+  const tables = require('../data/5e/spellcasting-tables.json')
   assert.deepEqual(multiclassSpellSlots(classes), tables.full_caster_slots['5'])
 })
 

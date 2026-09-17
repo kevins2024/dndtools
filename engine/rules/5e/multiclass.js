@@ -1,6 +1,6 @@
-const tables = require('../data/spellcasting-tables.json')
-const multiclassProficiencies = require('../data/multiclass-proficiencies.json')
-const multiclassPrerequisites = require('../data/multiclass-prerequisites.json')
+const tables = require('../../data/5e/spellcasting-tables.json')
+const multiclassProficiencies = require('../../data/5e/multiclass-proficiencies.json')
+const multiclassPrerequisites = require('../../data/5e/multiclass-prerequisites.json')
 const {
   pactMagicForLevel,
   spellSlotsForClassAtLevel,

@@ -1,4 +1,4 @@
-const tables = require('../data/spellcasting-tables.json')
+const tables = require('../../data/5e/spellcasting-tables.json')
 const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 

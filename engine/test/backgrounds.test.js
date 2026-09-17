@@ -1,7 +1,7 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
-const { listBackgrounds, loadBackground } = require('../rules/backgrounds')
-const { listSkills, loadSkill } = require('../rules/skills')
+const { listBackgrounds, loadBackground } = require('../rules/5e/backgrounds')
+const { listSkills, loadSkill } = require('../rules/5e/skills')
 
 test('listSkills has all 18 real 5e skills, each with a governing ability', () => {
   const skills = listSkills()

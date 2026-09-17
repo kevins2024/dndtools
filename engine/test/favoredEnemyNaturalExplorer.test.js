@@ -1,8 +1,8 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const engine = require('../index')
-const favoredEnemies = require('../data/favored-enemies.json')
-const naturalExplorerTerrains = require('../data/natural-explorer-terrains.json')
+const favoredEnemies = require('../data/5e/favored-enemies.json')
+const naturalExplorerTerrains = require('../data/5e/natural-explorer-terrains.json')
 
 test('favored-enemies.json has the real 13 RAW types plus the humanoid-races escape hatch', () => {
   assert.equal(favoredEnemies.options.length, 14)

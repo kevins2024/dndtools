@@ -1,4 +1,4 @@
-const leveling = require('../data/leveling.json')
+const leveling = require('../../data/5e/leveling.json')
 
 function proficiencyBonus(level) {
   return leveling.proficiency_bonus_by_level[String(level)]

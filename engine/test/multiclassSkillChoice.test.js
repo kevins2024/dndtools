@@ -1,6 +1,6 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
-const { diffLevelUp } = require('../rules/diffLevelUp')
+const { diffLevelUp } = require('../rules/5e/diffLevelUp')
 
 // The PHB "Multiclassing Proficiencies" table grants a real skill choice to
 // Bard/Ranger/Rogue on pickup — previously only ever surfaced as a warning

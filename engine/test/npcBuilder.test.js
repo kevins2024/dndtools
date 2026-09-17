@@ -29,7 +29,7 @@ test('buildCombatant never leaves an unresolved pendingChoice behind', () => {
     // choice this module doesn't already know how to resolve — re-running
     // diffLevelUp one more level directly and checking it doesn't reject
     // anything is the real proof there's no unresolved state hiding.
-    const { diffLevelUp } = require('../rules/diffLevelUp')
+    const { diffLevelUp } = require('../rules/5e/diffLevelUp')
     const result = diffLevelUp(character, {
       className: ROLE_TABLE[role].className,
       toLevel: 11,

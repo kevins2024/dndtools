@@ -5,7 +5,7 @@ const {
   listSpecies,
   applySpeciesBonus,
   traitsFor,
-} = require('../rules/species')
+} = require('../rules/5e/species')
 
 test('listSpecies includes all 9 standard PHB species', () => {
   const names = listSpecies().map((s) => s.name)

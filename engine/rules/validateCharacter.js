@@ -1,6 +1,6 @@
-const { loadClass } = require('./classFeatures')
-const { proficiencyBonus } = require('./progression')
-const { spellsKnownForClass } = require('./spellcasting')
+const { loadClass } = require('./5e/classFeatures')
+const { proficiencyBonus } = require('./5e/progression')
+const { spellsKnownForClass } = require('./5e/spellcasting')
 
 // characters.json has grown a few different conventions for "this is a free
 // bonus spell that doesn't count against the normal known-spell cap":

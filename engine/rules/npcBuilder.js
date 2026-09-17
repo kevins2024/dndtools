@@ -12,15 +12,15 @@
 // species.js, which read engine/data/*.json off disk via fs/path, so it's
 // NOT eligible for direct browser require() — server.js is the only caller.
 
-const { diffLevelUp } = require('./diffLevelUp')
-const { applySpeciesBonus } = require('./species')
-const { abilityModifier } = require('./abilities')
-const { proficiencyBonus } = require('./progression')
-const { loadClass } = require('./classFeatures')
+const { diffLevelUp } = require('./5e/diffLevelUp')
+const { applySpeciesBonus } = require('./5e/species')
+const { abilityModifier } = require('./5e/abilities')
+const { proficiencyBonus } = require('./5e/progression')
+const { loadClass } = require('./5e/classFeatures')
 const {
   listInvocations,
   meetsInvocationPrerequisite,
-} = require('./invocations')
+} = require('./5e/invocations')
 
 function normalizeName(name) {
   return String(name).trim().toLowerCase()

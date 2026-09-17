@@ -2,8 +2,8 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const path = require('path')
 const engine = require('../index')
-const fightingStyles = require('../data/fighting-styles.json')
-const featureCatalog = require('../data/feature-catalog.json')
+const fightingStyles = require('../data/5e/fighting-styles.json')
+const featureCatalog = require('../data/5e/feature-catalog.json')
 const srdFeatures = require(path.join(
   __dirname,
   '..',

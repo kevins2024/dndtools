@@ -11,7 +11,7 @@ const { multiclassSpellSlots } = require('./multiclass')
 // TEXT (as opposed to class progression rules) already lives in src/data and
 // copying it here would just be a second copy to drift out of sync. See the
 // note at the top of engine/CHECKLIST.md.
-const SRC_DATA = path.join(__dirname, '..', '..', 'src', 'data')
+const SRC_DATA = path.join(__dirname, '..', '..', '..', 'src', 'data')
 
 let cache = null
 

@@ -1,18 +1,18 @@
-const leveling = require('./data/leveling.json')
-const { abilityModifier } = require('./rules/abilities')
+const leveling = require('./data/5e/leveling.json')
+const { abilityModifier } = require('./rules/5e/abilities')
 const {
   proficiencyBonus,
   asiLevelsForClass,
   isAsiLevel,
   hitDieForClass,
   hpGainForLevel,
-} = require('./rules/progression')
+} = require('./rules/5e/progression')
 const {
   loadClass,
   listClasses,
   featuresGainedAtLevel,
   allFeaturesUpToLevel,
-} = require('./rules/classFeatures')
+} = require('./rules/5e/classFeatures')
 const {
   spellSlotsForClassAtLevel,
   pactMagicForLevel,
@@ -20,26 +20,26 @@ const {
   cantripsKnownForClass,
   spellsKnownForClass,
   preparedSpellCount,
-} = require('./rules/spellcasting')
+} = require('./rules/5e/spellcasting')
 const {
   loadSubclass,
   listSubclasses,
   subclassFeaturesGainedAtLevel,
-} = require('./rules/subclasses')
+} = require('./rules/5e/subclasses')
 const { validateCharacter } = require('./rules/validateCharacter')
-const { describeLevelUp } = require('./rules/levelUp')
-const { diffLevelUp } = require('./rules/diffLevelUp')
-const { loadFeat, isFeatGrantedSpell } = require('./rules/grants')
+const { describeLevelUp } = require('./rules/5e/levelUp')
+const { diffLevelUp } = require('./rules/5e/diffLevelUp')
+const { loadFeat, isFeatGrantedSpell } = require('./rules/5e/grants')
 const {
   meetsFeatPrerequisites,
   evaluatePrerequisite,
-} = require('./rules/featPrerequisites')
+} = require('./rules/5e/featPrerequisites')
 const {
   findSpellRecord,
   isSpellOnClassList,
   listSpellsForClass,
   effectiveMaxSpellLevel,
-} = require('./rules/spellLists')
+} = require('./rules/5e/spellLists')
 const {
   listInvocations,
   loadInvocation,
@@ -47,20 +47,20 @@ const {
   invocationsKnownForLevel,
   listPactBoons,
   loadPactBoon,
-} = require('./rules/invocations')
+} = require('./rules/5e/invocations')
 const {
   casterLevelContribution,
   multiclassCasterLevel,
   multiclassSpellSlots,
   multiclassPactSlots,
   expectedProficienciesForCharacter,
-} = require('./rules/multiclass')
+} = require('./rules/5e/multiclass')
 const {
   applyIncrease,
   applyFeatChoice,
   resolveAsiOrFeat,
   SCORE_CAP,
-} = require('./rules/asiFeat')
+} = require('./rules/5e/asiFeat')
 const {
   scoreCost,
   pointBuyCost,
@@ -72,10 +72,10 @@ const {
   listSpecies,
   applySpeciesBonus,
   traitsFor,
-} = require('./rules/species')
-const { listBackgrounds, loadBackground } = require('./rules/backgrounds')
-const { listSkills, loadSkill } = require('./rules/skills')
-const { listLanguages, loadLanguage } = require('./rules/languages')
+} = require('./rules/5e/species')
+const { listBackgrounds, loadBackground } = require('./rules/5e/backgrounds')
+const { listSkills, loadSkill } = require('./rules/5e/skills')
+const { listLanguages, loadLanguage } = require('./rules/5e/languages')
 const {
   createCombatTurnState,
   advanceTurn,

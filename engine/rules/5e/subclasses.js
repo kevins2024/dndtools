@@ -2,7 +2,14 @@ const fs = require('fs')
 const path = require('path')
 const { featureName } = require('./featureCatalog')
 
-const SUBCLASSES_DIR = path.join(__dirname, '..', 'data', 'subclasses')
+const SUBCLASSES_DIR = path.join(
+  __dirname,
+  '..',
+  '..',
+  'data',
+  '5e',
+  'subclasses'
+)
 
 function slugify(className, subclassName) {
   const clean = (s) =>

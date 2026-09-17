@@ -1,4 +1,4 @@
-const languages = require('../data/languages.json')
+const languages = require('../../data/5e/languages.json')
 
 // The 16 real PHB "Standard"/"Exotic" languages a player can actually choose
 // for a background's or species' "N languages of your choice" grant.

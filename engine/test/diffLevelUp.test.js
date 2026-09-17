@@ -1,7 +1,7 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const engine = require('../index')
-const { diffLevelUp } = require('../rules/diffLevelUp')
+const { diffLevelUp } = require('../rules/5e/diffLevelUp')
 
 function baseWizard(overrides = {}) {
   return {
@@ -191,7 +191,7 @@ test('diffLevelUp: multiclass spell slots use the combined table when another cl
     className: 'Wizard',
     hpMethod: 'average',
   })
-  const tables = require('../data/spellcasting-tables.json')
+  const tables = require('../data/5e/spellcasting-tables.json')
   const expectedSlots = tables.full_caster_slots['6']
   expectedSlots.forEach((max, i) => {
     assert.equal(result.patch.spell_slots[`level_${i + 1}`].max, max)
@@ -242,7 +242,7 @@ test('diffLevelUp: real roster smoke test against Lenn (single-class Wizard 9) m
   const lenn = list.find((c) => c.name === 'Lenn')
 
   const result = diffLevelUp(lenn, { className: 'Wizard', hpMethod: 'average' })
-  const tables = require('../data/spellcasting-tables.json')
+  const tables = require('../data/5e/spellcasting-tables.json')
   const expectedSlots = tables.full_caster_slots['10']
   expectedSlots.forEach((max, i) => {
     assert.equal(result.patch.spell_slots[`level_${i + 1}`].max, max)

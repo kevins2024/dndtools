@@ -373,7 +373,7 @@ app.get('/api/engine/subclasses/:className', (req, res) => {
 // not in the catalog.
 app.get('/api/engine/feats', (req, res) => {
   try {
-    const raw = require('./engine/data/feats.json')
+    const raw = require('./engine/data/5e/feats.json')
     const feats = Object.entries(raw)
       .filter(([name]) => !name.startsWith('_'))
       .map(([name, data]) => ({
@@ -407,7 +407,7 @@ app.post('/api/engine/feat-eligibility', (req, res) => {
     return res.status(400).json({ error: '"character" is required' })
   }
   try {
-    const raw = require('./engine/data/feats.json')
+    const raw = require('./engine/data/5e/feats.json')
     const result = {}
     for (const name of Object.keys(raw)) {
       if (name.startsWith('_')) continue

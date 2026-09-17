@@ -21,9 +21,9 @@ const { listFightingStyles, loadFightingStyle } = require('./fightingStyles')
 const { findSpellRecord } = require('./spellLists')
 const { loadSkill } = require('./skills')
 const { traitsFor } = require('./species')
-const multiclassProficiencies = require('../data/multiclass-proficiencies.json')
-const favoredEnemies = require('../data/favored-enemies.json')
-const naturalExplorerTerrains = require('../data/natural-explorer-terrains.json')
+const multiclassProficiencies = require('../../data/5e/multiclass-proficiencies.json')
+const favoredEnemies = require('../../data/5e/favored-enemies.json')
+const naturalExplorerTerrains = require('../../data/5e/natural-explorer-terrains.json')
 
 const ABILITY_FIELDS = {
   str: 'stat_str',

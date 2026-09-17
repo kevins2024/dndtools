@@ -1,6 +1,6 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
-const { diffLevelUp } = require('../rules/diffLevelUp')
+const { diffLevelUp } = require('../rules/5e/diffLevelUp')
 
 // Two real PHB mechanics found missing entirely during a full Level Up tool
 // audit (2026-09-06): (1) known-style casters (Bard/Sorcerer/Warlock/

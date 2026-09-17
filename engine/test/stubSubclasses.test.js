@@ -36,7 +36,7 @@ const engine = require('../index')
 // this ever needs to go back up, something regressed a completed
 // subclass back to stub, which would be a real bug, not expected progress.
 function loadAllSubclassFiles() {
-  const dir = path.join(__dirname, '..', 'data', 'subclasses')
+  const dir = path.join(__dirname, '..', 'data', '5e', 'subclasses')
   return fs
     .readdirSync(dir)
     .filter((f) => f.endsWith('.json'))

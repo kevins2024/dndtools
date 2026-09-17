@@ -1,4 +1,4 @@
-const fightingStyles = require('../data/fighting-styles.json')
+const fightingStyles = require('../../data/5e/fighting-styles.json')
 
 function normalizeName(name) {
   return (name || '').trim().toLowerCase()

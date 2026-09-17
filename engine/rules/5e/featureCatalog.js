@@ -13,7 +13,14 @@ const path = require('path')
 // Regenerate by re-running scripts/assign-feature-ids.py if new ids are
 // ever added to published_features.json or the SRD cache without updating
 // this file.
-const CATALOG_PATH = path.join(__dirname, '..', 'data', 'feature-catalog.json')
+const CATALOG_PATH = path.join(
+  __dirname,
+  '..',
+  '..',
+  'data',
+  '5e',
+  'feature-catalog.json'
+)
 
 let catalog = null
 

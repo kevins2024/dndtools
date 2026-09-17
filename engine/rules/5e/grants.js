@@ -1,4 +1,4 @@
-const feats = require('../data/feats.json')
+const feats = require('../../data/5e/feats.json')
 
 function loadFeat(featName) {
   return feats[featName] || null

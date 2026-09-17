@@ -1,6 +1,6 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
-const { diffLevelUp } = require('../rules/diffLevelUp')
+const { diffLevelUp } = require('../rules/5e/diffLevelUp')
 
 // Real attribution for ability score increases (2026-09-03) — the flagship
 // item deferred earlier this session ("hold this for when I have more

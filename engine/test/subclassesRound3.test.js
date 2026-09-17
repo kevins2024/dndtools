@@ -19,8 +19,8 @@ test('Artificer subclass_feature_levels bug fix: was [3,5,9,13,17], corrected to
 test('subclass file/name slug consistency: every file matches slugify(class, name)', () => {
   const fs = require('fs')
   const path = require('path')
-  const dir = path.join(__dirname, '..', 'data', 'subclasses')
-  const { slugify } = require('../rules/subclasses')
+  const dir = path.join(__dirname, '..', 'data', '5e', 'subclasses')
+  const { slugify } = require('../rules/5e/subclasses')
   for (const file of fs.readdirSync(dir)) {
     const data = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'))
     const expected = slugify(data.class, data.name) + '.json'
