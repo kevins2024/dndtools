@@ -22,6 +22,8 @@ const { findSpellRecord } = require('./spellLists')
 const { loadSkill } = require('./skills')
 const { traitsFor } = require('./species')
 const multiclassProficiencies = require('../data/multiclass-proficiencies.json')
+const favoredEnemies = require('../data/favored-enemies.json')
+const naturalExplorerTerrains = require('../data/natural-explorer-terrains.json')
 
 const ABILITY_FIELDS = {
   str: 'stat_str',
@@ -129,6 +131,29 @@ function diffLevelUp(
     // item, which gets replaced with the resolved specific style once
     // picked, or left as-is (plus a pendingChoice) if not.
     fightingStyleChoice = null,
+    // favoredEnemyChoice / naturalExplorerChoice: a single option string (e.g.
+    // "Undead" / "Forest") — resolves whichever ONE of Ranger's Favored
+    // Enemy (1st/6th/14th) or Natural Explorer (1st/6th/10th) grants is
+    // being crossed by THIS call. Unlike fightingStyleChoice, this feature
+    // is granted three separate times over a Ranger's career, not once —
+    // each grant gets its own feature entry (see the dedup note above on
+    // diffLevelUp's existingByLevel: "Ranger's Favored Enemy/Natural
+    // Explorer improvements" are the documented reason level_gained is part
+    // of the dedup key, not just name) — so only ONE of these two params
+    // is ever meaningful per call, matching every other *Choice param's
+    // one-level-at-a-time assumption.
+    favoredEnemyChoice = null,
+    naturalExplorerChoice = null,
+    // expertiseChoice: an array of exactly 2 strings — skill proficiency
+    // names the character already has, or "Thieves' Tools" for Rogue's
+    // "or thieves' tools" alternative (PHB p.96; that tool proficiency
+    // isn't tracked in a real tool_proficiencies list anywhere in this app
+    // yet — see the multiclass tool-grant note above — so it's just always
+    // offered to a Rogue rather than checked against a list that doesn't
+    // exist). Resolves whichever ONE of Rogue's Expertise (1st/6th) or
+    // Bard's Expertise (3rd/10th) grants is being crossed by THIS call,
+    // same one-choice-per-call assumption as every other *Choice param.
+    expertiseChoice = null,
   } = {}
 ) {
   const classIndex = (character.classes || []).findIndex(
@@ -200,6 +225,10 @@ function diffLevelUp(
 
   const pendingChoices = []
   const notes = []
+  // Filled in by the Expertise block below, read when `patch` is built —
+  // has to live up here since patch construction happens well after that
+  // block runs.
+  const expertiseSkillsGained = []
 
   // PHB p.163: gaining your first level in a class you don't already have
   // requires 13+ in that class's prerequisite ability score(s). A soft
@@ -397,8 +426,32 @@ function diffLevelUp(
     const genericIdx = newFeatures.findIndex(
       (f) => f.id === fightingStyleGenericId
     )
+    // Scoped to THIS class specifically, not "any fightingStyle feature
+    // anywhere" — real bug found 2026-09-16 (project owner: multiclassing
+    // Ranger into Fighter showed no Fighting Style choice at either Fighter
+    // 1 or 2). RAW: a second class that separately grants Fighting Style
+    // still gets its own pick (you just can't take the identical option
+    // twice) — Fighter 1st/Paladin 2nd/Ranger 2nd each grant their OWN
+    // choice. The old blanket check meant a Ranger's already-picked style
+    // silently suppressed Fighter's entirely separate grant — the generic
+    // "Fighting Style" newFeatures entry was left unresolved forever with
+    // no pendingChoice ever pushed for it.
     const alreadyHasStyle = (character.features || []).some(
-      (f) => f.type === 'fightingStyle'
+      (f) => f.type === 'fightingStyle' && f._source === classEntry.name
+    )
+    // RAW (PHB Fighting Style, and repeated on every class that grants it):
+    // "if you already have a fighting style from a different source, you
+    // can't take the same option twice, even if a class feature offers to
+    // give it to you again" — a second class's grant is still a REAL pick
+    // (see alreadyHasStyle above, fixed 2026-09-16), but the option already
+    // known from a different source has to be excluded from what's offered.
+    // Real bug found the same day the multiclass fix shipped: the options
+    // list was never filtered, so e.g. a Ranger's Archery pick didn't stop
+    // Fighter's later grant from offering Archery again.
+    const knownStyleNames = new Set(
+      (character.features || [])
+        .filter((f) => f.type === 'fightingStyle')
+        .map((f) => f.name.replace(/^Fighting Style: /, ''))
     )
     if (genericIdx !== -1 && !alreadyHasStyle) {
       if (fightingStyleChoice) {
@@ -406,6 +459,10 @@ function diffLevelUp(
         if (!style) {
           notes.push(
             `"${fightingStyleChoice}" isn't one of ${classEntry.name}'s cataloged Fighting Styles — recorded as chosen anyway, no automatic effects applied.`
+          )
+        } else if (knownStyleNames.has(fightingStyleChoice)) {
+          notes.push(
+            `"${fightingStyleChoice}" is already known from a different source — RAW says a repeated Fighting Style grant must pick a different option, recorded anyway.`
           )
         }
         newFeatures[genericIdx] = {
@@ -419,8 +476,188 @@ function diffLevelUp(
         pendingChoices.push({
           type: 'fightingStyleChoice',
           level: newFeatures[genericIdx].level_gained,
-          options: listFightingStyles(classEntry.name).map((s) => s.name),
+          options: listFightingStyles(classEntry.name)
+            .map((s) => s.name)
+            .filter((name) => !knownStyleNames.has(name)),
         })
+      }
+    }
+  }
+
+  // ── Favored Enemy / Natural Explorer — Ranger (1st, then 6th and 14th /
+  // 1st, then 6th and 10th) ─────────────────────────────────────────────
+  // Same root problem Fighting Style had (real bug found 2026-09-16, same
+  // day as the audit that found it): both features already have their own
+  // features_by_level entries, so the generic loop above just pushes a
+  // plain "Favored Enemy"/"Natural Explorer" newFeatures item with no
+  // chosen type — nothing ever turned it into a pendingChoice. Unlike
+  // Fighting Style, each of these is granted THREE separate times over a
+  // Ranger's career (not a one-time pick), so the "already chosen" check
+  // below is scoped to level_gained, not just feature type — otherwise the
+  // 6th/14th (or 6th/10th) grants would silently never prompt at all once
+  // the 1st-level one was resolved.
+  if (normalizeName(classEntry.name) === 'ranger') {
+    const resolveRangerChoice = ({
+      genericId,
+      choiceType,
+      featureType,
+      baseLabel,
+      choiceValue,
+      catalog,
+    }) => {
+      const idx = newFeatures.findIndex((f) => f.id === genericId)
+      if (idx === -1) return
+      const levelGained = newFeatures[idx].level_gained
+      const alreadyChosenAtThisLevel = (character.features || []).some(
+        (f) => f.type === featureType && f.level_gained === levelGained
+      )
+      if (alreadyChosenAtThisLevel) return
+      if (choiceValue) {
+        const valid = catalog.options.includes(choiceValue)
+        if (!valid) {
+          notes.push(
+            `"${choiceValue}" isn't one of ${baseLabel}'s cataloged options — recorded as chosen anyway.`
+          )
+        }
+        // RAW calls this the same feature name every time it's granted
+        // (1st/6th/14th, or 1st/6th/10th) — the catalog's own "...
+        // improvement" suffix on the 6th/14th (or 10th) grant is an
+        // internal bookkeeping distinction (see feature-catalog.json),
+        // not something that should leak into the player-facing name.
+        newFeatures[idx] = {
+          name: `${baseLabel}: ${choiceValue}`,
+          id: null,
+          type: featureType,
+          level_gained: levelGained,
+          _source: classEntry.name,
+        }
+      } else {
+        pendingChoices.push({
+          type: choiceType,
+          level: levelGained,
+          options: catalog.options,
+        })
+      }
+    }
+
+    resolveRangerChoice({
+      genericId: 'gen_ranger_base_favored-enemy',
+      choiceType: 'favoredEnemyChoice',
+      featureType: 'favoredEnemy',
+      baseLabel: 'Favored Enemy',
+      choiceValue: favoredEnemyChoice,
+      catalog: favoredEnemies,
+    })
+    resolveRangerChoice({
+      genericId: 'gen_ranger_base_favored-enemy-improvement',
+      choiceType: 'favoredEnemyChoice',
+      featureType: 'favoredEnemy',
+      baseLabel: 'Favored Enemy',
+      choiceValue: favoredEnemyChoice,
+      catalog: favoredEnemies,
+    })
+    resolveRangerChoice({
+      genericId: 'gen_ranger_base_natural-explorer',
+      choiceType: 'naturalExplorerChoice',
+      featureType: 'naturalExplorer',
+      baseLabel: 'Natural Explorer',
+      choiceValue: naturalExplorerChoice,
+      catalog: naturalExplorerTerrains,
+    })
+    resolveRangerChoice({
+      genericId: 'gen_ranger_base_natural-explorer-improvement',
+      choiceType: 'naturalExplorerChoice',
+      featureType: 'naturalExplorer',
+      baseLabel: 'Natural Explorer',
+      choiceValue: naturalExplorerChoice,
+      catalog: naturalExplorerTerrains,
+    })
+  }
+
+  // ── Expertise — Rogue (1st, then 6th) / Bard (3rd, then 10th) ─────────
+  // Same root problem Fighting Style/Favored Enemy had (real bug found
+  // 2026-09-17 — project owner: "made a new test Rogue and there's no way
+  // to do anything with Expertise"): both classes' features_by_level
+  // entries just produce a generic "Expertise" newFeatures item with no
+  // chosen skills — nothing ever turned it into a pendingChoice. Granted
+  // TWICE per class (like Favored Enemy/Natural Explorer), so "already
+  // resolved" is scoped to level_gained + class, not "any Expertise exists
+  // anywhere" (which would wrongly suppress the 2nd grant).
+  const expertiseGenericIds = {
+    rogue: ['rogue-expertise-1', 'rogue-expertise-2'],
+    bard: ['bard-expertise-1', 'bard-expertise-2'],
+  }
+  const expertiseIds = expertiseGenericIds[normalizeName(classEntry.name)]
+  if (expertiseIds) {
+    // Rogue's (and Bard's) own class table references the SAME generic id
+    // at both grant levels rather than a distinct "-improvement" id like
+    // Favored Enemy — match on any of this class's Expertise ids, whichever
+    // one actually shows up in newFeatures for the level this call covers.
+    const genericIdx = newFeatures.findIndex((f) => expertiseIds.includes(f.id))
+    if (genericIdx !== -1) {
+      const levelGained = newFeatures[genericIdx].level_gained
+      const alreadyChosenAtThisLevel = (character.features || []).some(
+        (f) =>
+          f.type === 'expertise' &&
+          f.level_gained === levelGained &&
+          f._source === classEntry.name
+      )
+      if (!alreadyChosenAtThisLevel) {
+        const isRogue = normalizeName(classEntry.name) === 'rogue'
+        const alreadyExpertise = new Set(character.skill_expertise || [])
+        // RAW: must already be proficient in whatever's picked, and can't
+        // double up on a skill that already has Expertise from an earlier
+        // grant. Rogue's "or thieves' tools" alternative is always offered
+        // (every Rogue gets that tool proficiency at 1st level, RAW) rather
+        // than checked against a tracked tool_proficiencies list — this app
+        // doesn't track that anywhere yet (see the multiclass tool-grant
+        // note above).
+        const validOptions = (character.skill_proficiencies || []).filter(
+          (s) => !alreadyExpertise.has(s)
+        )
+        if (isRogue && !alreadyExpertise.has("Thieves' Tools")) {
+          validOptions.push("Thieves' Tools")
+        }
+        if (expertiseChoice) {
+          const picks = Array.isArray(expertiseChoice)
+            ? expertiseChoice
+            : [expertiseChoice]
+          if (picks.length !== 2) {
+            notes.push(
+              `Expertise needs exactly 2 picks for ${classEntry.name} (got ${picks.length}) — recorded as given.`
+            )
+          } else if (picks[0] === picks[1]) {
+            notes.push(
+              `Expertise needs two DIFFERENT proficiencies — "${picks[0]}" was picked twice, recorded anyway.`
+            )
+          }
+          for (const pick of picks) {
+            if (!validOptions.includes(pick) && !alreadyExpertise.has(pick)) {
+              notes.push(
+                `"${pick}" isn't one of ${
+                  classEntry.name
+                }'s valid Expertise picks (not a skill this character is proficient in${
+                  isRogue ? " or thieves' tools" : ''
+                }) — recorded anyway.`
+              )
+            }
+          }
+          newFeatures[genericIdx] = {
+            name: `Expertise: ${picks.join(', ')}`,
+            id: null,
+            type: 'expertise',
+            level_gained: levelGained,
+            _source: classEntry.name,
+          }
+          expertiseSkillsGained.push(...picks)
+        } else {
+          pendingChoices.push({
+            type: 'expertiseChoice',
+            level: levelGained,
+            count: 2,
+            options: validOptions,
+          })
+        }
       }
     }
   }
@@ -651,6 +888,16 @@ function diffLevelUp(
     const existing = new Set(character.saving_throws || [])
     for (const ability of featSavingThrowProfs) existing.add(ability)
     patch.saving_throws = [...existing]
+  }
+
+  // Expertise picks (see the Rogue/Bard block above) double proficiency
+  // bonus wherever dnd.skill()/SkillList.vue/VitalsChipRow.vue already
+  // check skill_expertise — no new mechanical wiring needed on the src/
+  // side, just populating the field the app already reads.
+  if (expertiseSkillsGained.length) {
+    const existing = new Set(character.skill_expertise || [])
+    for (const skill of expertiseSkillsGained) existing.add(skill)
+    patch.skill_expertise = [...existing]
   }
 
   // A class gained by MULTICLASSING grants only the PHB's reduced

@@ -94,6 +94,18 @@
             <span class="item-slot">{{ item.slot || item.type }}</span>
             <span class="item-tag">{{ item.type }}</span>
             <span
+              v-if="item.type === 'mount' && mountLabel(item)"
+              class="item-badge mount-badge"
+              title="Breed and quality tier, from the mounts homebrew catalog"
+              >{{ mountLabel(item) }}</span
+            >
+            <span
+              v-if="item.type === 'mount' && mountCatalogEntry(item)"
+              class="item-badge mount-badge"
+              title="Speed"
+              >{{ mountCatalogEntry(item).speed }}</span
+            >
+            <span
               v-if="isVersatileWeapon(item)"
               class="item-badge versatile-badge"
               title="Versatile — can be wielded one- or two-handed"
@@ -202,6 +214,18 @@
           >
             <span class="item-name clickable">{{ item.name }}</span>
             <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="item.type === 'mount' && mountLabel(item)"
+              class="item-badge mount-badge"
+              title="Breed and quality tier, from the mounts homebrew catalog"
+              >{{ mountLabel(item) }}</span
+            >
+            <span
+              v-if="item.type === 'mount' && mountCatalogEntry(item)"
+              class="item-badge mount-badge"
+              title="Speed"
+              >{{ mountCatalogEntry(item).speed }}</span
+            >
             <span
               v-if="isVersatileWeapon(item)"
               class="item-badge versatile-badge"
@@ -370,6 +394,18 @@
               >{{ item.name }}</span
             >
             <span class="item-tag">{{ item.type }}</span>
+            <span
+              v-if="item.type === 'mount' && mountLabel(item)"
+              class="item-badge mount-badge"
+              title="Breed and quality tier, from the mounts homebrew catalog"
+              >{{ mountLabel(item) }}</span
+            >
+            <span
+              v-if="item.type === 'mount' && mountCatalogEntry(item)"
+              class="item-badge mount-badge"
+              title="Speed"
+              >{{ mountCatalogEntry(item).speed }}</span
+            >
             <span
               v-if="isVersatileWeapon(item)"
               class="item-badge versatile-badge"
@@ -639,6 +675,34 @@
                 placeholder="e.g. longsword, shortbow…"
               />
             </div>
+            <div class="meta-row" v-if="editDraft.type === 'mount'">
+              <span class="meta-label">Breed / Quality</span>
+              <select class="meta-input" v-model="editDraft.mount_type">
+                <option :value="null">Unset…</option>
+                <optgroup
+                  v-for="group in mountTypeGroups"
+                  :key="group.mountType"
+                  :label="group.mountType"
+                >
+                  <option
+                    v-for="entry in group.entries"
+                    :key="entry.id"
+                    :value="entry.id"
+                  >
+                    {{ entry.quality }} ({{ entry.cost_gp }} gp)
+                  </option>
+                </optgroup>
+              </select>
+            </div>
+            <div
+              class="meta-row"
+              v-if="editDraft.type === 'mount' && mountCatalogEntry(editDraft)"
+            >
+              <span class="meta-label">Speed</span>
+              <span class="meta-value">{{
+                mountCatalogEntry(editDraft).speed
+              }}</span>
+            </div>
 
             <!-- Attunement (live toggles) -->
             <div class="meta-row">
@@ -853,6 +917,23 @@ export default {
   computed: {
     allItems() {
       return this.$store.state.party_items
+    },
+    mounts() {
+      return this.$store.state.mounts ?? []
+    },
+    mountTypeGroups() {
+      const order = ['poor', 'common', 'uncommon', 'rare']
+      const byType = new Map()
+      for (const entry of this.mounts) {
+        if (!byType.has(entry.mount_type)) byType.set(entry.mount_type, [])
+        byType.get(entry.mount_type).push(entry)
+      }
+      return Array.from(byType.entries()).map(([mountType, entries]) => ({
+        mountType,
+        entries: entries
+          .slice()
+          .sort((a, b) => order.indexOf(a.quality) - order.indexOf(b.quality)),
+      }))
     },
     equippedItems() {
       return this.allItems.filter((i) => i.equipped_by === this.character.name)
@@ -1096,6 +1177,14 @@ export default {
   },
 
   methods: {
+    mountCatalogEntry(item) {
+      return this.mounts.find((m) => m.id === item.mount_type) ?? null
+    },
+    mountLabel(item) {
+      const entry = this.mountCatalogEntry(item)
+      if (!entry) return null
+      return `${entry.mount_type} (${entry.quality})`
+    },
     toggleAttuned(item) {
       if (!item.needs_attunement) return
       this.$store.commit('UPDATE_ITEM', { ...item, attuned: !item.attuned })
@@ -1573,6 +1662,11 @@ export default {
 .versatile-badge {
   color: var(--color-accent);
   border: 1px solid var(--color-accent);
+}
+
+.mount-badge {
+  color: var(--color-text-low);
+  border: 1px solid var(--color-border);
 }
 
 .prof-badge--warning {

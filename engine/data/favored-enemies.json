@@ -1,0 +1,22 @@
+{
+  "_schema": {
+    "_general": "Ranger's Favored Enemy (PHB p.91) — one type chosen at 1st level, with one MORE type added at 6th and again at 14th (three total by 14th). Real RAW also allows choosing two humanoid races instead of a listed creature type; modeled here as a free-text option rather than a fixed catalog entry, since the specific races are open-ended and not worth enumerating. See diffLevelUp.js's favoredEnemyChoice handling — structurally the same one-choice-per-grant problem Fighting Style solves, except this feature is granted three separate times instead of once.",
+    "found": "2026-09-16 — real bug report: New Character Tool had no Favored Enemy selector at all, because the engine never emitted a pendingChoice for it. Same root cause as the 2026-09-09 Fighting Style fix."
+  },
+  "options": [
+    "Aberrations",
+    "Beasts",
+    "Celestials",
+    "Constructs",
+    "Dragons",
+    "Elementals",
+    "Fey",
+    "Fiends",
+    "Giants",
+    "Monstrosities",
+    "Oozes",
+    "Plants",
+    "Undead",
+    "Two humanoid races (specify)"
+  ]
+}

@@ -1,8 +1,31 @@
 <template>
   <div>
-    <template v-if="weaponSummaries.length">
-      <div class="section-label">Weapons</div>
-      <table class="weapon-table">
+    <template v-if="weaponSummaries.length || usesWeaponSets">
+      <div class="weapon-table-header">
+        <div class="section-label">Weapons</div>
+        <div v-if="usesWeaponSets" class="weapon-set-toggle">
+          <button
+            class="weapon-set-btn"
+            :class="{ active: activeWeaponSet === 1 }"
+            title="Switch to loadout Set 1"
+            @click="setActiveWeaponSet(1)"
+          >
+            Set 1
+          </button>
+          <button
+            class="weapon-set-btn"
+            :class="{ active: activeWeaponSet === 2 }"
+            title="Switch to loadout Set 2"
+            @click="setActiveWeaponSet(2)"
+          >
+            Set 2
+          </button>
+        </div>
+      </div>
+      <div v-if="usesWeaponSets && !weaponSummaries.length" class="empty">
+        No weapons assigned to Set {{ activeWeaponSet }}.
+      </div>
+      <table v-if="weaponSummaries.length" class="weapon-table">
         <thead>
           <tr>
             <th class="col-inspect"></th>
@@ -32,6 +55,18 @@
               </td>
               <td class="weapon-name">
                 {{ row.name }}
+                <button
+                  v-if="row.grip"
+                  class="weapon-tag-badge weapon-grip-btn"
+                  :title="
+                    row.grip === 'melee2h'
+                      ? 'Versatile — wielded two-handed, click to switch to one-handed'
+                      : 'Versatile — wielded one-handed, click to switch to two-handed'
+                  "
+                  @click="toggleGrip(weaponItem(row.id))"
+                >
+                  {{ row.grip === 'melee2h' ? '2H' : '1H' }}
+                </button>
                 <span
                   v-if="row.thrown"
                   class="weapon-tag-badge"
@@ -180,6 +215,10 @@ export default {
 
   props: {
     character: { type: Object, required: true },
+    // Which store table `character` actually lives in — companions use a
+    // separate table (see CharacterCombatPanel.vue), so the Set 1/2 toggle
+    // needs to write back to the right place.
+    table: { type: String, default: 'characters' },
   },
 
   emits: ['inspect'],
@@ -194,6 +233,20 @@ export default {
     },
     weaponSummaries() {
       return dnd.buildWeaponRows(this.character, this.partyItems)
+    },
+    // The toggle only shows once the character actually uses the concept —
+    // no point cluttering the panel for someone who's never assigned a
+    // weapon to a set (weapon_set stays null == "any set").
+    usesWeaponSets() {
+      return this.partyItems.some(
+        (i) =>
+          i.equipped_by === this.character.name &&
+          i.type === 'weapon' &&
+          i.weapon_set != null
+      )
+    },
+    activeWeaponSet() {
+      return dnd.activeWeaponSet(this.character)
     },
     weaponRows() {
       const rows = []
@@ -218,6 +271,22 @@ export default {
   },
 
   methods: {
+    // Mirrors CharacterInventory.vue's own toggleGrip — same mechanic
+    // (item.slot literally switches between melee1h/melee2h), just also
+    // reachable from the combat view instead of only the inventory tab.
+    toggleGrip(item) {
+      if (!item) return
+      this.$store.commit('UPDATE_ITEM', {
+        ...item,
+        slot: item.slot === 'melee2h' ? 'melee1h' : 'melee2h',
+      })
+    },
+    setActiveWeaponSet(set) {
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: this.table,
+        updatedItem: { ...this.character, active_weapon_set: set },
+      })
+    },
     // Matched by id, not name+type+equipped_by — see weaponRows' comment on
     // why a name-based lookup isn't safe once two equipped weapons can share
     // a name.
@@ -381,6 +450,19 @@ export default {
   border-color: var(--color-accent);
 }
 
+.weapon-grip-btn {
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.weapon-grip-btn:hover {
+  color: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+}
+
 .has-tip {
   border-bottom: 1px dotted currentColor;
   cursor: default;
@@ -469,4 +551,39 @@ export default {
 }
 
 /* .section-label is a global style (see App.vue) — not redefined here. */
+
+.weapon-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.weapon-set-toggle {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.weapon-set-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display, serif);
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-low);
+  cursor: pointer;
+}
+
+.weapon-set-btn.active {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.empty {
+  font-size: var(--font-size-base);
+  color: var(--color-text-low);
+  font-style: italic;
+  padding: 2px 0;
+}
 </style>

@@ -312,6 +312,22 @@ function resolveChoice(choice, roleConfig, character) {
         param: 'fightingStyleChoice',
         merge: () => roleConfig.fightingStyle ?? choice.options?.[0] ?? null,
       }
+    case 'expertiseChoice':
+      return {
+        param: 'expertiseChoice',
+        merge: () =>
+          roleConfig.expertiseSkills ?? (choice.options ?? []).slice(0, 2),
+      }
+    case 'favoredEnemyChoice':
+      return {
+        param: 'favoredEnemyChoice',
+        merge: () => roleConfig.favoredEnemy ?? choice.options?.[0] ?? null,
+      }
+    case 'naturalExplorerChoice':
+      return {
+        param: 'naturalExplorerChoice',
+        merge: () => roleConfig.naturalExplorer ?? choice.options?.[0] ?? null,
+      }
     case 'pactBoonChoice':
       return {
         param: 'pactBoonChoice',

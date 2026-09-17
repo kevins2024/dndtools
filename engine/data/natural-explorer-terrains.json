@@ -1,0 +1,15 @@
+{
+  "_schema": {
+    "_general": "Ranger's Natural Explorer (PHB p.91) — one terrain chosen at 1st level, with one MORE terrain added at 6th and again at 10th (three total by 10th). RAW 2014 list is exactly these 7 — no Underdark option, confirmed against the SRD's own feature text rather than assumed. See diffLevelUp.js's naturalExplorerChoice handling — structurally the same one-choice-per-grant problem Favored Enemy solves, granted three separate times instead of once.",
+    "found": "2026-09-16 — built alongside Favored Enemy, same root-cause fix (New Character Tool had no selector because the engine never emitted a pendingChoice)."
+  },
+  "options": [
+    "Arctic",
+    "Coast",
+    "Desert",
+    "Forest",
+    "Grassland",
+    "Mountain",
+    "Swamp"
+  ]
+}

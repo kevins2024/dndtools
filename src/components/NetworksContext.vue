@@ -236,6 +236,77 @@
         ></textarea>
       </div>
     </section>
+
+    <!-- ── Wizard Spellbooks ──────────────────────── -->
+    <section class="net-section">
+      <div class="net-section-header">
+        <span class="net-section-title">Wizard Spellbooks</span>
+      </div>
+
+      <div v-if="!spellbooks.length" class="empty-state">
+        No spellbooks recorded.
+      </div>
+
+      <div v-for="sb in spellbooks" :key="sb.id" class="network-card">
+        <div class="network-header">
+          <div class="network-title-row">
+            <input
+              class="network-name-input"
+              :value="sb.name"
+              placeholder="Spellbook name…"
+              @input="updateSpellbook(sb.id, 'name', $event.target.value)"
+            />
+            <button
+              class="net-delete-btn"
+              title="Remove spellbook"
+              @click="removeSpellbook(sb.id)"
+            >
+              ✕
+            </button>
+          </div>
+          <div class="network-hub-row">
+            <span class="hub-label">{{ (sb.spells || []).length }} spells</span>
+          </div>
+        </div>
+
+        <div class="member-list">
+          <div v-if="!spellbookOwners(sb.id).length" class="empty-state">
+            No one currently uses this spellbook.
+          </div>
+          <div
+            v-for="name in spellbookOwners(sb.id)"
+            :key="name"
+            class="member-row"
+          >
+            <span class="hub-badge">{{ name }}</span>
+          </div>
+        </div>
+
+        <div class="network-footer">
+          <select
+            class="hub-input"
+            title="Merges their known spells into this book — their own prepared spells stay theirs."
+            @change="onLinkPick(sb.id, $event)"
+          >
+            <option value="" selected disabled>Link a Wizard in…</option>
+            <option
+              v-for="name in linkableWizards(sb.id)"
+              :key="name"
+              :value="name"
+            >
+              {{ name }}
+            </option>
+          </select>
+          <textarea
+            class="network-notes"
+            :value="sb.notes"
+            placeholder="Spellbook notes…"
+            rows="1"
+            @input="updateSpellbook(sb.id, 'notes', $event.target.value)"
+          ></textarea>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -305,6 +376,12 @@ export default {
     },
     circles() {
       return this.networks.teleportation_circles ?? []
+    },
+    spellbooks() {
+      return this.$store.state.spellbooks ?? []
+    },
+    allCharacters() {
+      return this.$store.state.characters ?? []
     },
   },
 
@@ -451,6 +528,76 @@ export default {
           unknown: '? Unknown',
         }[access] ?? access
       )
+    },
+
+    // ── Wizard Spellbooks ── (own table, not the networks blob — see
+    // spellUtils.js's header comment for the model: sharing is just two
+    // characters' spellbook_id pointing at the same entry, so there's no
+    // "members" list on the spellbook itself the way sending-stone networks
+    // have — who's using a book is derived by scanning characters instead.)
+    spellbookOwners(spellbookId) {
+      return this.allCharacters
+        .filter((c) => c.spellbook_id === spellbookId)
+        .map((c) => c.name)
+    },
+    linkableWizards(spellbookId) {
+      return this.allCharacters
+        .filter(
+          (c) =>
+            c.spellbook_id &&
+            c.spellbook_id !== spellbookId &&
+            (c.classes ?? []).some((cc) => cc.name?.toLowerCase() === 'wizard')
+        )
+        .map((c) => c.name)
+    },
+    updateSpellbook(id, field, value) {
+      const sb = this.spellbooks.find((s) => s.id === id)
+      if (!sb) return
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'spellbooks',
+        updatedItem: { ...sb, [field]: value },
+      })
+    },
+    removeSpellbook(id) {
+      this.$store.commit('SET_TABLE', {
+        table: 'spellbooks',
+        data: this.spellbooks.filter((s) => s.id !== id),
+      })
+    },
+    // "Someone learns the feat" — union the character's current spellbook
+    // into the target, repoint their spellbook_id, done. One-time, manual,
+    // not an ongoing sync. Their own prepared_spells is untouched — what
+    // they already have prepared today stays prepared.
+    linkCharacterToSpellbook(characterName, targetId) {
+      const char = this.allCharacters.find((c) => c.name === characterName)
+      const target = this.spellbooks.find((s) => s.id === targetId)
+      if (!char || !target) return
+      const current = this.spellbooks.find((s) => s.id === char.spellbook_id)
+      const known = new Set((target.spells ?? []).map((s) => s.name))
+      const merged = [
+        ...(target.spells ?? []),
+        ...(current?.spells ?? []).filter((s) => !known.has(s.name)),
+      ]
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'spellbooks',
+        updatedItem: { ...target, spells: merged },
+      })
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: 'characters',
+        updatedItem: { ...char, spellbook_id: targetId },
+      })
+    },
+    // Fires the link immediately on pick rather than a separate "+Link"
+    // button + tracked dropdown state — avoids a real Vue 2 reactivity trap
+    // (v-model on a dynamically-keyed object, linkPicks[sb.id], doesn't
+    // reactively update template reads of that same key unless the key
+    // already existed at init or $set was used) and is one click instead of
+    // two anyway. Resets the select back to the placeholder afterward.
+    onLinkPick(spellbookId, event) {
+      const name = event.target.value
+      if (!name) return
+      this.linkCharacterToSpellbook(name, spellbookId)
+      event.target.value = ''
     },
   },
 }

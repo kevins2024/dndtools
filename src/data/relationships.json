@@ -263,7 +263,7 @@
     "people": ["eldi", "rith"],
     "type": "sibling",
     "notes": "",
-    "strength": 133
+    "strength": 138
   },
   {
     "id": "rel_38",
@@ -362,5 +362,194 @@
     "type": null,
     "notes": "",
     "strength": 3
+  },
+  {
+    "id": "rel_52",
+    "people": ["corwin", "chuknora"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_53",
+    "people": ["corwin", "eldi"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_54",
+    "people": ["corwin", "rith"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_55",
+    "people": ["corwin", "iyani"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_56",
+    "people": ["corwin", "torrin"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_57",
+    "people": ["corwin", "petra"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_58",
+    "people": ["corwin", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_59",
+    "people": ["chuknora", "eldi"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_60",
+    "people": ["chuknora", "rith"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_61",
+    "people": ["chuknora", "iyani"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_62",
+    "people": ["chuknora", "torrin"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_63",
+    "people": ["chuknora", "petra"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_64",
+    "people": ["chuknora", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_65",
+    "people": ["eldi", "iyani"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_66",
+    "people": ["eldi", "torrin"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_67",
+    "people": ["eldi", "petra"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_68",
+    "people": ["eldi", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_69",
+    "people": ["rith", "iyani"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_70",
+    "people": ["rith", "torrin"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_71",
+    "people": ["rith", "petra"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_72",
+    "people": ["rith", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_73",
+    "people": ["iyani", "torrin"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_74",
+    "people": ["iyani", "petra"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_75",
+    "people": ["iyani", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_76",
+    "people": ["torrin", "petra"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_77",
+    "people": ["torrin", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
+  },
+  {
+    "id": "rel_78",
+    "people": ["petra", "siv"],
+    "type": null,
+    "notes": "",
+    "strength": 5
   }
 ]

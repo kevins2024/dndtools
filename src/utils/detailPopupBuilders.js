@@ -91,7 +91,7 @@ export async function buildSpellPopupData(spell) {
   }
 }
 
-export async function buildFeaturePopupData(feature) {
+export async function buildFeaturePopupData(feature, character = null) {
   // Species traits carry their own real description straight from
   // engine/data/species.json (copied onto the character record at creation
   // time — see NewCharacterTool.vue's speciesTraitRecords) — deliberately
@@ -99,10 +99,36 @@ export async function buildFeaturePopupData(feature) {
   // exact "Lucky" (Halfling racial trait) vs. "Lucky" (PHB feat) collision
   // class of bug lookupFeature has already hit once (see
   // engine/CHECKLIST.md's feat-catalog writeup).
-  const data =
-    feature.type === 'speciesTrait' && feature.description
-      ? { subtitle: null, description: feature.description }
-      : await lookupFeature(feature.name, feature.id)
+  let data
+  if (feature.type === 'speciesTrait' && feature.description) {
+    data = { subtitle: null, description: feature.description }
+  } else if (
+    feature.type === 'speciesTrait' &&
+    feature.spells_granted?.length
+  ) {
+    // Species tiered-spell grants (Drow Magic's Faerie Fire/Darkness,
+    // Infernal Legacy's Hellish Rebuke/Darkness — see diffLevelUp.js) are
+    // built with a compound name like "Infernal Legacy: Hellish Rebuke"
+    // and no description of their own, so the lookupFeature fallback below
+    // had nothing to match against — real bug found 2026-09-17 ("No
+    // description for Infernal Legacy: Hellish Rebuke"). The feature IS
+    // just "you can cast this spell," so show the actual spell's real
+    // text instead of trying to catalog-match the compound feature name.
+    const spellData = await lookupSpell(feature.spells_granted[0])
+    data = spellData
+      ? {
+          subtitle: [
+            spellData.school,
+            spellData.level != null ? `Level ${spellData.level}` : null,
+          ]
+            .filter(Boolean)
+            .join(' · '),
+          description: spellData.description,
+        }
+      : null
+  } else {
+    data = await lookupFeature(feature.name, feature.id)
+  }
   const fields = []
   if (feature.action_type)
     fields.push({ label: 'Action', value: feature.action_type })
@@ -121,6 +147,19 @@ export async function buildFeaturePopupData(feature) {
   if (feature.description && feature.type !== 'speciesTrait')
     fields.push({ label: 'Effect', value: feature.description })
   if (feature.note) fields.push({ label: 'Note', value: feature.note })
+  // The SRD text just says "see the Sneak Attack column of the Rogue
+  // table" — meaningless here since this app has no such table. Compute
+  // the character's actual current dice instead of relying on a number
+  // hand-baked into the feature name (which several older character
+  // records do, and which drifts on level-up).
+  if (
+    character &&
+    (feature.id === 'sneak-attack' ||
+      feature.name?.toLowerCase() === 'sneak attack')
+  ) {
+    const dice = dnd.sneakAttackDice(character)
+    if (dice) fields.push({ label: 'Current Damage', value: dice })
+  }
   return {
     title: feature.name,
     subtitle: data?.subtitle ?? null,

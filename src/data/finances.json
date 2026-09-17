@@ -1,6 +1,6 @@
 {
   "party_purse": {
-    "gold": 241962,
+    "gold": 228602,
     "weave_dust": 0,
     "notes": "On hand, accessible immediately."
   },
@@ -22,7 +22,7 @@
       "amount_min": 4000,
       "amount_max": 4800,
       "frequency": "weekly",
-      "notes": "Can grow if trading/sourcing or import/export change in the story. Owns 4 ships."
+      "notes": "Can grow if trading/sourcing or import/export change in the story."
     },
     {
       "source": "Loan Dragon",

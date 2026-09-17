@@ -130,6 +130,39 @@
             {{ overwatchChars.length === 1 ? 'is' : 'are' }} on watch for 4+
             hours — no long rest benefit and will gain 1 Exhaustion.
           </div>
+
+          <!-- Interruption check — rolls the d4 (which watch slot) + d20
+               (best Perception of that slot's pair) in one click, same
+               mechanical work the DM used to do by hand in the separate
+               dice drawer. Deliberately stops at the numbers — there's no
+               authored outcome table for this like Travel Roll's, so what
+               actually happens is still the DM's call. -->
+          <div class="interruption-check">
+            <button
+              class="roll-interruption-btn"
+              @click="rollInterruptionCheck"
+            >
+              🎲 Roll Interruption Check
+            </button>
+            <div v-if="interruptionResult" class="interruption-result">
+              <span class="interruption-slot"
+                >Hrs {{ interruptionResult.slotIdx * 2 + 1 }}–{{
+                  (interruptionResult.slotIdx + 1) * 2
+                }}</span
+              >
+              <span class="interruption-names">{{
+                interruptionResult.names.length
+                  ? interruptionResult.names.join(' & ')
+                  : 'nobody on watch'
+              }}</span>
+              <span class="interruption-math"
+                >rolled {{ interruptionResult.d20 }}
+                {{ interruptionResult.mod >= 0 ? '+' : '−' }}
+                {{ Math.abs(interruptionResult.mod) }} =
+                <strong>{{ interruptionResult.total }}</strong></span
+              >
+            </div>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -333,6 +366,7 @@ export default {
       pickerTarget: null, // { si, pi }
       marchOrder: [],
       relationshipDeltas: {}, // pair key → staged delta, set when entering the step
+      interruptionResult: null,
     }
   },
 
@@ -471,6 +505,24 @@ export default {
 
   methods: {
     ...mapMutations(['LONG_REST', 'SET_PARTIES', 'UPDATE_TABLE_ITEM']),
+
+    // d4 picks which of the 4 watch slots is being checked, d20 + the
+    // higher Perception mod of that slot's pair is the check itself —
+    // exactly the two rolls that used to be done by hand in the separate
+    // dice drawer. An empty/unassigned slot still rolls (mod +0, "nobody
+    // on watch" shown) rather than being skipped, since that's itself a
+    // meaningful result.
+    rollInterruptionCheck() {
+      const slotIdx = Math.floor(Math.random() * 4)
+      const names = (this.watches[slotIdx] ?? []).filter(Boolean)
+      const mods = names.map((n) => {
+        const char = this.characters.find((c) => c.name === n)
+        return char ? dnd.skill(char, 'Perception', this.party_items) : 0
+      })
+      const mod = mods.length ? Math.max(...mods) : 0
+      const d20 = Math.floor(Math.random() * 20) + 1
+      this.interruptionResult = { slotIdx, names, mod, d20, total: d20 + mod }
+    },
 
     signedPerc(char) {
       const val = dnd.skill(char, 'Perception', this.party_items)
@@ -999,6 +1051,48 @@ export default {
 .warn-icon {
   flex-shrink: 0;
   font-size: 0.85rem;
+}
+
+/* ── Interruption check ── */
+.interruption-check {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.roll-interruption-btn {
+  padding: 0.3rem 0.9rem;
+  background: var(--color-bg-panel);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 5px;
+  font-family: var(--font-display, serif);
+  font-size: 0.8rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.roll-interruption-btn:hover {
+  color: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+}
+
+.interruption-result {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--color-text-low);
+}
+
+.interruption-slot {
+  font-family: var(--font-display, serif);
+  color: var(--color-text);
+}
+
+.interruption-math {
+  color: var(--color-text);
 }
 
 /* ── Footer ── */

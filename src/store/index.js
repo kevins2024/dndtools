@@ -116,6 +116,8 @@ export default new Vuex.Store({
     assets: [],
     relationships: [],
     lore: [],
+    spellbooks: [],
+    mounts: [],
     finances: {},
     calendar_notes: [],
     loaded: false,
@@ -875,6 +877,8 @@ export default new Vuex.Store({
         'assets',
         'relationships',
         'lore',
+        'spellbooks',
+        'mounts',
       ]
       const originals = {}
       for (const table of tables) {

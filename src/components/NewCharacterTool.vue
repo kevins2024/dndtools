@@ -644,20 +644,20 @@
             />
             <ul class="nct-pick-list">
               <li v-for="o in filteredCantripOptions" :key="o.name">
-                <label>
-                  <input
-                    type="checkbox"
-                    :checked="cantripDraftPicks.includes(o.name)"
-                    :disabled="
-                      !cantripDraftPicks.includes(o.name) &&
-                      cantripDraftPicks.length >= cantripPickCount
-                    "
-                    @change="
-                      togglePick('cantripDraftPicks', o.name, cantripPickCount)
-                    "
-                  />
-                  {{ o.name }}
-                </label>
+                <input
+                  type="checkbox"
+                  :checked="cantripDraftPicks.includes(o.name)"
+                  :disabled="
+                    !cantripDraftPicks.includes(o.name) &&
+                    cantripDraftPicks.length >= cantripPickCount
+                  "
+                  @change="
+                    togglePick('cantripDraftPicks', o.name, cantripPickCount)
+                  "
+                />
+                <span class="nct-pick-name" @click="inspectSpell(o)">{{
+                  o.name
+                }}</span>
               </li>
             </ul>
           </div>
@@ -676,24 +676,24 @@
             />
             <ul class="nct-pick-list">
               <li v-for="o in filteredSpellOptions" :key="o.name">
-                <label>
-                  <input
-                    type="checkbox"
-                    :checked="spellDraftPicks.includes(o.name)"
-                    :disabled="
-                      !spellDraftPicks.includes(o.name) &&
-                      spellDraftPicks.length >= spellPickCount
-                    "
-                    @change="
-                      togglePick('spellDraftPicks', o.name, spellPickCount)
-                    "
-                  />
-                  {{ o.name }}
+                <input
+                  type="checkbox"
+                  :checked="spellDraftPicks.includes(o.name)"
+                  :disabled="
+                    !spellDraftPicks.includes(o.name) &&
+                    spellDraftPicks.length >= spellPickCount
+                  "
+                  @change="
+                    togglePick('spellDraftPicks', o.name, spellPickCount)
+                  "
+                />
+                <span class="nct-pick-name" @click="inspectSpell(o)"
+                  >{{ o.name }}
                   <span class="nct-note-inline"
                     >(lvl {{ o.level
                     }}{{ o.school ? ', ' + o.school : '' }})</span
-                  >
-                </label>
+                  ></span
+                >
               </li>
             </ul>
           </div>
@@ -731,11 +731,86 @@
             </p>
           </div>
 
+          <div
+            v-if="pendingFavoredEnemyChoice || favoredEnemyChoice"
+            class="nct-spell-picker"
+          >
+            <div class="nct-note">Choose a Favored Enemy:</div>
+            <ul class="nct-pick-list">
+              <li v-for="o in favoredEnemyOptions" :key="o">
+                <label>
+                  <input
+                    type="radio"
+                    name="favored-enemy"
+                    :value="o"
+                    v-model="favoredEnemyChoice"
+                  />
+                  {{ o }}
+                </label>
+              </li>
+            </ul>
+            <p
+              v-if="featureDescriptions['Favored Enemy']"
+              class="nct-note-inline"
+            >
+              {{ featureDescriptions['Favored Enemy'] }}
+            </p>
+          </div>
+
+          <div
+            v-if="pendingNaturalExplorerChoice || naturalExplorerChoice"
+            class="nct-spell-picker"
+          >
+            <div class="nct-note">Choose a Favored Terrain:</div>
+            <ul class="nct-pick-list">
+              <li v-for="o in naturalExplorerOptions" :key="o">
+                <label>
+                  <input
+                    type="radio"
+                    name="natural-explorer"
+                    :value="o"
+                    v-model="naturalExplorerChoice"
+                  />
+                  {{ o }}
+                </label>
+              </li>
+            </ul>
+            <p
+              v-if="featureDescriptions['Natural Explorer']"
+              class="nct-note-inline"
+            >
+              {{ featureDescriptions['Natural Explorer'] }}
+            </p>
+          </div>
+
+          <div
+            v-if="pendingExpertiseChoice || expertiseDraft.length"
+            class="nct-spell-picker"
+          >
+            <div class="nct-note">
+              Choose 2 Expertise proficiencies ({{ expertiseDraft.length }}/2
+              chosen):
+            </div>
+            <ul class="nct-pick-list">
+              <li v-for="o in expertiseOptions" :key="o">
+                <input
+                  type="checkbox"
+                  :checked="expertiseDraft.includes(o)"
+                  :disabled="
+                    !expertiseDraft.includes(o) && expertiseDraft.length >= 2
+                  "
+                  @change="togglePick('expertiseDraft', o, 2)"
+                />
+                <span>{{ o }}</span>
+              </li>
+            </ul>
+          </div>
+
           <ul v-if="preview.newFeatures.length" class="nct-feature-list">
             <li v-for="f in preview.newFeatures" :key="f.name">
               <span
-                :class="{ 'has-tip': featureDescriptions[f.name] }"
-                :title="featureDescriptions[f.name] || ''"
+                :class="{ 'has-tip': featureDescriptions[f.id || f.name] }"
+                :title="featureDescriptions[f.id || f.name] || ''"
               >
                 {{ f.name }}
               </span>
@@ -761,6 +836,13 @@
     </div>
 
     <div class="nct-actions">
+      <label
+        class="nct-checkbox-row"
+        title="A scratch build meant to be leveled up a few times and thrown away — adds a Delete button on its sheet and in Level Up, unlike a real roster character."
+      >
+        <input type="checkbox" v-model="isPracticeCharacter" />
+        🧪 Practice character (temporary — can be deleted)
+      </label>
       <button
         class="nct-btn nct-btn--confirm nct-btn--large"
         :disabled="!canCreate"
@@ -772,13 +854,23 @@
         Needs a name, species, class, and a legal point-buy spend.
       </span>
     </div>
+
+    <DetailPopup
+      v-if="popupItem"
+      :open="popupOpen"
+      :readonly="true"
+      :item="popupItem"
+      @close="popupOpen = false"
+    />
   </div>
 </template>
 
 <script>
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
+import DetailPopup from './DetailPopup.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
-import { lookupFeature } from '@/utils/lookupService.js'
+import { lookupFeature, lookupSpell } from '@/utils/lookupService.js'
+import { buildSpellPopupData } from '@/utils/detailPopupBuilders.js'
 import {
   resolveGearEntry,
   weaponOptionsForFilter,
@@ -821,11 +913,20 @@ function filterSpellOptions(options, search) {
 export default {
   name: 'NewCharacterTool',
 
-  components: { PendingCharacterSaveBar },
+  components: { PendingCharacterSaveBar, DetailPopup },
   mixins: [pendingCharacterSaves],
 
   data() {
     return {
+      popupOpen: false,
+      popupItem: null,
+      // Practice/scratch build — see the toggle in the template and
+      // createCharacter()'s is_practice flag. Lets someone build a level 1
+      // character and immediately hammer through level-ups to see how a
+      // class plays out, then throw it away via the Delete button that
+      // shows up on its sheet and in Level Up (CharacterDetails.vue /
+      // LevelUpTool.vue) once it's flagged.
+      isPracticeCharacter: false,
       name: '',
       // Optional — defaults to `name` on save if left blank. Most character
       // records have a distinct full_name (e.g. "Vaz" / "Vazseslaad
@@ -916,7 +1017,7 @@ export default {
       // the resolved weapon_category for any "Any Simple/Martial Weapon"
       // symbolic entry, keyed 'fixed-<entryIdx>' or '<choiceIdx>-<entryIdx>-<pickIdx>'
       // (a qty>1 filter entry, e.g. "two martial weapons", needs one key per pick).
-      equipmentTakeGold: false,
+      equipmentTakeGold: true,
       equipmentChoiceSelections: [],
       equipmentWeaponPicks: {},
 
@@ -950,6 +1051,12 @@ export default {
       // visibly disappeared right after picking.
       fightingStyleOptions: [],
       fightingStyleChoice: null,
+      favoredEnemyOptions: [],
+      favoredEnemyChoice: null,
+      naturalExplorerOptions: [],
+      naturalExplorerChoice: null,
+      expertiseOptions: [],
+      expertiseDraft: [],
     }
   },
 
@@ -1395,6 +1502,27 @@ export default {
         ) ?? null
       )
     },
+    pendingFavoredEnemyChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'favoredEnemyChoice'
+        ) ?? null
+      )
+    },
+    pendingNaturalExplorerChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'naturalExplorerChoice'
+        ) ?? null
+      )
+    },
+    pendingExpertiseChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'expertiseChoice'
+        ) ?? null
+      )
+    },
     // A species with real subraces (Dwarf, Elf, Halfling, Gnome) requires
     // picking one — every other species (including all homebrew ones) has
     // none, so this is trivially true for them.
@@ -1418,6 +1546,9 @@ export default {
           this.cantripDraftPicks.length >= this.cantripPickCount &&
           this.spellDraftPicks.length >= this.spellPickCount &&
           !this.pendingFightingStyleChoice &&
+          !this.pendingFavoredEnemyChoice &&
+          !this.pendingNaturalExplorerChoice &&
+          !this.pendingExpertiseChoice &&
           this.preview?.patch
       )
     },
@@ -1434,6 +1565,12 @@ export default {
       },
     },
     fightingStyleChoice() {
+      this.runPreview()
+    },
+    favoredEnemyChoice() {
+      this.runPreview()
+    },
+    naturalExplorerChoice() {
       this.runPreview()
     },
     speciesName() {
@@ -1489,7 +1626,7 @@ export default {
       },
     },
     className() {
-      this.equipmentTakeGold = false
+      this.equipmentTakeGold = true
       this.equipmentChoiceSelections = Array(this.equipmentChoices.length).fill(
         null
       )
@@ -1554,6 +1691,14 @@ export default {
   },
 
   methods: {
+    // Clicking a spell's NAME shows its description — the checkbox next to
+    // it is the only thing that actually (de)selects it. Previously the
+    // whole row was one <label>, so clicking the name silently toggled the
+    // pick instead of showing what the spell does.
+    async inspectSpell(spell) {
+      this.popupItem = await buildSpellPopupData(spell)
+      this.popupOpen = true
+    },
     abilitiesExcluding(exclude) {
       return this.abilities.filter((a) => !(exclude || []).includes(a))
     },
@@ -1646,6 +1791,13 @@ export default {
       }
     },
 
+    // Real bug found 2026-09-17: this checked background against class and
+    // vice versa, but never against a species/subrace trait's own skill
+    // choice (e.g. Half-Elf's Skill Versatility) — speciesSkillChoiceDisabled
+    // already protects THAT picker from double-dipping into background/class,
+    // but the check was never reciprocal, so background/class would happily
+    // let you "pick" a skill your species already gave you and silently
+    // waste the pick (the on-screen note already claims this can't happen).
     skillDisabled(skillId, sourceArray, currentIndex) {
       const takenInSameArray = sourceArray.some(
         (v, i) => i !== currentIndex && v === skillId
@@ -1654,7 +1806,14 @@ export default {
         sourceArray === this.selectedSkills
           ? this.selectedClassSkills
           : this.selectedSkills
-      return takenInSameArray || otherArray.includes(skillId)
+      const speciesSkills = Object.values(
+        this.speciesSkillChoiceValues || {}
+      ).flat()
+      return (
+        takenInSameArray ||
+        otherArray.includes(skillId) ||
+        speciesSkills.includes(skillId)
+      )
     },
 
     // Same duplicate-prevention for languages, across all three sources at
@@ -1815,6 +1974,10 @@ export default {
               spells: this.spellDraftPicks,
             },
             fightingStyleChoice: this.fightingStyleChoice,
+            favoredEnemyChoice: this.favoredEnemyChoice,
+            naturalExplorerChoice: this.naturalExplorerChoice,
+            expertiseChoice:
+              this.expertiseDraft.length === 2 ? this.expertiseDraft : null,
           }),
         })
         const data = await res.json()
@@ -1822,7 +1985,11 @@ export default {
           throw new Error(data.error || `Server returned ${res.status}`)
         this.preview = data
         this.loadFeatureDescriptions(
-          data.newFeatures?.map((f) => ({ name: f.name, id: f.id }))
+          data.newFeatures?.map((f) => ({
+            name: f.name,
+            id: f.id,
+            spellsGranted: f.spells_granted,
+          }))
         )
         const fightingStyleChoice = data.pendingChoices?.find(
           (p) => p.type === 'fightingStyleChoice'
@@ -1834,6 +2001,24 @@ export default {
               name: `Fighting Style: ${o}`,
             }))
           )
+        }
+        const favoredEnemyChoice = data.pendingChoices?.find(
+          (p) => p.type === 'favoredEnemyChoice'
+        )
+        if (favoredEnemyChoice) {
+          this.favoredEnemyOptions = favoredEnemyChoice.options
+        }
+        const naturalExplorerChoice = data.pendingChoices?.find(
+          (p) => p.type === 'naturalExplorerChoice'
+        )
+        if (naturalExplorerChoice) {
+          this.naturalExplorerOptions = naturalExplorerChoice.options
+        }
+        const expertiseChoice = data.pendingChoices?.find(
+          (p) => p.type === 'expertiseChoice'
+        )
+        if (expertiseChoice) {
+          this.expertiseOptions = expertiseChoice.options
         }
         if (data.description.spellcasting) {
           if (!this.cantripOptions.length) {
@@ -1899,11 +2084,33 @@ export default {
     // straight to an exact catalog match instead of risking a same-named
     // collision (e.g. two subclasses both having a "Spellcasting" feature).
     async loadFeatureDescriptions(features) {
-      for (const { name, id } of features ?? []) {
-        if (name in this.featureDescriptions) continue
-        this.$set(this.featureDescriptions, name, null)
+      for (const { name, id, spellsGranted } of features ?? []) {
+        // Cached by id when one exists, not bare name — real bug found
+        // 2026-09-17: Fighter/Paladin/Ranger's Fighting Style all share
+        // the display name "Fighting Style" but have distinct ids and
+        // genuinely different RAW text (1st level for Fighter, "At 2nd
+        // level..." for Paladin/Ranger) — caching by bare name meant
+        // whichever class got looked up first in the session permanently
+        // "won" that cache slot for every other class after it.
+        const key = id || name
+        if (key in this.featureDescriptions) continue
+        this.$set(this.featureDescriptions, key, null)
         const result = await lookupFeature(name, id)
-        this.$set(this.featureDescriptions, name, result?.description ?? null)
+        if (result?.description) {
+          this.$set(this.featureDescriptions, key, result.description)
+          continue
+        }
+        // Species tiered-spell grants (Drow Magic's Faerie Fire/Darkness,
+        // Infernal Legacy's Hellish Rebuke/Darkness) are named like
+        // "Infernal Legacy: Hellish Rebuke" with no catalog entry to
+        // match — real bug found 2026-09-17, same fix as LevelUpTool.vue's
+        // copy of this method. Fall back to the actual granted spell.
+        if (spellsGranted?.length) {
+          const spell = await lookupSpell(spellsGranted[0])
+          this.$set(this.featureDescriptions, key, spell?.description ?? null)
+          continue
+        }
+        this.$set(this.featureDescriptions, key, null)
       }
     },
 
@@ -1962,13 +2169,49 @@ export default {
     createCharacter() {
       if (!this.canCreate) return
       const shell = this.characterShell()
-      const character = { ...shell, ...this.preview.patch }
+      let character = { ...shell, ...this.preview.patch }
+      if (this.isPracticeCharacter) character.is_practice = true
+
+      // Every Wizard gets their own spellbook entity from the moment
+      // they're created — see spellUtils.js's header comment. Their
+      // starting spells (from the normal 0->1 level-up patch, same as any
+      // other class) go onto a fresh personal spellbook instead of
+      // character.spells, so the invariant ("every Wizard has a
+      // spellbook_id") holds for characters built after this feature, not
+      // just the ones migrated when it shipped. Sharing it with another
+      // Wizard later is a separate, manual step (Networks tab).
+      if (this.className?.toLowerCase() === 'wizard' && character.spells) {
+        const prepared = new Set(
+          character.spells.filter((s) => s.prepared).map((s) => s.name)
+        )
+        const spellbookId = `sb_${Date.now()}`
+        this.$store.commit('UPDATE_TABLE_ITEM', {
+          table: 'spellbooks',
+          updatedItem: {
+            id: spellbookId,
+            name: `${character.name}'s Spellbook`,
+            notes: '',
+            spells: character.spells.map((s) => ({
+              name: s.name,
+              level: s.level,
+            })),
+          },
+        })
+        const { spells, ...rest } = character
+        character = {
+          ...rest,
+          spellbook_id: spellbookId,
+          prepared_spells: [...prepared],
+        }
+      }
+
       this.$store.commit('ADD_CHARACTER', character)
 
       const { items, gold } = this.resolveStartingEquipment(character.name)
       if (items.length) this.$store.commit('ADD_PARTY_ITEMS', items)
       if (gold > 0) this.$store.commit('ADJUST_PARTY_GOLD', gold)
 
+      this.isPracticeCharacter = false
       this.name = ''
       this.fullName = ''
       this.speciesName = null
@@ -1990,6 +2233,10 @@ export default {
       this.spellOptions = []
       this.spellDraftPicks = []
       this.fightingStyleChoice = null
+      this.favoredEnemyChoice = null
+      this.naturalExplorerChoice = null
+      this.expertiseOptions = []
+      this.expertiseDraft = []
       this.preview = null
       this.activeTab = 'species'
     },
@@ -2104,13 +2351,19 @@ export default {
 
 .nct-ability-row--priority .nct-ability-label {
   color: var(--accent, #b8860b);
-  text-decoration: underline dotted;
 }
 
+/* Every ability label has a real tooltip (:title="abilityDescriptions[a]"),
+   not just the class's priority stats — real bug found 2026-09-17: this
+   underline used to live only on the --priority variant above, so a
+   non-priority ability's tooltip was just as real but had no visual cue
+   that hovering it does anything. */
 .nct-ability-label {
   width: 3rem;
   font-family: var(--font-display);
   color: var(--color-accent-strong);
+  text-decoration: underline dotted;
+  cursor: help;
 }
 
 .nct-ability-score {
@@ -2250,6 +2503,20 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+}
+
+.nct-pick-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nct-pick-name {
+  cursor: pointer;
+}
+.nct-pick-name:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
 }
 
 .nct-note-inline {

@@ -5,6 +5,17 @@
  *
  * Sources collected (in priority order for deduplication):
  *   1. character.spells[]                  — main class list; homebrew spells live here too (homebrew: true)
+ *      EXCEPT for a Wizard with `spellbook_id` set — see below, source 1 is
+ *      replaced entirely for those characters.
+ *   1'. Wizard spellbook (character.spellbook_id -> spellbooks[]) — every
+ *      Wizard has one (see src/data/spellbooks.json). Two or more Wizards
+ *      can point at the SAME spellbook_id, which is the entire mechanism
+ *      behind a shared/linked spellbook (Lenn/Lyria/Kessara, Iyani's
+ *      mother's gift) — there's no separate "shared spellbook" concept, the
+ *      id being shared IS the sharing. What's "prepared" always comes from
+ *      the character's OWN character.prepared_spells (a plain list of
+ *      names), never from the spellbook entry itself, so preparing a spell
+ *      never affects anyone else who shares the same spellbook_id.
  *   2. getBonusSpells(character, subclasses) — subclass always-prepared spells
  *      (Artillerist Bonus Spells, Cleric domain spells, Paladin oath spells,
  *      Druid circle spells, Sorcerer psionic/clockwork spells, etc.), derived
@@ -22,7 +33,7 @@
  *   itemGranted  {bool}    — true if from an equipped item's spells_granted
  *   homebrew     {bool}    — true if spell is homebrew (set on the spell entry in character.spells)
  *
- * Deduplication: sources 1-3 deduplicate by spell name (first wins).
+ * Deduplication: sources 1/1'-3 deduplicate by spell name (first wins).
  * Item-granted spells (source 4) are always added alongside class/feature versions —
  * if a character knows a spell AND an item grants it, both appear with distinct _source labels
  * so the player can see which is always-prepared vs. counted against their limit.
@@ -177,7 +188,8 @@ export function getBonusSpellsAtLevel(subclassData, className, level) {
 export function getCharacterSpells(
   character,
   partyItems = [],
-  subclasses = []
+  subclasses = [],
+  spellbooks = []
 ) {
   const seen = new Set()
   const result = []
@@ -188,12 +200,33 @@ export function getCharacterSpells(
     result.push(spell)
   }
 
-  // 1. Main class spell list. Default _source to 'class', but respect a
-  // source/featureGranted already set directly on the spell entry (e.g. a
-  // feat-granted free-cast spell recorded inline rather than via a
-  // feature's spells_granted array).
-  for (const s of character.spells ?? []) {
-    add({ _source: 'class', ...s })
+  // 1 / 1'. Known spells. A Wizard with spellbook_id set reads from the
+  // shared spellbook table instead of character.spells — see this file's
+  // header comment. "Prepared" always comes from the character's OWN
+  // prepared_spells list, never from the spellbook entry, so sharing a
+  // spellbook_id can never leak one character's daily prepared state into
+  // another's. Every other class (and any Wizard somehow missing
+  // spellbook_id — shouldn't happen, but fails safe) falls back to the
+  // original character.spells-with-embedded-prepared shape unchanged.
+  const spellbook = spellbooks.find((sb) => sb.id === character.spellbook_id)
+  if (spellbook) {
+    const prepared = new Set(character.prepared_spells ?? [])
+    for (const s of spellbook.spells ?? []) {
+      add({
+        name: s.name,
+        level: s.level,
+        prepared: prepared.has(s.name),
+        _source: 'class',
+      })
+    }
+  } else {
+    // 1. Main class spell list. Default _source to 'class', but respect a
+    // source/featureGranted already set directly on the spell entry (e.g. a
+    // feat-granted free-cast spell recorded inline rather than via a
+    // feature's spells_granted array).
+    for (const s of character.spells ?? []) {
+      add({ _source: 'class', ...s })
+    }
   }
 
   // 2. Subclass bonus spells (always prepared, don't count against limit) —
@@ -265,6 +298,11 @@ export function characterHasSpells(
   subclasses = []
 ) {
   if (!character) return false
+  // A Wizard's known spells now live in the spellbook table, not here — see
+  // getCharacterSpells's header comment. Every Wizard has spellbook_id set,
+  // so its mere presence is enough; no need to also thread the spellbooks
+  // table through just to check a length.
+  if (character.spellbook_id) return true
   if ((character.spells ?? []).length > 0) return true
   if (getBonusSpells(character, subclasses).length > 0) return true
   if (

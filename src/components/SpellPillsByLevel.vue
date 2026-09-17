@@ -63,7 +63,7 @@ export default {
   emits: ['inspect'],
 
   data() {
-    return { dnd, spellMeta: {} }
+    return { dnd, spellMeta: {}, resolvedLevels: {} }
   },
 
   computed: {
@@ -74,7 +74,8 @@ export default {
       let spells = getCharacterSpells(
         this.character,
         this.partyItems,
-        this.$store.state.subclasses
+        this.$store.state.subclasses,
+        this.$store.state.spellbooks
       ).filter((s) => s.level === 0 || s.prepared)
       if (this.filter !== 'all') {
         spells = spells.filter((s) => {
@@ -85,7 +86,15 @@ export default {
       }
       const map = {}
       for (const s of spells) {
-        const lvl = s.level ?? 0
+        // Feature/item-granted spells (e.g. Iyani's Weave Attunement grid,
+        // a Staff of Power's charges) come in with level: null — resolved
+        // asynchronously below via lookupSpell, same as spellMeta. Real bug
+        // found 2026-09-15: this used to fall back straight to 0, silently
+        // filing every one of these under Cantrips regardless of its real
+        // level (e.g. Synaptic Static, a 5th-level spell). Skip rendering
+        // until the real level resolves rather than ever guess wrong.
+        const lvl = s.level ?? this.resolvedLevels[s.name]
+        if (lvl == null) continue
         ;(map[lvl] = map[lvl] ?? []).push(s)
       }
       return Object.keys(map)
@@ -113,9 +122,11 @@ export default {
       const spells = getCharacterSpells(
         this.character,
         this.partyItems,
-        this.$store.state.subclasses
+        this.$store.state.subclasses,
+        this.$store.state.spellbooks
       )
       const meta = {}
+      const levels = {}
       await Promise.all(
         spells.map(async (s) => {
           const data = await lookupSpell(s.name)
@@ -130,10 +141,13 @@ export default {
               actionType,
               school: data.school ?? '',
             }
+            if (s.level === null && data.level != null)
+              levels[s.name] = data.level
           }
         })
       )
       this.spellMeta = meta
+      this.resolvedLevels = levels
     },
 
     async inspect(spell) {

@@ -115,16 +115,22 @@
         "Siv"
       ],
       "active": true,
-      "game_day": 1,
+      "game_day": 303,
       "marching_order": [
+        "Torrin",
         "Corwin",
         "Chuknora",
-        "Revven",
-        "Elucyne",
         "Eldi",
         "Rith",
         "Iyani",
-        "Torrin"
+        "Petra",
+        "Siv"
+      ],
+      "watch_assignments": [
+        ["Corwin", "Eldi"],
+        ["Rith", "Siv"],
+        ["Torrin", "Chuknora"],
+        ["Iyani", "Petra"]
       ]
     },
     {

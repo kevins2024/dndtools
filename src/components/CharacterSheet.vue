@@ -144,6 +144,17 @@ export default {
     // the existing companion/effects panels. Named exactly (not "familiar" in
     // general) since other spells could mention the word without granting one.
     knowsFindFamiliar() {
+      // A Wizard's known spells live on their spellbook entry, not
+      // character.spells directly, once they have spellbook_id — see
+      // spellUtils.js's header comment.
+      if (this.character.spellbook_id) {
+        const spellbook = (this.$store.state.spellbooks ?? []).find(
+          (sb) => sb.id === this.character.spellbook_id
+        )
+        return (spellbook?.spells ?? []).some(
+          (s) => s.name.toLowerCase() === 'find familiar'
+        )
+      }
       return (this.character.spells ?? []).some(
         (s) => s.name.toLowerCase() === 'find familiar'
       )

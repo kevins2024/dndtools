@@ -61,6 +61,7 @@
 
 <script>
 import { dnd } from '@/utils/dnd_utils.js'
+import { Brain } from 'lucide-vue'
 
 // The one real, persisting way to change a character's HP — replaces
 // Battle.vue's old playerHpDelta/playerTempHp scratchpad, which looked like
@@ -78,6 +79,8 @@ export default {
     table: { type: String, default: 'characters' },
   },
 
+  emits: ['concentration-check'],
+
   data() {
     return {
       dnd,
@@ -89,6 +92,19 @@ export default {
   },
 
   computed: {
+    partyItems() {
+      return this.$store.state.party_items ?? []
+    },
+    conSaveMod() {
+      return dnd.savingThrow(this.character, 'con', this.partyItems)
+    },
+    // Reuses the existing "Concentrating" condition (src/data/conditions.js,
+    // toggled via ConditionsRow.vue right above this component in
+    // CharacterCombatPanel.vue) instead of a separate flag — one status
+    // marker for the whole app rather than two ways to say the same thing.
+    isConcentrating() {
+      return (this.character.conditions ?? []).includes('Concentrating')
+    },
     tempHp() {
       return this.character.hp_temp ?? 0
     },
@@ -124,6 +140,16 @@ export default {
         hp_current: Math.max(0, this.character.hp_current - remaining),
       })
       this.damageInput = null
+      // RAW: temp HP cushions HP loss but doesn't change how much damage
+      // you TOOK — the concentration DC (10 or half damage, whichever is
+      // higher) is based on the full amount, not what got past temp HP.
+      if (this.isConcentrating) {
+        this.$emit('concentration-check', {
+          name: this.character.name,
+          damage: amount,
+          mod: this.conSaveMod,
+        })
+      }
     },
 
     applyHeal() {

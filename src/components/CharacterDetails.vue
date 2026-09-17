@@ -40,6 +40,14 @@
       >
         Level Up ↗
       </button>
+      <button
+        v-if="selected && selected.is_practice"
+        class="tab-btn tab-btn--delete"
+        title="Practice character — delete it permanently"
+        @click="deletePracticeCharacter"
+      >
+        🗑 Delete
+      </button>
     </div>
 
     <!-- Content -->
@@ -143,6 +151,37 @@ export default {
     goToLevelUp() {
       this.$store.commit('NAV_TO_LEVEL_UP', this.selected.name)
     },
+    // Practice characters (see NewCharacterTool's toggle) are the one case
+    // where deleting a character outright is the point — a scratch build
+    // meant to be leveled up a few times and thrown away, never a real
+    // roster member. Gated on is_practice so this can never touch a real
+    // character.
+    deletePracticeCharacter() {
+      if (!this.selected?.is_practice) return
+      if (
+        !window.confirm(
+          `Delete practice character "${this.selected.name}" permanently? This can't be undone.`
+        )
+      )
+        return
+      const name = this.selected.name
+      this.$store.commit('SET_TABLE', {
+        table: 'characters',
+        data: this.$store.state.characters.filter(
+          (c) => c.id !== this.selected.id
+        ),
+      })
+      // Whatever starting gear it picked up has no value once the
+      // character's gone — leaving it behind would just be dead weight
+      // sitting in party_items with an equipped_by/carried_by pointing at
+      // nobody.
+      this.$store.commit('SET_TABLE', {
+        table: 'party_items',
+        data: this.partyItems.filter(
+          (i) => i.equipped_by !== name && i.carried_by !== name
+        ),
+      })
+    },
   },
 }
 </script>
@@ -192,6 +231,13 @@ export default {
 }
 .tab-btn--jump:hover {
   color: var(--color-accent-strong);
+}
+
+.tab-btn--delete {
+  color: var(--color-text-danger, #c0392b);
+}
+.tab-btn--delete:hover {
+  color: #e05a4a;
 }
 
 /* ── Content ── */

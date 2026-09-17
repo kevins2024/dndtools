@@ -173,6 +173,7 @@
 
 <script>
 import { Check } from 'lucide-vue'
+import { dayOfYear, formatGameDate } from '@/utils/calendar_utils.js'
 import d20 from '@/assets/dice/d20.svg'
 import goldIcon from '@/assets/icons/icon-gold.svg'
 import dustIcon from '@/assets/icons/icon-dust.svg'
@@ -254,8 +255,7 @@ export default {
       return this.$store.getters.activePartyDay
     },
     activePartyDayOfYear() {
-      const currentDay = this.activePartyDay || 1
-      return ((currentDay - 1) % 204) + 1
+      return dayOfYear(this.activePartyDay || 1)
     },
     partyGold() {
       return this.$store.state.finances?.party_purse?.gold ?? 0
@@ -269,38 +269,12 @@ export default {
     restDayNumber() {
       const currentDay =
         this.$store.getters.activePartyDay || this.$store.state.game_day || 1
-      return ((currentDay - 1) % 204) + 1
+      return dayOfYear(currentDay)
     },
     restDateLabel() {
-      const DAYS_PER_YEAR = 204
-      const DAYS_PER_WEEK = 8
-      const SEASONS = [
-        { name: 'Winter', start: 1, end: 51 },
-        { name: 'Spring', start: 52, end: 102 },
-        { name: 'Summer', start: 103, end: 153 },
-        { name: 'Autumn', start: 154, end: 204 },
-      ]
       const currentDay =
         this.$store.getters.activePartyDay || this.$store.state.game_day || 1
-      const year = Math.floor((currentDay - 1) / DAYS_PER_YEAR) + 1
-      const doy = ((currentDay - 1) % DAYS_PER_YEAR) + 1
-      const season = (
-        SEASONS.find((s) => doy >= s.start && doy <= s.end) ?? SEASONS[0]
-      ).name
-      const week =
-        doy <= 48
-          ? Math.ceil(doy / DAYS_PER_WEEK)
-          : doy <= 52
-          ? null
-          : 6 + Math.ceil((doy - 52) / DAYS_PER_WEEK)
-      const dow =
-        doy <= 48
-          ? ((doy - 1) % DAYS_PER_WEEK) + 1
-          : doy <= 52
-          ? doy - 48
-          : ((doy - 53) % DAYS_PER_WEEK) + 1
-      const weekPart = week ? `Week ${week}, ` : 'Festival · '
-      return `${season} · Year ${year} · ${weekPart}Day ${dow}`
+      return formatGameDate(currentDay)
     },
   },
 

@@ -401,7 +401,8 @@ export default {
       return getCharacterSpells(
         this.character,
         this.partyItems,
-        this.$store.state.subclasses
+        this.$store.state.subclasses,
+        this.$store.state.spellbooks
       )
     },
 
@@ -549,9 +550,19 @@ export default {
     sharersMap() {
       if (!this.spellSearchLower) return {}
       const map = {}
+      const spellbooks = this.$store.state.spellbooks
+      const subclasses = this.$store.state.subclasses
       for (const char of this.allCharacters) {
         if (char.name === this.character.name) continue
-        for (const spell of char.spells ?? []) {
+        // getCharacterSpells (not raw char.spells) so a Wizard on a
+        // spellbook_id — whose known spells no longer live directly on
+        // their own record — still shows up as a sharer.
+        for (const spell of getCharacterSpells(
+          char,
+          this.partyItems,
+          subclasses,
+          spellbooks
+        )) {
           if (spell.name.toLowerCase().includes(this.spellSearchLower)) {
             const key = spell.name.toLowerCase()
             ;(map[key] = map[key] ?? []).push(char.name)
@@ -563,7 +574,9 @@ export default {
 
     currentCharHasMatch() {
       if (!this.spellSearchLower) return true
-      return (this.character.spells ?? []).some((s) =>
+      // this.allSpells (already spellbook-resolved), not raw
+      // character.spells — see sharersMap's identical reasoning above.
+      return this.allSpells.some((s) =>
         s.name.toLowerCase().includes(this.spellSearchLower)
       )
     },
@@ -705,6 +718,24 @@ export default {
 
     togglePrepared(spell) {
       if (!this.canToggle(spell)) return
+      // Wizard with a spellbook_id: "known" lives on the (possibly shared)
+      // spellbook entry, but "prepared" is always this character's own —
+      // just add/remove the name from their personal prepared_spells list.
+      // Simpler than the object-patching below by construction: there's no
+      // "does this spell already have a record on me" question, since the
+      // spellbook entry (not the character) is what holds the spell's own
+      // data.
+      if (this.character.spellbook_id) {
+        const current = this.character.prepared_spells ?? []
+        const updated = spell.prepared
+          ? current.filter((name) => name !== spell.name)
+          : [...current, spell.name]
+        this.$store.commit('UPDATE_TABLE_ITEM', {
+          table: 'characters',
+          updatedItem: { ...this.character, prepared_spells: updated },
+        })
+        return
+      }
       let updated
       if (this.characterUsesFullClassList && spell.prepared) {
         // Remove entirely so it resurfaces in the class-list browse section

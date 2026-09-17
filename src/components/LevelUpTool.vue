@@ -36,6 +36,15 @@
         >
         <template v-else>Level {{ currentLevel }} → {{ targetLevel }}</template>
       </div>
+
+      <button
+        v-if="selectedCharacter && selectedCharacter.is_practice"
+        class="lut-delete-btn"
+        title="Practice character — delete it permanently"
+        @click="deletePracticeCharacter"
+      >
+        🗑 Delete
+      </button>
     </div>
 
     <div
@@ -207,8 +216,8 @@
             <ul v-else class="lut-feature-list">
               <li v-for="f in preview.newFeatures" :key="f.name">
                 <strong>{{ f.name }}</strong>
-                <span v-if="featureDescriptions[f.name]">
-                  — {{ featureDescriptions[f.name] }}</span
+                <span v-if="featureDescriptions[f.id || f.name]">
+                  — {{ featureDescriptions[f.id || f.name] }}</span
                 >
               </li>
               <li v-if="newBonusSpellsThisLevel.length">
@@ -290,6 +299,7 @@
                     v-for="s in multiclassSkillOptions"
                     :key="s.id"
                     :value="s.id"
+                    :disabled="alreadyProficientSkillNames.includes(s.name)"
                   >
                     {{ s.name }} ({{ s.ability.toUpperCase() }})
                   </option>
@@ -702,6 +712,106 @@
               </div>
             </div>
 
+            <!-- ── Favored Enemy (Ranger 1st, then 6th and 14th) ── -->
+            <div
+              v-if="pendingFavoredEnemyChoice || favoredEnemyDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingFavoredEnemyChoice?.level ?? favoredEnemyChoiceLevel
+                  }}
+                  — Favored Enemy
+                </div>
+                <select
+                  v-model="favoredEnemyDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option v-for="o in favoredEnemyOptions" :key="o" :value="o">
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="favoredEnemyDraft" class="lut-subclass-summary">
+                <strong>{{ favoredEnemyDraft }}</strong>
+                <span v-if="featureDescriptions['Favored Enemy']">
+                  — {{ featureDescriptions['Favored Enemy'] }}</span
+                >
+              </div>
+            </div>
+
+            <!-- ── Natural Explorer (Ranger 1st, then 6th and 10th) ── -->
+            <div
+              v-if="pendingNaturalExplorerChoice || naturalExplorerDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingNaturalExplorerChoice?.level ??
+                    naturalExplorerChoiceLevel
+                  }}
+                  — Natural Explorer
+                </div>
+                <select
+                  v-model="naturalExplorerDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in naturalExplorerOptions"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="naturalExplorerDraft" class="lut-subclass-summary">
+                <strong>{{ naturalExplorerDraft }}</strong>
+                <span v-if="featureDescriptions['Natural Explorer']">
+                  — {{ featureDescriptions['Natural Explorer'] }}</span
+                >
+              </div>
+            </div>
+
+            <!-- ── Expertise (Rogue 1st/6th, Bard 3rd/10th) ── -->
+            <div
+              v-if="pendingExpertiseChoice || expertiseDraft.length"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{ pendingExpertiseChoice?.level ?? expertiseChoiceLevel }}
+                  — Expertise ({{ expertiseDraft.length }}/2 chosen)
+                </div>
+                <ul class="lut-pick-list">
+                  <li v-for="o in expertiseOptions" :key="o">
+                    <input
+                      type="checkbox"
+                      :checked="expertiseDraft.includes(o)"
+                      :disabled="
+                        !expertiseDraft.includes(o) &&
+                        expertiseDraft.length >= 2
+                      "
+                      @change="togglePick('expertiseDraft', o, 2)"
+                    />
+                    <span>{{ o }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div v-if="expertiseDraft.length" class="lut-subclass-summary">
+                <strong>{{ expertiseDraft.join(', ') }}</strong>
+              </div>
+            </div>
+
             <div
               v-if="
                 !pendingSubclassChoice &&
@@ -749,25 +859,25 @@
                 />
                 <ul class="lut-pick-list">
                   <li v-for="o in filteredBonusCantripOptions" :key="o.name">
-                    <label>
-                      <input
-                        type="checkbox"
-                        :checked="bonusCantripDraftPicks.includes(o.name)"
-                        :disabled="
-                          !bonusCantripDraftPicks.includes(o.name) &&
-                          bonusCantripDraftPicks.length >= bonusCantripPickLimit
-                        "
-                        @change="
-                          togglePick(
-                            'bonusCantripDraftPicks',
-                            o.name,
-                            bonusCantripPickLimit
-                          )
-                        "
-                      />
-                      {{ o.name }}
-                      <span class="lut-note">({{ o.school }})</span>
-                    </label>
+                    <input
+                      type="checkbox"
+                      :checked="bonusCantripDraftPicks.includes(o.name)"
+                      :disabled="
+                        !bonusCantripDraftPicks.includes(o.name) &&
+                        bonusCantripDraftPicks.length >= bonusCantripPickLimit
+                      "
+                      @change="
+                        togglePick(
+                          'bonusCantripDraftPicks',
+                          o.name,
+                          bonusCantripPickLimit
+                        )
+                      "
+                    />
+                    <span class="lut-pick-name" @click="inspectSpell(o)"
+                      >{{ o.name }}
+                      <span class="lut-note">({{ o.school }})</span></span
+                    >
                   </li>
                 </ul>
               </div>
@@ -806,24 +916,24 @@
                 />
                 <ul class="lut-pick-list">
                   <li v-for="o in filteredCantripOptions" :key="o.name">
-                    <label>
-                      <input
-                        type="checkbox"
-                        :checked="cantripDraftPicks.includes(o.name)"
-                        :disabled="
-                          !cantripDraftPicks.includes(o.name) &&
-                          cantripDraftPicks.length >= cantripPickLimit
-                        "
-                        @change="
-                          togglePick(
-                            'cantripDraftPicks',
-                            o.name,
-                            cantripPickLimit
-                          )
-                        "
-                      />
-                      {{ o.name }}
-                    </label>
+                    <input
+                      type="checkbox"
+                      :checked="cantripDraftPicks.includes(o.name)"
+                      :disabled="
+                        !cantripDraftPicks.includes(o.name) &&
+                        cantripDraftPicks.length >= cantripPickLimit
+                      "
+                      @change="
+                        togglePick(
+                          'cantripDraftPicks',
+                          o.name,
+                          cantripPickLimit
+                        )
+                      "
+                    />
+                    <span class="lut-pick-name" @click="inspectSpell(o)">{{
+                      o.name
+                    }}</span>
                   </li>
                 </ul>
               </div>
@@ -864,24 +974,24 @@
                 />
                 <ul class="lut-pick-list">
                   <li v-for="o in filteredSpellOptions" :key="o.name">
-                    <label>
-                      <input
-                        type="checkbox"
-                        :checked="spellDraftPicks.includes(o.name)"
-                        :disabled="
-                          !spellDraftPicks.includes(o.name) &&
-                          spellDraftPicks.length >= spellPickLimit
-                        "
-                        @change="
-                          togglePick('spellDraftPicks', o.name, spellPickLimit)
-                        "
-                      />
-                      {{ o.name }}
+                    <input
+                      type="checkbox"
+                      :checked="spellDraftPicks.includes(o.name)"
+                      :disabled="
+                        !spellDraftPicks.includes(o.name) &&
+                        spellDraftPicks.length >= spellPickLimit
+                      "
+                      @change="
+                        togglePick('spellDraftPicks', o.name, spellPickLimit)
+                      "
+                    />
+                    <span class="lut-pick-name" @click="inspectSpell(o)"
+                      >{{ o.name }}
                       <span class="lut-note"
                         >(lvl {{ o.level
                         }}{{ o.school ? ', ' + o.school : '' }})</span
-                      >
-                    </label>
+                      ></span
+                    >
                   </li>
                 </ul>
               </div>
@@ -921,28 +1031,28 @@
                 />
                 <ul class="lut-pick-list">
                   <li v-for="o in filteredSpellbookOptions" :key="o.name">
-                    <label>
-                      <input
-                        type="checkbox"
-                        :checked="spellbookDraftPicks.includes(o.name)"
-                        :disabled="
-                          !spellbookDraftPicks.includes(o.name) &&
-                          spellbookDraftPicks.length >= spellbookPickLimit
-                        "
-                        @change="
-                          togglePick(
-                            'spellbookDraftPicks',
-                            o.name,
-                            spellbookPickLimit
-                          )
-                        "
-                      />
-                      {{ o.name }}
+                    <input
+                      type="checkbox"
+                      :checked="spellbookDraftPicks.includes(o.name)"
+                      :disabled="
+                        !spellbookDraftPicks.includes(o.name) &&
+                        spellbookDraftPicks.length >= spellbookPickLimit
+                      "
+                      @change="
+                        togglePick(
+                          'spellbookDraftPicks',
+                          o.name,
+                          spellbookPickLimit
+                        )
+                      "
+                    />
+                    <span class="lut-pick-name" @click="inspectSpell(o)"
+                      >{{ o.name }}
                       <span class="lut-note"
                         >(lvl {{ o.level
                         }}{{ o.school ? ', ' + o.school : '' }})</span
-                      >
-                    </label>
+                      ></span
+                    >
                   </li>
                 </ul>
               </div>
@@ -1001,19 +1111,19 @@
                   />
                   <ul class="lut-pick-list">
                     <li v-for="o in filteredSpellSwapToOptions" :key="o.name">
-                      <label>
-                        <input
-                          type="radio"
-                          name="spellSwapTo"
-                          :checked="spellSwapTo === o.name"
-                          @change="setSpellSwapTo(o.name)"
-                        />
-                        {{ o.name }}
+                      <input
+                        type="radio"
+                        name="spellSwapTo"
+                        :checked="spellSwapTo === o.name"
+                        @change="setSpellSwapTo(o.name)"
+                      />
+                      <span class="lut-pick-name" @click="inspectSpell(o)"
+                        >{{ o.name }}
                         <span class="lut-note"
                           >(lvl {{ o.level
                           }}{{ o.school ? ', ' + o.school : '' }})</span
-                        >
-                      </label>
+                        ></span
+                      >
                     </li>
                   </ul>
                 </template>
@@ -1120,15 +1230,25 @@
         </span>
       </div>
     </template>
+
+    <DetailPopup
+      v-if="popupItem"
+      :open="popupOpen"
+      :readonly="true"
+      :item="popupItem"
+      @close="popupOpen = false"
+    />
   </div>
 </template>
 
 <script>
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
+import DetailPopup from './DetailPopup.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
 import { lookupFeature, lookupSpell } from '@/utils/lookupService.js'
 import { getBonusSpellsAtLevel } from '@/utils/spellUtils.js'
 import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
+import { buildSpellPopupData } from '@/utils/detailPopupBuilders.js'
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 
@@ -1146,11 +1266,13 @@ function filterSpellOptions(options, search) {
 export default {
   name: 'LevelUpTool',
 
-  components: { PendingCharacterSaveBar },
+  components: { PendingCharacterSaveBar, DetailPopup },
   mixins: [pendingCharacterSaves],
 
   data() {
     return {
+      popupOpen: false,
+      popupItem: null,
       selectedCharacterName: null,
       selectedClassName: null,
       draftCharacter: null,
@@ -1252,6 +1374,22 @@ export default {
       fightingStyleOptions: [],
       fightingStyleDraft: null,
       fightingStyleChoiceLevel: null,
+      // Favored Enemy / Natural Explorer (Ranger 1st, then 6th and 14th /
+      // 1st, then 6th and 10th) — same shape as Fighting Style above, but
+      // two independent choices that can both be pending at once (Ranger 1
+      // grants both simultaneously).
+      favoredEnemyOptions: [],
+      favoredEnemyDraft: null,
+      favoredEnemyChoiceLevel: null,
+      naturalExplorerOptions: [],
+      naturalExplorerDraft: null,
+      naturalExplorerChoiceLevel: null,
+      // Expertise (Rogue 1st/6th, Bard 3rd/10th) — a 2-pick list, not a
+      // single value like the choices above, so it uses togglePick (same
+      // mechanism as the cantrip/spell pickers below) instead of v-model.
+      expertiseOptions: [],
+      expertiseDraft: [],
+      expertiseChoiceLevel: null,
 
       // ── Pact of the Tome's bonus cantrips (3, any class list) ──
       bonusCantripOptions: [], // fetched from POST /api/engine/spell-choices with pool:'any'
@@ -1298,6 +1436,9 @@ export default {
   },
 
   computed: {
+    spellbooks() {
+      return this.$store.state.spellbooks ?? []
+    },
     characters() {
       return this.$store.state.characters.filter((c) => c.classes?.length)
     },
@@ -1512,7 +1653,13 @@ export default {
         !!this.pendingPactBoonChoice ||
         !!this.pactBoonDraft ||
         !!this.pendingFightingStyleChoice ||
-        !!this.fightingStyleDraft
+        !!this.fightingStyleDraft ||
+        !!this.pendingFavoredEnemyChoice ||
+        !!this.favoredEnemyDraft ||
+        !!this.pendingNaturalExplorerChoice ||
+        !!this.naturalExplorerDraft ||
+        !!this.pendingExpertiseChoice ||
+        this.expertiseDraft.length > 0
       return hasListedContent || hasPendingChoice
     },
     // Replaces the old fixed `steps` data array as the tab row's actual
@@ -1635,6 +1782,27 @@ export default {
         ) ?? null
       )
     },
+    pendingFavoredEnemyChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'favoredEnemyChoice'
+        ) ?? null
+      )
+    },
+    pendingNaturalExplorerChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'naturalExplorerChoice'
+        ) ?? null
+      )
+    },
+    pendingExpertiseChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'expertiseChoice'
+        ) ?? null
+      )
+    },
     pendingBonusSpellChoice() {
       return (
         this.preview?.pendingChoices?.find(
@@ -1671,6 +1839,18 @@ export default {
       return options === 'any'
         ? this.skillsCatalog
         : this.skillsCatalog.filter((s) => options.includes(s.id))
+    },
+    // Real bug found 2026-09-17: this picker let you "pick" a skill the
+    // character already has (from background, species, or the starting
+    // class) — the engine already caught it and silently granted nothing
+    // (see diffLevelUp's multiclass skill-grant note), but the picker
+    // itself gave no visual indication, unlike every other skill picker in
+    // this app (NewCharacterTool's skillDisabled) which greys these out.
+    // Reads off draftCharacter so it reflects the character as it stands
+    // right now, same source every other part of this tool already treats
+    // as current.
+    alreadyProficientSkillNames() {
+      return this.draftCharacter?.skill_proficiencies ?? []
     },
     // The optional PHB spell-swap clause is only real for known-style
     // casters (spellsKnownForClass covers Bard/Sorcerer/Warlock/Ranger/
@@ -1790,6 +1970,9 @@ export default {
         !this.pendingSpellbookChoice &&
         !this.pendingMulticlassSkillChoice &&
         !this.pendingFightingStyleChoice &&
+        !this.pendingFavoredEnemyChoice &&
+        !this.pendingNaturalExplorerChoice &&
+        !this.pendingExpertiseChoice &&
         !this.levelCapExceeded
       )
     },
@@ -1976,10 +2159,66 @@ export default {
   },
 
   methods: {
+    // Clicking a spell's NAME shows its description — the checkbox/radio
+    // next to it is the only thing that actually (de)selects it. Every
+    // spell pick-list here (bonus cantrips, new cantrips, new known
+    // spells, spellbook adds, spell swap) shares this one method.
+    async inspectSpell(spell) {
+      this.popupItem = await buildSpellPopupData(spell)
+      this.popupOpen = true
+    },
+    // Practice characters (NewCharacterTool's toggle) are meant to be
+    // leveled up a few times and thrown away — this is the other half of
+    // that flow (see CharacterDetails.vue's matching button on the
+    // character sheet). Gated on is_practice so this can never touch a
+    // real roster character.
+    deletePracticeCharacter() {
+      if (!this.selectedCharacter?.is_practice) return
+      if (
+        !window.confirm(
+          `Delete practice character "${this.selectedCharacter.name}" permanently? This can't be undone.`
+        )
+      )
+        return
+      const id = this.selectedCharacter.id
+      const name = this.selectedCharacter.name
+      this.selectedCharacterName = null
+      this.$store.commit('SET_TABLE', {
+        table: 'characters',
+        data: this.characters.filter((c) => c.id !== id),
+      })
+      // Whatever starting gear it picked up has no value once the
+      // character's gone — see CharacterDetails.vue's matching cleanup.
+      this.$store.commit('SET_TABLE', {
+        table: 'party_items',
+        data: (this.$store.state.party_items ?? []).filter(
+          (i) => i.equipped_by !== name && i.carried_by !== name
+        ),
+      })
+    },
     initDraft() {
       this.draftCharacter = this.selectedCharacter
         ? JSON.parse(JSON.stringify(this.selectedCharacter))
         : null
+      // A Wizard's real character record has no `spells` anymore (see
+      // spellUtils.js) — their known spells live on their spellbook entry
+      // instead. diffLevelUp (engine, portable, doesn't know spellbook_id
+      // exists) still needs a real `spells` array to correctly dedupe
+      // newly-chosen spellbook additions against what's already known, so
+      // this shims one onto the WORKING DRAFT only — confirmLevelUp is what
+      // routes any genuinely new spells to the spellbook entity instead of
+      // letting them land back on the character record.
+      if (this.draftCharacter?.spellbook_id) {
+        const spellbook = this.spellbooks.find(
+          (sb) => sb.id === this.draftCharacter.spellbook_id
+        )
+        const prepared = new Set(this.draftCharacter.prepared_spells ?? [])
+        this.draftCharacter.spells = (spellbook?.spells ?? []).map((s) => ({
+          name: s.name,
+          level: s.level,
+          prepared: prepared.has(s.name),
+        }))
+      }
     },
 
     resetChoices() {
@@ -2005,6 +2244,15 @@ export default {
       this.fightingStyleOptions = []
       this.fightingStyleDraft = null
       this.fightingStyleChoiceLevel = null
+      this.favoredEnemyOptions = []
+      this.favoredEnemyDraft = null
+      this.favoredEnemyChoiceLevel = null
+      this.naturalExplorerOptions = []
+      this.naturalExplorerDraft = null
+      this.naturalExplorerChoiceLevel = null
+      this.expertiseOptions = []
+      this.expertiseDraft = []
+      this.expertiseChoiceLevel = null
       this.bonusCantripOptions = []
       this.bonusCantripSearch = ''
       this.bonusCantripDraftPicks = []
@@ -2082,20 +2330,49 @@ export default {
     // straight to an exact catalog match instead of risking a same-named
     // collision (e.g. two subclasses both having a "Spellcasting" feature).
     async loadFeatureDescriptions(features) {
-      for (const { name, id } of features ?? []) {
-        if (name in this.featureDescriptions) continue
+      for (const { name, id, spellsGranted } of features ?? []) {
+        // Cached by id when one exists, not bare name — real bug found
+        // 2026-09-17 (project owner: previewed a Ranger's Fighting Style
+        // — "At 2nd level..." — then multiclassed into Fighter and saw
+        // that SAME "At 2nd level" text on Fighter's, which is 1st-level
+        // and doesn't even phrase it that way). Fighter/Paladin/Ranger's
+        // Fighting Style all share the display name "Fighting Style" but
+        // have distinct ids and genuinely different RAW text (different
+        // grant level) — caching by bare name meant whichever class got
+        // looked up first in the session permanently "won" that cache
+        // slot for every other class for the rest of the session.
+        const key = id || name
+        if (key in this.featureDescriptions) continue
         // Placeholder so a second preview tick (e.g. re-rolling HP) doesn't
         // kick off a duplicate lookup while the first is still in flight.
-        this.$set(this.featureDescriptions, name, null)
+        this.$set(this.featureDescriptions, key, null)
         const override =
           this.bonusSpellsDescriptionAtLevel(name, this.targetLevel) ||
           this.destroyUndeadDescriptionAtLevel(name, this.targetLevel)
         if (override) {
-          this.$set(this.featureDescriptions, name, override)
+          this.$set(this.featureDescriptions, key, override)
           continue
         }
         const result = await lookupFeature(name, id)
-        this.$set(this.featureDescriptions, name, result?.description ?? null)
+        if (result?.description) {
+          this.$set(this.featureDescriptions, key, result.description)
+          continue
+        }
+        // Species tiered-spell grants (Drow Magic's Faerie Fire/Darkness,
+        // Infernal Legacy's Hellish Rebuke/Darkness — see diffLevelUp.js)
+        // are named like "Infernal Legacy: Hellish Rebuke" with no catalog
+        // entry to match, so the feature lookup above always comes up
+        // empty for them — real bug found 2026-09-17, same root cause
+        // already fixed in detailPopupBuilders.js's popup path but missed
+        // here, since this is a separate, simpler implementation of the
+        // same "look up a feature's description" idea. Fall back to the
+        // actual granted spell's own text.
+        if (spellsGranted?.length) {
+          const spell = await lookupSpell(spellsGranted[0])
+          this.$set(this.featureDescriptions, key, spell?.description ?? null)
+          continue
+        }
+        this.$set(this.featureDescriptions, key, null)
       }
     },
 
@@ -2323,6 +2600,10 @@ export default {
             spellbookChoices: this.spellbookDraftPicks,
             multiclassSkillChoice: this.multiclassSkillDraft,
             fightingStyleChoice: this.fightingStyleDraft,
+            favoredEnemyChoice: this.favoredEnemyDraft,
+            naturalExplorerChoice: this.naturalExplorerDraft,
+            expertiseChoice:
+              this.expertiseDraft.length === 2 ? this.expertiseDraft : null,
           }),
         })
         const data = await res.json()
@@ -2363,6 +2644,43 @@ export default {
               name: `Fighting Style: ${o}`,
             }))
           )
+        }
+
+        const favoredEnemyChoice = data.pendingChoices?.find(
+          (p) => p.type === 'favoredEnemyChoice'
+        )
+        if (favoredEnemyChoice) {
+          this.favoredEnemyChoiceLevel = favoredEnemyChoice.level
+          this.favoredEnemyOptions = favoredEnemyChoice.options
+          // Real RAW text is identical across the 1st/6th/14th tiers (only
+          // the SRD's own title differs — "Favored Enemy (1 type)" etc.),
+          // so pinning to the 1st-level id always gets the right mechanical
+          // description regardless of which grant is actually active here.
+          this.loadFeatureDescriptions([
+            { name: 'Favored Enemy', id: 'favored-enemy-1-type' },
+          ])
+        }
+
+        const naturalExplorerChoice = data.pendingChoices?.find(
+          (p) => p.type === 'naturalExplorerChoice'
+        )
+        if (naturalExplorerChoice) {
+          this.naturalExplorerChoiceLevel = naturalExplorerChoice.level
+          this.naturalExplorerOptions = naturalExplorerChoice.options
+          this.loadFeatureDescriptions([
+            {
+              name: 'Natural Explorer',
+              id: 'natural-explorer-1-terrain-type',
+            },
+          ])
+        }
+
+        const expertiseChoice = data.pendingChoices?.find(
+          (p) => p.type === 'expertiseChoice'
+        )
+        if (expertiseChoice) {
+          this.expertiseChoiceLevel = expertiseChoice.level
+          this.expertiseOptions = expertiseChoice.options
         }
 
         const bonusSpellChoice = data.pendingChoices?.find(
@@ -2427,7 +2745,11 @@ export default {
         }
 
         this.loadFeatureDescriptions(
-          data.newFeatures?.map((f) => ({ name: f.name, id: f.id }))
+          data.newFeatures?.map((f) => ({
+            name: f.name,
+            id: f.id,
+            spellsGranted: f.spells_granted,
+          }))
         )
       } catch (err) {
         this.error = err.message
@@ -2563,6 +2885,36 @@ export default {
 
     async confirmLevelUp() {
       if (!this.preview?.patch) return
+      let patch = this.preview.patch
+      // A Wizard with a spellbook_id: any newly-learned spells in the patch
+      // (diffLevelUp doesn't know spellbook_id exists, so it always returns
+      // them under patch.spells same as for every other character) get
+      // routed onto the shared spellbook entity instead of the character
+      // record — that's what makes them show up for everyone else sharing
+      // the same id. Strip spells from the patch actually applied to the
+      // character so `character.spells` never gets re-created.
+      if (this.selectedCharacter?.spellbook_id && patch.spells) {
+        const spellbookId = this.selectedCharacter.spellbook_id
+        const spellbook = this.spellbooks.find((sb) => sb.id === spellbookId)
+        if (spellbook) {
+          const known = new Set((spellbook.spells ?? []).map((s) => s.name))
+          const newSpells = patch.spells.filter((s) => !known.has(s.name))
+          if (newSpells.length) {
+            this.$store.commit('UPDATE_TABLE_ITEM', {
+              table: 'spellbooks',
+              updatedItem: {
+                ...spellbook,
+                spells: [
+                  ...spellbook.spells,
+                  ...newSpells.map((s) => ({ name: s.name, level: s.level })),
+                ],
+              },
+            })
+          }
+        }
+        const { spells, ...rest } = patch
+        patch = rest
+      }
       // Bake in a chosen subclass if one was picked on the draft — patch.classes
       // already reflects it since diffLevelUp built it from draftCharacter.
       // APPLY_LEVEL_UP deliberately does not mark 'characters' dirty, so this
@@ -2571,7 +2923,7 @@ export default {
       // persists or discards it.
       this.$store.commit('APPLY_LEVEL_UP', {
         characterName: this.selectedCharacterName,
-        patch: this.preview.patch,
+        patch,
       })
       this.justSaved = false
       this.saveError = null
@@ -2637,6 +2989,22 @@ export default {
   font-family: var(--font-display);
   color: var(--color-accent-strong);
   font-size: var(--font-size-base);
+}
+
+.lut-delete-btn {
+  margin-left: auto;
+  padding: 0.3rem 0.7rem;
+  background: none;
+  border: 1px solid var(--color-text-danger, #c0392b);
+  border-radius: 4px;
+  color: var(--color-text-danger, #c0392b);
+  font-family: var(--font-display, serif);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+.lut-delete-btn:hover {
+  color: #e05a4a;
+  border-color: #e05a4a;
 }
 
 .lut-empty {
@@ -2831,7 +3199,11 @@ export default {
 }
 
 .lut-pick-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.2rem 0.5rem;
+  font-size: var(--font-size-sm);
 }
 
 .lut-pick-list li:hover {
@@ -2844,6 +3216,14 @@ export default {
   gap: 0.4rem;
   cursor: pointer;
   font-size: var(--font-size-sm);
+}
+
+.lut-pick-name {
+  cursor: pointer;
+}
+.lut-pick-name:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
 }
 
 .lut-pick-disabled {

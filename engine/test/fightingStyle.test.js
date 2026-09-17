@@ -150,6 +150,153 @@ test('diffLevelUp: Fighting Style is a strict one-time pick — already having o
   )
 })
 
+test("diffLevelUp: multiclassing Ranger (already has a Fighting Style) into Fighter still surfaces Fighter's OWN Fighting Style choice — real bug found 2026-09-16", () => {
+  const character = {
+    classes: [{ name: 'Ranger', level: 2 }],
+    features: [
+      {
+        name: 'Fighting Style: Two-Weapon Fighting',
+        id: 'ranger-fighting-style-two-weapon-fighting',
+        type: 'fightingStyle',
+        level_gained: 2,
+        _source: 'Ranger',
+      },
+    ],
+    spells: [],
+  }
+  const result = engine.diffLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 1,
+  })
+  assert.deepEqual(
+    result.pendingChoices.find((p) => p.type === 'fightingStyleChoice'),
+    {
+      type: 'fightingStyleChoice',
+      level: 1,
+      // Two-Weapon Fighting is excluded — already known from Ranger, see
+      // the dedicated "options exclude a style already known" test below.
+      options: [
+        'Archery',
+        'Defense',
+        'Dueling',
+        'Great Weapon Fighting',
+        'Protection',
+      ],
+    }
+  )
+})
+
+test("diffLevelUp: Fighter's Fighting Style options exclude a style already known from Ranger — real bug found 2026-09-16, same day as the multiclass-suppression fix", () => {
+  const character = {
+    classes: [{ name: 'Ranger', level: 2 }],
+    features: [
+      {
+        name: 'Fighting Style: Archery',
+        id: 'ranger-fighting-style-archery',
+        type: 'fightingStyle',
+        level_gained: 2,
+        _source: 'Ranger',
+      },
+    ],
+    spells: [],
+  }
+  const result = engine.diffLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 1,
+  })
+  const choice = result.pendingChoices.find(
+    (p) => p.type === 'fightingStyleChoice'
+  )
+  assert.deepEqual(choice.options, [
+    'Defense',
+    'Dueling',
+    'Great Weapon Fighting',
+    'Protection',
+    'Two-Weapon Fighting',
+  ])
+  assert.ok(!choice.options.includes('Archery'))
+})
+
+test('diffLevelUp: re-picking an already-known style anyway (bypassing the filtered options) still applies it, with a RAW-violation note', () => {
+  const character = {
+    classes: [{ name: 'Ranger', level: 2 }],
+    features: [
+      {
+        name: 'Fighting Style: Archery',
+        id: 'ranger-fighting-style-archery',
+        type: 'fightingStyle',
+        level_gained: 2,
+        _source: 'Ranger',
+      },
+    ],
+    spells: [],
+  }
+  const result = engine.diffLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 1,
+    fightingStyleChoice: 'Archery',
+  })
+  const fighterStyle = result.newFeatures.find(
+    (f) => f.type === 'fightingStyle' && f._source === 'Fighter'
+  )
+  assert.equal(fighterStyle.name, 'Fighting Style: Archery')
+  assert.ok(
+    result.warnings.some(
+      (w) => w.includes('Archery') && w.includes('already known')
+    )
+  )
+})
+
+test("diffLevelUp: choosing Fighter's own Fighting Style after a Ranger pick already exists produces a SECOND, separate feature entry, not a no-op", () => {
+  const character = {
+    classes: [{ name: 'Ranger', level: 2 }],
+    features: [
+      {
+        name: 'Fighting Style: Archery',
+        id: 'ranger-fighting-style-archery',
+        type: 'fightingStyle',
+        level_gained: 2,
+        _source: 'Ranger',
+      },
+    ],
+    spells: [],
+  }
+  const result = engine.diffLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 1,
+    fightingStyleChoice: 'Dueling',
+  })
+  const fighterStyle = result.newFeatures.find(
+    (f) => f.type === 'fightingStyle' && f._source === 'Fighter'
+  )
+  assert.equal(fighterStyle.name, 'Fighting Style: Dueling')
+  assert.equal(fighterStyle.id, 'fighter-fighting-style-dueling')
+})
+
+test('diffLevelUp: leveling Fighter past 1st (already has ITS OWN Fighting Style) does not re-prompt', () => {
+  const character = {
+    classes: [{ name: 'Fighter', level: 1 }],
+    features: [
+      {
+        name: 'Fighting Style: Dueling',
+        id: 'fighter-fighting-style-dueling',
+        type: 'fightingStyle',
+        level_gained: 1,
+        _source: 'Fighter',
+      },
+    ],
+    spells: [],
+  }
+  const result = engine.diffLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 2,
+  })
+  assert.equal(
+    result.pendingChoices.find((p) => p.type === 'fightingStyleChoice'),
+    undefined
+  )
+})
+
 test('diffLevelUp: an unrecognized Fighting Style name is still recorded (with a note), not blocked', () => {
   const character = { classes: [], features: [], spells: [] }
   const result = engine.diffLevelUp(character, {

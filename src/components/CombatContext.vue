@@ -278,6 +278,9 @@ export default {
     characters() {
       return this.$store.state.characters
     },
+    partyItems() {
+      return this.$store.state.party_items ?? []
+    },
     playerNames() {
       return this.$store.state.selectedPlayers
     },
@@ -302,7 +305,10 @@ export default {
           key: `player-${name}`,
           type: 'player',
           name,
-          mod: char ? dnd.initiative(char) : 0,
+          mod: char ? dnd.initiative(char, this.partyItems) : 0,
+          advantage: char
+            ? dnd.hasInitiativeAdvantage(char, this.partyItems)
+            : false,
           image: char?.image ?? '',
         }
       })
@@ -315,7 +321,8 @@ export default {
           key: `companion-${c.name}`,
           type: 'companion',
           name: c.name,
-          mod: dnd.initiative(c),
+          mod: dnd.initiative(c, this.partyItems),
+          advantage: dnd.hasInitiativeAdvantage(c, this.partyItems),
           image: c.image ?? '',
         }))
       const enemies = this.enemies.map((e) => ({
@@ -323,6 +330,7 @@ export default {
         type: 'enemy',
         name: e.name,
         mod: e.mod,
+        advantage: false,
         image: '',
         encounterData: e.encounterData ?? null,
       }))
@@ -334,6 +342,12 @@ export default {
           ...e,
           total: this.rolls[e.key]?.total ?? 0,
           tiebreakOrder: this.rolls[e.key]?.tiebreakOrder ?? 0,
+          // Whether THIS roll was actually made with advantage — read back
+          // from the roll record rather than live entry.advantage, so it
+          // stays accurate even if the character's gear changes after the
+          // roll (e.g. attuning mid-fight shouldn't retroactively relabel
+          // an already-rolled initiative).
+          advantage: this.rolls[e.key]?.advantage ?? false,
         }))
         .sort(
           (a, b) =>
@@ -544,10 +558,22 @@ export default {
 
     rollInitiative() {
       this.$store.commit('SET_DICE_DRAWER_OPEN', true)
+      // A feat/feature/item that grants advantage on initiative (e.g.
+      // Corwin's Halberd of Warning, while attuned) can't be represented as
+      // a flat stat_bonuses number — it changes how the die itself is
+      // rolled. This bulk auto-roll button is the only place initiative
+      // actually gets rolled in this app, so it's the only place that can
+      // apply it automatically.
+      const rollFor = (entry) =>
+        entry.advantage ? Math.max(dnd.roll(), dnd.roll()) : dnd.roll()
       const newRolls = {}
       for (const entry of this.allEntries) {
-        const roll = dnd.roll()
-        newRolls[entry.key] = { total: roll + entry.mod, tiebreakOrder: 0 }
+        const roll = rollFor(entry)
+        newRolls[entry.key] = {
+          total: roll + entry.mod,
+          tiebreakOrder: 0,
+          advantage: entry.advantage,
+        }
       }
 
       const groups = {}
@@ -557,11 +583,14 @@ export default {
         if (!groups[gk]) groups[gk] = []
         groups[gk].push(entry.key)
       }
+      const entryByKey = Object.fromEntries(
+        this.allEntries.map((e) => [e.key, e])
+      )
       for (const keys of Object.values(groups)) {
         if (keys.length < 2) continue
         let tieRolls
         do {
-          tieRolls = keys.map((k) => ({ k, r: dnd.roll() }))
+          tieRolls = keys.map((k) => ({ k, r: rollFor(entryByKey[k]) }))
         } while (new Set(tieRolls.map((x) => x.r)).size < keys.length)
         tieRolls.sort((a, b) => b.r - a.r)
         tieRolls.forEach(({ k }, i) => {

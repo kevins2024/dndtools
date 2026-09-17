@@ -1,7 +1,11 @@
 <template>
   <div class="combat-panel">
     <div class="vitals-cluster">
-      <HpTracker :character="character" :table="table" />
+      <HpTracker
+        :character="character"
+        :table="table"
+        @concentration-check="$emit('concentration-check', $event)"
+      />
       <VitalsChipRow :character="character" />
       <SavingThrowsPanel :character="character" />
     </div>
@@ -11,7 +15,7 @@
       @condition-changed="$emit('condition-changed', $event)"
     />
 
-    <WeaponTable :character="character" @inspect="showPopup" />
+    <WeaponTable :character="character" :table="table" @inspect="showPopup" />
 
     <ContentFilterRow v-if="hasFilterableContent" v-model="featureFilter" />
     <FeaturePillsPanel
@@ -95,7 +99,7 @@ export default {
     table: { type: String, default: 'characters' },
   },
 
-  emits: ['condition-changed'],
+  emits: ['condition-changed', 'concentration-check'],
 
   data() {
     return {
@@ -118,7 +122,8 @@ export default {
         getCharacterSpells(
           this.character,
           this.partyItems,
-          this.$store.state.subclasses
+          this.$store.state.subclasses,
+          this.$store.state.spellbooks
         ).length > 0
       )
     },

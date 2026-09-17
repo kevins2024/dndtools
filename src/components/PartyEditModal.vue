@@ -40,6 +40,32 @@
                 placeholder="Party name…"
                 @input="saveParty"
               />
+              <div class="party-date-block">
+                <div class="party-date-label">{{ formattedPartyDate }}</div>
+                <div class="party-date-inputs">
+                  <label class="date-field">
+                    Year
+                    <input
+                      type="number"
+                      min="1"
+                      class="date-input"
+                      :value="dateYear"
+                      @change="setPartyDate($event.target.value, dateDay)"
+                    />
+                  </label>
+                  <label class="date-field">
+                    Day
+                    <input
+                      type="number"
+                      min="1"
+                      max="204"
+                      class="date-input"
+                      :value="dateDay"
+                      @change="setPartyDate(dateYear, $event.target.value)"
+                    />
+                  </label>
+                </div>
+              </div>
               <div class="edit-btns">
                 <button
                   class="action-btn"
@@ -146,6 +172,12 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import {
+  yearFromDayCount,
+  dayOfYear,
+  dayCountFromYearAndDay,
+  formatGameDate,
+} from '@/utils/calendar_utils.js'
 
 const STAT_NAMES = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
 const STAT_FIELDS = [
@@ -201,6 +233,20 @@ export default {
       return this.characters
     },
 
+    dateYear() {
+      return this.editingParty
+        ? yearFromDayCount(this.editingParty.game_day || 1)
+        : 1
+    },
+    dateDay() {
+      return this.editingParty ? dayOfYear(this.editingParty.game_day || 1) : 1
+    },
+    formattedPartyDate() {
+      return this.editingParty
+        ? formatGameDate(this.editingParty.game_day || 1)
+        : ''
+    },
+
     otherParties() {
       if (!this.pendingDeleteParty) return []
       return this.parties.filter((p) => p.id !== this.pendingDeleteParty.id)
@@ -237,6 +283,20 @@ export default {
         p.id === this.editingParty.id ? { ...this.editingParty } : p
       )
       this.SET_PARTIES(updated)
+    },
+
+    // Two plain number fields (Year, Day-of-year), trusting the DM to enter
+    // something sensible — no cross-checking against individual characters'
+    // own history. Works for any party being edited, not just the active
+    // one, so catching an inactive party's clock back up before switching
+    // to it is just editing these same two fields.
+    setPartyDate(year, day) {
+      if (!this.editingParty) return
+      this.editingParty.game_day = dayCountFromYearAndDay(
+        Number(year),
+        Number(day)
+      )
+      this.saveParty()
     },
 
     activateEditingParty() {
@@ -482,6 +542,47 @@ export default {
   font-family: var(--font-body);
 }
 .party-name-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.party-date-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.party-date-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  font-family: var(--font-display, serif);
+}
+
+.party-date-inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+  flex: 1;
+}
+
+.date-input {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+}
+.date-input:focus {
   outline: none;
   border-color: var(--color-accent);
 }

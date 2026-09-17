@@ -399,6 +399,9 @@ export default {
           type: 'player',
           team: null,
           mod: char ? dnd.initiative(char, partyItems) : 0,
+          advantage: char
+            ? dnd.hasInitiativeAdvantage(char, partyItems)
+            : false,
           shipId: null,
         }
       })
@@ -571,9 +574,11 @@ export default {
     },
 
     rollAll() {
+      const rollDie = () => Math.floor(Math.random() * 20) + 1
       const newRolls = {}
       for (const c of this.allCombatants) {
-        newRolls[c.id] = Math.floor(Math.random() * 20) + 1 + (c.mod ?? 0)
+        const roll = c.advantage ? Math.max(rollDie(), rollDie()) : rollDie()
+        newRolls[c.id] = roll + (c.mod ?? 0)
       }
       this.rolls = newRolls
       this.activeIdx = 0

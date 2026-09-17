@@ -406,6 +406,7 @@ export const SCHEMAS = {
       'misc',
       'material',
       'teleport_disc',
+      'mount',
     ],
     fields: [
       {
@@ -558,6 +559,15 @@ export const SCHEMAS = {
         level: 'occasional',
         type: 'array of objects',
         when: ['material'],
+      },
+      {
+        key: 'mount_type',
+        level: 'occasional',
+        type: 'string',
+        when: ['mount'],
+        example: 'mount_riding_horse_common',
+        description:
+          'ID into the mounts.json homebrew catalog (mount species/breed × quality tier — poor/common/uncommon/rare). The catalog entry, not this item, holds the actual stat block. This item\'s own "name" should be the animal\'s given name (e.g. "Princess Flowerchild"), not its type.',
       },
       { key: 'quantity', level: 'occasional', type: 'int' },
       {

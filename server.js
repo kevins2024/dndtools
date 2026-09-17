@@ -34,6 +34,8 @@ const ALLOWED_TABLES = [
   'relationships',
   'companions',
   'lore',
+  'spellbooks',
+  'mounts',
 ]
 
 app.use(cors())
@@ -297,6 +299,9 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     spellbookChoices,
     multiclassSkillChoice,
     fightingStyleChoice,
+    favoredEnemyChoice,
+    naturalExplorerChoice,
+    expertiseChoice,
   } = req.body
   if (!character || !className) {
     return res
@@ -318,6 +323,9 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       spellbookChoices,
       multiclassSkillChoice,
       fightingStyleChoice,
+      favoredEnemyChoice,
+      naturalExplorerChoice,
+      expertiseChoice,
     })
     res.json(result)
   } catch (err) {

@@ -157,7 +157,7 @@ export const CONDITIONS = {
   },
   Concentrating: {
     summary:
-      'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half damage) or spell drops.',
+      'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half damage, whichever is higher) or spell drops.',
     rules: [
       'Taking damage requires a Constitution saving throw (DC 10 or half the damage taken, whichever is higher).',
       'On a failed save the concentration spell ends.',

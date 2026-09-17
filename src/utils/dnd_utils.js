@@ -640,6 +640,29 @@ export const dnd = {
     return dnd.mod(stats.dex) + (bonuses.initiative ?? 0)
   },
 
+  // Advantage isn't a flat number like the rest of resolveStats' bonuses, so
+  // it can't live in stat_bonuses.initiative — it changes how the roll
+  // itself is made (roll twice, take the higher), which only the actual
+  // roller (CombatContext's rollInitiative) can act on. This is checked
+  // separately so that caller can decide how to roll.
+  // Item grants only count while attuned when the item needs attunement
+  // (e.g. a Weapon of Warning does nothing unattuned, per RAW) — unlike
+  // resolveStats' flat bonuses, which don't currently gate on attunement at
+  // all, this is intentionally stricter for the one case that's been
+  // explicitly checked against RAW.
+  hasInitiativeAdvantage(character, partyItems = []) {
+    const itemGrants = partyItems.some(
+      (i) =>
+        i.equipped_by === character.name &&
+        i.grants_initiative_advantage &&
+        (!i.needs_attunement || i.attuned)
+    )
+    const featureGrants = (character.features ?? []).some(
+      (f) => f.grants_initiative_advantage
+    )
+    return itemGrants || featureGrants
+  },
+
   // ─────────────────────────────────────────────
   // SAVING THROWS
   // ─────────────────────────────────────────────
@@ -908,6 +931,21 @@ export const dnd = {
     return result
   },
 
+  // Current Sneak Attack dice, computed from actual Rogue class level rather
+  // than baked into a feature name (which drifts the moment the character
+  // levels up and nobody remembers to hand-edit the string — the SRD's own
+  // description text just says "see the Sneak Attack column of the Rogue
+  // table," which is useless here since this app has no such table).
+  // RAW: 1d6 at 1st, +1d6 every 2 Rogue levels — ceil(rogueLevel / 2).
+  // Returns null for a non-Rogue.
+  sneakAttackDice(character) {
+    const rogueLevel = (character.classes ?? []).find(
+      (c) => c.name === 'Rogue'
+    )?.level
+    if (!rogueLevel) return null
+    return `${Math.ceil(rogueLevel / 2)}d6`
+  },
+
   // Rich weapon rows for the combat panel UI — includes atkTooltip, dmgTooltip, and extras.
   buildWeaponRows(character, partyItems = []) {
     const { stats, bonuses } = dnd.resolveStats(character, partyItems)
@@ -919,8 +957,14 @@ export const dnd = {
       (i) => i.equipped_by === character.name
     )
 
+    // Only the CURRENTLY-active loadout's weapons — a weapon assigned to
+    // the other set (or bare-handed props not carried right now) shouldn't
+    // clutter the attack list. dnd.isActiveEquipped already existed for
+    // this exact check (AC's Dual Wielder calc uses it) but buildWeaponRows
+    // never used it, so switching sets never actually changed what showed
+    // up here. Real bug found 2026-09-15.
     const summaries = equippedItems
-      .filter((i) => i.type === 'weapon')
+      .filter((i) => i.type === 'weapon' && dnd.isActiveEquipped(i, character))
       .map((w) => {
         const props = dnd._weaponProps(w)
         const magic = w.enhancement_bonus ?? 0
@@ -997,6 +1041,15 @@ export const dnd = {
           extras,
           thrown: props.thrown,
           returning: props.returning,
+          // Versatile grip (1H/2H) has no visible indicator anywhere in the
+          // combat view — only CharacterInventory's own grip-toggle button
+          // showed it. Real gap found 2026-09-15. `w.slot` (not just
+          // `versatile`) is what's needed to know which grip is CURRENT.
+          versatile: props.versatile,
+          grip:
+            props.versatile && (w.slot === 'melee1h' || w.slot === 'melee2h')
+              ? w.slot
+              : null,
         }
       })
 
@@ -1043,6 +1096,55 @@ export const dnd = {
         atkTooltip: atkParts.join(' + ').replace('+ =', '='),
         dmgTooltip: dmgParts.join(' + '),
         extras,
+      })
+    }
+
+    // Soulknife Rogue's Psychic Blades — manifested weapons, not real items,
+    // so they never show up via the equipped-items pass above. RAW: the
+    // damage die itself (1d6 main / 1d4 bonus-action second blade) does NOT
+    // scale with level — confirmed against dnd5e.wikidot.com and a second
+    // source; only the separate Psionic Energy die *resource pool* scales,
+    // which is a different mechanic not modeled here. Finesse (best of
+    // STR/DEX), thrown 60ft.
+    if (character.psychic_blades) {
+      const statMod = Math.max(strMod, dexMod)
+      const bladeAtkBonus = bonuses.psychic_blade_attack ?? 0
+      const bladeDmgBonus = bonuses.psychic_blade_damage ?? 0
+      const atkTotal = statMod + prof + bladeAtkBonus
+      const atkParts = [
+        `Finesse ${dnd.signed(statMod)}`,
+        `Prof ${dnd.signed(prof)}`,
+      ]
+      if (bladeAtkBonus) atkParts.push(`Items ${dnd.signed(bladeAtkBonus)}`)
+      atkParts.push(`= ${dnd.signed(atkTotal)}`)
+      const dmgTotal = statMod + bladeDmgBonus
+
+      const buildDmgParts = (die) => {
+        const parts = [die, `Finesse ${dnd.signed(statMod)}`]
+        if (bladeDmgBonus) parts.push(`Items ${dnd.signed(bladeDmgBonus)}`)
+        return parts
+      }
+
+      summaries.push({
+        id: 'psychic-blade-main',
+        name: 'Psychic Blade',
+        attack: dnd.signed(atkTotal),
+        damage: `1d6${dnd.signed(dmgTotal)}`,
+        type: 'melee',
+        atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
+        dmgTooltip: buildDmgParts('1d6').join(' + '),
+        extras: [],
+        thrown: { normal: 60, long: 60 },
+      })
+      summaries.push({
+        id: 'psychic-blade-bonus',
+        name: 'Psychic Blade (bonus action)',
+        attack: dnd.signed(atkTotal),
+        damage: `1d4${dnd.signed(dmgTotal)}`,
+        type: 'melee',
+        atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
+        dmgTooltip: buildDmgParts('1d4').join(' + '),
+        extras: [],
       })
     }
 

@@ -63,6 +63,12 @@
 
           <!-- All scores: click-to-edit -->
           <div class="card-score-wrap" @click.stop>
+            <span
+              v-if="entry.advantage"
+              class="card-adv-badge"
+              title="Rolled with advantage on initiative (gear/feature bonus)"
+              >ADV</span
+            >
             <input
               v-if="editingKey === entry.key"
               :ref="`scoreInput-${entry.key}`"
@@ -205,6 +211,7 @@
           <CharacterCombatPanel
             :character="activeChar"
             @condition-changed="log"
+            @concentration-check="onConcentrationCheck"
           />
         </template>
 
@@ -226,6 +233,7 @@
             :character="activeCompanion"
             table="companions"
             @condition-changed="log"
+            @concentration-check="onConcentrationCheck"
           />
         </template>
 
@@ -468,6 +476,14 @@
         </div>
       </div>
     </div>
+
+    <ConcentrationCheckModal
+      v-if="activeConcentrationAlert"
+      :alert="activeConcentrationAlert"
+      :queue-count="concentrationQueue.length"
+      @roll="rollConcentrationCheck(activeConcentrationAlert)"
+      @dismiss="dismissConcentrationAlert"
+    />
   </div>
 </template>
 
@@ -478,6 +494,7 @@ import EnemyHpTracker from '@/components/EnemyHpTracker.vue'
 import EnemyConditionsRow from '@/components/EnemyConditionsRow.vue'
 import EnemyAbilityScoreGrid from '@/components/EnemyAbilityScoreGrid.vue'
 import ActionEconomyRow from '@/components/ActionEconomyRow.vue'
+import ConcentrationCheckModal from '@/components/ConcentrationCheckModal.vue'
 import { BugOff } from 'lucide-vue'
 import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
@@ -493,6 +510,7 @@ export default {
     EnemyConditionsRow,
     EnemyAbilityScoreGrid,
     ActionEconomyRow,
+    ConcentrationCheckModal,
     BugOff,
   },
 
@@ -527,6 +545,11 @@ export default {
       enemyConditions: {},
       enemyStats: {},
       enemyMeta: {},
+      // Ephemeral queue of pending concentration-check reminders — fed by
+      // onConcentrationCheck, which reads the existing "Concentrating"
+      // condition (enemyConditions for enemies, character.conditions for
+      // players/companions) rather than a separate flag.
+      concentrationQueue: [],
       newEnemyName: '',
       newEnemyMod: 0,
       statKeys: STAT_KEY_LIST,
@@ -542,6 +565,9 @@ export default {
   },
 
   computed: {
+    activeConcentrationAlert() {
+      return this.concentrationQueue[0] ?? null
+    },
     activeEntry() {
       return this.order[this.combatTurn.turnIndex] ?? null
     },
@@ -585,10 +611,20 @@ export default {
       const key = this.activeEntry.key
       const fromEncounter = this.activeEntry.encounterData?.stats ?? {}
       const fromOverrides = this.enemyStats[key] ?? {}
+      // A quick-added enemy (no real stat block, just a name + an "Init"
+      // modifier typed in pre-fight) had its DEX silently default to a flat
+      // 10 (+0) here — contradicting whatever initiative mod the DM
+      // actually entered for it. Seed DEX from that same mod instead so the
+      // two agree, unless a real encounter stat block or a manual override
+      // already supplies a DEX score. Real gap found 2026-09-15.
+      const seedDex =
+        fromOverrides.dex ??
+        fromEncounter.dex ??
+        (this.activeEntry.mod != null ? 10 + 2 * this.activeEntry.mod : 10)
       return Object.fromEntries(
         this.statKeys.map((s) => [
           s,
-          fromOverrides[s] ?? fromEncounter[s] ?? 10,
+          s === 'dex' ? seedDex : fromOverrides[s] ?? fromEncounter[s] ?? 10,
         ])
       )
     },
@@ -805,6 +841,39 @@ export default {
         this.$set(this.enemyHp, key, { ...hp, damage: hp.damage + amount })
         this.log(`${amount} damage`)
       }
+      // RAW: temp HP cushions HP loss but doesn't change how much damage
+      // you TOOK — the concentration DC uses the full amount either way.
+      // Reads the existing "Concentrating" condition (toggled via
+      // EnemyConditionsRow, same chip used for every other status) rather
+      // than a separate flag.
+      if ((this.enemyConditions[key] ?? []).includes('Concentrating')) {
+        this.onConcentrationCheck({
+          name: this.activeEntry.name,
+          damage: amount,
+        })
+      }
+    },
+
+    onConcentrationCheck({ name, damage, mod = 0 }) {
+      this.concentrationQueue.push({
+        id: `${Date.now()}_${Math.random()}`,
+        name,
+        damage,
+        dc: Math.max(10, Math.floor(damage / 2)),
+        mod,
+      })
+    },
+
+    dismissConcentrationAlert() {
+      this.concentrationQueue.shift()
+    },
+
+    rollConcentrationCheck(alert) {
+      this.$store.commit('SET_PENDING_ROLL', {
+        label: `Concentration Check — ${alert.name} (DC ${alert.dc})`,
+        mod: alert.mod,
+      })
+      this.dismissConcentrationAlert()
     },
     applyHeal(amount) {
       if (!amount || amount <= 0 || !this.activeEntry) return
@@ -1162,6 +1231,20 @@ export default {
   flex-shrink: 0;
   min-width: 1.75rem;
   text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  justify-content: flex-end;
+}
+
+.card-adv-badge {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-display, serif);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  padding: 0 3px;
+  flex-shrink: 0;
 }
 
 .card-score.editable {

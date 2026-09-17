@@ -6,7 +6,8 @@
   "scripts": {
     "front": "vue-cli-service serve",
     "back": "node server.js",
-    "serve": "concurrently -n front,back,ready -c blue,green,yellow \"npm run front\" \"npm run back\" \"node scripts/wait-ready.js\"",
+    "serve": "concurrently -n front,back,ready -c blue,green,yellow \"vue-cli-service serve\" \"node server.js\" \"node scripts/wait-ready.js\"",
+    "stop": "lsof -ti:8080,8081,3001 -sTCP:LISTEN | xargs -r kill",
     "build": "vue-cli-service build",
     "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",

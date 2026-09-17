@@ -108,7 +108,10 @@ export default {
 
   methods: {
     async inspect(feature) {
-      this.$emit('inspect', await buildFeaturePopupData(feature))
+      this.$emit(
+        'inspect',
+        await buildFeaturePopupData(feature, this.character)
+      )
     },
   },
 }

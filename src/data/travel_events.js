@@ -358,4 +358,367 @@ export const TRAVEL_EVENTS = [
         'The shrine offers something real — a moment of clarity, an unmistakable sense of being watched over, or, rarely, and never explained, a small and genuinely useful blessing that lingers for the rest of the journey.',
     },
   },
+  {
+    id: 'lost_cargo',
+    label: 'Lost Cargo',
+    terrains: [
+      'road',
+      'grassland',
+      'forest',
+      'swamp',
+      'mountains',
+      'desert',
+      'snow',
+    ],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'Beast',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "The wrecked cart isn't as abandoned as it looked — whatever tore through this cargo in the first place never left, and it's not happy to be interrupted.",
+      bad: 'A wrecked cart or dropped pack lies half-buried in the brush, its contents smashed, soaked, or rotted past any use. A wasted stop.',
+      mundane:
+        'A wrecked cart or dropped pack sits abandoned at the roadside, already picked clean by whoever passed before. A few unremarkable scraps remain.',
+      good: 'A wrecked cart or dropped pack yields genuinely salvageable goods — nothing spectacular, but worth the few minutes it takes to collect.',
+      extremeGood:
+        'Whoever lost this cargo lost something valuable — coin, a well-made tool, or trade goods worth real money — and evidently never made it back for it.',
+    },
+  },
+  {
+    id: 'local_rumor',
+    label: 'Local Rumor',
+    terrains: [
+      'road',
+      'grassland',
+      'forest',
+      'swamp',
+      'mountains',
+      'desert',
+      'snow',
+    ],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: false,
+    variants: {
+      extremeBad:
+        "The 'helpful' rumor turns out to be bait — deliberately planted to send travelers somewhere they shouldn't go.",
+      bad: 'A passing local shares a rumor that turns out to be stale, wrong, or already resolved by the time it would have mattered.',
+      mundane:
+        'A passing local, or a scrap of overheard gossip, offers a small and largely forgettable detail about the road ahead.',
+      good: 'A genuinely useful rumor turns up — a hazard worth avoiding, a person worth meeting, or a shortcut worth knowing.',
+      extremeGood:
+        "The rumor points at something significant, specific enough that it's obviously worth following up on.",
+    },
+  },
+  {
+    id: 'old_battlefield',
+    label: 'Old Battlefield',
+    terrains: ['grassland', 'forest', 'swamp', 'mountains', 'desert', 'snow'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['bad', 'extremeBad'],
+    encounterSource: 'Undead',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "Something out here never stopped fighting the last battle, and it doesn't distinguish between old enemies and new arrivals.",
+      bad: "Whatever's left on this old battlefield hasn't entirely settled — a restless presence makes itself known, and it isn't friendly.",
+      mundane:
+        'The ground here still shows the scars of some past battle — broken weapons, old bones, a churned and unnatural stretch of earth. Long since quiet.',
+      good: 'The old battlefield yields something worth having, missed by whoever picked over it before — a serviceable weapon, a bit of coin, an old marker worth noting.',
+      extremeGood:
+        'Amid the old wreckage sits something genuinely valuable — a weapon or piece of equipment well beyond scavenger-grade, missed by everyone who came before.',
+    },
+  },
+  {
+    id: 'distant_smoke',
+    label: 'Distant Smoke',
+    terrains: [
+      'road',
+      'grassland',
+      'forest',
+      'swamp',
+      'mountains',
+      'desert',
+      'snow',
+    ],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'humanoid',
+    encounterSize: 'group',
+    variants: {
+      extremeBad:
+        "The smoke marks a camp, and whoever's in it has already spotted the party coming — with clearly hostile intent.",
+      bad: "The smoke leads to a burned-out ruin — a homestead or camp, recently and violently destroyed. Whoever did it is long gone, but the sight isn't easily shaken.",
+      mundane:
+        'Smoke rises on the horizon — a campfire, a chimney, a controlled burn. It resolves before the party gets close enough for it to matter.',
+      good: 'The smoke marks a small, friendly camp — travelers or locals willing to share warmth, a meal, or a few minutes of conversation.',
+      extremeGood:
+        "The smoke leads to an unexpectedly welcoming stop — food, shelter, and good company, exactly when it's needed most.",
+    },
+  },
+  {
+    id: 'something_buried',
+    label: 'Something Buried',
+    terrains: [
+      'road',
+      'grassland',
+      'forest',
+      'swamp',
+      'mountains',
+      'desert',
+      'snow',
+    ],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'Undead',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "Whatever's buried here didn't appreciate being disturbed, and it's no longer buried.",
+      bad: 'A disturbed patch of ground turns out to be a grave — recently robbed, the contents long gone. An unsettling find, nothing more.',
+      mundane:
+        'A half-exposed object in the ground — a stone, a bone, an old marker — turns out to be exactly as unremarkable as it looks.',
+      good: 'Something worth having lies half-buried nearby — an old cache, a dropped item, small but genuinely useful.',
+      extremeGood:
+        'The buried object is a real find — something old, valuable, and clearly not meant to be found by just anyone.',
+    },
+  },
+  {
+    id: 'old_mining_works',
+    label: 'Old Mining Works',
+    terrains: ['caves'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'Beast',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "The old works aren't as abandoned as the rust and rot suggest — something has moved in since the miners left, and it's already aware of the party.",
+      bad: 'Old support beams groan overhead, and part of the passage has to be picked through rubble from a long-past collapse. Slow, unpleasant going.',
+      mundane:
+        'Abandoned mining equipment — carts, timber supports, rusted tools — litters the passage. Long since stripped of anything valuable.',
+      good: 'The old works still hold a few overlooked tools or supplies, dusty but serviceable.',
+      extremeGood:
+        'A missed vein or a forgotten cache turns up among the old works — genuinely valuable, and entirely unclaimed.',
+    },
+  },
+  {
+    id: 'cave_swarm',
+    label: 'Startled Swarm',
+    terrains: ['caves'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['bad', 'extremeBad'],
+    encounterSource: 'Swarm',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "The swarm doesn't just startle and scatter — it surges toward the party, and there's nowhere to retreat to in the tunnel.",
+      bad: 'A startled swarm of bats or insects floods the passage in a chaotic, biting rush before finally dispersing.',
+      mundane:
+        "A colony of bats or insects stirs at the party's approach, fills the passage with noise and motion, and settles again once they've passed.",
+      good: 'The swarm scatters harmlessly at a distance, more spectacle than danger — an oddly striking sight in the dark.',
+      extremeGood:
+        'The disturbed swarm reveals something useful in its wake — a clear path forward, an overlooked side passage, or simply a spectacular, safe show worth remembering.',
+    },
+  },
+  {
+    id: 'crystal_formation',
+    label: 'Crystal Formation',
+    terrains: ['caves'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'Aberration',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "The crystal formation isn't just beautiful — something has made its home in or around it, and the party has just intruded.",
+      bad: 'The crystal formation is genuinely striking, but the passage around it is treacherous — sharp, unstable footing costs time and no small amount of caution.',
+      mundane:
+        "A formation of natural crystal catches the torchlight beautifully. Worth a moment's pause, nothing more.",
+      good: 'The crystal formation is stunning — and a portion of it is loose enough to carefully extract, worth a fair bit to the right buyer.',
+      extremeGood:
+        "The formation is extraordinary — rare enough that a piece of it alone could be worth a small fortune, and there's more here than the party can carry.",
+    },
+  },
+  {
+    id: 'cave_marking',
+    label: 'Ancient Marking',
+    terrains: ['caves'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: false,
+    variants: {
+      extremeBad:
+        "The markings are a warning, and the party only realizes what they meant after it's already too late to heed it.",
+      bad: 'Old markings cover a stretch of wall — deliberate, but faded and damaged beyond any real interpretation.',
+      mundane:
+        'Faint, ancient markings cover a stretch of wall — clearly deliberate, long since faded past any easy meaning.',
+      good: 'The markings are legible enough to make out real meaning — a boundary, a warning, or a record of who passed this way before.',
+      extremeGood:
+        'The markings tell a genuinely significant story, complete enough to be a real discovery — the kind of thing a scholar would pay well to hear about.',
+    },
+  },
+  {
+    id: 'sudden_drop',
+    label: 'Sudden Drop',
+    terrains: ['caves'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: false,
+    variants: {
+      extremeBad:
+        'The floor gives way without warning, and the fall is a long one — painful, and costly in more than just bruises.',
+      bad: 'The floor gives way underfoot. The fall is short but rough, and whoever went down needs a hand back up.',
+      mundane:
+        'The floor drops away sooner than expected — a short scramble down and back up, nothing worse than scraped knees.',
+      good: 'A drop in the floor turns out to be an easy, short climb down to a lower passage that actually saves time.',
+      extremeGood:
+        'The drop opens into an unexpected lower passage that connects back to the route far more directly than the known way — a genuine shortcut.',
+    },
+  },
+  {
+    id: 'something_already_here',
+    label: 'Something Already Living Here',
+    terrains: ['caves'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['bad', 'extremeBad'],
+    encounterSource: 'Monstrosity',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "Whatever's made this stretch of tunnel home is already awake, already aware, and already closing the distance.",
+      bad: "Clear signs that something has claimed this stretch of tunnel as its den — and it's home, and unwilling to share.",
+      mundane:
+        "Old signs — bedding, bones, worn stone — suggest something has denned here before, but it's long gone now.",
+      good: 'Whatever denned here has clearly moved on, leaving behind a few overlooked, genuinely useful scraps.',
+      extremeGood:
+        'The abandoned den yields a real find — something its former occupant collected and left behind, valuable and entirely unclaimed.',
+    },
+  },
+  {
+    id: 'debris_field',
+    label: 'Debris Field',
+    terrains: ['water'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'Beast',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "Something is still with the wreckage, and it's not willing to share whatever's left of it.",
+      bad: 'Wreckage or cargo drifts past — already picked over, waterlogged, and worthless by the time it can be reached.',
+      mundane:
+        'Driftwood, wreckage, or lost cargo floats past — unremarkable, and not worth the effort to retrieve.',
+      good: 'Salvageable debris drifts within easy reach — nothing spectacular, but worth pulling in.',
+      extremeGood:
+        "The debris includes something genuinely valuable, remarkably intact despite however long it's been in the water.",
+    },
+  },
+  {
+    id: 'fog_on_water',
+    label: 'Fog on the Water',
+    terrains: ['water'],
+    continents: 'any',
+    navigationRisk: true,
+    combatFlagged: false,
+    variants: {
+      extremeBad:
+        "The fog closes in completely, swallowing every landmark. {tracker} loses all sense of the crossing's far bank, and the party drifts well off the intended line before the fog finally breaks.",
+      bad: "Fog rolls across the water thick enough to blur the far bank. {tracker} keeps the crossing roughly on line, but 'roughly' costs time and nerves.",
+      mundane:
+        'A light fog drifts across the water, but the known crossing point is easy enough for {tracker} to hold to without much trouble.',
+      good: 'The fog breaks just often enough for {tracker} to keep a confident line across the known crossing, despite the poor visibility.',
+      extremeGood:
+        '{tracker} reads the water itself for bearing — current, sound, the pull of the crossing — with enough precision to cut straight across despite the fog, saving real time.',
+    },
+    offPathVariants: {
+      extremeBad:
+        "With no known crossing to anchor against, the fog erases every landmark entirely. The party loses true bearing on the water, and doubling back doesn't help — nothing here looks familiar in this soup.",
+      bad: 'No known crossing exists here, and the fog makes reading the water by eye useless. {tracker} manages a rough bearing, but it costs real time and nerve.',
+      mundane:
+        'No known crossing, and fog besides — but {tracker} reads current and drift well enough to hold a workable line across.',
+      good: 'With no known ford, {tracker} reads the water itself for a bearing — current, depth, the pull of the crossing — and holds a confident line despite the fog.',
+      extremeGood:
+        "{tracker} finds the most efficient line across pathless, fog-bound water as if it had always been mapped — reading current, depth, and drift together — and the party makes a crossing that shouldn't have been possible blind.",
+    },
+  },
+  {
+    id: 'waterlogged_gear',
+    label: 'Waterlogged Gear',
+    terrains: ['water'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: false,
+    variants: {
+      extremeBad:
+        'The crossing goes wrong enough that real gear is lost to the water — soaked past saving, or gone entirely, swept away before anyone can grab it.',
+      bad: "The crossing leaves a fair amount of gear soaked through — nothing lost outright, but plenty that'll need drying out before it's useful again.",
+      mundane:
+        'The crossing leaves boots and packs a little wetter than ideal. A minor annoyance, nothing more.',
+      good: 'The party crosses drier than expected — good footing, careful packing, or simple luck keeps gear mostly untouched.',
+      extremeGood:
+        'The crossing goes better than anyone had a right to expect — gear stays completely dry, and the pace barely slows at all.',
+    },
+  },
+  {
+    id: 'old_wreck',
+    label: 'Old Wreck',
+    terrains: ['water'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['extremeBad'],
+    encounterSource: 'Undead',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "The wreck isn't empty — something went down with the vessel, and it's still aboard, and it's noticed the party.",
+      bad: 'The old wreck is picked clean and structurally treacherous — exploring it costs time and nearly costs someone a nasty fall.',
+      mundane:
+        'A sunken or beached wreck sits half-visible in the water — old, picked over, and not worth the time to search further.',
+      good: 'The old wreck still holds a few overlooked, salvageable items, worth the short detour to retrieve.',
+      extremeGood:
+        'The wreck yields a genuine find — cargo or fittings that survived remarkably intact, worth real money to the right buyer.',
+    },
+  },
+  {
+    id: 'territorial_aquatic_creature',
+    label: 'Territorial Aquatic Creature',
+    terrains: ['water'],
+    continents: 'any',
+    navigationRisk: false,
+    combatFlagged: true,
+    hostileTiers: ['bad', 'extremeBad'],
+    encounterSource: 'Beast',
+    encounterSize: 'solo',
+    variants: {
+      extremeBad:
+        "Something large and territorial doesn't just notice the party in its water — it's already closing in, and there's no good way around it. This is a fight.",
+      bad: 'Something territorial surfaces and blocks the crossing — posturing, loud, and clearly unwilling to let the party pass without a confrontation.',
+      mundane:
+        'Something territorial surfaces at a distance, postures, and loses interest once the party gives it space.',
+      good: "Something that could have been territorial turns out to be more curious than aggressive, and keeps its distance once it's clear the party means no harm.",
+      extremeGood:
+        'The creature that could have been a threat turns out to be unexpectedly useful — its presence seems to have kept something worse out of these waters, or it guides the party toward safer footing before losing interest.',
+    },
+  },
 ]
