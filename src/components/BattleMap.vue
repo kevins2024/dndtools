@@ -83,6 +83,26 @@
               +
             </button>
           </div>
+
+          <!-- Manual token size override — real gap found 2026-09-18:
+          tokenSpan already renders a real footprint from
+          entry.encounterData.size (Large=2x2, Huge=3x3, Gargantuan=4x4),
+          but that's only ever auto-populated for a bestiary-added enemy;
+          a manually-added one (or a homebrew size bump) had no way to set
+          it. Only shown once a token is selected. -->
+          <div v-if="selectedKey" class="bm-size-row">
+            <span class="bm-hint">Size:</span>
+            <select
+              class="bm-size-select"
+              :value="selectedSize"
+              @change="setSelectedSize($event.target.value)"
+            >
+              <option v-for="s in sizeOptions" :key="s" :value="s">
+                {{ s }}
+              </option>
+            </select>
+          </div>
+
           <button class="bm-btn" @click="exportMap">
             {{ copyFlash ? '✓ Copied' : 'Export' }}
           </button>
@@ -287,7 +307,7 @@ export default {
     visible: { type: Boolean, default: false },
   },
 
-  emits: ['close'],
+  emits: ['close', 'set-token-size'],
 
   data() {
     return {
@@ -316,6 +336,18 @@ export default {
   computed: {
     selectedName() {
       return this.order.find((e) => e.key === this.selectedKey)?.name ?? ''
+    },
+    selectedEntry() {
+      return this.order.find((e) => e.key === this.selectedKey) ?? null
+    },
+    // Only enemy tokens get a manual size override — players/companions
+    // aren't Large+ in this campaign, and the bestiary path already
+    // auto-populates encounterData.size correctly for them anyway.
+    selectedSize() {
+      return this.selectedEntry?.encounterData?.size ?? 'Medium'
+    },
+    sizeOptions() {
+      return Object.keys(SIZE_SPAN)
     },
     byCell() {
       const m = {}
@@ -412,6 +444,11 @@ export default {
   },
 
   methods: {
+    setSelectedSize(size) {
+      if (!this.selectedKey) return
+      this.$emit('set-token-size', { key: this.selectedKey, size })
+    },
+
     // ── Canvas setup ──────────────────────────────────────────
 
     resizeCanvas() {
@@ -1109,6 +1146,23 @@ would just overflow ITS OWN parent instead of becoming scrollable here. */
   color: var(--color-text-muted);
   min-width: 2.8rem;
   text-align: center;
+}
+
+.bm-size-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.bm-size-select {
+  padding: 0.15rem 0.4rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-family: var(--font-body);
 }
 
 .bm-btn {

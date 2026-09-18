@@ -185,6 +185,7 @@
         :combatant-states="combatantStates"
         :combat-turn="combatTurnState"
         @close="showBattleMap = false"
+        @set-token-size="onSetTokenSize"
       />
     </template>
 
@@ -695,6 +696,26 @@ export default {
         ...this.combatTurnState,
         round: Math.max(1, round),
       }
+    },
+    // Manual token-size override for the Battle Map — real gap found
+    // 2026-09-18: BattleMap.vue's tokenSpan already renders a real
+    // RAW footprint (Large=2x2, Huge=3x3, Gargantuan=4x4) from
+    // entry.encounterData.size, but that field is only ever populated
+    // automatically for an enemy added FROM the bestiary — one added
+    // via the plain manual name/mod form has no encounterData at all, so
+    // it always rendered as a single square regardless of its real size.
+    // Session-local only (enemies here are ephemeral combat state, not a
+    // saved table), so this is safe to set even mid-fight.
+    onSetTokenSize({ key, size }) {
+      const idPart = key.startsWith('enemy-')
+        ? key.slice('enemy-'.length)
+        : null
+      if (idPart === null) return
+      this.enemies = this.enemies.map((e) =>
+        String(e.id) === idPart
+          ? { ...e, encounterData: { ...(e.encounterData ?? {}), size } }
+          : e
+      )
     },
 
     formatMod: (mod) => dnd.signed(mod),
