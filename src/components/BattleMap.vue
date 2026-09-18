@@ -1,85 +1,95 @@
 <template>
   <div class="bm-overlay" ref="overlay" tabindex="-1" @keydown="handleKeyDown">
     <div class="bm-panel">
-      <!-- Toolbar -->
+      <!-- Toolbar — fixed min-width + 2 stacked rows so it stays a stable
+      size instead of squeezing/reflowing its dozen-odd controls at
+      different panel widths (project owner's 2026-09-18 report: had to
+      keep the window ~1500px wide just to stop things "shrinking and
+      jumping around"). Scrolls horizontally on anything narrower rather
+      than clipping controls. -->
       <div class="bm-toolbar">
-        <span class="bm-title">Battle Map</span>
-        <template v-if="paintMode">
-          <span class="bm-hint">
-            Click or drag to paint
-            <strong v-if="selectedPaint === null">— erasing</strong>
-            <strong v-else-if="selectedPaint === 'x'">— obstacle</strong>
-            <strong v-else>— {{ selectedPaintLabel }}</strong>
-          </span>
-        </template>
-        <template v-else>
-          <span class="bm-hint" v-if="selectedKey"
-            >Moving: <strong>{{ selectedName }}</strong> — click a square to
-            place</span
-          >
-          <span class="bm-hint" v-else
-            >Click a token to select, then click a square to move</span
-          >
-        </template>
+        <div class="bm-toolbar-row">
+          <span class="bm-title">Battle Map</span>
+          <template v-if="paintMode">
+            <span class="bm-hint">
+              Click or drag to paint
+              <strong v-if="selectedPaint === null">— erasing</strong>
+              <strong v-else-if="selectedPaint === 'x'">— obstacle</strong>
+              <strong v-else>— {{ selectedPaintLabel }}</strong>
+            </span>
+          </template>
+          <template v-else>
+            <span class="bm-hint" v-if="selectedKey"
+              >Moving: <strong>{{ selectedName }}</strong> — click a square to
+              place</span
+            >
+            <span class="bm-hint" v-else
+              >Click a token to select, then click a square to move</span
+            >
+          </template>
 
-        <div class="bm-legend">
-          <span class="bm-legend-dot" style="background: #c8a96e"></span>Player
-          <span
-            class="bm-legend-dot"
-            style="background: var(--color-success)"
-          ></span
-          >Friendly
-          <span
-            class="bm-legend-dot"
-            style="background: var(--color-neutral-amber)"
-          ></span
-          >Neutral
-          <span class="bm-legend-dot" style="background: #a05030"></span>Enemy
-          <span v-if="combatTurn" class="bm-legend-note"
-            >· <span class="bm-legend-ring"></span> current turn ·
-            <span class="bm-legend-check">✓</span> already acted this
-            round</span
-          >
+          <div class="bm-legend">
+            <span class="bm-legend-dot" style="background: #c8a96e"></span
+            >Player
+            <span
+              class="bm-legend-dot"
+              style="background: var(--color-success)"
+            ></span
+            >Friendly
+            <span
+              class="bm-legend-dot"
+              style="background: var(--color-neutral-amber)"
+            ></span
+            >Neutral
+            <span class="bm-legend-dot" style="background: #a05030"></span>Enemy
+            <span v-if="combatTurn" class="bm-legend-note"
+              >· <span class="bm-legend-ring"></span> current turn ·
+              <span class="bm-legend-check">✓</span> already acted this
+              round</span
+            >
+          </div>
         </div>
 
-        <button
-          class="bm-btn"
-          :class="{ 'bm-btn--active': paintMode }"
-          @click="togglePaintMode"
-        >
-          {{ paintMode ? 'Move Mode' : 'Paint Mode' }}
-        </button>
-        <button
-          class="bm-btn"
-          :class="{ 'bm-btn--active': zoneMode }"
-          @click="toggleZoneMode"
-        >
-          {{ zoneMode ? 'Move Mode' : 'Zones' }}
-        </button>
-
-        <div class="bm-zoom-row">
+        <div class="bm-toolbar-row">
           <button
             class="bm-btn"
-            @click="adjustZoom(-2)"
-            :disabled="cellSize <= MIN_CELL"
+            :class="{ 'bm-btn--active': paintMode }"
+            @click="togglePaintMode"
           >
-            −
+            {{ paintMode ? 'Move Mode' : 'Paint Mode' }}
           </button>
-          <span class="bm-zoom-label">{{ cellSize }}px</span>
           <button
             class="bm-btn"
-            @click="adjustZoom(2)"
-            :disabled="cellSize >= MAX_CELL"
+            :class="{ 'bm-btn--active': zoneMode }"
+            @click="toggleZoneMode"
           >
-            +
+            {{ zoneMode ? 'Move Mode' : 'Zones' }}
+          </button>
+
+          <div class="bm-zoom-row">
+            <button
+              class="bm-btn"
+              @click="adjustZoom(-2)"
+              :disabled="cellSize <= MIN_CELL"
+            >
+              −
+            </button>
+            <span class="bm-zoom-label">{{ cellSize }}px</span>
+            <button
+              class="bm-btn"
+              @click="adjustZoom(2)"
+              :disabled="cellSize >= MAX_CELL"
+            >
+              +
+            </button>
+          </div>
+          <button class="bm-btn" @click="exportMap">
+            {{ copyFlash ? '✓ Copied' : 'Export' }}
+          </button>
+          <button class="bm-btn bm-close-btn" @click="$emit('close')">
+            ✕ Close
           </button>
         </div>
-        <button class="bm-btn" @click="exportMap">
-          {{ copyFlash ? '✓ Copied' : 'Export' }}
-        </button>
-        <button class="bm-btn bm-close-btn" @click="$emit('close')">
-          ✕ Close
-        </button>
       </div>
 
       <!-- Palette bar (paint mode only) -->
@@ -1006,14 +1016,32 @@ export default {
 }
 
 /* ── Toolbar ── */
+/* Fixed size, not fluid — real bug report 2026-09-18: as a flex row this
+squeezed and reflowed its dozen-odd controls unpredictably at anything
+under ~1500px, forcing the window to stay wide just to keep it stable.
+Now a fixed 2-row block (each row its own flex line) at a real min-width,
+roughly double the old single-row height; scrolls horizontally instead of
+squeezing when the panel is narrower than that. */
 .bm-toolbar {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.45rem 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  overflow-x: auto;
   background: var(--color-bg-panel-dark);
   border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
+}
+
+/* The min-width lives on each ROW (the scrollable content), not on
+.bm-toolbar itself (the scroll container) — a min-width on the container
+would just overflow ITS OWN parent instead of becoming scrollable here. */
+.bm-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 1500px;
+  min-height: 1.8rem;
 }
 
 .bm-title {

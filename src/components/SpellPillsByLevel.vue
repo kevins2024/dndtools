@@ -13,7 +13,7 @@
             spell.domain
               ? 'Domain spell — always prepared'
               : spell.featureGranted
-              ? `Free cast via ${spell._source} (doesn't count against spells known)`
+              ? `Bonus spell via ${spell._source} (doesn't count against spells known — still costs a normal spell slot to cast, unless a separate feature makes it at-will/free)`
               : null
           "
           @click="inspect(spell)"

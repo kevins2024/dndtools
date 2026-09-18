@@ -334,7 +334,7 @@
     "id": "pub_the-retired-special",
     "name": "The Retired Special",
     "category": "item_feature",
-    "description": "Once per day, reaction when an ally is hit: toss a psychic thread and pull the ally up to 15ft to an unoccupied space, potentially causing the attack to miss.",
+    "description": "Once per day, as a reaction when an ally is hit by an attack: toss a psychic thread and yank the ally up to 15ft to an unoccupied space you can see. If this pulls them out of the attack's range (a melee attack no longer within reach, a ranged attack no longer within its normal/long range), the attack misses instead of hitting.",
     "recharge": "daily",
     "homebrew": true,
     "source": "Homebrew, granted by The Weaver's Master-Awl to whoever wields it — no class dependency."
