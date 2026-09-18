@@ -792,20 +792,45 @@
                 >
               </span>
             </div>
-            <div
-              v-if="editDraft.stored_spells && editDraft.stored_spells.length"
-              class="meta-row"
-            >
-              <span class="meta-label">Stored</span>
-              <span class="meta-value">
-                <span
-                  v-for="sp in editDraft.stored_spells"
-                  :key="sp.name"
-                  class="bonus-tag"
-                  >{{ sp.name }} (L{{ sp.level }})</span
+          </div>
+
+          <!-- Stored spells (a spell-storing item, e.g. Ring of Spell
+          Storing) — real gap found 2026-09-18: this was a read-only
+          "SpellName (L1)" tag list with no way to add or remove one,
+          matching Contents' editable-list pattern below instead. -->
+          <div v-if="editDraft.stored_spells" class="inspection-section">
+            <div class="section-label">Stored Spells</div>
+            <div class="contents-list">
+              <div
+                v-for="(sp, i) in editDraft.stored_spells"
+                :key="i"
+                class="contents-row"
+              >
+                <input
+                  class="meta-input contents-type"
+                  v-model="sp.name"
+                  placeholder="Spell name"
+                />
+                <input
+                  class="meta-input meta-input--num contents-value"
+                  type="number"
+                  min="0"
+                  max="9"
+                  v-model.number="sp.level"
+                  placeholder="Level"
+                />
+                <button
+                  class="act-btn dim contents-remove"
+                  title="Remove this stored spell"
+                  @click="editDraft.stored_spells.splice(i, 1)"
                 >
-              </span>
+                  ✕
+                </button>
+              </div>
             </div>
+            <button class="act-btn dim" @click="addStoredSpellRow">
+              + Add stored spell
+            </button>
           </div>
 
           <!-- Contents (gem pouches and similar bulk-material items) — a
@@ -1446,6 +1471,9 @@ export default {
     },
     addContentsRow() {
       this.editDraft.contents.push({ type: '', value_gp: 0, quantity: 0 })
+    },
+    addStoredSpellRow() {
+      this.editDraft.stored_spells.push({ name: '', level: 0 })
     },
   },
 }
