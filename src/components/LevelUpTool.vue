@@ -812,6 +812,545 @@
               </div>
             </div>
 
+            <!-- ── Metamagic (Sorcerer 3rd: pick 2; 10th/17th: pick 1) ── -->
+            <div
+              v-if="pendingMetamagicChoice || metamagicDraft.length"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{ pendingMetamagicChoice?.level ?? metamagicChoiceLevel }}
+                  — Metamagic ({{ metamagicDraft.length }}/{{
+                    metamagicChoiceCount
+                  }}
+                  chosen)
+                </div>
+                <ul class="lut-pick-list">
+                  <li v-for="o in metamagicOptions" :key="o">
+                    <label
+                      :title="featureDescriptions[`Metamagic: ${o}`] || ''"
+                    >
+                      <input
+                        type="checkbox"
+                        :checked="metamagicDraft.includes(o)"
+                        :disabled="
+                          !metamagicDraft.includes(o) &&
+                          metamagicDraft.length >= metamagicChoiceCount
+                        "
+                        @change="
+                          togglePick('metamagicDraft', o, metamagicChoiceCount)
+                        "
+                      />
+                      <span>{{ o }}</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div v-if="metamagicDraft.length" class="lut-subclass-summary">
+                <strong>{{ metamagicDraft.join(', ') }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Combat Superiority maneuvers (Battle Master 3rd: pick 3;
+                 7th/10th/15th: pick 2 each) ── -->
+            <div
+              v-if="pendingManeuverChoice || maneuverDraft.length"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{ pendingManeuverChoice?.level ?? maneuverChoiceLevel }}
+                  — Maneuvers ({{ maneuverDraft.length }}/{{
+                    maneuverChoiceCount
+                  }}
+                  chosen)
+                </div>
+                <ul class="lut-pick-list">
+                  <li v-for="o in maneuverOptions" :key="o">
+                    <label :title="featureDescriptions[`Maneuver: ${o}`] || ''">
+                      <input
+                        type="checkbox"
+                        :checked="maneuverDraft.includes(o)"
+                        :disabled="
+                          !maneuverDraft.includes(o) &&
+                          maneuverDraft.length >= maneuverChoiceCount
+                        "
+                        @change="toggleManeuverPick(o)"
+                      />
+                      <span>{{ o }}</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div v-if="maneuverDraft.length" class="lut-subclass-summary">
+                <strong>{{ maneuverDraft.join(', ') }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Magical Secrets (Bard 10th/14th/18th) / Additional
+                 Magical Secrets (College of Lore 6th) — same picker, two
+                 different RAW results (see diffLevelUp.js's comment: base
+                 counts against Spells Known, College of Lore's doesn't).
+                 Two SEPARATE option lists (spells/cantrips), never merged
+                 into one — matches this project's existing rule that a
+                 cantrip pool and a leveled-spell pool are never conflated
+                 (spellLists.js's own doc comment). ── -->
+            <div
+              v-if="pendingMagicalSecretsChoice || magicalSecretsDraft.length"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingMagicalSecretsChoice?.level ??
+                    magicalSecretsChoiceLevel
+                  }}
+                  —
+                  {{
+                    pendingMagicalSecretsChoice?.source ?? magicalSecretsSource
+                  }}
+                  ({{ magicalSecretsDraft.length }}/2 chosen)
+                </div>
+                <div class="lut-note-inline">
+                  Any class's spell list, including a cantrip.
+                  {{
+                    magicalSecretsCountsAgainstKnown
+                      ? 'These count against your normal Spells Known total.'
+                      : "These don't count against your Spells Known total."
+                  }}
+                </div>
+                <div class="lut-choice-tabs">
+                  <button
+                    class="lut-btn"
+                    :class="{ active: magicalSecretsTab === 'spells' }"
+                    @click="magicalSecretsTab = 'spells'"
+                  >
+                    Spells
+                  </button>
+                  <button
+                    class="lut-btn"
+                    :class="{ active: magicalSecretsTab === 'cantrips' }"
+                    @click="magicalSecretsTab = 'cantrips'"
+                  >
+                    Cantrips
+                  </button>
+                </div>
+                <ul v-if="magicalSecretsTab === 'spells'" class="lut-pick-list">
+                  <li v-for="o in magicalSecretsSpellOptions" :key="o.name">
+                    <label>
+                      <input
+                        type="checkbox"
+                        :checked="magicalSecretsDraft.includes(o.name)"
+                        :disabled="
+                          !magicalSecretsDraft.includes(o.name) &&
+                          magicalSecretsDraft.length >= 2
+                        "
+                        @change="togglePick('magicalSecretsDraft', o.name, 2)"
+                      />
+                      <span
+                        >{{ o.name }}
+                        <span class="lut-note-inline"
+                          >(lvl {{ o.level }})</span
+                        ></span
+                      >
+                    </label>
+                  </li>
+                </ul>
+                <ul v-else class="lut-pick-list">
+                  <li v-for="o in magicalSecretsCantripOptions" :key="o.name">
+                    <label>
+                      <input
+                        type="checkbox"
+                        :checked="magicalSecretsDraft.includes(o.name)"
+                        :disabled="
+                          !magicalSecretsDraft.includes(o.name) &&
+                          magicalSecretsDraft.length >= 2
+                        "
+                        @change="togglePick('magicalSecretsDraft', o.name, 2)"
+                      />
+                      <span>{{ o.name }}</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div
+                v-if="magicalSecretsDraft.length"
+                class="lut-subclass-summary"
+              >
+                <strong>{{ magicalSecretsDraft.join(', ') }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Iron Mind (Ranger Gloom Stalker 7th) — only ever
+                 surfaces as a real pick if Wisdom save proficiency was
+                 already granted from elsewhere (a multiclass, most
+                 likely); otherwise diffLevelUp grants it automatically
+                 with no pendingChoice at all. Options are the fixed
+                 2-item list embedded directly in the pendingChoice, same
+                 as Fighting Style/Metamagic — no separate fetch needed. ── -->
+            <div
+              v-if="pendingIronMindChoice || ironMindDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{ pendingIronMindChoice?.level ?? ironMindChoiceLevel }}
+                  — Iron Mind
+                </div>
+                <select
+                  v-model="ironMindDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in pendingIronMindChoice?.options ?? [
+                      'Intelligence',
+                      'Charisma',
+                    ]"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="ironMindDraft" class="lut-subclass-summary">
+                <strong>{{ ironMindDraft }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Training in War and Song (Wizard Bladesinger 2nd) —
+                 only the weapon-type pick needs a picker; light armor and
+                 Performance skill (if not already had) are unconditional
+                 grants applied automatically. ── -->
+            <div
+              v-if="pendingBladesingerWeaponChoice || bladesingerWeaponDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingBladesingerWeaponChoice?.level ??
+                    bladesingerWeaponChoiceLevel
+                  }}
+                  — Training in War and Song (weapon type)
+                </div>
+                <select
+                  v-model="bladesingerWeaponDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in pendingBladesingerWeaponChoice?.options ?? []"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="bladesingerWeaponDraft" class="lut-subclass-summary">
+                <strong>{{ bladesingerWeaponDraft }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Divine Magic (Sorcerer Divine Soul 1st) — fixes a
+                 permanent Cleric bonus spell by ALIGNMENT affinity, not
+                 Cleric domain (a real correction found while wiring this;
+                 see diffLevelUp.js's comment). ── -->
+            <div
+              v-if="pendingDivineMagicChoice || divineMagicDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingDivineMagicChoice?.level ?? divineMagicChoiceLevel
+                  }}
+                  — Divine Magic (affinity)
+                </div>
+                <select
+                  v-model="divineMagicDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in pendingDivineMagicChoice?.options ?? []"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="divineMagicDraft" class="lut-subclass-summary">
+                <strong>{{ divineMagicDraft }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Dragon Ancestor (Sorcerer Draconic Bloodline 1st) —
+                 same 10-type list Dragonborn's own Draconic Ancestry uses. ── -->
+            <div
+              v-if="pendingDragonAncestorChoice || dragonAncestorDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingDragonAncestorChoice?.level ??
+                    dragonAncestorChoiceLevel
+                  }}
+                  — Dragon Ancestor
+                </div>
+                <select
+                  v-model="dragonAncestorDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in pendingDragonAncestorChoice?.options ?? []"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="dragonAncestorDraft" class="lut-subclass-summary">
+                <strong>{{ dragonAncestorDraft }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Mystic Arcanum (Warlock 11th/13th/15th/17th) — one
+                 specific spell of the exact level shown, castable once per
+                 long rest without a slot; options come embedded in the
+                 pendingChoice, same as every fixed-catalog picker above. ── -->
+            <div
+              v-if="pendingMysticArcanumChoice || mysticArcanumDraft"
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingMysticArcanumChoice?.level ??
+                    mysticArcanumChoiceLevel
+                  }}
+                  — Mystic Arcanum ({{
+                    pendingMysticArcanumChoice?.spellLevel ??
+                    mysticArcanumSpellLevel
+                  }}th-level spell)
+                </div>
+                <select
+                  v-model="mysticArcanumDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in pendingMysticArcanumChoice?.options ?? []"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div v-if="mysticArcanumDraft" class="lut-subclass-summary">
+                <strong>{{ mysticArcanumDraft }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Spell Mastery (Wizard 18th) — free-text, not a fixed
+                 catalog: RAW requires the spells already be in your
+                 spellbook, which diffLevelUp.js can't check for a migrated
+                 Wizard (see its own comment) — level is still validated
+                 server-side. ── -->
+            <div
+              v-if="
+                pendingSpellMasteryChoice ||
+                spellMasteryDraft1 ||
+                spellMasteryDraft2
+              "
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingSpellMasteryChoice?.level ?? spellMasteryChoiceLevel
+                  }}
+                  — Spell Mastery (1st-level spell, 2nd-level spell)
+                </div>
+                <input
+                  v-model="spellMasteryDraft1"
+                  class="lut-select"
+                  placeholder="1st-level spell name"
+                  @change="runPreview"
+                />
+                <input
+                  v-model="spellMasteryDraft2"
+                  class="lut-select"
+                  placeholder="2nd-level spell name"
+                  @change="runPreview"
+                />
+              </div>
+              <div
+                v-if="spellMasteryDraft1 || spellMasteryDraft2"
+                class="lut-subclass-summary"
+              >
+                <strong
+                  >{{ spellMasteryDraft1 }}, {{ spellMasteryDraft2 }}</strong
+                >
+              </div>
+            </div>
+
+            <!-- ── Signature Spells (Wizard 20th) — same free-text
+                 approach as Spell Mastery above. ── -->
+            <div
+              v-if="
+                pendingSignatureSpellsChoice ||
+                signatureSpellsDraft1 ||
+                signatureSpellsDraft2
+              "
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingSignatureSpellsChoice?.level ??
+                    signatureSpellsChoiceLevel
+                  }}
+                  — Signature Spells (two 3rd-level spells)
+                </div>
+                <input
+                  v-model="signatureSpellsDraft1"
+                  class="lut-select"
+                  placeholder="First 3rd-level spell"
+                  @change="runPreview"
+                />
+                <input
+                  v-model="signatureSpellsDraft2"
+                  class="lut-select"
+                  placeholder="Second 3rd-level spell"
+                  @change="runPreview"
+                />
+              </div>
+              <div
+                v-if="signatureSpellsDraft1 || signatureSpellsDraft2"
+                class="lut-subclass-summary"
+              >
+                <strong
+                  >{{ signatureSpellsDraft1 }},
+                  {{ signatureSpellsDraft2 }}</strong
+                >
+              </div>
+            </div>
+
+            <!-- ── Master of Intrigue (Rogue Mastermind 3rd) — gaming set
+                 half. Disguise kit/forgery kit apply automatically, not
+                 shown as a pick. Resolves independently from the language
+                 pick below (either can complete before the other). ── -->
+            <div
+              v-if="
+                pendingMasterOfIntrigueGamingSetChoice ||
+                masterOfIntrigueGamingSetDraft
+              "
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingMasterOfIntrigueGamingSetChoice?.level ??
+                    masterOfIntrigueChoiceLevel
+                  }}
+                  — Master of Intrigue (gaming set)
+                </div>
+                <select
+                  v-model="masterOfIntrigueGamingSetDraft"
+                  class="lut-select"
+                  @change="runPreview"
+                >
+                  <option :value="null" disabled>Choose…</option>
+                  <option
+                    v-for="o in pendingMasterOfIntrigueGamingSetChoice?.options ??
+                    []"
+                    :key="o"
+                    :value="o"
+                  >
+                    {{ o }}
+                  </option>
+                </select>
+              </div>
+              <div
+                v-if="masterOfIntrigueGamingSetDraft"
+                class="lut-subclass-summary"
+              >
+                <strong>{{ masterOfIntrigueGamingSetDraft }}</strong>
+              </div>
+            </div>
+
+            <!-- ── Master of Intrigue — languages half (pick 2). ── -->
+            <div
+              v-if="
+                pendingMasterOfIntrigueLanguageChoice ||
+                masterOfIntrigueLanguagesDraft.length
+              "
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingMasterOfIntrigueLanguageChoice?.level ??
+                    masterOfIntrigueChoiceLevel
+                  }}
+                  — Master of Intrigue ({{
+                    masterOfIntrigueLanguagesDraft.length
+                  }}/2 languages)
+                </div>
+                <ul class="lut-pick-list">
+                  <li
+                    v-for="o in pendingMasterOfIntrigueLanguageChoice?.options ??
+                    []"
+                    :key="o"
+                  >
+                    <input
+                      type="checkbox"
+                      :checked="masterOfIntrigueLanguagesDraft.includes(o)"
+                      :disabled="
+                        !masterOfIntrigueLanguagesDraft.includes(o) &&
+                        masterOfIntrigueLanguagesDraft.length >= 2
+                      "
+                      @change="
+                        togglePick('masterOfIntrigueLanguagesDraft', o, 2)
+                      "
+                    />
+                    <span>{{ o }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div
+                v-if="masterOfIntrigueLanguagesDraft.length"
+                class="lut-subclass-summary"
+              >
+                <strong>{{ masterOfIntrigueLanguagesDraft.join(', ') }}</strong>
+              </div>
+            </div>
+
             <div
               v-if="
                 !pendingSubclassChoice &&
@@ -825,7 +1364,39 @@
                 !pendingPactBoonChoice &&
                 !pactBoonDraft &&
                 !pendingFightingStyleChoice &&
-                !fightingStyleDraft
+                !fightingStyleDraft &&
+                !pendingFavoredEnemyChoice &&
+                !favoredEnemyDraft &&
+                !pendingNaturalExplorerChoice &&
+                !naturalExplorerDraft &&
+                !pendingExpertiseChoice &&
+                !expertiseDraft.length &&
+                !pendingMetamagicChoice &&
+                !metamagicDraft.length &&
+                !pendingManeuverChoice &&
+                !maneuverDraft.length &&
+                !pendingMagicalSecretsChoice &&
+                !magicalSecretsDraft.length &&
+                !pendingIronMindChoice &&
+                !ironMindDraft &&
+                !pendingBladesingerWeaponChoice &&
+                !bladesingerWeaponDraft &&
+                !pendingDivineMagicChoice &&
+                !divineMagicDraft &&
+                !pendingDragonAncestorChoice &&
+                !dragonAncestorDraft &&
+                !pendingMysticArcanumChoice &&
+                !mysticArcanumDraft &&
+                !pendingSpellMasteryChoice &&
+                !spellMasteryDraft1 &&
+                !spellMasteryDraft2 &&
+                !pendingSignatureSpellsChoice &&
+                !signatureSpellsDraft1 &&
+                !signatureSpellsDraft2 &&
+                !pendingMasterOfIntrigueGamingSetChoice &&
+                !masterOfIntrigueGamingSetDraft &&
+                !pendingMasterOfIntrigueLanguageChoice &&
+                !masterOfIntrigueLanguagesDraft.length
               "
               class="lut-note"
             >
@@ -1391,6 +1962,80 @@ export default {
       expertiseDraft: [],
       expertiseChoiceLevel: null,
 
+      // ── Metamagic (Sorcerer 3rd: pick 2; 10th/17th: pick 1 each) ──
+      // Same togglePick shape as Expertise, but the pick count varies by
+      // grant level (metamagicChoiceCount), not always 2.
+      metamagicOptions: [],
+      metamagicDraft: [],
+      metamagicChoiceLevel: null,
+      metamagicChoiceCount: null,
+
+      // ── Combat Superiority maneuvers (Battle Master 3rd/7th/10th/15th) ──
+      // Unlike every picker above, maneuvers can legitimately need
+      // resolving at MULTIPLE levels within one level-up (a jump that
+      // crosses more than one of the 4 grant points) — maneuverChoices is
+      // an accumulator keyed by level (same shape as asiOrFeatResolutions),
+      // built up one resolved level at a time via toggleManeuverPick, while
+      // maneuverDraft/maneuverChoiceLevel/maneuverChoiceCount track only
+      // the ONE level currently being picked (the "sticky level" pattern
+      // asiChoiceLevel also uses, needed because pendingManeuverChoice
+      // itself goes null the instant a level's picks are complete).
+      maneuverChoices: {},
+      maneuverOptions: [],
+      maneuverDraft: [],
+      maneuverChoiceLevel: null,
+      maneuverChoiceCount: null,
+
+      // ── Magical Secrets (Bard 10th/14th/18th) / Additional Magical
+      // Secrets (College of Lore 6th) — single value like metamagicChoice,
+      // not a level-keyed accumulator like maneuverChoices, since
+      // targetLevel is always currentLevel+1 in this tool (no multi-level
+      // jump is reachable through the UI, so "one grant per call" always
+      // holds in practice). Two separate option lists (never merged —
+      // see the template comment) fetched via fetchSpellOptions with
+      // pool:'any', one cantripsOnly:true and one cantripsOnly:false.
+      magicalSecretsSpellOptions: [],
+      magicalSecretsCantripOptions: [],
+      magicalSecretsDraft: [],
+      magicalSecretsChoiceLevel: null,
+      magicalSecretsSource: null, // sticky copy of the pendingChoice's own `source`
+      magicalSecretsCountsAgainstKnown: true, // sticky copy of `countsAgainstKnown`
+      magicalSecretsTab: 'spells',
+
+      // ── Iron Mind (Ranger Gloom Stalker 7th) ──
+      ironMindDraft: null,
+      ironMindChoiceLevel: null,
+
+      // ── Training in War and Song (Wizard Bladesinger 2nd) ──
+      bladesingerWeaponDraft: null,
+      bladesingerWeaponChoiceLevel: null,
+
+      // ── Divine Magic (Sorcerer Divine Soul 1st) ──
+      divineMagicDraft: null,
+      divineMagicChoiceLevel: null,
+
+      // ── Dragon Ancestor (Sorcerer Draconic Bloodline 1st) ──
+      dragonAncestorDraft: null,
+      dragonAncestorChoiceLevel: null,
+
+      // ── Mystic Arcanum (Warlock 11th/13th/15th/17th) ──
+      mysticArcanumDraft: null,
+      mysticArcanumChoiceLevel: null,
+      mysticArcanumSpellLevel: null,
+
+      // ── Spell Mastery (Wizard 18th) / Signature Spells (Wizard 20th) ──
+      spellMasteryDraft1: null,
+      spellMasteryDraft2: null,
+      spellMasteryChoiceLevel: null,
+      signatureSpellsDraft1: null,
+      signatureSpellsDraft2: null,
+      signatureSpellsChoiceLevel: null,
+
+      // ── Master of Intrigue (Rogue Mastermind 3rd) ──
+      masterOfIntrigueGamingSetDraft: null,
+      masterOfIntrigueLanguagesDraft: [],
+      masterOfIntrigueChoiceLevel: null,
+
       // ── Pact of the Tome's bonus cantrips (3, any class list) ──
       bonusCantripOptions: [], // fetched from POST /api/engine/spell-choices with pool:'any'
       bonusCantripSearch: '',
@@ -1659,7 +2304,33 @@ export default {
         !!this.pendingNaturalExplorerChoice ||
         !!this.naturalExplorerDraft ||
         !!this.pendingExpertiseChoice ||
-        this.expertiseDraft.length > 0
+        this.expertiseDraft.length > 0 ||
+        !!this.pendingMetamagicChoice ||
+        this.metamagicDraft.length > 0 ||
+        !!this.pendingManeuverChoice ||
+        this.maneuverDraft.length > 0 ||
+        !!this.pendingMagicalSecretsChoice ||
+        this.magicalSecretsDraft.length > 0 ||
+        !!this.pendingIronMindChoice ||
+        !!this.ironMindDraft ||
+        !!this.pendingBladesingerWeaponChoice ||
+        !!this.bladesingerWeaponDraft ||
+        !!this.pendingDivineMagicChoice ||
+        !!this.divineMagicDraft ||
+        !!this.pendingDragonAncestorChoice ||
+        !!this.dragonAncestorDraft ||
+        !!this.pendingMysticArcanumChoice ||
+        !!this.mysticArcanumDraft ||
+        !!this.pendingSpellMasteryChoice ||
+        !!this.spellMasteryDraft1 ||
+        !!this.spellMasteryDraft2 ||
+        !!this.pendingSignatureSpellsChoice ||
+        !!this.signatureSpellsDraft1 ||
+        !!this.signatureSpellsDraft2 ||
+        !!this.pendingMasterOfIntrigueGamingSetChoice ||
+        !!this.masterOfIntrigueGamingSetDraft ||
+        !!this.pendingMasterOfIntrigueLanguageChoice ||
+        this.masterOfIntrigueLanguagesDraft.length > 0
       return hasListedContent || hasPendingChoice
     },
     // Replaces the old fixed `steps` data array as the tab row's actual
@@ -1800,6 +2471,90 @@ export default {
       return (
         this.preview?.pendingChoices?.find(
           (p) => p.type === 'expertiseChoice'
+        ) ?? null
+      )
+    },
+    pendingMetamagicChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'metamagicChoice'
+        ) ?? null
+      )
+    },
+    pendingManeuverChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'maneuverChoice'
+        ) ?? null
+      )
+    },
+    pendingMagicalSecretsChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'magicalSecretsChoice'
+        ) ?? null
+      )
+    },
+    pendingIronMindChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'ironMindChoice'
+        ) ?? null
+      )
+    },
+    pendingBladesingerWeaponChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'bladesingerWeaponChoice'
+        ) ?? null
+      )
+    },
+    pendingDivineMagicChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'divineMagicChoice'
+        ) ?? null
+      )
+    },
+    pendingDragonAncestorChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'dragonAncestorChoice'
+        ) ?? null
+      )
+    },
+    pendingMysticArcanumChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'mysticArcanumChoice'
+        ) ?? null
+      )
+    },
+    pendingSpellMasteryChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'spellMasteryChoice'
+        ) ?? null
+      )
+    },
+    pendingSignatureSpellsChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'signatureSpellsChoice'
+        ) ?? null
+      )
+    },
+    pendingMasterOfIntrigueGamingSetChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'masterOfIntrigueGamingSetChoice'
+        ) ?? null
+      )
+    },
+    pendingMasterOfIntrigueLanguageChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'masterOfIntrigueLanguageChoice'
         ) ?? null
       )
     },
@@ -1973,6 +2728,18 @@ export default {
         !this.pendingFavoredEnemyChoice &&
         !this.pendingNaturalExplorerChoice &&
         !this.pendingExpertiseChoice &&
+        !this.pendingMetamagicChoice &&
+        !this.pendingManeuverChoice &&
+        !this.pendingMagicalSecretsChoice &&
+        !this.pendingIronMindChoice &&
+        !this.pendingBladesingerWeaponChoice &&
+        !this.pendingDivineMagicChoice &&
+        !this.pendingDragonAncestorChoice &&
+        !this.pendingMysticArcanumChoice &&
+        !this.pendingSpellMasteryChoice &&
+        !this.pendingSignatureSpellsChoice &&
+        !this.pendingMasterOfIntrigueGamingSetChoice &&
+        !this.pendingMasterOfIntrigueLanguageChoice &&
         !this.levelCapExceeded
       )
     },
@@ -2253,6 +3020,42 @@ export default {
       this.expertiseOptions = []
       this.expertiseDraft = []
       this.expertiseChoiceLevel = null
+      this.metamagicOptions = []
+      this.metamagicDraft = []
+      this.metamagicChoiceLevel = null
+      this.metamagicChoiceCount = null
+      this.maneuverChoices = {}
+      this.maneuverOptions = []
+      this.maneuverDraft = []
+      this.maneuverChoiceLevel = null
+      this.maneuverChoiceCount = null
+      this.magicalSecretsSpellOptions = []
+      this.magicalSecretsCantripOptions = []
+      this.magicalSecretsDraft = []
+      this.magicalSecretsChoiceLevel = null
+      this.magicalSecretsSource = null
+      this.magicalSecretsCountsAgainstKnown = true
+      this.magicalSecretsTab = 'spells'
+      this.ironMindDraft = null
+      this.ironMindChoiceLevel = null
+      this.bladesingerWeaponDraft = null
+      this.bladesingerWeaponChoiceLevel = null
+      this.divineMagicDraft = null
+      this.divineMagicChoiceLevel = null
+      this.dragonAncestorDraft = null
+      this.dragonAncestorChoiceLevel = null
+      this.mysticArcanumDraft = null
+      this.mysticArcanumChoiceLevel = null
+      this.mysticArcanumSpellLevel = null
+      this.spellMasteryDraft1 = null
+      this.spellMasteryDraft2 = null
+      this.spellMasteryChoiceLevel = null
+      this.signatureSpellsDraft1 = null
+      this.signatureSpellsDraft2 = null
+      this.signatureSpellsChoiceLevel = null
+      this.masterOfIntrigueGamingSetDraft = null
+      this.masterOfIntrigueLanguagesDraft = []
+      this.masterOfIntrigueChoiceLevel = null
       this.bonusCantripOptions = []
       this.bonusCantripSearch = ''
       this.bonusCantripDraftPicks = []
@@ -2457,6 +3260,30 @@ export default {
       this.runPreview()
     },
 
+    // Not a plain togglePick, because maneuvers need an extra step: once
+    // the CURRENT sticky level's picks reach maneuverChoiceCount, they have
+    // to be written into maneuverChoices[level] (the accumulator sent to
+    // the server — see its data() comment for why this is keyed by level
+    // rather than a single draft, unlike every other *Draft picker above).
+    // An incomplete draft is deliberately NOT written (deleted instead) so
+    // a half-made pick never gets sent as if it were final.
+    toggleManeuverPick(name) {
+      const i = this.maneuverDraft.indexOf(name)
+      if (i !== -1) {
+        this.maneuverDraft.splice(i, 1)
+      } else if (this.maneuverDraft.length < this.maneuverChoiceCount) {
+        this.maneuverDraft.push(name)
+      }
+      if (this.maneuverDraft.length === this.maneuverChoiceCount) {
+        this.$set(this.maneuverChoices, this.maneuverChoiceLevel, [
+          ...this.maneuverDraft,
+        ])
+      } else {
+        this.$delete(this.maneuverChoices, this.maneuverChoiceLevel)
+      }
+      this.runPreview()
+    },
+
     // Powers the 3 spell-eligible pickers (cantrips, known spells, Pact of
     // the Tome bonus cantrips) — all POST the same /api/engine/spell-choices
     // route, just with different cantripsOnly/pool flags. The real
@@ -2604,6 +3431,35 @@ export default {
             naturalExplorerChoice: this.naturalExplorerDraft,
             expertiseChoice:
               this.expertiseDraft.length === 2 ? this.expertiseDraft : null,
+            metamagicChoice:
+              this.metamagicChoiceCount &&
+              this.metamagicDraft.length === this.metamagicChoiceCount
+                ? this.metamagicDraft
+                : null,
+            maneuverChoices: this.maneuverChoices,
+            magicalSecretsChoice:
+              this.magicalSecretsDraft.length === 2
+                ? this.magicalSecretsDraft
+                : null,
+            ironMindChoice: this.ironMindDraft,
+            bladesingerWeaponChoice: this.bladesingerWeaponDraft,
+            divineMagicChoice: this.divineMagicDraft,
+            dragonAncestorChoice: this.dragonAncestorDraft,
+            mysticArcanumChoice: this.mysticArcanumDraft,
+            spellMasteryChoice:
+              this.spellMasteryDraft1 && this.spellMasteryDraft2
+                ? [this.spellMasteryDraft1, this.spellMasteryDraft2]
+                : null,
+            signatureSpellsChoice:
+              this.signatureSpellsDraft1 && this.signatureSpellsDraft2
+                ? [this.signatureSpellsDraft1, this.signatureSpellsDraft2]
+                : null,
+            masterOfIntrigueGamingSetChoice:
+              this.masterOfIntrigueGamingSetDraft,
+            masterOfIntrigueLanguageChoices:
+              this.masterOfIntrigueLanguagesDraft.length === 2
+                ? this.masterOfIntrigueLanguagesDraft
+                : null,
           }),
         })
         const data = await res.json()
@@ -2681,6 +3537,125 @@ export default {
         if (expertiseChoice) {
           this.expertiseChoiceLevel = expertiseChoice.level
           this.expertiseOptions = expertiseChoice.options
+        }
+
+        const metamagicChoice = data.pendingChoices?.find(
+          (p) => p.type === 'metamagicChoice'
+        )
+        if (metamagicChoice) {
+          this.metamagicChoiceLevel = metamagicChoice.level
+          this.metamagicChoiceCount = metamagicChoice.count
+          this.metamagicOptions = metamagicChoice.options
+          this.loadFeatureDescriptions(
+            metamagicChoice.options.map((o) => ({ name: `Metamagic: ${o}` }))
+          )
+        }
+
+        const maneuverChoice = data.pendingChoices?.find(
+          (p) => p.type === 'maneuverChoice'
+        )
+        if (maneuverChoice) {
+          // Only clear the in-progress draft when the sticky level actually
+          // CHANGES (a new grant point surfaced after the previous one's
+          // picks were just submitted) — not on every re-preview, which
+          // would otherwise wipe the draft mid-pick the same way the
+          // asiChoiceLevel/metamagicChoiceLevel pattern avoids elsewhere.
+          if (this.maneuverChoiceLevel !== maneuverChoice.level) {
+            this.maneuverDraft = []
+          }
+          this.maneuverChoiceLevel = maneuverChoice.level
+          this.maneuverChoiceCount = maneuverChoice.count
+          this.maneuverOptions = maneuverChoice.options
+          this.loadFeatureDescriptions(
+            maneuverChoice.options.map((o) => ({ name: `Maneuver: ${o}` }))
+          )
+        }
+
+        const magicalSecretsChoice = data.pendingChoices?.find(
+          (p) => p.type === 'magicalSecretsChoice'
+        )
+        if (magicalSecretsChoice) {
+          if (this.magicalSecretsChoiceLevel !== magicalSecretsChoice.level) {
+            this.magicalSecretsDraft = []
+          }
+          this.magicalSecretsChoiceLevel = magicalSecretsChoice.level
+          this.magicalSecretsSource = magicalSecretsChoice.source
+          this.magicalSecretsCountsAgainstKnown =
+            magicalSecretsChoice.countsAgainstKnown
+          if (!this.magicalSecretsSpellOptions.length) {
+            this.fetchSpellOptions('magicalSecretsSpellOptions', {
+              cantripsOnly: false,
+              pool: 'any',
+            })
+          }
+          if (!this.magicalSecretsCantripOptions.length) {
+            this.fetchSpellOptions('magicalSecretsCantripOptions', {
+              cantripsOnly: true,
+              pool: 'any',
+            })
+          }
+        }
+
+        const ironMindChoice = data.pendingChoices?.find(
+          (p) => p.type === 'ironMindChoice'
+        )
+        if (ironMindChoice) {
+          this.ironMindChoiceLevel = ironMindChoice.level
+        }
+
+        const bladesingerWeaponChoice = data.pendingChoices?.find(
+          (p) => p.type === 'bladesingerWeaponChoice'
+        )
+        if (bladesingerWeaponChoice) {
+          this.bladesingerWeaponChoiceLevel = bladesingerWeaponChoice.level
+        }
+
+        const divineMagicChoice = data.pendingChoices?.find(
+          (p) => p.type === 'divineMagicChoice'
+        )
+        if (divineMagicChoice) {
+          this.divineMagicChoiceLevel = divineMagicChoice.level
+        }
+
+        const dragonAncestorChoice = data.pendingChoices?.find(
+          (p) => p.type === 'dragonAncestorChoice'
+        )
+        if (dragonAncestorChoice) {
+          this.dragonAncestorChoiceLevel = dragonAncestorChoice.level
+        }
+
+        const mysticArcanumChoice = data.pendingChoices?.find(
+          (p) => p.type === 'mysticArcanumChoice'
+        )
+        if (mysticArcanumChoice) {
+          this.mysticArcanumChoiceLevel = mysticArcanumChoice.level
+          this.mysticArcanumSpellLevel = mysticArcanumChoice.spellLevel
+        }
+
+        const spellMasteryChoice = data.pendingChoices?.find(
+          (p) => p.type === 'spellMasteryChoice'
+        )
+        if (spellMasteryChoice) {
+          this.spellMasteryChoiceLevel = spellMasteryChoice.level
+        }
+
+        const signatureSpellsChoice = data.pendingChoices?.find(
+          (p) => p.type === 'signatureSpellsChoice'
+        )
+        if (signatureSpellsChoice) {
+          this.signatureSpellsChoiceLevel = signatureSpellsChoice.level
+        }
+
+        const masterOfIntrigueGamingSetChoice = data.pendingChoices?.find(
+          (p) => p.type === 'masterOfIntrigueGamingSetChoice'
+        )
+        const masterOfIntrigueLanguageChoice = data.pendingChoices?.find(
+          (p) => p.type === 'masterOfIntrigueLanguageChoice'
+        )
+        if (masterOfIntrigueGamingSetChoice || masterOfIntrigueLanguageChoice) {
+          this.masterOfIntrigueChoiceLevel = (
+            masterOfIntrigueGamingSetChoice ?? masterOfIntrigueLanguageChoice
+          ).level
         }
 
         const bonusSpellChoice = data.pendingChoices?.find(

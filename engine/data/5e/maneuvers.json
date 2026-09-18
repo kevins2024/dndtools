@@ -1,0 +1,96 @@
+{
+  "_schema": {
+    "_general": "Combat Superiority is a pick-N-of-many choice bundled into Fighter Battle Master's subclass table, granted across FOUR separate points (3rd: learn 3; 7th/10th/15th: +2 each, 9 total by 15th) — same structural problem Metamagic solves for Sorcerer, except Combat Superiority's own features_by_level entry ('pub_combat-superiority') only exists ONCE, at 3rd level (7th/10th/15th each list a DIFFERENT real feature — Know Your Enemy, Improved Combat Superiority d10, Relentless — with no generic 'learn more maneuvers' placeholder of their own). diffLevelUp.js can't resolve this the way it resolves Fighting Style/Expertise/Metamagic (replacing a matched newFeatures entry) — there's nothing to match at 7th/10th/15th. Instead it's handled the same way asiOrFeatLevels is: a fixed level->count table checked directly against classEntry.subclass, independent of any features_by_level entry, looping over every one of the 4 levels actually crossed by a single diffLevelUp call (supports a multi-level jump crossing more than one grant point at once, same as ASI).",
+    "id": "None of the 23 real maneuvers exist in the SRD cache (src/data/api_data_cache/features.json) — unlike Metamagic's 8 core options, dnd5eapi.co doesn't expose Battle Master maneuvers as separate feature records at all. All 23 get their own src/data/published_features.json entries instead (homebrew: false, real source citations), same convention as fighting-styles.json's Tasha's additions and Metamagic's 2 TCE additions.",
+    "found": "2026-09-18 — same full class/subclass feature audit that found Metamagic unwired (TODO.md); Combat Superiority was flagged there as 'a major miss' since its real text doesn't contain any of the scan's keyword triggers (\"choose/pick/select\") — \"You learn maneuvers... you can also replace one you know with a different one\" reads as prose, not an obvious pick.",
+    "tce_additions": "Tasha's Cauldron of Everything added 7 new maneuvers (Ambush, Bait and Switch, Brace, Commanding Presence, Grappling Strike, Quick Toss, Tactical Assessment) to the same shared list every Battle Master (and Martial Adept feat holder) picks from — included here alongside the 16 core PHB maneuvers per this project's standing call to use every official 2014-ruleset WotC book during R&D, same precedent as Metamagic's Seeking/Transmuted Spell and fighting-styles.json's 7 TCE styles.",
+    "save_dc": "Every save-based maneuver's DC is 8 + proficiency bonus + Strength or Dexterity modifier (the Battle Master's choice, fixed once, not re-chosen per maneuver) — stated once here rather than repeated in each entry's own description, matching how the real PHB states it once under Combat Superiority's own header rather than in each maneuver's text. Not yet computed/displayed anywhere in this app; a real gap, but out of scope for the choice-picker fix this file exists for.",
+    "verification": "All 23 verified against dnd5e.wikidot.com (4 separate fetches — the core opening lines, then 2 targeted follow-ups for exact unabridged text on a sample of PHB maneuvers, then one for all 7 TCE maneuvers) plus a WebSearch cross-check on a 5-maneuver sample; no contamination from the 2024 revision's reworked Battle Master maneuver list (which renames/merges several of these) was found in either source."
+  },
+
+  "Fighter": {
+    "Commander's Strike": {
+      "source": "Player's Handbook",
+      "id": "maneuver-commanders-strike"
+    },
+    "Disarming Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-disarming-attack"
+    },
+    "Distracting Strike": {
+      "source": "Player's Handbook",
+      "id": "maneuver-distracting-strike"
+    },
+    "Evasive Footwork": {
+      "source": "Player's Handbook",
+      "id": "maneuver-evasive-footwork"
+    },
+    "Feinting Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-feinting-attack"
+    },
+    "Goading Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-goading-attack"
+    },
+    "Lunging Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-lunging-attack"
+    },
+    "Maneuvering Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-maneuvering-attack"
+    },
+    "Menacing Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-menacing-attack"
+    },
+    "Parry": { "source": "Player's Handbook", "id": "maneuver-parry" },
+    "Precision Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-precision-attack"
+    },
+    "Pushing Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-pushing-attack"
+    },
+    "Rally": { "source": "Player's Handbook", "id": "maneuver-rally" },
+    "Riposte": { "source": "Player's Handbook", "id": "maneuver-riposte" },
+    "Sweeping Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-sweeping-attack"
+    },
+    "Trip Attack": {
+      "source": "Player's Handbook",
+      "id": "maneuver-trip-attack"
+    },
+    "Ambush": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-ambush"
+    },
+    "Bait and Switch": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-bait-and-switch"
+    },
+    "Brace": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-brace"
+    },
+    "Commanding Presence": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-commanding-presence"
+    },
+    "Grappling Strike": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-grappling-strike"
+    },
+    "Quick Toss": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-quick-toss"
+    },
+    "Tactical Assessment": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "maneuver-tactical-assessment"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "_schema": {
+    "_general": "Metamagic is a pick-N-of-many choice bundled into Sorcerer's class table across THREE separate grant points (3rd level: choose 2; 10th and 17th: +1 each) rather than one features_by_level entry per option — same structural problem Fighting Style/Expertise solved, just with 3 grant points instead of 1-2 and a variable pick-count per grant instead of always 1 or 2. Real character data (Rith, Iyani) already stores each picked option as its OWN separate feature entry named 'Metamagic: <Option>' with type 'metamagic' — diffLevelUp.js mirrors that convention rather than Expertise's single-combined-name entry.",
+    "id": "The 8 core PHB options already exist in src/data/api_data_cache/features.json (the SRD cache) under these exact ids/names ('Metamagic: Careful Spell' etc, parented under metamagic-1) — reused here unchanged so the frontend's existing lookupFeature(name, id) description-fetch path (NewCharacterTool.vue/LevelUpTool.vue's featureDescriptions, same mechanism Fighting Style already uses) resolves them with zero extra plumbing. The 2 Tasha's Cauldron additions (Seeking Spell, Transmuted Spell) aren't in the SRD cache — given their own ids and matching src/data/published_features.json entries instead, same convention as fighting-styles.json's TCE additions.",
+    "found": "2026-09-18 — confirmed via TODO.md's full class/subclass feature audit: `grep -n metamagic engine/rules/5e/diffLevelUp.js` returned nothing, so New Character/Level Up just listed a bare, unpickable 'Metamagic' feature forever at 3rd/10th/17th. Verified all costs/effects against dnd5e.wikidot.com (2 independent fetches) plus a WebSearch cross-check on the 2 Tasha's additions specifically, per CLAUDE.md's RAW-verification standard.",
+    "tce_additions": "Tasha's Cauldron of Everything added several new Metamagic options as an optional Sorcerous origin feature. Only Seeking Spell and Transmuted Spell are added here (the two that are genuinely just 'a new option in the same picker,' matching this project's call to use every official 2014-ruleset WotC book during R&D) — Tasha's also introduced Metamagic Adept (a feat granting any spellcaster 2 Metamagic options + a small sorcery point pool, already used by Lenn) and Bountiful Luck (Halfling-specific, out of scope here)."
+  },
+
+  "Sorcerer": {
+    "Careful Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-careful-spell",
+      "cost": "1 sorcery point"
+    },
+    "Distant Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-distant-spell",
+      "cost": "1 sorcery point"
+    },
+    "Empowered Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-empowered-spell",
+      "cost": "1 sorcery point"
+    },
+    "Extended Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-extended-spell",
+      "cost": "1 sorcery point"
+    },
+    "Heightened Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-heightened-spell",
+      "cost": "3 sorcery points"
+    },
+    "Quickened Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-quickened-spell",
+      "cost": "2 sorcery points"
+    },
+    "Subtle Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-subtle-spell",
+      "cost": "1 sorcery point"
+    },
+    "Twinned Spell": {
+      "source": "Player's Handbook",
+      "id": "metamagic-twinned-spell",
+      "cost": "sorcery points equal to the spell's level (1 if a cantrip)"
+    },
+    "Seeking Spell": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "metamagic-seeking-spell",
+      "cost": "2 sorcery points"
+    },
+    "Transmuted Spell": {
+      "source": "Tasha's Cauldron of Everything",
+      "id": "metamagic-transmuted-spell",
+      "cost": "1 sorcery point"
+    }
+  }
+}

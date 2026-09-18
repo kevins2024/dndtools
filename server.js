@@ -302,6 +302,18 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     favoredEnemyChoice,
     naturalExplorerChoice,
     expertiseChoice,
+    metamagicChoice,
+    maneuverChoices,
+    magicalSecretsChoice,
+    ironMindChoice,
+    bladesingerWeaponChoice,
+    divineMagicChoice,
+    dragonAncestorChoice,
+    mysticArcanumChoice,
+    spellMasteryChoice,
+    signatureSpellsChoice,
+    masterOfIntrigueGamingSetChoice,
+    masterOfIntrigueLanguageChoices,
   } = req.body
   if (!character || !className) {
     return res
@@ -326,6 +338,18 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       favoredEnemyChoice,
       naturalExplorerChoice,
       expertiseChoice,
+      metamagicChoice,
+      maneuverChoices,
+      magicalSecretsChoice,
+      ironMindChoice,
+      bladesingerWeaponChoice,
+      divineMagicChoice,
+      dragonAncestorChoice,
+      mysticArcanumChoice,
+      spellMasteryChoice,
+      signatureSpellsChoice,
+      masterOfIntrigueGamingSetChoice,
+      masterOfIntrigueLanguageChoices,
     })
     res.json(result)
   } catch (err) {

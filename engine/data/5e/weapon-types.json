@@ -1,0 +1,29 @@
+{
+  "_schema": {
+    "_general": "A small reusable catalog for 'pick a weapon type' grants — currently only Wizard Bladesinger's Training in War and Song ('proficiency with one type of one-handed melee weapon of your choice') uses it, but built as its own file/module (matching this session's metamagic.json/maneuvers.json convention) since a future feat or subclass could plausibly need the same list. Names are stored lowercase, matching this app's existing weapon_proficiencies convention exactly (see any real character's weapon_proficiencies array, e.g. Denna's ['simple', 'hand crossbow', 'longsword', 'rapier', 'shortsword']) — pushed directly into that field with no case conversion.",
+    "one_handed_melee": "Every real PHB Simple/Martial melee weapon usable one-handed (versatile weapons included — they CAN be used one-handed even if a bigger die is available two-handed). Excludes: every two-handed-ONLY weapon (greatclub, glaive, greataxe, greatsword, halberd, maul, pike), every ranged weapon, and every purely thrown-only weapon that isn't also a real melee weapon."
+  },
+  "one_handed_melee": [
+    { "name": "club", "category": "simple" },
+    { "name": "dagger", "category": "simple" },
+    { "name": "handaxe", "category": "simple" },
+    { "name": "javelin", "category": "simple" },
+    { "name": "light hammer", "category": "simple" },
+    { "name": "mace", "category": "simple" },
+    { "name": "quarterstaff", "category": "simple" },
+    { "name": "sickle", "category": "simple" },
+    { "name": "spear", "category": "simple" },
+    { "name": "battleaxe", "category": "martial" },
+    { "name": "flail", "category": "martial" },
+    { "name": "lance", "category": "martial" },
+    { "name": "longsword", "category": "martial" },
+    { "name": "morningstar", "category": "martial" },
+    { "name": "rapier", "category": "martial" },
+    { "name": "scimitar", "category": "martial" },
+    { "name": "shortsword", "category": "martial" },
+    { "name": "trident", "category": "martial" },
+    { "name": "war pick", "category": "martial" },
+    { "name": "warhammer", "category": "martial" },
+    { "name": "whip", "category": "martial" }
+  ]
+}

@@ -21,6 +21,7 @@ const {
   listInvocations,
   meetsInvocationPrerequisite,
 } = require('./5e/invocations')
+const { listSpellsForClass } = require('./5e/spellLists')
 
 function normalizeName(name) {
   return String(name).trim().toLowerCase()
@@ -388,6 +389,101 @@ function resolveChoice(choice, roleConfig, character) {
         merge: () => pick,
       }
     }
+    // The 8 cases below all resolve pendingChoice types added 2026-09-18
+    // (the class/subclass feature audit's fixes) — none of ROLE_TABLE's
+    // current roles reach Sorcerer/Bard/Ranger-Gloom-Stalker/Wizard-
+    // Bladesinger, so these weren't exercised until Warlock's Mystic
+    // Arcanum (below) broke this test at level 11+ and surfaced the gap:
+    // every new pendingChoice type needs a case here or `buildCombatant`
+    // throws "could not resolve pendingChoices ... after 8 attempts" for
+    // ANY role that ever reaches it. Added defensively for all 8 at once
+    // rather than only the one that actually broke, so a future role using
+    // any of these classes doesn't silently hit the same wall.
+    case 'metamagicChoice':
+      return {
+        param: 'metamagicChoice',
+        merge: () => (choice.options ?? []).slice(0, choice.count ?? 1),
+      }
+    case 'maneuverChoice':
+      return {
+        param: 'maneuverChoices',
+        merge: (existing = {}) => ({
+          ...existing,
+          [choice.level]: (choice.options ?? []).slice(0, choice.count ?? 1),
+        }),
+      }
+    case 'magicalSecretsChoice': {
+      // No options array on this one by design (the eligible pool is any
+      // class's spell list — see diffLevelUp.js's comment) — fetched here
+      // instead of embedded, same as LevelUpTool.vue's own picker does.
+      const pool = listSpellsForClass('Bard', { pool: 'any', maxLevel: 9 })
+        .filter((s) => s.level > 0)
+        .map((s) => s.name)
+      return {
+        param: 'magicalSecretsChoice',
+        merge: () => pool.slice(0, choice.count ?? 2),
+      }
+    }
+    case 'ironMindChoice':
+      return {
+        param: 'ironMindChoice',
+        merge: () => choice.options?.[0] ?? 'Intelligence',
+      }
+    case 'bladesingerWeaponChoice':
+      return {
+        param: 'bladesingerWeaponChoice',
+        merge: () => choice.options?.[0] ?? null,
+      }
+    case 'divineMagicChoice':
+      return {
+        param: 'divineMagicChoice',
+        merge: () => choice.options?.[0] ?? 'good',
+      }
+    case 'dragonAncestorChoice':
+      return {
+        param: 'dragonAncestorChoice',
+        merge: () => choice.options?.[0] ?? null,
+      }
+    case 'mysticArcanumChoice':
+      return {
+        param: 'mysticArcanumChoice',
+        merge: () => choice.options?.[0] ?? null,
+      }
+    // Neither of these embeds an options array (same "level validated,
+    // spellbook-membership trusted" reasoning as diffLevelUp.js's own
+    // param comments) — picked here the same way magicalSecretsChoice
+    // fetches its own pool above, filtered to the exact required level.
+    case 'spellMasteryChoice': {
+      const first = listSpellsForClass('Wizard', { maxLevel: 1 }).find(
+        (s) => s.level === 1
+      )
+      const second = listSpellsForClass('Wizard', { maxLevel: 2 }).find(
+        (s) => s.level === 2
+      )
+      return {
+        param: 'spellMasteryChoice',
+        merge: () => [first?.name, second?.name].filter(Boolean),
+      }
+    }
+    case 'signatureSpellsChoice': {
+      const pool = listSpellsForClass('Wizard', { maxLevel: 3 })
+        .filter((s) => s.level === 3)
+        .map((s) => s.name)
+      return {
+        param: 'signatureSpellsChoice',
+        merge: () => pool.slice(0, 2),
+      }
+    }
+    case 'masterOfIntrigueGamingSetChoice':
+      return {
+        param: 'masterOfIntrigueGamingSetChoice',
+        merge: () => choice.options?.[0] ?? 'Dice Set',
+      }
+    case 'masterOfIntrigueLanguageChoice':
+      return {
+        param: 'masterOfIntrigueLanguageChoices',
+        merge: () => (choice.options ?? []).slice(0, choice.count ?? 2),
+      }
     default:
       return null
   }
