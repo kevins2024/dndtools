@@ -1072,12 +1072,9 @@ flexible toolbar wraps to below it. */
 }
 
 /* ── Toolbar ── */
-/* Fixed size, not fluid — real bug report 2026-09-18: as a flex row this
-squeezed and reflowed its dozen-odd controls unpredictably at anything
-under ~1500px, forcing the window to stay wide just to keep it stable.
-Now a fixed 2-row block (each row its own flex line) at a real min-width,
-roughly double the old single-row height; scrolls horizontally instead of
-squeezing when the panel is narrower than that. */
+/* Flexible width, 2 rows, each wrapping its own controls onto another
+line when it runs out of room — see the template comment above for the
+2026-09-18 history (a fixed min-width was tried first and corrected). */
 .bm-toolbar {
   display: flex;
   flex-direction: column;
