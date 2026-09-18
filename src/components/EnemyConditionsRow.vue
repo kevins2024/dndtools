@@ -116,10 +116,12 @@ export default {
   color: var(--color-text-muted);
 }
 
+/* Solid background + var(--color-bg) text — see ConditionsRow.vue's
+identical fix (2026-09-18) for the full legibility-bug writeup. */
 .cond-chip--active {
   border-color: var(--color-condition);
-  color: var(--color-condition);
-  background: rgba(230, 126, 34, 0.12);
+  color: var(--color-bg);
+  background: var(--color-condition);
 }
 
 .cond-chip--positive {
@@ -127,8 +129,8 @@ export default {
 }
 .cond-chip--positive.cond-chip--active {
   border-color: var(--color-success);
-  color: var(--color-success);
-  background: rgba(74, 158, 107, 0.15);
+  color: var(--color-bg);
+  background: var(--color-success);
 }
 
 .cond-chip--negative {
@@ -154,7 +156,6 @@ export default {
 }
 .cond-chip--negative.cond-chip--active {
   --cond-outline: var(--color-condition);
-  background: rgba(230, 126, 34, 0.2);
 }
 
 .custom-cond-row {

@@ -198,6 +198,17 @@ export const CONDITIONS = {
       'Disadvantage on ability checks using the ability chosen by the caster.',
     ],
   },
+  Raging: {
+    summary:
+      'Advantage on STR checks/saves, bonus melee damage, resistance to bludgeoning/piercing/slashing. No spellcasting.',
+    rules: [
+      'Advantage on Strength checks and Strength saving throws.',
+      "Bonus damage on melee weapon attacks using Strength (scales with the barbarian's level — see their Rage feature).",
+      'Resistance to bludgeoning, piercing, and slashing damage.',
+      "Can't cast spells or concentrate on them while raging.",
+      'Lasts 1 minute; ends early if you go a full turn without attacking a hostile creature or taking damage since your last turn, or if you fall unconscious.',
+    ],
+  },
 }
 
 // Beneficial vs. detrimental classification, used to visually separate
@@ -208,6 +219,7 @@ export const POSITIVE_CONDITION_NAMES = [
   'Blessed',
   'Concentrating',
   'Haste',
+  'Raging',
 ]
 
 export const NEGATIVE_CONDITION_NAMES = [

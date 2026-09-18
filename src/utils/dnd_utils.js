@@ -893,7 +893,35 @@ export const dnd = {
       props.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
     const meleeBonus =
       props.weapon_type !== 'ranged' ? bonuses.melee_damage ?? 0 : 0
-    return statMod + magic + rangedBonus + meleeBonus
+    return (
+      statMod +
+      magic +
+      rangedBonus +
+      meleeBonus +
+      dnd.rageDamageBonus(character, weapon)
+    )
+  },
+
+  // PHB Rage: melee weapon attacks using Strength deal +2 damage at
+  // Barbarian levels 1-8, +3 at 9-15, +4 at 16-20 — real gap found
+  // 2026-09-18: raging characters showed no damage bonus anywhere on their
+  // combat sheet, and there was no way to even mark a character as raging
+  // (see conditions.js's new 'Raging' condition, added the same pass).
+  // Applies whenever the condition is active and the weapon isn't ranged —
+  // a finesse weapon is treated as eligible too, the same simplification
+  // _weaponStatMod already makes by always using the better of STR/DEX
+  // rather than modeling a genuine per-attack ability choice.
+  rageDamageBonus(character, weapon) {
+    if (!(character.conditions ?? []).includes('Raging')) return 0
+    const props = dnd._weaponProps(weapon)
+    if (props.weapon_type === 'ranged') return 0
+    const barbLevel = (character.classes ?? []).find(
+      (c) => c.name?.toLowerCase() === 'barbarian'
+    )?.level
+    if (!barbLevel) return 0
+    if (barbLevel >= 16) return 4
+    if (barbLevel >= 9) return 3
+    return 2
   },
 
   weaponSummary(character, weapon, partyItems = []) {
@@ -995,6 +1023,8 @@ export const dnd = {
         const die = dnd.gripDie(character, w, partyItems)
         const dmgParts = [die, statDesc.split('—')[0].trim()]
         if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
+        const rageBonus = dnd.rageDamageBonus(character, w)
+        if (rageBonus) dmgParts.push(`Raging ${dnd.signed(rageBonus)}`)
         if (props.weapon_type === 'ranged') {
           for (const { name, value } of ibd.ranged_damage ?? [])
             dmgParts.push(`${name} ${dnd.signed(value)}`)

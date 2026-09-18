@@ -1,40 +1,66 @@
 <template>
-  <div class="conditions-row">
-    <span
-      v-for="cond in CONDITIONS"
-      :key="cond"
-      class="cond-chip"
-      :class="{
-        'cond-chip--active':
+  <div>
+    <div class="conditions-row">
+      <span
+        v-for="cond in CONDITIONS"
+        :key="cond"
+        class="cond-chip"
+        :class="{
+          'cond-chip--active':
+            cond === 'Exhaustion'
+              ? exhaustionLevel > 0
+              : cond === 'Poisoned'
+              ? poisonLevel > 0
+              : activeConditions.includes(cond),
+          'cond-chip--positive': isPositiveCondition(cond),
+          'cond-chip--negative': !isPositiveCondition(cond),
+        }"
+        :title="conditionTooltip(cond)"
+        @click="
           cond === 'Exhaustion'
-            ? exhaustionLevel > 0
+            ? cycleExhaustion()
             : cond === 'Poisoned'
-            ? poisonLevel > 0
-            : activeConditions.includes(cond),
-        'cond-chip--positive': isPositiveCondition(cond),
-        'cond-chip--negative': !isPositiveCondition(cond),
-      }"
-      :title="conditionTooltip(cond)"
-      @click="
-        cond === 'Exhaustion'
-          ? cycleExhaustion()
-          : cond === 'Poisoned'
-          ? cyclePoison()
-          : toggleCondition(cond)
-      "
-      >{{ cond
-      }}<span
-        v-if="cond === 'Exhaustion' && exhaustionLevel > 0"
-        class="exhaustion-level"
+            ? cyclePoison()
+            : toggleCondition(cond)
+        "
+        >{{ cond
+        }}<span
+          v-if="cond === 'Exhaustion' && exhaustionLevel > 0"
+          class="exhaustion-level"
+        >
+          {{ exhaustionLevel }}</span
+        ><span
+          v-if="cond === 'Poisoned' && poisonLevel > 0"
+          class="exhaustion-level"
+        >
+          {{ poisonLevel }}</span
+        ></span
       >
-        {{ exhaustionLevel }}</span
-      ><span
-        v-if="cond === 'Poisoned' && poisonLevel > 0"
-        class="exhaustion-level"
+      <span
+        v-for="cond in customConditions"
+        :key="'custom-' + cond"
+        class="cond-chip cond-chip--active cond-chip--custom"
+        title="Custom condition — click to remove"
+        @click="toggleCondition(cond)"
       >
-        {{ poisonLevel }}</span
-      ></span
-    >
+        {{ cond }} ✕
+      </span>
+    </div>
+    <div class="custom-cond-row">
+      <input
+        v-model="newCustomCond"
+        class="custom-cond-input"
+        placeholder="Add condition…"
+        @keyup.enter="addCustom"
+      />
+      <button
+        class="add-btn"
+        :disabled="!newCustomCond.trim()"
+        @click="addCustom"
+      >
+        +
+      </button>
+    </div>
   </div>
 </template>
 
@@ -66,7 +92,7 @@ export default {
   emits: ['condition-changed'],
 
   data() {
-    return { CONDITIONS }
+    return { CONDITIONS, newCustomCond: '' }
   },
 
   computed: {
@@ -78,6 +104,13 @@ export default {
     },
     poisonLevel() {
       return this.character.poison_level ?? 0
+    },
+    // Real gap found 2026-09-18: free-text custom conditions (super useful
+    // on enemies via EnemyConditionsRow) had no player-facing equivalent —
+    // same idea, ported over: any active condition name that isn't in the
+    // catalog is a custom one, shown as its own removable chip.
+    customConditions() {
+      return this.activeConditions.filter((c) => !CONDITIONS.includes(c))
     },
   },
 
@@ -124,6 +157,13 @@ export default {
         had ? `removed ${cond}` : `gained ${cond}`
       )
     },
+
+    addCustom() {
+      const cond = this.newCustomCond.trim()
+      if (!cond) return
+      this.toggleCondition(cond)
+      this.newCustomCond = ''
+    },
   },
 }
 </script>
@@ -153,10 +193,18 @@ export default {
   color: var(--color-text-muted);
 }
 
+/* Solid background + var(--color-bg) text (same "readable text on a
+colored surface" pattern already used elsewhere, e.g. .pill-cast-btn:hover)
+— real legibility bug found 2026-09-18: this used to be condition-colored
+TEXT on a barely-tinted condition-colored BACKGROUND (same hue at two
+opacities), which read poorly for several conditions (Muddled's orange on
+orange being the reported case) and was hardcoded rgba rather than derived
+from --color-condition, so it also didn't track the graphite theme's
+different accent color at all. */
 .cond-chip--active {
   border-color: var(--color-condition);
-  color: var(--color-condition);
-  background: rgba(230, 126, 34, 0.12);
+  color: var(--color-bg);
+  background: var(--color-condition);
 }
 
 /* Beneficial conditions: pill shape */
@@ -165,8 +213,8 @@ export default {
 }
 .cond-chip--positive.cond-chip--active {
   border-color: var(--color-success);
-  color: var(--color-success);
-  background: rgba(74, 158, 107, 0.15);
+  color: var(--color-bg);
+  background: var(--color-success);
 }
 
 /* Detrimental conditions: pointed ends.
@@ -195,11 +243,53 @@ export default {
 }
 .cond-chip--negative.cond-chip--active {
   --cond-outline: var(--color-condition);
-  background: rgba(230, 126, 34, 0.2);
 }
 
 .exhaustion-level {
   font-weight: 700;
   font-size: 1.05em;
+}
+
+.custom-cond-row {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.custom-cond-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-bg-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+}
+
+.custom-cond-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.add-btn {
+  padding: 0.25rem 0.6rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.add-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 </style>
