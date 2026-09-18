@@ -1,12 +1,23 @@
 <template>
   <div class="bm-overlay" ref="overlay" tabindex="-1" @keydown="handleKeyDown">
     <div class="bm-panel">
-      <!-- Toolbar — fixed min-width + 2 stacked rows so it stays a stable
-      size instead of squeezing/reflowing its dozen-odd controls at
-      different panel widths (project owner's 2026-09-18 report: had to
-      keep the window ~1500px wide just to stop things "shrinking and
-      jumping around"). Scrolls horizontally on anything narrower rather
-      than clipping controls. -->
+      <!-- Close button — pulled out of the toolbar flow entirely and
+      pinned to the panel's top-right corner, where users expect a modal
+      close control to live (2026-09-18 correction: the toolbar itself
+      should stay flexible-width, not forced to a fixed size — the actual
+      fix for "shrinking and jumping around" is letting each row WRAP its
+      own controls onto another line as it runs out of width, growing the
+      toolbar's height, rather than squeezing everything to fit one line). -->
+      <button
+        class="bm-btn bm-close-btn bm-close-corner"
+        @click="$emit('close')"
+      >
+        ✕ Close
+      </button>
+
+      <!-- Toolbar — 2 rows, each wraps its own controls onto additional
+      lines when it runs out of horizontal room instead of shrinking them
+      illegibly or reflowing unpredictably. -->
       <div class="bm-toolbar">
         <div class="bm-toolbar-row">
           <span class="bm-title">Battle Map</span>
@@ -105,9 +116,6 @@
 
           <button class="bm-btn" @click="exportMap">
             {{ copyFlash ? '✓ Copied' : 'Export' }}
-          </button>
-          <button class="bm-btn bm-close-btn" @click="$emit('close')">
-            ✕ Close
           </button>
         </div>
       </div>
@@ -1042,6 +1050,7 @@ export default {
 }
 
 .bm-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 92vw;
@@ -1050,6 +1059,16 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: 8px;
   overflow: hidden;
+}
+
+/* Close pinned to the panel's top-right corner — conventional modal
+placement, and keeps it in a stable spot regardless of how many lines the
+flexible toolbar wraps to below it. */
+.bm-close-corner {
+  position: absolute;
+  top: 0.6rem;
+  right: 1rem;
+  z-index: 1;
 }
 
 /* ── Toolbar ── */
@@ -1062,22 +1081,24 @@ squeezing when the panel is narrower than that. */
 .bm-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  overflow-x: auto;
+  gap: 0.4rem;
+  padding: 0.6rem 5.5rem 0.6rem 1rem;
   background: var(--color-bg-panel-dark);
   border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
 }
 
-/* The min-width lives on each ROW (the scrollable content), not on
-.bm-toolbar itself (the scroll container) — a min-width on the container
-would just overflow ITS OWN parent instead of becoming scrollable here. */
+/* Flexible width — no forced min-width (2026-09-18 correction: forcing a
+fixed size was never the ask, it was a workaround for controls squeezing
+illegibly at narrower widths). flex-wrap lets each row grow the toolbar's
+own height by wrapping onto another line instead. Right padding on
+.bm-toolbar above keeps row content clear of the corner-pinned Close
+button. */
 .bm-toolbar-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
-  min-width: 1500px;
+  gap: 0.5rem 1rem;
   min-height: 1.8rem;
 }
 
