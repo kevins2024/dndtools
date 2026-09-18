@@ -212,6 +212,8 @@
             :character="activeChar"
             @condition-changed="log"
             @concentration-check="onConcentrationCheck"
+            @hp-changed="log"
+            @feature-used="log"
           />
         </template>
 
@@ -234,6 +236,8 @@
             table="companions"
             @condition-changed="log"
             @concentration-check="onConcentrationCheck"
+            @hp-changed="log"
+            @feature-used="log"
           />
         </template>
 

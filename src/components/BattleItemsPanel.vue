@@ -88,6 +88,27 @@
                 Cast
               </button>
             </template>
+            <!-- A feature-shaped grant (Sundering Strike, etc.) draws from
+            the ITEM's own charges_current/charges_max — real gap found
+            2026-09-18: this whole block only ever existed for spell-shaped
+            grants, so an item like the Gauntlet of the Sundering Blow had
+            real 1/1-per-short-rest charge data but no way to see or spend
+            it anywhere. -->
+            <template
+              v-else-if="g.kind === 'feature' && item.charges_max != null"
+            >
+              <span class="resource-note"
+                >{{ item.charges_current }}/{{ item.charges_max }}</span
+              >
+              <button
+                class="cast-btn"
+                :disabled="item.charges_current <= 0"
+                title="Spend a charge"
+                @click.stop="spendItemCharge(item)"
+              >
+                Use
+              </button>
+            </template>
           </span>
         </div>
       </div>
@@ -116,7 +137,7 @@ export default {
     character: { type: Object, required: true },
   },
 
-  emits: ['inspect'],
+  emits: ['inspect', 'item-used'],
 
   computed: {
     partyItems() {
@@ -185,6 +206,18 @@ export default {
       this.$emit(
         'inspect',
         buildItemPopupData(item, this.character, this.partyItems)
+      )
+    },
+    // Real gap found 2026-09-18: an item's own charges_current/charges_max
+    // (Gauntlet of the Sundering Blow's 1/1-per-short-rest, etc.) had no
+    // spend interaction anywhere — SPEND_CHARGE already existed for
+    // CharacterInventory.vue's +/- buttons, just never used here.
+    spendItemCharge(item) {
+      if (item.charges_current <= 0) return
+      this.$store.commit('SPEND_CHARGE', item.id)
+      this.$emit(
+        'item-used',
+        `${item.name} (${item.charges_current - 1}/${item.charges_max} left)`
       )
     },
   },

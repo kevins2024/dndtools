@@ -5,6 +5,7 @@
         :character="character"
         :table="table"
         @concentration-check="$emit('concentration-check', $event)"
+        @hp-changed="$emit('hp-changed', $event)"
       />
       <VitalsChipRow :character="character" />
       <SavingThrowsPanel :character="character" />
@@ -15,13 +16,20 @@
       @condition-changed="$emit('condition-changed', $event)"
     />
 
-    <WeaponTable :character="character" :table="table" @inspect="showPopup" />
+    <WeaponTable
+      :character="character"
+      :table="table"
+      @inspect="showPopup"
+      @item-used="$emit('feature-used', $event)"
+    />
 
     <ContentFilterRow v-if="hasFilterableContent" v-model="featureFilter" />
     <FeaturePillsPanel
       :character="character"
+      :table="table"
       :filter="featureFilter"
       @inspect="showPopup"
+      @feature-used="$emit('feature-used', $event)"
     />
 
     <div class="resource-cluster">
@@ -33,7 +41,11 @@
       <ClassResourcesPanel :character="character" :table="table" />
       <WeavePhaseSelector :character="character" :table="table" />
     </div>
-    <BattleItemsPanel :character="character" @inspect="showPopup" />
+    <BattleItemsPanel
+      :character="character"
+      @inspect="showPopup"
+      @item-used="$emit('feature-used', $event)"
+    />
     <SpellPillsByLevel
       v-if="!hideSpells"
       :character="character"
@@ -99,7 +111,12 @@ export default {
     table: { type: String, default: 'characters' },
   },
 
-  emits: ['condition-changed', 'concentration-check'],
+  emits: [
+    'condition-changed',
+    'concentration-check',
+    'hp-changed',
+    'feature-used',
+  ],
 
   data() {
     return {

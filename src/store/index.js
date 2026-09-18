@@ -81,6 +81,23 @@ function rechargeItems(items, rechargeTypes) {
       if (changed) next = { ...next, spells_granted: newGrants }
     }
 
+    // Weapon-granted effects (Stormcaller's Cutlass's Stormcaller's Strike,
+    // etc.) have their own uses_max/uses_current/recharge, same shape as a
+    // feature — real gap found 2026-09-18: nothing recharged these at all,
+    // on any rest, since this function never looked at weapon_effects
+    // before now (there was also no way to SPEND one — see
+    // SPEND_WEAPON_EFFECT_USE).
+    if (Array.isArray(item.weapon_effects)) {
+      let changed = false
+      const newEffects = item.weapon_effects.map((e) => {
+        if (e.uses_max == null) return e
+        if (!shouldGrantRecharge(e.recharge, rechargeTypes)) return e
+        changed = true
+        return { ...e, uses_current: e.uses_max }
+      })
+      if (changed) next = { ...next, weapon_effects: newEffects }
+    }
+
     return next
   })
 }
@@ -622,11 +639,14 @@ export default new Vuex.Store({
       // 'long_rest' itself was missing from this list (a real pre-existing bug —
       // items_228's Signet Ring uses charges_recharge: "long_rest" and never
       // actually recharged on any rest before this fix, since this was the only
-      // call site that could plausibly match it).
+      // call site that could plausibly match it). 'dawn' added 2026-09-18 —
+      // an overnight long rest naturally passes through dawn, and it's
+      // currently only used by one weapon_effect (Stormcaller's Cutlass).
       state.party_items = rechargeItems(state.party_items, [
         'daily',
         'short_rest',
         'long_rest',
+        'dawn',
       ])
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
@@ -795,6 +815,106 @@ export default new Vuex.Store({
           return { ...g, uses_current: g.uses_current + 1 }
         })
         return { ...item, spells_granted: newGrants }
+      })
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    // Spends one use of a limited-use character/companion feature (Action
+    // Surge, Second Wind, Rage, Unleash Incarnation, a Battle Master
+    // maneuver's superiority die, etc.) — matched by name since that's how
+    // features are already deduped/displayed everywhere else (FeaturePillsPanel,
+    // detail popups). Real gap found 2026-09-18: `uses_max`/`uses_current`
+    // were tracked and DISPLAYED (FeaturePillsPanel's pill shows "3/4 uses")
+    // but nothing anywhere could actually decrement one — every limited-use
+    // feature in the whole app was a read-only counter. `uses_current`
+    // falls back to `uses_max` before decrementing, matching the same
+    // fallback the display already uses, so a feature that's never been
+    // spent (and so has no explicit uses_current yet) still spends
+    // correctly on its first use.
+    SPEND_FEATURE_USE(
+      state,
+      { characterName, table = 'characters', featureName }
+    ) {
+      state[table] = state[table].map((c) => {
+        if (c.name !== characterName || !c.features) return c
+        return {
+          ...c,
+          features: c.features.map((f) =>
+            f.name === featureName && f.uses_max != null
+              ? {
+                  ...f,
+                  uses_current: Math.max(0, (f.uses_current ?? f.uses_max) - 1),
+                }
+              : f
+          ),
+        }
+      })
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    RESTORE_FEATURE_USE(
+      state,
+      { characterName, table = 'characters', featureName }
+    ) {
+      state[table] = state[table].map((c) => {
+        if (c.name !== characterName || !c.features) return c
+        return {
+          ...c,
+          features: c.features.map((f) =>
+            f.name === featureName && f.uses_max != null
+              ? {
+                  ...f,
+                  uses_current: Math.min(
+                    f.uses_max,
+                    (f.uses_current ?? f.uses_max) + 1
+                  ),
+                }
+              : f
+          ),
+        }
+      })
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    // Same idea as SPEND_FEATURE_USE, for a weapon's own granted effect
+    // (item.weapon_effects[], e.g. Stormcaller's Cutlass's Stormcaller's
+    // Strike) rather than a character feature — matched by item id + effect
+    // name.
+    SPEND_WEAPON_EFFECT_USE(state, { itemId, effectName }) {
+      state.party_items = state.party_items.map((item) => {
+        if (item.id !== itemId || !Array.isArray(item.weapon_effects))
+          return item
+        return {
+          ...item,
+          weapon_effects: item.weapon_effects.map((e) =>
+            e.name === effectName && e.uses_max != null
+              ? {
+                  ...e,
+                  uses_current: Math.max(0, (e.uses_current ?? e.uses_max) - 1),
+                }
+              : e
+          ),
+        }
+      })
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    RESTORE_WEAPON_EFFECT_USE(state, { itemId, effectName }) {
+      state.party_items = state.party_items.map((item) => {
+        if (item.id !== itemId || !Array.isArray(item.weapon_effects))
+          return item
+        return {
+          ...item,
+          weapon_effects: item.weapon_effects.map((e) =>
+            e.name === effectName && e.uses_max != null
+              ? {
+                  ...e,
+                  uses_current: Math.min(
+                    e.uses_max,
+                    (e.uses_current ?? e.uses_max) + 1
+                  ),
+                }
+              : e
+          ),
+        }
       })
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')

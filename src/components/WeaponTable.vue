@@ -119,6 +119,16 @@
                           >{{ e.uses_current ?? e.uses_max }}/{{
                             e.uses_max
                           }}</span
+                        ><button
+                          v-if="e.uses_max"
+                          class="pill-cast-btn"
+                          :disabled="(e.uses_current ?? e.uses_max) <= 0"
+                          title="Spend one use"
+                          @click.stop="
+                            spendWeaponEffectUse(weaponItem(row.id), e)
+                          "
+                        >
+                          Use</button
                         ><span v-if="e.recharge" class="pill-recharge">{{
                           dnd.rechargeLabel(e.recharge)
                         }}</span></span
@@ -314,6 +324,14 @@
                       e.recharge
                     )}`"
                     >{{ e.uses_current ?? e.uses_max }}/{{ e.uses_max }}</span
+                  ><button
+                    v-if="e.uses_max"
+                    class="pill-cast-btn"
+                    :disabled="(e.uses_current ?? e.uses_max) <= 0"
+                    title="Spend one use"
+                    @click.stop="spendWeaponEffectUse(weaponItem(row.id), e)"
+                  >
+                    Use</button
                   ><span v-if="e.recharge" class="pill-recharge">{{
                     dnd.rechargeLabel(e.recharge)
                   }}</span></span
@@ -422,7 +440,7 @@ export default {
     table: { type: String, default: 'characters' },
   },
 
-  emits: ['inspect'],
+  emits: ['inspect', 'item-used'],
 
   data() {
     return { dnd }
@@ -533,6 +551,23 @@ export default {
     },
     async inspectEffect(effect) {
       this.$emit('inspect', await buildFeaturePopupData(effect))
+    },
+    // Real gap found 2026-09-18: a weapon_effect's own uses_max/uses_current
+    // (Stormcaller's Cutlass's Stormcaller's Strike, etc.) was displayed but
+    // never spendable, and rechargeItems never refreshed it on any rest —
+    // both fixed in store/index.js the same pass as this button.
+    spendWeaponEffectUse(item, effect) {
+      if (!item || (effect.uses_current ?? effect.uses_max) <= 0) return
+      this.$store.commit('SPEND_WEAPON_EFFECT_USE', {
+        itemId: item.id,
+        effectName: effect.name,
+      })
+      this.$emit(
+        'item-used',
+        `${effect.name} (${(effect.uses_current ?? effect.uses_max) - 1}/${
+          effect.uses_max
+        } left)`
+      )
     },
     async inspectSpell(grant) {
       this.$emit(

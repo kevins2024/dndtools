@@ -79,7 +79,7 @@ export default {
     table: { type: String, default: 'characters' },
   },
 
-  emits: ['concentration-check'],
+  emits: ['concentration-check', 'hp-changed'],
 
   data() {
     return {
@@ -140,6 +140,17 @@ export default {
         hp_current: Math.max(0, this.character.hp_current - remaining),
       })
       this.damageInput = null
+      // Mirrors EnemyHpTracker/Battle.vue's own applyDamage wording, so the
+      // Battle Log reads consistently regardless of who took the hit — real
+      // bug found 2026-09-18: player HP changes never showed up in the log
+      // at all, only enemy ones, since this component never emitted
+      // anything for its own damage/heal/temp actions.
+      this.$emit(
+        'hp-changed',
+        absorbed > 0
+          ? `${amount} damage (${absorbed} absorbed by temp HP)`
+          : `${amount} damage`
+      )
       // RAW: temp HP cushions HP loss but doesn't change how much damage
       // you TOOK — the concentration DC (10 or half damage, whichever is
       // higher) is based on the full amount, not what got past temp HP.
@@ -162,6 +173,7 @@ export default {
         ),
       })
       this.healInput = null
+      this.$emit('hp-changed', `healed ${amount}`)
     },
 
     applyTemp() {
@@ -170,6 +182,7 @@ export default {
       // Temp HP doesn't stack — take the higher value, per RAW.
       this.commit({ hp_temp: Math.max(this.tempHp, amount) })
       this.tempInput = null
+      this.$emit('hp-changed', `+${amount} temp HP`)
     },
 
     applyMaxMod() {
@@ -178,6 +191,7 @@ export default {
       // — set directly rather than accumulated, since it represents the
       // active effect's value, not a running total of deltas.
       this.commit({ hp_max_modifier: Number(this.maxModInput) })
+      this.$emit('hp-changed', `max HP ${dnd.signed(Number(this.maxModInput))}`)
       this.maxModInput = null
     },
   },

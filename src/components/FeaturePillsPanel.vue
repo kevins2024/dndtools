@@ -26,7 +26,23 @@
             >{{ f.uses_current ?? f.uses_max }}/{{ f.uses_max }}</span
           ><span v-if="f.recharge" class="pill-recharge">{{
             dnd.rechargeLabel(f.recharge)
-          }}</span></span
+          }}</span
+          ><button
+            v-if="f.uses_max"
+            class="pill-spend-btn"
+            :disabled="(f.uses_current ?? f.uses_max) <= 0"
+            title="Spend one use"
+            @click.stop="spendUse(f)"
+          >
+            −1</button
+          ><button
+            v-if="f.uses_max && (f.uses_current ?? f.uses_max) < f.uses_max"
+            class="pill-restore-btn"
+            title="Restore one use (undo)"
+            @click.stop="restoreUse(f)"
+          >
+            +1
+          </button></span
         >
       </div>
     </div>
@@ -49,13 +65,17 @@ export default {
 
   props: {
     character: { type: Object, required: true },
+    // Which store table `character` actually lives in — companions use a
+    // separate table (see CharacterCombatPanel.vue), so spendUse/restoreUse
+    // need to write back to the right place.
+    table: { type: String, default: 'characters' },
     // 'all' | 'action' | 'bonus_action' | 'reaction' | 'passive' — owned by
     // whichever view renders both this and SpellPillsByLevel, since one
     // filter row controls both lists at once.
     filter: { type: String, default: 'all' },
   },
 
-  emits: ['inspect'],
+  emits: ['inspect', 'feature-used'],
 
   data() {
     return { dnd }
@@ -112,6 +132,30 @@ export default {
         'inspect',
         await buildFeaturePopupData(feature, this.character)
       )
+    },
+    // Real gap found 2026-09-18: uses_max/uses_current were tracked and
+    // shown, but nothing anywhere could actually spend one — see
+    // SPEND_FEATURE_USE's own comment in store/index.js.
+    spendUse(feature) {
+      if ((feature.uses_current ?? feature.uses_max) <= 0) return
+      this.$store.commit('SPEND_FEATURE_USE', {
+        characterName: this.character.name,
+        table: this.table,
+        featureName: feature.name,
+      })
+      this.$emit(
+        'feature-used',
+        `${feature.name} (${(feature.uses_current ?? feature.uses_max) - 1}/${
+          feature.uses_max
+        } left)`
+      )
+    },
+    restoreUse(feature) {
+      this.$store.commit('RESTORE_FEATURE_USE', {
+        characterName: this.character.name,
+        table: this.table,
+        featureName: feature.name,
+      })
     },
   },
 }
@@ -187,5 +231,35 @@ export default {
 .has-tip {
   border-bottom: 1px dotted currentColor;
   cursor: default;
+}
+
+.pill-spend-btn,
+.pill-restore-btn {
+  margin-left: 0.35em;
+  font-size: 0.7em;
+  line-height: 1;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  border: 1px solid var(--color-accent);
+  background: none;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.pill-spend-btn:hover:not(:disabled),
+.pill-restore-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.pill-spend-btn:disabled {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
+  cursor: not-allowed;
+}
+
+.pill-restore-btn {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
 }
 </style>
