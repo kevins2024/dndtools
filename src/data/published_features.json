@@ -1144,11 +1144,21 @@
     "source": "Mastermind (Rogue subclass, Xanathar's Guide to Everything) — 3rd level."
   },
   {
-    "id": "pub_soulknife-soul-blades",
-    "name": "Soulknife — Soul Blades",
+    "id": "pub_soulknife-homing-strikes",
+    "name": "Homing Strikes",
     "type": "feature",
-    "description": "Two benefits: Homing Strikes — when you miss with a psychic blade attack, you can expend one Psionic Energy die, rolling it and adding the result to the attack roll, possibly turning the miss into a hit. Psychic Teleportation — as a bonus action, expend one Psionic Energy die, roll it, and teleport up to 10 feet times the number rolled to an unoccupied space you can see, then make one psychic blade attack against a creature within 5 feet of your destination.",
-    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level."
+    "action_type": "reaction",
+    "description": "When you miss with an attack using your Psychic Blades, you can expend one Psionic Energy die, rolling it and adding the result to the attack roll. If this turns the miss into a hit, you lose the die; otherwise you keep it.",
+    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature."
+  },
+  {
+    "id": "pub_soulknife-psychic-teleportation",
+    "name": "Psychic Teleportation",
+    "type": "feature",
+    "action_type": "bonus_action",
+    "description": "As a bonus action, manifest one of your Psychic Blades, expend one Psionic Energy die and roll it, and throw the blade at an unoccupied space you can see, up to 10 feet times the number rolled away. You then teleport to that space, and the blade vanishes.",
+    "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature.",
+    "verification": "CORRECTED 2026-09-18: the previous bundled entry (pub_soulknife-soul-blades) claimed this also grants \"one psychic blade attack against a creature within 5 feet of your destination\" after teleporting — that's not real RAW text. Verified against 2 independent sources (dnd5e.wikidot.com and a second cross-check): the blade is thrown to mark the destination and vanishes on arrival, no follow-up attack. Also split off Homing Strikes into its own entry (pub_soulknife-homing-strikes) — both were previously bundled into one feature, making them invisible as separate combat-panel tiles."
   },
   {
     "id": "pub_soulknife-psychic-veil",

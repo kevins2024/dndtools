@@ -34,11 +34,19 @@
       },
       {
         "name": "Action Surge (1 use)",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Second Wind",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Indomitable (1 use)",
@@ -61,10 +69,6 @@
       },
       {
         "name": "Know Your Enemy",
-        "type": "feature"
-      },
-      {
-        "name": "Superiority Dice (5d8)",
         "type": "feature"
       },
       {
@@ -103,6 +107,16 @@
     "hit_die": "d10",
     "hit_dice_current": 9,
     "skill_expertise": [],
+    "resources": [
+      {
+        "key": "superiority_dice",
+        "name": "Superiority Dice (d8)",
+        "label": "Sup",
+        "max": 5,
+        "current": 5,
+        "recharge": "short_rest"
+      }
+    ],
     "classes": [
       {
         "name": "Fighter",
@@ -178,6 +192,7 @@
       {
         "name": "Rage (4 uses, +3 damage)",
         "type": "feature",
+        "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
         "uses_current": 4
@@ -1573,7 +1588,7 @@
     "stat_wis": 20,
     "stat_cha": 16,
     "hp_max": 68,
-    "hp_current": 68,
+    "hp_current": 53,
     "unarmored_ac_formula": "default",
     "saving_throws": ["wis", "cha"],
     "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
@@ -1585,11 +1600,16 @@
       },
       {
         "name": "Channel Divinity (2/rest)",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 2,
+        "uses_current": 2
       },
       {
         "name": "Channel Divinity: Preserve Life",
-        "type": "feature"
+        "type": "feature",
+        "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use."
       },
       {
         "name": "Blessed Healer",
@@ -1803,7 +1823,7 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "conditions": [],
+    "conditions": ["Blessed", "Bardic"],
     "skill_expertise": [],
     "classes": [
       {
@@ -1815,7 +1835,8 @@
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
     "weapon_proficiencies": ["simple"],
-    "armor_proficiencies": ["light", "medium", "shields", "heavy"]
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"],
+    "hp_temp": 0
   },
   {
     "name": "Pirra",
@@ -2974,12 +2995,20 @@
         "type": "feature"
       },
       {
-        "name": "Channel Divinity (Nature's Wrath / Turn the Faithless)",
+        "name": "Channel Divinity: Nature's Wrath",
+        "id": "pub_channel-divinity-nature-s-wrath",
         "type": "feature",
         "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 1,
         "uses_current": 1
+      },
+      {
+        "name": "Channel Divinity: Turn the Faithless",
+        "id": "pub_channel-divinity-turn-the-faithless",
+        "type": "feature",
+        "action_type": "action",
+        "note": "Shares the same 1/short-rest Channel Divinity pool as Nature's Wrath above — not a separate use."
       },
       {
         "name": "Shelter of the Faithful",
@@ -2989,7 +3018,7 @@
     "spell_slots": {
       "level_1": {
         "max": 2,
-        "current": 2
+        "current": 0
       }
     },
     "spells": [
@@ -3030,7 +3059,7 @@
       }
     ],
     "active_effects": [],
-    "conditions": [],
+    "conditions": ["Blessed", "Concentrating"],
     "notes": "",
     "persona_notes": [
       "Eye contact that goes slightly past comfortable and keeps going. Not aggressive - just complete.",
@@ -3043,7 +3072,8 @@
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
     "weapon_proficiencies": ["simple", "martial"],
-    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
+    "active_weapon_set": 2
   },
   {
     "name": "Enauweyn",
@@ -3928,11 +3958,19 @@
       },
       {
         "name": "Second Wind",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Action Surge (1 use)",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Favored Enemy",
@@ -4482,7 +4520,7 @@
     "stat_wis": 8,
     "stat_cha": 14,
     "hp_max": 78,
-    "hp_current": 78,
+    "hp_current": 74,
     "unarmored_ac_formula": "default",
     "saving_throws": ["str", "con"],
     "skill_proficiencies": [
@@ -4633,7 +4671,8 @@
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
     "weapon_proficiencies": ["simple", "martial"],
-    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
+    "hp_temp": 0
   },
   {
     "name": "Rith",
@@ -4652,7 +4691,7 @@
     "stat_wis": 10,
     "stat_cha": 17,
     "hp_max": 50,
-    "hp_current": 50,
+    "hp_current": 15,
     "unarmored_ac_formula": "default",
     "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
@@ -4844,11 +4883,11 @@
     "spell_slots": {
       "level_1": {
         "max": 4,
-        "current": 4
+        "current": 3
       },
       "level_2": {
         "max": 3,
-        "current": 3
+        "current": 1
       },
       "level_3": {
         "max": 3,
@@ -4856,7 +4895,7 @@
       },
       "level_4": {
         "max": 3,
-        "current": 3
+        "current": 2
       },
       "level_5": {
         "max": 1,
@@ -4864,7 +4903,7 @@
       }
     },
     "active_effects": [],
-    "conditions": [],
+    "conditions": ["Blessed"],
     "exhaustion_level": 0,
     "persona_notes": [
       "Older twin by minutes. Carries this with complete seriousness.",
@@ -4894,7 +4933,8 @@
       "quarterstaff",
       "light crossbow"
     ],
-    "armor_proficiencies": []
+    "armor_proficiencies": [],
+    "hp_temp": 0
   },
   {
     "id": "characters_20",
@@ -5037,7 +5077,7 @@
         "name": "Sorcery Points",
         "label": "SP",
         "max": 9,
-        "current": 9,
+        "current": 8,
         "recharge": "long_rest"
       }
     ],
@@ -5156,7 +5196,7 @@
       },
       "level_2": {
         "max": 3,
-        "current": 3
+        "current": 2
       },
       "level_3": {
         "max": 3,
@@ -5168,10 +5208,10 @@
       },
       "level_5": {
         "max": 1,
-        "current": 1
+        "current": 0
       }
     },
-    "weave_phase": "leno",
+    "weave_phase": "twill",
     "active_effects": [],
     "conditions": [],
     "exhaustion_level": 0,
@@ -5219,7 +5259,8 @@
       "quarterstaff",
       "light crossbow"
     ],
-    "armor_proficiencies": []
+    "armor_proficiencies": [],
+    "hp_temp": 0
   },
   {
     "id": "characters_21",
@@ -6116,14 +6157,22 @@
         "id": "second-wind",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Fighter"
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Action Surge (1 use)",
         "id": "action-surge-1-use",
         "type": "feature",
         "level_gained": 2,
-        "_source": "Fighter"
+        "_source": "Fighter",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Combat Superiority",
@@ -6286,14 +6335,22 @@
         "id": "second-wind",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Fighter"
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Action Surge (1 use)",
         "id": "action-surge-1-use",
         "type": "feature",
         "level_gained": 2,
-        "_source": "Fighter"
+        "_source": "Fighter",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Improved Critical (19-20)",
@@ -6517,6 +6574,17 @@
     "saving_throws": ["dex", "int"],
     "saving_throw_advantages": ["poison"],
     "resistances": ["poison"],
+    "psychic_blades": true,
+    "resources": [
+      {
+        "key": "psionic_energy_dice",
+        "name": "Psionic Energy Dice (d8)",
+        "label": "Psi",
+        "max": 8,
+        "current": 8,
+        "recharge": "long_rest"
+      }
+    ],
     "skill_proficiencies": [
       "Deception",
       "Stealth",
@@ -6680,9 +6748,18 @@
         "_source": "Rogue"
       },
       {
-        "name": "Soulknife — Soul Blades",
-        "id": "pub_soulknife-soul-blades",
+        "name": "Homing Strikes",
+        "id": "pub_soulknife-homing-strikes",
         "type": "feature",
+        "action_type": "reaction",
+        "level_gained": 9,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Psychic Teleportation",
+        "id": "pub_soulknife-psychic-teleportation",
+        "type": "feature",
+        "action_type": "bonus_action",
         "level_gained": 9,
         "_source": "Rogue"
       }
@@ -6701,6 +6778,9 @@
     "active_weapon_set": 1,
     "location": "Khemrise",
     "alignment": "Chaotic Neutral",
-    "persona_notes": ["Applies 156 years of tactical memory to leatherworking."]
+    "persona_notes": [
+      "Applies 156 years of tactical memory to leatherworking."
+    ],
+    "hp_temp": 0
   }
 ]

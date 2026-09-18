@@ -2389,7 +2389,8 @@
     ],
     "action_type": "action",
     "stored_at": null,
-    "party_id": null
+    "party_id": null,
+    "description": "CURRENTLY EMPTY"
   },
   {
     "name": "Ring of Spell Storing (3rd level)",
