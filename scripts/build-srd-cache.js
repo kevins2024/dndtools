@@ -96,10 +96,17 @@ async function buildSpells() {
 
 // The 3 recovered homebrew species (Catrin, Drevani, Hei'ugar), restored
 // verbatim from the last commit before homebrew.json was migrated into this
-// (gitignored, since-lost) cache file — see git commit ce5a64f. Dhovari was
-// lore-only there (no speed/traits/ability_score_bonus at all) and is not a
-// playable species, so it's deliberately omitted here — confirmed with the
-// project owner rather than inventing mechanics for it.
+// (gitignored, since-lost) cache file — see git commit ce5a64f. Plus 3 more
+// (Lithkin, Dhovari, Olwood Trolls) added directly to the committed
+// species.json in a later session (2026-09-09, lore extraction from The
+// Liliveth arc) without this script ever being updated to match — a real
+// bug found 2026-09-19 while reconciling this file's SRD scope: re-running
+// this script would have silently deleted all 3 on the next cache refresh,
+// with no warning. All 3 are `playable: false` (world-flavor species, not
+// real PC options — see each entry's own `playable_note`; server.js's
+// /api/engine/species route respects that flag) — this reverses the
+// earlier note here that Dhovari specifically was "deliberately omitted";
+// it was later added back on purpose, just never synced to this file.
 const HOMEBREW_SPECIES = [
   {
     name: 'Catrin',
@@ -219,6 +226,53 @@ const HOMEBREW_SPECIES = [
     notes:
       "Duergar who left the underdark and settled on Yetgrese's surface generations ago. Named Hei'ugar meaning roughly Sky Duergar. Treat the open sky as sacred, bordering on religious. Predominantly farmers and fishermen living on Tilawam's outskirts. Approximately 5% of Tilawam's population.",
     homebrew: true,
+  },
+  {
+    name: 'Lithkin',
+    plural: 'Lithkin',
+    adjective: 'Lithkin',
+    type: 'homebrew_race',
+    size: 'Small',
+    appearance:
+      "Smaller than halflings, with a build closer to childlike proportions but adult bearing. Long tapered ears, a sharp pointed chin, a downward-tipped nose, two visible pointed teeth at the corners of the mouth, and diamond-shaped eye openings that give the eyes within an angular cast. Skin tone and coloration are not fixed at birth — they are naturalistic to wherever a Lithkin has spent the majority of their life, and the shift can continue mid-life: a Lithkin who relocates to a new environment for long enough gradually takes on that environment's dominant palette, and in extreme or magically saturated environments even textural qualities of the local flora or fauna. The mechanism is not fully understood even by Lithkin themselves — treated as an accepted fact of the species rather than a studied phenomenon. When a Lithkin's coloration has shifted extensively, they sometimes lose an accurate sense of their own 'natural' appearance, having gone long periods without seeing themselves reflected.",
+    notes:
+      'Aging is difficult for outsiders to judge — a Lithkin may look the same for centuries, and lifespan expectations vary by regional lore rather than any agreed species standard. Generally solitary-leaning by temperament but not reclusive — tend toward quiet, meticulous work (craftsmanship, maintenance, tending) and often settle in isolated postings for very long stretches without apparent discomfort, though the isolation eventually does register even in a long-lived species.',
+    homebrew: true,
+    playable: false,
+    playable_note:
+      "World-flavor species, not offered as a player option — introduced 2026-09-09 via lore extraction (The Liliveth arc). See src/data/lore.json / server.js's /api/engine/species route for how the playable:false flag is respected.",
+  },
+  {
+    name: 'Dhovari',
+    plural: 'Dhovari',
+    adjective: 'Dhovari',
+    type: 'homebrew_race',
+    origin: 'Olwood Verge',
+    size: 'Medium to Large (6-7ft)',
+    appearance:
+      'Bipedal, digitigrade legs, six to seven feet tall. Broad through chest and shoulders. Patterned fur-feather covering that lies flat when calm and raises when alert — darker along spine and shoulders, lighter at throat and chest. Forward-facing luminescent eyes. Hands with four long flexible fingers, hardened dark fingertips. Vocal anatomy suggests a different structure than humanoid — language is tonal and layered, chest and throat operating simultaneously.',
+    notes:
+      "Uncontacted by wider civilization. Patient, hierarchical, deliberate — think before speaking as a deep habit, not demonstrative but not cold. Ancestors co-built a ridge complex with another (human) civilization long ago; eleven generations have each carried one quarter of a broken disc, and a statue found in nearby ruins depicts them. The name \"Dhovari\" is rendered through a Helm of Comprehending Languages — pronunciation uncertain, so treat the spelling as an approximation rather than confirmed. Relationship to the Olwood Trolls (also native to Fynesmarch/Olwood Verge) is unclear but possibly connected — doorway proportions in the ridge complex may match the Trolls' height instead of the Dhovari's, per the Trolls' own account.",
+    homebrew: true,
+    playable: false,
+    playable_note:
+      "World-flavor species (an uncontacted people, not a PC option), added 2026-09-09 alongside Lithkin — the full lore entry also still lives at src/data/lore.json's lore_species_01 (kept in both places on purpose, per project owner: this file is the quick-reference/browsable version, lore.json keeps the fuller narrative for a genuinely rare species). See server.js's /api/engine/species route for how the playable:false flag is respected.",
+  },
+  {
+    name: 'Olwood Trolls',
+    plural: 'Olwood Trolls',
+    adjective: 'Olwood',
+    type: 'homebrew_race',
+    origin: 'Fynesmarch, Olwood Verge',
+    size: 'Large (7-8ft)',
+    appearance:
+      'Seven to eight feet tall, lean relative to species reputation, grey-green skin that disappears against bark in low light. More intelligent in bearing than common reputation suggests.',
+    notes:
+      'Neutral to friendly — individual variance likely. Precise with language, patient, dry humor; complete in their attention, with a meditative stillness that reads as presence rather than absence. Distinct from feral trolls, which they do not claim as kin — consider them as a feral dog is to a domestic one. May have built or used the ridge complex near Olwood Verge given doorway proportions matching their height. Relationship to the Dhovari\'s ancestors is unclear but possibly connected. Aware of another, unnamed people from deep northeast (referred to as "Vessel\'s kind") — encountered them once, and the one survivor of that encounter could not describe the color of the sky there.',
+    homebrew: true,
+    playable: false,
+    playable_note:
+      "World-flavor species, added 2026-09-09 alongside Lithkin and Dhovari — the full lore entry also still lives at src/data/lore.json's lore_species_03 (kept in both places on purpose, per project owner: this file is the quick-reference/browsable version, lore.json keeps the fuller narrative for a genuinely rare species). See server.js's /api/engine/species route for how the playable:false flag is respected.",
   },
 ]
 

@@ -29,6 +29,7 @@ import LevelUpTool from './LevelUpTool.vue'
 import NewCharacterTool from './NewCharacterTool.vue'
 import JsonIntakeTool from './JsonIntakeTool.vue'
 import DmSettings from './DmSettings.vue'
+import DifficultyCalculator from './DifficultyCalculator.vue'
 
 export default {
   name: 'ToolsContext',
@@ -43,6 +44,7 @@ export default {
     NewCharacterTool,
     JsonIntakeTool,
     DmSettings,
+    DifficultyCalculator,
   },
 
   data() {
@@ -79,6 +81,11 @@ export default {
           id: 'dm-settings',
           label: 'DM Settings',
           component: 'DmSettings',
+        },
+        {
+          id: 'difficulty',
+          label: 'Calculate Difficulty',
+          component: 'DifficultyCalculator',
         },
         {
           id: 'dm-export',

@@ -1045,10 +1045,11 @@
       {
         "name": "Bladesong",
         "type": "feature",
+        "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
         "uses_current": 4,
-        "note": "Corrected 2026-09-09 — was tracking the outdated SCAG version (flat 2 uses, short/long rest). Real current Tasha's Cauldron of Everything version: uses = proficiency bonus (4 at her level 9), long rest only."
+        "note": "Corrected 2026-09-09 — was tracking the outdated SCAG version (flat 2 uses, short/long rest). Real current Tasha's Cauldron of Everything version: uses = proficiency bonus (4 at her level 9), long rest only. action_type added 2026-09-18 — activating it is a bonus action, previously missing its icon."
       },
       {
         "name": "Linked Spellbook",
@@ -1588,7 +1589,7 @@
     "stat_wis": 20,
     "stat_cha": 16,
     "hp_max": 68,
-    "hp_current": 53,
+    "hp_current": 68,
     "unarmored_ac_formula": "default",
     "saving_throws": ["wis", "cha"],
     "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
@@ -1823,7 +1824,7 @@
     "darkvision": 0,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "conditions": ["Blessed", "Bardic"],
+    "conditions": [],
     "skill_expertise": [],
     "classes": [
       {
@@ -3018,7 +3019,7 @@
     "spell_slots": {
       "level_1": {
         "max": 2,
-        "current": 0
+        "current": 2
       }
     },
     "spells": [
@@ -3059,7 +3060,7 @@
       }
     ],
     "active_effects": [],
-    "conditions": ["Blessed", "Concentrating"],
+    "conditions": [],
     "notes": "",
     "persona_notes": [
       "Eye contact that goes slightly past comfortable and keeps going. Not aggressive - just complete.",
@@ -3136,18 +3137,19 @@
       {
         "name": "Channel Divinity: Champion Challenge",
         "type": "feature",
-        "action_type": "action",
+        "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "description": "As a bonus action, each creature of your choice you can see within 30 feet must make a Wisdom saving throw. On a failure, it can't willingly move more than 30 feet away from you until you're incapacitated/dead or it's more than 30 feet away.",
+        "note": "Corrected 2026-09-18 — was mis-tagged as a full action; real RAW (verified 2 sources) is a bonus action, same as Turn the Tide below."
       },
       {
         "name": "Channel Divinity: Turn the Tide",
         "type": "feature",
         "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
+        "description": "As a bonus action, each creature of your choice that can hear you within 30 feet regains 1d6 + CHA modifier (min 1) hit points, if it has no more than half its hit points.",
+        "note": "Corrected 2026-09-18 — shares the same 1/short-rest Channel Divinity pool as Champion Challenge above; both entries independently tracking uses_max:1 was double-counting her real single use, fixed by moving the tracked uses onto Champion Challenge only."
       },
       {
         "name": "Aura of Protection",
@@ -3362,7 +3364,7 @@
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 4,
-        "uses_current": 1
+        "uses_current": 4
       },
       {
         "name": "Wild Shape (CR 1 or below)",
@@ -3629,31 +3631,43 @@
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5,
+        "description": "When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to cause the creature to make a Dexterity saving throw. The creature takes 2d8 lightning or thunder damage (your choice) on a failed save, half as much on a success. Uses equal to your Wisdom modifier (5), regained on a long rest."
       },
       {
         "name": "Tempest Cleric — Destructive Wrath",
-        "type": "feature"
+        "type": "feature",
+        "description": "When you roll lightning or thunder damage, you can use your Channel Divinity to deal maximum damage instead of rolling.",
+        "note": "Shares the same Channel Divinity pool as Turn Undead below — not a separate use."
       },
       {
-        "name": "Tempest Cleric — Thunderbolt Strike",
-        "type": "feature"
+        "name": "Tempest Cleric — Thunderous Strike",
+        "type": "feature",
+        "description": "When you deal lightning damage to a creature, you can also push the creature up to 10 feet away from you if it's Large or smaller.",
+        "note": "Corrected 2026-09-18 — was mis-recorded as \"Thunderbolt Strike\" (not a real feature name) and mis-tagged as an 8th-level ability; the real PHB feature is Thunderous Strike, gained at 6th level."
       },
       {
         "name": "Channel Divinity: Turn Undead",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 2,
+        "uses_current": 2,
+        "description": "As an action, present your holy symbol; each undead that can see or hear you within 30 feet must make a Wisdom saving throw or be turned for 1 minute or until it takes damage. 2 uses per short/long rest at Cleric 6+."
       },
       {
         "name": "Destroy Undead (CR 1)",
         "type": "feature"
       },
       {
-        "name": "Blessed Strikes",
-        "type": "feature"
-      },
-      {
         "name": "Divine Strike",
-        "type": "feature"
+        "type": "feature",
+        "description": "Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 thunder damage to the target.",
+        "note": "Removed the duplicate \"Blessed Strikes\" entry 2026-09-18 — that's Tasha's Cauldron's optional class feature that explicitly REPLACES Divine Strike (per its own catalog note), not something that stacks alongside it; having both was a data error, not a real build choice. Its only added value (working with Potent Spellcasting too) doesn't apply here since Revven doesn't have Potent Spellcasting from anywhere."
       },
       {
         "name": "Fey Ancestry",
@@ -4359,11 +4373,16 @@
         "name": "Sacred Weapon",
         "type": "feature",
         "action_type": "action",
-        "recharge": "channel_divinity"
+        "recharge": "channel_divinity",
+        "description": "As an action, expend one use of Channel Divinity to imbue a weapon with positive energy for 1 minute: add CHA modifier to attack rolls (min +1), counts as magical, sheds light.",
+        "note": "Shares the same 1/short-rest Channel Divinity pool tracked on the bare \"Channel Divinity\" entry above, alongside Vow of the Open Road — not a separate use."
       },
       {
         "name": "Vow of the Open Road",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "action",
+        "description": "As an action, expend one use of Channel Divinity to force a creature within 30 feet that you can see to make a Wisdom saving throw. On a failure, it's compelled to move in an unexpected direction (DM's choice) on its next turn.",
+        "note": "Shares the same 1/short-rest Channel Divinity pool tracked on the bare \"Channel Divinity\" entry above, alongside Sacred Weapon — not a separate use."
       },
       {
         "name": "Aura of Protection (+4 to ally saves within 10ft)",
@@ -4376,6 +4395,7 @@
       {
         "name": "Lay on Hands",
         "type": "feature",
+        "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 45,
         "uses_current": 45
@@ -4520,7 +4540,7 @@
     "stat_wis": 8,
     "stat_cha": 14,
     "hp_max": 78,
-    "hp_current": 74,
+    "hp_current": 78,
     "unarmored_ac_formula": "default",
     "saving_throws": ["str", "con"],
     "skill_proficiencies": [
@@ -4691,7 +4711,7 @@
     "stat_wis": 10,
     "stat_cha": 17,
     "hp_max": 50,
-    "hp_current": 15,
+    "hp_current": 50,
     "unarmored_ac_formula": "default",
     "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
@@ -4883,11 +4903,11 @@
     "spell_slots": {
       "level_1": {
         "max": 4,
-        "current": 3
+        "current": 4
       },
       "level_2": {
         "max": 3,
-        "current": 1
+        "current": 3
       },
       "level_3": {
         "max": 3,
@@ -4895,7 +4915,7 @@
       },
       "level_4": {
         "max": 3,
-        "current": 2
+        "current": 3
       },
       "level_5": {
         "max": 1,
@@ -4903,7 +4923,7 @@
       }
     },
     "active_effects": [],
-    "conditions": ["Blessed"],
+    "conditions": [],
     "exhaustion_level": 0,
     "persona_notes": [
       "Older twin by minutes. Carries this with complete seriousness.",
@@ -5077,7 +5097,7 @@
         "name": "Sorcery Points",
         "label": "SP",
         "max": 9,
-        "current": 8,
+        "current": 9,
         "recharge": "long_rest"
       }
     ],
@@ -5196,7 +5216,7 @@
       },
       "level_2": {
         "max": 3,
-        "current": 2
+        "current": 3
       },
       "level_3": {
         "max": 3,
@@ -5208,7 +5228,7 @@
       },
       "level_5": {
         "max": 1,
-        "current": 0
+        "current": 1
       }
     },
     "weave_phase": "twill",
@@ -5429,7 +5449,14 @@
       {
         "name": "Combat Wild Shape",
         "type": "feature",
-        "description": "Can use Wild Shape as a bonus action rather than an action. While shaped, can cast a druid spell with a casting time of 1 action by expending a spell slot, or use a bonus action to expend a spell slot and regain 1d8 HP per level of the slot expended."
+        "description": "Lets Wild Shape (above) be used as a bonus action instead of an action.",
+        "note": "Corrected 2026-09-18 — the old text also claimed you can cast a druid spell with a 1-action casting time while shaped by expending a slot; that's not real RAW (verified via dnd5e.wikidot.com), likely confused with the separate healing benefit, which is now its own \"Combat Wild Shape: Healing\" tile below."
+      },
+      {
+        "name": "Combat Wild Shape: Healing",
+        "type": "feature",
+        "action_type": "bonus_action",
+        "description": "While transformed by Wild Shape, expend one spell slot as a bonus action to regain 1d8 hit points per level of the spell slot expended."
       },
       {
         "name": "Wild Shape",
