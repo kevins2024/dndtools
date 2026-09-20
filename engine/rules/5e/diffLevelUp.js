@@ -299,7 +299,7 @@ function diffLevelUp(
   // character's TOTAL level across every class, not the one being leveled
   // here — a multiclassed Drow's Faerie Fire arrives at total character
   // level 3, whether that 3rd level came from her first class or her second.
-  const raceTraits = traitsFor(character.race, character.subrace)
+  const genusTraits = traitsFor(character.genus, character.subgenus)
   const otherClassesLevelSum = otherClasses.reduce((sum, c) => sum + c.level, 0)
   const totalLevelBefore = otherClassesLevelSum + fromLevel
   const totalLevelAfter = otherClassesLevelSum + finalToLevel
@@ -1625,7 +1625,7 @@ function diffLevelUp(
   // regardless of which class happened to cross the threshold. Goes through
   // the same existingByLevel/existingNoLevel dedup as every other feature
   // grant, level_gained set to the trait's tier level (not the class level).
-  for (const trait of raceTraits) {
+  for (const trait of genusTraits) {
     for (const tier of trait.grants_spells?.tiered ?? []) {
       if (tier.level <= totalLevelBefore || tier.level > totalLevelAfter)
         continue
@@ -1785,7 +1785,7 @@ function diffLevelUp(
   // character's very first level-up call is fromLevel 0 -> toLevel 1, i.e.
   // levelsGained === 1, so it falls out of the same per-level math with no
   // separate "at creation" special case needed.
-  const hpPerLevelBonus = raceTraits.reduce(
+  const hpPerLevelBonus = genusTraits.reduce(
     (sum, t) => sum + (t.grants_hp_per_level || 0),
     0
   )

@@ -28,7 +28,7 @@ function baseCharacter(overrides = {}) {
 }
 
 test('Dwarven Toughness: a Hill Dwarf gains +1 HP at 1st level on top of the normal max-hit-die + CON', () => {
-  const character = baseCharacter({ race: 'Dwarf', subrace: 'Hill Dwarf' })
+  const character = baseCharacter({ genus: 'Dwarf', subgenus: 'Hill Dwarf' })
   const result = diffLevelUp(character, {
     className: 'Fighter',
     toLevel: 1,
@@ -39,7 +39,7 @@ test('Dwarven Toughness: a Hill Dwarf gains +1 HP at 1st level on top of the nor
 })
 
 test('Dwarven Toughness: keeps applying +1 per level on later level-ups, not just at 1st', () => {
-  let character = baseCharacter({ race: 'Dwarf', subrace: 'Hill Dwarf' })
+  let character = baseCharacter({ genus: 'Dwarf', subgenus: 'Hill Dwarf' })
   let result = diffLevelUp(character, {
     className: 'Fighter',
     toLevel: 1,
@@ -56,7 +56,7 @@ test('Dwarven Toughness: keeps applying +1 per level on later level-ups, not jus
 })
 
 test('A Mountain Dwarf (no Dwarven Toughness) gets no flat HP bonus', () => {
-  const character = baseCharacter({ race: 'Dwarf', subrace: 'Mountain Dwarf' })
+  const character = baseCharacter({ genus: 'Dwarf', subgenus: 'Mountain Dwarf' })
   const result = diffLevelUp(character, {
     className: 'Fighter',
     toLevel: 1,
@@ -67,7 +67,7 @@ test('A Mountain Dwarf (no Dwarven Toughness) gets no flat HP bonus', () => {
 })
 
 test('A non-Dwarf species never gets the flat HP bonus', () => {
-  const character = baseCharacter({ race: 'Human', subrace: null })
+  const character = baseCharacter({ genus: 'Human', subgenus: null })
   const result = diffLevelUp(character, {
     className: 'Fighter',
     toLevel: 1,
@@ -77,7 +77,7 @@ test('A non-Dwarf species never gets the flat HP bonus', () => {
 })
 
 test('A character with no race field at all is unaffected (traitsFor tolerates it)', () => {
-  const character = baseCharacter({ race: undefined, subrace: undefined })
+  const character = baseCharacter({ genus: undefined, subgenus: undefined })
   const result = diffLevelUp(character, {
     className: 'Fighter',
     toLevel: 1,
@@ -88,8 +88,8 @@ test('A character with no race field at all is unaffected (traitsFor tolerates i
 
 test('Drow Magic: Faerie Fire arrives exactly at total character level 3, not before', () => {
   const character = baseCharacter({
-    race: 'Elf',
-    subrace: 'Dark Elf (Drow)',
+    genus: 'Elf',
+    subgenus: 'Dark Elf (Drow)',
     classes: [{ name: 'Rogue', level: 1, subclass: null }],
   })
   const at2 = diffLevelUp(character, { className: 'Rogue', toLevel: 2 })
@@ -111,8 +111,8 @@ test('Drow Magic: Faerie Fire arrives exactly at total character level 3, not be
 
 test('Drow Magic: Faerie Fire and Darkness both arrive in one jump if a level-up skips past both thresholds', () => {
   const character = baseCharacter({
-    race: 'Elf',
-    subrace: 'Dark Elf (Drow)',
+    genus: 'Elf',
+    subgenus: 'Dark Elf (Drow)',
     classes: [{ name: 'Rogue', level: 1, subclass: null }],
   })
   const result = diffLevelUp(character, { className: 'Rogue', toLevel: 5 })
@@ -126,8 +126,8 @@ test("Drow Magic tiers key off TOTAL character level across classes, not the lev
   // total character level goes from 2 to 3, so Faerie Fire should fire even
   // though Fighter itself only just reached its own level 1.
   const character = baseCharacter({
-    race: 'Elf',
-    subrace: 'Dark Elf (Drow)',
+    genus: 'Elf',
+    subgenus: 'Dark Elf (Drow)',
     classes: [{ name: 'Rogue', level: 2, subclass: null }],
   })
   const result = diffLevelUp(character, { className: 'Fighter', toLevel: 1 })
@@ -140,8 +140,8 @@ test("Drow Magic tiers key off TOTAL character level across classes, not the lev
 
 test('Infernal Legacy: Hellish Rebuke and Darkness are separate from Drow Magic and only apply to Tieflings', () => {
   const character = baseCharacter({
-    race: 'Tiefling',
-    subrace: null,
+    genus: 'Tiefling',
+    subgenus: null,
     classes: [{ name: 'Rogue', level: 1, subclass: null }],
   })
   const result = diffLevelUp(character, { className: 'Rogue', toLevel: 5 })
@@ -153,8 +153,8 @@ test('Infernal Legacy: Hellish Rebuke and Darkness are separate from Drow Magic 
 
 test('A second diffLevelUp call over an already-granted tier does not duplicate the feature', () => {
   const character = baseCharacter({
-    race: 'Elf',
-    subrace: 'Dark Elf (Drow)',
+    genus: 'Elf',
+    subgenus: 'Dark Elf (Drow)',
     classes: [{ name: 'Rogue', level: 1, subclass: null }],
   })
   const first = diffLevelUp(character, { className: 'Rogue', toLevel: 3 })

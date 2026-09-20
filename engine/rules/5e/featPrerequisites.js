@@ -1,7 +1,7 @@
 const { loadFeat } = require('./grants')
 
 // Adapter, like diffLevelUp.js and validateCharacter.js — the one other place
-// besides those that knows the characters.json shape (race, stat_*,
+// besides those that knows the characters.json shape (genus, stat_*,
 // armor_proficiencies, weapon_proficiencies, spellcasting_ability,
 // pact_magic, classes[], features[], spells[]). Everything else in engine/
 // stays shape-agnostic.
@@ -22,8 +22,8 @@ const { loadFeat } = require('./grants')
 // "prerequisite failed" would hide Heavy Armor Master from a Fighter in
 // full plate simply because nobody ever back-filled that field. Untracked
 // proficiency data is treated as "can't tell, don't block" — a populated
-// array IS enforced normally. Ability-score and race prerequisites are
-// always reliable (every character has stat_str..stat_cha and a race) and
+// array IS enforced normally. Ability-score and genus prerequisites are
+// always reliable (every character has stat_str..stat_cha and a genus) and
 // are hard-enforced.
 function meetsAbility(scores, ability, min) {
   return (scores[ability] ?? 10) >= min
@@ -33,11 +33,11 @@ function normalizeName(name) {
   return (name || '').trim().toLowerCase()
 }
 
-function matchesRace(character, races) {
-  const own = [character.race, character.subrace]
+function matchesGenus(character, genera) {
+  const own = [character.genus, character.subgenus]
     .filter(Boolean)
     .map((s) => s.toLowerCase())
-  return races.some((r) => {
+  return genera.some((r) => {
     const rl = r.toLowerCase()
     return own.some((o) => o === rl || o.includes(rl) || rl.includes(o))
   })
@@ -103,13 +103,13 @@ function evaluatePrerequisite(character, prerequisite) {
         .join(' or ')
       return { met, reason: met ? null : `Requires ${need}.`, unknown: false }
     }
-    case 'race': {
-      const met = matchesRace(character, prerequisite.races)
+    case 'genus': {
+      const met = matchesGenus(character, prerequisite.genera)
       return {
         met,
         reason: met
           ? null
-          : `Requires race: ${prerequisite.races.join(' or ')}.`,
+          : `Requires genus: ${prerequisite.genera.join(' or ')}.`,
         unknown: false,
       }
     }

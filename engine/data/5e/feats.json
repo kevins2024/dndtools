@@ -3,7 +3,7 @@
 
   "_schema": {
     "source": "Book this feat is from: 'Player's Handbook' | 'Xanathar's Guide to Everything' | \"Tasha's Cauldron of Everything\".",
-    "prerequisite": "null, or one of: {type:'ability_score', ability, min} | {type:'any_of', options:[{ability,min},...]} (meet ANY one) | {type:'race', races:[...]} (meet ANY listed race/subrace string, matched loosely against character.race/subrace) | {type:'proficiency', proficiency:'light_armor'|'medium_armor'|'heavy_armor'|'martial_weapon'} | {type:'spellcasting'} (character.spellcasting_ability or pact_magic present). Enforced by engine/rules/featPrerequisites.js — see that file for exactly how each type is evaluated, including the deliberate 'unknown proficiency data is permissive' rule (most characters.json entries don't populate armor_proficiencies/weapon_proficiencies at all, so a hard 'not proficient' block would false-negative almost every real character).",
+    "prerequisite": "null, or one of: {type:'ability_score', ability, min} | {type:'any_of', options:[{ability,min},...]} (meet ANY one) | {type:'genus', genera:[...]} (meet ANY listed genus/subgenus string, matched loosely against character.genus/subgenus) | {type:'proficiency', proficiency:'light_armor'|'medium_armor'|'heavy_armor'|'martial_weapon'} | {type:'spellcasting'} (character.spellcasting_ability or pact_magic present). Enforced by engine/rules/featPrerequisites.js — see that file for exactly how each type is evaluated, including the deliberate 'unknown proficiency data is permissive' rule (most characters.json entries don't populate armor_proficiencies/weapon_proficiencies at all, so a hard 'not proficient' block would false-negative almost every real character).",
     "ability_score_increase": "{choice_of:[...abilities], amount} — same mechanism asiFeat.js already had for Fey Touched/Shadow Touched. choice_of.length===1 auto-applies with no dropdown.",
     "grants_spells": "{fixed:[...names], choice:{count, level, schools}, casting_ability, free_cast_note} — same shape as Fey Touched/Shadow Touched, used both for known-spell-count verification (grants.js/isFeatGrantedSpell) and, new this pass, auto-applied to patch.spells by diffLevelUp when the level-up resolution supplies choices.spell_choice_1 etc.",
     "choices": "array of {id, label, type, count, options?} — a GENERIC extra-choice schema (beyond ability score) for feats that hand the player a pick. type is one of: 'skill' | 'tool' | 'skill_or_tool' | 'language' | 'damage_type' | 'weapon' | 'maneuver' | 'fighting_style' | 'class_list' | 'spell_text' (free-text spell name — see 7b note on why this isn't a full class-filtered spell-list dropdown) | 'text' (fully free, e.g. an Eldritch Invocation name). 'options' is a concrete array for the enumerable types; omitted for 'spell_text'/'text'. LevelUpTool.vue renders `count` pickers per choice, generically — no per-feat special-casing.",
@@ -596,7 +596,7 @@
   },
 
   "Fade Away": {
-    "prerequisite": { "type": "race", "races": ["Gnome"] },
+    "prerequisite": { "type": "genus", "genera": ["Gnome"] },
     "ability_score_increase": {
       "choice_of": ["dex", "int"],
       "amount": 1
@@ -753,12 +753,12 @@
 
   "Bountiful Luck": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Halfling"] }
+    "prerequisite": { "type": "genus", "genera": ["Halfling"] }
   },
 
   "Dragon Fear": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Dragonborn"] },
+    "prerequisite": { "type": "genus", "genera": ["Dragonborn"] },
     "ability_score_increase": {
       "choice_of": ["str", "con", "cha"],
       "amount": 1
@@ -767,7 +767,7 @@
 
   "Dragon Hide": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Dragonborn"] },
+    "prerequisite": { "type": "genus", "genera": ["Dragonborn"] },
     "ability_score_increase": {
       "choice_of": ["str", "con", "cha"],
       "amount": 1
@@ -776,7 +776,7 @@
 
   "Drow High Magic": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Drow", "Dark Elf"] },
+    "prerequisite": { "type": "genus", "genera": ["Drow", "Dark Elf"] },
     "grants_spells": {
       "fixed": ["Detect Magic", "Levitate", "Dispel Magic"],
       "casting_ability": "cha"
@@ -786,13 +786,13 @@
 
   "Dwarven Fortitude": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Dwarf"] },
+    "prerequisite": { "type": "genus", "genera": ["Dwarf"] },
     "ability_score_increase": { "choice_of": ["con"], "amount": 1 }
   },
 
   "Elven Accuracy": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Elf", "Half-Elf"] },
+    "prerequisite": { "type": "genus", "genera": ["Elf", "Half-Elf"] },
     "ability_score_increase": {
       "choice_of": ["dex", "int", "wis", "cha"],
       "amount": 1
@@ -801,7 +801,7 @@
 
   "Fey Teleportation": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["High Elf"] },
+    "prerequisite": { "type": "genus", "genera": ["High Elf"] },
     "ability_score_increase": { "choice_of": ["int", "cha"], "amount": 1 },
     "grants_spells": {
       "fixed": ["Misty Step"],
@@ -812,27 +812,27 @@
 
   "Flames of Phlegethos": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Tiefling"] },
+    "prerequisite": { "type": "genus", "genera": ["Tiefling"] },
     "ability_score_increase": { "choice_of": ["int", "cha"], "amount": 1 }
   },
 
   "Infernal Constitution": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Tiefling"] },
+    "prerequisite": { "type": "genus", "genera": ["Tiefling"] },
     "ability_score_increase": { "choice_of": ["con"], "amount": 1 }
   },
 
   "Orcish Fury": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Half-Orc"] },
+    "prerequisite": { "type": "genus", "genera": ["Half-Orc"] },
     "ability_score_increase": { "choice_of": ["str", "con"], "amount": 1 }
   },
 
   "Prodigy": {
     "source": "Xanathar's Guide to Everything",
     "prerequisite": {
-      "type": "race",
-      "races": ["Half-Elf", "Half-Orc", "Human"]
+      "type": "genus",
+      "genera": ["Half-Elf", "Half-Orc", "Human"]
     },
     "choices": [
       {
@@ -947,7 +947,7 @@
 
   "Second Chance": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Halfling"] },
+    "prerequisite": { "type": "genus", "genera": ["Halfling"] },
     "ability_score_increase": {
       "choice_of": ["dex", "con", "cha"],
       "amount": 1
@@ -956,7 +956,10 @@
 
   "Squat Nimbleness": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Dwarf", "Halfling", "Gnome"] },
+    "prerequisite": {
+      "type": "genus",
+      "genera": ["Dwarf", "Halfling", "Gnome"]
+    },
     "ability_score_increase": { "choice_of": ["str", "dex"], "amount": 1 },
     "choices": [
       {
@@ -971,7 +974,7 @@
 
   "Wood Elf Magic": {
     "source": "Xanathar's Guide to Everything",
-    "prerequisite": { "type": "race", "races": ["Wood Elf"] },
+    "prerequisite": { "type": "genus", "genera": ["Wood Elf"] },
     "grants_spells": {
       "fixed": ["Longstrider", "Pass without Trace"],
       "casting_ability": "wis"

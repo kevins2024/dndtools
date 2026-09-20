@@ -27,8 +27,8 @@
             <span class="result-val">{{ result.gender }}</span>
           </div>
           <div class="result-row">
-            <span class="result-key">Race</span>
-            <span class="result-val">{{ result.race }}</span>
+            <span class="result-key">Genus</span>
+            <span class="result-val">{{ result.genus }}</span>
           </div>
           <div class="result-row">
             <span class="result-key">Class</span>
@@ -96,7 +96,7 @@
         <div class="result-row">
           <span class="result-key">Combatant</span>
           <span class="result-val"
-            >{{ buildResult.gender }} {{ buildResult.character.race }} —
+            >{{ buildResult.gender }} {{ buildResult.character.genus }} —
             {{ buildResult.encounterData.roleLabel }}</span
           >
         </div>
@@ -185,15 +185,15 @@
 import {
   pick,
   GENDERS,
-  RACES,
-  RACES_DEFAULT_OFF,
+  GENERA,
+  GENERA_DEFAULT_OFF,
   CLASSES,
   generateCharacter,
 } from '../utils/character_utils.js'
 
 const CATEGORIES = [
   { key: 'gender', label: 'Gender', options: GENDERS },
-  { key: 'race', label: 'Race', options: RACES },
+  { key: 'genus', label: 'Genus', options: GENERA },
   { key: 'class', label: 'Class', options: CLASSES },
 ]
 
@@ -203,7 +203,7 @@ function buildEnabled() {
     out[cat.key] = {}
     for (const opt of cat.options) {
       out[cat.key][opt] =
-        cat.key === 'race' ? !RACES_DEFAULT_OFF.has(opt) : true
+        cat.key === 'genus' ? !GENERA_DEFAULT_OFF.has(opt) : true
     }
   }
   return out
@@ -220,7 +220,7 @@ export default {
       error: '',
       // Fetched once so "Build as Full Character" only appears when the
       // roll landed on something the New Character tool can actually build.
-      // This generator's race list deliberately includes NPC/monster-flavor
+      // This generator's genus list deliberately includes NPC/monster-flavor
       // species (Orc, Duergar, Goliath, Genasi, etc.) that aren't playable
       // PC options there, and "Hybrid" isn't a real single class it
       // understands — offering a jump that would silently land on nothing
@@ -246,7 +246,7 @@ export default {
         return false
       return (
         this.result.cls !== 'Hybrid' &&
-        this.playableSpecies.has(this.result.race) &&
+        this.playableSpecies.has(this.result.genus) &&
         this.playableClasses.has(this.result.cls)
       )
     },
@@ -290,7 +290,7 @@ export default {
   methods: {
     buildAsCharacter() {
       this.$store.commit('NAV_TO_NEW_CHARACTER', {
-        species: this.result.race,
+        species: this.result.genus,
         className: this.result.cls,
       })
     },
@@ -368,17 +368,17 @@ export default {
       this.result = null
 
       const genderPool = this.enabledOptions('gender')
-      const racePool = this.enabledOptions('race')
+      const genusPool = this.enabledOptions('genus')
       const classPool = this.enabledOptions('class')
 
-      if (!genderPool.length || !racePool.length || !classPool.length) {
+      if (!genderPool.length || !genusPool.length || !classPool.length) {
         this.error = 'Enable at least one option in every category.'
         return
       }
 
-      const { gender, race, cls } = generateCharacter(
+      const { gender, genus, cls } = generateCharacter(
         genderPool,
-        racePool,
+        genusPool,
         classPool
       )
       if (cls === null) {
@@ -386,7 +386,7 @@ export default {
         return
       }
 
-      this.result = { gender, race, cls }
+      this.result = { gender, genus, cls }
     },
   },
 }

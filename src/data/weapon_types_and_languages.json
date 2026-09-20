@@ -35,6 +35,24 @@
       "type": "regional",
       "description": "The official language of the Solvale Empire.",
       "speakers": ["Solvale Empire citizens", "Southeastern regional peoples"]
+    },
+    {
+      "name": "Yetgresian Common",
+      "type": "regional",
+      "description": "The shared trade/common language of Yetgrese, spoken across its native peoples alongside each people's own language.",
+      "speakers": ["Catrin", "Drevani", "Hei'ugar", "Yetgrese's native peoples"]
+    },
+    {
+      "name": "Catrinese",
+      "type": "regional",
+      "description": "The Catrin's own language, native to Yetgrese's exterior coast.",
+      "speakers": ["Catrin"]
+    },
+    {
+      "name": "Drevani",
+      "type": "regional",
+      "description": "The Drevani's own language, native to Yetgrese's lower altitude regions.",
+      "speakers": ["Drevani"]
     }
   ]
 }

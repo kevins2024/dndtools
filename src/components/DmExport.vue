@@ -249,7 +249,7 @@ export default {
       for (const char of this.activeMembers) {
         lines.push(`### ${char.name}`)
         const classLabel = this.classLine(char)
-        lines.push(`**${char.race} · ${classLabel}**`)
+        lines.push(`**${char.genus} · ${classLabel}**`)
         lines.push('')
         if (char.appearance) lines.push(char.appearance)
         if (char.notes) lines.push('')

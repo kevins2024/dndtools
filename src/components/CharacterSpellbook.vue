@@ -198,7 +198,7 @@
         </div>
       </div>
 
-      <!-- Unprepared spells (Wizard/Artificer spellbook only — not shown for full-class-list classes) -->
+      <!-- Unprepared spells (Wizard spellbook only — not shown for full-class-list classes) -->
       <template
         v-if="
           preparationInfo &&
@@ -267,7 +267,7 @@
       No spells recorded for this character.
     </div>
 
-    <!-- ── Browse class spell list (Cleric, Druid, Paladin, Ranger) ── -->
+    <!-- ── Browse class spell list (Cleric, Druid, Paladin, Ranger, Artificer) ── -->
     <div v-if="characterUsesFullClassList && classSpellList" class="sb-browse">
       <div class="sb-browse-header">
         <span class="sb-browse-title"
@@ -355,23 +355,12 @@ import {
   getCharacterSpells,
   getClassSpellList,
   usesFullClassList,
+  PREPARED_CASTER_CLASSES as PREPARATION_CLASSES,
+  HALF_CASTER_PREPARED_CLASSES as HALF_CASTER_CLASSES,
 } from '@/utils/spellUtils.js'
 import DetailPopup from '@/components/DetailPopup.vue'
 import WeavePhaseGrid from '@/components/WeavePhaseGrid.vue'
 import SpellSlotsTracker from '@/components/SpellSlotsTracker.vue'
-
-// Classes that choose prepared spells daily from a full class list.
-// All others are "known spells" casters where every spell on their list is always ready.
-const PREPARATION_CLASSES = [
-  'cleric',
-  'druid',
-  'wizard',
-  'artificer',
-  'paladin',
-  'ranger',
-]
-// Half-casters: preparation limit uses floor(level / 2)
-const HALF_CASTER_CLASSES = ['paladin', 'ranger', 'artificer']
 
 export default {
   name: 'CharacterSpellbook',

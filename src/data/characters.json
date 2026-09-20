@@ -3,7 +3,7 @@
     "name": "Vaz",
     "full_name": "Vazseslaad Thrazak",
     "campaign_start": "Year 467, day 137",
-    "race": "Silver Dragonborn",
+    "genus": "Silver Dragonborn",
     "level": 9,
     "appearance": "silver dragonborn, lean athletic build, deliberate grace, purple eyes. Wyvern Scale Coat catches light distinctively.",
     "image": "./characters/vaz.jpg",
@@ -164,7 +164,7 @@
   {
     "name": "Rhuna",
     "full_name": "Rhuna Stonebreaker",
-    "race": "Half-Orc",
+    "genus": "Half-Orc",
     "level": 9,
     "appearance": "half-orc woman, powerfully built, greenish-brown skin, dark hair kept practically short, brown eyes, lower jaw tusks (modest, not dramatic). Scars she doesn't explain.",
     "image": "./characters/rhuna.png",
@@ -269,7 +269,7 @@
   {
     "name": "Denna",
     "full_name": "Denna Shadowstep",
-    "race": "Human",
+    "genus": "Human",
     "level": 9,
     "appearance": "olive skin, medium build, forgettable by design, brown hair, neutral features, clothes chosen for function.",
     "image": "./characters/denna.jpg",
@@ -389,7 +389,7 @@
   {
     "name": "Lenn",
     "full_name": "Lenn Ashford",
-    "race": "Human",
+    "genus": "Human",
     "level": 9,
     "appearance": "human man, late thirties, amber robes with darker trim, simple cut. Looks like a traveler, life has shown on his face. Carries himself better than he used to but the wear is still visible.",
     "image": "./characters/lenn.jpg",
@@ -848,7 +848,7 @@
         "type": "prepared"
       },
       {
-        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "name": "Negative Energy Flood",
         "level": 5,
         "prepared": false,
         "type": "prepared"
@@ -954,8 +954,8 @@
   {
     "name": "Kessara",
     "full_name": "Kessara Nightwind",
-    "race": "Elf",
-    "subrace": "High Elf",
+    "genus": "Elf",
+    "subgenus": "High Elf",
     "level": 9,
     "appearance": "two forms. Worn looks: regal elf, dark straight hair, fair skin, average elf ears, sharp but composed features. What the party sees daily. True looks: simply radiant - light golden skin, dark gold wavy hair, two-tone dusky blue eyes with silver near the pupil, longer ears, fit and toned with elegant curves. Approaching a Roman goddess without the softness. So striking she can't trust it - it's a distraction and she knows it.",
     "image": "./characters/kessara.jpg",
@@ -1471,7 +1471,7 @@
         "type": "prepared"
       },
       {
-        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "name": "Negative Energy Flood",
         "level": 5,
         "prepared": false,
         "type": "prepared"
@@ -1575,7 +1575,7 @@
   {
     "name": "Petra",
     "full_name": "Petra Lightwhisper",
-    "race": "Human",
+    "genus": "Human",
     "level": 9,
     "appearance": "small human woman, curly brown hair with flowers in it, unrealistically green eyes, moves like water, expressions change faster than conversations.",
     "image": "./characters/petra.jpg",
@@ -1842,8 +1842,8 @@
   {
     "name": "Pirra",
     "full_name": "Pirra",
-    "race": "Halfling",
-    "subrace": "Lightfoot Halfling",
+    "genus": "Halfling",
+    "subgenus": "Lightfoot Halfling",
     "level": 9,
     "appearance": "halfling woman, small even by halfling standards, cute features, sharp dark eyes. Relation to Helena is not blood - the resemblance is purely in the intelligence and awareness.",
     "image": "./characters/pirra.jpg",
@@ -1977,7 +1977,7 @@
   {
     "name": "Lexica (Old)",
     "full_name": "Lexica Molerna",
-    "race": "Half-Elf",
+    "genus": "Half-Elf",
     "level": 9,
     "appearance": "half-elf woman, thirties, natural earth tones in her clothing. Unremarkable until she isn't - can command a room when she chooses, possibly through minor adjustment of looks or cantrip. The shift is deliberate and controlled.",
     "image": "./characters/lexica.jpg",
@@ -2225,7 +2225,7 @@
   {
     "name": "Lyria",
     "full_name": "Lyria Moonwhisper",
-    "race": "Human",
+    "genus": "Human",
     "level": 9,
     "appearance": "human woman, early thirties, very fair skin, pretty but doesn't invest time in accentuating it. Slight build, dark circles under watchful eyes from years of research and worry.",
     "image": "./characters/lyria.jpg",
@@ -2286,7 +2286,7 @@
       "Otiluke's Resilient Sphere",
       "Phantasmal Killer",
       "Wall of Force",
-      "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+      "Negative Energy Flood",
       "Telekinesis"
     ],
     "spells": [
@@ -2675,7 +2675,7 @@
         "type": "prepared"
       },
       {
-        "name": "Negative Energy Flood (homebrew spell from necromancer's spellbook)",
+        "name": "Negative Energy Flood",
         "level": 5,
         "prepared": true,
         "type": "prepared"
@@ -2766,7 +2766,7 @@
   {
     "name": "Corwin",
     "full_name": "Corwin Drake",
-    "race": "Human",
+    "genus": "Human",
     "level": 9,
     "alignment": "Lawful Neutral",
     "appearance": "Human man, late thirties. Guard bearing. Weathered, solid build.",
@@ -2858,7 +2858,7 @@
   {
     "name": "Chuknora",
     "full_name": "Chuknora",
-    "race": "Goliath",
+    "genus": "Goliath",
     "level": 9,
     "appearance": "Female goliath.",
     "image": "./characters/chuknora.jpg",
@@ -3079,7 +3079,7 @@
   {
     "name": "Enauweyn",
     "full_name": "Enauweyn Althidon",
-    "race": "Eladrin Elf",
+    "genus": "Eladrin Elf",
     "level": 9,
     "appearance": "Chestnut hair, light olive skin, angular features, pointed chin, very pretty. Green magical armor that appears revealing but extends invisible protection. Luxurious flowing cloth around legs and sleeves gives a mystical fey quality.",
     "image": "./characters/enauweyn.jpg",
@@ -3298,8 +3298,8 @@
   {
     "name": "Tackett",
     "full_name": "Tackett",
-    "race": "Halfling",
-    "subrace": "Lightfoot Halfling",
+    "genus": "Halfling",
+    "subgenus": "Lightfoot Halfling",
     "level": 9,
     "image": "./characters/tackett.jpg",
     "appearance": "Male halfling.",
@@ -3603,7 +3603,7 @@
   {
     "name": "Revven",
     "full_name": "Revven Ashveil",
-    "race": "Half-Elf",
+    "genus": "Half-Elf",
     "level": 9,
     "appearance": "Very elven facial features - high cheekbones, slightly pointed ears, large expressive eyes the color of storm clouds. Pale gold-olive skin. Curly red-orange hair. Slight build. Dark amber chain-mail with small fabric swatches of pale blue.",
     "image": "./characters/revven.jpg",
@@ -3916,7 +3916,7 @@
   {
     "name": "Elucyne",
     "full_name": "Elucyne Varas",
-    "race": "Tiefling",
+    "genus": "Tiefling",
     "level": 9,
     "spellcasting_level": 5,
     "appearance": "Light lavender skin. Long wavy hair the same lavender shade. Golden eyes. Gilded natural horns. Symmetrical darker purple markings on both shoulders. Moves with the fluid ease of a performer who learned survival as a second language.",
@@ -4100,7 +4100,7 @@
   {
     "name": "Sorra (Old)",
     "full_name": "Oul'sorra'i",
-    "race": "Half-Elf",
+    "genus": "Half-Elf",
     "level": 9,
     "appearance": "Dark skin, silver hair worn loose, moves with the quality of someone whose dance never fully stops even when standing still. Composed beauty that has stopped surprising her.",
     "image": "./characters/sorra.jpg",
@@ -4327,7 +4327,7 @@
   {
     "name": "Ferghus",
     "full_name": "Ferghus Crae",
-    "race": "Human",
+    "genus": "Human",
     "level": 9,
     "appearance": "Broad shouldered, the build of someone who works physically and always has. Red-brown hair, not quite a beard but committed to the attempt. Weathered without being worn. Large in the way that is present rather than threatening.",
     "image": "./characters/ferghus.jpg",
@@ -4527,7 +4527,7 @@
     "name": "Eldi",
     "full_name": "Eldi'taevyn Brandeldeen",
     "campaign_start": "Year 468, day 87",
-    "race": "Half-Elf",
+    "genus": "Half-Elf",
     "level": 9,
     "appearance": "Half-elf woman, early twenties. Similar features to her twin but sharper at rest — the same face with more forward momentum in it. Twin blades (usually). Light skin, a tattoo sleeve on one arm, purple corset style vest, green tricorne hat with a feather, red swashbuckler style boots over blue tight-fitting pants.",
     "proficiency_bonus": 4,
@@ -4698,7 +4698,7 @@
     "name": "Rith",
     "full_name": "Rith'taevyn Brandeldeen",
     "campaign_start": "Year 468, day 87",
-    "race": "Half-Elf",
+    "genus": "Half-Elf",
     "level": 9,
     "appearance": "Half-elf man, early twenties. Same bone structure as his sister but quieter in how he holds it. Stands slightly back from whatever is happening, watching. The kind of person a room does not notice until he speaks.",
     "proficiency_bonus": 4,
@@ -4961,7 +4961,7 @@
     "name": "Iyani",
     "full_name": "Iyani",
     "image": "./characters/iyani.png",
-    "race": "Aasimar",
+    "genus": "Aasimar",
     "level": 9,
     "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms — present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry — choker, layered necklaces, earrings — that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
     "background": "Daughter of the Weave",
@@ -5286,7 +5286,7 @@
     "id": "characters_21",
     "name": "Torrin (Old)",
     "full_name": "Torrin Gallowglass",
-    "race": "Dwarf",
+    "genus": "Dwarf",
     "classes": [
       {
         "name": "Rogue",
@@ -5388,7 +5388,7 @@
   },
   {
     "name": "Therynv'l",
-    "race": "Wood Elf",
+    "genus": "Wood Elf",
     "level": 9,
     "image": "./characters/therynvl.jpg",
     "proficiency_bonus": 4,
@@ -5642,7 +5642,7 @@
     "id": "characters_23",
     "name": "Siv",
     "full_name": "Siv Ravencroft",
-    "race": "Human",
+    "genus": "Human",
     "background": "Mercenary Veteran",
     "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
     "image": "./characters/siv.jpg",
@@ -5797,8 +5797,8 @@
     "id": "characters_24",
     "name": "Jaygar",
     "full_name": "Jaygar Waxystache",
-    "race": "Gnome",
-    "subrace": "Rock Gnome",
+    "genus": "Gnome",
+    "subgenus": "Rock Gnome",
     "background": "Sage",
     "level": 9,
     "image": "./characters/jaygar.jpg",
@@ -6046,6 +6046,51 @@
         "type": "subclass",
         "featureGranted": true,
         "_source": "Infused Arbalist expanded spell list (9th level) -- always prepared, doesn't count against his normal prepared total"
+      },
+      {
+        "name": "Identify",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Faerie Fire",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Detect Magic",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Absorb elements",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Invisibility",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Heat Metal",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "See Invisibility",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Protection From Energy",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Haste",
+        "level": 3,
+        "prepared": true
       }
     ],
     "active_effects": [],
@@ -6083,8 +6128,8 @@
     "id": "characters_25",
     "name": "TestFighter",
     "full_name": "TestFighter",
-    "race": "Catrin",
-    "subrace": null,
+    "genus": "Catrin",
+    "subgenus": null,
     "background": "Soldier",
     "level": 9,
     "stat_str": 10,
@@ -6263,8 +6308,8 @@
     "id": "characters_26",
     "name": "Kerra",
     "full_name": "Kerra Flint",
-    "race": "Half-Orc",
-    "subrace": null,
+    "genus": "Half-Orc",
+    "subgenus": null,
     "background": "Mercenary Veteran",
     "level": 9,
     "stat_str": 20,
@@ -6576,8 +6621,8 @@
     "id": "characters_27",
     "name": "Torrin",
     "full_name": "Torrin Gallowglass",
-    "race": "Dwarf",
-    "subrace": "Hill Dwarf",
+    "genus": "Dwarf",
+    "subgenus": "Hill Dwarf",
     "background": "Criminal",
     "level": 9,
     "appearance": "Dwarf male, 156 years old. Now retired, works as a leatherworker and tanner.",

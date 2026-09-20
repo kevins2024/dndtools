@@ -283,7 +283,7 @@
               <span class="estat">Atk {{ enemy.attackBonus }}</span>
               <span class="estat">{{ enemy.weapon.displayName }}</span>
               <span v-if="enemy.gender" class="estat gender-race"
-                >{{ enemy.gender }} {{ enemy.race }}</span
+                >{{ enemy.gender }} {{ enemy.genus }}</span
               >
               <span v-if="enemy.monsterSize" class="estat">{{
                 enemy.monsterSize
@@ -399,7 +399,7 @@
               </div>
             </div>
 
-            <!-- Humanoid: role / race / gender -->
+            <!-- Humanoid: role / genus / gender -->
             <template v-if="currentSlot.source === 'humanoid'">
               <div class="wiz-section">
                 <div class="wiz-label">Role</div>
@@ -421,20 +421,20 @@
                 </div>
               </div>
               <div class="wiz-section">
-                <div class="wiz-label">Race</div>
+                <div class="wiz-label">Genus</div>
                 <div class="wiz-chips">
                   <span
                     class="wiz-chip"
-                    :class="{ active: currentSlot.race === null }"
-                    @click="setSlotProp('race', null)"
+                    :class="{ active: currentSlot.genus === null }"
+                    @click="setSlotProp('genus', null)"
                     >Random</span
                   >
                   <span
-                    v-for="r in races"
+                    v-for="r in genera"
                     :key="r"
                     class="wiz-chip"
-                    :class="{ active: currentSlot.race === r }"
-                    @click="setSlotProp('race', r)"
+                    :class="{ active: currentSlot.genus === r }"
+                    @click="setSlotProp('genus', r)"
                     >{{ r }}</span
                   >
                 </div>
@@ -561,7 +561,7 @@
                 }}</span>
               </div>
               <div v-if="previewEnemy.gender" class="preview-flavor">
-                {{ previewEnemy.gender }} {{ previewEnemy.race }}
+                {{ previewEnemy.gender }} {{ previewEnemy.genus }}
               </div>
               <div class="preview-scores">
                 <span v-for="s in statKeys" :key="s" class="preview-score">
@@ -618,7 +618,7 @@ import {
   analyzeParty,
   enemyBenchmarks,
 } from '../utils/encounter_utils.js'
-import { GENDERS, RACES } from '../utils/character_utils.js'
+import { GENDERS, GENERA } from '../utils/character_utils.js'
 import { STAT_KEYS } from '../utils/dnd_utils.js'
 
 const ENC_TYPES = Object.freeze(ENCOUNTER_TYPES)
@@ -627,7 +627,7 @@ const DIFFICULTIES = Object.freeze(DIFFICULTY_SELECTABLE)
 const STAT_KEY_LIST = Object.freeze(STAT_KEYS.map((s) => s.key))
 const ROLE_PROF_LIST = Object.freeze(ROLE_PROFILES)
 const ROLE_KEY_LIST = Object.freeze(ROLE_KEYS)
-const RACE_LIST = Object.freeze(RACES)
+const GENUS_LIST = Object.freeze(GENERA)
 const GENDER_LIST = Object.freeze(GENDERS)
 
 // All unique bestiary types that appear in any type config pool
@@ -666,7 +666,7 @@ export default {
       statKeys: STAT_KEY_LIST,
       roleProfiles: ROLE_PROF_LIST,
       roleKeys: ROLE_KEY_LIST,
-      races: RACE_LIST,
+      genera: GENUS_LIST,
       genders: GENDER_LIST,
       allBestiaryTypes: ALL_BESTIARY_TYPES,
       // wizard state
@@ -871,7 +871,7 @@ export default {
         typeConfig,
         specificMonster: slot.specificMonster ?? null,
         role: slot.role,
-        race: slot.race,
+        genus: slot.genus,
         gender: slot.gender,
         difficulty: this.wizardDifficulty || this.difficulty,
         partyProfile: this.partyProfile,
@@ -965,7 +965,7 @@ export default {
             typeConfig,
             specificMonster: slot.specificMonster ?? null,
             role: slot.role,
-            race: slot.race,
+            genus: slot.genus,
             gender: slot.gender,
             difficulty: this.wizardDifficulty,
             partyProfile: this.partyProfile,
@@ -1011,7 +1011,7 @@ export default {
         this.$set(this.wizardSlots, i, {
           ...this.wizardSlots[i],
           role: null,
-          race: null,
+          genus: null,
           gender: null,
         })
         // Drop any stale preview from a prior visit to this step so
@@ -1047,7 +1047,7 @@ export default {
       })
 
       // Source change needs full regeneration.
-      // For role / race / gender, patch the existing preview in-place so the
+      // For role / genus / gender, patch the existing preview in-place so the
       // other randomly-generated fields (HP, stats, AC) don't re-roll on every click.
       if (!this.previewEnemy || prop === 'source') {
         this.$nextTick(() => this.generatePreview())
@@ -1055,12 +1055,12 @@ export default {
       }
 
       const p = this.previewEnemy
-      if (prop === 'race') {
-        const race = newValue ?? p.race
+      if (prop === 'genus') {
+        const genus = newValue ?? p.genus
         this.previewEnemy = {
           ...p,
-          race,
-          name: `${p.isBoss ? 'Boss — ' : ''}${race} ${p.roleLabel}`,
+          genus,
+          name: `${p.isBoss ? 'Boss — ' : ''}${genus} ${p.roleLabel}`,
         }
       } else if (prop === 'gender') {
         this.previewEnemy = { ...p, gender: newValue ?? p.gender }
@@ -1073,7 +1073,7 @@ export default {
           role: roleKey,
           roleLabel,
           name: `${p.isBoss ? 'Boss — ' : ''}${
-            p.race ?? ''
+            p.genus ?? ''
           } ${roleLabel}`.trim(),
         }
       } else {

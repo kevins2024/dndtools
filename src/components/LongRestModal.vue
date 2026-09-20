@@ -184,6 +184,16 @@
 
       <!-- ══ STEP 2: Marching Order ═══════════════════ -->
       <template v-else-if="step === 'marching'">
+        <div v-if="preparedCastersToRemind.length" class="spell-prep-reminder">
+          <span class="spell-prep-icon">📖</span>
+          <span>
+            Rest is applied — remember to re-prepare spells for
+            <strong>{{
+              preparedCastersToRemind.map((c) => c.name).join(', ')
+            }}</strong>
+            (Spellbook tab).
+          </span>
+        </div>
         <div class="march-intro">
           Drag or use arrows to set today's marching order. Perception and
           Survival shown — the character in front leads travel rolls.
@@ -311,6 +321,7 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import { isPreparedCaster } from '@/utils/spellUtils.js'
 
 const DAYS_PER_YEAR = 204
 const SEASONS = [
@@ -421,6 +432,17 @@ export default {
       return this.activeParty.members
         .map((name) => this.characters.find((c) => c.name === name))
         .filter(Boolean)
+    },
+
+    // Prepared casters (Cleric/Druid/Wizard/Artificer/Paladin/Ranger) who
+    // actually got the rest benefit — excludes anyone in overwatchChars,
+    // since a character who didn't get to finish the rest hasn't earned a
+    // fresh prepared-spell list either. Surfaced as a reminder because
+    // nothing else in the app prompts a re-prepare after a long rest.
+    preparedCastersToRemind() {
+      return this.members.filter(
+        (c) => isPreparedCaster(c) && !this.overwatchChars.includes(c.name)
+      )
     },
 
     // How many slots each character appears in
@@ -1150,6 +1172,23 @@ export default {
   padding: 0.6rem 1.1rem 0;
   flex-shrink: 0;
 }
+.spell-prep-reminder {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.6rem 1.1rem 0;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  background: rgba(var(--color-info-rgb), 0.12);
+  border: 1px solid rgba(var(--color-info-rgb), 0.4);
+  border-radius: 6px;
+}
+.spell-prep-icon {
+  flex-shrink: 0;
+}
+
 .march-body {
   flex: 1;
   overflow-y: auto;

@@ -570,7 +570,7 @@
       "major_families": [
         {
           "name": "Lithcai'nael",
-          "race": "Elf",
+          "genus": "Elf",
           "origin": "Unknown — predates written records of the family",
           "wealth_source": "Dragon slaying centuries ago. Hatched and raised two brass dragons, one killed in battle, one escaped into the wilds and has not been seen since. Converted draconic wealth into land, ownership, and taxation.",
           "valdmere_presence": "Largest district in the city. Residents pay a tax to the family. Militaristic, professionally trained forces. Not numerous but exceptionally capable.",
@@ -579,7 +579,7 @@
         },
         {
           "name": "Gaermuion",
-          "race": "Gnome",
+          "genus": "Gnome",
           "origin": "Far east of the continent — exact location TBD pending continent map",
           "wealth_source": "Master alchemists and potion-makers. One of the oldest and most sophisticated potion-making lineages known. Their craft predates and exceeds anything available on the western coast.",
           "valdmere_presence": "Control most mining and quarrying operations — not because they are miners but because raw materials feed their actual work. Maintain a private laboratory compound in or near the city. Discreet but not hidden.",
@@ -587,7 +587,7 @@
         },
         {
           "name": "Wyllard",
-          "race": "Human",
+          "genus": "Human",
           "origin": "First family to return to Valdmere in the second settlement",
           "wealth_source": "Infrastructure and construction. Built Valdmere's physical foundations and have been present at the founding of every significant enterprise since.",
           "valdmere_presence": "Most connected family in the city. Not the wealthiest or most powerful in any single domain but intermarried with half the merchant class and present in everything. Anyone wanting to expand their holdings needs Wyllard knowhow.",
@@ -595,7 +595,7 @@
         },
         {
           "name": "Bostrom",
-          "race": "Human",
+          "genus": "Human",
           "origin": "Former official clothiers and textile suppliers to pre-merchant-revolution royalty across the continent",
           "wealth_source": "Premium textile trade to monarchies. Helped overthrow those same monarchies alongside merchant guilds, destroying their own primary market in the process. Made increasingly bad decisions afterward and ran out of capital without recovering.",
           "valdmere_presence": "The family is effectively gone as a power. The name carries the ghost of former influence. Descendants are scattered across the social spectrum — some in Valdmere, some elsewhere, some clinging to the name, some having abandoned it.",
@@ -605,7 +605,7 @@
       "emerging_powers": [
         {
           "name": "Clan Tetwhistle",
-          "race": "Mixed — coalition of three to four small human families",
+          "genus": "Mixed — coalition of three to four small human families",
           "origin": "Ravenquay shipbuilders. Arrived approximately 50 years ago, roughly 25 heads.",
           "wealth_source": "Claimed vast swampy, mosquito-ridden, non-arable land no one else wanted. Used a 300 gold loan from Ravenquay creditors against existing collateral and reputation, hired labor including Wyllard contractors, and built a canal connecting the Vald-mere to the coast. Now operate the canal toll and the lake moorings — calmer and safer than coastal docks.",
           "valdmere_presence": "Control the canal and lake moorings. Strategically critical infrastructure. The swamp land no one wanted is now some of the most valuable real estate in the city.",

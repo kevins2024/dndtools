@@ -48,10 +48,25 @@ import rangerSpells from '@/data/api_data_cache/ranger_spells.json'
 import bardSpells from '@/data/api_data_cache/bard_spells.json'
 import sorcererSpells from '@/data/api_data_cache/sorcerer_spells.json'
 import warlockSpells from '@/data/api_data_cache/warlock_spells.json'
+import artificerSpells from '@/data/api_data_cache/artificer_spells.json'
 
 // Classes whose spell list lets them prepare ANY listed spell daily (not just ones they've "learned").
 // Wizards prepare from their spellbook (character.spells) — a separate concept.
-const FULL_CLASS_LIST_CLASSES = ['cleric', 'druid', 'paladin', 'ranger']
+// Artificer works the same as Cleric/Druid/Paladin/Ranger here (RAW: no
+// "known spells" list, no spellbook requirement — prepares from the whole
+// class list each long rest) — added 2026-09-19, see TODO_ARCHIVE.md for
+// the full story of why it was missing (dnd5eapi.co's SRD API, which
+// artificer_spells.json's siblings are all built from, doesn't know
+// Artificer exists at all; artificer_spells.json is instead derived from
+// this project's own `classes` tagging on srd_spells_full.json/
+// published_spells.json).
+const FULL_CLASS_LIST_CLASSES = [
+  'cleric',
+  'druid',
+  'paladin',
+  'ranger',
+  'artificer',
+]
 
 const CLASS_SPELL_LISTS = {
   cleric: clericSpells,
@@ -62,6 +77,7 @@ const CLASS_SPELL_LISTS = {
   bard: bardSpells,
   sorcerer: sorcererSpells,
   warlock: warlockSpells,
+  artificer: artificerSpells,
 }
 
 /**
@@ -85,6 +101,29 @@ export function getClassSpellList(character) {
 export function usesFullClassList(character) {
   return (character?.classes ?? []).some((cc) =>
     FULL_CLASS_LIST_CLASSES.some((c) => cc.name.toLowerCase().includes(c))
+  )
+}
+
+// Classes that choose prepared spells daily rather than having a fixed
+// "known spells" list that's always ready (Bard/Sorcerer/Warlock/Ranger's
+// known-spell variant, etc.). Single source of truth for this — CLASS_SPELL_LISTS/
+// FULL_CLASS_LIST_CLASSES above intentionally excludes Wizard (spellbook
+// model, not full-list) but Wizard still belongs here since they re-choose
+// prepared spells each long rest too, just from their own known list.
+export const PREPARED_CASTER_CLASSES = [
+  'cleric',
+  'druid',
+  'wizard',
+  'artificer',
+  'paladin',
+  'ranger',
+]
+// Half-casters: preparation limit uses ability mod + floor(level / 2).
+export const HALF_CASTER_PREPARED_CLASSES = ['paladin', 'ranger', 'artificer']
+
+export function isPreparedCaster(character) {
+  return (character?.classes ?? []).some((cc) =>
+    PREPARED_CASTER_CLASSES.some((p) => cc.name.toLowerCase().includes(p))
   )
 }
 

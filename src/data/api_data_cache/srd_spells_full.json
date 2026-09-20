@@ -77,7 +77,7 @@
       "dc_success": "none"
     },
     "school": "Conjuration",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/acid-splash",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -110,7 +110,7 @@
       "9": "40"
     },
     "school": "Abjuration",
-    "classes": ["Cleric", "Paladin"],
+    "classes": ["Cleric", "Paladin", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/aid",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -137,7 +137,7 @@
       "size": 20
     },
     "school": "Abjuration",
-    "classes": ["Ranger", "Wizard"],
+    "classes": ["Ranger", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/alarm",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -160,7 +160,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/alter-self",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -293,7 +293,7 @@
     "casting_time": "1 action",
     "level": 5,
     "school": "Transmutation",
-    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/animate-objects",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -410,7 +410,7 @@
       "size": 30
     },
     "school": "Divination",
-    "classes": ["Cleric", "Wizard"],
+    "classes": ["Cleric", "Wizard", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/arcane-eye",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -461,7 +461,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Abjuration",
-    "classes": ["Wizard"],
+    "classes": ["Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/arcane-lock",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -944,7 +944,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/blink",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -964,7 +964,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Illusion",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/blur",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -1923,7 +1923,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Evocation",
-    "classes": ["Cleric", "Wizard"],
+    "classes": ["Cleric", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/continual-flame",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2064,7 +2064,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Conjuration",
-    "classes": ["Cleric", "Druid", "Paladin"],
+    "classes": ["Cleric", "Druid", "Paladin", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/create-food-and-water",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2154,7 +2154,7 @@
       "size": 5
     },
     "school": "Illusion",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/creation",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2187,7 +2187,7 @@
       "9": "9d8 + MOD"
     },
     "school": "Evocation",
-    "classes": ["Bard", "Cleric", "Druid", "Paladin", "Ranger"],
+    "classes": ["Bard", "Cleric", "Druid", "Paladin", "Ranger", "Artificer"],
     "subclasses": ["Lore", "Life"],
     "url": "/api/2014/spells/cure-wounds",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2209,7 +2209,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Evocation",
-    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/dancing-lights",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2257,7 +2257,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard"],
+    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/darkvision",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2433,7 +2433,8 @@
       "Paladin",
       "Ranger",
       "Sorcerer",
-      "Wizard"
+      "Wizard",
+      "Artificer"
     ],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/detect-magic",
@@ -2539,7 +2540,7 @@
     "casting_time": "1 action",
     "level": 1,
     "school": "Illusion",
-    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/disguise-self",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -2649,7 +2650,8 @@
       "Paladin",
       "Sorcerer",
       "Warlock",
-      "Wizard"
+      "Wizard",
+      "Artificer"
     ],
     "subclasses": ["Lore", "Devotion"],
     "url": "/api/2014/spells/dispel-magic",
@@ -2999,7 +3001,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Bard", "Cleric", "Druid", "Sorcerer"],
+    "classes": ["Bard", "Cleric", "Druid", "Sorcerer", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/enhance-ability",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3031,7 +3033,7 @@
       "dc_success": "none"
     },
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/enlarge-reduce",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3139,7 +3141,7 @@
     "casting_time": "1 bonus action",
     "level": 1,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Warlock", "Wizard"],
+    "classes": ["Sorcerer", "Warlock", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/expeditious-retreat",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3193,7 +3195,7 @@
     "casting_time": "10 minutes",
     "level": 4,
     "school": "Transmutation",
-    "classes": ["Wizard"],
+    "classes": ["Wizard", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/fabricate",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3226,7 +3228,7 @@
       "size": 20
     },
     "school": "Evocation",
-    "classes": ["Druid"],
+    "classes": ["Druid", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/faerie-fire",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3294,7 +3296,7 @@
       "9": "1d4 + 44"
     },
     "school": "Necromancy",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/false-life",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3350,7 +3352,7 @@
     "casting_time": "1 reaction",
     "level": 1,
     "school": "Transmutation",
-    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/feather-fall",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3561,7 +3563,7 @@
       }
     },
     "school": "Evocation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/fire-bolt",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -3901,7 +3903,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Warlock", "Wizard"],
+    "classes": ["Sorcerer", "Warlock", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/fly",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4029,7 +4031,7 @@
     "casting_time": "1 action",
     "level": 4,
     "school": "Abjuration",
-    "classes": ["Bard", "Cleric", "Druid", "Ranger"],
+    "classes": ["Bard", "Cleric", "Druid", "Ranger", "Artificer"],
     "subclasses": ["Land", "Devotion"],
     "url": "/api/2014/spells/freedom-of-movement",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4277,7 +4279,7 @@
     "casting_time": "1 hour",
     "level": 3,
     "school": "Abjuration",
-    "classes": ["Bard", "Cleric", "Wizard"],
+    "classes": ["Bard", "Cleric", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/glyph-of-warding",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4333,7 +4335,7 @@
       "size": 10
     },
     "school": "Conjuration",
-    "classes": ["Wizard"],
+    "classes": ["Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/grease",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4378,7 +4380,7 @@
     "casting_time": "1 action",
     "level": 5,
     "school": "Abjuration",
-    "classes": ["Bard", "Cleric", "Druid"],
+    "classes": ["Bard", "Cleric", "Druid", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/greater-restoration",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4479,7 +4481,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Divination",
-    "classes": ["Cleric", "Druid"],
+    "classes": ["Cleric", "Druid", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/guidance",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4687,7 +4689,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/haste",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -4798,7 +4800,7 @@
       "desc": "Can choose to not drop the object"
     },
     "school": "Transmutation",
-    "classes": ["Bard", "Druid"],
+    "classes": ["Bard", "Druid", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/heat-metal",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5131,7 +5133,7 @@
     "casting_time": "1 minute",
     "level": 1,
     "school": "Divination",
-    "classes": ["Bard", "Wizard"],
+    "classes": ["Bard", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/identify",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5381,7 +5383,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Illusion",
-    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/invisibility",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5423,7 +5425,7 @@
     "casting_time": "1 action",
     "level": 1,
     "school": "Transmutation",
-    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard"],
+    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/jump",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5488,7 +5490,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Abjuration",
-    "classes": ["Bard", "Cleric", "Druid", "Paladin", "Ranger"],
+    "classes": ["Bard", "Cleric", "Druid", "Paladin", "Ranger", "Artificer"],
     "subclasses": ["Lore", "Life", "Devotion"],
     "url": "/api/2014/spells/lesser-restoration",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5511,7 +5513,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/levitate",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5541,7 +5543,7 @@
       "dc_success": "none"
     },
     "school": "Evocation",
-    "classes": ["Bard", "Cleric", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Cleric", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/light",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5683,7 +5685,7 @@
     "casting_time": "1 action",
     "level": 1,
     "school": "Transmutation",
-    "classes": ["Bard", "Druid", "Ranger", "Wizard"],
+    "classes": ["Bard", "Druid", "Ranger", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/longstrider",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5726,7 +5728,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Conjuration",
-    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/mage-hand",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5867,7 +5869,7 @@
     "casting_time": "1 minute",
     "level": 2,
     "school": "Illusion",
-    "classes": ["Bard", "Wizard"],
+    "classes": ["Bard", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/magic-mouth",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -5889,7 +5891,7 @@
     "casting_time": "1 bonus action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Paladin", "Wizard"],
+    "classes": ["Paladin", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/magic-weapon",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -6128,7 +6130,7 @@
     "casting_time": "1 minute",
     "level": 0,
     "school": "Transmutation",
-    "classes": ["Cleric", "Bard", "Druid", "Sorcerer", "Wizard"],
+    "classes": ["Cleric", "Bard", "Druid", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/mending",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -6150,7 +6152,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Transmutation",
-    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/message",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -6728,7 +6730,7 @@
       "dc_success": "none"
     },
     "school": "Conjuration",
-    "classes": ["Sorcerer", "Warlock", "Wizard", "Druid"],
+    "classes": ["Sorcerer", "Warlock", "Wizard", "Druid", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/poison-spray",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -6861,7 +6863,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Transmutation",
-    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/prestidigitation",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7085,7 +7087,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Abjuration",
-    "classes": ["Cleric", "Druid", "Ranger", "Sorcerer", "Wizard"],
+    "classes": ["Cleric", "Druid", "Ranger", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/protection-from-energy",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7128,7 +7130,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Abjuration",
-    "classes": ["Cleric", "Druid", "Paladin", "Ranger"],
+    "classes": ["Cleric", "Druid", "Paladin", "Ranger", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/protection-from-poison",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7148,7 +7150,7 @@
     "casting_time": "1 action",
     "level": 1,
     "school": "Transmutation",
-    "classes": ["Cleric", "Druid", "Paladin"],
+    "classes": ["Cleric", "Druid", "Paladin", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/purify-food-and-drink",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7237,7 +7239,7 @@
       }
     },
     "school": "Evocation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/ray-of-frost",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7374,7 +7376,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Abjuration",
-    "classes": ["Cleric", "Druid"],
+    "classes": ["Cleric", "Druid", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/resistance",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7456,7 +7458,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Conjuration",
-    "classes": ["Cleric", "Paladin"],
+    "classes": ["Cleric", "Paladin", "Artificer"],
     "subclasses": ["Lore", "Life"],
     "url": "/api/2014/spells/revivify",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7480,7 +7482,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Wizard"],
+    "classes": ["Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/rope-trick",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7544,7 +7546,7 @@
     "casting_time": "1 bonus action",
     "level": 1,
     "school": "Abjuration",
-    "classes": ["Cleric"],
+    "classes": ["Cleric", "Artificer"],
     "subclasses": ["Lore", "Devotion"],
     "url": "/api/2014/spells/sanctuary",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7664,7 +7666,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Divination",
-    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "classes": ["Bard", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/see-invisibility",
     "updated_at": "2026-04-01T20:35:39.217Z"
@@ -7908,7 +7910,7 @@
       }
     },
     "school": "Evocation",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore"],
     "url": "/api/2014/spells/shocking-grasp",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -8102,7 +8104,7 @@
     "casting_time": "1 action",
     "level": 0,
     "school": "Necromancy",
-    "classes": ["Cleric"],
+    "classes": ["Cleric", "Artificer"],
     "subclasses": [],
     "url": "/api/2014/spells/spare-the-dying",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -8193,7 +8195,7 @@
     "casting_time": "1 action",
     "level": 2,
     "school": "Transmutation",
-    "classes": ["Sorcerer", "Warlock", "Wizard"],
+    "classes": ["Sorcerer", "Warlock", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/spider-climb",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -8342,7 +8344,7 @@
     "casting_time": "1 action",
     "level": 4,
     "school": "Transmutation",
-    "classes": ["Cleric", "Druid", "Wizard"],
+    "classes": ["Cleric", "Druid", "Wizard", "Artificer"],
     "subclasses": ["Land"],
     "url": "/api/2014/spells/stone-shape",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -8363,7 +8365,7 @@
     "casting_time": "1 action",
     "level": 4,
     "school": "Abjuration",
-    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard"],
+    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Land"],
     "url": "/api/2014/spells/stoneskin",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -9228,7 +9230,7 @@
     "casting_time": "1 action",
     "level": 5,
     "school": "Evocation",
-    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "classes": ["Druid", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Land"],
     "url": "/api/2014/spells/wall-of-stone",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -9322,7 +9324,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Transmutation",
-    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard"],
+    "classes": ["Druid", "Ranger", "Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/water-breathing",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -9344,7 +9346,7 @@
     "casting_time": "1 action",
     "level": 3,
     "school": "Transmutation",
-    "classes": ["Cleric", "Druid", "Ranger", "Sorcerer"],
+    "classes": ["Cleric", "Druid", "Ranger", "Sorcerer", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/water-walk",
     "updated_at": "2026-04-01T20:35:39.218Z"
@@ -9373,7 +9375,7 @@
       "size": 20
     },
     "school": "Conjuration",
-    "classes": ["Sorcerer", "Wizard"],
+    "classes": ["Sorcerer", "Wizard", "Artificer"],
     "subclasses": ["Lore", "Land"],
     "url": "/api/2014/spells/web",
     "updated_at": "2026-04-01T20:35:39.218Z"

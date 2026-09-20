@@ -34,7 +34,7 @@ deliberately instead of rediscovering them by breaking on a real character.
 | `armor_proficiencies`, `weapon_proficiencies`, `languages` | array of strings |                                                                                                                                                                           |
 | `darkvision`, `hit_die`, `unarmored_ac_formula`            | misc             | Per-character derived/override values.                                                                                                                                    |
 
-Fields the Vue app also stores (`full_name`, `campaign_start`, `race`, `appearance`,
+Fields the Vue app also stores (`full_name`, `campaign_start`, `genus`, `appearance`,
 `image`, `stat_str`/`stat_dex`/etc, `notes`, `persona_notes`, `id`) are pure display/
 flavor data `engine/` never reads — not documented further here.
 

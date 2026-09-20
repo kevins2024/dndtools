@@ -185,7 +185,7 @@ test('meetsInvocationPrerequisite: Thirsting Blade needs BOTH level 5 and Pact o
 function baseWarlock(level, extra = {}) {
   return {
     name: 'Test Warlock',
-    race: 'Human',
+    genus: 'Human',
     level,
     classes: [{ name: 'Warlock', level, subclass: 'Great Old One' }],
     stat_str: 10,
@@ -350,7 +350,7 @@ test('diffLevelUp: choosing Pact of the Tome owes 3 bonus cantrips from ANY clas
 test('diffLevelUp: a generic newCantrips pendingChoice fires for ANY spellcasting class, not just Warlock (Cleric 3->4)', () => {
   const character = {
     name: 'Test Cleric',
-    race: 'Human',
+    genus: 'Human',
     level: 3,
     classes: [{ name: 'Cleric', level: 3, subclass: 'Life Domain' }],
     stat_str: 10,

@@ -1,6 +1,6 @@
 export const GENDERS = ['Male', 'Female']
 
-export const RACES = [
+export const GENERA = [
   'Human',
   'Yetgresian Human',
   'Halfling',
@@ -29,7 +29,7 @@ export const RACES = [
   'Satyr',
 ]
 
-export const RACES_DEFAULT_OFF = new Set(['Satyr'])
+export const GENERA_DEFAULT_OFF = new Set(['Satyr'])
 
 export const CLASSES = [
   'Barbarian',
@@ -54,11 +54,11 @@ export function pick(arr) {
 
 export function generateCharacter(
   enabledGenders,
-  enabledRaces,
+  enabledGenera,
   enabledClasses
 ) {
   const gender = pick(enabledGenders)
-  const race = pick(enabledRaces)
+  const genus = pick(enabledGenera)
   let cls = pick(enabledClasses)
 
   if (cls === 'Hybrid') {
@@ -70,5 +70,5 @@ export function generateCharacter(
     }
   }
 
-  return { gender, race, cls }
+  return { gender, genus, cls }
 }

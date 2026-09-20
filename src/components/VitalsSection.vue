@@ -13,7 +13,7 @@
     </div>
 
     <div class="subrow-subtitle">
-      {{ character.race }} ·
+      {{ character.genus }} ·
       <template v-for="(entry, i) in subclassEntries"
         ><span
           :key="entry.key"

@@ -1,4 +1,4 @@
-import { pick, GENDERS, RACES } from './character_utils.js'
+import { pick, GENDERS, GENERA } from './character_utils.js'
 import monstersIndex from '@/data/monsters_index.json'
 
 // ── Pre-group bestiary by type for fast CR-filtered lookup ───────────────────
@@ -1970,11 +1970,11 @@ async function buildRealEnemy(level, roleKey, isBoss) {
   const { character, encounterData, gender } = data
   return {
     id: `enc_enemy_${_eid++}`,
-    name: `${isBoss ? 'Boss — ' : ''}${character.race} ${
+    name: `${isBoss ? 'Boss — ' : ''}${character.genus} ${
       encounterData.roleLabel
     }`,
     gender,
-    race: character.race,
+    genus: character.genus,
     role: roleKey,
     roleLabel: encounterData.roleLabel,
     isBoss,
@@ -2000,7 +2000,7 @@ function generateHumanoidEnemy(
   hpMax,
   isBoss,
   roleOverride,
-  raceOverride,
+  genusOverride,
   genderOverride,
   typeRoleWeights,
   difficulty = 'medium',
@@ -2021,7 +2021,7 @@ function generateHumanoidEnemy(
     ? calibrateAttackBonus(partyProfile.estimatedAC, difficulty, isBoss)
     : primaryMod + profBonus + (isBoss ? 2 : 0) + weapon.enhancement
   const gender = genderOverride ?? pick(GENDERS)
-  const race = raceOverride ?? pick(RACES)
+  const genus = genusOverride ?? pick(GENERA)
 
   const { features, spells } = assignFeatures(
     'humanoid',
@@ -2039,9 +2039,9 @@ function generateHumanoidEnemy(
 
   return {
     id: `enc_enemy_${_eid++}`,
-    name: `${isBoss ? 'Boss — ' : ''}${race} ${profile.label}`,
+    name: `${isBoss ? 'Boss — ' : ''}${genus} ${profile.label}`,
     gender,
-    race,
+    genus,
     role: roleKey,
     roleLabel: profile.label,
     isBoss,
@@ -2141,7 +2141,7 @@ function generateBestiaryEnemy(
     id: `enc_enemy_${_eid++}`,
     name: displayName,
     gender: null,
-    race: null,
+    genus: null,
     role: null,
     roleLabel: bestiaryType,
     isBoss,
@@ -2225,7 +2225,7 @@ export function planEncounter({ difficulty, partySize, type }) {
     rawSlots.push({
       isBoss: true,
       role: null,
-      race: null,
+      genus: null,
       gender: null,
       source: null,
     })
@@ -2234,7 +2234,7 @@ export function planEncounter({ difficulty, partySize, type }) {
         rawSlots.push({
           isBoss: true,
           role: null,
-          race: null,
+          genus: null,
           gender: null,
           source: null,
         })
@@ -2245,7 +2245,7 @@ export function planEncounter({ difficulty, partySize, type }) {
     rawSlots.push({
       isBoss: false,
       role: null,
-      race: null,
+      genus: null,
       gender: null,
       source: null,
     })
@@ -2306,7 +2306,7 @@ export async function generateEncounter({
               hpMax,
               slot.isBoss,
               roleKey,
-              slot.race,
+              slot.genus,
               slot.gender,
               roleWeights,
               resolvedDifficulty,
@@ -2320,7 +2320,7 @@ export async function generateEncounter({
           hpMax,
           slot.isBoss,
           roleKey,
-          slot.race,
+          slot.genus,
           slot.gender,
           roleWeights,
           resolvedDifficulty,
@@ -2364,7 +2364,7 @@ export async function regenerateEnemy({
   typeConfig,
   specificMonster = null,
   role = null,
-  race = null,
+  genus = null,
   gender = null,
   difficulty = 'medium',
   partyProfile = null,
@@ -2391,7 +2391,7 @@ export async function regenerateEnemy({
       hpMax,
       isBoss,
       roleKey,
-      race,
+      genus,
       gender,
       roleWeights,
       difficulty,

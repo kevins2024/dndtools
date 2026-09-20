@@ -79,7 +79,7 @@ test('every feat choices[] entry has a positive count and (for enumerable types)
 
 test('meetsFeatPrerequisites: race prerequisite blocks a non-matching race, allows a matching one', () => {
   const gnome = {
-    race: 'Gnome',
+    genus: 'Gnome',
     stat_str: 10,
     stat_dex: 10,
     stat_con: 10,
@@ -87,29 +87,29 @@ test('meetsFeatPrerequisites: race prerequisite blocks a non-matching race, allo
     stat_wis: 10,
     stat_cha: 10,
   }
-  const human = { ...gnome, race: 'Human' }
+  const human = { ...gnome, genus: 'Human' }
   assert.equal(engine.meetsFeatPrerequisites(gnome, 'Fade Away').met, true)
   assert.equal(engine.meetsFeatPrerequisites(human, 'Fade Away').met, false)
 })
 
 test('meetsFeatPrerequisites: ability-score prerequisite is hard-enforced (Grappler needs STR 13+)', () => {
-  const weak = { race: 'Human', stat_str: 10 }
-  const strong = { race: 'Human', stat_str: 14 }
+  const weak = { genus: 'Human', stat_str: 10 }
+  const strong = { genus: 'Human', stat_str: 14 }
   assert.equal(engine.meetsFeatPrerequisites(weak, 'Grappler').met, false)
   assert.equal(engine.meetsFeatPrerequisites(strong, 'Grappler').met, true)
 })
 
 test('meetsFeatPrerequisites: an untracked proficiency array is permissive, not a hard block', () => {
-  const noProfData = { race: 'Human' } // armor_proficiencies not tracked
+  const noProfData = { genus: 'Human' } // armor_proficiencies not tracked
   const result = engine.meetsFeatPrerequisites(noProfData, 'Heavy Armor Master')
   assert.equal(result.met, true)
   assert.equal(result.unknown, true)
 })
 
 test('meetsFeatPrerequisites: a POPULATED proficiency array IS enforced', () => {
-  const noHeavy = { race: 'Human', armor_proficiencies: ['light', 'medium'] }
+  const noHeavy = { genus: 'Human', armor_proficiencies: ['light', 'medium'] }
   const withHeavy = {
-    race: 'Human',
+    genus: 'Human',
     armor_proficiencies: ['light', 'medium', 'heavy'],
   }
   assert.equal(
@@ -124,7 +124,7 @@ test('meetsFeatPrerequisites: a POPULATED proficiency array IS enforced', () => 
 
 test('meetsFeatPrerequisites: an uncatalogued feat is permissive (nothing to check)', () => {
   const result = engine.meetsFeatPrerequisites(
-    { race: 'Human' },
+    { genus: 'Human' },
     'Not A Real Feat'
   )
   assert.equal(result.met, true)
@@ -157,7 +157,7 @@ test('resolveAsiOrFeat: a feat with a generic `choices` pick carries it through 
 test('diffLevelUp: taking Alert at an ASI level adds a feat feature with stat_bonuses.initiative to the patch', () => {
   const character = {
     name: 'Test Fighter',
-    race: 'Human',
+    genus: 'Human',
     level: 3,
     classes: [{ name: 'Fighter', level: 3, subclass: 'Champion' }],
     stat_str: 14,
@@ -187,7 +187,7 @@ test('diffLevelUp: taking Alert at an ASI level adds a feat feature with stat_bo
 test('diffLevelUp: taking Resilient adds the chosen ability to patch.saving_throws', () => {
   const character = {
     name: 'Test Wizard',
-    race: 'Human',
+    genus: 'Human',
     level: 3,
     classes: [{ name: 'Wizard', level: 3, subclass: 'School of Evocation' }],
     stat_str: 8,
@@ -216,7 +216,7 @@ test('diffLevelUp: taking Resilient adds the chosen ability to patch.saving_thro
 test('diffLevelUp: taking Fey Touched with a chosen spell adds both the fixed and chosen spells to patch.spells', () => {
   const character = {
     name: 'Test Cleric',
-    race: 'Human',
+    genus: 'Human',
     level: 3,
     classes: [{ name: 'Cleric', level: 3, subclass: 'Life Domain' }],
     stat_str: 10,

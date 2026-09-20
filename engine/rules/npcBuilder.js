@@ -212,8 +212,8 @@ function buildShell(speciesName, roleConfig) {
   const { scores } = applySpeciesBonus(baseline, speciesName)
   return {
     name: `${roleConfig.label} (${roleConfig.className})`,
-    race: speciesName,
-    subrace: null,
+    genus: speciesName,
+    subgenus: null,
     level: 0,
     classes: [{ name: roleConfig.className, level: 0, subclass: null }],
     hp_max: 0,

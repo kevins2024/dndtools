@@ -3323,8 +3323,8 @@ export default {
           return prerequisite.options
             .map((o) => `${o.ability.toUpperCase()} ${o.min}+`)
             .join(' or ')
-        case 'race':
-          return prerequisite.races.join(' or ')
+        case 'genus':
+          return prerequisite.genera.join(' or ')
         case 'spellcasting':
           return 'the ability to cast at least one spell'
         case 'proficiency':

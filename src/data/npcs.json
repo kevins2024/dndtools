@@ -935,7 +935,7 @@
   {
     "name": "Vrethka",
     "full_name": "Vrethka",
-    "race": "Human",
+    "genus": "Human",
     "class": "Shaman",
     "subclass": "Witch Doctor",
     "level": 7,

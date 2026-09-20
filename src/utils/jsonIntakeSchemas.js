@@ -250,7 +250,7 @@ export const SCHEMAS = {
         type: 'string',
       },
       {
-        key: 'race',
+        key: 'genus',
         level: 'occasional',
         type: 'string',
         description: 'Only used on NPCs with a full statblock.',

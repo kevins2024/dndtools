@@ -315,6 +315,7 @@ import { dnd } from '@/utils/dnd_utils'
 import SchoolIcon from '@/components/SchoolIcon.vue'
 
 const CLASSES = [
+  'Artificer',
   'Bard',
   'Cleric',
   'Druid',
