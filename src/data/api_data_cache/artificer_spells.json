@@ -1,0 +1,482 @@
+[
+  {
+    "index": "acid-splash",
+    "name": "Acid Splash",
+    "level": 0
+  },
+  {
+    "index": "booming-blade",
+    "name": "Booming blade",
+    "level": 0
+  },
+  {
+    "index": "create-bonfire",
+    "name": "Create bonfire",
+    "level": 0
+  },
+  {
+    "index": "dancing-lights",
+    "name": "Dancing Lights",
+    "level": 0
+  },
+  {
+    "index": "fire-bolt",
+    "name": "Fire Bolt",
+    "level": 0
+  },
+  {
+    "index": "frostbite",
+    "name": "Frostbite",
+    "level": 0
+  },
+  {
+    "index": "green-flame-blade",
+    "name": "Green-Flame Blade",
+    "level": 0
+  },
+  {
+    "index": "guidance",
+    "name": "Guidance",
+    "level": 0
+  },
+  {
+    "index": "light",
+    "name": "Light",
+    "level": 0
+  },
+  {
+    "index": "lightning-lure",
+    "name": "Lightning Lure",
+    "level": 0
+  },
+  {
+    "index": "mage-hand",
+    "name": "Mage Hand",
+    "level": 0
+  },
+  {
+    "index": "magic-stone",
+    "name": "Magic stone",
+    "level": 0
+  },
+  {
+    "index": "mending",
+    "name": "Mending",
+    "level": 0
+  },
+  {
+    "index": "message",
+    "name": "Message",
+    "level": 0
+  },
+  {
+    "index": "poison-spray",
+    "name": "Poison Spray",
+    "level": 0
+  },
+  {
+    "index": "prestidigitation",
+    "name": "Prestidigitation",
+    "level": 0
+  },
+  {
+    "index": "ray-of-frost",
+    "name": "Ray of Frost",
+    "level": 0
+  },
+  {
+    "index": "resistance",
+    "name": "Resistance",
+    "level": 0
+  },
+  {
+    "index": "shocking-grasp",
+    "name": "Shocking Grasp",
+    "level": 0
+  },
+  {
+    "index": "spare-the-dying",
+    "name": "Spare the Dying",
+    "level": 0
+  },
+  {
+    "index": "sword-burst",
+    "name": "Sword Burst",
+    "level": 0
+  },
+  {
+    "index": "thorn-whip",
+    "name": "Thorn Whip",
+    "level": 0
+  },
+  {
+    "index": "thunderclap",
+    "name": "Thunderclap",
+    "level": 0
+  },
+  {
+    "index": "absorb-elements",
+    "name": "Absorb elements",
+    "level": 1
+  },
+  {
+    "index": "alarm",
+    "name": "Alarm",
+    "level": 1
+  },
+  {
+    "index": "catapult",
+    "name": "Catapult",
+    "level": 1
+  },
+  {
+    "index": "cure-wounds",
+    "name": "Cure Wounds",
+    "level": 1
+  },
+  {
+    "index": "detect-magic",
+    "name": "Detect Magic",
+    "level": 1
+  },
+  {
+    "index": "disguise-self",
+    "name": "Disguise Self",
+    "level": 1
+  },
+  {
+    "index": "expeditious-retreat",
+    "name": "Expeditious Retreat",
+    "level": 1
+  },
+  {
+    "index": "faerie-fire",
+    "name": "Faerie Fire",
+    "level": 1
+  },
+  {
+    "index": "false-life",
+    "name": "False Life",
+    "level": 1
+  },
+  {
+    "index": "feather-fall",
+    "name": "Feather Fall",
+    "level": 1
+  },
+  {
+    "index": "grease",
+    "name": "Grease",
+    "level": 1
+  },
+  {
+    "index": "identify",
+    "name": "Identify",
+    "level": 1
+  },
+  {
+    "index": "jump",
+    "name": "Jump",
+    "level": 1
+  },
+  {
+    "index": "longstrider",
+    "name": "Longstrider",
+    "level": 1
+  },
+  {
+    "index": "purify-food-and-drink",
+    "name": "Purify Food and Drink",
+    "level": 1
+  },
+  {
+    "index": "sanctuary",
+    "name": "Sanctuary",
+    "level": 1
+  },
+  {
+    "index": "snare",
+    "name": "Snare",
+    "level": 1
+  },
+  {
+    "index": "tashas-caustic-brew",
+    "name": "Tasha's Caustic Brew",
+    "level": 1
+  },
+  {
+    "index": "aid",
+    "name": "Aid",
+    "level": 2
+  },
+  {
+    "index": "alter-self",
+    "name": "Alter Self",
+    "level": 2
+  },
+  {
+    "index": "arcane-lock",
+    "name": "Arcane Lock",
+    "level": 2
+  },
+  {
+    "index": "blur",
+    "name": "Blur",
+    "level": 2
+  },
+  {
+    "index": "continual-flame",
+    "name": "Continual Flame",
+    "level": 2
+  },
+  {
+    "index": "darkvision",
+    "name": "Darkvision",
+    "level": 2
+  },
+  {
+    "index": "enhance-ability",
+    "name": "Enhance Ability",
+    "level": 2
+  },
+  {
+    "index": "enlarge-reduce",
+    "name": "Enlarge/Reduce",
+    "level": 2
+  },
+  {
+    "index": "heat-metal",
+    "name": "Heat Metal",
+    "level": 2
+  },
+  {
+    "index": "immovable-object",
+    "name": "Immovable Object",
+    "level": 2
+  },
+  {
+    "index": "invisibility",
+    "name": "Invisibility",
+    "level": 2
+  },
+  {
+    "index": "kinetic-jaunt",
+    "name": "Kinetic Jaunt",
+    "level": 2
+  },
+  {
+    "index": "lesser-restoration",
+    "name": "Lesser Restoration",
+    "level": 2
+  },
+  {
+    "index": "levitate",
+    "name": "Levitate",
+    "level": 2
+  },
+  {
+    "index": "magic-mouth",
+    "name": "Magic Mouth",
+    "level": 2
+  },
+  {
+    "index": "magic-weapon",
+    "name": "Magic Weapon",
+    "level": 2
+  },
+  {
+    "index": "protection-from-poison",
+    "name": "Protection from Poison",
+    "level": 2
+  },
+  {
+    "index": "pyrotechnics",
+    "name": "Pyrotechnics",
+    "level": 2
+  },
+  {
+    "index": "rope-trick",
+    "name": "Rope Trick",
+    "level": 2
+  },
+  {
+    "index": "see-invisibility",
+    "name": "See Invisibility",
+    "level": 2
+  },
+  {
+    "index": "skywrite",
+    "name": "Skywrite",
+    "level": 2
+  },
+  {
+    "index": "spider-climb",
+    "name": "Spider Climb",
+    "level": 2
+  },
+  {
+    "index": "vortex-warp",
+    "name": "Vortex Warp",
+    "level": 2
+  },
+  {
+    "index": "web",
+    "name": "Web",
+    "level": 2
+  },
+  {
+    "index": "blink",
+    "name": "Blink",
+    "level": 3
+  },
+  {
+    "index": "catnap",
+    "name": "Catnap",
+    "level": 3
+  },
+  {
+    "index": "create-food-and-water",
+    "name": "Create Food and Water",
+    "level": 3
+  },
+  {
+    "index": "dispel-magic",
+    "name": "Dispel Magic",
+    "level": 3
+  },
+  {
+    "index": "elemental-weapon",
+    "name": "Elemental Weapon",
+    "level": 3
+  },
+  {
+    "index": "flame-arrows",
+    "name": "Flame arrows",
+    "level": 3
+  },
+  {
+    "index": "fly",
+    "name": "Fly",
+    "level": 3
+  },
+  {
+    "index": "glyph-of-warding",
+    "name": "Glyph of Warding",
+    "level": 3
+  },
+  {
+    "index": "haste",
+    "name": "Haste",
+    "level": 3
+  },
+  {
+    "index": "intellect-fortress",
+    "name": "Intellect fortress",
+    "level": 3
+  },
+  {
+    "index": "protection-from-energy",
+    "name": "Protection From Energy",
+    "level": 3
+  },
+  {
+    "index": "revivify",
+    "name": "Revivify",
+    "level": 3
+  },
+  {
+    "index": "tiny-servant",
+    "name": "Tiny servant",
+    "level": 3
+  },
+  {
+    "index": "water-breathing",
+    "name": "Water Breathing",
+    "level": 3
+  },
+  {
+    "index": "water-walk",
+    "name": "Water Walk",
+    "level": 3
+  },
+  {
+    "index": "arcane-eye",
+    "name": "Arcane Eye",
+    "level": 4
+  },
+  {
+    "index": "elemental-bane",
+    "name": "Elemental bane",
+    "level": 4
+  },
+  {
+    "index": "fabricate",
+    "name": "Fabricate",
+    "level": 4
+  },
+  {
+    "index": "freedom-of-movement",
+    "name": "Freedom of Movement",
+    "level": 4
+  },
+  {
+    "index": "otilukes-resilient-sphere",
+    "name": "Otiluke's Resilient Sphere",
+    "level": 4
+  },
+  {
+    "index": "stone-shape",
+    "name": "Stone Shape",
+    "level": 4
+  },
+  {
+    "index": "stoneskin",
+    "name": "Stoneskin",
+    "level": 4
+  },
+  {
+    "index": "summon-construct",
+    "name": "Summon construct",
+    "level": 4
+  },
+  {
+    "index": "animate-objects",
+    "name": "Animate Objects",
+    "level": 5
+  },
+  {
+    "index": "bigbys-hand",
+    "name": "Bigby's Hand",
+    "level": 5
+  },
+  {
+    "index": "creation",
+    "name": "Creation",
+    "level": 5
+  },
+  {
+    "index": "greater-restoration",
+    "name": "Greater Restoration",
+    "level": 5
+  },
+  {
+    "index": "skill-empowerment",
+    "name": "Skill empowerment",
+    "level": 5
+  },
+  {
+    "index": "transmute-rock",
+    "name": "Transmute rock",
+    "level": 5
+  },
+  {
+    "index": "wall-of-stone",
+    "name": "Wall of Stone",
+    "level": 5
+  },
+  {
+    "index": "tensers-transformation",
+    "name": "Tenser's Transformation",
+    "level": 6
+  }
+]
