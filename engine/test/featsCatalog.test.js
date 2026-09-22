@@ -67,13 +67,64 @@ test('every feat choices[] entry has a positive count and (for enumerable types)
     if (!choices) continue
     for (const c of choices) {
       assert.ok(c.count > 0, `${name}/${c.id}: count must be > 0`)
-      if (!['spell_text', 'text'].includes(c.type)) {
+      if (!['spell_choice', 'text'].includes(c.type)) {
         assert.ok(
           Array.isArray(c.options) && c.options.length > 0,
           `${name}/${c.id}: type "${c.type}" needs a non-empty options list`
         )
       }
     }
+  }
+})
+
+// 'spell_choice' entries are populated live via /api/engine/feat-spell-choices
+// (LevelUpTool.vue's refreshFeatSpellOptions), not a static options array —
+// see feats.json's own _schema.choices doc. Each one needs exactly one of
+// fixedClass/pool:'any' (the class, or lack of one, is baked into the feat)
+// or classFromChoiceId naming a REAL sibling choice (the class is itself a
+// player pick) — catches a typo'd id silently breaking a picker at runtime.
+test("every 'spell_choice' entry has a real spell_filter, and classFromChoiceId (if used) names a real sibling choice", () => {
+  for (const name of FEAT_NAMES) {
+    const choices = feats[name].choices
+    if (!choices) continue
+    const ids = new Set(choices.map((c) => c.id))
+    for (const c of choices) {
+      if (c.type !== 'spell_choice') continue
+      const f = c.spell_filter
+      assert.ok(
+        f && typeof f === 'object',
+        `${name}/${c.id}: needs spell_filter`
+      )
+      const hasFixedSource = Boolean(f.fixedClass) || f.pool === 'any'
+      const hasSiblingSource =
+        typeof f.classFromChoiceId === 'string' && ids.has(f.classFromChoiceId)
+      assert.ok(
+        hasFixedSource !== hasSiblingSource,
+        `${name}/${c.id}: needs exactly one of fixedClass/pool:'any' or a classFromChoiceId naming a real sibling choice`
+      )
+    }
+  }
+})
+
+// grants_spells.choice (Fey Touched/Shadow Touched-style — "any spellbook",
+// not tied to one class) is a separate mechanism from choices[] (see
+// feats.json's own _schema doc) — same real-options guarantee, checked
+// against the live spell catalog via listFeatSpellChoices rather than a
+// static list, since there's no options array to check statically at all.
+test('every grants_spells.choice actually resolves to at least one real spell', () => {
+  for (const name of FEAT_NAMES) {
+    const choice = feats[name].grants_spells?.choice
+    if (!choice) continue
+    const options = engine.listFeatSpellChoices({
+      level: choice.level,
+      schools: choice.schools ?? null,
+    })
+    assert.ok(
+      options.length > 0,
+      `${name}: grants_spells.choice (level ${
+        choice.level
+      }, schools ${JSON.stringify(choice.schools)}) matched zero real spells`
+    )
   }
 })
 
@@ -244,7 +295,17 @@ test('diffLevelUp: taking Fey Touched with a chosen spell adds both the fixed an
       },
     },
   })
+  // Caster Prestidigitation (this Cleric fixture also unconditionally gets
+  // Divine Prestidigitation) lives in patch.features, not patch.spells —
+  // see diffLevelUp.js's own comment on why — so it doesn't show up here.
   const names = result.patch.spells.map((s) => s.name).sort()
   assert.deepEqual(names, ['Misty Step', 'Silvery Barbs'])
   assert.ok(result.patch.spells.every((s) => s._source === 'Fey Touched'))
+  assert.ok(
+    result.newFeatures.some(
+      (f) =>
+        f.name === 'Caster Prestidigitation' &&
+        (f.spells_granted || []).includes('Divine Prestidigitation')
+    )
+  )
 })

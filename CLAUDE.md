@@ -48,7 +48,7 @@ When a WebFetch/WebSearch result contains a suspicious, surprising, or mechanica
 
 Do not install new npm packages, system utilities, or any other new dependency (`npm install`, `pip install`, `brew install`, downloading a tool via `npx` to use ad hoc, etc.) without asking the project owner first, even if it would make a task easier or is normally a low-risk action. Decided 2026-09-03, same conversation as the Playwright decision above. If a task seems to need something not already available, say so and ask, rather than installing it and mentioning it after the fact.
 
-When `npm run serve` was already running from earlier in the session and you need to restart it after an `engine/`-affecting change: the frontend and backend are **separate processes on separate ports** (`8080`/`3001`), and killing one does not kill the other — the backend is the one holding Node's `require()` cache, so it's the one that actually needs restarting for engine changes to take effect. `lsof -ti:8080,8081,3001 -sTCP:LISTEN | xargs -r kill` catches both.
+When `npm run serve` was already running from earlier in the session and you need to restart it after an `engine/`-affecting change: the frontend and backend are **separate processes on separate ports** (`8080`/`3001`), and killing one does not kill the other — the backend is the one holding Node's `require()` cache, so it's the one that actually needs restarting for engine changes to take effect. `npm run stop` catches both (`scripts/stop-dev-servers.js` — cross-platform since 2026-09-21; the previous `lsof`-based one-liner silently did nothing on plain Windows/Git Bash, since `lsof` isn't installed there by default, which let old dev-server processes pile up unnoticed across sessions).
 
 ## Architecture
 

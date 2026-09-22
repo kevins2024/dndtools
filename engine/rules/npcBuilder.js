@@ -484,6 +484,11 @@ function resolveChoice(choice, roleConfig, character) {
         param: 'masterOfIntrigueLanguageChoices',
         merge: () => (choice.options ?? []).slice(0, choice.count ?? 2),
       }
+    case 'bonusProficienciesChoice':
+      return {
+        param: 'bonusProficienciesChoice',
+        merge: () => (choice.options ?? []).slice(0, choice.count ?? 3),
+      }
     default:
       return null
   }

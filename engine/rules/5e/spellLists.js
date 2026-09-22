@@ -91,6 +91,12 @@ function listSpellsForClass(className, options = {}) {
     cantripsOnly = false,
     pool = 'class',
     excludeNames = [],
+    // Escape hatch for criteria beyond level/class/pool that the returned
+    // {name, level, school} shape can't express on its own (e.g. a feat's
+    // "must have the ritual tag" or "must require an attack roll" — see
+    // listFeatSpellChoices below). Receives the RAW record (every field the
+    // source JSON has, not just the 3 this function normally returns).
+    extraFilter = null,
   } = options
   const exclude = new Set([...excludeNames].map(normalize))
   const results = []
@@ -110,6 +116,7 @@ function listSpellsForClass(className, options = {}) {
         continue
       }
     }
+    if (extraFilter && !extraFilter(record)) continue
     const key = normalize(record.name)
     if (exclude.has(key) || seen.has(key)) continue
     seen.add(key)
@@ -121,6 +128,42 @@ function listSpellsForClass(className, options = {}) {
   }
   results.sort((a, b) => a.level - b.level || a.name.localeCompare(b.name))
   return results
+}
+
+// Feat-granted spell choices (Magic Initiate, Ritual Caster, Spell Sniper,
+// Artificer Initiate, Wood Elf Magic, Fey Touched, Shadow Touched, etc. —
+// see feats.json's own _schema.choices doc for the full spell_filter shape).
+// Each feat fixes its own combination of class list (or no class at all —
+// Fey Touched/Shadow Touched's "any spellbook" grants), spell level, and
+// extra criteria (school, ritual tag, attack-roll requirement) that plain
+// listSpellsForClass alone can't express — this is the one place all of
+// those combinations funnel through, so a future feat with the same shape
+// needs a data entry, not new code. Replaces the old free-text "type your
+// spell's name" fields those feats used to render — a free-text field can
+// never guarantee what gets typed is a real, eligible spell.
+function listFeatSpellChoices({
+  className = null,
+  level = null,
+  cantripsOnly = false,
+  schools = null,
+  ritualOnly = false,
+  attackRollOnly = false,
+  excludeNames = [],
+}) {
+  return listSpellsForClass(className ?? '', {
+    maxLevel: cantripsOnly ? 0 : level ?? 9,
+    cantripsOnly,
+    pool: className ? 'class' : 'any',
+    excludeNames,
+    extraFilter: (record) => {
+      if (!cantripsOnly && level != null && record.level !== level) return false
+      if (schools && schools.length && !schools.includes(record.school))
+        return false
+      if (ritualOnly && !record.ritual) return false
+      if (attackRollOnly && !record.attack_type) return false
+      return true
+    },
+  })
 }
 
 // The highest spell level a known-caster can currently select FROM when
@@ -160,5 +203,6 @@ module.exports = {
   findSpellRecord,
   isSpellOnClassList,
   listSpellsForClass,
+  listFeatSpellChoices,
   effectiveMaxSpellLevel,
 }

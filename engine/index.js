@@ -38,6 +38,7 @@ const {
   findSpellRecord,
   isSpellOnClassList,
   listSpellsForClass,
+  listFeatSpellChoices,
   effectiveMaxSpellLevel,
 } = require('./rules/5e/spellLists')
 const {
@@ -123,6 +124,7 @@ module.exports = {
   findSpellRecord,
   isSpellOnClassList,
   listSpellsForClass,
+  listFeatSpellChoices,
   effectiveMaxSpellLevel,
   listInvocations,
   loadInvocation,

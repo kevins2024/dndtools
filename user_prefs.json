@@ -3,7 +3,7 @@
     {
       "name": "East_full",
       "members": [
-        "Lexica (Old)",
+        "Lexica",
         "Kessara",
         "Vaz",
         "Denna",
@@ -27,7 +27,7 @@
       "id": "party_1780850600167_0",
       "name": "East Full",
       "members": [
-        "Lexica (Old)",
+        "Lexica",
         "Kessara",
         "Vaz",
         "Denna",
@@ -36,7 +36,7 @@
         "Sorra (Old)",
         "Ferghus"
       ],
-      "active": false,
+      "active": true,
       "game_day": 297,
       "marching_order": [
         "Denna",
@@ -44,7 +44,7 @@
         "Vaz",
         "Kessara",
         "Enauweyn",
-        "Lexica (Old)",
+        "Lexica",
         "Tackett",
         "Sorra (Old)"
       ]
@@ -114,7 +114,7 @@
         "Petra",
         "Siv"
       ],
-      "active": true,
+      "active": false,
       "game_day": 304,
       "marching_order": [
         "Torrin",

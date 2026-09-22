@@ -5,8 +5,8 @@
     "source": "Book this feat is from: 'Player's Handbook' | 'Xanathar's Guide to Everything' | \"Tasha's Cauldron of Everything\".",
     "prerequisite": "null, or one of: {type:'ability_score', ability, min} | {type:'any_of', options:[{ability,min},...]} (meet ANY one) | {type:'genus', genera:[...]} (meet ANY listed genus/subgenus string, matched loosely against character.genus/subgenus) | {type:'proficiency', proficiency:'light_armor'|'medium_armor'|'heavy_armor'|'martial_weapon'} | {type:'spellcasting'} (character.spellcasting_ability or pact_magic present). Enforced by engine/rules/featPrerequisites.js — see that file for exactly how each type is evaluated, including the deliberate 'unknown proficiency data is permissive' rule (most characters.json entries don't populate armor_proficiencies/weapon_proficiencies at all, so a hard 'not proficient' block would false-negative almost every real character).",
     "ability_score_increase": "{choice_of:[...abilities], amount} — same mechanism asiFeat.js already had for Fey Touched/Shadow Touched. choice_of.length===1 auto-applies with no dropdown.",
-    "grants_spells": "{fixed:[...names], choice:{count, level, schools}, casting_ability, free_cast_note} — same shape as Fey Touched/Shadow Touched, used both for known-spell-count verification (grants.js/isFeatGrantedSpell) and, new this pass, auto-applied to patch.spells by diffLevelUp when the level-up resolution supplies choices.spell_choice_1 etc.",
-    "choices": "array of {id, label, type, count, options?} — a GENERIC extra-choice schema (beyond ability score) for feats that hand the player a pick. type is one of: 'skill' | 'tool' | 'skill_or_tool' | 'language' | 'damage_type' | 'weapon' | 'maneuver' | 'fighting_style' | 'class_list' | 'spell_text' (free-text spell name — see 7b note on why this isn't a full class-filtered spell-list dropdown) | 'text' (fully free, e.g. an Eldritch Invocation name). 'options' is a concrete array for the enumerable types; omitted for 'spell_text'/'text'. LevelUpTool.vue renders `count` pickers per choice, generically — no per-feat special-casing.",
+    "grants_spells": "{fixed:[...names], choice:{count, level, schools}, casting_ability, free_cast_note, free_cast?} — same shape as Fey Touched/Shadow Touched, used both for known-spell-count verification (grants.js/isFeatGrantedSpell) and auto-applied to patch.spells by diffLevelUp when the level-up resolution supplies choices.__grantedSpellChoice etc. free_cast (added 2026-09-22, alongside real charge-tracking for these): {[spellName]: {at_will: true} | {count, recharge: 'long_rest'|'short_rest'}} for each name in `fixed`, plus a reserved `__choice` key describing the SAME terms for whichever spell `choice` resolves to (all 7 feats with grants_spells happen to need exactly one recharge shape for their whole choice grant, so `__choice` isn't per-spell the way `fixed` entries are). `{at_will: true}` means genuinely unlimited — diffLevelUp stamps neither uses_max nor uses_current for that spell, only a display flag, since a real counter would be actively wrong (an 'at will' spell never runs out). Everything else gets uses_max/uses_current/recharge stamped directly onto the character.spells[] entry, spent/restored via the SPEND_SPELL_USE/RESTORE_SPELL_USE store mutations (mirrors the existing SPEND_FEATURE_USE/RESTORE_FEATURE_USE pattern feature uses already had) and reset by LONG_REST/SHORT_REST the same way feature uses already are. free_cast_note stays as the human-readable summary (still used for display where the structured version isn't needed); free_cast is what actually drives the tracked charge count — was free_cast_note alone before this pass, which is exactly why the 7 feats with it had a real charge to track but nothing anywhere that could.",
+    "choices": "array of {id, label, type, count, options?, spell_filter?} — a GENERIC extra-choice schema (beyond ability score) for feats that hand the player a pick. type is one of: 'skill' | 'tool' | 'skill_or_tool' | 'language' | 'damage_type' | 'weapon' | 'maneuver' | 'fighting_style' | 'class_list' | 'spell_choice' (a real class/level/tag-filtered spell-list dropdown, populated live by LevelUpTool.vue via POST /api/engine/feat-spell-choices — see spell_filter below; replaced the old free-text 'spell_text' type 2026-09-22, since a free-text field can never guarantee the player types back a name that matches this project's actual spell catalog, and every character built with one needed manual re-wiring after the fact) | 'text' (fully free, e.g. an Eldritch Invocation name — genuinely no catalog to pick from, unlike a spell). 'options' is a concrete array for the enumerable types; omitted for 'spell_choice' (fetched)/'text' (no catalog). LevelUpTool.vue renders `count` pickers per choice, generically — no per-feat special-casing. spell_filter (only on 'spell_choice' entries): {fixedClass?: name} | {classFromChoiceId: sibling choice's id, whose picked value names the class} — exactly one of these two, since the class is either baked into the feat (Wood Elf Magic → always Druid) or itself a player pick (Magic Initiate's own 'class' choice) — plus any of cantripsOnly / level (exact spell level) / ritualOnly / attackRollOnly / schools (array, 'any'-pool only) / pool:'any' (skips the class filter entirely — Fey Touched/Shadow Touched's 'any spellbook' grants, which aren't tied to one class's list at all).",
     "stat_bonuses": "Copied verbatim onto the character's new feat feature entry when confirmed — same object shape src/utils/dnd_utils.js's resolveStats() already reads off character.features[].stat_bonuses for AC/saves/skills/passive perception/initiative. ONLY used for a flat, UNCONDITIONAL numeric bonus (e.g. Alert's +5 initiative, Observant's +5 passive Perception) — deliberately omitted for anything conditional on loadout/stance (Dual Wielder's +1 AC only while dual-wielding, Medium Armor Master's AC cap change) since the existing stat_bonuses mechanism has no notion of 'only when X' and adding it unconditionally would be a real correctness bug, not a discoverability win.",
     "grants_saving_throw_proficiency": "true only for Resilient — diffLevelUp adds the ability chosen via ability_score_increase.choice_of to patch.saving_throws.",
     "hp_bonus_per_level": "Tough only (2). Recorded for discoverability/tooltip text ONLY — deliberately NOT auto-applied to patch.hp_max. RAW is 'immediately +2× current level, then +2 more per level thereafter' — the retroactive lump sum on the level Tough is taken can't be expressed as a simple per-level-up delta without double-counting on every future level-up preview, and this project's existing scope boundary for feats (asiFeat.js's own comment) already draws the line at ability scores + known-spell counts for auto-application. Flagged, not guessed at."
@@ -179,20 +179,23 @@
       {
         "id": "cantrip_1",
         "label": "Cantrip 1",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": { "classFromChoiceId": "class", "cantripsOnly": true }
       },
       {
         "id": "cantrip_2",
         "label": "Cantrip 2",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": { "classFromChoiceId": "class", "cantripsOnly": true }
       },
       {
         "id": "spell_1",
         "label": "1st-level spell (once per long rest without a slot)",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": { "classFromChoiceId": "class", "level": 1 }
       }
     ]
   },
@@ -293,14 +296,24 @@
       {
         "id": "ritual_1",
         "label": "1st-level ritual spell 1 (must have the ritual tag)",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": {
+          "classFromChoiceId": "class",
+          "level": 1,
+          "ritualOnly": true
+        }
       },
       {
         "id": "ritual_2",
         "label": "1st-level ritual spell 2 (must have the ritual tag)",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": {
+          "classFromChoiceId": "class",
+          "level": 1,
+          "ritualOnly": true
+        }
       }
     ]
   },
@@ -404,8 +417,13 @@
       {
         "id": "cantrip",
         "label": "Attack-roll cantrip from chosen class",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": {
+          "classFromChoiceId": "class",
+          "cantripsOnly": true,
+          "attackRollOnly": true
+        }
       }
     ]
   },
@@ -487,14 +505,16 @@
       {
         "id": "cantrip",
         "label": "Artificer cantrip",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": { "fixedClass": "Artificer", "cantripsOnly": true }
       },
       {
         "id": "spell",
         "label": "1st-level Artificer spell (once per long rest without a slot)",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": { "fixedClass": "Artificer", "level": 1 }
       },
       {
         "id": "tool",
@@ -586,6 +606,10 @@
         "count": 1,
         "level": 1,
         "schools": ["Divination", "Enchantment"]
+      },
+      "free_cast": {
+        "Misty Step": { "count": 1, "recharge": "long_rest" },
+        "__choice": { "count": 1, "recharge": "long_rest" }
       }
     },
     "casting_ability": "the ability increased by this feat",
@@ -615,6 +639,10 @@
         "count": 1,
         "level": 1,
         "schools": ["Illusion", "Necromancy"]
+      },
+      "free_cast": {
+        "Invisibility": { "count": 1, "recharge": "long_rest" },
+        "__choice": { "count": 1, "recharge": "long_rest" }
       }
     },
     "casting_ability": "the ability increased by this feat",
@@ -732,7 +760,10 @@
     },
     "grants_spells": {
       "fixed": ["Mage Hand"],
-      "casting_ability": "the ability increased by this feat"
+      "casting_ability": "the ability increased by this feat",
+      "free_cast": {
+        "Mage Hand": { "at_will": true }
+      }
     },
     "free_cast_note": "Mage Hand is cast at will, without verbal or somatic components; the hand can be made invisible; if you already knew Mage Hand its range increases by 30 ft"
   },
@@ -746,7 +777,10 @@
     },
     "grants_spells": {
       "fixed": ["Detect Thoughts"],
-      "casting_ability": "the ability increased by this feat"
+      "casting_ability": "the ability increased by this feat",
+      "free_cast": {
+        "Detect Thoughts": { "count": 1, "recharge": "long_rest" }
+      }
     },
     "free_cast_note": "Detect Thoughts can be cast once per long rest without a slot or components; can also be cast with a 2nd-level-or-higher slot"
   },
@@ -779,7 +813,12 @@
     "prerequisite": { "type": "genus", "genera": ["Drow", "Dark Elf"] },
     "grants_spells": {
       "fixed": ["Detect Magic", "Levitate", "Dispel Magic"],
-      "casting_ability": "cha"
+      "casting_ability": "cha",
+      "free_cast": {
+        "Detect Magic": { "at_will": true },
+        "Levitate": { "count": 1, "recharge": "long_rest" },
+        "Dispel Magic": { "count": 1, "recharge": "long_rest" }
+      }
     },
     "free_cast_note": "Detect Magic can be cast at will, without a spell slot; Levitate and Dispel Magic can each be cast once per long rest without a slot"
   },
@@ -805,7 +844,10 @@
     "ability_score_increase": { "choice_of": ["int", "cha"], "amount": 1 },
     "grants_spells": {
       "fixed": ["Misty Step"],
-      "casting_ability": "int"
+      "casting_ability": "int",
+      "free_cast": {
+        "Misty Step": { "count": 1, "recharge": "short_rest" }
+      }
     },
     "free_cast_note": "Misty Step can be cast once without a spell slot, regaining the ability on a short or long rest; also learns to speak/read/write Sylvan"
   },
@@ -977,14 +1019,19 @@
     "prerequisite": { "type": "genus", "genera": ["Wood Elf"] },
     "grants_spells": {
       "fixed": ["Longstrider", "Pass without Trace"],
-      "casting_ability": "wis"
+      "casting_ability": "wis",
+      "free_cast": {
+        "Longstrider": { "count": 1, "recharge": "long_rest" },
+        "Pass without Trace": { "count": 1, "recharge": "long_rest" }
+      }
     },
     "choices": [
       {
         "id": "cantrip",
         "label": "Druid cantrip",
-        "type": "spell_text",
-        "count": 1
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": { "fixedClass": "Druid", "cantripsOnly": true }
       }
     ],
     "free_cast_note": "Longstrider and Pass without Trace can each be cast once per long rest without a spell slot"

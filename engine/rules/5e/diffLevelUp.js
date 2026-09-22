@@ -24,7 +24,7 @@ const { listManeuvers, loadManeuver } = require('./maneuvers')
 const { listOneHandedMeleeWeapons } = require('./weaponTypes')
 const { listLanguages } = require('./languages')
 const { findSpellRecord, listSpellsForClass } = require('./spellLists')
-const { loadSkill } = require('./skills')
+const { loadSkill, listSkills } = require('./skills')
 const { traitsFor, loadSpecies } = require('./species')
 const multiclassProficiencies = require('../../data/5e/multiclass-proficiencies.json')
 const favoredEnemies = require('../../data/5e/favored-enemies.json')
@@ -256,6 +256,11 @@ function diffLevelUp(
     // moment this block runs, same as Bladesinger's fixed grants).
     masterOfIntrigueGamingSetChoice = null,
     masterOfIntrigueLanguageChoices = null,
+    // bonusProficienciesChoice: [skill, skill, skill] — resolves Bard
+    // College of Lore's Bonus Proficiencies (3rd): "you gain proficiency
+    // with three skills of your choice." Plain proficiency, not Expertise —
+    // a separate feature from base Bard's own Expertise picks.
+    bonusProficienciesChoice = null,
   } = {}
 ) {
   const classIndex = (character.classes || []).findIndex(
@@ -392,7 +397,7 @@ function diffLevelUp(
   const featSavingThrowProfs = [] // ability keys to add to patch.saving_throws
   const extraSavingThrowProfs = [] // same, but from a non-feat source (Iron Mind below)
   const extraArmorProficiencies = [] // Bladesinger's fixed light-armor grant, below
-  const extraSkillProficiencies = [] // Bladesinger's conditional Performance grant, below
+  const extraSkillProficiencies = [] // Bladesinger's conditional Performance grant + College of Lore's Bonus Proficiencies, below
   const extraWeaponProficiencies = [] // Bladesinger's chosen weapon type, below
   const extraToolProficiencies = [] // Master of Intrigue's kits/gaming set, below
   const extraLanguages = [] // Master of Intrigue's chosen languages, below
@@ -443,6 +448,25 @@ function diffLevelUp(
         featSavingThrowProfs.push(feature.grants_saving_throw_proficiency)
       }
       if (feature.grants_spells) {
+        // free_cast (see feats.json's own _schema.grants_spells doc): for
+        // the handful of feats where the granted spell(s) genuinely don't
+        // cost a spell slot to cast (as opposed to merely not counting
+        // against known-spell totals, which EVERY featureGranted spell
+        // already gets via featureGranted: true) — stamps real
+        // uses_max/uses_current/recharge onto the spell entry itself,
+        // spent/restored via SPEND_SPELL_USE/RESTORE_SPELL_USE (mirrors
+        // SPEND_FEATURE_USE) and reset by LONG_REST/SHORT_REST the same way
+        // feature uses already are. `at_will: true` stamps neither — an
+        // unlimited spell has no meaningful counter to track.
+        const freeCastFor = (freeCast) => {
+          if (!freeCast) return {}
+          if (freeCast.at_will) return { freeCastAtWill: true }
+          return {
+            uses_max: freeCast.count,
+            uses_current: freeCast.count,
+            recharge: freeCast.recharge,
+          }
+        }
         for (const spellName of feature.grants_spells.fixed ?? []) {
           extraGrantedSpells.push({
             name: spellName,
@@ -450,6 +474,7 @@ function diffLevelUp(
             prepared: true,
             featureGranted: true,
             _source: feature.name,
+            ...freeCastFor(feature.grants_spells.free_cast?.[spellName]),
           })
         }
         // The "choice" half of grants_spells (e.g. Fey Touched's 1st-level
@@ -466,6 +491,7 @@ function diffLevelUp(
             prepared: true,
             featureGranted: true,
             _source: feature.name,
+            ...freeCastFor(feature.grants_spells.free_cast?.__choice),
           })
         }
       }
@@ -514,6 +540,55 @@ function diffLevelUp(
       })
       existingByLevel.add(`${n}@${group.level}`)
     })
+  }
+
+  // ── Caster Prestidigitation (house rule, house_rules.json) ──────────────
+  // "All arcane and divine casters receive a free, flavor-appropriate form
+  // of Prestidigitation that does not count against their spell allotment
+  // ... always prepared and cannot be removed." No subclass/level gating at
+  // all (unlike Domain/Oath/Circle spells) — every character who HAS one of
+  // these 5 base classes gets the matching cantrip the moment this runs, so
+  // this checks class membership directly rather than going through the
+  // newFeatures/features_by_level machinery every other grant here uses.
+  // Modeled as a FEATURE with spells_granted (spellUtils.js step 3 — same
+  // convention as Fey Touched/Shadow Touched/Drow Magic per that function's
+  // own doc comment), not a direct character.spells[] entry — originally
+  // built the spells[] way, then moved here 2026-09-22 once it turned out a
+  // Wizard on the shared spellbook (spellbook_id) has their OWN
+  // character.spells[] replaced wholesale for display (see spellUtils.js's
+  // header comment), which silently swallowed this grant for Lenn/Kessara/
+  // Lyria specifically. A features[].spells_granted entry is untouched by
+  // that override — it's resolved as its own separate step regardless of
+  // spellbook_id — so this now reaches every caster the same way. Also
+  // means "cannot be removed" is automatic (there's no per-feature "remove"
+  // UI action the way a spells[] entry might get one), and no per-spell
+  // state (uses_max/charges) is needed here the way Fey Touched's free
+  // casts need — this is a pure "you always know this," nothing to track.
+  const CASTER_PRESTIDIGITATION_BY_CLASS = {
+    sorcerer: 'Prestidigitation',
+    wizard: 'Prestidigitation',
+    druid: 'Druidcraft',
+    cleric: 'Divine Prestidigitation',
+    warlock: 'Dark Prestidigitation',
+  }
+  const casterCantrip =
+    CASTER_PRESTIDIGITATION_BY_CLASS[normalizeName(classEntry.name)]
+  if (casterCantrip) {
+    const alreadyHas = (character.features || []).some((f) =>
+      (f.spells_granted || []).some(
+        (n) => normalizeName(n) === normalizeName(casterCantrip)
+      )
+    )
+    if (!alreadyHas) {
+      newFeatures.push({
+        name: 'Caster Prestidigitation',
+        id: null,
+        type: 'feature',
+        level_gained: 1,
+        spells_granted: [casterCantrip],
+        _source: 'Caster Prestidigitation (house rule)',
+      })
+    }
   }
 
   // ── Fighting Style — Fighter (1st)/Paladin (2nd)/Ranger (2nd) ────────
@@ -1607,6 +1682,69 @@ function diffLevelUp(
     }
   }
 
+  // ── Bonus Proficiencies — Bard College of Lore (3rd) ────────────────────
+  // Real RAW (features.json, "bonus-proficiencies", real SRD content — not
+  // a published_features.json/homebrew entry, so no pub_ id prefix): "You
+  // gain proficiency with three skills of your choice." A plain proficiency
+  // grant, not Expertise — a genuinely separate feature from base Bard's
+  // own Expertise picks (2nd/9th), and easy to conflate with them since
+  // both are skill-related Bard choices landing around the same levels.
+  if (
+    normalizeName(classEntry.name) === 'bard' &&
+    classEntry.subclass &&
+    normalizeName(classEntry.subclass) === 'college of lore'
+  ) {
+    const genericIdx = newFeatures.findIndex(
+      (f) => f.id === 'bonus-proficiencies'
+    )
+    if (genericIdx !== -1) {
+      const alreadyChosen = (character.features || []).some(
+        (f) => f.type === 'bonusProficiencies'
+      )
+      if (!alreadyChosen) {
+        const alreadyProficient = new Set(character.skill_proficiencies || [])
+        const validOptions = listSkills()
+          .map((s) => s.name)
+          .filter((s) => !alreadyProficient.has(s))
+        if (bonusProficienciesChoice) {
+          const picks = Array.isArray(bonusProficienciesChoice)
+            ? bonusProficienciesChoice
+            : [bonusProficienciesChoice]
+          if (picks.length !== 3) {
+            notes.push(
+              `Bonus Proficiencies needs exactly 3 picks (got ${picks.length}) — recorded as given.`
+            )
+          }
+          if (new Set(picks).size !== picks.length) {
+            notes.push(
+              `Bonus Proficiencies needs three DIFFERENT skills — a duplicate was picked, recorded anyway.`
+            )
+          }
+          for (const pick of picks) {
+            if (!validOptions.includes(pick) && !alreadyProficient.has(pick)) {
+              notes.push(
+                `"${pick}" isn't a real skill — recorded as chosen anyway.`
+              )
+            }
+          }
+          extraSkillProficiencies.push(...picks)
+          newFeatures[genericIdx] = {
+            ...newFeatures[genericIdx],
+            name: `Bonus Proficiencies: ${picks.join(', ')}`,
+            type: 'bonusProficiencies',
+          }
+        } else {
+          pendingChoices.push({
+            type: 'bonusProficienciesChoice',
+            level: newFeatures[genericIdx].level_gained,
+            count: 3,
+            options: validOptions,
+          })
+        }
+      }
+    }
+  }
+
   // Feat-granted feature entries (built above from resolveAsiOrFeat) go
   // through the SAME existingByLevel/existingNoLevel dedup as class-table
   // features — a re-run preview shouldn't double them either.
@@ -1633,6 +1771,16 @@ function diffLevelUp(
       const n = normalizeName(featureName)
       if (existingByLevel.has(`${n}@${tier.level}`) || existingNoLevel.has(n))
         continue
+      // tier.uses (e.g. "1/long_rest") — these tiered spells live on the
+      // FEATURE entry (spells_granted), not their own character.spells[]
+      // row, so their real "doesn't cost a slot" charge is tracked the same
+      // way any other limited-use feature already is: uses_max/uses_current/
+      // recharge on this same entry, spent/restored via the existing
+      // SPEND_FEATURE_USE/RESTORE_FEATURE_USE — no new mechanism needed
+      // here, unlike feat-granted spells (see grants_spells.free_cast above)
+      // which DO get their own spells[] row and need the newer
+      // SPEND_SPELL_USE/RESTORE_SPELL_USE pair instead.
+      const usesMatch = /^(\d+)\/(long_rest|short_rest)$/.exec(tier.uses ?? '')
       newFeatures.push({
         name: featureName,
         id: null,
@@ -1640,6 +1788,13 @@ function diffLevelUp(
         level_gained: tier.level,
         spells_granted: [tier.spell],
         _source: trait.name,
+        ...(usesMatch
+          ? {
+              uses_max: Number(usesMatch[1]),
+              uses_current: Number(usesMatch[1]),
+              recharge: usesMatch[2],
+            }
+          : {}),
       })
       existingByLevel.add(`${n}@${tier.level}`)
     }

@@ -89,10 +89,19 @@ test('diffLevelUp: new features are added, but a feature the character already h
     toLevel: 6,
     hpMethod: 'average',
   })
-  // patch.features is only present when there's something NEW to add — since
-  // the only level-6 feature (Potent Cantrip) is already on the sheet, the
-  // patch should omit `features` entirely rather than re-add a duplicate.
-  assert.equal(result.patch.features, undefined)
+  // patch.features is the FULL merged list (existing + new), not a diff —
+  // so it's no longer simply undefined: this Wizard fixture doesn't already
+  // have the Caster Prestidigitation house-rule feature (unrelated to
+  // Potent Cantrip's own dedup, which this test is actually about), so that
+  // gets added on top of the pre-seeded Potent Cantrip. Assert Potent
+  // Cantrip appears exactly ONCE (the real thing this test guards), not
+  // that patch.features is empty outright.
+  const names = (result.patch.features || []).map((f) => f.name)
+  assert.deepEqual(
+    names.filter((n) => n === 'Potent Cantrip'),
+    ['Potent Cantrip']
+  )
+  assert.ok(names.includes('Caster Prestidigitation'))
 })
 
 test('diffLevelUp: a genuinely new feature IS added when the character does not already have it', () => {
@@ -108,10 +117,12 @@ test('diffLevelUp: a genuinely new feature IS added when the character does not 
   })
   const names = (result.patch.features || []).map((f) => f.name)
   assert.ok(names.includes('Potent Cantrip'))
-  assert.deepEqual(
-    result.newFeatures.map((f) => f.name),
-    ['Potent Cantrip']
-  )
+  // Also picks up Caster Prestidigitation (house rule, unrelated to Potent
+  // Cantrip) since this Wizard fixture starts with an empty features[].
+  assert.deepEqual(result.newFeatures.map((f) => f.name).sort(), [
+    'Caster Prestidigitation',
+    'Potent Cantrip',
+  ])
 })
 
 // Real bug caught auditing a live character (Siv, Rogue 9): the dedup above

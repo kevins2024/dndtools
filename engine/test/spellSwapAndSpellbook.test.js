@@ -81,7 +81,12 @@ test('diffLevelUp: a known-style caster can optionally swap one known spell for 
 test("diffLevelUp: a spell swap is entirely optional — omitting it doesn't block the level-up or touch spells", () => {
   const character = baseSorcerer()
   const result = diffLevelUp(character, { className: 'Sorcerer', toLevel: 4 })
+  // Caster Prestidigitation lands in patch.features (spells_granted), not
+  // patch.spells, so this Sorcerer fixture's spells stay untouched here.
   assert.equal(result.patch.spells, undefined)
+  assert.ok(
+    result.newFeatures.some((f) => f.name === 'Caster Prestidigitation')
+  )
   assert.ok(
     !result.pendingChoices.some((p) => p.type === 'spellSwap'),
     'a swap must never be a pendingChoice — it is optional, not required'
@@ -95,6 +100,8 @@ test("diffLevelUp: swapping a spell the character doesn't actually know is rejec
     toLevel: 4,
     spellSwap: { from: 'Fireball', to: 'Mirror Image' },
   })
+  // Same Caster Prestidigitation note as the test above — the rejected
+  // swap itself still touches nothing.
   assert.equal(result.patch.spells, undefined)
   assert.ok(
     result.warnings.some((w) => w.includes('Fireball') && w.includes("isn't"))

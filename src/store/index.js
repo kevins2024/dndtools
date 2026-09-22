@@ -603,6 +603,15 @@ export default new Vuex.Store({
               : f
           )
         }
+        // Spell free-cast uses (Fey Touched etc. — see SPEND_SPELL_USE) —
+        // same long-rest-refills-both-recharge-types rule as feature uses.
+        if (char.spells) {
+          updated.spells = char.spells.map((s) =>
+            s.uses_max != null && s.recharge
+              ? { ...s, uses_current: s.uses_max }
+              : s
+          )
+        }
         // Generic resources (sorcery points, etc.) — recharge on long rest
         if (char.resources) {
           updated.resources = char.resources.map((r) =>
@@ -685,6 +694,15 @@ export default new Vuex.Store({
             f.uses_max != null && f.recharge === 'short_rest'
               ? { ...f, uses_current: f.uses_max }
               : f
+          )
+        // Reset short-rest spell free-cast uses (e.g. Fey Teleportation's
+        // Misty Step — the one case among these that recharges on a SHORT
+        // rest, not just long)
+        if (char.spells)
+          updated.spells = char.spells.map((s) =>
+            s.uses_max != null && s.recharge === 'short_rest'
+              ? { ...s, uses_current: s.uses_max }
+              : s
           )
         // Pact magic (short rest)
         if (char.pact_magic?.recharge === 'short_rest')
@@ -869,6 +887,58 @@ export default new Vuex.Store({
                   ),
                 }
               : f
+          ),
+        }
+      })
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    // Same idea as SPEND_FEATURE_USE/RESTORE_FEATURE_USE, for a spell's own
+    // free-cast charge (character.spells[].uses_max/uses_current/recharge —
+    // see diffLevelUp.js's grants_spells.free_cast doc) rather than a
+    // feature's. A real, separate tracking need from featureGranted: true —
+    // that flag only ever meant "doesn't count against known-spell totals";
+    // most featureGranted spells (a subclass's bonus spells, a domain/oath
+    // spell) still cost a normal slot to cast, they just don't need a
+    // charge counter because there's no limited-use cast to track. Matched
+    // by name, same as SPEND_FEATURE_USE — spell names are already this
+    // app's real key for a character's spell list (see WeaponTable.vue's id
+    // migration note for why a shared FEATURE list needed id-based keys
+    // instead; spells don't have that duplicate-name problem in practice).
+    SPEND_SPELL_USE(state, { characterName, table = 'characters', spellName }) {
+      state[table] = state[table].map((c) => {
+        if (c.name !== characterName || !c.spells) return c
+        return {
+          ...c,
+          spells: c.spells.map((s) =>
+            s.name === spellName && s.uses_max != null
+              ? {
+                  ...s,
+                  uses_current: Math.max(0, (s.uses_current ?? s.uses_max) - 1),
+                }
+              : s
+          ),
+        }
+      })
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    RESTORE_SPELL_USE(
+      state,
+      { characterName, table = 'characters', spellName }
+    ) {
+      state[table] = state[table].map((c) => {
+        if (c.name !== characterName || !c.spells) return c
+        return {
+          ...c,
+          spells: c.spells.map((s) =>
+            s.name === spellName && s.uses_max != null
+              ? {
+                  ...s,
+                  uses_current: Math.min(
+                    s.uses_max,
+                    (s.uses_current ?? s.uses_max) + 1
+                  ),
+                }
+              : s
           ),
         }
       })

@@ -500,11 +500,7 @@
                     class="lut-feat-choice"
                   >
                     <div class="lut-choice-label">{{ choice.label }}</div>
-                    <template
-                      v-if="
-                        choice.type === 'spell_text' || choice.type === 'text'
-                      "
-                    >
+                    <template v-if="choice.type === 'text'">
                       <input
                         v-for="i in choice.count"
                         :key="choice.id + '-' + i"
@@ -522,10 +518,21 @@
                         :key="choice.id + '-' + i"
                         v-model="featChoiceValues[choice.id][i - 1]"
                         class="lut-select"
+                        :disabled="
+                          choice.type === 'spell_choice' &&
+                          !choice.options.length
+                        "
                         @change="submitFeat"
                       >
                         <option :value="null" disabled>
-                          {{ choice.count > 1 ? 'Pick ' + i : 'Choose…' }}
+                          {{
+                            choice.type === 'spell_choice' &&
+                            !choice.options.length
+                              ? 'Pick a class first…'
+                              : choice.count > 1
+                              ? 'Pick ' + i
+                              : 'Choose…'
+                          }}
                         </option>
                         <option v-for="o in choice.options" :key="o" :value="o">
                           {{ o }}
@@ -940,39 +947,37 @@
                 </div>
                 <ul v-if="magicalSecretsTab === 'spells'" class="lut-pick-list">
                   <li v-for="o in magicalSecretsSpellOptions" :key="o.name">
-                    <label>
-                      <input
-                        type="checkbox"
-                        :checked="magicalSecretsDraft.includes(o.name)"
-                        :disabled="
-                          !magicalSecretsDraft.includes(o.name) &&
-                          magicalSecretsDraft.length >= 2
-                        "
-                        @change="togglePick('magicalSecretsDraft', o.name, 2)"
-                      />
-                      <span
-                        >{{ o.name }}
-                        <span class="lut-note-inline"
-                          >(lvl {{ o.level }})</span
-                        ></span
-                      >
-                    </label>
+                    <input
+                      type="checkbox"
+                      :checked="magicalSecretsDraft.includes(o.name)"
+                      :disabled="
+                        !magicalSecretsDraft.includes(o.name) &&
+                        magicalSecretsDraft.length >= 2
+                      "
+                      @change="togglePick('magicalSecretsDraft', o.name, 2)"
+                    />
+                    <span class="lut-pick-name" @click="inspectSpell(o)"
+                      >{{ o.name }}
+                      <span class="lut-note-inline"
+                        >(lvl {{ o.level }})</span
+                      ></span
+                    >
                   </li>
                 </ul>
                 <ul v-else class="lut-pick-list">
                   <li v-for="o in magicalSecretsCantripOptions" :key="o.name">
-                    <label>
-                      <input
-                        type="checkbox"
-                        :checked="magicalSecretsDraft.includes(o.name)"
-                        :disabled="
-                          !magicalSecretsDraft.includes(o.name) &&
-                          magicalSecretsDraft.length >= 2
-                        "
-                        @change="togglePick('magicalSecretsDraft', o.name, 2)"
-                      />
-                      <span>{{ o.name }}</span>
-                    </label>
+                    <input
+                      type="checkbox"
+                      :checked="magicalSecretsDraft.includes(o.name)"
+                      :disabled="
+                        !magicalSecretsDraft.includes(o.name) &&
+                        magicalSecretsDraft.length >= 2
+                      "
+                      @change="togglePick('magicalSecretsDraft', o.name, 2)"
+                    />
+                    <span class="lut-pick-name" @click="inspectSpell(o)">{{
+                      o.name
+                    }}</span>
                   </li>
                 </ul>
               </div>
@@ -1351,6 +1356,50 @@
               </div>
             </div>
 
+            <!-- ── Bonus Proficiencies (Bard College of Lore 3rd) — pick 3. ── -->
+            <div
+              v-if="
+                pendingBonusProficienciesChoice ||
+                bonusProficienciesDraft.length
+              "
+              class="lut-choice-card lut-choice-card--subclass"
+            >
+              <div class="lut-subclass-picker">
+                <div class="lut-choice-title">
+                  Level
+                  {{
+                    pendingBonusProficienciesChoice?.level ??
+                    bonusProficienciesChoiceLevel
+                  }}
+                  — Bonus Proficiencies ({{ bonusProficienciesDraft.length }}/3
+                  skills)
+                </div>
+                <ul class="lut-pick-list">
+                  <li
+                    v-for="o in pendingBonusProficienciesChoice?.options ?? []"
+                    :key="o"
+                  >
+                    <input
+                      type="checkbox"
+                      :checked="bonusProficienciesDraft.includes(o)"
+                      :disabled="
+                        !bonusProficienciesDraft.includes(o) &&
+                        bonusProficienciesDraft.length >= 3
+                      "
+                      @change="togglePick('bonusProficienciesDraft', o, 3)"
+                    />
+                    <span>{{ o }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div
+                v-if="bonusProficienciesDraft.length"
+                class="lut-subclass-summary"
+              >
+                <strong>{{ bonusProficienciesDraft.join(', ') }}</strong>
+              </div>
+            </div>
+
             <div
               v-if="
                 !pendingSubclassChoice &&
@@ -1396,7 +1445,9 @@
                 !pendingMasterOfIntrigueGamingSetChoice &&
                 !masterOfIntrigueGamingSetDraft &&
                 !pendingMasterOfIntrigueLanguageChoice &&
-                !masterOfIntrigueLanguagesDraft.length
+                !masterOfIntrigueLanguagesDraft.length &&
+                !pendingBonusProficienciesChoice &&
+                !bonusProficienciesDraft.length
               "
               class="lut-note"
             >
@@ -1912,10 +1963,16 @@ export default {
       showAllFeats: false,
       // choice.id -> array of picked values, length === choice.count. Reset
       // whenever featChoiceName changes. The reserved key
-      // __grantedSpellChoice holds the free-text pick for a feat's
-      // grants_spells.choice (Fey Touched/Shadow Touched-style) — always a
-      // single-element array, same shape as any other count:1 choice.
+      // __grantedSpellChoice holds the pick for a feat's grants_spells.choice
+      // (Fey Touched/Shadow Touched-style) — always a single-element array,
+      // same shape as any other count:1 choice.
       featChoiceValues: {},
+      // choice.id -> fetched eligible-spell-name array, for every
+      // 'spell_choice'-type entry in selectedFeatChoices. Populated by
+      // refreshFeatSpellOptions(), called from submitFeat() (so it re-runs
+      // whenever any choice value changes, including a class pick a spell
+      // choice depends on) and onFeatChoiceNameChange().
+      featSpellOptionsCache: {},
 
       // ── Eldritch Invocations (Warlock) ──
       invocationCatalog: [], // GET /api/engine/invocations, fetched once
@@ -2035,6 +2092,10 @@ export default {
       masterOfIntrigueGamingSetDraft: null,
       masterOfIntrigueLanguagesDraft: [],
       masterOfIntrigueChoiceLevel: null,
+      // Bonus Proficiencies (Bard College of Lore 3rd) — a 3-pick list, same
+      // togglePick shape as Expertise/Master of Intrigue's languages.
+      bonusProficienciesDraft: [],
+      bonusProficienciesChoiceLevel: null,
 
       // ── Pact of the Tome's bonus cantrips (3, any class list) ──
       bonusCantripOptions: [], // fetched from POST /api/engine/spell-choices with pool:'any'
@@ -2330,7 +2391,9 @@ export default {
         !!this.pendingMasterOfIntrigueGamingSetChoice ||
         !!this.masterOfIntrigueGamingSetDraft ||
         !!this.pendingMasterOfIntrigueLanguageChoice ||
-        this.masterOfIntrigueLanguagesDraft.length > 0
+        this.masterOfIntrigueLanguagesDraft.length > 0 ||
+        !!this.pendingBonusProficienciesChoice ||
+        this.bonusProficienciesDraft.length > 0
       return hasListedContent || hasPendingChoice
     },
     // Replaces the old fixed `steps` data array as the tab row's actual
@@ -2558,6 +2621,13 @@ export default {
         ) ?? null
       )
     },
+    pendingBonusProficienciesChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'bonusProficienciesChoice'
+        ) ?? null
+      )
+    },
     pendingBonusSpellChoice() {
       return (
         this.preview?.pendingChoices?.find(
@@ -2740,6 +2810,7 @@ export default {
         !this.pendingSignatureSpellsChoice &&
         !this.pendingMasterOfIntrigueGamingSetChoice &&
         !this.pendingMasterOfIntrigueLanguageChoice &&
+        !this.pendingBonusProficienciesChoice &&
         !this.levelCapExceeded
       )
     },
@@ -2776,18 +2847,34 @@ export default {
     // grants_spells.choice (Fey Touched/Shadow Touched-style — "one 1st
     // level Divination or Enchantment spell") since that's a catalog-level
     // concept (feats.json), not itself one of the generic choice entries.
+    // Every 'spell_choice' entry (native or synthesized) gets its `options`
+    // filled in here from featSpellOptionsCache — populated asynchronously
+    // by refreshFeatSpellOptions(), keyed by choice id. Empty until that
+    // fetch resolves, same "renders empty then fills in" pattern every
+    // other async picker in this file already uses.
     selectedFeatChoices() {
       const feat = this.selectedFeat
       if (!feat) return []
-      const choices = [...(feat.choices ?? [])]
+      const choices = (feat.choices ?? []).map((c) =>
+        c.type === 'spell_choice'
+          ? { ...c, options: this.featSpellOptionsCache[c.id] ?? [] }
+          : c
+      )
       const grantChoice = feat.grants_spells?.choice
       if (grantChoice) {
         const schools = (grantChoice.schools ?? []).join(' or ')
+        const id = '__grantedSpellChoice'
         choices.push({
-          id: '__grantedSpellChoice',
+          id,
           label: `Level ${grantChoice.level} ${schools} spell (of your choice)`,
-          type: 'spell_text',
+          type: 'spell_choice',
           count: grantChoice.count ?? 1,
+          spell_filter: {
+            level: grantChoice.level,
+            schools: grantChoice.schools ?? null,
+            pool: 'any',
+          },
+          options: this.featSpellOptionsCache[id] ?? [],
         })
       }
       return choices
@@ -3003,6 +3090,7 @@ export default {
       this.customFeatName = ''
       this.featAbilityChoice = null
       this.featChoiceValues = {}
+      this.featSpellOptionsCache = {}
       this.invocationDraftPicks = []
       this.invocationChoiceLevel = null
       this.showAllInvocations = false
@@ -3056,6 +3144,8 @@ export default {
       this.masterOfIntrigueGamingSetDraft = null
       this.masterOfIntrigueLanguagesDraft = []
       this.masterOfIntrigueChoiceLevel = null
+      this.bonusProficienciesDraft = []
+      this.bonusProficienciesChoiceLevel = null
       this.bonusCantripOptions = []
       this.bonusCantripSearch = ''
       this.bonusCantripDraftPicks = []
@@ -3346,8 +3436,63 @@ export default {
         values[choice.id] = new Array(choice.count).fill(null)
       }
       this.featChoiceValues = values
+      this.featSpellOptionsCache = {}
       this.featAbilityChoice = null
       this.submitFeat()
+    },
+
+    // Populates featSpellOptionsCache for every 'spell_choice'-type entry
+    // in selectedFeatChoices — fixedClass entries (Wood Elf Magic,
+    // Artificer Initiate, Fey Touched/Shadow Touched's schools-filtered
+    // "any spellbook" grant) resolve immediately; classFromChoiceId entries
+    // (Magic Initiate, Ritual Caster, Spell Sniper) need that sibling
+    // choice's value first and clear to [] until it's picked. Called from
+    // submitFeat() so it re-runs on every choice change, including the
+    // class pick these depend on — same trigger point that already existed
+    // for submitting the feat itself, just reused rather than adding a new
+    // watcher on top of it.
+    async refreshFeatSpellOptions() {
+      const spellChoices = this.selectedFeatChoices.filter(
+        (c) => c.type === 'spell_choice'
+      )
+      await Promise.all(
+        spellChoices.map(async (choice) => {
+          const filter = choice.spell_filter ?? {}
+          const className =
+            filter.fixedClass ??
+            (filter.classFromChoiceId
+              ? this.featChoiceValues[filter.classFromChoiceId]?.[0]
+              : null)
+          const needsClass = !filter.fixedClass && !filter.pool
+          if (needsClass && !className) {
+            this.$set(this.featSpellOptionsCache, choice.id, [])
+            return
+          }
+          try {
+            const res = await fetch('/api/engine/feat-spell-choices', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                character: this.draftCharacter,
+                className: className ?? null,
+                level: filter.level ?? null,
+                cantripsOnly: Boolean(filter.cantripsOnly),
+                schools: filter.schools ?? null,
+                ritualOnly: Boolean(filter.ritualOnly),
+                attackRollOnly: Boolean(filter.attackRollOnly),
+              }),
+            })
+            const data = await res.json()
+            this.$set(
+              this.featSpellOptionsCache,
+              choice.id,
+              res.ok ? (data.options ?? []).map((s) => s.name) : []
+            )
+          } catch {
+            this.$set(this.featSpellOptionsCache, choice.id, [])
+          }
+        })
+      )
     },
 
     // The subclass <select> only updates subclassChoiceDraft by itself —
@@ -3459,6 +3604,10 @@ export default {
             masterOfIntrigueLanguageChoices:
               this.masterOfIntrigueLanguagesDraft.length === 2
                 ? this.masterOfIntrigueLanguagesDraft
+                : null,
+            bonusProficienciesChoice:
+              this.bonusProficienciesDraft.length === 3
+                ? this.bonusProficienciesDraft
                 : null,
           }),
         })
@@ -3658,6 +3807,13 @@ export default {
           ).level
         }
 
+        const bonusProficienciesChoice = data.pendingChoices?.find(
+          (p) => p.type === 'bonusProficienciesChoice'
+        )
+        if (bonusProficienciesChoice) {
+          this.bonusProficienciesChoiceLevel = bonusProficienciesChoice.level
+        }
+
         const bonusSpellChoice = data.pendingChoices?.find(
           (p) => p.type === 'bonusSpellChoice'
         )
@@ -3783,6 +3939,7 @@ export default {
       this.featChoiceName = null
       this.featAbilityChoice = null
       this.featChoiceValues = {}
+      this.featSpellOptionsCache = {}
       this.runPreview()
     },
 
@@ -3822,6 +3979,11 @@ export default {
           ? this.customFeatName.trim()
           : this.featChoiceName
       if (!featName) return
+      // Fire-and-forget: re-derives featSpellOptionsCache for any
+      // 'spell_choice' entries (including ones whose class pick just
+      // changed) on every call, so the picker(s) below stay current even
+      // though this function itself returns synchronously.
+      this.refreshFeatSpellOptions()
       // A feat needing a choice among multiple abilities (e.g. Fey Touched:
       // int/wis/cha) isn't resolved yet just by picking the feat name —
       // wait for that second pick before sending anything to the engine.

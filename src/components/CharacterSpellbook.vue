@@ -174,6 +174,43 @@
             :title="spell._source"
             >I</span
           >
+          <!-- Free-cast (doesn't consume a spell slot) — a real, separate
+               fact from featureGranted's "F" badge above, which only ever
+               meant "doesn't count against known-spell totals." Most
+               featureGranted spells (a subclass's own bonus spells, a
+               domain/oath spell) still cost a normal slot to cast; only
+               these (Fey Touched etc., or a species' tiered spell) don't,
+               and only they carry uses_max/freeCastAtWill at all. Shown
+               alongside the F badge, not instead of it, since both facts
+               can be true of the same spell at once. -->
+          <span
+            v-if="spell.freeCastAtWill"
+            class="sb-badge sb-badge--freecast"
+            title="Cast at will — no spell slot needed"
+            >∞</span
+          >
+          <template v-else-if="spell.uses_max != null">
+            <button
+              class="sb-freecast-pip has-tip"
+              :disabled="(spell.uses_current ?? spell.uses_max) <= 0"
+              :title="`Free cast — no spell slot needed. ${
+                spell.uses_current ?? spell.uses_max
+              } of ${spell.uses_max} remaining, recharges ${$dnd.rechargeLabel(
+                spell.recharge
+              )}. Click to spend.`"
+              @click.stop="spendSpellUse(spell)"
+            >
+              {{ spell.uses_current ?? spell.uses_max }}/{{ spell.uses_max }}
+            </button>
+            <button
+              v-if="(spell.uses_current ?? spell.uses_max) < spell.uses_max"
+              class="sb-freecast-restore"
+              title="Restore one free cast (undo)"
+              @click.stop="restoreSpellUse(spell)"
+            >
+              +1
+            </button>
+          </template>
           <span
             v-if="spellMeta[spell.name] && spellMeta[spell.name].concentration"
             class="sb-badge sb-badge--conc"
@@ -705,6 +742,24 @@ export default {
       return map[school.toLowerCase()] ?? school.slice(0, 3)
     },
 
+    // A free-cast spell's own charge (SPEND_SPELL_USE/RESTORE_SPELL_USE —
+    // mirrors FeaturePillsPanel's spendUse/restoreUse for feature uses).
+    // Deliberately separate from togglePrepared below: this doesn't affect
+    // whether the spell is prepared at all, only whether THIS specific free
+    // cast is still available.
+    spendSpellUse(spell) {
+      if ((spell.uses_current ?? spell.uses_max) <= 0) return
+      this.$store.commit('SPEND_SPELL_USE', {
+        characterName: this.character.name,
+        spellName: spell.name,
+      })
+    },
+    restoreSpellUse(spell) {
+      this.$store.commit('RESTORE_SPELL_USE', {
+        characterName: this.character.name,
+        spellName: spell.name,
+      })
+    },
     togglePrepared(spell) {
       if (!this.canToggle(spell)) return
       // Wizard with a spellbook_id: "known" lives on the (possibly shared)
@@ -1177,6 +1232,37 @@ export default {
 .sb-badge--item {
   border-color: #bb7733;
   color: #bb7733;
+}
+.sb-badge--freecast {
+  border-color: #44bbaa;
+  color: #44bbaa;
+}
+.sb-freecast-pip,
+.sb-freecast-restore {
+  flex-shrink: 0;
+  margin-left: 0.2em;
+  font-size: 0.7em;
+  line-height: 1;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  border: 1px solid #44bbaa;
+  background: none;
+  color: #44bbaa;
+  cursor: pointer;
+}
+.sb-freecast-pip:hover:not(:disabled),
+.sb-freecast-restore:hover {
+  background: #44bbaa;
+  color: var(--color-bg);
+}
+.sb-freecast-pip:disabled {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
+  cursor: not-allowed;
+}
+.sb-freecast-restore {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
 }
 .sb-badge--conc {
   border-color: #8866dd;

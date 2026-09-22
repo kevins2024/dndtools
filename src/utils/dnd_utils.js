@@ -731,7 +731,21 @@ export const dnd = {
       itemGrantsProficiency ||
       (character.skill_proficiencies ?? []).includes(skillName)
     const hasExpertise = (character.skill_expertise ?? []).includes(skillName)
-    const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
+    // Jack of All Trades (Bard, 2nd level): half proficiency bonus, rounded
+    // down, on any ability check that doesn't already include proficiency
+    // bonus — i.e. only when NOT otherwise proficient/expert on this skill.
+    const hasJackOfAllTrades =
+      !isProficient &&
+      (character.features ?? []).some(
+        (f) => (f.name || '').trim().toLowerCase() === 'jack of all trades'
+      )
+    const profBonus = hasExpertise
+      ? prof * 2
+      : isProficient
+      ? prof
+      : hasJackOfAllTrades
+      ? Math.floor(prof / 2)
+      : 0
     const itemBonus = bonuses[`skill_${skillName}`] ?? 0
 
     return base + profBonus + itemBonus

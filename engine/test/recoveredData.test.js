@@ -41,39 +41,11 @@ test("Oath of the Open Road subclass file loads and matches Ferghus's actual fea
   }
 })
 
-test("Torrin's rebuilt feature list now includes all real 3rd/9th-level Soulknife + Mastermind features (not just half of each)", () => {
-  // Renamed to "Torrin (Old)" 2026-09-11 when archived ahead of a real
-  // rebuild (see TODO.md) — same record, same features, just a different
-  // `name` field, so only the lookup needs updating here.
-  const torrin = characters.find((c) => c.name === 'Torrin (Old)')
-  const soulknife = engine.loadSubclass('Rogue', 'Soulknife')
-  const mastermind = engine.loadSubclass('Rogue', 'Mastermind')
-  assert.ok(soulknife)
-  assert.ok(mastermind)
-
-  const expectedByLevel12 = [
-    ...soulknife.features_by_level['3'],
-    ...soulknife.features_by_level['9'],
-    ...mastermind.features_by_level['3'],
-    ...mastermind.features_by_level['9'],
-  ]
-  for (const name of expectedByLevel12) {
-    assert.ok(
-      torrin.features.some((f) => f.name === name),
-      `Torrin should have ${name}`
-    )
-  }
-  // 13th/17th-level features should NOT be present — he's capped at level 12
-  const tooHighLevel = [
-    ...soulknife.features_by_level['13'],
-    ...soulknife.features_by_level['17'],
-    ...mastermind.features_by_level['13'],
-    ...mastermind.features_by_level['17'],
-  ]
-  for (const name of tooHighLevel) {
-    assert.ok(
-      !torrin.features.some((f) => f.name === name),
-      `Torrin (capped at 12) should NOT have ${name}`
-    )
-  }
-})
+// The "Torrin's rebuilt feature list..." test that used to live here checked
+// a historical data-recovery fix on the old homebrew dual-subclass
+// (Soulknife + Mastermind) "Torrin (Old)" record. That record was deleted
+// 2026-09-22 once the real Torrin's clean single-subclass rebuild was
+// confirmed good (see TODO_ARCHIVE.md) — the dual-subclass build it tested
+// no longer exists anywhere in this app's data, so the regression it guarded
+// against can't recur. Removed rather than synthesized into a fixture, since
+// there's no real character left with that shape to keep it honest against.

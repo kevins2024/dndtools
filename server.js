@@ -314,6 +314,7 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     signatureSpellsChoice,
     masterOfIntrigueGamingSetChoice,
     masterOfIntrigueLanguageChoices,
+    bonusProficienciesChoice,
   } = req.body
   if (!character || !className) {
     return res
@@ -350,6 +351,7 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       signatureSpellsChoice,
       masterOfIntrigueGamingSetChoice,
       masterOfIntrigueLanguageChoices,
+      bonusProficienciesChoice,
     })
     res.json(result)
   } catch (err) {
@@ -544,6 +546,45 @@ app.post('/api/engine/spell-choices', (req, res) => {
     res.json({ maxLevel, options })
   } catch (err) {
     console.error('Error computing spell choices:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── POST /api/engine/feat-spell-choices ───────────────────
+// Powers LevelUpTool.vue's 'spell_choice'-type feat choices (Magic
+// Initiate, Ritual Caster, Spell Sniper, Artificer Initiate, Wood Elf
+// Magic, Fey Touched, Shadow Touched — see feats.json's own
+// _schema.choices doc for the full spell_filter shape). Unlike
+// /api/engine/spell-choices above, this isn't tied to any class's caster
+// progression — a feat grants a spell at a level the FEAT fixes, whether
+// or not the character can even cast spells that high yet (a Fighter with
+// Fey Touched still gets a real 1st-level spell). className is optional —
+// omit it (or the caller passes null) for Fey Touched/Shadow Touched's
+// "any spellbook" grants, which aren't tied to one class's list at all.
+app.post('/api/engine/feat-spell-choices', (req, res) => {
+  const {
+    character,
+    className,
+    level,
+    cantripsOnly,
+    schools,
+    ritualOnly,
+    attackRollOnly,
+  } = req.body
+  try {
+    const excludeNames = (character?.spells || []).map((s) => s.name)
+    const options = engine.listFeatSpellChoices({
+      className: className || null,
+      level: level ?? null,
+      cantripsOnly: Boolean(cantripsOnly),
+      schools: schools ?? null,
+      ritualOnly: Boolean(ritualOnly),
+      attackRollOnly: Boolean(attackRollOnly),
+      excludeNames,
+    })
+    res.json({ options })
+  } catch (err) {
+    console.error('Error computing feat spell choices:', err.message)
     res.status(500).json({ error: err.message })
   }
 })
