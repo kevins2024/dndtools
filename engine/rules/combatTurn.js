@@ -9,13 +9,29 @@
 // matching the immutable-update style used elsewhere in this engine (see
 // diffLevelUp.js).
 
-function freshResources() {
-  return { action: true, bonusAction: true, reaction: true }
+// extraKeys: ids of any per-turn-capped feature this SPECIFIC combatant has
+// (Action Surge's 17th-level cap, Sneak Attack, etc. — see
+// engine/data/5e/feature-mechanics.json's per_turn_cap field). Not every
+// combatant has any; defaults to none so every existing call site (and
+// every combatant without one) behaves exactly as before. The caller derives
+// this list from that combatant's own character.features[] (any entry with
+// per_turn_cap: true, keyed by its id) — this file stays character-shape-
+// agnostic on purpose, same as the rest of engine/, so it just takes
+// whatever key strings the caller hands it.
+function freshResources(extraKeys = []) {
+  const resources = { action: true, bonusAction: true, reaction: true }
+  for (const key of extraKeys) resources[key] = true
+  return resources
 }
 
-function createCombatTurnState(orderKeys) {
+// extraKeysByCombatant: { combatantKey: [featureId, ...] } — see
+// freshResources' own comment. Optional; omit for the pre-existing 3-
+// resource-only behavior.
+function createCombatTurnState(orderKeys, extraKeysByCombatant = {}) {
   const resources = {}
-  for (const key of orderKeys) resources[key] = freshResources()
+  for (const key of orderKeys) {
+    resources[key] = freshResources(extraKeysByCombatant[key] ?? [])
+  }
   return { round: 1, turnIndex: 0, order: [...orderKeys], resources }
 }
 
@@ -23,8 +39,11 @@ function createCombatTurnState(orderKeys) {
 // back to the start of the order. Real RAW: a combatant's action, bonus
 // action, AND reaction all refresh at the start of THEIR OWN turn — a
 // reaction persists across everyone else's turns in between — so only the
-// newly active combatant's resources reset here, nobody else's.
-function advanceTurn(state) {
+// newly active combatant's resources reset here, nobody else's. Any per-
+// turn-capped feature (Action Surge 17th, Sneak Attack) refreshes on
+// exactly the same trigger, for the same RAW reason — it's a "this turn"
+// fact, same category as the other three.
+function advanceTurn(state, extraKeysByCombatant = {}) {
   if (state.order.length === 0) return state
   const turnIndex = (state.turnIndex + 1) % state.order.length
   const round = turnIndex === 0 ? state.round + 1 : state.round
@@ -33,7 +52,10 @@ function advanceTurn(state) {
     ...state,
     turnIndex,
     round,
-    resources: { ...state.resources, [activeKey]: freshResources() },
+    resources: {
+      ...state.resources,
+      [activeKey]: freshResources(extraKeysByCombatant[activeKey] ?? []),
+    },
   }
 }
 
@@ -61,11 +83,11 @@ function spendResource(state, key, resource) {
   return setResource(state, key, resource, false)
 }
 
-function resetResourcesFor(state, key) {
+function resetResourcesFor(state, key, extraKeys = []) {
   if (!state.resources[key]) return state
   return {
     ...state,
-    resources: { ...state.resources, [key]: freshResources() },
+    resources: { ...state.resources, [key]: freshResources(extraKeys) },
   }
 }
 
@@ -74,15 +96,18 @@ function resetResourcesFor(state, key) {
 // tiebreak position). Round is never touched here; only advanceTurn changes
 // it. The active combatant is tracked by IDENTITY (their key), not by
 // numeric position, so a pure reorder never silently hands the turn to
-// whoever now happens to sit at the old index.
-function syncOrder(state, newOrderKeys) {
+// whoever now happens to sit at the old index. extraKeysByCombatant only
+// matters for a combatant NEWLY appearing in newOrderKeys (an enemy added
+// mid-fight) — an already-tracked combatant keeps their existing resources
+// object untouched, extra keys and all.
+function syncOrder(state, newOrderKeys, extraKeysByCombatant = {}) {
   const activeKey = state.order[state.turnIndex] ?? null
 
   const resources = {}
   for (const key of newOrderKeys) {
     resources[key] = state.resources[key]
       ? { ...state.resources[key] }
-      : freshResources()
+      : freshResources(extraKeysByCombatant[key] ?? [])
   }
 
   let turnIndex

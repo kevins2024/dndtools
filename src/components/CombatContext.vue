@@ -364,6 +364,37 @@ export default {
     initiativeOrderKeys() {
       return this.initiativeOrder.map((e) => e.key)
     },
+    // { combatantKey: [featureId, ...] } for every player/companion who has
+    // at least one per_turn_cap feature (Action Surge 17th, Sneak Attack —
+    // see engine/data/5e/feature-mechanics.json) — combatTurn.js needs this
+    // to know which extra resource keys to seed/refresh per combatant.
+    // Reads per_turn_cap straight off character.features[] (stamped there
+    // by diffLevelUp.js's applyFeatureMechanics at grant time), not a live
+    // engine/ catalog lookup — keeps this file requiring nothing beyond
+    // combatTurn.js itself, same portability reasoning as combatTurn.js's
+    // own header comment. Enemies are deliberately not covered yet — they
+    // don't carry a real features[] list the same way a PC/companion does.
+    extraKeysByCombatant() {
+      const map = {}
+      const addFrom = (key, character) => {
+        const ids = (character?.features ?? [])
+          .filter((f) => f.per_turn_cap && f.id)
+          .map((f) => f.id)
+        if (ids.length) map[key] = ids
+      }
+      for (const name of this.playerNames) {
+        addFrom(
+          `player-${name}`,
+          this.characters.find((c) => c.name === name)
+        )
+      }
+      for (const c of this.$store.state.companions ?? []) {
+        if (c.summoned && this.playerNames.includes(c.owner)) {
+          addFrom(`companion-${c.name}`, c)
+        }
+      }
+      return map
+    },
   },
 
   created() {
@@ -379,7 +410,11 @@ export default {
       // seeds combatTurnState) — this watcher can fire from unrelated
       // pre-fight computed changes too.
       if (!this.combatTurnState) return
-      this.combatTurnState = combatTurn.syncOrder(this.combatTurnState, newKeys)
+      this.combatTurnState = combatTurn.syncOrder(
+        this.combatTurnState,
+        newKeys,
+        this.extraKeysByCombatant
+      )
     },
     '$store.state.pendingCombatEnemies'(enemies) {
       if (!enemies) return
@@ -603,7 +638,8 @@ export default {
       this.phase = 'battle'
       this.$store.commit('SET_COMBAT_PHASE', 'battle')
       this.combatTurnState = combatTurn.createCombatTurnState(
-        this.initiativeOrder.map((e) => e.key)
+        this.initiativeOrder.map((e) => e.key),
+        this.extraKeysByCombatant
       )
     },
 
@@ -668,7 +704,10 @@ export default {
     },
 
     onNextTurn() {
-      this.combatTurnState = combatTurn.advanceTurn(this.combatTurnState)
+      this.combatTurnState = combatTurn.advanceTurn(
+        this.combatTurnState,
+        this.extraKeysByCombatant
+      )
     },
     onSetTurn(index) {
       this.combatTurnState = combatTurn.setActiveTurnIndex(
@@ -688,7 +727,8 @@ export default {
     onResetResources(key) {
       this.combatTurnState = combatTurn.resetResourcesFor(
         this.combatTurnState,
-        key
+        key,
+        this.extraKeysByCombatant[key] ?? []
       )
     },
     onSetRound(round) {

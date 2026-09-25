@@ -27,10 +27,15 @@
           ><span v-if="f.recharge" class="pill-recharge">{{
             dnd.rechargeLabel(f.recharge)
           }}</span
+          ><span
+            v-if="f.per_turn_cap && usedThisTurn(f)"
+            class="pill-turn-used has-tip"
+            title="Already used this turn"
+            >used this turn</span
           ><button
             v-if="f.uses_max"
             class="pill-spend-btn"
-            :disabled="(f.uses_current ?? f.uses_max) <= 0"
+            :disabled="(f.uses_current ?? f.uses_max) <= 0 || usedThisTurn(f)"
             title="Spend one use"
             @click.stop="spendUse(f)"
           >
@@ -41,7 +46,19 @@
             title="Restore one use (undo)"
             @click.stop="restoreUse(f)"
           >
-            +1
+            +1</button
+          ><button
+            v-if="f.per_turn_cap && !f.uses_max"
+            class="pill-turn-toggle-btn"
+            :class="{ 'is-used': usedThisTurn(f) }"
+            :title="
+              usedThisTurn(f)
+                ? 'Mark available again this turn (undo)'
+                : 'Mark used this turn'
+            "
+            @click.stop="toggleTurnUse(f)"
+          >
+            {{ usedThisTurn(f) ? '↺' : '✓' }}
           </button></span
         >
       </div>
@@ -73,9 +90,18 @@ export default {
     // whichever view renders both this and SpellPillsByLevel, since one
     // filter row controls both lists at once.
     filter: { type: String, default: 'all' },
+    // combatTurn.resources[<this character's combatant key>] — i.e. the
+    // { action, bonusAction, reaction, ...extra } object for THIS character
+    // specifically, or null outside an active encounter (character sheet,
+    // New Character tool, etc., where "this turn" has no meaning at all).
+    // A per_turn_cap feature (Action Surge 17th, Sneak Attack) reads its own
+    // spent/available state from here, keyed by its own id — see
+    // engine/rules/combatTurn.js's freshResources for why this lives in
+    // ephemeral battle state rather than on the character record.
+    turnResources: { type: Object, default: null },
   },
 
-  emits: ['inspect', 'feature-used'],
+  emits: ['inspect', 'feature-used', 'feature-turn-toggle'],
 
   data() {
     return { dnd }
@@ -133,16 +159,34 @@ export default {
         await buildFeaturePopupData(feature, this.character)
       )
     },
+    // True once this feature's own per-turn flag has been spent THIS turn —
+    // undefined turnResources (no active encounter) or a feature with no
+    // per_turn_cap at all both read as "not used" (never gates anything
+    // outside combat, where the concept doesn't apply).
+    usedThisTurn(feature) {
+      if (!feature.per_turn_cap || !this.turnResources || !feature.id)
+        return false
+      return this.turnResources[feature.id] === false
+    },
     // Real gap found 2026-09-18: uses_max/uses_current were tracked and
     // shown, but nothing anywhere could actually spend one — see
     // SPEND_FEATURE_USE's own comment in store/index.js.
     spendUse(feature) {
       if ((feature.uses_current ?? feature.uses_max) <= 0) return
+      if (this.usedThisTurn(feature)) return
       this.$store.commit('SPEND_FEATURE_USE', {
         characterName: this.character.name,
         table: this.table,
         featureName: feature.name,
       })
+      // A per_turn_cap feature's pool spend and its "used this turn" flag
+      // move together — see engine/CHECKLIST.md's 2026-09-24 entry on why
+      // Action Surge's 17th-level upgrade needs BOTH a pool (uses_max/
+      // uses_current, persisted) and this ephemeral per-turn gate, not one
+      // or the other.
+      if (feature.per_turn_cap && feature.id) {
+        this.$emit('feature-turn-toggle', feature.id)
+      }
       this.$emit(
         'feature-used',
         `${feature.name} (${(feature.uses_current ?? feature.uses_max) - 1}/${
@@ -156,6 +200,22 @@ export default {
         table: this.table,
         featureName: feature.name,
       })
+      // Undoing a spend restores the per-turn flag too, symmetric with
+      // spendUse above — only if it was actually flagged used, so this
+      // never flips an already-available flag to "used" by mistake.
+      if (feature.per_turn_cap && feature.id && this.usedThisTurn(feature)) {
+        this.$emit('feature-turn-toggle', feature.id)
+      }
+    },
+    // For a per_turn_cap feature with NO uses_max at all (Sneak Attack —
+    // unlimited attempts, no rest-based pool, just "once per turn you can
+    // apply the bonus") — a manual mark/unmark toggle, since this app has
+    // no way to know an attack happened or whether it qualified (advantage,
+    // flanking). Purely the ephemeral per-turn flag; no Vuex feature-use
+    // commit at all, since there's no uses_current to spend.
+    toggleTurnUse(feature) {
+      if (!feature.id) return
+      this.$emit('feature-turn-toggle', feature.id)
     },
   },
 }
@@ -231,6 +291,35 @@ export default {
 .has-tip {
   border-bottom: 1px dotted currentColor;
   cursor: default;
+}
+
+.pill-turn-used {
+  margin-left: 0.3em;
+  font-size: 0.7em;
+  color: var(--color-text-low);
+  font-style: italic;
+}
+
+.pill-turn-toggle-btn {
+  margin-left: 0.35em;
+  font-size: 0.7em;
+  line-height: 1;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  border: 1px solid var(--color-accent);
+  background: none;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.pill-turn-toggle-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.pill-turn-toggle-btn.is-used {
+  border-color: var(--color-border);
+  color: var(--color-text-low);
 }
 
 .pill-spend-btn,

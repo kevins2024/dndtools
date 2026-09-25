@@ -19,32 +19,28 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Extra Attack",
         "type": "feature"
       },
       {
-        "name": "Action Surge (1 use)",
+        "name": "Action Surge",
         "type": "feature",
         "action_type": "free",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "action-surge-1-use",
+        "per_turn_cap": true
       },
       {
         "name": "Second Wind",
@@ -52,14 +48,16 @@
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "second-wind"
       },
       {
-        "name": "Indomitable (1 use)",
+        "name": "Indomitable",
         "type": "feature",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "indomitable-1-use"
       },
       {
         "name": "Fighting Style: Two-Weapon Fighting",
@@ -87,7 +85,8 @@
       },
       {
         "name": "Riposte",
-        "type": "maneuver"
+        "type": "maneuver",
+        "action_type": "reaction"
       },
       {
         "name": "Menacing Attack",
@@ -95,7 +94,8 @@
       },
       {
         "name": "Parry",
-        "type": "maneuver"
+        "type": "maneuver",
+        "action_type": "reaction"
       }
     ],
     "spells": [],
@@ -164,16 +164,8 @@
         "level_gained": 8
       }
     ],
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ]
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Rhuna",
@@ -194,20 +186,14 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "barbarian",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Rage (4 uses, +3 damage)",
@@ -251,7 +237,8 @@
       },
       {
         "name": "Great Weapon Master",
-        "type": "feat"
+        "type": "feat",
+        "action_type": "bonus_action"
       }
     ],
     "spells": [],
@@ -283,15 +270,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ]
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"]
   },
   {
     "name": "Denna",
@@ -312,10 +292,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -324,23 +301,24 @@
       "Deception",
       "Investigation"
     ],
-    "languages": [
-      "Common",
-      "Thieves Cant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Thieves Cant", "Dwarvish"],
     "features": [
       {
-        "name": "Sneak Attack (5d6)",
-        "type": "feature"
+        "name": "Sneak Attack",
+        "type": "feature",
+        "id": "sneak-attack",
+        "per_turn_cap": true
       },
       {
         "name": "Cunning Action",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action"
       },
       {
         "name": "Uncanny Dodge",
-        "type": "feature"
+        "type": "feature",
+        "id": "uncanny-dodge",
+        "action_type": "reaction"
       },
       {
         "name": "Evasion",
@@ -361,10 +339,7 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Invisibility",
-          "Inflict Wounds"
-        ]
+        "spells_granted": ["Invisibility", "Inflict Wounds"]
       }
     ],
     "spells": [
@@ -427,9 +402,7 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": [
-      "light"
-    ]
+    "armor_proficiencies": ["light"]
   },
   {
     "name": "Lenn",
@@ -450,25 +423,16 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Persuasion"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Persuasion"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
-        "type": "feature"
+        "type": "feature",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       },
       {
         "name": "Evocation Savant",
@@ -508,9 +472,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -1038,10 +1000,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -1049,15 +1008,9 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "speed": 30,
-    "saving_throw_advantages": [
-      "being_charmed"
-    ],
+    "saving_throw_advantages": ["being_charmed"],
     "species_traits": [
       {
         "name": "Fey Ancestry",
@@ -1094,9 +1047,7 @@
       {
         "name": "Cantrip",
         "description": "Know one wizard cantrip of your choice; Intelligence is its spellcasting ability.",
-        "spells_granted": [
-          "Minor Illusion"
-        ],
+        "spells_granted": ["Minor Illusion"],
         "type": "speciesTrait",
         "source": "subrace"
       },
@@ -1110,7 +1061,10 @@
     "features": [
       {
         "name": "Arcane Recovery",
-        "type": "feature"
+        "type": "feature",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       },
       {
         "name": "Bladesinger — Training in War and Song",
@@ -1139,9 +1093,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -1658,9 +1610,7 @@
       "shortbow",
       "longbow"
     ],
-    "armor_proficiencies": [
-      "light"
-    ]
+    "armor_proficiencies": ["light"]
   },
   {
     "name": "Petra",
@@ -1681,21 +1631,9 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Medicine",
-      "Insight",
-      "Religion",
-      "History"
-    ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Solvalean"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Medicine", "Insight", "Religion", "History"],
+    "languages": ["Common", "Celestial", "Solvalean"],
     "features": [
       {
         "name": "Disciple of Life",
@@ -1729,7 +1667,6 @@
       {
         "name": "Inspiring Leader",
         "type": "feat",
-        "action_type": "action",
         "description": "10-minute speech. Up to 6 willing creatures who can hear and understand you gain temporary HP equal to your level + CHA modifier. A creature can't benefit again until after a short or long rest."
       },
       {
@@ -1741,9 +1678,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Divine Prestidigitation"
-        ],
+        "spells_granted": ["Divine Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -1947,15 +1882,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields",
-      "heavy"
-    ],
+    "weapon_proficiencies": ["simple"],
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"],
     "hp_temp": 0
   },
   {
@@ -1978,10 +1906,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -1990,22 +1915,24 @@
       "Deception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
-        "name": "Sneak Attack (5d6)",
-        "type": "feature"
+        "name": "Sneak Attack",
+        "type": "feature",
+        "id": "sneak-attack",
+        "per_turn_cap": true
       },
       {
         "name": "Cunning Action",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action"
       },
       {
         "name": "Uncanny Dodge",
-        "type": "feature"
+        "type": "feature",
+        "id": "uncanny-dodge",
+        "action_type": "reaction"
       },
       {
         "name": "Evasion",
@@ -2021,7 +1948,8 @@
       },
       {
         "name": "Insightful Fighting (Revised)",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action"
       },
       {
         "name": "Inquisitive — Steady Eye",
@@ -2052,12 +1980,7 @@
     "speed": 25,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "SleightOfHand",
-      "Insight",
-      "Perception"
-    ],
+    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
     "classes": [
       {
         "name": "Rogue",
@@ -2074,9 +1997,7 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "species_traits": [
       {
         "name": "Lucky",
@@ -2104,9 +2025,7 @@
         "source": "subrace"
       }
     ],
-    "saving_throw_advantages": [
-      "being_frightened"
-    ]
+    "saving_throw_advantages": ["being_frightened"]
   },
   {
     "name": "Lyria",
@@ -2127,25 +2046,16 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Insight"],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Arcane Recovery",
-        "type": "feature"
+        "type": "feature",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       },
       {
         "name": "Abjuration Savant",
@@ -2169,9 +2079,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -2690,20 +2598,14 @@
     "hp_max": 96,
     "hp_current": 96,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "Insight"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Extra Attack",
@@ -2718,11 +2620,12 @@
         "type": "feature"
       },
       {
-        "name": "Indomitable (1 use)",
+        "name": "Indomitable",
         "type": "feature",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "indomitable-1-use"
       },
       {
         "name": "Second Wind",
@@ -2730,15 +2633,18 @@
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "second-wind"
       },
       {
-        "name": "Action Surge (1 use)",
+        "name": "Action Surge",
         "type": "feature",
-        "action_type": "action",
+        "action_type": "free",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "action-surge-1-use",
+        "per_turn_cap": true
       }
     ],
     "spells": [],
@@ -2766,16 +2672,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ]
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Chuknora",
@@ -2798,12 +2696,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": [
-      "str",
-      "con",
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["str", "con", "wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -2812,12 +2705,7 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Celestial",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -2888,7 +2776,8 @@
       },
       {
         "name": "Elemental Cleaver",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action"
       },
       {
         "name": "Giant's Power",
@@ -2902,7 +2791,8 @@
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "divine-sense"
       },
       {
         "name": "Lay on Hands",
@@ -2910,7 +2800,8 @@
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 15,
-        "uses_current": 15
+        "uses_current": 15,
+        "id": "lay-on-hands"
       },
       {
         "name": "Fighting Style: Defense",
@@ -3004,16 +2895,8 @@
     "id": "characters_11",
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "active_weapon_set": 2
   },
   {
@@ -3035,10 +2918,7 @@
     "hp_max": 69,
     "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3046,15 +2926,16 @@
       "Religion",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Elvish", "Sylvan"],
     "features": [
       {
         "name": "Divine Sense",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-sense",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
       },
       {
         "name": "Fighting Style: Protection",
@@ -3075,7 +2956,8 @@
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 45,
-        "uses_current": 45
+        "uses_current": 45,
+        "id": "lay-on-hands"
       },
       {
         "name": "Extra Attack",
@@ -3239,16 +3121,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ]
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Tackett",
@@ -3268,22 +3142,9 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Nature",
-      "Perception",
-      "Survival",
-      "Medicine"
-    ],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -3324,7 +3185,9 @@
       },
       {
         "name": "Stars Druid — Star Map",
-        "type": "feature"
+        "type": "feature",
+        "spells_granted": ["Guiding Bolt"],
+        "_source": "Stars Druid — Star Map"
       },
       {
         "name": "Stars Druid — Cosmic Omen",
@@ -3538,11 +3401,7 @@
       "sling",
       "spear"
     ],
-    "armor_proficiencies": [
-      "light",
-      "medium (nonmetal)",
-      "shields (nonmetal)"
-    ],
+    "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"],
     "species_traits": [
       {
         "name": "Lucky",
@@ -3570,9 +3429,7 @@
         "source": "subrace"
       }
     ],
-    "saving_throw_advantages": [
-      "being_frightened"
-    ]
+    "saving_throw_advantages": ["being_frightened"]
   },
   {
     "name": "Revven",
@@ -3592,10 +3449,7 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -3604,11 +3458,7 @@
       "Perception",
       "Performance"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Tempest Cleric — Wrath of the Storm",
@@ -3664,9 +3514,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Divine Prestidigitation"
-        ],
+        "spells_granted": ["Divine Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -3907,16 +3755,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields",
-      "heavy"
-    ]
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"]
   },
   {
     "name": "Elucyne",
@@ -3937,19 +3777,9 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
+    "saving_throws": ["dex", "str"],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -3959,11 +3789,7 @@
       "Survival",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Infernal",
-      "Abyssal"
-    ],
+    "languages": ["Common", "Infernal", "Abyssal"],
     "features": [
       {
         "name": "Dread Ambusher",
@@ -3982,12 +3808,15 @@
         "type": "feature"
       },
       {
-        "name": "Sneak Attack (1d6)",
-        "type": "feature"
+        "name": "Sneak Attack",
+        "type": "feature",
+        "id": "sneak-attack",
+        "per_turn_cap": true
       },
       {
         "name": "Cunning Action",
-        "type": "feature"
+        "type": "feature",
+        "action_type": "bonus_action"
       },
       {
         "name": "Second Wind",
@@ -3995,15 +3824,18 @@
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "second-wind"
       },
       {
-        "name": "Action Surge (1 use)",
+        "name": "Action Surge",
         "type": "feature",
         "action_type": "free",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "action-surge-1-use",
+        "per_turn_cap": true
       },
       {
         "name": "Favored Enemy",
@@ -4020,6 +3852,28 @@
       {
         "name": "Infernal Legacy",
         "type": "feature"
+      },
+      {
+        "name": "Infernal Legacy: Hellish Rebuke",
+        "id": null,
+        "type": "speciesTrait",
+        "level_gained": 3,
+        "spells_granted": ["Hellish Rebuke"],
+        "_source": "Infernal Legacy",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
+      },
+      {
+        "name": "Infernal Legacy: Darkness",
+        "id": null,
+        "type": "speciesTrait",
+        "level_gained": 5,
+        "spells_granted": ["Darkness"],
+        "_source": "Infernal Legacy",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       }
     ],
     "spells": [
@@ -4094,10 +3948,7 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "skill_expertise": ["Stealth", "Performance"],
     "classes": [
       {
         "name": "Ranger",
@@ -4114,243 +3965,6 @@
         "name": "Fighter",
         "subclass": null,
         "level": 2
-      }
-    ],
-    "species_bonus_applied": false,
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
-  },
-  {
-    "name": "Sorra (Old)",
-    "full_name": "Oul'sorra'i",
-    "genus": "Half-Elf",
-    "level": 9,
-    "appearance": "Dark skin, silver hair worn loose, moves with the quality of someone whose dance never fully stops even when standing still. Composed beauty that has stopped surprising her.",
-    "image": "./characters/sorra.jpg",
-    "proficiency_bonus": 4,
-    "spellcasting_ability": "cha",
-    "stat_str": 10,
-    "stat_dex": 20,
-    "stat_con": 14,
-    "stat_int": 14,
-    "stat_wis": 17,
-    "stat_cha": 20,
-    "hp_max": 56,
-    "hp_current": 56,
-    "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Performance",
-      "Insight",
-      "Persuasion",
-      "History",
-      "Perception",
-      "Medicine",
-      "Acrobatics"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Solvalean"
-    ],
-    "features": [
-      {
-        "name": "Bardic Inspiration (d8)",
-        "type": "feature",
-        "uses_max": 5,
-        "recharge": "long_rest",
-        "uses_current": 5
-      },
-      {
-        "name": "Jack of All Trades",
-        "type": "feature"
-      },
-      {
-        "name": "Song of Rest (d8)",
-        "type": "feature"
-      },
-      {
-        "name": "Guiding Whispers",
-        "type": "feature"
-      },
-      {
-        "name": "Spiritual Focus",
-        "type": "feature"
-      },
-      {
-        "name": "Tales from Beyond",
-        "type": "feature"
-      },
-      {
-        "name": "Spirit Session",
-        "type": "feature"
-      },
-      {
-        "name": "Countercharm",
-        "type": "feature"
-      },
-      {
-        "name": "Fey Ancestry",
-        "type": "feature"
-      },
-      {
-        "name": "Darkvision",
-        "type": "feature"
-      },
-      {
-        "name": "Slasher",
-        "type": "feat"
-      }
-    ],
-    "spells": [
-      {
-        "name": "Healing Word",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Dissonant Whispers",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Silvery Barbs",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Calm Emotions",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Detect Thoughts",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Invisibility",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Hypnotic Pattern",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Speak with Dead",
-        "level": 3,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Dimension Door",
-        "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Greater Invisibility",
-        "level": 4,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Animate Objects",
-        "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Dominate Person",
-        "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Mass Cure Wounds",
-        "level": 5,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
-        "name": "Vicious Mockery",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Minor Illusion",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      },
-      {
-        "name": "Mage Hand",
-        "level": 0,
-        "prepared": true,
-        "type": "cantrip"
-      }
-    ],
-    "spell_slots": {
-      "level_1": {
-        "max": 4,
-        "current": 4
-      },
-      "level_2": {
-        "max": 3,
-        "current": 3
-      },
-      "level_3": {
-        "max": 3,
-        "current": 3
-      },
-      "level_4": {
-        "max": 3,
-        "current": 3
-      },
-      "level_5": {
-        "max": 1,
-        "current": 1
-      }
-    },
-    "active_effects": [],
-    "conditions": [],
-    "notes": "Inspires with body/dance rather than instrument.",
-    "persona_notes": [
-      "Speaks like she's inviting everyone into the back room of a tavern where the drinks cost more.",
-      "Kindness can be surface level - she performs it well. But she sees people in genuine need as problems she can fix.",
-      "Rarely unsettled.",
-      "Still where Elucyne is bubbly.",
-      "Sits with things before responding.",
-      "Reads rooms the way she reads music.",
-      "Seems like she knows something she isn't saying. Sometimes she does.",
-      "The dance never fully stops.",
-      "Has never stayed anywhere longer than she felt like staying. May be reconsidering that."
-    ],
-    "id": "characters_16",
-    "darkvision": 60,
-    "hit_die": "d8",
-    "hit_dice_current": 9,
-    "skill_expertise": [
-      "Performance",
-      "Insight"
-    ],
-    "classes": [
-      {
-        "name": "Bard",
-        "subclass": "College of Spirits",
-        "level": 9
       }
     ],
     "species_bonus_applied": false,
@@ -4374,24 +3988,18 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Persuasion",
-      "Insight",
-      "Religion"
-    ],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "saving_throws": ["wis", "cha"],
+    "skill_proficiencies": ["Athletics", "Persuasion", "Insight", "Religion"],
+    "languages": ["Common", "Gnomish"],
     "features": [
       {
         "name": "Divine Sense",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-sense",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
       },
       {
         "name": "Fighting Style",
@@ -4441,7 +4049,8 @@
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 45,
-        "uses_current": 45
+        "uses_current": 45,
+        "id": "lay-on-hands"
       }
     ],
     "spells": [
@@ -4563,16 +4172,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ]
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"]
   },
   {
     "name": "Eldi",
@@ -4593,10 +4194,7 @@
     "hp_max": 78,
     "hp_current": 78,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -4606,11 +4204,7 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Fighting Style: Two-Weapon Fighting",
@@ -4622,15 +4216,18 @@
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "second-wind"
       },
       {
         "name": "Action Surge",
         "type": "feature",
-        "action_type": "action",
+        "action_type": "free",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "id": "action-surge-1-use",
+        "per_turn_cap": true
       },
       {
         "name": "Manifest Echo",
@@ -4641,6 +4238,7 @@
       {
         "name": "Echo: Reposition",
         "type": "feature",
+        "action_type": "free",
         "description": "No action required — mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
       },
       {
@@ -4673,8 +4271,10 @@
         "type": "feature"
       },
       {
-        "name": "Sneak Attack (2d6)",
-        "type": "feature"
+        "name": "Sneak Attack",
+        "type": "feature",
+        "id": "sneak-attack",
+        "per_turn_cap": true
       },
       {
         "name": "Cunning Action",
@@ -4729,10 +4329,7 @@
     "id": "characters_18",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": [
-      "Stealth",
-      "Acrobatics"
-    ],
+    "skill_expertise": ["Stealth", "Acrobatics"],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -4751,16 +4348,8 @@
     ],
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "hp_temp": 0
   },
   {
@@ -4782,10 +4371,7 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
+    "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -4795,11 +4381,7 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Divine Magic",
@@ -4857,9 +4439,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -5070,22 +4650,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Religion"
-    ],
+    "saving_throws": ["con", "cha"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Arcanis"
-    ],
+    "languages": ["Common", "Celestial", "Arcanis"],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -5199,9 +4767,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -5412,11 +4978,7 @@
     "hp_max": 75,
     "hp_current": 75,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["con", "int", "wis"],
     "skill_proficiencies": [
       "Animal Handling",
       "Athletics",
@@ -5425,10 +4987,7 @@
       "Survival"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish"
-    ],
+    "languages": ["Common", "Elvish"],
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -5519,9 +5078,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Druidcraft"
-        ],
+        "spells_granted": ["Druidcraft"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -5663,11 +5220,7 @@
       "sling",
       "spear"
     ],
-    "armor_proficiencies": [
-      "light",
-      "medium (nonmetal)",
-      "shields (nonmetal)"
-    ]
+    "armor_proficiencies": ["light", "medium (nonmetal)", "shields (nonmetal)"]
   },
   {
     "id": "characters_23",
@@ -5715,10 +5268,7 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -5729,16 +5279,8 @@
       "Insight",
       "Perception"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Athletics",
-      "Perception",
-      "Deception"
-    ],
-    "languages": [
-      "Common",
-      "Goblin"
-    ],
+    "skill_expertise": ["Stealth", "Athletics", "Perception", "Deception"],
+    "languages": ["Common", "Goblin"],
     "features": [
       {
         "name": "Expertise",
@@ -5751,7 +5293,9 @@
         "name": "Sneak Attack",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Rogue"
+        "_source": "Rogue",
+        "id": "sneak-attack",
+        "per_turn_cap": true
       },
       {
         "name": "Thieves' Cant",
@@ -5763,6 +5307,7 @@
         "name": "Cunning Action",
         "id": "cunning-action",
         "type": "feature",
+        "action_type": "bonus_action",
         "level_gained": 2,
         "_source": "Rogue"
       },
@@ -5771,7 +5316,8 @@
         "id": "hb_rogue_scout_skirmisher",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Rogue"
+        "_source": "Rogue",
+        "action_type": "reaction"
       },
       {
         "name": "Survivalist",
@@ -5785,7 +5331,8 @@
         "id": "uncanny-dodge",
         "type": "feature",
         "level_gained": 5,
-        "_source": "Rogue"
+        "_source": "Rogue",
+        "action_type": "reaction"
       },
       {
         "name": "Expertise",
@@ -5833,9 +5380,7 @@
       "longbow",
       "shortbow"
     ],
-    "armor_proficiencies": [
-      "light"
-    ]
+    "armor_proficiencies": ["light"]
   },
   {
     "id": "characters_24",
@@ -5879,30 +5424,13 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": [
-      "con",
-      "int"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Perception"
-    ],
+    "saving_throws": ["con", "int"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Perception"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish", "Draconic"],
     "speed": 25,
-    "saving_throw_advantages": [
-      "magic"
-    ],
-    "tool_proficiencies": [
-      "tinker's tools"
-    ],
+    "saving_throw_advantages": ["magic"],
+    "tool_proficiencies": ["tinker's tools"],
     "species_traits": [
       {
         "name": "Gnome Cunning",
@@ -5920,9 +5448,7 @@
       {
         "name": "Tinker",
         "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box.",
-        "grants_tool_proficiency": [
-          "tinker's tools"
-        ],
+        "grants_tool_proficiency": ["tinker's tools"],
         "type": "speciesTrait",
         "source": "subrace"
       }
@@ -6031,7 +5557,11 @@
         "id": "pub_flash-of-genius",
         "type": "feature",
         "level_gained": 7,
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "reaction",
+        "uses_max": 5,
+        "uses_current": 5,
+        "recharge": "long_rest"
       },
       {
         "name": "Unstable Rounds",
@@ -6168,14 +5698,8 @@
     ],
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
-    "weapon_proficiencies": [
-      "simple"
-    ],
+    "armor_proficiencies": ["light", "medium", "shields"],
+    "weapon_proficiencies": ["simple"],
     "spell_slots": {
       "level_1": {
         "max": 4,
@@ -6192,200 +5716,6 @@
     },
     "species_bonus_applied": false,
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
-  },
-  {
-    "id": "characters_25",
-    "name": "TestFighter",
-    "full_name": "TestFighter",
-    "genus": "Catrin",
-    "subgenus": null,
-    "background": "Soldier",
-    "level": 9,
-    "stat_str": 10,
-    "stat_dex": 20,
-    "stat_con": 16,
-    "stat_int": 8,
-    "stat_wis": 10,
-    "stat_cha": 14,
-    "species_bonus_applied": false,
-    "species_traits": [
-      {
-        "name": "Broad Build",
-        "type": "speciesTrait",
-        "description": "Counts as one size larger for the purposes of carrying capacity and grappling.",
-        "source": "species"
-      },
-      {
-        "name": "Settled Presence",
-        "type": "speciesTrait",
-        "description": "Advantage on saving throws against being frightened or charmed.",
-        "source": "species"
-      },
-      {
-        "name": "Brace",
-        "type": "speciesTrait",
-        "recharge": "long_rest",
-        "description": "As a reaction when hit by a melee attack, halve the damage and push the attacker 5ft away if they are Medium or smaller.",
-        "source": "species"
-      },
-      {
-        "name": "Long Memory",
-        "type": "speciesTrait",
-        "description": "Proficiency in the History skill.",
-        "source": "species"
-      }
-    ],
-    "ability_score_history": [
-      {
-        "ability": "dex",
-        "amount": 2,
-        "source": "Free ability bonus (manual)",
-        "level_gained": 1
-      },
-      {
-        "ability": "con",
-        "amount": 1,
-        "source": "Free ability bonus (manual)",
-        "level_gained": 1
-      },
-      {
-        "ability": "dex",
-        "amount": 2,
-        "source": "Ability Score Improvement",
-        "level_gained": 4
-      },
-      {
-        "ability": "dex",
-        "amount": 1,
-        "source": "Ability Score Improvement",
-        "level_gained": 8
-      },
-      {
-        "ability": "cha",
-        "amount": 1,
-        "source": "Ability Score Improvement",
-        "level_gained": 8
-      }
-    ],
-    "spellcasting_ability": null,
-    "hp_max": 93,
-    "hp_current": 93,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
-    "skill_proficiencies": [
-      "Athletics",
-      "Intimidation",
-      "Acrobatics",
-      "Perception"
-    ],
-    "skill_expertise": [],
-    "languages": [
-      "Yetgresian Common",
-      "Catrinese"
-    ],
-    "speed": 30,
-    "darkvision": 0,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
-    "tool_proficiencies": [],
-    "resistances": [],
-    "features": [
-      {
-        "name": "Fighting Style: Two-Weapon Fighting",
-        "id": "fighter-fighting-style-two-weapon-fighting",
-        "type": "fightingStyle",
-        "level_gained": 1,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Second Wind",
-        "id": "second-wind",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Fighter",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Action Surge (1 use)",
-        "id": "action-surge-1-use",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Fighter",
-        "action_type": "free",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Combat Superiority",
-        "id": "pub_combat-superiority",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Student of War",
-        "id": "pub_student-of-war",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Extra Attack (1)",
-        "id": "gen_fighter_base_extra-attack-1",
-        "type": "feature",
-        "level_gained": 5,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Dual Wielder",
-        "id": null,
-        "type": "feat",
-        "level_gained": 6,
-        "ability_choice": null,
-        "choices": null
-      },
-      {
-        "name": "Know Your Enemy",
-        "id": "pub_know-your-enemy",
-        "type": "feature",
-        "level_gained": 7,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Indomitable (1 use)",
-        "id": "indomitable-1-use",
-        "type": "feature",
-        "level_gained": 9,
-        "_source": "Fighter"
-      }
-    ],
-    "spells": [],
-    "active_effects": [],
-    "conditions": [],
-    "exhaustion_level": 0,
-    "classes": [
-      {
-        "name": "Fighter",
-        "level": 9,
-        "subclass": "Battle Master"
-      }
-    ],
-    "proficiency_bonus": 4,
-    "hit_dice_current": 9
   },
   {
     "id": "characters_26",
@@ -6458,10 +5788,7 @@
     "spellcasting_ability": null,
     "hp_max": 70,
     "hp_current": 70,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Deception",
       "Persuasion",
@@ -6469,22 +5796,11 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "speed": 30,
     "darkvision": 60,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "tool_proficiencies": [],
     "resistances": [],
     "saving_throw_advantages": [],
@@ -6511,7 +5827,7 @@
         "uses_current": 1
       },
       {
-        "name": "Action Surge (1 use)",
+        "name": "Action Surge",
         "id": "action-surge-1-use",
         "type": "feature",
         "level_gained": 2,
@@ -6519,7 +5835,8 @@
         "action_type": "free",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "per_turn_cap": true
       },
       {
         "name": "Improved Critical (19-20)",
@@ -6589,9 +5906,7 @@
         "id": null,
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Dark Prestidigitation"
-        ],
+        "spells_granted": ["Dark Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       }
     ],
@@ -6750,16 +6065,9 @@
     "proficiency_bonus": 4,
     "speed": 25,
     "darkvision": 60,
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
-    "saving_throw_advantages": [
-      "poison"
-    ],
-    "resistances": [
-      "poison"
-    ],
+    "saving_throws": ["dex", "int"],
+    "saving_throw_advantages": ["poison"],
+    "resistances": ["poison"],
     "psychic_blades": true,
     "resources": [
       {
@@ -6779,16 +6087,8 @@
       "Insight",
       "Sleight of Hand"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Perception",
-      "Deception",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "skill_expertise": ["Stealth", "Perception", "Deception", "Insight"],
+    "languages": ["Common", "Dwarvish"],
     "weapon_proficiencies": [
       "simple",
       "hand crossbow",
@@ -6800,13 +6100,8 @@
       "light hammer",
       "warhammer"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
-    "tool_proficiencies": [
-      "Thieves' Tools",
-      "Smith's Tools"
-    ],
+    "armor_proficiencies": ["light"],
+    "tool_proficiencies": ["Thieves' Tools", "Smith's Tools"],
     "species_bonus_applied": false,
     "species_traits": [
       {
@@ -6880,7 +6175,8 @@
         "id": "sneak-attack",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Rogue"
+        "_source": "Rogue",
+        "per_turn_cap": true
       },
       {
         "name": "Thieves' Cant",
@@ -6893,6 +6189,7 @@
         "name": "Cunning Action",
         "id": "cunning-action",
         "type": "feature",
+        "action_type": "bonus_action",
         "level_gained": 2,
         "_source": "Rogue"
       },
@@ -6909,7 +6206,7 @@
         "type": "feature",
         "level_gained": 3,
         "_source": "Rogue",
-        "notes": "8 d8 Psionic Energy dice (2x proficiency bonus at level 9); regain all on long rest, or 1 as a bonus action (not again until next short/long rest)."
+        "notes": "Tracked via the Psi resource pip (Psionic Energy Dice, d8) — see Class Resources. Regain 1 die as a bonus action, not again until the next short/long rest."
       },
       {
         "name": "Soulknife — Psi-Bolstered Knack",
@@ -6923,14 +6220,16 @@
         "id": "pub_soulknife-psychic-whispers",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Rogue"
+        "_source": "Rogue",
+        "action_type": "action"
       },
       {
         "name": "Uncanny Dodge",
         "id": "uncanny-dodge",
         "type": "feature",
         "level_gained": 5,
-        "_source": "Rogue"
+        "_source": "Rogue",
+        "action_type": "reaction"
       },
       {
         "name": "Expertise",
@@ -7047,10 +6346,7 @@
     "spellcasting_ability": "cha",
     "hp_max": 62,
     "hp_current": 62,
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Performance",
@@ -7063,15 +6359,8 @@
       "Deception",
       "Acrobatics"
     ],
-    "skill_expertise": [
-      "Performance",
-      "History"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "skill_expertise": ["Performance", "History"],
+    "languages": ["Common", "Elvish", "Celestial"],
     "speed": 30,
     "darkvision": 60,
     "weapon_proficiencies": [
@@ -7081,14 +6370,10 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "tool_proficiencies": [],
     "resistances": [],
-    "saving_throw_advantages": [
-      "being_charmed"
-    ],
+    "saving_throw_advantages": ["being_charmed"],
     "features": [
       {
         "name": "Bardic Inspiration",
@@ -7228,12 +6513,6 @@
         "type": "chosen"
       },
       {
-        "name": "Suggestion",
-        "level": 2,
-        "prepared": true,
-        "type": "chosen"
-      },
-      {
         "name": "Stinking Cloud",
         "level": 3,
         "prepared": true,
@@ -7337,5 +6616,344 @@
       "Joins things rather than leads them when the thing is already good enough without her.",
       "Extraordinary information retention - now supernatural."
     ]
+  },
+  {
+    "id": "characters_29",
+    "name": "Sorra",
+    "full_name": "Oul'sorra'i",
+    "image": "./characters/sorra.jpg",
+    "appearance": "Dark skin, silver hair worn loose, moves with the quality of someone whose dance never fully stops even when standing still. Composed beauty that has stopped surprising her.",
+    "notes": "Inspires with body/dance rather than instrument.",
+    "persona_notes": [
+      "Speaks like she's inviting everyone into the back room of a tavern where the drinks cost more.",
+      "Kindness can be surface level - she performs it well. But she sees people in genuine need as problems she can fix.",
+      "Rarely unsettled.",
+      "Still where Elucyne is bubbly.",
+      "Sits with things before responding.",
+      "Reads rooms the way she reads music.",
+      "Seems like she knows something she isn't saying. Sometimes she does.",
+      "The dance never fully stops.",
+      "Has never stayed anywhere longer than she felt like staying. May be reconsidering that."
+    ],
+    "genus": "Half-Elf",
+    "subgenus": null,
+    "background": "Far Traveler",
+    "level": 9,
+    "stat_str": 7,
+    "stat_dex": 16,
+    "stat_con": 11,
+    "stat_int": 13,
+    "stat_wis": 15,
+    "stat_cha": 20,
+    "species_bonus_applied": true,
+    "species_traits": [
+      {
+        "name": "Fey Ancestry",
+        "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep.",
+        "grants_saving_throw_advantage": "being_charmed",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Skill Versatility",
+        "description": "Proficiency in two skills of your choice.",
+        "grants_skill_proficiency_choice": {
+          "count": 2,
+          "options": "any"
+        },
+        "type": "speciesTrait",
+        "source": "species"
+      }
+    ],
+    "ability_score_history": [
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "dex",
+        "amount": 1,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "wis",
+        "amount": 1,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "cha",
+        "amount": 1,
+        "source": "Shadow Touched",
+        "level_gained": 4
+      }
+    ],
+    "spellcasting_ability": "cha",
+    "hp_max": 55,
+    "hp_current": 55,
+    "saving_throws": ["dex", "cha"],
+    "skill_proficiencies": [
+      "Insight",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "History",
+      "Acrobatics",
+      "Athletics"
+    ],
+    "skill_expertise": ["Performance", "Insight"],
+    "languages": ["Common", "Elvish", "Solvalean", "Sylvan"],
+    "speed": 30,
+    "darkvision": 60,
+    "weapon_proficiencies": [
+      "simple",
+      "hand crossbow",
+      "longsword",
+      "rapier",
+      "shortsword"
+    ],
+    "armor_proficiencies": ["light"],
+    "tool_proficiencies": [],
+    "resistances": [],
+    "saving_throw_advantages": ["being_charmed"],
+    "features": [
+      {
+        "name": "Bardic Inspiration",
+        "id": "gen_bard_base_bardic-inspiration",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Bard"
+      },
+      {
+        "name": "Jack of All Trades",
+        "id": "jack-of-all-trades",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Bard"
+      },
+      {
+        "name": "Song of Rest",
+        "id": "gen_bard_base_song-of-rest",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Bard"
+      },
+      {
+        "name": "Expertise: Performance, Insight",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 3,
+        "_source": "Bard"
+      },
+      {
+        "name": "Guiding Whispers",
+        "id": "pub_guiding-whispers",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard"
+      },
+      {
+        "name": "Spiritual Focus",
+        "id": "pub_spiritual-focus",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard"
+      },
+      {
+        "name": "Tales from Beyond",
+        "id": "pub_tales-from-beyond",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard"
+      },
+      {
+        "name": "Shadow Touched",
+        "id": null,
+        "type": "feat",
+        "level_gained": 4,
+        "ability_choice": "cha",
+        "choices": {
+          "__grantedSpellChoice": "Disguise Self"
+        }
+      },
+      {
+        "name": "Font of Inspiration",
+        "id": "font-of-inspiration",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Bard"
+      },
+      {
+        "name": "Countercharm",
+        "id": "countercharm",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Bard"
+      },
+      {
+        "name": "Spirit Session",
+        "id": "pub_spirit-session",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Bard"
+      },
+      {
+        "name": "War Caster",
+        "id": null,
+        "type": "feat",
+        "level_gained": 8,
+        "ability_choice": null,
+        "choices": null
+      }
+    ],
+    "spells": [
+      {
+        "name": "Mage Hand",
+        "level": 0,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Minor Illusion",
+        "level": 0,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Dissonant Whispers",
+        "level": 1,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Healing Word",
+        "level": 1,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Silvery Barbs",
+        "level": 1,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Polymorph",
+        "level": 4,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Invisibility",
+        "level": null,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Shadow Touched",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
+      },
+      {
+        "name": "Disguise Self",
+        "level": null,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Shadow Touched",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
+      },
+      {
+        "name": "Vicious Mockery",
+        "level": 0,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Calm Emotions",
+        "level": 2,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Speak with Dead",
+        "level": 3,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Detect Thoughts",
+        "level": 2,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Dimension Door",
+        "level": 4,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Greater Invisibility",
+        "level": 4,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Animate Objects",
+        "level": 5,
+        "prepared": true,
+        "type": "chosen"
+      },
+      {
+        "name": "Mass Cure Wounds",
+        "level": 5,
+        "prepared": true,
+        "type": "chosen"
+      }
+    ],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Bard",
+        "level": 9,
+        "subclass": "College of Spirits"
+      }
+    ],
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9,
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 3,
+        "current": 3
+      },
+      "level_5": {
+        "max": 1,
+        "current": 1
+      }
+    }
   }
 ]

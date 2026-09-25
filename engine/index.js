@@ -28,8 +28,10 @@ const {
 } = require('./rules/5e/subclasses')
 const { validateCharacter } = require('./rules/validateCharacter')
 const { describeLevelUp } = require('./rules/5e/levelUp')
-const { diffLevelUp } = require('./rules/5e/diffLevelUp')
+const { diffLevelUp, applyFeatureMechanics } = require('./rules/5e/diffLevelUp')
+const { resolveEffectiveScores } = require('./rules/5e/abilityScores')
 const { loadFeat, isFeatGrantedSpell } = require('./rules/5e/grants')
+const { featureMechanics } = require('./rules/5e/featureMechanics')
 const {
   meetsFeatPrerequisites,
   evaluatePrerequisite,
@@ -117,6 +119,9 @@ module.exports = {
   validateCharacter,
   describeLevelUp,
   diffLevelUp,
+  applyFeatureMechanics,
+  featureMechanics,
+  resolveEffectiveScores,
   loadFeat,
   isFeatGrantedSpell,
   meetsFeatPrerequisites,

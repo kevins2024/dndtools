@@ -210,10 +210,12 @@
 
           <CharacterCombatPanel
             :character="activeChar"
+            :turn-resources="combatTurn.resources[activeEntry.key] || null"
             @condition-changed="log"
             @concentration-check="onConcentrationCheck"
             @hp-changed="log"
             @feature-used="log"
+            @feature-turn-toggle="onToggleResource"
           />
         </template>
 
@@ -234,10 +236,12 @@
           <CharacterCombatPanel
             :character="activeCompanion"
             table="companions"
+            :turn-resources="combatTurn.resources[activeEntry.key] || null"
             @condition-changed="log"
             @concentration-check="onConcentrationCheck"
             @hp-changed="log"
             @feature-used="log"
+            @feature-turn-toggle="onToggleResource"
           />
         </template>
 

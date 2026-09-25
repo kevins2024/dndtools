@@ -507,7 +507,125 @@
           — consider putting more of your points there. (Hover any ability for
           what it governs.)
         </div>
-        <div class="nct-abilities-grid">
+
+        <!-- ── Method toggle — Point Buy vs. Roll for Stats ── -->
+        <div class="nct-method-toggle">
+          <button
+            class="nct-btn nct-method-btn"
+            :class="{ active: abilityScoreMethod === 'point_buy' }"
+            @click="abilityScoreMethod = 'point_buy'"
+          >
+            Point Buy
+          </button>
+          <button
+            class="nct-btn nct-method-btn"
+            :class="{ active: abilityScoreMethod === 'roll' }"
+            @click="abilityScoreMethod = 'roll'"
+          >
+            Roll for Stats
+          </button>
+        </div>
+
+        <!-- ── Roll for Stats — 4d6, drop the lowest die, six times (PHB
+             standard method). Switching to this tab never touches
+             baseScores by itself — only actually assigning all 6 rolls
+             does, auto-applied the instant that's valid (see the
+             rolledScoresValid watcher). ── -->
+        <div v-if="abilityScoreMethod === 'roll'" class="nct-roll-section">
+          <div class="nct-note">
+            Roll 4d6 per ability, drop the lowest die each time, then assign the
+            six totals to whichever abilities you want.
+          </div>
+          <div class="nct-roll-controls">
+            <button
+              class="nct-btn nct-roll-btn"
+              :disabled="rollingAnimation"
+              @click="rollAllScores"
+            >
+              {{ rolledScores.length ? 'Reroll All' : 'Roll All Scores' }}
+            </button>
+            <span v-if="rollingAnimation" class="nct-note-inline">
+              press Space to skip
+            </span>
+          </div>
+
+          <div v-if="rolledScores.length" class="nct-roll-grid">
+            <div
+              v-for="(entry, i) in rolledScores"
+              :key="i"
+              class="nct-roll-row"
+              :class="{ 'nct-roll-row--settled': entry.settled }"
+            >
+              <div class="nct-roll-dice">
+                <span
+                  v-for="(d, di) in entry.dice"
+                  :key="di"
+                  class="nct-die"
+                  :class="{ 'nct-die--dropped': di === entry.droppedIndex }"
+                >
+                  {{ d }}
+                </span>
+              </div>
+              <span class="nct-roll-total">{{ entry.total }}</span>
+              <select
+                class="nct-select"
+                :value="entry.assignedTo || ''"
+                :disabled="!entry.settled"
+                @change="assignRolledScore(i, $event.target.value)"
+              >
+                <option value="">Unassigned</option>
+                <option
+                  v-for="a in abilities"
+                  :key="a"
+                  :value="a"
+                  :disabled="
+                    entry.assignedTo !== a &&
+                    rolledScores.some((r) => r.assignedTo === a)
+                  "
+                >
+                  {{ a.toUpperCase() }}
+                </option>
+              </select>
+              <!-- Same "→ final" convention the Point Buy grid uses, inline
+                   right next to the dropdown instead of a separate summary
+                   block — project owner's ask 2026-09-25. Previews against
+                   entry.total (the ROLLED number), not finalScores/
+                   baseScores — real bug found the same day: a roll isn't
+                   written into baseScores until it's actually applied
+                   (auto-applied now, but still not instant — see the
+                   rolledScoresValid watcher), so finalScores[ability] could
+                   show the bonus added to whatever baseScores still was
+                   (the point-buy default of 8, if untouched) rather than
+                   the rolled total sitting right there in the dropdown. -->
+              <span
+                v-if="entry.assignedTo && abilityBonusAmounts[entry.assignedTo]"
+                class="nct-ability-bonus"
+                >→
+                {{ entry.total + abilityBonusAmounts[entry.assignedTo] }}</span
+              >
+            </div>
+          </div>
+
+          <div
+            v-if="rolledScores.some((r) => r.settled)"
+            class="nct-note nct-roll-grand-total"
+          >
+            Total so far: <strong>{{ rolledScoresTotal }}</strong>
+            <span class="nct-note-inline">(average 6-roll total is ~73)</span>
+          </div>
+
+          <!-- Applies itself automatically (see the rolledScoresValid
+               watcher) the instant all 6 are assigned — this is just
+               confirmation it happened, not a button to click. -->
+          <div v-if="rolledScoresValid" class="nct-note nct-roll-applied">
+            ✓ Applied to character
+          </div>
+        </div>
+
+        <div
+          v-if="abilityScoreMethod === 'point_buy'"
+          class="nct-abilities-grid"
+        >
           <div
             v-for="a in abilities"
             :key="a"
@@ -553,6 +671,7 @@
           </div>
         </div>
         <div
+          v-if="abilityScoreMethod === 'point_buy'"
           class="nct-note"
           :class="{ 'nct-note--danger': pointsRemaining < 0 }"
         >
@@ -606,7 +725,18 @@
 
       <!-- ── Spells & Features ── -->
       <div v-else class="nct-tab-body">
-        <div v-if="loading" class="nct-loading">Computing…</div>
+        <!-- loading && !preview (not just loading) -- real bug found
+             2026-09-23, live-testing LexicaBugTest: togglePick() re-runs
+             runPreview() on every single checkbox click (see its own
+             comment), which set `loading = true` for the fetch's duration.
+             A bare v-if="loading" blanked this ENTIRE tab body out to
+             "Computing…" and back on every pick, including the spell/
+             cantrip picker lists themselves -- the reported "jump/flash...
+             as though it's re-rendering" was real, not a misread: the whole
+             card WAS being torn down and rebuilt every click. Once a
+             preview already exists, keep rendering it through a routine
+             re-fetch instead of blanking it. -->
+        <div v-if="loading && !preview" class="nct-loading">Computing…</div>
         <div v-else-if="error" class="nct-error">{{ error }}</div>
         <template v-else-if="preview">
           <!-- Every character starts at level 1, and level-1 HP is always
@@ -851,7 +981,12 @@
         Create Character
       </button>
       <span v-if="!canCreate" class="nct-note">
-        Needs a name, species, class, and a legal point-buy spend.
+        Needs a name, species, class, and
+        {{
+          abilityScoreMethod === 'roll'
+            ? 'all 6 rolled scores assigned to an ability'
+            : 'a legal point-buy spend'
+        }}.
       </span>
     </div>
 
@@ -879,6 +1014,7 @@ import {
 } from '@/utils/startingGearCatalog.js'
 import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
 import weaponTypesAndLanguages from '@/data/weapon_types_and_languages.json'
+import { abilityScoreRoll } from '@/utils/abilityScoreRoll.js'
 
 // Homebrew languages (e.g. Solvalean) live alongside the homebrew weapon
 // types in the same file — HOMEBREW_WEAPON_PROPS in dnd_utils.js already
@@ -898,6 +1034,13 @@ const HOMEBREW_LANGUAGES = (weaponTypesAndLanguages.languages ?? []).map(
 )
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
+// How long each of the 6 rolls animates before settling — tune here.
+// Project owner's call, 2026-09-25 ("cool, works perfect, but a little
+// too long" at 2000ms): dropped to ~1280ms/roll (rounds to a whole number
+// of ROLL_TICK_MS ticks) — ~7.7s for all 6, down from 12s.
+const ROLL_TICK_MS = 80
+const ROLL_ANIMATION_MS = 1300
+const ROLL_ANIMATION_TICKS = Math.round(ROLL_ANIMATION_MS / ROLL_TICK_MS)
 // Mirrors engine/rules/pointBuy.js's table — kept local for instant UI
 // feedback as the player adjusts scores; the server is still the source of
 // truth for the actual level-1 computation.
@@ -990,6 +1133,29 @@ export default {
       baseScores: { str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 },
       abilities: ABILITIES,
       pointBuyBudget: POINT_BUY_BUDGET,
+      // 'point_buy' | 'roll' — how the player is generating ability scores
+      // this session. Defaults to point buy (existing behavior, unchanged
+      // for anyone not using the new roll option). Switching methods never
+      // touches baseScores by itself — only actually finishing a roll
+      // (assigning all 6) does, auto-applied — so bouncing between tabs to
+      // compare never silently discards work.
+      abilityScoreMethod: 'point_buy',
+      // Six { dice, droppedIndex, total, assignedTo, settled } entries once
+      // rolled (see engine/rules/5e/abilityScoreRoll.js) — assignedTo is
+      // null until the player picks which ability each roll goes to.
+      // Rolled one at a time (not all at once) for real tension/drama —
+      // project owner's ask 2026-09-25 — so `settled` tracks which ones
+      // have actually finished animating so far.
+      rolledScores: [],
+      rollingAnimation: false,
+      // The REAL results, computed instantly when "Roll" is clicked — the
+      // animation never re-rolls anything, it just delays revealing what
+      // already happened. Stored here so skipRollAnimation (spacebar) can
+      // jump straight to it. Interval ids for the currently-running
+      // per-roll animation, so a skip or a navigate-away can cancel
+      // cleanly instead of leaking a timer.
+      pendingRollResults: null,
+      rollTimers: [],
       // name -> description string, populated as newFeatures resolve via
       // lookupFeature (async: local SRD/homebrew catalogs first, then the
       // traits API).
@@ -1418,6 +1584,33 @@ export default {
     pointsRemaining() {
       return this.pointBuyBudget - this.pointsSpent
     },
+    // True once all 6 rolls are assigned to 6 DISTINCT abilities — the
+    // Apply button stays disabled until then, same "can't half-apply"
+    // guard every other multi-pick choice in this app already has.
+    rolledScoresValid() {
+      if (this.rolledScores.length !== 6) return false
+      const assigned = this.rolledScores
+        .map((r) => r.assignedTo)
+        .filter(Boolean)
+      return (
+        assigned.length === 6 &&
+        new Set(assigned).size === 6 &&
+        this.rolledScores.every((r) => r.settled)
+      )
+    },
+    // Running total of whatever's settled so far — only real, finished
+    // rolls count (a still-animating roll's flickering fake number isn't
+    // included), so this ticks up by a real amount as each one lands
+    // rather than showing noisy in-progress numbers. Project owner's ask
+    // 2026-09-25: "a quick insight of how overall powerful their roll
+    // was." 73 is the exact expected total for 6 fair 4d6-drop-lowest
+    // rolls (computed by full enumeration of all 1296 dice outcomes, not
+    // a rule of thumb) — shown as a reference point, not a target.
+    rolledScoresTotal() {
+      return this.rolledScores
+        .filter((r) => r.settled)
+        .reduce((sum, r) => sum + r.total, 0)
+    },
     abilityDescriptions() {
       return ABILITY_DESCRIPTIONS
     },
@@ -1450,23 +1643,40 @@ export default {
     filteredSpellOptions() {
       return filterSpellOptions(this.spellOptions, this.spellSearch)
     },
-    finalScores() {
-      const scores = { ...this.baseScores }
+    // Pure per-ability bonus AMOUNT (species fixed + choice, or the manual
+    // +2/+1 toggle) — independent of any particular base score, unlike
+    // finalScores below. Extracted out 2026-09-25 after a real bug: the
+    // roll grid's "→ final" preview used to read finalScores directly,
+    // which is computed FROM baseScores (the point-buy field) — so a
+    // rolled score sitting in a dropdown, not yet Applied, showed the
+    // bonus added to whatever baseScores still was (often the point-buy
+    // default of 8) instead of the rolled total. This lets any UI preview
+    // "what would ability X become" against ANY number, not just
+    // baseScores' current one.
+    abilityBonusAmounts() {
+      const bonuses = { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }
       if (this.useSpeciesBonus) {
         const sp = this.selectedSpecies
         if (sp) {
           for (const [a, n] of Object.entries(this.combinedFixedBonus)) {
-            scores[a] = (scores[a] ?? 10) + n
+            bonuses[a] = (bonuses[a] ?? 0) + n
           }
           if (sp.choice) {
             this.speciesChoiceAbilities.forEach((a) => {
-              if (a) scores[a] = (scores[a] ?? 10) + sp.choice.amount
+              if (a) bonuses[a] = (bonuses[a] ?? 0) + sp.choice.amount
             })
           }
         }
       } else {
-        if (this.manualPlusTwoAbility) scores[this.manualPlusTwoAbility] += 2
-        if (this.manualPlusOneAbility) scores[this.manualPlusOneAbility] += 1
+        if (this.manualPlusTwoAbility) bonuses[this.manualPlusTwoAbility] += 2
+        if (this.manualPlusOneAbility) bonuses[this.manualPlusOneAbility] += 1
+      }
+      return bonuses
+    },
+    finalScores() {
+      const scores = { ...this.baseScores }
+      for (const [a, n] of Object.entries(this.abilityBonusAmounts)) {
+        scores[a] = (scores[a] ?? 10) + n
       }
       return scores
     },
@@ -1542,7 +1752,15 @@ export default {
           this.equipmentAssignmentComplete &&
           this.speciesLanguageAssignmentComplete &&
           this.backgroundLanguageAssignmentComplete &&
-          this.pointsRemaining >= 0 &&
+          // Each method's own real validity check — Point Buy needs a
+          // legal (non-negative) spend, Roll needs all 6 rolls actually
+          // made and assigned to distinct abilities. Real bug found
+          // 2026-09-25: this used to just skip the check entirely for
+          // Roll mode, so Create was reachable even with an unfinished or
+          // never-touched roll (baseScores just sat at its all-8 default).
+          (this.abilityScoreMethod === 'roll'
+            ? this.rolledScoresValid
+            : this.pointsRemaining >= 0) &&
           this.cantripDraftPicks.length >= this.cantripPickCount &&
           this.spellDraftPicks.length >= this.spellPickCount &&
           !this.pendingFightingStyleChoice &&
@@ -1563,6 +1781,15 @@ export default {
         if (req.className) this.className = req.className
         this.$store.commit('CLEAR_NEW_CHARACTER_NAV')
       },
+    },
+    // Auto-applies the instant all 6 rolls are assigned to distinct
+    // abilities — project owner's ask 2026-09-25, after finding the
+    // separate "Apply Rolled Scores" button was easy to miss entirely
+    // (assign all 6 and just... expect it to have worked). No reason this
+    // needs a manual extra click when the moment of validity is already
+    // unambiguous.
+    rolledScoresValid(valid) {
+      if (valid) this.applyRolledScores()
     },
     fightingStyleChoice() {
       this.runPreview()
@@ -1642,8 +1869,21 @@ export default {
       // afterward via the two selects. Left blank (not `[]`, so v-model on
       // both selects has a real index to bind to) for a custom name or a
       // free-choice background like Born Adventurer.
+      //
+      // Real bug found 2026-09-23, live-testing LexicaBugTest: a curated
+      // background's fixed skill can collide with one genus already grants
+      // (e.g. Half-Elf's Skill Versatility already picked). Since this just
+      // assigns straight into the v-model array, a native <select> happily
+      // displays that value as selected even though its <option> is
+      // `disabled` via skillDisabled — disabled only blocks a NEW manual
+      // pick, it doesn't invalidate an already-bound value. PHB p.13's real
+      // rule for this overlap is "choose a different proficiency instead,"
+      // so a colliding slot is left blank (not silently kept) to force that
+      // real choice, matching every other skill picker's own convention.
       this.selectedSkills = this.pickedBackground?.skill_proficiencies.length
-        ? [...this.pickedBackground.skill_proficiencies]
+        ? this.pickedBackground.skill_proficiencies.map((id) =>
+            this.resolvedSpeciesGrants.skills.includes(id) ? null : id
+          )
         : [null, null]
     },
     finalScores: {
@@ -1690,6 +1930,15 @@ export default {
     }
   },
 
+  mounted() {
+    window.addEventListener('keydown', this.handleKeydown)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('keydown', this.handleKeydown)
+    this.clearRollTimers()
+  },
+
   methods: {
     // Clicking a spell's NAME shows its description — the checkbox next to
     // it is the only thing that actually (de)selects it. Previously the
@@ -1715,6 +1964,140 @@ export default {
       const next = this.baseScores[ability] + delta
       if (next < 8 || next > 15) return
       this.$set(this.baseScores, ability, next)
+    },
+
+    // Rolls all 6 ability scores (standard PHB method: 4d6, drop the
+    // lowest die, six times — see engine/rules/5e/abilityScoreRoll.js for
+    // the real rule) — computed instantly, for real, right here. Revealed
+    // ONE AT A TIME rather than all together, ~2 seconds each (project
+    // owner's ask 2026-09-25, for real tension/drama building toward the
+    // total) — see animateRollAt for the per-roll reveal and
+    // skipRollAnimation for the spacebar shortcut past it. Re-rollable
+    // freely: this app doesn't enforce "you get one set and must use it,"
+    // matching its general DM-arbitrated-not-enforced philosophy elsewhere.
+    rollAllScores() {
+      if (this.rollingAnimation) return
+      this.clearRollTimers()
+      this.pendingRollResults = abilityScoreRoll.rollAbilityScoreSet()
+      this.rollingAnimation = true
+      this.rolledScores = this.pendingRollResults.map(() => ({
+        dice: [1, 1, 1, 1],
+        droppedIndex: -1,
+        total: 3,
+        assignedTo: null,
+        settled: false,
+      }))
+      this.animateRollAt(0)
+    },
+
+    // Runs the ROLL_ANIMATION_MS cycling-numbers reveal for roll `index`,
+    // then chains straight into the next one — this is pure UI flourish,
+    // not a rules concern, since the real result was already decided the
+    // moment rollAllScores ran; this just delays showing it.
+    animateRollAt(index) {
+      const real = this.pendingRollResults
+      if (index >= real.length) {
+        this.rollingAnimation = false
+        return
+      }
+      let ticks = 0
+      const maxTicks = ROLL_ANIMATION_TICKS
+      const interval = setInterval(() => {
+        ticks++
+        this.rolledScores = this.rolledScores.map((entry, i) => {
+          if (i !== index) return entry
+          if (ticks >= maxTicks) {
+            return { ...real[i], assignedTo: entry.assignedTo, settled: true }
+          }
+          // Fake dice AND a fake total each tick, so the number next to
+          // the dice visibly shuffles along with them instead of sitting
+          // frozen until the final reveal — the dropped-die crossout stays
+          // hidden (droppedIndex -1) until settling, a deliberate "tumble,
+          // then reveal" beat rather than flickering the whole time.
+          const fakeDice = entry.dice.map(() => abilityScoreRoll.rollD6())
+          return {
+            ...entry,
+            dice: fakeDice,
+            total: abilityScoreRoll.abilityScoreFromDice(fakeDice).total,
+          }
+        })
+        if (ticks >= maxTicks) {
+          clearInterval(interval)
+          this.rollTimers = this.rollTimers.filter((id) => id !== interval)
+          this.animateRollAt(index + 1)
+        }
+      }, ROLL_TICK_MS)
+      this.rollTimers.push(interval)
+    },
+
+    // Spacebar while a roll sequence is animating (see handleKeydown) —
+    // jumps every not-yet-settled roll straight to its real final value.
+    // Already-settled rolls (including any the player was quick enough to
+    // assign mid-sequence) are left completely untouched.
+    skipRollAnimation() {
+      if (!this.rollingAnimation) return
+      this.clearRollTimers()
+      const real = this.pendingRollResults
+      this.rolledScores = this.rolledScores.map((entry, i) =>
+        entry.settled ? entry : { ...real[i], assignedTo: null, settled: true }
+      )
+      this.rollingAnimation = false
+    },
+
+    clearRollTimers() {
+      for (const id of this.rollTimers) clearInterval(id)
+      this.rollTimers = []
+    },
+
+    // Global spacebar handler (bound in mounted(), unbound in
+    // beforeDestroy() below) — only acts while a roll is actually
+    // animating, and steps aside if focus is in a text field so it never
+    // eats a real space keystroke elsewhere in the form.
+    handleKeydown(e) {
+      if (e.code !== 'Space' || !this.rollingAnimation) return
+      const tag = document.activeElement?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return
+      e.preventDefault()
+      this.skipRollAnimation()
+    },
+
+    // Which ability (if any) currently has THIS roll assigned — used to
+    // keep the per-roll <select> in sync and to stop the same ability
+    // being picked twice (same duplicate-prevention shape as
+    // speciesSkillChoiceDisabled elsewhere in this file). To change an
+    // assignment, pick "Unassigned" on it first, then assign the freed
+    // ability elsewhere — real bug found 2026-09-25: the old "Assign to…"
+    // label on this same option looked like an inert placeholder rather
+    // than a real action, so a player had no visible way to change their
+    // mind once everything showed as "taken."
+    assignRolledScore(index, ability) {
+      this.rolledScores = this.rolledScores.map((entry, i) => {
+        if (i === index) return { ...entry, assignedTo: ability || null }
+        // Clear this ability off any OTHER roll that had it — an ability
+        // can only ever be fed by one roll at a time. Only reachable if a
+        // future UI change allows picking an already-taken ability
+        // directly instead of requiring unassign-then-reassign; harmless
+        // to keep as a safety net either way.
+        if (ability && entry.assignedTo === ability) {
+          return { ...entry, assignedTo: null }
+        }
+        return entry
+      })
+    },
+
+    // Writes the assigned rolled totals into baseScores — the same field
+    // point buy edits, so everything downstream (species bonus preview,
+    // finalScores, the character shell) works unchanged regardless of
+    // which method produced the numbers. Called automatically by the
+    // rolledScoresValid watcher the instant all 6 are assigned — real bug
+    // found 2026-09-25: this used to require a separate manual button
+    // click, which was easy to miss entirely (assign all 6, assume it's
+    // done, never actually apply anything).
+    applyRolledScores() {
+      if (!this.rolledScoresValid) return
+      for (const entry of this.rolledScores) {
+        this.$set(this.baseScores, entry.assignedTo, entry.total)
+      }
     },
 
     skillNameFor(id) {
@@ -1806,13 +2189,15 @@ export default {
         sourceArray === this.selectedSkills
           ? this.selectedClassSkills
           : this.selectedSkills
-      const speciesSkills = Object.values(
-        this.speciesSkillChoiceValues || {}
-      ).flat()
+      // resolvedSpeciesGrants.skills (not a raw re-flatten of
+      // speciesSkillChoiceValues) so this also catches a FIXED
+      // grants_skill_proficiency trait (no picker involved at all), not just
+      // a species' own "choose N skills" picker like Half-Elf's Skill
+      // Versatility — the earlier 2026-09-17 fix only covered the latter.
       return (
         takenInSameArray ||
         otherArray.includes(skillId) ||
-        speciesSkills.includes(skillId)
+        this.resolvedSpeciesGrants.skills.includes(skillId)
       )
     },
 
@@ -2166,10 +2551,44 @@ export default {
       return { items: resolved, gold: 0 }
     },
 
-    createCharacter() {
+    // Async, and its FIRST real step is awaiting a fresh preview — real bug
+    // found 2026-09-25 (the immediate trigger was a rolled character saving
+    // with the old default-8 stats, but the actual root cause applies to
+    // Point Buy too, see below). runPreview() is async (a real server
+    // round trip); the existing `finalScores: { deep: true }` watcher
+    // already calls it whenever ability scores change, but that's
+    // fire-and-forget from the watcher's own perspective — nothing stopped
+    // Create from being clicked while that fetch was still in flight, in
+    // which case this.preview still held the PREVIOUS, stale response.
+    // That's not just wrong ability scores: hp_max, spell slots, and
+    // anything else diffLevelUp derives from CON/ability scores would all
+    // be computed from the stale numbers too. Point Buy usually didn't hit
+    // this in practice because some OTHER field change (a spell pick, etc.)
+    // tended to trigger one more preview refresh before Create got
+    // clicked; Roll's natural "apply scores last, then save" workflow hit
+    // it directly. Awaiting a real refresh here closes the race
+    // structurally instead of hoping something else happens to.
+    async createCharacter() {
       if (!this.canCreate) return
+      await this.runPreview()
+      if (!this.preview?.patch) return
       const shell = this.characterShell()
       let character = { ...shell, ...this.preview.patch }
+      // Belt-and-suspenders on top of the fresh-preview await above:
+      // preview.patch's own stat_str/etc. are just an ECHO of whatever
+      // characterShell() looked like as of THAT preview call — for a
+      // level-0->1 creation (no ASI possible yet) they're never a
+      // legitimate NEW value, only ever a snapshot of what was already on
+      // the form. finalScores is the one live, synchronous, always-current
+      // source for what's actually selected right now — re-applied here so
+      // the ability scores specifically can never be shadowed by a stale
+      // preview even if some future change reintroduces a timing gap.
+      character.stat_str = this.finalScores.str
+      character.stat_dex = this.finalScores.dex
+      character.stat_con = this.finalScores.con
+      character.stat_int = this.finalScores.int
+      character.stat_wis = this.finalScores.wis
+      character.stat_cha = this.finalScores.cha
       if (this.isPracticeCharacter) character.is_practice = true
 
       // Every Wizard gets their own spellbook entity from the moment
@@ -2450,6 +2869,98 @@ export default {
 .nct-btn--confirm {
   color: var(--color-accent-strong);
   border-color: var(--color-accent);
+}
+
+.nct-method-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.nct-roll-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.nct-roll-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nct-roll-btn {
+  align-self: flex-start;
+}
+
+.nct-roll-grand-total {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.nct-roll-grand-total strong {
+  font-family: var(--font-display);
+  color: var(--color-accent-strong);
+  font-size: var(--font-size-lg, 1.1rem);
+}
+
+.nct-roll-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.nct-roll-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  background: var(--color-bg-panel);
+}
+
+.nct-roll-dice {
+  display: flex;
+  gap: 0.25rem;
+  min-width: 8rem;
+}
+
+.nct-die {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  background: var(--color-bg-surface);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.nct-roll-row--settled .nct-die {
+  transform: scale(1.05);
+}
+
+.nct-die--dropped {
+  opacity: 0.35;
+  text-decoration: line-through;
+  border-style: dashed;
+}
+
+.nct-roll-total {
+  width: 2.5rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg, 1.1rem);
+  color: var(--color-accent-strong);
+}
+
+.nct-roll-applied {
+  color: var(--color-accent-strong);
 }
 
 .nct-btn--large {

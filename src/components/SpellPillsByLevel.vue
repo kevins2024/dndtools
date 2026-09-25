@@ -102,7 +102,9 @@ export default {
         .sort((a, b) => a - b)
         .map((lvl) => ({
           label: lvl === 0 ? 'Cantrips' : `Level ${lvl}`,
-          spells: map[lvl],
+          // Alphabetized within the level, same as CharacterSpellbook.vue —
+          // project owner's ask 2026-09-25.
+          spells: [...map[lvl]].sort((a, b) => a.name.localeCompare(b.name)),
         }))
     },
   },

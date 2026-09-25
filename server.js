@@ -322,6 +322,17 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       .json({ error: '"character" and "className" are required' })
   }
   try {
+    // engine/ never reads party_items.json itself (see abilityScores.js's
+    // header comment) — this is the one place that does, filtered down to
+    // just this character's own equipped gear before handing it over, so a
+    // feature-mechanics uses_formula (Divine Sense's CHA modifier) resolves
+    // against the character's real EFFECTIVE ability scores, not base ones
+    // only. Real bug found 2026-09-25 without this — see
+    // engine/CHECKLIST.md's entry that day.
+    const partyItems = readJSON(path.join(DATA_DIR, 'party_items.json'))
+    const equippedItems = partyItems.filter(
+      (i) => i.equipped_by === character.name
+    )
     const result = engine.diffLevelUp(character, {
       className,
       toLevel,
@@ -352,6 +363,7 @@ app.post('/api/engine/preview-level-up', (req, res) => {
       masterOfIntrigueGamingSetChoice,
       masterOfIntrigueLanguageChoices,
       bonusProficienciesChoice,
+      equippedItems,
     })
     res.json(result)
   } catch (err) {
@@ -411,6 +423,14 @@ app.get('/api/engine/feats', (req, res) => {
         choices: data.choices ?? null,
         stat_bonuses: data.stat_bonuses ?? null,
       }))
+      // Real bug found 2026-09-25: this never actually sorted anything —
+      // it just returned Object.entries' insertion order, i.e. whatever
+      // order feats.json's keys happen to sit in on disk. The picker
+      // LOOKED "somewhat alphabetized" purely because that file was
+      // hand-authored in roughly-alphabetical batches over time, not
+      // because anything enforced it — any feat added out of order (or
+      // any future one) would break the pattern.
+      .sort((a, b) => a.name.localeCompare(b.name))
     res.json(feats)
   } catch (err) {
     console.error('Error listing feats:', err.message)
@@ -502,9 +522,12 @@ app.get('/api/engine/pact-boons', (req, res) => {
 // "engine stays the source of truth" architecture — a future non-Vue
 // frontend gets the same answer. `pool: 'any'` (Pact of the Tome's "3
 // cantrips from any class's list") skips the class-list filter entirely.
-// `excludeNames` lets the caller pass the character's already-known
-// spells/cantrips so the picker doesn't offer a duplicate — normally just
-// character.spells's own names, computed here so the client doesn't have to.
+// Deliberately does NOT exclude already-known spells/cantrips from the
+// returned list (see engine.listSpellsForClass's own excludeNames param,
+// still there for other callers) — LevelUpTool.vue shows them disabled
+// instead of hiding them, via its own isSpellKnown()/knownSpellNamesLower,
+// which checks every known-spell source (class list, subclass bonus
+// spells, feature/feat grants, equipped items), not just character.spells.
 app.post('/api/engine/spell-choices', (req, res) => {
   const { character, className, subclassName, toLevel, cantripsOnly, pool } =
     req.body
@@ -536,12 +559,10 @@ app.post('/api/engine/spell-choices', (req, res) => {
           level,
           otherClasses,
         })
-    const excludeNames = (character.spells || []).map((s) => s.name)
     const options = engine.listSpellsForClass(listClassName, {
       maxLevel,
       cantripsOnly: Boolean(cantripsOnly),
       pool: pool === 'any' ? 'any' : 'class',
-      excludeNames,
     })
     res.json({ maxLevel, options })
   } catch (err) {
@@ -561,9 +582,10 @@ app.post('/api/engine/spell-choices', (req, res) => {
 // Fey Touched still gets a real 1st-level spell). className is optional —
 // omit it (or the caller passes null) for Fey Touched/Shadow Touched's
 // "any spellbook" grants, which aren't tied to one class's list at all.
+// Deliberately does NOT exclude already-known spells either — see the same
+// note on /api/engine/spell-choices above.
 app.post('/api/engine/feat-spell-choices', (req, res) => {
   const {
-    character,
     className,
     level,
     cantripsOnly,
@@ -572,7 +594,6 @@ app.post('/api/engine/feat-spell-choices', (req, res) => {
     attackRollOnly,
   } = req.body
   try {
-    const excludeNames = (character?.spells || []).map((s) => s.name)
     const options = engine.listFeatSpellChoices({
       className: className || null,
       level: level ?? null,
@@ -580,7 +601,6 @@ app.post('/api/engine/feat-spell-choices', (req, res) => {
       schools: schools ?? null,
       ritualOnly: Boolean(ritualOnly),
       attackRollOnly: Boolean(attackRollOnly),
-      excludeNames,
     })
     res.json({ options })
   } catch (err) {

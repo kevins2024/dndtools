@@ -233,7 +233,9 @@
     "battle_effect": true,
     "effect": "Swift Strike: once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
     "action_type": "reaction",
-    "features_granted": ["Swift Strike"]
+    "features_granted": [
+      "Swift Strike"
+    ]
   },
   {
     "name": "Amulet of Proof against Detection",
@@ -677,7 +679,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "reaction",
-    "features_granted": ["Missile Snaring"]
+    "features_granted": [
+      "Missile Snaring"
+    ]
   },
   {
     "name": "Alchemical Dagger",
@@ -1348,7 +1352,9 @@
     "slot": "ring",
     "battle_effect": true,
     "action_type": "free",
-    "features_granted": ["Ring's Answer"]
+    "features_granted": [
+      "Ring's Answer"
+    ]
   },
   {
     "name": "Longbow +2 (Force)",
@@ -1442,7 +1448,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "free",
-    "features_granted": ["Ring's Answer"]
+    "features_granted": [
+      "Ring's Answer"
+    ]
   },
   {
     "name": "Hand Crossbow +1",
@@ -2084,8 +2092,8 @@
     "name": "Curved Blade +2",
     "type": "weapon",
     "weapon_category": "scimitar",
-    "equipped_by": "Sorra (Old)",
-    "carried_by": "Sorra (Old)",
+    "equipped_by": "Sorra",
+    "carried_by": "Sorra",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
@@ -2106,7 +2114,7 @@
     "name": "Whisper Longbow +2",
     "type": "weapon",
     "weapon_category": "longbow",
-    "equipped_by": "Sorra (Old)",
+    "equipped_by": "Sorra",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -2120,7 +2128,7 @@
   {
     "name": "Bracers of Archery",
     "type": "armor",
-    "equipped_by": "Sorra (Old)",
+    "equipped_by": "Sorra",
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
@@ -2136,7 +2144,7 @@
   {
     "name": "Leather Armor +2 (Southern)",
     "type": "armor",
-    "equipped_by": "Sorra (Old)",
+    "equipped_by": "Sorra",
     "carried_by": null,
     "needs_attunement": false,
     "attuned": false,
@@ -2151,7 +2159,7 @@
   {
     "name": "The Steadfast",
     "type": "wondrous",
-    "equipped_by": "Sorra (Old)",
+    "equipped_by": "Sorra",
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
@@ -2164,7 +2172,9 @@
     "slot": "neck",
     "battle_effect": true,
     "action_type": "reaction",
-    "features_granted": ["Steadfast Response"]
+    "features_granted": [
+      "Steadfast Response"
+    ]
   },
   {
     "name": "Greatsword +2",
@@ -2708,7 +2718,7 @@
     "type": "wondrous",
     "slot": "feet",
     "equipped_by": null,
-    "carried_by": "Sorra (Old)",
+    "carried_by": "Sorra",
     "needs_attunement": true,
     "attuned": false,
     "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
@@ -2784,8 +2794,8 @@
     "name": "Helm of Brilliance",
     "type": "wondrous",
     "slot": "head",
-    "equipped_by": "Sorra (Old)",
-    "carried_by": "Sorra (Old)",
+    "equipped_by": "Sorra",
+    "carried_by": "Sorra",
     "needs_attunement": true,
     "attuned": true,
     "effect": "6 opals cast Daylight, 9 rubies cast Fireball, 5 diamonds cast Wall of Fire — each gem is consumed permanently on use (no recharge). Undead within 30ft have disadvantage on attacks. If the wearer fails a save against fire damage from a spell, roll a d20 — on a 1, all remaining gems detonate for radiant damage equal to the number of gems left (DC 17 Dex save, half on success, wearer excluded), and the helm is destroyed.",
@@ -2915,7 +2925,9 @@
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
     "id": "items_164",
     "battle_effect": true,
-    "features_granted": ["Seize the Opening"]
+    "features_granted": [
+      "Seize the Opening"
+    ]
   },
   {
     "name": "Helm of the Reaching Hand",
@@ -2930,7 +2942,9 @@
     "id": "items_165",
     "battle_effect": true,
     "action_type": "reaction",
-    "features_granted": ["Reaching Hand"],
+    "features_granted": [
+      "Reaching Hand"
+    ],
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
@@ -3060,7 +3074,9 @@
     "battle_effect": true,
     "action_type": "free",
     "effect": "Tidal Surge: when the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
-    "features_granted": ["Tidal Surge"]
+    "features_granted": [
+      "Tidal Surge"
+    ]
   },
   {
     "name": "Robe of Stilled Thought",
@@ -3590,7 +3606,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "bonus_action",
-    "features_granted": ["Stormbreak Reserve"]
+    "features_granted": [
+      "Stormbreak Reserve"
+    ]
   },
   {
     "name": "Gauntlet of the Sundering Blow",
@@ -3611,7 +3629,9 @@
     "effect": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet — the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
     "stored_at": null,
     "party_id": null,
-    "features_granted": ["Sundering Strike"]
+    "features_granted": [
+      "Sundering Strike"
+    ]
   },
   {
     "name": "Hand Crossbow of the Old Trail",
@@ -3663,7 +3683,9 @@
     "stored_at": null,
     "party_id": null,
     "action_type": "action",
-    "features_granted": ["Warding Press"]
+    "features_granted": [
+      "Warding Press"
+    ]
   },
   {
     "name": "Stone of the Rootbound Ward",
@@ -3943,7 +3965,9 @@
     "carried_by": null,
     "needs_attunement": true,
     "attuned": true,
-    "grants_skill_proficiency": ["History"],
+    "grants_skill_proficiency": [
+      "History"
+    ],
     "stat_bonuses": {
       "psychic_blade_attack": 2,
       "psychic_blade_damage": 2
@@ -4119,7 +4143,7 @@
     "type": "mount",
     "mount_type": "mount_riding_horse_uncommon",
     "equipped_by": null,
-    "carried_by": "Sorra (Old)",
+    "carried_by": "Sorra",
     "needs_attunement": false,
     "attuned": false,
     "notes": "",

@@ -1,0 +1,84 @@
+{
+  "_schema": {
+    "note": "First real slice of the feature-mechanics catalog project (started 2026-09-24, see engine/CHECKLIST.md) -- a real single source of truth for a feature's mechanical facts (action_type/recharge/uses_max/per_turn_cap), keyed by the SAME id classFeatures.js/subclasses.js already reference in features_by_level. Deliberately incremental: only entries actually needed so far are here, not the whole 1221-entry feature-catalog.json. diffLevelUp.js falls back to today's bare-grant behavior for anything not yet listed here -- an uncataloged feature isn't an error, just not-yet-migrated.",
+    "fields": {
+      "action_type": "'action'|'bonus_action'|'reaction'|'free', omitted entirely for a passive/no-action feature (never null -- matches the existing character-data convention audited into consistency 2026-09-23).",
+      "recharge": "'short_rest'|'long_rest', omitted for an at-will or non-pool feature.",
+      "uses_max": "A flat number, OR omitted for a feature with no numeric pool (e.g. Sneak Attack -- unlimited attempts, gated only by per_turn_cap below). Mutually exclusive with uses_formula below -- a feature has at most one of the two.",
+      "uses_formula": "Present instead of uses_max when the pool size genuinely depends on character state (RAW itself says so -- this is never used just because a number is inconvenient to type twice). Resolved against the character in diffLevelUp.js's applyFeatureMechanics, NOT stored as a formula on the character record -- only the resolved number lands in uses_max/uses_current there. Two shapes exist so far, added only when a real feature needed them (see engine/CHECKLIST.md's 2026-09-24 entry -- deliberately not a general expression language): {type:'ability_mod', ability:'cha'|'str'|..., base:1} resolves to base + that ability's modifier (Divine Sense: 1 + CHA mod), and {type:'level_multiple', class:'Paladin', multiplier:5} resolves to that NAMED class's own level (not total character level) times multiplier (Lay on Hands: paladin level x 5). A resolved value can legitimately come out to 0 or negative (a very-low-CHA Paladin really does get 0 uses of Divine Sense per RAW) -- never floored to 1 silently; that's a real build consequence worth the player seeing, not a bug to paper over.",
+      "per_turn_cap": "true if this feature can only be used/apply once per the character's own turn, REGARDLESS of how large its uses_max pool is (Action Surge 17th, Sneak Attack). This is a genuinely separate axis from uses_max/recharge -- see engine/CHECKLIST.md's 2026-09-24 entry for why. Tracked as ephemeral per-combat state (combatTurn.js), never on the persisted character record, since it only has meaning inside an active encounter.",
+      "tier_family": "Present only on a feature that's granted at multiple levels as successive SRD-style tiered ids (action-surge-1-use -> action-surge-2-uses, indomitable-1-use -> -2-uses -> -3-uses). diffLevelUp.js uses this to MERGE a later tier into the character's existing single tile (bumping uses_max) instead of adding a second duplicate feature entry -- see diffLevelUp.js's own comment on this block. All ids sharing a tier_family MUST share the same display name."
+    }
+  },
+
+  "action-surge-1-use": {
+    "name": "Action Surge",
+    "action_type": "free",
+    "recharge": "short_rest",
+    "uses_max": 1,
+    "per_turn_cap": true,
+    "tier_family": "action-surge"
+  },
+  "action-surge-2-uses": {
+    "name": "Action Surge",
+    "action_type": "free",
+    "recharge": "short_rest",
+    "uses_max": 2,
+    "per_turn_cap": true,
+    "tier_family": "action-surge"
+  },
+
+  "indomitable-1-use": {
+    "name": "Indomitable",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "tier_family": "indomitable"
+  },
+  "indomitable-2-uses": {
+    "name": "Indomitable",
+    "recharge": "long_rest",
+    "uses_max": 2,
+    "tier_family": "indomitable"
+  },
+  "indomitable-3-uses": {
+    "name": "Indomitable",
+    "recharge": "long_rest",
+    "uses_max": 3,
+    "tier_family": "indomitable"
+  },
+
+  "sneak-attack": {
+    "name": "Sneak Attack",
+    "per_turn_cap": true
+  },
+
+  "second-wind": {
+    "name": "Second Wind",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+
+  "uncanny-dodge": {
+    "name": "Uncanny Dodge",
+    "action_type": "reaction"
+  },
+
+  "divine-sense": {
+    "name": "Divine Sense",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": { "type": "ability_mod", "ability": "cha", "base": 1 }
+  },
+
+  "lay-on-hands": {
+    "name": "Lay on Hands",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "level_multiple",
+      "class": "Paladin",
+      "multiplier": 5
+    }
+  }
+}

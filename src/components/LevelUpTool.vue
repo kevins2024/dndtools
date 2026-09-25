@@ -534,8 +534,19 @@
                               : 'Choose…'
                           }}
                         </option>
-                        <option v-for="o in choice.options" :key="o" :value="o">
-                          {{ o }}
+                        <option
+                          v-for="o in choice.options"
+                          :key="o"
+                          :value="o"
+                          :disabled="
+                            choice.type === 'spell_choice' && isSpellKnown(o)
+                          "
+                        >
+                          {{
+                            choice.type === 'spell_choice' && isSpellKnown(o)
+                              ? o + ' (known)'
+                              : o
+                          }}
                         </option>
                       </select>
                     </template>
@@ -946,38 +957,54 @@
                   </button>
                 </div>
                 <ul v-if="magicalSecretsTab === 'spells'" class="lut-pick-list">
-                  <li v-for="o in magicalSecretsSpellOptions" :key="o.name">
+                  <li
+                    v-for="o in magicalSecretsSpellOptions"
+                    :key="o.name"
+                    :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                  >
                     <input
                       type="checkbox"
                       :checked="magicalSecretsDraft.includes(o.name)"
                       :disabled="
-                        !magicalSecretsDraft.includes(o.name) &&
-                        magicalSecretsDraft.length >= 2
+                        isSpellKnown(o.name) ||
+                        (!magicalSecretsDraft.includes(o.name) &&
+                          magicalSecretsDraft.length >= 2)
                       "
                       @change="togglePick('magicalSecretsDraft', o.name, 2)"
                     />
                     <span class="lut-pick-name" @click="inspectSpell(o)"
                       >{{ o.name }}
-                      <span class="lut-note-inline"
-                        >(lvl {{ o.level }})</span
+                      <span class="lut-note-inline">(lvl {{ o.level }})</span>
+                      <span v-if="isSpellKnown(o.name)" class="lut-note-inline"
+                        >(known)</span
                       ></span
                     >
                   </li>
                 </ul>
                 <ul v-else class="lut-pick-list">
-                  <li v-for="o in magicalSecretsCantripOptions" :key="o.name">
+                  <li
+                    v-for="o in magicalSecretsCantripOptions"
+                    :key="o.name"
+                    :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                  >
                     <input
                       type="checkbox"
                       :checked="magicalSecretsDraft.includes(o.name)"
                       :disabled="
-                        !magicalSecretsDraft.includes(o.name) &&
-                        magicalSecretsDraft.length >= 2
+                        isSpellKnown(o.name) ||
+                        (!magicalSecretsDraft.includes(o.name) &&
+                          magicalSecretsDraft.length >= 2)
                       "
                       @change="togglePick('magicalSecretsDraft', o.name, 2)"
                     />
-                    <span class="lut-pick-name" @click="inspectSpell(o)">{{
-                      o.name
-                    }}</span>
+                    <span class="lut-pick-name" @click="inspectSpell(o)"
+                      >{{ o.name
+                      }}<span
+                        v-if="isSpellKnown(o.name)"
+                        class="lut-note-inline"
+                        >(known)</span
+                      ></span
+                    >
                   </li>
                 </ul>
               </div>
@@ -1375,10 +1402,22 @@
                   skills)
                 </div>
                 <ul class="lut-pick-list">
-                  <li
-                    v-for="o in pendingBonusProficienciesChoice?.options ?? []"
-                    :key="o"
-                  >
+                  <!-- bonusProficienciesOptions (cached, not
+                       pendingBonusProficienciesChoice?.options directly) --
+                       real bug found 2026-09-23, live-testing
+                       LexicaBugTest: once all 3 were picked and submitted,
+                       diffLevelUp stops returning this as a pendingChoice
+                       at all (it's resolved), so
+                       pendingBonusProficienciesChoice goes null -- the
+                       CARD stayed visible (bonusProficienciesDraft.length
+                       still 3) but its own options list read straight off
+                       the now-null pendingChoice and collapsed to empty,
+                       so the picker looked like it "disappeared" and
+                       nothing could be unchecked/swapped. Cached into its
+                       own data property in runPreview() instead, same
+                       pattern magicalSecretsSpellOptions/bonusCantripOptions/
+                       etc. already use. -->
+                  <li v-for="o in bonusProficienciesOptions" :key="o">
                     <input
                       type="checkbox"
                       :checked="bonusProficienciesDraft.includes(o)"
@@ -1480,13 +1519,19 @@
                   placeholder="Search cantrips…"
                 />
                 <ul class="lut-pick-list">
-                  <li v-for="o in filteredBonusCantripOptions" :key="o.name">
+                  <li
+                    v-for="o in filteredBonusCantripOptions"
+                    :key="o.name"
+                    :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                  >
                     <input
                       type="checkbox"
                       :checked="bonusCantripDraftPicks.includes(o.name)"
                       :disabled="
-                        !bonusCantripDraftPicks.includes(o.name) &&
-                        bonusCantripDraftPicks.length >= bonusCantripPickLimit
+                        isSpellKnown(o.name) ||
+                        (!bonusCantripDraftPicks.includes(o.name) &&
+                          bonusCantripDraftPicks.length >=
+                            bonusCantripPickLimit)
                       "
                       @change="
                         togglePick(
@@ -1498,7 +1543,10 @@
                     />
                     <span class="lut-pick-name" @click="inspectSpell(o)"
                       >{{ o.name }}
-                      <span class="lut-note">({{ o.school }})</span></span
+                      <span class="lut-note">({{ o.school }})</span>
+                      <span v-if="isSpellKnown(o.name)" class="lut-note-inline"
+                        >(known)</span
+                      ></span
                     >
                   </li>
                 </ul>
@@ -1537,13 +1585,18 @@
                   placeholder="Search cantrips…"
                 />
                 <ul class="lut-pick-list">
-                  <li v-for="o in filteredCantripOptions" :key="o.name">
+                  <li
+                    v-for="o in filteredCantripOptions"
+                    :key="o.name"
+                    :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                  >
                     <input
                       type="checkbox"
                       :checked="cantripDraftPicks.includes(o.name)"
                       :disabled="
-                        !cantripDraftPicks.includes(o.name) &&
-                        cantripDraftPicks.length >= cantripPickLimit
+                        isSpellKnown(o.name) ||
+                        (!cantripDraftPicks.includes(o.name) &&
+                          cantripDraftPicks.length >= cantripPickLimit)
                       "
                       @change="
                         togglePick(
@@ -1553,9 +1606,14 @@
                         )
                       "
                     />
-                    <span class="lut-pick-name" @click="inspectSpell(o)">{{
-                      o.name
-                    }}</span>
+                    <span class="lut-pick-name" @click="inspectSpell(o)"
+                      >{{ o.name
+                      }}<span
+                        v-if="isSpellKnown(o.name)"
+                        class="lut-note-inline"
+                        >(known)</span
+                      ></span
+                    >
                   </li>
                 </ul>
               </div>
@@ -1595,13 +1653,18 @@
                   placeholder="Search spells…"
                 />
                 <ul class="lut-pick-list">
-                  <li v-for="o in filteredSpellOptions" :key="o.name">
+                  <li
+                    v-for="o in filteredSpellOptions"
+                    :key="o.name"
+                    :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                  >
                     <input
                       type="checkbox"
                       :checked="spellDraftPicks.includes(o.name)"
                       :disabled="
-                        !spellDraftPicks.includes(o.name) &&
-                        spellDraftPicks.length >= spellPickLimit
+                        isSpellKnown(o.name) ||
+                        (!spellDraftPicks.includes(o.name) &&
+                          spellDraftPicks.length >= spellPickLimit)
                       "
                       @change="
                         togglePick('spellDraftPicks', o.name, spellPickLimit)
@@ -1612,6 +1675,9 @@
                       <span class="lut-note"
                         >(lvl {{ o.level
                         }}{{ o.school ? ', ' + o.school : '' }})</span
+                      >
+                      <span v-if="isSpellKnown(o.name)" class="lut-note-inline"
+                        >(known)</span
                       ></span
                     >
                   </li>
@@ -1652,13 +1718,18 @@
                   placeholder="Search spells…"
                 />
                 <ul class="lut-pick-list">
-                  <li v-for="o in filteredSpellbookOptions" :key="o.name">
+                  <li
+                    v-for="o in filteredSpellbookOptions"
+                    :key="o.name"
+                    :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                  >
                     <input
                       type="checkbox"
                       :checked="spellbookDraftPicks.includes(o.name)"
                       :disabled="
-                        !spellbookDraftPicks.includes(o.name) &&
-                        spellbookDraftPicks.length >= spellbookPickLimit
+                        isSpellKnown(o.name) ||
+                        (!spellbookDraftPicks.includes(o.name) &&
+                          spellbookDraftPicks.length >= spellbookPickLimit)
                       "
                       @change="
                         togglePick(
@@ -1673,6 +1744,9 @@
                       <span class="lut-note"
                         >(lvl {{ o.level
                         }}{{ o.school ? ', ' + o.school : '' }})</span
+                      >
+                      <span v-if="isSpellKnown(o.name)" class="lut-note-inline"
+                        >(known)</span
                       ></span
                     >
                   </li>
@@ -1732,11 +1806,16 @@
                     placeholder="Search spells…"
                   />
                   <ul class="lut-pick-list">
-                    <li v-for="o in filteredSpellSwapToOptions" :key="o.name">
+                    <li
+                      v-for="o in filteredSpellSwapToOptions"
+                      :key="o.name"
+                      :class="{ 'lut-pick-disabled': isSpellKnown(o.name) }"
+                    >
                       <input
                         type="radio"
                         name="spellSwapTo"
                         :checked="spellSwapTo === o.name"
+                        :disabled="isSpellKnown(o.name)"
                         @change="setSpellSwapTo(o.name)"
                       />
                       <span class="lut-pick-name" @click="inspectSpell(o)"
@@ -1744,6 +1823,11 @@
                         <span class="lut-note"
                           >(lvl {{ o.level
                           }}{{ o.school ? ', ' + o.school : '' }})</span
+                        >
+                        <span
+                          v-if="isSpellKnown(o.name)"
+                          class="lut-note-inline"
+                          >(known)</span
                         ></span
                       >
                     </li>
@@ -1868,7 +1952,10 @@ import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import DetailPopup from './DetailPopup.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
 import { lookupFeature, lookupSpell } from '@/utils/lookupService.js'
-import { getBonusSpellsAtLevel } from '@/utils/spellUtils.js'
+import {
+  getBonusSpellsAtLevel,
+  getCharacterSpells,
+} from '@/utils/spellUtils.js'
 import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
 import { buildSpellPopupData } from '@/utils/detailPopupBuilders.js'
 
@@ -2096,6 +2183,11 @@ export default {
       // togglePick shape as Expertise/Master of Intrigue's languages.
       bonusProficienciesDraft: [],
       bonusProficienciesChoiceLevel: null,
+      // Cached separately from pendingBonusProficienciesChoice itself -- see
+      // that computed's/this picker's template comment for why (real bug
+      // found 2026-09-23: the picker's own options list disappeared the
+      // instant all 3 were picked).
+      bonusProficienciesOptions: [],
 
       // ── Pact of the Tome's bonus cantrips (3, any class list) ──
       bonusCantripOptions: [], // fetched from POST /api/engine/spell-choices with pool:'any'
@@ -2694,6 +2786,28 @@ export default {
         .filter((s) => s.level > 0)
         .map((s) => s.name)
     },
+    // Every spell this character already knows from ANY source — class
+    // list, subclass bonus spells (domain/oath/circle/etc.), feature/feat
+    // grants (including Caster Prestidigitation, Fey Touched), and equipped
+    // items — via the same getCharacterSpells() resolution CharacterSpellbook
+    // and CombatPanel use, not just raw draftCharacter.spells. Every spell
+    // picker below uses this to DISABLE (not hide) an already-known option,
+    // so a player can see why a name is greyed out instead of it silently
+    // vanishing from the list. Reads draftCharacter as it stood BEFORE this
+    // level's in-progress picks (same fixed-snapshot behavior as
+    // knownLeveledSpellNames above) — a spell sitting in one of this level's
+    // own draft-pick arrays is deliberately NOT included, so it stays
+    // checkable/uncheckable.
+    knownSpellNamesLower() {
+      if (!this.draftCharacter) return new Set()
+      const spells = getCharacterSpells(
+        this.draftCharacter,
+        this.$store.state.party_items ?? [],
+        this.$store.state.subclasses ?? [],
+        this.spellbooks
+      )
+      return new Set(spells.map((s) => s.name.toLowerCase()))
+    },
     // The subclass of whichever class is currently being leveled — third
     // casters (Eldritch Knight/Arcane Trickster) need this to resolve which
     // spell LIST to draw from (Wizard's, not their own), and the spell-
@@ -3146,6 +3260,7 @@ export default {
       this.masterOfIntrigueChoiceLevel = null
       this.bonusProficienciesDraft = []
       this.bonusProficienciesChoiceLevel = null
+      this.bonusProficienciesOptions = []
       this.bonusCantripOptions = []
       this.bonusCantripSearch = ''
       this.bonusCantripDraftPicks = []
@@ -3348,6 +3463,12 @@ export default {
         list.push(name)
       }
       this.runPreview()
+    },
+
+    // Backs every spell picker's "already known" disabled state — see
+    // knownSpellNamesLower's own comment for what counts as "known."
+    isSpellKnown(name) {
+      return this.knownSpellNamesLower.has((name || '').toLowerCase())
     },
 
     // Not a plain togglePick, because maneuvers need an extra step: once
@@ -3812,6 +3933,7 @@ export default {
         )
         if (bonusProficienciesChoice) {
           this.bonusProficienciesChoiceLevel = bonusProficienciesChoice.level
+          this.bonusProficienciesOptions = bonusProficienciesChoice.options
         }
 
         const bonusSpellChoice = data.pendingChoices?.find(
@@ -4120,6 +4242,17 @@ export default {
   padding: 0.35rem 0.6rem;
   font-family: var(--font-body);
   font-size: var(--font-size-base);
+  /* Real bug found 2026-09-23, live-testing LexicaBugTest: an unstyled
+     <select> sizes its closed-state width to its WIDEST <option> text in
+     most browsers -- the feat picker's catalog list is long, and several
+     option labels get a "(prereq not met)" suffix appended, so this select
+     alone was blowing out .lut-subclass-picker's flex-basis (flex: 0 0
+     auto, sized to content) far past what a closed dropdown actually needs
+     to display, squeezing .lut-subclass-summary's description column down
+     to a sliver. Capped here rather than per-picker since every other
+     .lut-select (Pact Boon, Fighting Style, etc.) has short enough option
+     text that this cap never engages for them. */
+  max-width: 20rem;
 }
 
 .lut-level-badge {
@@ -4416,6 +4549,10 @@ export default {
 .lut-subclass-picker {
   flex: 0 0 auto;
   min-width: 12rem;
+  /* Belt-and-suspenders with .lut-select's own max-width above -- caps this
+     column itself too, in case a future picker puts something other than a
+     <select> (a wide button row, etc.) in here and hits the same imbalance. */
+  max-width: 20rem;
 }
 
 .lut-subclass-summary {

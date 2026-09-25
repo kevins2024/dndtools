@@ -28,8 +28,10 @@
       :character="character"
       :table="table"
       :filter="featureFilter"
+      :turn-resources="turnResources"
       @inspect="showPopup"
       @feature-used="$emit('feature-used', $event)"
+      @feature-turn-toggle="$emit('feature-turn-toggle', $event)"
     />
 
     <div class="resource-cluster">
@@ -109,6 +111,9 @@ export default {
     // reused for non-character combatants (e.g. companions) without their
     // condition/spell-slot/exhaustion edits leaking into state.characters.
     table: { type: String, default: 'characters' },
+    // Passed straight through to FeaturePillsPanel — see that component's
+    // own prop doc. null outside an active encounter.
+    turnResources: { type: Object, default: null },
   },
 
   emits: [
@@ -116,6 +121,7 @@ export default {
     'concentration-check',
     'hp-changed',
     'feature-used',
+    'feature-turn-toggle',
   ],
 
   data() {

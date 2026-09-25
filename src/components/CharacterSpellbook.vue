@@ -540,9 +540,13 @@ export default {
             }
           }
 
-          const prepared = spells.filter((s) => this.isReady(s))
+          // Alphabetized within the level — project owner's ask 2026-09-25,
+          // easier to scan a level's spells than hunting through whatever
+          // order they happened to be added/granted in.
+          const byName = (a, b) => a.name.localeCompare(b.name)
+          const prepared = spells.filter((s) => this.isReady(s)).sort(byName)
           const unprepared = this.preparationInfo
-            ? spells.filter((s) => !this.isReady(s))
+            ? spells.filter((s) => !this.isReady(s)).sort(byName)
             : []
 
           return {
@@ -578,6 +582,11 @@ export default {
       const map = {}
       const spellbooks = this.$store.state.spellbooks
       const subclasses = this.$store.state.subclasses
+      const add = (name, charName) => {
+        const key = name.toLowerCase()
+        const bucket = (map[key] = map[key] ?? [])
+        if (!bucket.includes(charName)) bucket.push(charName)
+      }
       for (const char of this.allCharacters) {
         if (char.name === this.character.name) continue
         // getCharacterSpells (not raw char.spells) so a Wizard on a
@@ -590,8 +599,33 @@ export default {
           spellbooks
         )) {
           if (spell.name.toLowerCase().includes(this.spellSearchLower)) {
-            const key = spell.name.toLowerCase()
-            ;(map[key] = map[key] ?? []).push(char.name)
+            add(spell.name, char.name)
+          }
+        }
+        // Real gap found 2026-09-24: a full-class-list caster (Cleric/
+        // Druid/Paladin/Ranger/Artificer) can prepare ANY spell on their
+        // class list at the next long rest, whether or not it's currently
+        // sitting in their spells[] record — getCharacterSpells only
+        // returns what's actually recorded there, so this search was
+        // silently blind to every preparable-but-not-yet-added spell for
+        // these 5 classes (the same distinction availableToPrepare already
+        // draws for the CURRENTLY VIEWED character, just never extended to
+        // the cross-character search). Mirrors that same logic per other
+        // character instead of just this.character.
+        if (usesFullClassList(char)) {
+          const classList = getClassSpellList(char)
+          if (classList) {
+            const slots = char.spell_slots ?? {}
+            const levels = Object.keys(slots)
+              .map((k) => parseInt(k.replace('level_', '')))
+              .filter((n) => !isNaN(n) && (slots[`level_${n}`]?.max ?? 0) > 0)
+            const charMaxLevel = levels.length ? Math.max(...levels) : 0
+            for (const spell of classList) {
+              if (spell.level > charMaxLevel) continue
+              if (spell.name.toLowerCase().includes(this.spellSearchLower)) {
+                add(spell.name, char.name)
+              }
+            }
           }
         }
       }
@@ -1006,7 +1040,12 @@ export default {
 }
 
 .sb-cross-search {
-  flex: 1;
+  /* Was flex: 1 (took the whole row) -- real bug found 2026-09-24: the
+     results span next to it is where the actual answer lives ("known by:
+     ..."), and a long list of character names had almost no room to
+     display, forced onto one nowrap line. Fixed width share instead, so
+     the results side gets the space it actually needs. */
+  flex: 0 0 33%;
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: 4px;
@@ -1021,9 +1060,11 @@ export default {
 }
 
 .sb-search-miss {
+  flex: 1;
+  min-width: 0;
   font-size: var(--font-size-base);
   color: var(--color-text-low);
-  white-space: nowrap;
+  white-space: normal;
   font-style: italic;
 }
 

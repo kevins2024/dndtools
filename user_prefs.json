@@ -9,7 +9,7 @@
         "Denna",
         "Enauweyn",
         "Tackett",
-        "Sorra (Old)",
+        "Sorra",
         "Ferghus"
       ]
     },
@@ -33,20 +33,26 @@
         "Denna",
         "Enauweyn",
         "Tackett",
-        "Sorra (Old)",
+        "Sorra",
         "Ferghus"
       ],
       "active": true,
-      "game_day": 297,
+      "game_day": 298,
       "marching_order": [
+        "Tackett",
         "Denna",
         "Ferghus",
         "Vaz",
         "Kessara",
         "Enauweyn",
         "Lexica",
-        "Tackett",
-        "Sorra (Old)"
+        "Sorra"
+      ],
+      "watch_assignments": [
+        ["Denna", "Ferghus"],
+        ["Tackett", "Enauweyn"],
+        ["Sorra", "Lexica"],
+        ["Vaz", "Kessara"]
       ]
     },
     {

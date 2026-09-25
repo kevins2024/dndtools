@@ -25,6 +25,8 @@ const { listOneHandedMeleeWeapons } = require('./weaponTypes')
 const { listLanguages } = require('./languages')
 const { findSpellRecord, listSpellsForClass } = require('./spellLists')
 const { loadSkill, listSkills } = require('./skills')
+const { featureMechanics } = require('./featureMechanics')
+const { resolveEffectiveScores } = require('./abilityScores')
 const { traitsFor, loadSpecies } = require('./species')
 const multiclassProficiencies = require('../../data/5e/multiclass-proficiencies.json')
 const favoredEnemies = require('../../data/5e/favored-enemies.json')
@@ -57,6 +59,135 @@ function scoresToPatchFields(scores) {
 
 function normalizeName(name) {
   return name.trim().toLowerCase()
+}
+
+// Resolves a feature-mechanics uses_formula (see feature-mechanics.json's
+// own _schema doc for the two shapes) against a real character. Returns
+// undefined if the formula type isn't recognized — an unknown formula
+// shape falls back to "no numeric pool" rather than throwing, matching
+// this catalog's whole "uncataloged/unrecognized isn't an error" spirit.
+// level_multiple reads the NAMED class's own level (not total character
+// level, unlike the species-tiered-spell mechanism above, which genuinely
+// is total-level-scoped) — Lay on Hands' pool depends on Paladin level
+// specifically, same reasoning Action Surge's tier_family entries use
+// their granting class's own level.
+//
+// ability_mod uses resolveEffectiveScores (equipment/feature stat bonuses
+// included), NOT extractScores' base-only numbers — real bug found
+// 2026-09-25: Divine Sense's "1 + CHA modifier" came out wrong for two
+// Paladins with a CHA-boosting item equipped, because this used to read
+// base stat_cha only. equipItems is empty by default (a caller that
+// doesn't have equipment data, like a plain simulation, still gets a
+// correct base-only answer — just not equipment-aware) — see
+// engine/CHECKLIST.md's 2026-09-25 entry for the full story and why this
+// stays a plain input parameter rather than engine/ reaching into
+// party_items.json itself.
+function resolveUsesFormula(formula, character, equippedItems) {
+  if (!formula) return undefined
+  if (formula.type === 'ability_mod') {
+    const scores = resolveEffectiveScores(character, equippedItems)
+    return formula.base + abilityModifier(scores[formula.ability] ?? 10)
+  }
+  if (formula.type === 'level_multiple') {
+    const cls = (character.classes || []).find((c) => c.name === formula.class)
+    return (cls?.level ?? 0) * formula.multiplier
+  }
+  return undefined
+}
+
+// A catalog entry's uses_max, resolving uses_formula when uses_max itself
+// isn't a flat number — see feature-mechanics.json's _schema for why these
+// are mutually exclusive shapes.
+function mechUsesMax(mech, character, equippedItems) {
+  return (
+    mech.uses_max ??
+    resolveUsesFormula(mech.uses_formula, character, equippedItems)
+  )
+}
+
+// Feature-mechanics catalog integration (started 2026-09-24 — see
+// engine/data/5e/feature-mechanics.json's own _schema block for the full
+// design writeup, engine/CHECKLIST.md for why). Runs once, on the FULL
+// final feature list (existing character.features + newFeatures combined),
+// right before patch.features is built — not threaded into every individual
+// newFeatures.push() call scattered through this file, so this stays a
+// single, easy-to-find place that knows about the catalog at all.
+//
+// Three jobs:
+//  1. Attach action_type/recharge/uses_max/uses_current/per_turn_cap onto any
+//     entry whose id has a catalog entry — but ONLY fields that are missing
+//     (undefined) on that entry already. Never overwrites a value a human
+//     (or an earlier version of this function) already set — protects any
+//     legitimate per-character customization from being silently clobbered.
+//  2. Merges tiered features (Action Surge 1-use -> 2-use, Indomitable
+//     1/2/3-use) into ONE character-facing entry instead of one per tier —
+//     see feature-mechanics.json's tier_family field doc. A level-up into a
+//     new tier is treated as a full refresh (uses_current reset to the new,
+//     larger uses_max) — simpler than trying to preserve "already spent N
+//     this rest" across a level transition, and matches how play actually
+//     proceeds (nobody levels up mid-encounter).
+//  3. A uses_formula-backed entry (Divine Sense, Lay on Hands) gets its
+//     uses_max RECOMPUTED AND OVERWRITTEN every single call, unlike job 1's
+//     fill-only-if-missing rule for a flat uses_max — a formula's inputs
+//     (ability score, class level) can genuinely change between calls (an
+//     ASI, a new Paladin level growing the Lay on Hands pool), so trusting
+//     a stale stored number here would be actively wrong, not just
+//     redundant. uses_current resets alongside it, same "a level-up implies
+//     time to rest" reasoning as job 2.
+function applyFeatureMechanics(features, character, equippedItems = []) {
+  const result = []
+  const familyIndex = new Map() // tier_family -> index into `result`
+
+  for (const f of features) {
+    const mech = f.id ? featureMechanics(f.id) : null
+
+    if (mech?.tier_family) {
+      const existingIdx = familyIndex.get(mech.tier_family)
+      if (existingIdx != null) {
+        // A later tier of a family we've already kept — fold it into the
+        // kept entry instead of appending a duplicate. Keeps the KEPT
+        // entry's id/level_gained for "since when have you had this"
+        // display purposes; name and mechanical numbers bump to whatever
+        // this (higher) tier's catalog entry says, since the catalog's name
+        // is the canonical one, not whichever tier-specific SRD name
+        // (e.g. "Action Surge (1 use)") happened to get granted first.
+        const kept = result[existingIdx]
+        const usesMax = mechUsesMax(mech, character, equippedItems)
+        result[existingIdx] = {
+          ...kept,
+          name: mech.name ?? kept.name,
+          action_type: mech.action_type ?? kept.action_type,
+          recharge: mech.recharge ?? kept.recharge,
+          uses_max: usesMax ?? kept.uses_max,
+          uses_current: usesMax ?? kept.uses_max,
+          per_turn_cap: mech.per_turn_cap ?? kept.per_turn_cap,
+        }
+        continue
+      }
+      familyIndex.set(mech.tier_family, result.length)
+    }
+
+    if (mech) {
+      const usesMax = mechUsesMax(mech, character, equippedItems)
+      result.push({
+        ...f,
+        name: mech.name ?? f.name,
+        action_type: f.action_type ?? mech.action_type,
+        recharge: f.recharge ?? mech.recharge,
+        ...(mech.uses_formula
+          ? { uses_max: usesMax, uses_current: usesMax }
+          : {
+              uses_max: f.uses_max ?? usesMax,
+              uses_current: f.uses_current ?? usesMax,
+            }),
+        per_turn_cap: f.per_turn_cap ?? mech.per_turn_cap,
+      })
+    } else {
+      result.push(f)
+    }
+  }
+
+  return result
 }
 
 // The missing piece describeLevelUp deliberately doesn't do: compares what a
@@ -261,6 +392,17 @@ function diffLevelUp(
     // with three skills of your choice." Plain proficiency, not Expertise —
     // a separate feature from base Bard's own Expertise picks.
     bonusProficienciesChoice = null,
+    // equippedItems: items this character currently has equipped, ALREADY
+    // filtered by the caller (equipped_by === character.name) — used only
+    // to resolve an ability_mod-formula feature-mechanics entry (Divine
+    // Sense's "1 + CHA modifier") against the character's EFFECTIVE score,
+    // not just their base one. engine/ deliberately never reads
+    // party_items.json itself (see abilityScores.js's own header comment
+    // and engine/CHECKLIST.md's 2026-09-25 entry) — the caller (server.js,
+    // which already has that file) is expected to supply this, same as it
+    // already supplies `character` itself. Safe to omit entirely; formulas
+    // just resolve against base scores only, same as before this existed.
+    equippedItems = [],
   } = {}
 ) {
   const classIndex = (character.classes || []).findIndex(
@@ -1970,8 +2112,27 @@ function diffLevelUp(
     ...scoresToPatchFields(scores),
   }
 
-  if (newFeatures.length) {
-    patch.features = [...(character.features || []), ...newFeatures]
+  // Deliberately NOT gated behind `if (newFeatures.length)` — a real bug
+  // found 2026-09-25 building this exact check: several classes have
+  // "quiet" levels that grant nothing new at all (Paladin 4/7/8/9, for
+  // instance), and a uses_formula-backed feature (Lay on Hands' pool,
+  // Divine Sense's CHA-mod count) still needs to recompute on those calls
+  // too, since the class level it depends on changed even though no NEW
+  // feature did. Skipping this step on a quiet level silently froze Lay on
+  // Hands' pool at whatever it was several levels ago. applyFeatureMechanics
+  // is a safe no-op pass-through for every feature without a catalog entry
+  // or a uses_formula, so running it unconditionally costs nothing.
+  {
+    // {...character, ...patch}, not the original character — a
+    // uses_formula (Divine Sense's CHA mod, Lay on Hands' Paladin level)
+    // needs to resolve against the character AS OF THIS LEVEL-UP'S END,
+    // so an ASI applied in this same call or the class level just gained
+    // are both already reflected, not stale by one step.
+    patch.features = applyFeatureMechanics(
+      [...(character.features || []), ...newFeatures],
+      { ...character, ...patch },
+      equippedItems
+    )
   }
 
   if (abilityScoreHistory.length) {
@@ -2339,4 +2500,4 @@ function diffLevelUp(
   return { patch, newFeatures, pendingChoices, warnings: notes, description }
 }
 
-module.exports = { diffLevelUp }
+module.exports = { diffLevelUp, applyFeatureMechanics }
