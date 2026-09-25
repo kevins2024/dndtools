@@ -6376,6 +6376,14 @@
     "saving_throw_advantages": ["being_charmed"],
     "features": [
       {
+        "name": "Caster Prestidigitation",
+        "id": null,
+        "type": "feature",
+        "level_gained": 1,
+        "spells_granted": ["Prestidigitation"],
+        "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
         "name": "Bardic Inspiration",
         "id": "gen_bard_base_bardic-inspiration",
         "type": "feature",
@@ -6720,6 +6728,14 @@
     "resistances": [],
     "saving_throw_advantages": ["being_charmed"],
     "features": [
+      {
+        "name": "Caster Prestidigitation",
+        "id": null,
+        "type": "feature",
+        "level_gained": 1,
+        "spells_granted": ["Prestidigitation"],
+        "_source": "Caster Prestidigitation (house rule)"
+      },
       {
         "name": "Bardic Inspiration",
         "id": "gen_bard_base_bardic-inspiration",

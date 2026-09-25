@@ -709,6 +709,7 @@ function diffLevelUp(
   const CASTER_PRESTIDIGITATION_BY_CLASS = {
     sorcerer: 'Prestidigitation',
     wizard: 'Prestidigitation',
+    bard: 'Prestidigitation',
     druid: 'Druidcraft',
     cleric: 'Divine Prestidigitation',
     warlock: 'Dark Prestidigitation',

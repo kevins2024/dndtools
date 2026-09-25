@@ -46,7 +46,7 @@
   },
   {
     "name": "Caster Prestidigitation",
-    "description": "All arcane and divine casters receive a free, flavor-appropriate form of Prestidigitation that does not count against their spell allotment. Sorcerers and Wizards receive standard Prestidigitation. Druids receive standard Druidcraft. Clerics receive Divine Prestidigitation (a divine-flavored equivalent). Warlocks receive Dark Prestidigitation (a patron-flavored equivalent that does not draw from the Weave). These spells are always prepared and cannot be removed.",
+    "description": "All arcane and divine casters receive a free, flavor-appropriate form of Prestidigitation that does not count against their spell allotment. Sorcerers, Wizards, and Bards receive standard Prestidigitation. Druids receive standard Druidcraft. Clerics receive Divine Prestidigitation (a divine-flavored equivalent). Warlocks receive Dark Prestidigitation (a patron-flavored equivalent that does not draw from the Weave). These spells are always prepared and cannot be removed.",
     "notes": "Casters should feel like casters without spending a cantrip slot on it. Mages wave their hand and make a small change in the world; druids make a flower bloom. These spells are the mechanical expression of that identity."
   },
   {
