@@ -2294,14 +2294,14 @@
     "source": "Homebrew, unique to Rith — tied to the Signet Ring."
   },
   {
-    "id": "hb_swift_strike",
-    "name": "Swift Strike",
+    "id": "hb_press_momentum",
+    "name": "Press Momentum",
     "category": "item_feature",
     "action_type": "reaction",
-    "description": "Once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
-    "note": "Granted by Vaz's Bracer of Swift Strikes (party_items.json).",
+    "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
+    "note": "Granted by Vaz's Bracer of Pressing Momentum (party_items.json) via features_granted, and separately embedded on the Dagger of Pressing Momentum +2's own weapon_effects (self-contained there, doesn't look up this entry).",
     "homebrew": true,
-    "source": "Homebrew, unique to Vaz — tied to the Bracer of Swift Strikes."
+    "source": "Homebrew, unique to Vaz — formerly 'Swift Strike', renamed 2026-09-29 to match both items granting the identical effect under one shared name instead of two different ones."
   },
   {
     "id": "hb_missile_snaring",

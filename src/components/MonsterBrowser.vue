@@ -327,6 +327,7 @@
 
 <script>
 import { lookupMonster } from '@/utils/lookupService.js'
+import { abilityModifier } from '@/utils/abilities.js'
 
 const PAGE_SIZE = 50
 
@@ -497,8 +498,7 @@ export default {
       return n >= 0 ? `+${n}` : String(n)
     },
     signedMod(score) {
-      const mod = Math.floor((score - 10) / 2)
-      return this.signed(mod)
+      return this.signed(abilityModifier(score))
     },
   },
 }

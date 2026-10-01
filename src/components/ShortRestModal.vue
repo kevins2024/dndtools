@@ -192,7 +192,7 @@ export default {
     ...mapMutations(['SHORT_REST']),
 
     conMod(char) {
-      return Math.floor(((char.stat_con ?? 10) - 10) / 2)
+      return dnd.mod(char.stat_con)
     },
 
     dieSides(hitDie) {

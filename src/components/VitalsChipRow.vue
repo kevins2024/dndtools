@@ -83,24 +83,20 @@ export default {
     profBonus() {
       return dnd._prof(this.character, this.resolvedStats.bonuses)
     },
+    // Engine-backed breakdown (2026-09-30) — the old hand-written version
+    // just described the level table from scratch and never actually showed
+    // an item bonus (e.g. an Ioun Stone of Mastery) even when one applied.
     profBonusTooltip() {
-      const lvl = this.character.level ?? 1
-      return `Level ${lvl} character\n+2 at levels 1–4, +3 at 5–8, +4 at 9–12, +5 at 13–16, +6 at 17–20\n= +${this.profBonus}`
+      return dnd.profBonusBreakdown(
+        this.character,
+        this.resolvedStats.bonuses,
+        this.partyItems
+      )
     },
     equippedItems() {
       return this.partyItems.filter(
         (i) => i.equipped_by === this.character.name
       )
-    },
-    itemBonusBreakdown() {
-      const result = {}
-      for (const item of this.equippedItems) {
-        for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
-          if (!result[key]) result[key] = []
-          result[key].push({ name: item.name, value: val })
-        }
-      }
-      return result
     },
 
     ac() {
@@ -163,46 +159,20 @@ export default {
     passivePerception() {
       return dnd.passivePerception(this.character, this.partyItems)
     },
+    // Engine-backed breakdown (2026-09-30) — see dnd_utils.js's
+    // passivePerceptionBreakdown/engine checks.js.
     passivePerceptionTooltip() {
-      const { stats } = this.resolvedStats
-      const wisMod = dnd.mod(stats.wis)
-      const prof = this.profBonus
-      const isProficient = (this.character.skill_proficiencies ?? []).includes(
-        'Perception'
-      )
-      const hasExpertise = (this.character.skill_expertise ?? []).includes(
-        'Perception'
-      )
-      const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
-      const itemBonus = this.resolvedStats.bonuses['skill_Perception'] ?? 0
-      const featBonus = this.resolvedStats.bonuses.passive_perception ?? 0
-      const parts = ['10 (base)', `WIS ${dnd.signed(wisMod)}`]
-      if (hasExpertise)
-        parts.push(`Expertise ${dnd.signed(profBonus)} (Prof ×2)`)
-      else if (isProficient) parts.push(`Prof ${dnd.signed(profBonus)}`)
-      if (itemBonus) parts.push(`Items ${dnd.signed(itemBonus)}`)
-      if (featBonus) parts.push(`Feat bonus ${dnd.signed(featBonus)}`)
-      parts.push(`= ${dnd.passivePerception(this.character, this.partyItems)}`)
-      return parts.join('\n')
+      return dnd.passivePerceptionBreakdown(this.character, this.partyItems)
     },
 
     spellAttack() {
       return dnd.spellAttackBonus(this.character, this.partyItems)
     },
+    // Engine-backed breakdown (2026-09-30) — returns '' for a non-caster,
+    // same as before (the chip itself is v-if="spellAttack !== null" gated,
+    // so this was never actually rendered for one anyway).
     spellAttackTooltip() {
-      if (!this.character.spellcasting_ability) return ''
-      const ab = this.character.spellcasting_ability
-      const mod = dnd.mod(this.resolvedStats.stats[ab])
-      const prof = this.profBonus
-      const itemBonus = this.resolvedStats.bonuses.spell_attack ?? 0
-      const base = `${ab.toUpperCase()} ${dnd.signed(mod)} + Prof ${dnd.signed(
-        prof
-      )}`
-      if (!itemBonus) return `${base} = ${dnd.signed(mod + prof)}`
-      const itemStr = (this.itemBonusBreakdown.spell_attack ?? [])
-        .map(({ name, value }) => `${name} ${dnd.signed(value)}`)
-        .join(', ')
-      return `${base} + ${itemStr} = ${dnd.signed(mod + prof + itemBonus)}`
+      return dnd.spellAttackBonusBreakdown(this.character, this.partyItems)
     },
     spellSaveDC() {
       if (this.character.spellcasting_ability) {
@@ -213,21 +183,16 @@ export default {
         8 + this.profBonus + Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
       )
     },
+    // Only the spellcasting-ability branch is engine-backed (2026-09-30) —
+    // the non-caster fallback below (8 + Prof + best of STR/DEX, for a
+    // martial character's maneuver-style save DC) has no spellcasting_ability
+    // at all, so it isn't something spellSaveDCBreakdown can compute; it
+    // stays hand-written here since it was never duplicated anywhere else.
     spellDCTooltip() {
-      const prof = this.profBonus
       if (this.character.spellcasting_ability) {
-        const ab = this.character.spellcasting_ability
-        const mod = dnd.mod(this.resolvedStats.stats[ab])
-        const itemBonus = this.resolvedStats.bonuses.spell_save_dc ?? 0
-        const base = `8 + ${ab.toUpperCase()} ${dnd.signed(
-          mod
-        )} + Prof ${dnd.signed(prof)}`
-        if (!itemBonus) return `${base} = ${8 + mod + prof}`
-        const itemStr = (this.itemBonusBreakdown.spell_save_dc ?? [])
-          .map(({ name, value }) => `${name} ${dnd.signed(value)}`)
-          .join(', ')
-        return `${base} + ${itemStr} = ${8 + mod + prof + itemBonus}`
+        return dnd.spellSaveDCBreakdown(this.character, this.partyItems)
       }
+      const prof = this.profBonus
       const { stats } = this.resolvedStats
       const strMod = dnd.mod(stats.str)
       const dexMod = dnd.mod(stats.dex)

@@ -14,8 +14,48 @@
 // DISPLAY HELPERS (for templates):
 //   dnd.signed(n)   → "+3" or "-1"
 
-import { ARMOR_BASE_AC, WEAPON_PROPS } from './dnd_constants.js'
 import weaponTypesAndLanguages from '../data/weapon_types_and_languages.json'
+import { abilityModifier } from './abilities.js'
+import { proficiencyBonus } from './progression.js'
+import { resolveEffectiveStats } from './characterStats.js'
+import {
+  activeWeaponSet as engineActiveWeaponSet,
+  isActiveEquipped as engineIsActiveEquipped,
+  isDualWieldingMelee as engineIsDualWieldingMelee,
+} from './weaponSets.js'
+import { computeAC } from './armorClass.js'
+import {
+  effectiveProficiencyBonus,
+  effectiveProficiencyBonusBreakdown,
+} from './proficiency.js'
+import {
+  savingThrow as engineSavingThrow,
+  savingThrowBreakdown as engineSavingThrowBreakdown,
+  allSavingThrows as engineAllSavingThrows,
+  SKILL_MAP as ENGINE_SKILL_MAP,
+  skill as engineSkill,
+  skillBreakdown as engineSkillBreakdown,
+  allSkills as engineAllSkills,
+  passivePerception as enginePassivePerception,
+  passivePerceptionBreakdown as enginePassivePerceptionBreakdown,
+  initiative as engineInitiative,
+  hasInitiativeAdvantage as engineHasInitiativeAdvantage,
+  spellAttackBonus as engineSpellAttackBonus,
+  spellAttackBonusBreakdown as engineSpellAttackBonusBreakdown,
+  spellSaveDC as engineSpellSaveDC,
+  spellSaveDCBreakdown as engineSpellSaveDCBreakdown,
+} from './checks.js'
+import {
+  weaponStatMod as engineWeaponStatMod,
+  gripDie as engineGripDie,
+  attackBonus as engineAttackBonus,
+  attackBonusBreakdown as engineAttackBonusBreakdown,
+  damageBonus as engineDamageBonus,
+  damageBonusBreakdown as engineDamageBonusBreakdown,
+  rageDamageBonus as engineRageDamageBonus,
+  weaponProps as engineWeaponProps,
+  isProficientWithWeapon as engineIsProficientWithWeapon,
+} from './weaponAttack.js'
 
 const HOMEBREW_WEAPON_PROPS = Object.fromEntries(
   (weaponTypesAndLanguages.weapon_types ?? []).map((w) => [w.id, w])
@@ -174,7 +214,7 @@ export const dnd = {
   },
 
   mod(score) {
-    return Math.floor(((score ?? 10) - 10) / 2)
+    return abilityModifier(score ?? 10)
   },
 
   signed(n) {
@@ -183,6 +223,19 @@ export const dnd = {
 
   formatBonus(n) {
     return dnd.signed(n)
+  },
+
+  // Turns any engine `{ value, breakdown: [{label, amount}] }` result (AC's
+  // computeAC, and every savingThrow/skill/passivePerception/spellAttack/
+  // spellSaveDC/attackBonus/damageBonus/prof-bonus breakdown sibling added
+  // 2026-09-30 alongside it) into this UI's joined-string tooltip shape.
+  // One formatter for every stat that has a breakdown, so adding a new one
+  // later never means writing a new string-joining function to go with it —
+  // just a new engine breakdown and a thin delegate that calls this.
+  _formatBreakdown({ value, breakdown }) {
+    const lines = breakdown.map((s) => `${s.label} (${dnd.signed(s.amount)})`)
+    lines.push(`= ${value}`)
+    return lines.join('\n')
   },
 
   // Shared pill-display formatting — used by WeaponTable, FeaturePillsPanel,
@@ -330,7 +383,7 @@ export const dnd = {
   },
 
   proficiencyBonus(level) {
-    return Math.ceil(level / 4) + 1
+    return proficiencyBonus(level)
   },
 
   // ─────────────────────────────────────────────
@@ -343,72 +396,58 @@ export const dnd = {
   //   unarmoredBonuses — bonuses that only apply when not wearing armor
   // ─────────────────────────────────────────────
 
-  resolveStats(character, carriedPartyItems = []) {
+  // Shared by every engine-delegating function below: combine
+  // character.items + carriedPartyItems and filter down to just this
+  // character's own equipped gear — the "caller pre-filters" contract every
+  // engine/rules/5e/ stat-resolution function in this family expects
+  // (characterStats.js, armorClass.js, checks.js, weaponAttack.js).
+  _equippedOnly(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
+    return items.filter((i) => i.equipped_by === character.name)
+  },
 
-    const stats = {
-      str: character.stat_str,
-      dex: character.stat_dex,
-      con: character.stat_con,
-      int: character.stat_int,
-      wis: character.stat_wis,
-      cha: character.stat_cha,
-    }
-    const bonuses = {}
-    const unarmoredBonuses = {}
-
-    // Only items equipped by this character apply their bonuses
-    const equippedItems = items.filter((i) => i.equipped_by === character.name)
-
-    // Pass 1 — stat_overrides set a stat to a fixed value (e.g. Amulet of Health: con → 19)
-    for (const item of equippedItems) {
-      if (item.stat_overrides) {
-        for (const [key, val] of Object.entries(item.stat_overrides)) {
-          if (key in stats) stats[key] = val
-        }
-      }
-    }
-
-    // Pass 2 — collect bonuses; ability-score keys (str/dex/…) add to the score itself
-    for (const item of equippedItems) {
-      if (item.stat_bonuses) {
-        for (const [key, val] of Object.entries(item.stat_bonuses)) {
-          if (SCORE_BONUS_KEYS.has(key)) {
-            // e.g. Belt of Dwarvenkind { con: 2 } → add to CON score
-            if (key in stats) stats[key] = (stats[key] ?? 10) + val
-          } else {
-            bonuses[key] = (bonuses[key] ?? 0) + val
-          }
-        }
-      }
-      if (item.unarmored_stat_bonuses) {
-        for (const [key, val] of Object.entries(item.unarmored_stat_bonuses)) {
-          unarmoredBonuses[key] = (unarmoredBonuses[key] ?? 0) + val
-        }
-      }
-    }
-
-    // Pass 3 — feature stat_bonuses (e.g. Elven Accuracy +1 DEX)
-    for (const feature of character.features ?? []) {
-      if (feature.stat_bonuses) {
-        for (const [key, val] of Object.entries(feature.stat_bonuses)) {
-          if (SCORE_BONUS_KEYS.has(key)) {
-            if (key in stats) stats[key] = (stats[key] ?? 10) + val
-          } else {
-            bonuses[key] = (bonuses[key] ?? 0) + val
-          }
-        }
-      }
-    }
-
-    return { stats, bonuses, unarmoredBonuses }
+  // The actual 3-pass aggregation (stat_overrides -> item stat_bonuses ->
+  // feature stat_bonuses) now lives in engine/rules/5e/characterStats.js's
+  // resolveEffectiveStats — moved there 2026-09-30 (see
+  // engine/CHECKLIST.md's entry that day for the full story: this used to
+  // be split in half, with only the ability-score slice in engine/ and this
+  // AC/attack/damage/saving-throw half left here under a "display concern"
+  // label that turned out to be wrong — it's the same kind of rule as the
+  // ability-score passes, just a different bonus bucket). This is now a
+  // thin adapter: filter to this character's own equipped items, call the
+  // engine, and rename `scores` -> `stats` to match this function's
+  // existing external contract (every caller across the app destructures
+  // `{ stats, bonuses }` from this specific key name).
+  resolveStats(character, carriedPartyItems = []) {
+    const equippedItems = dnd._equippedOnly(character, carriedPartyItems)
+    const { scores, bonuses, unarmoredBonuses } = resolveEffectiveStats(
+      character,
+      equippedItems
+    )
+    return { stats: scores, bonuses, unarmoredBonuses }
   },
 
   // Effective proficiency bonus: base (class/level or character field) + item bonus (Ioun Stone).
+  // Moved to engine/rules/5e/proficiency.js 2026-09-30 (same story as
+  // resolveStats/_acCompute above) — kept as a delegate since several
+  // components call dnd._prof(character, bonuses) directly by this name.
   _prof(character, bonuses) {
-    const base =
-      character.proficiency_bonus ?? dnd.proficiencyBonus(character.level)
-    return base + (bonuses.proficiency_bonus ?? 0)
+    return effectiveProficiencyBonus(character, bonuses)
+  },
+
+  // Breakdown sibling, added 2026-09-30 alongside the rest of the
+  // savingThrow/skill/passivePerception/spellAttack/spellSaveDC/attackBonus/
+  // damageBonus breakdowns below — fixes VitalsChipRow's profBonusTooltip,
+  // which used to hand-describe the level table and silently never showed
+  // an Ioun Stone of Mastery-style item bonus at all.
+  profBonusBreakdown(character, bonuses, partyItems = []) {
+    return dnd._formatBreakdown(
+      effectiveProficiencyBonusBreakdown(
+        character,
+        bonuses,
+        dnd._equippedOnly(character, partyItems)
+      )
+    )
   },
 
   // ─────────────────────────────────────────────
@@ -426,200 +465,44 @@ export const dnd = {
   // regardless of which set is current — an unmigrated/legacy item, or a
   // deliberately set-agnostic one (e.g. a weapon someone always keeps
   // sheathed on their belt in both loadouts).
+  // Moved to engine/rules/5e/weaponSets.js 2026-09-30 (same reasoning as
+  // resolveStats above) — these three stay as thin delegates since
+  // WeaponTable.vue/DifficultyCalculator.vue call dnd.activeWeaponSet/
+  // dnd.isActiveEquipped directly by these names.
   activeWeaponSet(character) {
-    return character.active_weapon_set ?? 1
+    return engineActiveWeaponSet(character)
   },
 
-  // True if `item` should count as "in hand right now" for this character —
-  // equipped_by them, and (for weapons specifically) either set-agnostic or
-  // in the currently active set.
   isActiveEquipped(item, character) {
-    if (item.equipped_by !== character.name) return false
-    if (item.type !== 'weapon' || item.weapon_set == null) return true
-    return item.weapon_set === dnd.activeWeaponSet(character)
+    return engineIsActiveEquipped(item, character)
   },
 
-  // Real RAW: Dual Wielder's +1 AC applies only "while wielding a separate
-  // melee weapon in each hand" — two one-handed melee weapons, no shield
-  // (a shield occupies the second hand, which is exactly what the feat's
-  // own wording excludes). Doesn't check the feat itself — callers already
-  // gate on that (see _acCompute below) so this stays a pure "is the
-  // character's current loadout physically dual-wielding melee" check,
-  // reusable anywhere else this same condition matters later (attack
-  // bonuses, flavor text, etc.).
   isDualWieldingMelee(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
-    const active = items.filter((i) => dnd.isActiveEquipped(i, character))
-    const hasShield = active.some((i) => i.armor_type === 'shield')
-    if (hasShield) return false
-    const meleeOneHanded = active.filter(
-      (i) => i.type === 'weapon' && i.slot === 'melee1h'
-    )
-    return meleeOneHanded.length >= 2
+    return engineIsDualWieldingMelee(character, items)
   },
 
   // ─────────────────────────────────────────────
   // ARMOR CLASS
   // ─────────────────────────────────────────────
 
-  // Internal — runs the full AC calculation and records each step for the breakdown tooltip.
+  // The actual AC math + breakdown now live in engine/rules/5e/armorClass.js
+  // (moved 2026-09-30, same story as resolveStats above — see
+  // engine/CHECKLIST.md's entry that day, including a real double-counting
+  // bug this move caught and fixed: a feature-granted flat AC bonus like
+  // Fighting Style: Defense was being added twice, once via resolveStats'
+  // bonuses.ac and once via this file's own separate featureAcBonus total).
+  // The engine returns { value, breakdown: [{label, amount}] } — plain
+  // structured data, not a display string, so any future UI can build its
+  // own tooltip from the same breakdown without re-deriving the AC math.
+  // This function stays the one place that turns that structured data into
+  // the joined-string shape THIS UI's tooltip currently expects.
   _acCompute(
     character,
     { bladesongActive = false, carriedPartyItems = [] } = {}
   ) {
-    const { stats, bonuses, unarmoredBonuses } = dnd.resolveStats(
-      character,
-      carriedPartyItems
-    )
-    const items = [...(character.items ?? []), ...carriedPartyItems]
-    const mine = (i) => i.equipped_by === character.name
-
-    const armorItem = items.find(
-      (i) => mine(i) && i.type === 'armor' && i.slot === 'body'
-    )
-    const isWearingArmor = !!armorItem
-    const dexMod = dnd.mod(stats.dex)
-    const conMod = dnd.mod(stats.con)
-    const wisMod = dnd.mod(stats.wis)
-    const intMod = dnd.mod(stats.int)
-    const steps = []
-    let base
-    let statUnarmoredBonus = 0
-
-    if (isWearingArmor) {
-      const armorData = ARMOR_BASE_AC[armorItem.armor_type]
-      const category = armorData?.category ?? armorItem.armor_type
-      const armorBaseAc = armorItem.armor_base_ac ?? armorData?.base ?? 10
-      const magicBonus = armorItem.enhancement_bonus ?? 0
-      const magicStr = magicBonus ? `, +${magicBonus} enhancement` : ''
-
-      switch (category) {
-        case 'heavy':
-          base = armorBaseAc + magicBonus
-          steps.push(`${armorItem.name} (base ${armorBaseAc}${magicStr})`)
-          break
-        case 'medium': {
-          const dexCapped = Math.min(dexMod, 2)
-          base = armorBaseAc + magicBonus + dexCapped
-          steps.push(`${armorItem.name} (base ${armorBaseAc}${magicStr})`)
-          steps.push(`DEX ${dnd.signed(dexCapped)} (cap 2)`)
-          break
-        }
-        default: {
-          base = armorBaseAc + magicBonus + dexMod
-          steps.push(`${armorItem.name} (base ${armorBaseAc}${magicStr})`)
-          steps.push(`DEX ${dnd.signed(dexMod)}`)
-          break
-        }
-      }
-    } else {
-      const unarmoredAcItem = items.find(
-        (i) => mine(i) && i.unarmored_armor_base_ac != null
-      )
-      if (unarmoredAcItem) {
-        base = unarmoredAcItem.unarmored_armor_base_ac + dexMod
-        steps.push(
-          `${unarmoredAcItem.name} (base ${unarmoredAcItem.unarmored_armor_base_ac})`
-        )
-        steps.push(`DEX ${dnd.signed(dexMod)}`)
-      } else if (character.unarmored_ac_formula === 'monk') {
-        base = 10 + dexMod + wisMod
-        steps.push(
-          `Monk Defense: 10 + DEX ${dnd.signed(dexMod)} + WIS ${dnd.signed(
-            wisMod
-          )}`
-        )
-      } else if (character.unarmored_ac_formula === 'barbarian') {
-        base = 10 + dexMod + conMod
-        steps.push(
-          `Barbarian Defense: 10 + DEX ${dnd.signed(dexMod)} + CON ${dnd.signed(
-            conMod
-          )}`
-        )
-      } else {
-        base = 10 + dexMod
-        steps.push(`Unarmored: 10 + DEX ${dnd.signed(dexMod)}`)
-      }
-
-      // Stat-mod unarmored bonuses (e.g. Monk's Belt adds CON mod)
-      if (unarmoredBonuses.ac_unarmored_con) {
-        const src = items
-          .filter(mine)
-          .find((i) => i.unarmored_stat_bonuses?.ac_unarmored_con)
-        steps.push(`${src?.name ?? 'Item'}: CON ${dnd.signed(conMod)}`)
-        statUnarmoredBonus += conMod
-      }
-    }
-
-    const shieldItem = items.find((i) => mine(i) && i.armor_type === 'shield')
-    const shieldEnhancement = shieldItem ? shieldItem.enhancement_bonus ?? 0 : 0
-    const shieldBonus = shieldItem ? 2 + shieldEnhancement : 0
-    if (shieldItem) {
-      const shieldLabel = shieldEnhancement
-        ? `+2 base, +${shieldEnhancement} enhancement = ${dnd.signed(
-            shieldBonus
-          )}`
-        : `${dnd.signed(shieldBonus)}`
-      steps.push(`${shieldItem.name} (${shieldLabel})`)
-    }
-
-    // Per-item flat AC bonuses (ring of protection, cloak of protection, bracers of defense, etc.)
-    for (const item of items.filter(mine)) {
-      const bonus = item.stat_bonuses?.ac ?? 0
-      const unarmoredBonus = !isWearingArmor
-        ? item.unarmored_stat_bonuses?.ac ?? 0
-        : 0
-      const total = bonus + unarmoredBonus
-      if (total) steps.push(`${item.name} (${dnd.signed(total)})`)
-    }
-
-    // Per-feature flat AC bonuses (e.g. Fighting Style: Defense) — real bug
-    // found 2026-09-09: this loop computed `bonus` and pushed a breakdown
-    // step describing it, but never actually added it into `value` below
-    // (unlike item stat_bonuses.ac, which resolveStats aggregates into
-    // `bonuses.ac` and IS counted). Chuknora's Fighting Style: Defense
-    // (stat_bonuses.ac: 1) was silently not applying — the tooltip claimed
-    // it while her real computed AC was 1 lower than shown.
-    let featureAcBonus = 0
-    for (const feature of character.features ?? []) {
-      const bonus = feature.stat_bonuses?.ac ?? 0
-      if (bonus) {
-        steps.push(`${feature.name} (${dnd.signed(bonus)})`)
-        featureAcBonus += bonus
-      }
-    }
-
-    // Dual Wielder's +1 AC — conditional on the character's CURRENT loadout
-    // (weapon-set aware, see isDualWieldingMelee above), not a flat feat
-    // bonus like the loop just above, so it can't live in stat_bonuses.ac
-    // the same way. Added 2026-09-09 alongside weapon sets.
-    let dualWielderAcBonus = 0
-    const hasDualWielder = (character.features ?? []).some(
-      (f) => (f.name || '').trim().toLowerCase() === 'dual wielder'
-    )
-    if (
-      hasDualWielder &&
-      dnd.isDualWieldingMelee(character, carriedPartyItems)
-    ) {
-      dualWielderAcBonus = 1
-      steps.push(`Dual Wielder (${dnd.signed(dualWielderAcBonus)})`)
-    }
-
-    if (bladesongActive) steps.push(`Bladesong INT ${dnd.signed(intMod)}`)
-
-    const itemAcBonus =
-      (bonuses.ac ?? 0) + (isWearingArmor ? 0 : unarmoredBonuses.ac ?? 0)
-    const bladesongBonus = bladesongActive ? intMod : 0
-    const value =
-      base +
-      shieldBonus +
-      itemAcBonus +
-      statUnarmoredBonus +
-      bladesongBonus +
-      featureAcBonus +
-      dualWielderAcBonus
-    steps.push(`= ${value}`)
-    return { value, steps }
+    const equippedItems = dnd._equippedOnly(character, carriedPartyItems)
+    return computeAC(character, equippedItems, { bladesongActive })
   },
 
   ac(character, options = {}) {
@@ -628,16 +511,20 @@ export const dnd = {
 
   // Returns a newline-separated string describing the AC calculation for the breakdown tooltip.
   acBreakdown(character, options = {}) {
-    return dnd._acCompute(character, options).steps.join('\n')
+    return dnd._formatBreakdown(dnd._acCompute(character, options))
   },
 
   // ─────────────────────────────────────────────
   // INITIATIVE
   // ─────────────────────────────────────────────
 
+  // Moved to engine/rules/5e/checks.js 2026-09-30 (same story as
+  // resolveStats/_acCompute above — see engine/CHECKLIST.md's entry that
+  // day). Every function here filters partyItems down to this character's
+  // own equipped items once, then delegates — same adapter shape as
+  // _acCompute.
   initiative(character, partyItems = []) {
-    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
-    return dnd.mod(stats.dex) + (bonuses.initiative ?? 0)
+    return engineInitiative(character, dnd._equippedOnly(character, partyItems))
   },
 
   // Advantage isn't a flat number like the rest of resolveStats' bonuses, so
@@ -645,22 +532,11 @@ export const dnd = {
   // itself is made (roll twice, take the higher), which only the actual
   // roller (CombatContext's rollInitiative) can act on. This is checked
   // separately so that caller can decide how to roll.
-  // Item grants only count while attuned when the item needs attunement
-  // (e.g. a Weapon of Warning does nothing unattuned, per RAW) — unlike
-  // resolveStats' flat bonuses, which don't currently gate on attunement at
-  // all, this is intentionally stricter for the one case that's been
-  // explicitly checked against RAW.
   hasInitiativeAdvantage(character, partyItems = []) {
-    const itemGrants = partyItems.some(
-      (i) =>
-        i.equipped_by === character.name &&
-        i.grants_initiative_advantage &&
-        (!i.needs_attunement || i.attuned)
+    return engineHasInitiativeAdvantage(
+      character,
+      dnd._equippedOnly(character, partyItems)
     )
-    const featureGrants = (character.features ?? []).some(
-      (f) => f.grants_initiative_advantage
-    )
-    return itemGrants || featureGrants
   },
 
   // ─────────────────────────────────────────────
@@ -668,19 +544,30 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   savingThrow(character, statKey, partyItems = []) {
-    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
-    const base = dnd.mod(stats[statKey])
-    const prof = dnd._prof(character, bonuses)
-    const isProficient = (character.saving_throws ?? []).includes(statKey)
-    return base + (isProficient ? prof : 0) + (bonuses.saving_throws ?? 0)
+    return engineSavingThrow(
+      character,
+      statKey,
+      dnd._equippedOnly(character, partyItems)
+    )
+  },
+
+  // Breakdown sibling — same AC-derived tooltip pattern (see _formatBreakdown
+  // above), added 2026-09-30 to replace SavingThrowsPanel.vue's own
+  // hand-rolled copy of this exact formula.
+  savingThrowBreakdown(character, statKey, partyItems = []) {
+    return dnd._formatBreakdown(
+      engineSavingThrowBreakdown(
+        character,
+        statKey,
+        dnd._equippedOnly(character, partyItems)
+      )
+    )
   },
 
   allSavingThrows(character, partyItems = []) {
-    return Object.fromEntries(
-      ['str', 'dex', 'con', 'int', 'wis', 'cha'].map((k) => [
-        k,
-        dnd.savingThrow(character, k, partyItems),
-      ])
+    return engineAllSavingThrows(
+      character,
+      dnd._equippedOnly(character, partyItems)
     )
   },
 
@@ -688,76 +575,31 @@ export const dnd = {
   // SKILLS
   // ─────────────────────────────────────────────
 
-  SKILL_MAP: {
-    Acrobatics: 'dex',
-    AnimalHandling: 'wis',
-    Arcana: 'int',
-    Athletics: 'str',
-    Deception: 'cha',
-    History: 'int',
-    Insight: 'wis',
-    Intimidation: 'cha',
-    Investigation: 'int',
-    Medicine: 'wis',
-    Nature: 'int',
-    Perception: 'wis',
-    Performance: 'cha',
-    Persuasion: 'cha',
-    Religion: 'int',
-    SleightOfHand: 'dex',
-    Stealth: 'dex',
-    Survival: 'wis',
-  },
+  SKILL_MAP: ENGINE_SKILL_MAP,
 
   skill(character, skillName, partyItems = []) {
-    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
-    const statKey = dnd.SKILL_MAP[skillName]
-    if (!statKey) return 0
-
-    const base = dnd.mod(stats[statKey])
-    const prof = dnd._prof(character, bonuses)
-    // Proficiency can come from the character's own training OR from an
-    // equipped item (item.grants_skill_proficiency: [names]) — e.g. an
-    // armor/wondrous item that teaches a skill while worn. Item-granted
-    // proficiency only counts while equipped, unlike a character's own
-    // skill_proficiencies, which is why this checks partyItems separately
-    // rather than just merging onto the character record.
-    const itemGrantsProficiency = partyItems.some(
-      (i) =>
-        i.equipped_by === character.name &&
-        (i.grants_skill_proficiency ?? []).includes(skillName)
+    return engineSkill(
+      character,
+      skillName,
+      dnd._equippedOnly(character, partyItems)
     )
-    const isProficient =
-      itemGrantsProficiency ||
-      (character.skill_proficiencies ?? []).includes(skillName)
-    const hasExpertise = (character.skill_expertise ?? []).includes(skillName)
-    // Jack of All Trades (Bard, 2nd level): half proficiency bonus, rounded
-    // down, on any ability check that doesn't already include proficiency
-    // bonus — i.e. only when NOT otherwise proficient/expert on this skill.
-    const hasJackOfAllTrades =
-      !isProficient &&
-      (character.features ?? []).some(
-        (f) => (f.name || '').trim().toLowerCase() === 'jack of all trades'
-      )
-    const profBonus = hasExpertise
-      ? prof * 2
-      : isProficient
-      ? prof
-      : hasJackOfAllTrades
-      ? Math.floor(prof / 2)
-      : 0
-    const itemBonus = bonuses[`skill_${skillName}`] ?? 0
+  },
 
-    return base + profBonus + itemBonus
+  // Breakdown sibling, added 2026-09-30 to replace SkillList.vue's own
+  // hand-rolled copy of this formula — that copy never handled Jack of All
+  // Trades, a real gap the engine version already covered (see checks.js).
+  skillBreakdown(character, skillName, partyItems = []) {
+    return dnd._formatBreakdown(
+      engineSkillBreakdown(
+        character,
+        skillName,
+        dnd._equippedOnly(character, partyItems)
+      )
+    )
   },
 
   allSkills(character, partyItems = []) {
-    return Object.fromEntries(
-      Object.keys(dnd.SKILL_MAP).map((s) => [
-        s,
-        dnd.skill(character, s, partyItems),
-      ])
-    )
+    return engineAllSkills(character, dnd._equippedOnly(character, partyItems))
   },
 
   // ─────────────────────────────────────────────
@@ -765,11 +607,20 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   passivePerception(character, partyItems = []) {
-    const { bonuses } = dnd.resolveStats(character, partyItems)
-    return (
-      10 +
-      dnd.skill(character, 'Perception', partyItems) +
-      (bonuses.passive_perception ?? 0)
+    return enginePassivePerception(
+      character,
+      dnd._equippedOnly(character, partyItems)
+    )
+  },
+
+  // Breakdown sibling, added 2026-09-30 to replace VitalsChipRow.vue's own
+  // hand-rolled passivePerceptionTooltip computed property.
+  passivePerceptionBreakdown(character, partyItems = []) {
+    return dnd._formatBreakdown(
+      enginePassivePerceptionBreakdown(
+        character,
+        dnd._equippedOnly(character, partyItems)
+      )
     )
   },
 
@@ -789,19 +640,38 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   spellAttackBonus(character, partyItems = []) {
-    if (!character.spellcasting_ability) return null
-    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
-    const mod = dnd.mod(stats[character.spellcasting_ability])
-    const prof = dnd._prof(character, bonuses)
-    return mod + prof + (bonuses.spell_attack ?? 0)
+    return engineSpellAttackBonus(
+      character,
+      dnd._equippedOnly(character, partyItems)
+    )
+  },
+
+  // Breakdown siblings, added 2026-09-30 to replace VitalsChipRow.vue's own
+  // hand-rolled spellAttackTooltip/spellDCTooltip computed properties.
+  // Return '' (not null) for a non-caster, matching how the old hand-rolled
+  // tooltips behaved when their template guard (v-if="spellAttack !== null")
+  // meant they were never actually rendered for one anyway.
+  spellAttackBonusBreakdown(character, partyItems = []) {
+    const result = engineSpellAttackBonusBreakdown(
+      character,
+      dnd._equippedOnly(character, partyItems)
+    )
+    return result ? dnd._formatBreakdown(result) : ''
   },
 
   spellSaveDC(character, partyItems = []) {
-    if (!character.spellcasting_ability) return null
-    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
-    const mod = dnd.mod(stats[character.spellcasting_ability])
-    const prof = dnd._prof(character, bonuses)
-    return 8 + mod + prof + (bonuses.spell_save_dc ?? 0)
+    return engineSpellSaveDC(
+      character,
+      dnd._equippedOnly(character, partyItems)
+    )
+  },
+
+  spellSaveDCBreakdown(character, partyItems = []) {
+    const result = engineSpellSaveDCBreakdown(
+      character,
+      dnd._equippedOnly(character, partyItems)
+    )
+    return result ? dnd._formatBreakdown(result) : ''
   },
 
   // ─────────────────────────────────────────────
@@ -809,33 +679,7 @@ export const dnd = {
   // ─────────────────────────────────────────────
 
   _weaponProps(weapon) {
-    const base =
-      WEAPON_PROPS[weapon.weapon_category] ??
-      HOMEBREW_WEAPON_PROPS[weapon.weapon_category] ??
-      {}
-    return {
-      weapon_type:
-        weapon.weapon_type ??
-        base.weapon_type ??
-        (weapon.slot?.startsWith('ranged') ? 'ranged' : 'melee'),
-      damage_dice: weapon.damage_dice ?? base.damage_dice ?? '1d4',
-      damage_dice_2h: weapon.damage_dice_2h ?? base.damage_dice_2h ?? null,
-      damage_type: weapon.damage_type ?? base.damage_type ?? null,
-      // 'simple' | 'martial' | null (null only for old items predating this
-      // field, or a homebrew weapon that never got one set) — used by
-      // isProficientWithWeapon below.
-      category: weapon.category ?? base.category ?? null,
-      // A homebrew weapon can piggyback on a real weapon's proficiency
-      // instead of (or in addition to) its own category — e.g. the Saber's
-      // real text: "Anyone proficient with a rapier can proficiently wield
-      // a saber."
-      counts_as_proficiency:
-        weapon.counts_as_proficiency ?? base.counts_as_proficiency ?? null,
-      finesse: weapon.finesse ?? base.finesse ?? false,
-      versatile: weapon.versatile ?? base.versatile ?? false,
-      thrown: weapon.thrown ?? base.thrown ?? null,
-      returning: weapon.returning ?? false,
-    }
+    return engineWeaponProps(weapon, HOMEBREW_WEAPON_PROPS)
   },
 
   // Whether `character` is proficient with `weapon` — checks the broad
@@ -845,74 +689,71 @@ export const dnd = {
   // Case-insensitive since weapon_proficiencies has historically mixed
   // casing across characters.
   isProficientWithWeapon(character, weapon) {
-    const props = dnd._weaponProps(weapon)
-    const profs = new Set(
-      (character.weapon_proficiencies ?? []).map((p) => p.toLowerCase())
+    return engineIsProficientWithWeapon(
+      character,
+      weapon,
+      HOMEBREW_WEAPON_PROPS
     )
-    if (props.category && profs.has(props.category)) return true
-    if (
-      weapon.weapon_category &&
-      profs.has(weapon.weapon_category.toLowerCase())
-    )
-      return true
-    if (
-      props.counts_as_proficiency &&
-      profs.has(props.counts_as_proficiency.toLowerCase())
-    )
-      return true
-    return false
   },
 
   _weaponStatMod(character, weapon, partyItems = []) {
-    const { stats } = dnd.resolveStats(character, partyItems)
-    const props = dnd._weaponProps(weapon)
-    if (props.finesse) return Math.max(dnd.mod(stats.str), dnd.mod(stats.dex))
-    return props.weapon_type === 'ranged'
-      ? dnd.mod(stats.dex)
-      : dnd.mod(stats.str)
+    return engineWeaponStatMod(
+      character,
+      weapon,
+      dnd._equippedOnly(character, partyItems),
+      HOMEBREW_WEAPON_PROPS
+    )
   },
 
   gripDie(character, weapon, partyItems = []) {
-    const props = dnd._weaponProps(weapon)
-    if (!props.versatile) return props.damage_dice
-    if (weapon.slot === 'melee2h')
-      return props.damage_dice_2h ?? props.damage_dice
-    const melee1hCount = partyItems.filter(
-      (i) => i.equipped_by === character.name && i.slot === 'melee1h'
-    ).length
-    return melee1hCount <= 1
-      ? props.damage_dice_2h ?? props.damage_dice
-      : props.damage_dice
+    return engineGripDie(
+      character,
+      weapon,
+      dnd._equippedOnly(character, partyItems),
+      HOMEBREW_WEAPON_PROPS
+    )
   },
 
   attackBonus(character, weapon, partyItems = []) {
-    const { bonuses } = dnd.resolveStats(character, partyItems)
-    const props = dnd._weaponProps(weapon)
-    const statMod = dnd._weaponStatMod(character, weapon, partyItems)
-    const prof = dnd._prof(character, bonuses)
-    const magic = weapon.enhancement_bonus ?? 0
-    const typeBonus =
-      props.weapon_type === 'ranged'
-        ? bonuses.ranged_attack ?? 0
-        : bonuses.melee_attack ?? 0
-    return statMod + prof + magic + typeBonus
+    return engineAttackBonus(
+      character,
+      weapon,
+      dnd._equippedOnly(character, partyItems),
+      HOMEBREW_WEAPON_PROPS
+    )
+  },
+
+  // Breakdown sibling, added 2026-09-30 — buildWeaponRows below builds its
+  // own atkTooltip/dmgTooltip for the combat panel and can call these
+  // instead of re-deriving the same stat-mod/prof/magic arithmetic by hand.
+  attackBonusBreakdown(character, weapon, partyItems = []) {
+    return dnd._formatBreakdown(
+      engineAttackBonusBreakdown(
+        character,
+        weapon,
+        dnd._equippedOnly(character, partyItems),
+        HOMEBREW_WEAPON_PROPS
+      )
+    )
   },
 
   damageBonus(character, weapon, partyItems = []) {
-    const { bonuses } = dnd.resolveStats(character, partyItems)
-    const props = dnd._weaponProps(weapon)
-    const statMod = dnd._weaponStatMod(character, weapon, partyItems)
-    const magic = weapon.enhancement_bonus ?? 0
-    const rangedBonus =
-      props.weapon_type === 'ranged' ? bonuses.ranged_damage ?? 0 : 0
-    const meleeBonus =
-      props.weapon_type !== 'ranged' ? bonuses.melee_damage ?? 0 : 0
-    return (
-      statMod +
-      magic +
-      rangedBonus +
-      meleeBonus +
-      dnd.rageDamageBonus(character, weapon)
+    return engineDamageBonus(
+      character,
+      weapon,
+      dnd._equippedOnly(character, partyItems),
+      HOMEBREW_WEAPON_PROPS
+    )
+  },
+
+  damageBonusBreakdown(character, weapon, partyItems = []) {
+    return dnd._formatBreakdown(
+      engineDamageBonusBreakdown(
+        character,
+        weapon,
+        dnd._equippedOnly(character, partyItems),
+        HOMEBREW_WEAPON_PROPS
+      )
     )
   },
 
@@ -921,21 +762,8 @@ export const dnd = {
   // 2026-09-18: raging characters showed no damage bonus anywhere on their
   // combat sheet, and there was no way to even mark a character as raging
   // (see conditions.js's new 'Raging' condition, added the same pass).
-  // Applies whenever the condition is active and the weapon isn't ranged —
-  // a finesse weapon is treated as eligible too, the same simplification
-  // _weaponStatMod already makes by always using the better of STR/DEX
-  // rather than modeling a genuine per-attack ability choice.
   rageDamageBonus(character, weapon) {
-    if (!(character.conditions ?? []).includes('Raging')) return 0
-    const props = dnd._weaponProps(weapon)
-    if (props.weapon_type === 'ranged') return 0
-    const barbLevel = (character.classes ?? []).find(
-      (c) => c.name?.toLowerCase() === 'barbarian'
-    )?.level
-    if (!barbLevel) return 0
-    if (barbLevel >= 16) return 4
-    if (barbLevel >= 9) return 3
-    return 2
+    return engineRageDamageBonus(character, weapon, HOMEBREW_WEAPON_PROPS)
   },
 
   weaponSummary(character, weapon, partyItems = []) {
@@ -956,21 +784,6 @@ export const dnd = {
     return partyItems
       .filter((i) => i.equipped_by === character.name && i.type === 'weapon')
       .map((w) => dnd.weaponSummary(character, w, partyItems))
-  },
-
-  // Groups stat_bonuses from equipped items by bonus key, with item name + value per entry.
-  // Used for building tooltip strings that name which item contributes each bonus.
-  _itemBonusBreakdown(character, partyItems) {
-    const result = {}
-    for (const item of partyItems.filter(
-      (i) => i.equipped_by === character.name
-    )) {
-      for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
-        if (!result[key]) result[key] = []
-        result[key].push({ name: item.name, value: val })
-      }
-    }
-    return result
   },
 
   // Current Sneak Attack dice, computed from actual Rogue class level rather
@@ -994,7 +807,6 @@ export const dnd = {
     const strMod = dnd.mod(stats.str)
     const dexMod = dnd.mod(stats.dex)
     const prof = dnd._prof(character, bonuses)
-    const ibd = dnd._itemBonusBreakdown(character, partyItems)
     const equippedItems = partyItems.filter(
       (i) => i.equipped_by === character.name
     )
@@ -1009,40 +821,17 @@ export const dnd = {
       .filter((i) => i.type === 'weapon' && dnd.isActiveEquipped(i, character))
       .map((w) => {
         const props = dnd._weaponProps(w)
-        const magic = w.enhancement_bonus ?? 0
-        let statMod, statDesc
-        if (props.finesse) {
-          statMod = Math.max(strMod, dexMod)
-          statDesc = `Finesse — best of STR ${dnd.signed(
-            strMod
-          )}, DEX ${dnd.signed(dexMod)} = ${dnd.signed(statMod)}`
-        } else if (props.weapon_type === 'ranged') {
-          statMod = dexMod
-          statDesc = `DEX ${dnd.signed(dexMod)}`
-        } else {
-          statMod = strMod
-          statDesc = `STR ${dnd.signed(strMod)}`
-        }
 
-        const atkBonusKey =
-          props.weapon_type === 'ranged' ? 'ranged_attack' : 'melee_attack'
         const atkTotal = dnd.attackBonus(character, w, partyItems)
-        const atkParts = [statDesc, `Prof ${dnd.signed(prof)}`]
-        if (magic) atkParts.push(`Enchanted ${dnd.signed(magic)}`)
-        for (const { name, value } of ibd[atkBonusKey] ?? [])
-          atkParts.push(`${name} ${dnd.signed(value)}`)
-        atkParts.push(`= ${dnd.signed(atkTotal)}`)
+        const atkTooltip = dnd.attackBonusBreakdown(character, w, partyItems)
 
         const dmgBonus = dnd.damageBonus(character, w, partyItems)
         const die = dnd.gripDie(character, w, partyItems)
-        const dmgParts = [die, statDesc.split('—')[0].trim()]
-        if (magic) dmgParts.push(`Enchanted ${dnd.signed(magic)}`)
-        const rageBonus = dnd.rageDamageBonus(character, w)
-        if (rageBonus) dmgParts.push(`Raging ${dnd.signed(rageBonus)}`)
-        if (props.weapon_type === 'ranged') {
-          for (const { name, value } of ibd.ranged_damage ?? [])
-            dmgParts.push(`${name} ${dnd.signed(value)}`)
-        }
+        const dmgTooltip = `${die}\n${dnd.damageBonusBreakdown(
+          character,
+          w,
+          partyItems
+        )}`
 
         const extras = w.extra_damage
           ? [
@@ -1080,8 +869,8 @@ export const dnd = {
           damage: mainDamage,
           thrownDamage,
           type: props.weapon_type,
-          atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
-          dmgTooltip: dmgParts.join(' + '),
+          atkTooltip,
+          dmgTooltip,
           extras,
           thrown: props.thrown,
           returning: props.returning,

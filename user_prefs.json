@@ -15,11 +15,23 @@
     },
     {
       "name": "Valdmere",
-      "members": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"]
+      "members": [
+        "Lenn",
+        "Pirra",
+        "Petra",
+        "Siv",
+        "Chuknora"
+      ]
     },
     {
       "name": "Yetgrese",
-      "members": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"]
+      "members": [
+        "Jaygar",
+        "Rhuna",
+        "Kerra",
+        "Revven",
+        "Elucyne"
+      ]
     }
   ],
   "parties": [
@@ -37,7 +49,7 @@
         "Ferghus"
       ],
       "active": true,
-      "game_day": 298,
+      "game_day": 299,
       "marching_order": [
         "Tackett",
         "Denna",
@@ -49,38 +61,103 @@
         "Sorra"
       ],
       "watch_assignments": [
-        ["Denna", "Ferghus"],
-        ["Tackett", "Enauweyn"],
-        ["Sorra", "Lexica"],
-        ["Vaz", "Kessara"]
-      ]
+        [
+          "Denna",
+          "Ferghus"
+        ],
+        [
+          "Tackett",
+          "Enauweyn"
+        ],
+        [
+          "Sorra",
+          "Lexica"
+        ],
+        [
+          "Vaz",
+          "Kessara"
+        ]
+      ],
+      "travel_prefs": {
+        "continent": "Kaemahz",
+        "terrain": "road",
+        "knowsWay": "general_direction"
+      }
     },
     {
       "id": "party_1780850600167_1",
       "name": "Valdmere",
-      "members": ["Lenn", "Pirra", "Petra", "Siv", "Chuknora"],
+      "members": [
+        "Lenn",
+        "Pirra",
+        "Petra",
+        "Siv",
+        "Chuknora"
+      ],
       "active": false,
       "game_day": 297,
-      "marching_order": ["Pirra", "Chuknora", "Lenn", "Petra", "Siv"],
+      "marching_order": [
+        "Pirra",
+        "Chuknora",
+        "Lenn",
+        "Petra",
+        "Siv"
+      ],
       "watch_assignments": [
-        ["Lenn", "Petra"],
-        ["Pirra", null],
-        ["Siv", null],
-        ["Chuknora", null]
+        [
+          "Lenn",
+          "Petra"
+        ],
+        [
+          "Pirra",
+          null
+        ],
+        [
+          "Siv",
+          null
+        ],
+        [
+          "Chuknora",
+          null
+        ]
       ]
     },
     {
       "id": "party_1780850600167_2",
       "name": "Yetgrese",
-      "members": ["Jaygar", "Rhuna", "Kerra", "Revven", "Elucyne"],
+      "members": [
+        "Jaygar",
+        "Rhuna",
+        "Kerra",
+        "Revven",
+        "Elucyne"
+      ],
       "active": false,
       "game_day": 300,
-      "marching_order": ["Revven", "Rhuna", "Kerra", "Jaygar", "Elucyne"],
+      "marching_order": [
+        "Revven",
+        "Rhuna",
+        "Kerra",
+        "Jaygar",
+        "Elucyne"
+      ],
       "watch_assignments": [
-        ["Jaygar", null],
-        ["Rhuna", null],
-        ["Revven", "Kerra"],
-        ["Elucyne", null]
+        [
+          "Jaygar",
+          null
+        ],
+        [
+          "Rhuna",
+          null
+        ],
+        [
+          "Revven",
+          "Kerra"
+        ],
+        [
+          "Elucyne",
+          null
+        ]
       ],
       "travel_prefs": {
         "continent": "Yetgrese",
@@ -91,15 +168,37 @@
     {
       "id": "party_1782820688153",
       "name": "Twins",
-      "members": ["Eldi", "Rith", "Therynv'l", "Lyria"],
+      "members": [
+        "Eldi",
+        "Rith",
+        "Therynv'l",
+        "Lyria"
+      ],
       "active": false,
       "game_day": 297,
-      "marching_order": ["Therynv'l", "Eldi", "Rith", "Lyria"],
+      "marching_order": [
+        "Therynv'l",
+        "Eldi",
+        "Rith",
+        "Lyria"
+      ],
       "watch_assignments": [
-        ["Eldi", null],
-        ["Rith", null],
-        ["Lyria", null],
-        [null, null]
+        [
+          "Eldi",
+          null
+        ],
+        [
+          "Rith",
+          null
+        ],
+        [
+          "Lyria",
+          null
+        ],
+        [
+          null,
+          null
+        ]
       ],
       "travel_prefs": {
         "continent": "Kaemahz",
@@ -133,10 +232,22 @@
         "Siv"
       ],
       "watch_assignments": [
-        ["Corwin", "Eldi"],
-        ["Rith", "Siv"],
-        ["Torrin", "Chuknora"],
-        ["Iyani", "Petra"]
+        [
+          "Corwin",
+          "Eldi"
+        ],
+        [
+          "Rith",
+          "Siv"
+        ],
+        [
+          "Torrin",
+          "Chuknora"
+        ],
+        [
+          "Iyani",
+          "Petra"
+        ]
       ]
     },
     {

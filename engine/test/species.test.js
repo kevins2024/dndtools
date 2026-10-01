@@ -202,7 +202,7 @@ test('Every grants_skill_proficiency is a lowercase skill id, and every _choice 
   }
 })
 
-test('Every grants_resistance is a real damage type or the "ancestry" sentinel (Dragonborn)', () => {
+test('Every grants_resistance is a real damage type (or array of them) or the "ancestry" sentinel (Dragonborn)', () => {
   const realDamageTypes = [
     'acid',
     'bludgeoning',
@@ -218,14 +218,20 @@ test('Every grants_resistance is a real damage type or the "ancestry" sentinel (
     'slashing',
     'thunder',
   ]
+  // Most traits grant one resistance (a bare string); a trait that grants more
+  // than one (Aasimar's Celestial Resistance: necrotic AND radiant) uses an
+  // array instead — checked the same way either shape.
   for (const sp of listSpeciesFull()) {
     for (const trait of allTraits(sp)) {
       if (!('grants_resistance' in trait)) continue
-      assert.ok(
-        trait.grants_resistance === 'ancestry' ||
-          realDamageTypes.includes(trait.grants_resistance),
-        `${sp.name}/"${trait.name}"'s grants_resistance ("${trait.grants_resistance}") should be a real damage type or "ancestry"`
-      )
+      const values = Array.isArray(trait.grants_resistance)
+        ? trait.grants_resistance
+        : [trait.grants_resistance]
+      for (const v of values)
+        assert.ok(
+          v === 'ancestry' || realDamageTypes.includes(v),
+          `${sp.name}/"${trait.name}"'s grants_resistance ("${trait.grants_resistance}") should be a real damage type or "ancestry"`
+        )
     }
   }
 })

@@ -14,12 +14,15 @@
 <script>
 import { dnd, STAT_KEYS } from '@/utils/dnd_utils.js'
 
-// The single source of truth for saving-throw math — CharacterSheet.vue used
-// to hand-roll this same computation a second time for its own fuller-row
-// display; that duplication is why saves used to render twice. AbilityScoreGrid
-// (which shows the same numbers inline per-ability on the full sheet) calls
-// these same dnd_utils functions directly rather than wrapping this component,
-// so there's still exactly one implementation of the math either way.
+// The single source of truth for saving-throw math is now
+// engine/rules/5e/checks.js's savingThrow/savingThrowBreakdown (moved
+// 2026-09-30 — this component used to hand-roll the same formula a second
+// time just to build its tooltip string; see engine/CHECKLIST.md's entry
+// that day). AbilityScoreGrid (which shows the same numbers inline
+// per-ability on the full sheet) calls the same dnd_utils functions
+// directly rather than wrapping this component, so there's still exactly
+// one implementation of the math either way. (It actually still had its
+// own copy until 2026-10-01 — the 09-30 migration missed it.)
 export default {
   name: 'SavingThrowsPanel',
 
@@ -32,29 +35,16 @@ export default {
       return this.$store.state.party_items ?? []
     },
     savingThrows() {
-      const { stats, bonuses } = dnd.resolveStats(
-        this.character,
-        this.partyItems
-      )
-      const prof = dnd._prof(this.character, bonuses)
       const proficient = new Set(this.character.saving_throws ?? [])
-      return STAT_KEYS.map(({ key, label }) => {
-        const isProficient = proficient.has(key)
-        const mod = dnd.mod(stats[key])
-        const flatBonus = bonuses.saving_throws ?? 0
-        const total = mod + (isProficient ? prof : 0) + flatBonus
-        const parts = [`${label} ${dnd.signed(mod)}`]
-        if (isProficient) parts.push(`prof ${dnd.signed(prof)}`)
-        if (flatBonus) parts.push(`bonus ${dnd.signed(flatBonus)}`)
-        parts.push(`= ${dnd.signed(total)}`)
-        return {
-          key,
-          label,
-          proficient: isProficient,
-          valueStr: dnd.signed(total),
-          tooltip: parts.join(' · '),
-        }
-      })
+      return STAT_KEYS.map(({ key, label }) => ({
+        key,
+        label,
+        proficient: proficient.has(key),
+        valueStr: dnd.signed(
+          dnd.savingThrow(this.character, key, this.partyItems)
+        ),
+        tooltip: dnd.savingThrowBreakdown(this.character, key, this.partyItems),
+      }))
     },
   },
 }

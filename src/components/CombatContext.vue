@@ -684,7 +684,7 @@ export default {
       this.enemies = enc.enemies.map((e) => ({
         id: this.nextEnemyId++,
         name: e.name,
-        mod: Math.floor((e.stats.dex - 10) / 2),
+        mod: dnd.mod(e.stats.dex),
         encounterData: e,
       }))
       this.showEncounterModal = false

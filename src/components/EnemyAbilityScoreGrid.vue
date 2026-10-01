@@ -40,6 +40,7 @@
 
 <script>
 import d20Icon from '@/assets/dice/d20.svg'
+import { abilityModifier } from '@/utils/abilities.js'
 
 const STAT_KEYS = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 
@@ -63,7 +64,7 @@ export default {
 
   methods: {
     mod(score) {
-      return Math.floor(((score ?? 10) - 10) / 2)
+      return abilityModifier(score ?? 10)
     },
     modStr(score) {
       const m = this.mod(score)

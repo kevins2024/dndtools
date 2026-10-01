@@ -1,5 +1,19 @@
 import { pick, GENDERS, GENERA } from './character_utils.js'
 import monstersIndex from '@/data/monsters_index.json'
+import { abilityModifier } from './abilities.js'
+import { proficiencyBonus } from './progression.js'
+import {
+  TARGET_HIT_PCT,
+  analyzeParty,
+  enemyBenchmarks,
+  estimatePartyHP,
+} from './encounterGenerator.js'
+
+// Re-exported so existing consumers (EncounterGenerator.vue, CombatContext.vue)
+// need no import-path changes — see engine/rules/encounterGenerator.js's own
+// header comment for why these specific functions moved to engine/ and the
+// rest of this file (bestiary lookups, network-calling generation) didn't.
+export { analyzeParty, enemyBenchmarks, estimatePartyHP }
 
 // ── Pre-group bestiary by type for fast CR-filtered lookup ───────────────────
 const BESTIARY_BY_TYPE = {}
@@ -639,23 +653,10 @@ const ENHANCEMENT_TABLE = [
 ]
 
 // ── Attack calibration ────────────────────────────────────────────────────────
-
-// Target hit% per difficulty — drives attack bonus calibration.
-const TARGET_HIT_PCT = {
-  trivial: 0.35,
-  easy: 0.45,
-  medium: 0.55,
-  hard: 0.65,
-  deadly: 0.72,
-}
-
-// Average party AC by level (5e baseline). Index = level.
-// This campaign adds PARTY_AC_ITEM_BONUS on top for generous magic items.
-const BASE_PARTY_AC = [
-  0, 13, 13, 13, 14, 14, 15, 15, 15, 16, 16, 17, 17, 17, 18, 18, 19, 19, 19, 20,
-  20,
-]
-const PARTY_AC_ITEM_BONUS = 2
+// TARGET_HIT_PCT now lives in engine/rules/encounterGenerator.js (imported
+// above) — analyzeParty/enemyBenchmarks/estimatePartyHP moved there
+// 2026-09-30, and calibrateAttackBonus below shares the same table rather
+// than each having their own copy.
 
 // ── Feature library ───────────────────────────────────────────────────────────
 
@@ -1620,116 +1621,9 @@ function pickN(arr, n) {
   return copy.slice(0, Math.min(n, copy.length))
 }
 
-// How easily the party should hit enemies at each difficulty tier
-const PARTY_HIT_PCT = {
-  trivial: 0.8,
-  easy: 0.7,
-  medium: 0.6,
-  hard: 0.5,
-  deadly: 0.4,
-}
-// How often party spells should land (enemy fails save) at each tier
-const SPELL_LAND_PCT = {
-  trivial: 0.75,
-  easy: 0.65,
-  medium: 0.55,
-  hard: 0.45,
-  deadly: 0.35,
-}
-
-export function analyzeParty(partyCharacters) {
-  if (!partyCharacters?.length) {
-    return {
-      avgLevel: 5,
-      estimatedAC: 17,
-      avgAtkBonus: 7,
-      avgSpellDC: 14,
-      hasHealer: false,
-      hasArcane: false,
-      hasMartial: true,
-      hasControl: false,
-      hasAOE: false,
-    }
-  }
-  const avgLevel =
-    partyCharacters.reduce((a, c) => a + (c.level ?? 1), 0) /
-    partyCharacters.length
-  const lvlIdx = Math.min(20, Math.round(avgLevel))
-  const estimatedAC = (BASE_PARTY_AC[lvlIdx] ?? 15) + PARTY_AC_ITEM_BONUS
-
-  const classes = partyCharacters.flatMap((c) =>
-    (c.classes ?? []).map((cl) => (cl.name ?? '').toLowerCase())
-  )
-  const hasHealer = classes.some((c) =>
-    ['cleric', 'druid', 'paladin', 'bard'].includes(c)
-  )
-  const hasArcane = classes.some((c) =>
-    ['wizard', 'sorcerer', 'warlock', 'artificer', 'bard'].includes(c)
-  )
-  const hasMartial = classes.some((c) =>
-    ['fighter', 'barbarian', 'paladin', 'ranger', 'monk', 'rogue'].includes(c)
-  )
-  const hasControl = hasArcane || classes.includes('bard')
-  const hasAOE = classes.some((c) =>
-    ['sorcerer', 'wizard', 'druid', 'bard'].includes(c)
-  )
-
-  // Per-character best attack bonus (higher of physical or spell attack)
-  const atkBonuses = partyCharacters.map((c) => {
-    const prof = c.proficiency_bonus ?? Math.ceil((c.level ?? 1) / 4) + 1
-    const strMod = c.stat_str ? Math.floor((c.stat_str - 10) / 2) : 0
-    const dexMod = c.stat_dex ? Math.floor((c.stat_dex - 10) / 2) : 0
-    const physAtk = Math.max(strMod, dexMod) + prof
-    return c.spell_attack_bonus != null
-      ? Math.max(physAtk, c.spell_attack_bonus)
-      : physAtk
-  })
-
-  // Per-character best spell save DC (explicit or estimated from best casting stat)
-  const dcValues = partyCharacters.map((c) => {
-    if (c.spell_save_dc != null) return c.spell_save_dc
-    const prof = c.proficiency_bonus ?? Math.ceil((c.level ?? 1) / 4) + 1
-    const intMod = c.stat_int ? Math.floor((c.stat_int - 10) / 2) : 0
-    const wisMod = c.stat_wis ? Math.floor((c.stat_wis - 10) / 2) : 0
-    const chaMod = c.stat_cha ? Math.floor((c.stat_cha - 10) / 2) : 0
-    return 8 + prof + Math.max(intMod, wisMod, chaMod)
-  })
-
-  const avgAtkBonus = Math.round(
-    atkBonuses.reduce((a, b) => a + b, 0) / atkBonuses.length
-  )
-  const avgSpellDC = Math.round(
-    dcValues.reduce((a, b) => a + b, 0) / dcValues.length
-  )
-
-  return {
-    avgLevel,
-    estimatedAC,
-    avgAtkBonus,
-    avgSpellDC,
-    hasHealer,
-    hasArcane,
-    hasMartial,
-    hasControl,
-    hasAOE,
-  }
-}
-
-// What enemy stats should look like at a given difficulty, given the party profile
-export function enemyBenchmarks(profile, difficulty) {
-  const partyHitPct = PARTY_HIT_PCT[difficulty] ?? 0.6
-  const spellLandPct = SPELL_LAND_PCT[difficulty] ?? 0.55
-  return {
-    // Enemy atk bonus to hit party AC at this difficulty's target hit rate
-    enemyAtk: Math.round(
-      profile.estimatedAC - (21 - (TARGET_HIT_PCT[difficulty] ?? 0.55) * 20)
-    ),
-    // Enemy AC such that party hits at the target rate
-    enemyAC: Math.round(profile.avgAtkBonus + (21 - partyHitPct * 20)),
-    // Enemy save mod such that party spells land at the target rate
-    enemySave: Math.round(profile.avgSpellDC - spellLandPct * 20 - 1),
-  }
-}
+// analyzeParty/enemyBenchmarks moved to engine/rules/encounterGenerator.js
+// 2026-09-30 (imported above, re-exported below for existing consumers) —
+// see that file's header comment for why.
 
 function calibrateAttackBonus(partyAvgAC, difficulty, isBoss) {
   const hitPct = TARGET_HIT_PCT[difficulty] ?? 0.55
@@ -1789,7 +1683,7 @@ function rollInRange(min, max) {
 }
 
 function mod(score) {
-  return Math.floor((score - 10) / 2)
+  return abilityModifier(score)
 }
 
 function rollD20() {
@@ -1804,27 +1698,18 @@ function generateStats(profile) {
   return stats
 }
 
-function calcHP(level, hitDie, conMod) {
-  const first = hitDie + conMod
-  const perLevel = Math.ceil(hitDie / 2) + 1 + conMod
-  return Math.max(level, first + (level - 1) * perLevel)
-}
-
 function rollHP(hpMin, hpMax) {
   const range = Math.max(0, hpMax - hpMin)
   const step = range / 20
   return Math.max(1, Math.round(hpMin + step * rollD20()))
 }
 
-export function estimatePartyHP(level) {
-  const minHP = calcHP(level, 8, 0)
-  const maxHP = calcHP(level, 8, 2)
-  return { minHP, maxHP }
-}
+// calcHP/estimatePartyHP moved to engine/rules/encounterGenerator.js
+// 2026-09-30 (imported above, re-exported below for existing consumers).
 
 function generateAC(profile, stats, level) {
   const dexMod = mod(stats.dex)
-  const profBonus = Math.ceil(level / 4) + 1
+  const profBonus = proficiencyBonus(level)
   switch (profile.primary) {
     case 'str':
       return 13 + Math.min(2, Math.floor(level / 4))
@@ -2015,7 +1900,7 @@ function generateHumanoidEnemy(
   const hp = Math.round(rollHP(hpMin, hpMax) * bossHpMult)
   const ac = generateAC(profile, stats, level + (isBoss ? 2 : 0))
   const primaryMod = mod(stats[profile.primary])
-  const profBonus = Math.ceil(level / 4) + 1
+  const profBonus = proficiencyBonus(level)
   const weapon = generateWeapon(roleKey, primaryMod)
   const totalAtk = partyProfile
     ? calibrateAttackBonus(partyProfile.estimatedAC, difficulty, isBoss)
@@ -2114,7 +1999,7 @@ function generateBestiaryEnemy(
   const hp = Math.round(rollHP(hpMin, hpMax) * bossHpMult)
   const ac = generateAC(profile, stats, level + (isBoss ? 2 : 0))
   const primaryMod = mod(stats[profile.primary])
-  const profBonus = Math.ceil(level / 4) + 1
+  const profBonus = proficiencyBonus(level)
   const baseAtk = primaryMod + profBonus + (isBoss ? 2 : 0)
   const attackName = pick(
     NATURAL_ATTACKS[bestiaryType] ?? NATURAL_ATTACKS.default

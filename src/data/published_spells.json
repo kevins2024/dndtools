@@ -13,7 +13,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Absorb elements",
+    "name": "Absorb Elements",
     "level": 1,
     "school": "Abjuration",
     "casting_time": "1 reaction, which you take when you take acid, cold, fire, lightning, or thunder damage",
@@ -39,7 +39,7 @@
     "classes": ["Sorcerer", "Wizard"]
   },
   {
-    "name": "Beast bond",
+    "name": "Beast Bond",
     "level": 1,
     "school": "Divination",
     "casting_time": "1 action",
@@ -52,7 +52,7 @@
     "classes": ["Druid", "Ranger"]
   },
   {
-    "name": "Blade of disaster",
+    "name": "Blade of Disaster",
     "level": 9,
     "school": "Conjuration",
     "casting_time": "1 bonus action",
@@ -65,7 +65,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Bones of the earth",
+    "name": "Bones of the Earth",
     "level": 6,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -76,19 +76,6 @@
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
     "classes": ["Druid"]
-  },
-  {
-    "name": "Booming blade",
-    "level": 0,
-    "school": "Evocation",
-    "casting_time": "1 action",
-    "range": "Self (5-foot radius)",
-    "components": ["S", "M"],
-    "duration": "1 round",
-    "description": "You brandish the weapon used in the spell’s casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack’s normal effects and then becomes sheathed in booming energy until the start of your next turn. If the target willingly moves 5 feet or more before then, the target takes 1d8 thunder damage, and the spell ends.\nAt Higher Levels. At 5th level, the melee attack deals an extra 1d8 thunder damage to the target on a hit, and the damage the target takes for moving increases to 2d8. Both damage rolls increase by 1d8 at 11th level (2d8 and 3d8) and again at 17th level (3d8 and 4d8).",
-    "source": "Tasha's Cauldron of Everything",
-    "concentration": false,
-    "classes": ["Artificer", "Sorcerer", "Warlock", "Wizard"]
   },
   {
     "name": "Catapult",
@@ -117,7 +104,7 @@
     "classes": ["Artificer", "Bard", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Cause fear",
+    "name": "Cause Fear",
     "level": 1,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -156,7 +143,7 @@
     "classes": ["Sorcerer"]
   },
   {
-    "name": "Charm monster",
+    "name": "Charm Monster",
     "level": 4,
     "school": "Enchantment",
     "casting_time": "1 action",
@@ -169,7 +156,7 @@
     "classes": ["Bard", "Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Control flames",
+    "name": "Control Flames",
     "level": 0,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -182,7 +169,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Control winds",
+    "name": "Control Winds",
     "level": 5,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -195,7 +182,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Create bonfire",
+    "name": "Create Bonfire",
     "level": 0,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -208,7 +195,7 @@
     "classes": ["Artificer", "Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Create homunculus",
+    "name": "Create Homunculus",
     "level": 6,
     "school": "Transmutation",
     "casting_time": "1 hour",
@@ -221,7 +208,7 @@
     "classes": ["Wizard"]
   },
   {
-    "name": "Crown of stars",
+    "name": "Crown of Stars",
     "level": 7,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -234,7 +221,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Danse macabre",
+    "name": "Danse Macabre",
     "level": 5,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -299,7 +286,7 @@
     "classes": ["Druid"]
   },
   {
-    "name": "Dust devil",
+    "name": "Dust Devil",
     "level": 2,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -312,7 +299,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Earth tremor",
+    "name": "Earth Tremor",
     "level": 1,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -338,7 +325,7 @@
     "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Elemental bane",
+    "name": "Elemental Bane",
     "level": 4,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -351,7 +338,7 @@
     "classes": ["Artificer", "Druid", "Warlock", "Wizard"]
   },
   {
-    "name": "Enemies abound",
+    "name": "Enemies Abound",
     "level": 3,
     "school": "Enchantment",
     "casting_time": "1 action",
@@ -377,7 +364,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Erupting earth",
+    "name": "Erupting Earth",
     "level": 3,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -390,7 +377,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Far step",
+    "name": "Far Step",
     "level": 5,
     "school": "Conjuration",
     "casting_time": "1 bonus action",
@@ -403,7 +390,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Find greater steed",
+    "name": "Find Greater Steed",
     "level": 4,
     "school": "Conjuration",
     "casting_time": "10 minutes",
@@ -416,7 +403,7 @@
     "classes": ["Paladin"]
   },
   {
-    "name": "Flame arrows",
+    "name": "Flame Arrows",
     "level": 3,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -455,7 +442,7 @@
     "classes": ["Artificer", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Guardian of nature",
+    "name": "Guardian of Nature",
     "level": 4,
     "school": "Transmutation",
     "casting_time": "1 bonus action",
@@ -494,7 +481,7 @@
     "classes": ["Druid", "Ranger"]
   },
   {
-    "name": "Holy weapon",
+    "name": "Holy Weapon",
     "level": 5,
     "school": "Evocation",
     "casting_time": "1 bonus action",
@@ -507,7 +494,7 @@
     "classes": ["Cleric", "Paladin"]
   },
   {
-    "name": "Ice knife",
+    "name": "Ice Knife",
     "level": 1,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -520,7 +507,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Illusory dragon",
+    "name": "Illusory Dragon",
     "level": 8,
     "school": "Illusion",
     "casting_time": "1 action",
@@ -572,7 +559,7 @@
     "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Intellect fortress",
+    "name": "Intellect Fortress",
     "level": 3,
     "school": "Abjuration",
     "casting_time": "1 action",
@@ -585,7 +572,7 @@
     "classes": ["Artificer", "Bard", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Investiture of flame",
+    "name": "Investiture of Flame",
     "level": 6,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -598,7 +585,7 @@
     "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Investiture of ice",
+    "name": "Investiture of Ice",
     "level": 6,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -611,7 +598,7 @@
     "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Investiture of stone",
+    "name": "Investiture of Stone",
     "level": 6,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -624,7 +611,7 @@
     "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Investiture of wind",
+    "name": "Investiture of Wind",
     "level": 6,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -650,7 +637,7 @@
     "classes": ["Wizard"]
   },
   {
-    "name": "Life transference",
+    "name": "Life Transference",
     "level": 3,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -702,7 +689,7 @@
     "classes": ["Druid"]
   },
   {
-    "name": "Magic stone",
+    "name": "Magic Stone",
     "level": 0,
     "school": "Transmutation",
     "casting_time": "1 bonus action",
@@ -715,7 +702,7 @@
     "classes": ["Artificer", "Druid", "Warlock"]
   },
   {
-    "name": "Mass polymorph",
+    "name": "Mass Polymorph",
     "level": 9,
     "school": "Transmutation",
     "casting_time": "1 Action",
@@ -741,7 +728,7 @@
     "classes": ["Sorcerer", "Wizard"]
   },
   {
-    "name": "Mental prison",
+    "name": "Mental Prison",
     "level": 6,
     "school": "Illusion",
     "casting_time": "1 action",
@@ -754,7 +741,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Mighty fortress",
+    "name": "Mighty Fortress",
     "level": 8,
     "school": "Conjuration",
     "casting_time": "1 minute",
@@ -767,7 +754,7 @@
     "classes": ["Wizard"]
   },
   {
-    "name": "Mind sliver",
+    "name": "Mind Sliver",
     "level": 0,
     "school": "Enchantment",
     "casting_time": "1 action",
@@ -793,20 +780,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Mold earth",
-    "level": 0,
-    "school": "Transmutation",
-    "casting_time": "1 action",
-    "range": "30 feet",
-    "components": ["S"],
-    "duration": "Instantaneous or 1 hour",
-    "description": "You choose a portion of dirt or stone that you can see within range and that fits within a 5-foot cube. You manipulate it in one of the following ways:\nIf you target an area of loose earth, you can instantaneously excavate it, move it along the ground, and deposit it up to 5 feet away. This movement doesn’t have enough force to cause damage.\nYou cause shapes, colors, or both to appear on the dirt or stone, spelling out words, creating images, or shaping patterns. The changes last for 1 hour.\nIf the dirt or stone you target is on the ground, you cause it to become difficult terrain. Alternatively, you can cause the ground to become normal terrain if it is already difficult terrain. This change lasts for 1 hour.\nIf you cast this spell multiple times, you can have no more than two of its non-instantaneous effects active at a time, and you can dismiss such an effect as an action.",
-    "source": "Xanathar's Guide to Everything",
-    "concentration": false,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
-  },
-  {
-    "name": "Negative energy flood",
+    "name": "Negative Energy Flood",
     "level": 5,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -819,7 +793,7 @@
     "classes": ["Warlock", "Wizard"]
   },
   {
-    "name": "Power word pain",
+    "name": "Power Word Pain",
     "level": 7,
     "school": "Enchantment",
     "casting_time": "1 action",
@@ -832,7 +806,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Primal savagery",
+    "name": "Primal Savagery",
     "level": 0,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -845,7 +819,7 @@
     "classes": ["Druid"]
   },
   {
-    "name": "Primordial ward",
+    "name": "Primordial Ward",
     "level": 6,
     "school": "Abjuration",
     "casting_time": "1 action",
@@ -858,7 +832,7 @@
     "classes": ["Druid"]
   },
   {
-    "name": "Psychic scream",
+    "name": "Psychic Scream",
     "level": 9,
     "school": "Enchantment",
     "casting_time": "1 action",
@@ -897,7 +871,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Shadow blade",
+    "name": "Shadow Blade",
     "level": 2,
     "school": "Illusion",
     "casting_time": "1 bonus action",
@@ -910,7 +884,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Shadow of moil",
+    "name": "Shadow of Moil",
     "level": 4,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -923,7 +897,7 @@
     "classes": ["Warlock"]
   },
   {
-    "name": "Shape water",
+    "name": "Shape Water",
     "level": 0,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -936,7 +910,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Sickening radiance",
+    "name": "Sickening Radiance",
     "level": 4,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -949,7 +923,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Skill empowerment",
+    "name": "Skill Empowerment",
     "level": 5,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -1001,7 +975,7 @@
     "classes": ["Sorcerer", "Wizard"]
   },
   {
-    "name": "Soul cage",
+    "name": "Soul Cage",
     "level": 6,
     "school": "Necromancy",
     "casting_time": "1 reaction, which you take when a humanoid you can see within 60 feet of you dies",
@@ -1014,7 +988,7 @@
     "classes": ["Warlock", "Wizard"]
   },
   {
-    "name": "Spirit shroud",
+    "name": "Spirit Shroud",
     "level": 3,
     "school": "Necromancy",
     "casting_time": "1 bonus action",
@@ -1027,7 +1001,7 @@
     "classes": ["Cleric", "Paladin", "Warlock", "Wizard"]
   },
   {
-    "name": "Steel wind strike",
+    "name": "Steel Wind Strike",
     "level": 5,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1040,7 +1014,7 @@
     "classes": ["Ranger", "Wizard"]
   },
   {
-    "name": "Storm sphere",
+    "name": "Storm Sphere",
     "level": 4,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1066,7 +1040,7 @@
     "classes": ["Warlock", "Wizard"]
   },
   {
-    "name": "Summon beast",
+    "name": "Summon Beast",
     "level": 2,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1079,7 +1053,7 @@
     "classes": ["Druid", "Ranger"]
   },
   {
-    "name": "Summon celestial",
+    "name": "Summon Celestial",
     "level": 5,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1092,7 +1066,7 @@
     "classes": ["Cleric", "Paladin"]
   },
   {
-    "name": "Summon construct",
+    "name": "Summon Construct",
     "level": 4,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1105,7 +1079,7 @@
     "classes": ["Artificer", "Wizard"]
   },
   {
-    "name": "Summon elemental",
+    "name": "Summon Elemental",
     "level": 4,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1118,7 +1092,7 @@
     "classes": ["Druid", "Ranger", "Wizard"]
   },
   {
-    "name": "Summon fey",
+    "name": "Summon Fey",
     "level": 3,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1131,7 +1105,7 @@
     "classes": ["Druid", "Ranger", "Warlock", "Wizard"]
   },
   {
-    "name": "Summon fiend",
+    "name": "Summon Fiend",
     "level": 6,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1144,7 +1118,7 @@
     "classes": ["Warlock", "Wizard"]
   },
   {
-    "name": "Summon greater demon",
+    "name": "Summon Greater Demon",
     "level": 4,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1170,7 +1144,7 @@
     "classes": ["Warlock", "Wizard"]
   },
   {
-    "name": "Summon shadowspawn",
+    "name": "Summon Shadowspawn",
     "level": 3,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1183,7 +1157,7 @@
     "classes": ["Warlock", "Wizard"]
   },
   {
-    "name": "Summon undead",
+    "name": "Summon Undead",
     "level": 3,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -1264,7 +1238,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Temple of the gods",
+    "name": "Temple of the Gods",
     "level": 7,
     "school": "Conjuration",
     "casting_time": "1 hour",
@@ -1290,7 +1264,7 @@
     "classes": ["Artificer", "Wizard"]
   },
   {
-    "name": "Thunder step",
+    "name": "Thunder Step",
     "level": 3,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1316,7 +1290,7 @@
     "classes": ["Artificer", "Bard", "Druid", "Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Tidal wave",
+    "name": "Tidal Wave",
     "level": 3,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1329,7 +1303,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Tiny servant",
+    "name": "Tiny Servant",
     "level": 3,
     "school": "Transmutation",
     "casting_time": "1 minute",
@@ -1342,7 +1316,7 @@
     "classes": ["Artificer", "Wizard"]
   },
   {
-    "name": "Toll the dead",
+    "name": "Toll the Dead",
     "level": 0,
     "school": "Necromancy",
     "casting_time": "1 action",
@@ -1355,7 +1329,7 @@
     "classes": ["Cleric", "Warlock", "Wizard"]
   },
   {
-    "name": "Transmute rock",
+    "name": "Transmute Rock",
     "level": 5,
     "school": "Transmutation",
     "casting_time": "1 action",
@@ -1368,7 +1342,7 @@
     "classes": ["Artificer", "Druid", "Wizard"]
   },
   {
-    "name": "Vitriolic sphere",
+    "name": "Vitriolic Sphere",
     "level": 4,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1381,7 +1355,7 @@
     "classes": ["Sorcerer", "Wizard"]
   },
   {
-    "name": "Wall of light",
+    "name": "Wall of Light",
     "level": 5,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1394,7 +1368,7 @@
     "classes": ["Sorcerer", "Warlock", "Wizard"]
   },
   {
-    "name": "Wall of sand",
+    "name": "Wall of Sand",
     "level": 3,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1407,7 +1381,7 @@
     "classes": ["Wizard"]
   },
   {
-    "name": "Wall of water",
+    "name": "Wall of Water",
     "level": 3,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1420,7 +1394,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Warding wind",
+    "name": "Warding Wind",
     "level": 2,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1433,7 +1407,7 @@
     "classes": ["Bard", "Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Watery sphere",
+    "name": "Watery Sphere",
     "level": 4,
     "school": "Conjuration",
     "casting_time": "1 action",
@@ -1459,7 +1433,7 @@
     "classes": ["Druid", "Sorcerer", "Wizard"]
   },
   {
-    "name": "Word of radiance",
+    "name": "Word of Radiance",
     "level": 0,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1472,7 +1446,7 @@
     "classes": ["Cleric"]
   },
   {
-    "name": "Wrath of nature",
+    "name": "Wrath of Nature",
     "level": 5,
     "school": "Evocation",
     "casting_time": "1 action",
@@ -1485,7 +1459,7 @@
     "classes": ["Druid", "Ranger"]
   },
   {
-    "name": "Zephyr strike",
+    "name": "Zephyr Strike",
     "level": 1,
     "school": "Transmutation",
     "casting_time": "1 bonus action",

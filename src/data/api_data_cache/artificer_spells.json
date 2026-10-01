@@ -6,12 +6,12 @@
   },
   {
     "index": "booming-blade",
-    "name": "Booming blade",
+    "name": "Booming Blade",
     "level": 0
   },
   {
     "index": "create-bonfire",
-    "name": "Create bonfire",
+    "name": "Create Bonfire",
     "level": 0
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "index": "magic-stone",
-    "name": "Magic stone",
+    "name": "Magic Stone",
     "level": 0
   },
   {
@@ -116,7 +116,7 @@
   },
   {
     "index": "absorb-elements",
-    "name": "Absorb elements",
+    "name": "Absorb Elements",
     "level": 1
   },
   {
@@ -351,7 +351,7 @@
   },
   {
     "index": "flame-arrows",
-    "name": "Flame arrows",
+    "name": "Flame Arrows",
     "level": 3
   },
   {
@@ -371,7 +371,7 @@
   },
   {
     "index": "intellect-fortress",
-    "name": "Intellect fortress",
+    "name": "Intellect Fortress",
     "level": 3
   },
   {
@@ -386,7 +386,7 @@
   },
   {
     "index": "tiny-servant",
-    "name": "Tiny servant",
+    "name": "Tiny Servant",
     "level": 3
   },
   {
@@ -406,7 +406,7 @@
   },
   {
     "index": "elemental-bane",
-    "name": "Elemental bane",
+    "name": "Elemental Bane",
     "level": 4
   },
   {
@@ -436,7 +436,7 @@
   },
   {
     "index": "summon-construct",
-    "name": "Summon construct",
+    "name": "Summon Construct",
     "level": 4
   },
   {
@@ -461,12 +461,12 @@
   },
   {
     "index": "skill-empowerment",
-    "name": "Skill empowerment",
+    "name": "Skill Empowerment",
     "level": 5
   },
   {
     "index": "transmute-rock",
-    "name": "Transmute rock",
+    "name": "Transmute Rock",
     "level": 5
   },
   {

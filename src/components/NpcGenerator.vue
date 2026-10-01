@@ -190,6 +190,7 @@ import {
   CLASSES,
   generateCharacter,
 } from '../utils/character_utils.js'
+import { abilityModifier } from '../utils/abilities.js'
 
 const CATEGORIES = [
   { key: 'gender', label: 'Gender', options: GENDERS },
@@ -323,7 +324,7 @@ export default {
       const { encounterData } = this.buildResult
       this.$store.commit('QUEUE_REINFORCEMENT', {
         name: encounterData.roleLabel,
-        mod: Math.floor((encounterData.stats.dex - 10) / 2),
+        mod: abilityModifier(encounterData.stats.dex),
         encounterData,
       })
       this.$store.commit('REQUEST_COMBAT_NAV')

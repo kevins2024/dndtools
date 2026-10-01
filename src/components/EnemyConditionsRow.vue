@@ -154,8 +154,13 @@ identical fix (2026-09-18) for the full legibility-bug writeup. */
 .cond-chip--negative:hover {
   --cond-outline: var(--color-text-muted);
 }
+/* Same legibility bug as ConditionsRow.vue, fixed there 2026-09-29 — see its
+   comment for the full explanation. This file duplicates the whole
+   .cond-chip ruleset rather than sharing it (worth extracting sometime), so
+   the fix has to be applied here too. */
 .cond-chip--negative.cond-chip--active {
   --cond-outline: var(--color-condition);
+  color: var(--color-condition);
 }
 
 .custom-cond-row {

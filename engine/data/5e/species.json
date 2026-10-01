@@ -30,15 +30,18 @@
     "traits": [
       {
         "name": "Fey Ancestry",
+        "id": "pub_fey-ancestry",
         "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep.",
         "grants_saving_throw_advantage": "being_charmed"
       },
       {
         "name": "Trance",
+        "id": "pub_elf-trance",
         "description": "Don't need to sleep; instead meditate deeply for 4 hours a day, gaining the same benefit a human gets from 8 hours of sleep."
       },
       {
         "name": "Keen Senses",
+        "id": "pub_elf-keen-senses",
         "description": "Proficiency in the Perception skill.",
         "grants_skill_proficiency": "perception"
       }
@@ -50,6 +53,7 @@
         "traits": [
           {
             "name": "Elf Weapon Training",
+            "id": "pub_elf-weapon-training",
             "description": "Proficiency with longsword, shortsword, shortbow, and longbow.",
             "grants_weapon_proficiency": [
               "longsword",
@@ -60,6 +64,7 @@
           },
           {
             "name": "Cantrip",
+            "id": "pub_high-elf-cantrip",
             "description": "Know one wizard cantrip of your choice; Intelligence is its spellcasting ability.",
             "grants_spells": {
               "choice": {
@@ -72,6 +77,7 @@
           },
           {
             "name": "Extra Language",
+            "id": "pub_high-elf-extra-language",
             "description": "Speak, read, and write one extra language of your choice."
           }
         ],
@@ -86,6 +92,7 @@
         "traits": [
           {
             "name": "Elf Weapon Training",
+            "id": "pub_elf-weapon-training",
             "description": "Proficiency with longsword, shortsword, shortbow, and longbow.",
             "grants_weapon_proficiency": [
               "longsword",
@@ -96,10 +103,12 @@
           },
           {
             "name": "Fleet of Foot",
+            "id": "pub_wood-elf-fleet-of-foot",
             "description": "Base walking speed increases to 35 feet."
           },
           {
             "name": "Mask of the Wild",
+            "id": "pub_wood-elf-mask-of-the-wild",
             "description": "Can attempt to hide even when only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
           }
         ]
@@ -111,14 +120,17 @@
         "traits": [
           {
             "name": "Superior Darkvision",
+            "id": "pub_drow-superior-darkvision",
             "description": "Darkvision extends to 120 feet."
           },
           {
             "name": "Sunlight Sensitivity",
+            "id": "pub_drow-sunlight-sensitivity",
             "description": "Disadvantage on attack rolls and Wisdom (Perception) checks that rely on sight when the target/you are in direct sunlight."
           },
           {
             "name": "Drow Magic",
+            "id": "pub_drow-magic",
             "description": "Know the Dancing Lights cantrip. At 3rd level, cast Faerie Fire once per long rest; at 5th level, also cast Darkness once per long rest. Charisma is the spellcasting ability.",
             "grants_spells": {
               "fixed": ["Dancing Lights"],
@@ -139,12 +151,43 @@
           },
           {
             "name": "Drow Weapon Training",
+            "id": "pub_drow-weapon-training",
             "description": "Proficiency with rapiers, shortswords, and hand crossbows.",
             "grants_weapon_proficiency": [
               "rapier",
               "shortsword",
               "hand crossbow"
             ]
+          }
+        ]
+      },
+      {
+        "name": "Eladrin",
+        "ability_score_bonus": { "cha": 1 },
+        "season_options": [
+          {
+            "season": "Autumn",
+            "effect": "Up to two creatures of your choice that you can see within 10 feet of you must succeed on a Wisdom saving throw or be charmed by you for 1 minute, or until you or your companions deal any damage to it."
+          },
+          {
+            "season": "Winter",
+            "effect": "One creature of your choice that you can see within 5 feet of you before you teleport must succeed on a Wisdom saving throw or be frightened of you until the end of your next turn."
+          },
+          {
+            "season": "Spring",
+            "effect": "You can touch one willing creature within 5 feet of you. That creature then teleports instead of you, appearing in an unoccupied space of your choice that you can see within 30 feet of you."
+          },
+          {
+            "season": "Summer",
+            "effect": "Each creature of your choice that you can see within 5 feet of you takes fire damage equal to your Charisma modifier (minimum of 1 damage)."
+          }
+        ],
+        "traits": [
+          {
+            "name": "Fey Step",
+            "id": "pub_eladrin-fey-step",
+            "description": "Bonus action: teleport up to 30 feet to an unoccupied space you can see. Usable again only after a short or long rest. At 3rd level, your Fey Step gains an additional effect based on your chosen season (save DC = 8 + proficiency bonus + Charisma modifier).",
+            "choice": { "count": 1, "from": "season_options" }
           }
         ]
       }
@@ -163,12 +206,14 @@
     "traits": [
       {
         "name": "Dwarven Resilience",
+        "id": "pub_dwarven-resilience",
         "description": "Advantage on saving throws against poison, and resistance to poison damage.",
         "grants_resistance": "poison",
         "grants_saving_throw_advantage": "poison"
       },
       {
         "name": "Dwarven Combat Training",
+        "id": "pub_dwarven-combat-training",
         "description": "Proficiency with the battleaxe, handaxe, light hammer, and warhammer.",
         "grants_weapon_proficiency": [
           "battleaxe",
@@ -179,6 +224,7 @@
       },
       {
         "name": "Tool Proficiency",
+        "id": "pub_dwarf-tool-proficiency",
         "description": "Proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
         "grants_tool_proficiency_choice": {
           "count": 1,
@@ -187,6 +233,7 @@
       },
       {
         "name": "Stonecunning",
+        "id": "pub_stonecunning",
         "description": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus."
       }
     ],
@@ -197,6 +244,7 @@
         "traits": [
           {
             "name": "Dwarven Toughness",
+            "id": "pub_hill-dwarf-dwarven-toughness",
             "description": "Hit point maximum increases by 1, and increases by 1 every time you gain a level.",
             "grants_hp_per_level": 1
           }
@@ -208,6 +256,7 @@
         "traits": [
           {
             "name": "Dwarven Armor Training",
+            "id": "pub_mountain-dwarf-armor-training",
             "description": "Proficiency with light and medium armor.",
             "grants_armor_proficiency": ["light", "medium"]
           }
@@ -228,15 +277,18 @@
     "traits": [
       {
         "name": "Lucky",
+        "id": "pub_halfling-lucky",
         "description": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
       },
       {
         "name": "Brave",
+        "id": "pub_halfling-brave",
         "description": "Advantage on saving throws against being frightened.",
         "grants_saving_throw_advantage": "being_frightened"
       },
       {
         "name": "Halfling Nimbleness",
+        "id": "pub_halfling-nimbleness",
         "description": "Can move through the space of any creature that is of a size larger than yours."
       }
     ],
@@ -247,6 +299,7 @@
         "traits": [
           {
             "name": "Naturally Stealthy",
+            "id": "pub_lightfoot-halfling-naturally-stealthy",
             "description": "Can attempt to hide even when obscured only by a creature at least one size larger than you."
           }
         ]
@@ -257,6 +310,7 @@
         "traits": [
           {
             "name": "Stout Resilience",
+            "id": "pub_stout-halfling-resilience",
             "description": "Advantage on saving throws against poison, and resistance to poison damage.",
             "grants_resistance": "poison",
             "grants_saving_throw_advantage": "poison"
@@ -340,15 +394,18 @@
     "traits": [
       {
         "name": "Draconic Ancestry",
+        "id": "pub_draconic-ancestry",
         "description": "Choose a dragon type (black, blue, brass, bronze, copper, gold, green, red, silver, or white) — determines your Breath Weapon's damage type/shape and your Damage Resistance.",
         "choice": { "count": 1, "from": "ancestry_options" }
       },
       {
         "name": "Breath Weapon",
+        "id": "pub_dragonborn-breath-weapon",
         "description": "Action: exhale destructive energy in a 5-by-30-ft. line or a 15-ft. cone (shape, damage type, and save ability all set by your draconic ancestry). Each creature in the area makes a Dex or Con save (DC 8 + Con mod + proficiency bonus) for half damage; 2d6 at 1st level, 3d6 at 6th, 4d6 at 11th, 5d6 at 16th. Usable again only after a short or long rest."
       },
       {
         "name": "Damage Resistance",
+        "id": "pub_dragonborn-damage-resistance",
         "description": "Resistance to the damage type associated with your draconic ancestry.",
         "grants_resistance": "ancestry"
       }
@@ -367,6 +424,7 @@
     "traits": [
       {
         "name": "Gnome Cunning",
+        "id": "pub_gnome-cunning",
         "description": "Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
         "grants_saving_throw_advantage": "magic"
       }
@@ -378,11 +436,13 @@
         "traits": [
           {
             "name": "Natural Illusionist",
+            "id": "pub_forest-gnome-natural-illusionist",
             "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability.",
             "grants_spells": { "fixed": ["Minor Illusion"], "ability": "int" }
           },
           {
             "name": "Speak with Small Beasts",
+            "id": "pub_forest-gnome-speak-with-small-beasts",
             "description": "Communicate simple ideas with Small or smaller beasts, through gestures, sounds, and body language."
           }
         ]
@@ -393,10 +453,12 @@
         "traits": [
           {
             "name": "Artificer's Lore",
+            "id": "pub_rock-gnome-artificers-lore",
             "description": "Add twice your proficiency bonus to History checks related to magic items, alchemical objects, or technological devices."
           },
           {
             "name": "Tinker",
+            "id": "pub_rock-gnome-tinker",
             "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box.",
             "grants_tool_proficiency": ["tinker's tools"]
           }
@@ -421,11 +483,13 @@
     "traits": [
       {
         "name": "Fey Ancestry",
+        "id": "pub_fey-ancestry",
         "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep.",
         "grants_saving_throw_advantage": "being_charmed"
       },
       {
         "name": "Skill Versatility",
+        "id": "pub_half-elf-skill-versatility",
         "description": "Proficiency in two skills of your choice.",
         "grants_skill_proficiency_choice": { "count": 2, "options": "any" }
       }
@@ -444,14 +508,17 @@
     "traits": [
       {
         "name": "Relentless Endurance",
+        "id": "pub_relentless-endurance",
         "description": "When reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Usable again only after a long rest."
       },
       {
         "name": "Savage Attacks",
+        "id": "pub_savage-attacks",
         "description": "When you score a critical hit with a melee weapon attack, roll one additional weapon damage die and add it to the extra critical-hit damage."
       },
       {
         "name": "Menacing",
+        "id": "pub_half-orc-menacing",
         "description": "Proficiency in the Intimidation skill.",
         "grants_skill_proficiency": "intimidation"
       }
@@ -470,11 +537,13 @@
     "traits": [
       {
         "name": "Hellish Resistance",
+        "id": "pub_hellish-resistance",
         "description": "Resistance to fire damage.",
         "grants_resistance": "fire"
       },
       {
         "name": "Infernal Legacy",
+        "id": "pub_infernal-legacy",
         "description": "Know the Thaumaturgy cantrip. At 3rd level, cast Hellish Rebuke once as a 2nd-level spell, regaining the ability on a long rest. At 5th level, also cast Darkness once, regaining the ability on a long rest. Charisma is your spellcasting ability for these.",
         "grants_spells": {
           "fixed": ["Thaumaturgy"],
@@ -495,5 +564,107 @@
         }
       }
     ]
+  },
+  {
+    "name": "Goliath",
+    "ability_score_bonus": { "str": 2, "con": 1 },
+    "choice": null,
+    "speed": 30,
+    "darkvision": 0,
+    "languages": {
+      "automatic": ["Common", "Giant"],
+      "choice": null
+    },
+    "traits": [
+      {
+        "name": "Natural Athlete",
+        "id": "pub_goliath-natural-athlete",
+        "description": "Proficiency in the Athletics skill.",
+        "grants_skill_proficiency": "athletics"
+      },
+      {
+        "name": "Stone's Endurance",
+        "id": "pub_goliath-stones-endurance",
+        "description": "When you take damage, you can use your reaction to roll a d12, add your Constitution modifier, and reduce the damage by that total. Usable again only after a short or long rest."
+      },
+      {
+        "name": "Powerful Build",
+        "id": "pub_goliath-powerful-build",
+        "description": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+      },
+      {
+        "name": "Mountain Born",
+        "id": "pub_goliath-mountain-born",
+        "description": "Resistance to cold damage. You're also acclimated to high altitude, including elevations above 20,000 feet.",
+        "grants_resistance": "cold"
+      }
+    ],
+    "source": "Volo's Guide to Monsters"
+  },
+  {
+    "name": "Aasimar",
+    "ability_score_bonus": { "cha": 2 },
+    "choice": null,
+    "speed": 30,
+    "darkvision": 60,
+    "languages": {
+      "automatic": ["Common", "Celestial"],
+      "choice": null
+    },
+    "traits": [
+      {
+        "name": "Celestial Resistance",
+        "id": "pub_aasimar-celestial-resistance",
+        "description": "Resistance to necrotic damage and radiant damage.",
+        "grants_resistance": ["necrotic", "radiant"]
+      },
+      {
+        "name": "Healing Hands",
+        "id": "pub_aasimar-healing-hands",
+        "description": "Action: touch a creature to restore hit points equal to your level. Usable again only after a long rest."
+      },
+      {
+        "name": "Light Bearer",
+        "id": "pub_aasimar-light-bearer",
+        "description": "Know the Light cantrip. Charisma is your spellcasting ability for it.",
+        "grants_spells": { "fixed": ["Light"], "ability": "cha" }
+      }
+    ],
+    "subraces": [
+      {
+        "name": "Protector Aasimar",
+        "ability_score_bonus": { "wis": 1 },
+        "traits": [
+          {
+            "name": "Radiant Soul",
+            "id": "pub_protector-aasimar-radiant-soul",
+            "description": "At 3rd level: as a bonus action, unleash your celestial nature for 1 minute (usable once per long rest). You gain a flying speed of 30 feet, and once per turn when you deal damage with an attack or a spell, you can deal extra radiant damage equal to your level."
+          }
+        ]
+      },
+      {
+        "name": "Scourge Aasimar",
+        "ability_score_bonus": { "con": 1 },
+        "traits": [
+          {
+            "name": "Radiant Consumption",
+            "id": "pub_scourge-aasimar-radiant-consumption",
+            "description": "At 3rd level: as a bonus action, unleash your celestial nature for 1 minute (usable once per long rest). You shed bright light in a 10-foot radius and dim light for an additional 10 feet; at the end of each of your turns, each creature within 10 feet of you (including you) takes radiant damage equal to half your level (rounded up). Once per turn when you deal damage with an attack or a spell, you can deal extra radiant damage equal to your level."
+          }
+        ]
+      },
+      {
+        "name": "Fallen Aasimar",
+        "ability_score_bonus": { "str": 1 },
+        "traits": [
+          {
+            "name": "Necrotic Shroud",
+            "id": "pub_fallen-aasimar-necrotic-shroud",
+            "description": "At 3rd level: as a bonus action, unleash your celestial nature for 1 minute (usable once per long rest). Other creatures within 10 feet of you that can see you must succeed on a Charisma saving throw (DC 8 + proficiency bonus + Charisma modifier) or become frightened of you until the end of your next turn. Once per turn when you deal damage with an attack or a spell, you can deal extra necrotic damage equal to your level."
+          }
+        ]
+      }
+    ],
+    "source": "Volo's Guide to Monsters"
   }
 ]

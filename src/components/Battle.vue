@@ -1019,7 +1019,7 @@ export default {
           : null,
         isBoss: false,
       }
-      const dexMod = Math.floor(((data?.dex ?? 10) - 10) / 2)
+      const dexMod = dnd.mod(data?.dex ?? 10)
       this.$emit('add-enemy', {
         name: monster.name,
         mod: dexMod,

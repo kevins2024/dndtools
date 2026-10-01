@@ -38,7 +38,11 @@
                 : 'Not proficient'
             "
           ></span>
-          <span class="save-mod">{{ savingThrows[stat.key].totalStr }}</span>
+          <span
+            class="save-mod has-tip"
+            :title="savingThrows[stat.key].tooltip"
+            >{{ savingThrows[stat.key].totalStr }}</span
+          >
           <button
             class="roll-btn"
             :title="`Roll ${stat.label} save`"
@@ -79,24 +83,23 @@ export default {
     stats() {
       return dnd.statArray(this.character, this.partyItems)
     },
+    // Save math lives in engine/rules/5e/checks.js (via dnd_utils) — same
+    // single implementation SavingThrowsPanel uses, not a local copy.
     savingThrows() {
       if (!this.showSavingThrows) return {}
-      const { stats, bonuses } = dnd.resolveStats(
-        this.character,
-        this.partyItems
-      )
-      const prof = dnd._prof(this.character, bonuses)
       const proficient = new Set(this.character.saving_throws ?? [])
-      const flatBonus = bonuses.saving_throws ?? 0
       const result = {}
-      for (const key of Object.keys(stats)) {
-        const isProficient = proficient.has(key)
-        const total =
-          dnd.mod(stats[key]) + (isProficient ? prof : 0) + flatBonus
+      for (const { key } of this.stats) {
+        const total = dnd.savingThrow(this.character, key, this.partyItems)
         result[key] = {
-          proficient: isProficient,
+          proficient: proficient.has(key),
           total,
           totalStr: dnd.signed(total),
+          tooltip: dnd.savingThrowBreakdown(
+            this.character,
+            key,
+            this.partyItems
+          ),
         }
       }
       return result

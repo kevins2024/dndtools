@@ -620,6 +620,7 @@ import {
 } from '../utils/encounter_utils.js'
 import { GENDERS, GENERA } from '../utils/character_utils.js'
 import { STAT_KEYS } from '../utils/dnd_utils.js'
+import { abilityModifier } from '../utils/abilities.js'
 
 const ENC_TYPES = Object.freeze(ENCOUNTER_TYPES)
 const ENC_CONFIG = Object.freeze(ENCOUNTER_TYPE_CONFIG)
@@ -812,7 +813,7 @@ export default {
     },
 
     modStr(score) {
-      const m = Math.floor((score - 10) / 2)
+      const m = abilityModifier(score)
       return m >= 0 ? `+${m}` : `${m}`
     },
 
@@ -1029,7 +1030,7 @@ export default {
       }
       const enemies = enc.enemies.map((e) => ({
         name: e.name,
-        mod: Math.floor((e.stats.dex - 10) / 2),
+        mod: abilityModifier(e.stats.dex),
         encounterData: e,
       }))
       this.$store.commit('SET_PENDING_COMBAT_ENEMIES', enemies)

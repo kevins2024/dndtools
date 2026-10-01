@@ -673,12 +673,18 @@
         <div
           v-if="abilityScoreMethod === 'point_buy'"
           class="nct-note"
-          :class="{ 'nct-note--danger': pointsRemaining < 0 }"
+          :class="{
+            'nct-note--danger': pointsRemaining < 0,
+            'nct-note--action': pointsRemaining > 0,
+          }"
         >
           {{ pointsSpent }} / {{ pointBuyBudget }} points spent ({{
             pointsRemaining
           }}
           remaining)
+          <span v-if="pointsRemaining > 0"
+            >— you have unspent points left to allocate</span
+          >
         </div>
 
         <div v-if="!useSpeciesBonus" class="nct-manual-bonus">
@@ -1015,6 +1021,7 @@ import {
 import { dnd, ABILITY_DESCRIPTIONS } from '@/utils/dnd_utils.js'
 import weaponTypesAndLanguages from '@/data/weapon_types_and_languages.json'
 import { abilityScoreRoll } from '@/utils/abilityScoreRoll.js'
+import { POINT_BUY_COSTS, POINT_BUY_BUDGET } from '@/utils/pointBuy.js'
 
 // Homebrew languages (e.g. Solvalean) live alongside the homebrew weapon
 // types in the same file — HOMEBREW_WEAPON_PROPS in dnd_utils.js already
@@ -1041,12 +1048,6 @@ const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 const ROLL_TICK_MS = 80
 const ROLL_ANIMATION_MS = 1300
 const ROLL_ANIMATION_TICKS = Math.round(ROLL_ANIMATION_MS / ROLL_TICK_MS)
-// Mirrors engine/rules/pointBuy.js's table — kept local for instant UI
-// feedback as the player adjusts scores; the server is still the source of
-// truth for the actual level-1 computation.
-const POINT_BUY_COSTS = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }
-const POINT_BUY_BUDGET = 27
-
 function filterSpellOptions(options, search) {
   const q = search.trim().toLowerCase()
   if (!q) return options
@@ -2254,6 +2255,17 @@ export default {
         // was used at all (vs. the manual free +2/+1 toggle), independent of
         // ability_score_history (which records the actual amounts/sources).
         species_bonus_applied: this.useSpeciesBonus,
+        // Real gap found 2026-09-26: nothing recorded HOW the base 6 scores
+        // themselves were generated (point buy vs Roll for Stats) — every
+        // pre-existing character on the roster (including ones built through
+        // this same tool before this field existed, and every hand-authored
+        // one predating the tool entirely) had no way to tell; those got
+        // backfilled to 'point buy or manual' rather than guessed at more
+        // precisely. Going forward this tool DOES know for certain, since
+        // abilityScoreMethod drives which validated UI (budget-checked point
+        // buy, or the dice roller) actually produced these scores.
+        ability_score_method:
+          this.abilityScoreMethod === 'roll' ? 'rolled' : 'point buy',
         species_traits: this.speciesTraitRecords,
         ability_score_history: this.abilityScoreHistorySeed,
         spellcasting_ability: this.selectedClass?.spellcasting?.ability ?? null,

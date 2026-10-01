@@ -67,7 +67,12 @@
           >
             <div class="die-icon-wrap">
               <img :src="roll.image" class="die-bg-img dimmed" />
-              <span class="die-result">{{ roll.display }}</span>
+              <span
+                class="die-result"
+                :class="{ 'has-tip': roll.math }"
+                :title="roll.math"
+                >{{ roll.display }}</span
+              >
             </div>
             <div class="die-label">{{ roll.die }}</div>
           </div>
@@ -90,10 +95,13 @@
             <div class="die-icon-wrap">
               <img :src="current.image" class="die-bg-img" />
               <div class="die-overlay">
-                <div v-if="current.label" class="die-roll-label">
-                  {{ current.label }}
+                <div class="die-result">
+                  <span
+                    :class="{ 'has-tip': current.math }"
+                    :title="current.math"
+                    >{{ current.display }}</span
+                  >
                 </div>
-                <div class="die-result">{{ current.display }}</div>
                 <div v-if="current.advantage" class="die-sub">
                   {{ current.rolls[0] }} / {{ current.rolls[1] }}
                 </div>
@@ -118,6 +126,8 @@ import d8 from '@/assets/dice/d8.svg'
 import d10 from '@/assets/dice/d10.svg'
 import d12 from '@/assets/dice/d12.svg'
 import d20 from '@/assets/dice/d20.svg'
+import { dnd } from '@/utils/dnd_utils.js'
+import { d20Test } from '@/utils/d20Test.js'
 
 let rollId = 0
 
@@ -155,38 +165,38 @@ export default {
     // Another component (e.g. AbilityScoreGrid's check/save roll icons)
     // hands over a labeled d20 + modifier via the store instead of the
     // player manually picking dice and doing the math themselves.
-    '$store.state.pendingRoll'(roll) {
-      if (!roll) return
-      this.rollPending(roll)
-      this.$store.commit('CLEAR_PENDING_ROLL')
+    // `immediate` matters: Drawer.vue v-if's its slot, so when the drawer is
+    // closed this component doesn't exist yet — SET_PENDING_ROLL opens the
+    // drawer and mounts us with the roll already sitting in the store, which
+    // a plain watcher would never see as a change.
+    '$store.state.pendingRoll': {
+      immediate: true,
+      handler(roll) {
+        if (!roll) return
+        this.rollPending(roll)
+        this.$store.commit('CLEAR_PENDING_ROLL')
+      },
     },
   },
 
   methods: {
-    rollPending({ label, mod = 0 }) {
-      const rand = () => Math.floor(Math.random() * 20) + 1
-      const useAdv = this.advantage
-      const useDisadv = this.disadvantage
-      const rolls = useAdv || useDisadv ? [rand(), rand()] : [rand()]
-      const natural = useAdv
-        ? Math.max(...rolls)
-        : useDisadv
-        ? Math.min(...rolls)
-        : rolls[0]
-      const total = natural + mod
+    rollPending({ mod = 0 }) {
+      const test = d20Test.rollD20Test({
+        advantage: this.advantage,
+        disadvantage: this.disadvantage,
+        modifier: mod,
+      })
 
       const entry = {
         id: rollId++,
         die: 'd20',
         sides: 20,
-        rolls,
-        result: total,
-        display: mod
-          ? `${natural}${mod >= 0 ? '+' : ''}${mod} = ${total}`
-          : `${total}`,
+        rolls: test.rolls,
+        result: test.value,
+        display: `${test.value}`,
+        math: test.breakdown.length > 1 ? dnd._formatBreakdown(test) : null,
         image: this.diceImages[20],
-        advantage: useAdv || useDisadv,
-        label,
+        advantage: test.mode !== 'normal',
       }
 
       if (this.current) this.history.unshift(this.current)
@@ -216,13 +226,24 @@ export default {
       const rand = () => Math.floor(Math.random() * sides) + 1
 
       let rolls, result, display, image
-      const useAdv = this.advantage && sides === 20
-      const useDisadv = this.disadvantage && sides === 20
+      let math = null
+      const mode =
+        sides === 20
+          ? d20Test.resolveMode({
+              advantage: this.advantage,
+              disadvantage: this.disadvantage,
+            })
+          : 'normal'
 
-      if (useAdv || useDisadv) {
-        rolls = [rand(), rand()]
-        result = useAdv ? Math.max(...rolls) : Math.min(...rolls)
-        display = `${result} ${useAdv ? '↑' : '↓'}`
+      if (mode !== 'normal') {
+        const test = d20Test.rollD20Test({
+          advantage: this.advantage,
+          disadvantage: this.disadvantage,
+        })
+        rolls = test.rolls
+        result = test.value
+        display = `${result} ${mode === 'advantage' ? '↑' : '↓'}`
+        math = dnd._formatBreakdown(test)
         image = this.diceImages[sides]
       } else {
         rolls = [rand()]
@@ -243,8 +264,9 @@ export default {
         rolls,
         result,
         display,
+        math,
         image,
-        advantage: useAdv || useDisadv,
+        advantage: mode !== 'normal',
       }
 
       if (this.current) {
@@ -544,14 +566,6 @@ export default {
   margin-top: 2px;
 }
 
-.die-roll-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  margin-bottom: 2px;
-  text-align: center;
-  white-space: nowrap;
-}
-
 /* ── Transitions ── */
 .slide-move {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -585,5 +599,12 @@ export default {
 .pop-leave-to {
   transform: scale(0.85);
   opacity: 0;
+}
+
+/* Result has math behind it (a modifier, or advantage's two dice) —
+   hover for the breakdown instead of printing it inline. */
+.has-tip {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
 }
 </style>

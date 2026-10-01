@@ -86,7 +86,14 @@ function resolveUsesFormula(formula, character, equippedItems) {
   if (!formula) return undefined
   if (formula.type === 'ability_mod') {
     const scores = resolveEffectiveScores(character, equippedItems)
-    return formula.base + abilityModifier(scores[formula.ability] ?? 10)
+    const raw = formula.base + abilityModifier(scores[formula.ability] ?? 10)
+    // `min` is opt-in, not a default floor — most ability_mod features (Divine
+    // Sense) have no stated RAW minimum and a very-low-score character really
+    // can end up at 0, which is a real build consequence worth showing, not a
+    // bug to paper over (see this field's schema doc). Bardic Inspiration is
+    // the first feature that DOES have an explicit RAW floor ("a minimum of
+    // once"), hence this stays a per-feature opt-in rather than a blanket rule.
+    return formula.min != null ? Math.max(formula.min, raw) : raw
   }
   if (formula.type === 'level_multiple') {
     const cls = (character.classes || []).find((c) => c.name === formula.class)
@@ -134,6 +141,10 @@ function mechUsesMax(mech, character, equippedItems) {
 //     a stale stored number here would be actively wrong, not just
 //     redundant. uses_current resets alongside it, same "a level-up implies
 //     time to rest" reasoning as job 2.
+//  4. A grants_spells-backed entry (Star Map) gets a fill-only-if-missing
+//     spells_granted, same protective rule as job 1's uses_max — see
+//     feature-mechanics.json's own grants_spells doc for why this is never
+//     force-overwritten (a hand-fixed character record keeps its own value).
 function applyFeatureMechanics(features, character, equippedItems = []) {
   const result = []
   const familyIndex = new Map() // tier_family -> index into `result`
@@ -181,10 +192,28 @@ function applyFeatureMechanics(features, character, equippedItems = []) {
               uses_current: f.uses_current ?? usesMax,
             }),
         per_turn_cap: f.per_turn_cap ?? mech.per_turn_cap,
+        ...(mech.grants_spells?.fixed
+          ? { spells_granted: f.spells_granted ?? mech.grants_spells.fixed }
+          : {}),
       })
     } else {
       result.push(f)
     }
+  }
+
+  // Font of Inspiration (Bard, 5th level) is its own separate feature grant
+  // ("you regain all expended uses of Bardic Inspiration when you finish a
+  // short OR long rest") rather than a tier_family upgrade of Bardic
+  // Inspiration itself — it doesn't replace/merge into one tile the way
+  // Action Surge's tiers do, it's flavor text on its own pill that changes a
+  // DIFFERENT feature's recharge. Job 1's fill-only-if-missing rule can't
+  // express that (Bardic Inspiration's recharge is already filled to
+  // long_rest from its own catalog entry by the time this runs), so this is
+  // a narrow, explicit special case rather than a new general catalog field
+  // for what's currently a single real interaction.
+  if (result.some((f) => f.name === 'Font of Inspiration')) {
+    const bi = result.find((f) => f.id === 'gen_bard_base_bardic-inspiration')
+    if (bi) bi.recharge = 'short_rest'
   }
 
   return result

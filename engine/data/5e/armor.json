@@ -1,0 +1,17 @@
+{
+  "_schema": {
+    "note": "Base AC by armor type, 2014 PHB. `category` drives how DEX modifier applies to AC: light = full DEX, medium = DEX capped at +2, heavy = no DEX. Extracted from src/utils/dnd_constants.js's ARMOR_BASE_AC 2026-09-30 as part of moving AC computation into engine/ — see engine/CHECKLIST.md's entry that day."
+  },
+  "padded": { "base": 11, "category": "light" },
+  "leather": { "base": 11, "category": "light" },
+  "studded leather": { "base": 12, "category": "light" },
+  "hide": { "base": 12, "category": "medium" },
+  "chain shirt": { "base": 13, "category": "medium" },
+  "scale mail": { "base": 14, "category": "medium" },
+  "breastplate": { "base": 14, "category": "medium" },
+  "half plate": { "base": 15, "category": "medium" },
+  "ring mail": { "base": 14, "category": "heavy" },
+  "chain mail": { "base": 16, "category": "heavy" },
+  "splint": { "base": 17, "category": "heavy" },
+  "plate": { "base": 18, "category": "heavy" }
+}

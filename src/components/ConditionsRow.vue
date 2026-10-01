@@ -241,8 +241,16 @@ different accent color at all. */
 .cond-chip--negative:hover {
   --cond-outline: var(--color-text-muted);
 }
+/* Real legibility bug found 2026-09-29: this only set the outline color,
+   so `color` fell through to the generic .cond-chip--active rule's
+   `var(--color-bg)` (meant for light text on a colored FILL) — but negative
+   chips never get a colored fill (background stays --color-bg-surface, a
+   neutral dark surface), so the text rendered as near-black-on-near-black
+   in every theme. Negative chips are colored via outline + text, not fill,
+   so color needs the same --color-condition treatment as the outline. */
 .cond-chip--negative.cond-chip--active {
   --cond-outline: var(--color-condition);
+  color: var(--color-condition);
 }
 
 .exhaustion-level {

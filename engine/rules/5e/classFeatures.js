@@ -6,12 +6,14 @@ const CLASSES_DIR = path.join(__dirname, '..', '..', 'data', '5e', 'classes')
 
 const classCache = new Map()
 
-// features_by_level is stored on disk as feature IDs, not names (see
-// scripts/assign-feature-ids.py) — resolved back to names right here at
-// load time, so every existing consumer of loadClass(...).features_by_level
-// keeps seeing exactly the familiar name arrays it always has. The original
-// ids are kept alongside under features_by_level_ids for anything (like
-// diffLevelUp's newFeatures) that wants the id, not just the display name.
+// features_by_level is stored on disk as feature IDs, not names (originally
+// migrated by scripts/assign-feature-ids.py, deleted 2026-09-26 — see
+// engine/CHECKLIST.md's entry that day for why it's no longer safe to re-run)
+// — resolved back to names right here at load time, so every existing
+// consumer of loadClass(...).features_by_level keeps seeing exactly the
+// familiar name arrays it always has. The original ids are kept alongside
+// under features_by_level_ids for anything (like diffLevelUp's newFeatures)
+// that wants the id, not just the display name.
 function resolveFeatureIds(data) {
   const ids = data.features_by_level
   const names = {}

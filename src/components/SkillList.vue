@@ -27,6 +27,13 @@
         <span class="skill-mod" :class="skill.value >= 0 ? 'pos' : 'neg'">{{
           skill.valueStr
         }}</span>
+        <button
+          class="roll-btn"
+          :title="`Roll ${skill.displayName} check`"
+          @click="rollSkill(skill)"
+        >
+          <img :src="d20Icon" class="roll-btn-icon" />
+        </button>
       </div>
     </div>
   </div>
@@ -34,6 +41,7 @@
 
 <script>
 import { dnd } from '@/utils/dnd_utils.js'
+import d20Icon from '@/assets/dice/d20.svg'
 
 export default {
   name: 'SkillList',
@@ -42,16 +50,15 @@ export default {
     character: { type: Object, required: true },
   },
 
+  data() {
+    return { d20Icon }
+  },
+
   computed: {
     partyItems() {
       return this.$store.state.party_items ?? []
     },
     skills() {
-      const { stats, bonuses } = dnd.resolveStats(
-        this.character,
-        this.partyItems
-      )
-      const prof = dnd._prof(this.character, bonuses)
       const proficiencies = this.character.skill_proficiencies ?? []
       const expertises = this.character.skill_expertise ?? []
       const characterName = this.character.name
@@ -62,39 +69,37 @@ export default {
       )
 
       return Object.entries(dnd.SKILL_MAP).map(([skillName, statKey]) => {
-        const base = dnd.mod(stats[statKey])
         const isProficient =
           proficiencies.includes(skillName) ||
           itemGrantedProficiencies.has(skillName)
         const hasExpertise = expertises.includes(skillName)
-        const itemBonus = bonuses[`skill_${skillName}`] ?? 0
-        const profBonus = hasExpertise ? prof * 2 : isProficient ? prof : 0
-        const total = base + profBonus + itemBonus
-
+        const total = dnd.skill(this.character, skillName, this.partyItems)
         const displayName = skillName.replace(/([A-Z])/g, ' $1').trim()
-        const statLabel = statKey.toUpperCase()
-
-        const lines = [
-          `${displayName} (${statLabel})`,
-          `${statLabel} ${dnd.signed(base)}`,
-        ]
-        if (hasExpertise)
-          lines.push(`Expertise ${dnd.signed(prof * 2)} (Prof ×2)`)
-        else if (isProficient) lines.push(`Prof ${dnd.signed(prof)}`)
-        if (itemBonus) lines.push(`Items ${dnd.signed(itemBonus)}`)
-        lines.push(`= ${dnd.signed(total)}`)
 
         return {
           name: skillName,
           displayName,
           statKey,
-          statLabel,
+          statLabel: statKey.toUpperCase(),
           value: total,
           valueStr: dnd.signed(total),
           isProficient,
           hasExpertise,
-          tooltip: lines.join('\n'),
+          tooltip: `${displayName} (${statKey.toUpperCase()})\n${dnd.skillBreakdown(
+            this.character,
+            skillName,
+            this.partyItems
+          )}`,
         }
+      })
+    },
+  },
+
+  methods: {
+    rollSkill(skill) {
+      this.$store.commit('SET_PENDING_ROLL', {
+        label: `${this.character.name} — ${skill.displayName} check`,
+        mod: skill.value,
       })
     },
   },
@@ -207,5 +212,26 @@ export default {
 .skill-row.skill-expert .skill-mod {
   color: var(--color-accent-strong);
   border-bottom-color: var(--color-accent-strong);
+}
+
+.roll-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 1px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.12s ease;
+}
+.roll-btn:hover {
+  opacity: 1;
+}
+
+.roll-btn-icon {
+  width: 12px;
+  height: 12px;
 }
 </style>

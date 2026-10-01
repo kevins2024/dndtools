@@ -101,7 +101,7 @@
     "battle_effect": true
   },
   {
-    "name": "Veilstrike Rapier +2",
+    "name": "Blueflame Rapier +2",
     "type": "weapon",
     "weapon_category": "rapier",
     "equipped_by": "Vaz",
@@ -109,22 +109,25 @@
     "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
-    "notes": "",
+    "notes": "Formerly 'Veilstrike Rapier' — renamed 2026-09-29 after Sneak Attack (too strong for one attunement slot on top of a full +2 weapon — equivalent to a free 4-level Rogue dip) was removed and replaced with Blue-Flame Blade.",
     "id": "items_7",
     "slot": "melee1h",
     "weapon_set": 1,
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Grants the wielder Sneak Attack: once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage. If you already have Sneak Attack, use the higher value.\n\nSneak Attack dice (half level, rounded down):\nL1: — · L2–3: 1d6 · L4–5: 2d6 · L6–7: 3d6 · L8–9: 4d6 · L10–11: 5d6 · L12–13: 6d6 · L14–15: 7d6 · L16–17: 8d6 · L18–19: 9d6 · L20: 10d6",
+    "effect": "+2 to attack and damage rolls. Blue-Flame Blade: once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage.",
     "weapon_effects": [
       {
-        "name": "Sneak Attack",
+        "name": "Blue-Flame Blade",
         "type": "weapon_effect",
-        "description": "Once per turn when you hit with this weapon and have advantage on the attack, or an ally is within 5ft of the target, deal extra damage by half level: L2–3 1d6 · L4–5 2d6 · L6–7 3d6 · L8–9 4d6 · L10–11 5d6 · L12–13 6d6 · L14–15 7d6 · L16–17 8d6 · L18–19 9d6 · L20 10d6. Use the higher value if you already have Sneak Attack."
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage. Homebrew, based on the Green-Flame Blade cantrip with the spellcasting-modifier scaling dropped (Vaz has no spellcasting ability to scale it off) and the always-available cantrip cadence swapped for a once-per-short-rest weapon charge instead."
       }
     ]
   },
   {
-    "name": "Echo Dagger +2",
+    "name": "Dagger of Pressing Momentum +2",
     "type": "weapon",
     "weapon_category": "dagger",
     "equipped_by": "Vaz",
@@ -137,13 +140,13 @@
     "slot": "melee1h",
     "weapon_set": 1,
     "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Once per turn when you hit with this dagger, you may use your reaction to make one off-hand attack.",
+    "effect": "+2 to attack and damage rolls. Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
     "weapon_effects": [
       {
-        "name": "Echo Strike",
+        "name": "Press Momentum",
         "type": "weapon_effect",
         "action_type": "reaction",
-        "description": "Once per turn when you hit with this dagger, use your reaction to make one off-hand attack."
+        "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus."
       }
     ]
   },
@@ -221,21 +224,23 @@
     "effect": "+2 bonus to AC from armor."
   },
   {
-    "name": "Bracer of Swift Strikes",
+    "name": "Bracer of Pressing Momentum",
     "type": "wondrous",
-    "equipped_by": "Vaz",
-    "carried_by": null,
+    "equipped_by": "Elucyne",
+    "carried_by": "Elucyne",
     "needs_attunement": true,
-    "attuned": false,
+    "attuned": true,
     "notes": "Free off-hand attack reaction.",
     "id": "items_13",
     "slot": "wrists",
     "battle_effect": true,
-    "effect": "Swift Strike: once per turn when you hit with a melee attack, you may make one off-hand attack as a reaction.",
+    "effect": "Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
     "action_type": "reaction",
     "features_granted": [
-      "Swift Strike"
-    ]
+      "Press Momentum"
+    ],
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Amulet of Proof against Detection",
@@ -2744,10 +2749,10 @@
     "name": "Belt of Dwarvenkind",
     "type": "wondrous",
     "slot": "waist",
-    "equipped_by": "Elucyne",
+    "equipped_by": null,
     "carried_by": "Elucyne",
     "needs_attunement": true,
-    "attuned": true,
+    "attuned": false,
     "stat_bonuses": {
       "con": 2,
       "darkvision": 60
@@ -3484,14 +3489,16 @@
     "weapon_category": "longbow",
     "slot": "ranged2h",
     "equipped_by": null,
-    "carried_by": "Elucyne",
+    "carried_by": "party",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 0,
     "notes": "Unequipped — replaced by Windsong in the same slot.",
     "id": "items_202",
     "battle_effect": true,
-    "effect": "Standard longbow. 1d8 piercing. Range 150/600ft. Requires two hands."
+    "effect": "Standard longbow. 1d8 piercing. Range 150/600ft. Requires two hands.",
+    "stored_at": null,
+    "party_id": "party_1780850600167_2"
   },
   {
     "name": "Scroll of Tongues",
@@ -4024,8 +4031,8 @@
     "type": "weapon",
     "weapon_category": "longbow",
     "slot": "ranged2h",
-    "equipped_by": "Elucyne",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Elucyne",
     "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
@@ -4039,7 +4046,9 @@
         "type": "weapon_effect",
         "description": "Once per turn, when you hit a target at least 60 feet away with this weapon, it takes an extra 1d8 force damage. This weapon ignores three-quarters cover and half cover."
       }
-    ]
+    ],
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Unnamed Horse",
