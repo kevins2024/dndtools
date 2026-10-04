@@ -213,110 +213,12 @@
 
 <script>
 import eventsData from '@/data/events.json'
-
-const REFUGEE_TIERS = [
-  {
-    max: 1,
-    label: 'Critically desperate — may need immediate intervention',
-    cls: 'tier-critical',
-  },
-  {
-    max: 5,
-    label: 'Standard — needs shelter, stability, and time',
-    cls: 'tier-standard',
-  },
-  {
-    max: 10,
-    label: 'Interesting — notable skill or unusual background',
-    cls: 'tier-interesting',
-  },
-  {
-    max: 15,
-    label: 'Remarkable — significant history or connections',
-    cls: 'tier-remarkable',
-  },
-  {
-    max: 19,
-    label: 'Extraordinary — rare circumstances, clear story thread',
-    cls: 'tier-extraordinary',
-  },
-  {
-    max: 20,
-    label: 'Exceptional — major NPC potential, unique situation',
-    cls: 'tier-exceptional',
-  },
-]
-
-function rollBetween(min, max) {
-  if (min === max) return min
-  return min + Math.floor(Math.random() * (max - min + 1))
-}
-function d4() {
-  return Math.floor(Math.random() * 4) + 1
-}
-function d6() {
-  return Math.floor(Math.random() * 6) + 1
-}
-function d20() {
-  return Math.floor(Math.random() * 20) + 1
-}
-
-// Crossing Profit System — house_rules.json is the source of truth for this
-// table in prose; kept in sync by hand since that file isn't structured
-// data. One week's roll → a band + gold value. Two weeks combine into one
-// payout (see rollCrossingProfit below), so this only ever returns one
-// week's half of that.
-function rollCrossingProfitWeek() {
-  const roll = d20()
-  if (roll === 1) {
-    const sev = d6()
-    let value, detail
-    if (sev <= 2) {
-      value = -500
-      detail = 'Cargo spoiled or lost overboard'
-    } else if (sev <= 4) {
-      value = -1000
-      detail = 'Cargo destroyed outright'
-    } else if (sev === 5) {
-      value = -1500
-      detail = 'Ship damaged badly, needs repair'
-    } else {
-      value = -1500
-      detail = "'Or worse' — a genuine crisis, worth developing as a story beat"
-    }
-    return { roll, band: 'Disaster', value, detail }
-  }
-  if (roll <= 5) {
-    return {
-      roll,
-      band: 'Bad week',
-      value: rollBetween(200, 1200),
-      detail: 'Reduced but recoverable profit',
-    }
-  }
-  if (roll <= 14) {
-    return {
-      roll,
-      band: 'Normal',
-      value: rollBetween(1500, 2500),
-      detail: 'Standard baseline profit',
-    }
-  }
-  if (roll <= 19) {
-    return {
-      roll,
-      band: 'Good week',
-      value: rollBetween(2800, 4200),
-      detail: 'Above-average trade conditions',
-    }
-  }
-  return {
-    roll,
-    band: 'Exceptional',
-    value: rollBetween(8000, 9500),
-    detail: 'Major profit spike or a valuable discovery',
-  }
-}
+import {
+  refugeeTier,
+  rollRefugees,
+  rollLineItems,
+  advanceCrossingProfit,
+} from '@/utils/weeklyEvents'
 
 export default {
   name: 'WeeklyEvents',
@@ -373,31 +275,22 @@ export default {
 
   methods: {
     rollCrossingProfit() {
-      // A combined result from a prior week 2 is still sitting unapplied —
-      // don't roll further (and definitely don't silently overwrite it).
-      // Just re-surface it so the Apply button stays visible.
-      const awaiting = this.crossingProfitAwaiting
-      if (awaiting) {
-        return { stage: 'awaiting', ...awaiting }
+      // The two-week cycle (week 1 carried forward, week 2 combined, never
+      // overwriting an unapplied payout) is engine/rules/weeklyEvents.js's
+      // advanceCrossingProfit — this just persists what it says changed.
+      // Applying to the party purse is a separate, deliberate action
+      // (applyCrossingProfit below).
+      const { next, rolled, ...display } = advanceCrossingProfit({
+        pending: this.crossingProfitPending,
+        awaiting: this.crossingProfitAwaiting,
+      })
+      if (rolled) {
+        this.$store.commit('SET_CROSSING_PROFIT_PENDING', next.pending)
+        if (next.awaiting) {
+          this.$store.commit('SET_CROSSING_PROFIT_AWAITING', next.awaiting)
+        }
       }
-
-      const thisWeek = rollCrossingProfitWeek()
-      const pending = this.crossingProfitPending
-      if (!pending) {
-        // Week 1 of the cycle — carry forward, no payout yet.
-        this.$store.commit('SET_CROSSING_PROFIT_PENDING', {
-          ...thisWeek,
-          week: 1,
-        })
-        return { stage: 'pending', week1: thisWeek }
-      }
-      // Week 2 — combine, but don't touch the party purse yet. Applying is
-      // a separate, deliberate action (applyCrossingProfit below).
-      const combined = pending.value + thisWeek.value
-      const result = { week1: pending, week2: thisWeek, combined }
-      this.$store.commit('SET_CROSSING_PROFIT_PENDING', null)
-      this.$store.commit('SET_CROSSING_PROFIT_AWAITING', result)
-      return { stage: 'awaiting', ...result }
+      return display
     },
 
     applyCrossingProfit() {
@@ -411,25 +304,13 @@ export default {
     },
 
     rollWeek() {
-      const income = this.weeklyIncome.map((item) => ({
-        ...item,
-        rolled: rollBetween(item.amount_min, item.amount_max),
-      }))
-
-      const expenses = this.weeklyExpenses.map((item) => ({
-        ...item,
-        rolled: rollBetween(item.amount_min, item.amount_max),
-      }))
-
-      const totalIncome = income.reduce((s, i) => s + i.rolled, 0)
-      const totalExpenses = expenses.reduce((s, i) => s + i.rolled, 0)
-
-      const refugeeCount = d4() + 3
-      const refugeeRolls = Array.from({ length: refugeeCount }, () => {
-        const roll = d20()
-        const tier = REFUGEE_TIERS.find((t) => roll <= t.max)
-        return { roll, label: tier.label, cls: tier.cls }
-      })
+      const { items: income, total: totalIncome } = rollLineItems(
+        this.weeklyIncome
+      )
+      const { items: expenses, total: totalExpenses } = rollLineItems(
+        this.weeklyExpenses
+      )
+      const refugees = rollRefugees()
 
       // Only running if at least one ship is currently tagged as on the
       // route (see assets.json) — stopping the activity is just removing
@@ -444,13 +325,14 @@ export default {
         totalIncome,
         totalExpenses,
         net: totalIncome - totalExpenses,
-        refugees: { count: refugeeCount, rolls: refugeeRolls },
+        refugees,
         crossingProfit,
       }
     },
 
     d20Class(roll) {
-      return REFUGEE_TIERS.find((t) => roll <= t.max)?.cls ?? ''
+      const tier = refugeeTier(roll)
+      return tier ? `tier-${tier.id}` : ''
     },
   },
 }

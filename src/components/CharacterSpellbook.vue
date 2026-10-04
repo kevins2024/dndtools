@@ -6,7 +6,11 @@
       <SpellSlotsTracker :character="character" />
 
       <!-- Preparation counter (only for classes that prepare) -->
-      <div v-if="preparationInfo" class="sb-prep-counter">
+      <div
+        v-if="preparationInfo"
+        class="sb-prep-counter"
+        :title="preparationInfo.tooltip"
+      >
         <span class="sb-prep-label">Prepared</span>
         <span
           class="sb-prep-fraction"
@@ -29,8 +33,8 @@
           ></div>
         </div>
         <span class="sb-prep-hint"
-          >{{ preparationInfo.ability.toUpperCase() }} mod + level · domain
-          spells free · click a dot to toggle</span
+          >hover for the math · domain spells free · click a dot to
+          toggle</span
         >
       </div>
     </div>
@@ -392,9 +396,8 @@ import {
   getCharacterSpells,
   getClassSpellList,
   usesFullClassList,
-  PREPARED_CASTER_CLASSES as PREPARATION_CLASSES,
-  HALF_CASTER_PREPARED_CLASSES as HALF_CASTER_CLASSES,
 } from '@/utils/spellUtils.js'
+import { preparedSpellLimit } from '@/utils/preparedSpells.js'
 import DetailPopup from '@/components/DetailPopup.vue'
 import WeavePhaseGrid from '@/components/WeavePhaseGrid.vue'
 import SpellSlotsTracker from '@/components/SpellSlotsTracker.vue'
@@ -472,27 +475,13 @@ export default {
     },
 
     preparationInfo() {
-      const classNames = (this.character.classes ?? []).map((c) =>
-        c.name.toLowerCase()
-      )
-      const usesPrepare = PREPARATION_CLASSES.some((p) =>
-        classNames.some((c) => c.includes(p))
-      )
-      if (!usesPrepare) return null
-
-      const isHalfCaster = HALF_CASTER_CLASSES.some((p) =>
-        classNames.some((c) => c.includes(p))
-      )
-      const level = this.character.level ?? 0
-      const effectiveLevel = isHalfCaster
-        ? Math.max(1, Math.floor(level / 2))
-        : level
-
+      // The limit itself (per-class ability + level, summed across a
+      // multiclass) is engine/rules/5e/preparedSpells.js.
       const partyItems = this.$store.state.party_items ?? []
       const { stats } = dnd.resolveStats(this.character, partyItems)
-      const ab = this.character.spellcasting_ability ?? 'wis'
-      const mod = dnd.mod(stats[ab])
-      const max = Math.max(1, mod + effectiveLevel)
+      const limit = preparedSpellLimit(this.character, stats)
+      if (!limit) return null
+      const max = limit.max
 
       // Only count non-domain, non-oath, non-bonus-spell, non-cantrip spells
       // toward the limit — uses the same isAlwaysReady() union isReady()
@@ -506,7 +495,12 @@ export default {
         (s) => s.level > 0 && !this.isAlwaysReady(s) && this.isReady(s)
       ).length
 
-      return { prepared, max, over: prepared > max, ability: ab }
+      return {
+        prepared,
+        max,
+        over: prepared > max,
+        tooltip: dnd._formatBreakdown({ value: max, breakdown: limit.breakdown }),
+      }
     },
 
     spellGroups() {

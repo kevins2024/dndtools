@@ -60,6 +60,23 @@ function gripDie(
     : props.damage_dice
 }
 
+// A thrown attack always uses the weapon's base one-handed die, even if it's
+// currently gripped two-handed for melee — real RAW, the versatile bonus die
+// only applies to a melee attack made with two hands. Returns that thrown
+// die only when it actually differs from the die for the current grip (a
+// thrown-and-currently-1H weapon has nothing extra worth showing), else null.
+function thrownDie(
+  character,
+  weapon,
+  equippedItems = [],
+  homebrewWeaponTypes = {}
+) {
+  const props = weaponProps(weapon, homebrewWeaponTypes)
+  if (!props.thrown) return null
+  const current = gripDie(character, weapon, equippedItems, homebrewWeaponTypes)
+  return props.damage_dice !== current ? props.damage_dice : null
+}
+
 function attackBonusBreakdown(
   character,
   weapon,
@@ -176,6 +193,7 @@ function damageBonus(
 module.exports = {
   weaponStatMod,
   gripDie,
+  thrownDie,
   attackBonus,
   attackBonusBreakdown,
   damageBonus,

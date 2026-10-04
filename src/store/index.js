@@ -1,19 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import dataService from '@/utils/dataService'
+import {
+  applyShortRest,
+  applyLongRest,
+  rechargeItems,
+  SHORT_REST_RECHARGE_TYPES,
+  LONG_REST_RECHARGE_TYPES,
+} from '@/utils/rest'
+import {
+  spendUse,
+  restoreUse,
+  spendCharge,
+  restoreCharge,
+  spendGrantUse,
+  restoreGrantUse,
+} from '@/utils/limitedUse'
 
 Vue.use(Vuex)
-
-function rollDiceExpr(expr) {
-  const match = String(expr).match(/(\d+)d(\d+)([+-]\d+)?/)
-  if (!match) return 0
-  const count = parseInt(match[1])
-  const sides = parseInt(match[2])
-  const mod = match[3] ? parseInt(match[3]) : 0
-  let total = mod
-  for (let i = 0; i < count; i++) total += Math.floor(Math.random() * sides) + 1
-  return Math.max(0, total)
-}
 
 function nextPartyItemNum(items) {
   const nums = items
@@ -37,69 +41,6 @@ function nextSequentialNum(rows, prefix) {
     .filter(Boolean)
     .map(Number)
   return nums.length ? Math.max(...nums) + 1 : 0
-}
-
-// A dice-expression recharge (e.g. a wand's "1d6+1") rolls on any
-// qualifying rest call regardless of which rechargeTypes bucket that call
-// passes — matches this function's pre-existing behavior, kept as-is.
-function shouldGrantRecharge(recharge, rechargeTypes) {
-  if (!recharge || recharge === 'none') return false
-  if (String(recharge).match(/\d+d\d+/)) return true
-  return rechargeTypes.includes(recharge)
-}
-
-function rechargeItems(items, rechargeTypes) {
-  return items.map((item) => {
-    let next = item
-
-    if (item.charges_current != null && item.charges_max != null) {
-      const r = item.charges_recharge
-      if (shouldGrantRecharge(r, rechargeTypes)) {
-        next = String(r).match(/\d+d\d+/)
-          ? {
-              ...next,
-              charges_current: Math.min(
-                next.charges_max,
-                (next.charges_current ?? 0) + rollDiceExpr(r)
-              ),
-            }
-          : { ...next, charges_current: next.charges_max }
-      }
-    }
-
-    // Independent per-spell uses (spells_granted objects with their own
-    // uses_max/recharge, not drawn from the item's shared charge pool —
-    // see dnd.normalizeItemSpellGrant) recharge the same way, per-entry.
-    if (Array.isArray(item.spells_granted)) {
-      let changed = false
-      const newGrants = item.spells_granted.map((g) => {
-        if (typeof g === 'string' || g.uses_max == null) return g
-        if (!shouldGrantRecharge(g.recharge, rechargeTypes)) return g
-        changed = true
-        return { ...g, uses_current: g.uses_max }
-      })
-      if (changed) next = { ...next, spells_granted: newGrants }
-    }
-
-    // Weapon-granted effects (Stormcaller's Cutlass's Stormcaller's Strike,
-    // etc.) have their own uses_max/uses_current/recharge, same shape as a
-    // feature — real gap found 2026-09-18: nothing recharged these at all,
-    // on any rest, since this function never looked at weapon_effects
-    // before now (there was also no way to SPEND one — see
-    // SPEND_WEAPON_EFFECT_USE).
-    if (Array.isArray(item.weapon_effects)) {
-      let changed = false
-      const newEffects = item.weapon_effects.map((e) => {
-        if (e.uses_max == null) return e
-        if (!shouldGrantRecharge(e.recharge, rechargeTypes)) return e
-        changed = true
-        return { ...e, uses_current: e.uses_max }
-      })
-      if (changed) next = { ...next, weapon_effects: newEffects }
-    }
-
-    return next
-  })
 }
 
 export default new Vuex.Store({
@@ -554,109 +495,25 @@ export default new Vuex.Store({
         .catch(console.warn)
     },
     LONG_REST(state, payload = {}) {
+      // Rest rules live in engine/rules/5e/rest.js — this just applies the
+      // per-character patch it returns. skipChars: characters whose rest
+      // was interrupted (see applyLongRest's `interrupted` option).
       const skipChars = payload?.skipChars ?? []
-      state.characters = state.characters.map((char) => {
-        if (skipChars.includes(char.name)) {
-          // No LR benefit; gain 1 level of Exhaustion for interrupted rest
-          const conditions = [...(char.conditions ?? [])]
-          const exIdx = conditions.findIndex((c) =>
-            typeof c === 'string'
-              ? c === 'Exhaustion'
-              : c?.name === 'Exhaustion'
-          )
-          if (exIdx !== -1) {
-            const ex = conditions[exIdx]
-            if (typeof ex === 'string') {
-              conditions.splice(exIdx, 0, 'Exhaustion')
-            } else {
-              const lvl = (ex.stacks ?? ex.level ?? 1) + 1
-              conditions[exIdx] = { ...ex, stacks: lvl, level: lvl }
-            }
-          } else {
-            conditions.push('Exhaustion')
-          }
-          return { ...char, conditions }
-        }
-        const updated = { ...char, hp_current: char.hp_max }
-        // Spell slots
-        if (char.spell_slots) {
-          const slots = {}
-          for (const [level, slot] of Object.entries(char.spell_slots)) {
-            slots[level] = { ...slot, current: slot.max }
-          }
-          updated.spell_slots = slots
-        }
-        // Pact magic
-        if (char.pact_magic)
-          updated.pact_magic = {
-            ...char.pact_magic,
-            current: char.pact_magic.max,
-          }
-        // Ki / monk resources
-        if (char.ki_points)
-          updated.ki_points = { ...char.ki_points, current: char.ki_points.max }
-        // Feature uses (long rest recharge; short rest charges also refill on long rest)
-        if (char.features) {
-          updated.features = char.features.map((f) =>
-            f.uses_max != null && f.recharge
-              ? { ...f, uses_current: f.uses_max }
-              : f
-          )
-        }
-        // Spell free-cast uses (Fey Touched etc. — see SPEND_SPELL_USE) —
-        // same long-rest-refills-both-recharge-types rule as feature uses.
-        if (char.spells) {
-          updated.spells = char.spells.map((s) =>
-            s.uses_max != null && s.recharge
-              ? { ...s, uses_current: s.uses_max }
-              : s
-          )
-        }
-        // Generic resources (sorcery points, etc.) — recharge on long rest
-        if (char.resources) {
-          updated.resources = char.resources.map((r) =>
-            r.max != null &&
-            (r.recharge === 'long_rest' || r.recharge === 'short_rest')
-              ? { ...r, current: r.max }
-              : r
-          )
-        }
-        // Hit dice: recover half max, rounded down, minimum 1 (PHB "Resting")
-        const hdMax = char.level ?? 1
-        const hdCurrent = char.hit_dice_current ?? hdMax
-        const hdRecover = Math.max(1, Math.floor(hdMax / 2))
-        updated.hit_dice_current = Math.min(hdMax, hdCurrent + hdRecover)
-        // Exhaustion: reduce by 1 level on successful long rest
-        if (char.exhaustion_level > 0) {
-          updated.exhaustion_level = char.exhaustion_level - 1
-        }
-        // Conditions: clear all non-exhaustion conditions
-        if (char.conditions?.length) {
-          updated.conditions = char.conditions.filter((c) =>
-            typeof c === 'string'
-              ? c === 'Exhaustion'
-              : c?.name === 'Exhaustion'
-          )
-        }
-        return updated
-      })
+      state.characters = state.characters.map((char) => ({
+        ...char,
+        ...applyLongRest(char, { interrupted: skipChars.includes(char.name) })
+          .patch,
+      }))
       if (!state.dirtyTables.includes('characters'))
         state.dirtyTables.push('characters')
       state.restVersion += 1
 
-      // Item charges — daily and short_rest both recharge on long rest; dice items auto-roll.
-      // 'long_rest' itself was missing from this list (a real pre-existing bug —
-      // items_228's Signet Ring uses charges_recharge: "long_rest" and never
-      // actually recharged on any rest before this fix, since this was the only
-      // call site that could plausibly match it). 'dawn' added 2026-09-18 —
-      // an overnight long rest naturally passes through dawn, and it's
-      // currently only used by one weapon_effect (Stormcaller's Cutlass).
-      state.party_items = rechargeItems(state.party_items, [
-        'daily',
-        'short_rest',
-        'long_rest',
-        'dawn',
-      ])
+      // Item charges — daily and short_rest both recharge on long rest; dice
+      // items auto-roll (see LONG_REST_RECHARGE_TYPES in rest.js).
+      state.party_items = rechargeItems(
+        state.party_items,
+        LONG_REST_RECHARGE_TYPES
+      )
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
 
@@ -675,60 +532,19 @@ export default new Vuex.Store({
     },
     SHORT_REST(state, spentMap) {
       // spentMap: { [charName]: { diceSpent: number, hpGained: number } }
-      state.characters = state.characters.map((char) => {
-        const spent = spentMap[char.name]
-        const updated = { ...char }
-        if (spent?.hpGained > 0)
-          updated.hp_current = Math.min(
-            char.hp_max,
-            char.hp_current + spent.hpGained
-          )
-        if (spent?.diceSpent > 0)
-          updated.hit_dice_current = Math.max(
-            0,
-            (char.hit_dice_current ?? char.level ?? 1) - spent.diceSpent
-          )
-        // Reset short-rest features
-        if (char.features)
-          updated.features = char.features.map((f) =>
-            f.uses_max != null && f.recharge === 'short_rest'
-              ? { ...f, uses_current: f.uses_max }
-              : f
-          )
-        // Reset short-rest spell free-cast uses (e.g. Fey Teleportation's
-        // Misty Step — the one case among these that recharges on a SHORT
-        // rest, not just long)
-        if (char.spells)
-          updated.spells = char.spells.map((s) =>
-            s.uses_max != null && s.recharge === 'short_rest'
-              ? { ...s, uses_current: s.uses_max }
-              : s
-          )
-        // Pact magic (short rest)
-        if (char.pact_magic?.recharge === 'short_rest')
-          updated.pact_magic = {
-            ...char.pact_magic,
-            current: char.pact_magic.max,
-          }
-        // Ki points (short rest)
-        if (char.ki_points)
-          updated.ki_points = { ...char.ki_points, current: char.ki_points.max }
-        // Generic resources (short rest recharge)
-        if (char.resources) {
-          updated.resources = char.resources.map((r) =>
-            r.max != null && r.recharge === 'short_rest'
-              ? { ...r, current: r.max }
-              : r
-          )
-        }
-        return updated
-      })
+      state.characters = state.characters.map((char) => ({
+        ...char,
+        ...applyShortRest(char, spentMap[char.name]).patch,
+      }))
       if (!state.dirtyTables.includes('characters'))
         state.dirtyTables.push('characters')
       state.restVersion += 1
 
       // Item charges — recharge short_rest items
-      state.party_items = rechargeItems(state.party_items, ['short_rest'])
+      state.party_items = rechargeItems(
+        state.party_items,
+        SHORT_REST_RECHARGE_TYPES
+      )
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
     },
@@ -770,12 +586,7 @@ export default new Vuex.Store({
       const { itemId, amount = 1 } =
         typeof payload === 'string' ? { itemId: payload } : payload
       state.party_items = state.party_items.map((item) =>
-        item.id === itemId
-          ? {
-              ...item,
-              charges_current: Math.max(0, item.charges_current - amount),
-            }
-          : item
+        item.id === itemId ? spendCharge(item, amount) : item
       )
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
@@ -784,12 +595,126 @@ export default new Vuex.Store({
       const { itemId, amount = 1 } =
         typeof payload === 'string' ? { itemId: payload } : payload
       state.party_items = state.party_items.map((item) =>
-        item.id === itemId
+        item.id === itemId ? restoreCharge(item, amount) : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    // Spends/restores one use of an independent, non-pooled spell grant (see
+    // dnd.normalizeItemSpellGrant's uses_max/uses_current) — e.g. one bead of
+    // a Necklace of Prayer Beads. choiceGroup semantics live in
+    // engine/rules/5e/limitedUse.js.
+    SPEND_GRANT_USE(state, { itemId, spellName, choiceGroup }) {
+      state.party_items = state.party_items.map((item) =>
+        item.id === itemId && Array.isArray(item.spells_granted)
           ? {
               ...item,
-              charges_current: Math.min(
-                item.charges_max,
-                item.charges_current + amount
+              spells_granted: spendGrantUse(item.spells_granted, {
+                spellName,
+                choiceGroup,
+              }),
+            }
+          : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    RESTORE_GRANT_USE(state, { itemId, spellName, choiceGroup }) {
+      state.party_items = state.party_items.map((item) =>
+        item.id === itemId && Array.isArray(item.spells_granted)
+          ? {
+              ...item,
+              spells_granted: restoreGrantUse(item.spells_granted, {
+                spellName,
+                choiceGroup,
+              }),
+            }
+          : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    // Spends/restores one use of a limited-use character/companion feature
+    // (Action Surge, Second Wind, Rage, a Battle Master superiority die,
+    // etc.) — matched by name since that's how features are already
+    // deduped/displayed everywhere else. Real gap found 2026-09-18:
+    // uses_max/uses_current were DISPLAYED but nothing could decrement one.
+    SPEND_FEATURE_USE(
+      state,
+      { characterName, table = 'characters', featureName }
+    ) {
+      state[table] = state[table].map((c) =>
+        c.name !== characterName || !c.features
+          ? c
+          : {
+              ...c,
+              features: c.features.map((f) =>
+                f.name === featureName ? spendUse(f) : f
+              ),
+            }
+      )
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    RESTORE_FEATURE_USE(
+      state,
+      { characterName, table = 'characters', featureName }
+    ) {
+      state[table] = state[table].map((c) =>
+        c.name !== characterName || !c.features
+          ? c
+          : {
+              ...c,
+              features: c.features.map((f) =>
+                f.name === featureName ? restoreUse(f) : f
+              ),
+            }
+      )
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    // Same idea for a spell's own free-cast charge (character.spells[]
+    // .uses_max/uses_current/recharge — see diffLevelUp.js's
+    // grants_spells.free_cast doc), a separate tracking need from
+    // featureGranted: true (that only means "doesn't count against known-
+    // spell totals"). Matched by name.
+    SPEND_SPELL_USE(state, { characterName, table = 'characters', spellName }) {
+      state[table] = state[table].map((c) =>
+        c.name !== characterName || !c.spells
+          ? c
+          : {
+              ...c,
+              spells: c.spells.map((s) =>
+                s.name === spellName ? spendUse(s) : s
+              ),
+            }
+      )
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    RESTORE_SPELL_USE(
+      state,
+      { characterName, table = 'characters', spellName }
+    ) {
+      state[table] = state[table].map((c) =>
+        c.name !== characterName || !c.spells
+          ? c
+          : {
+              ...c,
+              spells: c.spells.map((s) =>
+                s.name === spellName ? restoreUse(s) : s
+              ),
+            }
+      )
+      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
+    },
+    // Same idea for a weapon's own granted effect (item.weapon_effects[],
+    // e.g. Stormcaller's Cutlass's Stormcaller's Strike) — matched by item
+    // id + effect name.
+    SPEND_WEAPON_EFFECT_USE(state, { itemId, effectName }) {
+      state.party_items = state.party_items.map((item) =>
+        item.id === itemId && Array.isArray(item.weapon_effects)
+          ? {
+              ...item,
+              weapon_effects: item.weapon_effects.map((e) =>
+                e.name === effectName ? spendUse(e) : e
               ),
             }
           : item
@@ -797,195 +722,17 @@ export default new Vuex.Store({
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
     },
-    // Spends one use of an independent, non-pooled spell grant (see
-    // dnd.normalizeItemSpellGrant's uses_max/uses_current) — e.g. one bead of
-    // a Necklace of Prayer Beads. When choiceGroup is set, every grant entry
-    // sharing that choice_group is decremented together, since they
-    // represent alternative effects drawn from the SAME single use (e.g. a
-    // Curing bead's choice of Cure Wounds or Lesser Restoration).
-    SPEND_GRANT_USE(state, { itemId, spellName, choiceGroup }) {
-      state.party_items = state.party_items.map((item) => {
-        if (item.id !== itemId || !Array.isArray(item.spells_granted))
-          return item
-        const newGrants = item.spells_granted.map((g) => {
-          if (typeof g === 'string' || g.uses_current == null) return g
-          const matches = choiceGroup
-            ? g.choice_group === choiceGroup
-            : g.name === spellName
-          if (!matches || g.uses_current <= 0) return g
-          return { ...g, uses_current: g.uses_current - 1 }
-        })
-        return { ...item, spells_granted: newGrants }
-      })
-      if (!state.dirtyTables.includes('party_items'))
-        state.dirtyTables.push('party_items')
-    },
-    RESTORE_GRANT_USE(state, { itemId, spellName, choiceGroup }) {
-      state.party_items = state.party_items.map((item) => {
-        if (item.id !== itemId || !Array.isArray(item.spells_granted))
-          return item
-        const newGrants = item.spells_granted.map((g) => {
-          if (typeof g === 'string' || g.uses_current == null) return g
-          const matches = choiceGroup
-            ? g.choice_group === choiceGroup
-            : g.name === spellName
-          if (!matches || g.uses_current >= g.uses_max) return g
-          return { ...g, uses_current: g.uses_current + 1 }
-        })
-        return { ...item, spells_granted: newGrants }
-      })
-      if (!state.dirtyTables.includes('party_items'))
-        state.dirtyTables.push('party_items')
-    },
-    // Spends one use of a limited-use character/companion feature (Action
-    // Surge, Second Wind, Rage, Unleash Incarnation, a Battle Master
-    // maneuver's superiority die, etc.) — matched by name since that's how
-    // features are already deduped/displayed everywhere else (FeaturePillsPanel,
-    // detail popups). Real gap found 2026-09-18: `uses_max`/`uses_current`
-    // were tracked and DISPLAYED (FeaturePillsPanel's pill shows "3/4 uses")
-    // but nothing anywhere could actually decrement one — every limited-use
-    // feature in the whole app was a read-only counter. `uses_current`
-    // falls back to `uses_max` before decrementing, matching the same
-    // fallback the display already uses, so a feature that's never been
-    // spent (and so has no explicit uses_current yet) still spends
-    // correctly on its first use.
-    SPEND_FEATURE_USE(
-      state,
-      { characterName, table = 'characters', featureName }
-    ) {
-      state[table] = state[table].map((c) => {
-        if (c.name !== characterName || !c.features) return c
-        return {
-          ...c,
-          features: c.features.map((f) =>
-            f.name === featureName && f.uses_max != null
-              ? {
-                  ...f,
-                  uses_current: Math.max(0, (f.uses_current ?? f.uses_max) - 1),
-                }
-              : f
-          ),
-        }
-      })
-      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
-    },
-    RESTORE_FEATURE_USE(
-      state,
-      { characterName, table = 'characters', featureName }
-    ) {
-      state[table] = state[table].map((c) => {
-        if (c.name !== characterName || !c.features) return c
-        return {
-          ...c,
-          features: c.features.map((f) =>
-            f.name === featureName && f.uses_max != null
-              ? {
-                  ...f,
-                  uses_current: Math.min(
-                    f.uses_max,
-                    (f.uses_current ?? f.uses_max) + 1
-                  ),
-                }
-              : f
-          ),
-        }
-      })
-      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
-    },
-    // Same idea as SPEND_FEATURE_USE/RESTORE_FEATURE_USE, for a spell's own
-    // free-cast charge (character.spells[].uses_max/uses_current/recharge —
-    // see diffLevelUp.js's grants_spells.free_cast doc) rather than a
-    // feature's. A real, separate tracking need from featureGranted: true —
-    // that flag only ever meant "doesn't count against known-spell totals";
-    // most featureGranted spells (a subclass's bonus spells, a domain/oath
-    // spell) still cost a normal slot to cast, they just don't need a
-    // charge counter because there's no limited-use cast to track. Matched
-    // by name, same as SPEND_FEATURE_USE — spell names are already this
-    // app's real key for a character's spell list (see WeaponTable.vue's id
-    // migration note for why a shared FEATURE list needed id-based keys
-    // instead; spells don't have that duplicate-name problem in practice).
-    SPEND_SPELL_USE(state, { characterName, table = 'characters', spellName }) {
-      state[table] = state[table].map((c) => {
-        if (c.name !== characterName || !c.spells) return c
-        return {
-          ...c,
-          spells: c.spells.map((s) =>
-            s.name === spellName && s.uses_max != null
-              ? {
-                  ...s,
-                  uses_current: Math.max(0, (s.uses_current ?? s.uses_max) - 1),
-                }
-              : s
-          ),
-        }
-      })
-      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
-    },
-    RESTORE_SPELL_USE(
-      state,
-      { characterName, table = 'characters', spellName }
-    ) {
-      state[table] = state[table].map((c) => {
-        if (c.name !== characterName || !c.spells) return c
-        return {
-          ...c,
-          spells: c.spells.map((s) =>
-            s.name === spellName && s.uses_max != null
-              ? {
-                  ...s,
-                  uses_current: Math.min(
-                    s.uses_max,
-                    (s.uses_current ?? s.uses_max) + 1
-                  ),
-                }
-              : s
-          ),
-        }
-      })
-      if (!state.dirtyTables.includes(table)) state.dirtyTables.push(table)
-    },
-    // Same idea as SPEND_FEATURE_USE, for a weapon's own granted effect
-    // (item.weapon_effects[], e.g. Stormcaller's Cutlass's Stormcaller's
-    // Strike) rather than a character feature — matched by item id + effect
-    // name.
-    SPEND_WEAPON_EFFECT_USE(state, { itemId, effectName }) {
-      state.party_items = state.party_items.map((item) => {
-        if (item.id !== itemId || !Array.isArray(item.weapon_effects))
-          return item
-        return {
-          ...item,
-          weapon_effects: item.weapon_effects.map((e) =>
-            e.name === effectName && e.uses_max != null
-              ? {
-                  ...e,
-                  uses_current: Math.max(0, (e.uses_current ?? e.uses_max) - 1),
-                }
-              : e
-          ),
-        }
-      })
-      if (!state.dirtyTables.includes('party_items'))
-        state.dirtyTables.push('party_items')
-    },
     RESTORE_WEAPON_EFFECT_USE(state, { itemId, effectName }) {
-      state.party_items = state.party_items.map((item) => {
-        if (item.id !== itemId || !Array.isArray(item.weapon_effects))
-          return item
-        return {
-          ...item,
-          weapon_effects: item.weapon_effects.map((e) =>
-            e.name === effectName && e.uses_max != null
-              ? {
-                  ...e,
-                  uses_current: Math.min(
-                    e.uses_max,
-                    (e.uses_current ?? e.uses_max) + 1
-                  ),
-                }
-              : e
-          ),
-        }
-      })
+      state.party_items = state.party_items.map((item) =>
+        item.id === itemId && Array.isArray(item.weapon_effects)
+          ? {
+              ...item,
+              weapon_effects: item.weapon_effects.map((e) =>
+                e.name === effectName ? restoreUse(e) : e
+              ),
+            }
+          : item
+      )
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')
     },

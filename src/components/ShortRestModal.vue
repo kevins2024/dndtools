@@ -67,9 +67,7 @@
               <div
                 class="hd-estimate"
                 v-if="diceToSpend[char.name] > 0"
-                :title="`Average ${
-                  dieSides(char.hit_die || 'd8') / 2 + 0.5 + conMod(char)
-                } per die`"
+                :title="`Average ${averageHitDieHealing(char)} per die`"
               >
                 ≈ +{{ estimateHeal(char) }} HP
               </div>
@@ -157,6 +155,14 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import {
+  hitDiceAvailable,
+  hpMissing,
+  averageHitDieHealing,
+  shortRestHealEstimate,
+  rollShortRestHealing,
+  applyShortRest,
+} from '@/utils/rest'
 
 export default {
   name: 'ShortRestModal',
@@ -195,16 +201,14 @@ export default {
       return dnd.mod(char.stat_con)
     },
 
-    dieSides(hitDie) {
-      return parseInt((hitDie || 'd8').slice(1))
-    },
+    averageHitDieHealing,
 
     hdAvailable(char) {
-      return char.hit_dice_current ?? char.level ?? 1
+      return hitDiceAvailable(char)
     },
 
     hpMissing(char) {
-      return (char.hp_max ?? 0) - (char.hp_current ?? 0)
+      return hpMissing(char)
     },
 
     hpPct(char) {
@@ -220,12 +224,7 @@ export default {
     },
 
     estimateHeal(char) {
-      const n = this.diceToSpend[char.name] ?? 0
-      if (n === 0) return 0
-      const sides = this.dieSides(char.hit_die)
-      const avg = (sides + 1) / 2
-      const total = Math.round(n * (avg + this.conMod(char)))
-      return Math.min(Math.max(0, total), this.hpMissing(char))
+      return shortRestHealEstimate(char, this.diceToSpend[char.name] ?? 0)
     },
 
     incDice(name) {
@@ -241,43 +240,16 @@ export default {
       if (cur > 0) this.$set(this.diceToSpend, name, cur - 1)
     },
 
-    rollDie(sides) {
-      return Math.floor(Math.random() * sides) + 1
-    },
-
     takeRest() {
       const results = {}
       const spentMap = {}
 
       for (const char of this.members) {
         const n = this.diceToSpend[char.name] ?? 0
-        const sides = this.dieSides(char.hit_die)
-        const con = this.conMod(char)
-        const rolls = Array.from({ length: n }, () => this.rollDie(sides))
-        const rawTotal = rolls.reduce((s, r) => s + r + con, 0)
-        const hpGained = Math.max(0, Math.min(rawTotal, this.hpMissing(char)))
-
-        const recharged = []
-        for (const f of char.features || []) {
-          if (
-            f.recharge === 'short_rest' &&
-            f.uses_max &&
-            f.uses_current < f.uses_max
-          ) {
-            recharged.push(
-              f.name
-                .replace(/\s*\(.*\)/, '')
-                .replace(/^.+—\s*/, '')
-                .trim()
-            )
-          }
-        }
-        if (
-          char.pact_magic?.recharge === 'short_rest' &&
-          char.pact_magic.current < char.pact_magic.max
-        ) {
-          recharged.push('Pact Magic')
-        }
+        const { rolls, hpGained } = rollShortRestHealing(char, n)
+        // recharged: what this rest will actually refill, listed for the
+        // results screen (applyShortRest is what the store runs for real).
+        const { recharged } = applyShortRest(char, { diceSpent: n, hpGained })
 
         results[char.name] = {
           diceSpent: n,

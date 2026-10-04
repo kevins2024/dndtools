@@ -1623,12 +1623,12 @@ export default {
     // roll/average controls that would normally show this math don't apply
     // at character creation.
     hpBreakdown() {
-      const hitDie = this.selectedClass?.hitDie
-      if (!hitDie) return ''
-      const conMod = dnd.mod(this.finalScores.con)
-      return `d${hitDie} (max) ${dnd.signed(conMod)} CON = ${
-        hitDie + conMod
-      } HP`
+      const result = this.preview
+      if (!result?.hpBreakdown) return ''
+      return dnd._formatBreakdown({
+        value: result.patch.hp_max,
+        breakdown: result.hpBreakdown,
+      })
     },
     cantripPickCount() {
       return this.preview?.description?.spellcasting?.cantripsAfter ?? 0

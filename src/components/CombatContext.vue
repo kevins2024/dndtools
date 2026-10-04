@@ -226,6 +226,7 @@ import ShipCombat from './ShipCombat.vue'
 import { dnd } from '@/utils/dnd_utils.js'
 import { generateEncounter, analyzeParty } from '@/utils/encounter_utils.js'
 import { combatTurn } from '@/utils/combatTurn.js'
+import { rollInitiativeOrder, sortByInitiative } from '@/utils/initiative.js'
 import { Anchor } from 'lucide-vue'
 
 export default {
@@ -337,25 +338,11 @@ export default {
       }))
       return [...players, ...companions, ...enemies]
     },
+    // Turn order: total desc, then modifier, then tiebreak position — see
+    // engine/rules/5e/initiative.js. Each entry carries the advantage flag
+    // its roll was actually made with, not the live one.
     initiativeOrder() {
-      return this.allEntries
-        .map((e) => ({
-          ...e,
-          total: this.rolls[e.key]?.total ?? 0,
-          tiebreakOrder: this.rolls[e.key]?.tiebreakOrder ?? 0,
-          // Whether THIS roll was actually made with advantage — read back
-          // from the roll record rather than live entry.advantage, so it
-          // stays accurate even if the character's gear changes after the
-          // roll (e.g. attuning mid-fight shouldn't retroactively relabel
-          // an already-rolled initiative).
-          advantage: this.rolls[e.key]?.advantage ?? false,
-        }))
-        .sort(
-          (a, b) =>
-            b.total - a.total ||
-            b.mod - a.mod ||
-            a.tiebreakOrder - b.tiebreakOrder
-        )
+      return sortByInitiative(this.allEntries, this.rolls)
     },
     // Cheap, stable trigger for the combatTurnState sync watcher below —
     // changes whenever membership OR sort order changes (a roll override
@@ -597,42 +584,11 @@ export default {
       // A feat/feature/item that grants advantage on initiative (e.g.
       // Corwin's Halberd of Warning, while attuned) can't be represented as
       // a flat stat_bonuses number — it changes how the die itself is
-      // rolled. This bulk auto-roll button is the only place initiative
-      // actually gets rolled in this app, so it's the only place that can
-      // apply it automatically.
-      const rollFor = (entry) =>
-        entry.advantage ? Math.max(dnd.roll(), dnd.roll()) : dnd.roll()
-      const newRolls = {}
-      for (const entry of this.allEntries) {
-        const roll = rollFor(entry)
-        newRolls[entry.key] = {
-          total: roll + entry.mod,
-          tiebreakOrder: 0,
-          advantage: entry.advantage,
-        }
-      }
-
-      const groups = {}
-      for (const entry of this.allEntries) {
-        const r = newRolls[entry.key]
-        const gk = `${r.total}_${entry.mod}`
-        if (!groups[gk]) groups[gk] = []
-        groups[gk].push(entry.key)
-      }
-      const entryByKey = Object.fromEntries(
-        this.allEntries.map((e) => [e.key, e])
-      )
-      for (const keys of Object.values(groups)) {
-        if (keys.length < 2) continue
-        let tieRolls
-        do {
-          tieRolls = keys.map((k) => ({ k, r: rollFor(entryByKey[k]) }))
-        } while (new Set(tieRolls.map((x) => x.r)).size < keys.length)
-        tieRolls.sort((a, b) => b.r - a.r)
-        tieRolls.forEach(({ k }, i) => {
-          newRolls[k].tiebreakOrder = i + 1
-        })
-      }
+      // rolled, so each entry carries an `advantage` flag the engine
+      // honors. This bulk auto-roll button is the only place initiative
+      // actually gets rolled in this app. Ties (same total AND modifier)
+      // are re-rolled among just the tied combatants by the engine.
+      const newRolls = rollInitiativeOrder(this.allEntries)
 
       this.rolls = newRolls
       this.phase = 'battle'

@@ -169,3 +169,17 @@ test('damageBonusBreakdown: value matches damageBonus, and Raging shows up as it
   assert.equal(value, damageBonus(raging, greatsword, []))
   assert.ok(breakdown.some((l) => l.label === 'Raging' && l.amount === 2))
 })
+
+test('thrownDie: only surfaces when it differs from the current grip die', () => {
+  const { thrownDie } = require('../rules/5e/weaponAttack')
+  const spear2h = { name: 'Spear', slot: 'melee2h', type: 'weapon', weapon_category: 'spear' }
+  const char = { name: 'T', classes: [], stat_str: 10, stat_dex: 10 }
+  const die = thrownDie(char, spear2h, [spear2h])
+  // spear: thrown, versatile 1d6 / 1d8 — held two-handed, thrown is the base 1d6
+  assert.strictEqual(die, '1d6')
+  const spear1h = { ...spear2h, slot: 'melee1h' }
+  const two = { name: 'Dagger', slot: 'melee1h', type: 'weapon' }
+  assert.strictEqual(thrownDie(char, spear1h, [spear1h, two]), null)
+  const sword = { name: 'Longsword', type: 'weapon', weapon_category: 'longsword', slot: 'melee1h' }
+  assert.strictEqual(thrownDie(char, sword, [sword]), null) // not thrown
+})

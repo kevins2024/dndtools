@@ -322,44 +322,7 @@
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
 import { isPreparedCaster } from '@/utils/spellUtils.js'
-
-const DAYS_PER_YEAR = 204
-const SEASONS = [
-  { name: 'Winter', key: 'winter', start: 1, end: 51 },
-  { name: 'Spring', key: 'spring', start: 52, end: 102 },
-  { name: 'Summer', key: 'summer', start: 103, end: 153 },
-  { name: 'Autumn', key: 'autumn', start: 154, end: 204 },
-]
-
-function seasonForDay(day) {
-  return SEASONS.find((s) => day >= s.start && day <= s.end) ?? SEASONS[0]
-}
-
-function dowForDay(day) {
-  if (day <= 48) return ((day - 1) % 8) + 1
-  if (day <= 52) return day - 48
-  return ((day - 53) % 8) + 1
-}
-
-function noteMatchesDay(note, dayOfYear, absoluteDay) {
-  switch (note.recurrence) {
-    case 'none':
-      return note.absolute_day === absoluteDay
-    case 'annually':
-      return note.day_of_year === dayOfYear
-    case 'weekly':
-      return dowForDay(dayOfYear) === dowForDay(note.day_of_year)
-    case 'seasonally': {
-      const cs = seasonForDay(dayOfYear)
-      const ns = seasonForDay(note.day_of_year)
-      return (
-        cs.key === ns.key &&
-        dayOfYear - cs.start === note.day_of_year - ns.start
-      )
-    }
-  }
-  return false
-}
+import { dayOfYear, noteMatchesDay } from '@/utils/calendar_utils.js'
 
 export default {
   name: 'LongRestModal',
@@ -421,9 +384,9 @@ export default {
 
     todaysNotes() {
       const currentDay = this.activePartyDay || 1
-      const dayOfYear = ((currentDay - 1) % DAYS_PER_YEAR) + 1
+      const doy = dayOfYear(currentDay)
       return (this.calendar_notes ?? []).filter((n) =>
-        noteMatchesDay(n, dayOfYear, currentDay)
+        noteMatchesDay(n, doy, currentDay)
       )
     },
 

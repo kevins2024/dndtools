@@ -60,6 +60,15 @@
                     <td class="weapon-name">
                       {{ row.name }}
                       <button
+                        v-if="row.hand || row.handAmbiguous"
+                        class="weapon-tag-badge weapon-hand-btn"
+                        :class="{ 'weapon-hand-btn--unset': !row.hand }"
+                        :title="handTitle(row)"
+                        @click.stop="cycleHand(weaponItem(row.id))"
+                      >
+                        {{ row.hand === 'main' ? 'Main' : row.hand === 'off' ? 'Off' : 'Hand?' }}
+                      </button>
+                      <button
                         v-if="row.grip"
                         class="weapon-tag-badge weapon-grip-btn"
                         :title="
@@ -108,7 +117,10 @@
                         class="feature-pill"
                         @click.stop="inspectEffect(e)"
                         >{{ e.name
-                        }}<span
+                        }}<span v-if="e.action_type" class="pill-action">{{
+                          dnd.actionTypeBadgeLabel(e.action_type)
+                        }}</span
+                        ><span
                           v-if="e.uses_max"
                           class="pill-uses has-tip"
                           :title="`${e.uses_current ?? e.uses_max} of ${
@@ -267,6 +279,15 @@
               <td class="weapon-name">
                 {{ row.name }}
                 <button
+                  v-if="row.hand || row.handAmbiguous"
+                  class="weapon-tag-badge weapon-hand-btn"
+                  :class="{ 'weapon-hand-btn--unset': !row.hand }"
+                  :title="handTitle(row)"
+                  @click="cycleHand(weaponItem(row.id))"
+                >
+                  {{ row.hand === 'main' ? 'Main' : row.hand === 'off' ? 'Off' : 'Hand?' }}
+                </button>
+                <button
                   v-if="row.grip"
                   class="weapon-tag-badge weapon-grip-btn"
                   :title="
@@ -315,7 +336,10 @@
                   class="feature-pill"
                   @click="inspectEffect(e)"
                   >{{ e.name
-                  }}<span
+                  }}<span v-if="e.action_type" class="pill-action">{{
+                    dnd.actionTypeBadgeLabel(e.action_type)
+                  }}</span
+                  ><span
                     v-if="e.uses_max"
                     class="pill-uses has-tip"
                     :title="`${e.uses_current ?? e.uses_max} of ${
@@ -417,6 +441,7 @@
 
 <script>
 import { dnd } from '@/utils/dnd_utils.js'
+import { cycleHand } from '@/utils/weaponHands.js'
 import {
   buildItemPopupData,
   buildFeaturePopupData,
@@ -517,6 +542,27 @@ export default {
         ...item,
         slot: item.slot === 'melee2h' ? 'melee1h' : 'melee2h',
       })
+    },
+    // Click cycles Main -> Off -> unassigned; the engine keeps the loadout
+    // consistent (one main, one off, and a lone partner gets the opposite).
+    cycleHand(item) {
+      if (!item) return
+      const mine = this.partyItems.filter(
+        (i) => i.equipped_by === this.character.name
+      )
+      for (const patch of cycleHand(item, mine)) {
+        const target = mine.find((i) => i.id === patch.id)
+        if (target && (target.hand ?? null) !== patch.hand) {
+          this.$store.commit('UPDATE_ITEM', { ...target, hand: patch.hand })
+        }
+      }
+    },
+    handTitle(row) {
+      if (!row.hand)
+        return 'Two one-handed weapons in hand and no main/off hand set — click to set this one as main hand'
+      return row.hand === 'main'
+        ? 'Main hand — click to make it the off hand'
+        : 'Off hand — click to clear'
     },
     setActiveWeaponSet(set) {
       this.$store.commit('UPDATE_TABLE_ITEM', {
@@ -708,6 +754,23 @@ export default {
   background: none;
   font-family: inherit;
   cursor: pointer;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.weapon-hand-btn {
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--color-text-med, var(--color-text-low));
+}
+
+.weapon-hand-btn--unset {
+  border-style: dashed;
+  color: var(--color-text-low);
+}
+
+.weapon-hand-btn:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
 }

@@ -175,6 +175,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import { shortRestPreview, longRestPreview } from '@/utils/rest'
 import NetworksContext from './NetworksContext.vue'
 
 const STAT_NAMES = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
@@ -311,42 +312,19 @@ export default {
     },
 
     shortGains(char) {
-      const items = []
-      for (const f of char.features || []) {
-        if (
-          f.recharge === 'short_rest' &&
-          f.uses_max &&
-          f.uses_current < f.uses_max
-        ) {
-          items.push(this.abbrevFeature(f.name))
-        }
-      }
-      if (char.pact_magic?.current < char.pact_magic?.max) {
-        const used = char.pact_magic.max - char.pact_magic.current
-        items.push(`${used} pact`)
-      }
+      const { features, pactSlotsSpent } = shortRestPreview(char)
+      const items = features.map((name) => this.abbrevFeature(name))
+      if (pactSlotsSpent > 0) items.push(`${pactSlotsSpent} pact`)
       return items
     },
 
     longGains(char) {
+      const { hpMissing, features, spellSlotsSpent } = longRestPreview(char)
       const items = []
-      const hpMissing = (char.hp_max ?? 0) - (char.hp_current ?? 0)
       if (hpMissing > 0) items.push(`HP +${hpMissing}`)
-      for (const f of char.features || []) {
-        if (
-          f.recharge === 'long_rest' &&
-          f.uses_max &&
-          f.uses_current < f.uses_max
-        ) {
-          items.push(this.abbrevFeature(f.name))
-        }
-      }
-      if (char.spell_slots) {
-        let used = 0
-        for (const s of Object.values(char.spell_slots))
-          used += s.max - s.current
-        if (used > 0) items.push(`${used} slot${used > 1 ? 's' : ''}`)
-      }
+      for (const name of features) items.push(this.abbrevFeature(name))
+      if (spellSlotsSpent > 0)
+        items.push(`${spellSlotsSpent} slot${spellSlotsSpent > 1 ? 's' : ''}`)
       return items
     },
 

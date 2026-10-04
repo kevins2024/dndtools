@@ -14,6 +14,7 @@ const weaponsEngine = require('../../engine/rules/5e/weapons')
 
 export const weaponStatMod = weaponAttackEngine.weaponStatMod
 export const gripDie = weaponAttackEngine.gripDie
+export const thrownDie = weaponAttackEngine.thrownDie
 export const attackBonus = weaponAttackEngine.attackBonus
 export const attackBonusBreakdown = weaponAttackEngine.attackBonusBreakdown
 export const damageBonus = weaponAttackEngine.damageBonus

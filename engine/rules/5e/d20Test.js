@@ -44,14 +44,17 @@ function resolveD20Test(rolls, { mode = 'normal', modifier = 0 } = {}) {
   }
 }
 
-function rollD20() {
-  return 1 + Math.floor(Math.random() * 20)
+function rollD20(rng = Math.random) {
+  return 1 + Math.floor(rng() * 20)
 }
 
-// opts: { advantage, disadvantage, modifier }
+// opts: { advantage, disadvantage, modifier, rng } — rng is an optional
+// () => number in [0, 1) so callers (and tests) can pin the dice.
 function rollD20Test(opts = {}) {
   const mode = resolveMode(opts)
-  const rolls = mode === 'normal' ? [rollD20()] : [rollD20(), rollD20()]
+  const rng = opts.rng ?? Math.random
+  const rolls =
+    mode === 'normal' ? [rollD20(rng)] : [rollD20(rng), rollD20(rng)]
   return resolveD20Test(rolls, { mode, modifier: opts.modifier ?? 0 })
 }
 

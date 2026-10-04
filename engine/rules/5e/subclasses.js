@@ -46,8 +46,8 @@ function loadSubclass(className, subclassName) {
   return data
 }
 
-// expanded_spell_list included so callers (e.g. the frontend's
-// bonus-spell computation in spellUtils.js) can derive "what bonus spells
+// The bonus-spell tables are included so callers (e.g. the frontend's
+// bonus-spell computation in characterSpells.js) can derive "what bonus spells
 // does this character have at their current level" straight from the
 // subclass data instead of a per-character copy that can drift out of sync.
 // Same directory-scanning portability caveat as classFeatures.js's
@@ -60,11 +60,20 @@ function listSubclasses() {
       const data = JSON.parse(
         fs.readFileSync(path.join(SUBCLASSES_DIR, f), 'utf8')
       )
-      return {
+      const entry = {
         class: data.class,
         name: data.name,
         expanded_spell_list: data.expanded_spell_list ?? null,
       }
+      // Every other always-prepared bonus-spell table (domain/oath/circle/
+      // psionic/clockwork/bonus_spells_by_level — see characterSpells.js's
+      // BONUS_SPELL_FIELDS). Before 2026-10-01 only expanded_spell_list made
+      // it into this list, so characterSpells' getBonusSpells silently found
+      // nothing for every one of those fields in the live app.
+      for (const key of Object.keys(data)) {
+        if (key.endsWith('_spells_by_level')) entry[key] = data[key]
+      }
+      return entry
     })
 }
 

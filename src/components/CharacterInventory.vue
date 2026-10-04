@@ -143,6 +143,22 @@
               }}
             </button>
             <button
+              v-if="isOneHandedItem(item)"
+              class="act-btn hand-btn"
+              :title="
+                item.hand === 'main'
+                  ? 'Main hand — click to make it the off hand'
+                  : item.hand === 'off'
+                  ? 'Off hand — click to clear'
+                  : 'No hand set — click to set as main hand'
+              "
+              @click.stop="cycleItemHand(item)"
+            >
+              {{
+                item.hand === 'main' ? 'Main' : item.hand === 'off' ? 'Off' : 'Hand?'
+              }}
+            </button>
+            <button
               v-if="isVersatileWeapon(item)"
               class="act-btn grip-toggle-btn"
               :title="
@@ -929,6 +945,7 @@
 <script>
 import { Zap, Check } from 'lucide-vue'
 import { dnd } from '@/utils/dnd_utils.js'
+import { cycleHand, isOneHandedWeapon } from '@/utils/weaponHands.js'
 
 export default {
   name: 'CharacterInventory',
@@ -1315,6 +1332,20 @@ export default {
     // active — the right default for something that isn't really part of a
     // swap (e.g. a piece that's just always drawn), but most weapons should
     // end up tagged 1 or 2.
+    isOneHandedItem(item) {
+      return isOneHandedWeapon(item)
+    },
+    // Main/off hand for a one-handed weapon: click cycles Main -> Off ->
+    // unset, and the engine keeps the loadout consistent (one main, one
+    // off, a lone partner weapon gets the opposite hand).
+    cycleItemHand(item) {
+      for (const patch of cycleHand(item, this.equippedItems)) {
+        const target = this.equippedItems.find((i) => i.id === patch.id)
+        if (target && (target.hand ?? null) !== patch.hand) {
+          this.$store.commit('UPDATE_ITEM', { ...target, hand: patch.hand })
+        }
+      }
+    },
     cycleItemWeaponSet(item) {
       const next = item.weapon_set === 1 ? 2 : item.weapon_set === 2 ? null : 1
       this.$store.commit('UPDATE_ITEM', { ...item, weapon_set: next })

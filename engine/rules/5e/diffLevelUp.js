@@ -2121,6 +2121,15 @@ function diffLevelUp(
     conMod * levelsGained +
     hpPerLevelBonus * levelsGained
 
+  // The same total as a plain list of contributions, for a UI tooltip — the
+  // standard { label, amount } shape (see breakdown.js), never a joined
+  // string. Zero-amount lines are omitted.
+  const hpBreakdown = [
+    { label: 'Hit die', amount: description.totalHpGained },
+    { label: 'CON modifier', amount: conMod * levelsGained },
+    { label: 'Species bonus', amount: hpPerLevelBonus * levelsGained },
+  ].filter((line) => line.amount !== 0)
+
   const patch = {
     level: (character.level || 0) + levelsGained,
     proficiency_bonus: proficiencyBonus((character.level || 0) + levelsGained),
@@ -2527,7 +2536,14 @@ function diffLevelUp(
   // newFeatures is the same array merged into patch.features, exposed on its
   // own so a caller (a UI) can display "here's what's new" without having to
   // diff patch.features against the character's original list itself.
-  return { patch, newFeatures, pendingChoices, warnings: notes, description }
+  return {
+    patch,
+    newFeatures,
+    pendingChoices,
+    warnings: notes,
+    description,
+    hpBreakdown,
+  }
 }
 
 module.exports = { diffLevelUp, applyFeatureMechanics }

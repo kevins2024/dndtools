@@ -62,6 +62,12 @@
 <script>
 import { dnd } from '@/utils/dnd_utils.js'
 import { Brain } from 'lucide-vue'
+import {
+  effectiveMaxHp,
+  applyDamage,
+  applyHealing,
+  applyTempHp,
+} from '@/utils/hitPoints'
 
 // The one real, persisting way to change a character's HP — replaces
 // Battle.vue's old playerHpDelta/playerTempHp scratchpad, which looked like
@@ -112,7 +118,7 @@ export default {
       return this.character.hp_max_modifier ?? 0
     },
     effectiveMax() {
-      return this.character.hp_max + this.maxModifier
+      return effectiveMaxHp(this.character)
     },
     maxModifierTooltip() {
       return this.maxModifier > 0
@@ -132,13 +138,8 @@ export default {
     applyDamage() {
       const amount = Number(this.damageInput)
       if (!amount || amount <= 0) return
-      const temp = this.tempHp
-      const absorbed = Math.min(temp, amount)
-      const remaining = amount - absorbed
-      this.commit({
-        hp_temp: temp - absorbed,
-        hp_current: Math.max(0, this.character.hp_current - remaining),
-      })
+      const { patch, absorbed } = applyDamage(this.character, amount)
+      this.commit(patch)
       this.damageInput = null
       // Mirrors EnemyHpTracker/Battle.vue's own applyDamage wording, so the
       // Battle Log reads consistently regardless of who took the hit — real
@@ -166,12 +167,7 @@ export default {
     applyHeal() {
       const amount = Number(this.healInput)
       if (!amount || amount <= 0) return
-      this.commit({
-        hp_current: Math.min(
-          this.effectiveMax,
-          this.character.hp_current + amount
-        ),
-      })
+      this.commit(applyHealing(this.character, amount).patch)
       this.healInput = null
       this.$emit('hp-changed', `healed ${amount}`)
     },
@@ -179,8 +175,7 @@ export default {
     applyTemp() {
       const amount = Number(this.tempInput)
       if (!amount || amount <= 0) return
-      // Temp HP doesn't stack — take the higher value, per RAW.
-      this.commit({ hp_temp: Math.max(this.tempHp, amount) })
+      this.commit(applyTempHp(this.character, amount).patch)
       this.tempInput = null
       this.$emit('hp-changed', `+${amount} temp HP`)
     },

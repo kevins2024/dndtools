@@ -428,3 +428,20 @@ test('diffLevelUp: a level-0 placeholder class entry (UI subclass-draft mechanis
   // not a "leveling an existing class" no-op.
   assert.ok(!('saving_throws' in result.patch))
 })
+
+test('diffLevelUp: hpBreakdown lists the same contributions that sum to the HP gained', () => {
+  const character = baseWizard()
+  const result = diffLevelUp(character, {
+    className: 'Wizard',
+    hpMethod: 'average',
+  })
+  const gained = result.patch.hp_max - character.hp_max
+  assert.deepEqual(result.hpBreakdown, [
+    { label: 'Hit die', amount: 4 },
+    { label: 'CON modifier', amount: 2 },
+  ])
+  assert.equal(
+    result.hpBreakdown.reduce((sum, line) => sum + line.amount, 0),
+    gained
+  )
+})

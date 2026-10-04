@@ -328,6 +328,7 @@
 import { CONFIGS } from '@/utils/shipConfigs.js'
 import ShipDetailModal from './ShipDetailModal.vue'
 import { dnd } from '@/utils/dnd_utils.js'
+import { rollInitiativeFor } from '@/utils/initiative.js'
 import { Anchor } from 'lucide-vue'
 
 const CONDITIONS = [
@@ -574,11 +575,12 @@ export default {
     },
 
     rollAll() {
-      const rollDie = () => Math.floor(Math.random() * 20) + 1
       const newRolls = {}
       for (const c of this.allCombatants) {
-        const roll = c.advantage ? Math.max(rollDie(), rollDie()) : rollDie()
-        newRolls[c.id] = roll + (c.mod ?? 0)
+        newRolls[c.id] = rollInitiativeFor({
+          mod: c.mod,
+          advantage: c.advantage,
+        }).total
       }
       this.rolls = newRolls
       this.activeIdx = 0

@@ -174,50 +174,18 @@
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
-
-const DAYS_PER_YEAR = 204
-const DAYS_PER_WEEK = 8
-const YEAR_OFFSET = 466 // campaign year 1 = world year 467
-const CAMPAIGN_START_DAY = 137 // world year 467, day 137 = campaign day 1 (absolute internal day)
-
-const SEASONS = [
-  { name: 'Winter', key: 'winter', start: 1, end: 51 },
-  { name: 'Spring', key: 'spring', start: 52, end: 102 },
-  { name: 'Summer', key: 'summer', start: 103, end: 153 },
-  { name: 'Autumn', key: 'autumn', start: 154, end: 204 },
-]
-
-const FESTIVAL_DAYS = new Set([49, 50, 51, 52])
-
-function seasonForDay(day) {
-  return SEASONS.find((s) => day >= s.start && day <= s.end) ?? SEASONS[0]
-}
-
-function dowForDay(day) {
-  if (day <= 48) return ((day - 1) % 8) + 1
-  if (day <= 52) return day - 48
-  return ((day - 53) % 8) + 1
-}
-
-function noteMatchesDay(note, dayOfYear, absoluteDay) {
-  switch (note.recurrence) {
-    case 'none':
-      return note.absolute_day === absoluteDay
-    case 'annually':
-      return note.day_of_year === dayOfYear
-    case 'weekly':
-      return dowForDay(dayOfYear) === dowForDay(note.day_of_year)
-    case 'seasonally': {
-      const cs = seasonForDay(dayOfYear)
-      const ns = seasonForDay(note.day_of_year)
-      return (
-        cs.key === ns.key &&
-        dayOfYear - cs.start === note.day_of_year - ns.start
-      )
-    }
-  }
-  return false
-}
+import {
+  DAYS_PER_YEAR,
+  DAYS_PER_WEEK,
+  YEAR_OFFSET,
+  seasonForDay,
+  isFestivalDay,
+  noteMatchesDay,
+  dayOfYear,
+  yearFromDayCount,
+  weekOfYear,
+  dayOfWeek,
+} from '@/utils/calendar_utils.js'
 
 export default {
   name: 'TellondeCalendar',
@@ -261,7 +229,7 @@ export default {
     },
 
     internalYear() {
-      return Math.floor((this.viewingDay - 1) / DAYS_PER_YEAR) + 1
+      return yearFromDayCount(this.viewingDay)
     },
 
     currentYear() {
@@ -273,7 +241,7 @@ export default {
     },
 
     dayOfYear() {
-      return ((this.viewingDay - 1) % DAYS_PER_YEAR) + 1
+      return dayOfYear(this.viewingDay)
     },
 
     // Same as dayOfYear/currentYear but for the REAL current day, regardless
@@ -281,24 +249,18 @@ export default {
     // when browsing a different day (or, once cross-year browsing exists,
     // a different year).
     actualDayOfYear() {
-      return ((this.currentDay - 1) % DAYS_PER_YEAR) + 1
+      return dayOfYear(this.currentDay)
     },
     actualYear() {
-      return Math.floor((this.currentDay - 1) / DAYS_PER_YEAR) + 1 + YEAR_OFFSET
+      return yearFromDayCount(this.currentDay) + YEAR_OFFSET
     },
 
     weekOfYear() {
-      const d = this.dayOfYear
-      if (d <= 48) return Math.ceil(d / DAYS_PER_WEEK)
-      if (d <= 52) return null // halfweek — no week number
-      return 6 + Math.ceil((d - 52) / DAYS_PER_WEEK)
+      return weekOfYear(this.dayOfYear)
     },
 
     dayOfWeek() {
-      const d = this.dayOfYear
-      if (d <= 48) return ((d - 1) % DAYS_PER_WEEK) + 1
-      if (d <= 52) return d - 48 // halfweek day 1–4
-      return ((d - 53) % DAYS_PER_WEEK) + 1
+      return dayOfWeek(this.dayOfYear)
     },
 
     currentSeason() {
@@ -311,7 +273,7 @@ export default {
 
     noteEditorDayLabel() {
       if (!this.noteEditorDay) return ''
-      if (FESTIVAL_DAYS.has(this.noteEditorDay))
+      if (isFestivalDay(this.noteEditorDay))
         return `Spring Festival, Day ${this.noteEditorDay - 48}`
       const s = seasonForDay(this.noteEditorDay)
       return `${s.name}`
@@ -366,9 +328,7 @@ export default {
       this.noteDraft = { text: '', recurrence: 'none' }
     },
 
-    isFestivalDay(day) {
-      return FESTIVAL_DAYS.has(day)
-    },
+    isFestivalDay,
 
     notesForDay(day) {
       const absoluteDay = this.yearStart + day
@@ -395,7 +355,7 @@ export default {
     cellTitle(day) {
       const s = seasonForDay(day)
       let base
-      if (FESTIVAL_DAYS.has(day)) {
+      if (isFestivalDay(day)) {
         base = `Day ${day} · Spring Festival, Day ${day - 48} · ${s.name}`
       } else {
         const week =

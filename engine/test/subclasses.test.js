@@ -76,3 +76,13 @@ test('listSubclasses includes the original 4 built this session', () => {
     all.some((s) => s.class === 'Paladin' && s.name === 'Oath of the Crown')
   )
 })
+
+test('listSubclasses carries every always-prepared bonus-spell table, not just expanded_spell_list', () => {
+  const all = engine.listSubclasses()
+  const tempest = all.find((s) => s.name === 'Tempest Domain')
+  assert.ok(tempest.domain_spells_by_level, 'cleric domain spells')
+  const devotion = all.find((s) => s.name === 'Oath of Devotion')
+  assert.ok(devotion.oath_spells_by_level, 'paladin oath spells')
+  // and nothing unrelated leaks through
+  assert.strictEqual(tempest.features_by_level, undefined)
+})

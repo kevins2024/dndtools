@@ -503,6 +503,13 @@ import EnemyConditionsRow from '@/components/EnemyConditionsRow.vue'
 import EnemyAbilityScoreGrid from '@/components/EnemyAbilityScoreGrid.vue'
 import ActionEconomyRow from '@/components/ActionEconomyRow.vue'
 import ConcentrationCheckModal from '@/components/ConcentrationCheckModal.vue'
+import {
+  applyTrackedDamage,
+  applyTrackedHealing,
+  applyTrackedTempHp,
+  concentrationDC,
+} from '@/utils/hitPoints'
+import { crowdStrength } from '@/utils/houseRules'
 import { BugOff } from 'lucide-vue'
 import { STAT_KEYS, dnd } from '@/utils/dnd_utils.js'
 
@@ -682,12 +689,13 @@ export default {
     // crosses even thresholds of max — derived purely from HP + crowdSize,
     // no separate stored state.
     activeCrowdStrength() {
-      const size = this.activeEnemyMeta.crowdSize
-      if (!size || size <= 1) return null
       const hp = this.activeEnemyHp
-      if (!hp || !hp.maxHp) return null
-      const current = Math.max(0, hp.maxHp - hp.damage)
-      return Math.ceil((current / hp.maxHp) * size)
+      if (!hp) return null
+      return crowdStrength({
+        size: this.activeEnemyMeta.crowdSize,
+        maxHp: hp.maxHp,
+        damage: hp.damage,
+      })
     },
     bestiaryResults() {
       if (!this.bestiaryIndex || !this.bestiarySearch.trim()) return []
@@ -835,20 +843,13 @@ export default {
       if (!amount || amount <= 0 || !this.activeEntry) return
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
-      const hp = this.enemyHp[key]
-      const temp = hp.tempHp ?? 0
-      if (temp > 0) {
-        const absorbed = Math.min(temp, amount)
-        this.$set(this.enemyHp, key, {
-          ...hp,
-          damage: hp.damage + (amount - absorbed),
-          tempHp: temp - absorbed,
-        })
-        this.log(`${amount} damage (${absorbed} absorbed by temp HP)`)
-      } else {
-        this.$set(this.enemyHp, key, { ...hp, damage: hp.damage + amount })
-        this.log(`${amount} damage`)
-      }
+      const { hp, absorbed } = applyTrackedDamage(this.enemyHp[key], amount)
+      this.$set(this.enemyHp, key, hp)
+      this.log(
+        absorbed > 0
+          ? `${amount} damage (${absorbed} absorbed by temp HP)`
+          : `${amount} damage`
+      )
       // RAW: temp HP cushions HP loss but doesn't change how much damage
       // you TOOK — the concentration DC uses the full amount either way.
       // Reads the existing "Concentrating" condition (toggled via
@@ -867,7 +868,7 @@ export default {
         id: `${Date.now()}_${Math.random()}`,
         name,
         damage,
-        dc: Math.max(10, Math.floor(damage / 2)),
+        dc: concentrationDC(damage),
         mod,
       })
     },
@@ -887,22 +888,22 @@ export default {
       if (!amount || amount <= 0 || !this.activeEntry) return
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
-      const hp = this.enemyHp[key]
-      this.$set(this.enemyHp, key, {
-        ...hp,
-        damage: Math.max(0, hp.damage - amount),
-      })
+      this.$set(
+        this.enemyHp,
+        key,
+        applyTrackedHealing(this.enemyHp[key], amount).hp
+      )
       this.log(`healed ${amount}`)
     },
     applyEnemyTemp(amount) {
       if (!amount || amount <= 0 || !this.activeEntry) return
       const key = this.activeEntry.key
       this._ensureEnemyHp(key)
-      const hp = this.enemyHp[key]
-      this.$set(this.enemyHp, key, {
-        ...hp,
-        tempHp: Math.max(hp.tempHp ?? 0, amount),
-      })
+      this.$set(
+        this.enemyHp,
+        key,
+        applyTrackedTempHp(this.enemyHp[key], amount).hp
+      )
       this.log(`+${amount} temp HP`)
     },
     resetDamage() {

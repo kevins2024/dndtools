@@ -48,6 +48,7 @@ import {
 import {
   weaponStatMod as engineWeaponStatMod,
   gripDie as engineGripDie,
+  thrownDie as engineThrownDie,
   attackBonus as engineAttackBonus,
   attackBonusBreakdown as engineAttackBonusBreakdown,
   damageBonus as engineDamageBonus,
@@ -56,6 +57,22 @@ import {
   weaponProps as engineWeaponProps,
   isProficientWithWeapon as engineIsProficientWithWeapon,
 } from './weaponAttack.js'
+
+import {
+  sneakAttackDice as engineSneakAttackDice,
+  unarmedStrike as engineUnarmedStrike,
+  psychicBlades as enginePsychicBlades,
+} from './unarmedAttacks.js'
+
+import {
+  weaveDustForRoll as engineWeaveDustForRoll,
+  weaveDustEstimateRange as engineWeaveDustEstimateRange,
+} from './houseRules.js'
+
+import { abilityScoreBreakdown as engineAbilityScoreBreakdown } from './abilityScoreBreakdown.js'
+import { priorityAbilitiesForClass } from './quickBuild.js'
+import { isOneHandedWeapon, loadoutHands } from './weaponHands.js'
+import { normalizeItemSpellGrant as engineNormalizeItemSpellGrant } from './characterSpells.js'
 
 const HOMEBREW_WEAPON_PROPS = Object.fromEntries(
   (weaponTypesAndLanguages.weapon_types ?? []).map((w) => [w.id, w])
@@ -70,9 +87,6 @@ export const STAT_KEYS = [
   { key: 'cha', label: 'CHA' },
 ]
 
-// Ability score keys that live inside stat_bonuses but modify the score itself, not a derived bonus.
-const SCORE_BONUS_KEYS = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha'])
-
 // Short, plain-language reminders of what each ability actually governs —
 // for a tooltip on the ability-score pickers (New Character / Level Up),
 // aimed at players still learning the rules, not a rules-lawyer reference.
@@ -83,48 +97,6 @@ export const ABILITY_DESCRIPTIONS = {
   int: 'Investigation/Arcana/History/Nature/Religion checks; Wizard spell attacks & save DC.',
   wis: 'Perception/Insight/Medicine/Survival/Animal Handling checks; Cleric/Druid/Ranger spell attacks & save DC.',
   cha: 'Persuasion/Deception/Intimidation/Performance checks; Bard/Sorcerer/Warlock/Paladin spell attacks & save DC.',
-}
-
-// PHB's own "Quick Build" suggested ability priority per class (real RAW
-// guidance, not a guess) — melee classes list both str/dex since the book
-// itself treats finesse/ranged builds as equally valid, not a single right
-// answer. A class's actual spellcasting ability (tracked per-class in
-// engine/data, not duplicated here) should always be added on top of this by
-// the caller — see `dnd.priorityAbilitiesForClass`.
-const CLASS_QUICK_BUILD_ABILITIES = {
-  Artificer: ['int', 'dex', 'con'],
-  Barbarian: ['str', 'con'],
-  Bard: ['cha', 'dex'],
-  Cleric: ['wis', 'str'],
-  Druid: ['wis', 'con'],
-  Fighter: ['str', 'dex', 'con'],
-  Monk: ['dex', 'wis'],
-  Paladin: ['str', 'cha'],
-  Ranger: ['dex', 'wis'],
-  Rogue: ['dex'],
-  Sorcerer: ['cha', 'con'],
-  Warlock: ['cha', 'con'],
-  Wizard: ['int', 'con'],
-}
-
-// classData: a loaded class record (needs .name and, for casters, a
-// .spellcasting.ability field) — pass whatever the caller already has from
-// engine/data/classes rather than re-fetching. Returns an ordered, deduped
-// array of ability keys (e.g. ['cha', 'dex']), or [] if the class isn't
-// recognized.
-function priorityAbilitiesForClass(classData) {
-  if (!classData?.name) return []
-  const abilities = []
-  const seen = new Set()
-  const add = (a) => {
-    if (a && !seen.has(a)) {
-      seen.add(a)
-      abilities.push(a)
-    }
-  }
-  add(classData.spellcasting?.ability)
-  for (const a of CLASS_QUICK_BUILD_ABILITIES[classData.name] ?? []) add(a)
-  return abilities
 }
 
 export const dnd = {
@@ -172,45 +144,14 @@ export const dnd = {
     return Math.floor(Math.random() * 20) + 1
   },
 
-  // Weave Dust from Broken-Down Magic Items (house_rules.json) — pure given
-  // an item + a specific d20 roll, so the UI can both preview a range (rolls
-  // 2 and 19, the non-crit extremes) and commit one real roll on actual
-  // destruction. Returns null when the item has no recorded value_gp — there's
-  // nothing to calculate from, not a silent 0.
+  // Weave Dust from Broken-Down Magic Items (house_rules.json) — rule lives
+  // in engine/rules/houseRules.js.
   weaveDustForRoll(item, roll) {
-    if (!item?.value_gp) return null
-    let base = item.value_gp / 15
-    if (item.charges_max) {
-      const current = item.charges_current ?? item.charges_max
-      const missingFraction = 1 - current / item.charges_max
-      base *= 1 - 0.3 * missingFraction
-      if (
-        item.charges_recharge_type === 'material' &&
-        item.charges_recharge_material_cost_gp
-      ) {
-        const missingCharges = item.charges_max - current
-        base -= (missingCharges * item.charges_recharge_material_cost_gp) / 15
-      }
-    }
-    let adjusted
-    if (roll === 20) adjusted = base * 2
-    else if (roll === 1) adjusted = base / 2
-    else {
-      const pct = roll >= 11 ? roll - 10 : roll - 11
-      adjusted = base * (1 + pct / 100)
-    }
-    return Math.max(0, Math.floor(adjusted))
+    return engineWeaveDustForRoll(item, roll)
   },
 
-  // {low, high} using the non-crit roll extremes (2 and 19) — an at-a-glance
-  // preview before actually destroying the item, which rolls for real
-  // (including the crit 1/20 cases) via weaveDustForRoll.
   weaveDustEstimateRange(item) {
-    if (!item?.value_gp) return null
-    return {
-      low: dnd.weaveDustForRoll(item, 2),
-      high: dnd.weaveDustForRoll(item, 19),
-    }
+    return engineWeaveDustEstimateRange(item)
   },
 
   mod(score) {
@@ -263,66 +204,11 @@ export const dnd = {
     return map[actionType] ?? 'Passive'
   },
 
-  // Normalizes one entry of an item's `spells_granted` array to a common
-  // shape, regardless of which authoring style it uses:
-  //   - a bare string (legacy/simple grant — exactly one spell, no
-  //     differentiated cost, item-level action_type applies)
-  //   - an object (see engine/CHECKLIST.md's item-granted-spells writeup):
-  //       name                          — spell name
-  //       action_type                   — 'action'|'bonus_action'|'reaction'|'free',
-  //                                       the REAL cost of casting THIS spell via
-  //                                       this item (may differ from the spell's
-  //                                       own casting_time, and from other spells
-  //                                       on the same item)
-  //       charge_cost                   — number, or {min,max} when the player
-  //                                       chooses how many of the item's own
-  //                                       charges_current/charges_max pool to
-  //                                       spend at cast time (e.g. a wand's
-  //                                       variable-level upcast)
-  //       uses_max / uses_current       — an independent per-spell use count,
-  //                                       NOT drawn from the item's shared
-  //                                       charge pool (same shape as
-  //                                       weapon_effects' uses_max/uses_current)
-  //       recharge                      — when this spell's own uses_current
-  //                                       resets (see rechargeLabel) — only
-  //                                       meaningful alongside uses_max
-  //       material_component_required   — true if the wielder must still
-  //                                       provide/consume the spell's own real
-  //                                       material component (per
-  //                                       published_spells.json) even when cast
-  //                                       via the item; omitted/false means the
-  //                                       item itself substitutes, per the DMG's
-  //                                       general "no separate components
-  //                                       needed" rule for magic item casting
-  //       choice_group                  — links 2+ entries that share ONE use
-  //                                       or charge; casting any one of them
-  //                                       spends the shared resource (e.g. a
-  //                                       Necklace of Prayer Beads' Curing bead
-  //                                       offering a choice of Cure Wounds or
-  //                                       Lesser Restoration from the same use)
+  // Normalizes one entry of an item's `spells_granted` array (bare string or
+  // richer grant object) to a common shape — see
+  // engine/rules/5e/characterSpells.js for the field-by-field contract.
   normalizeItemSpellGrant(entry, item) {
-    if (typeof entry === 'string') {
-      return {
-        name: entry,
-        actionType: item?.action_type ?? null,
-        chargeCost: null,
-        usesMax: null,
-        usesCurrent: null,
-        recharge: null,
-        materialComponentRequired: false,
-        choiceGroup: null,
-      }
-    }
-    return {
-      name: entry.name,
-      actionType: entry.action_type ?? item?.action_type ?? null,
-      chargeCost: entry.charge_cost ?? null,
-      usesMax: entry.uses_max ?? null,
-      usesCurrent: entry.uses_current ?? null,
-      recharge: entry.recharge ?? null,
-      materialComponentRequired: entry.material_component_required === true,
-      choiceGroup: entry.choice_group ?? null,
-    }
+    return engineNormalizeItemSpellGrant(entry, item)
   },
 
   schoolAbbr(school) {
@@ -737,6 +623,16 @@ export const dnd = {
     )
   },
 
+  // Thrown-attack die when it differs from the current grip's die, else null.
+  thrownDie(character, weapon, partyItems = []) {
+    return engineThrownDie(
+      character,
+      weapon,
+      dnd._equippedOnly(character, partyItems),
+      HOMEBREW_WEAPON_PROPS
+    )
+  },
+
   damageBonus(character, weapon, partyItems = []) {
     return engineDamageBonus(
       character,
@@ -786,27 +682,14 @@ export const dnd = {
       .map((w) => dnd.weaponSummary(character, w, partyItems))
   },
 
-  // Current Sneak Attack dice, computed from actual Rogue class level rather
-  // than baked into a feature name (which drifts the moment the character
-  // levels up and nobody remembers to hand-edit the string — the SRD's own
-  // description text just says "see the Sneak Attack column of the Rogue
-  // table," which is useless here since this app has no such table).
-  // RAW: 1d6 at 1st, +1d6 every 2 Rogue levels — ceil(rogueLevel / 2).
-  // Returns null for a non-Rogue.
+  // Current Sneak Attack dice ("3d6") — rule lives in
+  // engine/rules/5e/unarmedAttacks.js. null for a non-Rogue.
   sneakAttackDice(character) {
-    const rogueLevel = (character.classes ?? []).find(
-      (c) => c.name === 'Rogue'
-    )?.level
-    if (!rogueLevel) return null
-    return `${Math.ceil(rogueLevel / 2)}d6`
+    return engineSneakAttackDice(character)
   },
 
   // Rich weapon rows for the combat panel UI — includes atkTooltip, dmgTooltip, and extras.
   buildWeaponRows(character, partyItems = []) {
-    const { stats, bonuses } = dnd.resolveStats(character, partyItems)
-    const strMod = dnd.mod(stats.str)
-    const dexMod = dnd.mod(stats.dex)
-    const prof = dnd._prof(character, bonuses)
     const equippedItems = partyItems.filter(
       (i) => i.equipped_by === character.name
     )
@@ -817,6 +700,11 @@ export const dnd = {
     // this exact check (AC's Dual Wielder calc uses it) but buildWeaponRows
     // never used it, so switching sets never actually changed what showed
     // up here. Real bug found 2026-09-15.
+    // Main/off hand for the one-handed weapons in this loadout (rule lives
+    // in engine/rules/5e/weaponHands.js). handAmbiguous: two or more
+    // one-handers in hand with hands not fully assigned — the row nudges.
+    const hands = loadoutHands(character, equippedItems)
+
     const summaries = equippedItems
       .filter((i) => i.type === 'weapon' && dnd.isActiveEquipped(i, character))
       .map((w) => {
@@ -846,25 +734,21 @@ export const dnd = {
             ]
           : []
 
-        // A thrown attack always uses the weapon's base one-handed die, even
-        // if it's currently gripped two-handed for melee — real RAW, the
-        // versatile bonus die only applies to a melee attack made with two
-        // hands (see the weapon detail popup, which already shows this
-        // split). `gripDie()` above answers "what die for however it's
-        // CURRENTLY held," which is right for the main melee number but
-        // wrong for a thrown attack whenever that current grip is 2H. Only
-        // surfaced when it actually differs from the main line — a
-        // thrown-and-currently-1H weapon has nothing extra worth showing.
-        const thrownDie = props.thrown ? props.damage_dice : null
+        // Thrown uses the base one-handed die even when gripped 2H — rule
+        // lives in engine weaponAttack.js's thrownDie; null when it'd just
+        // repeat the main line.
         const mainDamage = `${die}${dnd.signed(dmgBonus)}`
-        const thrownDamage =
-          thrownDie && thrownDie !== die
-            ? `${thrownDie}${dnd.signed(dmgBonus)}`
-            : null
+        const thrownDieValue = dnd.thrownDie(character, w, partyItems)
+        const thrownDamage = thrownDieValue
+          ? `${thrownDieValue}${dnd.signed(dmgBonus)}`
+          : null
 
+        const oneHanded = isOneHandedWeapon(w)
         return {
           id: w.id,
           name: w.name,
+          hand: oneHanded ? w.hand ?? null : null,
+          handAmbiguous: oneHanded && hands.ambiguous && !w.hand,
           attack: dnd.signed(atkTotal),
           damage: mainDamage,
           thrownDamage,
@@ -886,98 +770,42 @@ export const dnd = {
         }
       })
 
-    if (character.martial_arts_die) {
-      const level = character.level ?? 1
-      const die =
-        character.martial_arts_die === 'auto'
-          ? level >= 17
-            ? '1d10'
-            : level >= 11
-            ? '1d8'
-            : level >= 5
-            ? '1d6'
-            : '1d4'
-          : character.martial_arts_die
-      const statMod = Math.max(strMod, dexMod)
-      const unarmedAtk = bonuses.unarmed_attack ?? 0
-      const unarmedDmg = bonuses.unarmed_damage ?? 0
-      const atkTotal = statMod + prof + unarmedAtk
-      const dmgTotal = statMod + unarmedDmg
-      const atkParts = [
-        `Martial Arts ${dnd.signed(statMod)}`,
-        `Prof ${dnd.signed(prof)}`,
-      ]
-      if (unarmedAtk) atkParts.push(`Items ${dnd.signed(unarmedAtk)}`)
-      atkParts.push(`= ${dnd.signed(atkTotal)}`)
-      const dmgParts = [die, `STR/DEX ${dnd.signed(statMod)}`]
-      if (unarmedDmg) dmgParts.push(`Items ${dnd.signed(unarmedDmg)}`)
+    // Main hand first, then off hand, then everything else (stable sort, so
+    // unassigned weapons keep their existing order).
+    const handRank = (row) =>
+      row.hand === 'main' ? 0 : row.hand === 'off' ? 1 : 2
+    summaries.sort((a, b) => handRank(a) - handRank(b))
 
-      const extras = equippedItems
-        .filter((i) => i.extra_damage?.applies_to === 'unarmed')
-        .map((i) => ({
-          source: i.name,
-          die: i.extra_damage.die,
-          type: i.extra_damage.type,
-          trigger: i.extra_damage.trigger ?? 'on hit',
-        }))
+    // Unarmed Strike (Martial Arts) and Soulknife Psychic Blades aren't
+    // equipped items, so the pass above never sees them — their rules live
+    // in engine/rules/5e/unarmedAttacks.js; this just shapes them into rows.
+    const equippedForEngine = dnd._equippedOnly(character, partyItems)
 
+    const unarmed = engineUnarmedStrike(character, equippedForEngine)
+    if (unarmed) {
       summaries.unshift({
-        name: 'Unarmed Strike',
-        attack: dnd.signed(atkTotal),
-        damage: `${die}${dnd.signed(dmgTotal)}`,
+        name: unarmed.name,
+        attack: dnd.signed(unarmed.attack.value),
+        damage: `${unarmed.die}${dnd.signed(unarmed.damage.value)}`,
         type: 'melee',
-        atkTooltip: atkParts.join(' + ').replace('+ =', '='),
-        dmgTooltip: dmgParts.join(' + '),
-        extras,
+        atkTooltip: dnd._formatBreakdown(unarmed.attack),
+        dmgTooltip: `${unarmed.die}\n${dnd._formatBreakdown(unarmed.damage)}`,
+        extras: unarmed.extras,
       })
     }
 
-    // Soulknife Rogue's Psychic Blades — manifested weapons, not real items,
-    // so they never show up via the equipped-items pass above. RAW: the
-    // damage die itself (1d6 main / 1d4 bonus-action second blade) does NOT
-    // scale with level — confirmed against dnd5e.wikidot.com and a second
-    // source; only the separate Psionic Energy die *resource pool* scales,
-    // which is a different mechanic not modeled here. Finesse (best of
-    // STR/DEX), thrown 60ft.
-    if (character.psychic_blades) {
-      const statMod = Math.max(strMod, dexMod)
-      const bladeAtkBonus = bonuses.psychic_blade_attack ?? 0
-      const bladeDmgBonus = bonuses.psychic_blade_damage ?? 0
-      const atkTotal = statMod + prof + bladeAtkBonus
-      const atkParts = [
-        `Finesse ${dnd.signed(statMod)}`,
-        `Prof ${dnd.signed(prof)}`,
-      ]
-      if (bladeAtkBonus) atkParts.push(`Items ${dnd.signed(bladeAtkBonus)}`)
-      atkParts.push(`= ${dnd.signed(atkTotal)}`)
-      const dmgTotal = statMod + bladeDmgBonus
-
-      const buildDmgParts = (die) => {
-        const parts = [die, `Finesse ${dnd.signed(statMod)}`]
-        if (bladeDmgBonus) parts.push(`Items ${dnd.signed(bladeDmgBonus)}`)
-        return parts
-      }
-
+    for (const blade of enginePsychicBlades(character, equippedForEngine) ??
+      []) {
       summaries.push({
-        id: 'psychic-blade-main',
-        name: 'Psychic Blade',
-        attack: dnd.signed(atkTotal),
-        damage: `1d6${dnd.signed(dmgTotal)}`,
+        id: blade.id,
+        name: blade.name,
+        attack: dnd.signed(blade.attack.value),
+        damage: `${blade.die}${dnd.signed(blade.damage.value)}`,
         type: 'melee',
-        atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
-        dmgTooltip: buildDmgParts('1d6').join(' + '),
+        atkTooltip: dnd._formatBreakdown(blade.attack),
+        dmgTooltip: `${blade.die}\n${dnd._formatBreakdown(blade.damage)}`,
         extras: [],
-        thrown: { normal: 60, long: 60 },
-      })
-      summaries.push({
-        id: 'psychic-blade-bonus',
-        name: 'Psychic Blade (bonus action)',
-        attack: dnd.signed(atkTotal),
-        damage: `1d4${dnd.signed(dmgTotal)}`,
-        type: 'melee',
-        atkTooltip: atkParts.join(' + ').replace(' + =', ' ='),
-        dmgTooltip: buildDmgParts('1d4').join(' + '),
-        extras: [],
+        ...(blade.thrown ? { thrown: blade.thrown } : {}),
       })
     }
 
@@ -1012,91 +840,36 @@ export const dnd = {
   // DISPLAY HELPERS
   // ─────────────────────────────────────────────
 
-  // Stat block for templates — scores and mods after all item effects.
+  // Stat block for templates — scores and mods after all item effects. The
+  // attribution (which item/feature/ASI contributed what) comes from
+  // engine/rules/5e/abilityScoreBreakdown.js; this only turns it into this
+  // grid's tooltip string.
   statArray(character, partyItems = []) {
-    const { stats } = dnd.resolveStats(character, partyItems)
-    const baseScores = {
-      str: character.stat_str ?? 10,
-      dex: character.stat_dex ?? 10,
-      con: character.stat_con ?? 10,
-      int: character.stat_int ?? 10,
-      wis: character.stat_wis ?? 10,
-      cha: character.stat_cha ?? 10,
-    }
-    const equipped = [...(character.items ?? []), ...partyItems].filter(
-      (i) => i.equipped_by === character.name
+    const breakdown = engineAbilityScoreBreakdown(
+      character,
+      dnd._equippedOnly(character, partyItems)
     )
-    const effects = {}
-    for (const item of equipped) {
-      for (const [key, val] of Object.entries(item.stat_overrides ?? {})) {
-        ;(effects[key] = effects[key] ?? []).push({
-          name: item.name,
-          type: 'override',
-          value: val,
-        })
-      }
-      for (const [key, val] of Object.entries(item.stat_bonuses ?? {})) {
-        if (!SCORE_BONUS_KEYS.has(key)) continue
-        ;(effects[key] = effects[key] ?? []).push({
-          name: item.name,
-          type: 'bonus',
-          value: val,
-        })
-      }
-    }
-    for (const feature of character.features ?? []) {
-      for (const [key, val] of Object.entries(feature.stat_bonuses ?? {})) {
-        if (!SCORE_BONUS_KEYS.has(key)) continue
-        ;(effects[key] = effects[key] ?? []).push({
-          name: feature.name,
-          type: 'bonus',
-          value: val,
-        })
-      }
-    }
     return STAT_KEYS.map(({ key, label }) => {
-      const score = stats[key] ?? 10
-      const fx = effects[key]
-      // ability_score_history — real attributable ASI/feat/racial-bonus
-      // entries (see engine/rules/diffLevelUp.js + NewCharacterTool.vue's
-      // abilityScoreHistorySeed). stat_str etc. still mean "the final
-      // number" (unchanged, additive-only) — history is purely a display
-      // breakdown of how that number was built, so the implied base is
-      // whatever's left after subtracting every recorded history amount.
-      // Empty/absent on every character built before this existed, in which
-      // case this degrades to exactly the old no-history tooltip.
-      const history = (character.ability_score_history ?? []).filter(
-        (h) => h.ability === key
-      )
-      const historySum = history.reduce((sum, h) => sum + h.amount, 0)
-      const modified = !!fx?.length || !!history.length
+      const b = breakdown.find((x) => x.key === key)
+      const modStr = dnd.signed(b.mod)
       let tooltip
-      if (!modified) {
-        tooltip = `${label}: ${baseScores[key]} (no modifiers) = ${dnd.signed(
-          dnd.mod(score)
-        )}`
-      } else if (fx?.some((e) => e.type === 'override')) {
-        const ov = fx.find((e) => e.type === 'override')
-        tooltip = `${label}: set to ${ov.value} by ${ov.name} = ${dnd.signed(
-          dnd.mod(score)
-        )}`
+      if (!b.modified) {
+        tooltip = `${label}: ${b.base} (no modifiers) = ${modStr}`
+      } else if (b.override) {
+        tooltip = `${label}: set to ${b.override.value} by ${b.override.name} = ${modStr}`
       } else {
-        const impliedBase = baseScores[key] - historySum
-        const parts = [`${label}: ${impliedBase} base`]
-        for (const h of history) {
-          parts.push(`+${h.amount} (${h.source}, level ${h.level_gained})`)
-        }
-        for (const e of fx ?? []) parts.push(`+${e.value} (${e.name})`)
-        parts.push(`= ${score} (${dnd.signed(dnd.mod(score))})`)
+        const parts = [`${label}: ${b.base} base`]
+        for (const c of b.contributions) parts.push(`+${c.amount} (${c.label})`)
+        parts.push(`= ${b.score} (${modStr})`)
         tooltip = parts.join(' · ')
       }
       return {
         key,
         label,
-        score,
-        mod: dnd.mod(score),
-        modStr: dnd.signed(dnd.mod(score)),
-        modified,
+        score: b.score,
+        mod: b.mod,
+        modStr,
+        modified: b.modified,
         tooltip,
       }
     })
