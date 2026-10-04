@@ -1069,6 +1069,21 @@
     "flair": "The first town on this route that feels like it exists because of the road, not despite it."
   },
   {
+    "name": "Calbrun",
+    "type": "town",
+    "region": "Torwald",
+    "description": "Harbor town near the Aranwald border, the southern Torwald road (to Argentveil and Filian's Keep), and the river that crosses the northern road. Extremely rainy and the ground is almost pure stone with poor drainage. Everything is stone with slate roofs, narrow streets running down to the water, and walls repaired so many times the repairs have repairs. It's built to last and to drain, with no thatch and no grand squares. Some underground drainage channels exist but most are more like ditches and gutters. The cliffs at the harbor are only 6-12 feet tall and they've got mule-run cranes to help with loading.",
+    "notes": "",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Unnamed trading post / inn",
+        "description": "Plain-fronted, no sign, but clearly does steady business — the only real gathering point in town. Combination trading post, inn, and stables. Stable hand here confirmed Balcris's recent passage and his questions about the old shrine north of the fork."
+      }
+    ],
+    "flair": ""
+  },
+  {
     "name": "Feldtazur",
     "type": "city",
     "region": "Aranwald",

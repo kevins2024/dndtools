@@ -140,7 +140,7 @@
         "name": "Superiority Dice (d8)",
         "label": "Sup",
         "max": 5,
-        "current": 4,
+        "current": 5,
         "recharge": "short_rest"
       }
     ],
@@ -3606,7 +3606,7 @@
       }
     },
     "active_effects": [],
-    "exhaustion_level": 1,
+    "exhaustion_level": 0,
     "conditions": [],
     "notes": "One level away from Twinkling Constellations.",
     "persona_notes": [
@@ -7497,7 +7497,7 @@
     ],
     "active_effects": [],
     "conditions": [],
-    "exhaustion_level": 1,
+    "exhaustion_level": 0,
     "classes": [
       {
         "name": "Bard",
@@ -7522,7 +7522,7 @@
       },
       "level_4": {
         "max": 3,
-        "current": 2
+        "current": 3
       },
       "level_5": {
         "max": 1,
