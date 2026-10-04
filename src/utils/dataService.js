@@ -31,6 +31,16 @@ const staticTables = {
   lore,
 }
 
+// party_items.json stores items by reference into the item library; the
+// server hydrates them, so the static copy has to be hydrated here (lazily —
+// the library is a large separate chunk, see utils/itemLibrary.js).
+async function staticTable(table) {
+  const rows = staticTables[table]
+  if (table !== 'party_items') return rows
+  const { hydratePartyItems } = await import('@/utils/itemLibrary')
+  return hydratePartyItems(rows)
+}
+
 const dataService = {
   tables: Object.keys(staticTables),
 
@@ -49,10 +59,10 @@ const dataService = {
         console.warn(
           `dataService: server unavailable, falling back to static data for '${table}'`
         )
-        return staticTables[table]
+        return staticTable(table)
       }
     }
-    return staticTables[table]
+    return staticTable(table)
   },
 
   // `base` is the last-loaded/last-synced snapshot of this table (used as

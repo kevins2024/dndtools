@@ -183,3 +183,16 @@ test('thrownDie: only surfaces when it differs from the current grip die', () =>
   const sword = { name: 'Longsword', type: 'weapon', weapon_category: 'longsword', slot: 'melee1h' }
   assert.strictEqual(thrownDie(char, sword, [sword]), null) // not thrown
 })
+
+test('weaponProps: silvered is a per-item property, off unless the item says so', () => {
+  const { weaponProps } = require('../rules/5e/weapons')
+  assert.strictEqual(
+    weaponProps({ weapon_category: 'shortsword', slot: 'melee1h' }).silvered,
+    false
+  )
+  assert.strictEqual(
+    weaponProps({ weapon_category: 'shortsword', slot: 'melee1h', silvered: true })
+      .silvered,
+    true
+  )
+})

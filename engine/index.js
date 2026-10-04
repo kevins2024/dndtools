@@ -33,6 +33,19 @@ const { resolveEffectiveScores } = require('./rules/5e/abilityScores')
 const { loadFeat, isFeatGrantedSpell } = require('./rules/5e/grants')
 const { featureMechanics } = require('./rules/5e/featureMechanics')
 const {
+  lookup: itemLookup,
+  listItemCatalog,
+  autoLinkItem,
+  matchLibraryEntry,
+} = require('./rules/5e/itemCatalog')
+const {
+  hydrateItem,
+  dehydrateItem,
+  hydrateItems,
+  dehydrateItems,
+  overridesOf,
+} = require('./rules/5e/itemHydration')
+const {
   meetsFeatPrerequisites,
   evaluatePrerequisite,
 } = require('./rules/5e/featPrerequisites')
@@ -171,4 +184,13 @@ module.exports = {
   buildCombatant,
   toEncounterData,
   listRoles,
+  itemLookup,
+  listItemCatalog,
+  autoLinkItem,
+  matchLibraryEntry,
+  hydrateItem,
+  dehydrateItem,
+  hydrateItems,
+  dehydrateItems,
+  overridesOf,
 }

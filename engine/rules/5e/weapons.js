@@ -43,6 +43,12 @@ function weaponProps(weapon, homebrewWeaponTypes = {}) {
     versatile: weapon.versatile ?? base.versatile ?? false,
     thrown: weapon.thrown ?? base.thrown ?? null,
     returning: weapon.returning ?? false,
+    // PHB p. 148: a silvered weapon overcomes the damage resistance (or
+    // immunity) some creatures — lycanthropes, certain devils — have to
+    // nonmagical weapons. A property of this particular item, not of the
+    // weapon type, so it's read off the item. The engine doesn't apply it
+    // (resistance lives on the target), it just tracks and shows it.
+    silvered: weapon.silvered === true,
   }
 }
 

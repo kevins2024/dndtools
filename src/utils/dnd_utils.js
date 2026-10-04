@@ -758,6 +758,7 @@ export const dnd = {
           extras,
           thrown: props.thrown,
           returning: props.returning,
+          silvered: props.silvered,
           // Versatile grip (1H/2H) has no visible indicator anywhere in the
           // combat view — only CharacterInventory's own grip-toggle button
           // showed it. Real gap found 2026-09-15. `w.slot` (not just

@@ -92,6 +92,12 @@
                         title="Returning — flies back to the wielder's hand immediately after it is thrown"
                         >Returning</span
                       >
+                      <span
+                        v-if="row.silvered"
+                        class="weapon-tag-badge weapon-tag-silvered"
+                        title="Silvered — overcomes the damage resistance/immunity to nonmagical weapons that creatures like lycanthropes and some devils have (PHB p. 148)"
+                        >Silvered</span
+                      >
                     </td>
                     <td class="col-num">
                       <span class="has-tip" :title="row.atkTooltip">{{
@@ -310,6 +316,12 @@
                   class="weapon-tag-badge weapon-tag-returning"
                   title="Returning — flies back to the wielder's hand immediately after it is thrown"
                   >Returning</span
+                >
+                <span
+                  v-if="row.silvered"
+                  class="weapon-tag-badge weapon-tag-silvered"
+                  title="Silvered — overcomes the damage resistance/immunity to nonmagical weapons that creatures like lycanthropes and some devils have (PHB p. 148)"
+                  >Silvered</span
                 >
               </td>
               <td class="col-num">
@@ -743,6 +755,11 @@ export default {
   font-size: 0.7em;
   color: var(--color-text-low);
   white-space: nowrap;
+}
+
+.weapon-tag-silvered {
+  color: var(--color-text-med, var(--color-text-low));
+  border-color: #b8c2cc;
 }
 
 .weapon-tag-returning {

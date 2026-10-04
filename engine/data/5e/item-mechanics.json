@@ -1,0 +1,1258 @@
+{
+  "alchemical-dagger": {
+    "weapon_effects": [
+      {
+        "name": "Alchemical Coating",
+        "type": "weapon_effect",
+        "description": "Dip the blade into a liquid to identify its properties within 1 round. The blade retains a coating of that liquid — the next hit with this dagger delivers the substance to the target, for better or worse."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "dagger",
+    "slot": "melee1h"
+  },
+  "alchemical-light-crossbow": {
+    "battle_effect": true,
+    "weapon_category": "light crossbow",
+    "slot": "ranged2h"
+  },
+  "alchemical-light-crossbow-party-copy": {
+    "weapon_category": "light crossbow",
+    "slot": "ranged2h"
+  },
+  "amulet-of-health": {
+    "stat_overrides": {
+      "con": 19
+    },
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "amulet-of-poison-immunity": {
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "amulet-of-proof-against-detection-and-location": {
+    "slot": "neck"
+  },
+  "amulet-of-restoration": {
+    "action_type": "bonus_action",
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "amulet-of-the-devout": {
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "bag-of-holding": {
+    "slot": "none"
+  },
+  "belt-of-constitution": {
+    "stat_overrides": {
+      "con": 18
+    },
+    "battle_effect": true,
+    "slot": "waist"
+  },
+  "belt-of-dwarvenkind": {
+    "stat_bonuses": {
+      "con": 2,
+      "darkvision": 60
+    },
+    "battle_effect": true,
+    "slot": "waist"
+  },
+  "belt-of-giant-strength": {
+    "battle_effect": true,
+    "slot": "waist"
+  },
+  "berserkers-fang-1": {
+    "stat_bonuses": {
+      "attack": 1
+    },
+    "battle_effect": true,
+    "weapon_category": "greataxe",
+    "slot": "melee2h"
+  },
+  "blackwood-wand-focus": {
+    "stat_bonuses": {
+      "spell_attack": 1,
+      "spell_save_dc": 1
+    },
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "blueflame-rapier-2": {
+    "weapon_effects": [
+      {
+        "name": "Blue-Flame Blade",
+        "type": "weapon_effect",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "Once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage. Homebrew, based on the Green-Flame Blade cantrip with the spellcasting-modifier scaling dropped (Vaz has no spellcasting ability to scale it off) and the always-available cantrip cadence swapped for a once-per-short-rest weapon charge instead."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "rapier",
+    "slot": "melee1h"
+  },
+  "bone-ring-of-weapon-retention": {
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "boots-of-elvenkind": {
+    "slot": "feet"
+  },
+  "boots-of-speed": {
+    "action_type": "bonus_action",
+    "battle_effect": true,
+    "slot": "feet"
+  },
+  "boots-of-the-tireless-north": {
+    "slot": "feet"
+  },
+  "boots-of-the-winterlands": {
+    "battle_effect": true,
+    "slot": "feet"
+  },
+  "bow-grip": {
+    "slot": "none"
+  },
+  "bracer-of-pressing-momentum": {
+    "features_granted": [
+      "Press Momentum"
+    ],
+    "action_type": "reaction",
+    "battle_effect": true,
+    "slot": "wrists"
+  },
+  "bracer-of-steady-aim": {
+    "stat_bonuses": {
+      "ranged_attack": 1
+    },
+    "battle_effect": true,
+    "slot": "wrists"
+  },
+  "bracers-of-archery": {
+    "stat_bonuses": {
+      "ranged_damage": 2
+    },
+    "battle_effect": true,
+    "slot": "wrists"
+  },
+  "bracers-of-defense": {
+    "unarmored_stat_bonuses": {
+      "ac": 2
+    },
+    "slot": "wrists"
+  },
+  "bracers-of-spell-mastery": {
+    "stat_bonuses": {
+      "spell_save_dc": 2
+    },
+    "battle_effect": true,
+    "slot": "wrists"
+  },
+  "bracers-of-spell-storing": {
+    "charges_max": 5,
+    "charges_unit": "spell_levels",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "wrists"
+  },
+  "bracers-of-swiftness": {
+    "stat_bonuses": {
+      "speed": 10
+    },
+    "action_type": "bonus_action",
+    "battle_effect": true,
+    "slot": "wrists"
+  },
+  "breastplate-of-planes": {
+    "battle_effect": true,
+    "armor_type": "breastplate",
+    "slot": "body"
+  },
+  "breastplate-of-the-broken-scale": {
+    "features_granted": [
+      "Stormbreak Reserve"
+    ],
+    "charges_max": 1,
+    "charges_recharge": "none",
+    "action_type": "bonus_action",
+    "battle_effect": true,
+    "armor_type": "breastplate",
+    "slot": "body"
+  },
+  "bright-red-cloak": {
+    "stat_bonuses": {
+      "cha": 1
+    },
+    "battle_effect": false,
+    "slot": "shoulders"
+  },
+  "brooch-of-shielding": {
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "carved-bone-totem": {
+    "slot": "held"
+  },
+  "ceremonial-horn": {
+    "slot": "none"
+  },
+  "circlet-of-mental-fortress": {
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "circlet-of-scorching-ray-3": {
+    "spells_granted": [
+      {
+        "name": "Scorching Ray",
+        "action_type": "action",
+        "charge_cost": 1
+      }
+    ],
+    "charges_max": 3,
+    "charges_recharge": "daily",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "cloak-of-arachnida": {
+    "spells_granted": [
+      {
+        "name": "Web",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ],
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "back"
+  },
+  "cloak-of-displacement": {
+    "battle_effect": true,
+    "slot": "back"
+  },
+  "cloak-of-elvenkind": {
+    "battle_effect": true,
+    "slot": "back"
+  },
+  "cloak-of-invisibility": {
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "back"
+  },
+  "cloak-of-protection": {
+    "stat_bonuses": {
+      "ac": 1,
+      "saving_throws": 1
+    },
+    "battle_effect": true,
+    "slot": "back"
+  },
+  "cloak-of-the-manta-ray": {
+    "slot": "back"
+  },
+  "cloak-of-unremarkability": {
+    "slot": "back"
+  },
+  "clockwork-distraction-device": {
+    "slot": "none"
+  },
+  "coin-of-truth": {
+    "slot": "none"
+  },
+  "cold-dagger-2": {
+    "weapon_effects": [
+      {
+        "name": "Chilling Strike",
+        "type": "weapon_effect",
+        "description": "On a hit, deals an extra 1d6 cold damage and the target's speed is reduced by 10ft until the start of its next turn."
+      }
+    ],
+    "battle_effect": true,
+    "extra_damage": {
+      "die": "1d6",
+      "type": "cold",
+      "applies_to": "weapon",
+      "trigger": "on hit"
+    },
+    "weapon_category": "dagger",
+    "slot": "melee1h"
+  },
+  "cold-valley-axe": {
+    "spells_granted": [
+      {
+        "name": "Smite From Afar",
+        "action_type": "bonus_action"
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "battleaxe",
+    "slot": "melee1h"
+  },
+  "concentration-robes": {
+    "slot": "body"
+  },
+  "curved-blade-2": {
+    "weapon_effects": [
+      {
+        "name": "Cleaving Edge",
+        "type": "weapon_effect",
+        "description": "On a critical hit, this weapon deals a flat 2d6 slashing damage instead of doubling its damage dice."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "scimitar",
+    "slot": "melee1h"
+  },
+  "dagger-of-pressing-momentum": {
+    "weapon_effects": [
+      {
+        "name": "Press Momentum",
+        "type": "weapon_effect",
+        "action_type": "reaction",
+        "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "dagger",
+    "slot": "melee1h"
+  },
+  "eight-unknown-coins": {
+    "slot": "none"
+  },
+  "elemental-resistance-robes": {
+    "slot": "body"
+  },
+  "everlasting-blue-candles": {
+    "slot": "none"
+  },
+  "flash-bomb": {
+    "slot": "none"
+  },
+  "full-plate-2-grey-green": {
+    "battle_effect": true,
+    "armor_type": "plate",
+    "slot": "body"
+  },
+  "gauntlet-of-the-sundering-blow": {
+    "features_granted": [
+      "Sundering Strike"
+    ],
+    "charges_max": 1,
+    "charges_recharge": "short_rest",
+    "action_type": "free",
+    "battle_effect": true,
+    "slot": "hands"
+  },
+  "gauntlets-of-ogre-power": {
+    "stat_overrides": {
+      "str": 19
+    },
+    "battle_effect": true,
+    "slot": "hands"
+  },
+  "gem-of-seeing": {
+    "charges_max": 3,
+    "charges_recharge": "1d3",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "gloves-of-dueling": {
+    "stat_bonuses": {
+      "melee_attack": 2
+    },
+    "battle_effect": true,
+    "slot": "hands"
+  },
+  "gloves-of-missile-snaring": {
+    "features_granted": [
+      "Missile Snaring"
+    ],
+    "action_type": "reaction",
+    "battle_effect": true,
+    "slot": "hands"
+  },
+  "gloves-of-spellcasting": {
+    "battle_effect": true,
+    "slot": "hands"
+  },
+  "gloves-of-thievery": {
+    "stat_bonuses": {
+      "skill_SleightOfHand": 5
+    },
+    "slot": "hands"
+  },
+  "goggles-of-night": {
+    "stat_bonuses": {
+      "darkvision": 60
+    },
+    "slot": "head"
+  },
+  "greatsword-3": {
+    "weapon_effects": [
+      {
+        "name": "Toppling Blow",
+        "type": "weapon_effect",
+        "description": "On a critical hit, the target must succeed on a Strength saving throw or be knocked prone."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "greatsword",
+    "slot": "melee2h"
+  },
+  "green-cloak-of-presence": {
+    "slot": "back"
+  },
+  "green-fey-armor": {
+    "stat_bonuses": {
+      "cha": 1
+    },
+    "battle_effect": true,
+    "armor_type": "half plate",
+    "slot": "body"
+  },
+  "halberd-of-warning-2": {
+    "weapon_effects": [
+      {
+        "name": "Warning",
+        "type": "weapon_effect",
+        "description": "Requires attunement. While attuned and carried, grants advantage on initiative rolls. You and any companions within 30ft of you can't be surprised, except when incapacitated by something other than nonmagical sleep."
+      }
+    ],
+    "battle_effect": true,
+    "grants_initiative_advantage": true,
+    "weapon_category": "halberd",
+    "slot": "melee2h"
+  },
+  "half-plate-2-lightning": {
+    "battle_effect": true,
+    "armor_type": "half plate",
+    "slot": "body"
+  },
+  "hand-crossbow-2-rooting": {
+    "weapon_effects": [
+      {
+        "name": "Rooting Shot",
+        "type": "weapon_effect",
+        "description": "Once per turn on a hit, choose to deal damage as normal or root the target in place until the end of its next turn."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "hand crossbow",
+    "slot": "ranged1h"
+  },
+  "hand-crossbow-of-the-old-trail": {
+    "weapon_effects": [
+      {
+        "name": "Marked Shot",
+        "type": "weapon_effect",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "On a hit, choose one: the target makes a Constitution save or has its speed halved until the end of its next turn, or you gain advantage on your next attack roll against that target within 1 minute."
+      }
+    ],
+    "charges_max": 1,
+    "charges_recharge": "short_rest",
+    "battle_effect": true,
+    "weapon_category": "hand crossbow",
+    "slot": "ranged1h"
+  },
+  "hat-of-disguise": {
+    "slot": "head"
+  },
+  "hat-of-perception": {
+    "stat_bonuses": {
+      "skill_Perception": 1
+    },
+    "slot": "head"
+  },
+  "headband-of-intellect": {
+    "stat_overrides": {
+      "int": 19
+    },
+    "slot": "head"
+  },
+  "helm-of-brilliance": {
+    "spells_granted": [
+      {
+        "name": "Daylight",
+        "action_type": "action",
+        "uses_max": 6,
+        "uses_current": 6,
+        "recharge": "none"
+      },
+      {
+        "name": "Fireball",
+        "action_type": "action",
+        "uses_max": 9,
+        "uses_current": 9,
+        "recharge": "none"
+      },
+      {
+        "name": "Wall of Fire",
+        "action_type": "action",
+        "uses_max": 5,
+        "uses_current": 5,
+        "recharge": "none"
+      }
+    ],
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "helm-of-carix": {
+    "features_granted": [
+      "Seize the Opening"
+    ],
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "helm-of-comprehending-languages": {
+    "slot": "head"
+  },
+  "helm-of-the-open-eye": {
+    "stat_bonuses": {
+      "darkvision": 30
+    },
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "helm-of-the-reaching-hand": {
+    "features_granted": [
+      "Reaching Hand"
+    ],
+    "action_type": "reaction",
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "helmet-of-proof": {
+    "battle_effect": true,
+    "slot": "head"
+  },
+  "hendvars-enchanting-tools": {
+    "slot": "none"
+  },
+  "hlifardhegar": {
+    "stat_bonuses": {
+      "ac": 1
+    },
+    "action_type": "action",
+    "battle_effect": true,
+    "armor_type": "shield",
+    "slot": "shield"
+  },
+  "laminated-marking-shortbow-1": {
+    "spells_granted": [
+      {
+        "name": "Faerie Fire",
+        "action_type": "free"
+      }
+    ],
+    "weapon_effects": [
+      {
+        "name": "Marking Shot",
+        "type": "weapon_effect",
+        "description": "Once per combat, before rolling, the bearer may declare a ranged attack with this bow to be a marking shot. The target is immediately affected by Faerie Fire — no save, single target only (not the spell's usual 20-foot cube)."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "shortbow",
+    "slot": "ranged2h"
+  },
+  "leather-armor-2-southern": {
+    "armor_base_ac": 11,
+    "armor_type": "light",
+    "slot": "body"
+  },
+  "lexicas-enchanted-instrument": {
+    "spells_granted": [
+      {
+        "name": "Shield",
+        "action_type": "reaction"
+      }
+    ],
+    "action_type": "reaction",
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "longbow-2-force": {
+    "weapon_effects": [
+      {
+        "name": "Force Arrow",
+        "type": "weapon_effect",
+        "description": "Deals force damage instead of piercing damage."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "longbow",
+    "slot": "ranged2h"
+  },
+  "longsword-2-bronze-flame": {
+    "weapon_effects": [
+      {
+        "name": "Bronze Flame",
+        "type": "weapon_effect",
+        "action_type": "bonus_action",
+        "description": "Speak the command word to ignite the bronze edges. While active, each hit deals an extra 2d6 fire damage. A second use of the command word ends the effect early."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "longsword",
+    "slot": "melee1h"
+  },
+  "longsword-2-party-backup": {
+    "battle_effect": true,
+    "weapon_category": "longsword",
+    "slot": "melee1h"
+  },
+  "magical-aura-detector": {
+    "slot": "none"
+  },
+  "magnetic-lock-disruptor": {
+    "slot": "none"
+  },
+  "maul-2": {
+    "weapon_effects": [
+      {
+        "name": "Toppling Maul",
+        "type": "weapon_effect",
+        "description": "On a critical hit, the target is knocked prone."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "maul",
+    "slot": "melee2h"
+  },
+  "medallion-of-concentration": {
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "mithral-half-plate-2": {
+    "armor_type": "half plate",
+    "slot": "body"
+  },
+  "necklace-of-prayer-beads": {
+    "spells_granted": [
+      {
+        "name": "Bless",
+        "action_type": "bonus_action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Greater Restoration",
+        "action_type": "bonus_action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Cure Wounds",
+        "action_type": "bonus_action",
+        "choice_group": "curing-bead",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Lesser Restoration",
+        "action_type": "bonus_action",
+        "choice_group": "curing-bead",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      },
+      {
+        "name": "Wind Walk",
+        "action_type": "bonus_action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ],
+    "action_type": "bonus_action",
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "o-mtandra": {
+    "features_granted": [
+      "Tactical Foresight",
+      "Grandmaster's Stitch",
+      "The Retired Special"
+    ],
+    "charges_max": 1,
+    "charges_recharge": "daily",
+    "charges_label": "The Retired Special",
+    "action_type": "reaction",
+    "battle_effect": true,
+    "slot": "none"
+  },
+  "oil-of-sharpness": {
+    "slot": "none"
+  },
+  "pearl-of-power": {
+    "slot": "neck"
+  },
+  "poison-shortsword-1": {
+    "weapon_effects": [
+      {
+        "name": "Poison Strike",
+        "type": "weapon_effect",
+        "description": "On a hit, deal an extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "shortsword",
+    "slot": "melee1h"
+  },
+  "rapier-2-psychic": {
+    "weapon_effects": [
+      {
+        "name": "Mind Blade",
+        "type": "weapon_effect",
+        "description": "On a hit, choose to deal psychic damage instead of piercing damage."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "rapier",
+    "slot": "melee1h"
+  },
+  "returning-spear-2": {
+    "weapon_effects": [
+      {
+        "name": "Toppling Throw",
+        "type": "weapon_effect",
+        "description": "On a critical hit, the target is knocked prone regardless of its size."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "spear",
+    "returning": true,
+    "slot": "melee1h"
+  },
+  "ring-of-amity": {
+    "slot": "finger"
+  },
+  "ring-of-feather-falling": {
+    "slot": "ring"
+  },
+  "ring-of-free-action": {
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-impact": {
+    "charges_max": 1,
+    "charges_recharge": "daily",
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-jumping": {
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-protection": {
+    "stat_bonuses": {
+      "ac": 1,
+      "saving_throws": 1
+    },
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-spell-storing": {
+    "charges_unit": "spell_levels",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "ring",
+    "charges_max": 5
+  },
+  "ring-of-spell-storing-3-levels": {
+    "charges_max": 3
+  },
+  "ring-of-spell-storing-7-levels": {
+    "charges_max": 7
+  },
+  "ring-of-spell-turning": {
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-stilled-breath": {
+    "slot": "ring"
+  },
+  "ring-of-the-fallen-star": {
+    "spells_granted": [
+      {
+        "name": "Starfall",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ],
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-the-knowing": {
+    "slot": "ring"
+  },
+  "ring-of-transmutation": {
+    "spells_granted": [
+      {
+        "name": "Alter Self",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "Polymorph",
+        "action_type": "action",
+        "charge_cost": 2
+      },
+      {
+        "name": "Gaseous Form",
+        "action_type": "action",
+        "charge_cost": 3
+      }
+    ],
+    "charges_max": 3,
+    "charges_recharge": "daily",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "ring-of-watchful-eye": {
+    "stat_bonuses": {
+      "skill_Perception": 1
+    },
+    "slot": "ring"
+  },
+  "robe-of-stars": {
+    "stat_bonuses": {
+      "saving_throws": 1
+    },
+    "spells_granted": [
+      {
+        "name": "Magic Missile",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "Plane Shift",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "daily"
+      }
+    ],
+    "charges_max": 6,
+    "charges_recharge": "daily",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "body"
+  },
+  "robe-of-stilled-thought": {
+    "battle_effect": true,
+    "slot": "body"
+  },
+  "robe-of-the-archmagi": {
+    "stat_bonuses": {
+      "spell_save_dc": 2,
+      "spell_attack": 2,
+      "saving_throws": 1
+    },
+    "battle_effect": true,
+    "unarmored_armor_base_ac": 15,
+    "slot": "body"
+  },
+  "robe-of-the-tide": {
+    "features_granted": [
+      "Tidal Surge"
+    ],
+    "action_type": "free",
+    "battle_effect": true,
+    "slot": "body"
+  },
+  "rope-of-climbing-and-entanglement": {
+    "slot": "none"
+  },
+  "shadowgrain-leather": {
+    "armor_base_ac": 11,
+    "armor_type": "light",
+    "slot": "body"
+  },
+  "shield-of-expression": {
+    "armor_type": "shield",
+    "slot": "shield"
+  },
+  "shield-of-reprisal": {
+    "battle_effect": true,
+    "armor_type": "shield",
+    "slot": "shield"
+  },
+  "signet-ring": {
+    "features_granted": [
+      "Warding Press"
+    ],
+    "charges_max": 1,
+    "charges_recharge": "long_rest",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "finger"
+  },
+  "smoke-bomb": {
+    "slot": "none"
+  },
+  "staff-of-evocation": {
+    "battle_effect": true,
+    "weapon_category": "staff",
+    "slot": "melee1h"
+  },
+  "staff-of-power": {
+    "stat_bonuses": {
+      "spell_attack": 2,
+      "spell_save_dc": 2
+    },
+    "spells_granted": [
+      {
+        "name": "Magic Missile",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "Ray of Enfeeblement",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "Fireball",
+        "action_type": "action",
+        "charge_cost": 5
+      },
+      {
+        "name": "Lightning Bolt",
+        "action_type": "action",
+        "charge_cost": 5
+      },
+      {
+        "name": "Cone of Cold",
+        "action_type": "action",
+        "charge_cost": 5
+      },
+      {
+        "name": "Hold Monster",
+        "action_type": "action",
+        "charge_cost": 5
+      },
+      {
+        "name": "Wall of Force",
+        "action_type": "action",
+        "charge_cost": 5
+      },
+      {
+        "name": "Globe of Invulnerability",
+        "action_type": "action",
+        "charge_cost": 6
+      }
+    ],
+    "charges_max": 20,
+    "charges_recharge": "2d8+4",
+    "battle_effect": true,
+    "weapon_category": "staff",
+    "slot": "melee1h"
+  },
+  "staff-of-the-wilds-balance": {
+    "stat_bonuses": {
+      "spell_attack": 1,
+      "spell_save_dc": 1
+    },
+    "charges_max": 6,
+    "charges_recharge": "1d6",
+    "battle_effect": true,
+    "damage_dice": "1d6",
+    "finesse": false,
+    "slot": "held"
+  },
+  "stone-of-the-broken-vein": {
+    "spells_granted": [
+      {
+        "name": "Spike Growth",
+        "action_type": "action",
+        "uses_max": 3,
+        "uses_current": 3,
+        "recharge": "daily"
+      },
+      {
+        "name": "Erupting Earth",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "The Stones Agree",
+        "action_type": "action",
+        "charge_cost": 1,
+        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
+      }
+    ],
+    "charges_max": 1,
+    "charges_recharge": "long_rest",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "stone-of-the-rootbound-ward": {
+    "spells_granted": [
+      {
+        "name": "Mold Earth",
+        "action_type": "action",
+        "uses_max": 3,
+        "uses_current": 3,
+        "recharge": "daily"
+      },
+      {
+        "name": "Wall of Stone",
+        "action_type": "action",
+        "charge_cost": 1
+      },
+      {
+        "name": "The Stones Agree",
+        "action_type": "action",
+        "charge_cost": 1,
+        "cost_note": "Spent together with the Broken Vein bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
+      }
+    ],
+    "charges_max": 1,
+    "charges_recharge": "long_rest",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "stormcallers-cutlass": {
+    "weapon_effects": [
+      {
+        "name": "Stormcaller's Strike",
+        "type": "weapon_effect",
+        "recharge": "dawn",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "On a hit, deal an extra 2d6 lightning damage, accompanied by a thunderclap loud enough to be heard across the deck."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "saber",
+    "slot": "melee1h"
+  },
+  "stormsplit": {
+    "battle_effect": true,
+    "weapon_category": "flail",
+    "slot": "melee1h"
+  },
+  "sword-of-sharpness": {
+    "weapon_effects": [
+      {
+        "name": "Sharpness",
+        "type": "weapon_effect",
+        "description": "On a natural 20 attack roll, deal an extra 14 slashing damage, then roll another d20. A second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), effect determined by the GM. Against an object hit, maximize the weapon's damage dice instead."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "longsword",
+    "slot": "melee1h"
+  },
+  "test-wand-of-magic-missiles": {
+    "spells_granted": [
+      {
+        "name": "Magic Missile",
+        "action_type": "action",
+        "charge_cost": {
+          "min": 1,
+          "max": 7
+        }
+      }
+    ],
+    "charges_max": 7,
+    "charges_recharge": "1d6+1",
+    "charges_recharge_type": "rest",
+    "action_type": "action",
+    "battle_effect": true,
+    "value_gp": 500,
+    "slot": "held"
+  },
+  "the-eighth-redress": {
+    "stat_bonuses": {
+      "psychic_blade_attack": 2,
+      "psychic_blade_damage": 2
+    },
+    "grants_skill_proficiency": [
+      "History"
+    ],
+    "armor_type": "studded leather",
+    "slot": "body"
+  },
+  "the-farreach-a": {
+    "features_granted": [
+      "Ring's Answer"
+    ],
+    "action_type": "free",
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "the-farreach-b": {
+    "features_granted": [
+      "Ring's Answer"
+    ],
+    "action_type": "free",
+    "battle_effect": true,
+    "slot": "ring"
+  },
+  "the-lexicon": {
+    "stat_bonuses": {
+      "spell_save_dc": 2
+    },
+    "charges_max": 1,
+    "charges_recharge": "daily",
+    "battle_effect": true,
+    "damage_dice": "1d4",
+    "finesse": true,
+    "slot": "held"
+  },
+  "the-right-arm": {
+    "stat_bonuses": {
+      "spell_save_dc": 2
+    },
+    "weapon_effects": [
+      {
+        "name": "Adaptive Damage",
+        "type": "weapon_effect",
+        "description": "Automatically deals whichever damage type is most harmful to the target."
+      },
+      {
+        "name": "Root",
+        "type": "weapon_effect",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "On a hit, vines erupt from the staff and root the target in place until the end of its next turn."
+      },
+      {
+        "name": "Focused Casting",
+        "type": "weapon_effect",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "description": "As a spellcasting focus: cast any one spell without expending a spell slot."
+      },
+      {
+        "name": "Wildshape Merge",
+        "type": "weapon_effect",
+        "description": "Merges into the druid's non-halfling wildshape forms. While merged: +3 to attack and damage rolls, HP maximum increases by druid level, and once per wildshape you may cast one cantrip as a bonus action. In Circle of Stars form the staff remains physical."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "staff",
+    "slot": "melee2h"
+  },
+  "the-steadfast": {
+    "features_granted": [
+      "Steadfast Response"
+    ],
+    "charges_max": 1,
+    "charges_recharge": "short_rest",
+    "action_type": "reaction",
+    "battle_effect": true,
+    "slot": "neck"
+  },
+  "tome-of-clear-thought": {
+    "slot": "none"
+  },
+  "travelling-flute": {
+    "slot": "none"
+  },
+  "vest-of-resistance-cold": {
+    "slot": "body"
+  },
+  "waive": {
+    "weapon_effects": [
+      {
+        "name": "Overflowing Cure",
+        "type": "weapon_effect",
+        "description": "Whenever the bearer casts a healing spell, all other creatures within 15ft are healed for 2 hp."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "staff",
+    "slot": "melee1h"
+  },
+  "wand-of-magic-missiles": {
+    "spells_granted": [
+      {
+        "name": "Magic Missile",
+        "action_type": "action",
+        "charge_cost": {
+          "min": 1,
+          "max": 7
+        }
+      }
+    ],
+    "charges_max": 7,
+    "charges_recharge": "1d6+1",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "wand-of-secrets": {
+    "charges_max": 3,
+    "charges_recharge": "daily",
+    "slot": "held"
+  },
+  "wand-of-wonder": {
+    "charges_max": 7,
+    "charges_recharge": "daily",
+    "action_type": "action",
+    "battle_effect": true,
+    "slot": "held"
+  },
+  "warden-dagger": {
+    "weapon_effects": [
+      {
+        "name": "Warden's Bane",
+        "type": "weapon_effect",
+        "description": "Deals an extra 2 damage on a hit against fiends, aberrations, undead, and monstrosities."
+      }
+    ],
+    "weapon_category": "dagger",
+    "slot": "melee1h"
+  },
+  "web-bomb": {
+    "slot": "none"
+  },
+  "windsong": {
+    "weapon_effects": [
+      {
+        "name": "Longshot Strike",
+        "type": "weapon_effect",
+        "description": "Once per turn, when you hit a target at least 60 feet away with this weapon, it takes an extra 1d8 force damage. This weapon ignores three-quarters cover and half cover."
+      }
+    ],
+    "battle_effect": true,
+    "weapon_category": "longbow",
+    "slot": "ranged2h"
+  },
+  "wolf-hunters-rags": {
+    "battle_effect": false,
+    "slot": "shoulders"
+  },
+  "yetgrese-throwing-sword-2": {
+    "battle_effect": true,
+    "weapon_category": "yetgrese_shortsword",
+    "returning": true,
+    "slot": "melee1h"
+  }
+}

@@ -38,6 +38,28 @@ const ALLOWED_TABLES = [
   'mounts',
 ]
 
+// party_items.json stores items by reference (a catalog_id into the item
+// library plus only what's true of that copy) — see
+// engine/rules/5e/itemHydration.js. The client and the engine's level-up
+// route want the full item shape, so rows are hydrated on the way out of
+// the server and dehydrated on the way back in; the file on disk never
+// holds a copy of library data.
+// A row that has no catalog_id yet (a new item, or a hand-edited file) is
+// linked to the library by name when it clearly matches one — see
+// engine/rules/5e/itemCatalog.js's autoLinkItem — so new items don't start
+// life as copies.
+const hydratePartyItems = (rows) =>
+  Array.isArray(rows)
+    ? engine.hydrateItems(rows.map(engine.autoLinkItem), engine.itemLookup)
+    : rows
+const dehydratePartyItems = (rows, { link = false } = {}) =>
+  Array.isArray(rows)
+    ? engine.dehydrateItems(
+        link ? rows.map(engine.autoLinkItem) : rows,
+        engine.itemLookup
+      )
+    : rows
+
 app.use(cors())
 app.use(express.json({ limit: '10mb' }))
 
@@ -103,7 +125,7 @@ app.get('/api/:table', (req, res) => {
 
   try {
     const data = readJSON(file)
-    res.json(data)
+    res.json(table === 'party_items' ? hydratePartyItems(data) : data)
   } catch (err) {
     console.error(`Error reading ${table}.json:`, err.message)
     res.status(500).json({ error: `Failed to read ${table}.json` })
@@ -139,8 +161,14 @@ app.post('/api/:table', (req, res) => {
       .json({ error: 'Request body must be a JSON object or array' })
   }
 
-  const current = isMergeShape ? body.current : body
-  const base = isMergeShape ? body.base : undefined
+  let current = isMergeShape ? body.current : body
+  let base = isMergeShape ? body.base : undefined
+  if (table === 'party_items') {
+    // The client holds hydrated items; the merge and the file work on the
+    // stored (dehydrated) form so a save never writes library data to disk.
+    current = dehydratePartyItems(current, { link: true })
+    base = dehydratePartyItems(base)
+  }
 
   if (
     current == null ||
@@ -172,7 +200,11 @@ app.post('/api/:table', (req, res) => {
           : ''
       }`
     )
-    res.json({ ok: true, data: merged, conflicts })
+    res.json({
+      ok: true,
+      data: table === 'party_items' ? hydratePartyItems(merged) : merged,
+      conflicts,
+    })
   } catch (err) {
     console.error(`Error writing ${table}.json:`, err.message)
     res.status(500).json({ error: `Failed to write ${table}.json` })
@@ -329,7 +361,9 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     // against the character's real EFFECTIVE ability scores, not base ones
     // only. Real bug found 2026-09-25 without this — see
     // engine/CHECKLIST.md's entry that day.
-    const partyItems = readJSON(path.join(DATA_DIR, 'party_items.json'))
+    const partyItems = hydratePartyItems(
+      readJSON(path.join(DATA_DIR, 'party_items.json'))
+    )
     const equippedItems = partyItems.filter(
       (i) => i.equipped_by === character.name
     )
@@ -368,6 +402,19 @@ app.post('/api/engine/preview-level-up', (req, res) => {
     res.json(result)
   } catch (err) {
     console.error('Error computing level-up preview:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── GET /api/engine/item-catalog ──────────────────────────
+// The merged item library (official + campaign entries), for UI that wants to
+// show an item's source/rarity or offer a picker. Party items themselves
+// already arrive hydrated via GET /api/party_items.
+app.get('/api/engine/item-catalog', (req, res) => {
+  try {
+    res.json(engine.listItemCatalog())
+  } catch (err) {
+    console.error('Error listing item catalog:', err.message)
     res.status(500).json({ error: err.message })
   }
 })

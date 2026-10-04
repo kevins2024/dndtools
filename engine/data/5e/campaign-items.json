@@ -1,0 +1,1112 @@
+[
+  {
+    "id": "alchemical-dagger",
+    "name": "Alchemical Dagger",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "When dipped into any liquid, identifies its properties (potion, poison, magical substance, etc.) within 1 round. After identification, the blade retains a coating of that liquid — the next attack with this dagger delivers the substance to the target. Effect could be beneficial or harmful depending on the liquid.",
+    "homebrew": true
+  },
+  {
+    "id": "alchemical-light-crossbow",
+    "name": "Alchemical Light Crossbow",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Fires custom alchemical bolts. Quieter release. Bonded weapon for Infused Arbalist's Calculating Arbalister/Infuse Weapon/Arcane Payload.",
+    "homebrew": true
+  },
+  {
+    "id": "alchemical-light-crossbow-party-copy",
+    "name": "Alchemical Light Crossbow (party copy)",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Fires custom alchemical bolts. Quieter release.",
+    "homebrew": true
+  },
+  {
+    "id": "amulet-of-poison-immunity",
+    "name": "Amulet of Poison Immunity",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Complete immunity to poison while worn.",
+    "homebrew": true
+  },
+  {
+    "id": "amulet-of-restoration",
+    "name": "Amulet of Restoration",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Healing Word can be cast twice per short rest, recovered automatically.",
+    "homebrew": true
+  },
+  {
+    "id": "belt-of-constitution",
+    "name": "Belt of Constitution",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Sets CON to 18.",
+    "homebrew": true
+  },
+  {
+    "id": "berserkers-fang-1",
+    "name": "Berserker's Fang +1",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+1 to attack and damage rolls with this greataxe.",
+    "homebrew": true
+  },
+  {
+    "id": "blackwood-wand-focus",
+    "name": "Blackwood Wand Focus",
+    "source": "Campaign",
+    "category": "spellcasting focus",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+1 to spell attack rolls and spell save DC.",
+    "homebrew": true,
+    "flavor": "Blackwood wand usable as a spellcasting focus."
+  },
+  {
+    "id": "blueflame-rapier-2",
+    "name": "Blueflame Rapier +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+2 to attack and damage rolls. Blue-Flame Blade: once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage.",
+    "homebrew": true
+  },
+  {
+    "id": "bone-ring-of-weapon-retention",
+    "name": "Bone Ring of Weapon Retention",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Cannot be disarmed.",
+    "homebrew": true
+  },
+  {
+    "id": "boots-of-the-tireless-north",
+    "name": "Boots of the Tireless North",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "No movement penalties in difficult terrain (snow, ice, mud, rubble). Travel pace never causes exhaustion regardless of distance covered in a day.",
+    "homebrew": true,
+    "flavor": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet."
+  },
+  {
+    "id": "bow-grip",
+    "name": "Bow Grip",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Reduces moving shot penalty.",
+    "homebrew": true
+  },
+  {
+    "id": "bracer-of-pressing-momentum",
+    "name": "Bracer of Pressing Momentum",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
+    "homebrew": true
+  },
+  {
+    "id": "bracer-of-steady-aim",
+    "name": "Bracer of Steady Aim",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+1 ranged attack. Advantage on concentration saves after taking damage.",
+    "homebrew": true
+  },
+  {
+    "id": "bracers-of-spell-mastery",
+    "name": "Bracers of Spell Mastery",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+2 to spell save DC.",
+    "homebrew": true
+  },
+  {
+    "id": "bracers-of-spell-storing",
+    "name": "Bracers of Spell Storing",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Holds up to 5 levels worth of spells. The attuned creature can cast stored spells.",
+    "homebrew": true
+  },
+  {
+    "id": "bracers-of-swiftness",
+    "name": "Bracers of Swiftness",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+10ft movement speed. Dash as bonus action once per short rest.",
+    "homebrew": true
+  },
+  {
+    "id": "breastplate-of-planes",
+    "name": "Breastplate of Planes",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "On attunement: advantage on concentration saving throws.",
+    "homebrew": true
+  },
+  {
+    "id": "breastplate-of-the-broken-scale",
+    "name": "Breastplate of the Broken Scale",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": "rare",
+    "requires_attunement": true,
+    "desc": "AC 14 + DEX modifier (max 2). Stormbreak Reserve: whenever the wearer takes 15 or more damage from a single attack or effect, the armor stores one charge (max 1 stored, tracked via charges above). As a bonus action, release a stored charge: 10ft radius force burst centered on self, 2d6 force damage (DC 15 DEX save for half) to all other creatures in range, each creature that fails is pushed 10ft away. Recharges automatically on the next qualifying hit.",
+    "homebrew": true
+  },
+  {
+    "id": "bright-red-cloak",
+    "name": "Bright Red Cloak",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+1 to CHA score.",
+    "homebrew": true
+  },
+  {
+    "id": "carved-bone-totem",
+    "name": "Carved Bone Totem",
+    "source": "Campaign",
+    "category": "spellcasting focus",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Spellcasting focus. Can be used in place of material components with no GP cost.",
+    "homebrew": true
+  },
+  {
+    "id": "ceremonial-horn",
+    "name": "Ceremonial Horn",
+    "source": "Campaign",
+    "category": "miscellaneous",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Functions as both drinking vessel and musical instrument.",
+    "homebrew": true
+  },
+  {
+    "id": "circlet-of-mental-fortress",
+    "name": "Circlet of Mental Fortress",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on INT, WIS, CHA saving throws. Resistance to psychic damage.",
+    "homebrew": true
+  },
+  {
+    "id": "circlet-of-scorching-ray-3",
+    "name": "Circlet of Scorching Ray 3",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Cast Scorching Ray 3 times per day.",
+    "homebrew": true
+  },
+  {
+    "id": "cloak-of-unremarkability",
+    "name": "Cloak of Unremarkability",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Wearer becomes visually uncompelling — the eye slides past without focusing.",
+    "homebrew": true
+  },
+  {
+    "id": "clockwork-distraction-device",
+    "name": "Clockwork Distraction Device",
+    "source": "Campaign",
+    "category": "tool",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "When activated, produces a mechanical noise at a chosen point up to 30ft away for up to 1 minute. Useful for drawing attention or masking other sounds.",
+    "homebrew": true
+  },
+  {
+    "id": "coin-of-truth",
+    "name": "Coin of Truth",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Ask yes/no questions. Always truthful.",
+    "homebrew": true
+  },
+  {
+    "id": "cold-dagger-2",
+    "name": "Cold Dagger +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Deals cold damage. On hit: +1d6 cold damage and target's movement reduced by 10ft until start of their next turn.",
+    "homebrew": true
+  },
+  {
+    "id": "cold-valley-axe",
+    "name": "Cold Valley Axe",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "On attunement: wielder gains the Smite From Afar spell (homebrew, 1st-level Paladin).",
+    "homebrew": true
+  },
+  {
+    "id": "concentration-robes",
+    "name": "Concentration Robes",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on concentration checks.",
+    "homebrew": true
+  },
+  {
+    "id": "curved-blade-2",
+    "name": "Curved Blade +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "On a critical hit: deals 2d6 slashing damage instead of doubling dice.",
+    "homebrew": true
+  },
+  {
+    "id": "dagger-of-pressing-momentum",
+    "name": "Dagger of Pressing Momentum",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
+    "homebrew": true
+  },
+  {
+    "id": "disc-of-ilwuoshims-second-arch",
+    "name": "Disc of Ilwuoshim's Second Arch",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "artifact",
+    "requires_attunement": false,
+    "desc": "When placed in a teleportation arch, keys to an arch built by Ilwuoshim before the Liliveth was completed — never previously used.",
+    "homebrew": true
+  },
+  {
+    "id": "disc-of-origin",
+    "name": "Disc of Origin",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "artifact",
+    "requires_attunement": false,
+    "desc": "When placed in a teleportation arch, keys the arch to the ruins northeast of Valdmere.",
+    "homebrew": true
+  },
+  {
+    "id": "disc-of-the-junction",
+    "name": "Disc of the Junction",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "artifact",
+    "requires_attunement": false,
+    "desc": "When placed in a teleportation arch, keys the arch to a waypoint hub built between two other arches — a transit point rather than a final destination.",
+    "homebrew": true
+  },
+  {
+    "id": "disc-of-the-unnamed-plane",
+    "name": "Disc of the Unnamed Plane",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "artifact",
+    "requires_attunement": false,
+    "desc": "When placed in a teleportation arch, keys the arch to an unknown, uncharted destination.",
+    "homebrew": true
+  },
+  {
+    "id": "eight-unknown-coins",
+    "name": "Eight Unknown Coins",
+    "source": "Campaign",
+    "category": "miscellaneous",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Eight large gold coins bearing an unfamiliar crest. Not Fynesmarch minting. Origin unknown.",
+    "homebrew": true
+  },
+  {
+    "id": "elemental-resistance-robes",
+    "name": "Elemental Resistance Robes",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Resistance to one element chosen on attunement.",
+    "homebrew": true
+  },
+  {
+    "id": "everlasting-blue-candles",
+    "name": "Everlasting Blue Candles",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Candles that never extinguish and cannot be blown out by wind or water. Each candle sheds dim light in a 5ft radius.",
+    "homebrew": true,
+    "flavor": "Candles that do not burn down."
+  },
+  {
+    "id": "flash-bomb",
+    "name": "Flash Bomb",
+    "source": "Campaign",
+    "category": "consumable",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "When thrown, creatures within 10ft must succeed on a CON saving throw (DC 13) or be blinded until end of their next turn.",
+    "homebrew": true
+  },
+  {
+    "id": "full-plate-2-grey-green",
+    "name": "Full Plate +2 (Grey-Green)",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Resistance to lightning and thunder damage.",
+    "homebrew": true
+  },
+  {
+    "id": "gauntlet-of-the-sundering-blow",
+    "name": "Gauntlet of the Sundering Blow",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "rare",
+    "requires_attunement": true,
+    "desc": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet — the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
+    "homebrew": true
+  },
+  {
+    "id": "gloves-of-dueling",
+    "name": "Gloves of Dueling",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+2 bonus to damage rolls when fighting with a melee weapon in one hand and nothing in the other.",
+    "homebrew": true
+  },
+  {
+    "id": "gloves-of-spellcasting",
+    "name": "Gloves of Spellcasting",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Every spell cast treated as one level higher automatically.",
+    "homebrew": true
+  },
+  {
+    "id": "greatsword-3",
+    "name": "Greatsword +3",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "On a critical hit: target makes a STR saving throw or is knocked prone.",
+    "homebrew": true
+  },
+  {
+    "id": "green-cloak-of-presence",
+    "name": "Green Cloak of Presence",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
+    "homebrew": true
+  },
+  {
+    "id": "green-fey-armor",
+    "name": "Green Fey Armor",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Counts as half plate (AC 15 + DEX mod max 2). Appears revealing but magical protection extends invisibly for full coverage. +1 CHA while attuned. Only Enauweyn can attune to this item.",
+    "homebrew": true,
+    "flavor": "Green armor of fey construction. Revealing in appearance but the magical protection extends invisibly — coverage is complete. Luxurious flowing cloth around legs and sleeves gives a mystical quality. The green deepens or lightens subtly with her mood."
+  },
+  {
+    "id": "halberd-of-warning-2",
+    "name": "Halberd of Warning +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Requires attunement. While attuned and the weapon is on your person, you have advantage on initiative rolls. In addition, you and any companions within 30ft of you can't be surprised, except when incapacitated by something other than nonmagical sleep.",
+    "homebrew": true
+  },
+  {
+    "id": "half-plate-2-lightning",
+    "name": "Half Plate +2 (Lightning)",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Resistance to lightning and thunder damage.",
+    "homebrew": true
+  },
+  {
+    "id": "hand-crossbow-2-rooting",
+    "name": "Hand Crossbow +2 (Rooting)",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Once per turn on a hit: choose to deal damage as normal OR root target in place until end of their next turn.",
+    "homebrew": true
+  },
+  {
+    "id": "hand-crossbow-of-the-old-trail",
+    "name": "Hand Crossbow of the Old Trail",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": "uncommon/rare",
+    "requires_attunement": true,
+    "desc": "+2 to attack and damage rolls. Marked Shot: once per short rest, when firing a bolt, choose one rider effect: (a) target must succeed on a Constitution save or have speed halved until the end of its next turn, or (b) wielder gains advantage on their next attack roll against that target within 1 minute.",
+    "homebrew": true
+  },
+  {
+    "id": "hat-of-perception",
+    "name": "Hat of Perception",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+1 passive perception. Advantage on Perception in dim light or darkness.",
+    "homebrew": true
+  },
+  {
+    "id": "helm-of-carix",
+    "name": "Helm of Carix",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Immunity to charm and fear. Seize the Opening: once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
+    "homebrew": true
+  },
+  {
+    "id": "helm-of-the-open-eye",
+    "name": "Helm of the Open Eye",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
+    "homebrew": true
+  },
+  {
+    "id": "helm-of-the-reaching-hand",
+    "name": "Helm of the Reaching Hand",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on Insight checks. Reaching Hand: once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "homebrew": true
+  },
+  {
+    "id": "helmet-of-proof",
+    "name": "Helmet of Proof",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Immunity to charm and fear.",
+    "homebrew": true
+  },
+  {
+    "id": "hendvars-enchanting-tools",
+    "name": "Hendvar's Enchanting Tools",
+    "source": "Campaign",
+    "category": "tool",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "A specialized set of enchanting tools used for crafting and identifying magical items. Provides proficiency on Arcana checks made to enchant or inspect magic items.",
+    "homebrew": true,
+    "flavor": "Portable enchanting station — a toolkit rather than a fixed station."
+  },
+  {
+    "id": "hlifardhegar",
+    "name": "Hlifar'dhe'gar",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+1 small shield (+1 AC). Command word 'viel'bi-ra' transforms it into a construct guardian (HP 142, AC 17) that stands between you and harm, intercepting damage directed at the attuned wearer. The construct cannot attack. Command word 'chk'TO' returns it to shield form. Also stores one spell up to 4th level.",
+    "homebrew": true
+  },
+  {
+    "id": "laminated-marking-shortbow-1",
+    "name": "Laminated Marking Shortbow +1",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+1 bonus to attack and damage rolls. Once per combat, the bearer may declare a ranged attack with this bow to be a marking shot before rolling, forcing Faerie Fire onto the target with no save (single target only, not the spell's usual area).",
+    "homebrew": true
+  },
+  {
+    "id": "leather-armor-2-southern",
+    "name": "Leather Armor +2 (Southern)",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+2 bonus to AC from armor. Southern craftsmanship.",
+    "homebrew": true
+  },
+  {
+    "id": "lexicas-enchanted-instrument",
+    "name": "Lexica's Enchanted Instrument",
+    "source": "Campaign",
+    "category": "spellcasting focus",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "While Bardic Inspiration is active on a creature, the wielder may use their reaction to cast Shield on that creature or on herself.",
+    "homebrew": true,
+    "flavor": "A lyre-like instrument of unusual construction, typical of no known tradition on Kaemahz. Acquired from a travelling vendor at the Halfweek Festival. One of two such instruments held by the same vendor. Dark wood with unfamiliar inlays, the resonance fuller than the size suggests."
+  },
+  {
+    "id": "longbow-2-force",
+    "name": "Longbow +2 (Force)",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Deals force damage instead of piercing.",
+    "homebrew": true
+  },
+  {
+    "id": "longsword-2-bronze-flame",
+    "name": "Longsword +2 (Bronze Flame)",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Command word ignites bronze edges — adds 2d6 fire damage to each hit while active.",
+    "homebrew": true
+  },
+  {
+    "id": "longsword-2-party-backup",
+    "name": "Longsword +2 (party backup)",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+2 bonus to attack and damage rolls.",
+    "homebrew": true
+  },
+  {
+    "id": "magical-aura-detector",
+    "name": "Magical Aura Detector",
+    "source": "Campaign",
+    "category": "tool",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Continuously detects magical auras within 30ft while held. Reveals the presence of magic but not its school or strength without closer examination.",
+    "homebrew": true
+  },
+  {
+    "id": "magnetic-lock-disruptor",
+    "name": "Magnetic Lock Disruptor",
+    "source": "Campaign",
+    "category": "tool",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "When held against a magnetically sealed or mechanically locked mechanism, disrupts the lock. Advantage on checks to pick or force magnetic and clockwork locks.",
+    "homebrew": true
+  },
+  {
+    "id": "maul-2",
+    "name": "Maul +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "On a critical hit: target is knocked prone.",
+    "homebrew": true
+  },
+  {
+    "id": "medallion-of-concentration",
+    "name": "Medallion of Concentration",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on all concentration checks.",
+    "homebrew": true
+  },
+  {
+    "id": "mithral-half-plate-2",
+    "name": "Mithral Half Plate +2",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "No stealth disadvantage.",
+    "homebrew": true
+  },
+  {
+    "id": "o-mtandra",
+    "name": "O' M'Tandra",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Three properties: (1) Tactical Foresight — Help targets two allies. (2) Grandmaster's Stitch — infuse leather item during long rest. (3) The Retired Special — once per day reaction pull ally up to 15ft.",
+    "homebrew": true,
+    "flavor": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue."
+  },
+  {
+    "id": "poison-shortsword-1",
+    "name": "Poison Shortsword +1",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "+1 to attack and damage rolls. On a hit: extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute.",
+    "homebrew": true
+  },
+  {
+    "id": "rapier-2-psychic",
+    "name": "Rapier +2 (Psychic)",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "On a hit: choose to deal psychic damage instead of piercing.",
+    "homebrew": true
+  },
+  {
+    "id": "returning-spear-2",
+    "name": "Returning Spear +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Returns to hand after thrown. On crit: target knocked prone regardless of size.",
+    "homebrew": true
+  },
+  {
+    "id": "ring-of-impact",
+    "name": "Ring of Impact",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Stops a harsh impact once per day.",
+    "homebrew": true
+  },
+  {
+    "id": "ring-of-spell-storing-3-levels",
+    "name": "Ring of Spell Storing (3 levels)",
+    "variant_of": "ring-of-spell-storing",
+    "rarity": "uncommon",
+    "desc_edits": [
+      [
+        "up to 5 levels worth",
+        "up to 3 levels worth"
+      ],
+      [
+        "1st through 5th level",
+        "1st through 3rd level"
+      ]
+    ]
+  },
+  {
+    "id": "ring-of-spell-storing-7-levels",
+    "name": "Ring of Spell Storing (7 levels)",
+    "variant_of": "ring-of-spell-storing",
+    "rarity": "very rare",
+    "desc_edits": [
+      [
+        "up to 5 levels worth",
+        "up to 7 levels worth"
+      ],
+      [
+        "1st through 5th level",
+        "1st through 7th level"
+      ]
+    ]
+  },
+  {
+    "id": "ring-of-stilled-breath",
+    "name": "Ring of Stilled Breath",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "The wearer's breathing is completely silent. Advantage on Stealth checks in situations where breathing could give away your position. Creatures relying on hearing alone cannot detect you by your breath.",
+    "homebrew": true
+  },
+  {
+    "id": "ring-of-the-fallen-star",
+    "name": "Ring of the Fallen Star",
+    "source": "Campaign",
+    "category": "ring",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Once per dawn: cast Starfall (see homebrew spells). Spell save DC uses wearer's spell save DC. Additionally, advantage on Perception checks made in darkness or starlight.",
+    "homebrew": true
+  },
+  {
+    "id": "ring-of-the-knowing",
+    "name": "Ring of the Knowing",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Once per day the wearer may ask one specific, answerable question. The answer arrives in the wearer's own voice as though remembered rather than received. Answers are truthful. The ring occasionally volunteers additional relevant information beyond the question asked — treat this as significant. Questions must be specific: a location, a name, a fact. Abstract questions yield nothing.",
+    "homebrew": true,
+    "flavor": "Simple band of dark metal of unknown continental origin. Single flat face bearing a symbol worn almost to suggestion by time. Warm to the touch. Eleven years in Ossivane Relk's possession before purchase."
+  },
+  {
+    "id": "ring-of-transmutation",
+    "name": "Ring of Transmutation",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "1 charge: Alter Self. 2 charges: Polymorph (self only). 3 charges: Gaseous Form.",
+    "homebrew": true
+  },
+  {
+    "id": "ring-of-watchful-eye",
+    "name": "Ring of Watchful Eye",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+1 bonus to Perception checks while worn.",
+    "homebrew": true
+  },
+  {
+    "id": "robe-of-stilled-thought",
+    "name": "Robe of Stilled Thought",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "One concentration spell cast while wearing this robe does not require concentration — it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately.",
+    "homebrew": true
+  },
+  {
+    "id": "robe-of-the-tide",
+    "name": "Robe of the Tide",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Tidal Surge: when the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
+    "homebrew": true
+  },
+  {
+    "id": "rope-of-climbing-and-entanglement",
+    "name": "Rope of Climbing and Entanglement",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "60ft rope, animates on command. Restrain target 1/day.",
+    "homebrew": true
+  },
+  {
+    "id": "shadowgrain-leather",
+    "name": "Shadowgrain Leather",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Always +1 to AC. Additional +1 to AC while in dim light or darkness, for a total of +2.",
+    "homebrew": true
+  },
+  {
+    "id": "shield-of-reprisal",
+    "name": "Shield of Reprisal",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "No bonus to AC (base shield +2 only). When bearer is hit by a melee attack, the attacker takes 1d6 force damage.",
+    "homebrew": true
+  },
+  {
+    "id": "signet-ring",
+    "name": "Signet Ring",
+    "source": "Campaign",
+    "category": "ring",
+    "rarity": "uncommon",
+    "requires_attunement": true,
+    "desc": "Warding Press: once per long rest, press the ring to your skin to gain resistance to one damage type of your choice for 1 hour.",
+    "homebrew": true
+  },
+  {
+    "id": "smoke-bomb",
+    "name": "Smoke Bomb",
+    "source": "Campaign",
+    "category": "consumable",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "When thrown, creates a 20ft radius sphere of smoke for 1 minute. The area is heavily obscured.",
+    "homebrew": true
+  },
+  {
+    "id": "staff-of-evocation",
+    "name": "Staff of Evocation",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Evocation spells have no effect on allies.",
+    "homebrew": true
+  },
+  {
+    "id": "staff-of-the-wilds-balance",
+    "name": "Staff of the Wild's Balance",
+    "source": "Campaign",
+    "category": "spellcasting focus",
+    "rarity": "rare",
+    "requires_attunement": true,
+    "desc": "Acts as a +1 quarterstaff and druidic focus. While attuned, +1 to druid spell attack rolls and spell save DC. While in Wild Shape, grants Primal Surge (see homebrew features).",
+    "homebrew": true
+  },
+  {
+    "id": "stone-of-the-broken-vein",
+    "name": "Stone of the Broken Vein",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "very rare",
+    "requires_attunement": true,
+    "desc": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day, independent of the charge below): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/long rest): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "homebrew": true
+  },
+  {
+    "id": "stone-of-the-rootbound-ward",
+    "name": "Stone of the Rootbound Ward",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": "very rare",
+    "requires_attunement": true,
+    "desc": "Mold Earth (cantrip, 3/day, independent of the charge below): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/long rest): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
+    "homebrew": true
+  },
+  {
+    "id": "stormcallers-cutlass",
+    "name": "Stormcaller's Cutlass",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+1 to attack and damage rolls. Once per day, channel a strike that adds 2d6 lightning damage on a hit, accompanied by a genuine thunderclap loud enough to be heard across the deck.",
+    "homebrew": true
+  },
+  {
+    "id": "stormsplit",
+    "name": "Stormsplit",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+2 to attack and damage rolls. A flail that can be held rigid by rubbing the handle, giving it the appearance and weight of a mace. Mechanically identical in either form.",
+    "homebrew": true
+  },
+  {
+    "id": "test-wand-of-magic-missiles",
+    "name": "TEST Wand of Magic Missiles",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "TEST ITEM — added to check whether an item that's carried but not equipped (no equipped_by, not equipped_by:'disallowed') shows up as usable in the Battle tab. Also doubles as a test of the Weave Dust destroy flow (value_gp set). Delete once verified.",
+    "homebrew": true
+  },
+  {
+    "id": "the-eighth-redress",
+    "name": "The Eighth Redress",
+    "source": "Campaign",
+    "category": "armor",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Studded leather armor infused with psionic thread. Grants proficiency in History. +2 bonus to attack and damage rolls made with Psychic Blades (moved here 2026-09-15 from O' M'Tandra's retired Psionic Reinforcement property).",
+    "homebrew": true
+  },
+  {
+    "id": "the-farreach-a",
+    "name": "The Farreach (A)",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus to an ability or skill check.",
+    "homebrew": true
+  },
+  {
+    "id": "the-farreach-b",
+    "name": "The Farreach (B)",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus.",
+    "homebrew": true
+  },
+  {
+    "id": "the-lexicon",
+    "name": "The Lexicon",
+    "source": "Campaign",
+    "category": "spellcasting focus",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Spell save DC +2. Once per long rest when casting 3rd level or higher: cast as if one level higher without expending the higher slot.",
+    "homebrew": true
+  },
+  {
+    "id": "the-right-arm",
+    "name": "The Right Arm",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": "legendary",
+    "requires_attunement": true,
+    "desc": "MELEE: +3 quarterstaff. Automatically deals the most harmful damage type to the target. Once per short rest on a hit: vines root the target until the end of their next turn.\n\nSPELLCASTING FOCUS: Spell save DC +2. Once per long rest: cast any one spell without expending a spell slot.\n\nWILDSHAPE: Staff merges into the druid's non-halfling forms. While merged: +3 to attack and damage rolls, HP maximum increases by druid level, once per wildshape cast one cantrip as a bonus action. In Circle of Stars form the staff remains physical.",
+    "homebrew": true
+  },
+  {
+    "id": "the-steadfast",
+    "name": "The Steadfast",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Steadfast Response: reaction when an ally within 30ft drops to 0hp, grant 1d8 + proficiency bonus temp HP. Advantage on death saving throws.",
+    "homebrew": true
+  },
+  {
+    "id": "travelling-flute",
+    "name": "Travelling Flute",
+    "source": "Campaign",
+    "category": "miscellaneous",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Lenn's personal flute. Functions as a Bardic focus. No additional magical properties.",
+    "homebrew": true
+  },
+  {
+    "id": "vest-of-resistance-cold",
+    "name": "Vest of Resistance (Cold)",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Resistance to cold damage.",
+    "homebrew": true
+  },
+  {
+    "id": "waive",
+    "name": "Waive",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Whenever bearer casts a healing spell, all other creatures within 15ft are healed for 2hp.",
+    "homebrew": true
+  },
+  {
+    "id": "warden-dagger",
+    "name": "Warden Dagger",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "Deals +2 damage on a hit against fiends, aberrations, undead, and monstrosities.",
+    "homebrew": true
+  },
+  {
+    "id": "web-bomb",
+    "name": "Web Bomb",
+    "source": "Campaign",
+    "category": "consumable",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "When thrown, a web fills a 20ft radius at the target point for 1 minute. Creatures must succeed on a STR save or be restrained.",
+    "homebrew": true
+  },
+  {
+    "id": "windsong",
+    "name": "Windsong",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "+1 longbow. Once per turn, when you hit a target at least 60ft away, it takes an extra 1d8 force damage. Ignores three-quarters and half cover.",
+    "homebrew": true
+  },
+  {
+    "id": "wolf-hunters-rags",
+    "name": "Wolf Hunter's Rags",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "While worn: the wearer gives off no scent and cannot be tracked by scent. The wearer cannot be detected, targeted, or perceived by divination magic (as per the nondetection spell).",
+    "homebrew": true
+  },
+  {
+    "id": "yetgrese-throwing-sword-2",
+    "name": "Yetgrese Throwing Sword +2",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "Returns instantly to thrower's hand after a thrown attack, whether it hits or misses.",
+    "homebrew": true
+  }
+]
