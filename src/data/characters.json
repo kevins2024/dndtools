@@ -140,7 +140,7 @@
         "name": "Superiority Dice (d8)",
         "label": "Sup",
         "max": 5,
-        "current": 5,
+        "current": 4,
         "recharge": "short_rest"
       }
     ],
@@ -195,7 +195,8 @@
       "medium",
       "heavy",
       "shields"
-    ]
+    ],
+    "active_weapon_set": 2
   },
   {
     "name": "Rhuna",
@@ -3605,7 +3606,7 @@
       }
     },
     "active_effects": [],
-    "exhaustion_level": 0,
+    "exhaustion_level": 1,
     "conditions": [],
     "notes": "One level away from Twinkling Constellations.",
     "persona_notes": [
@@ -4324,26 +4325,23 @@
         "type": "feature"
       },
       {
-        "name": "Channel Divinity",
+        "name": "Channel Divinity: Sacred Weapon",
         "type": "feature",
+        "id": "pub_channel-divinity-sacred-weapon",
+        "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "description": "As an action, expend one use of Channel Divinity to imbue a weapon you are holding with positive energy for 1 minute: add CHA modifier to attack rolls (min +1), counts as magical, sheds bright light 20ft and dim light 20ft beyond. Ends early as part of any other action, or if you stop holding it or fall unconscious.",
+        "note": "Carries the shared Channel Divinity pool (1/short rest) — Vow of the Open Road draws from this same use, so spend it here for either."
       },
       {
-        "name": "Sacred Weapon",
+        "name": "Channel Divinity: Vow of the Open Road",
         "type": "feature",
-        "action_type": "action",
-        "recharge": "channel_divinity",
-        "description": "As an action, expend one use of Channel Divinity to imbue a weapon with positive energy for 1 minute: add CHA modifier to attack rolls (min +1), counts as magical, sheds light.",
-        "note": "Shares the same 1/short-rest Channel Divinity pool tracked on the bare \"Channel Divinity\" entry above, alongside Vow of the Open Road — not a separate use."
-      },
-      {
-        "name": "Vow of the Open Road",
-        "type": "feature",
+        "id": "pub_vow-of-the-open-road",
         "action_type": "action",
         "description": "As an action, expend one use of Channel Divinity to force a creature within 30 feet that you can see to make a Wisdom saving throw. On a failure, it's compelled to move in an unexpected direction (DM's choice) on its next turn.",
-        "note": "Shares the same 1/short-rest Channel Divinity pool tracked on the bare \"Channel Divinity\" entry above, alongside Sacred Weapon — not a separate use."
+        "note": "Shares the Channel Divinity pool tracked on Channel Divinity: Sacred Weapon — not a separate use."
       },
       {
         "name": "Aura of Protection (+4 to ally saves within 10ft)",
@@ -4401,12 +4399,6 @@
         "type": "prepared"
       },
       {
-        "name": "Lesser Restoration",
-        "level": 2,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Enlarge/Reduce",
         "level": 2,
         "prepared": true,
@@ -4437,6 +4429,21 @@
         "level": 1,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Command",
+        "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Revivify",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Heroism",
+        "level": 1,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -7490,7 +7497,7 @@
     ],
     "active_effects": [],
     "conditions": [],
-    "exhaustion_level": 0,
+    "exhaustion_level": 1,
     "classes": [
       {
         "name": "Bard",

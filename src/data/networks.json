@@ -76,6 +76,14 @@
       "access": "Dawn Blades",
       "permanent": true,
       "notes": "Created by Iyani as a gift, Day 92 Year 468."
+    },
+    {
+      "id": "tc_1791047334666",
+      "location": "Torwald Cliffs",
+      "sigil_known": true,
+      "access": "open",
+      "permanent": true,
+      "notes": "Found in a chase after someone was watching the group, changed the sigil"
     }
   ],
   "sending_stone_networks": [

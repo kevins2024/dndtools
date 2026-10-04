@@ -21,7 +21,7 @@ test('Vow of the Open Road no longer a placeholder — recovered mechanical text
     'data',
     'published_features.json'
   ))
-  const entry = publishedFeatures.find((f) => f.name === 'Vow of the Open Road')
+  const entry = publishedFeatures.find((f) => f.name === 'Channel Divinity: Vow of the Open Road')
   assert.ok(entry)
   assert.ok(!/not fully specified|confirm with dm/i.test(entry.description))
   assert.match(entry.description, /Wisdom saving throw/)

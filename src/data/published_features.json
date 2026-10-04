@@ -307,14 +307,6 @@
     "needs_review": true
   },
   {
-    "id": "pub_dagger-of-swift-strike",
-    "name": "Dagger of Swift Strike",
-    "class": null,
-    "description": "Once per turn on a hit with this dagger, immediately make a second strike with it as part of the same attack. No bonus action required.",
-    "note": "Item feature, not a class feature — stored here because it has a rules definition that needs to be referenced.",
-    "needs_review": true
-  },
-  {
     "id": "pub_tactical-foresight",
     "name": "Tactical Foresight",
     "category": "item_feature",
@@ -1080,7 +1072,7 @@
   },
   {
     "id": "pub_vow-of-the-open-road",
-    "name": "Vow of the Open Road",
+    "name": "Channel Divinity: Vow of the Open Road",
     "type": "feature",
     "action_type": "action",
     "recharge": "channel_divinity",
@@ -1205,17 +1197,6 @@
     "description": "When your weapon attack or cantrip damages a creature, you can expend a use of Divine Strike or Potent Spellcasting (whichever you have) to deal an extra 1d8 radiant damage to the target. You can use this benefit only once per turn.",
     "note": "Optional class feature from Tasha's Cauldron of Everything, replaces Divine Strike.",
     "needs_review": true
-  },
-  {
-    "id": "pub_sacred-weapon",
-    "name": "Sacred Weapon",
-    "category": "subclass_feature",
-    "action_type": "action",
-    "recharge": "channel_divinity",
-    "description": "As an action, expend one use of Channel Divinity to imbue one weapon you are holding with positive energy. For 1 minute: add CHA modifier to attack rolls (minimum +1), weapon counts as magical, emits bright light in 20ft radius and dim light 20ft beyond. You can end the effect early as part of any other action; it also ends immediately if you're no longer holding or carrying the weapon, or if you fall unconscious.",
-    "source": "Player's Handbook",
-    "homebrew": false,
-    "verification": "CORRECTED 2026-09-10: added two missing early-termination conditions (voluntary end as part of another action; automatic end on dropping the weapon or falling unconscious), confirmed via a direct-quote fetch. This is real PHB content reused by Ferghus's homebrew Oath of the Open Road (paladin-oath-of-the-open-road.json) as well as Oath of Devotion — Ferghus (Paladin 9) has this feature, no local override, so this fix applies to him too."
   },
   {
     "id": "pub_assassinate",
@@ -2299,9 +2280,9 @@
     "category": "item_feature",
     "action_type": "reaction",
     "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
-    "note": "Granted by Vaz's Bracer of Pressing Momentum (party_items.json) via features_granted, and separately embedded on the Dagger of Pressing Momentum +2's own weapon_effects (self-contained there, doesn't look up this entry).",
+    "note": "Granted by Vaz's Bracer of Pressing Momentum (party_items.json) via features_granted, and separately embedded on the weapon_effects of both Dagger of Pressing Momentum items (Vaz's +2 and Denna's +1; self-contained there, they don't look up this entry).",
     "homebrew": true,
-    "source": "Homebrew, unique to Vaz — formerly 'Swift Strike', renamed 2026-09-29 to match both items granting the identical effect under one shared name instead of two different ones."
+    "source": "Homebrew — formerly 'Swift Strike' (a free extra strike once per turn on a hit), reduced and renamed 2026-09-29 because that was too strong. Used by Vaz's Dagger of Pressing Momentum +2 and Denna's Dagger of Pressing Momentum +1."
   },
   {
     "id": "hb_missile_snaring",
@@ -2882,9 +2863,10 @@
     "id": "pub_channel-divinity-sacred-weapon",
     "name": "Channel Divinity: Sacred Weapon",
     "category": "paladin_channel_divinity",
+    "action_type": "action",
     "class": "Paladin (Oath of Devotion)",
     "level_gained": 3,
-    "description": "As an action, imbue one weapon you're holding with positive energy for 1 minute. You add your Charisma modifier to attack rolls made with that weapon (minimum bonus of +1), it emits bright light in a 20-foot radius and dim light 20 feet beyond that, and it counts as magical for the purpose of overcoming resistance/immunity to nonmagical attacks. Ends early if you let go of the weapon or fall unconscious.",
+    "description": "As an action, imbue one weapon you are holding with positive energy for 1 minute. You add your Charisma modifier to attack rolls made with that weapon (minimum bonus of +1), it emits bright light in a 20-foot radius and dim light 20 feet beyond that, and it counts as magical for the purpose of overcoming resistance/immunity to nonmagical attacks. You can end the effect early as part of any other action; it also ends immediately if you are no longer holding or carrying the weapon, or if you fall unconscious.",
     "source": "Player's Handbook"
   },
   {

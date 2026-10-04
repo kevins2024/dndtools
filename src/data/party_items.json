@@ -121,7 +121,7 @@
         "type": "weapon_effect",
         "recharge": "short_rest",
         "uses_max": 1,
-        "uses_current": 1,
+        "uses_current": 0,
         "description": "Once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage. Homebrew, based on the Green-Flame Blade cantrip with the spellcasting-modifier scaling dropped (Vaz has no spellcasting ability to scale it off) and the always-available cantrip cadence swapped for a once-per-short-rest weapon charge instead."
       }
     ]
@@ -323,8 +323,8 @@
   {
     "name": "Ioun Stone of Mastery",
     "type": "wondrous",
-    "equipped_by": "Vaz",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Vaz",
     "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
@@ -529,7 +529,7 @@
     "battle_effect": true
   },
   {
-    "name": "Dagger of Swift Strike +1",
+    "name": "Dagger of Pressing Momentum +1",
     "type": "weapon",
     "weapon_category": "dagger",
     "equipped_by": "Denna",
@@ -537,16 +537,17 @@
     "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 1,
-    "effect": "Once per turn on a hit: immediately make a second strike with this dagger as part of the same attack, without using a bonus action.",
+    "effect": "+1 to attack and damage rolls. Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
     "notes": "",
     "id": "items_34",
     "slot": "melee1h",
     "battle_effect": true,
     "weapon_effects": [
       {
-        "name": "Swift Strike",
+        "name": "Press Momentum",
         "type": "weapon_effect",
-        "description": "Once per turn on a hit, immediately make a second strike with this dagger as part of the same attack, without using a bonus action."
+        "action_type": "reaction",
+        "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus."
       }
     ]
   },
@@ -2577,7 +2578,7 @@
   {
     "name": "Gem Pouch",
     "type": "material",
-    "equipped_by": "disallowed",
+    "equipped_by": null,
     "carried_by": "party",
     "party_id": "party_1780850600167_0",
     "needs_attunement": false,
@@ -2620,7 +2621,7 @@
       {
         "type": "Amber",
         "value_gp": 100,
-        "quantity": 12
+        "quantity": 16
       },
       {
         "type": "Amethyst",
@@ -2687,7 +2688,8 @@
         "value_gp": 100,
         "quantity": 22
       }
-    ]
+    ],
+    "stored_at": null
   },
   {
     "name": "Tome of Clear Thought",
@@ -4384,5 +4386,22 @@
     "notes": "",
     "id": "items_256",
     "battle_effect": false
+  },
+  {
+    "name": "Gem of Seeing",
+    "type": "wondrous",
+    "equipped_by": null,
+    "carried_by": "Lexica",
+    "needs_attunement": true,
+    "attuned": false,
+    "charges_current": 3,
+    "charges_max": 3,
+    "charges_recharge": "1d3",
+    "effect": "Rare wondrous item (DMG). 3 charges. As an action, speak the command word and expend 1 charge: for the next 10 minutes you have truesight out to 120 feet when you peer through the gem. Regains 1d3 expended charges daily at dawn.",
+    "notes": "Pale, smooth, lens-shaped gem about the size of a plum, found loose from its perch. Identified by Lexica over a one-hour study (Arcana 14 vs DC 12).",
+    "id": "items_257",
+    "slot": "held",
+    "battle_effect": true,
+    "action_type": "action"
   }
 ]
