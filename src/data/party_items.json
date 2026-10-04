@@ -1,198 +1,128 @@
 [
   {
     "name": "Hendvar's Enchanting Tools",
+    "catalog_id": "hendvars-enchanting-tools",
     "type": "tool",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
-    "description": "Portable enchanting station — a toolkit rather than a fixed station.",
-    "effect": "A specialized set of enchanting tools used for crafting and identifying magical items. Provides proficiency on Arcana checks made to enchant or inspect magic items.",
     "notes": "",
-    "id": "items_0",
-    "slot": "none"
+    "id": "items_0"
   },
   {
     "name": "Oil of Sharpness",
+    "catalog_id": "oil-of-sharpness",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "Kerra",
-    "needs_attunement": false,
     "attuned": false,
     "description": "",
-    "effect": "For 1 hour: weapon gains +3 to attack and damage rolls. Piercing and slashing attacks score a critical hit on a 19 or 20.",
     "notes": "",
     "id": "items_1",
-    "slot": "none",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Oil of Sharpness",
+    "catalog_id": "oil-of-sharpness",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
     "description": "",
-    "effect": "For 1 hour: weapon gains +3 to attack and damage rolls. Piercing and slashing attacks score a critical hit on a 19 or 20.",
     "notes": "",
-    "id": "items_2",
-    "slot": "none"
+    "id": "items_2"
   },
   {
     "name": "Oil of Sharpness",
+    "catalog_id": "oil-of-sharpness",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
     "description": "",
-    "effect": "For 1 hour: weapon gains +3 to attack and damage rolls. Piercing and slashing attacks score a critical hit on a 19 or 20.",
     "notes": "",
-    "id": "items_3",
-    "slot": "none"
+    "id": "items_3"
   },
   {
     "name": "Everlasting Blue Candles",
+    "catalog_id": "everlasting-blue-candles",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "quantity": 6,
-    "description": "Candles that do not burn down.",
-    "effect": "Candles that never extinguish and cannot be blown out by wind or water. Each candle sheds dim light in a 5ft radius.",
     "notes": "",
     "id": "items_4",
-    "slot": "none",
     "stored_at": "Farendale House",
     "party_id": null
   },
   {
     "name": "Boots of the Tireless North",
+    "catalog_id": "boots-of-the-tireless-north",
     "type": "armor",
     "equipped_by": "Pirra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "description": "Soft leather, northern make, clan stitching along the ankle. Worn looking but perfectly preserved. Sized for small feet.",
-    "effect": "No movement penalties in difficult terrain (snow, ice, mud, rubble). Travel pace never causes exhaustion regardless of distance covered in a day.",
     "notes": "",
-    "id": "items_5",
-    "slot": "feet"
+    "id": "items_5"
   },
   {
     "name": "Blackwood Wand Focus",
+    "catalog_id": "blackwood-wand-focus",
     "type": "focus",
     "equipped_by": "Lenn",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "spell_attack": 1,
-      "spell_save_dc": 1
-    },
-    "description": "Blackwood wand usable as a spellcasting focus.",
-    "effect": "+1 to spell attack rolls and spell save DC.",
     "notes": "",
-    "id": "items_6",
-    "slot": "held",
-    "battle_effect": true
+    "id": "items_6"
   },
   {
     "name": "Blueflame Rapier +2",
+    "catalog_id": "blueflame-rapier-2",
     "type": "weapon",
-    "weapon_category": "rapier",
     "equipped_by": "Vaz",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
     "notes": "Formerly 'Veilstrike Rapier' — renamed 2026-09-29 after Sneak Attack (too strong for one attunement slot on top of a full +2 weapon — equivalent to a free 4-level Rogue dip) was removed and replaced with Blue-Flame Blade.",
     "id": "items_7",
-    "slot": "melee1h",
-    "weapon_set": 1,
-    "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Blue-Flame Blade: once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage.",
-    "weapon_effects": [
-      {
-        "name": "Blue-Flame Blade",
-        "type": "weapon_effect",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 0,
-        "description": "Once per short rest, when you hit a creature with this weapon, you can cause blue fire to leap from the target to a second creature of your choice within 5 feet of it. That creature takes 2d8 fire damage. Homebrew, based on the Green-Flame Blade cantrip with the spellcasting-modifier scaling dropped (Vaz has no spellcasting ability to scale it off) and the always-available cantrip cadence swapped for a once-per-short-rest weapon charge instead."
-      }
-    ]
+    "weapon_set": 1
   },
   {
     "name": "Dagger of Pressing Momentum +2",
+    "catalog_id": "dagger-of-pressing-momentum",
     "type": "weapon",
-    "weapon_category": "dagger",
     "equipped_by": "Vaz",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
     "notes": "Off-hand secondary weapon.",
     "id": "items_8",
-    "slot": "melee1h",
-    "weapon_set": 1,
-    "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
-    "weapon_effects": [
-      {
-        "name": "Press Momentum",
-        "type": "weapon_effect",
-        "action_type": "reaction",
-        "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus."
-      }
-    ]
+    "weapon_set": 1
   },
   {
     "name": "Warden Dagger",
+    "catalog_id": "warden-dagger",
     "type": "weapon",
-    "weapon_category": "dagger",
     "equipped_by": null,
     "carried_by": "Vaz",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Boot dagger backup. Reliable against extraplanar threats.",
-    "id": "items_9",
-    "slot": "melee1h",
-    "effect": "Deals +2 damage on a hit against fiends, aberrations, undead, and monstrosities.",
-    "weapon_effects": [
-      {
-        "name": "Warden's Bane",
-        "type": "weapon_effect",
-        "description": "Deals an extra 2 damage on a hit against fiends, aberrations, undead, and monstrosities."
-      }
-    ]
+    "id": "items_9"
   },
   {
     "name": "Hand Crossbow +2 (Rooting)",
+    "catalog_id": "hand-crossbow-2-rooting",
     "type": "weapon",
-    "weapon_category": "hand crossbow",
     "equipped_by": "Vaz",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "Once per turn on a hit: choose to deal damage as normal OR root target in place until end of their next turn.",
     "notes": "Sidearm.",
     "id": "items_10",
-    "slot": "ranged1h",
-    "weapon_set": 2,
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Rooting Shot",
-        "type": "weapon_effect",
-        "description": "Once per turn on a hit, choose to deal damage as normal or root the target in place until the end of its next turn."
-      }
-    ]
+    "weapon_set": 2
   },
   {
     "name": "Hand Crossbow (standard)",
@@ -206,131 +136,107 @@
     "id": "items_11",
     "slot": "ranged1h",
     "weapon_set": 2,
-    "battle_effect": true,
-    "effect": "Standard hand crossbow. 1d6 piercing. Range 30/120ft. Light, loading."
+    "battle_effect": true
   },
   {
     "name": "Wyvern Scale Coat +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "studded leather",
     "enhancement_bonus": 2,
     "equipped_by": "Vaz",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_12",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Bracer of Pressing Momentum",
+    "catalog_id": "bracer-of-pressing-momentum",
     "type": "wondrous",
     "equipped_by": "Elucyne",
     "carried_by": "Elucyne",
-    "needs_attunement": true,
     "attuned": true,
     "notes": "Free off-hand attack reaction.",
     "id": "items_13",
-    "slot": "wrists",
-    "battle_effect": true,
-    "effect": "Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
-    "action_type": "reaction",
-    "features_granted": [
-      "Press Momentum"
-    ],
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Amulet of Proof against Detection",
+    "catalog_id": "amulet-of-proof-against-detection-and-location",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
-    "id": "items_14",
-    "slot": "neck",
-    "effect": "Immune to divination magic. Cannot be targeted by magic that detects emotions, thoughts, or location, or perceived through magical scrying sensors."
+    "id": "items_14"
   },
   {
     "name": "Helm of Comprehending Languages",
+    "catalog_id": "helm-of-comprehending-languages",
     "type": "wondrous",
     "equipped_by": "Vaz",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_15",
-    "slot": "head",
-    "effect": "Cast Comprehend Languages at will while worn."
+    "id": "items_15"
   },
   {
     "name": "Boots of Speed",
+    "catalog_id": "boots-of-speed",
     "type": "wondrous",
     "equipped_by": "Chuknora",
     "carried_by": "Chuknora",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
     "notes": "",
     "id": "items_16",
-    "slot": "feet",
-    "battle_effect": true,
-    "action_type": "bonus_action",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Hat of Disguise",
+    "catalog_id": "hat-of-disguise",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Vaz",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "Carried conditionally.",
-    "id": "items_17",
-    "slot": "head",
-    "effect": "Cast Disguise Self at will while worn."
+    "id": "items_17"
   },
   {
     "name": "Vest of Resistance (Cold)",
+    "catalog_id": "vest-of-resistance-cold",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
-    "id": "items_18",
-    "slot": "body",
-    "effect": "Resistance to cold damage."
+    "id": "items_18"
   },
   {
     "name": "Green Cloak of Presence",
+    "catalog_id": "green-cloak-of-presence",
     "type": "wondrous",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Advantage on Persuasion and Performance checks. Once per day: hold a room.",
     "notes": "",
     "id": "items_19",
-    "slot": "back",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Ioun Stone of Mastery",
+    "catalog_id": "ioun-stone",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Vaz",
-    "needs_attunement": true,
     "attuned": false,
     "stat_bonuses": {
       "proficiency_bonus": 1
     },
-    "effect": "Proficiency bonus increases by 1 while attuned.",
     "notes": "",
     "id": "items_20",
     "slot": "ioun",
@@ -338,595 +244,420 @@
   },
   {
     "name": "Cloak of Unremarkability",
+    "catalog_id": "cloak-of-unremarkability",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Vaz",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Wearer becomes visually uncompelling — the eye slides past without focusing.",
     "notes": "",
-    "id": "items_21",
-    "slot": "back"
+    "id": "items_21"
   },
   {
     "name": "Wand of Secrets",
+    "catalog_id": "wand-of-secrets",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Vaz",
-    "needs_attunement": false,
     "attuned": false,
-    "charges_current": 3,
-    "charges_max": 3,
-    "charges_recharge": "daily",
-    "effect": "Detects secret doors and traps within 30ft.",
     "notes": "",
-    "id": "items_22",
-    "slot": "held"
+    "id": "items_22"
   },
   {
     "name": "Coin of Truth",
+    "catalog_id": "coin-of-truth",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "Vaz",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Ask yes/no questions. Always truthful.",
     "notes": "",
-    "id": "items_23",
-    "slot": "none"
+    "id": "items_23"
   },
   {
     "name": "Eight Unknown Coins",
+    "catalog_id": "eight-unknown-coins",
     "type": "misc",
     "equipped_by": "disallowed",
     "carried_by": "Vaz",
-    "needs_attunement": false,
     "attuned": false,
     "quantity": 8,
     "notes": "",
-    "id": "items_24",
-    "slot": "none",
-    "effect": "Eight large gold coins bearing an unfamiliar crest. Not Fynesmarch minting. Origin unknown."
+    "id": "items_24"
   },
   {
     "name": "Bracers of Defense",
+    "catalog_id": "bracers-of-defense",
     "type": "armor",
     "equipped_by": "Rhuna",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "unarmored_stat_bonuses": {
-      "ac": 2
-    },
     "notes": "Corrected 2026-09-10 -- this item had BOTH unarmored_stat_bonuses.ac AND a flat stat_bonuses.ac, both set to 2, meaning Rhuna's AC was double-counting a single +2 item as +4. Removed the flat stat_bonuses (real RAW: only applies while not wearing armor or using a shield).",
     "id": "items_25",
-    "slot": "wrists",
-    "battle_effect": true,
-    "effect": "+2 bonus to AC when not wearing armor or using a shield."
+    "battle_effect": true
   },
   {
     "name": "Ring of Protection +1",
+    "catalog_id": "ring-of-protection",
     "type": "wondrous",
     "equipped_by": "Siv",
     "carried_by": "Siv",
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ac": 1,
-      "saving_throws": 1
-    },
     "notes": "",
     "id": "items_26",
-    "slot": "ring",
-    "battle_effect": true,
     "stored_at": null,
-    "party_id": null,
-    "effect": "+1 bonus to AC and saving throws."
+    "party_id": null
   },
   {
     "name": "Cloak of Displacement",
+    "catalog_id": "cloak-of-displacement",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_27",
-    "slot": "back",
-    "battle_effect": true,
-    "effect": "While worn, projects an illusion making you appear to be standing near your actual location, giving any creature disadvantage on attack rolls against you. If you take damage, the property ceases to function until the start of your next turn. Suppressed while incapacitated, restrained, or otherwise unable to move.",
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
   {
     "name": "Ring of Free Action",
+    "catalog_id": "ring-of-free-action",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Unaffected by difficult terrain, movement speed reduction, and paralysis.",
     "notes": "",
-    "id": "items_28",
-    "slot": "ring",
-    "battle_effect": true
+    "id": "items_28"
   },
   {
     "name": "Belt of Giant Strength",
+    "catalog_id": "belt-of-giant-strength",
     "type": "wondrous",
     "equipped_by": "Rhuna",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "stat_overrides": {
       "str": 27
     },
-    "effect": "Sets STR to 27.",
     "notes": "",
-    "id": "items_29",
-    "slot": "waist",
-    "battle_effect": true
+    "id": "items_29"
   },
   {
     "name": "Vest of Resistance (Cold)",
+    "catalog_id": "vest-of-resistance-cold",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Rhuna",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_30",
-    "slot": "body",
-    "battle_effect": true,
-    "effect": "Resistance to cold damage."
+    "battle_effect": true
   },
   {
     "name": "Greatsword +3",
+    "catalog_id": "greatsword-3",
     "type": "weapon",
-    "weapon_category": "greatsword",
     "equipped_by": "Rhuna",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 3,
-    "effect": "On a critical hit: target makes a STR saving throw or is knocked prone.",
     "notes": "",
     "id": "items_31",
-    "slot": "melee2h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Toppling Blow",
-        "type": "weapon_effect",
-        "description": "On a critical hit, the target must succeed on a Strength saving throw or be knocked prone."
-      }
-    ],
     "weapon_set": 1
   },
   {
     "name": "Ceremonial Horn",
+    "catalog_id": "ceremonial-horn",
     "type": "misc",
     "equipped_by": "disallowed",
     "carried_by": "Rhuna",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Functions as both drinking vessel and musical instrument.",
     "notes": "Pre-clan-separation northern craftsmanship.",
-    "id": "items_32",
-    "slot": "none"
+    "id": "items_32"
   },
   {
     "name": "Boots of the Winterlands",
+    "catalog_id": "boots-of-the-winterlands",
     "type": "wondrous",
-    "slot": "feet",
     "equipped_by": null,
     "carried_by": "Rhuna",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Resistance to cold damage. Move across icy surfaces without penalty. Withstand extreme cold.",
     "notes": "",
-    "id": "items_33",
-    "battle_effect": true
+    "id": "items_33"
   },
   {
     "name": "Dagger of Pressing Momentum +1",
+    "catalog_id": "dagger-of-pressing-momentum",
     "type": "weapon",
-    "weapon_category": "dagger",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 1,
-    "effect": "+1 to attack and damage rolls. Press Momentum: when you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus.",
     "notes": "",
-    "id": "items_34",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Press Momentum",
-        "type": "weapon_effect",
-        "action_type": "reaction",
-        "description": "When you successfully land a melee attack, you may use your reaction to attack with your offhand weapon. This attack cannot benefit from your proficiency bonus."
-      }
-    ]
+    "id": "items_34"
   },
   {
     "name": "Leather Armor +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "leather",
     "enhancement_bonus": 2,
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_35",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Boots of Elvenkind",
+    "catalog_id": "boots-of-elvenkind",
     "type": "armor",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_36",
-    "slot": "feet",
-    "effect": "Your steps make no sound regardless of surface. Advantage on Stealth checks that rely on moving silently."
+    "id": "items_36"
   },
   {
     "name": "Gloves of Thievery",
+    "catalog_id": "gloves-of-thievery",
     "type": "wondrous",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_37",
-    "slot": "hands",
-    "effect": "Invisible while worn. +5 bonus to Sleight of Hand checks and checks to pick locks.",
-    "stat_bonuses": {
-      "skill_SleightOfHand": 5
-    }
+    "id": "items_37"
   },
   {
     "name": "Ring of Watchful Eye",
+    "catalog_id": "ring-of-watchful-eye",
     "type": "wondrous",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "stat_bonuses": {
-      "skill_Perception": 1
-    },
     "notes": "",
-    "id": "items_38",
-    "slot": "ring",
-    "effect": "+1 bonus to Perception checks while worn."
+    "id": "items_38"
   },
   {
     "name": "Ring of Stilled Breath",
+    "catalog_id": "ring-of-stilled-breath",
     "type": "wondrous",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_39",
-    "slot": "ring",
-    "effect": "The wearer's breathing is completely silent. Advantage on Stealth checks in situations where breathing could give away your position. Creatures relying on hearing alone cannot detect you by your breath."
+    "id": "items_39"
   },
   {
     "name": "Cloak of Arachnida",
+    "catalog_id": "cloak-of-arachnida",
     "type": "wondrous",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Spider climb. Immunity to web. Cast Web 1/day.",
     "notes": "",
-    "id": "items_40",
-    "slot": "back",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Web",
-        "action_type": "action",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      }
-    ]
+    "id": "items_40"
   },
   {
     "name": "Cold Dagger +2",
+    "catalog_id": "cold-dagger-2",
     "type": "weapon",
-    "weapon_category": "dagger",
     "equipped_by": "Denna",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
-    "effect": "Deals cold damage. On hit: +1d6 cold damage and target's movement reduced by 10ft until start of their next turn.",
     "notes": "",
-    "id": "items_41",
-    "slot": "melee1h",
-    "extra_damage": {
-      "die": "1d6",
-      "type": "cold",
-      "applies_to": "weapon",
-      "trigger": "on hit"
-    },
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Chilling Strike",
-        "type": "weapon_effect",
-        "description": "On a hit, deals an extra 1d6 cold damage and the target's speed is reduced by 10ft until the start of its next turn."
-      }
-    ]
+    "id": "items_41"
   },
   {
     "name": "Gloves of Missile Snaring",
+    "catalog_id": "gloves-of-missile-snaring",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Therynv'l",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Missile Snaring: reaction when hit by ranged attack, reduce damage by 1d10 + DEX. If reduced to 0, catch the missile.",
     "notes": "",
     "id": "items_42",
-    "slot": "hands",
-    "battle_effect": true,
     "stored_at": null,
-    "party_id": null,
-    "action_type": "reaction",
-    "features_granted": [
-      "Missile Snaring"
-    ]
+    "party_id": null
   },
   {
     "name": "Alchemical Dagger",
+    "catalog_id": "alchemical-dagger",
     "type": "weapon",
-    "weapon_category": "dagger",
     "equipped_by": "Jaygar",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Passive alchemical utility. Results vary by what you dip it in.",
     "id": "items_43",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "When dipped into any liquid, identifies its properties (potion, poison, magical substance, etc.) within 1 round. After identification, the blade retains a coating of that liquid — the next attack with this dagger delivers the substance to the target. Effect could be beneficial or harmful depending on the liquid.",
-    "weapon_effects": [
-      {
-        "name": "Alchemical Coating",
-        "type": "weapon_effect",
-        "description": "Dip the blade into a liquid to identify its properties within 1 round. The blade retains a coating of that liquid — the next hit with this dagger delivers the substance to the target, for better or worse."
-      }
-    ],
     "weapon_set": 2
   },
   {
     "name": "Alchemical Light Crossbow",
+    "catalog_id": "alchemical-light-crossbow",
     "type": "weapon",
-    "weapon_category": "light crossbow",
     "equipped_by": "Jaygar",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "Fires custom alchemical bolts. Quieter release. Bonded weapon for Infused Arbalist's Calculating Arbalister/Infuse Weapon/Arcane Payload.",
     "notes": "Reflavored from Heavy to Light Crossbow 2026-09-02 to resolve a real proficiency gap: heavy crossbow is a martial weapon and neither base Artificer nor Infused Arbalist grants martial proficiency, so Jaygar wasn't legally proficient with his own signature weapon. Light crossbow is simple, closing the gap without needing a subclass change.",
     "id": "items_44",
-    "slot": "ranged2h",
-    "battle_effect": true,
     "weapon_set": 1
   },
   {
     "name": "Alchemical Light Crossbow (party copy)",
+    "catalog_id": "alchemical-light-crossbow-party-copy",
     "type": "weapon",
-    "weapon_category": "light crossbow",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "Fires custom alchemical bolts. Quieter release.",
     "notes": "Second copy. Reflavored from Heavy to Light Crossbow 2026-09-02, matching items_48.",
-    "id": "items_45",
-    "slot": "ranged2h"
+    "id": "items_45"
   },
   {
     "name": "Web Bomb",
+    "catalog_id": "web-bomb",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
-    "id": "items_46",
-    "slot": "none",
-    "effect": "When thrown, a web fills a 20ft radius at the target point for 1 minute. Creatures must succeed on a STR save or be restrained."
+    "id": "items_46"
   },
   {
     "name": "Smoke Bomb",
+    "catalog_id": "smoke-bomb",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
-    "id": "items_47",
-    "slot": "none",
-    "effect": "When thrown, creates a 20ft radius sphere of smoke for 1 minute. The area is heavily obscured."
+    "id": "items_47"
   },
   {
     "name": "Flash Bomb",
+    "catalog_id": "flash-bomb",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
-    "id": "items_48",
-    "slot": "none",
-    "effect": "When thrown, creatures within 10ft must succeed on a CON saving throw (DC 13) or be blinded until end of their next turn."
+    "id": "items_48"
   },
   {
     "name": "Clockwork Distraction Device",
+    "catalog_id": "clockwork-distraction-device",
     "type": "tool",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
-    "id": "items_49",
-    "slot": "none",
-    "effect": "When activated, produces a mechanical noise at a chosen point up to 30ft away for up to 1 minute. Useful for drawing attention or masking other sounds."
+    "id": "items_49"
   },
   {
     "name": "Magnetic Lock Disruptor",
+    "catalog_id": "magnetic-lock-disruptor",
     "type": "tool",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
-    "id": "items_50",
-    "slot": "none",
-    "effect": "When held against a magnetically sealed or mechanically locked mechanism, disrupts the lock. Advantage on checks to pick or force magnetic and clockwork locks."
+    "id": "items_50"
   },
   {
     "name": "Magical Aura Detector",
+    "catalog_id": "magical-aura-detector",
     "type": "tool",
     "equipped_by": "disallowed",
     "carried_by": "Jaygar",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "30ft range.",
-    "id": "items_51",
-    "slot": "none",
-    "effect": "Continuously detects magical auras within 30ft while held. Reveals the presence of magic but not its school or strength without closer examination."
+    "id": "items_51"
   },
   {
     "name": "Amulet of Health",
+    "catalog_id": "amulet-of-health",
     "type": "wondrous",
     "equipped_by": "Jaygar",
     "carried_by": "Jaygar",
-    "needs_attunement": true,
     "attuned": true,
-    "stat_overrides": {
-      "con": 19
-    },
     "notes": "",
-    "id": "items_52",
-    "slot": "neck",
-    "battle_effect": true,
-    "effect": "Your Constitution score is 19 while you wear this amulet. Has no effect if your CON is already 19 or higher."
+    "id": "items_52"
   },
   {
     "name": "Cloak of Displacement",
+    "catalog_id": "cloak-of-displacement",
     "type": "wondrous",
     "equipped_by": "Jaygar",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "notes": "Second copy confirmed intentional.",
-    "id": "items_53",
-    "slot": "back",
-    "battle_effect": true,
-    "effect": "While worn, projects an illusion making you appear to be standing near your actual location, giving any creature disadvantage on attack rolls against you. If you take damage, the property ceases to function until the start of your next turn. Suppressed while incapacitated, restrained, or otherwise unable to move."
+    "id": "items_53"
   },
   {
     "name": "Leather Armor +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "leather",
     "enhancement_bonus": 2,
     "equipped_by": "Jaygar",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_54",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Shield of Reprisal",
+    "catalog_id": "shield-of-reprisal",
     "type": "armor",
-    "armor_type": "shield",
     "equipped_by": null,
     "carried_by": "Chuknora",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "No bonus to AC (base shield +2 only). When bearer is hit by a melee attack, the attacker takes 1d6 force damage.",
     "notes": "Renamed from \"Shield of Retribution\" 2026-09-12 to avoid confusion with the real item of that name (a Critical Role campaign item with a materially different effect: +1 AC, triggers on the attacker missing rather than hitting, 4d6 force damage, plus a push). This is a deliberate, kept-as-is homebrew/lighter version, not that item.",
     "id": "items_55",
-    "slot": "shield",
-    "battle_effect": true,
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Bracer of Steady Aim",
+    "catalog_id": "bracer-of-steady-aim",
     "type": "wondrous",
     "equipped_by": "Jaygar",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ranged_attack": 1
-    },
-    "effect": "+1 ranged attack. Advantage on concentration saves after taking damage.",
     "notes": "",
-    "id": "items_56",
-    "slot": "wrists",
-    "battle_effect": true
+    "id": "items_56"
   },
   {
     "name": "Wand of Wonder",
+    "catalog_id": "wand-of-wonder",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
-    "charges_current": 7,
-    "charges_max": 7,
-    "charges_recharge": "daily",
-    "effect": "Cast random magical effect using charges.",
     "notes": "",
     "id": "items_57",
-    "slot": "held",
-    "battle_effect": true,
-    "action_type": "action",
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
   {
     "name": "Ring of Feather Falling",
+    "catalog_id": "ring-of-feather-falling",
     "type": "wondrous",
     "equipped_by": "Lenn",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
-    "id": "items_58",
-    "slot": "ring",
-    "effect": "When you fall, you descend 60 feet per round and take no damage from falling."
+    "id": "items_58"
   },
   {
     "name": "Pearl of Power",
+    "catalog_id": "pearl-of-power",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_59",
-    "slot": "neck",
     "stored_at": null,
-    "party_id": "party_1780850600167_1",
-    "effect": "Once per long rest: expend an action to regain one expended spell slot of 3rd level or lower."
+    "party_id": "party_1780850600167_1"
   },
   {
     "name": "Silvered Shortsword",
@@ -941,265 +672,183 @@
     "id": "items_60",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "Silvered. Bypasses damage immunity and resistance for creatures such as lycanthropes and certain undead."
+    "silvered": true
   },
   {
     "name": "Gloves of Spellcasting",
+    "catalog_id": "gloves-of-spellcasting",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Lenn",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Every spell cast treated as one level higher automatically.",
     "notes": "",
-    "id": "items_61",
-    "slot": "hands",
-    "battle_effect": true
+    "id": "items_61"
   },
   {
     "name": "Travelling Flute",
+    "catalog_id": "travelling-flute",
     "type": "misc",
     "equipped_by": "disallowed",
     "carried_by": "Lenn",
-    "needs_attunement": false,
     "attuned": false,
     "id": "items_62",
-    "slot": "none",
-    "effect": "Lenn's personal flute. Functions as a Bardic focus. No additional magical properties.",
     "notes": ""
   },
   {
     "name": "Elemental Resistance Robes",
+    "catalog_id": "elemental-resistance-robes",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Lenn",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Resistance to one element chosen on attunement. Attuned to: fire.",
-    "notes": "",
-    "id": "items_63",
-    "slot": "body"
+    "notes": "Attuned to: fire.",
+    "id": "items_63"
   },
   {
     "name": "Staff of Evocation",
+    "catalog_id": "staff-of-evocation",
     "type": "weapon",
-    "weapon_category": "staff",
     "equipped_by": "Lenn",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 0,
-    "effect": "Evocation spells have no effect on allies.",
     "notes": "",
-    "id": "items_64",
-    "slot": "melee1h",
-    "battle_effect": true
+    "id": "items_64"
   },
   {
     "name": "Rapier +2 (Psychic)",
+    "catalog_id": "rapier-2-psychic",
     "type": "weapon",
-    "weapon_category": "rapier",
     "equipped_by": "Kessara",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "On a hit: choose to deal psychic damage instead of piercing.",
     "notes": "",
-    "id": "items_65",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Mind Blade",
-        "type": "weapon_effect",
-        "description": "On a hit, choose to deal psychic damage instead of piercing damage."
-      }
-    ]
+    "id": "items_65"
   },
   {
     "name": "Bracers of Defense",
+    "catalog_id": "bracers-of-defense",
     "type": "armor",
     "equipped_by": null,
     "carried_by": "Therynv'l",
-    "needs_attunement": true,
     "attuned": false,
-    "unarmored_stat_bonuses": {
-      "ac": 2
-    },
     "notes": "",
     "id": "items_66",
-    "slot": "wrists",
-    "effect": "+2 bonus to AC when not wearing armor or using a shield.",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Concentration Robes",
+    "catalog_id": "concentration-robes",
     "type": "wondrous",
     "equipped_by": "Lenn",
     "carried_by": "Lenn",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Advantage on concentration checks.",
     "notes": "",
-    "id": "items_67",
-    "slot": "body"
+    "id": "items_67"
   },
   {
     "name": "Ring of Impact",
+    "catalog_id": "ring-of-impact",
     "type": "wondrous",
     "equipped_by": "Kessara",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Stops a harsh impact once per day.",
     "notes": "",
-    "id": "items_68",
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "slot": "ring",
-    "battle_effect": true
+    "id": "items_68"
   },
   {
     "name": "The Lexicon",
+    "catalog_id": "the-lexicon",
     "type": "focus",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
-    "needs_attunement": true,
     "attuned": false,
-    "finesse": true,
-    "damage_dice": "1d4",
     "enhancement_bonus": 1,
-    "stat_bonuses": {
-      "spell_save_dc": 2
-    },
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "effect": "Spell save DC +2. Once per long rest when casting 3rd level or higher: cast as if one level higher without expending the higher slot.",
     "notes": "",
     "id": "items_69",
-    "slot": "held",
-    "battle_effect": true,
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Robe of the Archmagi",
+    "catalog_id": "robe-of-the-archmagi",
     "type": "wondrous",
-    "slot": "body",
     "equipped_by": "Kessara",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "spell_save_dc": 2,
-      "spell_attack": 2,
-      "saving_throws": 1
-    },
-    "unarmored_armor_base_ac": 15,
-    "effect": "+2 spell DC and attack, advantage on saves against spells, AC 15 unarmored.",
     "notes": "",
-    "id": "items_70",
-    "battle_effect": true
+    "id": "items_70"
   },
   {
-    "name": "Cloak of Protection +2",
+    "name": "Cloak of Protection",
+    "catalog_id": "cloak-of-protection",
     "type": "wondrous",
     "equipped_by": "Kessara",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ac": 2,
-      "saving_throws": 2
-    },
-    "effect": "+2 AC and saving throws.",
     "notes": "",
-    "id": "items_71",
-    "slot": "back",
-    "battle_effect": true
+    "id": "items_71"
   },
   {
     "name": "Half Plate +1",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "half plate",
     "enhancement_bonus": 1,
     "equipped_by": "Petra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_72",
-    "slot": "body",
-    "effect": "+1 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Waive",
+    "catalog_id": "waive",
     "type": "weapon",
-    "weapon_category": "staff",
     "equipped_by": "Petra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 1,
-    "effect": "Whenever bearer casts a healing spell, all other creatures within 15ft are healed for 2hp.",
     "notes": "",
-    "id": "items_73",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Overflowing Cure",
-        "type": "weapon_effect",
-        "description": "Whenever the bearer casts a healing spell, all other creatures within 15ft are healed for 2 hp."
-      }
-    ]
+    "id": "items_73"
   },
   {
     "name": "Shield of Expression",
+    "catalog_id": "shield-of-expression",
     "type": "armor",
-    "armor_type": "shield",
     "equipped_by": "Petra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Display any image or symbol on shield face.",
     "notes": "Cosmetic.",
-    "id": "items_74",
-    "slot": "shield"
+    "id": "items_74"
   },
   {
-    "name": "Amulet of the Devout +2",
+    "name": "Amulet of the Devout",
+    "catalog_id": "amulet-of-the-devout",
     "type": "wondrous",
     "equipped_by": "Kerra",
     "carried_by": "Kerra",
-    "needs_attunement": true,
     "attuned": true,
+    "notes": "",
+    "id": "items_75",
+    "rarity": "rare",
     "stat_bonuses": {
       "spell_attack": 2,
       "spell_save_dc": 2
-    },
-    "effect": "+2 spell attack and spell save DC.",
-    "notes": "",
-    "id": "items_75",
-    "slot": "neck",
-    "battle_effect": true
+    }
   },
   {
     "name": "Medallion of Concentration",
+    "catalog_id": "medallion-of-concentration",
     "type": "wondrous",
     "equipped_by": "Petra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Advantage on all concentration checks.",
     "notes": "",
-    "id": "items_76",
-    "slot": "neck",
-    "battle_effect": true
+    "id": "items_76"
   },
   {
     "name": "Silvered Shortsword",
@@ -1214,264 +863,191 @@
     "id": "items_77",
     "slot": "melee1h",
     "battle_effect": true,
-    "effect": "Silvered. Bypasses damage immunity and resistance for creatures such as lycanthropes and certain undead."
+    "silvered": true
   },
   {
     "name": "Studded Leather +1",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "studded leather",
     "enhancement_bonus": 1,
     "equipped_by": "Pirra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_78",
-    "slot": "body",
-    "effect": "+1 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Gloves of Thievery",
+    "catalog_id": "gloves-of-thievery",
     "type": "wondrous",
     "equipped_by": "Pirra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "stat_bonuses": {
-      "skill_SleightOfHand": 5
-    },
-    "effect": "Invisible while worn. +5 Sleight of Hand and lockpicking.",
     "notes": "",
-    "id": "items_79",
-    "slot": "hands"
+    "id": "items_79"
   },
   {
     "name": "Cloak of the Manta Ray",
+    "catalog_id": "cloak-of-the-manta-ray",
     "type": "wondrous",
     "equipped_by": "Pirra",
     "carried_by": "Pirra",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Breathe underwater. Swim speed 60.",
     "notes": "",
-    "id": "items_80",
-    "slot": "back"
+    "id": "items_80"
   },
   {
     "name": "Longsword +2",
+    "catalog_id": "weapon-1-2-or-3",
     "type": "weapon",
     "weapon_category": "longsword",
     "equipped_by": "Eldi",
     "carried_by": "Eldi",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Party backup.",
     "id": "items_81",
     "slot": "melee1h",
-    "effect": "+2 bonus to attack and damage rolls.",
     "stored_at": null,
     "party_id": null,
     "weapon_set": 2
   },
   {
     "name": "Sword of Sharpness",
+    "catalog_id": "sword-of-sharpness",
     "type": "weapon",
-    "weapon_category": "longsword",
     "equipped_by": "Kerra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "On a natural 20 attack roll: deal an extra 14 slashing damage, then roll another d20 — a second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), with the GM determining the effect. Against an object, maximize the weapon's damage dice on a hit.",
     "notes": "",
     "id": "items_82",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Sharpness",
-        "type": "weapon_effect",
-        "description": "On a natural 20 attack roll, deal an extra 14 slashing damage, then roll another d20. A second natural 20 severs one of the target's limbs (or a portion of its body if it has none to sever), effect determined by the GM. Against an object hit, maximize the weapon's damage dice instead."
-      }
-    ],
     "weapon_set": null
   },
   {
     "name": "Gloves of Dueling",
+    "catalog_id": "gloves-of-dueling",
     "type": "wondrous",
     "equipped_by": "Kerra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "melee_attack": 2
-    },
     "notes": "",
-    "id": "items_83",
-    "slot": "hands",
-    "battle_effect": true,
-    "effect": "+2 bonus to damage rolls when fighting with a melee weapon in one hand and nothing in the other."
+    "id": "items_83"
   },
   {
-    "name": "Cloak of Protection +2",
+    "name": "Cloak of Protection",
+    "catalog_id": "cloak-of-protection",
     "type": "wondrous",
     "equipped_by": "Kerra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ac": 2,
-      "saving_throws": 2
-    },
-    "effect": "+2 AC and saving throws.",
     "notes": "",
-    "id": "items_84",
-    "slot": "back",
-    "battle_effect": true
+    "id": "items_84"
   },
   {
     "name": "Mithral Half Plate +2",
+    "catalog_id": "mithral-half-plate-2",
     "type": "armor",
-    "armor_type": "half plate",
     "enhancement_bonus": 2,
-    "slot": "body",
     "equipped_by": "Kerra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "No stealth disadvantage.",
     "notes": "",
     "id": "items_85"
   },
   {
     "name": "The Farreach (A)",
+    "catalog_id": "the-farreach-a",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Siv",
-    "needs_attunement": true,
     "attuned": false,
     "paired_with": "The Farreach (B)",
-    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus to an ability or skill check.",
     "notes": "",
-    "id": "items_86",
-    "slot": "ring",
-    "battle_effect": true,
-    "action_type": "free",
-    "features_granted": [
-      "Ring's Answer"
-    ]
+    "id": "items_86"
   },
   {
     "name": "Longbow +2 (Force)",
+    "catalog_id": "longbow-2-force",
     "type": "weapon",
-    "weapon_category": "longbow",
     "equipped_by": "Siv",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "Deals force damage instead of piercing.",
     "notes": "",
-    "id": "items_87",
-    "slot": "ranged2h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Force Arrow",
-        "type": "weapon_effect",
-        "description": "Deals force damage instead of piercing damage."
-      }
-    ]
+    "id": "items_87"
   },
   {
     "name": "Bow Grip",
+    "catalog_id": "bow-grip",
     "type": "wondrous",
     "equipped_by": "Siv",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Reduces moving shot penalty.",
     "notes": "",
-    "id": "items_88",
-    "slot": "none"
+    "id": "items_88"
   },
   {
     "name": "Studded Leather Armor +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "studded leather",
     "enhancement_bonus": 2,
     "equipped_by": "Siv",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_89",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Boots of Elvenkind",
+    "catalog_id": "boots-of-elvenkind",
     "type": "wondrous",
     "equipped_by": "Siv",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
-    "id": "items_90",
-    "slot": "feet",
-    "effect": "Your steps make no sound regardless of surface. Advantage on Stealth checks that rely on moving silently."
+    "id": "items_90"
   },
   {
     "name": "Bracers of Archery",
+    "catalog_id": "bracers-of-archery",
     "type": "wondrous",
     "equipped_by": "Siv",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ranged_damage": 2
-    },
     "notes": "",
-    "id": "items_91",
-    "slot": "wrists",
-    "battle_effect": true,
-    "effect": "Proficiency with longbows and shortbows. +2 bonus to damage rolls with ranged weapons."
+    "id": "items_91"
   },
   {
     "name": "The Farreach (B)",
+    "catalog_id": "the-farreach-b",
     "type": "wondrous",
     "equipped_by": "Pirra",
     "carried_by": "Pirra",
-    "needs_attunement": true,
     "attuned": true,
     "paired_with": "The Farreach (A)",
-    "effect": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus.",
     "notes": "",
     "id": "items_92",
-    "slot": "ring",
-    "battle_effect": true,
     "stored_at": null,
-    "party_id": null,
-    "action_type": "free",
-    "features_granted": [
-      "Ring's Answer"
-    ]
+    "party_id": null
   },
   {
     "name": "Hand Crossbow +1",
+    "catalog_id": "weapon-1-2-or-3",
     "type": "weapon",
     "weapon_category": "hand crossbow",
     "equipped_by": "Lexica",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Sidearm.",
     "id": "items_93",
     "slot": "ranged1h",
-    "battle_effect": true,
-    "effect": "+1 bonus to attack and damage rolls."
+    "battle_effect": true
   },
   {
     "name": "Rapier",
@@ -1485,710 +1061,418 @@
     "notes": "Backup melee.",
     "id": "items_94",
     "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "Standard rapier. Finesse weapon. 1d8 piercing damage."
+    "battle_effect": true
   },
   {
     "name": "Leather Armor +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "leather",
     "enhancement_bonus": 2,
     "equipped_by": "Lexica",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_95",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Hat of Perception",
+    "catalog_id": "hat-of-perception",
     "type": "wondrous",
     "equipped_by": "Lexica",
     "carried_by": "Lexica",
-    "needs_attunement": false,
     "attuned": false,
-    "stat_bonuses": {
-      "skill_Perception": 1
-    },
-    "effect": "+1 passive perception. Advantage on Perception in dim light or darkness.",
     "notes": "",
-    "id": "items_96",
-    "slot": "head"
+    "id": "items_96"
   },
   {
     "name": "Cloak of Elvenkind",
+    "catalog_id": "cloak-of-elvenkind",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Therynv'l",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Advantage on Stealth checks outdoors. Color shifting.",
     "notes": "",
     "id": "items_97",
-    "slot": "back",
-    "battle_effect": true,
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Rope of Climbing and Entanglement",
+    "catalog_id": "rope-of-climbing-and-entanglement",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Lexica",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "60ft rope, animates on command. Restrain target 1/day.",
     "notes": "",
-    "id": "items_98",
-    "slot": "none"
+    "id": "items_98"
   },
   {
     "name": "Cloak of Protection",
+    "catalog_id": "cloak-of-protection",
     "type": "wondrous",
     "equipped_by": "Lexica",
     "carried_by": "Lexica",
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ac": 1,
-      "saving_throws": 1
-    },
     "notes": "",
-    "id": "items_99",
-    "slot": "back",
-    "battle_effect": true,
-    "effect": "+1 bonus to AC and saving throws."
+    "id": "items_99"
   },
   {
     "name": "Bracers of Defense",
+    "catalog_id": "bracers-of-defense",
     "type": "armor",
     "equipped_by": "Lyria",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
-    "unarmored_stat_bonuses": {
-      "ac": 2
-    },
     "notes": "Corrected 2026-09-10 -- was a flat stat_bonuses.ac (always-on), but real RAW only grants this while not wearing armor or using a shield. Changed to unarmored_stat_bonuses to match Rhuna's and Therynv'l's copies of the same item.",
     "id": "items_100",
-    "slot": "wrists",
-    "battle_effect": true,
-    "effect": "+2 bonus to AC when not wearing armor or using a shield."
+    "battle_effect": true
   },
   {
     "name": "Belt of Constitution",
+    "catalog_id": "belt-of-constitution",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Sets CON to 18.",
     "notes": "",
-    "id": "items_101",
-    "slot": "waist",
-    "battle_effect": true,
-    "stat_overrides": {
-      "con": 18
-    }
+    "id": "items_101"
   },
   {
     "name": "Robe of Stars",
+    "catalog_id": "robe-of-stars",
     "type": "wondrous",
     "equipped_by": "Lyria",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
-    "stat_bonuses": {
-      "saving_throws": 1
-    },
-    "charges_current": 6,
-    "charges_max": 6,
-    "charges_recharge": "daily",
-    "effect": "Touch one of the robe's 6 star-charges to cast Magic Missile as a 5th-level spell (5 darts), no material component needed. +1 saving throws. Once per dawn, use an action to Plane Shift (Astral Plane only) along with everything worn/carried.",
     "notes": "Real DMG Robe of Stars, from training knowledge — not independently re-verified against a second source this pass (unlike Staff of Power/Wand of Magic Missiles/Helm of Brilliance/Necklace of Prayer Beads, which were); treat as a solid placeholder.",
-    "id": "items_102",
-    "slot": "body",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Magic Missile",
-        "action_type": "action",
-        "charge_cost": 1
-      },
-      {
-        "name": "Plane Shift",
-        "action_type": "action",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      }
-    ]
+    "id": "items_102"
   },
   {
     "name": "Staff of Power",
+    "catalog_id": "staff-of-power",
     "type": "weapon",
-    "weapon_category": "staff",
     "equipped_by": "Lyria",
     "carried_by": "Lyria",
-    "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "stat_bonuses": {
-      "spell_attack": 2,
-      "spell_save_dc": 2
-    },
-    "charges_current": 20,
-    "charges_max": 20,
-    "charges_recharge": "2d8+4",
-    "effect": "Cast from charges (no material component needed, the staff is the focus): Magic Missile, Ray of Enfeeblement, Fireball, Lightning Bolt, Cone of Cold, Hold Monster, Wall of Force, Globe of Invulnerability. +2 spell attack and DC. If the last charge is expended, roll a d20 — on a 1 the staff keeps its +2 weapon/AC/save bonus but permanently loses all other properties.",
     "notes": "Do not break it.",
-    "id": "items_103",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "spells_granted": [
-      {
-        "name": "Magic Missile",
-        "action_type": "action",
-        "charge_cost": 1
-      },
-      {
-        "name": "Ray of Enfeeblement",
-        "action_type": "action",
-        "charge_cost": 1
-      },
-      {
-        "name": "Fireball",
-        "action_type": "action",
-        "charge_cost": 5
-      },
-      {
-        "name": "Lightning Bolt",
-        "action_type": "action",
-        "charge_cost": 5
-      },
-      {
-        "name": "Cone of Cold",
-        "action_type": "action",
-        "charge_cost": 5
-      },
-      {
-        "name": "Hold Monster",
-        "action_type": "action",
-        "charge_cost": 5
-      },
-      {
-        "name": "Wall of Force",
-        "action_type": "action",
-        "charge_cost": 5
-      },
-      {
-        "name": "Globe of Invulnerability",
-        "action_type": "action",
-        "charge_cost": 6
-      }
-    ]
+    "id": "items_103"
   },
   {
     "name": "Circlet of Scorching Ray 3",
+    "catalog_id": "circlet-of-scorching-ray-3",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Lyria",
-    "needs_attunement": true,
     "attuned": false,
-    "charges_current": 3,
-    "charges_max": 3,
-    "charges_recharge": "daily",
-    "effect": "Cast Scorching Ray 3 times per day.",
     "notes": "",
-    "id": "items_104",
-    "slot": "head",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Scorching Ray",
-        "action_type": "action",
-        "charge_cost": 1
-      }
-    ]
+    "id": "items_104"
   },
   {
     "name": "Plate +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "plate",
     "enhancement_bonus": 2,
     "equipped_by": "Corwin",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_105",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Halberd of Warning +2",
+    "catalog_id": "halberd-of-warning-2",
     "type": "weapon",
-    "weapon_category": "halberd",
     "equipped_by": "Corwin",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "grants_initiative_advantage": true,
-    "effect": "Requires attunement. While attuned and the weapon is on your person, you have advantage on initiative rolls. In addition, you and any companions within 30ft of you can't be surprised, except when incapacitated by something other than nonmagical sleep.",
     "notes": "",
-    "id": "items_106",
-    "slot": "melee2h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Warning",
-        "type": "weapon_effect",
-        "description": "Requires attunement. While attuned and carried, grants advantage on initiative rolls. You and any companions within 30ft of you can't be surprised, except when incapacitated by something other than nonmagical sleep."
-      }
-    ]
+    "id": "items_106"
   },
   {
     "name": "Longsword +2 (Bronze Flame)",
+    "catalog_id": "longsword-2-bronze-flame",
     "type": "weapon",
-    "weapon_category": "longsword",
     "equipped_by": "Enauweyn",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
-    "effect": "Command word ignites bronze edges — adds 2d6 fire damage to each hit while active.",
     "notes": "",
-    "id": "items_107",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Bronze Flame",
-        "type": "weapon_effect",
-        "action_type": "bonus_action",
-        "description": "Speak the command word to ignite the bronze edges. While active, each hit deals an extra 2d6 fire damage. A second use of the command word ends the effect early."
-      }
-    ]
+    "id": "items_107"
   },
   {
     "name": "Collapsible Shield +2",
+    "catalog_id": "shield-1-2-3",
     "type": "armor",
     "equipped_by": "Enauweyn",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "armor_type": "shield",
     "enhancement_bonus": 2,
     "notes": "",
     "id": "items_108",
-    "slot": "shield",
-    "effect": "+2 bonus to AC from this shield. Can be collapsed for storage."
+    "slot": "shield"
   },
   {
     "name": "Gauntlets of Ogre Power",
+    "catalog_id": "gauntlets-of-ogre-power",
     "type": "wondrous",
     "equipped_by": "Corwin",
     "carried_by": "Corwin",
-    "needs_attunement": true,
     "attuned": true,
-    "stat_overrides": {
-      "str": 19
-    },
-    "effect": "Sets STR to 19.",
     "notes": "",
-    "id": "items_109",
-    "slot": "hands",
-    "battle_effect": true
+    "id": "items_109"
   },
   {
-    "name": "Cloak of Protection +1",
+    "name": "Cloak of Protection",
+    "catalog_id": "cloak-of-protection",
     "type": "wondrous",
     "equipped_by": "Corwin",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ac": 1,
-      "saving_throws": 1
-    },
-    "effect": "+1 AC and saving throws.",
     "notes": "",
-    "id": "items_110",
-    "slot": "back",
-    "battle_effect": true
+    "id": "items_110"
   },
   {
     "name": "Circlet of Mental Fortress",
+    "catalog_id": "circlet-of-mental-fortress",
     "type": "wondrous",
     "equipped_by": "Corwin",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Advantage on INT, WIS, CHA saving throws. Resistance to psychic damage.",
     "notes": "",
-    "id": "items_111",
-    "slot": "head",
-    "battle_effect": true
+    "id": "items_111"
   },
   {
     "name": "Amulet of Health",
+    "catalog_id": "amulet-of-health",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Corwin",
-    "needs_attunement": true,
     "attuned": false,
-    "stat_overrides": {
-      "con": 19
-    },
-    "effect": "Sets CON to 19.",
     "notes": "",
-    "id": "items_112",
-    "slot": "neck",
-    "battle_effect": true
+    "id": "items_112"
   },
   {
     "name": "Bone Ring of Weapon Retention",
+    "catalog_id": "bone-ring-of-weapon-retention",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Corwin",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Cannot be disarmed.",
     "notes": "",
-    "id": "items_113",
-    "slot": "ring",
-    "battle_effect": true
+    "id": "items_113"
   },
   {
     "name": "Bracers of Defense",
+    "catalog_id": "bracers-of-defense",
     "type": "wondrous",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
-    "needs_attunement": true,
     "attuned": false,
-    "unarmored_stat_bonuses": {
-      "ac": 2
-    },
-    "effect": "+2 AC when not wearing armor or shield.",
     "notes": "",
     "id": "items_114",
-    "slot": "wrists",
     "battle_effect": true,
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Elemental Resistance Robes",
+    "catalog_id": "elemental-resistance-robes",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Resistance to one element. Attuned to: fire.",
-    "notes": "",
+    "notes": "Attuned to: fire.",
     "id": "items_115",
-    "slot": "body",
     "battle_effect": true
   },
   {
     "name": "Ring of Transmutation",
+    "catalog_id": "ring-of-transmutation",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Therynv'l",
-    "needs_attunement": true,
     "attuned": false,
-    "charges_current": 3,
-    "charges_max": 3,
-    "charges_recharge": "daily",
-    "effect": "1 charge: Alter Self. 2 charges: Polymorph (self only). 3 charges: Gaseous Form.",
     "notes": "",
     "id": "items_116",
-    "slot": "ring",
-    "battle_effect": true,
     "stored_at": null,
-    "party_id": null,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Alter Self",
-        "action_type": "action",
-        "charge_cost": 1
-      },
-      {
-        "name": "Polymorph",
-        "action_type": "action",
-        "charge_cost": 2
-      },
-      {
-        "name": "Gaseous Form",
-        "action_type": "action",
-        "charge_cost": 3
-      }
-    ]
+    "party_id": null
   },
   {
     "name": "Ring of Jumping",
+    "catalog_id": "ring-of-jumping",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Chuknora",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Jump distance tripled.",
     "notes": "",
-    "id": "items_117",
-    "slot": "ring",
-    "battle_effect": true
+    "id": "items_117"
   },
   {
     "name": "O' M'Tandra",
+    "catalog_id": "o-mtandra",
     "type": "wondrous",
     "equipped_by": "Torrin",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "description": "A simple ancient bone-handled leatherworking awl. The needle-point glows with a faint psionic violet hue.",
-    "effect": "Three properties: (1) Tactical Foresight — Help targets two allies. (2) Grandmaster's Stitch — infuse leather item during long rest. (3) The Retired Special — once per day reaction pull ally up to 15ft.",
     "notes": "Its Psionic Reinforcement property (Psychic Blades +2 attack and damage) was too strong stacked with everything else it does — retired 2026-09-15 and rebuilt into his armor instead via this awl's own Grandmaster's Stitch property. Named 'Oh my Vantandra' after a person with a close relationship and shortened to his accent. This story is not yet written.",
-    "id": "items_118",
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "daily",
-    "charges_label": "The Retired Special",
-    "slot": "none",
-    "battle_effect": true,
-    "action_type": "reaction",
-    "features_granted": [
-      "Tactical Foresight",
-      "Grandmaster's Stitch",
-      "The Retired Special"
-    ]
+    "id": "items_118"
   },
   {
     "name": "Stormsplit",
+    "catalog_id": "stormsplit",
     "type": "weapon",
-    "weapon_category": "flail",
     "equipped_by": "Revven",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Dual form is one weapon not two benefits.",
     "id": "items_119",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. A flail that can be held rigid by rubbing the handle, giving it the appearance and weight of a mace. Mechanically identical in either form.",
     "weapon_set": 1
   },
   {
     "name": "Half Plate +2 (Lightning)",
+    "catalog_id": "half-plate-2-lightning",
     "type": "armor",
-    "armor_type": "half plate",
     "enhancement_bonus": 2,
-    "slot": "body",
     "equipped_by": "Revven",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Resistance to lightning and thunder damage.",
     "notes": "",
-    "id": "items_120",
-    "battle_effect": true
+    "id": "items_120"
   },
   {
     "name": "Wand of Magic Missiles",
+    "catalog_id": "wand-of-magic-missiles",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Revven",
-    "needs_attunement": false,
     "attuned": false,
-    "charges_current": 7,
-    "charges_max": 7,
-    "charges_recharge": "1d6+1",
-    "effect": "Cast Magic Missile using charges.",
     "notes": "",
     "id": "items_121",
-    "slot": "held",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Magic Missile",
-        "action_type": "action",
-        "charge_cost": {
-          "min": 1,
-          "max": 7
-        }
-      }
-    ],
     "description": "Each charge spent increases the effective spell level by one (1 charge = 1st level, up to 7 charges for 7th level if you dump the whole thing at once) — the wand is the spellcasting focus, no material component needed. It regains 1d6+1 charges daily. There's also a small risk — if you expend the wand's last charge, roll a d20; on a 1 the wand crumbles to ash and is destroyed. 1d4+1 force damage per dart, auto-hits."
   },
   {
     "name": "Hand Crossbow +2",
+    "catalog_id": "weapon-1-2-or-3",
     "type": "weapon",
     "weapon_category": "hand crossbow",
     "equipped_by": "Elucyne",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Sidearm.",
     "id": "items_122",
     "slot": "ranged1h",
     "battle_effect": true,
-    "effect": "+2 bonus to attack and damage rolls.",
     "weapon_set": 2
   },
   {
     "name": "Ring of Lightning Resistance",
+    "catalog_id": "ring-of-resistance",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Elucyne",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_123",
     "slot": "ring",
-    "battle_effect": true,
-    "effect": "Resistance to lightning damage while wearing this ring."
+    "battle_effect": true
   },
   {
     "name": "Leather Armor +1",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "leather",
     "enhancement_bonus": 1,
     "equipped_by": "Elucyne",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "",
     "id": "items_124",
-    "slot": "body",
-    "effect": "+1 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Returning Spear +2",
+    "catalog_id": "returning-spear-2",
     "type": "weapon",
-    "weapon_category": "spear",
     "equipped_by": "Rhuna",
     "carried_by": "Rhuna",
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
-    "returning": true,
-    "effect": "Returns to hand after thrown. On crit: target knocked prone regardless of size.",
-    "weapon_effects": [
-      {
-        "name": "Toppling Throw",
-        "type": "weapon_effect",
-        "description": "On a critical hit, the target is knocked prone regardless of its size."
-      }
-    ],
     "notes": "",
     "id": "items_125",
-    "slot": "melee1h",
-    "battle_effect": true,
     "weapon_set": 2
   },
   {
     "name": "Curved Blade +2",
+    "catalog_id": "curved-blade-2",
     "type": "weapon",
-    "weapon_category": "scimitar",
     "equipped_by": "Sorra",
     "carried_by": "Sorra",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "On a critical hit: deals 2d6 slashing damage instead of doubling dice.",
     "notes": "",
-    "id": "items_126",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Cleaving Edge",
-        "type": "weapon_effect",
-        "description": "On a critical hit, this weapon deals a flat 2d6 slashing damage instead of doubling its damage dice."
-      }
-    ]
+    "id": "items_126"
   },
   {
     "name": "Whisper Longbow +2",
+    "catalog_id": "weapon-1-2-or-3",
     "type": "weapon",
     "weapon_category": "longbow",
     "equipped_by": "Sorra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "",
     "id": "items_127",
     "slot": "ranged2h",
-    "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Arrows fired from this bow make no sound — twang, flight, and impact are completely silent. The shot’s origin cannot be determined by sound alone."
+    "battle_effect": true
   },
   {
     "name": "Bracers of Archery",
+    "catalog_id": "bracers-of-archery",
     "type": "armor",
     "equipped_by": "Sorra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "stat_bonuses": {
-      "ranged_damage": 2
-    },
     "notes": "",
-    "id": "items_128",
-    "slot": "wrists",
-    "battle_effect": true,
-    "effect": "Proficiency with longbows and shortbows. +2 bonus to damage rolls with ranged weapons."
+    "id": "items_128"
   },
   {
     "name": "Leather Armor +2 (Southern)",
+    "catalog_id": "leather-armor-2-southern",
     "type": "armor",
     "equipped_by": "Sorra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "armor_type": "light",
-    "armor_base_ac": 11,
     "enhancement_bonus": 2,
     "notes": "",
-    "id": "items_129",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor. Southern craftsmanship."
+    "id": "items_129"
   },
   {
     "name": "The Steadfast",
+    "catalog_id": "the-steadfast",
     "type": "wondrous",
     "equipped_by": "Sorra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "short_rest",
-    "effect": "Steadfast Response: reaction when an ally within 30ft drops to 0hp, grant 1d8 + proficiency bonus temp HP. Advantage on death saving throws.",
     "notes": "",
-    "id": "items_130",
-    "slot": "neck",
-    "battle_effect": true,
-    "action_type": "reaction",
-    "features_granted": [
-      "Steadfast Response"
-    ]
+    "id": "items_130"
   },
   {
     "name": "Greatsword +2",
+    "catalog_id": "weapon-1-2-or-3",
     "type": "weapon",
     "weapon_category": "greatsword",
     "equipped_by": "Chuknora",
     "carried_by": "Chuknora",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Return to Corwin or party pool.",
@@ -2196,275 +1480,162 @@
     "slot": "melee2h",
     "stored_at": null,
     "party_id": null,
-    "effect": "+2 bonus to attack and damage rolls.",
     "weapon_set": 2
   },
   {
     "name": "Belt of Giant Strength",
+    "catalog_id": "belt-of-giant-strength",
     "type": "wondrous",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
     "stat_overrides": {
       "str": 21
     },
-    "effect": "Sets STR to 21.",
     "notes": "",
-    "id": "items_132",
-    "slot": "waist",
-    "battle_effect": true
+    "id": "items_132"
   },
   {
     "name": "Cloak of Invisibility",
+    "catalog_id": "cloak-of-invisibility",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Ferghus",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Become invisible for up to 1 hour per day.",
     "notes": "",
-    "id": "items_133",
-    "slot": "back",
-    "battle_effect": true,
-    "action_type": "action"
+    "id": "items_133"
   },
   {
     "name": "Necklace of Prayer Beads",
+    "catalog_id": "necklace-of-prayer-beads",
     "type": "wondrous",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "4 beads, each usable independently once per day as a bonus action (no shared charge pool): Blessing bead casts Bless; Favor bead casts Greater Restoration; Curing bead casts Cure Wounds (as a 2nd-level spell) or Lesser Restoration, your choice each use; Wind Walking bead casts Wind Walk.",
     "notes": "Real DMG Necklace of Prayer Beads (a specific necklace has 1d4+2 randomly-typed beads; this one rolled these 4 types) — bonus action per bead, confirmed via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06 as part of the item-granted-spells charge-cost pass. Corrects an earlier assumption that bead use cost a full action and that Curing had multiple escalating tiers rather than one bead offering a Cure Wounds/Lesser Restoration choice.",
-    "id": "items_134",
-    "slot": "neck",
-    "battle_effect": true,
-    "action_type": "bonus_action",
-    "spells_granted": [
-      {
-        "name": "Bless",
-        "action_type": "bonus_action",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      },
-      {
-        "name": "Greater Restoration",
-        "action_type": "bonus_action",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      },
-      {
-        "name": "Cure Wounds",
-        "action_type": "bonus_action",
-        "choice_group": "curing-bead",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      },
-      {
-        "name": "Lesser Restoration",
-        "action_type": "bonus_action",
-        "choice_group": "curing-bead",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      },
-      {
-        "name": "Wind Walk",
-        "action_type": "bonus_action",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      }
-    ]
+    "id": "items_134"
   },
   {
     "name": "Helmet of Proof",
+    "catalog_id": "helmet-of-proof",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Ferghus",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Immunity to charm and fear.",
     "notes": "",
-    "id": "items_135",
-    "slot": "head",
-    "battle_effect": true
+    "id": "items_135"
   },
   {
     "name": "Amulet of Poison Immunity",
+    "catalog_id": "amulet-of-poison-immunity",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Ferghus",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Complete immunity to poison while worn.",
     "notes": "",
-    "id": "items_136",
-    "slot": "neck",
-    "battle_effect": true
+    "id": "items_136"
   },
   {
     "name": "Full Plate +2 (Grey-Green)",
+    "catalog_id": "full-plate-2-grey-green",
     "type": "armor",
-    "armor_type": "plate",
     "enhancement_bonus": 2,
-    "slot": "body",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Resistance to lightning and thunder damage.",
     "notes": "",
-    "id": "items_137",
-    "battle_effect": true
+    "id": "items_137"
   },
   {
     "name": "Maul +2",
+    "catalog_id": "maul-2",
     "type": "weapon",
-    "weapon_category": "maul",
-    "slot": "melee2h",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
-    "effect": "On a critical hit: target is knocked prone.",
     "notes": "",
-    "id": "items_138",
-    "battle_effect": true,
-    "weapon_effects": [
-      {
-        "name": "Toppling Maul",
-        "type": "weapon_effect",
-        "description": "On a critical hit, the target is knocked prone."
-      }
-    ]
+    "id": "items_138"
   },
   {
     "name": "Bracers of Swiftness",
+    "catalog_id": "bracers-of-swiftness",
     "type": "wondrous",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
-    "stat_bonuses": {
-      "speed": 10
-    },
-    "effect": "+10ft movement speed. Dash as bonus action once per short rest.",
     "notes": "",
-    "id": "items_139",
-    "slot": "wrists",
-    "battle_effect": true,
-    "action_type": "bonus_action"
+    "id": "items_139"
   },
   {
     "name": "Berserker's Fang +1",
+    "catalog_id": "berserkers-fang-1",
     "type": "weapon",
-    "weapon_category": "greataxe",
     "equipped_by": null,
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Currently mounted at Revivify. Could be taken up again if needed.",
     "id": "items_140",
-    "slot": "melee2h",
-    "battle_effect": true,
     "stored_at": "Revivify",
-    "party_id": null,
-    "effect": "+1 to attack and damage rolls with this greataxe.",
-    "stat_bonuses": {
-      "attack": 1
-    }
+    "party_id": null
   },
   {
     "name": "Ring of Spell Storing (5 levels)",
+    "catalog_id": "ring-of-spell-storing",
     "type": "wondrous",
     "equipped_by": "Siv",
     "carried_by": "Siv",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Holds up to 5 levels worth of spells. Any creature can cast a stored spell using the original caster spell save DC and spell attack bonus.",
     "notes": "",
     "id": "items_141",
     "charges_current": 0,
-    "charges_max": 5,
-    "charges_unit": "spell_levels",
-    "slot": "ring",
-    "battle_effect": true,
-    "stored_spells": [
-      {
-        "name": "Cone of Cold",
-        "level": 5
-      }
-    ],
-    "action_type": "action",
+    "stored_spells": [],
     "stored_at": null,
     "party_id": null,
     "description": "CURRENTLY EMPTY"
   },
   {
-    "name": "Ring of Spell Storing (3rd level)",
+    "name": "Ring of Spell Storing (3 levels)",
+    "catalog_id": "ring-of-spell-storing-3-levels",
     "type": "wondrous",
     "equipped_by": "Pirra",
     "carried_by": "Pirra",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Holds one spell of up to 3rd level. Any creature attuned to the ring can cast the stored spell.",
     "notes": "",
     "id": "items_142",
-    "charges_current": 3,
-    "charges_max": 3,
-    "charges_unit": "spell_levels",
-    "slot": "ring",
-    "battle_effect": true,
     "stored_spells": [
       {
         "name": "Haste",
         "level": 3
       }
-    ],
-    "action_type": "action"
+    ]
   },
   {
     "name": "Bracers of Spell Storing",
+    "catalog_id": "bracers-of-spell-storing",
     "type": "wondrous",
     "equipped_by": "Kessara",
     "carried_by": "Kessara",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Holds up to 5 levels worth of spells. The attuned creature can cast stored spells.",
     "notes": "",
     "id": "items_143",
-    "charges_current": 5,
-    "charges_max": 5,
-    "charges_unit": "spell_levels",
-    "slot": "wrists",
-    "battle_effect": true,
     "stored_spells": [
       {
         "name": "Mass Cure Wounds",
         "level": 5
       }
-    ],
-    "action_type": "action"
+    ]
   },
   {
     "name": "Carved Bone Totem",
+    "catalog_id": "carved-bone-totem",
     "type": "focus",
     "equipped_by": "Vrethka",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Thirty years old; carries a quiet attunement to its owner.",
-    "id": "items_144",
-    "slot": "held",
-    "effect": "Spellcasting focus. Can be used in place of material components with no GP cost."
+    "id": "items_144"
   },
   {
     "name": "Hide Armor",
@@ -2477,8 +1648,7 @@
     "attuned": false,
     "notes": "Worn and repaired many times.",
     "id": "items_145",
-    "slot": "body",
-    "effect": "Standard hide armor. AC 12 + DEX modifier (max 2)."
+    "slot": "body"
   },
   {
     "name": "Simple Spear",
@@ -2492,56 +1662,51 @@
     "notes": "Hasn't used offensively in fifteen years.",
     "id": "items_146",
     "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "Standard spear. 1d6 piercing (1d8 versatile). Can be thrown 20/60ft."
+    "battle_effect": true
   },
   {
     "name": "Scroll of Thunderstorm",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Single use. Large area lightning damage.",
     "id": "items_147",
     "slot": "none"
   },
   {
     "name": "Potion of Greater Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "Lexica",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP.",
     "id": "items_148",
     "slot": "none"
   },
   {
     "name": "Potion of Greater Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "Chuknora",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP.",
     "id": "items_149",
     "slot": "none",
     "stored_at": null,
     "party_id": null
   },
   {
+    "effect": "6 spinel (100gp each), 2 sapphires (1,000gp each), 2 diamonds (5,000gp each), 2 rubies (5,000gp each), 4 fire opal (1,000gp each), 4 garnet (100gp each).",
+    "slot": "none",
     "name": "Gem Pouch",
     "type": "material",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1780850600167_2",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Consolidated 2026-09-08 from the old one-entry-per-haul 'Gemstones' pattern (see TODO.md) into a single running per-party ledger, kept in the party's Bag of Holding. Assigned to Yetgrese per project owner.",
     "id": "items_150",
-    "slot": "none",
-    "effect": "6 spinel (100gp each), 2 sapphires (1,000gp each), 2 diamonds (5,000gp each), 2 rubies (5,000gp each), 4 fire opal (1,000gp each), 4 garnet (100gp each).",
     "contents": [
       {
         "type": "Spinel",
@@ -2576,17 +1741,16 @@
     ]
   },
   {
+    "effect": "8 bloodstone (50gp each), 6 carnelian (50gp each), 5 chalcedony (50gp each), 7 citrine (50gp each), 6 moonstone (50gp each), 8 onyx (50gp each), 12 amber (100gp each), 10 amethyst (100gp each), 8 garnet (100gp each), 15 jade (100gp each), 9 jet (100gp each), 6 tourmaline (100gp each), 3 aquamarine (500gp each), 2 peridot (500gp each), 2 topaz (500gp each), 1 alexandrite (500gp), 1 sapphire (1,000gp), 1 ruby (5,000gp), 1 emerald (1,000gp), 22 pearl (100gp each). Total value: 21,200gp.",
+    "slot": "none",
     "name": "Gem Pouch",
     "type": "material",
     "equipped_by": null,
     "carried_by": "party",
     "party_id": "party_1780850600167_0",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) — priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant. Consolidated 2026-09-08 into the per-party Gem Pouch pattern (see TODO.md) — assigned to East Full per project owner (initially misheard as \"Eastern1\" and left unassigned; corrected same day).",
     "id": "items_151",
-    "slot": "none",
-    "effect": "8 bloodstone (50gp each), 6 carnelian (50gp each), 5 chalcedony (50gp each), 7 citrine (50gp each), 6 moonstone (50gp each), 8 onyx (50gp each), 12 amber (100gp each), 10 amethyst (100gp each), 8 garnet (100gp each), 15 jade (100gp each), 9 jet (100gp each), 6 tourmaline (100gp each), 3 aquamarine (500gp each), 2 peridot (500gp each), 2 topaz (500gp each), 1 alexandrite (500gp), 1 sapphire (1,000gp), 1 ruby (5,000gp), 1 emerald (1,000gp), 22 pearl (100gp each). Total value: 21,200gp.",
     "contents": [
       {
         "type": "Bloodstone",
@@ -2693,296 +1857,172 @@
   },
   {
     "name": "Tome of Clear Thought",
+    "catalog_id": "tome-of-clear-thought",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Reading takes 48 hours over 6 days. INT score and maximum increase by 2. Becomes mundane for 100 years afterward.",
     "notes": "Read on day 121.",
     "id": "items_152",
-    "slot": "none",
     "stored_at": null,
     "party_id": "party_1780850600167_1"
   },
   {
     "name": "Longsword +2 (party backup)",
+    "catalog_id": "longsword-2-party-backup",
     "type": "weapon",
-    "weapon_category": "longsword",
     "equipped_by": "Siv",
     "carried_by": "Siv",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Backup melee.",
-    "id": "items_153",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "+2 bonus to attack and damage rolls."
+    "id": "items_153"
   },
   {
     "name": "Boots of Speed",
+    "catalog_id": "boots-of-speed",
     "type": "wondrous",
-    "slot": "feet",
     "equipped_by": null,
     "carried_by": "Sorra",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Double movement speed as bonus action. Opportunity attacks have disadvantage while active.",
     "notes": "Unassigned.",
-    "id": "items_154",
-    "battle_effect": true,
-    "action_type": "bonus_action"
+    "id": "items_154"
   },
   {
     "name": "Ring of Spell Turning",
+    "catalog_id": "ring-of-spell-turning",
     "type": "wondrous",
-    "slot": "ring",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Advantage on saves against spells targeting only you. On natural 20, spell reflected back at caster.",
     "notes": "Unassigned.",
-    "id": "items_155",
-    "battle_effect": true
+    "id": "items_155"
   },
   {
     "name": "Belt of Dwarvenkind",
+    "catalog_id": "belt-of-dwarvenkind",
     "type": "wondrous",
-    "slot": "waist",
     "equipped_by": null,
     "carried_by": "Elucyne",
-    "needs_attunement": true,
     "attuned": false,
-    "stat_bonuses": {
-      "con": 2,
-      "darkvision": 60
-    },
-    "effect": "+2 CON. Advantage on CHA checks with dwarves. Darkvision 60ft. Resistance to poison, advantage on poison saves.",
     "notes": "Unassigned.",
-    "id": "items_156",
-    "battle_effect": true
+    "id": "items_156"
   },
   {
     "name": "Goggles of Night",
+    "catalog_id": "goggles-of-night",
     "type": "wondrous",
-    "slot": "head",
     "equipped_by": "Pirra",
     "carried_by": "Pirra",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Darkvision 60ft. If already have darkvision, extends by 60ft.",
     "notes": "Unassigned.",
     "id": "items_157",
     "stored_at": null,
-    "party_id": null,
-    "stat_bonuses": {
-      "darkvision": 60
-    }
+    "party_id": null
   },
   {
     "name": "Gauntlets of Ogre Power",
+    "catalog_id": "gauntlets-of-ogre-power",
     "type": "wondrous",
-    "slot": "hands",
     "equipped_by": "Enauweyn",
     "carried_by": "Enauweyn",
-    "needs_attunement": true,
     "attuned": true,
-    "stat_overrides": {
-      "str": 19
-    },
-    "effect": "Sets STR to 19.",
     "notes": "Unassigned. Corwin already has a pair.",
-    "id": "items_158",
-    "battle_effect": true
+    "id": "items_158"
   },
   {
     "name": "Helm of Brilliance",
+    "catalog_id": "helm-of-brilliance",
     "type": "wondrous",
-    "slot": "head",
     "equipped_by": "Sorra",
     "carried_by": "Sorra",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "6 opals cast Daylight, 9 rubies cast Fireball, 5 diamonds cast Wall of Fire — each gem is consumed permanently on use (no recharge). Undead within 30ft have disadvantage on attacks. If the wearer fails a save against fire damage from a spell, roll a d20 — on a 1, all remaining gems detonate for radiant damage equal to the number of gems left (DC 17 Dex save, half on success, wearer excluded), and the helm is destroyed.",
-    "notes": "This campaign's Helm of Brilliance is a homebrew-simplified variant of the real DMG item — real RAW rolls gem counts randomly (1d10 diamond/2d10 ruby/3d10 fire opal/4d10 opal) and uses a 4th gem type (fire opal) for Fireball with ruby for Wall of Fire; this one fixes a clean 6/9/5=20 split using only opal/ruby/diamond, which is what's kept here. The destruction trigger (fail a fire save, not \"in sunlight\") is corrected to real RAW — verified via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06.",
-    "id": "items_159",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Daylight",
-        "action_type": "action",
-        "uses_max": 6,
-        "uses_current": 6,
-        "recharge": "none"
-      },
-      {
-        "name": "Fireball",
-        "action_type": "action",
-        "uses_max": 9,
-        "uses_current": 9,
-        "recharge": "none"
-      },
-      {
-        "name": "Wall of Fire",
-        "action_type": "action",
-        "uses_max": 5,
-        "uses_current": 5,
-        "recharge": "none"
-      }
-    ]
+    "notes": "Gems carried over from the old simplified entry: 6 opals, 9 rubies, 5 diamonds.",
+    "id": "items_159"
   },
   {
     "name": "Scroll of Ice Storm",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "slot": "none",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Ice Storm at 4th level. Single use.",
     "id": "items_160"
   },
   {
     "name": "Scroll of Mind Whip",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "slot": "none",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Mind Whip at 2nd level. Single use.",
     "id": "items_161"
   },
   {
     "name": "The Right Arm",
+    "catalog_id": "the-right-arm",
     "type": "weapon",
-    "weapon_category": "staff",
     "enhancement_bonus": 3,
     "equipped_by": "Tackett",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "rarity": "legendary",
     "attunement_by": "Tackett",
     "appearance": "Ancient wood of unknown origin, warm to touch. Living moss covers most of the surface. Small flowers bloom and die on their own schedule. Insects appear occasionally that have no business being wherever the bearer currently is.",
     "notes": "Tackett refers to it as his right arm. Offered by the Trevash delta spring after Tackett destroyed the ancient spirit corrupting it.",
-    "id": "items_162",
-    "slot": "melee2h",
-    "battle_effect": true,
-    "effect": "MELEE: +3 quarterstaff. Automatically deals the most harmful damage type to the target. Once per short rest on a hit: vines root the target until the end of their next turn.\n\nSPELLCASTING FOCUS: Spell save DC +2. Once per long rest: cast any one spell without expending a spell slot.\n\nWILDSHAPE: Staff merges into the druid's non-halfling forms. While merged: +3 to attack and damage rolls, HP maximum increases by druid level, once per wildshape cast one cantrip as a bonus action. In Circle of Stars form the staff remains physical.",
-    "stat_bonuses": {
-      "spell_save_dc": 2
-    },
-    "weapon_effects": [
-      {
-        "name": "Adaptive Damage",
-        "type": "weapon_effect",
-        "description": "Automatically deals whichever damage type is most harmful to the target."
-      },
-      {
-        "name": "Root",
-        "type": "weapon_effect",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "description": "On a hit, vines erupt from the staff and root the target in place until the end of its next turn."
-      },
-      {
-        "name": "Focused Casting",
-        "type": "weapon_effect",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "description": "As a spellcasting focus: cast any one spell without expending a spell slot."
-      },
-      {
-        "name": "Wildshape Merge",
-        "type": "weapon_effect",
-        "description": "Merges into the druid's non-halfling wildshape forms. While merged: +3 to attack and damage rolls, HP maximum increases by druid level, and once per wildshape you may cast one cantrip as a bonus action. In Circle of Stars form the staff remains physical."
-      }
-    ]
+    "id": "items_162"
   },
   {
     "name": "Shadowgrain Leather",
+    "catalog_id": "shadowgrain-leather",
     "type": "armor",
-    "armor_type": "light",
-    "armor_base_ac": 11,
     "enhancement_bonus": 1,
-    "slot": "body",
     "equipped_by": "Tackett",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Always +1 to AC. Additional +1 to AC while in dim light or darkness, for a total of +2.",
     "notes": "Commission from Torrin Gallowglass. Dark green-brown leather, forest floor coloring, grain patterns that shift with the light. Melds into wildshape forms per druid rules — AC bonus applies in halfling form only. Torrin's signature: made for someone who knows how to use shadow.",
     "id": "items_163"
   },
   {
     "name": "Helm of Carix",
+    "catalog_id": "helm-of-carix",
     "type": "wondrous",
-    "slot": "head",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Immunity to charm and fear. Seize the Opening: once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
-    "id": "items_164",
-    "battle_effect": true,
-    "features_granted": [
-      "Seize the Opening"
-    ]
+    "id": "items_164"
   },
   {
     "name": "Helm of the Reaching Hand",
+    "catalog_id": "helm-of-the-reaching-hand",
     "type": "wondrous",
-    "slot": "head",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Advantage on Insight checks. Reaching Hand: once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet — the smith let it.",
     "id": "items_165",
-    "battle_effect": true,
-    "action_type": "reaction",
-    "features_granted": [
-      "Reaching Hand"
-    ],
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
   {
     "name": "Helm of the Open Eye",
+    "catalog_id": "helm-of-the-open-eye",
     "type": "wondrous",
-    "slot": "head",
     "equipped_by": null,
     "carried_by": "Kerra",
-    "needs_attunement": true,
     "attuned": false,
-    "effect": "Darkvision extended by 30ft. Advantage on saving throws against being blinded or deafened.",
     "notes": "Commission from Torven forge. Dark metal with green-gold veining matching Kerra's eyes. An open eye worked into the brow — no deity symbol, the metal didn't want one. It wanted a window.",
-    "id": "items_166",
-    "battle_effect": true,
-    "stat_bonuses": {
-      "darkvision": 30
-    }
+    "id": "items_166"
   },
   {
     "name": "Headband of Intellect",
+    "catalog_id": "headband-of-intellect",
     "type": "wondrous",
-    "slot": "head",
     "equipped_by": "Torrin",
     "carried_by": "Torrin",
-    "needs_attunement": true,
     "attuned": true,
-    "stat_overrides": {
-      "int": 19
-    },
-    "effect": "Sets INT to 19.",
     "notes": "",
     "id": "items_167",
     "stored_at": null,
@@ -2990,225 +2030,165 @@
   },
   {
     "name": "Green Fey Armor",
+    "catalog_id": "green-fey-armor",
     "type": "armor",
     "equipped_by": "Enauweyn",
     "carried_by": null,
     "attuned": true,
-    "needs_attunement": true,
-    "slot": "body",
-    "armor_type": "half plate",
     "enhancement_bonus": 0,
-    "stat_bonuses": {
-      "cha": 1
-    },
-    "effect": "Counts as half plate (AC 15 + DEX mod max 2). Appears revealing but magical protection extends invisibly for full coverage. +1 CHA while attuned. Only Enauweyn can attune to this item.",
-    "description": "Green armor of fey construction. Revealing in appearance but the magical protection extends invisibly — coverage is complete. Luxurious flowing cloth around legs and sleeves gives a mystical quality. The green deepens or lightens subtly with her mood.",
     "notes": "Attunement restricted to Enauweyn only.",
-    "id": "items_168",
-    "battle_effect": true
+    "id": "items_168"
   },
   {
     "name": "Ring of the Fallen Star",
+    "catalog_id": "ring-of-the-fallen-star",
     "type": "ring",
     "equipped_by": "Tackett",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 0,
-    "effect": "Once per dawn: cast Starfall (see homebrew spells). Spell save DC uses wearer's spell save DC. Additionally, advantage on Perception checks made in darkness or starlight.",
     "notes": "Forged from meteorite iron by a civilization that no longer exists. Warm to the touch regardless of temperature. Constellation patterns visible in the metal only in darkness or starlight. Responds to celestial/star magic.",
-    "id": "items_169",
-    "slot": "ring",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Starfall",
-        "action_type": "action",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "daily"
-      }
-    ]
+    "id": "items_169"
   },
   {
     "name": "Yetgrese Throwing Sword +2",
+    "catalog_id": "yetgrese-throwing-sword-2",
     "type": "weapon",
-    "weapon_category": "yetgrese_shortsword",
     "equipped_by": "Elucyne",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 2,
-    "returning": true,
-    "effect": "Returns instantly to thrower's hand after a thrown attack, whether it hits or misses.",
     "notes": "Saltborn steel — no mechanical effect, flavor only.",
     "id": "items_170",
-    "slot": "melee1h",
-    "battle_effect": true,
     "weapon_set": 1
   },
   {
     "name": "Hlifar'dhe'gar",
+    "catalog_id": "hlifardhegar",
     "type": "armor",
-    "armor_type": "shield",
     "equipped_by": null,
     "carried_by": "Chuknora",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "Named by Jaygar. Two points of light function as eyes. Previous owner never named it. Ssivanak kept it three years waiting for right owner.",
     "id": "items_171",
-    "slot": "shield",
-    "battle_effect": true,
-    "effect": "+1 small shield (+1 AC). Command word 'viel'bi-ra' transforms it into a construct guardian (HP 142, AC 17) that stands between you and harm, intercepting damage directed at the attuned wearer. The construct cannot attack. Command word 'chk'TO' returns it to shield form. Also stores one spell up to 4th level.",
-    "stat_bonuses": {
-      "ac": 1
-    },
-    "action_type": "action",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Robe of the Tide",
+    "catalog_id": "robe-of-the-tide",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "Made from local Yetgrese materials. Iridescent fabric that shifts with movement. Not available in Aethermoor.",
-    "id": "items_172",
-    "slot": "body",
-    "battle_effect": true,
-    "action_type": "free",
-    "effect": "Tidal Surge: when the wearer casts a spell dealing cold, lightning, or thunder damage, add 2d6 of the same damage type once per turn. Wearer can breathe underwater and has swimming speed equal to walking speed.",
-    "features_granted": [
-      "Tidal Surge"
-    ]
+    "id": "items_172"
   },
   {
     "name": "Robe of Stilled Thought",
+    "catalog_id": "robe-of-stilled-thought",
     "type": "wondrous",
     "equipped_by": "Rith",
     "carried_by": "Rith",
-    "needs_attunement": true,
     "attuned": true,
     "notes": "Made by Ssivanak herself. Significant item — effectively frees concentration slot while one spell runs autonomously.",
     "id": "items_173",
-    "slot": "body",
-    "battle_effect": true,
-    "effect": "One concentration spell cast while wearing this robe does not require concentration — it runs for its full duration or until dismissed. Only one spell benefits at a time. Casting a second concentration spell ends the first immediately.",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Bracers of Spell Mastery",
+    "catalog_id": "bracers-of-spell-mastery",
     "type": "wondrous",
     "equipped_by": "Revven",
     "carried_by": "Revven",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "+2 to spell save DC.",
     "notes": "Intended for Elucyne to enhance Fear and other save-based spells.",
-    "id": "items_174",
-    "slot": "wrists",
-    "battle_effect": true,
-    "stat_bonuses": {
-      "spell_save_dc": 2
-    }
+    "id": "items_174"
   },
   {
     "name": "Scroll of Control Water",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Control Water (level 4). Single use.",
     "notes": "Immediately relevant for ocean travel and combat.",
     "id": "items_175",
     "slot": "none"
   },
   {
     "name": "Scroll of Lightning Bolt",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Lightning Bolt (level 3). Single use.",
     "notes": "Included free by Ssivanak to close the deal.",
     "id": "items_176",
     "slot": "none"
   },
   {
     "name": "Scroll of Greater Invisibility",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Greater Invisibility (level 4). Single use.",
     "notes": "",
     "id": "items_177",
     "slot": "none"
   },
   {
     "name": "Scroll of Plane Shift",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Plane Shift (level 7). Single use.",
     "notes": "Given free by Ssivanak in exchange for Jaygar identifying it. Inscription was deliberately damaged by previous owner to obscure contents.",
     "id": "items_178",
     "slot": "none"
   },
   {
     "name": "Scroll of Sending",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Sending once. Deliver a 25 word message to any creature on the same plane. Target can reply.",
     "notes": "Received as part of Ssivanak's Stillwater reward.",
     "id": "items_179",
     "slot": "none"
   },
   {
     "name": "Scroll of Counterspell",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Counterspell once. Interrupt a creature casting a spell of 3rd level or lower automatically. Higher levels require ability check.",
     "notes": "Received as part of Ssivanak's Stillwater reward.",
     "id": "items_180",
     "slot": "none"
   },
   {
     "name": "Brooch of Shielding",
+    "catalog_id": "brooch-of-shielding",
     "type": "wondrous",
     "equipped_by": "Elucyne",
     "carried_by": "Elucyne",
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Resistance to force damage. Immunity to Magic Missile.",
     "notes": "Given by Ssivanak as part of Stillwater reward, her choice of item.",
-    "id": "items_181",
-    "slot": "neck",
-    "battle_effect": true
+    "id": "items_181"
   },
   {
     "name": "Potion of Greater Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "Iyani",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_182",
     "slot": "none",
     "stored_at": null,
@@ -3216,12 +2196,11 @@
   },
   {
     "name": "Potion of Greater Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "Siv",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_183",
     "slot": "none",
     "stored_at": null,
@@ -3229,23 +2208,21 @@
   },
   {
     "name": "Potion of Greater Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_184",
     "slot": "none"
   },
   {
     "name": "Potion of Greater Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP. Bonus action to self-administer.",
     "id": "items_185",
     "slot": "none",
     "stored_at": null,
@@ -3253,12 +2230,11 @@
   },
   {
     "name": "Potion of Greater Healing (Measured Word formulation)",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "Chuknora",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP with advantage on the roll. Bonus action to self-administer.",
     "id": "items_186",
     "slot": "none",
     "stored_at": null,
@@ -3266,12 +2242,11 @@
   },
   {
     "name": "Potion of Greater Healing (Measured Word formulation)",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 4d4+4 HP with advantage on the roll. Bonus action to self-administer.",
     "id": "items_187",
     "slot": "none",
     "stored_at": null,
@@ -3279,12 +2254,11 @@
   },
   {
     "name": "Potion of Superior Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 8d4+8 HP. Bonus action to self-administer.",
     "id": "items_188",
     "slot": "none",
     "stored_at": null,
@@ -3292,198 +2266,150 @@
   },
   {
     "name": "Potion of Superior Healing",
+    "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Restores 8d4+8 HP. Bonus action to self-administer.",
     "id": "items_189",
     "slot": "none"
   },
   {
     "name": "Amulet of Restoration",
+    "catalog_id": "amulet-of-restoration",
     "type": "wondrous",
     "equipped_by": "Lexica",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "Healing Word can be cast twice per short rest, recovered automatically.",
     "notes": "Pale green oval stone on silver chain. Carved with unidentified script.",
-    "id": "items_190",
-    "slot": "neck",
-    "battle_effect": true,
-    "action_type": "bonus_action"
+    "id": "items_190"
   },
   {
     "name": "Lexica's Enchanted Instrument",
+    "catalog_id": "lexicas-enchanted-instrument",
     "type": "focus",
     "subtype": "instrument",
-    "slot": "held",
     "equipped_by": "Lexica",
-    "needs_attunement": true,
     "attuned": true,
-    "description": "A lyre-like instrument of unusual construction, typical of no known tradition on Kaemahz. Acquired from a travelling vendor at the Halfweek Festival. One of two such instruments held by the same vendor. Dark wood with unfamiliar inlays, the resonance fuller than the size suggests.",
-    "effect": "While Bardic Inspiration is active on a creature, the wielder may use their reaction to cast Shield on that creature or on herself.",
     "notes": "Enchanted by DUVRAK, Upper Merchant Quarter, Argentveil.",
-    "id": "items_191",
-    "battle_effect": true,
-    "action_type": "reaction",
-    "spells_granted": [
-      {
-        "name": "Shield",
-        "action_type": "reaction"
-      }
-    ]
+    "id": "items_191"
   },
   {
     "name": "Ring of the Knowing",
+    "catalog_id": "ring-of-the-knowing",
     "type": "wondrous",
-    "slot": "ring",
     "equipped_by": "Vaz",
-    "needs_attunement": true,
     "attuned": true,
-    "description": "Simple band of dark metal of unknown continental origin. Single flat face bearing a symbol worn almost to suggestion by time. Warm to the touch. Eleven years in Ossivane Relk's possession before purchase.",
-    "effect": "Once per day the wearer may ask one specific, answerable question. The answer arrives in the wearer's own voice as though remembered rather than received. Answers are truthful. The ring occasionally volunteers additional relevant information beyond the question asked — treat this as significant. Questions must be specific: a location, a name, a fact. Abstract questions yield nothing.",
     "notes": "Purchased from Ossivane Relk, Linden Street Antiquities Market, Argentveil. Day 89, Year 468. Cost 12,000 gold. Origin unknown — metal not from Kaemahz. Pre-existing symbol unidentified. First use: located factor's man Davan (green coat) to Crestfall House, Seventeen Anchor Row. Ring volunteered 'he is not alone' unprompted. Second use pending.",
     "id": "items_192"
   },
   {
     "name": "Cold Valley Axe",
+    "catalog_id": "cold-valley-axe",
     "type": "weapon",
-    "weapon_category": "battleaxe",
     "enhancement_bonus": 2,
-    "slot": "melee1h",
     "equipped_by": "Chuknora",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "On attunement: wielder gains the Smite From Afar spell (homebrew, 1st-level Paladin).",
     "notes": "",
     "id": "items_193",
-    "battle_effect": true,
-    "spells_granted": [
-      {
-        "name": "Smite From Afar",
-        "action_type": "bonus_action"
-      }
-    ],
     "weapon_set": 1
   },
   {
     "name": "Breastplate of Planes",
+    "catalog_id": "breastplate-of-planes",
     "type": "armor",
-    "armor_type": "breastplate",
     "enhancement_bonus": 1,
-    "slot": "body",
     "equipped_by": "Chuknora",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "effect": "On attunement: advantage on concentration saving throws.",
     "notes": "",
-    "id": "items_194",
-    "battle_effect": true
+    "id": "items_194"
   },
   {
     "name": "Shield +2",
+    "catalog_id": "shield-1-2-3",
     "type": "armor",
     "armor_type": "shield",
     "enhancement_bonus": 2,
     "slot": "shield",
     "equipped_by": "Chuknora",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Standard shield, +2 enhancement.",
-    "id": "items_195",
-    "effect": "+2 bonus to AC while carried."
+    "id": "items_195"
   },
   {
     "name": "Disc of Origin",
+    "catalog_id": "disc-of-origin",
     "type": "teleport_disc",
     "subtype": "planar network control disc",
-    "rarity": "artifact",
     "equipped_by": null,
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Oldest of the four. Heavier than the others, different stone. Angular markings read 'breath of the first wind.'",
-    "id": "items_196",
-    "effect": "When placed in a teleportation arch, keys the arch to the ruins northeast of Valdmere."
+    "id": "items_196"
   },
   {
     "name": "Disc of the Unnamed Plane",
+    "catalog_id": "disc-of-the-unnamed-plane",
     "type": "teleport_disc",
     "subtype": "planar network control disc",
-    "rarity": "artifact",
     "equipped_by": null,
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Middle weight, old. Markings identify a destination neither Lenn nor Ilwuoshim recognized.",
-    "id": "items_197",
-    "effect": "When placed in a teleportation arch, keys the arch to an unknown, uncharted destination."
+    "id": "items_197"
   },
   {
     "name": "Disc of the Junction",
+    "catalog_id": "disc-of-the-junction",
     "type": "teleport_disc",
     "subtype": "planar network control disc",
-    "rarity": "artifact",
     "equipped_by": null,
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Lightest of the four. Markings identify it as a waypoint between two others.",
-    "id": "items_198",
-    "effect": "When placed in a teleportation arch, keys the arch to a waypoint hub built between two other arches — a transit point rather than a final destination."
+    "id": "items_198"
   },
   {
     "name": "Disc of Ilwuoshim's Second Arch",
+    "catalog_id": "disc-of-ilwuoshims-second-arch",
     "type": "teleport_disc",
     "subtype": "planar network control disc",
-    "rarity": "artifact",
     "equipped_by": null,
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Ilwuoshim's own making, identified by the djinn personally. Ilwuoshim wishes to visit when free. Keep safe.",
-    "id": "items_199",
-    "effect": "When placed in a teleportation arch, keys to an arch built by Ilwuoshim before the Liliveth was completed — never previously used."
+    "id": "items_199"
   },
   {
     "name": "Ring of Amity",
+    "catalog_id": "ring-of-amity",
     "type": "ring",
     "subtype": "wondrous item",
-    "rarity": "rare",
     "source": "published",
-    "needs_attunement": true,
     "attuned": true,
     "equipped_by": "Petra",
     "carried_by": "Petra",
-    "slot": "finger",
     "notes": "",
     "id": "items_200",
     "stored_at": null,
-    "party_id": null,
-    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit — once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
+    "party_id": null
   },
   {
     "name": "Ring of Amity",
+    "catalog_id": "ring-of-amity",
     "type": "ring",
     "subtype": "wondrous item",
-    "rarity": "rare",
     "source": "published",
-    "needs_attunement": true,
     "attuned": true,
     "equipped_by": "Revven",
     "carried_by": "Revven",
-    "slot": "finger",
     "notes": "Second copy — found",
     "id": "items_201",
     "stored_at": null,
-    "party_id": null,
-    "effect": "On attunement, bond with one willing creature by touch (rebond with a different willing creature instead at the end of any long rest; only one Ring of Amity's bond can affect a creature at a time). While bonded, whenever you're subjected to a spell or magical effect that restores hit points, the bonded creature also receives the same benefit. When the bonded creature HITS a target with an attack roll, you can use your reaction (within 60ft) to turn that hit into a critical hit — once invoked, this can't be used again until the next dawn. The bond ends if either of you changes planes, you bond a different creature, or you sever it as a bonus action."
+    "party_id": null
   },
   {
     "name": "Longbow",
@@ -3498,493 +2424,283 @@
     "notes": "Unequipped — replaced by Windsong in the same slot.",
     "id": "items_202",
     "battle_effect": true,
-    "effect": "Standard longbow. 1d8 piercing. Range 150/600ft. Requires two hands.",
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
   {
     "name": "Scroll of Tongues",
+    "catalog_id": "spell-scroll",
     "type": "consumable",
     "slot": "none",
     "equipped_by": "disallowed",
     "carried_by": "Revven",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "Cast Tongues (level 3). Single use. Target understands and is understood in any language for 1 hour.",
     "id": "items_203"
   },
   {
     "name": "Bright Red Cloak",
+    "catalog_id": "bright-red-cloak",
     "type": "wondrous",
-    "slot": "shoulders",
     "equipped_by": "Chuknora",
     "carried_by": "Chuknora",
-    "needs_attunement": false,
     "attuned": false,
-    "effect": "+1 to CHA score.",
     "notes": "Bright red. Custom-fitted.",
-    "stat_bonuses": {
-      "cha": 1
-    },
     "id": "items_204",
     "stored_at": null,
-    "party_id": null,
-    "battle_effect": false
+    "party_id": null
   },
   {
     "name": "Stormcaller's Cutlass",
+    "catalog_id": "stormcallers-cutlass",
     "type": "weapon",
-    "weapon_category": "saber",
     "equipped_by": "Eldi",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "",
     "id": "items_205",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "+1 to attack and damage rolls. Once per day, channel a strike that adds 2d6 lightning damage on a hit, accompanied by a genuine thunderclap loud enough to be heard across the deck.",
-    "weapon_effects": [
-      {
-        "name": "Stormcaller's Strike",
-        "type": "weapon_effect",
-        "recharge": "dawn",
-        "uses_max": 1,
-        "uses_current": 1,
-        "description": "On a hit, deal an extra 2d6 lightning damage, accompanied by a thunderclap loud enough to be heard across the deck."
-      }
-    ],
     "weapon_set": 1
   },
   {
     "name": "Poison Shortsword +1",
+    "catalog_id": "poison-shortsword-1",
     "type": "weapon",
-    "weapon_category": "shortsword",
     "equipped_by": "Eldi",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 1,
     "notes": "",
     "id": "items_206",
-    "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "+1 to attack and damage rolls. On a hit: extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute.",
-    "weapon_effects": [
-      {
-        "name": "Poison Strike",
-        "type": "weapon_effect",
-        "description": "On a hit, deal an extra 1d4 poison damage. Target must succeed on a DC 12 Constitution saving throw or be poisoned for 1 minute."
-      }
-    ],
     "weapon_set": 1
   },
   {
     "name": "Wolf Hunter's Rags",
+    "catalog_id": "wolf-hunters-rags",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Torrin",
-    "needs_attunement": true,
     "attuned": false,
     "notes": "",
     "id": "items_207",
-    "slot": "shoulders",
-    "battle_effect": false,
-    "effect": "While worn: the wearer gives off no scent and cannot be tracked by scent. The wearer cannot be detected, targeted, or perceived by divination magic (as per the nondetection spell).",
     "stored_at": null,
     "party_id": null
   },
   {
     "name": "Breastplate of the Broken Scale",
+    "catalog_id": "breastplate-of-the-broken-scale",
     "type": "armor",
-    "armor_type": "breastplate",
-    "rarity": "rare",
     "equipped_by": null,
     "carried_by": "Chuknora",
-    "needs_attunement": true,
     "attuned": false,
     "charges_current": 0,
-    "charges_max": 1,
-    "charges_recharge": "none",
     "notes": "Recovered from an ancient battlefield beside dragon remains in a ravine.",
     "id": "items_208",
-    "slot": "body",
-    "battle_effect": true,
-    "effect": "AC 14 + DEX modifier (max 2). Stormbreak Reserve: whenever the wearer takes 15 or more damage from a single attack or effect, the armor stores one charge (max 1 stored, tracked via charges above). As a bonus action, release a stored charge: 10ft radius force burst centered on self, 2d6 force damage (DC 15 DEX save for half) to all other creatures in range, each creature that fails is pushed 10ft away. Recharges automatically on the next qualifying hit.",
     "stored_at": null,
-    "party_id": null,
-    "action_type": "bonus_action",
-    "features_granted": [
-      "Stormbreak Reserve"
-    ]
+    "party_id": null
   },
   {
     "name": "Gauntlet of the Sundering Blow",
+    "catalog_id": "gauntlet-of-the-sundering-blow",
     "type": "wondrous",
-    "rarity": "rare",
     "equipped_by": "Eldi",
     "carried_by": "Eldi",
-    "needs_attunement": true,
     "attuned": true,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "short_rest",
     "notes": "Recovered from the same ancient battlefield as the Breastplate of the Broken Scale; matching set.",
     "id": "items_209",
-    "slot": "hands",
-    "battle_effect": true,
-    "action_type": "free",
-    "effect": "Sundering Strike: once per short rest, as part of a melee attack that hits, channel the gauntlet — the attack deals an additional 2d6 damage, and the target's AC is reduced by 2 until the end of the wearer's next turn.",
     "stored_at": null,
-    "party_id": null,
-    "features_granted": [
-      "Sundering Strike"
-    ]
+    "party_id": null
   },
   {
     "name": "Hand Crossbow of the Old Trail",
+    "catalog_id": "hand-crossbow-of-the-old-trail",
     "type": "weapon",
-    "weapon_category": "hand crossbow",
-    "rarity": "uncommon/rare",
     "equipped_by": null,
     "carried_by": "Torrin",
-    "needs_attunement": true,
     "attuned": false,
     "enhancement_bonus": 2,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "short_rest",
     "notes": "Recovered from a territorial Dire Pangolin's den.",
     "id": "items_210",
-    "slot": "ranged1h",
-    "battle_effect": true,
-    "effect": "+2 to attack and damage rolls. Marked Shot: once per short rest, when firing a bolt, choose one rider effect: (a) target must succeed on a Constitution save or have speed halved until the end of its next turn, or (b) wielder gains advantage on their next attack roll against that target within 1 minute.",
     "stored_at": null,
-    "party_id": null,
-    "weapon_effects": [
-      {
-        "name": "Marked Shot",
-        "type": "weapon_effect",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "description": "On a hit, choose one: the target makes a Constitution save or has its speed halved until the end of its next turn, or you gain advantage on your next attack roll against that target within 1 minute."
-      }
-    ]
+    "party_id": null
   },
   {
     "name": "Signet Ring",
+    "catalog_id": "signet-ring",
     "type": "ring",
-    "rarity": "uncommon",
     "equipped_by": null,
     "carried_by": "Rith",
-    "needs_attunement": true,
     "attuned": false,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "long_rest",
     "notes": "Unidentified origin/bloodline — foreign craftsmanship, doesn't match Fol, Fynesmarch, or Torwald design conventions seen so far. Found on remains inside a territorial Dire Pangolin's den.",
     "id": "items_211",
-    "slot": "finger",
-    "battle_effect": true,
-    "effect": "Warding Press: once per long rest, press the ring to your skin to gain resistance to one damage type of your choice for 1 hour.",
     "stored_at": null,
-    "party_id": null,
-    "action_type": "action",
-    "features_granted": [
-      "Warding Press"
-    ]
+    "party_id": null
   },
   {
     "name": "Stone of the Rootbound Ward",
+    "catalog_id": "stone-of-the-rootbound-ward",
     "type": "wondrous",
-    "rarity": "very rare",
     "equipped_by": "Rith",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "slot": "held",
-    "battle_effect": true,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "long_rest",
     "linked_item_id": "items_230",
-    "spells_granted": [
-      {
-        "name": "Mold Earth",
-        "action_type": "action",
-        "uses_max": 3,
-        "uses_current": 3,
-        "recharge": "daily"
-      },
-      {
-        "name": "Wall of Stone",
-        "action_type": "action",
-        "charge_cost": 1
-      },
-      {
-        "name": "The Stones Agree",
-        "action_type": "action",
-        "charge_cost": 1,
-        "cost_note": "Spent together with the Broken Vein bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
-      }
-    ],
     "id": "items_212",
-    "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Mold Earth (cantrip, 3/day, independent of the charge below): as the spell — reshape a 5-ft cube of nonmagical dirt or stone (raise, lower, excavate, or sculpt it); can't affect worked or magical stone, can't harm creatures. Wall of Stone (5th-level spell, 1/long rest): as the spell — conjure up to ten interlocking 10-ft-by-10-ft stone panels (6in thick, AC 15, 180 HP each), or 10-ft-by-20-ft panels at half thickness (3in, 90 HP each); must merge with and be supported by existing stone, spans over 20ft require halving panel size for support. Concentration, up to 10 minutes (can be made permanent by concentrating the full duration). This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Mold Earth, Wall of Stone, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
-    "action_type": "action"
+    "notes": "Paired item — see Stone of the Broken Vein (Eldi) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule)."
   },
   {
     "name": "Stone of the Broken Vein",
+    "catalog_id": "stone-of-the-broken-vein",
     "type": "wondrous",
-    "rarity": "very rare",
     "equipped_by": "Eldi",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "slot": "held",
-    "battle_effect": true,
-    "charges_current": 1,
-    "charges_max": 1,
-    "charges_recharge": "long_rest",
     "linked_item_id": "items_229",
-    "spells_granted": [
-      {
-        "name": "Spike Growth",
-        "action_type": "action",
-        "uses_max": 3,
-        "uses_current": 3,
-        "recharge": "daily"
-      },
-      {
-        "name": "Erupting Earth",
-        "action_type": "action",
-        "charge_cost": 1
-      },
-      {
-        "name": "The Stones Agree",
-        "action_type": "action",
-        "charge_cost": 1,
-        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
-      }
-    ],
     "id": "items_213",
-    "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule).",
-    "effect": "Spike Growth (2nd-level spell, reflavored as jagged stone rather than thorns, 3/day, independent of the charge below): as the spell — ground in a 20-ft-radius sphere becomes difficult terrain; a creature moving into or within the area takes 2d4 piercing damage for every 5ft traveled (no save). Concentration, up to 10 minutes. Erupting Earth (3rd-level spell, 1/long rest): as the spell — choose a point on the ground within range; a 20-ft cube of churned earth and stone erupts there. Each creature in the area makes a DEX save (DC 15, fixed rather than derived from the bearer's own stats) — 3d12 bludgeoning damage on a failure, half on success. The area becomes difficult terrain until cleared (1 minute per 5-ft square, by hand). Instantaneous — no concentration required. This is the same charge that powers The Stones Agree (see homebrew spells) — spending it on one makes the other unavailable until the next long rest. Passive: tremorsense 30ft while attuned and touching the ground. Active uses (Spike Growth, Erupting Earth, The Stones Agree) trigger the Attuned Stone Backlash — DC 12 CON save or 1d6 damage. Passive tremorsense does not trigger it.",
-    "action_type": "action"
+    "notes": "Paired item — see Stone of the Rootbound Ward (Rith) for the shared combo ability, The Stones Agree; linked via linked_item_id, though each stone tracks its own independent 1-charge/long-rest pool rather than a literally merged resource. Devised by someone untrained in the power it channels — see Attuned Stone Backlash (homebrew rule)."
   },
   {
     "name": "Purple Ribbed Leather +2",
+    "catalog_id": "armor-1-2-or-3",
     "type": "armor",
     "armor_type": "light",
     "equipped_by": "Eldi",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "id": "items_214",
     "notes": "Purchased from Vethran & Son, Commerce District, Argentveil. Base AC 12 (studded-leather tier, reflavored as ribbed rather than studded), no DEX cap. Distinctive purple dye — the shopkeeper was glad to be rid of it.",
-    "slot": "body",
-    "effect": "+2 bonus to AC from armor."
+    "slot": "body"
   },
   {
     "name": "Staff of the Wild's Balance",
+    "catalog_id": "staff-of-the-wilds-balance",
     "type": "focus",
-    "rarity": "rare",
     "equipped_by": "Therynv'l",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "finesse": false,
-    "damage_dice": "1d6",
     "enhancement_bonus": 1,
-    "stat_bonuses": {
-      "spell_attack": 1,
-      "spell_save_dc": 1
-    },
-    "charges_current": 6,
-    "charges_max": 6,
-    "charges_recharge": "1d6",
     "id": "items_215",
-    "notes": "A gift from Orrin, ancient tortle caretaker of the Verdant Hollow, Argentveil. Recovered from a sealed cache predating the city itself. Qualifies for Wild Symbiosis (wood construction).",
-    "slot": "held",
-    "battle_effect": true,
-    "effect": "Acts as a +1 quarterstaff and druidic focus. While attuned, +1 to druid spell attack rolls and spell save DC. While in Wild Shape, grants Primal Surge (see homebrew features)."
+    "notes": "A gift from Orrin, ancient tortle caretaker of the Verdant Hollow, Argentveil. Recovered from a sealed cache predating the city itself. Qualifies for Wild Symbiosis (wood construction)."
   },
   {
     "name": "Paired Shortsword +2",
+    "catalog_id": "weapon-1-2-or-3",
     "type": "weapon",
     "weapon_category": "shortsword",
     "equipped_by": "Pirra",
     "carried_by": null,
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 2,
     "notes": "Previously +1, upgraded to +2 by the enchantress in Valdmere.",
     "id": "items_216",
     "slot": "melee1h",
-    "battle_effect": true,
-    "effect": "+2 bonus to attack and damage rolls. Resonance only works with Denna's paired sword."
+    "battle_effect": true
   },
   {
     "name": "Laminated Marking Shortbow +1",
+    "catalog_id": "laminated-marking-shortbow-1",
     "type": "weapon",
-    "weapon_category": "shortbow",
     "equipped_by": "Pirra",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
     "enhancement_bonus": 1,
     "notes": "",
-    "id": "items_217",
-    "slot": "ranged2h",
-    "battle_effect": true,
-    "effect": "+1 bonus to attack and damage rolls. Once per combat, the bearer may declare a ranged attack with this bow to be a marking shot before rolling, forcing Faerie Fire onto the target with no save (single target only, not the spell's usual area).",
-    "weapon_effects": [
-      {
-        "name": "Marking Shot",
-        "type": "weapon_effect",
-        "description": "Once per combat, before rolling, the bearer may declare a ranged attack with this bow to be a marking shot. The target is immediately affected by Faerie Fire — no save, single target only (not the spell's usual 20-foot cube)."
-      }
-    ],
-    "spells_granted": [
-      {
-        "name": "Faerie Fire",
-        "action_type": "free"
-      }
-    ]
+    "id": "items_217"
   },
   {
     "name": "TEST Wand of Magic Missiles",
+    "catalog_id": "test-wand-of-magic-missiles",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "party",
-    "needs_attunement": false,
     "attuned": false,
-    "value_gp": 500,
-    "charges_current": 7,
-    "charges_max": 7,
-    "charges_recharge": "1d6+1",
-    "charges_recharge_type": "rest",
-    "effect": "TEST ITEM — added to check whether an item that's carried but not equipped (no equipped_by, not equipped_by:'disallowed') shows up as usable in the Battle tab. Also doubles as a test of the Weave Dust destroy flow (value_gp set). Delete once verified.",
     "notes": "TEST ITEM — delete after verifying BattleItemsPanel.vue's carried-but-unequipped behavior and the destroy-for-dust dialog. See TODO.md.",
     "id": "items_218",
-    "slot": "held",
-    "battle_effect": true,
-    "action_type": "action",
-    "spells_granted": [
-      {
-        "name": "Magic Missile",
-        "action_type": "action",
-        "charge_cost": {
-          "min": 1,
-          "max": 7
-        }
-      }
-    ],
     "stored_at": null,
     "party_id": "party_1780850600167_2"
   },
   {
     "name": "Bag of Holding",
+    "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1780850600167_0",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_219",
-    "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
   },
   {
     "name": "Bag of Holding",
+    "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1780850600167_1",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_220",
-    "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
   },
   {
+    "effect": "No gems recorded yet.",
+    "slot": "none",
     "name": "Gem Pouch",
     "type": "material",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1780850600167_1",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Added 2026-09-08 — Valdmere's gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
     "id": "items_221",
-    "slot": "none",
-    "effect": "No gems recorded yet.",
     "contents": []
   },
   {
     "name": "Bag of Holding",
+    "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1780850600167_2",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_222",
-    "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
   },
   {
     "name": "Bag of Holding",
+    "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1782820688153",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_223",
-    "slot": "none",
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
   },
   {
+    "effect": "No gems recorded yet.",
+    "slot": "none",
     "name": "Gem Pouch",
     "type": "material",
     "equipped_by": "disallowed",
     "carried_by": "party",
     "party_id": "party_1782820688153",
-    "needs_attunement": false,
     "attuned": false,
     "notes": "Added 2026-09-08 — Twins' gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
     "id": "items_224",
-    "slot": "none",
-    "effect": "No gems recorded yet.",
     "contents": []
   },
   {
     "name": "The Eighth Redress",
+    "catalog_id": "the-eighth-redress",
     "type": "armor",
-    "armor_type": "studded leather",
     "equipped_by": "Torrin",
     "carried_by": null,
-    "needs_attunement": true,
     "attuned": true,
-    "grants_skill_proficiency": [
-      "History"
-    ],
-    "stat_bonuses": {
-      "psychic_blade_attack": 2,
-      "psychic_blade_damage": 2
-    },
     "notes": "Bonded to Torrin specifically — stitched by his own hand with the Master-Awl's Grandmaster's Stitch property, so it won't function the same way for anyone else (no mechanical enforcement for this yet, just a note for now). Best light armor available so nothing caps his DEX-based AC. Name refers to the seven other times he made armor for himself and it didn't go as well as this one.",
-    "id": "items_225",
-    "slot": "body",
-    "effect": "Studded leather armor infused with psionic thread. Grants proficiency in History. +2 bonus to attack and damage rolls made with Psychic Blades (moved here 2026-09-15 from O' M'Tandra's retired Psionic Reinforcement property)."
+    "id": "items_225"
   },
   {
     "name": "Dagger",
@@ -4014,41 +2730,25 @@
   },
   {
     "name": "Bracers of Defense",
+    "catalog_id": "bracers-of-defense",
     "type": "wondrous",
     "equipped_by": "Rith",
     "carried_by": "Rith",
-    "needs_attunement": true,
     "attuned": false,
-    "unarmored_stat_bonuses": {
-      "ac": 2
-    },
-    "effect": "+2 bonus to AC when not wearing armor or using a shield.",
     "notes": "",
     "id": "items_228",
-    "slot": "wrists",
     "battle_effect": true
   },
   {
     "name": "Windsong",
+    "catalog_id": "windsong",
     "type": "weapon",
-    "weapon_category": "longbow",
-    "slot": "ranged2h",
     "equipped_by": null,
     "carried_by": "Elucyne",
-    "needs_attunement": false,
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Homebrew.",
     "id": "items_229",
-    "battle_effect": true,
-    "effect": "+1 longbow. Once per turn, when you hit a target at least 60ft away, it takes an extra 1d8 force damage. Ignores three-quarters and half cover.",
-    "weapon_effects": [
-      {
-        "name": "Longshot Strike",
-        "type": "weapon_effect",
-        "description": "Once per turn, when you hit a target at least 60 feet away with this weapon, it takes an extra 1d8 force damage. This weapon ignores three-quarters cover and half cover."
-      }
-    ],
     "stored_at": null,
     "party_id": null
   },
@@ -4389,19 +3089,12 @@
   },
   {
     "name": "Gem of Seeing",
+    "catalog_id": "gem-of-seeing",
     "type": "wondrous",
     "equipped_by": null,
     "carried_by": "Lexica",
-    "needs_attunement": true,
     "attuned": false,
-    "charges_current": 3,
-    "charges_max": 3,
-    "charges_recharge": "1d3",
-    "effect": "Rare wondrous item (DMG). 3 charges. As an action, speak the command word and expend 1 charge: for the next 10 minutes you have truesight out to 120 feet when you peer through the gem. Regains 1d3 expended charges daily at dawn.",
     "notes": "Pale, smooth, lens-shaped gem about the size of a plum, found loose from its perch. Identified by Lexica over a one-hour study (Arcana 14 vs DC 12).",
-    "id": "items_257",
-    "slot": "held",
-    "battle_effect": true,
-    "action_type": "action"
+    "id": "items_257"
   }
 ]
