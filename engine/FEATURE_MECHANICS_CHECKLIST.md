@@ -116,7 +116,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_awakened-mind | Awakened Mind | Player's Handbook | no | Kerra | todo |  |
 | pub_channel-divinity-nature-s-wrath | Channel Divinity: Nature's Wrath | Player's Handbook | no | Chuknora | todo |  |
 | pub_channel-divinity-turn-the-faithless | Channel Divinity: Turn the Faithless | Player's Handbook | no | Chuknora | todo |  |
-| pub_darkvision | Darkvision | Player's Handbook | no | Enauweyn, Eldi | todo |  |
+| pub_darkvision | Darkvision | Player's Handbook | no | Enauweyn, Eldi, Rith, Iyani | todo |  |
 | pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no | Petra, Revven | todo |  |
 | pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
@@ -137,7 +137,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_tempest-cleric-destructive-wrath | Tempest Cleric — Destructive Wrath | Player's Handbook | no | Revven | todo |  |
 | pub_tempest-cleric-wrath-of-the-storm | Tempest Cleric — Wrath of the Storm | Player's Handbook | no | Revven | todo |  |
 | pub_thunderous-strike | Thunderbolt Strike | Player's Handbook | no | Revven | todo |  |
-| pub_war-caster | War Caster | Player's Handbook | no | Petra | todo |  |
+| pub_war-caster | War Caster | Player's Handbook | no | Petra, Rith | todo |  |
 | ranger-extra-attack | Extra Attack | Ranger | no | Elucyne | todo |  |
 | gen_ranger_base_favored-enemy | Favored Enemy | Ranger | no | Elucyne | todo |  |
 | gen_ranger_base_natural-explorer | Natural Explorer | Ranger | no | Elucyne | todo |  |
@@ -152,8 +152,9 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | hb_rogue_scout_skirmisher | Skirmisher | Rogue (Scout) | no | Siv | todo |  |
 | hb_rogue_scout_superior_mobility | Superior Mobility | Rogue (Scout) | no | Siv | todo |  |
 | hb_rogue_scout_survivalist | Survivalist | Rogue (Scout) | no | Siv | todo |  |
-| metamagic-quickened-spell | Metamagic: Quickened Spell | Sorcerer | no | Lenn | todo |  |
-| metamagic-twinned-spell | Metamagic: Twinned Spell | Sorcerer | no | Lenn | todo |  |
+| font-of-magic | Font of Magic | Sorcerer | no | Rith | todo |  |
+| metamagic-quickened-spell | Metamagic: Quickened Spell | Sorcerer | no | Lenn, Rith | todo |  |
+| metamagic-twinned-spell | Metamagic: Twinned Spell | Sorcerer | no | Lenn, Rith | todo |  |
 | pub_soulknife-homing-strikes | Homing Strikes | Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature. | no | Torrin | todo |  |
 | pub_soulknife-psychic-teleportation | Psychic Teleportation | Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature. | no | Torrin | todo |  |
 | pub_fancy-footwork | Fancy Footwork | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level. | no | Eldi | todo |  |
@@ -161,7 +162,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-champion-challenge | Channel Divinity: Champion Challenge | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_channel-divinity-turn-the-tide | Channel Divinity: Turn the Tide | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_crown-divine-allegiance | Crown — Divine Allegiance | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
-| pub_fey-touched | Fey Touched | Tasha's Cauldron of Everything | no | Revven | todo |  |
+| pub_fey-touched | Fey Touched | Tasha's Cauldron of Everything | no | Revven, Rith | todo |  |
 | fighting-style-thrown-weapon-fighting | Fighting Style: Thrown Weapon Fighting | Tasha's Cauldron of Everything | no | Brick | todo |  |
 | fighting-style-unarmed-fighting | Fighting Style: Unarmed Fighting | Tasha's Cauldron of Everything | no | Brick | todo |  |
 | pub_flash-of-genius | Flash of Genius | Tasha's Cauldron of Everything | no | Jaygar | todo |  |
@@ -193,9 +194,12 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | potent-cantrip | Potent Cantrip | Wizard (Evocation) | no | Lenn | todo |  |
 | sculpt-spells | Sculpt Spells | Wizard (Evocation) | no | Lenn | todo |  |
 | pub_bountiful-luck | Bountiful Luck | Xanathar's Guide to Everything | no | Tackett | todo |  |
+| pub_divine-magic | Divine Magic | Xanathar's Guide to Everything | no | Rith | todo |  |
 | pub_dread-ambusher | Dread Ambusher | Xanathar's Guide to Everything | no | Elucyne | todo |  |
 | pub_elven-accuracy | Elven Accuracy | Xanathar's Guide to Everything | no | Eldi | todo |  |
+| pub_empowered-healing | Empowered Healing | Xanathar's Guide to Everything | no | Rith | todo |  |
 | pub_fade-away | Fade Away | Xanathar's Guide to Everything | no | Jaygar | todo |  |
+| pub_favored-by-the-gods | Favored by the Gods | Xanathar's Guide to Everything | no | Rith | todo |  |
 | pub_inquisitive-ear-for-deceit | Inquisitive — Ear for Deceit | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_inquisitive-eye-for-detail | Inquisitive — Eye for Detail | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_inquisitive-steady-eye | Inquisitive — Steady Eye | Xanathar's Guide to Everything | no | Pirra | todo |  |
@@ -833,7 +837,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_life-bearer | Life Bearer | Shaman (Witch Doctor) | no |  | todo |  |
 | pub_spirit-communion | Spirit Communion | Shaman (Witch Doctor) | no |  | todo |  |
 | pub_totemic-blessing | Totemic Blessing | Shaman (Witch Doctor) | no |  | todo |  |
-| font-of-magic | Font of Magic | Sorcerer | no |  | todo |  |
 | metamagic-1 | Metamagic | Sorcerer | no |  | todo |  |
 | gen_sorcerer_base_metamagic-3rd-option | Metamagic (3rd option) | Sorcerer | no |  | todo |  |
 | gen_sorcerer_base_metamagic-4th-option | Metamagic (4th option) | Sorcerer | no |  | todo |  |
@@ -998,13 +1001,10 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_deflecting-shroud | Deflecting Shroud | Wizard (War Magic) | no |  | todo |  |
 | pub_durable-magic | Durable Magic | Wizard (War Magic) | no |  | todo |  |
 | pub_power-surge | Power Surge | Wizard (War Magic) | no |  | todo |  |
-| pub_divine-magic | Divine Magic | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dragon-fear | Dragon Fear | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dragon-hide | Dragon Hide | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_drow-high-magic | Drow High Magic | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dwarven-fortitude | Dwarven Fortitude | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_empowered-healing | Empowered Healing | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_favored-by-the-gods | Favored by the Gods | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_fey-teleportation | Fey Teleportation | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_flames-of-phlegethos | Flames of Phlegethos | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_infernal-constitution | Infernal Constitution | Xanathar's Guide to Everything | no |  | todo |  |
@@ -1031,17 +1031,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Revven | Caster Prestidigitation | todo |  |
 | Elucyne | Infernal Legacy: Hellish Rebuke | todo |  |
 | Elucyne | Infernal Legacy: Darkness | todo |  |
-| Rith | Divine Magic | todo |  |
-| Rith | Favored by the Gods | todo |  |
-| Rith | Font of Magic | todo |  |
-| Rith | Metamagic: Twinned Spell | todo |  |
-| Rith | Metamagic: Quickened Spell | todo |  |
-| Rith | Empowered Healing | todo |  |
-| Rith | Fey Touched | todo |  |
-| Rith | War Caster | todo |  |
-| Rith | Darkvision | todo |  |
 | Rith | Caster Prestidigitation | todo |  |
-| Iyani | Darkvision | todo |  |
 | Iyani | Healing Touch | todo |  |
 | Iyani | Aasimar Transformation | todo |  |
 | Iyani | Loom Fire | todo |  |

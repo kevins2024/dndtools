@@ -4881,11 +4881,13 @@
       },
       {
         "name": "Divine Magic",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_divine-magic"
       },
       {
         "name": "Favored by the Gods",
         "type": "feature",
+        "id": "pub_favored-by-the-gods",
         "action_type": "reaction",
         "recharge": "short_rest",
         "uses_max": 1,
@@ -4893,23 +4895,28 @@
       },
       {
         "name": "Font of Magic",
-        "type": "feature"
+        "type": "feature",
+        "id": "font-of-magic"
       },
       {
         "name": "Metamagic: Twinned Spell",
-        "type": "feature"
+        "type": "feature",
+        "id": "metamagic-twinned-spell"
       },
       {
         "name": "Metamagic: Quickened Spell",
-        "type": "feature"
+        "type": "feature",
+        "id": "metamagic-quickened-spell"
       },
       {
         "name": "Empowered Healing",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_empowered-healing"
       },
       {
         "name": "Fey Touched",
         "type": "feat",
+        "id": "pub_fey-touched",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
@@ -4920,7 +4927,8 @@
       },
       {
         "name": "War Caster",
-        "type": "feat"
+        "type": "feat",
+        "id": "pub_war-caster"
       },
       {
         "name": "Fey Ancestry",
@@ -4929,7 +4937,8 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Caster Prestidigitation",
@@ -5189,7 +5198,8 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Healing Touch",
