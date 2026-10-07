@@ -1392,5 +1392,30 @@
   "pub_gaze-of-two-minds": {
     "name": "Gaze of Two Minds",
     "action_type": "action"
+  },
+  "pub_lucky": {
+    "name": "Lucky",
+    "recharge": "long_rest",
+    "uses_max": 3
+  },
+  "pub_mage-slayer": {
+    "name": "Mage Slayer",
+    "action_type": "reaction"
+  },
+  "maneuver-feinting-attack": {
+    "name": "Maneuver: Feinting Attack",
+    "action_type": "bonus_action"
+  },
+  "maneuver-parry": {
+    "name": "Maneuver: Parry",
+    "action_type": "reaction"
+  },
+  "maneuver-rally": {
+    "name": "Maneuver: Rally",
+    "action_type": "bonus_action"
+  },
+  "maneuver-riposte": {
+    "name": "Maneuver: Riposte",
+    "action_type": "reaction"
   }
 }
