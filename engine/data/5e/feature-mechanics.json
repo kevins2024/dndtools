@@ -1573,5 +1573,44 @@
   "hb_rogue_at_versatile_trickster": {
     "name": "Versatile Trickster",
     "action_type": "bonus_action"
+  },
+  "hb_rogue_phantom_ghost_walk": {
+    "name": "Ghost Walk",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "hb_rogue_scout_sudden_strike": {
+    "name": "Sudden Strike",
+    "action_type": "bonus_action"
+  },
+  "sorcerous-restoration": {
+    "name": "Sorcerous Restoration",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_revelation-in-flesh": {
+    "name": "Revelation in Flesh",
+    "action_type": "bonus_action"
+  },
+  "pub_telepathic-speech": {
+    "name": "Telepathic Speech",
+    "action_type": "bonus_action"
+  },
+  "pub_warping-implosion": {
+    "name": "Warping Implosion",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_bastion-of-law": {
+    "name": "Bastion of Law",
+    "action_type": "action"
+  },
+  "pub_clockwork-cavalcade": {
+    "name": "Clockwork Cavalcade",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
