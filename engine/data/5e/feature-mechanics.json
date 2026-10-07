@@ -422,5 +422,26 @@
   "pub_magical-tinkering": {
     "name": "Magical Tinkering",
     "action_type": "action"
+  },
+  "hb_infused_arbalist_infuse_weapon": {
+    "name": "Infuse Weapon",
+    "action_type": "action"
+  },
+  "pub_flash-of-genius": {
+    "name": "Flash of Genius",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_fade-away": {
+    "name": "Fade Away",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
   }
 }

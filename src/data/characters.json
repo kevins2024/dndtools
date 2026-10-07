@@ -6183,7 +6183,8 @@
         "id": "hb_infused_arbalist_infuse_weapon",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "action"
       },
       {
         "name": "Arcane Payload",
@@ -6223,7 +6224,11 @@
         "type": "feat",
         "level_gained": 8,
         "ability_choice": "int",
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "reaction",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       }
     ],
     "spells": [
