@@ -1,12 +1,13 @@
 <template>
   <div class="lut-root">
     <div class="lut-select-row">
-      <select v-model="selectedCharacterName" class="lut-select">
-        <option :value="null" disabled>Choose a character…</option>
-        <option v-for="c in characters" :key="c.name" :value="c.name">
-          {{ c.name }}
-        </option>
-      </select>
+      <!-- A native <select> truncated the roster behind scroll arrows; this
+           lists every character and scrolls normally. -->
+      <ScrollSelect
+        v-model="selectedCharacterName"
+        :options="characterOptions"
+        placeholder="Choose a character…"
+      />
 
       <select
         v-if="classOptions.length > 1"
@@ -1950,6 +1951,7 @@
 <script>
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import DetailPopup from './DetailPopup.vue'
+import ScrollSelect from './ScrollSelect.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
 import { lookupFeature, lookupSpell } from '@/utils/lookupService.js'
 import {
@@ -1975,7 +1977,7 @@ function filterSpellOptions(options, search) {
 export default {
   name: 'LevelUpTool',
 
-  components: { PendingCharacterSaveBar, DetailPopup },
+  components: { PendingCharacterSaveBar, DetailPopup, ScrollSelect },
   mixins: [pendingCharacterSaves],
 
   data() {
@@ -2726,6 +2728,9 @@ export default {
           (p) => p.type === 'bonusSpellChoice'
         ) ?? null
       )
+    },
+    characterOptions() {
+      return this.characters.map((c) => ({ value: c.name, label: c.name }))
     },
     pendingSpellbookChoice() {
       return (

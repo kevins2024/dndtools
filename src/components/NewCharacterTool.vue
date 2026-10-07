@@ -835,6 +835,78 @@
           </div>
 
           <div
+            v-if="
+              isWizard && (pendingSpellbookChoice || spellbookDraftPicks.length)
+            "
+            class="nct-spell-picker"
+          >
+            <div class="nct-note">
+              Your spellbook starts with {{ spellbookPickLimit }} 1st-level
+              wizard spells — pick {{ spellbookPickLimit }} ({{
+                spellbookDraftPicks.length
+              }}/{{ spellbookPickLimit }} chosen):
+            </div>
+            <input
+              v-model="spellbookSearch"
+              class="nct-text-input"
+              placeholder="Search spells…"
+            />
+            <ul class="nct-pick-list">
+              <li v-for="o in filteredSpellbookOptions" :key="o.name">
+                <input
+                  type="checkbox"
+                  :checked="spellbookDraftPicks.includes(o.name)"
+                  :disabled="
+                    !spellbookDraftPicks.includes(o.name) &&
+                    spellbookDraftPicks.length >= spellbookPickLimit
+                  "
+                  @change="
+                    togglePick(
+                      'spellbookDraftPicks',
+                      o.name,
+                      spellbookPickLimit
+                    )
+                  "
+                />
+                <span class="nct-pick-name" @click="inspectSpell(o)"
+                  >{{ o.name }}
+                  <span class="nct-note-inline"
+                    >(lvl {{ o.level
+                    }}{{ o.school ? ', ' + o.school : '' }})</span
+                  ></span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            v-if="isWizard && spellbookDraftPicks.length"
+            class="nct-spell-picker"
+          >
+            <div class="nct-note">
+              Prepare {{ preparedPickCount }} of your spellbook spells (INT
+              modifier + level) ({{ preparedDraftPicks.length }}/{{
+                preparedPickCount
+              }}
+              chosen) — you can change which are prepared after every long rest:
+            </div>
+            <ul class="nct-pick-list">
+              <li v-for="name in spellbookDraftPicks" :key="name">
+                <input
+                  type="checkbox"
+                  :checked="preparedDraftPicks.includes(name)"
+                  :disabled="
+                    !preparedDraftPicks.includes(name) &&
+                    preparedDraftPicks.length >= preparedPickCount
+                  "
+                  @change="togglePrepared(name)"
+                />
+                <span class="nct-pick-name">{{ name }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div
             v-if="pendingFightingStyleChoice || fightingStyleChoice"
             class="nct-spell-picker"
           >
@@ -1203,6 +1275,16 @@ export default {
       spellOptions: [],
       spellDraftPicks: [],
       spellSearch: '',
+
+      // Wizard only: the starting spellbook (six 1st-level spells, PHB) and
+      // which of them are prepared at the start. Wizard is a 'prepared'
+      // caster, so the known-spell picker above never applies to it — this is
+      // its own pick, same route and shape as LevelUpTool.vue's "Add to
+      // Spellbook" pick.
+      spellbookOptions: [],
+      spellbookDraftPicks: [],
+      spellbookSearch: '',
+      preparedDraftPicks: [],
 
       // Fighter's own 1st-level Fighting Style pick — the one pendingChoice
       // that can actually surface at level 1 (Pact Boon/Invocations only
@@ -1644,6 +1726,36 @@ export default {
     filteredSpellOptions() {
       return filterSpellOptions(this.spellOptions, this.spellSearch)
     },
+    isWizard() {
+      return this.className?.toLowerCase() === 'wizard'
+    },
+    pendingSpellbookChoice() {
+      return (
+        this.preview?.pendingChoices?.find(
+          (p) => p.type === 'spellbookAdditions'
+        ) ?? null
+      )
+    },
+    // How many spellbook spells this character gets in total: the engine's
+    // still-owed count plus what's already been picked (the engine's count
+    // shrinks as picks come in, so the total is the two together).
+    spellbookPickLimit() {
+      return (
+        (this.pendingSpellbookChoice?.count ?? 0) +
+        this.spellbookDraftPicks.length
+      )
+    },
+    // A Wizard prepares INT modifier + level spells (the engine's
+    // preparedAfter) from their spellbook — never more than they have.
+    preparedPickCount() {
+      if (!this.isWizard) return 0
+      const prepared =
+        this.preview?.description?.spellcasting?.preparedAfter ?? 0
+      return Math.min(prepared, this.spellbookDraftPicks.length)
+    },
+    filteredSpellbookOptions() {
+      return filterSpellOptions(this.spellbookOptions, this.spellbookSearch)
+    },
     // Pure per-ability bonus AMOUNT (species fixed + choice, or the manual
     // +2/+1 toggle) — independent of any particular base score, unlike
     // finalScores below. Extracted out 2026-09-25 after a real bug: the
@@ -1764,6 +1876,8 @@ export default {
             : this.pointsRemaining >= 0) &&
           this.cantripDraftPicks.length >= this.cantripPickCount &&
           this.spellDraftPicks.length >= this.spellPickCount &&
+          this.spellbookDraftPicks.length >= this.spellbookPickLimit &&
+          this.preparedDraftPicks.length >= this.preparedPickCount &&
           !this.pendingFightingStyleChoice &&
           !this.pendingFavoredEnemyChoice &&
           !this.pendingNaturalExplorerChoice &&
@@ -1863,7 +1977,16 @@ export default {
       this.cantripDraftPicks = []
       this.spellOptions = []
       this.spellDraftPicks = []
+      this.spellbookOptions = []
+      this.spellbookDraftPicks = []
+      this.preparedDraftPicks = []
       this.runPreview()
+    },
+    // Un-choosing a spellbook spell un-prepares it too.
+    spellbookDraftPicks(names) {
+      this.preparedDraftPicks = this.preparedDraftPicks.filter((n) =>
+        names.includes(n)
+      )
     },
     backgroundChoice() {
       // Pre-fill from the curated background's real skills — still editable
@@ -2370,6 +2493,7 @@ export default {
               cantrips: this.cantripDraftPicks,
               spells: this.spellDraftPicks,
             },
+            spellbookChoices: this.spellbookDraftPicks,
             fightingStyleChoice: this.fightingStyleChoice,
             favoredEnemyChoice: this.favoredEnemyChoice,
             naturalExplorerChoice: this.naturalExplorerChoice,
@@ -2427,6 +2551,12 @@ export default {
           ) {
             this.fetchSpellOptions('spellOptions', { cantripsOnly: false })
           }
+          if (
+            data.pendingChoices?.some((p) => p.type === 'spellbookAdditions') &&
+            !this.spellbookOptions.length
+          ) {
+            this.fetchSpellOptions('spellbookOptions', { cantripsOnly: false })
+          }
         }
       } catch (err) {
         this.error = err.message
@@ -2460,6 +2590,18 @@ export default {
         this[optionsProp] = res.ok ? data.options ?? [] : []
       } catch {
         this[optionsProp] = []
+      }
+    },
+
+    // Which of the chosen spellbook spells start out prepared — capped at the
+    // Wizard's prepared count. No re-preview: prepared state doesn't change
+    // anything the engine computes.
+    togglePrepared(name) {
+      const i = this.preparedDraftPicks.indexOf(name)
+      if (i !== -1) {
+        this.preparedDraftPicks.splice(i, 1)
+      } else if (this.preparedDraftPicks.length < this.preparedPickCount) {
+        this.preparedDraftPicks.push(name)
       }
     },
 
@@ -2612,9 +2754,13 @@ export default {
       // just the ones migrated when it shipped. Sharing it with another
       // Wizard later is a separate, manual step (Networks tab).
       if (this.className?.toLowerCase() === 'wizard' && character.spells) {
-        const prepared = new Set(
-          character.spells.filter((s) => s.prepared).map((s) => s.name)
-        )
+        // Cantrips come through prepared already; the leveled spellbook
+        // spells are NOT (they're not auto-prepared), so the starting prepared
+        // list is the cantrips plus the spells the player chose to prepare.
+        const prepared = new Set([
+          ...character.spells.filter((s) => s.prepared).map((s) => s.name),
+          ...this.preparedDraftPicks,
+        ])
         const spellbookId = `sb_${Date.now()}`
         this.$store.commit('UPDATE_TABLE_ITEM', {
           table: 'spellbooks',
@@ -2663,6 +2809,9 @@ export default {
       this.cantripDraftPicks = []
       this.spellOptions = []
       this.spellDraftPicks = []
+      this.spellbookOptions = []
+      this.spellbookDraftPicks = []
+      this.preparedDraftPicks = []
       this.fightingStyleChoice = null
       this.favoredEnemyChoice = null
       this.naturalExplorerChoice = null
