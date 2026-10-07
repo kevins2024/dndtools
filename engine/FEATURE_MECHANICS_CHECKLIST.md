@@ -1026,18 +1026,18 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 
 | character | feature | status | notes |
 |---|---|---|---|
-| Lenn | Caster Prestidigitation | todo |  |
-| Kessara | Caster Prestidigitation | todo |  |
-| Petra | Caster Prestidigitation | todo |  |
-| Lyria | Caster Prestidigitation | todo |  |
-| Revven | Caster Prestidigitation | todo |  |
-| Elucyne | Infernal Legacy: Hellish Rebuke | todo |  |
-| Elucyne | Infernal Legacy: Darkness | todo |  |
-| Rith | Caster Prestidigitation | todo |  |
-| Iyani | Caster Prestidigitation | todo |  |
-| Therynv'l | Combat Wild Shape: Healing | todo |  |
-| Therynv'l | Caster Prestidigitation | todo |  |
-| Kerra | Caster Prestidigitation | todo |  |
-| Lexica | Caster Prestidigitation | todo |  |
-| Sorra | Caster Prestidigitation | todo |  |
-| Elowenne | Caster Prestidigitation | todo |  |
+| Lenn | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Kessara | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Petra | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Lyria | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Revven | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Elucyne | Infernal Legacy: Hellish Rebuke | needs-owner | Tile splits the single Tiefling 'Infernal Legacy' (pub_infernal-legacy) into two per-spell tiles; one id can't be used twice on a character. Owner: keep split (need two ids) or merge into one tile? |
+| Elucyne | Infernal Legacy: Darkness | needs-owner | Tile splits the single Tiefling 'Infernal Legacy' (pub_infernal-legacy) into two per-spell tiles; one id can't be used twice on a character. Owner: keep split (need two ids) or merge into one tile? |
+| Rith | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Iyani | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Therynv'l | Combat Wild Shape: Healing | needs-owner | Sub-tile of Combat Wild Shape (pub_combat-wild-shape); no separate record exists. Owner: merge into the parent tile or supply a record. |
+| Therynv'l | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Kerra | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Lexica | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Sorra | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
+| Elowenne | Caster Prestidigitation | needs-owner | House-rule tile (_source says house rule); no record in any feature file. Owner: add a homebrew feature record, or confirm it should stay id-less. |
