@@ -1457,5 +1457,35 @@
     "name": "Sign of Ill Omen",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub_tavern-brawler": {
+    "name": "Tavern Brawler",
+    "action_type": "bonus_action"
+  },
+  "pub_thief-of-five-fates": {
+    "name": "Thief of Five Fates",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_undying-sentinel": {
+    "name": "Undying Sentinel",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "foe-slayer": {
+    "name": "Foe Slayer",
+    "per_turn_cap": true
+  },
+  "primeval-awareness": {
+    "name": "Primeval Awareness",
+    "action_type": "action"
+  },
+  "vanish": {
+    "name": "Vanish",
+    "action_type": "bonus_action"
+  },
+  "pub_exceptional-training": {
+    "name": "Exceptional Training",
+    "action_type": "bonus_action"
   }
 }
