@@ -40,7 +40,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | feral-instinct | Feral Instinct | Barbarian | no | Rhuna, Brick | todo |  |
 | rage | Rage | Barbarian | no | Rhuna, Brick | done |  |
 | reckless-attack | Reckless Attack | Barbarian | no | Rhuna, Brick | todo |  |
-| barbarian-unarmored-defense | Unarmored Defense | Barbarian | no | Brick | todo |  |
+| barbarian-unarmored-defense | Unarmored Defense | Barbarian | no | Chuknora, Brick | todo |  |
 | frenzy | Frenzy | Barbarian (Berserker) | no | Rhuna, Brick | todo |  |
 | mindless-rage | Mindless Rage | Barbarian (Berserker) | no | Rhuna, Brick | todo |  |
 | gen_bard_base_bardic-inspiration | Bardic Inspiration | Bard | no | Lexica, Sorra | done |  |
@@ -62,14 +62,15 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_spirit-session | Spirit Session | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level, a separate feature from Spiritual Focus's own 6th-level damage/healing bonus roll (both genuinely trigger at 6th level). | no | Sorra | todo |  |
 | action-surge-1-use | Action Surge (1 use) | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra | done |  |
-| gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz | todo |  |
+| gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz, Corwin | todo |  |
 | fighter-fighting-style-dueling | Fighting Style: Dueling | Fighter | no | Kerra | todo |  |
 | fighter-fighting-style-two-weapon-fighting | Fighting Style: Two-Weapon Fighting | Fighter | no | Vaz | todo |  |
 | indomitable-1-use | Indomitable (1 use) | Fighter | no | Vaz, Corwin | done |  |
 | second-wind | Second Wind | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra, Brick | done |  |
-| gen_fighter_champion_improved-critical-19-20 | Improved Critical (19-20) | Fighter (Champion) | no | Kerra | todo |  |
+| gen_fighter_champion_improved-critical-19-20 | Improved Critical (19-20) | Fighter (Champion) | no | Corwin, Kerra | todo |  |
+| remarkable-athlete | Remarkable Athlete | Fighter (Champion) | no | Corwin | todo |  |
 | pub_insightful-fighting-revised | Insightful Fighting (Revised) | Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW. | yes | Pirra | todo |  |
-| pub_linked-spellbook | Linked Spellbook | Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara. | yes | Lenn, Kessara | todo |  |
+| pub_linked-spellbook | Linked Spellbook | Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara. | yes | Lenn, Kessara, Lyria | todo |  |
 | pub_vow-of-the-open-road | Channel Divinity: Vow of the Open Road | Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag). | yes | Ferghus | todo |  |
 | hb_infused_arbalist_calculating_arbalister | Calculating Arbalister | Homebrew — Infused Arbalist (built on Tasha's Cauldron of Everything's Artillerist framework, heavily modified). No direct RAW equivalent; loosely modeled on Battle Smith's real Battle Ready (Intelligence for attack/damage rolls with a magic weapon), scoped to a single bonded weapon. | yes | Jaygar | todo |  |
 | hb_infused_arbalist_arcane_payload | Arcane Payload | Homebrew — Infused Arbalist. Renamed/reflavored from Artillerist's real Arcane Firearm (Tasha's Cauldron of Everything) — mechanically identical, reflavored from a wand/staff/rod focus to the bonded weapon. | yes | Jaygar | todo |  |
@@ -87,6 +88,8 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | fighting-style-great-weapon-fighting | Fighting Style: Great Weapon Fighting | Paladin | no | Ferghus | todo |  |
 | lay-on-hands | Lay on Hands | Paladin | no | Chuknora, Enauweyn, Ferghus | done |  |
 | pub_channel-divinity-sacred-weapon | Channel Divinity: Sacred Weapon | Paladin (Oath of Devotion) | no | Ferghus | todo |  |
+| pub_abjuration-savant | Abjuration Savant | Player's Handbook | no | Lyria | todo |  |
+| pub_arcane-ward | Arcane Ward | Player's Handbook | no | Lyria | todo |  |
 | pub_assassin-infiltration-expertise | Assassin — Infiltration Expertise | Player's Handbook | no | Denna | todo |  |
 | pub_assassinate | Assassinate | Player's Handbook | no | Denna | todo |  |
 | pub_awakened-mind | Awakened Mind | Player's Handbook | no | Kerra | todo |  |
@@ -102,8 +105,10 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_inspiring-leader | Inspiring Leader | Player's Handbook | no | Petra | todo |  |
 | pub_know-your-enemy | Know Your Enemy | Player's Handbook | no | Vaz | todo |  |
 | pub_menacing-attack | Menacing Attack | Player's Handbook | no | Vaz | todo |  |
+| pub_observant | Observant | Player's Handbook | no | Pirra | todo |  |
 | pub_parry | Parry | Player's Handbook | no | Vaz | todo |  |
 | pub_precision-attack | Precision Attack | Player's Handbook | no | Vaz | todo |  |
+| pub_projected-ward | Projected Ward | Player's Handbook | no | Lyria | todo |  |
 | pub_riposte | Riposte | Player's Handbook | no | Vaz | todo |  |
 | pub_war-caster | War Caster | Player's Handbook | no | Petra | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
@@ -139,7 +144,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pact-boon | Pact Boon | Warlock | no | Kerra | todo |  |
 | pact-magic | Pact Magic | Warlock | no | Kerra | todo |  |
 | pact-of-the-tome | Pact of the Tome | Warlock | no | Kerra | todo |  |
-| arcane-recovery | Arcane Recovery | Wizard | no | Lenn, Kessara, Elowenne | todo |  |
+| arcane-recovery | Arcane Recovery | Wizard | no | Lenn, Kessara, Lyria, Elowenne | todo |  |
 | gen_wizard_base_spellcasting | Spellcasting | Wizard | no | Elowenne | todo |  |
 | pub_bladesong | Bladesong | Wizard (Bladesinger) | no | Kessara | todo |  |
 | pub_chronal-shift | Chronal Shift | Wizard (Chronurgy Magic) | no | Elowenne | done |  |
@@ -424,7 +429,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_vigilant-defender | Vigilant Defender | Fighter (Cavalier) | no |  | todo |  |
 | pub_warding-maneuver | Warding Maneuver | Fighter (Cavalier) | no |  | todo |  |
 | additional-fighting-style | Additional Fighting Style | Fighter (Champion) | no |  | todo |  |
-| remarkable-athlete | Remarkable Athlete | Fighter (Champion) | no |  | todo |  |
 | gen_fighter_champion_superior-critical-18-20 | Superior Critical (18-20) | Fighter (Champion) | no |  | todo |  |
 | survivor | Survivor | Fighter (Champion) | no |  | todo |  |
 | hb_fighter_ek_arcane_charge | Arcane Charge | Fighter (Eldritch Knight) | no |  | todo |  |
@@ -611,11 +615,9 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-vow-of-enmity | Channel Divinity: Vow of Enmity | Paladin (Oath of Vengeance) | no |  | todo |  |
 | pub_relentless-avenger | Relentless Avenger | Paladin (Oath of Vengeance) | no |  | todo |  |
 | pub_soul-of-vengeance | Soul of Vengeance | Paladin (Oath of Vengeance) | no |  | todo |  |
-| pub_abjuration-savant | Abjuration Savant | Player's Handbook | no |  | todo |  |
 | pub_actor | Actor | Player's Handbook | no |  | todo |  |
 | pub_agonizing-blast | Agonizing Blast | Player's Handbook | no |  | todo |  |
 | pub_alert | Alert | Player's Handbook | no |  | todo |  |
-| pub_arcane-ward | Arcane Ward | Player's Handbook | no |  | todo |  |
 | pub_armor-of-shadows | Armor of Shadows | Player's Handbook | no |  | todo |  |
 | pub_ascendant-step | Ascendant Step | Player's Handbook | no |  | todo |  |
 | pub_athlete | Athlete | Player's Handbook | no |  | todo |  |
@@ -706,12 +708,10 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_moderately-armored | Moderately Armored | Player's Handbook | no |  | todo |  |
 | pub_mounted-combatant | Mounted Combatant | Player's Handbook | no |  | todo |  |
 | pub_naturally-stealthy | Naturally Stealthy | Player's Handbook | no |  | todo |  |
-| pub_observant | Observant | Player's Handbook | no |  | todo |  |
 | pub_one-with-shadows | One with Shadows | Player's Handbook | no |  | todo |  |
 | pub_otherworldly-leap | Otherworldly Leap | Player's Handbook | no |  | todo |  |
 | pub_polearm-master | Polearm Master | Player's Handbook | no |  | todo |  |
 | pub_primal-strike | Primal Strike | Player's Handbook | no |  | todo |  |
-| pub_projected-ward | Projected Ward | Player's Handbook | no |  | todo |  |
 | pub_pushing-attack | Pushing Attack | Player's Handbook | no |  | todo |  |
 | pub_quickened-spell | Quickened Spell | Player's Handbook | no |  | todo |  |
 | pub_rally | Rally | Player's Handbook | no |  | todo |  |
@@ -1025,17 +1025,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Lenn | Caster Prestidigitation | todo |  |
 | Kessara | Caster Prestidigitation | todo |  |
 | Petra | Caster Prestidigitation | todo |  |
-| Pirra | Observant | todo |  |
-| Lyria | Arcane Recovery | todo |  |
-| Lyria | Abjuration Savant | todo |  |
-| Lyria | Arcane Ward | todo |  |
-| Lyria | Projected Ward | todo |  |
-| Lyria | Linked Spellbook | todo |  |
 | Lyria | Caster Prestidigitation | todo |  |
-| Corwin | Extra Attack | todo |  |
-| Corwin | Improved Critical (19-20) | todo |  |
-| Corwin | Remarkable Athlete | todo |  |
-| Chuknora | Unarmored Defense | todo |  |
 | Chuknora | Rage | todo |  |
 | Chuknora | Reckless Attack | todo |  |
 | Chuknora | Danger Sense | todo |  |

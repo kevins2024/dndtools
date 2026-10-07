@@ -2145,6 +2145,7 @@
       {
         "name": "Observant",
         "type": "feat",
+        "id": "pub_observant",
         "stat_bonuses": {
           "passive_perception": 5,
           "passive_investigation": 5
@@ -2266,25 +2267,30 @@
       {
         "name": "Arcane Recovery",
         "type": "feature",
+        "id": "arcane-recovery",
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
       },
       {
         "name": "Abjuration Savant",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_abjuration-savant"
       },
       {
         "name": "Arcane Ward",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_arcane-ward"
       },
       {
         "name": "Projected Ward",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_projected-ward"
       },
       {
         "name": "Linked Spellbook",
         "type": "feature",
+        "id": "pub_linked-spellbook",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       },
       {
@@ -2831,15 +2837,18 @@
     "features": [
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_base_extra-attack-1"
       },
       {
         "name": "Improved Critical (19-20)",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_champion_improved-critical-19-20"
       },
       {
         "name": "Remarkable Athlete",
-        "type": "feature"
+        "type": "feature",
+        "id": "remarkable-athlete"
       },
       {
         "name": "Indomitable",
@@ -2990,7 +2999,8 @@
       },
       {
         "name": "Unarmored Defense",
-        "type": "feature"
+        "type": "feature",
+        "id": "barbarian-unarmored-defense"
       },
       {
         "name": "Rage",
