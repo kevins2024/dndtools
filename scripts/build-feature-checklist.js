@@ -56,7 +56,7 @@ for (const r of rows.values()) {
 // ---- parse existing file
 const prev = new Map()
 const prevNoId = new Map()
-const split = (line) => line.replace(/^\|\s*/, '').replace(/\s*\|\s*$/, '').split(/\s+\|\s+/).map((c) => c.replace(/\\\|/g, '|'))
+const split = (line) => line.trim().replace(/^\|/, '').replace(/\|$/, '').split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, '|'))
 if (fs.existsSync(OUT)) {
   let sec = ''
   for (const line of fs.readFileSync(OUT, 'utf8').split('\n')) {
