@@ -33,15 +33,16 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_elf-trance | Trance |  | no | Enauweyn, Therynv'l | todo |  |
 | gen_artificer_base_spellcasting | Spellcasting | Artificer | no | Jaygar | todo |  |
 | gen_artificer_base_the-right-tool-for-the-job | The Right Tool for the Job | Artificer | no | Jaygar | todo |  |
-| danger-sense | Danger Sense | Barbarian | no | Brick | todo |  |
-| barbarian-extra-attack | Extra Attack | Barbarian | no | Brick | todo |  |
-| fast-movement | Fast Movement | Barbarian | no | Brick | todo |  |
-| feral-instinct | Feral Instinct | Barbarian | no | Brick | todo |  |
+| brutal-critical-1-die | Brutal Critical (1 die) | Barbarian | no | Rhuna | todo |  |
+| danger-sense | Danger Sense | Barbarian | no | Rhuna, Brick | todo |  |
+| barbarian-extra-attack | Extra Attack | Barbarian | no | Rhuna, Brick | todo |  |
+| fast-movement | Fast Movement | Barbarian | no | Rhuna, Brick | todo |  |
+| feral-instinct | Feral Instinct | Barbarian | no | Rhuna, Brick | todo |  |
 | rage | Rage | Barbarian | no | Rhuna, Brick | done |  |
 | reckless-attack | Reckless Attack | Barbarian | no | Rhuna, Brick | todo |  |
 | barbarian-unarmored-defense | Unarmored Defense | Barbarian | no | Brick | todo |  |
-| frenzy | Frenzy | Barbarian (Berserker) | no | Brick | todo |  |
-| mindless-rage | Mindless Rage | Barbarian (Berserker) | no | Brick | todo |  |
+| frenzy | Frenzy | Barbarian (Berserker) | no | Rhuna, Brick | todo |  |
+| mindless-rage | Mindless Rage | Barbarian (Berserker) | no | Rhuna, Brick | todo |  |
 | gen_bard_base_bardic-inspiration | Bardic Inspiration | Bard | no | Lexica, Sorra | done |  |
 | countercharm | Countercharm | Bard | no | Lexica, Sorra | todo |  |
 | font-of-inspiration | Font of Inspiration | Bard | no | Lexica, Sorra | todo |  |
@@ -83,6 +84,7 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
 | pub_fey-ancestry | Fey Ancestry | Player's Handbook | no | Enauweyn, Revven, Eldi, Rith, Therynv'l | todo |  |
+| pub_great-weapon-master | Great Weapon Master | Player's Handbook | no | Rhuna | todo |  |
 | pub_hellish-resistance | Hellish Resistance | Player's Handbook | no | Elucyne | todo |  |
 | pub_infernal-legacy | Infernal Legacy | Player's Handbook | no | Elucyne | todo |  |
 | pub_know-your-enemy | Know Your Enemy | Player's Handbook | no | Vaz | todo |  |
@@ -91,8 +93,8 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_precision-attack | Precision Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_riposte | Riposte | Player's Handbook | no | Vaz | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
-| cunning-action | Cunning Action | Rogue | no | Siv, Torrin | todo |  |
-| rogue-evasion | Evasion | Rogue | no | Siv, Torrin | todo |  |
+| cunning-action | Cunning Action | Rogue | no | Denna, Siv, Torrin | todo |  |
+| rogue-evasion | Evasion | Rogue | no | Denna, Siv, Torrin | todo |  |
 | rogue-expertise-1 | Expertise | Rogue | no | Siv, Torrin | todo |  |
 | sneak-attack | Sneak Attack | Rogue | no | Denna, Pirra, Elucyne, Eldi, Siv, Torrin | done |  |
 | thieves-cant | Thieves' Cant | Rogue | no | Torrin | todo |  |
@@ -146,7 +148,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_battle-smith-extra-attack | Extra Attack | Artificer (Battle Smith) | no |  | todo |  |
 | pub_improved-defender | Improved Defender | Artificer (Battle Smith) | no |  | todo |  |
 | pub_steel-defender | Steel Defender | Artificer (Battle Smith) | no |  | todo |  |
-| brutal-critical-1-die | Brutal Critical (1 die) | Barbarian | no |  | todo |  |
 | brutal-critical-2-dice | Brutal Critical (2 dice) | Barbarian | no |  | todo |  |
 | brutal-critical-3-dice | Brutal Critical (3 dice) | Barbarian | no |  | todo |  |
 | indomitable-might | Indomitable Might | Barbarian | no |  | todo |  |
@@ -647,7 +648,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_gnome-cunning | Gnome Cunning | Player's Handbook | no |  | todo |  |
 | pub_goading-attack | Goading Attack | Player's Handbook | no |  | todo |  |
 | pub_grappler | Grappler | Player's Handbook | no |  | todo |  |
-| pub_great-weapon-master | Great Weapon Master | Player's Handbook | no |  | todo |  |
 | pub_healer | Healer | Player's Handbook | no |  | todo |  |
 | pub_heavily-armored | Heavily Armored | Player's Handbook | no |  | todo |  |
 | pub_heavy-armor-master | Heavy Armor Master | Player's Handbook | no |  | todo |  |
@@ -1020,16 +1020,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 
 | character | feature | status | notes |
 |---|---|---|---|
-| Rhuna | Danger Sense | todo |  |
-| Rhuna | Extra Attack | todo |  |
-| Rhuna | Frenzy | todo |  |
-| Rhuna | Mindless Rage | todo |  |
-| Rhuna | Feral Instinct | todo |  |
-| Rhuna | Brutal Critical (1 die) | todo |  |
-| Rhuna | Fast Movement | todo |  |
-| Rhuna | Great Weapon Master | todo |  |
-| Denna | Cunning Action | todo |  |
-| Denna | Evasion | todo |  |
 | Denna | Assassinate | todo |  |
 | Denna | Assassin — Infiltration Expertise | todo |  |
 | Denna | Shadow Touched | todo |  |

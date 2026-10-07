@@ -273,35 +273,43 @@
       },
       {
         "name": "Danger Sense",
-        "type": "feature"
+        "type": "feature",
+        "id": "danger-sense"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "barbarian-extra-attack"
       },
       {
         "name": "Frenzy",
-        "type": "feature"
+        "type": "feature",
+        "id": "frenzy"
       },
       {
         "name": "Mindless Rage",
-        "type": "feature"
+        "type": "feature",
+        "id": "mindless-rage"
       },
       {
         "name": "Feral Instinct",
-        "type": "feature"
+        "type": "feature",
+        "id": "feral-instinct"
       },
       {
         "name": "Brutal Critical (1 die)",
-        "type": "feature"
+        "type": "feature",
+        "id": "brutal-critical-1-die"
       },
       {
         "name": "Fast Movement",
-        "type": "feature"
+        "type": "feature",
+        "id": "fast-movement"
       },
       {
         "name": "Great Weapon Master",
         "type": "feat",
+        "id": "pub_great-weapon-master",
         "action_type": "bonus_action"
       },
       {
@@ -398,6 +406,7 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
@@ -408,7 +417,8 @@
       },
       {
         "name": "Evasion",
-        "type": "feature"
+        "type": "feature",
+        "id": "rogue-evasion"
       },
       {
         "name": "Assassinate",
