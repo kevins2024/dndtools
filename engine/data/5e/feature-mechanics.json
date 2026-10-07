@@ -365,5 +365,17 @@
   "pub_bountiful-luck": {
     "name": "Bountiful Luck",
     "action_type": "reaction"
+  },
+  "pub_manifest-echo": {
+    "name": "Manifest Echo",
+    "action_type": "bonus_action"
+  },
+  "pub_echo-reposition": {
+    "name": "Echo: Reposition",
+    "action_type": "free"
+  },
+  "pub_echo-swap-places": {
+    "name": "Echo: Swap Places",
+    "action_type": "bonus_action"
   }
 }
