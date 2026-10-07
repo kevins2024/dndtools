@@ -46,9 +46,11 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | mindless-rage | Mindless Rage | Barbarian (Berserker) | no | Rhuna, Brick | todo |  |
 | gen_bard_base_bardic-inspiration | Bardic Inspiration | Bard | no | Lexica, Sorra | done |  |
 | countercharm | Countercharm | Bard | no | Lexica, Sorra | todo |  |
+| bard-expertise-1 | Expertise | Bard | no | Lexica, Sorra | todo |  |
 | font-of-inspiration | Font of Inspiration | Bard | no | Lexica, Sorra | todo |  |
 | jack-of-all-trades | Jack of All Trades | Bard | no | Lexica, Sorra | todo |  |
 | gen_bard_base_song-of-rest | Song of Rest | Bard | no | Lexica, Sorra | todo |  |
+| additional-magical-secrets | Additional Magical Secrets | Bard (College of Lore) | no | Lexica | todo |  |
 | bonus-proficiencies | Bonus Proficiencies | Bard (College of Lore) | no | Lexica | todo |  |
 | cutting-words | Cutting Words | Bard (College of Lore) | no | Lexica | todo |  |
 | pub_elemental-cleaver | Elemental Cleaver | Bigby Presents: Glory of the Giants | no | Chuknora | todo |  |
@@ -151,7 +153,7 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_tempest-cleric-destructive-wrath | Tempest Cleric — Destructive Wrath | Player's Handbook | no | Revven | todo |  |
 | pub_tempest-cleric-wrath-of-the-storm | Tempest Cleric — Wrath of the Storm | Player's Handbook | no | Revven | todo |  |
 | pub_thunderous-strike | Thunderbolt Strike | Player's Handbook | no | Revven | todo |  |
-| pub_war-caster | War Caster | Player's Handbook | no | Petra, Rith | todo |  |
+| pub_war-caster | War Caster | Player's Handbook | no | Petra, Rith, Sorra | todo |  |
 | ranger-extra-attack | Extra Attack | Ranger | no | Elucyne | todo |  |
 | gen_ranger_base_favored-enemy | Favored Enemy | Ranger | no | Elucyne | todo |  |
 | gen_ranger_base_natural-explorer | Natural Explorer | Ranger | no | Elucyne | todo |  |
@@ -177,14 +179,14 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-champion-challenge | Channel Divinity: Champion Challenge | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_channel-divinity-turn-the-tide | Channel Divinity: Turn the Tide | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_crown-divine-allegiance | Crown — Divine Allegiance | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
-| pub_fey-touched | Fey Touched | Tasha's Cauldron of Everything | no | Revven, Rith | todo |  |
+| pub_fey-touched | Fey Touched | Tasha's Cauldron of Everything | no | Revven, Rith, Lexica | todo |  |
 | fighting-style-thrown-weapon-fighting | Fighting Style: Thrown Weapon Fighting | Tasha's Cauldron of Everything | no | Brick | todo |  |
 | fighting-style-unarmed-fighting | Fighting Style: Unarmed Fighting | Tasha's Cauldron of Everything | no | Brick | todo |  |
 | pub_flash-of-genius | Flash of Genius | Tasha's Cauldron of Everything | no | Jaygar | todo |  |
 | hb_artificer_infuse_item | Infuse Item | Tasha's Cauldron of Everything | no | Jaygar | todo |  |
 | pub_magical-tinkering | Magical Tinkering | Tasha's Cauldron of Everything | no | Jaygar | todo |  |
 | pub_metamagic-adept | Metamagic Adept | Tasha's Cauldron of Everything | no | Lenn | todo |  |
-| pub_shadow-touched | Shadow Touched | Tasha's Cauldron of Everything | no | Denna | todo |  |
+| pub_shadow-touched | Shadow Touched | Tasha's Cauldron of Everything | no | Denna, Sorra | todo |  |
 | pub_soulknife-psi-bolstered-knack | Soulknife — Psi-Bolstered Knack | Tasha's Cauldron of Everything | no | Torrin | todo |  |
 | pub_soulknife-psionic-energy | Soulknife — Psionic Energy | Tasha's Cauldron of Everything | no | Torrin | todo |  |
 | pub_soulknife-psychic-blades | Soulknife — Psychic Blades | Tasha's Cauldron of Everything | no | Torrin | todo |  |
@@ -310,7 +312,6 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_wild-magic-table-7 | Wild Magic Table — Roll 7 | Barbarian (Path of Wild Magic) | no |  | todo |  |
 | pub_wild-magic-table-8 | Wild Magic Table — Roll 8 | Barbarian (Path of Wild Magic) | no |  | todo |  |
 | pub_wild-surge | Wild Surge | Barbarian (Path of Wild Magic) | no |  | todo |  |
-| bard-expertise-1 | Expertise | Bard | no |  | todo |  |
 | magical-secrets-1 | Magical Secrets | Bard | no |  | todo |  |
 | superior-inspiration | Superior Inspiration | Bard | no |  | todo |  |
 | pub_animating-performance | Animating Performance | Bard (College of Creation) | no |  | todo |  |
@@ -325,7 +326,6 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_mantle-of-inspiration | Mantle of Inspiration | Bard (College of Glamour) | no |  | todo |  |
 | pub_mantle-of-majesty | Mantle of Majesty | Bard (College of Glamour) | no |  | todo |  |
 | pub_unbreakable-majesty | Unbreakable Majesty | Bard (College of Glamour) | no |  | todo |  |
-| additional-magical-secrets | Additional Magical Secrets | Bard (College of Lore) | no |  | todo |  |
 | peerless-skill | Peerless Skill | Bard (College of Lore) | no |  | todo |  |
 | pub_bonus-proficiencies-and-blade-flourish | Bonus Proficiencies and Blade Flourish | Bard (College of Swords) | no |  | todo |  |
 | pub_blade-flourish-defensive | Defensive Flourish | Bard (College of Swords) | no |  | todo |  |
@@ -1039,11 +1039,5 @@ Counts: todo 993 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Therynv'l | Caster Prestidigitation | todo |  |
 | Kerra | Caster Prestidigitation | todo |  |
 | Lexica | Caster Prestidigitation | todo |  |
-| Lexica | Expertise: Performance, History | todo |  |
-| Lexica | Fey Touched | todo |  |
-| Lexica | Additional Magical Secrets: Pulse Wave, Haste | todo |  |
 | Sorra | Caster Prestidigitation | todo |  |
-| Sorra | Expertise: Performance, Insight | todo |  |
-| Sorra | Shadow Touched | todo |  |
-| Sorra | War Caster | todo |  |
 | Elowenne | Caster Prestidigitation | todo |  |
