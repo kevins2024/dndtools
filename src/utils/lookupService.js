@@ -12,11 +12,11 @@
 // Monster data: published_monsters.json (homebrew, already in the shape the
 // API returns — see normalizeMonster) first, then public dnd5eapi.co REST API.
 
-const { resolveFeatureText } = require('../../engine/rules/5e/featureText')
 import featuresData from '@/data/api_data_cache/features.json'
 import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
 import staticPublishedMonsters from '@/data/published_monsters.json'
+const { resolveFeatureText } = require('../../engine/rules/5e/featureText')
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
