@@ -42,7 +42,11 @@
       {
         "name": "Breath Weapon",
         "type": "feature",
-        "id": "pub_dragonborn-breath-weapon"
+        "id": "pub_dragonborn-breath-weapon",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Damage Resistance",
@@ -245,7 +249,10 @@
       {
         "name": "Relentless Endurance",
         "type": "feature",
-        "id": "pub_relentless-endurance"
+        "id": "pub_relentless-endurance",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Savage Attacks",

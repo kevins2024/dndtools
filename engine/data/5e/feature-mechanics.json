@@ -179,5 +179,24 @@
   "pub_vow-of-the-open-road": {
     "name": "Channel Divinity: Vow of the Open Road",
     "action_type": "action"
+  },
+  "pub_dragonborn-breath-weapon": {
+    "name": "Breath Weapon",
+    "recharge": "short_rest",
+    "uses_max": 1,
+    "action_type": "action"
+  },
+  "pub_riposte": {
+    "name": "Riposte",
+    "action_type": "reaction"
+  },
+  "pub_parry": {
+    "name": "Parry",
+    "action_type": "reaction"
+  },
+  "pub_relentless-endurance": {
+    "name": "Relentless Endurance",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
