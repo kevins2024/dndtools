@@ -87,7 +87,8 @@
     "enhancement_bonus": 2,
     "notes": "Formerly 'Veilstrike Rapier' — renamed 2026-09-29 after Sneak Attack (too strong for one attunement slot on top of a full +2 weapon — equivalent to a free 4-level Rogue dip) was removed and replaced with Blue-Flame Blade.",
     "id": "items_7",
-    "weapon_set": 1
+    "weapon_set": 1,
+    "hand": "main"
   },
   {
     "name": "Dagger of Pressing Momentum +2",
@@ -99,7 +100,8 @@
     "enhancement_bonus": 2,
     "notes": "Off-hand secondary weapon.",
     "id": "items_8",
-    "weapon_set": 1
+    "weapon_set": 1,
+    "hand": "off"
   },
   {
     "name": "Warden Dagger",
@@ -393,7 +395,8 @@
     "attuned": true,
     "enhancement_bonus": 1,
     "notes": "",
-    "id": "items_34"
+    "id": "items_34",
+    "hand": "off"
   },
   {
     "name": "Leather Armor +2",
@@ -467,7 +470,8 @@
     "attuned": true,
     "enhancement_bonus": 2,
     "notes": "",
-    "id": "items_41"
+    "id": "items_41",
+    "hand": "main"
   },
   {
     "name": "Gloves of Missile Snaring",
@@ -1047,7 +1051,8 @@
     "notes": "Sidearm.",
     "id": "items_93",
     "slot": "ranged1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "hand": "off"
   },
   {
     "name": "Rapier",
@@ -1061,7 +1066,8 @@
     "notes": "Backup melee.",
     "id": "items_94",
     "slot": "melee1h",
-    "battle_effect": true
+    "battle_effect": true,
+    "hand": "main"
   },
   {
     "name": "Leather Armor +2",

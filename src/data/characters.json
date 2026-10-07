@@ -196,7 +196,9 @@
       "heavy",
       "shields"
     ],
-    "active_weapon_set": 2
+    "active_weapon_set": 1,
+    "hp_temp": 0,
+    "conditions": []
   },
   {
     "name": "Rhuna",
@@ -291,6 +293,13 @@
         "name": "Great Weapon Master",
         "type": "feat",
         "action_type": "bonus_action"
+      },
+      {
+        "name": "Hurl Something",
+        "id": "hb_hurl_something",
+        "type": "feature",
+        "action_type": "action",
+        "_source": "Homebrew"
       }
     ],
     "spells": [],
@@ -3349,7 +3358,8 @@
       "medium",
       "heavy",
       "shields"
-    ]
+    ],
+    "hp_temp": 0
   },
   {
     "name": "Tackett",
@@ -4313,8 +4323,11 @@
         "uses_current": 5
       },
       {
-        "name": "Fighting Style",
-        "type": "feature"
+        "name": "Fighting Style: Great Weapon Fighting",
+        "id": "fighting-style-great-weapon-fighting",
+        "type": "fightingStyle",
+        "level_gained": 2,
+        "_source": "Paladin"
       },
       {
         "name": "Divine Smite",
@@ -4373,12 +4386,6 @@
         "level": 2,
         "prepared": true,
         "type": "oath"
-      },
-      {
-        "name": "Bless",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
       },
       {
         "name": "Cure Wounds",
@@ -4444,6 +4451,11 @@
         "name": "Heroism",
         "level": 1,
         "prepared": true
+      },
+      {
+        "name": "Shield of Faith",
+        "level": 1,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -4499,7 +4511,8 @@
       "medium",
       "heavy",
       "shields"
-    ]
+    ],
+    "hp_temp": 0
   },
   {
     "name": "Eldi",
@@ -7161,7 +7174,8 @@
       "Composing something without knowing it after experiences that matter.",
       "Joins things rather than leads them when the thing is already good enough without her.",
       "Extraordinary information retention - now supernatural."
-    ]
+    ],
+    "hp_temp": 0
   },
   {
     "id": "characters_29",
@@ -7529,5 +7543,493 @@
         "current": 1
       }
     }
+  },
+  {
+    "id": "characters_30",
+    "name": "Elowenne",
+    "full_name": "Elowenne Crestmoor",
+    "image": "./characters/elowenne.jpg",
+    "genus": "Half-Elf",
+    "subgenus": null,
+    "background": "Noble",
+    "level": 9,
+    "stat_str": 8,
+    "stat_dex": 13,
+    "stat_con": 15,
+    "stat_int": 20,
+    "stat_wis": 13,
+    "stat_cha": 10,
+    "species_bonus_applied": true,
+    "ability_score_method": "point buy",
+    "species_traits": [
+      {
+        "name": "Fey Ancestry",
+        "id": "pub_fey-ancestry",
+        "description": "Advantage on saving throws against being charmed, and magic can't put you to sleep.",
+        "grants_saving_throw_advantage": "being_charmed",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Skill Versatility",
+        "id": "pub_half-elf-skill-versatility",
+        "description": "Proficiency in two skills of your choice.",
+        "grants_skill_proficiency_choice": {
+          "count": 2,
+          "options": "any"
+        },
+        "type": "speciesTrait",
+        "source": "species"
+      }
+    ],
+    "ability_score_history": [
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "int",
+        "amount": 1,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Half-Elf racial",
+        "level_gained": 1
+      },
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      },
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 8
+      }
+    ],
+    "spellcasting_ability": "int",
+    "hp_max": 56,
+    "hp_current": 56,
+    "saving_throws": [
+      "int",
+      "wis"
+    ],
+    "skill_proficiencies": [
+      "Arcana",
+      "History",
+      "Persuasion",
+      "Intimidation",
+      "Deception",
+      "Insight"
+    ],
+    "skill_expertise": [],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Undercommon"
+    ],
+    "speed": 30,
+    "darkvision": 60,
+    "weapon_proficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light crossbow"
+    ],
+    "armor_proficiencies": [],
+    "tool_proficiencies": [],
+    "resistances": [],
+    "saving_throw_advantages": [
+      "being_charmed"
+    ],
+    "features": [
+      {
+        "name": "Spellcasting",
+        "id": "gen_wizard_base_spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Arcane Recovery",
+        "id": "arcane-recovery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Caster Prestidigitation",
+        "id": null,
+        "type": "feature",
+        "level_gained": 1,
+        "spells_granted": [
+          "Prestidigitation"
+        ],
+        "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Chronal Shift",
+        "id": "pub_chronal-shift",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Wizard",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Temporal Awareness",
+        "id": "pub_temporal-awareness",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Wizard",
+        "adds_ability_to_initiative": "int"
+      },
+      {
+        "name": "Momentary Stasis",
+        "id": "pub_momentary-stasis",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Wizard",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Elegant Ward",
+        "id": "hb_elegant_ward",
+        "type": "feature",
+        "unarmored_defense": {
+          "abilities": [
+            "dex",
+            "int"
+          ]
+        },
+        "_source": "Homebrew"
+      },
+      {
+        "name": "Timeline Freeze",
+        "id": "hb_timeline_freeze",
+        "type": "feature",
+        "action_type": "action",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "manual",
+        "_source": "Homebrew"
+      }
+    ],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Wizard",
+        "level": 9,
+        "subclass": "Chronurgy Magic"
+      }
+    ],
+    "notes": "Her Timeline Freeze ability came from an artifact. She had an enchanter convey its effect into a bone in her left hand, and she guards that secret vehemently so no one cuts her hand off. No one but her knows — the enchanter who did it had his memory erased... or was killed. The visible tell: she does evil things with her left hand. Almost no one would piece it all together from that small clue. She wears no armor: her Elegant Ward protects her instead. She'd like to pick up Far Step at her next level (Wizard 10).",
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9,
+    "spell_slots": {
+      "level_1": {
+        "max": 4,
+        "current": 4
+      },
+      "level_2": {
+        "max": 3,
+        "current": 3
+      },
+      "level_3": {
+        "max": 3,
+        "current": 3
+      },
+      "level_4": {
+        "max": 3,
+        "current": 3
+      },
+      "level_5": {
+        "max": 1,
+        "current": 1
+      }
+    },
+    "spellbook_id": "sb_1791228017144",
+    "prepared_spells": [
+      "Fire Bolt",
+      "Mind Sliver",
+      "Minor Illusion",
+      "Toll the Dead",
+      "Shield",
+      "Hold Person",
+      "Misty Step",
+      "Counterspell",
+      "Fireball",
+      "Slow",
+      "Hypnotic Pattern",
+      "Dimension Door",
+      "Evard's Black Tentacles",
+      "Greater Invisibility",
+      "Disguise Self",
+      "Blur",
+      "Dominate Person",
+      "Cloudkill"
+    ]
+  },
+  {
+    "id": "characters_31",
+    "name": "Brick",
+    "full_name": "Bartololeu zin Ganderhust",
+    "image": "./characters/brick.jpg",
+    "genus": "Human",
+    "subgenus": "Variant Human",
+    "background": "Noble",
+    "level": 9,
+    "stat_str": 20,
+    "stat_dex": 12,
+    "stat_con": 17,
+    "stat_int": 8,
+    "stat_wis": 10,
+    "stat_cha": 8,
+    "species_bonus_applied": false,
+    "ability_score_method": "rolled",
+    "species_traits": [],
+    "ability_score_history": [
+      {
+        "ability": "str",
+        "amount": 1,
+        "source": "Variant Human",
+        "level_gained": 1
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Variant Human",
+        "level_gained": 1
+      },
+      {
+        "ability": "str",
+        "amount": 1,
+        "source": "Tavern Brawler",
+        "level_gained": 1
+      },
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4
+      }
+    ],
+    "spellcasting_ability": null,
+    "hp_max": 103,
+    "hp_current": 103,
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Animal Handling",
+      "Survival"
+    ],
+    "skill_expertise": [],
+    "languages": [
+      "Common",
+      "Giant",
+      "Dwarvish"
+    ],
+    "speed": 30,
+    "darkvision": 0,
+    "weapon_proficiencies": [
+      "simple",
+      "martial"
+    ],
+    "armor_proficiencies": [
+      "light",
+      "medium",
+      "shields"
+    ],
+    "tool_proficiencies": [],
+    "resistances": [],
+    "saving_throw_advantages": [
+      "being_frightened"
+    ],
+    "features": [
+      {
+        "name": "Rage",
+        "id": "rage",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Unarmored Defense",
+        "id": "barbarian-unarmored-defense",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Reckless Attack",
+        "id": "reckless-attack",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Danger Sense",
+        "id": "danger-sense",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Frenzy",
+        "id": "frenzy",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "barbarian-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Fast Movement",
+        "id": "fast-movement",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Mindless Rage",
+        "id": "mindless-rage",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Feral Instinct",
+        "id": "feral-instinct",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Fighting Style: Thrown Weapon Fighting",
+        "id": "fighting-style-thrown-weapon-fighting",
+        "type": "fightingStyle",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Tavern Brawler",
+        "id": "tavern-brawler",
+        "type": "feat",
+        "level_gained": 1,
+        "ability_choice": "str"
+      },
+      {
+        "name": "Hulking Build",
+        "id": "hb_hulking_build",
+        "type": "feature",
+        "stat_bonuses": {
+          "str": 2,
+          "con": 2
+        },
+        "_source": "Homebrew"
+      },
+      {
+        "name": "Hurler's Rage",
+        "id": "hb_hurlers_rage",
+        "type": "feature",
+        "_source": "Homebrew"
+      },
+      {
+        "name": "Fearless",
+        "id": "hb_fearless",
+        "type": "feature",
+        "_source": "Homebrew"
+      },
+      {
+        "name": "Fighting Initiate",
+        "id": "fighting-initiate",
+        "type": "feat",
+        "level_gained": 8,
+        "choices": {
+          "style": "Unarmed Fighting"
+        }
+      },
+      {
+        "name": "Fighting Style: Unarmed Fighting",
+        "id": "fighting-style-unarmed-fighting",
+        "type": "fightingStyle",
+        "level_gained": 8,
+        "_source": "Fighting Initiate"
+      },
+      {
+        "name": "Hurl Something",
+        "id": "hb_hurl_something",
+        "type": "feature",
+        "action_type": "action",
+        "_source": "Homebrew"
+      },
+      {
+        "name": "Hurl Yourself",
+        "id": "hb_hurl_yourself",
+        "type": "feature",
+        "action_type": "action",
+        "_source": "Homebrew"
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Barbarian",
+        "level": 8,
+        "subclass": "Berserker",
+        "started": true
+      },
+      {
+        "name": "Fighter",
+        "level": 1,
+        "subclass": null
+      }
+    ],
+    "notes": "Born to nobility, but no one knows — he's too lowbrow to understand it or convey it to anyone. Just a wall of muscle who doesn't even like weapons: he punches and he throws things. One day his lineage might come into the light. A genetic anomaly: unusually strong and tough, and not at all bright. Skills: Athletics, Intimidation, Animal Handling, Survival — nothing more; the Noble background's other skills (History, Persuasion) are deliberately left out, he has other things that make him good.",
+    "proficiency_bonus": 4,
+    "hit_dice_current": 9,
+    "unarmed_strike_die": "1d4"
   }
 ]
