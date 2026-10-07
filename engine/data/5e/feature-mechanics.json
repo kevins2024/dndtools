@@ -12,7 +12,6 @@
       "grants_spells": "Present on a feature that teaches a specific spell as an always-prepared/always-known bonus that does NOT count against the character's normal known/prepared totals -- same semantics as feats.json's own grants_spells.fixed, added here 2026-09-26 for the class/subclass-feature side of that same gap (found on Circle of Stars' Star Map: 'you have the Guiding Bolt spell prepared at all times -- it doesn't count against your number of spells known', TODO.md 2026-09-22). Shape so far: {fixed: [spellName, ...]} -- only ever a flat list, no choice/tiered variant needed yet. Applied in diffLevelUp.js's applyFeatureMechanics with the SAME fill-only-if-missing rule as every other field here (job 4): writes feature.spells_granted only when the feature doesn't already have one, so a hand-fixed character record (Tackett's Star Map already carries a manually-set spells_granted) is never silently overwritten. Consumed by spellUtils.js exactly like any other features[].spells_granted entry -- see that file's step 3. Deliberately does NOT (yet) model a spell that's ALSO castable without expending a slot off some other resource formula -- Star Map's real RAW additionally lets you cast Guiding Bolt free a number of times equal to proficiency bonus per long rest, which this catalog doesn't capture: that would need a per-spell uses_max/recharge tracked and recomputed the same live way this file's uses_formula fields already are, and today nothing here does that for a SPELL entry (only for a FEATURE entry). Deferred until a second real feature needs the same shape, per this catalog's own deliberately-incremental philosophy -- see engine/CHECKLIST.md's 2026-09-26 entry."
     }
   },
-
   "action-surge-1-use": {
     "name": "Action Surge",
     "action_type": "free",
@@ -29,7 +28,6 @@
     "per_turn_cap": true,
     "tier_family": "action-surge"
   },
-
   "indomitable-1-use": {
     "name": "Indomitable",
     "recharge": "long_rest",
@@ -48,31 +46,30 @@
     "uses_max": 3,
     "tier_family": "indomitable"
   },
-
   "sneak-attack": {
     "name": "Sneak Attack",
     "per_turn_cap": true
   },
-
   "second-wind": {
     "name": "Second Wind",
     "action_type": "bonus_action",
     "recharge": "short_rest",
     "uses_max": 1
   },
-
   "uncanny-dodge": {
     "name": "Uncanny Dodge",
     "action_type": "reaction"
   },
-
   "divine-sense": {
     "name": "Divine Sense",
     "action_type": "action",
     "recharge": "long_rest",
-    "uses_formula": { "type": "ability_mod", "ability": "cha", "base": 1 }
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 1
+    }
   },
-
   "lay-on-hands": {
     "name": "Lay on Hands",
     "action_type": "action",
@@ -83,12 +80,15 @@
       "multiplier": 5
     }
   },
-
   "pub_stars-druid-star-map": {
     "name": "Stars Druid — Star Map",
-    "grants_spells": { "fixed": ["Guidance", "Guiding Bolt"] }
+    "grants_spells": {
+      "fixed": [
+        "Guidance",
+        "Guiding Bolt"
+      ]
+    }
   },
-
   "gen_bard_base_bardic-inspiration": {
     "name": "Bardic Inspiration",
     "action_type": "bonus_action",
@@ -587,11 +587,6 @@
     "name": "Totemic Attunement: Wolf",
     "action_type": "bonus_action"
   },
-  "pub_fanatical-focus": {
-    "name": "Fanatical Focus",
-    "recharge": "long_rest",
-    "uses_max": 1
-  },
   "pub_zealous-presence": {
     "name": "Zealous Presence",
     "action_type": "bonus_action",
@@ -728,11 +723,6 @@
   "pub_channel-divinity-path-to-the-grave": {
     "name": "Channel Divinity: Path to the Grave",
     "action_type": "action"
-  },
-  "pub_keeper-of-souls": {
-    "name": "Keeper of Souls",
-    "recharge": "long_rest",
-    "uses_max": 1
   },
   "pub_sentinel-at-deaths-door": {
     "name": "Sentinel at Death's Door",
@@ -1006,11 +996,6 @@
       "min": 1
     }
   },
-  "pub_vigilant-defender": {
-    "name": "Vigilant Defender",
-    "recharge": "long_rest",
-    "uses_max": 1
-  },
   "pub_warding-maneuver": {
     "name": "Warding Maneuver",
     "action_type": "reaction",
@@ -1038,12 +1023,7 @@
     "name": "Bulwark of Force",
     "action_type": "bonus_action",
     "recharge": "long_rest",
-    "uses_formula": {
-      "type": "ability_mod",
-      "ability": "int",
-      "base": 0,
-      "min": 1
-    }
+    "uses_max": 1
   },
   "pub_telekinetic-master": {
     "name": "Telekinetic Master",
@@ -1249,9 +1229,7 @@
   },
   "pub_unerring-accuracy": {
     "name": "Unerring Accuracy",
-    "per_turn_cap": true,
-    "recharge": "long_rest",
-    "uses_max": 1
+    "per_turn_cap": true
   },
   "pub_hour-of-reaping": {
     "name": "Hour of Reaping",
@@ -1583,11 +1561,6 @@
   "hb_rogue_scout_sudden_strike": {
     "name": "Sudden Strike",
     "action_type": "bonus_action"
-  },
-  "sorcerous-restoration": {
-    "name": "Sorcerous Restoration",
-    "recharge": "short_rest",
-    "uses_max": 1
   },
   "pub_revelation-in-flesh": {
     "name": "Revelation in Flesh",
