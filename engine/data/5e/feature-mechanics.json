@@ -1044,5 +1044,49 @@
       "base": 0,
       "min": 1
     }
+  },
+  "pub_telekinetic-master": {
+    "name": "Telekinetic Master",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_giants-might": {
+    "name": "Giant's Might",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_runic-shield": {
+    "name": "Runic Shield",
+    "action_type": "reaction",
+    "recharge": "long_rest"
+  },
+  "pub_bonus-proficiency-and-fighting-spirit": {
+    "name": "Bonus Proficiency and Fighting Spirit",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 3
+  },
+  "pub_rapid-strike": {
+    "name": "Rapid Strike",
+    "per_turn_cap": true
+  },
+  "pub_strength-before-death": {
+    "name": "Strength before Death",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_stalker-s-flurry": {
+    "name": "Stalker's Flurry",
+    "per_turn_cap": true
+  },
+  "pub_shadowy-dodge": {
+    "name": "Shadowy Dodge",
+    "action_type": "reaction"
+  },
+  "hb_missile_snaring": {
+    "name": "Missile Snaring",
+    "action_type": "reaction"
   }
 }
