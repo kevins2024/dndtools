@@ -1363,5 +1363,34 @@
   "pub_crossbow-expert": {
     "name": "Crossbow Expert",
     "action_type": "bonus_action"
+  },
+  "pub_defensive-duelist": {
+    "name": "Defensive Duelist",
+    "action_type": "reaction"
+  },
+  "pub_dreadful-word": {
+    "name": "Dreadful Word",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_elder-champion": {
+    "name": "Elder Champion",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_entropic-ward": {
+    "name": "Entropic Ward",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_feinting-attack": {
+    "name": "Feinting Attack",
+    "action_type": "bonus_action"
+  },
+  "pub_gaze-of-two-minds": {
+    "name": "Gaze of Two Minds",
+    "action_type": "action"
   }
 }
