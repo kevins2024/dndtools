@@ -3085,7 +3085,8 @@
       },
       {
         "name": "Divine Health",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-health"
       },
       {
         "name": "Channel Divinity: Nature's Wrath",
@@ -3105,7 +3106,8 @@
       },
       {
         "name": "Shelter of the Faithful",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_shelter-of-the-faithful"
       }
     ],
     "spell_slots": {
@@ -3235,15 +3237,18 @@
       {
         "name": "Fighting Style: Protection",
         "type": "feature",
+        "id": "fighting-style-protection",
         "action_type": "reaction"
       },
       {
         "name": "Divine Smite",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-smite"
       },
       {
         "name": "Divine Health",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-health"
       },
       {
         "name": "Lay on Hands",
@@ -3256,11 +3261,13 @@
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "paladin-extra-attack"
       },
       {
         "name": "Channel Divinity: Champion Challenge",
         "type": "feature",
+        "id": "pub_channel-divinity-champion-challenge",
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
@@ -3271,17 +3278,20 @@
       {
         "name": "Channel Divinity: Turn the Tide",
         "type": "feature",
+        "id": "pub_channel-divinity-turn-the-tide",
         "action_type": "bonus_action",
         "description": "As a bonus action, each creature of your choice that can hear you within 30 feet regains 1d6 + CHA modifier (min 1) hit points, if it has no more than half its hit points.",
         "note": "Corrected 2026-09-18 — shares the same 1/short-rest Channel Divinity pool as Champion Challenge above; both entries independently tracking uses_max:1 was double-counting her real single use, fixed by moving the tracked uses onto Champion Challenge only."
       },
       {
         "name": "Aura of Protection",
-        "type": "feature"
+        "type": "feature",
+        "id": "aura-of-protection"
       },
       {
         "name": "Crown — Divine Allegiance",
         "type": "feature",
+        "id": "pub_crown-divine-allegiance",
         "action_type": "reaction"
       },
       {
