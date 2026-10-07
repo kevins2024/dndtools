@@ -332,5 +332,38 @@
   "pub_channel-divinity-turn-the-tide": {
     "name": "Channel Divinity: Turn the Tide",
     "action_type": "bonus_action"
+  },
+  "pub_crown-divine-allegiance": {
+    "name": "Crown — Divine Allegiance",
+    "action_type": "reaction"
+  },
+  "pub_eladrin-fey-step": {
+    "name": "Fey Step",
+    "action_type": "bonus_action"
+  },
+  "pub_stars-druid-starry-form": {
+    "name": "Stars Druid — Starry Form",
+    "action_type": "bonus_action"
+  },
+  "pub_stars-druid-unbroken-legendary": {
+    "name": "Stars Druid — Unbroken (Legendary)",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_stars-druid-cosmic-omen": {
+    "name": "Stars Druid — Cosmic Omen",
+    "action_type": "reaction",
+    "recharge": "long_rest"
+  },
+  "gen_druid_base_wild-shape": {
+    "name": "Wild Shape",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 2
+  },
+  "pub_bountiful-luck": {
+    "name": "Bountiful Luck",
+    "action_type": "reaction"
   }
 }
