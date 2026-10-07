@@ -667,5 +667,62 @@
   "pub_bonus-proficiencies-and-blade-flourish": {
     "name": "Bonus Proficiencies and Blade Flourish",
     "per_turn_cap": true
+  },
+  "pub_battle-magic": {
+    "name": "Battle Magic",
+    "action_type": "bonus_action"
+  },
+  "pub_bonus-proficiencies-and-combat-inspiration": {
+    "name": "Bonus Proficiencies and Combat Inspiration",
+    "action_type": "reaction"
+  },
+  "pub_mantle-of-whispers": {
+    "name": "Mantle of Whispers",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_psychic-blades": {
+    "name": "Psychic Blades",
+    "per_turn_cap": true
+  },
+  "pub_shadow-lore": {
+    "name": "Shadow Lore",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_words-of-terror": {
+    "name": "Words of Terror",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_mighty-impel": {
+    "name": "Mighty Impel",
+    "action_type": "bonus_action"
+  },
+  "pub_song-of-defense": {
+    "name": "Song of Defense",
+    "action_type": "reaction"
+  },
+  "divine-intervention": {
+    "name": "Divine Intervention",
+    "action_type": "action"
+  },
+  "pub_channel-divinity-arcane-abjuration": {
+    "name": "Channel Divinity: Arcane Abjuration",
+    "action_type": "action"
+  },
+  "pub_divine-strike-death": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_bonus-proficiencies-and-blessing-of-the-forge": {
+    "name": "Bonus Proficiencies and Blessing of the Forge",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_divine-strike-forge": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
   }
 }
