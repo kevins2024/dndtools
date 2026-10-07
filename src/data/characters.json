@@ -7541,7 +7541,8 @@
         "id": "pub_tales-from-beyond",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "bonus_action"
       },
       {
         "name": "Shadow Touched",
@@ -7576,7 +7577,10 @@
         "id": "pub_spirit-session",
         "type": "feature",
         "level_gained": 6,
-        "_source": "Bard"
+        "_source": "Bard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "War Caster",

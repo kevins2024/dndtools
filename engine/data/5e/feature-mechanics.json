@@ -467,5 +467,14 @@
         "Guidance"
       ]
     }
+  },
+  "pub_tales-from-beyond": {
+    "name": "Tales from Beyond",
+    "action_type": "bonus_action"
+  },
+  "pub_spirit-session": {
+    "name": "Spirit Session",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
