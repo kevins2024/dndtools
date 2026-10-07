@@ -562,5 +562,50 @@
   "pub_storm-aura": {
     "name": "Storm Aura",
     "action_type": "bonus_action"
+  },
+  "pub_storm-soul-desert": {
+    "name": "Storm Soul: Desert",
+    "action_type": "action"
+  },
+  "pub_storm-soul-tundra": {
+    "name": "Storm Soul: Tundra",
+    "action_type": "action"
+  },
+  "pub_totem-spirit-eagle": {
+    "name": "Totem Spirit: Eagle",
+    "action_type": "bonus_action"
+  },
+  "pub_totemic-attunement-elk": {
+    "name": "Totemic Attunement: Elk",
+    "action_type": "bonus_action"
+  },
+  "pub_totemic-attunement-tiger": {
+    "name": "Totemic Attunement: Tiger",
+    "action_type": "bonus_action"
+  },
+  "pub_totemic-attunement-wolf": {
+    "name": "Totemic Attunement: Wolf",
+    "action_type": "bonus_action"
+  },
+  "pub_fanatical-focus": {
+    "name": "Fanatical Focus",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_zealous-presence": {
+    "name": "Zealous Presence",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_bolstering-magic": {
+    "name": "Bolstering Magic",
+    "action_type": "action",
+    "recharge": "long_rest"
+  },
+  "pub_magic-awareness": {
+    "name": "Magic Awareness",
+    "action_type": "action",
+    "recharge": "long_rest"
   }
 }
