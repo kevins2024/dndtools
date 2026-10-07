@@ -984,5 +984,65 @@
   "pub_echo-avatar": {
     "name": "Echo Avatar",
     "action_type": "action"
+  },
+  "pub_arcane-archer-lore-and-arcane-shot": {
+    "name": "Arcane Archer Lore and Arcane Shot",
+    "per_turn_cap": true,
+    "recharge": "short_rest",
+    "uses_max": 2
+  },
+  "pub_curving-shot": {
+    "name": "Curving Shot",
+    "action_type": "bonus_action"
+  },
+  "pub_bonus-proficiency-born-to-the-saddle-and-unwavering-mark": {
+    "name": "Bonus Proficiency, Born to the Saddle, and Unwavering Mark",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "str",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_vigilant-defender": {
+    "name": "Vigilant Defender",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_warding-maneuver": {
+    "name": "Warding Maneuver",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "con",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "hb_fighter_ek_improved_war_magic": {
+    "name": "Improved War Magic",
+    "action_type": "bonus_action"
+  },
+  "hb_fighter_ek_war_magic": {
+    "name": "War Magic",
+    "action_type": "bonus_action"
+  },
+  "hb_fighter_ek_weapon_bond": {
+    "name": "Weapon Bond",
+    "action_type": "bonus_action"
+  },
+  "pub_bulwark-of-force": {
+    "name": "Bulwark of Force",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
   }
 }
