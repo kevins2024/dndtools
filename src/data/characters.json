@@ -5602,14 +5602,12 @@
         "name": "Combat Wild Shape",
         "type": "feature",
         "id": "pub_combat-wild-shape",
-        "description": "Lets Wild Shape (above) be used as a bonus action instead of an action.",
-        "note": "Corrected 2026-09-18 — the old text also claimed you can cast a druid spell with a 1-action casting time while shaped by expending a slot; that's not real RAW (verified via dnd5e.wikidot.com), likely confused with the separate healing benefit, which is now its own \"Combat Wild Shape: Healing\" tile below."
+        "description": "Lets Wild Shape be used as a bonus action instead of an action."
       },
       {
         "name": "Combat Wild Shape: Healing",
         "type": "feature",
         "action_type": "bonus_action",
-        "description": "While transformed by Wild Shape, expend one spell slot as a bonus action to regain 1d8 hit points per level of the spell slot expended.",
         "id": "pub_combat-wild-shape-healing"
       },
       {

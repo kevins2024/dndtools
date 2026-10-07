@@ -913,13 +913,6 @@
     "source": "Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW."
   },
   {
-    "id": "pub_inquisitive-steady-eye",
-    "name": "Inquisitive — Steady Eye",
-    "category": "subclass_feature",
-    "description": "Advantage on Perception and Investigation checks if you don't move more than half your speed on the same turn.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
     "id": "pub_inquisitive-unerring-eye",
     "name": "Inquisitive — Unerring Eye",
     "category": "subclass_feature",
@@ -1026,24 +1019,6 @@
     "source": "Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything)."
   },
   {
-    "id": "pub_tempest-cleric-wrath-of-the-storm",
-    "name": "Tempest Cleric — Wrath of the Storm",
-    "category": "subclass_feature",
-    "action_type": "reaction",
-    "recharge": "wis_mod_per_long_rest",
-    "description": "When a creature within 5ft hits you: use reaction to deal 2d8 lightning or thunder damage. Target makes DEX save (spell save DC) for half.",
-    "source": "Player's Handbook"
-  },
-  {
-    "id": "pub_tempest-cleric-destructive-wrath",
-    "name": "Tempest Cleric — Destructive Wrath",
-    "category": "subclass_feature",
-    "recharge": "channel_divinity",
-    "description": "When rolling lightning or thunder damage: replace any roll with maximum damage instead of rolling.",
-    "note": "Uses Channel Divinity.",
-    "source": "Player's Handbook"
-  },
-  {
     "id": "pub_tempest-cleric-thunderbolt-strike",
     "name": "Tempest Cleric — Thunderbolt Strike",
     "category": "subclass_feature",
@@ -1079,22 +1054,6 @@
     "description": "As an action, expend one use of Channel Divinity to force a creature within 30 feet that you can see to make a Wisdom saving throw. On a failure, the creature is compelled to move in an unexpected direction (DM's choice, in the spirit of Carix's unpredictable influence) on its next turn.",
     "source": "Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag).",
     "homebrew": true
-  },
-  {
-    "id": "pub_inquisitive-ear-for-deceit",
-    "name": "Inquisitive — Ear for Deceit",
-    "category": "subclass_feature",
-    "action_type": null,
-    "description": "Gain proficiency in Insight. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of 7 or lower as an 8.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_inquisitive-eye-for-detail",
-    "name": "Inquisitive — Eye for Detail",
-    "category": "subclass_feature",
-    "action_type": "bonus_action",
-    "description": "Use a bonus action to take the Search action, or to make a Wisdom (Perception) check to spot a hidden creature or object, or an Intelligence (Investigation) check to uncover or decipher clues.",
-    "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_scout-ambush-master",
@@ -1485,7 +1444,7 @@
   {
     "id": "pub_combat-wild-shape",
     "name": "Combat Wild Shape",
-    "description": "You can use Wild Shape as a bonus action rather than an action. While shaped, you can cast a druid spell with a casting time of 1 action by expending a spell slot, or use a bonus action to expend a spell slot and regain 1d8 hit points per level of the slot expended.",
+    "description": "When you choose this circle at 2nd level, you gain the ability to use Wild Shape on your turn as a bonus action, rather than as an action. Additionally, while you are transformed by Wild Shape, you can use a bonus action to expend one spell slot to regain 1d8 hit points per level of the spell slot expended.",
     "type": "feature",
     "source": "Player's Handbook"
   },
@@ -7993,29 +7952,29 @@
   {
     "id": "pub_infernal-legacy-hellish-rebuke",
     "name": "Infernal Legacy: Hellish Rebuke",
-    "description": "At 3rd level, you can cast Hellish Rebuke once as a 2nd-level spell, regaining the ability on a long rest. Charisma is your spellcasting ability for it.",
+    "description": "The Hellish Rebuke part of Infernal Legacy — full text on pub_infernal-legacy.",
     "type": "feature",
     "homebrew": false,
     "source": "Player's Handbook",
-    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; text is that record's wording, not new rules."
+    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; the rules text lives only on the parent record."
   },
   {
     "id": "pub_infernal-legacy-darkness",
     "name": "Infernal Legacy: Darkness",
-    "description": "At 5th level, you can cast Darkness once, regaining the ability on a long rest. Charisma is your spellcasting ability for it.",
+    "description": "The Darkness part of Infernal Legacy — full text on pub_infernal-legacy.",
     "type": "feature",
     "homebrew": false,
     "source": "Player's Handbook",
-    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; text is that record's wording, not new rules."
+    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; the rules text lives only on the parent record."
   },
   {
     "id": "pub_combat-wild-shape-healing",
     "name": "Combat Wild Shape: Healing",
-    "description": "While transformed by Wild Shape, expend one spell slot as a bonus action to regain 1d8 hit points per level of the spell slot expended.",
+    "description": "The healing part of Combat Wild Shape — full text on pub_combat-wild-shape.",
     "type": "feature",
     "homebrew": false,
     "action_type": "bonus_action",
     "source": "Player's Handbook",
-    "note": "Second half of Circle of the Moon's Combat Wild Shape, split into its own tile (see pub_combat-wild-shape). Not found in house_rules.json; believed to be unmodified PHB text but not yet checked against dnd5e.wikidot.com (blocked this session)."
+    "note": "Second paragraph of Circle of the Moon's Combat Wild Shape (real PHB rule, verified on dnd5e.wikidot.com druid:moon), split into its own tile; the rules text lives only on pub_combat-wild-shape."
   }
 ]
