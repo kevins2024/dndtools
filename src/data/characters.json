@@ -5296,6 +5296,7 @@
       {
         "name": "Satin Phase (Illusion / Transmutation)",
         "type": "feature",
+        "id": "pub_satin-phase-illusion-transmutation",
         "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Color Spray",
@@ -5574,11 +5575,13 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Elven Weapon Training",
         "type": "feature",
+        "id": "pub_elven-weapon-training",
         "description": "Proficiency with longswords, shortswords, shortbows, and longbows."
       },
       {
@@ -5596,6 +5599,7 @@
       {
         "name": "Combat Wild Shape",
         "type": "feature",
+        "id": "pub_combat-wild-shape",
         "description": "Lets Wild Shape (above) be used as a bonus action instead of an action.",
         "note": "Corrected 2026-09-18 — the old text also claimed you can cast a druid spell with a 1-action casting time while shaped by expending a slot; that's not real RAW (verified via dnd5e.wikidot.com), likely confused with the separate healing benefit, which is now its own \"Combat Wild Shape: Healing\" tile below."
       },
@@ -5608,6 +5612,7 @@
       {
         "name": "Wild Shape",
         "type": "feature",
+        "id": "gen_druid_base_wild-shape",
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -5618,17 +5623,20 @@
       {
         "name": "Circle Forms improvement",
         "type": "feature",
+        "id": "pub_circle-forms-improvement",
         "level_gained": 6,
         "description": "Your Wild Shape's challenge rating cap increases to your druid level divided by 3, rounded down -- CR 3 at her current level 9."
       },
       {
         "name": "Primal Strike",
         "type": "feature",
+        "id": "pub_primal-strike",
         "description": "Attacks made in beast form (via Wild Shape) count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage."
       },
       {
         "name": "Resilient (Constitution)",
         "type": "feat",
+        "id": "pub_resilient-constitution",
         "stat_bonuses": {
           "con": 1
         },
@@ -5637,6 +5645,7 @@
       {
         "name": "Sixty Leagues Before Dusk",
         "type": "feature",
+        "id": "pub_sixty-leagues-before-dusk",
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -5889,6 +5898,7 @@
       {
         "name": "Thieves' Cant",
         "type": "feature",
+        "id": "thieves-cant",
         "level_gained": 1,
         "_source": "Rogue"
       },
