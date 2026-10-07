@@ -895,5 +895,94 @@
     "name": "Balm of the Summer Court",
     "action_type": "bonus_action",
     "recharge": "long_rest"
+  },
+  "pub_hidden-paths": {
+    "name": "Hidden Paths",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_walker-in-dreams": {
+    "name": "Walker in Dreams",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_fungal-infestation": {
+    "name": "Fungal Infestation",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_spreading-spores": {
+    "name": "Spreading Spores",
+    "action_type": "bonus_action"
+  },
+  "pub_bonus-cantrip-and-natural-recovery": {
+    "name": "Bonus Cantrip and Natural Recovery",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_faithful-summons": {
+    "name": "Faithful Summons",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_spirit-totem": {
+    "name": "Spirit Totem",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_spirit-totem-hawk": {
+    "name": "Spirit Totem: Hawk",
+    "action_type": "reaction"
+  },
+  "pub_blazing-revival": {
+    "name": "Blazing Revival",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_cauterizing-flames": {
+    "name": "Cauterizing Flames",
+    "action_type": "reaction",
+    "recharge": "long_rest"
+  },
+  "pub_summon-wildfire-spirit": {
+    "name": "Summon Wildfire Spirit",
+    "action_type": "action"
+  },
+  "pub_fey-step": {
+    "name": "Fey Step",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_shadow-martyr": {
+    "name": "Shadow Martyr",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_reclaim-potential": {
+    "name": "Reclaim Potential",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "con",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_echo-avatar": {
+    "name": "Echo Avatar",
+    "action_type": "action"
   }
 }
