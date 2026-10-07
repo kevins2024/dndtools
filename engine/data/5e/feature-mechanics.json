@@ -1088,5 +1088,72 @@
   "hb_missile_snaring": {
     "name": "Missile Snaring",
     "action_type": "reaction"
+  },
+  "pub_infusion-perfume-of-bewitching": {
+    "name": "Infusion: Perfume of Bewitching",
+    "action_type": "action"
+  },
+  "hb_press_momentum": {
+    "name": "Press Momentum",
+    "action_type": "reaction"
+  },
+  "hb_tidal_surge": {
+    "name": "Tidal Surge",
+    "per_turn_cap": true
+  },
+  "pub_unraveling": {
+    "name": "Unraveling",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_the-retired-special": {
+    "name": "The Retired Special",
+    "action_type": "reaction"
+  },
+  "hb_stormbreak_reserve": {
+    "name": "Stormbreak Reserve",
+    "action_type": "bonus_action"
+  },
+  "hb_sundering_strike": {
+    "name": "Sundering Strike",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "hb_reaching_hand": {
+    "name": "Reaching Hand",
+    "action_type": "reaction"
+  },
+  "hb_warding_press": {
+    "name": "Warding Press",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "hb_primal_surge": {
+    "name": "Primal Surge",
+    "action_type": "bonus_action"
+  },
+  "pub_unerring-eye": {
+    "name": "Unerring Eye",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_insightful-fighting": {
+    "name": "Insightful Fighting",
+    "action_type": "bonus_action"
+  },
+  "pub_misdirection": {
+    "name": "Misdirection",
+    "action_type": "reaction"
+  },
+  "deflect-missiles": {
+    "name": "Deflect Missiles",
+    "action_type": "reaction"
   }
 }
