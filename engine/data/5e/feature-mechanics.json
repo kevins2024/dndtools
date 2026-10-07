@@ -1905,5 +1905,74 @@
     "action_type": "reaction",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub_benign-transposition": {
+    "name": "Benign Transposition",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_minor-conjuration": {
+    "name": "Minor Conjuration",
+    "action_type": "action"
+  },
+  "pub_portent": {
+    "name": "Portent",
+    "per_turn_cap": true,
+    "recharge": "long_rest"
+  },
+  "pub_the-third-eye": {
+    "name": "The Third Eye",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_alter-memories": {
+    "name": "Alter Memories",
+    "action_type": "action"
+  },
+  "pub_hypnotic-gaze": {
+    "name": "Hypnotic Gaze",
+    "action_type": "action"
+  },
+  "pub_instinctive-charm": {
+    "name": "Instinctive Charm",
+    "action_type": "reaction"
+  },
+  "pub_illusory-reality": {
+    "name": "Illusory Reality",
+    "action_type": "bonus_action"
+  },
+  "pub_illusory-self": {
+    "name": "Illusory Self",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_malleable-illusions": {
+    "name": "Malleable Illusions",
+    "action_type": "action"
+  },
+  "pub_command-undead": {
+    "name": "Command Undead",
+    "action_type": "action"
+  },
+  "pub_grim-harvest": {
+    "name": "Grim Harvest",
+    "per_turn_cap": true
+  },
+  "pub_master-transmuter": {
+    "name": "Master Transmuter",
+    "action_type": "action"
+  },
+  "pub_shapechanger-transmutation": {
+    "name": "Shapechanger",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_arcane-deflection-and-tactical-wit": {
+    "name": "Arcane Deflection and Tactical Wit",
+    "action_type": "reaction",
+    "adds_ability_to_initiative": "int"
   }
 }
