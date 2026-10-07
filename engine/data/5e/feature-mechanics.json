@@ -818,5 +818,82 @@
     "name": "Emboldening Bond",
     "action_type": "action",
     "recharge": "long_rest"
+  },
+  "pub_protective-bond": {
+    "name": "Protective Bond",
+    "action_type": "reaction"
+  },
+  "pub_blessing-of-the-trickster": {
+    "name": "Blessing of the Trickster",
+    "action_type": "action"
+  },
+  "pub_channel-divinity-invoke-duplicity": {
+    "name": "Channel Divinity: Invoke Duplicity",
+    "action_type": "bonus_action"
+  },
+  "pub_divine-strike-trickery": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_improved-duplicity": {
+    "name": "Improved Duplicity",
+    "action_type": "bonus_action"
+  },
+  "pub_bonus-proficiencies-and-eyes-of-night": {
+    "name": "Bonus Proficiencies and Eyes of Night",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_channel-divinity-twilight-sanctuary": {
+    "name": "Channel Divinity: Twilight Sanctuary",
+    "action_type": "action"
+  },
+  "pub_divine-strike-twilight": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_steps-of-night": {
+    "name": "Steps of Night",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_vigilant-blessing": {
+    "name": "Vigilant Blessing",
+    "action_type": "action"
+  },
+  "pub_bonus-proficiencies-and-war-priest": {
+    "name": "Bonus Proficiencies and War Priest",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_channel-divinity-war-gods-blessing": {
+    "name": "Channel Divinity: War God's Blessing",
+    "action_type": "reaction"
+  },
+  "pub_divine-strike-war": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_angelic-form": {
+    "name": "Angelic Form",
+    "action_type": "bonus_action"
+  },
+  "pub_unearthly-recovery": {
+    "name": "Unearthly Recovery",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_balm-of-the-summer-court": {
+    "name": "Balm of the Summer Court",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
   }
 }
