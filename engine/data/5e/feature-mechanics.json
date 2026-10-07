@@ -476,5 +476,34 @@
     "name": "Spirit Session",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub_blessed-strikes": {
+    "name": "Blessed Strikes",
+    "per_turn_cap": true
+  },
+  "gen_artificer_base_soul-of-artifice": {
+    "name": "Soul of Artifice",
+    "action_type": "reaction"
+  },
+  "pub_restorative-reagents": {
+    "name": "Restorative Reagents",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_arcane-jolt": {
+    "name": "Arcane Jolt",
+    "per_turn_cap": true,
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
   }
 }
