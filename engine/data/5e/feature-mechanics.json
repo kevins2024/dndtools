@@ -1324,5 +1324,44 @@
   "pub_aura-of-the-guardian": {
     "name": "Aura of the Guardian",
     "action_type": "reaction"
+  },
+  "pub_channel-divinity-emissary-of-peace": {
+    "name": "Channel Divinity: Emissary of Peace",
+    "action_type": "bonus_action"
+  },
+  "pub_channel-divinity-rebuke-the-violent": {
+    "name": "Channel Divinity: Rebuke the Violent",
+    "action_type": "reaction"
+  },
+  "pub_avenging-angel": {
+    "name": "Avenging Angel",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_channel-divinity-abjure-enemy": {
+    "name": "Channel Divinity: Abjure Enemy",
+    "action_type": "action"
+  },
+  "pub_channel-divinity-vow-of-enmity": {
+    "name": "Channel Divinity: Vow of Enmity",
+    "action_type": "bonus_action"
+  },
+  "pub_soul-of-vengeance": {
+    "name": "Soul of Vengeance",
+    "action_type": "reaction"
+  },
+  "pub_bewitching-whispers": {
+    "name": "Bewitching Whispers",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_create-thrall": {
+    "name": "Create Thrall",
+    "action_type": "action"
+  },
+  "pub_crossbow-expert": {
+    "name": "Crossbow Expert",
+    "action_type": "bonus_action"
   }
 }
