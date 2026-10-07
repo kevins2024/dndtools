@@ -1155,5 +1155,68 @@
   "deflect-missiles": {
     "name": "Deflect Missiles",
     "action_type": "reaction"
+  },
+  "empty-body": {
+    "name": "Empty Body",
+    "action_type": "action"
+  },
+  "ki": {
+    "name": "Ki",
+    "recharge": "short_rest",
+    "uses_formula": {
+      "type": "level_multiple",
+      "class": "Monk",
+      "multiplier": 1
+    }
+  },
+  "martial-arts": {
+    "name": "Martial Arts",
+    "action_type": "bonus_action"
+  },
+  "slow-fall": {
+    "name": "Slow Fall",
+    "action_type": "reaction"
+  },
+  "stillness-of-mind": {
+    "name": "Stillness of Mind",
+    "action_type": "action"
+  },
+  "pub_flurry-of-healing-and-harm": {
+    "name": "Flurry of Healing and Harm",
+    "per_turn_cap": true
+  },
+  "pub_hand-of-ultimate-mercy": {
+    "name": "Hand of Ultimate Mercy",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_cloak-of-shadows": {
+    "name": "Cloak of Shadows",
+    "action_type": "action"
+  },
+  "pub_opportunist": {
+    "name": "Opportunist",
+    "action_type": "reaction"
+  },
+  "pub_shadow-arts": {
+    "name": "Shadow Arts",
+    "action_type": "action"
+  },
+  "pub_shadow-step": {
+    "name": "Shadow Step",
+    "action_type": "bonus_action"
+  },
+  "pub_arms-of-the-astral-self": {
+    "name": "Arms of the Astral Self",
+    "action_type": "bonus_action"
+  },
+  "pub_awakened-astral-self": {
+    "name": "Awakened Astral Self",
+    "action_type": "bonus_action"
+  },
+  "pub_visage-of-the-astral-self": {
+    "name": "Visage of the Astral Self",
+    "action_type": "bonus_action"
   }
 }
