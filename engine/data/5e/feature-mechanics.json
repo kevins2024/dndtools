@@ -1705,5 +1705,40 @@
     "action_type": "action",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub_artificer-initiate": {
+    "name": "Artificer Initiate",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_crusher": {
+    "name": "Crusher",
+    "per_turn_cap": true
+  },
+  "hb_artillerist_eldritch_cannon": {
+    "name": "Eldritch Cannon",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "fighting-style-interception": {
+    "name": "Fighting Style: Interception",
+    "action_type": "reaction"
+  },
+  "maneuver-brace": {
+    "name": "Maneuver: Brace",
+    "action_type": "reaction"
+  },
+  "maneuver-grappling-strike": {
+    "name": "Maneuver: Grappling Strike",
+    "action_type": "bonus_action"
+  },
+  "maneuver-quick-toss": {
+    "name": "Maneuver: Quick Toss",
+    "action_type": "bonus_action"
+  },
+  "pub_piercer": {
+    "name": "Piercer",
+    "per_turn_cap": true
   }
 }
