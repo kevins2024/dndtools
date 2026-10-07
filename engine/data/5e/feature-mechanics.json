@@ -724,5 +724,99 @@
   "pub_divine-strike-forge": {
     "name": "Divine Strike",
     "per_turn_cap": true
+  },
+  "pub_channel-divinity-path-to-the-grave": {
+    "name": "Channel Divinity: Path to the Grave",
+    "action_type": "action"
+  },
+  "pub_keeper-of-souls": {
+    "name": "Keeper of Souls",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_sentinel-at-deaths-door": {
+    "name": "Sentinel at Death's Door",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_channel-divinity-knowledge-of-the-ages": {
+    "name": "Channel Divinity: Knowledge of the Ages",
+    "action_type": "action"
+  },
+  "pub_channel-divinity-read-thoughts": {
+    "name": "Channel Divinity: Read Thoughts",
+    "action_type": "action"
+  },
+  "pub_channel-divinity-radiance-of-the-dawn": {
+    "name": "Channel Divinity: Radiance of the Dawn",
+    "action_type": "action"
+  },
+  "pub_corona-of-light": {
+    "name": "Corona of Light",
+    "action_type": "action"
+  },
+  "pub_warding-flare": {
+    "name": "Warding Flare",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_channel-divinity-charm-animals-and-plants": {
+    "name": "Channel Divinity: Charm Animals and Plants",
+    "action_type": "action"
+  },
+  "pub_dampen-elements": {
+    "name": "Dampen Elements",
+    "action_type": "reaction"
+  },
+  "pub_divine-strike-nature": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_master-of-nature": {
+    "name": "Master of Nature",
+    "action_type": "bonus_action"
+  },
+  "pub_channel-divinity-orders-demand": {
+    "name": "Channel Divinity: Order's Demand",
+    "action_type": "action"
+  },
+  "pub_divine-strike-order": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_embodiment-of-the-law": {
+    "name": "Embodiment of the Law",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_orders-wrath": {
+    "name": "Order's Wrath",
+    "per_turn_cap": true
+  },
+  "pub_channel-divinity-balm-of-peace": {
+    "name": "Channel Divinity: Balm of Peace",
+    "action_type": "action"
+  },
+  "pub_emboldening-bond": {
+    "name": "Emboldening Bond",
+    "action_type": "action",
+    "recharge": "long_rest"
   }
 }
