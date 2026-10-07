@@ -1825,5 +1825,85 @@
   "pub_guardian-coil": {
     "name": "Guardian Coil",
     "action_type": "reaction"
+  },
+  "pub_tentacle-of-the-deep": {
+    "name": "Tentacle of the Deep",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_dark-ones-own-luck": {
+    "name": "Dark One's Own Luck",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_hurl-through-hell": {
+    "name": "Hurl Through Hell",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_elemental-gift-genie": {
+    "name": "Elemental Gift",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_genies-wrath": {
+    "name": "Genie's Wrath",
+    "per_turn_cap": true
+  },
+  "pub_limited-wish": {
+    "name": "Limited Wish",
+    "action_type": "action"
+  },
+  "pub_accursed-specter": {
+    "name": "Accursed Specter",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_armor-of-hexes": {
+    "name": "Armor of Hexes",
+    "action_type": "reaction"
+  },
+  "pub_hexblades-curse": {
+    "name": "Hexblade's Curse",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_form-of-dread": {
+    "name": "Form of Dread",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_grave-touched": {
+    "name": "Grave Touched",
+    "per_turn_cap": true
+  },
+  "pub_spirit-projection": {
+    "name": "Spirit Projection",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_defy-death": {
+    "name": "Defy Death",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_indestructible-life": {
+    "name": "Indestructible Life",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_manifest-mind": {
+    "name": "Manifest Mind",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_one-with-the-word": {
+    "name": "One with the Word",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
