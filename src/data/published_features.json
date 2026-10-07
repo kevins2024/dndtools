@@ -271,42 +271,6 @@
     "source": "Tasha's Cauldron of Everything (current version — supersedes the original Sword Coast Adventurer's Guide printing)"
   },
   {
-    "id": "pub_totemic-assault",
-    "name": "Totemic Assault",
-    "class": "Shaman",
-    "description": "When hitting with a weapon or cantrip, channel spirit energy for 1d8 lightning or cold damage.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_life-bearer",
-    "name": "Life Bearer",
-    "class": "Shaman (Witch Doctor)",
-    "description": "When casting a healing spell, add WIS modifier to the healing done.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_totemic-blessing",
-    "name": "Totemic Blessing",
-    "class": "Shaman (Witch Doctor)",
-    "description": "Bind any totem and use its effect as a bonus action when healing an ally.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_spirit-communion",
-    "name": "Spirit Communion",
-    "class": "Shaman (Witch Doctor)",
-    "recharge": "long_rest",
-    "description": "Once per long rest, speak directly with any spirit within one mile, asking three questions.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_sacred-focus-mind",
-    "name": "Sacred Focus: Mind",
-    "class": "Shaman",
-    "description": "Add WIS modifier to Intelligence and Charisma checks and saving throws.",
-    "needs_review": true
-  },
-  {
     "id": "pub_tactical-foresight",
     "name": "Tactical Foresight",
     "category": "item_feature",
@@ -1003,7 +967,7 @@
     "category": "feat",
     "action_type": "reaction",
     "description": "When an ally within 30ft rolls a 1 on an attack roll, ability check, or saving throw: use reaction to let them reroll. They must use the new roll.",
-    "note": "Halfling racial feat. Does not cost Tackett's Lucky feature.",
+    "note": "Halfling racial feat (XGtE). Per RAW, using it means you cannot use your Lucky trait before the end of your next turn.",
     "source": "Xanathar's Guide to Everything",
     "prerequisite_note": "Halfling"
   },
@@ -1052,7 +1016,6 @@
     "id": "pub_soulknife-homing-strikes",
     "name": "Homing Strikes",
     "type": "feature",
-    "action_type": "reaction",
     "description": "When you miss with an attack using your Psychic Blades, you can expend one Psionic Energy die, rolling it and adding the result to the attack roll. If this turns the miss into a hit, you lose the die; otherwise you keep it.",
     "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature."
   },
@@ -1430,13 +1393,6 @@
     "description": "When you enter your rage, you can infuse one weapon you're holding with acid, cold, fire, lightning, or thunder damage. While you wield it during your rage, the weapon's damage type changes to the chosen type, it deals an extra 1d6 damage of that type on a hit, and it gains the thrown property (normal range 20ft, long range 60ft) — if thrown, it reappears in your hand the instant after it hits or misses. The benefits are suppressed while another creature wields it. While raging and holding it, you can use a bonus action to change its damage type.",
     "type": "feature",
     "source": "Bigby Presents: Glory of the Giants"
-  },
-  {
-    "id": "pub_elven-weapon-training",
-    "name": "Elven Weapon Training",
-    "description": "Proficiency with longswords, shortswords, shortbows, and longbows.",
-    "type": "feature",
-    "source": "Player's Handbook"
   },
   {
     "id": "pub_empowered-spell",

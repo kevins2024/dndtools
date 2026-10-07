@@ -307,7 +307,9 @@
   },
   "pub_goliath-stones-endurance": {
     "name": "Stone's Endurance",
-    "action_type": "reaction"
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
   },
   "pub_elemental-cleaver": {
     "name": "Elemental Cleaver",
@@ -339,7 +341,9 @@
   },
   "pub_eladrin-fey-step": {
     "name": "Fey Step",
-    "action_type": "bonus_action"
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
   },
   "pub_stars-druid-starry-form": {
     "name": "Stars Druid — Starry Form",
@@ -1956,6 +1960,12 @@
     "name": "Second Chance",
     "action_type": "reaction",
     "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_aasimar-healing-hands": {
+    "name": "Healing Hands",
+    "action_type": "action",
+    "recharge": "long_rest",
     "uses_max": 1
   }
 }

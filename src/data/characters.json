@@ -4218,11 +4218,6 @@
         "id": "ranger-extra-attack"
       },
       {
-        "name": "Steel Will",
-        "type": "feature",
-        "id": "pub_steel-will"
-      },
-      {
         "name": "Sneak Attack",
         "type": "feature",
         "id": "sneak-attack",
@@ -4907,7 +4902,6 @@
         "name": "Favored by the Gods",
         "type": "feature",
         "id": "pub_favored-by-the-gods",
-        "action_type": "reaction",
         "recharge": "short_rest",
         "uses_max": 1,
         "uses_current": 1
@@ -5212,7 +5206,11 @@
       {
         "name": "Healing Hands",
         "type": "feature",
-        "id": "pub_aasimar-healing-hands"
+        "id": "pub_aasimar-healing-hands",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Light Bearer",
@@ -5600,12 +5598,6 @@
         "name": "Darkvision",
         "type": "feature",
         "id": "pub_darkvision"
-      },
-      {
-        "name": "Elven Weapon Training",
-        "type": "feature",
-        "id": "pub_elven-weapon-training",
-        "description": "Proficiency with longswords, shortswords, shortbows, and longbows."
       },
       {
         "name": "Fleet of Foot",
@@ -6959,7 +6951,6 @@
         "name": "Homing Strikes",
         "id": "pub_soulknife-homing-strikes",
         "type": "feature",
-        "action_type": "reaction",
         "level_gained": 9,
         "_source": "Rogue"
       },
