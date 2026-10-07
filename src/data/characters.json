@@ -4773,7 +4773,8 @@
       {
         "name": "Rakish Audacity",
         "type": "feature",
-        "id": "pub_rakish-audacity"
+        "id": "pub_rakish-audacity",
+        "adds_ability_to_initiative": "cha"
       },
       {
         "name": "Elven Accuracy",
@@ -4929,7 +4930,8 @@
       {
         "name": "Empowered Healing",
         "type": "feature",
-        "id": "pub_empowered-healing"
+        "id": "pub_empowered-healing",
+        "per_turn_cap": true
       },
       {
         "name": "Fey Touched",
