@@ -50,6 +50,12 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | gen_bard_base_song-of-rest | Song of Rest | Bard | no | Lexica, Sorra | todo |  |
 | bonus-proficiencies | Bonus Proficiencies | Bard (College of Lore) | no | Lexica | todo |  |
 | cutting-words | Cutting Words | Bard (College of Lore) | no | Lexica | todo |  |
+| pub_extra-attack-bladesinger | Extra Attack (Bladesinger) | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 6th level. | no | Kessara | todo |  |
+| pub_bladesinger-training-in-war-and-song | Bladesinger — Training in War and Song | Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Kessara | todo |  |
+| channel-divinity-2-rest | Channel Divinity (2/rest) | Cleric | no | Petra | todo |  |
+| blessed-healer | Blessed Healer | Cleric (Life Domain) | no | Petra | todo |  |
+| channel-divinity-preserve-life | Channel Divinity: Preserve Life | Cleric (Life Domain) | no | Petra | todo |  |
+| disciple-of-life | Disciple of Life | Cleric (Life Domain) | no | Petra | todo |  |
 | pub_spiritual-focus | Spiritual Focus | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level (focus) and 6th level (bonus roll). | no | Sorra | todo |  |
 | pub_guiding-whispers | Guiding Whispers | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
@@ -61,6 +67,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | indomitable-1-use | Indomitable (1 use) | Fighter | no | Vaz, Corwin | done |  |
 | second-wind | Second Wind | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra, Brick | done |  |
 | gen_fighter_champion_improved-critical-19-20 | Improved Critical (19-20) | Fighter (Champion) | no | Kerra | todo |  |
+| pub_linked-spellbook | Linked Spellbook | Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara. | yes | Lenn, Kessara | todo |  |
 | pub_vow-of-the-open-road | Channel Divinity: Vow of the Open Road | Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag). | yes | Ferghus | todo |  |
 | hb_infused_arbalist_calculating_arbalister | Calculating Arbalister | Homebrew — Infused Arbalist (built on Tasha's Cauldron of Everything's Artillerist framework, heavily modified). No direct RAW equivalent; loosely modeled on Battle Smith's real Battle Ready (Intelligence for attack/damage rolls with a magic weapon), scoped to a single bonded weapon. | yes | Jaygar | todo |  |
 | hb_infused_arbalist_arcane_payload | Arcane Payload | Homebrew — Infused Arbalist. Renamed/reflavored from Artillerist's real Arcane Firearm (Tasha's Cauldron of Everything) — mechanically identical, reflavored from a wand/staff/rod focus to the bonded weapon. | yes | Jaygar | todo |  |
@@ -127,8 +134,9 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pact-boon | Pact Boon | Warlock | no | Kerra | todo |  |
 | pact-magic | Pact Magic | Warlock | no | Kerra | todo |  |
 | pact-of-the-tome | Pact of the Tome | Warlock | no | Kerra | todo |  |
-| arcane-recovery | Arcane Recovery | Wizard | no | Lenn, Elowenne | todo |  |
+| arcane-recovery | Arcane Recovery | Wizard | no | Lenn, Kessara, Elowenne | todo |  |
 | gen_wizard_base_spellcasting | Spellcasting | Wizard | no | Elowenne | todo |  |
+| pub_bladesong | Bladesong | Wizard (Bladesinger) | no | Kessara | todo |  |
 | pub_chronal-shift | Chronal Shift | Wizard (Chronurgy Magic) | no | Elowenne | done |  |
 | pub_momentary-stasis | Momentary Stasis | Wizard (Chronurgy Magic) | no | Elowenne | done |  |
 | pub_temporal-awareness | Temporal Awareness | Wizard (Chronurgy Magic) | no | Elowenne | done |  |
@@ -264,13 +272,10 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_mighty-impel | Mighty Impel | Bigby Presents: Glory of the Giants | no |  | todo |  |
 | pub_song-of-defense | Song of Defense | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 10th level. | no |  | todo |  |
 | pub_song-of-victory | Song of Victory | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 14th level. | no |  | todo |  |
-| pub_extra-attack-bladesinger | Extra Attack (Bladesinger) | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 6th level. | no |  | todo |  |
-| pub_bladesinger-training-in-war-and-song | Bladesinger — Training in War and Song | Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) — 2nd level. | no |  | todo |  |
 | pub_tattoo-of-warding | Tattoo of Warding | Campaign homebrew. | yes |  | todo |  |
 | pub_stars-druid-twinkling-constellations | Stars Druid — Twinkling Constellations | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level. | no |  | todo |  |
 | pub_stars-druid-star-map | Stars Druid — Star Map | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level. | no |  | done |  |
 | channel-divinity-1-rest | Channel Divinity (1/rest) | Cleric | no |  | todo |  |
-| channel-divinity-2-rest | Channel Divinity (2/rest) | Cleric | no |  | todo |  |
 | channel-divinity-3-rest | Channel Divinity (3/rest) | Cleric | no |  | todo |  |
 | channel-divinity-turn-undead | Channel Divinity: Turn Undead | Cleric | no |  | todo |  |
 | divine-intervention | Divine Intervention | Cleric | no |  | todo |  |
@@ -299,10 +304,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-knowledge-of-the-ages | Channel Divinity: Knowledge of the Ages | Cleric (Knowledge Domain) | no |  | todo |  |
 | pub_channel-divinity-read-thoughts | Channel Divinity: Read Thoughts | Cleric (Knowledge Domain) | no |  | todo |  |
 | pub_visions-of-the-past | Visions of the Past | Cleric (Knowledge Domain) | no |  | todo |  |
-| blessed-healer | Blessed Healer | Cleric (Life Domain) | no |  | todo |  |
 | bonus-proficiency | Bonus Proficiency | Cleric (Life Domain) | no |  | todo |  |
-| channel-divinity-preserve-life | Channel Divinity: Preserve Life | Cleric (Life Domain) | no |  | todo |  |
-| disciple-of-life | Disciple of Life | Cleric (Life Domain) | no |  | todo |  |
 | divine-strike | Divine Strike | Cleric (Life Domain) | no |  | todo |  |
 | supreme-healing | Supreme Healing | Cleric (Life Domain) | no |  | todo |  |
 | pub_light-domain-bonus-cantrip | Bonus Cantrip | Cleric (Light Domain) | no |  | todo |  |
@@ -457,7 +459,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | hb_missile_snaring | Missile Snaring | Gloves of Missile Snaring (real 5e magic item). | no |  | todo |  |
 | pub_stars-druid-unbroken-legendary | Stars Druid — Unbroken (Legendary) | Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything). | yes |  | todo |  |
 | pub_insightful-fighting-revised | Insightful Fighting (Revised) | Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW. | yes |  | todo |  |
-| pub_linked-spellbook | Linked Spellbook | Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara. | yes |  | todo |  |
 | pub_infusion-clockwork-amulet | Infusion: Clockwork Amulet | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
 | pub_infusion-helm-of-comprehending-languages | Infusion: Helm of Comprehending Languages | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
 | pub_infusion-perfume-of-bewitching | Infusion: Perfume of Bewitching | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
@@ -952,7 +953,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_undying-nature | Undying Nature | Warlock (The Undying) | no |  | todo |  |
 | gen_wizard_base_signature-spells | Signature Spells | Wizard | no |  | todo |  |
 | spell-mastery | Spell Mastery | Wizard | no |  | todo |  |
-| pub_bladesong | Bladesong | Wizard (Bladesinger) | no |  | todo |  |
 | pub_arcane-abeyance | Arcane Abeyance | Wizard (Chronurgy Magic) | no |  | done |  |
 | pub_convergent-future | Convergent Future | Wizard (Chronurgy Magic) | no |  | done |  |
 | empowered-evocation | Empowered Evocation | Wizard (Evocation) | no |  | todo |  |
@@ -1022,18 +1022,8 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 
 | character | feature | status | notes |
 |---|---|---|---|
-| Lenn | Linked Spellbook | todo |  |
 | Lenn | Caster Prestidigitation | todo |  |
-| Kessara | Arcane Recovery | todo |  |
-| Kessara | Bladesinger — Training in War and Song | todo |  |
-| Kessara | Extra Attack | todo |  |
-| Kessara | Bladesong | todo |  |
-| Kessara | Linked Spellbook | todo |  |
 | Kessara | Caster Prestidigitation | todo |  |
-| Petra | Disciple of Life | todo |  |
-| Petra | Channel Divinity (2/rest) | todo |  |
-| Petra | Channel Divinity: Preserve Life | todo |  |
-| Petra | Blessed Healer | todo |  |
 | Petra | Divine Strike | todo |  |
 | Petra | Destroy Undead (CR 1) | todo |  |
 | Petra | Inspiring Leader | todo |  |

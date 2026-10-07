@@ -589,6 +589,7 @@
       {
         "name": "Linked Spellbook",
         "type": "feature",
+        "id": "pub_linked-spellbook",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lyria's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       },
       {
@@ -1206,21 +1207,25 @@
       {
         "name": "Arcane Recovery",
         "type": "feature",
+        "id": "arcane-recovery",
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
       },
       {
         "name": "Bladesinger — Training in War and Song",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_bladesinger-training-in-war-and-song"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_extra-attack-bladesinger"
       },
       {
         "name": "Bladesong",
         "type": "feature",
+        "id": "pub_bladesong",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -1230,6 +1235,7 @@
       {
         "name": "Linked Spellbook",
         "type": "feature",
+        "id": "pub_linked-spellbook",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Lyria's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       },
       {
@@ -1788,11 +1794,13 @@
     "features": [
       {
         "name": "Disciple of Life",
-        "type": "feature"
+        "type": "feature",
+        "id": "disciple-of-life"
       },
       {
         "name": "Channel Divinity (2/rest)",
         "type": "feature",
+        "id": "channel-divinity-2-rest",
         "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -1801,11 +1809,13 @@
       {
         "name": "Channel Divinity: Preserve Life",
         "type": "feature",
+        "id": "channel-divinity-preserve-life",
         "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use."
       },
       {
         "name": "Blessed Healer",
-        "type": "feature"
+        "type": "feature",
+        "id": "blessed-healer"
       },
       {
         "name": "Divine Strike",
