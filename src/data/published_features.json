@@ -913,37 +913,6 @@
     "source": "Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW."
   },
   {
-    "id": "pub_inquisitive-unerring-eye",
-    "name": "Inquisitive — Unerring Eye",
-    "category": "subclass_feature",
-    "action_type": "action",
-    "recharge": "wis_mod_per_long_rest",
-    "description": "Sense magical illusions, shapechanger in disguise, or other magical deception within 30ft. Not exact — you sense something is off, not necessarily what.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-skirmisher",
-    "name": "Scout — Skirmisher",
-    "category": "subclass_feature",
-    "action_type": "reaction",
-    "description": "When an enemy ends its turn within 5ft of you: move up to half your speed without provoking opportunity attacks.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-survivalist",
-    "name": "Scout — Survivalist",
-    "category": "subclass_feature",
-    "description": "Gain proficiency in Nature and Survival. Proficiency bonus doubled for these skills.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-superior-mobility",
-    "name": "Scout — Superior Mobility",
-    "category": "subclass_feature",
-    "description": "+10ft movement speed. If no armor worn, +10ft additionally.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
     "id": "pub_soulknife-psychic-blades",
     "name": "Soulknife — Psychic Blades",
     "category": "subclass_feature",
@@ -1019,13 +988,6 @@
     "source": "Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything)."
   },
   {
-    "id": "pub_tempest-cleric-thunderbolt-strike",
-    "name": "Tempest Cleric — Thunderbolt Strike",
-    "category": "subclass_feature",
-    "description": "When dealing lightning damage to a Large or smaller creature: push it up to 10ft away.",
-    "needs_review": true
-  },
-  {
     "id": "pub_stone-s-endurance",
     "name": "Stone's Endurance",
     "category": "racial_feature",
@@ -1054,14 +1016,6 @@
     "description": "As an action, expend one use of Channel Divinity to force a creature within 30 feet that you can see to make a Wisdom saving throw. On a failure, the creature is compelled to move in an unexpected direction (DM's choice, in the spirit of Carix's unpredictable influence) on its next turn.",
     "source": "Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag).",
     "homebrew": true
-  },
-  {
-    "id": "pub_scout-ambush-master",
-    "name": "Scout — Ambush Master",
-    "category": "subclass_feature",
-    "action_type": null,
-    "description": "Advantage on initiative rolls. Creatures you hit during the first round of combat become easier targets — each ally has advantage on attack rolls against them until the start of your next turn.",
-    "source": "Xanathar's Guide to Everything"
   },
   {
     "id": "pub_master-of-tactics",

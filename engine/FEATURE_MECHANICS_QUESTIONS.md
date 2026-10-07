@@ -29,3 +29,5 @@ Kept by the feature-mechanics job. Answer inline or tell Claude; `needs-owner` r
 - **Divine Smite SRD text:** fixed in `api_data_cache/features.json` (added "to a maximum of 6d8"); `scripts/build-srd-cache.js` will undo it if re-run.
 - **wikidot lineage pages show the newer (MPMM-style) species rules** (e.g. Fey Step, Stone's Endurance, Healing Hands use proficiency-bonus uses). The tiles use the older versions. Species rows are flagged needs-owner rather than overwritten.
 - **Tackett missing features:** reported by owner as not showing at all; separate bug, not investigated yet.
+- **Duplicate id `pub_primal-companion`:** two different records share this id in `published_features.json` (one generic Tasha's text, one "At this table..." text). Lookups return the first. Which is canonical?
+- **Deleted duplicates (no references anywhere):** `pub_scout-skirmisher/-survivalist/-superior-mobility/-ambush-master` (abridged copies, one with wrong text), `pub_inquisitive-unerring-eye`, `pub_tempest-cleric-thunderbolt-strike`; canonical records are the class-referenced ones (`hb_rogue_scout_*`, `pub_unerring-eye`, `pub_thunderous-strike`).
