@@ -3005,6 +3005,7 @@
       {
         "name": "Rage",
         "type": "feature",
+        "id": "rage",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -3012,23 +3013,28 @@
       },
       {
         "name": "Reckless Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "reckless-attack"
       },
       {
         "name": "Danger Sense",
-        "type": "feature"
+        "type": "feature",
+        "id": "danger-sense"
       },
       {
         "name": "Giant's Havoc",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_giant-s-havoc"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "barbarian-extra-attack"
       },
       {
         "name": "Fast Movement (+10ft)",
         "type": "feature",
+        "id": "fast-movement",
         "stat_bonuses": {
           "speed": 10
         }
@@ -3036,11 +3042,13 @@
       {
         "name": "Elemental Cleaver",
         "type": "feature",
+        "id": "pub_elemental-cleaver",
         "action_type": "bonus_action"
       },
       {
         "name": "Giant's Power",
         "type": "feature",
+        "id": "pub_giant-s-power",
         "description": "Learn the Thaumaturgy cantrip (Wisdom-based regardless of her own casting stat). Already knows Giant, so the feature's language grant is redundant for her.",
         "note": "Added 2026-09-09 -- this feature was missing entirely, found during the Path of the Giant subclass audit. Cantrip choice (Thaumaturgy over Druidcraft) picked by the project owner to fit her Intimidation proficiency and barbarian presence."
       },
@@ -3065,13 +3073,15 @@
       {
         "name": "Fighting Style: Defense",
         "type": "feature",
+        "id": "fighting-style-defense",
         "stat_bonuses": {
           "ac": 1
         }
       },
       {
         "name": "Divine Smite",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-smite"
       },
       {
         "name": "Divine Health",
