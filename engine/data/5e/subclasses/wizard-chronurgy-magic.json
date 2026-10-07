@@ -1,0 +1,21 @@
+{
+  "class": "Wizard",
+  "name": "Chronurgy Magic",
+  "description": "Those who follow the Chronurgy tradition learn to alter the pace of reality to their liking, bending the flow of time to give themselves and their allies an advantage in the blink of an eye.",
+  "source": "Explorer's Guide to Wildemount",
+  "features_by_level": {
+    "2": [
+      "pub_chronal-shift",
+      "pub_temporal-awareness"
+    ],
+    "6": [
+      "pub_momentary-stasis"
+    ],
+    "10": [
+      "pub_arcane-abeyance"
+    ],
+    "14": [
+      "pub_convergent-future"
+    ]
+  }
+}

@@ -8,6 +8,7 @@
       "uses_formula": "Present instead of uses_max when the pool size genuinely depends on character state (RAW itself says so -- this is never used just because a number is inconvenient to type twice). Resolved against the character in diffLevelUp.js's applyFeatureMechanics, NOT stored as a formula on the character record -- only the resolved number lands in uses_max/uses_current there. Two shapes exist so far, added only when a real feature needed them (see engine/CHECKLIST.md's 2026-09-24 entry -- deliberately not a general expression language): {type:'ability_mod', ability:'cha'|'str'|..., base:1, min?:1} resolves to base + that ability's modifier (Divine Sense: 1 + CHA mod), clamped up to `min` ONLY when that key is present, and {type:'level_multiple', class:'Paladin', multiplier:5} resolves to that NAMED class's own level (not total character level) times multiplier (Lay on Hands: paladin level x 5). A resolved value can legitimately come out to 0 or negative (a very-low-CHA Paladin really does get 0 uses of Divine Sense per RAW) -- never floored to 1 silently UNLESS RAW itself states an explicit minimum (Bardic Inspiration: 'a number of times equal to your Charisma modifier (a minimum of once)' -- `min: 1` models exactly that stated floor, opt-in per feature so it's never applied where RAW doesn't actually say so).",
       "per_turn_cap": "true if this feature can only be used/apply once per the character's own turn, REGARDLESS of how large its uses_max pool is (Action Surge 17th, Sneak Attack). This is a genuinely separate axis from uses_max/recharge -- see engine/CHECKLIST.md's 2026-09-24 entry for why. Tracked as ephemeral per-combat state (combatTurn.js), never on the persisted character record, since it only has meaning inside an active encounter.",
       "tier_family": "Present only on a feature that's granted at multiple levels as successive SRD-style tiered ids (action-surge-1-use -> action-surge-2-uses, indomitable-1-use -> -2-uses -> -3-uses). diffLevelUp.js uses this to MERGE a later tier into the character's existing single tile (bumping uses_max) instead of adding a second duplicate feature entry -- see diffLevelUp.js's own comment on this block. All ids sharing a tier_family MUST share the same display name.",
+      "adds_ability_to_initiative": "An ability key ('int'), present on a feature that adds that ability's modifier to initiative on top of DEX (Chronurgy Magic's Temporal Awareness). Carried onto the character's feature record by applyFeatureMechanics (fill-only-if-missing, like the other fields) and read by checks.js's initiative(), which counts each ability once and uses the EFFECTIVE score. Added 2026-10-06.",
       "grants_spells": "Present on a feature that teaches a specific spell as an always-prepared/always-known bonus that does NOT count against the character's normal known/prepared totals -- same semantics as feats.json's own grants_spells.fixed, added here 2026-09-26 for the class/subclass-feature side of that same gap (found on Circle of Stars' Star Map: 'you have the Guiding Bolt spell prepared at all times -- it doesn't count against your number of spells known', TODO.md 2026-09-22). Shape so far: {fixed: [spellName, ...]} -- only ever a flat list, no choice/tiered variant needed yet. Applied in diffLevelUp.js's applyFeatureMechanics with the SAME fill-only-if-missing rule as every other field here (job 4): writes feature.spells_granted only when the feature doesn't already have one, so a hand-fixed character record (Tackett's Star Map already carries a manually-set spells_granted) is never silently overwritten. Consumed by spellUtils.js exactly like any other features[].spells_granted entry -- see that file's step 3. Deliberately does NOT (yet) model a spell that's ALSO castable without expending a slot off some other resource formula -- Star Map's real RAW additionally lets you cast Guiding Bolt free a number of times equal to proficiency bonus per long rest, which this catalog doesn't capture: that would need a per-spell uses_max/recharge tracked and recomputed the same live way this file's uses_formula fields already are, and today nothing here does that for a SPELL entry (only for a FEATURE entry). Deferred until a second real feature needs the same shape, per this catalog's own deliberately-incremental philosophy -- see engine/CHECKLIST.md's 2026-09-26 entry."
     }
   },
@@ -97,6 +98,52 @@
       "ability": "cha",
       "base": 0,
       "min": 1
+    }
+  },
+  "hb_timeline_freeze": {
+    "name": "Timeline Freeze",
+    "action_type": "action",
+    "uses_max": 1,
+    "recharge": "manual"
+  },
+  "pub_chronal-shift": {
+    "name": "Chronal Shift",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub_temporal-awareness": {
+    "name": "Temporal Awareness",
+    "adds_ability_to_initiative": "int"
+  },
+  "pub_momentary-stasis": {
+    "name": "Momentary Stasis",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_arcane-abeyance": {
+    "name": "Arcane Abeyance",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_convergent-future": {
+    "name": "Convergent Future",
+    "action_type": "reaction"
+  },
+  "rage": {
+    "name": "Rage",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Barbarian",
+      "table": "rages_by_level"
     }
   }
 }
