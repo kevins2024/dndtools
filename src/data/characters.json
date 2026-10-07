@@ -422,15 +422,18 @@
       },
       {
         "name": "Assassinate",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_assassinate"
       },
       {
         "name": "Assassin — Infiltration Expertise",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_assassin-infiltration-expertise"
       },
       {
         "name": "Shadow Touched",
         "type": "feat",
+        "id": "pub_shadow-touched",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
@@ -544,36 +547,43 @@
       {
         "name": "Arcane Recovery",
         "type": "feature",
+        "id": "arcane-recovery",
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
       },
       {
         "name": "Evocation Savant",
-        "type": "feature"
+        "type": "feature",
+        "id": "evocation-savant"
       },
       {
         "name": "Sculpt Spells",
-        "type": "feature"
+        "type": "feature",
+        "id": "sculpt-spells"
       },
       {
         "name": "Potent Cantrip",
-        "type": "feature"
+        "type": "feature",
+        "id": "potent-cantrip"
       },
       {
         "name": "Metamagic Adept",
         "type": "feat",
+        "id": "pub_metamagic-adept",
         "note": "Pool of 2 sorcery points per long rest — spent on Twinned or Quickened Spell below."
       },
       {
         "name": "Twinned Spell",
         "type": "metamagic",
+        "id": "metamagic-twinned-spell",
         "description": "Cost: sorcery points equal to the spell's level (1 if a cantrip). When casting a spell that targets only one creature and doesn't have a range of Self, target a second creature in range with the same spell.",
         "note": "Swapped in 2026-09-09, replacing Empowered Spell. Real history: Empowered Spell was wrongly deleted earlier in the subclass audit as \"mechanically impossible for a pure Wizard,\" without checking whether a feat granted it -- he has Metamagic Adept, which legally grants any spellcaster 2 Sorcerer Metamagic options + a small sorcery point pool regardless of Sorcerer levels, so it wasn't actually a corruption. Restored, then swapped by project owner's choice: Empowered Spell's reroll count is fixed to Charisma modifier in the real rules (not adaptable to the caster's own casting stat), which made it weak for him (his CHA is only +1). Twinned Spell has no ability-score dependency at all, sidestepping the issue and generally regarded as one of the stronger Metamagic picks regardless of caster stat."
       },
       {
         "name": "Quickened Spell",
         "type": "metamagic",
+        "id": "metamagic-quickened-spell",
         "description": "Cost: 2 sorcery points. Cast a leveled spell that normally takes 1 action as a bonus action instead."
       },
       {
