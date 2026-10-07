@@ -594,7 +594,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -1240,7 +1240,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -1840,7 +1840,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -2124,12 +2124,12 @@
       {
         "name": "Inquisitive — Ear for Deceit",
         "type": "feature",
-        "id": "pub_inquisitive-ear-for-deceit"
+        "id": "pub_ear-for-deceit"
       },
       {
         "name": "Inquisitive — Eye for Detail",
         "type": "feature",
-        "id": "pub_inquisitive-eye-for-detail"
+        "id": "pub_eye-for-detail"
       },
       {
         "name": "Insightful Fighting (Revised)",
@@ -2140,7 +2140,7 @@
       {
         "name": "Inquisitive — Steady Eye",
         "type": "feature",
-        "id": "pub_inquisitive-steady-eye"
+        "id": "pub_steady-eye"
       },
       {
         "name": "Observant",
@@ -2295,7 +2295,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -3825,7 +3825,7 @@
       {
         "name": "Tempest Cleric — Wrath of the Storm",
         "type": "feature",
-        "id": "pub_tempest-cleric-wrath-of-the-storm",
+        "id": "pub_wrath-of-the-storm",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 5,
@@ -3835,7 +3835,7 @@
       {
         "name": "Tempest Cleric — Destructive Wrath",
         "type": "feature",
-        "id": "pub_tempest-cleric-destructive-wrath",
+        "id": "pub_channel-divinity-destructive-wrath",
         "description": "When you roll lightning or thunder damage, you can use your Channel Divinity to deal maximum damage instead of rolling.",
         "note": "Shares the same Channel Divinity pool as Turn Undead below — not a separate use."
       },
@@ -3881,7 +3881,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -4259,7 +4259,7 @@
       },
       {
         "name": "Infernal Legacy: Hellish Rebuke",
-        "id": null,
+        "id": "pub_infernal-legacy-hellish-rebuke",
         "type": "speciesTrait",
         "level_gained": 3,
         "spells_granted": [
@@ -4268,11 +4268,12 @@
         "_source": "Infernal Legacy",
         "uses_max": 1,
         "uses_current": 1,
-        "recharge": "long_rest"
+        "recharge": "long_rest",
+        "action_type": "reaction"
       },
       {
         "name": "Infernal Legacy: Darkness",
-        "id": null,
+        "id": "pub_infernal-legacy-darkness",
         "type": "speciesTrait",
         "level_gained": 5,
         "spells_granted": [
@@ -4281,7 +4282,8 @@
         "_source": "Infernal Legacy",
         "uses_max": 1,
         "uses_current": 1,
-        "recharge": "long_rest"
+        "recharge": "long_rest",
+        "action_type": "action"
       }
     ],
     "spells": [
@@ -4942,7 +4944,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -5308,7 +5310,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -5607,7 +5609,8 @@
         "name": "Combat Wild Shape: Healing",
         "type": "feature",
         "action_type": "bonus_action",
-        "description": "While transformed by Wild Shape, expend one spell slot as a bonus action to regain 1d8 hit points per level of the spell slot expended."
+        "description": "While transformed by Wild Shape, expend one spell slot as a bonus action to regain 1d8 hit points per level of the spell slot expended.",
+        "id": "pub_combat-wild-shape-healing"
       },
       {
         "name": "Wild Shape",
@@ -5655,7 +5658,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -6552,7 +6555,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -7076,7 +7079,7 @@
     "features": [
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -7450,7 +7453,7 @@
     "features": [
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -7817,7 +7820,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [

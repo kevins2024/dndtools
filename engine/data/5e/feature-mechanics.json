@@ -145,5 +145,31 @@
       "class": "Barbarian",
       "table": "rages_by_level"
     }
+  },
+  "pub_infernal-legacy-hellish-rebuke": {
+    "name": "Infernal Legacy: Hellish Rebuke",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "grants_spells": {
+      "fixed": [
+        "Hellish Rebuke"
+      ]
+    }
+  },
+  "pub_infernal-legacy-darkness": {
+    "name": "Infernal Legacy: Darkness",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "grants_spells": {
+      "fixed": [
+        "Darkness"
+      ]
+    }
+  },
+  "pub_combat-wild-shape-healing": {
+    "name": "Combat Wild Shape: Healing",
+    "action_type": "bonus_action"
   }
 }
