@@ -1974,5 +1974,15 @@
     "name": "Arcane Deflection and Tactical Wit",
     "action_type": "reaction",
     "adds_ability_to_initiative": "int"
+  },
+  "pub_master-of-tactics": {
+    "name": "Master of Tactics",
+    "action_type": "bonus_action"
+  },
+  "pub_second-chance": {
+    "name": "Second Chance",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
   }
 }
