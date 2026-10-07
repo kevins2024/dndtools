@@ -57,10 +57,12 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_bladesinger-training-in-war-and-song | Bladesinger — Training in War and Song | Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Kessara | todo |  |
 | pub_stars-druid-star-map | Stars Druid — Star Map | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Tackett | done |  |
 | channel-divinity-2-rest | Channel Divinity (2/rest) | Cleric | no | Petra | todo |  |
+| channel-divinity-turn-undead | Channel Divinity: Turn Undead | Cleric | no | Revven | todo |  |
 | blessed-healer | Blessed Healer | Cleric (Life Domain) | no | Petra | todo |  |
 | channel-divinity-preserve-life | Channel Divinity: Preserve Life | Cleric (Life Domain) | no | Petra | todo |  |
 | disciple-of-life | Disciple of Life | Cleric (Life Domain) | no | Petra | todo |  |
 | divine-strike | Divine Strike | Cleric (Life Domain) | no | Petra | todo |  |
+| pub_divine-strike-tempest | Divine Strike | Cleric (Tempest Domain) | no | Revven | todo |  |
 | pub_spiritual-focus | Spiritual Focus | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level (focus) and 6th level (bonus roll). | no | Sorra | todo |  |
 | pub_guiding-whispers | Guiding Whispers | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
@@ -108,7 +110,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-nature-s-wrath | Channel Divinity: Nature's Wrath | Player's Handbook | no | Chuknora | todo |  |
 | pub_channel-divinity-turn-the-faithless | Channel Divinity: Turn the Faithless | Player's Handbook | no | Chuknora | todo |  |
 | pub_darkvision | Darkvision | Player's Handbook | no | Enauweyn | todo |  |
-| pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no | Petra | todo |  |
+| pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no | Petra, Revven | todo |  |
 | pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
 | pub_fey-ancestry | Fey Ancestry | Player's Handbook | no | Enauweyn, Revven, Eldi, Rith, Therynv'l | todo |  |
@@ -124,12 +126,15 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_projected-ward | Projected Ward | Player's Handbook | no | Lyria | todo |  |
 | pub_riposte | Riposte | Player's Handbook | no | Vaz | todo |  |
 | pub_shelter-of-the-faithful | Shelter of the Faithful | Player's Handbook | no | Chuknora | todo |  |
+| pub_steel-will | Steel Will | Player's Handbook | no | Elucyne | todo |  |
 | pub_tempest-cleric-destructive-wrath | Tempest Cleric — Destructive Wrath | Player's Handbook | no | Revven | todo |  |
 | pub_tempest-cleric-wrath-of-the-storm | Tempest Cleric — Wrath of the Storm | Player's Handbook | no | Revven | todo |  |
+| pub_thunderous-strike | Thunderbolt Strike | Player's Handbook | no | Revven | todo |  |
 | pub_war-caster | War Caster | Player's Handbook | no | Petra | todo |  |
+| ranger-extra-attack | Extra Attack | Ranger | no | Elucyne | todo |  |
 | pub_primal-companion | Primal Companion | Ranger (Beast Master) | no | Tackett | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
-| cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
+| cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Elucyne, Siv, Torrin | todo |  |
 | rogue-evasion | Evasion | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
 | rogue-expertise-1 | Expertise | Rogue | no | Siv, Torrin | todo |  |
 | sneak-attack | Sneak Attack | Rogue | no | Denna, Pirra, Elucyne, Eldi, Siv, Torrin | done |  |
@@ -145,6 +150,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-champion-challenge | Channel Divinity: Champion Challenge | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_channel-divinity-turn-the-tide | Channel Divinity: Turn the Tide | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_crown-divine-allegiance | Crown — Divine Allegiance | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
+| pub_fey-touched | Fey Touched | Tasha's Cauldron of Everything | no | Revven | todo |  |
 | fighting-style-thrown-weapon-fighting | Fighting Style: Thrown Weapon Fighting | Tasha's Cauldron of Everything | no | Brick | todo |  |
 | fighting-style-unarmed-fighting | Fighting Style: Unarmed Fighting | Tasha's Cauldron of Everything | no | Brick | todo |  |
 | pub_flash-of-genius | Flash of Genius | Tasha's Cauldron of Everything | no | Jaygar | todo |  |
@@ -176,10 +182,12 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | potent-cantrip | Potent Cantrip | Wizard (Evocation) | no | Lenn | todo |  |
 | sculpt-spells | Sculpt Spells | Wizard (Evocation) | no | Lenn | todo |  |
 | pub_bountiful-luck | Bountiful Luck | Xanathar's Guide to Everything | no | Tackett | todo |  |
+| pub_dread-ambusher | Dread Ambusher | Xanathar's Guide to Everything | no | Elucyne | todo |  |
 | pub_fade-away | Fade Away | Xanathar's Guide to Everything | no | Jaygar | todo |  |
 | pub_inquisitive-ear-for-deceit | Inquisitive — Ear for Deceit | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_inquisitive-eye-for-detail | Inquisitive — Eye for Detail | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_inquisitive-steady-eye | Inquisitive — Steady Eye | Xanathar's Guide to Everything | no | Pirra | todo |  |
+| pub_umbral-sight | Umbral Sight | Xanathar's Guide to Everything | no | Elucyne | todo |  |
 | pub_blessed-strikes | Blessed Strikes |  | no |  | todo |  |
 | pub_tempest-cleric-thunderbolt-strike | Tempest Cleric — Thunderbolt Strike |  | no |  | todo |  |
 | gen_artificer_base_magic-item-master | Magic Item Master | Artificer | no |  | todo |  |
@@ -309,7 +317,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_stars-druid-twinkling-constellations | Stars Druid — Twinkling Constellations | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level. | no |  | todo |  |
 | channel-divinity-1-rest | Channel Divinity (1/rest) | Cleric | no |  | todo |  |
 | channel-divinity-3-rest | Channel Divinity (3/rest) | Cleric | no |  | todo |  |
-| channel-divinity-turn-undead | Channel Divinity: Turn Undead | Cleric | no |  | todo |  |
 | divine-intervention | Divine Intervention | Cleric | no |  | todo |  |
 | gen_cleric_base_divine-intervention-improvement | Divine Intervention improvement | Cleric | no |  | todo |  |
 | pub_potent-spellcasting-cleric | Potent Spellcasting | Cleric | no |  | todo |  |
@@ -359,7 +366,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_expansive-bond | Expansive Bond | Cleric (Peace Domain) | no |  | todo |  |
 | pub_implement-of-peace | Implement of Peace | Cleric (Peace Domain) | no |  | todo |  |
 | pub_protective-bond | Protective Bond | Cleric (Peace Domain) | no |  | todo |  |
-| pub_divine-strike-tempest | Divine Strike | Cleric (Tempest Domain) | no |  | todo |  |
 | pub_blessing-of-the-trickster | Blessing of the Trickster | Cleric (Trickery Domain) | no |  | todo |  |
 | pub_channel-divinity-cloak-of-shadows | Channel Divinity: Cloak of Shadows | Cleric (Trickery Domain) | no |  | todo |  |
 | pub_channel-divinity-invoke-duplicity | Channel Divinity: Invoke Duplicity | Cleric (Trickery Domain) | no |  | todo |  |
@@ -742,7 +748,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_skulker | Skulker | Player's Handbook | no |  | todo |  |
 | pub_spell-resistance | Spell Resistance | Player's Handbook | no |  | todo |  |
 | pub_spell-sniper | Spell Sniper | Player's Handbook | no |  | todo |  |
-| pub_steel-will | Steel Will | Player's Handbook | no |  | todo |  |
 | pub_stormborn | Stormborn | Player's Handbook | no |  | todo |  |
 | pub_student-of-war | Student of War | Player's Handbook | no |  | todo |  |
 | pub_superiority-dice | Superiority Dice | Player's Handbook | no |  | todo |  |
@@ -753,7 +758,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_thirsting-blade | Thirsting Blade | Player's Handbook | no |  | todo |  |
 | pub_thought-shield | Thought Shield | Player's Handbook | no |  | todo |  |
 | pub_thousand-forms | Thousand Forms | Player's Handbook | no |  | todo |  |
-| pub_thunderous-strike | Thunderbolt Strike | Player's Handbook | no |  | todo |  |
 | pub_tough | Tough | Player's Handbook | no |  | todo |  |
 | pub_trip-attack | Trip Attack | Player's Handbook | no |  | todo |  |
 | pub_undying-sentinel | Undying Sentinel | Player's Handbook | no |  | todo |  |
@@ -764,7 +768,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_witch-sight | Witch Sight | Player's Handbook | no |  | todo |  |
 | pub_wrath-of-the-storm | Wrath of the Storm | Player's Handbook | no |  | todo |  |
 | pub_fleet-of-foot | Fleet of Foot | Player's Handbook (Wood Elf) | no |  | todo |  |
-| ranger-extra-attack | Extra Attack | Ranger | no |  | todo |  |
 | gen_ranger_base_favored-enemy | Favored Enemy | Ranger | no |  | todo |  |
 | gen_ranger_base_favored-enemy-improvement | Favored Enemy improvement | Ranger | no |  | todo |  |
 | feral-senses | Feral Senses | Ranger | no |  | todo |  |
@@ -881,7 +884,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_crusher | Crusher | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_eldritch-adept | Eldritch Adept | Tasha's Cauldron of Everything | no |  | todo |  |
 | hb_artillerist_eldritch_cannon | Eldritch Cannon | Tasha's Cauldron of Everything | no |  | todo |  |
-| pub_fey-touched | Fey Touched | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_fighting-initiate | Fighting Initiate | Tasha's Cauldron of Everything | no |  | todo |  |
 | fighting-style-blind-fighting | Fighting Style: Blind Fighting | Tasha's Cauldron of Everything | no |  | todo |  |
 | fighting-style-interception | Fighting Style: Interception | Tasha's Cauldron of Everything | no |  | todo |  |
@@ -998,7 +1000,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_divine-magic | Divine Magic | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dragon-fear | Dragon Fear | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dragon-hide | Dragon Hide | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_dread-ambusher | Dread Ambusher | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_drow-high-magic | Drow High Magic | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dwarven-fortitude | Dwarven Fortitude | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_elven-accuracy | Elven Accuracy | Xanathar's Guide to Everything | no |  | todo |  |
@@ -1017,7 +1018,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_scout-survivalist | Scout — Survivalist | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_second-chance | Second Chance | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_squat-nimbleness | Squat Nimbleness | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_umbral-sight | Umbral Sight | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_wood-elf-magic | Wood Elf Magic | Xanathar's Guide to Everything | no |  | todo |  |
 
 ## Roster features with no id
@@ -1028,17 +1028,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Kessara | Caster Prestidigitation | todo |  |
 | Petra | Caster Prestidigitation | todo |  |
 | Lyria | Caster Prestidigitation | todo |  |
-| Revven | Tempest Cleric — Thunderous Strike | todo |  |
-| Revven | Channel Divinity: Turn Undead | todo |  |
-| Revven | Destroy Undead (CR 1) | todo |  |
-| Revven | Divine Strike | todo |  |
-| Revven | Fey Touched | todo |  |
 | Revven | Caster Prestidigitation | todo |  |
-| Elucyne | Dread Ambusher | todo |  |
-| Elucyne | Umbral Sight | todo |  |
-| Elucyne | Extra Attack | todo |  |
-| Elucyne | Steel Will | todo |  |
-| Elucyne | Cunning Action | todo |  |
 | Elucyne | Favored Enemy | todo |  |
 | Elucyne | Natural Explorer | todo |  |
 | Elucyne | Infernal Legacy: Hellish Rebuke | todo |  |
