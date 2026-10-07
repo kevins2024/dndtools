@@ -55,6 +55,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_giant-s-power | Giant's Power | Bigby Presents: Glory of the Giants | no | Chuknora | todo |  |
 | pub_extra-attack-bladesinger | Extra Attack (Bladesinger) | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 6th level. | no | Kessara | todo |  |
 | pub_bladesinger-training-in-war-and-song | Bladesinger — Training in War and Song | Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Kessara | todo |  |
+| pub_tattoo-of-warding | Tattoo of Warding | Campaign homebrew. | yes | Eldi | todo |  |
 | pub_stars-druid-star-map | Stars Druid — Star Map | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Tackett | done |  |
 | channel-divinity-2-rest | Channel Divinity (2/rest) | Cleric | no | Petra | todo |  |
 | channel-divinity-turn-undead | Channel Divinity: Turn Undead | Cleric | no | Revven | todo |  |
@@ -68,11 +69,14 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_spirit-session | Spirit Session | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level, a separate feature from Spiritual Focus's own 6th-level damage/healing bonus roll (both genuinely trigger at 6th level). | no | Sorra | todo |  |
 | gen_druid_base_wild-shape | Wild Shape | Druid | no | Tackett | todo |  |
+| pub_unleash-incarnation | Unleash Incarnation | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. | no | Eldi | todo |  |
 | pub_manifest-echo | Manifest Echo | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. Split into separate entries below so each shows up correctly under the action/bonus action/reaction filter instead of being buried as prose inside one feature. | no | Eldi | todo |  |
+| pub_echo-attack-from | Echo: Attack From | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no | Eldi | todo |  |
+| pub_echo-opportunity-attack | Echo: Opportunity Attack | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no | Eldi | todo |  |
 | pub_echo-reposition | Echo: Reposition | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no | Eldi | todo |  |
 | pub_echo-swap-places | Echo: Swap Places | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no | Eldi | todo |  |
 | action-surge-1-use | Action Surge (1 use) | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra | done |  |
-| gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz, Corwin | todo |  |
+| gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz, Corwin, Eldi | todo |  |
 | fighter-fighting-style-dueling | Fighting Style: Dueling | Fighter | no | Kerra | todo |  |
 | fighter-fighting-style-two-weapon-fighting | Fighting Style: Two-Weapon Fighting | Fighter | no | Vaz, Eldi | todo |  |
 | indomitable-1-use | Indomitable (1 use) | Fighter | no | Vaz, Corwin | done |  |
@@ -112,7 +116,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_awakened-mind | Awakened Mind | Player's Handbook | no | Kerra | todo |  |
 | pub_channel-divinity-nature-s-wrath | Channel Divinity: Nature's Wrath | Player's Handbook | no | Chuknora | todo |  |
 | pub_channel-divinity-turn-the-faithless | Channel Divinity: Turn the Faithless | Player's Handbook | no | Chuknora | todo |  |
-| pub_darkvision | Darkvision | Player's Handbook | no | Enauweyn | todo |  |
+| pub_darkvision | Darkvision | Player's Handbook | no | Enauweyn, Eldi | todo |  |
 | pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no | Petra, Revven | todo |  |
 | pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
@@ -139,7 +143,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | gen_ranger_base_natural-explorer | Natural Explorer | Ranger | no | Elucyne | todo |  |
 | pub_primal-companion | Primal Companion | Ranger (Beast Master) | no | Tackett | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
-| cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Elucyne, Siv, Torrin | todo |  |
+| cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Elucyne, Eldi, Siv, Torrin | todo |  |
 | rogue-evasion | Evasion | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
 | rogue-expertise-1 | Expertise | Rogue | no | Siv, Torrin | todo |  |
 | sneak-attack | Sneak Attack | Rogue | no | Denna, Pirra, Elucyne, Eldi, Siv, Torrin | done |  |
@@ -152,6 +156,8 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | metamagic-twinned-spell | Metamagic: Twinned Spell | Sorcerer | no | Lenn | todo |  |
 | pub_soulknife-homing-strikes | Homing Strikes | Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature. | no | Torrin | todo |  |
 | pub_soulknife-psychic-teleportation | Psychic Teleportation | Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature. | no | Torrin | todo |  |
+| pub_fancy-footwork | Fancy Footwork | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level. | no | Eldi | todo |  |
+| pub_rakish-audacity | Rakish Audacity | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level. | no | Eldi | todo |  |
 | pub_channel-divinity-champion-challenge | Channel Divinity: Champion Challenge | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_channel-divinity-turn-the-tide | Channel Divinity: Turn the Tide | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
 | pub_crown-divine-allegiance | Crown — Divine Allegiance | Sword Coast Adventurer's Guide | no | Enauweyn | todo |  |
@@ -188,6 +194,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | sculpt-spells | Sculpt Spells | Wizard (Evocation) | no | Lenn | todo |  |
 | pub_bountiful-luck | Bountiful Luck | Xanathar's Guide to Everything | no | Tackett | todo |  |
 | pub_dread-ambusher | Dread Ambusher | Xanathar's Guide to Everything | no | Elucyne | todo |  |
+| pub_elven-accuracy | Elven Accuracy | Xanathar's Guide to Everything | no | Eldi | todo |  |
 | pub_fade-away | Fade Away | Xanathar's Guide to Everything | no | Jaygar | todo |  |
 | pub_inquisitive-ear-for-deceit | Inquisitive — Ear for Deceit | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_inquisitive-eye-for-detail | Inquisitive — Eye for Detail | Xanathar's Guide to Everything | no | Pirra | todo |  |
@@ -318,7 +325,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_mighty-impel | Mighty Impel | Bigby Presents: Glory of the Giants | no |  | todo |  |
 | pub_song-of-defense | Song of Defense | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 10th level. | no |  | todo |  |
 | pub_song-of-victory | Song of Victory | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 14th level. | no |  | todo |  |
-| pub_tattoo-of-warding | Tattoo of Warding | Campaign homebrew. | yes |  | todo |  |
 | pub_stars-druid-twinkling-constellations | Stars Druid — Twinkling Constellations | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level. | no |  | todo |  |
 | channel-divinity-1-rest | Channel Divinity (1/rest) | Cleric | no |  | todo |  |
 | channel-divinity-3-rest | Channel Divinity (3/rest) | Cleric | no |  | todo |  |
@@ -426,10 +432,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_shadow-martyr | Shadow Martyr | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 10th level. | no |  | todo |  |
 | pub_reclaim-potential | Reclaim Potential | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 15th level. | no |  | todo |  |
 | pub_legion-of-one | Legion of One | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 18th level (capstone). | no |  | todo |  |
-| pub_unleash-incarnation | Unleash Incarnation | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. | no |  | todo |  |
 | pub_echo-avatar | Echo Avatar | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 7th level. | no |  | todo |  |
-| pub_echo-attack-from | Echo: Attack From | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
-| pub_echo-opportunity-attack | Echo: Opportunity Attack | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
 | pub_resilient-constitution-legacy | Resilient (Constitution) | Feat, Player's Handbook. | no |  | todo |  |
 | action-surge-2-uses | Action Surge (2 uses) | Fighter | no |  | done |  |
 | extra-attack-2 | Extra Attack (2) | Fighter | no |  | todo |  |
@@ -872,8 +875,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_soulknife-rend-mind | Soulknife — Rend Mind | Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 17th level. | no |  | todo |  |
 | pub_elegant-maneuver | Elegant Maneuver | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 13th level. | no |  | todo |  |
 | pub_master-duelist | Master Duelist | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 17th level. | no |  | todo |  |
-| pub_fancy-footwork | Fancy Footwork | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level. | no |  | todo |  |
-| pub_rakish-audacity | Rakish Audacity | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 3rd level. | no |  | todo |  |
 | pub_panache | Panache | Swashbuckler (Rogue subclass, Xanathar's Guide to Everything) — 9th level. | no |  | todo |  |
 | pub_exalted-champion | Exalted Champion | Sword Coast Adventurer's Guide | no |  | todo |  |
 | pub_unyielding-spirit | Unyielding Saint | Sword Coast Adventurer's Guide | no |  | todo |  |
@@ -1002,7 +1003,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_dragon-hide | Dragon Hide | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_drow-high-magic | Drow High Magic | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dwarven-fortitude | Dwarven Fortitude | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_elven-accuracy | Elven Accuracy | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_empowered-healing | Empowered Healing | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_favored-by-the-gods | Favored by the Gods | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_fey-teleportation | Fey Teleportation | Xanathar's Guide to Everything | no |  | todo |  |
@@ -1031,16 +1031,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Revven | Caster Prestidigitation | todo |  |
 | Elucyne | Infernal Legacy: Hellish Rebuke | todo |  |
 | Elucyne | Infernal Legacy: Darkness | todo |  |
-| Eldi | Echo: Attack From | todo |  |
-| Eldi | Echo: Opportunity Attack | todo |  |
-| Eldi | Unleash Incarnation | todo |  |
-| Eldi | Extra Attack | todo |  |
-| Eldi | Cunning Action | todo |  |
-| Eldi | Fancy Footwork | todo |  |
-| Eldi | Rakish Audacity | todo |  |
-| Eldi | Elven Accuracy | todo |  |
-| Eldi | Darkvision | todo |  |
-| Eldi | Tattoo of Warding | todo |  |
 | Rith | Divine Magic | todo |  |
 | Rith | Favored by the Gods | todo |  |
 | Rith | Font of Magic | todo |  |

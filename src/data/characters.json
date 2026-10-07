@@ -4711,17 +4711,20 @@
       {
         "name": "Echo: Attack From",
         "type": "feature",
+        "id": "pub_echo-attack-from",
         "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack — Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
       },
       {
         "name": "Echo: Opportunity Attack",
         "type": "feature",
+        "id": "pub_echo-opportunity-attack",
         "action_type": "reaction",
         "description": "When a creature you can see within 5ft of your echo moves at least 5ft away from it, make an opportunity attack against that creature as if you were standing in the echo's space."
       },
       {
         "name": "Unleash Incarnation",
         "type": "feature",
+        "id": "pub_unleash-incarnation",
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
@@ -4729,7 +4732,8 @@
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_base_extra-attack-1"
       },
       {
         "name": "Sneak Attack",
@@ -4740,19 +4744,23 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
         "name": "Fancy Footwork",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_fancy-footwork"
       },
       {
         "name": "Rakish Audacity",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_rakish-audacity"
       },
       {
         "name": "Elven Accuracy",
         "type": "feat",
+        "id": "pub_elven-accuracy",
         "stat_bonuses": {
           "dex": 1
         },
@@ -4765,11 +4773,13 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Tattoo of Warding",
         "type": "feature",
+        "id": "pub_tattoo-of-warding",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 1,
