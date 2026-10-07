@@ -1740,5 +1740,90 @@
   "pub_piercer": {
     "name": "Piercer",
     "per_turn_cap": true
+  },
+  "pub_telekinetic": {
+    "name": "Telekinetic",
+    "action_type": "bonus_action"
+  },
+  "pub_telepathic": {
+    "name": "Telepathic",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_eldritch-cannon-explosive-cannon": {
+    "name": "Eldritch Cannon — Explosive Cannon",
+    "action_type": "action"
+  },
+  "eldritch-master": {
+    "name": "Eldritch Master",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "mystic-arcanum-6th-level": {
+    "name": "Mystic Arcanum (6th level)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "mystic-arcanum-7th-level": {
+    "name": "Mystic Arcanum (7th level)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "mystic-arcanum-8th-level": {
+    "name": "Mystic Arcanum (8th level)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "mystic-arcanum-9th-level": {
+    "name": "Mystic Arcanum (9th level)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_beguiling-defenses": {
+    "name": "Beguiling Defenses",
+    "action_type": "reaction"
+  },
+  "pub_dark-delirium": {
+    "name": "Dark Delirium",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_fey-presence": {
+    "name": "Fey Presence",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_misty-escape": {
+    "name": "Misty Escape",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_healing-light": {
+    "name": "Healing Light",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "pub_searing-vengeance": {
+    "name": "Searing Vengeance",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_fathomless-plunge": {
+    "name": "Fathomless Plunge",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_grasping-tentacles": {
+    "name": "Grasping Tentacles",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_guardian-coil": {
+    "name": "Guardian Coil",
+    "action_type": "reaction"
   }
 }
