@@ -5588,7 +5588,7 @@
     "category": "subclass_feature",
     "class": "Monk (Way of the Open Hand)",
     "level_gained": 17,
-    "description": "When you hit with an unarmed strike, spend 3 ki points to start imperceptible vibrations lasting a number of days equal to your monk level, harmless unless you use your action to end them (you and the target must be on the same plane). Ending them forces a Constitution save — on a failure the target drops to 0 hit points, on a success it takes 10d10 necrotic damage. Only one creature can be afflicted at a time; once used, you can't use it again until you finish a long rest.",
+    "description": "When you hit with an unarmed strike, spend 3 ki points to start imperceptible vibrations lasting a number of days equal to your monk level, harmless unless you use your action to end them (you and the target must be on the same plane). Ending them forces a Constitution save — on a failure the target drops to 0 hit points, on a success it takes 10d10 necrotic damage. Only one creature can be afflicted at a time, and you can end the vibrations harmlessly without using an action.",
     "source": "Player's Handbook",
     "homebrew": false
   },
