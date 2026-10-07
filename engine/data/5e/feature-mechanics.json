@@ -265,5 +265,32 @@
     "recharge": "short_rest",
     "uses_max": 3,
     "tier_family": "channel-divinity"
+  },
+  "channel-divinity-preserve-life": {
+    "name": "Channel Divinity: Preserve Life",
+    "action_type": "action"
+  },
+  "divine-strike": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "pub_divine-strike-tempest": {
+    "name": "Divine Strike",
+    "per_turn_cap": true
+  },
+  "channel-divinity-turn-undead": {
+    "name": "Channel Divinity: Turn Undead",
+    "action_type": "action"
+  },
+  "pub_wrath-of-the-storm": {
+    "name": "Wrath of the Storm",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
   }
 }

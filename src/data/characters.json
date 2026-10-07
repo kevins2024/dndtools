@@ -1818,7 +1818,8 @@
         "name": "Channel Divinity: Preserve Life",
         "type": "feature",
         "id": "channel-divinity-preserve-life",
-        "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use."
+        "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use.",
+        "action_type": "action"
       },
       {
         "name": "Blessed Healer",
@@ -1828,7 +1829,8 @@
       {
         "name": "Divine Strike",
         "type": "feature",
-        "id": "divine-strike"
+        "id": "divine-strike",
+        "per_turn_cap": true
       },
       {
         "name": "Destroy Undead (CR 1)",
@@ -3874,7 +3876,8 @@
         "type": "feature",
         "id": "pub_divine-strike-tempest",
         "description": "Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 thunder damage to the target.",
-        "note": "Removed the duplicate \"Blessed Strikes\" entry 2026-09-18 — that's Tasha's Cauldron's optional class feature that explicitly REPLACES Divine Strike (per its own catalog note), not something that stacks alongside it; having both was a data error, not a real build choice. Its only added value (working with Potent Spellcasting too) doesn't apply here since Revven doesn't have Potent Spellcasting from anywhere."
+        "note": "Removed the duplicate \"Blessed Strikes\" entry 2026-09-18 — that's Tasha's Cauldron's optional class feature that explicitly REPLACES Divine Strike (per its own catalog note), not something that stacks alongside it; having both was a data error, not a real build choice. Its only added value (working with Potent Spellcasting too) doesn't apply here since Revven doesn't have Potent Spellcasting from anywhere.",
+        "per_turn_cap": true
       },
       {
         "name": "Fey Ancestry",
