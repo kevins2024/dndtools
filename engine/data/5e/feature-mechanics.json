@@ -607,5 +607,65 @@
     "name": "Magic Awareness",
     "action_type": "action",
     "recharge": "long_rest"
+  },
+  "pub_unstable-backlash": {
+    "name": "Unstable Backlash",
+    "action_type": "reaction"
+  },
+  "pub_wild-magic-table-2": {
+    "name": "Wild Magic Table — Roll 2",
+    "action_type": "bonus_action"
+  },
+  "pub_animating-performance": {
+    "name": "Animating Performance",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_performance-of-creation": {
+    "name": "Performance of Creation",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_infectious-inspiration": {
+    "name": "Infectious Inspiration",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_unsettling-words": {
+    "name": "Unsettling Words",
+    "action_type": "bonus_action"
+  },
+  "pub_enthralling-performance": {
+    "name": "Enthralling Performance",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_mantle-of-inspiration": {
+    "name": "Mantle of Inspiration",
+    "action_type": "bonus_action"
+  },
+  "pub_mantle-of-majesty": {
+    "name": "Mantle of Majesty",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_unbreakable-majesty": {
+    "name": "Unbreakable Majesty",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_bonus-proficiencies-and-blade-flourish": {
+    "name": "Bonus Proficiencies and Blade Flourish",
+    "per_turn_cap": true
   }
 }
