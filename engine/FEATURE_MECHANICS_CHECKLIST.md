@@ -175,7 +175,7 @@ Counts: todo 0 · done 311 · text-only 16 · needs-engine 654 · needs-owner 24
 | hb_rogue_scout_skirmisher | Skirmisher | Rogue (Scout) | no | Siv | done | Text is a consistent paraphrase of wikidot (rogue:scout). Reaction move (id is hb_ but record is official XGtE). |
 | hb_rogue_scout_superior_mobility | Superior Mobility | Rogue (Scout) | no | Siv | needs-engine | Text is a consistent paraphrase of wikidot (rogue:scout). +10 speed. |
 | hb_rogue_scout_survivalist | Survivalist | Rogue (Scout) | no | Siv | needs-engine | Text is a consistent paraphrase of wikidot (rogue:scout). Nature/Survival proficiency + expertise. |
-| font-of-magic | Font of Magic | Sorcerer | no | Rith, Iyani | needs-engine | Text verified vs wikidot (sorcerer). Sorcery-point pool and conversion. |
+| font-of-magic | Font of Magic | Sorcerer | no | Rith, Iyani | needs-engine | Sorcery points are tracked in character.resources (sorcery_points), not on the tile; needs engine to derive max = sorcerer level. |
 | metamagic-careful-spell | Metamagic: Careful Spell | Sorcerer | no | Iyani | needs-engine | Text verified vs wikidot (sorcerer). 1 sorcery point; protect up to CHA-mod creatures. |
 | metamagic-quickened-spell | Metamagic: Quickened Spell | Sorcerer | no | Lenn, Rith | needs-engine | Text verified vs wikidot (sorcerer). 2 sorcery points; casting time to bonus action. |
 | metamagic-twinned-spell | Metamagic: Twinned Spell | Sorcerer | no | Lenn, Rith, Iyani | needs-engine | Text verified vs wikidot (sorcerer). Sorcery-point cost = spell level. |
