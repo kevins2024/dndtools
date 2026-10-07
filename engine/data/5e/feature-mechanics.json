@@ -443,5 +443,9 @@
     "action_type": "reaction",
     "recharge": "short_rest",
     "uses_max": 1
+  },
+  "pub_soulknife-psychic-whispers": {
+    "name": "Soulknife — Psychic Whispers",
+    "action_type": "action"
   }
 }
