@@ -1487,5 +1487,91 @@
   "pub_exceptional-training": {
     "name": "Exceptional Training",
     "action_type": "bonus_action"
+  },
+  "pub_beguiling-twist": {
+    "name": "Beguiling Twist",
+    "action_type": "reaction"
+  },
+  "pub_dreadful-strikes": {
+    "name": "Dreadful Strikes",
+    "per_turn_cap": true
+  },
+  "pub_misty-wanderer": {
+    "name": "Misty Wanderer",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_detect-portal-and-planar-warrior": {
+    "name": "Detect Portal and Planar Warrior",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_ethereal-step": {
+    "name": "Ethereal Step",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_spectral-defense": {
+    "name": "Spectral Defense",
+    "action_type": "reaction"
+  },
+  "pub_hunter-s-sense-and-slayer-s-prey": {
+    "name": "Hunter's Sense and Slayer's Prey",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_magic-users-nemesis": {
+    "name": "Magic-User's Nemesis",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_slayers-counter": {
+    "name": "Slayer's Counter",
+    "action_type": "reaction"
+  },
+  "pub_gathered-swarm": {
+    "name": "Gathered Swarm",
+    "per_turn_cap": true
+  },
+  "pub_swarming-dispersal": {
+    "name": "Swarming Dispersal",
+    "action_type": "reaction",
+    "recharge": "long_rest"
+  },
+  "pub_writhing-tide": {
+    "name": "Writhing Tide",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "stroke-of-luck": {
+    "name": "Stroke of Luck",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "hb_rogue_at_spell_thief": {
+    "name": "Spell Thief",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "hb_rogue_at_versatile_trickster": {
+    "name": "Versatile Trickster",
+    "action_type": "bonus_action"
   }
 }
