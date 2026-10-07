@@ -505,5 +505,62 @@
       "base": 0,
       "min": 1
     }
+  },
+  "intimidating-presence": {
+    "name": "Intimidating Presence",
+    "action_type": "action"
+  },
+  "retaliation": {
+    "name": "Retaliation",
+    "action_type": "reaction"
+  },
+  "pub_consult-the-spirits": {
+    "name": "Consult the Spirits",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_spirit-shield": {
+    "name": "Spirit Shield",
+    "action_type": "reaction"
+  },
+  "pub_battlerager-armor": {
+    "name": "Battlerager Armor",
+    "action_type": "bonus_action"
+  },
+  "pub_battlerager-charge": {
+    "name": "Battlerager Charge",
+    "action_type": "bonus_action"
+  },
+  "pub_call-the-hunt": {
+    "name": "Call the Hunt",
+    "recharge": "long_rest"
+  },
+  "pub_form-of-the-beast-bite": {
+    "name": "Form of the Beast: Bite",
+    "per_turn_cap": true
+  },
+  "pub_form-of-the-beast-claws": {
+    "name": "Form of the Beast: Claws",
+    "per_turn_cap": true
+  },
+  "pub_form-of-the-beast-tail": {
+    "name": "Form of the Beast: Tail",
+    "action_type": "reaction"
+  },
+  "pub_infectious-fury": {
+    "name": "Infectious Fury",
+    "recharge": "long_rest"
+  },
+  "pub_raging-storm-desert": {
+    "name": "Raging Storm: Desert",
+    "action_type": "reaction"
+  },
+  "pub_raging-storm-sea": {
+    "name": "Raging Storm: Sea",
+    "action_type": "reaction"
+  },
+  "pub_storm-aura": {
+    "name": "Storm Aura",
+    "action_type": "bonus_action"
   }
 }
