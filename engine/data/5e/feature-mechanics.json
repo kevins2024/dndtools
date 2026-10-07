@@ -1218,5 +1218,47 @@
   "pub_visage-of-the-astral-self": {
     "name": "Visage of the Astral Self",
     "action_type": "bonus_action"
+  },
+  "pub_tipsy-sway": {
+    "name": "Tipsy Sway",
+    "action_type": "reaction"
+  },
+  "pub_discipline-elemental-attunement": {
+    "name": "Elemental Attunement",
+    "action_type": "action"
+  },
+  "pub_discipline-fist-of-unbroken-air": {
+    "name": "Fist of Unbroken Air",
+    "action_type": "action"
+  },
+  "pub_discipline-shape-the-flowing-river": {
+    "name": "Shape the Flowing River",
+    "action_type": "action"
+  },
+  "pub_discipline-water-whip": {
+    "name": "Water Whip",
+    "action_type": "action"
+  },
+  "pub_one-with-the-blade": {
+    "name": "One with the Blade",
+    "per_turn_cap": true
+  },
+  "pub_sharpen-the-blade": {
+    "name": "Sharpen the Blade",
+    "action_type": "bonus_action"
+  },
+  "pub_unerring-accuracy": {
+    "name": "Unerring Accuracy",
+    "per_turn_cap": true,
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_hour-of-reaping": {
+    "name": "Hour of Reaping",
+    "action_type": "action"
+  },
+  "pub_touch-of-the-long-death": {
+    "name": "Touch of the Long Death",
+    "action_type": "action"
   }
 }
