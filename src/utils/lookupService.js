@@ -12,6 +12,7 @@
 // Monster data: published_monsters.json (homebrew, already in the shape the
 // API returns — see normalizeMonster) first, then public dnd5eapi.co REST API.
 
+const { resolveFeatureText } = require('../../engine/rules/5e/featureText')
 import featuresData from '@/data/api_data_cache/features.json'
 import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
@@ -260,7 +261,9 @@ export async function lookupFeature(name, id) {
           pubById.class ||
           pubById.source ||
           (pubById.homebrew ? 'Homebrew' : 'Published'),
-        description: pubById.description,
+        description: resolveFeatureText(pubById, (i) =>
+          published.features.find((f) => f.id === i)
+        ),
       }
     }
   }
@@ -294,7 +297,9 @@ export async function lookupFeature(name, id) {
         pubExact.class ||
         pubExact.source ||
         (pubExact.homebrew ? 'Homebrew' : 'Published'),
-      description: pubExact.description,
+      description: resolveFeatureText(pubExact, (i) =>
+        published.features.find((f) => f.id === i)
+      ),
     }
   }
 

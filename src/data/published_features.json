@@ -7952,29 +7952,29 @@
   {
     "id": "pub_infernal-legacy-hellish-rebuke",
     "name": "Infernal Legacy: Hellish Rebuke",
-    "description": "The Hellish Rebuke part of Infernal Legacy — full text on pub_infernal-legacy.",
+    "text_from": "pub_infernal-legacy",
     "type": "feature",
     "homebrew": false,
     "source": "Player's Handbook",
-    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; the rules text lives only on the parent record."
+    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; text comes from the parent via text_from."
   },
   {
     "id": "pub_infernal-legacy-darkness",
     "name": "Infernal Legacy: Darkness",
-    "description": "The Darkness part of Infernal Legacy — full text on pub_infernal-legacy.",
+    "text_from": "pub_infernal-legacy",
     "type": "feature",
     "homebrew": false,
     "source": "Player's Handbook",
-    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; the rules text lives only on the parent record."
+    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; text comes from the parent via text_from."
   },
   {
     "id": "pub_combat-wild-shape-healing",
     "name": "Combat Wild Shape: Healing",
-    "description": "The healing part of Combat Wild Shape — full text on pub_combat-wild-shape.",
+    "text_from": "pub_combat-wild-shape",
     "type": "feature",
     "homebrew": false,
     "action_type": "bonus_action",
     "source": "Player's Handbook",
-    "note": "Second paragraph of Circle of the Moon's Combat Wild Shape (real PHB rule, verified on dnd5e.wikidot.com druid:moon), split into its own tile; the rules text lives only on pub_combat-wild-shape."
+    "note": "Second paragraph of Circle of the Moon's Combat Wild Shape (real PHB rule, verified on dnd5e.wikidot.com druid:moon), split into its own tile; text comes from pub_combat-wild-shape via text_from."
   }
 ]
