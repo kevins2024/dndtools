@@ -410,5 +410,9 @@
   "pub_empowered-healing": {
     "name": "Empowered Healing",
     "per_turn_cap": true
+  },
+  "pub_mother-s-whim": {
+    "name": "Mother's Whim",
+    "action_type": "bonus_action"
   }
 }
