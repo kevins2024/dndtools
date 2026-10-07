@@ -1417,5 +1417,45 @@
   "maneuver-riposte": {
     "name": "Maneuver: Riposte",
     "action_type": "reaction"
+  },
+  "pub_minions-of-chaos": {
+    "name": "Minions of Chaos",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_mire-the-mind": {
+    "name": "Mire the Mind",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_one-with-shadows": {
+    "name": "One with Shadows",
+    "action_type": "action"
+  },
+  "pub_polearm-master": {
+    "name": "Polearm Master",
+    "action_type": "bonus_action"
+  },
+  "pub_rally": {
+    "name": "Rally",
+    "action_type": "bonus_action"
+  },
+  "pub_savage-attacker": {
+    "name": "Savage Attacker",
+    "per_turn_cap": true
+  },
+  "pub_sculptor-of-flesh": {
+    "name": "Sculptor of Flesh",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_sentinel": {
+    "name": "Sentinel",
+    "action_type": "reaction"
+  },
+  "pub_sign-of-ill-omen": {
+    "name": "Sign of Ill Omen",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
