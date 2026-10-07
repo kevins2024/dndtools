@@ -447,5 +447,25 @@
   "pub_soulknife-psychic-whispers": {
     "name": "Soulknife — Psychic Whispers",
     "action_type": "action"
+  },
+  "pub_soulknife-psychic-teleportation": {
+    "name": "Psychic Teleportation",
+    "action_type": "bonus_action"
+  },
+  "cutting-words": {
+    "name": "Cutting Words",
+    "action_type": "reaction"
+  },
+  "countercharm": {
+    "name": "Countercharm",
+    "action_type": "action"
+  },
+  "pub_guiding-whispers": {
+    "name": "Guiding Whispers",
+    "grants_spells": {
+      "fixed": [
+        "Guidance"
+      ]
+    }
   }
 }

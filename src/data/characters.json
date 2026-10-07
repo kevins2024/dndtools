@@ -7152,7 +7152,8 @@
         "id": "cutting-words",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "reaction"
       },
       {
         "name": "Fey Touched",
@@ -7179,7 +7180,8 @@
         "id": "countercharm",
         "type": "feature",
         "level_gained": 6,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "action"
       },
       {
         "name": "Additional Magical Secrets: Pulse Wave, Haste",
@@ -7522,7 +7524,10 @@
         "id": "pub_guiding-whispers",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Bard"
+        "_source": "Bard",
+        "spells_granted": [
+          "Guidance"
+        ]
       },
       {
         "name": "Spiritual Focus",
@@ -7563,7 +7568,8 @@
         "id": "countercharm",
         "type": "feature",
         "level_gained": 6,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "action"
       },
       {
         "name": "Spirit Session",
