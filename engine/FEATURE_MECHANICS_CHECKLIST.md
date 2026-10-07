@@ -56,6 +56,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | blessed-healer | Blessed Healer | Cleric (Life Domain) | no | Petra | todo |  |
 | channel-divinity-preserve-life | Channel Divinity: Preserve Life | Cleric (Life Domain) | no | Petra | todo |  |
 | disciple-of-life | Disciple of Life | Cleric (Life Domain) | no | Petra | todo |  |
+| divine-strike | Divine Strike | Cleric (Life Domain) | no | Petra | todo |  |
 | pub_spiritual-focus | Spiritual Focus | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level (focus) and 6th level (bonus roll). | no | Sorra | todo |  |
 | pub_guiding-whispers | Guiding Whispers | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
@@ -67,6 +68,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | indomitable-1-use | Indomitable (1 use) | Fighter | no | Vaz, Corwin | done |  |
 | second-wind | Second Wind | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra, Brick | done |  |
 | gen_fighter_champion_improved-critical-19-20 | Improved Critical (19-20) | Fighter (Champion) | no | Kerra | todo |  |
+| pub_insightful-fighting-revised | Insightful Fighting (Revised) | Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW. | yes | Pirra | todo |  |
 | pub_linked-spellbook | Linked Spellbook | Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara. | yes | Lenn, Kessara | todo |  |
 | pub_vow-of-the-open-road | Channel Divinity: Vow of the Open Road | Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag). | yes | Ferghus | todo |  |
 | hb_infused_arbalist_calculating_arbalister | Calculating Arbalister | Homebrew — Infused Arbalist (built on Tasha's Cauldron of Everything's Artillerist framework, heavily modified). No direct RAW equivalent; loosely modeled on Battle Smith's real Battle Ready (Intelligence for attack/damage rolls with a magic weapon), scoped to a single bonded weapon. | yes | Jaygar | todo |  |
@@ -90,20 +92,23 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_awakened-mind | Awakened Mind | Player's Handbook | no | Kerra | todo |  |
 | pub_channel-divinity-nature-s-wrath | Channel Divinity: Nature's Wrath | Player's Handbook | no | Chuknora | todo |  |
 | pub_channel-divinity-turn-the-faithless | Channel Divinity: Turn the Faithless | Player's Handbook | no | Chuknora | todo |  |
+| pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no | Petra | todo |  |
 | pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
 | pub_fey-ancestry | Fey Ancestry | Player's Handbook | no | Enauweyn, Revven, Eldi, Rith, Therynv'l | todo |  |
 | pub_great-weapon-master | Great Weapon Master | Player's Handbook | no | Rhuna | todo |  |
 | pub_hellish-resistance | Hellish Resistance | Player's Handbook | no | Elucyne | todo |  |
 | pub_infernal-legacy | Infernal Legacy | Player's Handbook | no | Elucyne | todo |  |
+| pub_inspiring-leader | Inspiring Leader | Player's Handbook | no | Petra | todo |  |
 | pub_know-your-enemy | Know Your Enemy | Player's Handbook | no | Vaz | todo |  |
 | pub_menacing-attack | Menacing Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_parry | Parry | Player's Handbook | no | Vaz | todo |  |
 | pub_precision-attack | Precision Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_riposte | Riposte | Player's Handbook | no | Vaz | todo |  |
+| pub_war-caster | War Caster | Player's Handbook | no | Petra | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
-| cunning-action | Cunning Action | Rogue | no | Denna, Siv, Torrin | todo |  |
-| rogue-evasion | Evasion | Rogue | no | Denna, Siv, Torrin | todo |  |
+| cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
+| rogue-evasion | Evasion | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
 | rogue-expertise-1 | Expertise | Rogue | no | Siv, Torrin | todo |  |
 | sneak-attack | Sneak Attack | Rogue | no | Denna, Pirra, Elucyne, Eldi, Siv, Torrin | done |  |
 | thieves-cant | Thieves' Cant | Rogue | no | Torrin | todo |  |
@@ -144,6 +149,9 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | potent-cantrip | Potent Cantrip | Wizard (Evocation) | no | Lenn | todo |  |
 | sculpt-spells | Sculpt Spells | Wizard (Evocation) | no | Lenn | todo |  |
 | pub_fade-away | Fade Away | Xanathar's Guide to Everything | no | Jaygar | todo |  |
+| pub_inquisitive-ear-for-deceit | Inquisitive — Ear for Deceit | Xanathar's Guide to Everything | no | Pirra | todo |  |
+| pub_inquisitive-eye-for-detail | Inquisitive — Eye for Detail | Xanathar's Guide to Everything | no | Pirra | todo |  |
+| pub_inquisitive-steady-eye | Inquisitive — Steady Eye | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_blessed-strikes | Blessed Strikes |  | no |  | todo |  |
 | pub_tempest-cleric-thunderbolt-strike | Tempest Cleric — Thunderbolt Strike |  | no |  | todo |  |
 | gen_artificer_base_magic-item-master | Magic Item Master | Artificer | no |  | todo |  |
@@ -305,7 +313,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_channel-divinity-read-thoughts | Channel Divinity: Read Thoughts | Cleric (Knowledge Domain) | no |  | todo |  |
 | pub_visions-of-the-past | Visions of the Past | Cleric (Knowledge Domain) | no |  | todo |  |
 | bonus-proficiency | Bonus Proficiency | Cleric (Life Domain) | no |  | todo |  |
-| divine-strike | Divine Strike | Cleric (Life Domain) | no |  | todo |  |
 | supreme-healing | Supreme Healing | Cleric (Life Domain) | no |  | todo |  |
 | pub_light-domain-bonus-cantrip | Bonus Cantrip | Cleric (Light Domain) | no |  | todo |  |
 | pub_channel-divinity-radiance-of-the-dawn | Channel Divinity: Radiance of the Dawn | Cleric (Light Domain) | no |  | todo |  |
@@ -458,7 +465,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_iron-mind | Iron Mind | Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 7th level. | no |  | todo |  |
 | hb_missile_snaring | Missile Snaring | Gloves of Missile Snaring (real 5e magic item). | no |  | todo |  |
 | pub_stars-druid-unbroken-legendary | Stars Druid — Unbroken (Legendary) | Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything). | yes |  | todo |  |
-| pub_insightful-fighting-revised | Insightful Fighting (Revised) | Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW. | yes |  | todo |  |
 | pub_infusion-clockwork-amulet | Infusion: Clockwork Amulet | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
 | pub_infusion-helm-of-comprehending-languages | Infusion: Helm of Comprehending Languages | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
 | pub_infusion-perfume-of-bewitching | Infusion: Perfume of Bewitching | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
@@ -634,7 +640,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_darkvision | Darkvision | Player's Handbook | no |  | todo |  |
 | pub_death-strike | Death Strike | Player's Handbook | no |  | todo |  |
 | pub_defensive-duelist | Defensive Duelist | Player's Handbook | no |  | todo |  |
-| pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no |  | todo |  |
 | pub_devil-s-sight | Devil's Sight | Player's Handbook | no |  | todo |  |
 | pub_distracting-strike | Distracting Strike | Player's Handbook | no |  | todo |  |
 | pub_dreadful-word | Dreadful Word | Player's Handbook | no |  | todo |  |
@@ -663,7 +668,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_improved-abjuration | Improved Abjuration | Player's Handbook | no |  | todo |  |
 | pub_improved-combat-superiority-d10 | Improved Combat Superiority (d10) | Player's Handbook | no |  | todo |  |
 | pub_improved-combat-superiority-d12 | Improved Combat Superiority (d12) | Player's Handbook | no |  | todo |  |
-| pub_inspiring-leader | Inspiring Leader | Player's Handbook | no |  | todo |  |
 | pub_keen-mind | Keen Mind | Player's Handbook | no |  | todo |  |
 | pub_lifedrinker | Lifedrinker | Player's Handbook | no |  | todo |  |
 | pub_lightly-armored | Lightly Armored | Player's Handbook | no |  | todo |  |
@@ -746,7 +750,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_undying-sentinel | Undying Sentinel | Player's Handbook | no |  | todo |  |
 | pub_visions-of-distant-realms | Visions of Distant Realms | Player's Handbook | no |  | todo |  |
 | pub_voice-of-the-chain-master | Voice of the Chain Master | Player's Handbook | no |  | todo |  |
-| pub_war-caster | War Caster | Player's Handbook | no |  | todo |  |
 | pub_weapon-master | Weapon Master | Player's Handbook | no |  | todo |  |
 | pub_whispers-of-the-grave | Whispers of the Grave | Player's Handbook | no |  | todo |  |
 | pub_witch-sight | Witch Sight | Player's Handbook | no |  | todo |  |
@@ -1002,9 +1005,6 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_fey-teleportation | Fey Teleportation | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_flames-of-phlegethos | Flames of Phlegethos | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_infernal-constitution | Infernal Constitution | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_inquisitive-ear-for-deceit | Inquisitive — Ear for Deceit | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_inquisitive-eye-for-detail | Inquisitive — Eye for Detail | Xanathar's Guide to Everything | no |  | todo |  |
-| pub_inquisitive-steady-eye | Inquisitive — Steady Eye | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_inquisitive-unerring-eye | Inquisitive — Unerring Eye | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_master-of-tactics | Master of Tactics | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_orcish-fury | Orcish Fury | Xanathar's Guide to Everything | no |  | todo |  |
@@ -1024,17 +1024,7 @@ Counts: todo 989 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 |---|---|---|---|
 | Lenn | Caster Prestidigitation | todo |  |
 | Kessara | Caster Prestidigitation | todo |  |
-| Petra | Divine Strike | todo |  |
-| Petra | Destroy Undead (CR 1) | todo |  |
-| Petra | Inspiring Leader | todo |  |
-| Petra | War Caster | todo |  |
 | Petra | Caster Prestidigitation | todo |  |
-| Pirra | Cunning Action | todo |  |
-| Pirra | Evasion | todo |  |
-| Pirra | Inquisitive — Ear for Deceit | todo |  |
-| Pirra | Inquisitive — Eye for Detail | todo |  |
-| Pirra | Insightful Fighting (Revised) | todo |  |
-| Pirra | Inquisitive — Steady Eye | todo |  |
 | Pirra | Observant | todo |  |
 | Lyria | Arcane Recovery | todo |  |
 | Lyria | Abjuration Savant | todo |  |

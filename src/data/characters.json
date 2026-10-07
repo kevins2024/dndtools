@@ -1819,20 +1819,24 @@
       },
       {
         "name": "Divine Strike",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-strike"
       },
       {
         "name": "Destroy Undead (CR 1)",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_destroy-undead-cr-1"
       },
       {
         "name": "Inspiring Leader",
         "type": "feat",
+        "id": "pub_inspiring-leader",
         "description": "10-minute speech. Up to 6 willing creatures who can hear and understand you gain temporary HP equal to your level + CHA modifier. A creature can't benefit again until after a short or long rest."
       },
       {
         "name": "War Caster",
-        "type": "feat"
+        "type": "feat",
+        "id": "pub_war-caster"
       },
       {
         "name": "Caster Prestidigitation",
@@ -2103,6 +2107,7 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
@@ -2113,24 +2118,29 @@
       },
       {
         "name": "Evasion",
-        "type": "feature"
+        "type": "feature",
+        "id": "rogue-evasion"
       },
       {
         "name": "Inquisitive — Ear for Deceit",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_inquisitive-ear-for-deceit"
       },
       {
         "name": "Inquisitive — Eye for Detail",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_inquisitive-eye-for-detail"
       },
       {
         "name": "Insightful Fighting (Revised)",
         "type": "feature",
+        "id": "pub_insightful-fighting-revised",
         "action_type": "bonus_action"
       },
       {
         "name": "Inquisitive — Steady Eye",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_inquisitive-steady-eye"
       },
       {
         "name": "Observant",
