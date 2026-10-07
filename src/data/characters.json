@@ -4239,11 +4239,13 @@
       },
       {
         "name": "Favored Enemy",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_ranger_base_favored-enemy"
       },
       {
         "name": "Natural Explorer",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_ranger_base_natural-explorer"
       },
       {
         "name": "Hellish Resistance",
@@ -4431,11 +4433,13 @@
       },
       {
         "name": "Divine Smite",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-smite"
       },
       {
         "name": "Divine Health",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-health"
       },
       {
         "name": "Channel Divinity: Sacred Weapon",
@@ -4458,11 +4462,13 @@
       },
       {
         "name": "Aura of Protection (+4 to ally saves within 10ft)",
-        "type": "feature"
+        "type": "feature",
+        "id": "aura-of-protection"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "paladin-extra-attack"
       },
       {
         "name": "Lay on Hands",
@@ -4659,7 +4665,8 @@
       },
       {
         "name": "Fighting Style: Two-Weapon Fighting",
-        "type": "feature"
+        "type": "feature",
+        "id": "fighter-fighting-style-two-weapon-fighting"
       },
       {
         "name": "Second Wind",
@@ -4683,18 +4690,21 @@
       {
         "name": "Manifest Echo",
         "type": "feature",
+        "id": "pub_manifest-echo",
         "action_type": "bonus_action",
         "description": "Create the echo (or dismiss/re-place an existing one) within 15ft. Echo stats: AC 14 + proficiency bonus, 1 HP, immune to all conditions, uses your saving throws, same size as you. Destroyed if it ends your turn more than 30ft from you. See Echo: Reposition, Echo: Swap Places, Echo: Attack From, and Echo: Opportunity Attack for what you can do with it once it exists."
       },
       {
         "name": "Echo: Reposition",
         "type": "feature",
+        "id": "pub_echo-reposition",
         "action_type": "free",
         "description": "No action required — mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
       },
       {
         "name": "Echo: Swap Places",
         "type": "feature",
+        "id": "pub_echo-swap-places",
         "action_type": "bonus_action",
         "description": "Teleport-swap positions with your echo, regardless of the distance between you. Costs 15ft of your movement for that turn, in addition to the bonus action."
       },

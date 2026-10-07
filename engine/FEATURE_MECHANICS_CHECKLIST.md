@@ -68,10 +68,13 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_spirit-session | Spirit Session | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level, a separate feature from Spiritual Focus's own 6th-level damage/healing bonus roll (both genuinely trigger at 6th level). | no | Sorra | todo |  |
 | gen_druid_base_wild-shape | Wild Shape | Druid | no | Tackett | todo |  |
+| pub_manifest-echo | Manifest Echo | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. Split into separate entries below so each shows up correctly under the action/bonus action/reaction filter instead of being buried as prose inside one feature. | no | Eldi | todo |  |
+| pub_echo-reposition | Echo: Reposition | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no | Eldi | todo |  |
+| pub_echo-swap-places | Echo: Swap Places | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no | Eldi | todo |  |
 | action-surge-1-use | Action Surge (1 use) | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra | done |  |
 | gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz, Corwin | todo |  |
 | fighter-fighting-style-dueling | Fighting Style: Dueling | Fighter | no | Kerra | todo |  |
-| fighter-fighting-style-two-weapon-fighting | Fighting Style: Two-Weapon Fighting | Fighter | no | Vaz | todo |  |
+| fighter-fighting-style-two-weapon-fighting | Fighting Style: Two-Weapon Fighting | Fighter | no | Vaz, Eldi | todo |  |
 | indomitable-1-use | Indomitable (1 use) | Fighter | no | Vaz, Corwin | done |  |
 | second-wind | Second Wind | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra, Brick | done |  |
 | gen_fighter_champion_improved-critical-19-20 | Improved Critical (19-20) | Fighter (Champion) | no | Corwin, Kerra | todo |  |
@@ -92,11 +95,11 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | hb_elegant_ward | Elegant Ward | Homebrew, unique to Elowenne. | yes | Elowenne | todo |  |
 | hb_timeline_freeze | Timeline Freeze | Homebrew, unique to Elowenne. | yes | Elowenne | done |  |
 | hb_tackett_legendary_cantrips | Legendary Repertoire | Homebrew, unique to Tackett. | yes | Tackett | todo |  |
-| aura-of-protection | Aura of Protection | Paladin | no | Enauweyn | todo |  |
-| divine-health | Divine Health | Paladin | no | Chuknora, Enauweyn | todo |  |
+| aura-of-protection | Aura of Protection | Paladin | no | Enauweyn, Ferghus | todo |  |
+| divine-health | Divine Health | Paladin | no | Chuknora, Enauweyn, Ferghus | todo |  |
 | divine-sense | Divine Sense | Paladin | no | Chuknora, Enauweyn, Ferghus | done |  |
-| divine-smite | Divine Smite | Paladin | no | Chuknora, Enauweyn | todo |  |
-| paladin-extra-attack | Extra Attack | Paladin | no | Enauweyn | todo |  |
+| divine-smite | Divine Smite | Paladin | no | Chuknora, Enauweyn, Ferghus | todo |  |
+| paladin-extra-attack | Extra Attack | Paladin | no | Enauweyn, Ferghus | todo |  |
 | fighting-style-defense | Fighting Style: Defense | Paladin | no | Chuknora | todo |  |
 | fighting-style-great-weapon-fighting | Fighting Style: Great Weapon Fighting | Paladin | no | Ferghus | todo |  |
 | fighting-style-protection | Fighting Style: Protection | Paladin | no | Enauweyn | todo |  |
@@ -132,6 +135,8 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_thunderous-strike | Thunderbolt Strike | Player's Handbook | no | Revven | todo |  |
 | pub_war-caster | War Caster | Player's Handbook | no | Petra | todo |  |
 | ranger-extra-attack | Extra Attack | Ranger | no | Elucyne | todo |  |
+| gen_ranger_base_favored-enemy | Favored Enemy | Ranger | no | Elucyne | todo |  |
+| gen_ranger_base_natural-explorer | Natural Explorer | Ranger | no | Elucyne | todo |  |
 | pub_primal-companion | Primal Companion | Ranger (Beast Master) | no | Tackett | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
 | cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Elucyne, Siv, Torrin | todo |  |
@@ -422,12 +427,9 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_reclaim-potential | Reclaim Potential | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 15th level. | no |  | todo |  |
 | pub_legion-of-one | Legion of One | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 18th level (capstone). | no |  | todo |  |
 | pub_unleash-incarnation | Unleash Incarnation | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. | no |  | todo |  |
-| pub_manifest-echo | Manifest Echo | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 3rd level. Split into separate entries below so each shows up correctly under the action/bonus action/reaction filter instead of being buried as prose inside one feature. | no |  | todo |  |
 | pub_echo-avatar | Echo Avatar | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — 7th level. | no |  | todo |  |
 | pub_echo-attack-from | Echo: Attack From | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
 | pub_echo-opportunity-attack | Echo: Opportunity Attack | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
-| pub_echo-reposition | Echo: Reposition | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
-| pub_echo-swap-places | Echo: Swap Places | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
 | pub_resilient-constitution-legacy | Resilient (Constitution) | Feat, Player's Handbook. | no |  | todo |  |
 | action-surge-2-uses | Action Surge (2 uses) | Fighter | no |  | done |  |
 | extra-attack-2 | Extra Attack (2) | Fighter | no |  | todo |  |
@@ -768,14 +770,12 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_witch-sight | Witch Sight | Player's Handbook | no |  | todo |  |
 | pub_wrath-of-the-storm | Wrath of the Storm | Player's Handbook | no |  | todo |  |
 | pub_fleet-of-foot | Fleet of Foot | Player's Handbook (Wood Elf) | no |  | todo |  |
-| gen_ranger_base_favored-enemy | Favored Enemy | Ranger | no |  | todo |  |
 | gen_ranger_base_favored-enemy-improvement | Favored Enemy improvement | Ranger | no |  | todo |  |
 | feral-senses | Feral Senses | Ranger | no |  | todo |  |
 | ranger-fighting-style | Fighting Style | Ranger | no |  | todo |  |
 | foe-slayer | Foe Slayer | Ranger | no |  | todo |  |
 | hide-in-plain-sight | Hide in Plain Sight | Ranger | no |  | todo |  |
 | ranger-lands-stride | Land's Stride | Ranger | no |  | todo |  |
-| gen_ranger_base_natural-explorer | Natural Explorer | Ranger | no |  | todo |  |
 | gen_ranger_base_natural-explorer-improvement | Natural Explorer improvement | Ranger | no |  | todo |  |
 | primeval-awareness | Primeval Awareness | Ranger | no |  | todo |  |
 | gen_ranger_base_spellcasting | Spellcasting | Ranger | no |  | todo |  |
@@ -1029,18 +1029,8 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Petra | Caster Prestidigitation | todo |  |
 | Lyria | Caster Prestidigitation | todo |  |
 | Revven | Caster Prestidigitation | todo |  |
-| Elucyne | Favored Enemy | todo |  |
-| Elucyne | Natural Explorer | todo |  |
 | Elucyne | Infernal Legacy: Hellish Rebuke | todo |  |
 | Elucyne | Infernal Legacy: Darkness | todo |  |
-| Ferghus | Divine Smite | todo |  |
-| Ferghus | Divine Health | todo |  |
-| Ferghus | Aura of Protection (+4 to ally saves within 10ft) | todo |  |
-| Ferghus | Extra Attack | todo |  |
-| Eldi | Fighting Style: Two-Weapon Fighting | todo |  |
-| Eldi | Manifest Echo | todo |  |
-| Eldi | Echo: Reposition | todo |  |
-| Eldi | Echo: Swap Places | todo |  |
 | Eldi | Echo: Attack From | todo |  |
 | Eldi | Echo: Opportunity Attack | todo |  |
 | Eldi | Unleash Incarnation | todo |  |
