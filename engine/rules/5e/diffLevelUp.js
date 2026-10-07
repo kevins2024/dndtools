@@ -99,6 +99,25 @@ function resolveUsesFormula(formula, character, equippedItems) {
     const cls = (character.classes || []).find((c) => c.name === formula.class)
     return (cls?.level ?? 0) * formula.multiplier
   }
+  // A by-level table that lives in the class's own data file (Barbarian's
+  // rages_by_level: 2/3/4/5/6/unlimited) — the value at this class's current
+  // level, i.e. the entry for the highest key at or below it. A non-numeric
+  // entry ("unlimited" at 20th) has no pool to count, so no uses_max.
+  if (formula.type === 'class_table') {
+    const cls = (character.classes || []).find((c) => c.name === formula.class)
+    const table = loadClass(formula.class)?.[formula.table]
+    if (!cls || !table) return undefined
+    let value
+    let bestKey = -Infinity
+    for (const [key, v] of Object.entries(table)) {
+      const k = Number(key)
+      if (k <= cls.level && k > bestKey) {
+        bestKey = k
+        value = v
+      }
+    }
+    return typeof value === 'number' ? value : undefined
+  }
   return undefined
 }
 
@@ -192,6 +211,12 @@ function applyFeatureMechanics(features, character, equippedItems = []) {
               uses_current: f.uses_current ?? usesMax,
             }),
         per_turn_cap: f.per_turn_cap ?? mech.per_turn_cap,
+        ...(mech.adds_ability_to_initiative
+          ? {
+              adds_ability_to_initiative:
+                f.adds_ability_to_initiative ?? mech.adds_ability_to_initiative,
+            }
+          : {}),
         ...(mech.grants_spells?.fixed
           ? { spells_granted: f.spells_granted ?? mech.grants_spells.fixed }
           : {}),
@@ -615,6 +640,20 @@ function diffLevelUp(
         choices: feature.choices,
         ...(feature.stat_bonuses ? { stat_bonuses: feature.stat_bonuses } : {}),
       })
+      // Fighting Initiate teaches a Fighter fighting style: record it as the
+      // same `fightingStyle` feature a class grant produces, so the sheet
+      // shows its text and engine code (unarmedStrike) finds it one way.
+      const initiateStyle = resolution.choices?.style
+      if (feature.name === 'Fighting Initiate' && initiateStyle) {
+        const style = loadFightingStyle('Fighter', initiateStyle)
+        featFeatures.push({
+          name: style ? `Fighting Style: ${style.name}` : initiateStyle,
+          id: style?.id ?? null,
+          type: 'fightingStyle',
+          level_gained: lvl,
+          _source: 'Fighting Initiate',
+        })
+      }
       if (feature.grants_saving_throw_proficiency) {
         featSavingThrowProfs.push(feature.grants_saving_throw_proficiency)
       }
@@ -2459,7 +2498,13 @@ function diffLevelUp(
     // above — spellbook contents still need to be prepared like any other
     // Wizard spell, so `prepared: false` here specifically.
     if (normalizeName(classEntry.name) === 'wizard') {
-      const spellbookGained = 2 * levelsGained
+      // PHB Wizard, "Your Spellbook": at 1st level the spellbook holds six
+      // 1st-level wizard spells of your choice — that's the FIRST Wizard
+      // level (fromLevel 0, new character or a multiclass pickup alike), 4
+      // more than the flat +2 every later level adds. Missing this meant the
+      // New Character tool offered a Wizard only 2 (and, with no spellbook
+      // picker wired in at creation, none at all).
+      const spellbookGained = 2 * levelsGained + (fromLevel === 0 ? 4 : 0)
       const existingSpellbook = new Set(
         (character.spells || [])
           .filter((s) => s.level > 0)

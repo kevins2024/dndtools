@@ -131,10 +131,10 @@ function attackBonus(
 // treated as eligible too, the same simplification weaponStatMod already
 // makes by always using the better of STR/DEX rather than modeling a
 // genuine per-attack ability choice.
-function rageDamageBonus(character, weapon, homebrewWeaponTypes = {}) {
+// The raw Rage damage number for a character: 0 unless Raging and a
+// Barbarian. Split out so non-weapon attacks (unarmed strikes) can apply it.
+function rageDamage(character) {
   if (!(character.conditions ?? []).includes('Raging')) return 0
-  const props = weaponProps(weapon, homebrewWeaponTypes)
-  if (props.weapon_type === 'ranged') return 0
   const barbLevel = (character.classes ?? []).find(
     (c) => c.name?.toLowerCase() === 'barbarian'
   )?.level
@@ -142,6 +142,13 @@ function rageDamageBonus(character, weapon, homebrewWeaponTypes = {}) {
   if (barbLevel >= 16) return 4
   if (barbLevel >= 9) return 3
   return 2
+}
+
+function rageDamageBonus(character, weapon, homebrewWeaponTypes = {}) {
+  if (!(character.conditions ?? []).includes('Raging')) return 0
+  const props = weaponProps(weapon, homebrewWeaponTypes)
+  if (props.weapon_type === 'ranged') return 0
+  return rageDamage(character)
 }
 
 function damageBonusBreakdown(
@@ -199,4 +206,5 @@ module.exports = {
   damageBonus,
   damageBonusBreakdown,
   rageDamageBonus,
+  rageDamage,
 }

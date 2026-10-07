@@ -17,6 +17,8 @@ const { resolveEffectiveStats } = require('./characterStats')
 const { abilityModifier } = require('./abilities')
 const { effectiveProficiencyBonus } = require('./proficiency')
 const { bonusLines } = require('./breakdown')
+const { loadoutHands } = require('./weaponHands')
+const { rageDamage } = require('./weaponAttack')
 const monk = require('../../data/5e/classes/monk.json')
 const rogue = require('../../data/5e/classes/rogue.json')
 
@@ -75,15 +77,65 @@ function bestOfStrDex(character, equippedItems) {
   }
 }
 
-// Unarmed strike with Martial Arts: best of STR/DEX for attack and damage.
-// null if the character doesn't have Martial Arts.
+const dieSides = (die) => Number(String(die).split('d')[1])
+
+const UNARMED_FIGHTING_ID = 'fighting-style-unarmed-fighting'
+
+// Unarmed Fighting (Tasha's fighting style, from a class or Fighting
+// Initiate): the style's own feature record is the single source of truth.
+function hasUnarmedFighting(character) {
+  return (character.features ?? []).some(
+    (f) =>
+      f.id === UNARMED_FIGHTING_ID ||
+      f.name === 'Fighting Style: Unarmed Fighting'
+  )
+}
+
+// Anything held in either hand: a weapon or a shield (Unarmed Fighting's d8
+// needs both hands free of them).
+function handsOccupied(character, equippedItems) {
+  const h = loadoutHands(character, equippedItems)
+  return Boolean(
+    h.main || h.off || h.twoHanded || h.shield || h.unassigned.length
+  )
+}
+
+// Unarmed strike. Three things can turn it from the plain 1-damage strike
+// into a real attack: Martial Arts (a Monk: the Monk's die, and best of
+// STR/DEX for attack and damage), Tavern Brawler ("your unarmed strike
+// deals 1d4 bludgeoning damage" — `character.unarmed_strike_die`, STR only)
+// and the Unarmed Fighting style (1d6 + STR, 1d8 while no weapon or shield
+// is held, plus 1d4 to a creature you have grappled at the start of your
+// turn). The character is proficient with unarmed strikes either way. With
+// several, the biggest die wins and the Monk's best-of-STR/DEX still
+// applies. null if the character has none of them.
 function unarmedStrike(character, equippedItems = []) {
-  const die = martialArtsDie(character)
-  if (!die) return null
-  const { bonuses, statMod } = bestOfStrDex(character, equippedItems)
+  const monkDie = martialArtsDie(character)
+  const brawlDie = character.unarmed_strike_die ?? null
+  const unarmedFighting = hasUnarmedFighting(character)
+  const fightingDie = unarmedFighting
+    ? handsOccupied(character, equippedItems)
+      ? '1d6'
+      : '1d8'
+    : null
+  const dice = [monkDie, brawlDie, fightingDie].filter(Boolean)
+  if (!dice.length) return null
+  const die = dice.reduce((best, d) =>
+    dieSides(d) > dieSides(best) ? d : best
+  )
+  const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
+  const statMod = monkDie
+    ? Math.max(abilityModifier(scores.str), abilityModifier(scores.dex))
+    : abilityModifier(scores.str)
+  const statLabel = monkDie ? 'Martial Arts (best of STR/DEX)' : 'STR'
   const prof = effectiveProficiencyBonus(character, bonuses)
   const atkBonus = bonuses.unarmed_attack ?? 0
   const dmgBonus = bonuses.unarmed_damage ?? 0
+  // Rage adds to melee attacks made with Strength: an unarmed strike counts,
+  // unless a Monk's Martial Arts is using a better DEX modifier.
+  const usesStrength =
+    !monkDie || abilityModifier(scores.str) >= abilityModifier(scores.dex)
+  const rage = usesStrength ? rageDamage(character) : 0
 
   return {
     name: 'Unarmed Strike',
@@ -91,29 +143,42 @@ function unarmedStrike(character, equippedItems = []) {
     attack: {
       value: statMod + prof + atkBonus,
       breakdown: [
-        { label: 'Martial Arts (best of STR/DEX)', amount: statMod },
+        { label: statLabel, amount: statMod },
         { label: 'Proficiency', amount: prof },
         ...bonusLines(equippedItems, 'unarmed_attack'),
         ...bonusLines(character.features, 'unarmed_attack'),
       ],
     },
     damage: {
-      value: statMod + dmgBonus,
+      value: statMod + dmgBonus + rage,
       breakdown: [
-        { label: 'Martial Arts (best of STR/DEX)', amount: statMod },
+        { label: statLabel, amount: statMod },
+        ...(rage ? [{ label: 'Raging', amount: rage }] : []),
         ...bonusLines(equippedItems, 'unarmed_damage'),
         ...bonusLines(character.features, 'unarmed_damage'),
       ],
     },
     // Items whose extra damage applies to unarmed strikes specifically.
-    extras: equippedItems
-      .filter((i) => i.extra_damage?.applies_to === 'unarmed')
-      .map((i) => ({
-        source: i.name,
-        die: i.extra_damage.die,
-        type: i.extra_damage.type,
-        trigger: i.extra_damage.trigger ?? 'on hit',
-      })),
+    extras: [
+      ...equippedItems
+        .filter((i) => i.extra_damage?.applies_to === 'unarmed')
+        .map((i) => ({
+          source: i.name,
+          die: i.extra_damage.die,
+          type: i.extra_damage.type,
+          trigger: i.extra_damage.trigger ?? 'on hit',
+        })),
+      ...(unarmedFighting
+        ? [
+            {
+              source: 'Unarmed Fighting',
+              die: '1d4',
+              type: 'bludgeoning',
+              trigger: 'start of your turn, one creature you have grappled',
+            },
+          ]
+        : []),
+    ],
   }
 }
 

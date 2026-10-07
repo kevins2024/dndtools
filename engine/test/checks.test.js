@@ -174,3 +174,25 @@ test('spellAttackBonusBreakdown/spellSaveDCBreakdown: null for a non-caster, mat
   )
   assert.equal(spellSaveDCBreakdown(caster, []).value, spellSaveDC(caster, []))
 })
+
+test('initiative: a feature with adds_ability_to_initiative adds that modifier once (Temporal Awareness)', () => {
+  const wiz = {
+    name: 'W',
+    stat_str: 8,
+    stat_dex: 14, // +2
+    stat_con: 10,
+    stat_int: 20, // +5
+    stat_wis: 10,
+    stat_cha: 10,
+    features: [{ name: 'Temporal Awareness', adds_ability_to_initiative: 'int' }],
+  }
+  assert.strictEqual(initiative(wiz, []), 2 + 5)
+  // two features naming the same ability still count it once
+  const twice = {
+    ...wiz,
+    features: [...wiz.features, { name: 'Other', adds_ability_to_initiative: 'int' }],
+  }
+  assert.strictEqual(initiative(twice, []), 2 + 5)
+  // no feature, no extra
+  assert.strictEqual(initiative({ ...wiz, features: [] }, []), 2)
+})

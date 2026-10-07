@@ -133,3 +133,66 @@ test('Bladesong adds INT mod when active, via the options flag', () => {
     breakdown.some((s) => s.label === 'Bladesong INT' && s.amount === 1)
   )
 })
+
+// ── Unarmored Defense inferred from class + feature ─────────────────────
+
+const unarmoredChar = (overrides = {}) => ({
+  name: 'U',
+  stat_str: 10,
+  stat_dex: 14, // +2
+  stat_con: 18, // +4
+  stat_int: 10,
+  stat_wis: 16, // +3
+  stat_cha: 10,
+  features: [{ name: 'Unarmored Defense' }],
+  classes: [{ name: 'Barbarian', level: 1 }],
+  ...overrides,
+})
+
+test('computeAC: a Barbarian with Unarmored Defense gets 10 + DEX + CON with no formula field set', () => {
+  assert.strictEqual(computeAC(unarmoredChar(), []).value, 10 + 2 + 4)
+})
+
+test('computeAC: a Monk with Unarmored Defense gets 10 + DEX + WIS with no formula field set', () => {
+  const monk = unarmoredChar({ classes: [{ name: 'Monk', level: 1 }] })
+  assert.strictEqual(computeAC(monk, []).value, 10 + 2 + 3)
+})
+
+test('computeAC: an explicit unarmored_ac_formula always wins, including "default"', () => {
+  assert.strictEqual(
+    computeAC(unarmoredChar({ unarmored_ac_formula: 'default' }), []).value,
+    10 + 2
+  )
+})
+
+test('computeAC: no Unarmored Defense feature means no special formula, whatever the class', () => {
+  assert.strictEqual(computeAC(unarmoredChar({ features: [] }), []).value, 10 + 2)
+})
+
+test('computeAC: a feature with unarmored_defense gives 10 + the listed modifiers, and armor replaces it', () => {
+  const ward = {
+    name: 'Elegant Ward',
+    unarmored_defense: { abilities: ['dex', 'int'] },
+  }
+  const c = baseChar({ stat_int: 20, features: [ward] }) // DEX +3, INT +5
+  const unarmored = computeAC(c, [])
+  assert.equal(unarmored.value, 18)
+  assert.deepEqual(unarmored.breakdown, [
+    { label: 'Elegant Ward (10 + DEX + INT)', amount: 18 },
+  ])
+  const leather = {
+    type: 'armor',
+    slot: 'body',
+    armor_type: 'leather',
+    name: 'Leather Armor',
+  }
+  assert.equal(computeAC(c, [leather]).value, 11 + 3) // armor (11 + DEX), not the ward
+})
+
+test('computeAC: an explicit formula beats a feature-defined unarmored defense', () => {
+  const c = baseChar({
+    unarmored_ac_formula: 'default',
+    features: [{ name: 'X', unarmored_defense: { abilities: ['int'] } }],
+  })
+  assert.equal(computeAC(c, []).value, 13)
+})

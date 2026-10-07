@@ -176,3 +176,125 @@ test('psychicBlades: dedicated blade bonuses from items apply to both blades', (
 test('psychicBlades: null for a character without them', () => {
   assert.strictEqual(psychicBlades({ level: 5 }, []), null)
 })
+
+test('unarmedStrike: Tavern Brawler (unarmed_strike_die) gives a d4 strike on STR alone, with proficiency', () => {
+  const brawler = {
+    name: 'Bru',
+    level: 9,
+    unarmed_strike_die: '1d4',
+    classes: [{ name: 'Barbarian', level: 9 }],
+    stat_str: 20, // +5
+    stat_dex: 14, // +2 — NOT used: no Martial Arts
+    stat_con: 10,
+    stat_int: 10,
+    stat_wis: 10,
+    stat_cha: 10,
+  }
+  const u = unarmedStrike(brawler, [])
+  assert.strictEqual(u.die, '1d4')
+  assert.strictEqual(u.attack.value, 5 + 4) // STR +5, prof +4
+  assert.strictEqual(u.damage.value, 5)
+  assert.strictEqual(u.attack.breakdown[0].label, 'STR')
+})
+
+test('unarmedStrike: a Monk with Tavern Brawler uses the bigger die and keeps best-of-STR/DEX', () => {
+  const monk = {
+    name: 'Mo',
+    level: 11,
+    martial_arts_die: 'auto',
+    unarmed_strike_die: '1d4',
+    classes: [{ name: 'Monk', level: 11 }],
+    stat_str: 8,
+    stat_dex: 18, // +4
+    stat_con: 10,
+    stat_int: 10,
+    stat_wis: 10,
+    stat_cha: 10,
+  }
+  const u = unarmedStrike(monk, [])
+  assert.strictEqual(u.die, '1d8') // Monk 11
+  assert.strictEqual(u.damage.value, 4)
+})
+
+const unarmedFighter = {
+  name: 'Bru',
+  level: 9,
+  unarmed_strike_die: '1d4', // Tavern Brawler too
+  classes: [{ name: 'Barbarian', level: 9 }],
+  features: [
+    {
+      name: 'Fighting Style: Unarmed Fighting',
+      id: 'fighting-style-unarmed-fighting',
+      type: 'fightingStyle',
+    },
+  ],
+  stat_str: 20,
+  stat_dex: 12,
+  stat_con: 10,
+  stat_int: 10,
+  stat_wis: 10,
+  stat_cha: 10,
+}
+
+test('unarmedStrike: Unarmed Fighting is a d8 with empty hands and beats Tavern Brawler', () => {
+  const u = unarmedStrike(unarmedFighter, [])
+  assert.strictEqual(u.die, '1d8')
+  assert.strictEqual(u.damage.value, 5)
+  assert.deepStrictEqual(u.extras, [
+    {
+      source: 'Unarmed Fighting',
+      die: '1d4',
+      type: 'bludgeoning',
+      trigger: 'start of your turn, one creature you have grappled',
+    },
+  ])
+})
+
+test('unarmedStrike: Unarmed Fighting drops to d6 while holding a weapon or shield', () => {
+  const sword = {
+    name: 'Shortsword',
+    type: 'weapon',
+    slot: 'main_hand',
+    hand: 'main',
+    equipped_by: 'Bru',
+  }
+  const shield = {
+    name: 'Shield',
+    type: 'armor',
+    slot: 'offhand',
+    armor_type: 'shield',
+    equipped_by: 'Bru',
+  }
+  assert.strictEqual(unarmedStrike(unarmedFighter, [sword]).die, '1d6')
+  assert.strictEqual(unarmedStrike(unarmedFighter, [shield]).die, '1d6')
+})
+
+test('unarmedStrike: Rage adds its damage to a STR-based unarmed strike, and shows as a line', () => {
+  const raging = { ...unarmedFighter, conditions: ['Raging'] }
+  const u = unarmedStrike(raging, [])
+  assert.strictEqual(u.damage.value, 5 + 3) // STR +5, Rage +3 at Barbarian 9
+  assert.ok(u.damage.breakdown.some((l) => l.label === 'Raging' && l.amount === 3))
+  assert.strictEqual(unarmedStrike(unarmedFighter, []).damage.value, 5)
+})
+
+test('unarmedStrike: a Monk striking with DEX gets no Rage damage; a non-Barbarian never does', () => {
+  const monkDex = {
+    name: 'Mo',
+    level: 5,
+    martial_arts_die: 'auto',
+    conditions: ['Raging'],
+    classes: [
+      { name: 'Monk', level: 4 },
+      { name: 'Barbarian', level: 1 },
+    ],
+    stat_str: 10,
+    stat_dex: 16,
+    stat_con: 10,
+    stat_int: 10,
+    stat_wis: 10,
+    stat_cha: 10,
+  }
+  assert.strictEqual(unarmedStrike(monkDex, []).damage.value, 3)
+  const notBarb = { ...unarmedFighter, classes: [{ name: 'Fighter', level: 9 }], conditions: ['Raging'] }
+  assert.strictEqual(unarmedStrike(notBarb, []).damage.value, 5)
+})

@@ -22,6 +22,9 @@ const { abilityModifier } = require('./abilities')
 
 const MAX_EXHAUSTION = 6
 
+// recharge value for a limited-use feature/spell that only the DM refills.
+const MANUAL_RECHARGE = 'manual'
+
 // "d8" -> 8. Falls back to d8 for a missing/garbled value, matching what the
 // old modal did.
 function hitDieSides(hitDie) {
@@ -247,15 +250,22 @@ function applyLongRest(character, { interrupted = false } = {}) {
       current: character.ki_points.max,
     }
   }
-  // Short-rest uses refill on a long rest too — hence any `recharge` value.
+  // Short-rest uses refill on a long rest too — hence any `recharge` value,
+  // EXCEPT 'manual': a use that comes back only when the DM says so (a
+  // homebrew ability that recharges on some in-fiction event, not on resting)
+  // is never touched by a rest.
   if (character.features) {
     patch.features = character.features.map((f) =>
-      f.uses_max != null && f.recharge ? { ...f, uses_current: f.uses_max } : f
+      f.uses_max != null && f.recharge && f.recharge !== MANUAL_RECHARGE
+        ? { ...f, uses_current: f.uses_max }
+        : f
     )
   }
   if (character.spells) {
     patch.spells = character.spells.map((s) =>
-      s.uses_max != null && s.recharge ? { ...s, uses_current: s.uses_max } : s
+      s.uses_max != null && s.recharge && s.recharge !== MANUAL_RECHARGE
+        ? { ...s, uses_current: s.uses_max }
+        : s
     )
   }
   if (character.resources) {

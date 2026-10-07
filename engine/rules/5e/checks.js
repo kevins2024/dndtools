@@ -162,9 +162,23 @@ function passivePerception(character, equippedItems = []) {
 
 // ── Initiative ───────────────────────────────────────────────────────────────
 
+// A feature with `adds_ability_to_initiative: 'int'` (Chronurgy Magic's
+// Temporal Awareness: "add your Intelligence modifiers to your initiative
+// rolls") adds that ability's modifier on top of DEX. Counted once per
+// ability however many features name it, and read off the EFFECTIVE score so
+// items/features that change the ability are honored.
 function initiative(character, equippedItems = []) {
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
-  return abilityModifier(scores.dex) + (bonuses.initiative ?? 0)
+  const extraAbilities = new Set(
+    (character.features ?? [])
+      .map((f) => f.adds_ability_to_initiative)
+      .filter(Boolean)
+  )
+  let extra = 0
+  for (const ability of extraAbilities) {
+    extra += abilityModifier(scores[ability] ?? 10)
+  }
+  return abilityModifier(scores.dex) + extra + (bonuses.initiative ?? 0)
 }
 
 // Advantage isn't a flat number like the rest of resolveEffectiveStats'

@@ -290,3 +290,22 @@ test('rechargeItems: a dice-expression ("regains X at dawn") recharge does not f
     2
   )
 })
+
+test("a 'manual' recharge (DM's call) is never refilled by a short or long rest", () => {
+  const c = {
+    level: 1,
+    hp_max: 7,
+    hp_current: 7,
+    features: [
+      { name: 'Timeline Freeze', recharge: 'manual', uses_max: 1, uses_current: 0 },
+      { name: 'Normal', recharge: 'long_rest', uses_max: 1, uses_current: 0 },
+    ],
+    spells: [{ name: 'Odd', recharge: 'manual', uses_max: 1, uses_current: 0 }],
+  }
+  const long = applyLongRest(c).patch
+  assert.strictEqual(long.features[0].uses_current, 0)
+  assert.strictEqual(long.features[1].uses_current, 1)
+  assert.strictEqual(long.spells[0].uses_current, 0)
+  const short = applyShortRest(c, {}).patch
+  assert.strictEqual(short.features[0].uses_current, 0)
+})

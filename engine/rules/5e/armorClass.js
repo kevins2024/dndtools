@@ -22,6 +22,39 @@ const { abilityModifier } = require('./abilities')
 const { armorBaseData } = require('./armor')
 const { isDualWieldingMelee } = require('./weaponSets')
 
+// Which unarmored-AC formula applies. An explicit `unarmored_ac_formula`
+// on the character always wins ('default' included — a deliberate "no special
+// formula"). When it's absent, a Barbarian or Monk with the Unarmored Defense
+// feature gets their class's formula: a character built through the New
+// Character tool never had the field set, so a freshly made Barbarian's AC
+// silently ignored CON (10 + DEX instead of 10 + DEX + CON) until someone
+// hand-added it, as had been done for Rhuna. (A Barbarian/Monk multiclass
+// can't stack both — Barbarian is checked first.)
+// A feature can define its own unarmored AC with `unarmored_defense:
+// { abilities: ['dex', 'int'] }` (AC = 10 + those modifiers) — how a
+// one-off homebrew feature (Elowenne's Elegant Ward) works without a new
+// formula name each time. Ranks below an explicit character formula and
+// above the Barbarian/Monk class inference.
+function unarmoredDefenseFeature(character) {
+  return (
+    (character.features ?? []).find((f) => f.unarmored_defense?.abilities) ??
+    null
+  )
+}
+
+function unarmoredFormula(character) {
+  if (character.unarmored_ac_formula) return character.unarmored_ac_formula
+  if (unarmoredDefenseFeature(character)) return 'feature'
+  const hasUnarmoredDefense = (character.features ?? []).some(
+    (f) => f.name === 'Unarmored Defense'
+  )
+  if (!hasUnarmoredDefense) return 'default'
+  const classNames = (character.classes ?? []).map((c) => c.name)
+  if (classNames.includes('Barbarian')) return 'barbarian'
+  if (classNames.includes('Monk')) return 'monk'
+  return 'default'
+}
+
 function computeAC(
   character,
   equippedItems = [],
@@ -90,10 +123,23 @@ function computeAC(
         amount: unarmoredAcItem.unarmored_armor_base_ac,
       })
       breakdown.push({ label: 'DEX', amount: dexMod })
-    } else if (character.unarmored_ac_formula === 'monk') {
+    } else if (unarmoredFormula(character) === 'feature') {
+      const feature = unarmoredDefenseFeature(character)
+      const mods = feature.unarmored_defense.abilities.map((a) =>
+        abilityModifier(scores[a])
+      )
+      base = 10 + mods.reduce((sum, m) => sum + m, 0)
+      const names = feature.unarmored_defense.abilities
+        .map((a) => a.toUpperCase())
+        .join(' + ')
+      breakdown.push({
+        label: `${feature.name} (10 + ${names})`,
+        amount: base,
+      })
+    } else if (unarmoredFormula(character) === 'monk') {
       base = 10 + dexMod + wisMod
       breakdown.push({ label: 'Monk Defense (10 + DEX + WIS)', amount: base })
-    } else if (character.unarmored_ac_formula === 'barbarian') {
+    } else if (unarmoredFormula(character) === 'barbarian') {
       base = 10 + dexMod + conMod
       breakdown.push({
         label: 'Barbarian Defense (10 + DEX + CON)',

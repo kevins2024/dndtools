@@ -210,3 +210,104 @@ test('diffLevelUp: a non-Wizard class never gets a spellbookAdditions choice', (
   const result = diffLevelUp(character, { className: 'Sorcerer', toLevel: 4 })
   assert.ok(!result.pendingChoices.some((p) => p.type === 'spellbookAdditions'))
 })
+
+// ── A Wizard's FIRST level: six spellbook spells, not two ───────────────
+
+function newWizardShell(overrides = {}) {
+  return {
+    name: 'New Wizard',
+    level: 0,
+    stat_str: 8,
+    stat_dex: 10,
+    stat_con: 12,
+    stat_int: 17,
+    stat_wis: 13,
+    stat_cha: 15,
+    hp_max: 0,
+    hp_current: 0,
+    features: [],
+    spells: [],
+    classes: [{ name: 'Wizard', subclass: null, level: 0 }],
+    ...overrides,
+  }
+}
+
+const FIRST_LEVEL_SIX = [
+  'Shield',
+  'Magic Missile',
+  'Mage Armor',
+  'Sleep',
+  'Detect Magic',
+  'Find Familiar',
+]
+
+test('diffLevelUp: a brand-new Wizard is owed six 1st-level spellbook spells (PHB), not two', () => {
+  const result = diffLevelUp(newWizardShell(), {
+    className: 'Wizard',
+    toLevel: 1,
+    hpMethod: 'average',
+  })
+  const choice = result.pendingChoices.find((p) => p.type === 'spellbookAdditions')
+  assert.ok(choice, 'expected a spellbookAdditions pendingChoice at creation')
+  assert.equal(choice.count, 6)
+  assert.equal(choice.level, 1)
+})
+
+test('diffLevelUp: a new Wizard prepares INT modifier + level spells (INT 17 -> 4)', () => {
+  const result = diffLevelUp(newWizardShell(), {
+    className: 'Wizard',
+    toLevel: 1,
+    hpMethod: 'average',
+  })
+  assert.equal(result.description.spellcasting.style, 'prepared')
+  assert.equal(result.description.spellcasting.preparedAfter, 4)
+  assert.equal(result.description.spellcasting.cantripsAfter, 3)
+})
+
+test('diffLevelUp: six supplied spellbook picks resolve the choice and land as unprepared spells', () => {
+  const result = diffLevelUp(newWizardShell(), {
+    className: 'Wizard',
+    toLevel: 1,
+    hpMethod: 'average',
+    spellbookChoices: FIRST_LEVEL_SIX,
+  })
+  assert.ok(!result.pendingChoices.some((p) => p.type === 'spellbookAdditions'))
+  const added = result.patch.spells.filter((s) => FIRST_LEVEL_SIX.includes(s.name))
+  assert.equal(added.length, 6)
+  assert.ok(added.every((s) => s.prepared === false && s.level === 1))
+})
+
+test('diffLevelUp: only the first six count — extra picks are ignored, and later levels go back to +2', () => {
+  const six = diffLevelUp(newWizardShell(), {
+    className: 'Wizard',
+    toLevel: 1,
+    hpMethod: 'average',
+    spellbookChoices: [...FIRST_LEVEL_SIX, 'Burning Hands'],
+  })
+  assert.ok(!six.patch.spells.some((s) => s.name === 'Burning Hands'))
+  const level2 = diffLevelUp(
+    newWizardShell({ level: 1, classes: [{ name: 'Wizard', subclass: null, level: 1 }] }),
+    { className: 'Wizard', toLevel: 2, hpMethod: 'average' }
+  )
+  assert.equal(
+    level2.pendingChoices.find((p) => p.type === 'spellbookAdditions').count,
+    2
+  )
+})
+
+test('diffLevelUp: multiclassing INTO Wizard also starts the spellbook at six', () => {
+  const fighter = newWizardShell({
+    level: 3,
+    hp_max: 28,
+    hp_current: 28,
+    classes: [{ name: 'Fighter', subclass: null, level: 3 }],
+  })
+  const result = diffLevelUp(fighter, {
+    className: 'Wizard',
+    toLevel: 1,
+    hpMethod: 'average',
+  })
+  const choice = result.pendingChoices.find((p) => p.type === 'spellbookAdditions')
+  assert.ok(choice)
+  assert.equal(choice.count, 6)
+})
