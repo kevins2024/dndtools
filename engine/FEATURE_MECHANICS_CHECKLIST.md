@@ -55,6 +55,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_giant-s-power | Giant's Power | Bigby Presents: Glory of the Giants | no | Chuknora | todo |  |
 | pub_extra-attack-bladesinger | Extra Attack (Bladesinger) | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 6th level. | no | Kessara | todo |  |
 | pub_bladesinger-training-in-war-and-song | Bladesinger — Training in War and Song | Bladesinging (Wizard subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Kessara | todo |  |
+| pub_stars-druid-star-map | Stars Druid — Star Map | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level. | no | Tackett | done |  |
 | channel-divinity-2-rest | Channel Divinity (2/rest) | Cleric | no | Petra | todo |  |
 | blessed-healer | Blessed Healer | Cleric (Life Domain) | no | Petra | todo |  |
 | channel-divinity-preserve-life | Channel Divinity: Preserve Life | Cleric (Life Domain) | no | Petra | todo |  |
@@ -64,6 +65,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_guiding-whispers | Guiding Whispers | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_spirit-session | Spirit Session | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level, a separate feature from Spiritual Focus's own 6th-level damage/healing bonus roll (both genuinely trigger at 6th level). | no | Sorra | todo |  |
+| gen_druid_base_wild-shape | Wild Shape | Druid | no | Tackett | todo |  |
 | action-surge-1-use | Action Surge (1 use) | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra | done |  |
 | gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz, Corwin | todo |  |
 | fighter-fighting-style-dueling | Fighting Style: Dueling | Fighter | no | Kerra | todo |  |
@@ -72,6 +74,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | second-wind | Second Wind | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra, Brick | done |  |
 | gen_fighter_champion_improved-critical-19-20 | Improved Critical (19-20) | Fighter (Champion) | no | Corwin, Kerra | todo |  |
 | remarkable-athlete | Remarkable Athlete | Fighter (Champion) | no | Corwin | todo |  |
+| pub_stars-druid-unbroken-legendary | Stars Druid — Unbroken (Legendary) | Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything). | yes | Tackett | todo |  |
 | pub_insightful-fighting-revised | Insightful Fighting (Revised) | Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW. | yes | Pirra | todo |  |
 | pub_linked-spellbook | Linked Spellbook | Homebrew — bonded spellbook set unique to Lyria, Lenn, and Kessara. | yes | Lenn, Kessara, Lyria | todo |  |
 | pub_vow-of-the-open-road | Channel Divinity: Vow of the Open Road | Homebrew — Ferghus's own Oath of the Open Road (not official WotC content, and not the same as the third-party 'Oath of the Open Road' by The Griffon's Saddlebag). | yes | Ferghus | todo |  |
@@ -104,6 +107,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_awakened-mind | Awakened Mind | Player's Handbook | no | Kerra | todo |  |
 | pub_channel-divinity-nature-s-wrath | Channel Divinity: Nature's Wrath | Player's Handbook | no | Chuknora | todo |  |
 | pub_channel-divinity-turn-the-faithless | Channel Divinity: Turn the Faithless | Player's Handbook | no | Chuknora | todo |  |
+| pub_darkvision | Darkvision | Player's Handbook | no | Enauweyn | todo |  |
 | pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no | Petra | todo |  |
 | pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
 | pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
@@ -120,7 +124,10 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_projected-ward | Projected Ward | Player's Handbook | no | Lyria | todo |  |
 | pub_riposte | Riposte | Player's Handbook | no | Vaz | todo |  |
 | pub_shelter-of-the-faithful | Shelter of the Faithful | Player's Handbook | no | Chuknora | todo |  |
+| pub_tempest-cleric-destructive-wrath | Tempest Cleric — Destructive Wrath | Player's Handbook | no | Revven | todo |  |
+| pub_tempest-cleric-wrath-of-the-storm | Tempest Cleric — Wrath of the Storm | Player's Handbook | no | Revven | todo |  |
 | pub_war-caster | War Caster | Player's Handbook | no | Petra | todo |  |
+| pub_primal-companion | Primal Companion | Ranger (Beast Master) | no | Tackett | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
 | cunning-action | Cunning Action | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
 | rogue-evasion | Evasion | Rogue | no | Denna, Pirra, Siv, Torrin | todo |  |
@@ -149,6 +156,8 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_soulknife-psionic-energy | Soulknife — Psionic Energy | Tasha's Cauldron of Everything | no | Torrin | todo |  |
 | pub_soulknife-psychic-blades | Soulknife — Psychic Blades | Tasha's Cauldron of Everything | no | Torrin | todo |  |
 | pub_soulknife-psychic-whispers | Soulknife — Psychic Whispers | Tasha's Cauldron of Everything | no | Torrin | todo |  |
+| pub_stars-druid-cosmic-omen | Stars Druid — Cosmic Omen | Tasha's Cauldron of Everything | no | Tackett | todo |  |
+| pub_stars-druid-starry-form | Stars Druid — Starry Form | Tasha's Cauldron of Everything | no | Tackett | todo |  |
 | pub_tool-expertise | Tool Expertise | Tasha's Cauldron of Everything | no | Jaygar | todo |  |
 | eldritch-invocation-agonizing-blast | Eldritch Invocation: Agonizing Blast | Warlock | no | Kerra | todo |  |
 | eldritch-invocation-book-of-ancient-secrets | Eldritch Invocation: Book of Ancient Secrets | Warlock | no | Kerra | todo |  |
@@ -166,6 +175,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | evocation-savant | Evocation Savant | Wizard (Evocation) | no | Lenn | todo |  |
 | potent-cantrip | Potent Cantrip | Wizard (Evocation) | no | Lenn | todo |  |
 | sculpt-spells | Sculpt Spells | Wizard (Evocation) | no | Lenn | todo |  |
+| pub_bountiful-luck | Bountiful Luck | Xanathar's Guide to Everything | no | Tackett | todo |  |
 | pub_fade-away | Fade Away | Xanathar's Guide to Everything | no | Jaygar | todo |  |
 | pub_inquisitive-ear-for-deceit | Inquisitive — Ear for Deceit | Xanathar's Guide to Everything | no | Pirra | todo |  |
 | pub_inquisitive-eye-for-detail | Inquisitive — Eye for Detail | Xanathar's Guide to Everything | no | Pirra | todo |  |
@@ -297,7 +307,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_song-of-victory | Song of Victory | Bladesinger (Wizard subclass, Tasha's Cauldron of Everything) — 14th level. | no |  | todo |  |
 | pub_tattoo-of-warding | Tattoo of Warding | Campaign homebrew. | yes |  | todo |  |
 | pub_stars-druid-twinkling-constellations | Stars Druid — Twinkling Constellations | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 10th level. | no |  | todo |  |
-| pub_stars-druid-star-map | Stars Druid — Star Map | Circle of the Stars (Druid subclass, Tasha's Cauldron of Everything) — 2nd level. | no |  | done |  |
 | channel-divinity-1-rest | Channel Divinity (1/rest) | Cleric | no |  | todo |  |
 | channel-divinity-3-rest | Channel Divinity (3/rest) | Cleric | no |  | todo |  |
 | channel-divinity-turn-undead | Channel Divinity: Turn Undead | Cleric | no |  | todo |  |
@@ -375,7 +384,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | druidic | Druidic | Druid | no |  | todo |  |
 | gen_druid_base_spellcasting | Spellcasting | Druid | no |  | todo |  |
 | druid-timeless-body | Timeless Body | Druid | no |  | todo |  |
-| gen_druid_base_wild-shape | Wild Shape | Druid | no |  | todo |  |
 | gen_druid_base_wild-shape-improvement-cr-1-2-swim-speed | Wild Shape improvement (CR 1/2, swim speed) | Druid | no |  | todo |  |
 | gen_druid_base_wild-shape-improvement-flying-speed | Wild Shape improvement (flying speed) | Druid | no |  | todo |  |
 | pub_balm-of-the-summer-court | Balm of the Summer Court | Druid (Circle of Dreams) | no |  | todo |  |
@@ -478,7 +486,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_gloom-stalker-magic | Gloom Stalker Magic | Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 3rd level and beyond. | no |  | todo |  |
 | pub_iron-mind | Iron Mind | Gloom Stalker (Ranger subclass, Xanathar's Guide to Everything) — 7th level. | no |  | todo |  |
 | hb_missile_snaring | Missile Snaring | Gloves of Missile Snaring (real 5e magic item). | no |  | todo |  |
-| pub_stars-druid-unbroken-legendary | Stars Druid — Unbroken (Legendary) | Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything). | yes |  | todo |  |
 | pub_infusion-clockwork-amulet | Infusion: Clockwork Amulet | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
 | pub_infusion-helm-of-comprehending-languages | Infusion: Helm of Comprehending Languages | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
 | pub_infusion-perfume-of-bewitching | Infusion: Perfume of Bewitching | Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not. | yes |  | todo |  |
@@ -645,7 +652,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_commander-s-strike | Commander's Strike | Player's Handbook | no |  | todo |  |
 | pub_create-thrall | Create Thrall | Player's Handbook | no |  | todo |  |
 | pub_crossbow-expert | Crossbow Expert | Player's Handbook | no |  | todo |  |
-| pub_darkvision | Darkvision | Player's Handbook | no |  | todo |  |
 | pub_death-strike | Death Strike | Player's Handbook | no |  | todo |  |
 | pub_defensive-duelist | Defensive Duelist | Player's Handbook | no |  | todo |  |
 | pub_devil-s-sight | Devil's Sight | Player's Handbook | no |  | todo |  |
@@ -743,8 +749,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_superiority-dice-5d8 | Superiority Dice (5d8) | Player's Handbook | no |  | todo |  |
 | pub_sweeping-attack | Sweeping Attack | Player's Handbook | no |  | todo |  |
 | pub_tavern-brawler | Tavern Brawler | Player's Handbook | no |  | todo |  |
-| pub_tempest-cleric-destructive-wrath | Tempest Cleric — Destructive Wrath | Player's Handbook | no |  | todo |  |
-| pub_tempest-cleric-wrath-of-the-storm | Tempest Cleric — Wrath of the Storm | Player's Handbook | no |  | todo |  |
 | pub_thief-of-five-fates | Thief of Five Fates | Player's Handbook | no |  | todo |  |
 | pub_thirsting-blade | Thirsting Blade | Player's Handbook | no |  | todo |  |
 | pub_thought-shield | Thought Shield | Player's Handbook | no |  | todo |  |
@@ -775,7 +779,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | vanish | Vanish | Ranger | no |  | todo |  |
 | pub_bestial-fury | Bestial Fury | Ranger (Beast Master) | no |  | todo |  |
 | pub_exceptional-training | Exceptional Training | Ranger (Beast Master) | no |  | todo |  |
-| pub_primal-companion | Primal Companion | Ranger (Beast Master) | no |  | todo |  |
 | pub_share-spells | Share Spells | Ranger (Beast Master) | no |  | todo |  |
 | pub_beguiling-twist | Beguiling Twist | Ranger (Fey Wanderer) | no |  | todo |  |
 | pub_dreadful-strikes | Dreadful Strikes | Ranger (Fey Wanderer) | no |  | todo |  |
@@ -902,9 +905,7 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_poisoner | Poisoner | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_skill-expert | Skill Expert | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_slasher | Slasher | Tasha's Cauldron of Everything | no |  | todo |  |
-| pub_stars-druid-cosmic-omen | Stars Druid — Cosmic Omen | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_stars-druid-full-of-stars | Stars Druid — Full of Stars | Tasha's Cauldron of Everything | no |  | todo |  |
-| pub_stars-druid-starry-form | Stars Druid — Starry Form | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_telekinetic | Telekinetic | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_telepathic | Telepathic | Tasha's Cauldron of Everything | no |  | todo |  |
 | pub_eldritch-cannon-explosive-cannon | Eldritch Cannon — Explosive Cannon | Tasha's Cauldron of Everything — Artillerist, 9th level (Explosive Cannon). | no |  | todo |  |
@@ -994,7 +995,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_deflecting-shroud | Deflecting Shroud | Wizard (War Magic) | no |  | todo |  |
 | pub_durable-magic | Durable Magic | Wizard (War Magic) | no |  | todo |  |
 | pub_power-surge | Power Surge | Wizard (War Magic) | no |  | todo |  |
-| pub_bountiful-luck | Bountiful Luck | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_divine-magic | Divine Magic | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dragon-fear | Dragon Fear | Xanathar's Guide to Everything | no |  | todo |  |
 | pub_dragon-hide | Dragon Hide | Xanathar's Guide to Everything | no |  | todo |  |
@@ -1028,16 +1028,6 @@ Counts: todo 991 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | Kessara | Caster Prestidigitation | todo |  |
 | Petra | Caster Prestidigitation | todo |  |
 | Lyria | Caster Prestidigitation | todo |  |
-| Enauweyn | Darkvision | todo |  |
-| Tackett | Stars Druid — Starry Form | todo |  |
-| Tackett | Stars Druid — Unbroken (Legendary) | todo |  |
-| Tackett | Stars Druid — Star Map | todo |  |
-| Tackett | Stars Druid — Cosmic Omen | todo |  |
-| Tackett | Wild Shape (CR 1 or below) | todo |  |
-| Tackett | Primal Companion | todo |  |
-| Tackett | Bountiful Luck | todo |  |
-| Revven | Tempest Cleric — Wrath of the Storm | todo |  |
-| Revven | Tempest Cleric — Destructive Wrath | todo |  |
 | Revven | Tempest Cleric — Thunderous Strike | todo |  |
 | Revven | Channel Divinity: Turn Undead | todo |  |
 | Revven | Destroy Undead (CR 1) | todo |  |

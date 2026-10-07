@@ -3310,7 +3310,8 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       }
     ],
     "spells": [
@@ -3486,6 +3487,7 @@
       {
         "name": "Stars Druid — Starry Form",
         "type": "feature",
+        "id": "pub_stars-druid-starry-form",
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
@@ -3508,6 +3510,7 @@
       {
         "name": "Stars Druid — Unbroken (Legendary)",
         "type": "feature",
+        "id": "pub_stars-druid-unbroken-legendary",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -3516,6 +3519,7 @@
       {
         "name": "Stars Druid — Star Map",
         "type": "feature",
+        "id": "pub_stars-druid-star-map",
         "spells_granted": [
           "Guiding Bolt"
         ],
@@ -3524,6 +3528,7 @@
       {
         "name": "Stars Druid — Cosmic Omen",
         "type": "feature",
+        "id": "pub_stars-druid-cosmic-omen",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -3532,6 +3537,7 @@
       {
         "name": "Wild Shape (CR 1 or below)",
         "type": "feature",
+        "id": "gen_druid_base_wild-shape",
         "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -3539,11 +3545,13 @@
       },
       {
         "name": "Primal Companion",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_primal-companion"
       },
       {
         "name": "Bountiful Luck",
         "type": "feat",
+        "id": "pub_bountiful-luck",
         "action_type": "reaction"
       }
     ],
@@ -3817,6 +3825,7 @@
       {
         "name": "Tempest Cleric — Wrath of the Storm",
         "type": "feature",
+        "id": "pub_tempest-cleric-wrath-of-the-storm",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 5,
@@ -3826,6 +3835,7 @@
       {
         "name": "Tempest Cleric — Destructive Wrath",
         "type": "feature",
+        "id": "pub_tempest-cleric-destructive-wrath",
         "description": "When you roll lightning or thunder damage, you can use your Channel Divinity to deal maximum damage instead of rolling.",
         "note": "Shares the same Channel Divinity pool as Turn Undead below — not a separate use."
       },
