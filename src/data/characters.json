@@ -5204,6 +5204,7 @@
       {
         "name": "Healing Touch",
         "type": "feature",
+        "id": "pub_healing-touch",
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -5219,6 +5220,7 @@
       {
         "name": "Aasimar Transformation",
         "type": "feature",
+        "id": "pub_aasimar-transformation",
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -5228,11 +5230,13 @@
       {
         "name": "Loom Fire",
         "type": "feature",
+        "id": "pub_loom-fire",
         "description": "You know Sacred Flame (doesn't count against cantrips known). When you cast it, you may target one creature as normal OR target two creatures within range that are within 5 feet of each other. Both targets make a DEX save (DC 17); each takes 2d8 radiant on a fail, no damage on a success."
       },
       {
         "name": "Weave Embodiment",
         "type": "feature",
+        "id": "pub_weave-embodiment",
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
@@ -5241,27 +5245,32 @@
       {
         "name": "Font of Magic",
         "type": "feature",
+        "id": "font-of-magic",
         "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP → 1st-level slot (up to 5th level); convert slots → SP (1 SP per slot level)."
       },
       {
         "name": "Metamagic: Twinned Spell",
         "type": "feature",
+        "id": "metamagic-twinned-spell",
         "description": "When you cast a single-target spell not of range Self, spend SP equal to the spell's level (min 1) to target a second creature in range with the same spell."
       },
       {
         "name": "Metamagic: Careful Spell",
         "type": "feature",
+        "id": "metamagic-careful-spell",
         "description": "When you cast a spell that forces saving throws, spend 1 SP to let up to CHA mod creatures (min 1) automatically succeed on the save."
       },
       {
         "name": "Mother's Whim",
         "type": "feature",
+        "id": "pub_mother-s-whim",
         "action_type": "bonus_action",
         "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest — this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
       },
       {
         "name": "Leno Phase (Abjuration / Divination)",
         "type": "feature",
+        "id": "pub_leno-phase-abjuration-divination",
         "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Shield",
@@ -5274,6 +5283,7 @@
       {
         "name": "Twill Phase (Enchantment / Necromancy)",
         "type": "feature",
+        "id": "pub_twill-phase-enchantment-necromancy",
         "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Silvery Barbs",
