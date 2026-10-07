@@ -1612,5 +1612,98 @@
     "action_type": "action",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub_restore-balance": {
+    "name": "Restore Balance",
+    "action_type": "reaction",
+    "recharge": "long_rest"
+  },
+  "pub_trance-of-order": {
+    "name": "Trance of Order",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_draconic-presence": {
+    "name": "Draconic Presence",
+    "action_type": "action"
+  },
+  "pub_dragon-wings": {
+    "name": "Dragon Wings",
+    "action_type": "bonus_action"
+  },
+  "pub_hound-of-ill-omen": {
+    "name": "Hound of Ill Omen",
+    "action_type": "bonus_action"
+  },
+  "pub_shadow-walk": {
+    "name": "Shadow Walk",
+    "action_type": "bonus_action"
+  },
+  "pub_strength-of-the-grave": {
+    "name": "Strength of the Grave",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_umbral-form": {
+    "name": "Umbral Form",
+    "action_type": "bonus_action"
+  },
+  "pub_storms-fury": {
+    "name": "Storm's Fury",
+    "action_type": "reaction"
+  },
+  "pub_tempestuous-magic": {
+    "name": "Tempestuous Magic",
+    "action_type": "bonus_action"
+  },
+  "pub_wind-soul": {
+    "name": "Wind Soul",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_bend-luck": {
+    "name": "Bend Luck",
+    "action_type": "reaction"
+  },
+  "pub_spell-bombardment": {
+    "name": "Spell Bombardment",
+    "per_turn_cap": true
+  },
+  "pub_tides-of-chaos": {
+    "name": "Tides of Chaos",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_soulknife-psychic-veil": {
+    "name": "Soulknife — Psychic Veil",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_soulknife-rend-mind": {
+    "name": "Soulknife — Rend Mind",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_elegant-maneuver": {
+    "name": "Elegant Maneuver",
+    "action_type": "bonus_action"
+  },
+  "pub_master-duelist": {
+    "name": "Master Duelist",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub_panache": {
+    "name": "Panache",
+    "action_type": "action"
+  },
+  "pub_exalted-champion": {
+    "name": "Exalted Champion",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
