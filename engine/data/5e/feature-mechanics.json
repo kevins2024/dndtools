@@ -239,5 +239,31 @@
     "name": "Arcane Recovery",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub_bladesong": {
+    "name": "Bladesong",
+    "action_type": "bonus_action",
+    "recharge": "long_rest"
+  },
+  "channel-divinity-1-rest": {
+    "name": "Channel Divinity",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 1,
+    "tier_family": "channel-divinity"
+  },
+  "channel-divinity-2-rest": {
+    "name": "Channel Divinity",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 2,
+    "tier_family": "channel-divinity"
+  },
+  "channel-divinity-3-rest": {
+    "name": "Channel Divinity",
+    "action_type": "action",
+    "recharge": "short_rest",
+    "uses_max": 3,
+    "tier_family": "channel-divinity"
   }
 }
