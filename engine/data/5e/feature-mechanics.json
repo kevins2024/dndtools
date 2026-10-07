@@ -308,5 +308,29 @@
   "pub_goliath-stones-endurance": {
     "name": "Stone's Endurance",
     "action_type": "reaction"
+  },
+  "pub_elemental-cleaver": {
+    "name": "Elemental Cleaver",
+    "action_type": "bonus_action"
+  },
+  "pub_channel-divinity-nature-s-wrath": {
+    "name": "Channel Divinity: Nature's Wrath",
+    "action_type": "action"
+  },
+  "pub_channel-divinity-turn-the-faithless": {
+    "name": "Channel Divinity: Turn the Faithless",
+    "action_type": "action"
+  },
+  "fighting-style-protection": {
+    "name": "Fighting Style: Protection",
+    "action_type": "reaction"
+  },
+  "pub_channel-divinity-champion-challenge": {
+    "name": "Channel Divinity: Champion Challenge",
+    "action_type": "bonus_action"
+  },
+  "pub_channel-divinity-turn-the-tide": {
+    "name": "Channel Divinity: Turn the Tide",
+    "action_type": "bonus_action"
   }
 }
