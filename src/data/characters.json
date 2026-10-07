@@ -6119,7 +6119,8 @@
         "id": "pub_magical-tinkering",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "action"
       },
       {
         "name": "Spellcasting",

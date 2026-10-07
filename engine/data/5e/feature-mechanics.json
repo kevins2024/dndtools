@@ -414,5 +414,13 @@
   "pub_mother-s-whim": {
     "name": "Mother's Whim",
     "action_type": "bonus_action"
+  },
+  "hb_rogue_scout_skirmisher": {
+    "name": "Skirmisher",
+    "action_type": "reaction"
+  },
+  "pub_magical-tinkering": {
+    "name": "Magical Tinkering",
+    "action_type": "action"
   }
 }
