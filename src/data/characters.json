@@ -3885,7 +3885,10 @@
         "name": "Fey Touched",
         "type": "feat",
         "id": "pub_fey-touched",
-        "note": "1st-level spell: Comprehend Languages"
+        "note": "1st-level spell: Comprehend Languages",
+        "spells_granted": [
+          "Misty Step"
+        ]
       },
       {
         "name": "Caster Prestidigitation",
@@ -4933,7 +4936,10 @@
         "stat_bonuses": {
           "cha": 1
         },
-        "note": "Free cast of Misty Step and Silvery Barbs once each per long rest (tracked via uses). +1 CHA applied via stat_bonuses."
+        "note": "Free cast of Misty Step and Silvery Barbs once each per long rest (tracked via uses). +1 CHA applied via stat_bonuses.",
+        "spells_granted": [
+          "Misty Step"
+        ]
       },
       {
         "name": "War Caster",
@@ -7143,7 +7149,10 @@
         "ability_choice": "cha",
         "choices": {
           "__grantedSpellChoice": "Bless"
-        }
+        },
+        "spells_granted": [
+          "Misty Step"
+        ]
       },
       {
         "name": "Font of Inspiration",
@@ -7524,7 +7533,10 @@
         "ability_choice": "cha",
         "choices": {
           "__grantedSpellChoice": "Disguise Self"
-        }
+        },
+        "spells_granted": [
+          "Invisibility"
+        ]
       },
       {
         "name": "Font of Inspiration",
@@ -7822,7 +7834,10 @@
         "id": "arcane-recovery",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Wizard"
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Caster Prestidigitation",

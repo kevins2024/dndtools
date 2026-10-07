@@ -210,5 +210,34 @@
   "hb_hurl_something": {
     "name": "Hurl Something",
     "action_type": "action"
+  },
+  "hb_hurl_yourself": {
+    "name": "Hurl Yourself",
+    "action_type": "action"
+  },
+  "cunning-action": {
+    "name": "Cunning Action",
+    "action_type": "bonus_action"
+  },
+  "pub_shadow-touched": {
+    "name": "Shadow Touched",
+    "grants_spells": {
+      "fixed": [
+        "Invisibility"
+      ]
+    }
+  },
+  "pub_fey-touched": {
+    "name": "Fey Touched",
+    "grants_spells": {
+      "fixed": [
+        "Misty Step"
+      ]
+    }
+  },
+  "arcane-recovery": {
+    "name": "Arcane Recovery",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }
