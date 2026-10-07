@@ -2139,7 +2139,8 @@
       {
         "name": "Inquisitive — Eye for Detail",
         "type": "feature",
-        "id": "pub_eye-for-detail"
+        "id": "pub_eye-for-detail",
+        "action_type": "bonus_action"
       },
       {
         "name": "Insightful Fighting (Revised)",
@@ -2295,7 +2296,8 @@
       {
         "name": "Projected Ward",
         "type": "feature",
-        "id": "pub_projected-ward"
+        "id": "pub_projected-ward",
+        "action_type": "reaction"
       },
       {
         "name": "Linked Spellbook",

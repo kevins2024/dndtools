@@ -292,5 +292,21 @@
       "base": 0,
       "min": 1
     }
+  },
+  "pub_eye-for-detail": {
+    "name": "Eye for Detail",
+    "action_type": "bonus_action"
+  },
+  "pub_insightful-fighting-revised": {
+    "name": "Insightful Fighting (Revised)",
+    "action_type": "bonus_action"
+  },
+  "pub_projected-ward": {
+    "name": "Projected Ward",
+    "action_type": "reaction"
+  },
+  "pub_goliath-stones-endurance": {
+    "name": "Stone's Endurance",
+    "action_type": "reaction"
   }
 }
