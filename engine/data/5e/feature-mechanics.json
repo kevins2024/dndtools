@@ -1260,5 +1260,69 @@
   "pub_touch-of-the-long-death": {
     "name": "Touch of the Long Death",
     "action_type": "action"
+  },
+  "pub_wholeness-of-body": {
+    "name": "Wholeness of Body",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_searing-arc-strike": {
+    "name": "Searing Arc Strike",
+    "action_type": "bonus_action"
+  },
+  "pub_searing-sunburst": {
+    "name": "Searing Sunburst",
+    "action_type": "action"
+  },
+  "cleansing-touch": {
+    "name": "Cleansing Touch",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_channel-divinity-conquering-presence": {
+    "name": "Channel Divinity: Conquering Presence",
+    "action_type": "action"
+  },
+  "pub_invincible-conqueror": {
+    "name": "Invincible Conqueror",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_channel-divinity-turn-the-unholy": {
+    "name": "Channel Divinity: Turn the Unholy",
+    "action_type": "action"
+  },
+  "pub_holy-nimbus": {
+    "name": "Holy Nimbus",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_channel-divinity-peerless-athlete": {
+    "name": "Channel Divinity: Peerless Athlete",
+    "action_type": "bonus_action"
+  },
+  "pub_glorious-defense": {
+    "name": "Glorious Defense",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub_aura-of-the-guardian": {
+    "name": "Aura of the Guardian",
+    "action_type": "reaction"
   }
 }
