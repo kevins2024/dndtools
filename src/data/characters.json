@@ -291,7 +291,8 @@
       {
         "name": "Frenzy",
         "type": "feature",
-        "id": "frenzy"
+        "id": "frenzy",
+        "action_type": "bonus_action"
       },
       {
         "name": "Mindless Rage",
@@ -8060,7 +8061,8 @@
         "id": "frenzy",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Barbarian"
+        "_source": "Barbarian",
+        "action_type": "bonus_action"
       },
       {
         "name": "Extra Attack",

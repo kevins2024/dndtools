@@ -198,5 +198,17 @@
     "name": "Relentless Endurance",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "frenzy": {
+    "name": "Frenzy",
+    "action_type": "bonus_action"
+  },
+  "pub_great-weapon-master": {
+    "name": "Great Weapon Master",
+    "action_type": "bonus_action"
+  },
+  "hb_hurl_something": {
+    "name": "Hurl Something",
+    "action_type": "action"
   }
 }
