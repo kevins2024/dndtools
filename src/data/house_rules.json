@@ -58,5 +58,15 @@
     "name": "Attuned Stone Backlash",
     "description": "Whenever the bearer of the Stone of the Rootbound Ward or the Stone of the Broken Vein uses one of the stone's active abilities — including the shared combo ability The Stones Agree — the bearer must succeed on a DC 12 Constitution saving throw or take 1d6 damage: feedback from channeling power they were never actually trained to hold. Does not apply to the stones' passive tremorsense, since standing near ground the stone already senses isn't 'using' anything.",
     "notes": "Applies per-use, per-bearer. When both bearers trigger The Stones Agree together, each makes their own separate backlash save."
+  },
+  {
+    "name": "Landing On Someone",
+    "description": "When a creature takes fall damage and lands on another creature or an object, that target takes the same damage. Use the damage the faller actually took (so Slow Fall or Feather Fall reduce both). It covers anything that isn't immune to bludgeoning damage — creatures of any size, objects, constructs, demons, elementals. Resistance or vulnerability to bludgeoning applies normally; a resistance that only covers nonmagical attacks does not, because a fall isn't an attack. If the fall is over 60 ft (see Falling), the dice don't decide: whatever the faller lands on dies, if it is Large or smaller; a bigger creature takes 168 damage (the most the table can deal) instead.",
+    "notes": "If the impact hurts the jumper, it hurts whatever they landed on equally. The faller picks one target in the space they land in. Something with nothing solid to land on (a ghost, a gas) takes nothing."
+  },
+  {
+    "name": "Falling",
+    "description": "Falls use a harsher table than the book. For every full 10 feet fallen, the fall has one more 'tier', and the number of dice is the triangular number of the tier: 10 ft = 1 die, 20 ft = 3, 30 ft = 6, 40 ft = 10, 50 ft = 15, 60 ft = 21. The dice are d8s. Before landing, the faller may brace: an Acrobatics check or a Constitution saving throw (their choice) against DC 14 + the tier (DC 15 at 10 ft up to DC 20 at 60 ft). On a success the dice are d6s instead. A fall of more than 60 feet isn't rolled: the faller dies. Anything that stops or softens the fall (Feather Fall, flying, a soft landing the DM allows) applies first.",
+    "notes": "Real falls are survivable to about 50 ft about half the time and almost never past 80-100 ft; the book's 1d6 per 10 ft (max 20d6) leaves a high-level hero barely scratched. With this table a 40 ft fall averages 45 and a 60 ft fall averages 94, so a bigger spread of HP survives short falls and nobody walks away from a long one. Lands-on-someone is its own rule (Landing On Someone)."
   }
 ]

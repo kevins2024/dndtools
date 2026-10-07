@@ -38,6 +38,14 @@
         >
           Clear
         </button>
+        <button
+          class="fall-btn"
+          :class="{ 'fall-btn--active': showFall }"
+          title="Fall damage (house rule): brace, roll, and see what you land on"
+          @click="showFall = !showFall"
+        >
+          Fall
+        </button>
         <span
           v-if="accumulated.length"
           class="acc-total"
@@ -49,6 +57,14 @@
         </span>
       </div>
     </div>
+
+    <FallDamagePanel
+      v-if="showFall"
+      :advantage="advantage"
+      :disadvantage="disadvantage"
+      @rolled="onFallRolled"
+      @close="showFall = false"
+    />
 
     <!-- Roll Area -->
     <div class="roll-area">
@@ -128,14 +144,18 @@ import d12 from '@/assets/dice/d12.svg'
 import d20 from '@/assets/dice/d20.svg'
 import { dnd } from '@/utils/dnd_utils.js'
 import { d20Test } from '@/utils/d20Test.js'
+import FallDamagePanel from './FallDamagePanel.vue'
 
 let rollId = 0
 
 export default {
   name: 'DiceRoller',
 
+  components: { FallDamagePanel },
+
   data() {
     return {
+      showFall: false,
       dice: [2, 4, 6, 8, 10, 12, 20],
       diceImages: {
         4: d4,
@@ -199,6 +219,24 @@ export default {
         advantage: test.mode !== 'normal',
       }
 
+      if (this.current) this.history.unshift(this.current)
+      this.current = entry
+    },
+
+    // A fall rolled in the Fall panel lands in the history like any other
+    // roll, so it can be clicked into the running total.
+    onFallRolled({ die, sides, rolls, result, display, math }) {
+      const entry = {
+        id: rollId++,
+        die,
+        sides,
+        rolls,
+        result,
+        display,
+        math,
+        image: this.diceImages[sides],
+        advantage: false,
+      }
       if (this.current) this.history.unshift(this.current)
       this.current = entry
     },
@@ -321,6 +359,24 @@ export default {
   border-color: var(--color-accent);
   color: var(--color-accent);
   box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.2);
+}
+
+.fall-btn {
+  margin-left: 0.4vw;
+  padding: 3px 10px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-low);
+  font-size: var(--font-size-md);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.fall-btn:hover,
+.fall-btn--active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .die-btn-icon {

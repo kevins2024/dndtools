@@ -65,6 +65,11 @@ import {
 } from './unarmedAttacks.js'
 
 import {
+  hurlSomething as engineHurlSomething,
+  hurlYourself as engineHurlYourself,
+} from './hurlSomething.js'
+
+import {
   weaveDustForRoll as engineWeaveDustForRoll,
   weaveDustEstimateRange as engineWeaveDustEstimateRange,
 } from './houseRules.js'
@@ -185,6 +190,7 @@ export const dnd = {
   rechargeLabel(recharge) {
     if (recharge === 'short_rest') return 'SR'
     if (recharge === 'long_rest') return 'LR'
+    if (recharge === 'manual') return 'DM call'
     return recharge.replace(/_/g, ' ')
   },
 
@@ -795,6 +801,55 @@ export const dnd = {
       })
     }
 
+    // Hurl Something (homebrew): the row shows the heaviest throw the
+    // character's Strength allows; the rules for lighter objects, the
+    // height crit and the splash live in the tooltip.
+    const hurl = engineHurlSomething(character, equippedForEngine)
+    if (hurl) {
+      const rules = [
+        `1d4 per 8 lb (max ${hurl.maxWeight} lb = ${hurl.dice})`,
+        'Takes your whole Attack action',
+        `Range ${hurl.range.normal}/${hurl.range.long} ft`,
+        `A hit is a critical hit if you're over ${hurl.autoCritFromAboveFt} ft above the target`,
+        `Over 40 lb: creatures within 5 ft make a DEX save (DC ${
+          hurl.splash?.dc ?? '?'
+        }) or take half`,
+      ].join('\n')
+      summaries.push({
+        name: hurl.name,
+        attack: dnd.signed(hurl.attack.value),
+        damage: `${hurl.dice}${dnd.signed(hurl.damage.value)}`,
+        type: 'ranged',
+        atkTooltip: dnd._formatBreakdown(hurl.attack),
+        dmgTooltip: `${rules}\n${dnd._formatBreakdown(hurl.damage)}`,
+        extras: [],
+      })
+    }
+
+    // Hurl Yourself (homebrew, Brick): a leap onto creatures for double the
+    // fall damage. The height isn't known here, so the row points at the
+    // dice roller's Fall button, which does the real rolling.
+    const hurlSelf = engineHurlYourself(character, equippedForEngine)
+    if (hurlSelf) {
+      const rules = [
+        'Leap off something high onto a creature within your jump distance',
+        `(${hurlSelf.range.jump} ft) and one creature adjacent to it`,
+        'Fall damage is the campaign table (dice roller > Fall): brace for d6 instead of d8',
+        `You take it once; each target takes it ×${hurlSelf.multiplier}`,
+        'From over 60 ft you die, and so does what you land on',
+        'No attack roll or save. Takes your whole Attack action',
+      ].join('\n')
+      summaries.push({
+        name: hurlSelf.name,
+        attack: '—',
+        damage: `fall damage ×${hurlSelf.multiplier}`,
+        type: 'jump',
+        atkTooltip: 'No attack roll: you land on the targets',
+        dmgTooltip: rules,
+        extras: [],
+      })
+    }
+
     for (const blade of enginePsychicBlades(character, equippedForEngine) ??
       []) {
       summaries.push({
@@ -860,7 +915,8 @@ export const dnd = {
         tooltip = `${label}: set to ${b.override.value} by ${b.override.name} = ${modStr}`
       } else {
         const parts = [`${label}: ${b.base} base`]
-        for (const c of b.contributions) parts.push(`+${c.amount} (${c.label})`)
+        for (const c of b.contributions)
+          parts.push(`${dnd.signed(c.amount)} (${c.label})`)
         parts.push(`= ${b.score} (${modStr})`)
         tooltip = parts.join(' · ')
       }

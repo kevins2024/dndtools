@@ -7,3 +7,4 @@ export const weaveDustForRoll = houseRulesEngine.weaveDustForRoll
 export const weaveDustEstimateRange = houseRulesEngine.weaveDustEstimateRange
 export const crowdStrength = houseRulesEngine.crowdStrength
 export const crowdAreaDamage = houseRulesEngine.crowdAreaDamage
+export const landingImpact = houseRulesEngine.landingImpact

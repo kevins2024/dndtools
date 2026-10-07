@@ -3,8 +3,10 @@
 // lives beside the other campaign-level rules rather than in rules/5e/.
 // Extracted 2026-10-01 from src/utils/dnd_utils.js.
 //
-// Zero dependencies — browser code require()s this directly; see
+// No fs/path dependencies — browser code require()s this directly; see
 // src/utils/houseRules.js.
+
+const { FALL_CAP_DAMAGE } = require('./5e/fall')
 
 // "Weave Dust from Broken-Down Magic Items": a magic item can be destroyed
 // for Weave Dust instead of sold for gold. base = value_gp / 15, reduced by
@@ -71,7 +73,45 @@ function crowdAreaDamage(baseDamage, strength) {
   return Math.floor(baseDamage / 2) * strength
 }
 
+// "Landing On Someone": when a creature takes fall damage and lands on
+// another creature or an object, that target takes the same damage. `fallDamage`
+// is the damage the faller actually took (after Slow Fall, Feather Fall and
+// the like), because it's the impact that hurts — not the rolled dice.
+// `target` is `{ size, immunities, resistances, vulnerabilities }`
+// (damage-type names, any case). Fall damage is bludgeoning, so immunity to
+// bludgeoning means no damage, and resistance/vulnerability to it
+// halves/doubles it. A resistance written as "from nonmagical attacks"
+// doesn't apply — a fall isn't an attack — so only a plain bludgeoning entry
+// counts.
+//
+// `lethal: true` is a fall over 60 ft (fall.js): the dice no longer decide.
+// Anything Large or smaller (an unspecified size counts as Medium) that
+// isn't immune to bludgeoning just dies — `{ damage: null, dies: true }`;
+// anything bigger takes the table's maximum (FALL_CAP_DAMAGE) instead, with
+// its resistance or vulnerability applied.
+const SMALL_ENOUGH_TO_DIE = ['tiny', 'small', 'medium', 'large']
+
+function landingImpact(fallDamage, target = {}, { lethal = false } = {}) {
+  const has = (list) =>
+    (list ?? []).some((t) => String(t).trim().toLowerCase() === 'bludgeoning')
+  if (lethal) {
+    if (has(target.immunities)) return { damage: 0, modifier: 'immune' }
+    const size = String(target.size ?? 'medium').toLowerCase()
+    if (SMALL_ENOUGH_TO_DIE.includes(size))
+      return { damage: null, modifier: 'none', dies: true }
+    fallDamage = FALL_CAP_DAMAGE
+  }
+  if (!(fallDamage > 0)) return { damage: 0, modifier: 'none' }
+  if (has(target.immunities)) return { damage: 0, modifier: 'immune' }
+  if (has(target.resistances))
+    return { damage: Math.floor(fallDamage / 2), modifier: 'resistant' }
+  if (has(target.vulnerabilities))
+    return { damage: fallDamage * 2, modifier: 'vulnerable' }
+  return { damage: fallDamage, modifier: 'none' }
+}
+
 module.exports = {
+  landingImpact,
   weaveDustForRoll,
   weaveDustEstimateRange,
   crowdStrength,
