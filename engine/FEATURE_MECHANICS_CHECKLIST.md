@@ -37,8 +37,8 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | barbarian-extra-attack | Extra Attack | Barbarian | no | Brick | todo |  |
 | fast-movement | Fast Movement | Barbarian | no | Brick | todo |  |
 | feral-instinct | Feral Instinct | Barbarian | no | Brick | todo |  |
-| rage | Rage | Barbarian | no | Brick | done |  |
-| reckless-attack | Reckless Attack | Barbarian | no | Brick | todo |  |
+| rage | Rage | Barbarian | no | Rhuna, Brick | done |  |
+| reckless-attack | Reckless Attack | Barbarian | no | Rhuna, Brick | todo |  |
 | barbarian-unarmored-defense | Unarmored Defense | Barbarian | no | Brick | todo |  |
 | frenzy | Frenzy | Barbarian (Berserker) | no | Brick | todo |  |
 | mindless-rage | Mindless Rage | Barbarian (Berserker) | no | Brick | todo |  |
@@ -54,6 +54,7 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_tales-from-beyond | Tales from Beyond | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 3rd level. | no | Sorra | todo |  |
 | pub_spirit-session | Spirit Session | College of Spirits (Bard subclass, Tasha's Cauldron of Everything) — 6th level, a separate feature from Spiritual Focus's own 6th-level damage/healing bonus roll (both genuinely trigger at 6th level). | no | Sorra | todo |  |
 | action-surge-1-use | Action Surge (1 use) | Fighter | no | Vaz, Corwin, Elucyne, Eldi, Kerra | done |  |
+| gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no | Vaz | todo |  |
 | fighter-fighting-style-dueling | Fighting Style: Dueling | Fighter | no | Kerra | todo |  |
 | fighter-fighting-style-two-weapon-fighting | Fighting Style: Two-Weapon Fighting | Fighter | no | Vaz | todo |  |
 | indomitable-1-use | Indomitable (1 use) | Fighter | no | Vaz, Corwin | done |  |
@@ -79,9 +80,16 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_awakened-mind | Awakened Mind | Player's Handbook | no | Kerra | todo |  |
 | pub_channel-divinity-nature-s-wrath | Channel Divinity: Nature's Wrath | Player's Handbook | no | Chuknora | todo |  |
 | pub_channel-divinity-turn-the-faithless | Channel Divinity: Turn the Faithless | Player's Handbook | no | Chuknora | todo |  |
+| pub_disarming-attack | Disarming Attack | Player's Handbook | no | Vaz | todo |  |
+| pub_dual-wielder | Dual Wielder | Player's Handbook | no | Vaz | todo |  |
 | pub_fey-ancestry | Fey Ancestry | Player's Handbook | no | Enauweyn, Revven, Eldi, Rith, Therynv'l | todo |  |
 | pub_hellish-resistance | Hellish Resistance | Player's Handbook | no | Elucyne | todo |  |
 | pub_infernal-legacy | Infernal Legacy | Player's Handbook | no | Elucyne | todo |  |
+| pub_know-your-enemy | Know Your Enemy | Player's Handbook | no | Vaz | todo |  |
+| pub_menacing-attack | Menacing Attack | Player's Handbook | no | Vaz | todo |  |
+| pub_parry | Parry | Player's Handbook | no | Vaz | todo |  |
+| pub_precision-attack | Precision Attack | Player's Handbook | no | Vaz | todo |  |
+| pub_riposte | Riposte | Player's Handbook | no | Vaz | todo |  |
 | hb_infused_arbalist_bonus_spells | Arbalist Bonus Spells | Renamed from Artillerist Bonus Spells (Tasha's Cauldron of Everything) — content unchanged, only the name updated to match this subclass. | yes | Jaygar | todo |  |
 | cunning-action | Cunning Action | Rogue | no | Siv, Torrin | todo |  |
 | rogue-evasion | Evasion | Rogue | no | Siv, Torrin | todo |  |
@@ -374,7 +382,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_echo-swap-places | Echo: Swap Places | Echo Knight (Fighter subclass, Explorer's Guide to Wildemount) — part of Manifest Echo, 3rd level. | no |  | todo |  |
 | pub_resilient-constitution-legacy | Resilient (Constitution) | Feat, Player's Handbook. | no |  | todo |  |
 | action-surge-2-uses | Action Surge (2 uses) | Fighter | no |  | done |  |
-| gen_fighter_base_extra-attack-1 | Extra Attack (1) | Fighter | no |  | todo |  |
 | extra-attack-2 | Extra Attack (2) | Fighter | no |  | todo |  |
 | extra-attack-3 | Extra Attack (3) | Fighter | no |  | todo |  |
 | fighter-fighting-style | Fighting Style | Fighter | no |  | todo |  |
@@ -620,10 +627,8 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_defensive-duelist | Defensive Duelist | Player's Handbook | no |  | todo |  |
 | pub_destroy-undead-cr-1 | Destroy Undead (CR 1) | Player's Handbook | no |  | todo |  |
 | pub_devil-s-sight | Devil's Sight | Player's Handbook | no |  | todo |  |
-| pub_disarming-attack | Disarming Attack | Player's Handbook | no |  | todo |  |
 | pub_distracting-strike | Distracting Strike | Player's Handbook | no |  | todo |  |
 | pub_dreadful-word | Dreadful Word | Player's Handbook | no |  | todo |  |
-| pub_dual-wielder | Dual Wielder | Player's Handbook | no |  | todo |  |
 | pub_dungeon-delver | Dungeon Delver | Player's Handbook | no |  | todo |  |
 | pub_durable | Durable | Player's Handbook | no |  | todo |  |
 | pub_elder-champion | Elder Champion | Player's Handbook | no |  | todo |  |
@@ -652,7 +657,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_improved-combat-superiority-d12 | Improved Combat Superiority (d12) | Player's Handbook | no |  | todo |  |
 | pub_inspiring-leader | Inspiring Leader | Player's Handbook | no |  | todo |  |
 | pub_keen-mind | Keen Mind | Player's Handbook | no |  | todo |  |
-| pub_know-your-enemy | Know Your Enemy | Player's Handbook | no |  | todo |  |
 | pub_lifedrinker | Lifedrinker | Player's Handbook | no |  | todo |  |
 | pub_lightly-armored | Lightly Armored | Player's Handbook | no |  | todo |  |
 | pub_linguist | Linguist | Player's Handbook | no |  | todo |  |
@@ -683,7 +687,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_mask-of-the-wild | Mask of the Wild | Player's Handbook | no |  | todo |  |
 | pub_master-of-myriad-forms | Master of Myriad Forms | Player's Handbook | no |  | todo |  |
 | pub_medium-armor-master | Medium Armor Master | Player's Handbook | no |  | todo |  |
-| pub_menacing-attack | Menacing Attack | Player's Handbook | no |  | todo |  |
 | pub_minions-of-chaos | Minions of Chaos | Player's Handbook | no |  | todo |  |
 | pub_mire-the-mind | Mire the Mind | Player's Handbook | no |  | todo |  |
 | pub_misty-visions | Misty Visions | Player's Handbook | no |  | todo |  |
@@ -694,9 +697,7 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_observant | Observant | Player's Handbook | no |  | todo |  |
 | pub_one-with-shadows | One with Shadows | Player's Handbook | no |  | todo |  |
 | pub_otherworldly-leap | Otherworldly Leap | Player's Handbook | no |  | todo |  |
-| pub_parry | Parry | Player's Handbook | no |  | todo |  |
 | pub_polearm-master | Polearm Master | Player's Handbook | no |  | todo |  |
-| pub_precision-attack | Precision Attack | Player's Handbook | no |  | todo |  |
 | pub_primal-strike | Primal Strike | Player's Handbook | no |  | todo |  |
 | pub_projected-ward | Projected Ward | Player's Handbook | no |  | todo |  |
 | pub_pushing-attack | Pushing Attack | Player's Handbook | no |  | todo |  |
@@ -705,7 +706,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 | pub_relentless | Relentless | Player's Handbook | no |  | todo |  |
 | pub_repelling-blast | Repelling Blast | Player's Handbook | no |  | todo |  |
 | pub_resilient | Resilient | Player's Handbook | no |  | todo |  |
-| pub_riposte | Riposte | Player's Handbook | no |  | todo |  |
 | pub_ritual-caster | Ritual Caster | Player's Handbook | no |  | todo |  |
 | pub_rock-gnome-artificer-s-lore | Rock Gnome Artificer's Lore | Player's Handbook | no |  | todo |  |
 | pub_savage-attacker | Savage Attacker | Player's Handbook | no |  | todo |  |
@@ -1020,16 +1020,6 @@ Counts: todo 987 · done 19 · text-only 0 · needs-engine 0 · needs-owner 0 ·
 
 | character | feature | status | notes |
 |---|---|---|---|
-| Vaz | Extra Attack | todo |  |
-| Vaz | Dual Wielder | todo |  |
-| Vaz | Know Your Enemy | todo |  |
-| Vaz | Disarming Attack | todo |  |
-| Vaz | Precision Attack | todo |  |
-| Vaz | Riposte | todo |  |
-| Vaz | Menacing Attack | todo |  |
-| Vaz | Parry | todo |  |
-| Rhuna | Rage (4 uses, +3 damage) | todo |  |
-| Rhuna | Reckless Attack | todo |  |
 | Rhuna | Danger Sense | todo |  |
 | Rhuna | Extra Attack | todo |  |
 | Rhuna | Frenzy | todo |  |

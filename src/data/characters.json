@@ -51,7 +51,8 @@
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_base_extra-attack-1"
       },
       {
         "name": "Action Surge",
@@ -90,32 +91,39 @@
       {
         "name": "Dual Wielder",
         "type": "feat",
+        "id": "pub_dual-wielder",
         "level_gained": 6
       },
       {
         "name": "Know Your Enemy",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_know-your-enemy"
       },
       {
         "name": "Disarming Attack",
-        "type": "maneuver"
+        "type": "maneuver",
+        "id": "pub_disarming-attack"
       },
       {
         "name": "Precision Attack",
-        "type": "maneuver"
+        "type": "maneuver",
+        "id": "pub_precision-attack"
       },
       {
         "name": "Riposte",
         "type": "maneuver",
+        "id": "pub_riposte",
         "action_type": "reaction"
       },
       {
         "name": "Menacing Attack",
-        "type": "maneuver"
+        "type": "maneuver",
+        "id": "pub_menacing-attack"
       },
       {
         "name": "Parry",
         "type": "maneuver",
+        "id": "pub_parry",
         "action_type": "reaction"
       }
     ],
@@ -252,6 +260,7 @@
       {
         "name": "Rage (4 uses, +3 damage)",
         "type": "feature",
+        "id": "rage",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -259,7 +268,8 @@
       },
       {
         "name": "Reckless Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "reckless-attack"
       },
       {
         "name": "Danger Sense",
