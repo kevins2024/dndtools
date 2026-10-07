@@ -171,5 +171,13 @@
   "pub_combat-wild-shape-healing": {
     "name": "Combat Wild Shape: Healing",
     "action_type": "bonus_action"
+  },
+  "pub_channel-divinity-sacred-weapon": {
+    "name": "Channel Divinity: Sacred Weapon",
+    "action_type": "action"
+  },
+  "pub_vow-of-the-open-road": {
+    "name": "Channel Divinity: Vow of the Open Road",
+    "action_type": "action"
   }
 }
