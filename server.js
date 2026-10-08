@@ -19,6 +19,15 @@ const PREFS_FILE = path.resolve(__dirname, './user_prefs.json')
 const readJSON = (file) =>
   JSON.parse(fs.readFileSync(file, 'utf8').replace(/^﻿/, ''))
 
+// Writes JSON atomically: a crash or a second write landing mid-write used to
+// leave a truncated data file. Write a temp file beside the target, then rename
+// it over the target (a rename replaces the file in one step).
+const writeJSON = (file, data) => {
+  const tmp = `${file}.${process.pid}.tmp`
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2), 'utf8')
+  fs.renameSync(tmp, file)
+}
+
 // Whitelist of allowed table names — prevents arbitrary file access
 const ALLOWED_TABLES = [
   'characters',
@@ -26,8 +35,6 @@ const ALLOWED_TABLES = [
   'places',
   'party_items',
   'world',
-  'factions',
-  'quests',
   'finances',
   'networks',
   'assets',
@@ -83,7 +90,7 @@ app.get('/api/user_prefs', (req, res) => {
 
 app.post('/api/user_prefs', (req, res) => {
   try {
-    fs.writeFileSync(PREFS_FILE, JSON.stringify(req.body, null, 2), 'utf8')
+    writeJSON(PREFS_FILE, req.body)
     res.json({ ok: true })
   } catch (err) {
     res.status(500).json({ error: 'Failed to write user_prefs.json' })
@@ -190,7 +197,7 @@ app.post('/api/:table', (req, res) => {
 
     const { merged, conflicts } = threeWayMerge(base, current, theirs)
 
-    fs.writeFileSync(file, JSON.stringify(merged, null, 2), 'utf8')
+    writeJSON(file, merged)
     console.log(
       `Saved: ${table}.json${
         conflicts.length
@@ -244,7 +251,7 @@ app.patch('/api/homebrew/:section', (req, res) => {
     } else {
       list.push(item)
     }
-    fs.writeFileSync(file, JSON.stringify(list, null, 2), 'utf8')
+    writeJSON(file, list)
     console.log(`Saved ${section}: ${item.name}`)
     res.json({ ok: true })
   } catch (err) {
@@ -818,7 +825,7 @@ function addIndexToFile(filename) {
     return
   }
   const updated = data.map((obj, i) => ({ ...obj, id: i }))
-  fs.writeFileSync(file, JSON.stringify(updated, null, 2), 'utf8')
+  writeJSON(file, updated)
   console.log(`[startup] Indexed ${updated.length} entries in ${filename}`)
 }
 

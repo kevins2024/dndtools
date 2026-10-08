@@ -10,7 +10,7 @@
     "stop": "node scripts/stop-dev-servers.js",
     "build": "vue-cli-service build",
     "deploy": "npm run build && gh-pages -d dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd engine && node --test",
     "update-ids": "node update-ids.js",
     "copy-world": "node copy-world.js",
     "postinstall": "node scripts/install-hooks.js"

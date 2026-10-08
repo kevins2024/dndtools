@@ -9,6 +9,7 @@
 const restEngine = require('../../engine/rules/5e/rest')
 
 export const hitDieSides = restEngine.hitDieSides
+export const characterHitDieSides = restEngine.characterHitDieSides
 export const hitDiceAvailable = restEngine.hitDiceAvailable
 export const hpMissing = restEngine.hpMissing
 export const averageHitDieHealing = restEngine.averageHitDieHealing

@@ -42,7 +42,7 @@
             </div>
             <div class="hd-section">
               <div class="hd-available">
-                {{ hdAvailable(char) }}× {{ char.hit_die || 'd8' }}
+                {{ hdAvailable(char) }}× {{ hitDieLabel(char) }}
               </div>
               <div class="hd-stepper">
                 <button
@@ -67,7 +67,7 @@
               <div
                 class="hd-estimate"
                 v-if="diceToSpend[char.name] > 0"
-                :title="`Average ${averageHitDieHealing(char)} per die`"
+                :title="`Average ${averageHealing(char)} per die`"
               >
                 ≈ +{{ estimateHeal(char) }} HP
               </div>
@@ -111,7 +111,7 @@
                 class="result-roll"
                 v-if="rollResults[char.name].diceSpent > 0"
               >
-                {{ rollResults[char.name].diceSpent }}{{ char.hit_die || 'd8' }}
+                {{ rollResults[char.name].diceSpent }}{{ hitDieLabel(char) }}
                 <template v-if="rollResults[char.name].rolls.length">
                   <span class="roll-parts">
                     ({{ rollResults[char.name].rolls.join(' + ') }})
@@ -159,6 +159,7 @@ import {
   hitDiceAvailable,
   hpMissing,
   averageHitDieHealing,
+  characterHitDieSides,
   shortRestHealEstimate,
   rollShortRestHealing,
   applyShortRest,
@@ -201,7 +202,19 @@ export default {
       return dnd.mod(char.stat_con)
     },
 
-    averageHitDieHealing,
+    // Hit die and CON come from the engine: the die from the character's
+    // classes, CON from the effective score (items count).
+    hitDieLabel(char) {
+      return `d${characterHitDieSides(char)}`
+    },
+
+    equipped(char) {
+      return dnd._equippedOnly(char, this.party_items)
+    },
+
+    averageHealing(char) {
+      return averageHitDieHealing(char, this.equipped(char))
+    },
 
     hdAvailable(char) {
       return hitDiceAvailable(char)
@@ -224,7 +237,11 @@ export default {
     },
 
     estimateHeal(char) {
-      return shortRestHealEstimate(char, this.diceToSpend[char.name] ?? 0)
+      return shortRestHealEstimate(
+        char,
+        this.diceToSpend[char.name] ?? 0,
+        this.equipped(char)
+      )
     },
 
     incDice(name) {
@@ -246,7 +263,12 @@ export default {
 
       for (const char of this.members) {
         const n = this.diceToSpend[char.name] ?? 0
-        const { rolls, hpGained } = rollShortRestHealing(char, n)
+        const { rolls, hpGained } = rollShortRestHealing(
+          char,
+          n,
+          Math.random,
+          this.equipped(char)
+        )
         // recharged: what this rest will actually refill, listed for the
         // results screen (applyShortRest is what the store runs for real).
         const { recharged } = applyShortRest(char, { diceSpent: n, hpGained })

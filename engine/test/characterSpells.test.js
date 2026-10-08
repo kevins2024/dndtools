@@ -47,6 +47,10 @@ test('normalizeItemSpellGrant: object keeps its own cost/uses/choice group', () 
   })
 })
 
+test('usesFullClassList: a Ranger knows spells, so does not get the whole class list (bug 2.6)', () => {
+  assert.equal(usesFullClassList({ classes: [{ name: 'Ranger' }] }), false)
+})
+
 test('usesFullClassList: Cleric/Druid/Paladin/Artificer yes; Wizard/Bard no', () => {
   const has = (n) => usesFullClassList({ classes: [{ name: n }] })
   assert.ok(has('Cleric'))

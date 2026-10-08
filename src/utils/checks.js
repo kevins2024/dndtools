@@ -18,12 +18,14 @@ export const allSavingThrows = checksEngine.allSavingThrows
 export const SKILL_MAP = checksEngine.SKILL_MAP
 export const skill = checksEngine.skill
 export const skillBreakdown = checksEngine.skillBreakdown
+export const skillTraining = checksEngine.skillTraining
 export const allSkills = checksEngine.allSkills
 export const passivePerception = checksEngine.passivePerception
 export const passivePerceptionBreakdown =
   checksEngine.passivePerceptionBreakdown
 export const initiative = checksEngine.initiative
 export const hasInitiativeAdvantage = checksEngine.hasInitiativeAdvantage
+export const skillAdvantage = checksEngine.skillAdvantage
 export const spellAttackBonus = checksEngine.spellAttackBonus
 export const spellAttackBonusBreakdown = checksEngine.spellAttackBonusBreakdown
 export const spellSaveDC = checksEngine.spellSaveDC

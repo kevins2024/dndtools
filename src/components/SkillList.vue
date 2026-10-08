@@ -22,7 +22,15 @@
             :class="{ filled: skill.hasExpertise }"
           ></span>
         </span>
-        <span class="skill-name">{{ skill.displayName }}</span>
+        <span class="skill-name"
+          >{{ skill.displayName
+          }}<span
+            v-if="skill.advantage"
+            class="skill-adv"
+            title="Advantage on this check"
+            >adv</span
+          ></span
+        >
         <span class="skill-stat">{{ skill.statLabel }}</span>
         <span class="skill-mod" :class="skill.value >= 0 ? 'pos' : 'neg'">{{
           skill.valueStr
@@ -59,20 +67,12 @@ export default {
       return this.$store.state.party_items ?? []
     },
     skills() {
-      const proficiencies = this.character.skill_proficiencies ?? []
-      const expertises = this.character.skill_expertise ?? []
-      const characterName = this.character.name
-      const itemGrantedProficiencies = new Set(
-        this.partyItems
-          .filter((i) => i.equipped_by === characterName)
-          .flatMap((i) => i.grants_skill_proficiency ?? [])
-      )
-
       return Object.entries(dnd.SKILL_MAP).map(([skillName, statKey]) => {
-        const isProficient =
-          proficiencies.includes(skillName) ||
-          itemGrantedProficiencies.has(skillName)
-        const hasExpertise = expertises.includes(skillName)
+        const { isProficient, hasExpertise } = dnd.skillTraining(
+          this.character,
+          skillName,
+          this.partyItems
+        )
         const total = dnd.skill(this.character, skillName, this.partyItems)
         const displayName = skillName.replace(/([A-Z])/g, ' $1').trim()
 
@@ -83,6 +83,11 @@ export default {
           statLabel: statKey.toUpperCase(),
           value: total,
           valueStr: dnd.signed(total),
+          advantage: dnd.skillAdvantage(
+            this.character,
+            skillName,
+            this.partyItems
+          ),
           isProficient,
           hasExpertise,
           tooltip: `${displayName} (${statKey.toUpperCase()})\n${dnd.skillBreakdown(
@@ -100,6 +105,7 @@ export default {
       this.$store.commit('SET_PENDING_ROLL', {
         label: `${this.character.name} — ${skill.displayName} check`,
         mod: skill.value,
+        advantage: skill.advantage,
       })
     },
   },
@@ -168,6 +174,16 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.skill-adv {
+  margin-left: 0.4rem;
+  padding: 0 0.3rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  vertical-align: middle;
 }
 
 .skill-row.skill-prof .skill-name {

@@ -437,7 +437,7 @@ export default {
       try {
         const content = this.buildMarkdown()
         const filename = this.activeParty.name
-        const res = await fetch('http://localhost:3001/api/dm-context', {
+        const res = await fetch('/api/dm-context', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ filename, content }),

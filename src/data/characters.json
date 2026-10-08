@@ -196,7 +196,7 @@
       "heavy",
       "shields"
     ],
-    "active_weapon_set": 1,
+    "active_weapon_set": 2,
     "hp_temp": 0,
     "conditions": []
   },
@@ -7287,7 +7287,8 @@
       "hand crossbow",
       "longsword",
       "rapier",
-      "shortsword"
+      "shortsword",
+      "scimitar"
     ],
     "armor_proficiencies": [
       "light"

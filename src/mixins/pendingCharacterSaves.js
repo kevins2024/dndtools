@@ -107,7 +107,11 @@ export default {
       this.savingName = 'all'
       this.saveError = null
       try {
-        const result = await this.$store.dispatch('save', 'characters')
+        // The explicit button: this is the one save that DOES include drafts.
+        const result = await this.$store.dispatch('save', {
+          table: 'characters',
+          includeDrafts: true,
+        })
         if (result?.conflicts?.length) {
           this.saveError = `Saved with conflicts resolved in favor of disk: ${result.conflicts.join(
             ', '

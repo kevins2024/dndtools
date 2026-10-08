@@ -81,6 +81,15 @@ const dieSides = (die) => Number(String(die).split('d')[1])
 
 const UNARMED_FIGHTING_ID = 'fighting-style-unarmed-fighting'
 
+// Tavern Brawler (PHB feat): "your unarmed strike deals 1d4". Read off the
+// feat itself, so no one has to hand-set `unarmed_strike_die` (which still
+// works as an explicit override).
+function hasTavernBrawler(character) {
+  return (character.features ?? []).some(
+    (f) => f.id === 'tavern-brawler' || f.name === 'Tavern Brawler'
+  )
+}
+
 // Unarmed Fighting (Tasha's fighting style, from a class or Fighting
 // Initiate): the style's own feature record is the single source of truth.
 function hasUnarmedFighting(character) {
@@ -111,7 +120,8 @@ function handsOccupied(character, equippedItems) {
 // applies. null if the character has none of them.
 function unarmedStrike(character, equippedItems = []) {
   const monkDie = martialArtsDie(character)
-  const brawlDie = character.unarmed_strike_die ?? null
+  const brawlDie =
+    character.unarmed_strike_die ?? (hasTavernBrawler(character) ? '1d4' : null)
   const unarmedFighting = hasUnarmedFighting(character)
   const fightingDie = unarmedFighting
     ? handsOccupied(character, equippedItems)

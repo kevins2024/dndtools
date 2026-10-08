@@ -36,55 +36,6 @@
   ],
   "parties": [
     {
-      "id": "party_1780850600167_0",
-      "name": "East Full",
-      "members": [
-        "Lexica",
-        "Kessara",
-        "Vaz",
-        "Denna",
-        "Enauweyn",
-        "Tackett",
-        "Sorra",
-        "Ferghus"
-      ],
-      "active": true,
-      "game_day": 301,
-      "marching_order": [
-        "Tackett",
-        "Denna",
-        "Ferghus",
-        "Vaz",
-        "Kessara",
-        "Enauweyn",
-        "Lexica",
-        "Sorra"
-      ],
-      "watch_assignments": [
-        [
-          "Denna",
-          "Ferghus"
-        ],
-        [
-          "Tackett",
-          "Enauweyn"
-        ],
-        [
-          "Sorra",
-          "Lexica"
-        ],
-        [
-          "Vaz",
-          "Kessara"
-        ]
-      ],
-      "travel_prefs": {
-        "continent": "Kaemahz",
-        "terrain": "road",
-        "knowsWay": "general_direction"
-      }
-    },
-    {
       "id": "party_1780850600167_1",
       "name": "Valdmere",
       "members": [
@@ -276,6 +227,78 @@
         "Petra",
         "Lenn",
         "Rhuna"
+      ]
+    },
+    {
+      "id": "party_1791382876351",
+      "name": "East B",
+      "members": [
+        "Denna",
+        "Kessara",
+        "Lexica",
+        "Enauweyn"
+      ],
+      "active": true,
+      "game_day": 98,
+      "marching_order": [
+        "Denna",
+        "Kessara",
+        "Lexica",
+        "Enauweyn"
+      ],
+      "watch_assignments": [
+        [
+          "Denna",
+          null
+        ],
+        [
+          "Kessara",
+          null
+        ],
+        [
+          "Lexica",
+          null
+        ],
+        [
+          "Enauweyn",
+          null
+        ]
+      ]
+    },
+    {
+      "game_day": 302,
+      "id": "party_1791412410652",
+      "name": "East A",
+      "members": [
+        "Vaz",
+        "Tackett",
+        "Ferghus",
+        "Sorra"
+      ],
+      "active": false,
+      "marching_order": [
+        "Vaz",
+        "Tackett",
+        "Ferghus",
+        "Sorra"
+      ],
+      "watch_assignments": [
+        [
+          "Vaz",
+          null
+        ],
+        [
+          "Tackett",
+          null
+        ],
+        [
+          "Ferghus",
+          null
+        ],
+        [
+          "Sorra",
+          null
+        ]
       ]
     }
   ],
