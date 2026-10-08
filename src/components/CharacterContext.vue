@@ -1,6 +1,11 @@
 <template>
   <div class="character-context">
-    <aside class="char-col scrollable">
+    <aside
+      ref="charCol"
+      class="char-col scrollable"
+      @dragover="onColDragOver"
+      @dragleave="onColDragLeave"
+    >
       <div class="col-label">Characters</div>
       <label class="dedup-toggle">
         <input v-model="hideDuplicates" type="checkbox" />
@@ -22,9 +27,16 @@
             v-for="char in group.chars"
             :key="char.name"
             class="char-card"
-            :class="{ selected: selectedName === char.name }"
+            :class="{
+              selected: selectedName === char.name,
+              'drop-target': dropTargetName === char.name,
+            }"
             :data-char-name="char.name"
             @click="selectedName = char.name"
+            @dragenter="onCardDragOver($event, char)"
+            @dragover="onCardDragOver($event, char)"
+            @dragleave="onCardDragLeave(char)"
+            @drop="onCardDrop($event, char)"
           >
             <div
               class="char-img"
@@ -78,6 +90,12 @@
     >
       <img :src="lightboxChar.image" class="lightbox-img" @click.stop />
     </div>
+
+    <!-- Confirmation for a drag-and-drop item hand-off, with undo -->
+    <div v-if="transferNotice" class="transfer-toast">
+      <span>{{ transferNotice.text }}</span>
+      <button class="transfer-undo" @click="undoTransfer">Undo</button>
+    </div>
   </div>
 </template>
 
@@ -85,6 +103,18 @@
 import CharacterDetails from './CharacterDetails.vue'
 import ClassIcon from './ClassIcon.vue'
 import dataService from '../utils/dataService'
+import { ITEM_DRAG_TYPE } from '../utils/itemDrag'
+
+// Edge auto-scroll while an item is being dragged: within EDGE_ZONE px of the
+// top/bottom of the character column it scrolls, faster the closer to the
+// edge. The browser's own drag auto-scroll is slow and inconsistent, and this
+// is the whole point of the feature on a long roster.
+const EDGE_ZONE = 90
+const MAX_SCROLL_PER_FRAME = 22
+// dragover keeps firing (~every 50-350ms) while the pointer is over the
+// column, even when held still; if it stops (pointer left, drop elsewhere,
+// the dragged row was removed from the DOM so no dragend), so does scrolling.
+const DRAG_STALE_MS = 400
 
 export default {
   name: 'CharacterContext',
@@ -96,6 +126,12 @@ export default {
       navTab: null,
       hideDuplicates: true, // default overwritten in created()
       lightboxChar: null,
+      dropTargetName: null,
+      transferNotice: null, // { text, before }
+      noticeTimer: null,
+      scrollSpeed: 0,
+      lastDragOverAt: 0,
+      scrollRaf: null,
     }
   },
 
@@ -106,7 +142,7 @@ export default {
     groupedCharacters() {
       const allChars = this.characters
       const assigned = new Set()
-      const parties = [...this.$store.state.parties].sort((a, b) =>
+      const parties = [...this.$store.getters.liveParties].sort((a, b) =>
         b.active ? 1 : a.active ? -1 : 0
       )
       const groups = parties
@@ -170,7 +206,94 @@ export default {
     },
   },
 
+  beforeDestroy() {
+    this.stopAutoScroll()
+    clearTimeout(this.noticeTimer)
+  },
+
   methods: {
+    // ── Item drag-and-drop ──
+    isItemDrag(e) {
+      return Array.from(e.dataTransfer?.types ?? []).includes(ITEM_DRAG_TYPE)
+    },
+    onCardDragOver(e, char) {
+      if (!this.isItemDrag(e)) return
+      e.preventDefault() // marks this as a valid drop target
+      e.dataTransfer.dropEffect = 'move'
+      this.dropTargetName = char.name
+    },
+    onCardDragLeave(char) {
+      if (this.dropTargetName === char.name) this.dropTargetName = null
+    },
+    async onCardDrop(e, char) {
+      if (!this.isItemDrag(e)) return
+      e.preventDefault()
+      const itemId = e.dataTransfer.getData(ITEM_DRAG_TYPE)
+      this.dropTargetName = null
+      this.stopAutoScroll()
+      const result = await this.$store.dispatch('transferItem', {
+        itemId,
+        toCharacter: char.name,
+      })
+      if (!result) return
+      this.showNotice(`${result.after.name} → ${char.name}`, result.before)
+    },
+    showNotice(text, before) {
+      clearTimeout(this.noticeTimer)
+      this.transferNotice = { text, before }
+      this.noticeTimer = setTimeout(() => {
+        this.transferNotice = null
+      }, 6000)
+    },
+    undoTransfer() {
+      if (!this.transferNotice) return
+      this.$store.commit('UPDATE_ITEM', this.transferNotice.before)
+      clearTimeout(this.noticeTimer)
+      this.transferNotice = null
+    },
+
+    // ── Edge auto-scroll ──
+    onColDragOver(e) {
+      if (!this.isItemDrag(e)) return
+      const col = this.$refs.charCol
+      if (!col) return
+      const rect = col.getBoundingClientRect()
+      const fromTop = e.clientY - rect.top
+      const fromBottom = rect.bottom - e.clientY
+      let speed = 0
+      if (fromTop < EDGE_ZONE) {
+        speed = -MAX_SCROLL_PER_FRAME * (1 - Math.max(fromTop, 0) / EDGE_ZONE)
+      } else if (fromBottom < EDGE_ZONE) {
+        speed = MAX_SCROLL_PER_FRAME * (1 - Math.max(fromBottom, 0) / EDGE_ZONE)
+      }
+      this.scrollSpeed = speed
+      this.lastDragOverAt = performance.now()
+      if (speed !== 0 && this.scrollRaf == null) this.tickAutoScroll()
+    },
+    onColDragLeave(e) {
+      // dragleave also fires when crossing between child elements; only stop
+      // when the pointer has actually left the column.
+      if (!this.$refs.charCol?.contains(e.relatedTarget)) {
+        this.scrollSpeed = 0
+        this.dropTargetName = null
+      }
+    },
+    tickAutoScroll() {
+      const col = this.$refs.charCol
+      const stale = performance.now() - this.lastDragOverAt > DRAG_STALE_MS
+      if (!col || stale || this.scrollSpeed === 0) {
+        this.scrollRaf = null
+        return
+      }
+      col.scrollTop += this.scrollSpeed
+      this.scrollRaf = requestAnimationFrame(this.tickAutoScroll)
+    },
+    stopAutoScroll() {
+      this.scrollSpeed = 0
+      if (this.scrollRaf != null) cancelAnimationFrame(this.scrollRaf)
+      this.scrollRaf = null
+    },
+
     scrollSelectedIntoView() {
       const list = this.$refs.charList
       if (!list) return
@@ -256,7 +379,6 @@ export default {
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.15s ease;
 }
 
 .char-card:hover {
@@ -265,6 +387,17 @@ export default {
 
 .char-card.selected {
   border-color: var(--color-accent);
+}
+
+/* An item is being dragged over this portrait — release to hand it over. */
+.char-card.drop-target {
+  border-color: var(--color-accent-strong, var(--color-accent));
+  box-shadow: 0 0 0 2px var(--color-accent);
+  transform: scale(1.04);
+}
+
+.char-card {
+  transition: border-color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .char-img {
@@ -343,6 +476,36 @@ export default {
 </style>
 
 <style>
+.transfer-toast {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+}
+
+.transfer-undo {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: 2px 8px;
+}
+
+.transfer-undo:hover {
+  border-color: var(--color-accent);
+}
+
 .lightbox-overlay {
   position: fixed;
   inset: 0;

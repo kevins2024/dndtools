@@ -887,7 +887,7 @@ export default {
     },
 
     parties() {
-      return this.$store.state.parties ?? []
+      return this.$store.getters.liveParties ?? []
     },
 
     allCharacters() {

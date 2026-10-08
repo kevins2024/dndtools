@@ -701,7 +701,7 @@ export default {
     },
 
     allParties() {
-      return this.$store.state.parties
+      return this.$store.getters.liveParties
     },
 
     selectedParty() {

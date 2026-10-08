@@ -87,7 +87,9 @@
             :key="item.id"
             class="inv-item equipped"
             :class="{ overloaded: isSlotOverfilled(item) }"
-            title="Click for item details"
+            title="Click for item details — drag onto a character portrait to give it to them"
+            draggable="true"
+            @dragstart="startItemDrag($event, item)"
             @click="inspectItem(item)"
           >
             <span class="item-name clickable">{{ item.name }}</span>
@@ -155,7 +157,11 @@
               @click.stop="cycleItemHand(item)"
             >
               {{
-                item.hand === 'main' ? 'Main' : item.hand === 'off' ? 'Off' : 'Hand?'
+                item.hand === 'main'
+                  ? 'Main'
+                  : item.hand === 'off'
+                  ? 'Off'
+                  : 'Hand?'
               }}
             </button>
             <button
@@ -225,7 +231,9 @@
             v-for="item in carriedItems"
             :key="item.id"
             class="inv-item carried"
-            title="Click for item details"
+            title="Click for item details — drag onto a character portrait to give it to them"
+            draggable="true"
+            @dragstart="startItemDrag($event, item)"
             @click="inspectItem(item)"
           >
             <span class="item-name clickable">{{ item.name }}</span>
@@ -328,7 +336,9 @@
             :title="party.name"
             @click="selectedPool = 'party:' + party.id"
           >
-            <span class="pnav-name">{{ party.name }}</span>
+            <span class="pnav-name">{{
+              party.inactive ? `${party.name} (inactive)` : party.name
+            }}</span>
             <span v-if="partyItemCount(party.id)" class="pnav-count">{{
               partyItemCount(party.id)
             }}</span>
@@ -400,8 +410,14 @@
             :key="item.id"
             class="inv-item"
             :class="isAssetPool ? 'stored' : 'pool'"
+            draggable="true"
+            @dragstart="startItemDrag($event, item)"
             @click="!isAssetPool && carry(item)"
-            :title="!isAssetPool ? 'Click to carry' : ''"
+            :title="
+              !isAssetPool
+                ? 'Click to carry — or drag onto a character portrait'
+                : 'Drag onto a character portrait to give it to them'
+            "
           >
             <span
               class="item-name clickable"
@@ -946,6 +962,7 @@
 import { Zap, Check } from 'lucide-vue'
 import { dnd } from '@/utils/dnd_utils.js'
 import { cycleHand, isOneHandedWeapon } from '@/utils/weaponHands.js'
+import { startItemDrag } from '@/utils/itemDrag.js'
 
 export default {
   name: 'CharacterInventory',
@@ -997,7 +1014,7 @@ export default {
     // globally-active party's pool" entry.
     characterParty() {
       return (
-        this.$store.state.parties.find((p) =>
+        this.$store.getters.liveParties.find((p) =>
           (p.members ?? []).includes(this.character.name)
         ) ?? null
       )
@@ -1146,13 +1163,18 @@ export default {
       return dnd.weaveDustEstimateRange(this.deleteCandidate)
     },
     sortedParties() {
-      return [...this.$store.state.parties].sort((a, b) => {
-        if (a.active && !b.active) return -1
-        if (!a.active && b.active) return 1
-        const countDiff = this.partyItemCount(b.id) - this.partyItemCount(a.id)
-        if (countDiff !== 0) return countDiff
-        return a.name.localeCompare(b.name)
-      })
+      // Inactive parties are out of the game, but any loose gear still in
+      // their pool has to stay reachable — so they only show while non-empty.
+      return this.$store.state.parties
+        .filter((p) => !p.inactive || this.partyItemCount(p.id) > 0)
+        .sort((a, b) => {
+          if (a.active && !b.active) return -1
+          if (!a.active && b.active) return 1
+          const countDiff =
+            this.partyItemCount(b.id) - this.partyItemCount(a.id)
+          if (countDiff !== 0) return countDiff
+          return a.name.localeCompare(b.name)
+        })
     },
     sortedShipAssets() {
       return [...this.shipAssets].sort(
@@ -1219,6 +1241,7 @@ export default {
   },
 
   methods: {
+    startItemDrag,
     mountCatalogEntry(item) {
       return this.mounts.find((m) => m.id === item.mount_type) ?? null
     },

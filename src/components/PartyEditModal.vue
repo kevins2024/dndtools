@@ -14,14 +14,21 @@
 
           <div class="party-list">
             <div
-              v-for="p in parties"
+              v-for="p in sortedParties"
               :key="p.id"
               class="party-row"
-              :class="{ selected: editingId === p.id, active: p.active }"
+              :class="{
+                selected: editingId === p.id,
+                active: p.active,
+                inactive: p.inactive,
+              }"
               @click="selectParty(p.id)"
             >
               <span class="party-row-name">{{ p.name }}</span>
               <span v-if="p.active" class="active-badge">active</span>
+              <span v-else-if="p.inactive" class="inactive-badge"
+                >inactive</span
+              >
               <span class="member-count">{{ p.members.length }}</span>
             </div>
             <div v-if="!parties.length" class="no-parties">No parties yet.</div>
@@ -68,11 +75,33 @@
               </div>
               <div class="edit-btns">
                 <button
+                  v-if="!editingParty.inactive"
                   class="action-btn"
                   @click="activateEditingParty"
                   :disabled="editingParty.active"
                 >
                   Set Active
+                </button>
+                <button
+                  v-if="!editingParty.inactive"
+                  class="action-btn"
+                  :disabled="!canDeactivate"
+                  :title="
+                    canDeactivate
+                      ? 'Take this party out of the game — its characters stay'
+                      : 'There has to be at least one other party in play'
+                  "
+                  @click="deactivateEditingParty"
+                >
+                  Mark Inactive
+                </button>
+                <button
+                  v-else
+                  class="action-btn"
+                  title="Bring this party back into the game"
+                  @click="startReactivate"
+                >
+                  Reactivate…
                 </button>
                 <button class="action-btn danger" @click="deleteParty">
                   Delete
@@ -129,6 +158,56 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reactivation: the party's clock was frozen while it was away, so ask
+         what the date is for them now. -->
+    <div
+      v-if="reactivating"
+      class="modal-backdrop pool-dialog-backdrop"
+      @click.self="reactivating = null"
+    >
+      <div class="pool-dialog">
+        <div class="pool-dialog-title">
+          Reactivate "{{ reactivating.name }}"
+        </div>
+        <p class="pool-dialog-body">
+          What's the current date for this party? It was last on
+          {{ reactivatingLastDate }}.
+        </p>
+        <div class="party-date-inputs">
+          <label class="date-field">
+            Year
+            <input
+              v-model.number="reactivateYear"
+              type="number"
+              min="1"
+              class="date-input"
+              @keyup.enter="confirmReactivate"
+            />
+          </label>
+          <label class="date-field">
+            Day
+            <input
+              v-model.number="reactivateDay"
+              type="number"
+              min="1"
+              max="204"
+              class="date-input"
+              @keyup.enter="confirmReactivate"
+            />
+          </label>
+        </div>
+        <div class="party-date-label">{{ reactivateDatePreview }}</div>
+        <div class="pool-dialog-btns">
+          <button class="action-btn" @click="reactivating = null">
+            Cancel
+          </button>
+          <button class="action-btn" @click="confirmReactivate">
+            Reactivate
+          </button>
         </div>
       </div>
     </div>
@@ -223,6 +302,9 @@ export default {
       editingParty: null, // working copy of the party being edited
       pendingDeleteParty: null, // party awaiting pool-reassignment confirmation
       poolDestination: null,
+      reactivating: null, // inactive party awaiting a date before coming back
+      reactivateYear: 1,
+      reactivateDay: 1,
     }
   },
 
@@ -247,6 +329,37 @@ export default {
         : ''
     },
 
+    // In-play parties first, inactive ones after (each group keeps its order).
+    sortedParties() {
+      return [
+        ...this.parties.filter((p) => !p.inactive),
+        ...this.parties.filter((p) => p.inactive),
+      ]
+    },
+
+    // The app always needs one party in play to be the selected one.
+    canDeactivate() {
+      return (
+        !!this.editingParty &&
+        this.parties.some((p) => !p.inactive && p.id !== this.editingParty.id)
+      )
+    },
+
+    reactivatingLastDate() {
+      return this.reactivating
+        ? formatGameDate(this.reactivating.game_day || 1)
+        : ''
+    },
+
+    reactivateDatePreview() {
+      return formatGameDate(
+        dayCountFromYearAndDay(
+          Number(this.reactivateYear) || 1,
+          Number(this.reactivateDay) || 1
+        )
+      )
+    },
+
     otherParties() {
       if (!this.pendingDeleteParty) return []
       return this.parties.filter((p) => p.id !== this.pendingDeleteParty.id)
@@ -262,7 +375,13 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['SET_PARTIES', 'ACTIVATE_PARTY', 'REASSIGN_PARTY_POOL']),
+    ...mapMutations([
+      'SET_PARTIES',
+      'ACTIVATE_PARTY',
+      'DEACTIVATE_PARTY',
+      'REACTIVATE_PARTY',
+      'REASSIGN_PARTY_POOL',
+    ]),
 
     selectParty(id) {
       this.editingId = id
@@ -313,6 +432,36 @@ export default {
         dayCountFromYearAndDay(Number(year), Number(day))
       )
       this.saveParty()
+    },
+
+    deactivateEditingParty() {
+      if (!this.canDeactivate) return
+      const id = this.editingParty.id
+      this.DEACTIVATE_PARTY(id)
+      this.selectParty(id) // re-sync the working copy with the store
+    },
+
+    startReactivate() {
+      const party = this.parties.find((p) => p.id === this.editingId)
+      if (!party) return
+      this.reactivating = party
+      const day = party.game_day || 1
+      this.reactivateYear = yearFromDayCount(day)
+      this.reactivateDay = dayOfYear(day)
+    },
+
+    confirmReactivate() {
+      if (!this.reactivating) return
+      const id = this.reactivating.id
+      this.REACTIVATE_PARTY({
+        id,
+        game_day: dayCountFromYearAndDay(
+          Number(this.reactivateYear) || 1,
+          Number(this.reactivateDay) || 1
+        ),
+      })
+      this.reactivating = null
+      this.selectParty(id)
     },
 
     activateEditingParty() {
@@ -514,6 +663,20 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.party-row.inactive {
+  opacity: 0.55;
+}
+
+.inactive-badge {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-low);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 0 4px;
+}
+
 .active-badge {
   font-size: var(--font-size-xs);
   background: rgba(var(--color-accent-rgb), 0.2);

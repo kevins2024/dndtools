@@ -293,7 +293,7 @@ export default {
       return this.$store.state.currentEncounter
     },
     parties() {
-      return this.$store.state.parties
+      return this.$store.getters.liveParties
     },
     availableCompanions() {
       return (this.$store.state.companions ?? []).filter((c) =>

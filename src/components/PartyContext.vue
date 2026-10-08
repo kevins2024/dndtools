@@ -224,7 +224,7 @@ export default {
     ...mapState(['parties', 'characters', 'party_items']),
 
     inactiveParties() {
-      return this.parties.filter((p) => !p.active)
+      return this.parties.filter((p) => !p.active && !p.inactive)
     },
 
     activeParty() {
@@ -238,9 +238,12 @@ export default {
         .filter(Boolean)
     },
 
-    // Characters not listed as a member of any party, active or otherwise
+    // Characters not listed as a member of any party in play — a member of
+    // only an inactive party counts as unassigned (their grouping is gone).
     unassignedCharacters() {
-      const assigned = new Set(this.parties.flatMap((p) => p.members))
+      const assigned = new Set(
+        this.parties.filter((p) => !p.inactive).flatMap((p) => p.members)
+      )
       return this.characters.filter((c) => !assigned.has(c.name))
     },
   },

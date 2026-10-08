@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import dataService from '@/utils/dataService'
-import { rowsForAmbientSave, restoreDrafts } from '../../engine/rules/draftSaves'
+import {
+  rowsForAmbientSave,
+  restoreDrafts,
+} from '../../engine/rules/draftSaves'
 import {
   applyShortRest,
   applyLongRest,
@@ -17,6 +20,7 @@ import {
   spendGrantUse,
   restoreGrantUse,
 } from '@/utils/limitedUse'
+import { transferItemToCharacter } from '@/utils/itemTransfer'
 
 Vue.use(Vuex)
 
@@ -154,7 +158,46 @@ export default new Vuex.Store({
         .catch((e) => console.warn('Failed to save parties', e))
     },
     ACTIVATE_PARTY(state, id) {
+      // An inactive party is out of the game — it can't be the selected one
+      // until it's been reactivated (REACTIVATE_PARTY) and given a date.
+      if (state.parties.find((p) => p.id === id)?.inactive) return
       const updated = state.parties.map((p) => ({ ...p, active: p.id === id }))
+      state.parties = updated
+      dataService
+        .patchUserPrefs({ parties: updated })
+        .catch((e) => console.warn('Failed to save parties', e))
+    },
+    // Takes a party out of the game (its characters are untouched — they just
+    // lose this grouping). If it was the selected party, the first remaining
+    // in-play party becomes the selected one so the app never lands on a
+    // party that's supposed to be gone.
+    DEACTIVATE_PARTY(state, id) {
+      const target = state.parties.find((p) => p.id === id)
+      if (!target) return
+      const wasSelected = !!target.active
+      let updated = state.parties.map((p) =>
+        p.id === id ? { ...p, inactive: true, active: false } : p
+      )
+      if (wasSelected) {
+        const next = updated.find((p) => !p.inactive)
+        if (next) {
+          updated = updated.map((p) => ({ ...p, active: p.id === next.id }))
+        }
+      }
+      state.parties = updated
+      dataService
+        .patchUserPrefs({ parties: updated })
+        .catch((e) => console.warn('Failed to save parties', e))
+    },
+    // Brings an inactive party back into play, stamping it with the date the
+    // DM says it is for that party now (the party's clock was frozen while it
+    // was away). Does not make it the selected party.
+    REACTIVATE_PARTY(state, { id, game_day }) {
+      const updated = state.parties.map((p) => {
+        if (p.id !== id) return p
+        const { inactive, ...rest } = p // eslint-disable-line no-unused-vars
+        return { ...rest, game_day: game_day ?? p.game_day ?? 1 }
+      })
       state.parties = updated
       dataService
         .patchUserPrefs({ parties: updated })
@@ -820,6 +863,17 @@ export default new Vuex.Store({
   },
 
   actions: {
+    // Moves an item into a character's bag (drag-and-drop onto a portrait).
+    // Returns { before, after } so the caller can offer an undo, or null if
+    // nothing changed (unknown item, or the character already has it).
+    transferItem({ state, commit }, { itemId, toCharacter }) {
+      const before = state.party_items.find((i) => i.id === itemId)
+      const after = transferItemToCharacter(before, toCharacter)
+      if (!after) return null
+      commit('UPDATE_ITEM', after)
+      return { before, after }
+    },
+
     async loadAll({ commit }) {
       const tables = [
         'characters',
@@ -959,6 +1013,9 @@ export default new Vuex.Store({
   },
 
   getters: {
+    // Parties that are in play — everything except ones the DM has marked
+    // inactive. Every picker/grouping outside Manage Parties reads this.
+    liveParties: (state) => state.parties.filter((p) => !p.inactive),
     activeParty: (state) => state.parties.find((p) => p.active) ?? null,
     activePartyDay: (state) => {
       const active = state.parties.find((p) => p.active)
