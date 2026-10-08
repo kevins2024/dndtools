@@ -85,7 +85,7 @@
               <img :src="roll.image" class="die-bg-img dimmed" />
               <span
                 class="die-result"
-                :class="{ 'has-tip': roll.math }"
+                :class="[critClass(roll), { 'has-tip': roll.math }]"
                 :title="roll.math"
                 >{{ roll.display }}</span
               >
@@ -113,7 +113,7 @@
               <div class="die-overlay">
                 <div class="die-result">
                   <span
-                    :class="{ 'has-tip': current.math }"
+                    :class="[critClass(current), { 'has-tip': current.math }]"
                     :title="current.math"
                     >{{ current.display }}</span
                   >
@@ -200,9 +200,11 @@ export default {
   },
 
   methods: {
-    rollPending({ mod = 0 }) {
+    rollPending({ mod = 0, advantage = false }) {
       const test = d20Test.rollD20Test({
-        advantage: this.advantage,
+        // The roller's own toggle, or advantage the roll arrives with (an
+        // item that grants it on this check).
+        advantage: this.advantage || advantage,
         disadvantage: this.disadvantage,
         modifier: mod,
       })
@@ -214,6 +216,7 @@ export default {
         rolls: test.rolls,
         result: test.value,
         display: `${test.value}`,
+        natural: test.natural,
         math: test.breakdown.length > 1 ? dnd._formatBreakdown(test) : null,
         image: this.diceImages[20],
         advantage: test.mode !== 'normal',
@@ -241,6 +244,15 @@ export default {
       this.current = entry
     },
 
+    // A natural 20 or 1 on a d20 colors the shown number green or red,
+    // whatever the modifier makes the total. (Entries from non-d20 dice and
+    // the Fall panel have no `natural`.)
+    critClass(entry) {
+      if (entry.natural === 20) return 'nat-20'
+      if (entry.natural === 1) return 'nat-1'
+      return ''
+    },
+
     onAdvantageChange() {
       if (this.advantage) this.disadvantage = false
     },
@@ -265,6 +277,7 @@ export default {
 
       let rolls, result, display, image
       let math = null
+      let natural = null // the d20 face that counts, for the nat 1 / 20 colors
       const mode =
         sides === 20
           ? d20Test.resolveMode({
@@ -280,12 +293,14 @@ export default {
         })
         rolls = test.rolls
         result = test.value
+        natural = test.natural
         display = `${result} ${mode === 'advantage' ? '↑' : '↓'}`
         math = dnd._formatBreakdown(test)
         image = this.diceImages[sides]
       } else {
         rolls = [rand()]
         result = rolls[0]
+        if (sides === 20) natural = result
         if (sides === 2) {
           display = result === 1 ? 'Heads' : 'Tails'
           image = result === 1 ? this.coin_heads : this.coin_tails
@@ -302,6 +317,7 @@ export default {
         rolls,
         result,
         display,
+        natural,
         math,
         image,
         advantage: mode !== 'normal',
@@ -559,6 +575,16 @@ export default {
   color: var(--color-text-low);
   position: relative;
   z-index: 1;
+}
+
+/* Natural 20 / natural 1 — beats the history, current and accumulated colors. */
+.history-die .die-result.nat-20,
+.current-die .die-result .nat-20 {
+  color: #4cd964;
+}
+.history-die .die-result.nat-1,
+.current-die .die-result .nat-1 {
+  color: #ff4d4d;
 }
 
 /* ── Current ── */

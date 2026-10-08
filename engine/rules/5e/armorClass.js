@@ -69,6 +69,7 @@ function computeAC(
     (i) => i.type === 'armor' && i.slot === 'body'
   )
   const isWearingArmor = !!armorItem
+  const shieldItem = equippedItems.find((i) => i.armor_type === 'shield')
   const dexMod = abilityModifier(scores.dex)
   const conMod = abilityModifier(scores.con)
   const wisMod = abilityModifier(scores.wis)
@@ -136,7 +137,9 @@ function computeAC(
         label: `${feature.name} (10 + ${names})`,
         amount: base,
       })
-    } else if (unarmoredFormula(character) === 'monk') {
+    } else if (unarmoredFormula(character) === 'monk' && !shieldItem) {
+      // PHB: Monk Unarmored Defense needs no armor AND no shield (a Barbarian's
+      // allows one); with a shield a Monk is just 10 + DEX.
       base = 10 + dexMod + wisMod
       breakdown.push({ label: 'Monk Defense (10 + DEX + WIS)', amount: base })
     } else if (unarmoredFormula(character) === 'barbarian') {
@@ -160,7 +163,6 @@ function computeAC(
     }
   }
 
-  const shieldItem = equippedItems.find((i) => i.armor_type === 'shield')
   const shieldEnhancement = shieldItem ? shieldItem.enhancement_bonus ?? 0 : 0
   const shieldBonus = shieldItem ? 2 + shieldEnhancement : 0
   if (shieldItem) {

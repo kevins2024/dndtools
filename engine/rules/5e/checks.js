@@ -77,6 +77,26 @@ const SKILL_MAP = {
   Survival: 'wis',
 }
 
+// Character data spells the same skill several ways ("Animal Handling",
+// "AnimalHandling", "animal-handling"); compare on letters only so a
+// proficiency is never silently lost to spacing.
+const skillKey = (name) => String(name).toLowerCase().replace(/[^a-z]/g, '')
+const hasSkill = (list, skillName) =>
+  (list ?? []).some((s) => skillKey(s) === skillKey(skillName))
+
+// Whether the character is proficient / has expertise in a skill, counting
+// proficiency taught by an equipped item. The one place that answers it, so
+// the sheet's skill dots and the number agree.
+function skillTraining(character, skillName, equippedItems = []) {
+  const itemGrants = equippedItems.some((i) =>
+    hasSkill(i.grants_skill_proficiency, skillName)
+  )
+  return {
+    isProficient: itemGrants || hasSkill(character.skill_proficiencies, skillName),
+    hasExpertise: hasSkill(character.skill_expertise, skillName),
+  }
+}
+
 function skillBreakdown(character, skillName, equippedItems = []) {
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
   const statKey = SKILL_MAP[skillName]
@@ -90,13 +110,11 @@ function skillBreakdown(character, skillName, equippedItems = []) {
   // proficiency only counts while equipped, unlike a character's own
   // skill_proficiencies, which is why this checks equippedItems separately
   // rather than just merging onto the character record.
-  const itemGrantsProficiency = equippedItems.some((i) =>
-    (i.grants_skill_proficiency ?? []).includes(skillName)
+  const { isProficient, hasExpertise } = skillTraining(
+    character,
+    skillName,
+    equippedItems
   )
-  const isProficient =
-    itemGrantsProficiency ||
-    (character.skill_proficiencies ?? []).includes(skillName)
-  const hasExpertise = (character.skill_expertise ?? []).includes(skillName)
   // Jack of All Trades (Bard, 2nd level): half proficiency bonus, rounded
   // down, on any ability check that doesn't already include proficiency
   // bonus — i.e. only when NOT otherwise proficient/expert on this skill.
@@ -143,16 +161,36 @@ function allSkills(character, equippedItems = []) {
   )
 }
 
+// Advantage on a skill's ability checks from an item or feature carrying
+// `grants_skill_advantage: ['Perception', ...]` (Sentinel Shield). Like
+// initiative advantage, an item only counts while attuned when it needs
+// attunement. Advantage can't be a flat number, so this is a separate yes/no
+// the roller acts on; the one place it does become a number is passive
+// Perception below (PHB: advantage on a passive check is +5).
+function skillAdvantage(character, skillName, equippedItems = []) {
+  const grants = (x) => (x.grants_skill_advantage ?? []).includes(skillName)
+  return (
+    equippedItems.some(
+      (i) => grants(i) && (!i.needs_attunement || i.attuned)
+    ) || (character.features ?? []).some(grants)
+  )
+}
+
 function passivePerceptionBreakdown(character, equippedItems = []) {
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
   const perception = skillBreakdown(character, 'Perception', equippedItems)
+  const advantage = skillAdvantage(character, 'Perception', equippedItems)
+    ? 5
+    : 0
   const breakdown = [
     { label: 'Base', amount: 10 },
     { label: 'Perception skill', amount: perception.value },
+    ...(advantage ? [{ label: 'Advantage on Perception', amount: 5 }] : []),
     ...bonusLines(equippedItems, 'passive_perception'),
     ...bonusLines(character.features, 'passive_perception'),
   ]
-  const value = 10 + perception.value + (bonuses.passive_perception ?? 0)
+  const value =
+    10 + perception.value + advantage + (bonuses.passive_perception ?? 0)
   return { value, breakdown }
 }
 
@@ -248,11 +286,13 @@ module.exports = {
   SKILL_MAP,
   skill,
   skillBreakdown,
+  skillTraining,
   allSkills,
   passivePerception,
   passivePerceptionBreakdown,
   initiative,
   hasInitiativeAdvantage,
+  skillAdvantage,
   spellAttackBonus,
   spellAttackBonusBreakdown,
   spellSaveDC,

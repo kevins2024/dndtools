@@ -177,6 +177,25 @@ test('psychicBlades: null for a character without them', () => {
   assert.strictEqual(psychicBlades({ level: 5 }, []), null)
 })
 
+test('unarmedStrike: the Tavern Brawler feat alone gives a d4 STR strike, no field needed (bug 2.15)', () => {
+  const c = {
+    name: 'Bru',
+    level: 5,
+    classes: [{ name: 'Fighter', level: 5 }],
+    features: [{ id: 'tavern-brawler', name: 'Tavern Brawler', type: 'feat' }],
+    stat_str: 16, // +3
+    stat_dex: 10,
+    stat_con: 10,
+    stat_int: 10,
+    stat_wis: 10,
+    stat_cha: 10,
+  }
+  const u = unarmedStrike(c, [])
+  assert.strictEqual(u.die, '1d4')
+  assert.strictEqual(u.damage.value, 3)
+  assert.strictEqual(unarmedStrike({ ...c, features: [] }, []), null)
+})
+
 test('unarmedStrike: Tavern Brawler (unarmed_strike_die) gives a d4 strike on STR alone, with proficiency', () => {
   const brawler = {
     name: 'Bru',

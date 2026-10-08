@@ -158,6 +158,22 @@ test('computeAC: a Monk with Unarmored Defense gets 10 + DEX + WIS with no formu
   assert.strictEqual(computeAC(monk, []).value, 10 + 2 + 3)
 })
 
+test('computeAC: Monk Unarmored Defense is lost with a shield; Barbarian keeps it (bug 2.16)', () => {
+  const shield = { armor_type: 'shield', name: 'Shield' }
+  const monk = baseChar({
+    stat_wis: 16, // +3
+    classes: [{ name: 'Monk' }],
+    features: [{ name: 'Unarmored Defense' }],
+  })
+  assert.equal(computeAC(monk, []).value, 10 + 3 + 3) // DEX +3, WIS +3
+  assert.equal(computeAC(monk, [shield]).value, 10 + 3 + 2) // no WIS; 10 + DEX + shield
+  const barb = baseChar({
+    classes: [{ name: 'Barbarian' }],
+    features: [{ name: 'Unarmored Defense' }],
+  })
+  assert.equal(computeAC(barb, [shield]).value, 10 + 3 + 2 + 2) // CON +2 and the shield
+})
+
 test('computeAC: an explicit unarmored_ac_formula always wins, including "default"', () => {
   assert.strictEqual(
     computeAC(unarmoredChar({ unarmored_ac_formula: 'default' }), []).value,

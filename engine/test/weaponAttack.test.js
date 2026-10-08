@@ -196,3 +196,50 @@ test('weaponProps: silvered is a per-item property, off unless the item says so'
     true
   )
 })
+
+test('gripDie: a versatile weapon with a shield is one-handed (bug 2.3)', () => {
+  const longsword = { weapon_category: 'longsword', slot: 'melee1h' }
+  const shield = { armor_type: 'shield', slot: 'shield' }
+  assert.equal(gripDie(baseChar(), longsword, [longsword]), '1d10')
+  assert.equal(gripDie(baseChar(), longsword, [longsword, shield]), '1d8')
+})
+
+test('attackBonus: proficiency only counts for a weapon the character is proficient with (bug 2.4)', () => {
+  const greataxe = { weapon_category: 'greataxe', slot: 'melee2h' } // martial
+  const simpleOnly = baseChar({ weapon_proficiencies: ['simple'] })
+  const martial = baseChar({ weapon_proficiencies: ['simple', 'martial'] })
+  assert.equal(attackBonus(simpleOnly, greataxe, [greataxe]), 3) // STR only
+  assert.equal(attackBonus(martial, greataxe, [greataxe]), 3 + 4)
+  assert.ok(
+    attackBonusBreakdown(simpleOnly, greataxe, [greataxe]).breakdown.some(
+      (l) => l.label === 'Not proficient'
+    )
+  )
+})
+
+test('attackBonus: no recorded proficiencies, or a weapon with no category, stays permissive', () => {
+  const greataxe = { weapon_category: 'greataxe', slot: 'melee2h' }
+  assert.equal(attackBonus(baseChar({ weapon_proficiencies: [] }), greataxe, []), 3 + 4)
+  const homebrew = { weapon_category: 'mystery_blade', slot: 'melee1h' }
+  const c = baseChar({ weapon_proficiencies: ['simple'] })
+  assert.equal(attackBonus(c, homebrew, []), 3 + 4)
+})
+
+test('isProficientWithWeapon: a magic staff is a quarterstaff', () => {
+  const staff = { weapon_category: 'staff', slot: 'melee2h' }
+  assert.equal(isProficientWithWeapon(baseChar({ weapon_proficiencies: ['quarterstaff'] }), staff), true)
+  assert.equal(isProficientWithWeapon(baseChar({ weapon_proficiencies: ['dagger'] }), staff), false)
+})
+
+test('rageDamage reads the Barbarian class table at every level (+2, +3 at 9, +4 at 16)', () => {
+  const { rageDamage } = require('../rules/5e/weaponAttack')
+  const raging = (level) => ({
+    conditions: ['Raging'],
+    classes: [{ name: 'Barbarian', level }],
+  })
+  const expected = (l) => (l >= 16 ? 4 : l >= 9 ? 3 : 2)
+  for (let level = 1; level <= 20; level++)
+    assert.equal(rageDamage(raging(level)), expected(level), `level ${level}`)
+  assert.equal(rageDamage({ classes: [{ name: 'Barbarian', level: 9 }] }), 0) // not raging
+  assert.equal(rageDamage({ conditions: ['Raging'], classes: [{ name: 'Fighter', level: 9 }] }), 0)
+})

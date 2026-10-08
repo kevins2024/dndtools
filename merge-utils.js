@@ -16,35 +16,66 @@
 // here means a stale browser tab disagrees with a more deliberate direct
 // edit made after that tab loaded.
 
+// JSON with object keys sorted, so two objects holding the same data compare
+// equal whatever order their keys were written in (a plain JSON.stringify
+// comparison reported false conflicts when only the key order differed).
+function stableStringify(v) {
+  if (v === null || typeof v !== 'object') return JSON.stringify(v)
+  if (Array.isArray(v)) return '[' + v.map(stableStringify).join(',') + ']'
+  return (
+    '{' +
+    Object.keys(v)
+      .sort()
+      .map((k) => JSON.stringify(k) + ':' + stableStringify(v[k]))
+      .join(',') +
+    '}'
+  )
+}
+
 function deepEqual(a, b) {
   if (a === b) return true
   if (a == null || b == null) return false
   if (typeof a !== 'object' || typeof b !== 'object') return false
-  return JSON.stringify(a) === JSON.stringify(b)
+  return stableStringify(a) === stableStringify(b)
 }
 
-// Picks the field ('id' or 'name') that identifies elements of an array of
+// Picks the field ('id' or 'name') that identifies the elements of an array of
 // objects, so array merges can match up elements instead of comparing the
-// whole array as one blob. Returns null if elements aren't objects with
-// either field (e.g. arrays of primitives) — those get merged as a unit.
-function getKeyField(arr) {
-  const sample = arr.find((x) => x && typeof x === 'object')
-  if (!sample) return null
-  if (sample.id != null) return 'id'
-  if (sample.name != null) return 'name'
-  return null
+// whole array as one blob. A field is only usable if EVERY element of EVERY
+// side is an object that has it, with no repeats inside one array: a row
+// missing the field would otherwise all share the key "undefined" and
+// collapse into one row, silently deleting data (bug 2.12 — features with no
+// id). Returns null if no field qualifies (e.g. arrays of primitives, or
+// objects without usable keys) — those get merged as a unit, which can raise
+// a conflict but never loses rows.
+function usableKeyField(arrays, field) {
+  return arrays.every((arr) => {
+    const seen = new Set()
+    for (const x of arr) {
+      if (!x || typeof x !== 'object' || x[field] == null) return false
+      const k = String(x[field])
+      if (seen.has(k)) return false
+      seen.add(k)
+    }
+    return true
+  })
+}
+
+function getKeyField(...arrays) {
+  if (!arrays.some((arr) => arr.some((x) => x && typeof x === 'object')))
+    return null
+  return ['id', 'name'].find((f) => usableKeyField(arrays, f)) ?? null
 }
 
 function keyOf(item, field) {
   return String(item[field])
 }
-
 function mergeArrays(base, ours, theirs, path, conflicts) {
   base = Array.isArray(base) ? base : []
   ours = Array.isArray(ours) ? ours : []
   theirs = Array.isArray(theirs) ? theirs : []
 
-  const field = getKeyField(base) || getKeyField(ours) || getKeyField(theirs)
+  const field = getKeyField(base, ours, theirs)
 
   // No stable per-element key (e.g. array of strings/numbers) — treat the
   // whole array as one value.
@@ -166,4 +197,4 @@ function threeWayMerge(base, ours, theirs) {
   return { merged, conflicts }
 }
 
-module.exports = { threeWayMerge, deepEqual }
+module.exports = { threeWayMerge, deepEqual, getKeyField }

@@ -77,3 +77,10 @@ test('resolveEffectiveScores stays a thin scores-only view of resolveEffectiveSt
   assert.deepEqual(scores, full.scores)
   assert.equal(scores.str, 12)
 })
+
+test('resolveEffectiveStats: a stat_override never lowers a score already at or above it (bug 2.14)', () => {
+  const items = [{ stat_overrides: { con: 19 } }]
+  assert.equal(resolveEffectiveStats(baseChar({ stat_con: 20 }), items).scores.con, 20)
+  assert.equal(resolveEffectiveStats(baseChar({ stat_con: 19 }), items).scores.con, 19)
+  assert.equal(resolveEffectiveStats(baseChar({ stat_con: 12 }), items).scores.con, 19)
+})

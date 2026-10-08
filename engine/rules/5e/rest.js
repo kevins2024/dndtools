@@ -19,6 +19,8 @@
 
 const { rollDie, rollDiceExpr, isDiceExpr } = require('./dice')
 const { abilityModifier } = require('./abilities')
+const { hitDieForClass } = require('./progression')
+const { resolveEffectiveStats } = require('./characterStats')
 
 const MAX_EXHAUSTION = 6
 
@@ -32,6 +34,28 @@ function hitDieSides(hitDie) {
   return Number.isFinite(sides) && sides > 0 ? sides : 8
 }
 
+// The die a character spends on a short rest: the biggest hit die among their
+// classes (a multiclass character has several kinds; spending the biggest
+// first is the sensible default). Derived from the classes, so it is right
+// even when the character has no `hit_die` recorded (bug 2.9 — the tools
+// never wrote one). Falls back to a recorded `hit_die`, then d8.
+function characterHitDieSides(character) {
+  const fromClasses = (character.classes ?? [])
+    .filter((c) => (c.level ?? 0) > 0)
+    .map((c) => hitDieForClass(c.name))
+    .filter(Boolean)
+  return fromClasses.length
+    ? Math.max(...fromClasses)
+    : hitDieSides(character.hit_die)
+}
+
+// CON modifier from the EFFECTIVE score (items like an Amulet of Health
+// count), not the stored base.
+function conModifier(character, equippedItems = []) {
+  const { scores } = resolveEffectiveStats(character, equippedItems)
+  return abilityModifier(scores.con ?? 10)
+}
+
 function hitDiceAvailable(character) {
   return character.hit_dice_current ?? character.level ?? 1
 }
@@ -41,26 +65,33 @@ function hpMissing(character) {
 }
 
 // Average HP one hit die heals: the die's average roll plus CON mod.
-function averageHitDieHealing(character) {
-  const avg = (hitDieSides(character.hit_die) + 1) / 2
-  return avg + abilityModifier(character.stat_con ?? 10)
+function averageHitDieHealing(character, equippedItems = []) {
+  const avg = (characterHitDieSides(character) + 1) / 2
+  return avg + conModifier(character, equippedItems)
 }
 
 // Expected HP from spending `dice` hit dice: average roll + CON mod each,
 // clamped to what's actually missing. For the "what would this heal"
 // preview before committing to real rolls.
-function shortRestHealEstimate(character, dice) {
+function shortRestHealEstimate(character, dice, equippedItems = []) {
   if (!(dice > 0)) return 0
-  const total = Math.round(dice * averageHitDieHealing(character))
+  const total = Math.round(
+    dice * averageHitDieHealing(character, equippedItems)
+  )
   return Math.min(Math.max(0, total), Math.max(0, hpMissing(character)))
 }
 
 // Actually roll `dice` hit dice. PHB: each die is rolled and CON mod added
 // (a die can't heal below 0 in total — the sum is floored at 0, matching the
 // old modal's Math.max(0, ...)), and HP can't exceed what was missing.
-function rollShortRestHealing(character, dice, rng = Math.random) {
-  const sides = hitDieSides(character.hit_die)
-  const conMod = abilityModifier(character.stat_con ?? 10)
+function rollShortRestHealing(
+  character,
+  dice,
+  rng = Math.random,
+  equippedItems = []
+) {
+  const sides = characterHitDieSides(character)
+  const conMod = conModifier(character, equippedItems)
   const rolls = Array.from({ length: Math.max(0, dice) }, () =>
     rollDie(sides, rng)
   )
@@ -358,6 +389,7 @@ const LONG_REST_RECHARGE_TYPES = ['daily', 'short_rest', 'long_rest', 'dawn']
 
 module.exports = {
   hitDieSides,
+  characterHitDieSides,
   hitDiceAvailable,
   hpMissing,
   averageHitDieHealing,

@@ -1373,7 +1373,11 @@ export default {
     weaponProficiencyStatus(item) {
       if (item.type !== 'weapon') return null
       if (!this.character.weapon_proficiencies) return 'unknown'
-      return dnd.isProficientWithWeapon(this.character, item)
+      return dnd.isProficientWithWeapon(
+        this.character,
+        item,
+        this.$store.state.party_items ?? []
+      )
         ? null
         : 'not-proficient'
     },

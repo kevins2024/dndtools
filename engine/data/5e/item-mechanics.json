@@ -134,6 +134,10 @@
     "slot": "wrists"
   },
   "bracers-of-archery": {
+    "grants_weapon_proficiency": [
+      "longbow",
+      "shortbow"
+    ],
     "stat_bonuses": {
       "ranged_damage": 2
     },
@@ -882,6 +886,14 @@
   },
   "rope-of-climbing-and-entanglement": {
     "slot": "none"
+  },
+  "sentinel-shield": {
+    "armor_type": "shield",
+    "slot": "shield",
+    "grants_initiative_advantage": true,
+    "grants_skill_advantage": [
+      "Perception"
+    ]
   },
   "shadowgrain-leather": {
     "armor_base_ac": 11,

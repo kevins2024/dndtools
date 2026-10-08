@@ -14,6 +14,8 @@ import networks from '@/data/networks.json'
 import relationships from '@/data/relationships.json'
 import companions from '@/data/companions.json'
 import lore from '@/data/lore.json'
+import spellbooks from '@/data/spellbooks.json'
+import mounts from '@/data/mounts.json'
 const SERVER_URL = ''
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -29,6 +31,8 @@ const staticTables = {
   relationships,
   companions,
   lore,
+  spellbooks,
+  mounts,
 }
 
 // party_items.json stores items by reference into the item library; the

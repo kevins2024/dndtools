@@ -48,17 +48,10 @@
 // just ones they've "learned"). Wizards prepare from their spellbook — a
 // separate concept.
 //
-// NOTE: Ranger is on this list although engine/rules/5e/spellcasting.js
-// (and 2014 RAW) treat Rangers as KNOWN-spell casters; see
-// preparedSpells.js. This list only decides whether the spellbook offers the
-// whole class list as an "available" pool, left as found.
-const FULL_CLASS_LIST_CLASSES = [
-  'cleric',
-  'druid',
-  'paladin',
-  'ranger',
-  'artificer',
-]
+// NOT Ranger: 2014 Rangers KNOW a fixed list (engine/rules/5e/spellcasting.js,
+// preparedSpells.js) rather than preparing from the whole class list, so
+// their spellbook is just the spells recorded on the character.
+const FULL_CLASS_LIST_CLASSES = ['cleric', 'druid', 'paladin', 'artificer']
 
 // True if this character's class can prepare from the full class spell list
 // (as opposed to only from spells they've explicitly added to their

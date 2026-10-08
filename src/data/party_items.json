@@ -223,7 +223,7 @@
     "type": "wondrous",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
-    "attuned": false,
+    "attuned": true,
     "notes": "",
     "id": "items_19",
     "stored_at": null,
@@ -768,7 +768,7 @@
     "type": "focus",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
-    "attuned": false,
+    "attuned": true,
     "enhancement_bonus": 1,
     "notes": "",
     "id": "items_69",
@@ -1130,7 +1130,7 @@
     "type": "armor",
     "equipped_by": "Lyria",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "notes": "Corrected 2026-09-10 -- was a flat stat_bonuses.ac (always-on), but real RAW only grants this while not wearing armor or using a shield. Changed to unarmored_stat_bonuses to match Rhuna's and Therynv'l's copies of the same item.",
     "id": "items_100",
     "battle_effect": true
@@ -1151,7 +1151,7 @@
     "type": "wondrous",
     "equipped_by": "Lyria",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "notes": "Real DMG Robe of Stars, from training knowledge — not independently re-verified against a second source this pass (unlike Staff of Power/Wand of Magic Missiles/Helm of Brilliance/Necklace of Prayer Beads, which were); treat as a solid placeholder.",
     "id": "items_102"
   },
@@ -1161,7 +1161,7 @@
     "type": "weapon",
     "equipped_by": "Lyria",
     "carried_by": "Lyria",
-    "attuned": false,
+    "attuned": true,
     "enhancement_bonus": 2,
     "notes": "Do not break it.",
     "id": "items_103"
@@ -1280,7 +1280,7 @@
     "type": "wondrous",
     "equipped_by": "Iyani",
     "carried_by": "Iyani",
-    "attuned": false,
+    "attuned": true,
     "notes": "",
     "id": "items_114",
     "battle_effect": true,
@@ -1494,7 +1494,7 @@
     "type": "wondrous",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "stat_overrides": {
       "str": 21
     },
@@ -1515,9 +1515,9 @@
     "name": "Necklace of Prayer Beads",
     "catalog_id": "necklace-of-prayer-beads",
     "type": "wondrous",
-    "equipped_by": "Ferghus",
-    "carried_by": null,
-    "attuned": true,
+    "equipped_by": null,
+    "carried_by": "Ferghus",
+    "attuned": false,
     "notes": "Real DMG Necklace of Prayer Beads (a specific necklace has 1d4+2 randomly-typed beads; this one rolled these 4 types) — bonus action per bead, confirmed via WebSearch/WebFetch cross-checked against 3 sources 2026-09-06 as part of the item-granted-spells charge-cost pass. Corrects an earlier assumption that bead use cost a full action and that Curing had multiple escalating tiers rather than one bead offering a Cure Wounds/Lesser Restoration choice.",
     "id": "items_134"
   },
@@ -1548,7 +1548,7 @@
     "enhancement_bonus": 2,
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "notes": "",
     "id": "items_137"
   },
@@ -1567,8 +1567,8 @@
     "name": "Bracers of Swiftness",
     "catalog_id": "bracers-of-swiftness",
     "type": "wondrous",
-    "equipped_by": "Ferghus",
-    "carried_by": null,
+    "equipped_by": null,
+    "carried_by": "Ferghus",
     "attuned": false,
     "notes": "",
     "id": "items_139"
@@ -1753,7 +1753,7 @@
     "type": "material",
     "equipped_by": null,
     "carried_by": "party",
-    "party_id": "party_1780850600167_0",
+    "party_id": "party_1780850600167_1",
     "attuned": false,
     "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) — priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant. Consolidated 2026-09-08 into the per-party Gem Pouch pattern (see TODO.md) — assigned to East Full per project owner (initially misheard as \"Eastern1\" and left unassigned; corrected same day).",
     "id": "items_151",
@@ -1996,7 +1996,7 @@
     "type": "wondrous",
     "equipped_by": "Ferghus",
     "carried_by": null,
-    "attuned": false,
+    "attuned": true,
     "notes": "Commission from Torven forge. Grey-green matching Full Plate +2. Carix's coin standing on edge worked into forehead in subtle relief. The metal was listening when it was made.",
     "id": "items_164"
   },
@@ -2625,16 +2625,16 @@
     "party_id": "party_1780850600167_2"
   },
   {
+    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
     "name": "Bag of Holding",
     "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_0",
+    "party_id": "party_1780850600167_1",
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
-    "id": "items_219",
-    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
+    "id": "items_219"
   },
   {
     "name": "Bag of Holding",
@@ -2740,7 +2740,7 @@
     "type": "wondrous",
     "equipped_by": "Rith",
     "carried_by": "Rith",
-    "attuned": false,
+    "attuned": true,
     "notes": "",
     "id": "items_228",
     "battle_effect": true
@@ -3102,5 +3102,77 @@
     "attuned": false,
     "notes": "Pale, smooth, lens-shaped gem about the size of a plum, found loose from its perch. Identified by Lexica over a one-hour study (Arcana 14 vs DC 12).",
     "id": "items_257"
+  },
+  {
+    "name": "Sentinel Shield",
+    "catalog_id": "sentinel-shield",
+    "type": "armor",
+    "equipped_by": null,
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_258"
+  },
+  {
+    "name": "Scroll of Revivify",
+    "catalog_id": "spell-scroll",
+    "type": "consumable",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_259",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Haste",
+    "catalog_id": "spell-scroll",
+    "type": "consumable",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_260",
+    "slot": "none"
+  },
+  {
+    "name": "Alchemy Jug",
+    "catalog_id": "alchemy-jug",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_261"
+  },
+  {
+    "name": "Sending Stone",
+    "catalog_id": "sending-stones",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "One of a pair; the other is carried by Vaz. Kept as items rather than in the Network while they're needed on hand.",
+    "id": "items_262"
+  },
+  {
+    "name": "Sending Stone",
+    "catalog_id": "sending-stones",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Vaz",
+    "attuned": false,
+    "notes": "One of a pair; the other is carried by Enauweyn. Kept as items rather than in the Network while they're needed on hand.",
+    "id": "items_263"
+  },
+  {
+    "name": "Bag of Tricks (Gray)",
+    "catalog_id": "bag-of-tricks",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "Gray bag.",
+    "id": "items_264"
   }
 ]

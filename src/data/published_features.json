@@ -998,14 +998,6 @@
     "homebrew": true
   },
   {
-    "id": "pub_primal-companion",
-    "name": "Primal Companion",
-    "type": "feature",
-    "description": "Grants a beast companion that fights alongside you, sharing your initiative and following your commands. At this table, the companion's exact combat mechanics live on its own character-like sheet (see the Independent feature and the companion's own stat block) rather than being fully reproduced here — this entry is the marker that the character has the feature at all.",
-    "source": "Ranger (Beast Master), Tasha's Cauldron of Everything — the base companion mechanics themselves (shares your initiative, takes the Dodge action on your turn unless you spend a bonus action to command it otherwise) are real RAW, unmodified. The house-rule upgrade to a fully independent turn is homebrew and lives on the separate 'Independent' feature, not here.",
-    "homebrew": false
-  },
-  {
     "id": "pub_master-of-intrigue",
     "name": "Master of Intrigue",
     "type": "feature",
@@ -1336,13 +1328,6 @@
     "description": "You have advantage on saving throws against being frightened.",
     "type": "feature",
     "source": "Player's Handbook"
-  },
-  {
-    "id": "pub_celestial-resistance",
-    "name": "Celestial Resistance",
-    "description": "You have resistance to necrotic damage and radiant damage.",
-    "type": "feature",
-    "source": "Volo's Guide to Monsters / Player's Handbook (Aasimar)"
   },
   {
     "id": "pub_channel-divinity-champion-challenge",
@@ -5640,7 +5625,7 @@
     "source": "Tasha's Cauldron of Everything",
     "homebrew": false,
     "verification": "Verified 2026-09-06 via WebSearch/WebFetch (dnd5e.wikidot.com, aidedd.org stat-block mirrors, D&D Beyond forum quotes, cross-checked across multiple sources) as part of building this subclass out from stub to a full 3/7/11/15 progression. Replaced the PHB-era \"Ranger's Companion\" stub with Tasha's Cauldron of Everything's revised Primal Companion, since that's the standard modern version. Beast of the Land/Sea/Sky full stat blocks (AC 13+PB, HP scaling by ranger level, unique attack per type) are summarized here rather than reproduced as separate catalog entries.",
-    "note": "Corrected 2026-09-09 -- the revival clause was wrong in three ways: it omitted the \"died within the last hour\" time limit, omitted the touch requirement, said the beast returns at 1 HP instantly instead of the real full-HP restoration after a 1-minute delay."
+    "note": "Corrected 2026-09-09 -- the revival clause was wrong in three ways: it omitted the \"died within the last hour\" time limit, omitted the touch requirement, said the beast returns at 1 HP instantly instead of the real full-HP restoration after a 1-minute delay. | Table note (from the removed duplicate marker record): Grants a beast companion that fights alongside you, sharing your initiative and following your commands. At this table, the companion's exact combat mechanics live on its own character-like sheet (see the Independent feature and the companion's own stat block) rather than being fully reproduced here — this entry is the marker that the character has the feature at all. Ranger (Beast Master), Tasha's Cauldron of Everything — the base companion mechanics themselves (shares your initiative, takes the Dodge action on your turn unless you spend a bonus action to command it otherwise) are real RAW, unmodified. The house-rule upgrade to a fully independent turn is homebrew and lives on the separate 'Independent' feature, not here."
   },
   {
     "id": "pub_exceptional-training",
@@ -6311,7 +6296,7 @@
   },
   {
     "id": "pub_celestial-resilience",
-    "name": "Celestial Resistance",
+    "name": "Celestial Resilience",
     "category": "subclass_feature",
     "class": "Warlock (The Celestial)",
     "level_gained": 10,
