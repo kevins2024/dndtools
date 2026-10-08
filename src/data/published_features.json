@@ -271,42 +271,6 @@
     "source": "Tasha's Cauldron of Everything (current version — supersedes the original Sword Coast Adventurer's Guide printing)"
   },
   {
-    "id": "pub_totemic-assault",
-    "name": "Totemic Assault",
-    "class": "Shaman",
-    "description": "When hitting with a weapon or cantrip, channel spirit energy for 1d8 lightning or cold damage.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_life-bearer",
-    "name": "Life Bearer",
-    "class": "Shaman (Witch Doctor)",
-    "description": "When casting a healing spell, add WIS modifier to the healing done.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_totemic-blessing",
-    "name": "Totemic Blessing",
-    "class": "Shaman (Witch Doctor)",
-    "description": "Bind any totem and use its effect as a bonus action when healing an ally.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_spirit-communion",
-    "name": "Spirit Communion",
-    "class": "Shaman (Witch Doctor)",
-    "recharge": "long_rest",
-    "description": "Once per long rest, speak directly with any spirit within one mile, asking three questions.",
-    "needs_review": true
-  },
-  {
-    "id": "pub_sacred-focus-mind",
-    "name": "Sacred Focus: Mind",
-    "class": "Shaman",
-    "description": "Add WIS modifier to Intelligence and Charisma checks and saving throws.",
-    "needs_review": true
-  },
-  {
     "id": "pub_tactical-foresight",
     "name": "Tactical Foresight",
     "category": "item_feature",
@@ -326,8 +290,8 @@
     "id": "pub_the-retired-special",
     "name": "The Retired Special",
     "category": "item_feature",
-    "description": "Once per day, as a reaction when an ally is hit by an attack: toss a psychic thread and yank the ally up to 15ft to an unoccupied space you can see. If this pulls them out of the attack's range (a melee attack no longer within reach, a ranged attack no longer within its normal/long range), the attack misses instead of hitting.",
-    "recharge": "daily",
+    "description": "Once per long rest, as a reaction when an ally is hit by an attack: toss a psychic thread and yank the ally up to 15ft to an unoccupied space you can see. If this pulls them out of the attack's range (a melee attack no longer within reach, a ranged attack no longer within its normal/long range), the attack misses instead of hitting.",
+    "recharge": "long_rest",
     "homebrew": true,
     "source": "Homebrew, granted by The Weaver's Master-Awl to whoever wields it — no class dependency."
   },
@@ -913,44 +877,6 @@
     "source": "Homebrew — a modified version of Inquisitive's real Insightful Fighting (Xanathar's Guide to Everything). Check character notes for exactly what changed from RAW."
   },
   {
-    "id": "pub_inquisitive-steady-eye",
-    "name": "Inquisitive — Steady Eye",
-    "category": "subclass_feature",
-    "description": "Advantage on Perception and Investigation checks if you don't move more than half your speed on the same turn.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_inquisitive-unerring-eye",
-    "name": "Inquisitive — Unerring Eye",
-    "category": "subclass_feature",
-    "action_type": "action",
-    "recharge": "wis_mod_per_long_rest",
-    "description": "Sense magical illusions, shapechanger in disguise, or other magical deception within 30ft. Not exact — you sense something is off, not necessarily what.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-skirmisher",
-    "name": "Scout — Skirmisher",
-    "category": "subclass_feature",
-    "action_type": "reaction",
-    "description": "When an enemy ends its turn within 5ft of you: move up to half your speed without provoking opportunity attacks.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-survivalist",
-    "name": "Scout — Survivalist",
-    "category": "subclass_feature",
-    "description": "Gain proficiency in Nature and Survival. Proficiency bonus doubled for these skills.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-superior-mobility",
-    "name": "Scout — Superior Mobility",
-    "category": "subclass_feature",
-    "description": "+10ft movement speed. If no armor worn, +10ft additionally.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
     "id": "pub_soulknife-psychic-blades",
     "name": "Soulknife — Psychic Blades",
     "category": "subclass_feature",
@@ -1026,31 +952,6 @@
     "source": "Homebrew — a 4th Starry Form constellation beyond the real 3 (Archer/Chalice/Dragon, Tasha's Cauldron of Everything)."
   },
   {
-    "id": "pub_tempest-cleric-wrath-of-the-storm",
-    "name": "Tempest Cleric — Wrath of the Storm",
-    "category": "subclass_feature",
-    "action_type": "reaction",
-    "recharge": "wis_mod_per_long_rest",
-    "description": "When a creature within 5ft hits you: use reaction to deal 2d8 lightning or thunder damage. Target makes DEX save (spell save DC) for half.",
-    "source": "Player's Handbook"
-  },
-  {
-    "id": "pub_tempest-cleric-destructive-wrath",
-    "name": "Tempest Cleric — Destructive Wrath",
-    "category": "subclass_feature",
-    "recharge": "channel_divinity",
-    "description": "When rolling lightning or thunder damage: replace any roll with maximum damage instead of rolling.",
-    "note": "Uses Channel Divinity.",
-    "source": "Player's Handbook"
-  },
-  {
-    "id": "pub_tempest-cleric-thunderbolt-strike",
-    "name": "Tempest Cleric — Thunderbolt Strike",
-    "category": "subclass_feature",
-    "description": "When dealing lightning damage to a Large or smaller creature: push it up to 10ft away.",
-    "needs_review": true
-  },
-  {
     "id": "pub_stone-s-endurance",
     "name": "Stone's Endurance",
     "category": "racial_feature",
@@ -1066,7 +967,7 @@
     "category": "feat",
     "action_type": "reaction",
     "description": "When an ally within 30ft rolls a 1 on an attack roll, ability check, or saving throw: use reaction to let them reroll. They must use the new roll.",
-    "note": "Halfling racial feat. Does not cost Tackett's Lucky feature.",
+    "note": "Halfling racial feat (XGtE). Per RAW, using it means you cannot use your Lucky trait before the end of your next turn.",
     "source": "Xanathar's Guide to Everything",
     "prerequisite_note": "Halfling"
   },
@@ -1081,30 +982,6 @@
     "homebrew": true
   },
   {
-    "id": "pub_inquisitive-ear-for-deceit",
-    "name": "Inquisitive — Ear for Deceit",
-    "category": "subclass_feature",
-    "action_type": null,
-    "description": "Gain proficiency in Insight. Whenever you make a Wisdom (Insight) check, you can treat a d20 roll of 7 or lower as an 8.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_inquisitive-eye-for-detail",
-    "name": "Inquisitive — Eye for Detail",
-    "category": "subclass_feature",
-    "action_type": "bonus_action",
-    "description": "Use a bonus action to take the Search action, or to make a Wisdom (Perception) check to spot a hidden creature or object, or an Intelligence (Investigation) check to uncover or decipher clues.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
-    "id": "pub_scout-ambush-master",
-    "name": "Scout — Ambush Master",
-    "category": "subclass_feature",
-    "action_type": null,
-    "description": "Advantage on initiative rolls. Creatures you hit during the first round of combat become easier targets — each ally has advantage on attack rolls against them until the start of your next turn.",
-    "source": "Xanathar's Guide to Everything"
-  },
-  {
     "id": "pub_master-of-tactics",
     "name": "Master of Tactics",
     "category": "subclass_feature",
@@ -1116,7 +993,7 @@
     "id": "pub_old-scores",
     "name": "Old Scores",
     "type": "feature",
-    "description": "Once per session, Torrin knows someone wherever the party currently is — that person owes him a favor. Purely narrative: opens doors, creates opportunities, no mechanical bonus. 156 years of living leaves marks everywhere.",
+    "description": "Once per long rest, Torrin knows someone wherever the party currently is — that person owes him a favor. Purely narrative: opens doors, creates opportunities, no mechanical bonus. 156 years of living leaves marks everywhere.",
     "source": "Homebrew, unique to Torrin. Purely narrative, no mechanical effect.",
     "homebrew": true
   },
@@ -1131,7 +1008,6 @@
     "id": "pub_soulknife-homing-strikes",
     "name": "Homing Strikes",
     "type": "feature",
-    "action_type": "reaction",
     "description": "When you miss with an attack using your Psychic Blades, you can expend one Psionic Energy die, rolling it and adding the result to the attack roll. If this turns the miss into a hit, you lose the die; otherwise you keep it.",
     "source": "Soulknife (Rogue subclass, Tasha's Cauldron of Everything) — 9th level, part of the Soul Blades feature."
   },
@@ -1470,7 +1346,7 @@
   {
     "id": "pub_combat-wild-shape",
     "name": "Combat Wild Shape",
-    "description": "You can use Wild Shape as a bonus action rather than an action. While shaped, you can cast a druid spell with a casting time of 1 action by expending a spell slot, or use a bonus action to expend a spell slot and regain 1d8 hit points per level of the slot expended.",
+    "description": "When you choose this circle at 2nd level, you gain the ability to use Wild Shape on your turn as a bonus action, rather than as an action. Additionally, while you are transformed by Wild Shape, you can use a bonus action to expend one spell slot to regain 1d8 hit points per level of the spell slot expended.",
     "type": "feature",
     "source": "Player's Handbook"
   },
@@ -1502,13 +1378,6 @@
     "description": "When you enter your rage, you can infuse one weapon you're holding with acid, cold, fire, lightning, or thunder damage. While you wield it during your rage, the weapon's damage type changes to the chosen type, it deals an extra 1d6 damage of that type on a hit, and it gains the thrown property (normal range 20ft, long range 60ft) — if thrown, it reappears in your hand the instant after it hits or misses. The benefits are suppressed while another creature wields it. While raging and holding it, you can use a bonus action to change its damage type.",
     "type": "feature",
     "source": "Bigby Presents: Glory of the Giants"
-  },
-  {
-    "id": "pub_elven-weapon-training",
-    "name": "Elven Weapon Training",
-    "description": "Proficiency with longswords, shortswords, shortbows, and longbows.",
-    "type": "feature",
-    "source": "Player's Handbook"
   },
   {
     "id": "pub_empowered-spell",
@@ -1592,7 +1461,7 @@
   {
     "id": "pub_infusion-clockwork-amulet",
     "name": "Infusion: Clockwork Amulet",
-    "description": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10.",
+    "description": "Once per long rest, when making an attack roll, forgo rolling and treat the d20 as a 10.",
     "type": "infusion",
     "source": "Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
     "homebrew": true
@@ -2293,8 +2162,8 @@
     "id": "hb_seize_the_opening",
     "name": "Seize the Opening",
     "category": "item_feature",
-    "recharge": "daily",
-    "description": "Once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
+    "recharge": "long_rest",
+    "description": "Once per long rest, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
     "note": "Granted by Ferghus's Helm of Carix (party_items.json) — triggers on a narrative surprise, not a chosen action, so it's not tagged with an action cost.",
     "homebrew": true,
     "source": "Homebrew, unique to Ferghus — tied to the Helm of Carix."
@@ -2304,8 +2173,8 @@
     "name": "Reaching Hand",
     "category": "item_feature",
     "action_type": "reaction",
-    "recharge": "daily",
-    "description": "Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "recharge": "long_rest",
+    "description": "Once per long rest as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "note": "Granted by Revven's Helm of the Reaching Hand (party_items.json).",
     "homebrew": true,
     "source": "Homebrew, unique to Revven — tied to the Helm of the Reaching Hand."
@@ -2325,8 +2194,8 @@
     "name": "Ring's Answer",
     "category": "item_feature",
     "action_type": "free",
-    "recharge": "daily",
-    "description": "Once per day, gain a responsive bonus to an ability check or skill check.",
+    "recharge": "long_rest",
+    "description": "Once per long rest, gain a responsive bonus to an ability check or skill check.",
     "note": "Granted by The Farreach (A) and (B) (party_items.json) — a paired-ring set worn by Siv and Pirra respectively; each ring grants its own bearer this once-per-day use.",
     "homebrew": true,
     "source": "Homebrew, unique to Siv/Pirra — tied to the paired Farreach rings."
@@ -2851,7 +2720,7 @@
     "action_type": "action",
     "class": "Paladin (Oath of Devotion)",
     "level_gained": 3,
-    "description": "As an action, imbue one weapon you are holding with positive energy for 1 minute. You add your Charisma modifier to attack rolls made with that weapon (minimum bonus of +1), it emits bright light in a 20-foot radius and dim light 20 feet beyond that, and it counts as magical for the purpose of overcoming resistance/immunity to nonmagical attacks. You can end the effect early as part of any other action; it also ends immediately if you are no longer holding or carrying the weapon, or if you fall unconscious.",
+    "description": "As an action, you can imbue one weapon that you are holding with positive energy, using your Channel Divinity. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of +1). The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. If the weapon is not already magical, it becomes magical for the duration. You can end this effect on your turn as part of any other action. If you are no longer holding or carrying this weapon, or if you fall unconscious, this effect ends.",
     "source": "Player's Handbook"
   },
   {
@@ -5660,7 +5529,7 @@
     "category": "subclass_feature",
     "class": "Monk (Way of the Open Hand)",
     "level_gained": 17,
-    "description": "When you hit with an unarmed strike, spend 3 ki points to start imperceptible vibrations lasting a number of days equal to your monk level, harmless unless you use your action to end them (you and the target must be on the same plane). Ending them forces a Constitution save — on a failure the target drops to 0 hit points, on a success it takes 10d10 necrotic damage. Only one creature can be afflicted at a time; once used, you can't use it again until you finish a long rest.",
+    "description": "When you hit with an unarmed strike, spend 3 ki points to start imperceptible vibrations lasting a number of days equal to your monk level, harmless unless you use your action to end them (you and the target must be on the same plane). Ending them forces a Constitution save — on a failure the target drops to 0 hit points, on a success it takes 10d10 necrotic damage. Only one creature can be afflicted at a time, and you can end the vibrations harmlessly without using an action.",
     "source": "Player's Handbook",
     "homebrew": false
   },
@@ -7966,5 +7835,41 @@
     "note": "Homebrew, unique to Brick. Rules in engine/rules/5e/hurlYourself.js; the fall damage itself is engine/rules/5e/fall.js.",
     "homebrew": true,
     "source": "Homebrew, unique to Brick."
+  },
+  {
+    "id": "hb_caster_prestidigitation",
+    "name": "Caster Prestidigitation",
+    "description": "All arcane and divine casters receive a free, flavor-appropriate form of Prestidigitation that does not count against their spell allotment. Sorcerers, Wizards, and Bards receive standard Prestidigitation. Druids receive standard Druidcraft. Clerics receive Divine Prestidigitation (a divine-flavored equivalent). Warlocks receive Dark Prestidigitation (a patron-flavored equivalent that does not draw from the Weave). These spells are always prepared and cannot be removed.",
+    "type": "feature",
+    "homebrew": true,
+    "source": "Homebrew — table house rule \"Caster Prestidigitation\" (see src/data/house_rules.json). Which flavor a character gets (Prestidigitation, Divine/Dark Prestidigitation, Druidcraft) is stored per character in spells_granted."
+  },
+  {
+    "id": "pub_infernal-legacy-hellish-rebuke",
+    "name": "Infernal Legacy: Hellish Rebuke",
+    "text_from": "pub_infernal-legacy",
+    "type": "feature",
+    "homebrew": false,
+    "source": "Player's Handbook",
+    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; text comes from the parent via text_from."
+  },
+  {
+    "id": "pub_infernal-legacy-darkness",
+    "name": "Infernal Legacy: Darkness",
+    "text_from": "pub_infernal-legacy",
+    "type": "feature",
+    "homebrew": false,
+    "source": "Player's Handbook",
+    "note": "Split out of the single Tiefling Infernal Legacy trait (pub_infernal-legacy) so the per-spell use can be tracked as its own tile; text comes from the parent via text_from."
+  },
+  {
+    "id": "pub_combat-wild-shape-healing",
+    "name": "Combat Wild Shape: Healing",
+    "text_from": "pub_combat-wild-shape",
+    "type": "feature",
+    "homebrew": false,
+    "action_type": "bonus_action",
+    "source": "Player's Handbook",
+    "note": "Second paragraph of Circle of the Moon's Combat Wild Shape (real PHB rule, verified on dnd5e.wikidot.com druid:moon), split into its own tile; text comes from pub_combat-wild-shape via text_from."
   }
 ]

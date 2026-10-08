@@ -16,6 +16,7 @@ import featuresData from '@/data/api_data_cache/features.json'
 import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
 import staticPublishedMonsters from '@/data/published_monsters.json'
+const { resolveFeatureText } = require('../../engine/rules/5e/featureText')
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
@@ -260,7 +261,9 @@ export async function lookupFeature(name, id) {
           pubById.class ||
           pubById.source ||
           (pubById.homebrew ? 'Homebrew' : 'Published'),
-        description: pubById.description,
+        description: resolveFeatureText(pubById, (i) =>
+          published.features.find((f) => f.id === i)
+        ),
       }
     }
   }
@@ -294,7 +297,9 @@ export async function lookupFeature(name, id) {
         pubExact.class ||
         pubExact.source ||
         (pubExact.homebrew ? 'Homebrew' : 'Published'),
-      description: pubExact.description,
+      description: resolveFeatureText(pubExact, (i) =>
+        published.features.find((f) => f.id === i)
+      ),
     }
   }
 

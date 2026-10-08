@@ -42,7 +42,11 @@
       {
         "name": "Breath Weapon",
         "type": "feature",
-        "id": "pub_dragonborn-breath-weapon"
+        "id": "pub_dragonborn-breath-weapon",
+        "action_type": "action",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Damage Resistance",
@@ -51,7 +55,8 @@
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_base_extra-attack-1"
       },
       {
         "name": "Action Surge",
@@ -90,32 +95,39 @@
       {
         "name": "Dual Wielder",
         "type": "feat",
+        "id": "pub_dual-wielder",
         "level_gained": 6
       },
       {
         "name": "Know Your Enemy",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_know-your-enemy"
       },
       {
         "name": "Disarming Attack",
-        "type": "maneuver"
+        "type": "maneuver",
+        "id": "pub_disarming-attack"
       },
       {
         "name": "Precision Attack",
-        "type": "maneuver"
+        "type": "maneuver",
+        "id": "pub_precision-attack"
       },
       {
         "name": "Riposte",
         "type": "maneuver",
+        "id": "pub_riposte",
         "action_type": "reaction"
       },
       {
         "name": "Menacing Attack",
-        "type": "maneuver"
+        "type": "maneuver",
+        "id": "pub_menacing-attack"
       },
       {
         "name": "Parry",
         "type": "maneuver",
+        "id": "pub_parry",
         "action_type": "reaction"
       }
     ],
@@ -237,7 +249,10 @@
       {
         "name": "Relentless Endurance",
         "type": "feature",
-        "id": "pub_relentless-endurance"
+        "id": "pub_relentless-endurance",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Savage Attacks",
@@ -252,6 +267,7 @@
       {
         "name": "Rage (4 uses, +3 damage)",
         "type": "feature",
+        "id": "rage",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -259,39 +275,49 @@
       },
       {
         "name": "Reckless Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "reckless-attack"
       },
       {
         "name": "Danger Sense",
-        "type": "feature"
+        "type": "feature",
+        "id": "danger-sense"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "barbarian-extra-attack"
       },
       {
         "name": "Frenzy",
-        "type": "feature"
+        "type": "feature",
+        "id": "frenzy",
+        "action_type": "bonus_action"
       },
       {
         "name": "Mindless Rage",
-        "type": "feature"
+        "type": "feature",
+        "id": "mindless-rage"
       },
       {
         "name": "Feral Instinct",
-        "type": "feature"
+        "type": "feature",
+        "id": "feral-instinct"
       },
       {
         "name": "Brutal Critical (1 die)",
-        "type": "feature"
+        "type": "feature",
+        "id": "brutal-critical-1-die"
       },
       {
         "name": "Fast Movement",
-        "type": "feature"
+        "type": "feature",
+        "id": "fast-movement"
       },
       {
         "name": "Great Weapon Master",
         "type": "feat",
+        "id": "pub_great-weapon-master",
         "action_type": "bonus_action"
       },
       {
@@ -388,6 +414,7 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
@@ -398,19 +425,23 @@
       },
       {
         "name": "Evasion",
-        "type": "feature"
+        "type": "feature",
+        "id": "rogue-evasion"
       },
       {
         "name": "Assassinate",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_assassinate"
       },
       {
         "name": "Assassin — Infiltration Expertise",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_assassin-infiltration-expertise"
       },
       {
         "name": "Shadow Touched",
         "type": "feat",
+        "id": "pub_shadow-touched",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
@@ -524,46 +555,54 @@
       {
         "name": "Arcane Recovery",
         "type": "feature",
+        "id": "arcane-recovery",
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
       },
       {
         "name": "Evocation Savant",
-        "type": "feature"
+        "type": "feature",
+        "id": "evocation-savant"
       },
       {
         "name": "Sculpt Spells",
-        "type": "feature"
+        "type": "feature",
+        "id": "sculpt-spells"
       },
       {
         "name": "Potent Cantrip",
-        "type": "feature"
+        "type": "feature",
+        "id": "potent-cantrip"
       },
       {
         "name": "Metamagic Adept",
         "type": "feat",
+        "id": "pub_metamagic-adept",
         "note": "Pool of 2 sorcery points per long rest — spent on Twinned or Quickened Spell below."
       },
       {
         "name": "Twinned Spell",
         "type": "metamagic",
+        "id": "metamagic-twinned-spell",
         "description": "Cost: sorcery points equal to the spell's level (1 if a cantrip). When casting a spell that targets only one creature and doesn't have a range of Self, target a second creature in range with the same spell.",
         "note": "Swapped in 2026-09-09, replacing Empowered Spell. Real history: Empowered Spell was wrongly deleted earlier in the subclass audit as \"mechanically impossible for a pure Wizard,\" without checking whether a feat granted it -- he has Metamagic Adept, which legally grants any spellcaster 2 Sorcerer Metamagic options + a small sorcery point pool regardless of Sorcerer levels, so it wasn't actually a corruption. Restored, then swapped by project owner's choice: Empowered Spell's reroll count is fixed to Charisma modifier in the real rules (not adaptable to the caster's own casting stat), which made it weak for him (his CHA is only +1). Twinned Spell has no ability-score dependency at all, sidestepping the issue and generally regarded as one of the stronger Metamagic picks regardless of caster stat."
       },
       {
         "name": "Quickened Spell",
         "type": "metamagic",
+        "id": "metamagic-quickened-spell",
         "description": "Cost: 2 sorcery points. Cast a leveled spell that normally takes 1 action as a bonus action instead."
       },
       {
         "name": "Linked Spellbook",
         "type": "feature",
+        "id": "pub_linked-spellbook",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lyria's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -1176,21 +1215,25 @@
       {
         "name": "Arcane Recovery",
         "type": "feature",
+        "id": "arcane-recovery",
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
       },
       {
         "name": "Bladesinger — Training in War and Song",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_bladesinger-training-in-war-and-song"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_extra-attack-bladesinger"
       },
       {
         "name": "Bladesong",
         "type": "feature",
+        "id": "pub_bladesong",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -1200,11 +1243,12 @@
       {
         "name": "Linked Spellbook",
         "type": "feature",
+        "id": "pub_linked-spellbook",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Lyria's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -1758,11 +1802,13 @@
     "features": [
       {
         "name": "Disciple of Life",
-        "type": "feature"
+        "type": "feature",
+        "id": "disciple-of-life"
       },
       {
         "name": "Channel Divinity (2/rest)",
         "type": "feature",
+        "id": "channel-divinity-2-rest",
         "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -1771,32 +1817,40 @@
       {
         "name": "Channel Divinity: Preserve Life",
         "type": "feature",
-        "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use."
+        "id": "channel-divinity-preserve-life",
+        "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use.",
+        "action_type": "action"
       },
       {
         "name": "Blessed Healer",
-        "type": "feature"
+        "type": "feature",
+        "id": "blessed-healer"
       },
       {
         "name": "Divine Strike",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-strike",
+        "per_turn_cap": true
       },
       {
         "name": "Destroy Undead (CR 1)",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_destroy-undead-cr-1"
       },
       {
         "name": "Inspiring Leader",
         "type": "feat",
+        "id": "pub_inspiring-leader",
         "description": "10-minute speech. Up to 6 willing creatures who can hear and understand you gain temporary HP equal to your level + CHA modifier. A creature can't benefit again until after a short or long rest."
       },
       {
         "name": "War Caster",
-        "type": "feat"
+        "type": "feat",
+        "id": "pub_war-caster"
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -2063,6 +2117,7 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
@@ -2073,28 +2128,35 @@
       },
       {
         "name": "Evasion",
-        "type": "feature"
+        "type": "feature",
+        "id": "rogue-evasion"
       },
       {
         "name": "Inquisitive — Ear for Deceit",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_ear-for-deceit"
       },
       {
         "name": "Inquisitive — Eye for Detail",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_eye-for-detail",
+        "action_type": "bonus_action"
       },
       {
         "name": "Insightful Fighting (Revised)",
         "type": "feature",
+        "id": "pub_insightful-fighting-revised",
         "action_type": "bonus_action"
       },
       {
         "name": "Inquisitive — Steady Eye",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_steady-eye"
       },
       {
         "name": "Observant",
         "type": "feat",
+        "id": "pub_observant",
         "stat_bonuses": {
           "passive_perception": 5,
           "passive_investigation": 5
@@ -2216,30 +2278,36 @@
       {
         "name": "Arcane Recovery",
         "type": "feature",
+        "id": "arcane-recovery",
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
       },
       {
         "name": "Abjuration Savant",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_abjuration-savant"
       },
       {
         "name": "Arcane Ward",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_arcane-ward"
       },
       {
         "name": "Projected Ward",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_projected-ward",
+        "action_type": "reaction"
       },
       {
         "name": "Linked Spellbook",
         "type": "feature",
+        "id": "pub_linked-spellbook",
         "description": "A yellow mark on the spine connects this spellbook permanently to Lenn's and Kessara's. Any spell inscribed in any of the three books is instantly copied to the others. All three always share the same spell list."
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -2781,15 +2849,18 @@
     "features": [
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_base_extra-attack-1"
       },
       {
         "name": "Improved Critical (19-20)",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_champion_improved-critical-19-20"
       },
       {
         "name": "Remarkable Athlete",
-        "type": "feature"
+        "type": "feature",
+        "id": "remarkable-athlete"
       },
       {
         "name": "Indomitable",
@@ -2940,11 +3011,13 @@
       },
       {
         "name": "Unarmored Defense",
-        "type": "feature"
+        "type": "feature",
+        "id": "barbarian-unarmored-defense"
       },
       {
         "name": "Rage",
         "type": "feature",
+        "id": "rage",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -2952,23 +3025,28 @@
       },
       {
         "name": "Reckless Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "reckless-attack"
       },
       {
         "name": "Danger Sense",
-        "type": "feature"
+        "type": "feature",
+        "id": "danger-sense"
       },
       {
         "name": "Giant's Havoc",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_giant-s-havoc"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "barbarian-extra-attack"
       },
       {
         "name": "Fast Movement (+10ft)",
         "type": "feature",
+        "id": "fast-movement",
         "stat_bonuses": {
           "speed": 10
         }
@@ -2976,11 +3054,13 @@
       {
         "name": "Elemental Cleaver",
         "type": "feature",
+        "id": "pub_elemental-cleaver",
         "action_type": "bonus_action"
       },
       {
         "name": "Giant's Power",
         "type": "feature",
+        "id": "pub_giant-s-power",
         "description": "Learn the Thaumaturgy cantrip (Wisdom-based regardless of her own casting stat). Already knows Giant, so the feature's language grant is redundant for her.",
         "note": "Added 2026-09-09 -- this feature was missing entirely, found during the Path of the Giant subclass audit. Cantrip choice (Thaumaturgy over Druidcraft) picked by the project owner to fit her Intimidation proficiency and barbarian presence."
       },
@@ -3005,17 +3085,20 @@
       {
         "name": "Fighting Style: Defense",
         "type": "feature",
+        "id": "fighting-style-defense",
         "stat_bonuses": {
           "ac": 1
         }
       },
       {
         "name": "Divine Smite",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-smite"
       },
       {
         "name": "Divine Health",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-health"
       },
       {
         "name": "Channel Divinity: Nature's Wrath",
@@ -3035,7 +3118,8 @@
       },
       {
         "name": "Shelter of the Faithful",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_shelter-of-the-faithful"
       }
     ],
     "spell_slots": {
@@ -3165,15 +3249,18 @@
       {
         "name": "Fighting Style: Protection",
         "type": "feature",
+        "id": "fighting-style-protection",
         "action_type": "reaction"
       },
       {
         "name": "Divine Smite",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-smite"
       },
       {
         "name": "Divine Health",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-health"
       },
       {
         "name": "Lay on Hands",
@@ -3186,11 +3273,13 @@
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "paladin-extra-attack"
       },
       {
         "name": "Channel Divinity: Champion Challenge",
         "type": "feature",
+        "id": "pub_channel-divinity-champion-challenge",
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
@@ -3201,17 +3290,20 @@
       {
         "name": "Channel Divinity: Turn the Tide",
         "type": "feature",
+        "id": "pub_channel-divinity-turn-the-tide",
         "action_type": "bonus_action",
         "description": "As a bonus action, each creature of your choice that can hear you within 30 feet regains 1d6 + CHA modifier (min 1) hit points, if it has no more than half its hit points.",
         "note": "Corrected 2026-09-18 — shares the same 1/short-rest Channel Divinity pool as Champion Challenge above; both entries independently tracking uses_max:1 was double-counting her real single use, fixed by moving the tracked uses onto Champion Challenge only."
       },
       {
         "name": "Aura of Protection",
-        "type": "feature"
+        "type": "feature",
+        "id": "aura-of-protection"
       },
       {
         "name": "Crown — Divine Allegiance",
         "type": "feature",
+        "id": "pub_crown-divine-allegiance",
         "action_type": "reaction"
       },
       {
@@ -3230,7 +3322,8 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       }
     ],
     "spells": [
@@ -3406,6 +3499,7 @@
       {
         "name": "Stars Druid — Starry Form",
         "type": "feature",
+        "id": "pub_stars-druid-starry-form",
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 1,
@@ -3428,6 +3522,7 @@
       {
         "name": "Stars Druid — Unbroken (Legendary)",
         "type": "feature",
+        "id": "pub_stars-druid-unbroken-legendary",
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -3436,6 +3531,7 @@
       {
         "name": "Stars Druid — Star Map",
         "type": "feature",
+        "id": "pub_stars-druid-star-map",
         "spells_granted": [
           "Guiding Bolt"
         ],
@@ -3444,6 +3540,7 @@
       {
         "name": "Stars Druid — Cosmic Omen",
         "type": "feature",
+        "id": "pub_stars-druid-cosmic-omen",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 4,
@@ -3452,6 +3549,7 @@
       {
         "name": "Wild Shape (CR 1 or below)",
         "type": "feature",
+        "id": "gen_druid_base_wild-shape",
         "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -3459,11 +3557,13 @@
       },
       {
         "name": "Primal Companion",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_primal-companion"
       },
       {
         "name": "Bountiful Luck",
         "type": "feat",
+        "id": "pub_bountiful-luck",
         "action_type": "reaction"
       }
     ],
@@ -3737,6 +3837,7 @@
       {
         "name": "Tempest Cleric — Wrath of the Storm",
         "type": "feature",
+        "id": "pub_wrath-of-the-storm",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 5,
@@ -3746,18 +3847,21 @@
       {
         "name": "Tempest Cleric — Destructive Wrath",
         "type": "feature",
+        "id": "pub_channel-divinity-destructive-wrath",
         "description": "When you roll lightning or thunder damage, you can use your Channel Divinity to deal maximum damage instead of rolling.",
         "note": "Shares the same Channel Divinity pool as Turn Undead below — not a separate use."
       },
       {
         "name": "Tempest Cleric — Thunderous Strike",
         "type": "feature",
+        "id": "pub_thunderous-strike",
         "description": "When you deal lightning damage to a creature, you can also push the creature up to 10 feet away from you if it's Large or smaller.",
         "note": "Corrected 2026-09-18 — was mis-recorded as \"Thunderbolt Strike\" (not a real feature name) and mis-tagged as an 8th-level ability; the real PHB feature is Thunderous Strike, gained at 6th level."
       },
       {
         "name": "Channel Divinity: Turn Undead",
         "type": "feature",
+        "id": "channel-divinity-turn-undead",
         "action_type": "action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -3766,13 +3870,16 @@
       },
       {
         "name": "Destroy Undead (CR 1)",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_destroy-undead-cr-1"
       },
       {
         "name": "Divine Strike",
         "type": "feature",
+        "id": "pub_divine-strike-tempest",
         "description": "Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 thunder damage to the target.",
-        "note": "Removed the duplicate \"Blessed Strikes\" entry 2026-09-18 — that's Tasha's Cauldron's optional class feature that explicitly REPLACES Divine Strike (per its own catalog note), not something that stacks alongside it; having both was a data error, not a real build choice. Its only added value (working with Potent Spellcasting too) doesn't apply here since Revven doesn't have Potent Spellcasting from anywhere."
+        "note": "Removed the duplicate \"Blessed Strikes\" entry 2026-09-18 — that's Tasha's Cauldron's optional class feature that explicitly REPLACES Divine Strike (per its own catalog note), not something that stacks alongside it; having both was a data error, not a real build choice. Its only added value (working with Potent Spellcasting too) doesn't apply here since Revven doesn't have Potent Spellcasting from anywhere.",
+        "per_turn_cap": true
       },
       {
         "name": "Fey Ancestry",
@@ -3782,11 +3889,15 @@
       {
         "name": "Fey Touched",
         "type": "feat",
-        "note": "1st-level spell: Comprehend Languages"
+        "id": "pub_fey-touched",
+        "note": "1st-level spell: Comprehend Languages",
+        "spells_granted": [
+          "Misty Step"
+        ]
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -4093,19 +4204,18 @@
     "features": [
       {
         "name": "Dread Ambusher",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_dread-ambusher"
       },
       {
         "name": "Umbral Sight",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_umbral-sight"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
-      },
-      {
-        "name": "Steel Will",
-        "type": "feature"
+        "type": "feature",
+        "id": "ranger-extra-attack"
       },
       {
         "name": "Sneak Attack",
@@ -4116,6 +4226,7 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
@@ -4139,11 +4250,13 @@
       },
       {
         "name": "Favored Enemy",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_ranger_base_favored-enemy"
       },
       {
         "name": "Natural Explorer",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_ranger_base_natural-explorer"
       },
       {
         "name": "Hellish Resistance",
@@ -4157,7 +4270,7 @@
       },
       {
         "name": "Infernal Legacy: Hellish Rebuke",
-        "id": null,
+        "id": "pub_infernal-legacy-hellish-rebuke",
         "type": "speciesTrait",
         "level_gained": 3,
         "spells_granted": [
@@ -4166,11 +4279,12 @@
         "_source": "Infernal Legacy",
         "uses_max": 1,
         "uses_current": 1,
-        "recharge": "long_rest"
+        "recharge": "long_rest",
+        "action_type": "reaction"
       },
       {
         "name": "Infernal Legacy: Darkness",
-        "id": null,
+        "id": "pub_infernal-legacy-darkness",
         "type": "speciesTrait",
         "level_gained": 5,
         "spells_granted": [
@@ -4179,7 +4293,8 @@
         "_source": "Infernal Legacy",
         "uses_max": 1,
         "uses_current": 1,
-        "recharge": "long_rest"
+        "recharge": "long_rest",
+        "action_type": "action"
       }
     ],
     "spells": [
@@ -4331,11 +4446,13 @@
       },
       {
         "name": "Divine Smite",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-smite"
       },
       {
         "name": "Divine Health",
-        "type": "feature"
+        "type": "feature",
+        "id": "divine-health"
       },
       {
         "name": "Channel Divinity: Sacred Weapon",
@@ -4358,11 +4475,13 @@
       },
       {
         "name": "Aura of Protection (+4 to ally saves within 10ft)",
-        "type": "feature"
+        "type": "feature",
+        "id": "aura-of-protection"
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "paladin-extra-attack"
       },
       {
         "name": "Lay on Hands",
@@ -4559,7 +4678,8 @@
       },
       {
         "name": "Fighting Style: Two-Weapon Fighting",
-        "type": "feature"
+        "type": "feature",
+        "id": "fighter-fighting-style-two-weapon-fighting"
       },
       {
         "name": "Second Wind",
@@ -4583,35 +4703,41 @@
       {
         "name": "Manifest Echo",
         "type": "feature",
+        "id": "pub_manifest-echo",
         "action_type": "bonus_action",
         "description": "Create the echo (or dismiss/re-place an existing one) within 15ft. Echo stats: AC 14 + proficiency bonus, 1 HP, immune to all conditions, uses your saving throws, same size as you. Destroyed if it ends your turn more than 30ft from you. See Echo: Reposition, Echo: Swap Places, Echo: Attack From, and Echo: Opportunity Attack for what you can do with it once it exists."
       },
       {
         "name": "Echo: Reposition",
         "type": "feature",
+        "id": "pub_echo-reposition",
         "action_type": "free",
         "description": "No action required — mentally move your echo up to 30ft in any direction, any number of times on your turn. It's destroyed if it ends up more than 30ft from you."
       },
       {
         "name": "Echo: Swap Places",
         "type": "feature",
+        "id": "pub_echo-swap-places",
         "action_type": "bonus_action",
         "description": "Teleport-swap positions with your echo, regardless of the distance between you. Costs 15ft of your movement for that turn, in addition to the bonus action."
       },
       {
         "name": "Echo: Attack From",
         "type": "feature",
+        "id": "pub_echo-attack-from",
         "description": "When you take the Attack action, each attack you make as part of it can originate from your own space or your echo's space, chosen individually per attack. No extra action cost — this is a targeting option within the Attack action itself, distinct from Unleash Incarnation's bonus attack. Table ruling (RAW is ambiguous here): this only affects range/targeting for the attack — Eldi's real body stays where it is for every other purpose (reach against her, opportunity attacks against her, etc.)."
       },
       {
         "name": "Echo: Opportunity Attack",
         "type": "feature",
+        "id": "pub_echo-opportunity-attack",
         "action_type": "reaction",
         "description": "When a creature you can see within 5ft of your echo moves at least 5ft away from it, make an opportunity attack against that creature as if you were standing in the echo's space."
       },
       {
         "name": "Unleash Incarnation",
         "type": "feature",
+        "id": "pub_unleash-incarnation",
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
@@ -4619,7 +4745,8 @@
       },
       {
         "name": "Extra Attack",
-        "type": "feature"
+        "type": "feature",
+        "id": "gen_fighter_base_extra-attack-1"
       },
       {
         "name": "Sneak Attack",
@@ -4630,19 +4757,24 @@
       {
         "name": "Cunning Action",
         "type": "feature",
+        "id": "cunning-action",
         "action_type": "bonus_action"
       },
       {
         "name": "Fancy Footwork",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_fancy-footwork"
       },
       {
         "name": "Rakish Audacity",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_rakish-audacity",
+        "adds_ability_to_initiative": "cha"
       },
       {
         "name": "Elven Accuracy",
         "type": "feat",
+        "id": "pub_elven-accuracy",
         "stat_bonuses": {
           "dex": 1
         },
@@ -4655,11 +4787,13 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Tattoo of Warding",
         "type": "feature",
+        "id": "pub_tattoo-of-warding",
         "action_type": "reaction",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -4761,46 +4895,57 @@
       },
       {
         "name": "Divine Magic",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_divine-magic"
       },
       {
         "name": "Favored by the Gods",
         "type": "feature",
-        "action_type": "reaction",
+        "id": "pub_favored-by-the-gods",
         "recharge": "short_rest",
         "uses_max": 1,
         "uses_current": 1
       },
       {
         "name": "Font of Magic",
-        "type": "feature"
+        "type": "feature",
+        "id": "font-of-magic"
       },
       {
         "name": "Metamagic: Twinned Spell",
-        "type": "feature"
+        "type": "feature",
+        "id": "metamagic-twinned-spell"
       },
       {
         "name": "Metamagic: Quickened Spell",
-        "type": "feature"
+        "type": "feature",
+        "id": "metamagic-quickened-spell"
       },
       {
         "name": "Empowered Healing",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_empowered-healing",
+        "per_turn_cap": true
       },
       {
         "name": "Fey Touched",
         "type": "feat",
+        "id": "pub_fey-touched",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
         "stat_bonuses": {
           "cha": 1
         },
-        "note": "Free cast of Misty Step and Silvery Barbs once each per long rest (tracked via uses). +1 CHA applied via stat_bonuses."
+        "note": "Free cast of Misty Step and Silvery Barbs once each per long rest (tracked via uses). +1 CHA applied via stat_bonuses.",
+        "spells_granted": [
+          "Misty Step"
+        ]
       },
       {
         "name": "War Caster",
-        "type": "feat"
+        "type": "feat",
+        "id": "pub_war-caster"
       },
       {
         "name": "Fey Ancestry",
@@ -4809,11 +4954,12 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -5060,7 +5206,11 @@
       {
         "name": "Healing Hands",
         "type": "feature",
-        "id": "pub_aasimar-healing-hands"
+        "id": "pub_aasimar-healing-hands",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Light Bearer",
@@ -5069,11 +5219,13 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
+        "type": "feature",
+        "id": "pub_darkvision"
       },
       {
         "name": "Healing Touch",
         "type": "feature",
+        "id": "pub_healing-touch",
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -5089,6 +5241,7 @@
       {
         "name": "Aasimar Transformation",
         "type": "feature",
+        "id": "pub_aasimar-transformation",
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -5098,11 +5251,13 @@
       {
         "name": "Loom Fire",
         "type": "feature",
+        "id": "pub_loom-fire",
         "description": "You know Sacred Flame (doesn't count against cantrips known). When you cast it, you may target one creature as normal OR target two creatures within range that are within 5 feet of each other. Both targets make a DEX save (DC 17); each takes 2d8 radiant on a fail, no damage on a success."
       },
       {
         "name": "Weave Embodiment",
         "type": "feature",
+        "id": "pub_weave-embodiment",
         "recharge": "long_rest",
         "uses_max": 3,
         "uses_current": 3,
@@ -5111,27 +5266,32 @@
       {
         "name": "Font of Magic",
         "type": "feature",
+        "id": "font-of-magic",
         "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP → 1st-level slot (up to 5th level); convert slots → SP (1 SP per slot level)."
       },
       {
         "name": "Metamagic: Twinned Spell",
         "type": "feature",
+        "id": "metamagic-twinned-spell",
         "description": "When you cast a single-target spell not of range Self, spend SP equal to the spell's level (min 1) to target a second creature in range with the same spell."
       },
       {
         "name": "Metamagic: Careful Spell",
         "type": "feature",
+        "id": "metamagic-careful-spell",
         "description": "When you cast a spell that forces saving throws, spend 1 SP to let up to CHA mod creatures (min 1) automatically succeed on the save."
       },
       {
         "name": "Mother's Whim",
         "type": "feature",
+        "id": "pub_mother-s-whim",
         "action_type": "bonus_action",
         "description": "Two separate effects bundled in one feature. (1) Shifting: as a bonus action, spend 1 Sorcery Point to change your active Weave Phase to a different one (Leno/Twill/Satin) — costs 1 SP every time you shift, no cap on the number of shifts beyond available SP. (2) Discount: whenever you apply Metamagic to a spell belonging to your CURRENT active phase's school pair, reduce its SP cost by 1 (minimum 0). Usable a number of times equal to your proficiency bonus (currently 4) per long rest, refreshing on a long rest — this use-count is independent of how many times you've shifted phase. Subclass level 6 feature."
       },
       {
         "name": "Leno Phase (Abjuration / Divination)",
         "type": "feature",
+        "id": "pub_leno-phase-abjuration-divination",
         "description": "Active phase: 1 SP discount on Metamagic for Abjuration and Divination spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Shield",
@@ -5144,6 +5304,7 @@
       {
         "name": "Twill Phase (Enchantment / Necromancy)",
         "type": "feature",
+        "id": "pub_twill-phase-enchantment-necromancy",
         "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Silvery Barbs",
@@ -5156,6 +5317,7 @@
       {
         "name": "Satin Phase (Illusion / Transmutation)",
         "type": "feature",
+        "id": "pub_satin-phase-illusion-transmutation",
         "description": "Active phase: 1 SP discount on Metamagic for Illusion and Transmutation spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Color Spray",
@@ -5167,7 +5329,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -5434,12 +5596,8 @@
       },
       {
         "name": "Darkvision",
-        "type": "feature"
-      },
-      {
-        "name": "Elven Weapon Training",
         "type": "feature",
-        "description": "Proficiency with longswords, shortswords, shortbows, and longbows."
+        "id": "pub_darkvision"
       },
       {
         "name": "Fleet of Foot",
@@ -5456,18 +5614,19 @@
       {
         "name": "Combat Wild Shape",
         "type": "feature",
-        "description": "Lets Wild Shape (above) be used as a bonus action instead of an action.",
-        "note": "Corrected 2026-09-18 — the old text also claimed you can cast a druid spell with a 1-action casting time while shaped by expending a slot; that's not real RAW (verified via dnd5e.wikidot.com), likely confused with the separate healing benefit, which is now its own \"Combat Wild Shape: Healing\" tile below."
+        "id": "pub_combat-wild-shape",
+        "description": "Lets Wild Shape be used as a bonus action instead of an action."
       },
       {
         "name": "Combat Wild Shape: Healing",
         "type": "feature",
         "action_type": "bonus_action",
-        "description": "While transformed by Wild Shape, expend one spell slot as a bonus action to regain 1d8 hit points per level of the spell slot expended."
+        "id": "pub_combat-wild-shape-healing"
       },
       {
         "name": "Wild Shape",
         "type": "feature",
+        "id": "gen_druid_base_wild-shape",
         "action_type": "bonus_action",
         "recharge": "short_rest",
         "uses_max": 2,
@@ -5478,17 +5637,20 @@
       {
         "name": "Circle Forms improvement",
         "type": "feature",
+        "id": "pub_circle-forms-improvement",
         "level_gained": 6,
         "description": "Your Wild Shape's challenge rating cap increases to your druid level divided by 3, rounded down -- CR 3 at her current level 9."
       },
       {
         "name": "Primal Strike",
         "type": "feature",
+        "id": "pub_primal-strike",
         "description": "Attacks made in beast form (via Wild Shape) count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage."
       },
       {
         "name": "Resilient (Constitution)",
         "type": "feat",
+        "id": "pub_resilient-constitution",
         "stat_bonuses": {
           "con": 1
         },
@@ -5497,6 +5659,7 @@
       {
         "name": "Sixty Leagues Before Dusk",
         "type": "feature",
+        "id": "pub_sixty-leagues-before-dusk",
         "action_type": "action",
         "recharge": "long_rest",
         "uses_max": 1,
@@ -5506,7 +5669,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -5749,6 +5912,7 @@
       {
         "name": "Thieves' Cant",
         "type": "feature",
+        "id": "thieves-cant",
         "level_gained": 1,
         "_source": "Rogue"
       },
@@ -5947,7 +6111,8 @@
         "id": "pub_magical-tinkering",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "action"
       },
       {
         "name": "Spellcasting",
@@ -5978,7 +6143,7 @@
           {
             "name": "Infusion: Clockwork Amulet",
             "applied_to": "Amulet",
-            "effect": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10."
+            "effect": "Once per long rest, when making an attack roll, forgo rolling and treat the d20 as a 10."
           }
         ],
         "new_infusion_learned": "Bag of Holding",
@@ -6010,7 +6175,8 @@
         "id": "hb_infused_arbalist_infuse_weapon",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "action"
       },
       {
         "name": "Arcane Payload",
@@ -6050,7 +6216,11 @@
         "type": "feat",
         "level_gained": 8,
         "ability_choice": "int",
-        "_source": "Artificer"
+        "_source": "Artificer",
+        "action_type": "reaction",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
       }
     ],
     "spells": [
@@ -6402,7 +6572,7 @@
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -6781,7 +6951,6 @@
         "name": "Homing Strikes",
         "id": "pub_soulknife-homing-strikes",
         "type": "feature",
-        "action_type": "reaction",
         "level_gained": 9,
         "_source": "Rogue"
       },
@@ -6926,7 +7095,7 @@
     "features": [
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -6957,7 +7126,7 @@
       },
       {
         "name": "Expertise: Performance, History",
-        "id": null,
+        "id": "bard-expertise-1",
         "type": "expertise",
         "level_gained": 3,
         "_source": "Bard"
@@ -6974,17 +7143,21 @@
         "id": "cutting-words",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "reaction"
       },
       {
         "name": "Fey Touched",
-        "id": null,
+        "id": "pub_fey-touched",
         "type": "feat",
         "level_gained": 4,
         "ability_choice": "cha",
         "choices": {
           "__grantedSpellChoice": "Bless"
-        }
+        },
+        "spells_granted": [
+          "Misty Step"
+        ]
       },
       {
         "name": "Font of Inspiration",
@@ -6998,11 +7171,12 @@
         "id": "countercharm",
         "type": "feature",
         "level_gained": 6,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "action"
       },
       {
         "name": "Additional Magical Secrets: Pulse Wave, Haste",
-        "id": null,
+        "id": "additional-magical-secrets",
         "type": "additionalMagicalSecrets",
         "level_gained": 6,
         "_source": "College of Lore"
@@ -7301,7 +7475,7 @@
     "features": [
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -7332,7 +7506,7 @@
       },
       {
         "name": "Expertise: Performance, Insight",
-        "id": null,
+        "id": "bard-expertise-1",
         "type": "expertise",
         "level_gained": 3,
         "_source": "Bard"
@@ -7342,7 +7516,10 @@
         "id": "pub_guiding-whispers",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Bard"
+        "_source": "Bard",
+        "spells_granted": [
+          "Guidance"
+        ]
       },
       {
         "name": "Spiritual Focus",
@@ -7356,17 +7533,21 @@
         "id": "pub_tales-from-beyond",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "bonus_action"
       },
       {
         "name": "Shadow Touched",
-        "id": null,
+        "id": "pub_shadow-touched",
         "type": "feat",
         "level_gained": 4,
         "ability_choice": "cha",
         "choices": {
           "__grantedSpellChoice": "Disguise Self"
-        }
+        },
+        "spells_granted": [
+          "Invisibility"
+        ]
       },
       {
         "name": "Font of Inspiration",
@@ -7380,18 +7561,22 @@
         "id": "countercharm",
         "type": "feature",
         "level_gained": 6,
-        "_source": "Bard"
+        "_source": "Bard",
+        "action_type": "action"
       },
       {
         "name": "Spirit Session",
         "id": "pub_spirit-session",
         "type": "feature",
         "level_gained": 6,
-        "_source": "Bard"
+        "_source": "Bard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "War Caster",
-        "id": null,
+        "id": "pub_war-caster",
         "type": "feat",
         "level_gained": 8,
         "ability_choice": null,
@@ -7664,11 +7849,14 @@
         "id": "arcane-recovery",
         "type": "feature",
         "level_gained": 1,
-        "_source": "Wizard"
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
       },
       {
         "name": "Caster Prestidigitation",
-        "id": null,
+        "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
         "spells_granted": [
@@ -7903,7 +8091,8 @@
         "id": "frenzy",
         "type": "feature",
         "level_gained": 3,
-        "_source": "Barbarian"
+        "_source": "Barbarian",
+        "action_type": "bonus_action"
       },
       {
         "name": "Extra Attack",

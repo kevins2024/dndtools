@@ -32,6 +32,7 @@ const { diffLevelUp, applyFeatureMechanics } = require('./rules/5e/diffLevelUp')
 const { resolveEffectiveScores } = require('./rules/5e/abilityScores')
 const { loadFeat, isFeatGrantedSpell } = require('./rules/5e/grants')
 const { featureMechanics } = require('./rules/5e/featureMechanics')
+const { resolveFeatureText } = require('./rules/5e/featureText')
 const {
   lookup: itemLookup,
   listItemCatalog,
@@ -134,6 +135,7 @@ module.exports = {
   diffLevelUp,
   applyFeatureMechanics,
   featureMechanics,
+  resolveFeatureText,
   resolveEffectiveScores,
   loadFeat,
   isFeatGrantedSpell,
