@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import dataService from '@/utils/dataService'
+import { rowsForAmbientSave, restoreDrafts } from '../../engine/rules/draftSaves'
 import {
   applyShortRest,
   applyLongRest,
@@ -81,6 +82,11 @@ export default new Vuex.Store({
     loaded: false,
     originals: {},
     dirtyTables: [],
+    // Names of characters holding an UNSAVED level-up or new-character draft.
+    // The ambient autosave holds these back (engine/rules/draftSaves.js);
+    // only their explicit Save button writes them. Cleared per name when that
+    // character is saved, reverted or removed.
+    draftCharacters: [],
     restVersion: 0,
     currentEncounter: null,
     lastEncounter: null,
@@ -200,6 +206,8 @@ export default new Vuex.Store({
     // OTHER table's unrelated pending changes).
     SET_ORIGINAL_TABLE(state, { table, data }) {
       state.originals = { ...state.originals, [table]: data }
+      // The whole characters table was just saved explicitly: no drafts left.
+      if (table === 'characters') state.draftCharacters = []
     },
     // Replaces ONE row of a table by `name` — either in the live table itself
     // (revert-to-baseline, or adopt a just-saved row) or in that table's
@@ -208,6 +216,10 @@ export default new Vuex.Store({
     // character's independent in-progress edits, in either the live table or
     // its saved baseline.
     SET_TABLE_ROW(state, { table, name, data }) {
+      // Replacing a character's row wholesale (revert to baseline, or adopt a
+      // just-saved row) ends its draft.
+      if (table === 'characters')
+        state.draftCharacters = state.draftCharacters.filter((n) => n !== name)
       const rows = state[table] || []
       const idx = rows.findIndex((r) => r.name === name)
       state[table] =
@@ -559,6 +571,8 @@ export default new Vuex.Store({
     // 1.5s autosave (AppLayout.vue's `hasChanges` watcher) and persisted only
     // via LevelUpTool.vue's explicit "Save Changes" button instead.
     APPLY_LEVEL_UP(state, { characterName, patch }) {
+      if (!state.draftCharacters.includes(characterName))
+        state.draftCharacters = [...state.draftCharacters, characterName]
       state.characters = state.characters.map((char) =>
         char.name === characterName ? { ...char, ...patch } : char
       )
@@ -568,12 +582,17 @@ export default new Vuex.Store({
     // characters go through the explicit save/revert bar
     // (pendingCharacterSaves.js), not the ambient autosave.
     ADD_CHARACTER(state, character) {
+      if (!state.draftCharacters.includes(character.name))
+        state.draftCharacters = [...state.draftCharacters, character.name]
       state.characters = [...state.characters, character]
     },
     // Discards a character that was never saved — 'characters' has no
     // matching row in `originals` for it at all, so reverting it means
     // removing it, not restoring some baseline that doesn't exist.
     REMOVE_CHARACTER(state, { characterName }) {
+      state.draftCharacters = state.draftCharacters.filter(
+        (n) => n !== characterName
+      )
       state.characters = state.characters.filter(
         (c) => c.name !== characterName
       )
@@ -866,14 +885,35 @@ export default new Vuex.Store({
     // merged result that differs from what we sent — e.g. a row a direct
     // file edit added that this tab never loaded — so we resync local
     // state to that merged truth rather than assuming our copy was final.
-    async save({ state, commit }, table) {
+    //
+    // `arg` is a table name, or { table, includeDrafts } — an explicit
+    // "save these characters" button passes includeDrafts: true; the ambient
+    // autosave never does, so an unsaved level-up or new character is held
+    // back (see engine/rules/draftSaves.js).
+    async save({ state, commit }, arg) {
+      const { table, includeDrafts = false } =
+        typeof arg === 'string' ? { table: arg } : arg
+      const drafts =
+        table === 'characters' && !includeDrafts ? state.draftCharacters : []
+      const outgoing =
+        table === 'characters'
+          ? rowsForAmbientSave(
+              state.characters,
+              state.originals.characters,
+              drafts
+            )
+          : state[table]
       const result = await dataService.save(
         table,
-        state[table],
+        outgoing,
         state.originals[table]
       )
       if (result && result.data !== undefined) {
-        commit('SET_TABLE', { table, data: result.data })
+        const data =
+          table === 'characters'
+            ? restoreDrafts(result.data, state.characters, drafts)
+            : result.data
+        commit('SET_TABLE', { table, data })
       }
       return result
     },
@@ -895,8 +935,19 @@ export default new Vuex.Store({
       // tracking — state[table] now reflects the merged truth on disk,
       // written by each 'save' dispatch above.
       const newOriginals = {}
+      const heldDrafts = [...state.draftCharacters]
       tables.forEach((table) => {
-        newOriginals[table] = JSON.parse(JSON.stringify(state[table]))
+        // A draft character stays at its last-saved baseline — it wasn't
+        // written, so it must still read as pending.
+        const rows =
+          table === 'characters'
+            ? rowsForAmbientSave(
+                state.characters,
+                state.originals.characters,
+                heldDrafts
+              )
+            : state[table]
+        newOriginals[table] = JSON.parse(JSON.stringify(rows))
       })
       commit('SET_ORIGINALS', {
         ...state.originals,
