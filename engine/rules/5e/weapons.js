@@ -58,14 +58,27 @@ function weaponProps(weapon, homebrewWeaponTypes = {}) {
 // (homebrew weapons piggybacking on a real weapon's proficiency).
 // Case-insensitive since weapon_proficiencies has historically mixed
 // casing across characters.
-function isProficientWithWeapon(character, weapon, homebrewWeaponTypes = {}) {
+const WEAPON_CATEGORY_ALIASES = { staff: 'quarterstaff' }
+
+function isProficientWithWeapon(
+  character,
+  weapon,
+  homebrewWeaponTypes = {},
+  equippedItems = []
+) {
   const props = weaponProps(weapon, homebrewWeaponTypes)
+  // Proficiency can also come from a worn item (Bracers of Archery: longbow and
+  // shortbow) — only while its effects are active (see attunement.js).
   const profs = new Set(
-    (character.weapon_proficiencies ?? []).map((p) => p.toLowerCase())
+    [
+      ...(character.weapon_proficiencies ?? []),
+      ...equippedItems.flatMap((i) => i.grants_weapon_proficiency ?? []),
+    ].map((p) => p.toLowerCase())
   )
   if (props.category && profs.has(props.category)) return true
-  if (weapon.weapon_category && profs.has(weapon.weapon_category.toLowerCase()))
-    return true
+  // A magic "staff" (Staff of Power, Staff of Evocation) is a quarterstaff.
+  const specific = WEAPON_CATEGORY_ALIASES[weapon.weapon_category] ?? weapon.weapon_category
+  if (specific && profs.has(specific.toLowerCase())) return true
   if (
     props.counts_as_proficiency &&
     profs.has(props.counts_as_proficiency.toLowerCase())

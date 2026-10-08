@@ -67,20 +67,12 @@ export default {
       return this.$store.state.party_items ?? []
     },
     skills() {
-      const proficiencies = this.character.skill_proficiencies ?? []
-      const expertises = this.character.skill_expertise ?? []
-      const characterName = this.character.name
-      const itemGrantedProficiencies = new Set(
-        this.partyItems
-          .filter((i) => i.equipped_by === characterName)
-          .flatMap((i) => i.grants_skill_proficiency ?? [])
-      )
-
       return Object.entries(dnd.SKILL_MAP).map(([skillName, statKey]) => {
-        const isProficient =
-          proficiencies.includes(skillName) ||
-          itemGrantedProficiencies.has(skillName)
-        const hasExpertise = expertises.includes(skillName)
+        const { isProficient, hasExpertise } = dnd.skillTraining(
+          this.character,
+          skillName,
+          this.partyItems
+        )
         const total = dnd.skill(this.character, skillName, this.partyItems)
         const displayName = skillName.replace(/([A-Z])/g, ' $1').trim()
 

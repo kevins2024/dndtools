@@ -11,6 +11,7 @@ const {
   passivePerceptionBreakdown,
   initiative,
   skillAdvantage,
+  skillTraining,
   hasInitiativeAdvantage,
   spellAttackBonus,
   spellAttackBonusBreakdown,
@@ -230,4 +231,21 @@ test('passivePerception: advantage on Perception adds 5, shown as its own line',
       (l) => l.label === 'Advantage on Perception' && l.amount === 5
     )
   )
+})
+
+test('skill proficiency matches however the skill name is spelled (bug 2.2)', () => {
+  const base = { name: 'T', stat_dex: 14, stat_wis: 14, level: 5, features: [] }
+  // DEX +2, proficiency +3 at level 5 -> +5
+  for (const spelling of ['Sleight of Hand', 'SleightOfHand', 'sleight-of-hand']) {
+    const c = { ...base, skill_proficiencies: [spelling] }
+    assert.strictEqual(skill(c, 'SleightOfHand', []), 5, spelling)
+  }
+  const wis = { ...base, skill_proficiencies: ['Animal Handling'] }
+  assert.strictEqual(skill(wis, 'AnimalHandling', []), 5)
+  const expert = { ...base, skill_expertise: ['Animal Handling'] }
+  assert.strictEqual(skill(expert, 'AnimalHandling', []), 8)
+  assert.deepStrictEqual(skillTraining(wis, 'AnimalHandling', []), {
+    isProficient: true,
+    hasExpertise: false,
+  })
 })

@@ -37,12 +37,14 @@ function resolveEffectiveStats(character, equippedItems = []) {
   const unarmoredBonuses = {}
 
   // Pass 1 — stat_overrides set a score to a fixed value (e.g. Amulet of
-  // Health: con -> 19), regardless of base. Only ability scores can be
+  // Health: con -> 19). RAW (Amulet of Health, Gauntlets of Ogre Power, ...):
+  // "no effect if your score is already that high or higher" — so an override
+  // can raise a score but never lower it. Only ability scores can be
   // overridden this way (there's no "override AC to a fixed value" concept).
   for (const item of equippedItems) {
     if (!item.stat_overrides) continue
     for (const [key, val] of Object.entries(item.stat_overrides)) {
-      if (key in scores) scores[key] = val
+      if (key in scores) scores[key] = Math.max(scores[key], val)
     }
   }
 
