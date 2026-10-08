@@ -290,8 +290,8 @@
     "id": "pub_the-retired-special",
     "name": "The Retired Special",
     "category": "item_feature",
-    "description": "Once per day, as a reaction when an ally is hit by an attack: toss a psychic thread and yank the ally up to 15ft to an unoccupied space you can see. If this pulls them out of the attack's range (a melee attack no longer within reach, a ranged attack no longer within its normal/long range), the attack misses instead of hitting.",
-    "recharge": "daily",
+    "description": "Once per long rest, as a reaction when an ally is hit by an attack: toss a psychic thread and yank the ally up to 15ft to an unoccupied space you can see. If this pulls them out of the attack's range (a melee attack no longer within reach, a ranged attack no longer within its normal/long range), the attack misses instead of hitting.",
+    "recharge": "long_rest",
     "homebrew": true,
     "source": "Homebrew, granted by The Weaver's Master-Awl to whoever wields it — no class dependency."
   },
@@ -993,7 +993,7 @@
     "id": "pub_old-scores",
     "name": "Old Scores",
     "type": "feature",
-    "description": "Once per session, Torrin knows someone wherever the party currently is — that person owes him a favor. Purely narrative: opens doors, creates opportunities, no mechanical bonus. 156 years of living leaves marks everywhere.",
+    "description": "Once per long rest, Torrin knows someone wherever the party currently is — that person owes him a favor. Purely narrative: opens doors, creates opportunities, no mechanical bonus. 156 years of living leaves marks everywhere.",
     "source": "Homebrew, unique to Torrin. Purely narrative, no mechanical effect.",
     "homebrew": true
   },
@@ -1476,7 +1476,7 @@
   {
     "id": "pub_infusion-clockwork-amulet",
     "name": "Infusion: Clockwork Amulet",
-    "description": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10.",
+    "description": "Once per long rest, when making an attack roll, forgo rolling and treat the d20 as a 10.",
     "type": "infusion",
     "source": "Homebrew — custom infusion specific to Jaygar. Infuse Item itself is real Artificer (Tasha's Cauldron of Everything); this specific infusion is not.",
     "homebrew": true
@@ -2177,8 +2177,8 @@
     "id": "hb_seize_the_opening",
     "name": "Seize the Opening",
     "category": "item_feature",
-    "recharge": "daily",
-    "description": "Once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
+    "recharge": "long_rest",
+    "description": "Once per long rest, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
     "note": "Granted by Ferghus's Helm of Carix (party_items.json) — triggers on a narrative surprise, not a chosen action, so it's not tagged with an action cost.",
     "homebrew": true,
     "source": "Homebrew, unique to Ferghus — tied to the Helm of Carix."
@@ -2188,8 +2188,8 @@
     "name": "Reaching Hand",
     "category": "item_feature",
     "action_type": "reaction",
-    "recharge": "daily",
-    "description": "Once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "recharge": "long_rest",
+    "description": "Once per long rest as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "note": "Granted by Revven's Helm of the Reaching Hand (party_items.json).",
     "homebrew": true,
     "source": "Homebrew, unique to Revven — tied to the Helm of the Reaching Hand."
@@ -2209,8 +2209,8 @@
     "name": "Ring's Answer",
     "category": "item_feature",
     "action_type": "free",
-    "recharge": "daily",
-    "description": "Once per day, gain a responsive bonus to an ability check or skill check.",
+    "recharge": "long_rest",
+    "description": "Once per long rest, gain a responsive bonus to an ability check or skill check.",
     "note": "Granted by The Farreach (A) and (B) (party_items.json) — a paired-ring set worn by Siv and Pirra respectively; each ring grants its own bearer this once-per-day use.",
     "homebrew": true,
     "source": "Homebrew, unique to Siv/Pirra — tied to the paired Farreach rings."

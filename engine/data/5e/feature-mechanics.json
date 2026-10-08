@@ -1093,7 +1093,9 @@
   },
   "pub_the-retired-special": {
     "name": "The Retired Special",
-    "action_type": "reaction"
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1
   },
   "hb_stormbreak_reserve": {
     "name": "Stormbreak Reserve",
@@ -1106,7 +1108,9 @@
   },
   "hb_reaching_hand": {
     "name": "Reaching Hand",
-    "action_type": "reaction"
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1
   },
   "hb_warding_press": {
     "name": "Warding Press",
@@ -1965,6 +1969,26 @@
   "pub_aasimar-healing-hands": {
     "name": "Healing Hands",
     "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_infusion-clockwork-amulet": {
+    "name": "Infusion: Clockwork Amulet",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "hb_seize_the_opening": {
+    "name": "Seize the Opening",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "hb_rings_answer": {
+    "name": "Ring's Answer",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub_old-scores": {
+    "name": "Old Scores",
     "recharge": "long_rest",
     "uses_max": 1
   }

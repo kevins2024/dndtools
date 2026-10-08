@@ -530,7 +530,7 @@
     "category": "wondrous item",
     "rarity": null,
     "requires_attunement": true,
-    "desc": "Immunity to charm and fear. Seize the Opening: once per day, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
+    "desc": "Immunity to charm and fear. Seize the Opening: once per long rest, when the wearer does something that genuinely surprises an enemy, gain advantage on their next attack roll.",
     "homebrew": true
   },
   {
@@ -550,7 +550,7 @@
     "category": "wondrous item",
     "rarity": null,
     "requires_attunement": true,
-    "desc": "Advantage on Insight checks. Reaching Hand: once per day as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
+    "desc": "Advantage on Insight checks. Reaching Hand: once per long rest as a reaction when an ally within 30ft makes a death saving throw, grant them advantage on it.",
     "homebrew": true
   },
   {
@@ -986,7 +986,7 @@
     "category": "wondrous item",
     "rarity": null,
     "requires_attunement": true,
-    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus to an ability or skill check.",
+    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per long rest, gain a responsive bonus to an ability or skill check.",
     "homebrew": true
   },
   {
@@ -996,7 +996,7 @@
     "category": "wondrous item",
     "rarity": null,
     "requires_attunement": true,
-    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per day, gain a responsive bonus.",
+    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per long rest, gain a responsive bonus.",
     "homebrew": true
   },
   {

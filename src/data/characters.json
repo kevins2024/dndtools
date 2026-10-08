@@ -6143,7 +6143,7 @@
           {
             "name": "Infusion: Clockwork Amulet",
             "applied_to": "Amulet",
-            "effect": "Once per dawn, when making an attack roll, forgo rolling and treat the d20 as a 10."
+            "effect": "Once per long rest, when making an attack roll, forgo rolling and treat the d20 as a 10."
           }
         ],
         "new_infusion_learned": "Bag of Holding",
