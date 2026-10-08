@@ -336,9 +336,7 @@
             :title="party.name"
             @click="selectedPool = 'party:' + party.id"
           >
-            <span class="pnav-name">{{
-              party.inactive ? `${party.name} (inactive)` : party.name
-            }}</span>
+            <span class="pnav-name">{{ party.name }}</span>
             <span v-if="partyItemCount(party.id)" class="pnav-count">{{
               partyItemCount(party.id)
             }}</span>
@@ -1163,18 +1161,13 @@ export default {
       return dnd.weaveDustEstimateRange(this.deleteCandidate)
     },
     sortedParties() {
-      // Inactive parties are out of the game, but any loose gear still in
-      // their pool has to stay reachable — so they only show while non-empty.
-      return this.$store.state.parties
-        .filter((p) => !p.inactive || this.partyItemCount(p.id) > 0)
-        .sort((a, b) => {
-          if (a.active && !b.active) return -1
-          if (!a.active && b.active) return 1
-          const countDiff =
-            this.partyItemCount(b.id) - this.partyItemCount(a.id)
-          if (countDiff !== 0) return countDiff
-          return a.name.localeCompare(b.name)
-        })
+      return [...this.$store.getters.liveParties].sort((a, b) => {
+        if (a.active && !b.active) return -1
+        if (!a.active && b.active) return 1
+        const countDiff = this.partyItemCount(b.id) - this.partyItemCount(a.id)
+        if (countDiff !== 0) return countDiff
+        return a.name.localeCompare(b.name)
+      })
     },
     sortedShipAssets() {
       return [...this.shipAssets].sort(

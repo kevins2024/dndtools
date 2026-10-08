@@ -191,12 +191,17 @@ export default new Vuex.Store({
     },
     // Brings an inactive party back into play, stamping it with the date the
     // DM says it is for that party now (the party's clock was frozen while it
-    // was away). Does not make it the selected party.
-    REACTIVATE_PARTY(state, { id, game_day }) {
+    // was away). `members` lets the caller drop anyone who's since joined
+    // another party in play. Does not make it the selected party.
+    REACTIVATE_PARTY(state, { id, game_day, members }) {
       const updated = state.parties.map((p) => {
         if (p.id !== id) return p
         const { inactive, ...rest } = p // eslint-disable-line no-unused-vars
-        return { ...rest, game_day: game_day ?? p.game_day ?? 1 }
+        return {
+          ...rest,
+          game_day: game_day ?? p.game_day ?? 1,
+          members: members ?? p.members,
+        }
       })
       state.parties = updated
       dataService

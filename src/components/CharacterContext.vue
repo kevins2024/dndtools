@@ -157,7 +157,11 @@ export default {
         .filter((g) => g.chars.length)
       const ungrouped = allChars.filter((c) => !assigned.has(c.name))
       if (ungrouped.length)
-        groups.push({ label: 'Other', active: false, chars: ungrouped })
+        groups.push({
+          label: 'Not in a Party',
+          active: false,
+          chars: ungrouped,
+        })
       return groups
     },
     selectedCharacter() {

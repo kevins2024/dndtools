@@ -142,6 +142,13 @@
               <div class="tile-body">
                 <div class="tile-name">{{ char.name }}</div>
                 <div class="tile-class">{{ $dnd.classLabel(char) }}</div>
+                <div
+                  v-if="!isSelected(char.name) && otherLivePartyOf(char.name)"
+                  class="tile-elsewhere"
+                  title="Adding them here moves them out of that party"
+                >
+                  in {{ otherLivePartyOf(char.name).name }}
+                </div>
                 <div class="tile-stat">
                   <span class="ts-key">{{ topStat(char).name }}</span>
                   <span class="ts-val">{{ topStat(char).score }}</span>
@@ -201,6 +208,13 @@
           </label>
         </div>
         <div class="party-date-label">{{ reactivateDatePreview }}</div>
+        <p v-if="reactivateConflicts.length" class="pool-dialog-body">
+          {{ reactivateConflicts.join(', ') }}
+          {{ reactivateConflicts.length === 1 ? 'is' : 'are' }} already in a
+          party that's in play, so
+          {{ reactivateConflicts.length === 1 ? 'stays' : 'stay' }} there and
+          will be left out of this one.
+        </p>
         <div class="pool-dialog-btns">
           <button class="action-btn" @click="reactivating = null">
             Cancel
@@ -216,13 +230,14 @@
          actually has loose pool gear, so deleting an empty party stays a
          single click. -->
     <div
-      v-if="pendingDeleteParty"
+      v-if="pendingPoolParty"
       class="modal-backdrop pool-dialog-backdrop"
-      @click.self="cancelDeleteParty"
+      @click.self="cancelPoolDialog"
     >
       <div class="pool-dialog">
         <div class="pool-dialog-title">
-          Delete "{{ pendingDeleteParty.name }}"
+          {{ pendingPoolAction === 'delete' ? 'Delete' : 'Mark inactive' }}
+          "{{ pendingPoolParty.name }}"
         </div>
         <p class="pool-dialog-body">
           This party's pool has {{ pendingPoolCount }} item{{
@@ -238,9 +253,15 @@
           </option>
         </select>
         <div class="pool-dialog-btns">
-          <button class="action-btn" @click="cancelDeleteParty">Cancel</button>
-          <button class="action-btn danger" @click="confirmDeleteParty">
-            Delete Party
+          <button class="action-btn" @click="cancelPoolDialog">Cancel</button>
+          <button
+            class="action-btn"
+            :class="{ danger: pendingPoolAction === 'delete' }"
+            @click="confirmPoolDialog"
+          >
+            {{
+              pendingPoolAction === 'delete' ? 'Delete Party' : 'Mark Inactive'
+            }}
           </button>
         </div>
       </div>
@@ -300,7 +321,8 @@ export default {
     return {
       editingId: null,
       editingParty: null, // working copy of the party being edited
-      pendingDeleteParty: null, // party awaiting pool-reassignment confirmation
+      pendingPoolParty: null, // party awaiting pool-reassignment confirmation
+      pendingPoolAction: null, // 'delete' | 'deactivate'
       poolDestination: null,
       reactivating: null, // inactive party awaiting a date before coming back
       reactivateYear: 1,
@@ -351,6 +373,18 @@ export default {
         : ''
     },
 
+    // Members who are now in another live party. A character can only be in
+    // one party in play, so on reactivation they stay where they are.
+    reactivateConflicts() {
+      if (!this.reactivating) return []
+      const taken = new Set(
+        this.parties
+          .filter((p) => !p.inactive && p.id !== this.reactivating.id)
+          .flatMap((p) => p.members)
+      )
+      return this.reactivating.members.filter((m) => taken.has(m))
+    },
+
     reactivateDatePreview() {
       return formatGameDate(
         dayCountFromYearAndDay(
@@ -360,16 +394,19 @@ export default {
       )
     },
 
+    // Where a leaving party's loose gear can go: parties still in play.
     otherParties() {
-      if (!this.pendingDeleteParty) return []
-      return this.parties.filter((p) => p.id !== this.pendingDeleteParty.id)
+      if (!this.pendingPoolParty) return []
+      return this.parties.filter(
+        (p) => p.id !== this.pendingPoolParty.id && !p.inactive
+      )
     },
 
     pendingPoolCount() {
-      if (!this.pendingDeleteParty) return 0
+      if (!this.pendingPoolParty) return 0
       return this.party_items.filter(
         (i) =>
-          i.carried_by === 'party' && i.party_id === this.pendingDeleteParty.id
+          i.carried_by === 'party' && i.party_id === this.pendingPoolParty.id
       ).length
     },
   },
@@ -436,9 +473,7 @@ export default {
 
     deactivateEditingParty() {
       if (!this.canDeactivate) return
-      const id = this.editingParty.id
-      this.DEACTIVATE_PARTY(id)
-      this.selectParty(id) // re-sync the working copy with the store
+      this.beginPoolDialog('deactivate')
     },
 
     startReactivate() {
@@ -455,6 +490,9 @@ export default {
       const id = this.reactivating.id
       this.REACTIVATE_PARTY({
         id,
+        members: this.reactivating.members.filter(
+          (m) => !this.reactivateConflicts.includes(m)
+        ),
         game_day: dayCountFromYearAndDay(
           Number(this.reactivateYear) || 1,
           Number(this.reactivateDay) || 1
@@ -471,40 +509,58 @@ export default {
       this.editingParty = { ...this.editingParty, active: true }
     },
 
-    deleteParty() {
-      if (!this.editingParty) return
-      const poolCount = this.party_items.filter(
-        (i) => i.carried_by === 'party' && i.party_id === this.editingParty.id
+    poolCountFor(partyId) {
+      return this.party_items.filter(
+        (i) => i.carried_by === 'party' && i.party_id === partyId
       ).length
-      if (poolCount === 0) {
-        // Nothing to reassign — deleting an empty-pool party stays one click.
-        this.finishDeleteParty(this.editingParty.id)
+    },
+
+    // Deleting a party and marking it inactive both take it out of play, so
+    // both have to decide what happens to its loose gear: if the pool has
+    // anything in it, ask where it goes (one click through when it's empty).
+    beginPoolDialog(action) {
+      if (!this.editingParty) return
+      const partyId = this.editingParty.id
+      if (this.poolCountFor(partyId) === 0) {
+        this.finishPoolAction(action, partyId)
         return
       }
-      this.pendingDeleteParty = this.editingParty
-      const fallback = this.parties.find((p) => p.id !== this.editingParty.id)
+      this.pendingPoolParty = this.editingParty
+      this.pendingPoolAction = action
+      const fallback = this.parties.find((p) => p.id !== partyId && !p.inactive)
       this.poolDestination = fallback?.id ?? null
     },
 
-    cancelDeleteParty() {
-      this.pendingDeleteParty = null
+    deleteParty() {
+      this.beginPoolDialog('delete')
+    },
+
+    cancelPoolDialog() {
+      this.pendingPoolParty = null
+      this.pendingPoolAction = null
       this.poolDestination = null
     },
 
-    confirmDeleteParty() {
+    confirmPoolDialog() {
+      const { id } = this.pendingPoolParty
+      const action = this.pendingPoolAction
       this.REASSIGN_PARTY_POOL({
-        fromPartyId: this.pendingDeleteParty.id,
+        fromPartyId: id,
         toPartyId: this.poolDestination,
       })
-      this.finishDeleteParty(this.pendingDeleteParty.id)
-      this.pendingDeleteParty = null
-      this.poolDestination = null
+      this.cancelPoolDialog()
+      this.finishPoolAction(action, id)
     },
 
-    finishDeleteParty(partyId) {
-      this.SET_PARTIES(this.parties.filter((p) => p.id !== partyId))
-      this.editingId = null
-      this.editingParty = null
+    finishPoolAction(action, partyId) {
+      if (action === 'delete') {
+        this.SET_PARTIES(this.parties.filter((p) => p.id !== partyId))
+        this.editingId = null
+        this.editingParty = null
+      } else {
+        this.DEACTIVATE_PARTY(partyId)
+        this.selectParty(partyId) // re-sync the working copy with the store
+      }
     },
 
     isSelected(name) {
@@ -514,9 +570,40 @@ export default {
     toggleMember(name) {
       if (!this.editingParty) return
       const idx = this.editingParty.members.indexOf(name)
-      if (idx === -1) this.editingParty.members.push(name)
-      else this.editingParty.members.splice(idx, 1)
+      if (idx === -1) {
+        this.editingParty.members.push(name)
+        this.releaseFromOtherLiveParties(name)
+      } else {
+        this.editingParty.members.splice(idx, 1)
+      }
       this.saveParty()
+    },
+
+    // A character can only be in one party that's in play. Joining a live
+    // party moves them out of whichever other live party they were in (an
+    // inactive party keeps its roster as history, and so can overlap).
+    releaseFromOtherLiveParties(name) {
+      if (this.editingParty.inactive) return
+      const updated = this.parties.map((p) =>
+        p.id !== this.editingParty.id && !p.inactive && p.members.includes(name)
+          ? { ...p, members: p.members.filter((m) => m !== name) }
+          : p
+      )
+      this.SET_PARTIES(updated)
+    },
+
+    // The other live party this character belongs to, if any — shown on the
+    // tile so a move between parties is never a surprise.
+    otherLivePartyOf(name) {
+      if (!this.editingParty || this.editingParty.inactive) return null
+      return (
+        this.parties.find(
+          (p) =>
+            p.id !== this.editingParty.id &&
+            !p.inactive &&
+            p.members.includes(name)
+        ) ?? null
+      )
     },
 
     topStat(char) {
@@ -891,6 +978,15 @@ export default {
   text-overflow: ellipsis;
   line-height: 1.2;
 }
+.tile-elsewhere {
+  font-size: 0.62rem;
+  color: var(--color-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
 .tile-class {
   font-size: 0.68rem;
   color: var(--color-text-low);
