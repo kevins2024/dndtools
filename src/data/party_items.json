@@ -1753,7 +1753,7 @@
     "type": "material",
     "equipped_by": null,
     "carried_by": "party",
-    "party_id": "party_1780850600167_0",
+    "party_id": "party_1780850600167_1",
     "attuned": false,
     "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) — priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant. Consolidated 2026-09-08 into the per-party Gem Pouch pattern (see TODO.md) — assigned to East Full per project owner (initially misheard as \"Eastern1\" and left unassigned; corrected same day).",
     "id": "items_151",
@@ -2625,16 +2625,16 @@
     "party_id": "party_1780850600167_2"
   },
   {
+    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
     "name": "Bag of Holding",
     "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_0",
+    "party_id": "party_1780850600167_1",
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
-    "id": "items_219",
-    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
+    "id": "items_219"
   },
   {
     "name": "Bag of Holding",
@@ -3102,5 +3102,77 @@
     "attuned": false,
     "notes": "Pale, smooth, lens-shaped gem about the size of a plum, found loose from its perch. Identified by Lexica over a one-hour study (Arcana 14 vs DC 12).",
     "id": "items_257"
+  },
+  {
+    "name": "Sentinel Shield",
+    "catalog_id": "sentinel-shield",
+    "type": "armor",
+    "equipped_by": null,
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_258"
+  },
+  {
+    "name": "Scroll of Revivify",
+    "catalog_id": "spell-scroll",
+    "type": "consumable",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_259",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Haste",
+    "catalog_id": "spell-scroll",
+    "type": "consumable",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_260",
+    "slot": "none"
+  },
+  {
+    "name": "Alchemy Jug",
+    "catalog_id": "alchemy-jug",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "",
+    "id": "items_261"
+  },
+  {
+    "name": "Sending Stone",
+    "catalog_id": "sending-stones",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "One of a pair; the other is carried by Vaz. Kept as items rather than in the Network while they're needed on hand.",
+    "id": "items_262"
+  },
+  {
+    "name": "Sending Stone",
+    "catalog_id": "sending-stones",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Vaz",
+    "attuned": false,
+    "notes": "One of a pair; the other is carried by Enauweyn. Kept as items rather than in the Network while they're needed on hand.",
+    "id": "items_263"
+  },
+  {
+    "name": "Bag of Tricks (Gray)",
+    "catalog_id": "bag-of-tricks",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Enauweyn",
+    "attuned": false,
+    "notes": "Gray bag.",
+    "id": "items_264"
   }
 ]
