@@ -24,6 +24,7 @@ export const passivePerceptionBreakdown =
   checksEngine.passivePerceptionBreakdown
 export const initiative = checksEngine.initiative
 export const hasInitiativeAdvantage = checksEngine.hasInitiativeAdvantage
+export const skillAdvantage = checksEngine.skillAdvantage
 export const spellAttackBonus = checksEngine.spellAttackBonus
 export const spellAttackBonusBreakdown = checksEngine.spellAttackBonusBreakdown
 export const spellSaveDC = checksEngine.spellSaveDC

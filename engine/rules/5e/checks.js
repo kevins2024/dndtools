@@ -143,16 +143,36 @@ function allSkills(character, equippedItems = []) {
   )
 }
 
+// Advantage on a skill's ability checks from an item or feature carrying
+// `grants_skill_advantage: ['Perception', ...]` (Sentinel Shield). Like
+// initiative advantage, an item only counts while attuned when it needs
+// attunement. Advantage can't be a flat number, so this is a separate yes/no
+// the roller acts on; the one place it does become a number is passive
+// Perception below (PHB: advantage on a passive check is +5).
+function skillAdvantage(character, skillName, equippedItems = []) {
+  const grants = (x) => (x.grants_skill_advantage ?? []).includes(skillName)
+  return (
+    equippedItems.some(
+      (i) => grants(i) && (!i.needs_attunement || i.attuned)
+    ) || (character.features ?? []).some(grants)
+  )
+}
+
 function passivePerceptionBreakdown(character, equippedItems = []) {
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
   const perception = skillBreakdown(character, 'Perception', equippedItems)
+  const advantage = skillAdvantage(character, 'Perception', equippedItems)
+    ? 5
+    : 0
   const breakdown = [
     { label: 'Base', amount: 10 },
     { label: 'Perception skill', amount: perception.value },
+    ...(advantage ? [{ label: 'Advantage on Perception', amount: 5 }] : []),
     ...bonusLines(equippedItems, 'passive_perception'),
     ...bonusLines(character.features, 'passive_perception'),
   ]
-  const value = 10 + perception.value + (bonuses.passive_perception ?? 0)
+  const value =
+    10 + perception.value + advantage + (bonuses.passive_perception ?? 0)
   return { value, breakdown }
 }
 
@@ -253,6 +273,7 @@ module.exports = {
   passivePerceptionBreakdown,
   initiative,
   hasInitiativeAdvantage,
+  skillAdvantage,
   spellAttackBonus,
   spellAttackBonusBreakdown,
   spellSaveDC,

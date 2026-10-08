@@ -10,6 +10,7 @@ const {
   passivePerception,
   passivePerceptionBreakdown,
   initiative,
+  skillAdvantage,
   hasInitiativeAdvantage,
   spellAttackBonus,
   spellAttackBonusBreakdown,
@@ -195,4 +196,38 @@ test('initiative: a feature with adds_ability_to_initiative adds that modifier o
   assert.strictEqual(initiative(twice, []), 2 + 5)
   // no feature, no extra
   assert.strictEqual(initiative({ ...wiz, features: [] }, []), 2)
+})
+
+test('skillAdvantage: an item or feature granting it counts; an unattuned attunement-item does not', () => {
+  const c = { name: 'A', stat_wis: 10, features: [] }
+  const shield = { grants_skill_advantage: ['Perception'] }
+  assert.strictEqual(skillAdvantage(c, 'Perception', [shield]), true)
+  assert.strictEqual(skillAdvantage(c, 'Stealth', [shield]), false)
+  assert.strictEqual(skillAdvantage(c, 'Perception', []), false)
+  const needsAttune = { ...shield, needs_attunement: true, attuned: false }
+  assert.strictEqual(skillAdvantage(c, 'Perception', [needsAttune]), false)
+  assert.strictEqual(
+    skillAdvantage(c, 'Perception', [{ ...needsAttune, attuned: true }]),
+    true
+  )
+  assert.strictEqual(
+    skillAdvantage(
+      { ...c, features: [{ grants_skill_advantage: ['Perception'] }] },
+      'Perception',
+      []
+    ),
+    true
+  )
+})
+
+test('passivePerception: advantage on Perception adds 5, shown as its own line', () => {
+  const c = { name: 'A', stat_wis: 10, features: [] }
+  const shield = { grants_skill_advantage: ['Perception'] }
+  assert.strictEqual(passivePerception(c, []), 10)
+  assert.strictEqual(passivePerception(c, [shield]), 15)
+  assert.ok(
+    passivePerceptionBreakdown(c, [shield]).breakdown.some(
+      (l) => l.label === 'Advantage on Perception' && l.amount === 5
+    )
+  )
 })

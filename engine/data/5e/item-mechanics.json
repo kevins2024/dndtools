@@ -883,6 +883,14 @@
   "rope-of-climbing-and-entanglement": {
     "slot": "none"
   },
+  "sentinel-shield": {
+    "armor_type": "shield",
+    "slot": "shield",
+    "grants_initiative_advantage": true,
+    "grants_skill_advantage": [
+      "Perception"
+    ]
+  },
   "shadowgrain-leather": {
     "armor_base_ac": 11,
     "armor_type": "light",

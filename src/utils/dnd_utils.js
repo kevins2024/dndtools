@@ -40,6 +40,7 @@ import {
   passivePerceptionBreakdown as enginePassivePerceptionBreakdown,
   initiative as engineInitiative,
   hasInitiativeAdvantage as engineHasInitiativeAdvantage,
+  skillAdvantage as engineSkillAdvantage,
   spellAttackBonus as engineSpellAttackBonus,
   spellAttackBonusBreakdown as engineSpellAttackBonusBreakdown,
   spellSaveDC as engineSpellSaveDC,
@@ -427,6 +428,16 @@ export const dnd = {
   hasInitiativeAdvantage(character, partyItems = []) {
     return engineHasInitiativeAdvantage(
       character,
+      dnd._equippedOnly(character, partyItems)
+    )
+  },
+
+  // Advantage on a skill's checks (Sentinel Shield's Perception). Same idea
+  // as initiative advantage: a yes/no the roller acts on.
+  skillAdvantage(character, skillName, partyItems = []) {
+    return engineSkillAdvantage(
+      character,
+      skillName,
       dnd._equippedOnly(character, partyItems)
     )
   },
