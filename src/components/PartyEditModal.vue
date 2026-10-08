@@ -267,12 +267,25 @@ export default {
     selectParty(id) {
       this.editingId = id
       const p = this.parties.find((p) => p.id === id)
-      this.editingParty = p ? { ...p, members: [...p.members] } : null
+      // `game_day: 1` first so a party saved without one (made before the
+      // field was seeded) still has a reactive game_day on the editing copy.
+      this.editingParty = p
+        ? { game_day: 1, ...p, members: [...p.members] }
+        : null
     },
 
     newParty() {
       const id = `party_${nextId++}`
-      const p = { id, name: 'New Party', members: [], active: false }
+      // game_day is seeded here (not left off): a property added to the
+      // editing copy later isn't reactive in Vue 2, so the Year/Day inputs
+      // would never refresh after the first date edit.
+      const p = {
+        id,
+        name: 'New Party',
+        members: [],
+        active: false,
+        game_day: 1,
+      }
       this.SET_PARTIES([...this.parties, p])
       this.selectParty(id)
     },
@@ -292,9 +305,12 @@ export default {
     // to it is just editing these same two fields.
     setPartyDate(year, day) {
       if (!this.editingParty) return
-      this.editingParty.game_day = dayCountFromYearAndDay(
-        Number(year),
-        Number(day)
+      // $set, not plain assignment: stays reactive even if the property
+      // didn't exist on this object yet.
+      this.$set(
+        this.editingParty,
+        'game_day',
+        dayCountFromYearAndDay(Number(year), Number(day))
       )
       this.saveParty()
     },
