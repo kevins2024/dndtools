@@ -35,6 +35,7 @@ import {
   SKILL_MAP as ENGINE_SKILL_MAP,
   skill as engineSkill,
   skillBreakdown as engineSkillBreakdown,
+  skillTraining as engineSkillTraining,
   allSkills as engineAllSkills,
   passivePerception as enginePassivePerception,
   passivePerceptionBreakdown as enginePassivePerceptionBreakdown,
@@ -64,6 +65,8 @@ import {
   unarmedStrike as engineUnarmedStrike,
   psychicBlades as enginePsychicBlades,
 } from './unarmedAttacks.js'
+
+import { applyAttunement } from './attunement.js'
 
 import {
   hurlSomething as engineHurlSomething,
@@ -296,7 +299,11 @@ export const dnd = {
   // (characterStats.js, armorClass.js, checks.js, weaponAttack.js).
   _equippedOnly(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
-    return items.filter((i) => i.equipped_by === character.name)
+    // An un-attuned item that needs attunement keeps its plain +N but loses
+    // its special effects (engine/rules/5e/attunement.js).
+    return applyAttunement(
+      items.filter((i) => i.equipped_by === character.name)
+    )
   },
 
   // The actual 3-pass aggregation (stat_overrides -> item stat_bonuses ->
@@ -491,6 +498,16 @@ export const dnd = {
   // Breakdown sibling, added 2026-09-30 to replace SkillList.vue's own
   // hand-rolled copy of this formula — that copy never handled Jack of All
   // Trades, a real gap the engine version already covered (see checks.js).
+  // { isProficient, hasExpertise } for the sheet's skill dots — same answer
+  // the number uses (spelling-tolerant, counts item-granted proficiency).
+  skillTraining(character, skillName, partyItems = []) {
+    return engineSkillTraining(
+      character,
+      skillName,
+      dnd._equippedOnly(character, partyItems)
+    )
+  },
+
   skillBreakdown(character, skillName, partyItems = []) {
     return dnd._formatBreakdown(
       engineSkillBreakdown(
@@ -591,11 +608,12 @@ export const dnd = {
   // (homebrew weapons piggybacking on a real weapon's proficiency).
   // Case-insensitive since weapon_proficiencies has historically mixed
   // casing across characters.
-  isProficientWithWeapon(character, weapon) {
+  isProficientWithWeapon(character, weapon, partyItems = []) {
     return engineIsProficientWithWeapon(
       character,
       weapon,
-      HOMEBREW_WEAPON_PROPS
+      HOMEBREW_WEAPON_PROPS,
+      dnd._equippedOnly(character, partyItems)
     )
   },
 

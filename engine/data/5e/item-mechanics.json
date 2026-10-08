@@ -134,6 +134,10 @@
     "slot": "wrists"
   },
   "bracers-of-archery": {
+    "grants_weapon_proficiency": [
+      "longbow",
+      "shortbow"
+    ],
     "stat_bonuses": {
       "ranged_damage": 2
     },
