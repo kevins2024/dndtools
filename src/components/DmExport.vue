@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import { describeGameDate } from '@/utils/calendar_utils.js'
+
 const GITHUB_RAW_BASE =
   'https://raw.githubusercontent.com/kevins2024/dndtools/main/public'
 
@@ -121,6 +123,13 @@ export default {
     },
     activePartyDay() {
       return this.$store.getters.activePartyDay
+    },
+    // The party's date as the Calendar tab shows it (world year, season, day of
+    // the year, week) rather than the bare day count.
+    partyDate() {
+      return this.activePartyDay
+        ? describeGameDate(this.activePartyDay)
+        : null
     },
     allCharacters() {
       return this.$store.state.characters ?? []
@@ -235,8 +244,8 @@ export default {
 
       lines.push(`# ${party.name} — Campaign Context`)
       lines.push(
-        `*Generated ${date} · Campaign Day ${
-          this.activePartyDay ?? '?'
+        `*Generated ${date} · ${
+          this.partyDate ? this.partyDate.text : 'date unknown'
         } · ${this.partyGold.toLocaleString()} gp*`
       )
       lines.push('')
@@ -460,7 +469,7 @@ export default {
       const payload = {
         party: {
           name: this.activeParty.name,
-          day: this.activePartyDay,
+          date: this.partyDate,
           gold: this.partyGold,
         },
         characters: this.activeMembers,

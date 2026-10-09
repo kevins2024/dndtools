@@ -63,9 +63,9 @@ test('every non-festival day maps to a day-of-week 1-8 and week >= 1', () => {
 })
 
 test('formatGameDate', () => {
-  assert.strictEqual(cal.formatGameDate(1), 'Winter · Year 1 · Week 1, Day 1')
-  assert.strictEqual(cal.formatGameDate(50), 'Winter · Year 1 · Festival · Day 2')
-  assert.strictEqual(cal.formatGameDate(205), 'Winter · Year 2 · Week 1, Day 1')
+  assert.strictEqual(cal.formatGameDate(1), 'Winter · Year 467 · Week 1, Day 1')
+  assert.strictEqual(cal.formatGameDate(50), 'Winter · Year 467 · Festival · Day 2')
+  assert.strictEqual(cal.formatGameDate(205), 'Winter · Year 468 · Week 1, Day 1')
 })
 
 test('noteMatchesDay: none / annually / weekly / seasonally', () => {
@@ -100,4 +100,67 @@ test('noteMatchesDay: seasonal notes recur in every season, not just the origina
     assert.ok(cal.noteMatchesDay(seasonal, doy, doy), season.name)
     assert.ok(!cal.noteMatchesDay(seasonal, doy + 1, doy + 1), season.name)
   }
+})
+
+test('describeGameDate gives the calendar header\'s date: world year, season, day of the year, week', () => {
+  const { describeGameDate } = require('../rules/calendar')
+  // Campaign day 302 = the 98th day of internal year 2 = world year 468.
+  const d = describeGameDate(302)
+  assert.strictEqual(d.year, 468)
+  assert.strictEqual(d.day_of_year, 98)
+  assert.strictEqual(d.season, 'Spring')
+  assert.strictEqual(d.week, 12)
+  assert.strictEqual(d.day_of_week, 6)
+  assert.strictEqual(d.festival, false)
+  assert.strictEqual(d.day_count, 302)
+  assert.strictEqual(d.campaign_day, 166)
+  assert.strictEqual(d.text, 'Spring · Year 468 · Day 98 of 204 · Week 12, Day 6 · Campaign day 166')
+})
+
+test('describeGameDate: day 1 is the first day of world year 467; a festival day says so', () => {
+  const { describeGameDate } = require('../rules/calendar')
+  assert.strictEqual(describeGameDate(1).year, 467)
+  assert.strictEqual(describeGameDate(1).text, 'Winter · Year 467 · Day 1 of 204 · Week 1, Day 1')
+  const festival = describeGameDate(50) // day 50 of year 1
+  assert.strictEqual(festival.festival, true)
+  assert.strictEqual(festival.week, null)
+  assert.match(festival.text, /Spring Festival · Day 2$/)
+  // year rollover: day 205 is day 1 of the next year
+  assert.strictEqual(describeGameDate(205).year, 468)
+  assert.strictEqual(describeGameDate(205).day_of_year, 1)
+})
+
+test('world years: the campaign starts in year 467 and formatGameDate never prints the internal year', () => {
+  assert.strictEqual(cal.FIRST_WORLD_YEAR, 467)
+  assert.strictEqual(cal.worldYearFromDayCount(1), 467)
+  assert.strictEqual(cal.worldYearFromDayCount(205), 468)
+  assert.strictEqual(cal.formatGameDate(1), 'Winter · Year 467 · Week 1, Day 1')
+  assert.match(cal.formatGameDate(302), /Year 468/)
+  for (const n of [1, 100, 204, 205, 302, 1000]) {
+    assert.doesNotMatch(cal.formatGameDate(n), /Year [1-9]\b|Year [1-9]\d?\b(?!\d)/, `day ${n}`)
+  }
+})
+
+test('dayCountFromWorldYearAndDay is the inverse of the world-year pair, and clamps years before the campaign', () => {
+  for (const n of [1, 50, 204, 205, 302, 999]) {
+    assert.strictEqual(
+      cal.dayCountFromWorldYearAndDay(cal.worldYearFromDayCount(n), cal.dayOfYear(n)),
+      n
+    )
+  }
+  assert.strictEqual(cal.dayCountFromWorldYearAndDay(468, 98), 302)
+  assert.strictEqual(cal.dayCountFromWorldYearAndDay(1, 1), 1) // a stray low year clamps
+  assert.strictEqual(cal.dayCountFromWorldYearAndDay(0, 5), 5)
+})
+
+test('campaignDay: 1 on Year 467 day 137 (the campaign epoch), and the epoch matches world.json', () => {
+  const world = require('../../src/data/world.json')[0].calendar_constants.campaign_epoch
+  assert.deepStrictEqual(cal.CAMPAIGN_EPOCH, { year: world.year, day: world.day })
+  const epochCount = cal.dayCountFromWorldYearAndDay(467, 137)
+  assert.strictEqual(cal.campaignDay(epochCount), 1)
+  assert.strictEqual(cal.campaignDay(epochCount + 164), 165)
+  assert.strictEqual(cal.campaignDay(epochCount - 1), 0) // the day before
+  // before the campaign there is no campaign day in the text
+  assert.doesNotMatch(cal.describeGameDate(98).text, /Campaign day/)
+  assert.match(cal.describeGameDate(epochCount).text, /Campaign day 1$/)
 })

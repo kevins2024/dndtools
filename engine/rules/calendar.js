@@ -76,15 +76,71 @@ function dayOfWeek(doy) {
   return ((doy - 53) % DAYS_PER_WEEK) + 1
 }
 
-// "Winter · Year 3 · Week 2, Day 5" / "Spring · Year 1 · Festival · Day 2"
+// The year people read and type: the world year (internal year + YEAR_OFFSET,
+// so campaign day 1 is year 467). The internal 1-based year is only
+// arithmetic and is never shown. First world year = FIRST_WORLD_YEAR.
+const FIRST_WORLD_YEAR = YEAR_OFFSET + 1
+
+function worldYearFromDayCount(dayCount) {
+  return yearFromDayCount(dayCount) + YEAR_OFFSET
+}
+
+// Inverse of worldYearFromDayCount/dayOfYear — what a "Year" + "Day" pair of
+// inputs, in world years, becomes. Years before the campaign start clamp to it.
+function dayCountFromWorldYearAndDay(worldYear, doy) {
+  return dayCountFromYearAndDay(worldYear - YEAR_OFFSET, doy)
+}
+
+// "Winter · Year 469 · Week 2, Day 5" / "Winter · Year 467 · Festival · Day 2"
 function formatGameDate(dayCount) {
-  const year = yearFromDayCount(dayCount)
+  const year = worldYearFromDayCount(dayCount)
   const doy = dayOfYear(dayCount)
   const season = seasonForDayOfYear(doy)
   const week = weekOfYear(doy)
   const dow = dayOfWeek(doy)
   const weekPart = week ? `Week ${week}, ` : 'Festival · '
   return `${season} · Year ${year} · ${weekPart}Day ${dow}`
+}
+
+// Campaign Day 1 = Year 467, day 137 (world.json `calendar_constants.
+// campaign_epoch`; a test keeps the two in step). A party's stored number is
+// just an internal count of days since the calendar's first day — nothing a
+// person should read — so "how far into the campaign are we" is derived from
+// it here: campaignDay(dayCount) is 1 on the epoch day, 0 or less before it.
+const CAMPAIGN_EPOCH = { year: 467, day: 137 }
+
+function campaignDay(dayCount, epoch = CAMPAIGN_EPOCH) {
+  return dayCount - dayCountFromWorldYearAndDay(epoch.year, epoch.day) + 1
+}
+
+// A game date described the way the Calendar tab's header shows it, for
+// anything that has to tell a person (or a DM tool) WHEN it is: the world
+// year (internal year + YEAR_OFFSET, e.g. 468 — not the bare day count, which
+// reads as "day 302" and means nothing on its own), the season, day N of 204,
+// and the week/day within it. `day_count` is kept for machines.
+function describeGameDate(dayCount) {
+  const doy = dayOfYear(dayCount)
+  const year = worldYearFromDayCount(dayCount)
+  const season = seasonForDayOfYear(doy)
+  const festival = isFestivalDay(doy)
+  const week = weekOfYear(doy)
+  const dow = dayOfWeek(doy)
+  const where = festival ? `Spring Festival · Day ${dow}` : `Week ${week}, Day ${dow}`
+  const campaign = campaignDay(dayCount)
+  return {
+    year,
+    season,
+    day_of_year: doy,
+    days_in_year: DAYS_PER_YEAR,
+    week: festival ? null : week,
+    day_of_week: dow,
+    festival,
+    campaign_day: campaign,
+    day_count: dayCount,
+    text: `${season} · Year ${year} · Day ${doy} of ${DAYS_PER_YEAR} · ${where}${
+      campaign >= 1 ? ` · Campaign day ${campaign}` : ''
+    }`,
+  }
 }
 
 // Whether a calendar note (see user_prefs calendar_notes) shows on a given
@@ -118,6 +174,9 @@ module.exports = {
   DAYS_PER_YEAR,
   DAYS_PER_WEEK,
   YEAR_OFFSET,
+  FIRST_WORLD_YEAR,
+  worldYearFromDayCount,
+  dayCountFromWorldYearAndDay,
   SEASONS,
   FESTIVAL_START,
   FESTIVAL_END,
@@ -130,5 +189,8 @@ module.exports = {
   weekOfYear,
   dayOfWeek,
   formatGameDate,
+  describeGameDate,
+  CAMPAIGN_EPOCH,
+  campaignDay,
   noteMatchesDay,
 }

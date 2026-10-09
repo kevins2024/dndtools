@@ -18,7 +18,9 @@
       <div class="header-context" v-if="activeParty">
         <span class="hctx-party">{{ activeParty.name }}</span>
         <span class="hctx-sep">·</span>
-        <span class="hctx-day">Day {{ activePartyDayOfYear }}</span>
+        <span class="hctx-day" :title="activePartyDateText"
+          >Day {{ activePartyDayOfYear }}</span
+        >
       </div>
 
       <!-- Currency badges -->
@@ -173,7 +175,11 @@
 
 <script>
 import { Check } from 'lucide-vue'
-import { dayOfYear, formatGameDate } from '@/utils/calendar_utils.js'
+import {
+  dayOfYear,
+  formatGameDate,
+  describeGameDate,
+} from '@/utils/calendar_utils.js'
 import d20 from '@/assets/dice/d20.svg'
 import goldIcon from '@/assets/icons/icon-gold.svg'
 import dustIcon from '@/assets/icons/icon-dust.svg'
@@ -265,6 +271,12 @@ export default {
     },
     diceOpen() {
       return this.$store.state.diceDrawerOpen
+    },
+    // The full date for the top bar's small "Day N" — the same text the
+    // Calendar tab and the DM export show (world year, season, week).
+    activePartyDateText() {
+      const day = this.$store.getters.activePartyDay
+      return day ? describeGameDate(day).text : ''
     },
     restDayNumber() {
       const currentDay =

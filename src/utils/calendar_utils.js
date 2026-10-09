@@ -21,4 +21,9 @@ export const isFestivalDay = calendarEngine.isFestivalDay
 export const weekOfYear = calendarEngine.weekOfYear
 export const dayOfWeek = calendarEngine.dayOfWeek
 export const formatGameDate = calendarEngine.formatGameDate
+export const FIRST_WORLD_YEAR = calendarEngine.FIRST_WORLD_YEAR
+export const worldYearFromDayCount = calendarEngine.worldYearFromDayCount
+export const dayCountFromWorldYearAndDay =
+  calendarEngine.dayCountFromWorldYearAndDay
+export const describeGameDate = calendarEngine.describeGameDate
 export const noteMatchesDay = calendarEngine.noteMatchesDay
