@@ -219,7 +219,7 @@
         "Elucyne"
       ],
       "active": false,
-      "game_day": 1,
+      "game_day": 298,
       "marching_order": [
         "Kerra",
         "Jaygar",
@@ -233,16 +233,16 @@
       ]
     },
     {
+      "game_day": 302,
       "id": "party_1791382876351",
       "name": "East B",
       "members": [
         "Denna",
         "Kessara",
         "Lexica",
-        "Enauweyn"
+        "Ferghus"
       ],
-      "active": true,
-      "game_day": 98,
+      "active": false,
       "marching_order": [
         "Denna",
         "Kessara",
@@ -275,10 +275,10 @@
       "members": [
         "Vaz",
         "Tackett",
-        "Ferghus",
-        "Sorra"
+        "Sorra",
+        "Enauweyn"
       ],
-      "active": false,
+      "active": true,
       "marching_order": [
         "Vaz",
         "Tackett",

@@ -3176,10 +3176,14 @@
     "catalog_id": "sending-stones",
     "type": "wondrous",
     "equipped_by": "disallowed",
-    "carried_by": "Vaz",
+    "carried_by": "Ferghus",
     "attuned": false,
     "notes": "One of a pair; the other is carried by Enauweyn. Kept as items rather than in the Network while they're needed on hand.",
-    "id": "items_263"
+    "id": "items_263",
+    "stored_at": null,
+    "party_id": null,
+    "weapon_set": null,
+    "hand": null
   },
   {
     "name": "Bag of Tricks (Gray)",
