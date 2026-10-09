@@ -961,6 +961,7 @@ import { Zap, Check } from 'lucide-vue'
 import { dnd } from '@/utils/dnd_utils.js'
 import { cycleHand, isOneHandedWeapon } from '@/utils/weaponHands.js'
 import { startItemDrag } from '@/utils/itemDrag.js'
+import { transferItemToCharacter } from '@/utils/itemTransfer.js'
 
 export default {
   name: 'CharacterInventory',
@@ -995,9 +996,16 @@ export default {
     equippedItems() {
       return this.allItems.filter((i) => i.equipped_by === this.character.name)
     },
+    // Everything this character carries but isn't wielding or wearing.
+    // `equipped_by: 'disallowed'` marks an item that can't be equipped at all
+    // (scrolls, bags, tools, coins, sending stones) — it's still carried, so it
+    // belongs here. (It used to fall out of both this list and the equipped
+    // one, so such items were invisible on the character's sheet.)
     carriedItems() {
       return this.allItems.filter(
-        (i) => i.carried_by === this.character.name && !i.equipped_by
+        (i) =>
+          i.carried_by === this.character.name &&
+          (!i.equipped_by || i.equipped_by === 'disallowed')
       )
     },
     // The party THIS character actually belongs to — not whichever party
@@ -1255,7 +1263,8 @@ export default {
     },
     itemStatus(item) {
       if (item.stored_at) return `Stored: ${item.stored_at}`
-      if (item.equipped_by) return `Equipped by ${item.equipped_by}`
+      if (item.equipped_by && item.equipped_by !== 'disallowed')
+        return `Equipped by ${item.equipped_by}`
       if (item.carried_by && item.carried_by !== 'party')
         return `Carried by ${item.carried_by}`
       if (item.carried_by === 'party') {
@@ -1270,13 +1279,10 @@ export default {
       return 'Pool'
     },
     takeItem(item) {
-      this.$store.commit('UPDATE_ITEM', {
-        ...item,
-        carried_by: this.character.name,
-        equipped_by: null,
-        stored_at: null,
-        party_id: null,
-      })
+      // Same hand-off rule as dragging an item onto a portrait (keeps an
+      // un-equippable item un-equippable; clears the old owner's loadout).
+      const taken = transferItemToCharacter(item, this.character.name)
+      if (taken) this.$store.commit('UPDATE_ITEM', taken)
     },
     slotCapacity(slot) {
       return this.multiSlotTypes.includes(slot) ? 2 : 1

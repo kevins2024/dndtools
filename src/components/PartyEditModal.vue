@@ -54,7 +54,7 @@
                     Year
                     <input
                       type="number"
-                      min="1"
+                      min="467"
                       class="date-input"
                       :value="dateYear"
                       @change="setPartyDate($event.target.value, dateDay)"
@@ -98,7 +98,10 @@
                 <button
                   v-else
                   class="action-btn"
-                  title="Bring this party back into the game"
+                  :disabled="!!reactivationBlock"
+                  :title="
+                    reactivationBlock || 'Bring this party back into the game'
+                  "
                   @click="startReactivate"
                 >
                   Reactivate…
@@ -106,6 +109,67 @@
                 <button class="action-btn danger" @click="deleteParty">
                   Delete
                 </button>
+              </div>
+              <p
+                v-if="editingParty.inactive && reactivationBlock"
+                class="block-hint"
+              >
+                {{ reactivationBlock }}
+              </p>
+              <p
+                v-if="!editingParty.inactive && !canDeactivate"
+                class="block-hint"
+              >
+                This is the only party in play, so it can't be marked inactive.
+                Activate another party first.
+              </p>
+
+              <!-- Gear a party left behind when it went out of play: it stays
+                   tied to that party (a temporary pool) until the DM applies
+                   it to a party in play or hands it to one character. -->
+              <div
+                v-if="editingParty.inactive && poolCountFor(editingParty.id)"
+                class="held-panel"
+              >
+                <div class="held-title">
+                  Held gear: {{ poolCountFor(editingParty.id) }} item{{
+                    poolCountFor(editingParty.id) === 1 ? '' : 's'
+                  }}
+                </div>
+                <p class="held-note">
+                  Left behind when this party went out of play. It comes back
+                  with the party if you reactivate it, or you can hand it on:
+                </p>
+                <div class="held-row">
+                  <select v-model="heldPartyTarget" class="pool-dest-select">
+                    <option :value="null" disabled>A party in play…</option>
+                    <option v-for="p in liveParties" :key="p.id" :value="p.id">
+                      {{ p.name }}
+                    </option>
+                  </select>
+                  <button
+                    class="action-btn"
+                    :disabled="!heldPartyTarget"
+                    @click="applyHeldToParty"
+                  >
+                    Apply to party
+                  </button>
+                </div>
+                <div class="held-row">
+                  <select v-model="heldCharTarget" class="pool-dest-select">
+                    <option :value="null" disabled>One character…</option>
+                    <option v-for="c in allChars" :key="c.name" :value="c.name">
+                      {{ c.name }}
+                    </option>
+                  </select>
+                  <button
+                    class="action-btn"
+                    :disabled="!heldCharTarget"
+                    @click="giveHeldToCharacter"
+                  >
+                    Give to character
+                  </button>
+                </div>
               </div>
             </div>
           </template>
@@ -132,7 +196,9 @@
               :class="{
                 selected: isSelected(char.name),
                 disabled: !editingParty,
+                blocked: !!joinBlock(char.name),
               }"
+              :title="joinBlock(char.name) ? joinBlock(char.name).reason : ''"
               @click="toggleMember(char.name)"
             >
               <div class="tile-portrait">
@@ -142,12 +208,9 @@
               <div class="tile-body">
                 <div class="tile-name">{{ char.name }}</div>
                 <div class="tile-class">{{ $dnd.classLabel(char) }}</div>
-                <div
-                  v-if="!isSelected(char.name) && otherLivePartyOf(char.name)"
-                  class="tile-elsewhere"
-                  title="Adding them here moves them out of that party"
-                >
-                  in {{ otherLivePartyOf(char.name).name }}
+                <div v-if="joinBlock(char.name)" class="tile-elsewhere">
+                  In {{ joinBlock(char.name).party.name }} — remove them there
+                  first
                 </div>
                 <div class="tile-stat">
                   <span class="ts-key">{{ topStat(char).name }}</span>
@@ -190,7 +253,7 @@
             <input
               v-model.number="reactivateYear"
               type="number"
-              min="1"
+              min="467"
               class="date-input"
               @keyup.enter="confirmReactivate"
             />
@@ -208,12 +271,11 @@
           </label>
         </div>
         <div class="party-date-label">{{ reactivateDatePreview }}</div>
-        <p v-if="reactivateConflicts.length" class="pool-dialog-body">
-          {{ reactivateConflicts.join(', ') }}
-          {{ reactivateConflicts.length === 1 ? 'is' : 'are' }} already in a
-          party that's in play, so
-          {{ reactivateConflicts.length === 1 ? 'stays' : 'stay' }} there and
-          will be left out of this one.
+        <p v-if="reactivatingHeld" class="pool-dialog-body">
+          Its {{ reactivatingHeld }} held item{{
+            reactivatingHeld === 1 ? '' : 's'
+          }}
+          come back with it.
         </p>
         <div class="pool-dialog-btns">
           <button class="action-btn" @click="reactivating = null">
@@ -246,17 +308,53 @@
           not carried by anyone specific. Where should
           {{ pendingPoolCount === 1 ? 'it' : 'they' }} go?
         </p>
-        <select v-model="poolDestination" class="pool-dest-select">
-          <option :value="null">Unassigned (no party)</option>
-          <option v-for="p in otherParties" :key="p.id" :value="p.id">
-            {{ p.name }}
-          </option>
-        </select>
+        <div class="pool-choices">
+          <label v-if="pendingPoolAction === 'deactivate'" class="pool-choice">
+            <input v-model="poolMode" type="radio" value="hold" />
+            <span>
+              Hold it with this party
+              <em>— a temporary pool; apply it to a party or character later</em>
+            </span>
+          </label>
+          <label class="pool-choice">
+            <input v-model="poolMode" type="radio" value="character" />
+            <span>Give it all to one character</span>
+          </label>
+          <select
+            v-if="poolMode === 'character'"
+            v-model="poolCharacter"
+            class="pool-dest-select"
+          >
+            <option :value="null" disabled>Choose a character…</option>
+            <option v-for="c in allChars" :key="c.name" :value="c.name">
+              {{ c.name }}
+            </option>
+          </select>
+          <label class="pool-choice">
+            <input v-model="poolMode" type="radio" value="party" />
+            <span>Move it to a party in play</span>
+          </label>
+          <select
+            v-if="poolMode === 'party'"
+            v-model="poolDestination"
+            class="pool-dest-select"
+          >
+            <option :value="null" disabled>Choose a party…</option>
+            <option v-for="p in otherParties" :key="p.id" :value="p.id">
+              {{ p.name }}
+            </option>
+          </select>
+          <label v-if="pendingPoolAction === 'delete'" class="pool-choice">
+            <input v-model="poolMode" type="radio" value="unassigned" />
+            <span>Unassigned (no party)</span>
+          </label>
+        </div>
         <div class="pool-dialog-btns">
           <button class="action-btn" @click="cancelPoolDialog">Cancel</button>
           <button
             class="action-btn"
             :class="{ danger: pendingPoolAction === 'delete' }"
+            :disabled="!poolChoiceReady"
             @click="confirmPoolDialog"
           >
             {{
@@ -272,10 +370,12 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import { joinCheck, reactivationBlockReason } from '@/utils/partyMembership'
 import {
-  yearFromDayCount,
+  FIRST_WORLD_YEAR,
+  worldYearFromDayCount,
   dayOfYear,
-  dayCountFromYearAndDay,
+  dayCountFromWorldYearAndDay,
   formatGameDate,
 } from '@/utils/calendar_utils.js'
 
@@ -323,7 +423,11 @@ export default {
       editingParty: null, // working copy of the party being edited
       pendingPoolParty: null, // party awaiting pool-reassignment confirmation
       pendingPoolAction: null, // 'delete' | 'deactivate'
-      poolDestination: null,
+      poolDestination: null, // party id, when poolMode is 'party'
+      poolMode: 'hold', // 'hold' | 'character' | 'party' | 'unassigned'
+      poolCharacter: null, // character name, when poolMode is 'character'
+      heldPartyTarget: null, // held-gear panel: party to apply it to
+      heldCharTarget: null, // held-gear panel: character to hand it to
       reactivating: null, // inactive party awaiting a date before coming back
       reactivateYear: 1,
       reactivateDay: 1,
@@ -339,8 +443,8 @@ export default {
 
     dateYear() {
       return this.editingParty
-        ? yearFromDayCount(this.editingParty.game_day || 1)
-        : 1
+        ? worldYearFromDayCount(this.editingParty.game_day || 1)
+        : FIRST_WORLD_YEAR
     },
     dateDay() {
       return this.editingParty ? dayOfYear(this.editingParty.game_day || 1) : 1
@@ -373,22 +477,34 @@ export default {
         : ''
     },
 
-    // Members who are now in another live party. A character can only be in
-    // one party in play, so on reactivation they stay where they are.
-    reactivateConflicts() {
-      if (!this.reactivating) return []
-      const taken = new Set(
-        this.parties
-          .filter((p) => !p.inactive && p.id !== this.reactivating.id)
-          .flatMap((p) => p.members)
-      )
-      return this.reactivating.members.filter((m) => taken.has(m))
+    // Why the selected inactive party can't come back yet ('' when it can).
+    // A character can only be in one party in play — the rule lives in
+    // engine/rules/partyMembership.js, shared with the store.
+    reactivationBlock() {
+      return this.editingParty && this.editingParty.inactive
+        ? reactivationBlockReason(this.parties, this.editingParty.id)
+        : ''
+    },
+
+    liveParties() {
+      return this.parties.filter((p) => !p.inactive)
+    },
+
+    // Gear the party left behind, which comes back with it.
+    reactivatingHeld() {
+      return this.reactivating ? this.poolCountFor(this.reactivating.id) : 0
+    },
+
+    poolChoiceReady() {
+      if (this.poolMode === 'character') return !!this.poolCharacter
+      if (this.poolMode === 'party') return !!this.poolDestination
+      return true // 'hold' and 'unassigned' need nothing more
     },
 
     reactivateDatePreview() {
       return formatGameDate(
-        dayCountFromYearAndDay(
-          Number(this.reactivateYear) || 1,
+        dayCountFromWorldYearAndDay(
+          Number(this.reactivateYear) || FIRST_WORLD_YEAR,
           Number(this.reactivateDay) || 1
         )
       )
@@ -418,6 +534,7 @@ export default {
       'DEACTIVATE_PARTY',
       'REACTIVATE_PARTY',
       'REASSIGN_PARTY_POOL',
+      'GIVE_PARTY_POOL_TO_CHARACTER',
     ]),
 
     selectParty(id) {
@@ -466,7 +583,7 @@ export default {
       this.$set(
         this.editingParty,
         'game_day',
-        dayCountFromYearAndDay(Number(year), Number(day))
+        dayCountFromWorldYearAndDay(Number(year), Number(day))
       )
       this.saveParty()
     },
@@ -477,11 +594,12 @@ export default {
     },
 
     startReactivate() {
+      if (this.reactivationBlock) return
       const party = this.parties.find((p) => p.id === this.editingId)
       if (!party) return
       this.reactivating = party
       const day = party.game_day || 1
-      this.reactivateYear = yearFromDayCount(day)
+      this.reactivateYear = worldYearFromDayCount(day)
       this.reactivateDay = dayOfYear(day)
     },
 
@@ -490,11 +608,8 @@ export default {
       const id = this.reactivating.id
       this.REACTIVATE_PARTY({
         id,
-        members: this.reactivating.members.filter(
-          (m) => !this.reactivateConflicts.includes(m)
-        ),
-        game_day: dayCountFromYearAndDay(
-          Number(this.reactivateYear) || 1,
+        game_day: dayCountFromWorldYearAndDay(
+          Number(this.reactivateYear) || FIRST_WORLD_YEAR,
           Number(this.reactivateDay) || 1
         ),
       })
@@ -529,6 +644,11 @@ export default {
       this.pendingPoolAction = action
       const fallback = this.parties.find((p) => p.id !== partyId && !p.inactive)
       this.poolDestination = fallback?.id ?? null
+      // Going out of play: hold the gear by default (nothing is decided yet).
+      // Being deleted: it has to go somewhere now.
+      this.poolMode =
+        action === 'deactivate' ? 'hold' : fallback ? 'party' : 'unassigned'
+      this.poolCharacter = this.editingParty.members[0] ?? null
     },
 
     deleteParty() {
@@ -539,17 +659,49 @@ export default {
       this.pendingPoolParty = null
       this.pendingPoolAction = null
       this.poolDestination = null
+      this.poolCharacter = null
     },
 
     confirmPoolDialog() {
+      if (!this.poolChoiceReady) return
       const { id } = this.pendingPoolParty
       const action = this.pendingPoolAction
-      this.REASSIGN_PARTY_POOL({
-        fromPartyId: id,
-        toPartyId: this.poolDestination,
-      })
+      if (this.poolMode === 'character') {
+        this.GIVE_PARTY_POOL_TO_CHARACTER({
+          fromPartyId: id,
+          characterName: this.poolCharacter,
+        })
+      } else if (this.poolMode === 'party') {
+        this.REASSIGN_PARTY_POOL({
+          fromPartyId: id,
+          toPartyId: this.poolDestination,
+        })
+      } else if (this.poolMode === 'unassigned') {
+        this.REASSIGN_PARTY_POOL({ fromPartyId: id, toPartyId: null })
+      }
+      // 'hold' moves nothing: the gear stays tied to this party's id, which
+      // is the temporary pool (see the held-gear panel).
       this.cancelPoolDialog()
       this.finishPoolAction(action, id)
+    },
+
+    // Held gear (a party's pool after it went out of play): hand it on.
+    applyHeldToParty() {
+      if (!this.heldPartyTarget || !this.editingParty) return
+      this.REASSIGN_PARTY_POOL({
+        fromPartyId: this.editingParty.id,
+        toPartyId: this.heldPartyTarget,
+      })
+      this.heldPartyTarget = null
+    },
+
+    giveHeldToCharacter() {
+      if (!this.heldCharTarget || !this.editingParty) return
+      this.GIVE_PARTY_POOL_TO_CHARACTER({
+        fromPartyId: this.editingParty.id,
+        characterName: this.heldCharTarget,
+      })
+      this.heldCharTarget = null
     },
 
     finishPoolAction(action, partyId) {
@@ -567,43 +719,27 @@ export default {
       return !!this.editingParty?.members.includes(name)
     },
 
+    // Joining a party in play is refused while the character is in another
+    // one (engine/rules/partyMembership.js) — the tile says why, and this
+    // guard covers anything that gets past it. Leaving is always fine.
     toggleMember(name) {
       if (!this.editingParty) return
       const idx = this.editingParty.members.indexOf(name)
       if (idx === -1) {
+        if (!joinCheck(this.parties, this.editingParty.id, name).ok) return
         this.editingParty.members.push(name)
-        this.releaseFromOtherLiveParties(name)
       } else {
         this.editingParty.members.splice(idx, 1)
       }
       this.saveParty()
     },
 
-    // A character can only be in one party that's in play. Joining a live
-    // party moves them out of whichever other live party they were in (an
-    // inactive party keeps its roster as history, and so can overlap).
-    releaseFromOtherLiveParties(name) {
-      if (this.editingParty.inactive) return
-      const updated = this.parties.map((p) =>
-        p.id !== this.editingParty.id && !p.inactive && p.members.includes(name)
-          ? { ...p, members: p.members.filter((m) => m !== name) }
-          : p
-      )
-      this.SET_PARTIES(updated)
-    },
-
-    // The other live party this character belongs to, if any — shown on the
-    // tile so a move between parties is never a surprise.
-    otherLivePartyOf(name) {
-      if (!this.editingParty || this.editingParty.inactive) return null
-      return (
-        this.parties.find(
-          (p) =>
-            p.id !== this.editingParty.id &&
-            !p.inactive &&
-            p.members.includes(name)
-        ) ?? null
-      )
+    // Null if they can join the party being edited; otherwise the check result
+    // ({ party, reason }) for the tile's helper text.
+    joinBlock(name) {
+      if (!this.editingParty || this.isSelected(name)) return null
+      const check = joinCheck(this.parties, this.editingParty.id, name)
+      return check.ok ? null : check
     },
 
     topStat(char) {
@@ -931,6 +1067,12 @@ export default {
   cursor: default;
 }
 
+/* Can't join: already in another party that's in play. The tile says why. */
+.char-tile.blocked {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .tile-portrait {
   position: relative;
   width: 56px;
@@ -981,10 +1123,70 @@ export default {
 .tile-elsewhere {
   font-size: 0.62rem;
   color: var(--color-accent);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 1.2;
+}
+
+/* Why a button is disabled — always visible, not just a hover title. */
+.block-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--color-accent);
+}
+
+.held-panel {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg-panel);
+}
+.held-title {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+}
+.held-note {
+  margin: 0.25rem 0 0.4rem;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+.held-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+}
+.held-row .pool-dest-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.pool-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+}
+.pool-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.pool-choice input {
+  margin-top: 0.2rem;
+  accent-color: var(--color-accent);
+}
+.pool-choice em {
+  font-style: normal;
+  color: var(--color-text-muted);
 }
 
 .tile-class {

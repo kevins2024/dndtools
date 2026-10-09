@@ -68,3 +68,37 @@ test('bad targets are rejected', () => {
   assert.strictEqual(transferItemToCharacter({ id: 'e' }, 'party'), null)
   assert.strictEqual(transferItemToCharacter(null, 'Lenn'), null)
 })
+
+test("an item that can't be equipped stays that way after a hand-off", () => {
+  const scroll = { id: 's', carried_by: 'Lenn', equipped_by: 'disallowed' }
+  assert.strictEqual(
+    transferItemToCharacter(scroll, 'Siv').equipped_by,
+    'disallowed'
+  )
+  const pooledBag = {
+    id: 'b',
+    carried_by: 'party',
+    party_id: 'p1',
+    equipped_by: 'disallowed',
+  }
+  assert.strictEqual(
+    transferItemToCharacter(pooledBag, 'Siv').equipped_by,
+    'disallowed'
+  )
+})
+
+test("transferPoolToCharacter hands one party's pool to a character and leaves everything else alone", () => {
+  const { transferPoolToCharacter, partyPoolItems } = require('../rules/5e/itemTransfer')
+  const items = [
+    { id: 'a', carried_by: 'party', party_id: 'p1' },
+    { id: 'b', carried_by: 'party', party_id: 'p1', equipped_by: 'disallowed' },
+    { id: 'c', carried_by: 'party', party_id: 'p2' }, // another party's pool
+    { id: 'd', carried_by: 'Lenn' }, // someone's own bag
+  ]
+  assert.deepStrictEqual(partyPoolItems(items, 'p1').map((i) => i.id), ['a', 'b'])
+  const out = transferPoolToCharacter(items, 'p1', 'Petra')
+  assert.deepStrictEqual(out.map((i) => i.carried_by), ['Petra', 'Petra', 'party', 'Lenn'])
+  assert.strictEqual(out[0].party_id, null)
+  assert.strictEqual(out[1].equipped_by, 'disallowed')
+  assert.deepStrictEqual(out[2], items[2])
+})

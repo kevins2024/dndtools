@@ -5,3 +5,5 @@ const itemTransferEngine = require('../../engine/rules/5e/itemTransfer')
 
 export const transferItemToCharacter =
   itemTransferEngine.transferItemToCharacter
+export const partyPoolItems = itemTransferEngine.partyPoolItems
+export const transferPoolToCharacter = itemTransferEngine.transferPoolToCharacter

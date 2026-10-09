@@ -20,7 +20,11 @@ import {
   spendGrantUse,
   restoreGrantUse,
 } from '@/utils/limitedUse'
-import { transferItemToCharacter } from '@/utils/itemTransfer'
+import {
+  transferItemToCharacter,
+  transferPoolToCharacter,
+} from '@/utils/itemTransfer'
+import { reactivationConflicts } from '@/utils/partyMembership'
 
 Vue.use(Vuex)
 
@@ -191,16 +195,18 @@ export default new Vuex.Store({
     },
     // Brings an inactive party back into play, stamping it with the date the
     // DM says it is for that party now (the party's clock was frozen while it
-    // was away). `members` lets the caller drop anyone who's since joined
-    // another party in play. Does not make it the selected party.
-    REACTIVATE_PARTY(state, { id, game_day, members }) {
+    // was away). A character can only be in one party in play, so this
+    // refuses (the UI disables the button and says why) while any member is
+    // still in another one — see engine/rules/partyMembership.js. Does not
+    // make it the selected party.
+    REACTIVATE_PARTY(state, { id, game_day }) {
+      if (reactivationConflicts(state.parties, id).length) return
       const updated = state.parties.map((p) => {
         if (p.id !== id) return p
         const { inactive, ...rest } = p // eslint-disable-line no-unused-vars
         return {
           ...rest,
           game_day: game_day ?? p.game_day ?? 1,
-          members: members ?? p.members,
         }
       })
       state.parties = updated
@@ -397,6 +403,17 @@ export default new Vuex.Store({
         item.carried_by === 'party' && item.party_id === fromPartyId
           ? { ...item, party_id: toPartyId }
           : item
+      )
+      if (!state.dirtyTables.includes('party_items'))
+        state.dirtyTables.push('party_items')
+    },
+    // Hands a party's whole pool to one character (what happens to the gear of
+    // a party going out of play, when the DM picks a bearer for it).
+    GIVE_PARTY_POOL_TO_CHARACTER(state, { fromPartyId, characterName }) {
+      state.party_items = transferPoolToCharacter(
+        state.party_items,
+        fromPartyId,
+        characterName
       )
       if (!state.dirtyTables.includes('party_items'))
         state.dirtyTables.push('party_items')

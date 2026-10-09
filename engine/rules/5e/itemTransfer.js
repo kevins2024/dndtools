@@ -10,6 +10,10 @@
 // slot / main-off hand choice (those are the old owner's loadout). Storage
 // and party-pool ownership are cleared because the item now has a bearer.
 //
+// An item marked `equipped_by: 'disallowed'` (a scroll, a bag, a tool — it
+// can't be equipped at all) keeps that mark: handing it over must not make it
+// equippable.
+//
 // Not touched: charges, notes, enhancement bonus, anything about the item
 // itself. No dependencies — browser code require()s this directly.
 
@@ -20,7 +24,7 @@ function transferItemToCharacter(item, toName) {
   return {
     ...item,
     carried_by: toName,
-    equipped_by: null,
+    equipped_by: item.equipped_by === 'disallowed' ? 'disallowed' : null,
     stored_at: null,
     party_id: null,
     attuned: false,
@@ -29,4 +33,23 @@ function transferItemToCharacter(item, toName) {
   }
 }
 
-module.exports = { transferItemToCharacter }
+// The loose gear of a party's pool: carried by "the party", tagged with its id.
+function partyPoolItems(items, partyId) {
+  return items.filter((i) => i.carried_by === 'party' && i.party_id === partyId)
+}
+
+// Hands a party's whole pool to one character. Returns the full items array
+// with those items transferred (every other item untouched).
+function transferPoolToCharacter(items, partyId, toName) {
+  return items.map((item) =>
+    item.carried_by === 'party' && item.party_id === partyId
+      ? transferItemToCharacter(item, toName) ?? item
+      : item
+  )
+}
+
+module.exports = {
+  transferItemToCharacter,
+  partyPoolItems,
+  transferPoolToCharacter,
+}
