@@ -324,6 +324,11 @@ export default {
   flex-direction: column;
   background: var(--color-bg-panel);
   border-right: 1px solid var(--color-border);
+  /* Setting only overflow-y: auto makes the browser treat overflow-x as auto
+     too, so a pixel of sideways overflow (a scaled drop-target card, a label)
+     grew a horizontal scrollbar that fought with drag-and-drop. This column
+     only ever scrolls vertically. */
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
