@@ -318,7 +318,7 @@
     "notes": "",
     "id": "items_27",
     "stored_at": null,
-    "party_id": "party_1780850600167_2"
+    "party_id": "party_1789138172014"
   },
   {
     "name": "Ring of Free Action",
@@ -639,7 +639,7 @@
     "notes": "",
     "id": "items_57",
     "stored_at": null,
-    "party_id": "party_1780850600167_2"
+    "party_id": "party_1789138172014"
   },
   {
     "name": "Ring of Feather Falling",
@@ -661,7 +661,7 @@
     "notes": "",
     "id": "items_59",
     "stored_at": null,
-    "party_id": "party_1780850600167_1"
+    "party_id": "party_1789138172014"
   },
   {
     "name": "Silvered Shortsword",
@@ -1526,20 +1526,28 @@
     "catalog_id": "helmet-of-proof",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Ferghus",
+    "carried_by": "Revven",
     "attuned": false,
     "notes": "",
-    "id": "items_135"
+    "id": "items_135",
+    "stored_at": null,
+    "party_id": null,
+    "weapon_set": null,
+    "hand": null
   },
   {
     "name": "Amulet of Poison Immunity",
     "catalog_id": "amulet-of-poison-immunity",
     "type": "wondrous",
     "equipped_by": null,
-    "carried_by": "Ferghus",
+    "carried_by": "Revven",
     "attuned": false,
     "notes": "",
-    "id": "items_136"
+    "id": "items_136",
+    "stored_at": null,
+    "party_id": null,
+    "weapon_set": null,
+    "hand": null
   },
   {
     "name": "Full Plate +2 (Grey-Green)",
@@ -1685,10 +1693,14 @@
     "catalog_id": "potion-of-healing",
     "type": "consumable",
     "equipped_by": null,
-    "carried_by": "Lexica",
+    "carried_by": "Denna",
     "attuned": false,
     "id": "items_148",
-    "slot": "none"
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null,
+    "weapon_set": null,
+    "hand": null
   },
   {
     "name": "Potion of Greater Healing",
@@ -1709,7 +1721,7 @@
     "type": "material",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_2",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "Consolidated 2026-09-08 from the old one-entry-per-haul 'Gemstones' pattern (see TODO.md) into a single running per-party ledger, kept in the party's Bag of Holding. Assigned to Yetgrese per project owner.",
     "id": "items_150",
@@ -1753,7 +1765,7 @@
     "type": "material",
     "equipped_by": null,
     "carried_by": "party",
-    "party_id": "party_1780850600167_1",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "Added 2026-09-03. Values assigned from the standard 5e DMG gem-value tiers (10/50/100/500/1,000/5,000gp) by gem type. One judgment call: plain 'Sapphire' is ambiguous between the 1,000gp tier (Blue/Yellow/Star Sapphire) and the 5,000gp tier (Black Sapphire) — priced as the more common 1,000gp Blue Sapphire; flag if a different variety was meant. Consolidated 2026-09-08 into the per-party Gem Pouch pattern (see TODO.md) — assigned to East Full per project owner (initially misheard as \"Eastern1\" and left unassigned; corrected same day).",
     "id": "items_151",
@@ -1871,7 +1883,7 @@
     "notes": "Read on day 121.",
     "id": "items_152",
     "stored_at": null,
-    "party_id": "party_1780850600167_1"
+    "party_id": "party_1789138172014"
   },
   {
     "name": "Longsword +2 (party backup)",
@@ -2010,7 +2022,7 @@
     "notes": "Commission from Torven forge. Amber gold with storm-grey inlay. Veleth's two hands almost touching worked into temple pieces. The metal kept trying to become something it hasn't become yet — the smith let it.",
     "id": "items_165",
     "stored_at": null,
-    "party_id": "party_1780850600167_2"
+    "party_id": "party_1789138172014"
   },
   {
     "name": "Helm of the Open Eye",
@@ -2431,7 +2443,7 @@
     "id": "items_202",
     "battle_effect": true,
     "stored_at": null,
-    "party_id": "party_1780850600167_2"
+    "party_id": "party_1789138172014"
   },
   {
     "name": "Scroll of Tongues",
@@ -2622,7 +2634,7 @@
     "notes": "TEST ITEM — delete after verifying BattleItemsPanel.vue's carried-but-unequipped behavior and the destroy-for-dust dialog. See TODO.md.",
     "id": "items_218",
     "stored_at": null,
-    "party_id": "party_1780850600167_2"
+    "party_id": "party_1789138172014"
   },
   {
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
@@ -2631,22 +2643,22 @@
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_1",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
     "id": "items_219"
   },
   {
+    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
     "name": "Bag of Holding",
     "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_1",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
-    "id": "items_220",
-    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
+    "id": "items_220"
   },
   {
     "effect": "No gems recorded yet.",
@@ -2655,35 +2667,35 @@
     "type": "material",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_1",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "Added 2026-09-08 — Valdmere's gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
     "id": "items_221",
     "contents": []
   },
   {
+    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
     "name": "Bag of Holding",
     "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1780850600167_2",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
-    "id": "items_222",
-    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
+    "id": "items_222"
   },
   {
+    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
     "name": "Bag of Holding",
     "catalog_id": "bag-of-holding",
     "type": "wondrous",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1782820688153",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "One per party, homebrew — see the 'Bag of Holding Capacity' house rule (holds ~15 items of average size). This is where each party's pooled loot, including its Gem Pouch, is kept.",
-    "id": "items_223",
-    "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume)."
+    "id": "items_223"
   },
   {
     "effect": "No gems recorded yet.",
@@ -2692,7 +2704,7 @@
     "type": "material",
     "equipped_by": "disallowed",
     "carried_by": "party",
-    "party_id": "party_1782820688153",
+    "party_id": "party_1789138172014",
     "attuned": false,
     "notes": "Added 2026-09-08 — Twins' gem pouch, kept in the party's Bag of Holding. Empty until a haul is recorded.",
     "id": "items_224",
@@ -3108,10 +3120,14 @@
     "catalog_id": "sentinel-shield",
     "type": "armor",
     "equipped_by": null,
-    "carried_by": "Enauweyn",
+    "carried_by": "Vaz",
     "attuned": false,
     "notes": "",
-    "id": "items_258"
+    "id": "items_258",
+    "stored_at": null,
+    "party_id": null,
+    "weapon_set": null,
+    "hand": null
   },
   {
     "name": "Scroll of Revivify",
