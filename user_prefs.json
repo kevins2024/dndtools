@@ -71,7 +71,8 @@
           "Chuknora",
           null
         ]
-      ]
+      ],
+      "inactive": true
     },
     {
       "id": "party_1780850600167_2",
@@ -114,7 +115,8 @@
         "continent": "Yetgrese",
         "terrain": "water",
         "knowsWay": "yes"
-      }
+      },
+      "inactive": true
     },
     {
       "id": "party_1782820688153",
@@ -155,7 +157,8 @@
         "continent": "Kaemahz",
         "terrain": "forest",
         "knowsWay": "yes"
-      }
+      },
+      "inactive": true
     },
     {
       "id": "party_1789138172013",
