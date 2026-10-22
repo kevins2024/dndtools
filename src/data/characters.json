@@ -1264,7 +1264,6 @@
       "Minor Illusion",
       "Ray of Frost",
       "Shocking Grasp",
-      "Feather Fall",
       "Silvery Barbs",
       "Mirror Image",
       "Misty Step",
@@ -1277,7 +1276,8 @@
       "Greater Invisibility",
       "Stone Shape",
       "Summon Draconic Spirit",
-      "Synaptic Static"
+      "Synaptic Static",
+      "Disguise Self"
     ],
     "spells": [
       {
@@ -4513,12 +4513,6 @@
         "type": "prepared"
       },
       {
-        "name": "Wrathful Smite",
-        "level": 1,
-        "prepared": true,
-        "type": "prepared"
-      },
-      {
         "name": "Thunderous Smite",
         "level": 1,
         "prepared": true,
@@ -4574,6 +4568,11 @@
       {
         "name": "Shield of Faith",
         "level": 1,
+        "prepared": true
+      },
+      {
+        "name": "Zone of Truth",
+        "level": 2,
         "prepared": true
       }
     ],
@@ -7346,8 +7345,7 @@
       "Deliberately unremarkable until she isn't. Controls the shift consciously.",
       "Knows the difference between a warm up act and a performance. Never settles for the former.",
       "Composing something without knowing it after experiences that matter.",
-      "Joins things rather than leads them when the thing is already good enough without her.",
-      "Extraordinary information retention - now supernatural."
+      "Joins things rather than leads them when the thing is already good enough without her."
     ],
     "hp_temp": 0
   },
@@ -8221,5 +8219,155 @@
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
     "unarmed_strike_die": "1d4"
+  },
+  {
+    "id": "characters_32",
+    "name": "Marnock",
+    "full_name": "Marnock Feddlemaddle",
+    "image": "./characters/marnock.jpg",
+    "genus": "Gnome",
+    "subgenus": "Forest Gnome",
+    "background": "Laborer",
+    "level": 1,
+    "stat_str": 17,
+    "stat_dex": 10,
+    "stat_con": 16,
+    "stat_int": 10,
+    "stat_wis": 10,
+    "stat_cha": 11,
+    "species_bonus_applied": false,
+    "ability_score_method": "point buy",
+    "species_traits": [
+      {
+        "name": "Gnome Cunning",
+        "id": "pub_gnome-cunning",
+        "description": "Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.",
+        "grants_saving_throw_advantage": "magic",
+        "type": "speciesTrait",
+        "source": "species"
+      },
+      {
+        "name": "Natural Illusionist",
+        "id": "pub_forest-gnome-natural-illusionist",
+        "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability.",
+        "grants_spells": {
+          "fixed": [
+            "Minor Illusion"
+          ],
+          "ability": "int"
+        },
+        "type": "speciesTrait",
+        "source": "subrace"
+      },
+      {
+        "name": "Speak with Small Beasts",
+        "id": "pub_forest-gnome-speak-with-small-beasts",
+        "description": "Communicate simple ideas with Small or smaller beasts, through gestures, sounds, and body language.",
+        "type": "speciesTrait",
+        "source": "subrace"
+      }
+    ],
+    "ability_score_history": [
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      },
+      {
+        "ability": "con",
+        "amount": 1,
+        "source": "Free ability bonus (manual)",
+        "level_gained": 1
+      }
+    ],
+    "spellcasting_ability": null,
+    "hp_max": 15,
+    "hp_current": 15,
+    "saving_throws": [
+      "str",
+      "con"
+    ],
+    "skill_proficiencies": [
+      "Survival",
+      "Animal Handling",
+      "Athletics",
+      "Intimidation",
+      "Medicine",
+      "History"
+    ],
+    "skill_expertise": [],
+    "languages": [
+      "Common",
+      "Gnomish"
+    ],
+    "speed": 25,
+    "darkvision": 60,
+    "weapon_proficiencies": [
+      "simple",
+      "martial"
+    ],
+    "armor_proficiencies": [
+      "light",
+      "medium",
+      "shields"
+    ],
+    "tool_proficiencies": [],
+    "resistances": [],
+    "saving_throw_advantages": [
+      "magic"
+    ],
+    "features": [
+      {
+        "name": "Natural Illusionist",
+        "id": null,
+        "type": "speciesTrait",
+        "spells_granted": [
+          "Minor Illusion"
+        ],
+        "_source": "Natural Illusionist"
+      },
+      {
+        "name": "Rage",
+        "id": "rage",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Unarmored Defense",
+        "id": "barbarian-unarmored-defense",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      }
+    ],
+    "spells": [],
+    "active_effects": [],
+    "conditions": [],
+    "exhaustion_level": 0,
+    "classes": [
+      {
+        "name": "Barbarian",
+        "level": 1,
+        "subclass": null
+      }
+    ],
+    "proficiency_bonus": 2,
+    "hit_dice_current": 1,
+    "alignment": "Chaotic Good",
+    "appearance": "Gnome woman, roughly 170.",
+    "notes": "Ran a splitting gang at a river quarry in the hills upstream of the delta (exact site left open). When a gallery came down with nineteen people under it, the quarrymaster refused to shore the rest of the face. She dug for two days with her hands and a hammer. When an overseer physically stopped her, she killed him. She then sent all nineteen home and left alone so none of them could be named as witnesses. She doesn't regret the overseer, but she hates that the rescue ended with her running. Whether the quarrymaster pursued a charge is undecided. Nineteen households across the hills owe her their lives, and she wants none of it; that owed favour is a resource she will refuse to use. Planned subclass at level 3: Path of the Totem Warrior (Bear), since resistance to nearly everything fits someone who dug for two days. Short-term: a room with a door that opens from the inside, food, and staying out of the Guard's notice. Long-term: to protect the nineteen by staying away from them, which pulls against wanting a place to belong. Limit: she will never walk away from anyone trapped under or behind something, whatever it costs her. Skill hooks: Medicine for crush injuries, History for quarrying and masonry; she'll look at Mazgrath's leg and say what she thinks, bluntly. Medicine and History proficiencies are extra skills she has from storyline rolls, not from her class or background.",
+    "persona_notes": [
+      "Draw: wary and agitated. Chaotic good with a hair trigger.",
+      "Reads neutral as hostile. An unbarred door matters more to her than a soft bed.",
+      "Counts every room's occupants on entry and reads structural soundness at a glance.",
+      "Patient until forced to rage.",
+      "Can't take thanks. Sleeps badly and is short-tempered when woken."
+    ]
   }
 ]
