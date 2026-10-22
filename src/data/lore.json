@@ -1,6 +1,7 @@
 [
   {
     "id": "greyhollow-fall-001",
+    "title": "The Fall of Greyhollow",
     "type": "event",
     "location_tags": ["greyhollow"],
     "entity_tags": ["pale_syndicate"],
@@ -12,6 +13,7 @@
   },
   {
     "id": "sealed-giant-door-001",
+    "title": "Sealed giant-rune door beneath Ravenquay",
     "type": "place_history",
     "location_tags": ["ravenquay", "aqueduct_tunnels"],
     "entity_tags": ["the_wardens"],
@@ -23,6 +25,7 @@
   },
   {
     "id": "the-wardens-001",
+    "title": "The Wardens",
     "type": "faction_history",
     "location_tags": ["ravenquay"],
     "entity_tags": ["the_wardens"],
@@ -34,6 +37,7 @@
   },
   {
     "id": "border-wars-fol-001",
+    "title": "Border wars with Fol (tentative)",
     "type": "event",
     "location_tags": ["fol"],
     "entity_tags": [],
@@ -45,6 +49,7 @@
   },
   {
     "id": "nalfeshnee-banishment-001",
+    "title": "The Nalfeshnee beneath Ravenquay",
     "type": "legend",
     "location_tags": ["ravenquay", "aqueduct_tunnels"],
     "entity_tags": ["the_wardens"],
@@ -56,6 +61,7 @@
   },
   {
     "id": "pale-syndicate-khemrise-structure-001",
+    "title": "Pale Syndicate command structure in Khemrise",
     "type": "faction_history",
     "location_tags": ["khemrise", "ravenquay"],
     "entity_tags": ["pale_syndicate"],
@@ -67,6 +73,7 @@
   },
   {
     "id": "dawn-blades-founding-001",
+    "title": "Founding of the Dawn Blades",
     "type": "faction_history",
     "location_tags": ["ravenquay"],
     "entity_tags": ["dawn_blades"],
@@ -78,6 +85,7 @@
   },
   {
     "id": "ostwick-estate-seizure-001",
+    "title": "Thorne's seizure of the Ostwick vineyard",
     "type": "place_history",
     "location_tags": ["khemrise", "khemrise_estate"],
     "entity_tags": ["ostwick_family", "aldric_thorne", "pale_syndicate"],
@@ -89,6 +97,7 @@
   },
   {
     "id": "lore_verath_ohn_001",
+    "title": "Verath Ohn, the submerged city",
     "type": "place_history",
     "location_tags": ["Fynesmarch", "coastal", "southern coast"],
     "entity_tags": ["fluid people"],
@@ -100,6 +109,7 @@
   },
   {
     "id": "twinrock-drain-coastal-hazard",
+    "title": "Twinrock coastal hazard",
     "type": "place_history",
     "location_tags": ["western-reach-coast", "khemrise-region"],
     "entity_tags": [],
@@ -111,6 +121,7 @@
   },
   {
     "id": "third-western-reach-charter",
+    "title": "Khemrise's charter (third of the Fynesmarch)",
     "type": "political_change",
     "location_tags": ["khemrise", "argentveil", "ravenquay"],
     "entity_tags": [],
@@ -122,6 +133,7 @@
   },
   {
     "id": "lore_008_001",
+    "title": "The Varath and the Fol clans",
     "type": "faction_history",
     "location_tags": ["Fol"],
     "entity_tags": ["Varath"],
@@ -133,6 +145,7 @@
   },
   {
     "id": "lore_008_002",
+    "title": "The Cindermarch-Vethara war",
     "type": "political_change",
     "location_tags": ["Fol", "Cindermarch"],
     "entity_tags": ["Vethara"],
@@ -144,6 +157,7 @@
   },
   {
     "id": "lore_008_003",
+    "title": "Northern clan naming tradition",
     "type": "legend",
     "location_tags": ["Fol"],
     "entity_tags": [],
@@ -155,6 +169,7 @@
   },
   {
     "id": "lore_fluid_people_001",
+    "title": "The fluid people, builders of Varath Ohn",
     "type": "faction_history",
     "location_tags": ["Varath Ohn", "Fynesmarch"],
     "entity_tags": ["fluid people"],
@@ -166,6 +181,7 @@
   },
   {
     "id": "lore_moonveil_seeds_001",
+    "title": "Moonveil seeds of Yetgrese",
     "type": "legend",
     "location_tags": ["Yetgrese"],
     "entity_tags": [],
@@ -177,6 +193,7 @@
   },
   {
     "id": "valdmere_xyz",
+    "title": "Valdmere's second settlement and the false legend",
     "type": "legend",
     "location_tags": ["Valdmere"],
     "entity_tags": [],
@@ -188,6 +205,7 @@
   },
   {
     "id": "lore_yetgrese_ghost_battle",
+    "title": "Spectral naval battle on the Yetgrese crossing",
     "type": "legend",
     "location_tags": ["yetgrese_crossing"],
     "entity_tags": [],
@@ -199,6 +217,7 @@
   },
   {
     "id": "lore_yetgrese_luminescence",
+    "title": "Luminescence on the northern horizon",
     "type": "legend",
     "location_tags": ["yetgrese_crossing"],
     "entity_tags": [],
@@ -210,6 +229,7 @@
   },
   {
     "id": "lore_tilawam_dual_government",
+    "title": "Tilawam's dual government",
     "type": "political_change",
     "location_tags": ["tilawam"],
     "entity_tags": [],
@@ -221,6 +241,7 @@
   },
   {
     "id": "lore_drevorn_consortium",
+    "title": "The Drevorn merchant consortium",
     "type": "faction_history",
     "location_tags": ["Argentveil", "Drevorn House"],
     "entity_tags": ["Drevorn family"],
@@ -232,6 +253,7 @@
   },
   {
     "id": "lore_valdmere_temple",
+    "title": "The ancient building in Valdmere",
     "type": "place_history",
     "location_tags": ["Valdmere"],
     "entity_tags": ["Voryn", "Corvel Andris"],
@@ -243,6 +265,7 @@
   },
   {
     "id": "lore_species_01",
+    "title": "Dhovari (species)",
     "type": "species",
     "name": "Dhovari",
     "location": "Olwood Verge",
@@ -253,6 +276,7 @@
   },
   {
     "id": "lore_species_03",
+    "title": "Olwood Trolls (species)",
     "type": "species",
     "name": "Olwood Trolls",
     "location": "Fynesmarch, Olwood Verge",
@@ -263,6 +287,7 @@
   },
   {
     "id": "lore_ancient_civ_001",
+    "title": "The ancient civilization and its tombs",
     "type": "event",
     "location_tags": ["ancient_civilization"],
     "entity_tags": [],
@@ -273,6 +298,7 @@
   },
   {
     "id": "lore_ancient_civ_002",
+    "title": "The sealed archive rooms",
     "type": "place_history",
     "location_tags": ["ancient_civilization"],
     "entity_tags": [],
@@ -283,6 +309,7 @@
   },
   {
     "id": "lore_lithcainael_dragon_001",
+    "title": "The Lithcainael family and the enslaved dragons",
     "type": "faction_history",
     "location_tags": [],
     "entity_tags": ["lithcainael"],
@@ -293,6 +320,7 @@
   },
   {
     "id": "lore_planar_decay",
+    "title": "Planar decay",
     "type": "legend",
     "location_tags": [],
     "entity_tags": [],
@@ -304,6 +332,7 @@
   },
   {
     "id": "lore_lost_civilization_machine",
+    "title": "The lost civilization's machine",
     "type": "event",
     "location_tags": ["confluence_machine"],
     "entity_tags": ["lost_civilization"],
@@ -315,6 +344,7 @@
   },
   {
     "id": "lore_draconic_pre_classification",
+    "title": "Draconic lineages before classification",
     "type": "legend",
     "location_tags": [],
     "entity_tags": ["draconic_lore"],
@@ -326,6 +356,7 @@
   },
   {
     "id": "lore_draconic_age_threshold",
+    "title": "Draconic age threshold theory",
     "type": "legend",
     "location_tags": [],
     "entity_tags": ["draconic_lore"],
@@ -337,6 +368,7 @@
   },
   {
     "id": "lore_ancient_prismatic_dragon",
+    "title": "The ancient prismatic dragon",
     "type": "event",
     "location_tags": ["confluence_machine", "lost_civilization"],
     "entity_tags": ["draconic_lore"],
@@ -348,6 +380,7 @@
   },
   {
     "id": "lore_durath_iron",
+    "title": "Durath iron",
     "type": "material",
     "location_tags": ["ven_durath", "dunric_pass"],
     "entity_tags": ["dwarven_craft", "lost_technique"],
@@ -359,6 +392,7 @@
   },
   {
     "id": "lore_planar_binding_tradition",
+    "title": "The planar binding tradition",
     "type": "magical_tradition",
     "location_tags": ["ven_durath", "dunric_pass"],
     "entity_tags": ["dwarven_craft", "lost_technique", "planar_magic"],
@@ -370,6 +404,7 @@
   },
   {
     "id": "capitals-watchtower-towns-001",
+    "title": "Capitals and watchtower towns",
     "type": "place_history",
     "location_tags": [
       "torwald",
@@ -386,6 +421,7 @@
   },
   {
     "id": "duskglass-001",
+    "title": "Duskglass",
     "type": "material",
     "location_tags": [
       "orvath"
