@@ -8,6 +8,7 @@ const {
   rollLineItems,
   rollCrossingProfitWeek,
   advanceCrossingProfit,
+  weekTotal,
 } = require('../rules/weeklyEvents')
 
 // rng that makes a d`sides` land on `face`.
@@ -145,4 +146,51 @@ test('advanceCrossingProfit: an unapplied payout is re-surfaced, never overwritt
   assert.strictEqual(r.combined, 3)
   assert.strictEqual(called, 0) // no dice thrown
   assert.strictEqual(r.next.awaiting, awaiting)
+})
+
+test('weekTotal: income minus expenses when no ship is on the Crossing Profit route', () => {
+  const r = weekTotal({
+    totalIncome: 6000,
+    totalExpenses: 1500,
+    crossingProfit: null,
+  })
+  assert.strictEqual(r.total, 4500)
+  assert.strictEqual(r.crossingPayout, 0)
+  assert.deepStrictEqual(r.breakdown, [
+    { label: 'Income', amount: 6000 },
+    { label: 'Expenses', amount: -1500 },
+  ])
+})
+
+test('weekTotal: a week-1 Crossing Profit roll is carried forward and adds nothing', () => {
+  const r = weekTotal({
+    totalIncome: 6000,
+    totalExpenses: 1500,
+    crossingProfit: { stage: 'pending', week1: { value: 2000 } },
+  })
+  assert.strictEqual(r.total, 4500)
+  assert.strictEqual(r.breakdown.length, 2)
+})
+
+test('weekTotal: the week the Crossing Profit pays, the combined 2-week payout is in the total', () => {
+  const r = weekTotal({
+    totalIncome: 6000,
+    totalExpenses: 1500,
+    crossingProfit: { stage: 'awaiting', combined: 3500 },
+  })
+  assert.strictEqual(r.total, 8000)
+  assert.strictEqual(r.crossingPayout, 3500)
+  assert.deepStrictEqual(r.breakdown[2], {
+    label: 'Crossing Profit (2-week payout)',
+    amount: 3500,
+  })
+})
+
+test('weekTotal: a disastrous Crossing Profit payout lowers the total', () => {
+  const r = weekTotal({
+    totalIncome: 1000,
+    totalExpenses: 200,
+    crossingProfit: { stage: 'awaiting', combined: -2500 },
+  })
+  assert.strictEqual(r.total, -1700)
 })

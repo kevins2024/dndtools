@@ -4,9 +4,27 @@
       <div>
         <div class="we-title">Weekly Resolution</div>
         <div class="we-subtitle">Income · Refugees · Events</div>
+        <div v-if="resolvedThrough != null" class="we-through">
+          Resolved through
+          <strong>{{ dayLabel(resolvedThrough) }}</strong>
+        </div>
+        <div v-if="nextWeekEndDay != null" class="we-through">
+          {{
+            results && !results.applied
+              ? 'This roll covers'
+              : 'Next roll covers'
+          }}
+          the week ending <strong>{{ dayLabel(nextWeekEndDay) }}</strong>
+        </div>
       </div>
       <button class="we-roll-btn" @click="rollWeek">
-        {{ results ? 'Re-roll Week' : 'Roll Week' }}
+        {{
+          !results
+            ? 'Roll Week'
+            : results.applied
+            ? 'Roll Next Week'
+            : 'Re-roll Week'
+        }}
       </button>
     </div>
 
@@ -68,18 +86,6 @@
             >{{ results.totalExpenses.toLocaleString() }} gp</span
           >
         </div>
-      </div>
-
-      <!-- ── Net ── -->
-      <div
-        class="we-net"
-        :class="results.net >= 0 ? 'we-net--pos' : 'we-net--neg'"
-      >
-        <span class="we-net-label">Net this week</span>
-        <span class="we-net-amount"
-          >{{ results.net >= 0 ? '+' : ''
-          }}{{ results.net.toLocaleString() }} gp</span
-        >
       </div>
 
       <!-- ── Crossing Profit System ── -->
@@ -161,19 +167,62 @@
               }}{{ results.crossingProfit.combined.toLocaleString() }} gp</span
             >
           </div>
-          <div v-if="results.crossingProfit.applied" class="we-cps-note">
-            Applied to the party purse.
-          </div>
-          <div v-else class="we-cps-apply-row">
-            <span class="we-cps-note"
-              >Not yet applied to the party purse — rolling further weeks is
-              blocked until you apply this result.</span
-            >
-            <button class="we-cps-apply-btn" @click="applyCrossingProfit">
-              Apply to Party Purse
-            </button>
+          <div class="we-cps-note">
+            This payout is included in the week total below.
           </div>
         </template>
+      </div>
+
+      <!-- ── Week total ── -->
+      <div
+        class="we-net"
+        :class="results.week.total >= 0 ? 'we-net--pos' : 'we-net--neg'"
+      >
+        <div class="we-net-main">
+          <span class="we-net-label"
+            >Total for the week ending
+            {{
+              results.weekEnd != null ? dayLabel(results.weekEnd) : 'this week'
+            }}</span
+          >
+          <span class="we-net-amount"
+            >{{ results.week.total >= 0 ? '+' : ''
+            }}{{ results.week.total.toLocaleString() }} gp</span
+          >
+        </div>
+        <div
+          v-for="line in results.week.breakdown"
+          :key="line.label"
+          class="we-net-line"
+        >
+          <span>{{ line.label }}</span>
+          <span
+            >{{ line.amount >= 0 ? '+' : '−'
+            }}{{ Math.abs(line.amount).toLocaleString() }} gp</span
+          >
+        </div>
+        <div
+          v-if="results.crossingProfit && !results.week.crossingPayout"
+          class="we-net-line"
+        >
+          <span>Crossing Profit</span>
+          <span>pays next week</span>
+        </div>
+        <div class="we-net-actions">
+          <span v-if="results.applied" class="we-cps-note"
+            >Applied. The party purse now holds
+            {{ purseGold.toLocaleString() }} gp.</span
+          >
+          <template v-else>
+            <span class="we-cps-note"
+              >Not yet in the party purse ({{ purseGold.toLocaleString() }} gp
+              now). Applying also marks this week as resolved.</span
+            >
+            <button class="we-cps-apply-btn" @click="applyWeek">
+              Apply to Party Purse
+            </button>
+          </template>
+        </div>
       </div>
 
       <!-- ── Revivify refugees ── -->
@@ -214,10 +263,16 @@
 <script>
 import eventsData from '@/data/events.json'
 import {
+  describeGameDate,
+  nextWeekEnd,
+  weekEndOnOrAfter,
+} from '@/utils/calendar_utils'
+import {
   refugeeTier,
   rollRefugees,
   rollLineItems,
   advanceCrossingProfit,
+  weekTotal,
 } from '@/utils/weeklyEvents'
 
 export default {
@@ -264,6 +319,23 @@ export default {
       )
     },
 
+    // The tool's one marker: the last week-end it applied. The next roll
+    // covers the week ending after it. With no marker yet, fall back to the
+    // end of the week the active party is in.
+    resolvedThrough() {
+      return this.finances.weekly_resolution?.resolved_through ?? null
+    },
+
+    nextWeekEndDay() {
+      if (this.resolvedThrough != null) return nextWeekEnd(this.resolvedThrough)
+      const day = this.$store.getters.activeParty?.game_day
+      return day != null ? weekEndOnOrAfter(day) : null
+    },
+
+    purseGold() {
+      return this.finances.party_purse?.gold ?? 0
+    },
+
     crossingProfitPending() {
       return this.finances.crossing_profit?.pending ?? null
     },
@@ -274,12 +346,19 @@ export default {
   },
 
   methods: {
+    dayLabel(dayCount) {
+      const d = describeGameDate(dayCount)
+      return `Year ${d.year}, day ${d.day_of_year} (${
+        d.festival ? 'Festival' : 'Week ' + d.week
+      })`
+    },
+
     rollCrossingProfit() {
       // The two-week cycle (week 1 carried forward, week 2 combined, never
       // overwriting an unapplied payout) is engine/rules/weeklyEvents.js's
       // advanceCrossingProfit — this just persists what it says changed.
       // Applying to the party purse is a separate, deliberate action
-      // (applyCrossingProfit below).
+      // (applyWeek below).
       const { next, rolled, ...display } = advanceCrossingProfit({
         pending: this.crossingProfitPending,
         awaiting: this.crossingProfitAwaiting,
@@ -293,14 +372,19 @@ export default {
       return display
     },
 
-    applyCrossingProfit() {
-      const awaiting = this.crossingProfitAwaiting
-      if (!awaiting) return
-      this.$store.commit('ADJUST_PARTY_GOLD', awaiting.combined)
-      this.$store.commit('SET_CROSSING_PROFIT_AWAITING', null)
-      if (this.results?.crossingProfit) {
-        this.results.crossingProfit.applied = true
+    // One deliberate action moves the whole week into the purse: income,
+    // expenses and, in the week it pays, the Crossing Profit payout (which
+    // is then no longer awaiting). Guarded so a double click can't pay twice.
+    applyWeek() {
+      if (!this.results || this.results.applied) return
+      this.$store.commit('ADJUST_PARTY_GOLD', this.results.week.total)
+      if (this.results.crossingProfit?.stage === 'awaiting') {
+        this.$store.commit('SET_CROSSING_PROFIT_AWAITING', null)
       }
+      if (this.results.weekEnd != null) {
+        this.$store.commit('SET_WEEKS_RESOLVED_THROUGH', this.results.weekEnd)
+      }
+      this.results.applied = true
     },
 
     rollWeek() {
@@ -314,9 +398,13 @@ export default {
 
       // Only running if at least one ship is currently tagged as on the
       // route (see assets.json) — stopping the activity is just removing
-      // that tag from the ships, not a separate toggle.
+      // that tag from the ships, not a separate toggle. Re-rolling a week
+      // that hasn't been applied yet keeps its Crossing Profit result:
+      // rolling it again would advance the two-week cycle by a week.
+      const keepCrossing =
+        this.results && !this.results.applied && this.results.crossingProfit
       const crossingProfit = this.crossingShips.length
-        ? this.rollCrossingProfit()
+        ? keepCrossing || this.rollCrossingProfit()
         : null
 
       this.results = {
@@ -324,9 +412,11 @@ export default {
         expenses,
         totalIncome,
         totalExpenses,
-        net: totalIncome - totalExpenses,
+        week: weekTotal({ totalIncome, totalExpenses, crossingProfit }),
         refugees,
         crossingProfit,
+        weekEnd: this.nextWeekEndDay,
+        applied: false,
       }
     },
 
@@ -366,6 +456,12 @@ export default {
   font-size: var(--font-size-xs);
   color: var(--color-text-low);
   margin-top: 2px;
+}
+
+.we-through {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 4px;
 }
 
 .we-roll-btn {
@@ -508,8 +604,8 @@ export default {
 /* ── Net banner ── */
 .we-net {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.2rem;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   border: 1px solid;
@@ -521,6 +617,25 @@ export default {
 .we-net--neg {
   border-color: #c0442a;
   background: rgba(192, 68, 42, 0.1);
+}
+
+.we-net-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.we-net-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-low);
+}
+.we-net-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.3rem;
 }
 
 .we-net-label {

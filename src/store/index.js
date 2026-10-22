@@ -867,6 +867,20 @@ export default new Vuex.Store({
         state.dirtyTables.push('finances')
       }
     },
+    // The Weekly Events tool's single marker: the day count of the last
+    // week-end it has applied. The next roll covers the week ending after it.
+    SET_WEEKS_RESOLVED_THROUGH(state, dayCount) {
+      state.finances = {
+        ...state.finances,
+        weekly_resolution: {
+          ...(state.finances.weekly_resolution || {}),
+          resolved_through: dayCount,
+        },
+      }
+      if (!state.dirtyTables.includes('finances')) {
+        state.dirtyTables.push('finances')
+      }
+    },
     SET_CURRENCY(state, { key, value }) {
       if (!state.finances.party_purse) state.finances.party_purse = {}
       state.finances.party_purse[key] = Number(value) || 0

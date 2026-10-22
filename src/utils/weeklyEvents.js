@@ -9,3 +9,4 @@ export const refugeeTier = weeklyEventsEngine.refugeeTier
 export const rollRefugees = weeklyEventsEngine.rollRefugees
 export const rollLineItems = weeklyEventsEngine.rollLineItems
 export const advanceCrossingProfit = weeklyEventsEngine.advanceCrossingProfit
+export const weekTotal = weeklyEventsEngine.weekTotal

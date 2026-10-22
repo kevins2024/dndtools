@@ -191,6 +191,36 @@ function advanceCrossingProfit(
   }
 }
 
+// What a week actually moves in the party purse: income minus expenses,
+// plus the Crossing Profit System's payout in the week it pays. The system
+// only pays every second week (week 1 is carried forward unpaid), so in a
+// week-1 roll it contributes nothing. `crossingProfit` is the object
+// advanceCrossingProfit returned (or null when no ship is on the route).
+// Returns the total plus the lines that make it up, as plain data.
+function weekTotal({
+  totalIncome = 0,
+  totalExpenses = 0,
+  crossingProfit = null,
+}) {
+  const breakdown = [
+    { label: 'Income', amount: totalIncome },
+    { label: 'Expenses', amount: -totalExpenses },
+  ]
+  const crossingPayout =
+    crossingProfit?.stage === 'awaiting' ? crossingProfit.combined : 0
+  if (crossingProfit?.stage === 'awaiting') {
+    breakdown.push({
+      label: 'Crossing Profit (2-week payout)',
+      amount: crossingPayout,
+    })
+  }
+  return {
+    total: breakdown.reduce((sum, line) => sum + line.amount, 0),
+    crossingPayout,
+    breakdown,
+  }
+}
+
 module.exports = {
   rollBetween,
   REFUGEE_TIERS,
@@ -199,4 +229,5 @@ module.exports = {
   rollLineItems,
   rollCrossingProfitWeek,
   advanceCrossingProfit,
+  weekTotal,
 }

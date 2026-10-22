@@ -76,6 +76,26 @@ function dayOfWeek(doy) {
   return ((doy - 53) % DAYS_PER_WEEK) + 1
 }
 
+// A week ends on its 8th day. The Festival half-week (4 days, no week
+// number) never ends a week, so "the next week-end" skips straight over it.
+function isWeekEnd(dayCount) {
+  const doy = dayOfYear(dayCount)
+  return !isFestivalDay(doy) && dayOfWeek(doy) === DAYS_PER_WEEK
+}
+
+// The first week-end strictly after `dayCount`.
+function nextWeekEnd(dayCount) {
+  let day = dayCount + 1
+  while (!isWeekEnd(day)) day++
+  return day
+}
+
+// `dayCount` itself if it is a week-end, otherwise the next one: the week-end
+// of the week a given day falls in.
+function weekEndOnOrAfter(dayCount) {
+  return isWeekEnd(dayCount) ? dayCount : nextWeekEnd(dayCount)
+}
+
 // The year people read and type: the world year (internal year + YEAR_OFFSET,
 // so campaign day 1 is year 467). The internal 1-based year is only
 // arithmetic and is never shown. First world year = FIRST_WORLD_YEAR.
@@ -125,7 +145,9 @@ function describeGameDate(dayCount) {
   const festival = isFestivalDay(doy)
   const week = weekOfYear(doy)
   const dow = dayOfWeek(doy)
-  const where = festival ? `Spring Festival · Day ${dow}` : `Week ${week}, Day ${dow}`
+  const where = festival
+    ? `Spring Festival · Day ${dow}`
+    : `Week ${week}, Day ${dow}`
   const campaign = campaignDay(dayCount)
   return {
     year,
@@ -188,6 +210,9 @@ module.exports = {
   isFestivalDay,
   weekOfYear,
   dayOfWeek,
+  isWeekEnd,
+  nextWeekEnd,
+  weekEndOnOrAfter,
   formatGameDate,
   describeGameDate,
   CAMPAIGN_EPOCH,
