@@ -3216,6 +3216,7 @@
     "id": "items_266"
   },
   {
+    "slot": "melee2h",
     "name": "Plum",
     "catalog_id": "plum",
     "type": "weapon",
@@ -3223,6 +3224,8 @@
     "carried_by": null,
     "attuned": true,
     "notes": "Upgrades fitted: none yet (room for three).",
-    "id": "items_267"
+    "id": "items_267",
+    "hand": "main",
+    "weapon_set": 1
   }
 ]
