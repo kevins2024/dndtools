@@ -1627,5 +1627,108 @@
     "personality_traits": "",
     "personality_quirks": "",
     "id": "npcs_122"
+  },
+  {
+    "name": "Mazgrath",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Refugee, Remarkable tier",
+    "appearance": null,
+    "notes": "Upgraded to the Remarkable tier. His mother, a smith by trade, died of a lung sickness when he was 14 and never said where she came from. She left him one thing: a small steel punch stamped with a mark, a circle with three notched lines inside. He doesn't know what the mark means. Someone who has seen the right metalwork could place it. Skill hook: History or Investigation, or showing the mark to someone who would know.",
+    "status": ["civilian"],
+    "personality_traits": "",
+    "personality_quirks": "Keeps the punch on a cord and holds a hand over it when he stands still at sunrise, as his mother did.",
+    "items": [
+      {
+        "name": "Small steel punch",
+        "type": "misc",
+        "notes": "His mother's. Stamped with a mark: a circle with three notched lines inside. Worn on a cord."
+      }
+    ],
+    "id": "npcs_123"
+  },
+  {
+    "name": "Brorrug",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Chancer posing as a devout follower of Solmir",
+    "appearance": "Half-orc man, middle-aged.",
+    "notes": "Standard tier refugee. Claims to be devoted to the church of Solmir, which gets him extra attention. A Religion check would notice he gets a hymn slightly wrong. A chancer, not a threat.",
+    "status": ["civilian"],
+    "personality_traits": "Self-serving, suspicious.",
+    "personality_quirks": "Pockets bread.",
+    "id": "npcs_124"
+  },
+  {
+    "name": "Zhevrakh",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Former junior clerk in a dragonborn clan registry",
+    "appearance": "Dragonborn man, young adult.",
+    "notes": "Remarkable tier refugee. Left the clan registry in a hurry. Skill hook: History. Limit: he won't destroy a record, even a dangerous one. His connections are the substance of the Remarkable tier, so he's worth watching.",
+    "status": ["civilian"],
+    "personality_traits": "Self-serving, agitated.",
+    "personality_quirks": "Corrects everyone's pronunciation of clan names and can't stop himself. Asks for a private room, a lamp and a small advance within an hour of arriving, and snaps at Marcus when refused. Sleeps with his bedroll never out of reach.",
+    "id": "npcs_125"
+  },
+  {
+    "name": "Shamvarek",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Village go-between",
+    "appearance": "Human man, adult.",
+    "notes": "Interesting tier refugee. The person his village sent in first to talk to the tax assessor, the boat captain, or an angry neighbour. Exhausted because he talked a crowd down on the road and kept three families from turning on each other. Skill hook: Persuasion. Limit: he won't lie to someone's face in front of their family.",
+    "status": ["civilian"],
+    "personality_traits": "Obliging, exhausted. Listens well. His weakness is that he can't refuse a request, and he'll agree to things just to end a conversation.",
+    "personality_quirks": "",
+    "id": "npcs_126"
+  },
+  {
+    "name": "Ulgravek",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Former caravan bait",
+    "appearance": "Goliath woman, adult.",
+    "notes": "Interesting tier refugee. Worked caravans as bait: walked ahead as a lone, apparently drunk traveller to draw bandits out so the guards could close in. Her caravan master sold the route and the company folded, leaving her owed back wages. Skill hook: Deception. Limit: she won't con anyone who's poor.",
+    "status": ["civilian"],
+    "personality_traits": "Wary, exhausted. Doesn't trust kindness and waits for the catch.",
+    "personality_quirks": "Sleeps sitting upright in the common room corner with her back to the wall.",
+    "id": "npcs_127"
+  },
+  {
+    "name": "Hravenmar",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Former sluice-gate keeper on a mill-lord's river weir",
+    "appearance": "Dwarf, nonbinary, adult.",
+    "notes": "Kept the sluice gates on a mill-lord's river weir and fled after refusing an order to open them on a downstream hamlet during a flood. Giddy with relief, they have already started fixing Revivify's doors and promised one hung by supper. Understands water tables, which suits a delta city. Could be the workshop-space person. Skill hook: Carpenter's tools, plus Nature or Survival for reading water and soil. Limit: they won't work a gate, lock or weir without knowing who is on the other side.",
+    "status": ["civilian"],
+    "personality_traits": "Obliging, elated. Weakness: they overpromise.",
+    "personality_quirks": "Taps beams and walls with a knuckle and listens.",
+    "id": "npcs_128"
+  },
+  {
+    "name": "Brisenna Kettle",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Presents as a seamstress",
+    "appearance": "Human woman, middle-aged.",
+    "notes": "Presents as a seamstress. Repaired cushions to a standard Revivify hasn't had. There is more to her than that. One to watch.",
+    "status": ["civilian"],
+    "personality_traits": "Polite, tidy.",
+    "personality_quirks": "Sits facing the door. Never thanks the cook by name.",
+    "id": "npcs_129"
+  },
+  {
+    "name": "Yarozka",
+    "location": "Ravenquay",
+    "faction": "Revivify refugee",
+    "role": "Ox-cart driver",
+    "appearance": "Human woman, adult.",
+    "notes": "Drove an ox-cart, a spoke mended in rawhide and rope, carrying four households' belongings behind two oxen named Hob and Tansy. Her first question is where the oxen stand, and Revivify has no stable on record, so that could be a small purse item. Skill hook: Animal Handling. Limit: she won't sell or slaughter the oxen.",
+    "status": ["civilian"],
+    "personality_traits": "Neutral/busy, baseline. Terse, bargains hard, won't ask for help.",
+    "personality_quirks": "Her first question is where the oxen stand.",
+    "id": "npcs_130"
   }
 ]
