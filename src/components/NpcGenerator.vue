@@ -1,7 +1,7 @@
 <template>
-  <div class="npc-gen-page scrollable">
-    <div class="char-gen">
-      <div class="char-gen-options">
+  <div class="npc-gen-page">
+    <div class="char-gen" :style="{ height: topHeight + 'px' }">
+      <div class="char-gen-options scrollable">
         <div v-for="cat in categories" :key="cat.key" class="cat-section">
           <div class="cat-header">
             <span class="cat-label">{{ cat.label }}</span>
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class="char-gen-result">
+      <div class="char-gen-result scrollable">
         <button class="generate-btn" @click="generate">Generate</button>
 
         <div v-if="error" class="gen-error">{{ error }}</div>
@@ -46,13 +46,30 @@
       </div>
     </div>
 
+    <div
+      class="pane-splitter"
+      :class="{ dragging }"
+      role="separator"
+      aria-orientation="horizontal"
+      aria-label="Resize the roller and quick-build panels"
+      tabindex="0"
+      title="Drag to resize · double-click to reset"
+      @pointerdown="startDrag"
+      @pointermove="onDrag"
+      @pointerup="endDrag"
+      @pointercancel="endDrag"
+      @dblclick="setTopHeight(DEFAULT_TOP_HEIGHT)"
+      @keydown.up.prevent="setTopHeight(topHeight - 20)"
+      @keydown.down.prevent="setTopHeight(topHeight + 20)"
+    ></div>
+
     <!-- Quick-Build Combat Enemy — deliberately separate from the roller
          above: real class-built combatants only cover 5 curated role/class
          combos, a totally different vocabulary than the roller's 27
          races/14 classes, so chaining off a roll would mean most rolls
          couldn't build anything. Species/gender are randomized on build,
          not picked — same "roll it" spirit as the roller above. -->
-    <div class="quick-build-panel">
+    <div class="quick-build-panel scrollable">
       <div class="qb-header">
         <span class="qb-title">Quick-Build a Combat Enemy</span>
         <span class="qb-hint"
@@ -198,6 +215,21 @@ const CATEGORIES = [
   { key: 'class', label: 'Class', options: CLASSES },
 ]
 
+// Height of the roller pane above the draggable divider. Remembered per
+// browser only — it's a viewing preference, not campaign data.
+const DEFAULT_TOP_HEIGHT = 340
+const MIN_PANE_HEIGHT = 120
+const TOP_HEIGHT_KEY = 'npcGenerator.topHeight'
+
+function loadTopHeight() {
+  try {
+    const saved = Number(localStorage.getItem(TOP_HEIGHT_KEY))
+    return saved >= MIN_PANE_HEIGHT ? saved : DEFAULT_TOP_HEIGHT
+  } catch {
+    return DEFAULT_TOP_HEIGHT
+  }
+}
+
 function buildEnabled() {
   const out = {}
   for (const cat of CATEGORIES) {
@@ -216,6 +248,11 @@ export default {
   data() {
     return {
       categories: CATEGORIES,
+      DEFAULT_TOP_HEIGHT,
+      topHeight: loadTopHeight(),
+      dragging: false,
+      dragStartY: 0,
+      dragStartHeight: 0,
       enabled: buildEnabled(),
       result: null,
       error: '',
@@ -288,7 +325,43 @@ export default {
     this.buildLevel = this.averagePartyLevel
   },
 
+  mounted() {
+    // A saved height from a taller window must not push the quick-build
+    // panel off the bottom of a shorter one.
+    this.setTopHeight(this.topHeight)
+  },
+
   methods: {
+    // Keeps both panes at least MIN_PANE_HEIGHT tall (the divider is ~8px).
+    setTopHeight(px) {
+      const available = this.$el?.clientHeight || 0
+      const max = Math.max(MIN_PANE_HEIGHT, available - MIN_PANE_HEIGHT - 8)
+      this.topHeight = Math.round(Math.min(Math.max(px, MIN_PANE_HEIGHT), max))
+      try {
+        localStorage.setItem(TOP_HEIGHT_KEY, String(this.topHeight))
+      } catch {
+        // Private window / blocked storage — the divider still works, it just forgets.
+      }
+    },
+
+    startDrag(e) {
+      this.dragging = true
+      this.dragStartY = e.clientY
+      this.dragStartHeight = this.topHeight
+      e.currentTarget.setPointerCapture(e.pointerId)
+    },
+
+    onDrag(e) {
+      if (!this.dragging) return
+      this.setTopHeight(this.dragStartHeight + (e.clientY - this.dragStartY))
+    },
+
+    endDrag(e) {
+      if (!this.dragging) return
+      this.dragging = false
+      e.currentTarget.releasePointerCapture?.(e.pointerId)
+    },
+
     buildAsCharacter() {
       this.$store.commit('NAV_TO_NEW_CHARACTER', {
         species: this.result.genus,
@@ -398,17 +471,33 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
+/* Top pane: its height is set inline from the draggable divider. Both panes
+   scroll on their own, so nothing gets clipped under the tab bar. */
 .char-gen {
   display: flex;
   flex-direction: row;
-  height: 280px;
   flex-shrink: 0;
+  min-height: 0;
   overflow: hidden;
   gap: 0;
-  border-bottom: 1px solid var(--color-border);
+}
+
+.pane-splitter {
+  flex-shrink: 0;
+  height: 8px;
+  background: var(--color-border);
+  cursor: row-resize;
+  touch-action: none;
+  transition: background 0.15s;
+}
+.pane-splitter:hover,
+.pane-splitter:focus-visible,
+.pane-splitter.dragging {
+  background: var(--color-accent);
+  outline: none;
 }
 
 /* ── Options panel ── */
@@ -419,6 +508,7 @@ export default {
   padding: 1.25rem 1.5rem;
   overflow-y: auto;
   flex-shrink: 0;
+  min-height: 0;
   border-right: 1px solid var(--color-border);
   background: var(--color-bg-panel-dark);
 }
@@ -479,12 +569,21 @@ export default {
 /* ── Result panel ── */
 .char-gen-result {
   flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 1.5rem;
   padding: 2rem;
+}
+/* Centre when there's room, start at the top (never clip) when there isn't. */
+.char-gen-result > :first-child {
+  margin-top: auto;
+}
+.char-gen-result > :last-child {
+  margin-bottom: auto;
 }
 
 .generate-btn {
@@ -560,7 +659,9 @@ export default {
 
 /* ── Quick-Build Combat Enemy ── */
 .quick-build-panel {
-  flex-shrink: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   padding: 1.25rem 1.5rem 2rem;
 }
 
