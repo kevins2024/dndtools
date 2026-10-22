@@ -175,6 +175,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
+import { characterForExport, partyItemBundle } from '@/utils/dmExport'
 import { shortRestPreview, longRestPreview } from '@/utils/rest'
 import NetworksContext from './NetworksContext.vue'
 
@@ -332,22 +333,12 @@ export default {
     },
 
     copyPartyJson() {
-      const memberNames = new Set(this.activeParty.members)
-      const items = this.party_items.filter(
-        (item) =>
-          memberNames.has(item.carried_by) ||
-          memberNames.has(item.equipped_by) ||
-          (item.carried_by === 'party' && item.party_id === this.activeParty.id)
-      )
       const payload = {
         party: this.activeParty,
-        // passive_perception is derived (skills, items, features all count),
-        // so it isn't on the stored record — add the engine's number.
-        characters: this.activeMembers.map((char) => ({
-          ...char,
-          passive_perception: dnd.passivePerception(char, this.party_items),
-        })),
-        items,
+        characters: this.activeMembers.map((char) =>
+          characterForExport(char, this.party_items)
+        ),
+        items: partyItemBundle(this.party_items, this.activeParty),
       }
       navigator.clipboard.writeText(JSON.stringify(payload, null, 2))
       this.copyConfirm = true

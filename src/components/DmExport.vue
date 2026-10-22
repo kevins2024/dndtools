@@ -1,508 +1,358 @@
 <template>
   <div class="dm-export">
     <div class="dm-header">
-      <h3 class="dm-title">DM Context Export</h3>
+      <h3 class="dm-title">DM Export</h3>
       <p class="dm-desc">
-        Generates a Markdown context file for an AI Dungeon Master. Write to
-        <code>public/dm-context/</code>, push to GitHub, then curl the raw URL
-        at the start of each session.
+        Tick what a DM should see and copy it as JSON. Picking a party includes
+        its members; a character picked twice is written once.
       </p>
     </div>
 
-    <!-- Location picker -->
-    <div class="dm-row">
-      <label class="dm-label">Current location</label>
-      <select class="dm-select" v-model="selectedLocation">
-        <option value="">— none / skip location —</option>
-        <option
-          v-for="loc in topLevelLocations"
-          :key="loc.name"
-          :value="loc.name"
+    <div class="dm-toggles">
+      <label v-for="t in toggles" :key="t.key" class="dm-toggle">
+        <input v-model="include[t.key]" type="checkbox" />
+        {{ t.label }}
+      </label>
+    </div>
+
+    <div class="dm-lists scrollable">
+      <PickList
+        v-for="list in lists"
+        :key="list.key"
+        v-model="selection[list.key]"
+        :title="list.title"
+        :items="list.items"
+      />
+    </div>
+
+    <div class="dm-footer">
+      <div class="dm-summary">
+        <span v-for="s in summary" :key="s.label" class="dm-chip"
+          >{{ s.count }} {{ s.label }}</span
         >
-          {{ loc.name }}
-        </option>
-      </select>
-    </div>
-
-    <!-- Summary -->
-    <div class="dm-summary" v-if="activeParty">
-      <div class="summary-row">
-        <span class="summary-label">Party</span>
-        <span class="summary-val">{{ activeParty.name }}</span>
+        <span v-if="!summary.length" class="dm-hint">Nothing selected.</span>
       </div>
-      <div class="summary-row">
-        <span class="summary-label">Characters</span>
-        <span class="summary-val">{{ activeMembers.length }}</span>
-      </div>
-      <div class="summary-row">
-        <span class="summary-label">Items</span>
-        <span class="summary-val">{{ partyItemBundle.length }}</span>
-      </div>
-      <div class="summary-row" v-if="selectedLocation">
-        <span class="summary-label">Location</span>
-        <span class="summary-val">{{ selectedLocation }}</span>
-      </div>
-      <div class="summary-row">
-        <span class="summary-label">NPCs included</span>
-        <span class="summary-val">{{ allRelevantNpcs.length }}</span>
-      </div>
-      <div class="summary-row">
-        <span class="summary-label">Relationships</span>
-        <span class="summary-val">{{ relevantRelationships.length }}</span>
-      </div>
-      <div class="summary-row">
-        <span class="summary-label">Party gold</span>
-        <span class="summary-val">{{ partyGold.toLocaleString() }} gp</span>
+      <div class="dm-actions">
+        <span class="dm-size">{{ sizeLabel }}</span>
+        <button
+          class="action-btn action-btn--primary"
+          :class="{ 'action-btn--done': copied }"
+          :disabled="!summary.length"
+          @click="copyJson"
+        >
+          {{ copied ? '✓ Copied' : 'Copy JSON' }}
+        </button>
       </div>
     </div>
-
-    <!-- Actions -->
-    <div class="dm-actions">
-      <button
-        class="action-btn action-btn--primary"
-        :class="{ 'action-btn--done': generated }"
-        :disabled="!activeParty || generating"
-        @click="generateFile"
-      >
-        {{
-          generating
-            ? 'Writing…'
-            : generated
-            ? '✓ File Written'
-            : 'Generate MD File'
-        }}
-      </button>
-      <button
-        class="action-btn"
-        :class="{ 'action-btn--done': copied }"
-        :disabled="!activeParty"
-        @click="copyJson"
-      >
-        {{ copied ? '✓ Copied' : 'Copy JSON' }}
-      </button>
-      <span v-if="!activeParty" class="dm-hint">No active party selected.</span>
-    </div>
-
-    <!-- Generated file result -->
-    <div v-if="generatedPath" class="dm-result">
-      <div class="result-label">File written — push to GitHub, then curl:</div>
-      <code class="result-url">{{ rawGithubUrl }}</code>
-      <button class="ghost-btn" @click="copyUrl">
-        {{ urlCopied ? '✓ Copied' : 'Copy URL' }}
-      </button>
-    </div>
-
-    <div v-if="writeError" class="dm-error">{{ writeError }}</div>
   </div>
 </template>
 
 <script>
-import { describeGameDate } from '@/utils/calendar_utils.js'
-import { dnd } from '@/utils/dnd_utils.js'
+import PickList from './PickList.vue'
+import houseRules from '@/data/house_rules.json'
+import religions from '@/data/religions.json'
+import { buildExport } from '@/utils/dmExport.js'
 
-const GITHUB_RAW_BASE =
-  'https://raw.githubusercontent.com/kevins2024/dndtools/main/public'
+const STORAGE_KEY = 'dmExport.v1'
+
+const emptySelection = () => ({
+  partiesAndCharacters: [],
+  npcs: [],
+  locations: [],
+  religions: [],
+  lore: [],
+  assets: [],
+  houseRules: [],
+  features: [],
+  spells: [],
+  monsters: [],
+  items: [],
+})
+
+const defaultInclude = () => ({
+  date: true,
+  purse: true,
+  characterItems: true,
+  partyItems: true,
+  relationships: true,
+})
 
 export default {
   name: 'DmExport',
 
+  components: { PickList },
+
   data() {
     return {
-      selectedLocation: '',
+      selection: emptySelection(),
+      include: defaultInclude(),
       copied: false,
-      generating: false,
-      generated: false,
-      generatedPath: '',
-      writeError: '',
-      urlCopied: false,
+      toggles: [
+        { key: 'date', label: 'Date' },
+        { key: 'purse', label: 'Party purse' },
+        { key: 'characterItems', label: 'Character items' },
+        { key: 'partyItems', label: 'Party items' },
+        { key: 'relationships', label: 'Relationships' },
+      ],
+      // Loaded lazily: these are large files, only needed on this screen.
+      homebrewFeatures: [],
+      homebrewSpells: [],
+      homebrewMonsters: [],
+      homebrewItems: [],
     }
   },
 
   computed: {
-    activeParty() {
-      return this.$store.getters.activeParty
+    store() {
+      return this.$store.state
     },
-    activePartyDay() {
-      return this.$store.getters.activePartyDay
+
+    lists() {
+      const s = this.store
+      const hint = (...parts) => parts.filter(Boolean).join(' · ')
+      return [
+        {
+          key: 'partiesAndCharacters',
+          title: 'Parties & characters',
+          items: [
+            ...(s.parties ?? []).map((p) => ({
+              key: `party:${p.id}`,
+              label: p.name,
+              hint: hint(
+                'party',
+                `${(p.members ?? []).length} members`,
+                p.inactive ? 'held' : ''
+              ),
+            })),
+            ...(s.characters ?? []).map((c) => ({
+              key: `character:${c.name}`,
+              label: c.name,
+              hint: 'character',
+            })),
+          ],
+        },
+        {
+          key: 'npcs',
+          title: 'NPCs',
+          items: (s.npcs ?? []).map((n) => ({
+            key: n.name,
+            label: n.name,
+            hint: n.role,
+          })),
+        },
+        {
+          key: 'locations',
+          title: 'Locations',
+          items: (s.places ?? []).map((p) => ({
+            key: p.name,
+            label: p.name,
+            hint: p.type,
+          })),
+        },
+        {
+          key: 'religions',
+          title: 'Religions',
+          items: religions.map((r) => ({
+            key: r.name,
+            label: r.name,
+            hint: r.domain,
+          })),
+        },
+        {
+          key: 'lore',
+          title: 'Lore',
+          items: (s.lore ?? []).map((l) => ({
+            key: l.id,
+            label: l.title || l.name || l.id,
+            hint: l.type,
+          })),
+        },
+        {
+          key: 'assets',
+          title: 'Assets',
+          items: (s.assets ?? []).map((a) => ({
+            key: a.name,
+            label: a.name,
+            hint: a.subtype,
+          })),
+        },
+        {
+          key: 'houseRules',
+          title: 'House rules',
+          items: houseRules.map((r) => ({ key: r.name, label: r.name })),
+        },
+        {
+          key: 'features',
+          title: 'Homebrew features',
+          items: this.homebrewFeatures.map((f) => ({
+            key: f.id,
+            label: f.name,
+            hint: f.category,
+          })),
+        },
+        {
+          key: 'spells',
+          title: 'Homebrew spells',
+          items: this.homebrewSpells.map((sp) => ({
+            key: sp.name,
+            label: sp.name,
+          })),
+        },
+        {
+          key: 'monsters',
+          title: 'Homebrew monsters',
+          items: this.homebrewMonsters.map((m) => ({
+            key: m.name,
+            label: m.name,
+          })),
+        },
+        {
+          key: 'items',
+          title: 'Campaign items',
+          items: this.homebrewItems.map((i) => ({
+            key: i.id,
+            label: i.name,
+            hint: i.category,
+          })),
+        },
+      ]
     },
-    // The party's date as the Calendar tab shows it (world year, season, day of
-    // the year, week) rather than the bare day count.
-    partyDate() {
-      return this.activePartyDay ? describeGameDate(this.activePartyDay) : null
-    },
-    allCharacters() {
-      return this.$store.state.characters ?? []
-    },
-    activeMembers() {
-      if (!this.activeParty) return []
-      const names = new Set(this.activeParty.members)
-      return this.allCharacters.filter((c) => names.has(c.name))
-    },
-    allItems() {
-      return this.$store.state.party_items ?? []
-    },
-    partyItemBundle() {
-      if (!this.activeParty) return []
-      const names = new Set(this.activeParty.members)
-      return this.allItems.filter(
-        (item) =>
-          names.has(item.carried_by) ||
-          names.has(item.equipped_by) ||
-          (item.carried_by === 'party' && item.party_id === this.activeParty.id)
-      )
-    },
-    topLevelLocations() {
-      return this.$store.state.places ?? []
-    },
-    selectedLocationData() {
-      if (!this.selectedLocation) return null
-      return (
-        this.topLevelLocations.find((l) => l.name === this.selectedLocation) ??
-        null
-      )
-    },
-    allNpcs() {
-      return this.$store.state.npcs ?? []
-    },
-    localNpcs() {
-      if (!this.selectedLocation) return []
-      const prefix = this.selectedLocation.toLowerCase()
-      return this.allNpcs.filter((npc) =>
-        (npc.location ?? '').toLowerCase().startsWith(prefix)
-      )
-    },
-    knownNpcsFromRels() {
-      const rels = this.$store.state.relationships ?? []
-      const partyNames = new Set(
-        (this.activeParty?.members ?? []).map((n) => n.toLowerCase())
-      )
-      const localNpcNames = new Set(
-        this.localNpcs.map((n) => n.name.toLowerCase())
-      )
-      const knownNames = new Set()
-      for (const rel of rels) {
-        const people = (rel.people ?? []).map((p) => p.toLowerCase())
-        if (people.some((p) => partyNames.has(p))) {
-          people
-            .filter((p) => !partyNames.has(p) && !localNpcNames.has(p))
-            .forEach((p) => knownNames.add(p))
-        }
+
+    // The picks as the engine's buildExport wants them.
+    engineSelection() {
+      const keys = this.selection.partiesAndCharacters
+      const after = (prefix) =>
+        keys
+          .filter((k) => k.startsWith(prefix))
+          .map((k) => k.slice(prefix.length))
+      return {
+        partyIds: after('party:'),
+        characterNames: after('character:'),
+        npcNames: this.selection.npcs,
+        locationNames: this.selection.locations,
+        religionNames: this.selection.religions,
+        loreIds: this.selection.lore,
+        assetNames: this.selection.assets,
+        houseRuleNames: this.selection.houseRules,
+        featureIds: this.selection.features,
+        spellNames: this.selection.spells,
+        monsterNames: this.selection.monsters,
+        itemIds: this.selection.items,
+        include: this.include,
       }
-      return this.allNpcs.filter((npc) =>
-        knownNames.has(npc.name.toLowerCase())
+    },
+
+    payload() {
+      const s = this.store
+      return buildExport(
+        this.engineSelection,
+        {
+          parties: s.parties,
+          characters: s.characters,
+          party_items: s.party_items,
+          npcs: s.npcs,
+          places: s.places,
+          religions,
+          lore: s.lore,
+          assets: s.assets,
+          house_rules: houseRules,
+          features: this.homebrewFeatures,
+          spells: this.homebrewSpells,
+          monsters: this.homebrewMonsters,
+          items: this.homebrewItems,
+          relationships: s.relationships,
+          finances: s.finances,
+        },
+        new Date().toISOString().slice(0, 10)
       )
     },
-    allRelevantNpcs() {
-      const seen = new Set()
-      return [...this.localNpcs, ...this.knownNpcsFromRels].filter((npc) => {
-        if (seen.has(npc.name)) return false
-        seen.add(npc.name)
-        return true
-      })
+
+    // What actually ended up in the export, section by section.
+    summary() {
+      const p = this.payload
+      const rows = [
+        ['parties', p.parties],
+        ['characters', p.characters],
+        ['character items', p.character_items],
+        ['party items', p.party_items],
+        ['NPCs', p.npcs],
+        ['locations', p.locations],
+        ['religions', p.religions],
+        ['lore', p.lore],
+        ['assets', p.assets],
+        ['house rules', p.house_rules],
+        ['homebrew features', p.homebrew?.features],
+        ['homebrew spells', p.homebrew?.spells],
+        ['homebrew monsters', p.homebrew?.monsters],
+        ['campaign items', p.homebrew?.items],
+        ['relationships', p.relationships],
+      ]
+        .filter(([, list]) => list?.length)
+        .map(([label, list]) => ({ label, count: list.length }))
+      if (p.date) rows.push({ label: 'date', count: 1 })
+      if (p.party_purse) rows.push({ label: 'purse', count: 1 })
+      return rows
     },
-    relevantRelationships() {
-      const rels = this.$store.state.relationships ?? []
-      const partyNames = new Set(
-        (this.activeParty?.members ?? []).map((n) => n.toLowerCase())
-      )
-      const npcNames = new Set(
-        this.allRelevantNpcs.map((n) => n.name.toLowerCase())
-      )
-      const known = new Set([...partyNames, ...npcNames])
-      return rels.filter((r) =>
-        (r.people ?? []).some((p) => known.has(p.toLowerCase()))
-      )
-    },
-    partyGold() {
-      return this.$store.state.finances?.party_purse?.gold ?? 0
-    },
-    rawGithubUrl() {
-      return `${GITHUB_RAW_BASE}${this.generatedPath}`
+
+    sizeLabel() {
+      const kb = JSON.stringify(this.payload, null, 2).length / 1024
+      return kb < 1 ? '< 1 KB' : `${kb.toFixed(kb < 10 ? 1 : 0)} KB`
     },
   },
 
+  watch: {
+    selection: { deep: true, handler: 'persist' },
+    include: { deep: true, handler: 'persist' },
+  },
+
+  created() {
+    this.restore()
+    import('@/data/published_features.json').then((mod) => {
+      this.homebrewFeatures = (mod.default ?? mod).filter((f) => f.homebrew)
+    })
+    import('@/data/published_spells.json').then((mod) => {
+      this.homebrewSpells = (mod.default ?? mod).filter((s) => s.homebrew)
+    })
+    import('@/data/published_monsters.json').then((mod) => {
+      this.homebrewMonsters = (mod.default ?? mod).filter((m) => m.homebrew)
+    })
+    fetch('/api/engine/item-catalog')
+      .then((r) => (r.ok ? r.json() : []))
+      .then((list) => {
+        this.homebrewItems = list.filter((i) => i.library === 'campaign')
+      })
+      .catch(() => {})
+  },
+
   methods: {
-    equippedItems(character) {
-      return this.partyItemBundle.filter(
-        (i) => i.equipped_by === character.name
-      )
-    },
-
-    classLine(char) {
-      return (char.classes ?? [])
-        .map(
-          (c) => `${c.name}${c.subclass ? ` (${c.subclass})` : ''} ${c.level}`
-        )
-        .join(' / ')
-    },
-
-    passivePerception(char) {
-      return dnd.passivePerception(char, this.allItems)
-    },
-
-    buildMarkdown() {
-      const party = this.activeParty
-      const date = new Date().toISOString().split('T')[0]
-      const lines = []
-
-      lines.push(`# ${party.name} — Campaign Context`)
-      lines.push(
-        `*Generated ${date} · ${
-          this.partyDate ? this.partyDate.text : 'date unknown'
-        } · ${this.partyGold.toLocaleString()} gp*`
-      )
-      lines.push('')
-      lines.push('---')
-      lines.push('')
-
-      // ── Characters ──────────────────────────────────────────
-      lines.push('## The Party')
-      lines.push('')
-      for (const char of this.activeMembers) {
-        lines.push(`### ${char.name}`)
-        const classLabel = this.classLine(char)
-        lines.push(`**${char.genus} · ${classLabel}**`)
-        lines.push('')
-        if (char.appearance) lines.push(char.appearance)
-        if (char.notes) lines.push('')
-        if (char.notes) lines.push(char.notes)
-        lines.push('')
-        const gear = this.equippedItems(char)
-        if (gear.length) {
-          lines.push(
-            `**Equipped:** ${gear
-              .map((i) => {
-                const bonus = dnd.weaponEnchantment(char, i, this.allItems)
-                return i.name + (bonus ? ` (+${bonus})` : '')
-              })
-              .join(', ')}`
-          )
-          lines.push('')
-        }
-        const spellAbility = char.spellcasting_ability
-        if (spellAbility) {
-          lines.push(
-            `**Spellcasting:** ${spellAbility.toUpperCase()} · HP ${
-              char.hp_current
-            }/${char.hp_max}`
-          )
-          lines.push('')
-        } else {
-          lines.push(`**HP:** ${char.hp_current}/${char.hp_max}`)
-          lines.push('')
-        }
-        lines.push(`**Passive Perception:** ${this.passivePerception(char)}`)
-        lines.push('')
-      }
-
-      // Party pool items (carried_by === 'party')
-      const poolItems = this.partyItemBundle.filter(
-        (i) => i.carried_by === 'party'
-      )
-      if (poolItems.length) {
-        lines.push('### Party Pool')
-        lines.push('')
-        lines.push(poolItems.map((i) => `- ${i.name}`).join('\n'))
-        lines.push('')
-      }
-
-      lines.push('---')
-      lines.push('')
-
-      // ── Current location ────────────────────────────────────
-      if (this.selectedLocationData) {
-        const loc = this.selectedLocationData
-        lines.push(`## Current Location: ${loc.name}`)
-        lines.push('')
-        if (loc.description) lines.push(loc.description)
-        if (loc.notes) {
-          lines.push('')
-          lines.push(loc.notes)
-        }
-        if (loc.faction_presence?.length) {
-          lines.push('')
-          lines.push(`**Faction presence:** ${loc.faction_presence.join(', ')}`)
-        }
-
-        // Districts
-        if (loc.districts?.length) {
-          lines.push('')
-          lines.push('### Districts')
-          for (const d of loc.districts) {
-            lines.push('')
-            lines.push(`**${d.name}**`)
-            if (d.description) lines.push(d.description)
-            if (d.faction_presence?.length)
-              lines.push(`Factions: ${d.faction_presence.join(', ')}`)
-          }
-        }
-
-        // Named sub-locations
-        if (loc.locations?.length) {
-          lines.push('')
-          lines.push('### Notable Places')
-          for (const sub of loc.locations) {
-            const npcHere = this.localNpcs
-              .filter(
-                (n) =>
-                  (n.location ?? '').toLowerCase() ===
-                  `${this.selectedLocation.toLowerCase()}, ${sub.name.toLowerCase()}`
-              )
-              .map((n) => n.name)
-            lines.push('')
-            lines.push(
-              `**${sub.name}**${
-                npcHere.length ? ` — ${npcHere.join(', ')}` : ''
-              }`
-            )
-            if (sub.description) lines.push(sub.description)
-            if (sub.notes) lines.push(sub.notes)
-          }
-        }
-
-        lines.push('')
-        lines.push('---')
-        lines.push('')
-      }
-
-      // ── NPCs ────────────────────────────────────────────────
-      if (this.allRelevantNpcs.length) {
-        lines.push('## Known NPCs')
-        lines.push('')
-
-        for (const npc of this.allRelevantNpcs) {
-          lines.push(`### ${npc.name}`)
-          const tags = [npc.role, npc.location].filter(Boolean)
-          if (tags.length) lines.push(`*${tags.join(' · ')}*`)
-          lines.push('')
-          if (npc.appearance) lines.push(npc.appearance)
-          if (npc.personality_traits) {
-            lines.push('')
-            lines.push(npc.personality_traits)
-          }
-          if (npc.personality_quirks) lines.push(npc.personality_quirks)
-          if (npc.notes) {
-            lines.push('')
-            lines.push(npc.notes)
-          }
-          if (npc.status?.length) {
-            lines.push('')
-            lines.push(`**Status:** ${npc.status.join(', ')}`)
-          }
-
-          // Relationship to party
-          const partyNames = new Set(
-            (this.activeParty?.members ?? []).map((n) => n.toLowerCase())
-          )
-          const npcRels = this.relevantRelationships.filter(
-            (r) =>
-              (r.people ?? []).some(
-                (p) => p.toLowerCase() === npc.name.toLowerCase()
-              ) && (r.people ?? []).some((p) => partyNames.has(p.toLowerCase()))
-          )
-          for (const rel of npcRels) {
-            const partyPerson = (rel.people ?? []).find((p) =>
-              partyNames.has(p.toLowerCase())
-            )
-            lines.push(
-              `**Relationship with ${partyPerson}:** ${rel.type}${
-                rel.notes ? ' — ' + rel.notes : ''
-              }`
-            )
-          }
-
-          lines.push('')
-        }
-
-        lines.push('---')
-        lines.push('')
-      }
-
-      // ── PC–PC relationships ──────────────────────────────────
-      const partyNames = new Set(
-        (this.activeParty?.members ?? []).map((n) => n.toLowerCase())
-      )
-      const pcRels = this.relevantRelationships.filter((r) =>
-        (r.people ?? []).every((p) => partyNames.has(p.toLowerCase()))
-      )
-      if (pcRels.length) {
-        lines.push('## Party Dynamics')
-        lines.push('')
-        for (const rel of pcRels) {
-          const [a, b] = rel.people
-          lines.push(
-            `**${a} & ${b}** — ${rel.type}${rel.notes ? ': ' + rel.notes : ''}`
-          )
-        }
-        lines.push('')
-      }
-
-      return lines.join('\n')
-    },
-
-    async generateFile() {
-      if (!this.activeParty || this.generating) return
-      this.generating = true
-      this.writeError = ''
-      this.generatedPath = ''
-      this.generated = false
-
+    // Remembered per browser only; a viewing convenience, not campaign data.
+    persist() {
       try {
-        const content = this.buildMarkdown()
-        const filename = this.activeParty.name
-        const res = await fetch('/api/dm-context', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ filename, content }),
-        })
-        const data = await res.json()
-        if (!res.ok) throw new Error(data.error || res.statusText)
-        this.generatedPath = data.path
-        this.generated = true
-        setTimeout(() => {
-          this.generated = false
-        }, 3000)
-      } catch (err) {
-        this.writeError = err.message
-      } finally {
-        this.generating = false
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ selection: this.selection, include: this.include })
+        )
+      } catch {
+        // Storage blocked — the screen works, it just forgets.
+      }
+    },
+
+    restore() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null')
+        if (!saved) return
+        this.selection = { ...emptySelection(), ...saved.selection }
+        this.include = { ...defaultInclude(), ...saved.include }
+      } catch {
+        // Nothing usable saved; start with the defaults.
       }
     },
 
     copyJson() {
-      const payload = {
-        party: {
-          name: this.activeParty.name,
-          date: this.partyDate,
-          gold: this.partyGold,
-        },
-        // passive_perception is derived (skills, items and features all
-        // count), so it isn't on the stored record — add the engine's number.
-        characters: this.activeMembers.map((char) => ({
-          ...char,
-          passive_perception: this.passivePerception(char),
-        })),
-        items: this.partyItemBundle,
-        ...(this.selectedLocationData
-          ? { current_location: this.selectedLocationData }
-          : {}),
-        ...(this.allRelevantNpcs.length ? { npcs: this.allRelevantNpcs } : {}),
-        ...(this.relevantRelationships.length
-          ? { relationships: this.relevantRelationships }
-          : {}),
-      }
-      navigator.clipboard.writeText(JSON.stringify(payload, null, 2))
+      navigator.clipboard.writeText(JSON.stringify(this.payload, null, 2))
       this.copied = true
       setTimeout(() => {
         this.copied = false
-      }, 1800)
-    },
-
-    copyUrl() {
-      navigator.clipboard.writeText(this.rawGithubUrl)
-      this.urlCopied = true
-      setTimeout(() => {
-        this.urlCopied = false
       }, 1800)
     },
   },
@@ -511,189 +361,124 @@ export default {
 
 <style scoped>
 .dm-export {
-  padding: 2vh 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-width: 640px;
+  height: 100%;
+  overflow: hidden;
+  padding: 1rem 1.25rem;
+  gap: 0.8rem;
+}
+
+.dm-header {
+  flex-shrink: 0;
 }
 
 .dm-title {
+  margin: 0;
   font-family: var(--font-display);
-  font-size: var(--font-size-lg);
-  color: var(--color-text);
-  margin: 0 0 0.4rem;
+  font-size: var(--font-size-xl);
+  color: var(--color-accent-strong);
 }
 
 .dm-desc {
+  margin: 0.2rem 0 0;
   font-size: var(--font-size-sm);
   color: var(--color-text-low);
-  margin: 0;
-  line-height: 1.5;
 }
 
-.dm-desc code {
-  font-size: 0.95em;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 0.05em 0.3em;
-}
-
-.dm-row {
+.dm-toggles {
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  flex-shrink: 0;
 }
 
-.dm-label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-low);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.dm-select {
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text);
-  padding: 0.4em 0.6em;
+.dm-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   font-size: var(--font-size-md);
-  max-width: 320px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.dm-toggle input {
+  accent-color: var(--color-accent);
+}
+
+.dm-lists {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.7rem;
+  align-content: start;
+}
+
+.dm-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-border);
 }
 
 .dm-summary {
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 0.75rem 1rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: var(--font-size-sm);
-}
-
-.summary-label {
-  color: var(--color-text-low);
-}
-
-.summary-val {
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.summary-sub {
-  font-weight: 400;
-  color: var(--color-text-low);
-  margin-left: 0.3em;
-}
-
-.dm-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   flex-wrap: wrap;
+  gap: 0.3rem;
+  min-width: 0;
 }
 
-.action-btn {
-  background: var(--color-bg-panel);
-  color: var(--color-text);
+.dm-chip {
+  padding: 0.05rem 0.5rem;
   border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 0.5em 1.2em;
-  font-size: var(--font-size-md);
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.action-btn:hover:not(:disabled) {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
-.action-btn--primary {
-  background: var(--color-accent);
-  color: var(--color-bg);
-  border-color: var(--color-accent);
-  font-weight: 600;
-}
-
-.action-btn--primary:hover:not(:disabled) {
-  color: var(--color-bg);
-  background: var(--color-accent-strong);
-  border-color: var(--color-accent-strong);
-}
-
-.action-btn--done {
-  background: var(--color-accent-strong) !important;
-  border-color: var(--color-accent-strong) !important;
-}
-
-.action-btn:disabled {
-  opacity: 0.4;
-  cursor: default;
+  border-radius: 10px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .dm-hint {
   font-size: var(--font-size-sm);
   color: var(--color-text-low);
+  font-style: italic;
 }
 
-.dm-result {
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 0.75rem 1rem;
+.dm-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
 }
 
-.result-label {
-  font-size: var(--font-size-sm);
+.dm-size {
+  font-size: var(--font-size-xs);
   color: var(--color-text-low);
 }
 
-.result-url {
-  font-size: var(--font-size-sm);
-  color: var(--color-accent);
-  word-break: break-all;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 0.4em 0.6em;
-  display: block;
-}
-
-.ghost-btn {
-  align-self: flex-start;
+.action-btn {
+  padding: 0.45rem 1.2rem;
   background: none;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-low);
-  padding: 0.2em 0.7em;
-  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--font-size-md);
   cursor: pointer;
+  transition: all 0.15s ease;
 }
-
-.ghost-btn:hover {
-  color: var(--color-text);
-  border-color: var(--color-text-low);
+.action-btn:hover:not(:disabled) {
+  color: white;
+  background: var(--color-accent);
 }
-
-.dm-error {
-  background: #3a1a1a;
-  border: 1px solid #7a2a2a;
-  border-radius: 4px;
-  color: #f28b82;
-  padding: 0.6em 1em;
-  font-size: var(--font-size-sm);
+.action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.action-btn--done {
+  color: white;
+  background: var(--color-accent);
 }
 </style>
