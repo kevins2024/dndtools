@@ -1,8 +1,8 @@
 #!/bin/sh
 # Runs Prettier on staged files before each commit, then re-stages the
 # formatted result. Checked into scripts/ because .git/hooks isn't tracked
-# by git — see scripts/README.md (or the repo root CLAUDE.md) for how to
-# install it into a fresh checkout.
+# by git — see scripts/install-hooks.js (runs on `npm install`) for how it
+# gets into a fresh checkout.
 #
 # Added 2026-09-09: prior sessions without this hook let files drift out of
 # Prettier's formatting a little at a time, until some unrelated edit
@@ -10,14 +10,20 @@
 # in one big, noisy diff. Running this on every commit keeps that from
 # accumulating.
 
-staged_files=$(git diff --cached --name-only --diff-filter=ACM -- '*.js' '*.vue' '*.json' '*.css' '*.md')
+# Campaign data JSON (src/data, engine/data) is left out on purpose: the dev
+# server saves those files with JSON.stringify, not Prettier's layout, so
+# formatting them here would rewrite hundreds of lines every commit and the
+# next in-app save would undo it. Code, config and docs are formatted.
+staged_files=$(git diff --cached --name-only --diff-filter=ACM -- '*.js' '*.vue' '*.json' '*.css' '*.md' \
+  | grep -v -E '^(src|engine)/data/.*\.json$')
 
 if [ -z "$staged_files" ]; then
   exit 0
 fi
 
-echo "$staged_files" | xargs npx prettier --write
+# NUL-separated so a path with spaces or parentheses survives xargs.
+echo "$staged_files" | tr '\n' '\0' | xargs -0 npx prettier --write
 
-echo "$staged_files" | xargs git add
+echo "$staged_files" | tr '\n' '\0' | xargs -0 git add
 
 exit 0

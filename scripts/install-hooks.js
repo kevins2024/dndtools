@@ -38,11 +38,25 @@ try {
     process.exit(0)
   }
 
-  fs.symlinkSync(hookSource, hookTarget)
-  fs.chmodSync(path.join(repoRoot, 'scripts', 'pre-commit'), 0o755)
-  console.log(
-    '[install-hooks] Installed scripts/pre-commit as .git/hooks/pre-commit'
-  )
+  try {
+    fs.symlinkSync(hookSource, hookTarget)
+    fs.chmodSync(path.join(repoRoot, 'scripts', 'pre-commit'), 0o755)
+    console.log(
+      '[install-hooks] Installed scripts/pre-commit as .git/hooks/pre-commit'
+    )
+  } catch {
+    // Windows without Developer Mode / admin can't create symlinks. A tiny
+    // stub that runs the checked-in script gives the same result and still
+    // picks up later edits to scripts/pre-commit.
+    fs.writeFileSync(
+      hookTarget,
+      '#!/bin/sh\nexec sh "$(git rev-parse --show-toplevel)/scripts/pre-commit"\n'
+    )
+    fs.chmodSync(hookTarget, 0o755)
+    console.log(
+      '[install-hooks] Symlinks unavailable; installed a stub that runs scripts/pre-commit'
+    )
+  }
 } catch (err) {
   console.warn(
     `[install-hooks] Could not install pre-commit hook: ${err.message}`
