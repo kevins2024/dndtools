@@ -1078,25 +1078,6 @@
     "weapon_category": "longsword",
     "slot": "melee1h"
   },
-  "test-wand-of-magic-missiles": {
-    "spells_granted": [
-      {
-        "name": "Magic Missile",
-        "action_type": "action",
-        "charge_cost": {
-          "min": 1,
-          "max": 7
-        }
-      }
-    ],
-    "charges_max": 7,
-    "charges_recharge": "1d6+1",
-    "charges_recharge_type": "rest",
-    "action_type": "action",
-    "battle_effect": true,
-    "value_gp": 500,
-    "slot": "held"
-  },
   "the-eighth-redress": {
     "stat_bonuses": {
       "psychic_blade_attack": 2,

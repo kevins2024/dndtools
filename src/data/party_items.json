@@ -2625,18 +2625,6 @@
     "id": "items_217"
   },
   {
-    "name": "TEST Wand of Magic Missiles",
-    "catalog_id": "test-wand-of-magic-missiles",
-    "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "party",
-    "attuned": false,
-    "notes": "TEST ITEM — delete after verifying BattleItemsPanel.vue's carried-but-unequipped behavior and the destroy-for-dust dialog. See TODO.md.",
-    "id": "items_218",
-    "stored_at": null,
-    "party_id": "party_1789138172014"
-  },
-  {
     "effect": "Holds roughly 15 items of average size (house rule capacity, not RAW weight/volume).",
     "name": "Bag of Holding",
     "catalog_id": "bag-of-holding",

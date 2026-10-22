@@ -3,6 +3,7 @@ const assert = require('node:assert')
 const {
   weaveDustForRoll,
   weaveDustEstimateRange,
+  itemValueGp,
 } = require('../rules/houseRules')
 
 test('weaveDustForRoll: no value_gp means null, not 0', () => {
@@ -85,6 +86,50 @@ test('crowdStrength: null when not a crowd or max HP unknown; damage past max fl
   assert.strictEqual(crowdStrength({ size: 5, maxHp: 50, damage: 80 }), 0)
 })
 
-test('crowdAreaDamage: halved then multiplied by Strength (the rule\'s fireball example)', () => {
+test("crowdAreaDamage: halved then multiplied by Strength (the rule's fireball example)", () => {
   assert.strictEqual(crowdAreaDamage(20, 3), 30)
+})
+
+test('itemValueGp: its own value_gp wins; otherwise a standard value for its rarity', () => {
+  assert.strictEqual(itemValueGp({ value_gp: 1234, rarity: 'rare' }), 1234)
+  assert.strictEqual(itemValueGp({ rarity: 'Uncommon' }), 500)
+  assert.strictEqual(itemValueGp({ rarity: 'very rare' }), 50000)
+})
+
+test('itemValueGp: an enchanted weapon or armor with no rarity uses the DMG rarity for its +N', () => {
+  assert.strictEqual(itemValueGp({ type: 'weapon', enhancement_bonus: 1 }), 500) // uncommon
+  assert.strictEqual(
+    itemValueGp({ type: 'weapon', enhancement_bonus: 2 }),
+    5000
+  ) // rare
+  assert.strictEqual(
+    itemValueGp({ type: 'weapon', enhancement_bonus: 3 }),
+    50000
+  ) // very rare
+  assert.strictEqual(
+    itemValueGp({ armor_type: 'plate', enhancement_bonus: 2 }),
+    50000
+  ) // very rare
+  assert.strictEqual(
+    itemValueGp({ armor_type: 'shield', enhancement_bonus: 2 }),
+    5000
+  ) // rare
+})
+
+test('itemValueGp: artifacts, unknown rarity and plain gear have no value to work from', () => {
+  assert.strictEqual(itemValueGp({ rarity: 'artifact' }), null)
+  assert.strictEqual(itemValueGp({ rarity: 'uncommon/rare' }), null)
+  assert.strictEqual(itemValueGp({ name: 'Rope' }), null)
+  assert.strictEqual(itemValueGp(null), null)
+})
+
+test('weaveDustForRoll: a rarity-valued item gives dust through the same ratio and roll rules', () => {
+  const longsword = { type: 'weapon', enhancement_bonus: 2 } // rare -> 5,000 gp -> base 333
+  assert.strictEqual(weaveDustForRoll(longsword, 10), 330) // -1%
+  assert.strictEqual(weaveDustForRoll(longsword, 20), 666) // doubled
+  assert.strictEqual(weaveDustForRoll(longsword, 1), 166) // halved
+  assert.deepStrictEqual(weaveDustEstimateRange(longsword), {
+    low: 303,
+    high: 363,
+  })
 })

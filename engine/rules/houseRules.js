@@ -8,6 +8,42 @@
 
 const { FALL_CAP_DAMAGE } = require('./5e/fall')
 
+// The gold value Weave Dust is worked out from. An item's own recorded
+// value_gp always wins. Otherwise it is a standard value for the item's
+// rarity: the item's rarity if it has one, or, for an enchanted weapon or
+// armor with none recorded, the rarity the DMG gives that +N (weapons and
+// shields +1 uncommon / +2 rare / +3 very rare; other armor +1 rare / +2
+// very rare / +3 legendary). The gold figures are a campaign choice (the DMG
+// gives price ranges, not single values) and are the one place to edit if
+// they feel wrong. Artifacts and anything with no rarity to go on return
+// null: nothing to calculate from, so the caller falls back to manual entry.
+const RARITY_VALUE_GP = {
+  common: 100,
+  uncommon: 500,
+  rare: 5000,
+  'very rare': 50000,
+  legendary: 100000,
+}
+
+function rarityOf(item) {
+  const rarity = String(item?.rarity ?? '').toLowerCase()
+  if (RARITY_VALUE_GP[rarity]) return rarity
+  const bonus = item?.enhancement_bonus
+  if (!bonus || bonus < 1 || bonus > 3) return null
+  const armor = item.armor_type && item.armor_type !== 'shield'
+  const ladder = armor
+    ? ['rare', 'very rare', 'legendary']
+    : ['uncommon', 'rare', 'very rare']
+  return ladder[bonus - 1]
+}
+
+function itemValueGp(item) {
+  if (!item) return null
+  if (item.value_gp) return item.value_gp
+  const rarity = rarityOf(item)
+  return rarity ? RARITY_VALUE_GP[rarity] : null
+}
+
 // "Weave Dust from Broken-Down Magic Items": a magic item can be destroyed
 // for Weave Dust instead of sold for gold. base = value_gp / 15, reduced by
 // up to 30% in proportion to missing charges, and for an item that
@@ -18,8 +54,9 @@ const { FALL_CAP_DAMAGE } = require('./5e/fall')
 // preview a range and commit one real roll. Returns null when the item has
 // no recorded value_gp — nothing to calculate from, not a silent 0.
 function weaveDustForRoll(item, roll) {
-  if (!item?.value_gp) return null
-  let base = item.value_gp / 15
+  const valueGp = itemValueGp(item)
+  if (!valueGp) return null
+  let base = valueGp / 15
   if (item.charges_max) {
     const current = item.charges_current ?? item.charges_max
     const missingFraction = 1 - current / item.charges_max
@@ -46,7 +83,7 @@ function weaveDustForRoll(item, roll) {
 // preview before actually destroying the item, which rolls for real
 // (including the crit 1/20 cases) via weaveDustForRoll.
 function weaveDustEstimateRange(item) {
-  if (!item?.value_gp) return null
+  if (!itemValueGp(item)) return null
   return {
     low: weaveDustForRoll(item, 2),
     high: weaveDustForRoll(item, 19),
@@ -112,6 +149,8 @@ function landingImpact(fallDamage, target = {}, { lethal = false } = {}) {
 
 module.exports = {
   landingImpact,
+  RARITY_VALUE_GP,
+  itemValueGp,
   weaveDustForRoll,
   weaveDustEstimateRange,
   crowdStrength,

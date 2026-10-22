@@ -960,16 +960,6 @@
     "homebrew": true
   },
   {
-    "id": "test-wand-of-magic-missiles",
-    "name": "TEST Wand of Magic Missiles",
-    "source": "Campaign",
-    "category": "wondrous item",
-    "rarity": null,
-    "requires_attunement": false,
-    "desc": "TEST ITEM — added to check whether an item that's carried but not equipped (no equipped_by, not equipped_by:'disallowed') shows up as usable in the Battle tab. Also doubles as a test of the Weave Dust destroy flow (value_gp set). Delete once verified.",
-    "homebrew": true
-  },
-  {
     "id": "the-eighth-redress",
     "name": "The Eighth Redress",
     "source": "Campaign",

@@ -1161,7 +1161,12 @@ export default {
     },
     deleteIsMagical() {
       const item = this.deleteCandidate
-      return !!(item && (item.rarity || item.needs_attunement))
+      return !!(
+        item &&
+        (item.rarity ||
+          item.needs_attunement ||
+          dnd.weaveDustEstimateRange(item))
+      )
     },
     // Weave Dust from Broken-Down Magic Items (house_rules.json) — only
     // computable when the item carries a real recorded value_gp; null means
