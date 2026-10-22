@@ -3,312 +3,234 @@
     {
       "name": "goldsmith",
       "description": "Crafted gold jewelry, ceremonial objects, reliquaries, and elite tableware.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "silversmith",
       "description": "Produced silver vessels, church plate, utensils, and decorative luxury goods.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "filigree worker",
       "description": "Created intricate wirework ornamentation in precious metals.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "lapidary",
       "description": "Cut and polished gemstones and engraved hard stones.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "enameler",
       "description": "Applied fused colored glass decoration to metal surfaces.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "ivory carver",
       "description": "Carved luxury devotional objects, handles, and miniatures from ivory.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "tapestry weaver",
       "description": "Produced large decorative woven wall hangings for courts and churches.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "lace maker",
       "description": "Made intricate lace trim for elite clothing and church vestments.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "silk weaver",
       "description": "Produced luxury silk textiles, brocades, and velvets.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "embroiderer",
       "description": "Decorated garments and banners with stitched imagery and gold thread.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "passementerie maker",
       "description": "Produced tassels, braid, trim, and decorative cords.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "velvet weaver",
       "description": "Specialized in dense luxury velvet cloth.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "damask weaver",
       "description": "Created patterned woven textiles with reversible designs.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "furrier",
       "description": "Prepared and sold luxury fur garments and linings.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "illuminator",
       "description": "Decorated manuscripts with gold leaf and painted ornament.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval"],
       "specializationLevel": "elite"
     },
     {
       "name": "bookbinder",
       "description": "Bound manuscripts and books in leather, wood, and metal fittings.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "mirror maker",
       "description": "Produced polished and silvered mirrors, especially luxury Venetian styles.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "glassblower",
       "description": "Made vessels, beads, windows, and decorative glass.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "stained glass maker",
       "description": "Created colored glass windows for churches and civic buildings.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "maiolica painter",
       "description": "Painted tin-glazed ceramic luxury ware.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "cabinetmaker",
       "description": "Built fine furniture with carving and inlay.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "intarsia specialist",
       "description": "Created illusionistic wood inlay decoration.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "organ builder",
       "description": "Constructed pipe organs for churches and courts.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "clockmaker",
       "description": "Built mechanical clocks and precision timing devices.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "astrolabe maker",
       "description": "Produced astronomical navigation instruments.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "lens grinder",
       "description": "Ground optical lenses for spectacles and scientific devices.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "armor decorator",
       "description": "Etched, gilded, and ornamented ceremonial armor.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "sword polisher",
       "description": "Finished and polished high-status blades.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "damascener",
       "description": "Inlaid precious metals into weapon surfaces.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "seal engraver",
       "description": "Carved official seals and signet rings.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "perfumer",
       "description": "Blended fragrances, oils, and aromatic waters.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "apothecary",
       "description": "Prepared medicines, pigments, spices, and luxury compounds.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "mapmaker",
       "description": "Created navigational charts and decorative maps.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "miniature painter",
       "description": "Painted small detailed portraits and devotional images.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "mosaicist",
       "description": "Assembled decorative mosaics from colored stone and glass.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "bronze caster",
       "description": "Cast statues, bells, doors, and decorative metalworks.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "bell founder",
       "description": "Specialized in casting church and civic bells.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "parade armor maker",
       "description": "Built ceremonial armor for nobility and courts.",
-      "isLuxury": true,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "court tailor",
       "description": "Tailored elite garments for nobles and royalty.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     }
@@ -317,321 +239,579 @@
     {
       "name": "bowyer",
       "description": "Made bows for hunting and warfare.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "fletcher",
       "description": "Produced arrows and bolts with feather fletching.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "blacksmith",
       "description": "Forged tools, nails, hinges, and general ironwork.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "farrier",
       "description": "Shoed horses and treated hoof problems.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "cooper",
       "description": "Made barrels, casks, and wooden containers.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "wheelwright",
       "description": "Constructed wagon and cart wheels.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "carpenter",
       "description": "Built wooden structures, roofs, and interiors.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "mason",
       "description": "Worked stone for buildings, walls, and foundations.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "brickmaker",
       "description": "Produced fired clay bricks for construction.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "potter",
       "description": "Made household pottery and storage vessels.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "baker",
       "description": "Baked bread and pastries for local communities.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "brewer",
       "description": "Produced beer and ale for daily consumption.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "miller",
       "description": "Ground grain into flour using mills.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "butcher",
       "description": "Prepared and sold meat products.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "fishmonger",
       "description": "Sold fresh and preserved fish.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "candlemaker",
       "description": "Produced wax and tallow candles.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "tanner",
       "description": "Processed animal hides into leather.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "cobbler",
       "description": "Repaired and sometimes made shoes.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "cordwainer",
       "description": "Produced new leather shoes from fine leather.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "glovemaker",
       "description": "Crafted leather and cloth gloves.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "rope maker",
       "description": "Twisted fibers into rope and cordage.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "net maker",
       "description": "Produced fishing and cargo nets.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "weaver",
       "description": "Wove cloth from wool, linen, or hemp.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "dyer",
       "description": "Colored textiles using natural dyes.",
-      "isLuxury": true,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "fuller",
       "description": "Cleaned and thickened wool cloth.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "tailor",
       "description": "Cut and sewed clothing to fit customers.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "hatter",
       "description": "Made hats and headwear from felt and cloth.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "soapmaker",
       "description": "Produced soap from fats and lye.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "parchment maker",
       "description": "Prepared animal skins for writing surfaces.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval"],
       "specializationLevel": "medium"
     },
     {
       "name": "scribe",
       "description": "Copied legal, religious, and commercial texts by hand.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval"],
       "specializationLevel": "high"
     },
     {
       "name": "printer",
       "description": "Operated presses to produce books and pamphlets.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "type founder",
       "description": "Cast movable type for printing presses.",
-      "isLuxury": false,
-      "isOrdinary": false,
       "timePeriod": ["renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "locksmith",
       "description": "Built locks, keys, and security hardware.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "high"
     },
     {
       "name": "nail maker",
       "description": "Forged nails for construction and shipbuilding.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "shipwright",
       "description": "Constructed ships and large boats.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "elite"
     },
     {
       "name": "sailmaker",
       "description": "Produced sails and rigging cloth.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "cartwright",
       "description": "Built carts and wagons for transport.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "medium"
     },
     {
       "name": "tile maker",
       "description": "Produced roofing and flooring tiles.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "plasterer",
       "description": "Applied plaster finishes to walls and ceilings.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["medieval", "renaissance"],
       "specializationLevel": "low"
     },
     {
       "name": "chimney sweep",
       "description": "Cleaned soot from chimneys and hearths.",
-      "isLuxury": false,
-      "isOrdinary": true,
       "timePeriod": ["renaissance"],
+      "specializationLevel": "low"
+    }
+  ],
+  "laborers": [
+    {
+      "name": "field hand",
+      "description": "Plowed, sowed, weeded and harvested for a landholder; paid in coin or a share of the crop.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "shepherd",
+      "description": "Tended flocks on the hill pasture, lambing in spring and shearing in summer.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "swineherd",
+      "description": "Drove pigs into the woods to feed on acorns and beechmast.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "goose girl",
+      "description": "Kept geese on the common and sold feathers and eggs.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "miner",
+      "description": "Dug ore or stone underground in cramped shafts, at risk of collapse and bad air.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "quarryman",
+      "description": "Split and hauled building stone from the quarry face.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "charcoal burner",
+      "description": "Lived in the woods tending slow-burning clamps of wood to make charcoal for smiths.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "woodcutter",
+      "description": "Felled and trimmed timber for firewood and building.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "sawyer",
+      "description": "Cut logs into planks over a saw pit, one man above, one below.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "peat cutter",
+      "description": "Cut and dried peat turves for fuel on the moor.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "reed cutter",
+      "description": "Harvested reed and rush for thatching and mats.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "thatcher",
+      "description": "Roofed cottages and barns with straw or reed.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "ditcher",
+      "description": "Dug drainage ditches, wells and latrine pits.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "gong farmer",
+      "description": "Emptied cesspits and privies by night and carted the waste away.",
+      "timePeriod": ["medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "night-soil carter",
+      "description": "Hauled refuse and dung out of town to the fields.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "midden scavenger",
+      "description": "Picked through middens, tideline and refuse heaps for rags, bone and metal.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "rag-and-bone man",
+      "description": "Bought scraps, rags and bones door to door and sold them to papermakers and glue boilers.",
+      "timePeriod": ["medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "water carrier",
+      "description": "Carried water from the well or river to households for a copper.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "porter",
+      "description": "Carried loads in the market and on the docks on his back or in a hand barrow.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "stevedore",
+      "description": "Loaded and unloaded ships at the quay.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "carter",
+      "description": "Drove a horse or ox cart carrying goods between town and village.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "drover",
+      "description": "Walked cattle, sheep or geese to market along the old roads.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "ferryman",
+      "description": "Poled or rowed travelers across a river for a fare.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "bargeman",
+      "description": "Worked barges along the river and canal, hauling grain, stone and salt.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "towpath hauler",
+      "description": "Led horses pulling barges along the towpath.",
+      "timePeriod": ["medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "hostler",
+      "description": "Fed, groomed and stabled horses at an inn.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "potboy",
+      "description": "Washed pots, hauled kegs and cleaned the tap room at an inn.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "scullion",
+      "description": "Scrubbed pans and turned spits in a great kitchen.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "laundress",
+      "description": "Washed clothes and linen in the river or a tub for a few coins.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "chambermaid",
+      "description": "Cleaned rooms and emptied chamber pots at inns and manors.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "wet nurse",
+      "description": "Nursed other women's babies for pay.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "midwife",
+      "description": "Delivered babies and tended mothers.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "grave digger",
+      "description": "Dug graves and tended the churchyard.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "bellringer",
+      "description": "Rang the church or town bells for hours, services and alarms.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "lamplighter",
+      "description": "Lit and trimmed the street lamps at dusk.",
+      "timePeriod": ["medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "town crier",
+      "description": "Cried the news, proclamations and lost goods through the streets.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "watchman",
+      "description": "Walked the streets at night calling the hours and watching for fire and thieves.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "gate warden",
+      "description": "Collected tolls and questioned travelers at the town gate.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "toll keeper",
+      "description": "Held the bridge or road toll and kept the tally.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "fowler",
+      "description": "Netted and snared wildfowl for the market.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "fisherman",
+      "description": "Fished from boat or bank and sold the catch.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "eel catcher",
+      "description": "Set traps for eels in the fens and rivers.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "oyster raker",
+      "description": "Raked shellfish from the tidal flats.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "salt boiler",
+      "description": "Boiled seawater in pans to make salt.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "saltpan worker",
+      "description": "Raked and carried salt from the evaporation pans.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "beekeeper",
+      "description": "Kept skeps of bees for honey and wax.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "hunter",
+      "description": "Hunted game in the woods for meat and hides.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "medium"
+    },
+    {
+      "name": "trapper",
+      "description": "Set snares for fur animals and sold the pelts.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "herb gatherer",
+      "description": "Gathered wild herbs, roots and mushrooms to sell to cooks and healers.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "tavern cook",
+      "description": "Cooked pottage, pies and roasts for a common room.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "pie seller",
+      "description": "Walked the streets with a tray of hot pies.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "ratcatcher",
+      "description": "Killed vermin in granaries and houses for a fee.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "hull caulker",
+      "description": "Caulked and tarred hulls and scraped barnacles.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "tinker",
+      "description": "Mended pots, pans and kettles along the road.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "knife grinder",
+      "description": "Sharpened knives and shears with a foot-driven wheel.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
+      "specializationLevel": "low"
+    },
+    {
+      "name": "peddler",
+      "description": "Carried a pack of pins, ribbons and trinkets from door to door.",
+      "timePeriod": ["ancient", "medieval", "renaissance"],
       "specializationLevel": "low"
     }
   ]
