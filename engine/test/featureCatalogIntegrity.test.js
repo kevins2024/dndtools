@@ -45,7 +45,9 @@ const barb = (level, extra = {}) => ({
   hit_dice_current: level,
   features: [],
   spells: [],
-  classes: [{ name: 'Barbarian', subclass: level >= 3 ? 'Berserker' : null, level }],
+  classes: [
+    { name: 'Barbarian', subclass: level >= 3 ? 'Berserker' : null, level },
+  ],
   ...extra,
 })
 
@@ -62,9 +64,22 @@ test('Rage is stamped with its use count from the Barbarian rages_by_level table
     const from = barb(toLevel - 1)
     from.classes[0].subclass = toLevel - 1 >= 3 ? 'Berserker' : null
     // a character already holding Rage (so level-ups re-stamp it)
-    const withRage = toLevel === 1 ? from : { ...from, features: [{ name: 'Rage', id: 'rage', type: 'feature', level_gained: 1 }] }
+    const withRage =
+      toLevel === 1
+        ? from
+        : {
+            ...from,
+            features: [
+              { name: 'Rage', id: 'rage', type: 'feature', level_gained: 1 },
+            ],
+          }
     const r = diffLevelUp(
-      toLevel === 3 ? { ...withRage, classes: [{ name: 'Barbarian', subclass: 'Berserker', level: 2 }] } : withRage,
+      toLevel === 3
+        ? {
+            ...withRage,
+            classes: [{ name: 'Barbarian', subclass: 'Berserker', level: 2 }],
+          }
+        : withRage,
       { className: 'Barbarian', toLevel, hpMethod: 'average' }
     )
     const rage = r.patch.features.find((f) => f.id === 'rage')
@@ -77,17 +92,30 @@ test('Rage is stamped with its use count from the Barbarian rages_by_level table
 
 test('Rage at 20th level (unlimited) has no use counter', () => {
   const c = barb(19, {
-    features: [{ name: 'Rage', id: 'rage', type: 'feature', level_gained: 1, uses_max: 6, uses_current: 6 }],
+    features: [
+      {
+        name: 'Rage',
+        id: 'rage',
+        type: 'feature',
+        level_gained: 1,
+        uses_max: 6,
+        uses_current: 6,
+      },
+    ],
   })
   c.classes[0].subclass = 'Berserker'
-  const r = diffLevelUp(c, { className: 'Barbarian', toLevel: 20, hpMethod: 'average' })
+  const r = diffLevelUp(c, {
+    className: 'Barbarian',
+    toLevel: 20,
+    hpMethod: 'average',
+  })
   const rage = r.patch.features.find((f) => f.id === 'rage')
   assert.ok(rage.uses_max == null)
 })
 
 // ── Chronurgy Magic ─────────────────────────────────────────────────────
 
-test('Chronurgy Magic loads with its five Explorer\'s Guide to Wildemount features at the right wizard levels', () => {
+test("Chronurgy Magic loads with its five Explorer's Guide to Wildemount features at the right wizard levels", () => {
   const sub = loadSubclass('Wizard', 'Chronurgy Magic')
   assert.deepStrictEqual(sub.features_by_level, {
     2: ['Chronal Shift', 'Temporal Awareness'],
@@ -115,16 +143,70 @@ test('a Wizard taking Chronurgy Magic gets Chronal Shift x2 and, at 6th, Momenta
     spells: [],
     classes: [{ name: 'Wizard', subclass: 'Chronurgy Magic', level: 1 }],
   }
-  const lvl2 = diffLevelUp(base, { className: 'Wizard', toLevel: 2, hpMethod: 'average' })
+  const lvl2 = diffLevelUp(base, {
+    className: 'Wizard',
+    toLevel: 2,
+    hpMethod: 'average',
+  })
   const shift = lvl2.patch.features.find((f) => f.name === 'Chronal Shift')
   assert.strictEqual(shift.uses_max, 2)
   assert.strictEqual(shift.action_type, 'reaction')
-  const awareness = lvl2.patch.features.find((f) => f.name === 'Temporal Awareness')
+  const awareness = lvl2.patch.features.find(
+    (f) => f.name === 'Temporal Awareness'
+  )
   assert.strictEqual(awareness.adds_ability_to_initiative, 'int')
 
-  const at5 = { ...base, level: 5, classes: [{ name: 'Wizard', subclass: 'Chronurgy Magic', level: 5 }] }
-  const lvl6 = diffLevelUp(at5, { className: 'Wizard', toLevel: 6, hpMethod: 'average' })
+  const at5 = {
+    ...base,
+    level: 5,
+    classes: [{ name: 'Wizard', subclass: 'Chronurgy Magic', level: 5 }],
+  }
+  const lvl6 = diffLevelUp(at5, {
+    className: 'Wizard',
+    toLevel: 6,
+    hpMethod: 'average',
+  })
   const stasis = lvl6.patch.features.find((f) => f.name === 'Momentary Stasis')
   assert.strictEqual(stasis.uses_max, 5)
   assert.strictEqual(stasis.action_type, 'action')
+})
+
+test('College of Eloquence has its five features at the right bard levels, with Universal Speech once per long rest', () => {
+  const sub = loadSubclass('Bard', 'College of Eloquence')
+  assert.deepStrictEqual(sub.features_by_level, {
+    3: ['Silver Tongue', 'Unsettling Words'],
+    6: ['Unfailing Inspiration', 'Universal Speech'],
+    14: ['Infectious Inspiration'],
+  })
+  const base = {
+    name: 'E',
+    level: 5,
+    stat_str: 8,
+    stat_dex: 14,
+    stat_con: 14,
+    stat_int: 10,
+    stat_wis: 10,
+    stat_cha: 18, // +4
+    hp_max: 30,
+    hp_current: 30,
+    hit_dice_current: 5,
+    spellcasting_ability: 'cha',
+    features: [],
+    spells: [],
+    classes: [{ name: 'Bard', subclass: 'College of Eloquence', level: 5 }],
+  }
+  const lvl6 = diffLevelUp(base, {
+    className: 'Bard',
+    toLevel: 6,
+    hpMethod: 'average',
+  })
+  const speech = lvl6.patch.features.find((f) => f.name === 'Universal Speech')
+  assert.strictEqual(speech.uses_max, 1)
+  assert.strictEqual(speech.action_type, 'action')
+  assert.strictEqual(speech.recharge, 'long_rest')
+  const unfailing = lvl6.patch.features.find(
+    (f) => f.name === 'Unfailing Inspiration'
+  )
+  assert.ok(unfailing, 'Unfailing Inspiration granted at 6th')
+  assert.strictEqual(unfailing.uses_max, undefined)
 })

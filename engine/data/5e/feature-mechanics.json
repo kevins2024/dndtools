@@ -642,6 +642,12 @@
     "name": "Unsettling Words",
     "action_type": "bonus_action"
   },
+  "pub_universal-speech": {
+    "name": "Universal Speech",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
   "pub_enthralling-performance": {
     "name": "Enthralling Performance",
     "recharge": "short_rest",

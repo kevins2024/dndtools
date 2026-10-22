@@ -3599,6 +3599,17 @@
     "homebrew": false
   },
   {
+    "id": "pub_universal-speech",
+    "name": "Universal Speech",
+    "category": "subclass_feature",
+    "class": "Bard (College of Eloquence)",
+    "level_gained": 6,
+    "description": "As an action, choose one or more creatures within 60 feet of you, up to a number equal to your Charisma modifier (minimum of one creature). The chosen creatures can magically understand you, regardless of the language you speak, for 1 hour. Once you use this feature, you can't use it again until you finish a long rest, unless you expend a spell slot to use it again.",
+    "source": "Tasha's Cauldron of Everything",
+    "homebrew": false,
+    "verification": "Verified 2026-10-10 against dnd5e.wikidot.com/bard:eloquence. An earlier note here claimed Universal Speech is not an Eloquence feature; that was wrong, it is a 6th-level Eloquence feature alongside Unfailing Inspiration."
+  },
+  {
     "id": "pub_infectious-inspiration",
     "name": "Infectious Inspiration",
     "category": "subclass_feature",
@@ -3606,8 +3617,7 @@
     "level_gained": 14,
     "description": "When a creature within 60ft of you adds one of your Bardic Inspiration dice to an ability check, attack roll, or saving throw and the roll succeeds, use your reaction to give a Bardic Inspiration die (without expending a use) to a different creature within 60ft that can hear you. Usable a number of times equal to your Charisma modifier (minimum 1), all regained on a long rest.",
     "source": "Tasha's Cauldron of Everything",
-    "homebrew": false,
-    "note": "Real RAW name is Infectious Inspiration, not \"Universal Speech\" — Universal Speech isn't an Eloquence feature at all."
+    "homebrew": false
   },
   {
     "id": "pub_performance-of-creation",
