@@ -341,7 +341,12 @@ export default {
       )
       const payload = {
         party: this.activeParty,
-        characters: this.activeMembers,
+        // passive_perception is derived (skills, items, features all count),
+        // so it isn't on the stored record — add the engine's number.
+        characters: this.activeMembers.map((char) => ({
+          ...char,
+          passive_perception: dnd.passivePerception(char, this.party_items),
+        })),
         items,
       }
       navigator.clipboard.writeText(JSON.stringify(payload, null, 2))
