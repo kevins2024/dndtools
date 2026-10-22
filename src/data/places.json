@@ -1037,10 +1037,58 @@
     "name": "Filian's Keep",
     "type": "city",
     "region": "Torwald",
-    "description": "Capital of Torwald. A working fortress-city built on a defensible hill — practical and unadorned in the Torwald tradition. Stone streets, solid buildings, nothing wasted on decoration that doesn't also serve a purpose. The keep itself predates the city that grew around it.",
-    "notes": "",
-    "districts": [],
-    "locations": [],
+    "description": "Capital of Torwald. A working fortress-city built on a defensible hill — practical and unadorned in the Torwald tradition. Stone streets, solid buildings, nothing wasted on decoration that doesn't also serve a purpose. The keep itself predates the city that grew around it. The city rises as a long grey hill with the fortress at its crown, smoke from a thousand chimneys on the slopes, and a great stone wall at its foot. The gate guards wear plain grey-and-green tabards. Gates close at the second bell after sunset, and lamp-lighters begin their rounds with long poles in the late afternoon. The market is the heart of the city, a broad stone square ringed with stalls and braziers, loud and thick with the smell of fried dough, wool and horses.",
+    "notes": "Filian's Keep was a fortress city and still has the main keep and the outer walls. Years ago, watchtowers were built surrounding the area and the finest roads of the age connected them for safety against intrusion. As the city filled with population and the walls were restricted, people instead moved near the towers instead of staying near the walls. See the lore entry \"capitals-watchtower-towns-001\" (the watchtower towns around both capitals). The oldest part of the city holds the working trades, including the street of coopers and smiths.",
+    "districts": [
+      {
+        "name": "Hammer Street",
+        "description": "Hammer Street is a long, narrow lane in the oldest part of the city, with workshops on both sides and the smell of hot iron, sawdust and woodsmoke. Behind the Pelt Market, past a row of tanners with hides stretched on frames, it runs between coopers' and smiths' yards. Roofs along the street run together in a long, uneven line of tile."
+      }
+    ],
+    "locations": [
+      {
+        "name": "Market Gate",
+        "type": "checkpoint",
+        "description": "Wide open gate, the busiest and easiest to find, thick with carts and merchants at breakfast hour.",
+        "notes": ""
+      },
+      {
+        "name": "Main market square",
+        "type": "market",
+        "description": "Enormous broad stone square ringed with stalls and braziers. A pastry stall with a long queue stands on the south side, selling honey buns and hot tea.",
+        "notes": ""
+      },
+      {
+        "name": "The Tinker's Arcade",
+        "type": "market",
+        "description": "Long covered gallery on the north side of the market, home to the smaller, odder trades.",
+        "notes": ""
+      },
+      {
+        "name": "Whispering Wares",
+        "type": "shop",
+        "description": "Narrow stall in the Tinker's Arcade. A tall human woman of about forty-five with ink-stained fingers runs it, cheerful and tired.",
+        "notes": ""
+      },
+      {
+        "name": "Cooper's yard, Hammer Street",
+        "type": "workshop",
+        "description": "Wide gate into a yard of barrels stacked in tiers, hoops hanging from nails, raw staves drying. A loft over the storage shed, a cellar behind the stave stacks, and a shed ladder that gives roof access.",
+        "notes": ""
+      },
+      {
+        "name": "The Boar's Last Apple",
+        "type": "inn_tavern",
+        "description": "Modest inn a few streets from the Pelt Market behind a narrow door and a small hanging sign. Common room smells of bread and woodsmoke; three rooms upstairs; the landlady lets rooms for silver.",
+        "notes": ""
+      },
+      {
+        "name": "The Queen's Mistress",
+        "type": "inn_tavern",
+        "description": "Big inn near the Market Gate whose landlord keeps a book for travelers who need to find each other.",
+        "notes": "Established by suggestion; not yet visited."
+      }
+    ],
     "flair": "The capital of a culture that has decided it represents authentic tradition. Everything here is done the right way — which is also the old way. Impressive in the manner of things preserved with great care. Visitors often feel they are being judged against a standard they were never told about."
   },
   {
@@ -1072,7 +1120,7 @@
     "name": "Calbrun",
     "type": "town",
     "region": "Torwald",
-    "description": "Harbor town near the Aranwald border, the southern Torwald road (to Argentveil and Filian's Keep), and the river that crosses the northern road. Extremely rainy and the ground is almost pure stone with poor drainage. Everything is stone with slate roofs, narrow streets running down to the water, and walls repaired so many times the repairs have repairs. It's built to last and to drain, with no thatch and no grand squares. Some underground drainage channels exist but most are more like ditches and gutters. The cliffs at the harbor are only 6-12 feet tall and they've got mule-run cranes to help with loading.",
+    "description": "Harbor town near the Aranwald border, the southern Torwald road (to Argentveil and Filian's Keep), and the river that crosses the northern road. Extremely rainy and the ground is almost pure stone with poor drainage. Everything is stone with slate roofs, narrow streets running down to the water, and walls repaired so many times the repairs have repairs. It's built to last and to drain, with no thatch and no grand squares. Some underground drainage channels exist but most are more like ditches and gutters. The cliffs at the harbor are only 6-12 feet tall and they've got mule-run cranes to help with loading. It sits at the river's mouth, downriver from Garrmark, where barges unload to seagoing traffic. The town is grey. The land around is a minimum of 6 feet above sea level, but these are the lowest cliffs for several miles on either side, with a bit of a natural harbor where the river meets the sea via a waterfall.",
     "notes": "",
     "districts": [],
     "locations": [
@@ -1081,6 +1129,137 @@
         "description": "Plain-fronted, no sign, but clearly does steady business — the only real gathering point in town. Combination trading post, inn, and stables. Stable hand here confirmed Balcris's recent passage and his questions about the old shrine north of the fork."
       }
     ],
+    "flair": "A town held together by patching, and proud of it."
+  },
+  {
+    "name": "Garrmark",
+    "type": "town",
+    "region": "Torwald",
+    "description": "A ferry-crossing township of a few hundred people on the (currently unnamed) river built around a landing where road traffic and river freight change hands. Named for a Garr's holding or claim, worn smooth over the generations. Slate and thatch roofs scatter back from the water, with barges tied along the landing, a lock-up, and a large walled yard at the town's edge. Freight moves on from here by barge to the harbor town downriver (Calbrun). The ferry is a flat, broad rope-ferry with only a small raincover and no cabins. The ferry company posts bounties and keeps its own books, and the town answers to a reeve who sits at the landing hall.",
+    "notes": "The reeve is Hesta Varran, human, mid-fifties. The watch captain is a brisk half-orc woman in her thirties.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "The Three Ropes",
+        "type": "inn_tavern",
+        "description": "Long, low inn near the landing. Smells of tar, wet rope and stew, with a big hearth and long tables. Run by a stout dwarf with a grey beard knotted in three places, who is also the town butcher.",
+        "notes": "His butcher shop is the last door on the left before the ferry. Rooms upstairs; locals fill the common room."
+      },
+      {
+        "name": "Landing Hall",
+        "type": "administrative",
+        "description": "Where the reeve holds hearings and trials. Sits at the landing beside the lock-up.",
+        "notes": ""
+      },
+      {
+        "name": "Lock-up",
+        "type": "administrative",
+        "description": "The landing's secure store and cells, with a clerk who keeps barge timetables and cargo counts.",
+        "notes": ""
+      },
+      {
+        "name": "The Rope-and-Tack Yard",
+        "type": "shop",
+        "description": "A big walled yard at the town's edge, signed with a coil of rope and a saddle. Rope, harness and tack are mended here. Heavy drays park behind it, and a side gate lets people come and go at night. Run by a dwarven woman with braids to her belt.",
+        "notes": ""
+      },
+      {
+        "name": "Ferry Landing",
+        "description": "Rope-ferry crossing with a stable for ferry traffic, barges tied along the bank, and mist off the river in the mornings.",
+        "notes": ""
+      }
+    ],
+    "flair": "A town that exists because people have to wait for a boat. Everyone in it is either leaving, arriving, or selling something to someone who is."
+  },
+  {
+    "name": "The ford hamlet",
+    "type": "hamlet",
+    "region": "Torwald",
+    "description": "A hamlet of about forty people at a broad, shallow ford with stepping stones, on the road west of Garrmark. Farms lie on both banks, and the inn on the near bank is the reason anyone stops. The hamlet has no recorded name yet.",
+    "notes": "Name pending. Courier traffic and drovers overnight here, since it is the honest halfway point on the road.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "The Cold Water's Flow",
+        "type": "inn_tavern",
+        "description": "Long timbered inn on the near bank with a stable yard and rooms above the stable. The sign is a faded blue ribbon of water. Honest, warm and unremarkable. A gangly half-orc boy of about fifteen runs the stable.",
+        "notes": ""
+      }
+    ],
+    "flair": "A place with one inn, one ford and no ambitions."
+  },
+  {
+    "name": "Ostrenn",
+    "type": "town",
+    "region": "Torwald",
+    "description": "A tidy, unhurried town outside Filian's Keep to the northwest, with slate roofs, a church spire that shows over a rise before the town does, a smoking forge, a market square and an inn. Its farrier's yard sits at the near edge of town, so the town's first sound is a hammer on an anvil. It is the first real town after the river crossing and is well used to travelers passing through.",
+    "notes": "A crossroads lies a mile past the town. The main road runs on to Filian's Keep, and farm lanes and market roads run southwest through orchards and hedgerows toward Hathstead. Was one of the watchtower towns. See the lore entry \"capitals-watchtower-towns-001\".",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Farrier and Shoeing",
+        "type": "shop",
+        "description": "Open yard at the west edge of town with an anvil, a forge, a tack room and a raven loft. Run by Wenna Kirkby, a human woman of about forty-five with dark brown skin and scarred forearms, economical with words and movement.",
+        "notes": ""
+      }
+    ],
+    "flair": ""
+  },
+  {
+    "name": "Hathstead",
+    "type": "town",
+    "region": "Torwald",
+    "description": "A grown-up market town southwest of Filian's Keep, on the main trade road to Argentveil. The name reads as 'Hath's stead': a founder's name plus the old word for a farmstead, worn smooth over generations. The oldest part is low stone cottages around a green with an inn. The prosperous part has ornate guild halls of fitted grey stone with carved lintels and iron-banded doors, and a clock tower over a square paved in a pattern of pale and dark flagstones. Streets are clean and shopfronts wide. Argentveil-cut merchants keep stalls with imported cloth and spices, and shops stay open late. A quieter older stretch has workshops tucked between cottages.",
+    "notes": "Harvest-eve gatherings are held on the green.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "The Lantern and Pail",
+        "type": "inn_tavern",
+        "description": "Low whitewashed inn with a hanging lantern and a painted pail beneath it, next to the livery stable, with a yard that smells of hay. Four rooms at low rates, heavy quilts, a quiet common room, and a round, brisk landlady.",
+        "notes": ""
+      },
+      {
+        "name": "Moll Fenwright's",
+        "type": "shop",
+        "description": "Narrow antiquary run by a stooped gnome woman of about seventy. Fair prices; she does not haggle for show. Stock mixes mundane curios with a handful of real magic items.",
+        "notes": ""
+      },
+      {
+        "name": "The Open Spine",
+        "type": "shop",
+        "description": "Bookseller run by a human man in his fifties in an ink-stained smock and half-moon glasses. Sells arcane scrolls behind the counter.",
+        "notes": ""
+      },
+      {
+        "name": "Tamsinny & Daughters",
+        "type": "shop",
+        "description": "Small jeweler's run by a halfling woman of about forty, with trays of rings, brooches and a few enchanted pieces.",
+        "notes": ""
+      },
+      {
+        "name": "Crow's Forge",
+        "type": "shop",
+        "description": "Weaponsmith run by an old half-orc woman with forearms like iron bands. Good steel, honest prices, a few magical pieces on a back shelf.",
+        "notes": ""
+      },
+      {
+        "name": "Hathstead Green",
+        "type": "market",
+        "description": "The central green. Traveling performers camp here, and villagers hold harvest-eve gatherings.",
+        "notes": ""
+      }
+    ],
+    "flair": "A town that got rich quietly and does not need you to notice. The guild halls do the noticing for it."
+  },
+  {
+    "name": "Perenvallia",
+    "type": "point_of_interest",
+    "region": "Torwald",
+    "description": "An abandoned silver-mining town high in the mountain fringe, reached by a hard climbing track that branches off the main road but has been unused for so long it's grown over and effectively invisible. It was built around a mine that ran well for a couple of generations, then didn't. About half the buildings are still standing, which is more than most abandoned places manage. Player has plans for this town and a story, don't use in current events.",
+    "notes": "The name is a nod to the deity Perenval. The story of this town is still to be written.",
+    "districts": [],
+    "locations": [],
     "flair": ""
   },
   {
@@ -1088,7 +1267,7 @@
     "type": "city",
     "region": "Aranwald",
     "description": "Capital of Aranwald. The city visually layers 200 years of Solvaran architecture over the older Torwald-origin construction beneath — arched courtyards, geometric tilework, and repurposed minarets sit alongside the original Saxon-influenced stonework. The Solvaran additions are displayed as trophies, not erased as shame. Walking through Feldtazur is a study in the prince's founding philosophy: we didn't just conquer the land, we conquered everything. Name coined by the prince — Anglo 'feld' + Persian-derived 'tazur'.",
-    "notes": "",
+    "notes": "Feldtazur is surrounded by many smaller towns that grew up around old watchtowers rather than outside its walls, and is kept smaller than Argentveil. See the lore entry \"capitals-watchtower-towns-001\" (the watchtower towns around both capitals).",
     "districts": [],
     "locations": [],
     "flair": "A capital built to prove a philosophical point: that to conquer something is to own everything about it, including its beauty. Persian-Anglo aesthetic fusion that is layered, intentional, and never subtle. The architecture alone tells the kingdom's entire founding story."

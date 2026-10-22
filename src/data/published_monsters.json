@@ -267,5 +267,83 @@
     "forms": [],
     "homebrew": true,
     "source": "Homebrew — native to Fol. Pale, territorial cave hunters that den in ice caves and ambush from rock faces. Elite-tier predators; their cold-resistant hide shrugs off edged weapons far better than blunt force or fire."
+  },
+  {
+    "index": "sarnach",
+    "name": "Sarnach",
+    "size": "Medium",
+    "type": "beast",
+    "alignment": "unaligned",
+    "armor_class": [
+      {
+        "type": "natural",
+        "value": 13
+      }
+    ],
+    "hit_points": 13,
+    "hit_dice": "3d8",
+    "hit_points_roll": "3d8",
+    "speed": {
+      "walk": "10 ft.",
+      "fly": "60 ft."
+    },
+    "strength": 12,
+    "dexterity": 15,
+    "constitution": 10,
+    "intelligence": 2,
+    "wisdom": 9,
+    "charisma": 5,
+    "proficiencies": [
+      {
+        "value": 1,
+        "proficiency": {
+          "index": "skill-perception",
+          "name": "Skill: Perception",
+          "url": "/api/2014/proficiencies/skill-perception"
+        }
+      }
+    ],
+    "damage_vulnerabilities": [],
+    "damage_resistances": [],
+    "damage_immunities": [],
+    "condition_immunities": [],
+    "senses": {
+      "passive_perception": 11
+    },
+    "languages": "",
+    "challenge_rating": 0.25,
+    "proficiency_bonus": 2,
+    "xp": 50,
+    "special_abilities": [
+      {
+        "name": "Flyby",
+        "desc": "The sarnach doesn't provoke an opportunity attack when it flies out of an enemy's reach.",
+        "damage": []
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite",
+        "desc": "Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 6 (2d4 + 1) piercing damage.",
+        "attack_bonus": 3,
+        "damage": [
+          {
+            "damage_type": {
+              "index": "piercing",
+              "name": "Piercing",
+              "url": "/api/2014/damage-types/piercing"
+            },
+            "damage_dice": "2d4+1"
+          }
+        ],
+        "actions": []
+      }
+    ],
+    "legendary_actions": [],
+    "reactions": [],
+    "forms": [],
+    "homebrew": true,
+    "source": "Homebrew — native to Orvath. Stat block based on the Pteranodon (Monster Manual); the description below is campaign lore.",
+    "description": "A pale, heat-shimmer-colored raptor native only to the Orvath region and nowhere else — larger than any lowland eagle, and the animal the region's entire falconry culture (and, indirectly, its banking economy) is built around.\n\nHunts by reading thermals and mirage-distortion most creatures can't parse at all — a sense tied to the region's harsh day-to-night temperature swing and thin, dry air, not something that transplants to a lowland raptor. Clans bond one sarnach per generation per family, sometimes for life; a bonded pair is a serious, rare thing, not a casual working relationship.\n\nA trained sarnach isn't valuable primarily as a hunting bird. Its real worth is that it can spot a distant desert storm rolling in long before any human eye can — and in Orvath, a storm means a fresh strike of duskglass (lightning-fused sand with a latent magical-anchoring property found nowhere else) somewhere out in the waste, up for grabs to whichever clan gets there first. A clan's standing, wealth, and leverage over the settled city is downstream of how good their sarnach is. See the lore entry \"duskglass-001\" for the full duskglass economy this feeds."
   }
 ]

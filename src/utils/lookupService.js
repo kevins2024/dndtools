@@ -369,6 +369,8 @@ function normalizeMonster(data) {
     size: data.size ?? null,
     type: data.type ?? null,
     alignment: data.alignment ?? null,
+    // Campaign lore for a homebrew creature (the SRD API has none).
+    description: data.description ?? null,
     ac: ac?.value ?? null,
     ac_note: ac?.type ?? null,
     hp: data.hit_points ?? null,

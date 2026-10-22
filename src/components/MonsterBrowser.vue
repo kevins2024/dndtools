@@ -167,6 +167,13 @@
 
       <!-- Full stat block from API -->
       <template v-if="statBlock">
+        <p
+          v-for="(para, i) in descriptionParagraphs"
+          :key="'desc' + i"
+          class="mb-description"
+        >
+          {{ para }}
+        </p>
         <div class="mb-stat-row">
           <div class="mb-stat-chip">
             <span class="mb-stat-val"
@@ -413,6 +420,11 @@ export default {
   },
 
   computed: {
+    // Campaign lore for a homebrew creature, one paragraph per blank line.
+    descriptionParagraphs() {
+      return (this.statBlock?.description || '').split('\n\n').filter(Boolean)
+    },
+
     filteredMonsters() {
       const q = this.search.trim().toLowerCase()
       return this.monsters.filter((m) => {
@@ -778,6 +790,13 @@ export default {
 .mb-ability-mod {
   font-size: var(--font-size-xs);
   color: var(--color-accent);
+}
+
+.mb-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0 0 0.6rem;
 }
 
 .mb-detail-line {

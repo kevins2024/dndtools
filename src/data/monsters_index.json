@@ -86326,5 +86326,14 @@
     "alignment": "unaligned",
     "publisher": "Homebrew",
     "book": "Native to Fol"
+  },
+  {
+    "name": "Sarnach",
+    "cr": 0.25,
+    "type": "Beast",
+    "size": "Medium",
+    "alignment": "unaligned",
+    "publisher": "Homebrew",
+    "book": "Native to Orvath"
   }
 ]

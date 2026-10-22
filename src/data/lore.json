@@ -367,5 +367,36 @@
     "detail": "Beneath Dunric Pass, in the ancient dwarven mine known as the Ven Durath, a stone disc roughly eighteen inches across was found embedded in a chamber wall, densely carved on every face with an interlocking rune schema. The schema functioned as a planar anchor — it held a magma elemental bound to this plane against a persistent pull from an elemental plane, keeping the creature physically present rather than allowing it to fully cross back. Removing the stone from its housing did not kill the elemental outright; it triggered a violent reformation as residual planar tension pulled the creature partway back before the connection was permanently severed by further damage to the stone itself. The rune structure is interlocking by design — damaging enough of the carved connections causes the entire schema to lose coherence rather than simply losing partial function, suggesting the makers built in redundancy against exactly the kind of tampering the Dawn Blades ultimately used to destroy it. No current dwarven scholar, smith, or clan archive consulted so far has any record of this specific binding tradition, and the mine itself predates any settlement history in the region. Whether other examples of this craft exist elsewhere in the world is unknown.",
     "date": "Origin unknown, predates current settlement; disc removed and rendered permanently inert Day 80, Year 468",
     "source_session": "Eastern2"
+  },
+  {
+    "id": "capitals-watchtower-towns-001",
+    "type": "place_history",
+    "location_tags": [
+      "torwald",
+      "aranwald",
+      "filians_keep",
+      "feldtazur"
+    ],
+    "entity_tags": [],
+    "status": "not_yet_known_to_party",
+    "summary": "Feldtazur and Filian's Keep stayed modest in size because the many towns around them grew up around old watchtowers instead of outside the capitals' walls.",
+    "detail": "Years ago, watchtowers were built across the land around both Feldtazur and Filian's Keep, connected by the finest roads of the age for safety against intrusion. As each capital filled with people and its walls could hold no more, people chose to settle near the watchtowers rather than outside the walls. Towns grew up around the towers, which is why the area is dotted with so many small towns and why the two capitals are kept well smaller than a city like Argentveil.",
+    "date": "Years before the campaign; exact date not set",
+    "source_session": "DM design, not yet seen in play"
+  },
+  {
+    "id": "duskglass-001",
+    "type": "material",
+    "location_tags": [
+      "orvath"
+    ],
+    "entity_tags": [
+      "sarnach"
+    ],
+    "status": "not_yet_known_to_party",
+    "summary": "Duskglass, lightning-fused sand found only in Orvath, is the only substance that reliably anchors permanent magical structures there — which is why the Banking Institution's vaults are built on it, and why the nomadic clans who find it hold real leverage over the settled city.",
+    "detail": "How does a question-free banking haven come to exist in the middle of a high desert at all? This is the answer.\n\nLightning striking sand at altitude here doesn't behave like it does elsewhere — it fuses the ground into glass, the way it does in deserts everywhere, except the local weave's strangeness (permanent magical structures here require extra anchoring work, and the region's one attempted teleportation circle failed and vanished after four months) means the resulting glass — locally called duskglass — holds a latent anchoring property nowhere else naturally produces. It's the only substance that reliably stabilizes permanent magical structures under Orvath's warped-weave conditions. The Orvath Banking Institution's vaults are built on it.\n\nWhich means the nomadic clans aren't a marginal population living around the edges of a \"real\" city — they're the ones who find and race for duskglass after a storm, before shifting sand buries it or a rival clan beats them to it, and the entire settled economy of Orvath, including its precious banking secrecy, depends on what they bring back. That's the reason for one city and a large nomadic population besides: the city can't function without them, and everyone there knows it. It's also the load-bearing logic behind the region's elven-Mongolian cultural mix and its clan-based social structure persisting inside an otherwise very settled, very bureaucratic banking city — the clans hold real leverage, not just cultural presence.",
+    "date": "Ongoing; no date set",
+    "source_session": "DM design, not yet seen in play"
   }
 ]
