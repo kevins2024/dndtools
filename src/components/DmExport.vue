@@ -98,6 +98,7 @@
 
 <script>
 import { describeGameDate } from '@/utils/calendar_utils.js'
+import { dnd } from '@/utils/dnd_utils.js'
 
 const GITHUB_RAW_BASE =
   'https://raw.githubusercontent.com/kevins2024/dndtools/main/public'
@@ -127,9 +128,7 @@ export default {
     // The party's date as the Calendar tab shows it (world year, season, day of
     // the year, week) rather than the bare day count.
     partyDate() {
-      return this.activePartyDay
-        ? describeGameDate(this.activePartyDay)
-        : null
+      return this.activePartyDay ? describeGameDate(this.activePartyDay) : null
     },
     allCharacters() {
       return this.$store.state.characters ?? []
@@ -237,6 +236,10 @@ export default {
         .join(' / ')
     },
 
+    passivePerception(char) {
+      return dnd.passivePerception(char, this.allItems)
+    },
+
     buildMarkdown() {
       const party = this.activeParty
       const date = new Date().toISOString().split('T')[0]
@@ -268,11 +271,10 @@ export default {
         if (gear.length) {
           lines.push(
             `**Equipped:** ${gear
-              .map(
-                (i) =>
-                  i.name +
-                  (i.enhancement_bonus ? ` (+${i.enhancement_bonus})` : '')
-              )
+              .map((i) => {
+                const bonus = dnd.weaponEnchantment(char, i, this.allItems)
+                return i.name + (bonus ? ` (+${bonus})` : '')
+              })
               .join(', ')}`
           )
           lines.push('')
@@ -289,6 +291,8 @@ export default {
           lines.push(`**HP:** ${char.hp_current}/${char.hp_max}`)
           lines.push('')
         }
+        lines.push(`**Passive Perception:** ${this.passivePerception(char)}`)
+        lines.push('')
       }
 
       // Party pool items (carried_by === 'party')
@@ -472,7 +476,12 @@ export default {
           date: this.partyDate,
           gold: this.partyGold,
         },
-        characters: this.activeMembers,
+        // passive_perception is derived (skills, items and features all
+        // count), so it isn't on the stored record — add the engine's number.
+        characters: this.activeMembers.map((char) => ({
+          ...char,
+          passive_perception: this.passivePerception(char),
+        })),
         items: this.partyItemBundle,
         ...(this.selectedLocationData
           ? { current_location: this.selectedLocationData }
