@@ -1266,5 +1266,14 @@
     "weapon_category": "yetgrese_shortsword",
     "returning": true,
     "slot": "melee1h"
+  },
+  "plum": {
+    "enhancement_scaling": {
+      "type": "proficiency",
+      "multiplier": 0.5,
+      "offset": 1
+    },
+    "weapon_category": "warhammer",
+    "slot": "melee1h"
   }
 }

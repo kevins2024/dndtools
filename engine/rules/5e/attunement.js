@@ -26,6 +26,7 @@ const EFFECT_FIELDS = [
   'grants_weapon_proficiency',
   'spells_granted',
   'features_granted',
+  'enhancement_scaling',
   'extra_damage',
   'weapon_effects',
   'returning',

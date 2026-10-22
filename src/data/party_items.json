@@ -3194,5 +3194,35 @@
     "attuned": false,
     "notes": "Gray bag.",
     "id": "items_264"
+  },
+  {
+    "name": "Figurine of Wondrous Power (Silver Raven)",
+    "catalog_id": "figurine-of-wondrous-power-silver-raven-daily",
+    "type": "wondrous",
+    "equipped_by": "disallowed",
+    "carried_by": "Kessara",
+    "attuned": false,
+    "notes": "Command word: \"Windward.\"",
+    "id": "items_265"
+  },
+  {
+    "name": "Canary Lamp",
+    "catalog_id": "canary-lamp",
+    "type": "misc",
+    "equipped_by": "disallowed",
+    "carried_by": "Marnock",
+    "attuned": false,
+    "notes": "",
+    "id": "items_266"
+  },
+  {
+    "name": "Plum",
+    "catalog_id": "plum",
+    "type": "weapon",
+    "equipped_by": "Marnock",
+    "carried_by": null,
+    "attuned": true,
+    "notes": "Upgrades fitted: none yet (room for three).",
+    "id": "items_267"
   }
 ]

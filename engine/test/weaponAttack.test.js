@@ -172,7 +172,12 @@ test('damageBonusBreakdown: value matches damageBonus, and Raging shows up as it
 
 test('thrownDie: only surfaces when it differs from the current grip die', () => {
   const { thrownDie } = require('../rules/5e/weaponAttack')
-  const spear2h = { name: 'Spear', slot: 'melee2h', type: 'weapon', weapon_category: 'spear' }
+  const spear2h = {
+    name: 'Spear',
+    slot: 'melee2h',
+    type: 'weapon',
+    weapon_category: 'spear',
+  }
   const char = { name: 'T', classes: [], stat_str: 10, stat_dex: 10 }
   const die = thrownDie(char, spear2h, [spear2h])
   // spear: thrown, versatile 1d6 / 1d8 — held two-handed, thrown is the base 1d6
@@ -180,7 +185,12 @@ test('thrownDie: only surfaces when it differs from the current grip die', () =>
   const spear1h = { ...spear2h, slot: 'melee1h' }
   const two = { name: 'Dagger', slot: 'melee1h', type: 'weapon' }
   assert.strictEqual(thrownDie(char, spear1h, [spear1h, two]), null)
-  const sword = { name: 'Longsword', type: 'weapon', weapon_category: 'longsword', slot: 'melee1h' }
+  const sword = {
+    name: 'Longsword',
+    type: 'weapon',
+    weapon_category: 'longsword',
+    slot: 'melee1h',
+  }
   assert.strictEqual(thrownDie(char, sword, [sword]), null) // not thrown
 })
 
@@ -191,8 +201,11 @@ test('weaponProps: silvered is a per-item property, off unless the item says so'
     false
   )
   assert.strictEqual(
-    weaponProps({ weapon_category: 'shortsword', slot: 'melee1h', silvered: true })
-      .silvered,
+    weaponProps({
+      weapon_category: 'shortsword',
+      slot: 'melee1h',
+      silvered: true,
+    }).silvered,
     true
   )
 })
@@ -219,7 +232,10 @@ test('attackBonus: proficiency only counts for a weapon the character is profici
 
 test('attackBonus: no recorded proficiencies, or a weapon with no category, stays permissive', () => {
   const greataxe = { weapon_category: 'greataxe', slot: 'melee2h' }
-  assert.equal(attackBonus(baseChar({ weapon_proficiencies: [] }), greataxe, []), 3 + 4)
+  assert.equal(
+    attackBonus(baseChar({ weapon_proficiencies: [] }), greataxe, []),
+    3 + 4
+  )
   const homebrew = { weapon_category: 'mystery_blade', slot: 'melee1h' }
   const c = baseChar({ weapon_proficiencies: ['simple'] })
   assert.equal(attackBonus(c, homebrew, []), 3 + 4)
@@ -227,8 +243,20 @@ test('attackBonus: no recorded proficiencies, or a weapon with no category, stay
 
 test('isProficientWithWeapon: a magic staff is a quarterstaff', () => {
   const staff = { weapon_category: 'staff', slot: 'melee2h' }
-  assert.equal(isProficientWithWeapon(baseChar({ weapon_proficiencies: ['quarterstaff'] }), staff), true)
-  assert.equal(isProficientWithWeapon(baseChar({ weapon_proficiencies: ['dagger'] }), staff), false)
+  assert.equal(
+    isProficientWithWeapon(
+      baseChar({ weapon_proficiencies: ['quarterstaff'] }),
+      staff
+    ),
+    true
+  )
+  assert.equal(
+    isProficientWithWeapon(
+      baseChar({ weapon_proficiencies: ['dagger'] }),
+      staff
+    ),
+    false
+  )
 })
 
 test('rageDamage reads the Barbarian class table at every level (+2, +3 at 9, +4 at 16)', () => {
@@ -241,5 +269,70 @@ test('rageDamage reads the Barbarian class table at every level (+2, +3 at 9, +4
   for (let level = 1; level <= 20; level++)
     assert.equal(rageDamage(raging(level)), expected(level), `level ${level}`)
   assert.equal(rageDamage({ classes: [{ name: 'Barbarian', level: 9 }] }), 0) // not raging
-  assert.equal(rageDamage({ conditions: ['Raging'], classes: [{ name: 'Fighter', level: 9 }] }), 0)
+  assert.equal(
+    rageDamage({
+      conditions: ['Raging'],
+      classes: [{ name: 'Fighter', level: 9 }],
+    }),
+    0
+  )
+})
+
+// Plum: a scaling weapon. Enchantment = floor(proficiency / 2) + 1 on both
+// the attack roll and the damage roll.
+const plum = (extra = {}) => ({
+  name: 'Plum',
+  weapon_category: 'warhammer',
+  slot: 'melee1h',
+  enhancement_scaling: { type: 'proficiency', multiplier: 0.5, offset: 1 },
+  ...extra,
+})
+
+test('a scaling weapon is +2 at proficiency 2-3, +3 at 4-5, +4 at 6, on attack and damage', () => {
+  const cases = [
+    [1, 2, 2],
+    [5, 3, 2],
+    [9, 4, 3],
+    [13, 5, 3],
+    [17, 6, 4],
+  ]
+  for (const [level, prof, expected] of cases) {
+    const c = baseChar({
+      level,
+      proficiency_bonus: prof,
+      weapon_proficiencies: ['martial'],
+    })
+    const damageWithout = damageBonus(c, { weapon_category: 'warhammer' }, [])
+    assert.equal(
+      damageBonus(c, plum(), []),
+      damageWithout + expected,
+      `damage at level ${level}`
+    )
+    const attackWithout = attackBonus(c, { weapon_category: 'warhammer' }, [])
+    assert.equal(
+      attackBonus(c, plum(), []),
+      attackWithout + expected,
+      `attack at level ${level}`
+    )
+  }
+})
+
+test('a scaling weapon shows its enchantment in the breakdown, and a flat +N adds on top', () => {
+  const c = baseChar({ weapon_proficiencies: ['martial'] }) // proficiency 4 -> +3
+  const line = attackBonusBreakdown(c, plum(), []).breakdown.find((l) =>
+    l.label.startsWith('Plum enchantment')
+  )
+  assert.deepEqual(line, {
+    label: 'Plum enchantment (scales with proficiency)',
+    amount: 3,
+  })
+  const withFlat = damageBonusBreakdown(
+    c,
+    plum({ enhancement_bonus: 1 }),
+    []
+  ).breakdown
+  assert.equal(
+    withFlat.find((l) => l.label.startsWith('Plum enchantment')).amount,
+    4
+  )
 })

@@ -1108,5 +1108,47 @@
     "requires_attunement": true,
     "desc": "Returns instantly to thrower's hand after a thrown attack, whether it hits or misses.",
     "homebrew": true
+  },
+  {
+    "id": "figurine-of-wondrous-power-silver-raven",
+    "name": "Figurine of Wondrous Power (Silver Raven)",
+    "source": "Dungeon Master's Guide",
+    "category": "wondrous item",
+    "rarity": "uncommon",
+    "requires_attunement": false,
+    "desc": "This silver statuette of a raven can become a raven for up to 12 hours. Once it has been used, it can't be used again until 2 days have passed. While in raven form, the figurine allows you to cast the animal messenger spell on it at will.\n\nThis is one of the Figurines of Wondrous Power; how a figurine works in general (command word, throwing it, reverting) is described on that item.",
+    "homebrew": false
+  },
+  {
+    "id": "figurine-of-wondrous-power-silver-raven-daily",
+    "name": "Figurine of Wondrous Power (Silver Raven, daily)",
+    "variant_of": "figurine-of-wondrous-power-silver-raven",
+    "rarity": "uncommon",
+    "desc_edits": [
+      [
+        "until 2 days have passed",
+        "until the next long rest"
+      ]
+    ]
+  },
+  {
+    "id": "canary-lamp",
+    "name": "Canary Lamp",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": false,
+    "desc": "A miner's safety lamp. It burns a steady blue when foul air or poison gas is within 30 feet. This is a detection effect only.",
+    "homebrew": true
+  },
+  {
+    "id": "plum",
+    "name": "Plum",
+    "source": "Campaign",
+    "category": "weapon",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "A short-hafted warhammer built for gnome reach, its dark quarry-steel head worn smooth on one striking face. It requires attunement and only works for Small creatures; it is a small weapon. While attuned, its enchantment bonus to attack and damage rolls is half the wielder's proficiency bonus, rounded down, plus 1 (+2 at levels 1-8, +3 at levels 9-16, +4 at levels 17-20).\n\nUnfinished. A master craftsperson can fit it with up to three upgrades. Each upgrade is recorded on the weapon as a granted feature.",
+    "homebrew": true
   }
 ]

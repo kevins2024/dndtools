@@ -41,6 +41,36 @@ function weaponStatMod(
     : abilityModifier(scores.str)
 }
 
+// A weapon's enchantment bonus, the same number for its attack roll and its
+// damage roll. Normally the flat +N on the item (`enhancement_bonus`); a
+// scaling weapon (`enhancement_scaling`, from item-mechanics.json) adds a
+// bonus that follows the wielder's proficiency bonus instead:
+//   { type: 'proficiency', multiplier, offset } -> floor(proficiency * multiplier) + offset
+// e.g. { multiplier: 0.5, offset: 1 } is +2 at levels 1-8, +3 at 9-16, +4 at 17-20.
+// applyAttunement strips enhancement_scaling from an unattuned item, so it
+// only contributes while attuned. Returns { amount, scaling } where scaling is
+// the part that came from the formula (for the tooltip label).
+function weaponEnchantment(character, weapon, bonuses = {}) {
+  const flat = weapon.enhancement_bonus ?? 0
+  const scaling = weapon.enhancement_scaling
+  if (!scaling) return { amount: flat, scaling: 0 }
+  const prof = effectiveProficiencyBonus(character, bonuses)
+  const scaled = Math.max(
+    0,
+    Math.floor(prof * (scaling.multiplier ?? 1)) + (scaling.offset ?? 0)
+  )
+  return { amount: flat + scaled, scaling: scaled }
+}
+
+function enchantmentLine(weapon, enchantment) {
+  return {
+    label: enchantment.scaling
+      ? `${weapon.name} enchantment (scales with proficiency)`
+      : `${weapon.name} enchantment`,
+    amount: enchantment.amount,
+  }
+}
+
 // A versatile weapon's damage die depends on whether it's actually being
 // wielded two-handed right now: explicitly in the melee2h slot, or in
 // melee1h with no second one-handed melee weapon also equipped (i.e. both
@@ -110,7 +140,8 @@ function attackBonusBreakdown(
       equippedItems
     )
   const prof = proficient ? effectiveProficiencyBonus(character, bonuses) : 0
-  const magic = weapon.enhancement_bonus ?? 0
+  const enchantment = weaponEnchantment(character, weapon, bonuses)
+  const magic = enchantment.amount
   const atkBonusKey =
     props.weapon_type === 'ranged' ? 'ranged_attack' : 'melee_attack'
   const typeBonus = bonuses[atkBonusKey] ?? 0
@@ -119,8 +150,7 @@ function attackBonusBreakdown(
     { label: statModLabel(props), amount: statMod },
     { label: proficient ? 'Proficiency' : 'Not proficient', amount: prof },
   ]
-  if (magic)
-    breakdown.push({ label: `${weapon.name} enchantment`, amount: magic })
+  if (magic) breakdown.push(enchantmentLine(weapon, enchantment))
   breakdown.push(
     ...bonusLines(equippedItems, atkBonusKey),
     ...bonusLines(character.features, atkBonusKey)
@@ -193,15 +223,15 @@ function damageBonusBreakdown(
     equippedItems,
     homebrewWeaponTypes
   )
-  const magic = weapon.enhancement_bonus ?? 0
+  const enchantment = weaponEnchantment(character, weapon, bonuses)
+  const magic = enchantment.amount
   const dmgBonusKey =
     props.weapon_type === 'ranged' ? 'ranged_damage' : 'melee_damage'
   const typeBonus = bonuses[dmgBonusKey] ?? 0
   const rage = rageDamageBonus(character, weapon, homebrewWeaponTypes)
 
   const breakdown = [{ label: statModLabel(props), amount: statMod }]
-  if (magic)
-    breakdown.push({ label: `${weapon.name} enchantment`, amount: magic })
+  if (magic) breakdown.push(enchantmentLine(weapon, enchantment))
   if (rage) breakdown.push({ label: 'Raging', amount: rage })
   breakdown.push(
     ...bonusLines(equippedItems, dmgBonusKey),
@@ -226,6 +256,7 @@ function damageBonus(
 }
 
 module.exports = {
+  weaponEnchantment,
   weaponStatMod,
   gripDie,
   thrownDie,
