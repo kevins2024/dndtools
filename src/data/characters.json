@@ -8229,12 +8229,12 @@
     "subgenus": "Forest Gnome",
     "background": "Laborer",
     "level": 1,
-    "stat_str": 17,
+    "stat_str": 16,
     "stat_dex": 10,
     "stat_con": 16,
     "stat_int": 10,
     "stat_wis": 10,
-    "stat_cha": 11,
+    "stat_cha": 13,
     "species_bonus_applied": false,
     "ability_score_method": "point buy",
     "species_traits": [
@@ -8361,7 +8361,7 @@
     "hit_dice_current": 1,
     "alignment": "Chaotic Good",
     "appearance": "Gnome woman, roughly 170.",
-    "notes": "Ran a splitting gang at a river quarry in the hills upstream of the delta (exact site left open). When a gallery came down with nineteen people under it, the quarrymaster refused to shore the rest of the face. She dug for two days with her hands and a hammer. When an overseer physically stopped her, she killed him. She then sent all nineteen home and left alone so none of them could be named as witnesses. She doesn't regret the overseer, but she hates that the rescue ended with her running. Whether the quarrymaster pursued a charge is undecided. Nineteen households across the hills owe her their lives, and she wants none of it; that owed favour is a resource she will refuse to use. Planned subclass at level 3: Path of the Totem Warrior (Bear), since resistance to nearly everything fits someone who dug for two days. Short-term: a room with a door that opens from the inside, food, and staying out of the Guard's notice. Long-term: to protect the nineteen by staying away from them, which pulls against wanting a place to belong. Limit: she will never walk away from anyone trapped under or behind something, whatever it costs her. Skill hooks: Medicine for crush injuries, History for quarrying and masonry; she'll look at Mazgrath's leg and say what she thinks, bluntly. Medicine and History proficiencies are extra skills she has from storyline rolls, not from her class or background.",
+    "notes": "Ran a splitting gang at a river quarry in the hills upstream of the delta (exact site left open). When a gallery came down with nineteen people under it, the quarrymaster refused to shore the rest of the face. She dug for two days with her hands and a hammer. When an overseer physically stopped her, she killed him. She then sent all nineteen home and left alone so none of them could be named as witnesses. She doesn't regret the overseer, but she hates that the rescue ended with her running. Whether the quarrymaster pursued a charge is undecided. Nineteen households across the hills owe her their lives, and she wants none of it; that owed favour is a resource she will refuse to use. Planned subclass at level 3: Path of the Totem Warrior (Bear), since resistance to nearly everything fits someone who dug for two days. Build plan: Barbarian 5 (Path of the Totem Warrior, Bear) and Warlock 15 (The Hexblade). Short-term: a room with a door that opens from the inside, food, and staying out of the Guard's notice. Long-term: to protect the nineteen by staying away from them, which pulls against wanting a place to belong. Limit: she will never walk away from anyone trapped under or behind something, whatever it costs her. Skill hooks: Medicine for crush injuries, History for quarrying and masonry; she'll look at Mazgrath's leg and say what she thinks, bluntly. Medicine and History proficiencies are extra skills she has from storyline rolls, not from her class or background.",
     "persona_notes": [
       "Draw: wary and agitated. Chaotic good with a hair trigger.",
       "Reads neutral as hostile. An unbarred door matters more to her than a soft bed.",
