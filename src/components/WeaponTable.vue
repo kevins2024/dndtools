@@ -66,19 +66,21 @@
                         :title="handTitle(row)"
                         @click.stop="cycleHand(weaponItem(row.id))"
                       >
-                        {{ row.hand === 'main' ? 'Main' : row.hand === 'off' ? 'Off' : 'Hand?' }}
+                        {{
+                          row.hand === 'main'
+                            ? 'Main'
+                            : row.hand === 'off'
+                            ? 'Off'
+                            : 'Hand?'
+                        }}
                       </button>
                       <button
                         v-if="row.grip"
                         class="weapon-tag-badge weapon-grip-btn"
-                        :title="
-                          row.grip === 'melee2h'
-                            ? 'Versatile — wielded two-handed, click to switch to one-handed'
-                            : 'Versatile — wielded one-handed, click to switch to two-handed'
-                        "
+                        :title="gripTitle(row.grip)"
                         @click.stop="toggleGrip(weaponItem(row.id))"
                       >
-                        {{ row.grip === 'melee2h' ? '2H' : '1H' }}
+                        {{ gripLabel(row.grip) }}
                       </button>
                       <span
                         v-if="row.thrown"
@@ -291,19 +293,21 @@
                   :title="handTitle(row)"
                   @click="cycleHand(weaponItem(row.id))"
                 >
-                  {{ row.hand === 'main' ? 'Main' : row.hand === 'off' ? 'Off' : 'Hand?' }}
+                  {{
+                    row.hand === 'main'
+                      ? 'Main'
+                      : row.hand === 'off'
+                      ? 'Off'
+                      : 'Hand?'
+                  }}
                 </button>
                 <button
                   v-if="row.grip"
                   class="weapon-tag-badge weapon-grip-btn"
-                  :title="
-                    row.grip === 'melee2h'
-                      ? 'Versatile — wielded two-handed, click to switch to one-handed'
-                      : 'Versatile — wielded one-handed, click to switch to two-handed'
-                  "
+                  :title="gripTitle(row.grip)"
                   @click="toggleGrip(weaponItem(row.id))"
                 >
-                  {{ row.grip === 'melee2h' ? '2H' : '1H' }}
+                  {{ gripLabel(row.grip) }}
                 </button>
                 <span
                   v-if="row.thrown"
@@ -453,7 +457,7 @@
 
 <script>
 import { dnd } from '@/utils/dnd_utils.js'
-import { cycleHand } from '@/utils/weaponHands.js'
+import { cycleGrip, cycleHand } from '@/utils/weaponHands.js'
 import {
   buildItemPopupData,
   buildFeaturePopupData,
@@ -545,15 +549,21 @@ export default {
       )
       return this.buildRows(summaries)
     },
-    // Mirrors CharacterInventory.vue's own toggleGrip — same mechanic
-    // (item.slot literally switches between melee1h/melee2h), just also
-    // reachable from the combat view instead of only the inventory tab.
+    // Same control as CharacterInventory.vue's: Auto -> 1H -> 2H -> Auto,
+    // also reachable from the combat view.
     toggleGrip(item) {
       if (!item) return
-      this.$store.commit('UPDATE_ITEM', {
-        ...item,
-        slot: item.slot === 'melee2h' ? 'melee1h' : 'melee2h',
-      })
+      this.$store.commit('UPDATE_ITEM', cycleGrip(item))
+    },
+    gripLabel(mode) {
+      return { auto: 'Auto', one: '1H', two: '2H' }[mode]
+    },
+    gripTitle(mode) {
+      return {
+        auto: 'Versatile — grip auto: two-handed when a hand is free, one-handed with a shield or a second weapon. Click for one-handed.',
+        one: 'Versatile — always one-handed. Click for two-handed.',
+        two: 'Versatile — always two-handed. Click for auto.',
+      }[mode]
     },
     // Click cycles Main -> Off -> unassigned; the engine keeps the loadout
     // consistent (one main, one off, and a lone partner gets the opposite).

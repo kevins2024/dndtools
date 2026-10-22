@@ -336,3 +336,16 @@ test('a scaling weapon shows its enchantment in the breakdown, and a flat +N add
     4
   )
 })
+
+test('gripDie: an explicit one-handed grip stays one-handed with a free hand; the melee2h slot wins over it', () => {
+  const longsword = {
+    weapon_category: 'longsword',
+    slot: 'melee1h',
+    grip: 'one',
+  }
+  assert.equal(gripDie(baseChar(), longsword, [longsword]), '1d8') // hand free, still 1H
+  const auto = { weapon_category: 'longsword', slot: 'melee1h' }
+  assert.equal(gripDie(baseChar(), auto, [auto]), '1d10') // auto: inferred two-handed
+  const two = { weapon_category: 'longsword', slot: 'melee2h', grip: 'one' }
+  assert.equal(gripDie(baseChar(), two, [two]), '1d10') // slot says two-handed
+})

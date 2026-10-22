@@ -167,14 +167,10 @@
             <button
               v-if="isVersatileWeapon(item)"
               class="act-btn grip-toggle-btn"
-              :title="
-                item.slot === 'melee2h'
-                  ? 'Wielded two-handed — click to switch to one-handed'
-                  : 'Wielded one-handed — click to switch to two-handed'
-              "
+              :title="gripTitle(item)"
               @click.stop="toggleGrip(item)"
             >
-              {{ item.slot === 'melee2h' ? '2H' : '1H' }}
+              {{ gripLabel(item) }}
             </button>
             <Zap
               v-if="item.needs_attunement"
@@ -959,7 +955,12 @@
 <script>
 import { Zap, Check } from 'lucide-vue'
 import { dnd } from '@/utils/dnd_utils.js'
-import { cycleHand, isOneHandedWeapon } from '@/utils/weaponHands.js'
+import {
+  cycleGrip,
+  cycleHand,
+  gripMode,
+  isOneHandedWeapon,
+} from '@/utils/weaponHands.js'
 import { startItemDrag } from '@/utils/itemDrag.js'
 import { transferItemToCharacter } from '@/utils/itemTransfer.js'
 
@@ -1403,11 +1404,19 @@ export default {
         ? null
         : 'not-proficient'
     },
+    // Auto -> 1H -> 2H -> Auto (gripMode / cycleGrip in weaponHands.js).
     toggleGrip(item) {
-      this.$store.commit('UPDATE_ITEM', {
-        ...item,
-        slot: item.slot === 'melee2h' ? 'melee1h' : 'melee2h',
-      })
+      this.$store.commit('UPDATE_ITEM', cycleGrip(item))
+    },
+    gripLabel(item) {
+      return { auto: 'Auto', one: '1H', two: '2H' }[gripMode(item)]
+    },
+    gripTitle(item) {
+      return {
+        auto: 'Grip: auto — two-handed when a hand is free, one-handed with a shield or a second weapon. Click for one-handed.',
+        one: 'Grip: always one-handed. Click for two-handed.',
+        two: 'Grip: always two-handed. Click for auto.',
+      }[gripMode(item)]
     },
     carry(item) {
       this.$store.commit('UPDATE_ITEM', {

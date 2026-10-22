@@ -5,6 +5,8 @@ const {
   setHand,
   nextHand,
   loadoutHands,
+  gripMode,
+  cycleGrip,
 } = require('../rules/5e/weaponHands')
 
 const char = { name: 'Denna' }
@@ -152,4 +154,22 @@ test('loadoutHands: ignores weapons equipped by someone else', () => {
   const mine = dagger('mine')
   const theirs = dagger('theirs', { equipped_by: 'Vaz' })
   assert.strictEqual(loadoutHands(char, [mine, theirs]).ambiguous, false)
+})
+
+test('gripMode: the melee2h slot is two, grip one is one, otherwise auto', () => {
+  assert.equal(gripMode({ slot: 'melee2h' }), 'two')
+  assert.equal(gripMode({ slot: 'melee1h', grip: 'one' }), 'one')
+  assert.equal(gripMode({ slot: 'melee1h' }), 'auto')
+})
+
+test('cycleGrip goes auto -> one -> two -> auto and never leaves a stale grip field', () => {
+  const start = { id: 'x', slot: 'melee1h', name: 'Warhammer' }
+  const one = cycleGrip(start)
+  assert.deepEqual([one.slot, one.grip], ['melee1h', 'one'])
+  const two = cycleGrip(one)
+  assert.deepEqual([two.slot, 'grip' in two], ['melee2h', false])
+  const back = cycleGrip(two)
+  assert.deepEqual([back.slot, 'grip' in back], ['melee1h', false])
+  assert.equal(back.name, 'Warhammer') // other fields untouched
+  assert.equal(start.grip, undefined) // the original isn't mutated
 })

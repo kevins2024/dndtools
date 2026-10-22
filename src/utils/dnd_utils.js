@@ -49,6 +49,7 @@ import {
 } from './checks.js'
 import {
   weaponStatMod as engineWeaponStatMod,
+  weaponEnchantment as engineWeaponEnchantment,
   gripDie as engineGripDie,
   thrownDie as engineThrownDie,
   attackBonus as engineAttackBonus,
@@ -80,7 +81,7 @@ import {
 
 import { abilityScoreBreakdown as engineAbilityScoreBreakdown } from './abilityScoreBreakdown.js'
 import { priorityAbilitiesForClass } from './quickBuild.js'
-import { isOneHandedWeapon, loadoutHands } from './weaponHands.js'
+import { gripMode, isOneHandedWeapon, loadoutHands } from './weaponHands.js'
 import { normalizeItemSpellGrant as engineNormalizeItemSpellGrant } from './characterSpells.js'
 
 const HOMEBREW_WEAPON_PROPS = Object.fromEntries(
@@ -297,6 +298,15 @@ export const dnd = {
   // character's own equipped gear — the "caller pre-filters" contract every
   // engine/rules/5e/ stat-resolution function in this family expects
   // (characterStats.js, armorClass.js, checks.js, weaponAttack.js).
+  // A weapon's (or armor's) +N as the sheet would show it: the flat bonus, or
+  // for a scaling weapon like Plum the amount worked out from proficiency.
+  // Attunement is applied first, so an unattuned scaling weapon is +0.
+  weaponEnchantment(character, item, partyItems = []) {
+    const [effective] = applyAttunement([item])
+    const { bonuses } = dnd.resolveStats(character, partyItems)
+    return engineWeaponEnchantment(character, effective, bonuses).amount
+  },
+
   _equippedOnly(character, carriedPartyItems = []) {
     const items = [...(character.items ?? []), ...carriedPartyItems]
     // An un-attuned item that needs attunement keeps its plain +N but loses
@@ -799,9 +809,10 @@ export const dnd = {
           // showed it. Real gap found 2026-09-15. `w.slot` (not just
           // `versatile`) is what's needed to know which grip is CURRENT.
           versatile: props.versatile,
+          // 'auto' | 'one' | 'two' (see gripMode in weaponHands.js)
           grip:
             props.versatile && (w.slot === 'melee1h' || w.slot === 'melee2h')
-              ? w.slot
+              ? gripMode(w)
               : null,
         }
       })

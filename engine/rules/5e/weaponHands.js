@@ -119,7 +119,39 @@ function loadoutHands(character, items, setNum = null) {
   }
 }
 
+// How a versatile weapon is meant to be held, as a choice the player makes:
+//   'auto' - the default: two-handed when a hand is free, one-handed when a
+//            shield or a second one-handed weapon takes the other (the
+//            inference gripDie in weaponAttack.js makes);
+//   'one'  - deliberately one-handed even with a free hand (an item whose
+//            effect needs a one-handed weapon, a torch in the other hand);
+//   'two'  - deliberately two-handed (the melee2h slot).
+// 'one' is the `grip: 'one'` field on a weapon in the melee1h slot; 'two' is
+// the slot itself; no field and melee1h is 'auto'.
+function gripMode(item) {
+  if (item.slot === 'melee2h') return 'two'
+  return item.grip === 'one' ? 'one' : 'auto'
+}
+
+// The item after one click of the grip control: auto -> one -> two -> auto.
+// Returns a new item; `grip` is removed (not set to null) when it no longer
+// applies, so the saved record never carries a stale one.
+function cycleGrip(item) {
+  const { grip, ...rest } = item
+  void grip
+  switch (gripMode(item)) {
+    case 'auto':
+      return { ...rest, slot: 'melee1h', grip: 'one' }
+    case 'one':
+      return { ...rest, slot: 'melee2h' }
+    default:
+      return { ...rest, slot: 'melee1h' }
+  }
+}
+
 module.exports = {
+  gripMode,
+  cycleGrip,
   isOneHandedWeapon,
   setHand,
   nextHand,

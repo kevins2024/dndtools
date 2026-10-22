@@ -85,6 +85,9 @@ function gripDie(
   if (!props.versatile) return props.damage_dice
   if (weapon.slot === 'melee2h')
     return props.damage_dice_2h ?? props.damage_dice
+  // Deliberately held one-handed (see gripMode in weaponHands.js): never
+  // inferred two-handed, even with a free hand.
+  if (weapon.grip === 'one') return props.damage_dice
   // Both hands are free for it only with no second one-handed weapon AND no
   // shield (a shield occupies the off hand — longsword + shield is a d8).
   const melee1hCount = equippedItems.filter((i) => i.slot === 'melee1h').length

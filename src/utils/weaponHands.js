@@ -4,6 +4,8 @@
 // depends only on weaponSets.js, a zero-dependency leaf.
 const weaponHandsEngine = require('../../engine/rules/5e/weaponHands')
 
+export const gripMode = weaponHandsEngine.gripMode
+export const cycleGrip = weaponHandsEngine.cycleGrip
 export const isOneHandedWeapon = weaponHandsEngine.isOneHandedWeapon
 export const setHand = weaponHandsEngine.setHand
 export const nextHand = weaponHandsEngine.nextHand
