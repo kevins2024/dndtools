@@ -143,7 +143,7 @@
       "id": "party_1791382876351",
       "name": "East B",
       "members": ["Denna", "Kessara", "Lexica", "Ferghus", "Elowenne", "Brick"],
-      "active": true,
+      "active": false,
       "marching_order": [
         "Denna",
         "Kessara",
@@ -164,7 +164,7 @@
       "id": "party_1791412410652",
       "name": "East A",
       "members": ["Vaz", "Tackett", "Sorra", "Enauweyn"],
-      "active": false,
+      "active": true,
       "marching_order": ["Vaz", "Tackett", "Ferghus", "Sorra"],
       "watch_assignments": [
         ["Vaz", null],

@@ -7726,10 +7726,10 @@
     "id": "hb_timeline_freeze",
     "name": "Timeline Freeze",
     "subtitle": "Unique ability",
-    "description": "100-ft radius. For 3 minutes, you and any creatures you choose move and act normally. Every other creature and every object is frozen. A frozen creature can't be moved or touched, and any attempt, or any damage dealt or taken, ends the effect.",
+    "description": "100-ft radius. For 3 minutes, you and any creatures you choose move and act normally. Every other creature and every object is frozen. A frozen creature can't be moved or touched, and any attempt, or any damage dealt or taken, ends the effect. Recharges after an act of evil of medium heinousness or above — a DM call, never refilled by resting.",
     "action_type": "action",
     "recharge": "manual",
-    "recharge_note": "Recharges after an act of evil of medium heinousness or above — a DM call, never refilled by resting.",
+    "recharge_note": "",
     "note": "Homebrew, unique to Elowenne.",
     "homebrew": true,
     "source": "Homebrew, unique to Elowenne."
