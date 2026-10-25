@@ -21,6 +21,13 @@
       <div class="bm-toolbar">
         <div class="bm-toolbar-row">
           <span class="bm-title">Battle Map</span>
+          <template v-if="levels.length > 1">
+            <span class="bm-hint"
+              >Floor: <strong>{{ levelTitle(activeZ) }}</strong></span
+            >
+            <button class="bm-btn" @click="removeLevel">Remove floor</button>
+          </template>
+          <span v-if="notice" class="bm-hint bm-notice">{{ notice }}</span>
           <template v-if="paintMode">
             <span class="bm-hint">
               Click or drag to paint
@@ -174,6 +181,9 @@
             :title="t.label"
           >
             <span v-if="t.key === 'x'">✕</span>
+            <span v-else-if="t.glyph" class="bm-swatch-glyph">{{
+              t.glyph
+            }}</span>
           </button>
         </div>
 
@@ -289,22 +299,71 @@
         </button>
       </div>
 
-      <!-- Canvas -->
-      <div
-        class="bm-canvas-wrap scrollable"
-        ref="wrap"
-        @wheel.prevent="handleWheel"
-        :class="{ 'bm-cursor-paint': paintMode, 'bm-cursor-zone': zoneMode }"
-      >
-        <canvas
-          ref="canvas"
-          @click="handleClick"
-          @mousedown="handleMouseDown"
-          @mouseup="handleMouseUp"
-          @mousemove="handleMouseMove"
-          @mouseleave="handleMouseLeave"
-          @contextmenu="handleContextMenu"
-        />
+      <div class="bm-body">
+        <!-- Floor selector — like a zoom control: "+" goes up a floor, "−"
+        goes down one (creating it if it's new), and the 11 marks between show
+        where you are, +5 down to −5 with 0 (ground) in the middle. The marks
+        aren't clickable. Stairs painted on the top/bottom floor also create the
+        floor they lead to. The badge is how many tokens stand on a floor. -->
+        <div class="bm-level-rail">
+          <button
+            class="bm-level-step"
+            :disabled="!canStepUp"
+            :title="
+              canStepUp
+                ? 'Up one floor (adds it if new)'
+                : `Top floor (${MAX_Z} above ground)`
+            "
+            @click="stepLevel(1)"
+          >
+            +
+          </button>
+          <div
+            v-for="slot in levelSlots"
+            :key="slot.z"
+            class="bm-level-slot"
+            :class="{ exists: slot.exists, active: slot.z === activeZ }"
+            :title="slot.exists ? levelTitle(slot.z) : ''"
+          >
+            <template v-if="slot.z === 0 || slot.z === activeZ">{{
+              slot.z
+            }}</template>
+            <span v-else class="bm-level-mark" />
+            <span v-if="tokenCount(slot.z)" class="bm-level-count">{{
+              tokenCount(slot.z)
+            }}</span>
+          </div>
+          <button
+            class="bm-level-step"
+            :disabled="!canStepDown"
+            :title="
+              canStepDown
+                ? 'Down one floor (adds it if new)'
+                : `Bottom floor (${MAX_Z} below ground)`
+            "
+            @click="stepLevel(-1)"
+          >
+            −
+          </button>
+        </div>
+
+        <!-- Canvas -->
+        <div
+          class="bm-canvas-wrap scrollable"
+          ref="wrap"
+          @wheel.prevent="handleWheel"
+          :class="{ 'bm-cursor-paint': paintMode, 'bm-cursor-zone': zoneMode }"
+        >
+          <canvas
+            ref="canvas"
+            @click="handleClick"
+            @mousedown="handleMouseDown"
+            @mouseup="handleMouseUp"
+            @mousemove="handleMouseMove"
+            @mouseleave="handleMouseLeave"
+            @contextmenu="handleContextMenu"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -369,6 +428,24 @@ const TERRAIN_GROUPS = [
     { key: 'stone', color: '#7d7a74', label: 'Stone (masonry)', object: true },
     { key: 'tree', color: '#2f6b2a', label: 'Tree', object: true },
   ],
+  // Stairs are objects too, but painting one also paints the matching stair
+  // on the floor above/below (see STAIR_LINKS / paintStairs).
+  [
+    {
+      key: 'stairs_up',
+      color: '#a39c8e',
+      label: 'Stairs up (also marks the floor above)',
+      object: true,
+      glyph: '▲',
+    },
+    {
+      key: 'stairs_down',
+      color: '#4f4a42',
+      label: 'Stairs down (also marks the floor below)',
+      object: true,
+      glyph: '▼',
+    },
+  ],
 ]
 
 const TERRAIN_PALETTE = TERRAIN_GROUPS.flat()
@@ -395,10 +472,41 @@ const OBJECT_SWATCH_CSS = {
     'linear-gradient(to right, transparent 21%, #4a4742 21% 29%, transparent 29% 71%, #4a4742 71% 79%, transparent 79%) bottom / 100% 50% no-repeat, ' +
     '#8a867f',
   tree: 'radial-gradient(circle at 50% 50%, #4a9a40 0 22%, #2f6b2a 23% 62%, #1d4a1a 63% 68%, transparent 70%)',
+  stairs_up:
+    'repeating-linear-gradient(to bottom, #9d968a 0 4px, #3c382f 4px 5px)',
+  stairs_down:
+    'repeating-linear-gradient(to bottom, #5c574e 0 4px, #25221d 4px 5px)',
 }
 
 // Symbols for objects in the text export (letters are taken by tokens)
-const OBJECT_EXPORT_SYMS = { wood: '=', stone: '#', tree: '*' }
+const OBJECT_EXPORT_SYMS = {
+  wood: '=',
+  stone: '#',
+  tree: '*',
+  stairs_up: '<',
+  stairs_down: '>',
+}
+
+// Floors are stacked by integer z (0 = ground, negative = below). A stair
+// object leads `dz` floors away and is mirrored by `partner` on that floor.
+const STAIR_LINKS = {
+  stairs_up: { dz: 1, partner: 'stairs_down' },
+  stairs_down: { dz: -1, partner: 'stairs_up' },
+}
+
+// Floors run from MAX_Z above ground to MAX_Z below: 11 in all.
+const MAX_Z = 5
+
+function makeLevel(z) {
+  return {
+    z,
+    terrain: {},
+    objects: {},
+    zones: [],
+    bgFill: null,
+    bgImage: null,
+  }
+}
 
 // Background textures (CC0, Poly Haven — see public/battlemap/README.txt).
 // Rendered as a CSS background on the canvas element, with the canvas itself
@@ -448,10 +556,13 @@ export default {
       cellSize: 24,
       MIN_CELL: 8,
       MAX_CELL: 40,
-      terrain: {},
-      objects: {},
-      bgFill: null,
-      bgImage: null,
+      // Per-floor paint lives in `levels` (kept sorted by z); terrain,
+      // objects, zones, bgFill and bgImage below are computed views of the
+      // floor being viewed, so the painting code doesn't care about floors.
+      levels: [makeLevel(0)],
+      activeZ: 0,
+      MAX_Z,
+      notice: '',
       BACKGROUNDS,
       gridStyle: 'normal',
       GRID_STYLES,
@@ -459,7 +570,6 @@ export default {
       selectedPaint: 'brown1',
       isPainting: false,
       zoneMode: false,
-      zones: [],
       zoneRadius: 4,
       zoneShape: 'circle',
       zoneSide: 4,
@@ -490,9 +600,58 @@ export default {
       const m = {}
       for (const e of this.order) {
         const p = this.positions[e.key]
-        if (p) m[`${p.col},${p.row}`] = e
+        if (p && p.z === this.activeZ) m[`${p.col},${p.row}`] = e
       }
       return m
+    },
+
+    // ── Floors ──
+    level() {
+      return this.levels.find((l) => l.z === this.activeZ)
+    },
+    // The fixed 11-slot strip, top (+MAX_Z) to bottom (−MAX_Z).
+    levelSlots() {
+      const slots = []
+      for (let z = MAX_Z; z >= -MAX_Z; z--) {
+        slots.push({ z, exists: this.levels.some((l) => l.z === z) })
+      }
+      return slots
+    },
+    canStepUp() {
+      return this.activeZ < MAX_Z
+    },
+    canStepDown() {
+      return this.activeZ > -MAX_Z
+    },
+    terrain() {
+      return this.level.terrain
+    },
+    objects() {
+      return this.level.objects
+    },
+    zones: {
+      get() {
+        return this.level.zones
+      },
+      set(v) {
+        this.level.zones = v
+      },
+    },
+    bgFill: {
+      get() {
+        return this.level.bgFill
+      },
+      set(v) {
+        this.level.bgFill = v
+      },
+    },
+    bgImage: {
+      get() {
+        return this.level.bgImage
+      },
+      set(v) {
+        this.level.bgImage = v
+      },
     },
     selectedPaintLabel() {
       return (
@@ -519,31 +678,22 @@ export default {
         )
         const enemies = entries.filter((e) => e.type === 'enemy')
         const pos = { ...this.positions }
-        const occupied = () =>
-          new Set(Object.values(pos).map((p) => `${p.col},${p.row}`))
-        const freeCell = (col, row) => {
-          const occ = occupied()
-          if (!occ.has(`${col},${row}`)) return { col, row }
-          for (let r = 1; r <= 12; r++) {
-            for (let dc = -r; dc <= r; dc++) {
-              for (let dr = -r; dr <= r; dr++) {
-                if (Math.abs(dc) === r || Math.abs(dr) === r) {
-                  if (!occ.has(`${col + dc},${row + dr}`))
-                    return { col: col + dc, row: row + dr }
-                }
-              }
-            }
-          }
-          return { col, row }
-        }
+        // New combatants appear on whichever floor is being viewed.
+        const z = this.activeZ
         players.forEach((p, i) => {
-          if (!pos[p.key]) pos[p.key] = freeCell(52, 31 + i * 3)
+          if (!pos[p.key])
+            pos[p.key] = this.findFreeCell(pos, z, 52, 31 + i * 3)
         })
         enemies.forEach((e, i) => {
-          if (!pos[e.key]) pos[e.key] = freeCell(35, 31 + i * 3)
+          if (!pos[e.key])
+            pos[e.key] = this.findFreeCell(pos, z, 35, 31 + i * 3)
         })
         this.positions = pos
       },
+    },
+    activeZ() {
+      this.applyBackground()
+      this.draw()
     },
     cellSize() {
       this.$nextTick(() => {
@@ -592,9 +742,159 @@ export default {
 
   beforeDestroy() {
     document.removeEventListener('mouseup', this._stopPainting)
+    clearTimeout(this._noticeTimer)
   },
 
   methods: {
+    // ── Floors ────────────────────────────────────────────────
+
+    levelTitle(z) {
+      return z === 0
+        ? 'Ground floor'
+        : z > 0
+        ? `Floor ${z} (above ground)`
+        : `Basement ${-z}`
+    },
+    tokenCount(z) {
+      return this.order.filter((e) => this.positions[e.key]?.z === z).length
+    },
+    flashNotice(msg) {
+      this.notice = msg
+      clearTimeout(this._noticeTimer)
+      this._noticeTimer = setTimeout(() => {
+        this.notice = ''
+      }, 3000)
+    },
+
+    setActiveLevel(z) {
+      if (z === this.activeZ) return
+      this.activeZ = z
+      this.hoverCol = null
+      this.hoverRow = null
+      this._lastPaintKey = null
+    },
+
+    // Returns the floor at z, creating it (kept sorted by z) if there is room.
+    // null = the floor limit (MAX_Z above or below ground) stopped it.
+    ensureLevel(z) {
+      const existing = this.levels.find((l) => l.z === z)
+      if (existing) return existing
+      if (Math.abs(z) > MAX_Z) {
+        this.flashNotice(`Floor limit reached (${MAX_Z} above or below ground)`)
+        return null
+      }
+      this.levels.push(makeLevel(z))
+      this.levels.sort((a, b) => a.z - b.z)
+      return this.levels.find((l) => l.z === z)
+    },
+
+    // One floor up (+1) or down (-1) from the one being viewed; a floor
+    // that doesn't exist yet is created.
+    stepLevel(dir) {
+      const z = this.activeZ + dir
+      if (this.ensureLevel(z)) this.setActiveLevel(z)
+    },
+
+    // Removes the floor being viewed. Floors beyond it close the gap
+    // (upper floors drop by one; for a basement, lower ones rise by one) so
+    // ground stays at 0. Tokens on it fall to the neighbouring floor.
+    removeLevel() {
+      if (this.levels.length <= 1) return
+      const z = this.activeZ
+      const lv = this.level
+      const here = this.order.filter((e) => this.positions[e.key]?.z === z)
+      const hasPaint =
+        Object.keys(lv.terrain).length ||
+        Object.keys(lv.objects).length ||
+        lv.zones.length
+      if (
+        (hasPaint || here.length) &&
+        !window.confirm(
+          `Remove ${this.levelTitle(z)}? Its painted map is lost` +
+            (here.length
+              ? ` and its ${here.length} token(s) move to the next floor.`
+              : '.')
+        )
+      ) {
+        return
+      }
+      const dir = z >= 0 ? 1 : -1
+      const shift = (old) => ((old - z) * dir > 0 ? old - dir : old)
+      const hasBeyond = this.levels.some((l) => (l.z - z) * dir > 0)
+      const fallback = hasBeyond ? z : z - dir
+
+      const next = {}
+      for (const [k, p] of Object.entries(this.positions)) {
+        next[k] = { ...p, z: p.z === z ? fallback : shift(p.z) }
+      }
+      this.positions = next
+      this.levels = this.levels
+        .filter((l) => l !== lv)
+        .map((l) => {
+          l.z = shift(l.z)
+          return l
+        })
+        .sort((a, b) => a.z - b.z)
+      this.activeZ = fallback
+      this.selectedKey = null
+      this.applyBackground()
+      this.draw()
+    },
+
+    // Nearest unoccupied cell to (col,row) on floor z, spiralling outward.
+    findFreeCell(positions, z, col, row) {
+      const occ = new Set(
+        Object.values(positions)
+          .filter((p) => p.z === z)
+          .map((p) => `${p.col},${p.row}`)
+      )
+      if (!occ.has(`${col},${row}`)) return { col, row, z }
+      for (let r = 1; r <= 12; r++) {
+        for (let dc = -r; dc <= r; dc++) {
+          for (let dr = -r; dr <= r; dr++) {
+            if (Math.abs(dc) === r || Math.abs(dr) === r) {
+              if (!occ.has(`${col + dc},${row + dr}`))
+                return { col: col + dc, row: row + dr, z }
+            }
+          }
+        }
+      }
+      return { col, row, z }
+    },
+
+    // If a stair at (col,row) on this floor leads somewhere that exists,
+    // the floor it leads to; otherwise null.
+    stairDestination(col, row) {
+      const link = STAIR_LINKS[this.objects[`${col},${row}`]]
+      if (!link) return null
+      const z = this.activeZ + link.dz
+      return this.levels.some((l) => l.z === z) ? z : null
+    },
+
+    // Removes the matching stair on the neighbouring floor when the stair
+    // at cellKey on `level` is erased or replaced, so pairs never dangle.
+    clearStairPartner(level, cellKey) {
+      const link = STAIR_LINKS[level.objects[cellKey]]
+      if (!link) return
+      const other = this.levels.find((l) => l.z === level.z + link.dz)
+      if (other && other.objects[cellKey] === link.partner) {
+        this.$delete(other.objects, cellKey)
+      }
+    },
+
+    // Paints a stair here and its mirror (same cell) on the floor it leads
+    // to, creating that floor if needed.
+    paintStairs(cellKey, key) {
+      const link = STAIR_LINKS[key]
+      if (this.objects[cellKey] === key) return
+      const other = this.ensureLevel(this.activeZ + link.dz)
+      if (!other) return
+      this.clearStairPartner(this.level, cellKey)
+      this.clearStairPartner(other, cellKey)
+      this.$set(this.objects, cellKey, key)
+      this.$set(other.objects, cellKey, link.partner)
+    },
+
     setSelectedSize(size) {
       if (!this.selectedKey) return
       this.$emit('set-token-size', { key: this.selectedKey, size })
@@ -695,6 +995,44 @@ export default {
             cs / 2 - seam
           )
         })
+      } else if (key === 'stairs_up' || key === 'stairs_down') {
+        // Treads fade lighter toward the top of the cell; the arrow points
+        // the way the stairs go (up the screen = climbing, down = descending).
+        const up = key === 'stairs_up'
+        const treads = 5
+        const th = cs / treads
+        for (let i = 0; i < treads; i++) {
+          const t = i / (treads - 1)
+          ctx.fillStyle = up
+            ? `hsl(38,8%,${60 - t * 26}%)`
+            : `hsl(30,8%,${36 - t * 16}%)`
+          ctx.fillRect(x, y + th * i, cs, th)
+        }
+        ctx.strokeStyle = 'rgba(20,16,10,0.7)'
+        ctx.lineWidth = seam
+        for (let i = 0; i <= treads; i++) {
+          ctx.beginPath()
+          ctx.moveTo(x, y + th * i)
+          ctx.lineTo(x + cs, y + th * i)
+          ctx.stroke()
+        }
+        if (cs >= 10) {
+          const cx = x + cs / 2
+          const cy = y + cs / 2
+          const w = cs * 0.3
+          const hh = cs * 0.34
+          const dir = up ? -1 : 1
+          ctx.beginPath()
+          ctx.moveTo(cx, cy + dir * hh)
+          ctx.lineTo(cx - w, cy - dir * hh)
+          ctx.lineTo(cx + w, cy - dir * hh)
+          ctx.closePath()
+          ctx.fillStyle = 'rgba(255,255,255,0.92)'
+          ctx.fill()
+          ctx.strokeStyle = 'rgba(0,0,0,0.75)'
+          ctx.lineWidth = Math.max(1, cs * 0.05)
+          ctx.stroke()
+        }
       } else if (key === 'tree') {
         const cx = x + cs / 2
         const cy = y + cs / 2
@@ -958,7 +1296,7 @@ export default {
       // Tokens
       for (const entry of this.order) {
         const pos = this.positions[entry.key]
-        if (!pos) continue
+        if (!pos || pos.z !== this.activeZ) continue
         this.drawToken(ctx, entry, pos.col, pos.row, cs)
       }
     },
@@ -1164,9 +1502,14 @@ export default {
       if (this._lastPaintKey === cellKey) return
       this._lastPaintKey = cellKey
       if (this.selectedPaint === null) {
-        if (this.objects[cellKey]) this.$delete(this.objects, cellKey)
-        else this.$delete(this.terrain, cellKey)
+        if (this.objects[cellKey]) {
+          this.clearStairPartner(this.level, cellKey)
+          this.$delete(this.objects, cellKey)
+        } else this.$delete(this.terrain, cellKey)
+      } else if (STAIR_LINKS[this.selectedPaint]) {
+        this.paintStairs(cellKey, this.selectedPaint)
       } else if (OBJECT_KEYS.has(this.selectedPaint)) {
+        this.clearStairPartner(this.level, cellKey)
         this.$set(this.objects, cellKey, this.selectedPaint)
       } else {
         this.$set(this.terrain, cellKey, this.selectedPaint)
@@ -1250,8 +1593,21 @@ export default {
         this.selectedKey =
           this.selectedKey === occupant.key ? null : occupant.key
       } else if (this.selectedKey) {
-        this.$set(this.positions, this.selectedKey, { col, row })
+        // Clicking a stair that leads to an existing floor takes the token
+        // there (same cell) and the view follows; anywhere else it simply
+        // lands on the floor being viewed — so switching floors with a token
+        // selected and clicking a square also moves it between floors.
+        const dest = this.stairDestination(col, row)
+        const z = dest ?? this.activeZ
+        this.$set(
+          this.positions,
+          this.selectedKey,
+          dest === null
+            ? { col, row, z }
+            : this.findFreeCell(this.positions, z, col, row)
+        )
         this.selectedKey = null
+        if (dest !== null) this.setActiveLevel(dest)
         this.hoverCol = null
         this.hoverRow = null
       }
@@ -1338,7 +1694,7 @@ export default {
         allCells.push({ col, row })
       }
       for (const pos of Object.values(this.positions)) {
-        allCells.push(pos)
+        if (pos.z === this.activeZ) allCells.push(pos)
       }
       if (allCells.length === 0) return
 
@@ -1356,7 +1712,7 @@ export default {
       let ei = 0
       for (const entry of this.order) {
         const pos = this.positions[entry.key]
-        if (!pos) continue
+        if (!pos || pos.z !== this.activeZ) continue
         let sym
         if (entry.type === 'player') {
           sym = PLAYER_SYMS[pi++] ?? '@'
@@ -1392,7 +1748,11 @@ export default {
         (legend.length ? legend.join('\n') + '\n' : '') +
         'X = obstacle  . = open' +
         (objectLegend.length ? '  ' + objectLegend.join('  ') : '')
-      const text = gridRows.join('\n') + '\n\n' + legendBlock
+      const floorHeader =
+        this.levels.length > 1
+          ? `Floor: ${this.levelTitle(this.activeZ)}\n`
+          : ''
+      const text = floorHeader + gridRows.join('\n') + '\n\n' + legendBlock
 
       navigator.clipboard.writeText(text).then(() => {
         this.copyFlash = true
@@ -1711,9 +2071,110 @@ button. */
   color: var(--color-text-danger);
 }
 
+/* ── Floor rail ── */
+.bm-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.bm-level-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  width: 1.9rem;
+  align-self: flex-start;
+  margin: 0.5rem 0 0 0.4rem;
+  padding: 3px;
+  background: var(--color-bg-panel-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.bm-level-step,
+.bm-level-slot {
+  position: relative;
+  height: 1.1rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-body);
+  line-height: 1;
+  text-align: center;
+}
+.bm-level-step {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+}
+.bm-level-step:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.bm-level-step:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* The marks only show where you are — they aren't controls. */
+.bm-level-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-low);
+  cursor: default;
+}
+.bm-level-slot.active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(200, 169, 110, 0.12);
+}
+.bm-level-mark {
+  width: 40%;
+  height: 1px;
+  background: var(--color-border);
+}
+/* A floor that exists has a brighter mark than an empty slot */
+.bm-level-slot.exists .bm-level-mark {
+  height: 2px;
+  background: var(--color-text-low);
+}
+
+.bm-level-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 12px;
+  height: 12px;
+  padding: 0 2px;
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 9px;
+  line-height: 12px;
+}
+
+.bm-notice strong,
+.bm-notice {
+  color: var(--color-text-danger);
+}
+
+.bm-swatch-glyph {
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+  text-shadow: 0 0 2px #000, 0 0 2px #000;
+}
+
 /* ── Canvas wrap ── */
 .bm-canvas-wrap {
   flex: 1;
+  min-width: 0;
   overflow: auto;
   cursor: crosshair;
   background: var(--color-bg);
