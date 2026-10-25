@@ -77,6 +77,30 @@
             {{ zoneMode ? 'Move Mode' : 'Zones' }}
           </button>
 
+          <div class="bm-size-row">
+            <span class="bm-hint">Grid:</span>
+            <select class="bm-size-select" v-model="gridStyle">
+              <option v-for="g in GRID_STYLES" :key="g.key" :value="g.key">
+                {{ g.label }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Background texture — sits under all painted terrain/objects. -->
+          <div class="bm-size-row">
+            <span class="bm-hint">Background:</span>
+            <select
+              class="bm-size-select"
+              :value="bgImage || ''"
+              @change="setBackground($event.target.value)"
+            >
+              <option value="">None</option>
+              <option v-for="b in BACKGROUNDS" :key="b.key" :value="b.key">
+                {{ b.label }}
+              </option>
+            </select>
+          </div>
+
           <div class="bm-zoom-row">
             <button
               class="bm-btn"
@@ -143,8 +167,9 @@
             :class="{
               active: selectedPaint === t.key,
               'bm-swatch-x': t.key === 'x',
+              'bm-swatch-obj': t.object,
             }"
-            :style="t.color ? { background: t.color } : {}"
+            :style="swatchStyle(t)"
             @click="selectedPaint = t.key"
             :title="t.label"
           >
@@ -180,41 +205,76 @@
           />
         </div>
 
-        <span class="bm-hint" style="flex-shrink: 0; margin-left: 0.8rem"
-          >Radius:</span
-        >
-        <div class="bm-zoom-row">
+        <div class="bm-zoom-row" style="margin-left: 0.8rem">
           <button
             class="bm-btn"
-            @click="zoneRadius = Math.max(1, zoneRadius - 1)"
+            :class="{ 'bm-btn--active': zoneShape === 'circle' }"
+            @click="zoneShape = 'circle'"
           >
-            −
+            ○ Circle
           </button>
-          <span class="bm-zoom-label"
-            >{{ zoneRadius }} ({{ zoneRadius * 5 }}ft)</span
-          >
           <button
             class="bm-btn"
-            @click="zoneRadius = Math.min(20, zoneRadius + 1)"
+            :class="{ 'bm-btn--active': zoneShape === 'square' }"
+            @click="zoneShape = 'square'"
           >
-            +
+            □ Square
           </button>
         </div>
+
+        <template v-if="zoneShape === 'square'">
+          <span class="bm-hint" style="flex-shrink: 0">Side:</span>
+          <div class="bm-zoom-row">
+            <button
+              class="bm-btn"
+              @click="zoneSide = Math.max(1, zoneSide - 1)"
+            >
+              −
+            </button>
+            <span class="bm-zoom-label"
+              >{{ zoneSide }} ({{ zoneSide * 5 }}ft)</span
+            >
+            <button
+              class="bm-btn"
+              @click="zoneSide = Math.min(40, zoneSide + 1)"
+            >
+              +
+            </button>
+          </div>
+        </template>
+        <template v-else>
+          <span class="bm-hint" style="flex-shrink: 0">Radius:</span>
+          <div class="bm-zoom-row">
+            <button
+              class="bm-btn"
+              @click="zoneRadius = Math.max(1, zoneRadius - 1)"
+            >
+              −
+            </button>
+            <span class="bm-zoom-label"
+              >{{ zoneRadius }} ({{ zoneRadius * 5 }}ft)</span
+            >
+            <button
+              class="bm-btn"
+              @click="zoneRadius = Math.min(20, zoneRadius + 1)"
+            >
+              +
+            </button>
+          </div>
+        </template>
 
         <div v-if="zones.length" class="zone-list">
           <span
             v-for="zone in zones"
             :key="zone.id"
             class="zone-list-item"
-            :title="
-              zoneColorLabel(zone.color) + ' — ' + zone.radius * 5 + 'ft radius'
-            "
+            :title="zoneTitle(zone)"
           >
             <span
               class="zone-list-dot"
               :style="{ background: zoneColorHex(zone.color) }"
             />
-            {{ zone.radius * 5 }}ft
+            {{ zoneLabel(zone) }}
             <button class="zone-remove-btn" @click="removeZone(zone.id)">
               ✕
             </button>
@@ -301,9 +361,71 @@ const TERRAIN_GROUPS = [
     { key: 'grey3', color: '#302828', label: 'Dark stone' },
   ],
   [{ key: 'x', color: null, label: 'Obstacle' }],
+  // Objects live in their own layer (`objects`, not `terrain`) so a wall or
+  // tree sits on top of whatever terrain paint is underneath it. Drawn
+  // procedurally in drawObject(); `color` is just the swatch/hover tint.
+  [
+    { key: 'wood', color: '#8b5e34', label: 'Wood (boards)', object: true },
+    { key: 'stone', color: '#7d7a74', label: 'Stone (masonry)', object: true },
+    { key: 'tree', color: '#2f6b2a', label: 'Tree', object: true },
+  ],
 ]
 
 const TERRAIN_PALETTE = TERRAIN_GROUPS.flat()
+const OBJECT_KEYS = new Set(
+  TERRAIN_PALETTE.filter((t) => t.object).map((t) => t.key)
+)
+
+// Grid line colour options. 'normal' keeps the subtle themed lines; the rest
+// are deliberately loud for when the grid gets lost in a busy texture.
+const GRID_STYLES = [
+  { key: 'normal', label: 'Normal', rgb: null },
+  { key: 'yellow', label: 'Yellow', rgb: '255,225,0' },
+  { key: 'pink', label: 'Pink', rgb: '255,60,200' },
+  { key: 'white', label: 'White', rgb: '255,255,255' },
+]
+
+// CSS thumbnails for the object swatches, so they look like what they paint
+// (a flat colour doesn't say "wall" or "tree").
+const OBJECT_SWATCH_CSS = {
+  wood: 'linear-gradient(to bottom, #94643a 0 30%, #2a180a 30% 36%, #7f5430 36% 64%, #2a180a 64% 70%, #8a5c33 70%)',
+  stone:
+    'linear-gradient(to bottom, transparent 46%, #4a4742 46% 54%, transparent 54%), ' +
+    'linear-gradient(to right, transparent 46%, #4a4742 46% 54%, transparent 54%) top / 100% 50% no-repeat, ' +
+    'linear-gradient(to right, transparent 21%, #4a4742 21% 29%, transparent 29% 71%, #4a4742 71% 79%, transparent 79%) bottom / 100% 50% no-repeat, ' +
+    '#8a867f',
+  tree: 'radial-gradient(circle at 50% 50%, #4a9a40 0 22%, #2f6b2a 23% 62%, #1d4a1a 63% 68%, transparent 70%)',
+}
+
+// Symbols for objects in the text export (letters are taken by tokens)
+const OBJECT_EXPORT_SYMS = { wood: '=', stone: '#', tree: '*' }
+
+// Background textures (CC0, Poly Haven — see public/battlemap/README.txt).
+// Rendered as a CSS background on the canvas element, with the canvas itself
+// transparent where nothing is painted, so terrain/object paint always sits
+// on top and tiling costs nothing per redraw. tileCells = how many grid cells
+// one repeat of the image spans.
+const BACKGROUNDS = [
+  {
+    key: 'grass',
+    label: 'Grassland',
+    src: './battlemap/grass.jpg',
+    tileCells: 12,
+  },
+  {
+    key: 'cobble',
+    label: 'City cobbles',
+    src: './battlemap/cobblestone.jpg',
+    tileCells: 5,
+  },
+  {
+    key: 'desert',
+    label: 'Desert',
+    src: './battlemap/desert.jpg',
+    tileCells: 12,
+  },
+  { key: 'snow', label: 'Snow', src: './battlemap/snow.jpg', tileCells: 8 },
+]
 
 export default {
   name: 'BattleMap',
@@ -327,13 +449,20 @@ export default {
       MIN_CELL: 8,
       MAX_CELL: 40,
       terrain: {},
+      objects: {},
       bgFill: null,
+      bgImage: null,
+      BACKGROUNDS,
+      gridStyle: 'normal',
+      GRID_STYLES,
       paintMode: false,
       selectedPaint: 'brown1',
       isPainting: false,
       zoneMode: false,
       zones: [],
       zoneRadius: 4,
+      zoneShape: 'circle',
+      zoneSide: 4,
       selectedZoneColor: 'yellow',
       TERRAIN_GROUPS,
       ZONE_COLORS,
@@ -425,6 +554,19 @@ export default {
     zoneRadius() {
       this.draw()
     },
+    zoneSide() {
+      this.draw()
+    },
+    zoneShape() {
+      this.draw()
+    },
+    bgImage() {
+      this.applyBackground()
+      this.draw()
+    },
+    gridStyle() {
+      this.draw()
+    },
     selectedZoneColor() {
       this.draw()
     },
@@ -433,6 +575,7 @@ export default {
   mounted() {
     this._stopPainting = () => {
       this.isPainting = false
+      this._lastPaintKey = null
     }
     document.addEventListener('mouseup', this._stopPainting)
 
@@ -469,9 +612,151 @@ export default {
       canvas.style.width = `${logical}px`
       canvas.style.height = `${logical}px`
       canvas.getContext('2d').scale(dpr, dpr)
+      this.applyBackground()
+    },
+
+    // Tiles the chosen texture behind the (transparent) canvas via CSS, so
+    // it scales with zoom and never has to be repainted per draw.
+    applyBackground() {
+      const canvas = this.$refs.canvas
+      if (!canvas) return
+      const bg = BACKGROUNDS.find((b) => b.key === this.bgImage)
+      if (bg) {
+        const tile = bg.tileCells * this.cellSize
+        canvas.style.backgroundImage = `url(${bg.src})`
+        canvas.style.backgroundSize = `${tile}px ${tile}px`
+        canvas.style.backgroundRepeat = 'repeat'
+      } else {
+        canvas.style.backgroundImage = ''
+        canvas.style.backgroundSize = ''
+      }
+    },
+
+    swatchStyle(t) {
+      if (t.object) return { background: OBJECT_SWATCH_CSS[t.key] }
+      return t.color ? { background: t.color } : {}
+    },
+
+    setBackground(key) {
+      this.bgImage = key || null
+      if (this.bgImage) this.bgFill = null
     },
 
     // ── Drawing ───────────────────────────────────────────────
+
+    // Wood boards, stone masonry and trees, drawn per cell. Seams/joints are
+    // laid out so neighbouring cells line up into continuous walls, and a
+    // per-cell hash varies the shades so it doesn't look stamped.
+    drawObject(ctx, key, col, row, cs) {
+      const x = col * cs
+      const y = row * cs
+      const h = ((col * 73856093) ^ (row * 19349663)) >>> 0
+      const seam = Math.max(0.6, cs * 0.04)
+
+      if (key === 'wood') {
+        const boards = 3
+        const bh = cs / boards
+        for (let i = 0; i < boards; i++) {
+          const v = ((h >> (i * 4)) & 15) / 15
+          ctx.fillStyle = `hsl(30,42%,${32 + v * 10}%)`
+          ctx.fillRect(x, y + bh * i, cs, bh)
+        }
+        ctx.strokeStyle = 'rgba(30,16,6,0.7)'
+        ctx.lineWidth = seam
+        for (let i = 0; i <= boards; i++) {
+          ctx.beginPath()
+          ctx.moveTo(x, y + bh * i)
+          ctx.lineTo(x + cs, y + bh * i)
+          ctx.stroke()
+        }
+      } else if (key === 'stone') {
+        ctx.fillStyle = '#4a4742'
+        ctx.fillRect(x, y, cs, cs)
+        // Running bond: top course joints at 0 / .5, bottom at -.25 / .25 / .75
+        const bricks = [
+          [0, 0, 0.5],
+          [0, 0.5, 0.5],
+          [1, -0.25, 0.5],
+          [1, 0.25, 0.5],
+          [1, 0.75, 0.5],
+        ]
+        bricks.forEach(([course, bx, bw], i) => {
+          const left = Math.max(0, bx)
+          const right = Math.min(1, bx + bw)
+          const v = ((h >> i) & 15) / 15
+          ctx.fillStyle = `hsl(40,6%,${40 + v * 12}%)`
+          const gl = bx >= 0 ? seam / 2 : 0
+          const gr = bx + bw <= 1 ? seam / 2 : 0
+          const gt = seam / 2
+          ctx.fillRect(
+            x + left * cs + gl,
+            y + course * (cs / 2) + gt,
+            (right - left) * cs - gl - gr,
+            cs / 2 - seam
+          )
+        })
+      } else if (key === 'tree') {
+        const cx = x + cs / 2
+        const cy = y + cs / 2
+        const r = cs * 0.48
+        ctx.fillStyle = 'rgba(0,0,0,0.28)'
+        ctx.beginPath()
+        ctx.arc(cx + cs * 0.06, cy + cs * 0.08, r, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.fillStyle = `hsl(115,45%,${21 + ((h & 7) / 7) * 5}%)`
+        ctx.beginPath()
+        ctx.arc(cx, cy, r, 0, Math.PI * 2)
+        ctx.fill()
+        if (cs >= 14) {
+          for (let i = 0; i < 4; i++) {
+            const ang = (((h >> (i * 3)) & 7) / 8) * Math.PI * 2 + i
+            ctx.fillStyle = `hsl(110,42%,${29 + (i % 2) * 4}%)`
+            ctx.beginPath()
+            ctx.arc(
+              cx + Math.cos(ang) * r * 0.45,
+              cy + Math.sin(ang) * r * 0.45,
+              r * 0.42,
+              0,
+              Math.PI * 2
+            )
+            ctx.fill()
+          }
+        }
+        ctx.strokeStyle = 'rgba(0,0,0,0.45)'
+        ctx.lineWidth = 0.8
+        ctx.beginPath()
+        ctx.arc(cx, cy, r, 0, Math.PI * 2)
+        ctx.stroke()
+      }
+    },
+
+    zonePath(ctx, cs, zone) {
+      const cx = zone.col * cs
+      const cy = zone.row * cs
+      if (zone.shape === 'square') {
+        const half = (zone.side * cs) / 2
+        ctx.rect(cx - half, cy - half, half * 2, half * 2)
+      } else {
+        ctx.arc(cx, cy, zone.radius * cs, 0, Math.PI * 2)
+      }
+    },
+
+    drawZone(ctx, cs, zone, hex, fillAlpha, strokeAlpha) {
+      ctx.setLineDash([5, 4])
+      ctx.globalAlpha = fillAlpha
+      ctx.fillStyle = hex
+      ctx.beginPath()
+      this.zonePath(ctx, cs, zone)
+      ctx.fill()
+      ctx.globalAlpha = strokeAlpha
+      ctx.strokeStyle = hex
+      ctx.lineWidth = 1.5
+      ctx.beginPath()
+      this.zonePath(ctx, cs, zone)
+      ctx.stroke()
+      ctx.setLineDash([])
+      ctx.globalAlpha = 1
+    },
 
     draw() {
       const canvas = this.$refs.canvas
@@ -480,9 +765,13 @@ export default {
       const cs = this.cellSize
       const sz = GRID * cs
 
-      // Background
-      ctx.fillStyle = '#1a1612'
-      ctx.fillRect(0, 0, sz, sz)
+      // Base. With a background texture the canvas stays transparent so the
+      // CSS-tiled image (see applyBackground) shows through under all paint.
+      ctx.clearRect(0, 0, sz, sz)
+      if (!this.bgImage) {
+        ctx.fillStyle = '#1a1612'
+        ctx.fillRect(0, 0, sz, sz)
+      }
 
       // Background fill (applied before individual terrain cells)
       if (this.bgFill) {
@@ -515,12 +804,48 @@ export default {
         }
       }
 
-      // Grid lines
+      // Objects (wood / stone fill the cell, so they go under the grid)
+      for (const [cellKey, objKey] of Object.entries(this.objects)) {
+        if (objKey === 'tree') continue
+        const [col, row] = cellKey.split(',').map(Number)
+        this.drawObject(ctx, objKey, col, row, cs)
+      }
+
+      // Grid lines — translucent over a texture so they read on light and
+      // dark backgrounds alike
+      const textured = !!this.bgImage && !this.bgFill
+      const bold = GRID_STYLES.find((g) => g.key === this.gridStyle)?.rgb
       for (let i = 0; i <= GRID; i++) {
         const superMajor = i % SUPER_MAJOR === 0
         const major = i % MAJOR === 0
-        ctx.strokeStyle = superMajor ? '#5a4a34' : major ? '#3a2e22' : '#201c16'
-        ctx.lineWidth = superMajor ? 1.8 : major ? 0.8 : 0.4
+        if (bold) {
+          ctx.strokeStyle = `rgba(${bold},${
+            superMajor ? 1 : major ? 0.85 : 0.6
+          })`
+        } else if (textured) {
+          ctx.strokeStyle = superMajor
+            ? 'rgba(0,0,0,0.7)'
+            : major
+            ? 'rgba(0,0,0,0.5)'
+            : 'rgba(0,0,0,0.3)'
+        } else {
+          ctx.strokeStyle = superMajor
+            ? '#5a4a34'
+            : major
+            ? '#3a2e22'
+            : '#201c16'
+        }
+        ctx.lineWidth = bold
+          ? superMajor
+            ? 2.4
+            : major
+            ? 1.4
+            : 0.9
+          : superMajor
+          ? 1.8
+          : major
+          ? 0.8
+          : 0.4
         ctx.beginPath()
         ctx.moveTo(i * cs, 0)
         ctx.lineTo(i * cs, sz)
@@ -574,28 +899,17 @@ export default {
       }
       ctx.lineCap = 'butt'
 
-      // Spell zones
-      ctx.setLineDash([5, 4])
-      for (const zone of this.zones) {
-        const cx = zone.col * cs
-        const cy = zone.row * cs
-        const r = zone.radius * cs
-        const zc = ZONE_COLORS.find((c) => c.key === zone.color)
-        const hex = zc ? zc.color : '#ffffff'
-        ctx.globalAlpha = 0.25
-        ctx.fillStyle = hex
-        ctx.beginPath()
-        ctx.arc(cx, cy, r, 0, Math.PI * 2)
-        ctx.fill()
-        ctx.globalAlpha = 0.7
-        ctx.strokeStyle = hex
-        ctx.lineWidth = 1.5
-        ctx.beginPath()
-        ctx.arc(cx, cy, r, 0, Math.PI * 2)
-        ctx.stroke()
+      // Trees (canopies overhang the cell, so they go over the grid)
+      for (const [cellKey, objKey] of Object.entries(this.objects)) {
+        if (objKey !== 'tree') continue
+        const [col, row] = cellKey.split(',').map(Number)
+        this.drawObject(ctx, objKey, col, row, cs)
       }
-      ctx.setLineDash([])
-      ctx.globalAlpha = 1
+
+      // Spell zones
+      for (const zone of this.zones) {
+        this.drawZone(ctx, cs, zone, this.zoneColorHex(zone.color), 0.25, 0.7)
+      }
 
       // Hover highlight
       if (
@@ -606,25 +920,20 @@ export default {
         this.hoverRow < GRID
       ) {
         if (this.zoneMode) {
-          const cx = this.hoverCol * cs
-          const cy = this.hoverRow * cs
-          const r = this.zoneRadius * cs
-          const zc = ZONE_COLORS.find((c) => c.key === this.selectedZoneColor)
-          const hex = zc ? zc.color : '#ffffff'
-          ctx.setLineDash([5, 4])
-          ctx.globalAlpha = 0.15
-          ctx.fillStyle = hex
-          ctx.beginPath()
-          ctx.arc(cx, cy, r, 0, Math.PI * 2)
-          ctx.fill()
-          ctx.globalAlpha = 0.5
-          ctx.strokeStyle = hex
-          ctx.lineWidth = 1.5
-          ctx.beginPath()
-          ctx.arc(cx, cy, r, 0, Math.PI * 2)
-          ctx.stroke()
-          ctx.setLineDash([])
-          ctx.globalAlpha = 1
+          this.drawZone(
+            ctx,
+            cs,
+            {
+              shape: this.zoneShape,
+              col: this.hoverCol,
+              row: this.hoverRow,
+              radius: this.zoneRadius,
+              side: this.zoneSide,
+            },
+            this.zoneColorHex(this.selectedZoneColor),
+            0.15,
+            0.5
+          )
         } else if (this.paintMode) {
           if (this.selectedPaint === null) {
             ctx.fillStyle = 'rgba(200,80,60,0.35)'
@@ -764,7 +1073,10 @@ export default {
     // ── Terrain painting ──────────────────────────────────────
 
     fillBackground() {
+      // Objects (wood/stone/tree) are placed per cell, not used as a fill.
+      if (OBJECT_KEYS.has(this.selectedPaint)) return
       this.bgFill = this.selectedPaint
+      if (this.bgFill) this.bgImage = null
       this.draw()
     },
 
@@ -793,20 +1105,40 @@ export default {
     placeZone(col, row) {
       if (col < 0 || col > GRID || row < 0 || row > GRID) return
       const existing = this.zones.findIndex(
-        (z) => z.col === col && z.row === row
+        (z) =>
+          z.col === col &&
+          z.row === row &&
+          (z.shape ?? 'circle') === this.zoneShape
       )
       if (existing >= 0) {
         this.zones.splice(existing, 1)
       } else {
         this.zones.push({
           id: Date.now(),
+          shape: this.zoneShape,
           col,
           row,
           radius: this.zoneRadius,
+          side: this.zoneSide,
           color: this.selectedZoneColor,
         })
       }
       this.draw()
+    },
+
+    // Short label for the zone list: "20ft" for a circle's radius, "20ft □"
+    // for a square's side.
+    zoneLabel(zone) {
+      return zone.shape === 'square'
+        ? `${zone.side * 5}ft □`
+        : `${zone.radius * 5}ft`
+    },
+    zoneTitle(zone) {
+      const size =
+        zone.shape === 'square'
+          ? `${zone.side * 5}ft square`
+          : `${zone.radius * 5}ft radius`
+      return `${this.zoneColorLabel(zone.color)} — ${size}`
     },
 
     removeZone(id) {
@@ -827,8 +1159,15 @@ export default {
     paintCell(col, row) {
       if (col < 0 || col >= GRID || row < 0 || row >= GRID) return
       const cellKey = `${col},${row}`
+      // Dragging fires this on every mouse move; act once per cell per
+      // stroke so erase peels one layer (object, then terrain) at a time.
+      if (this._lastPaintKey === cellKey) return
+      this._lastPaintKey = cellKey
       if (this.selectedPaint === null) {
-        this.$delete(this.terrain, cellKey)
+        if (this.objects[cellKey]) this.$delete(this.objects, cellKey)
+        else this.$delete(this.terrain, cellKey)
+      } else if (OBJECT_KEYS.has(this.selectedPaint)) {
+        this.$set(this.objects, cellKey, this.selectedPaint)
       } else {
         this.$set(this.terrain, cellKey, this.selectedPaint)
       }
@@ -845,19 +1184,41 @@ export default {
       }
     },
 
-    // Snaps to nearest grid intersection (corner of squares) — used for zone placement
-    // so a 20ft radius circle aligns cleanly with the grid lines.
-    snapCoords(event) {
+    // Snaps a zone's centre to the grid so it lines up with the lines: the
+    // nearest intersection for circles and even-sided squares, the nearest
+    // cell centre for odd-sided squares (their edges would otherwise land
+    // mid-cell).
+    zoneSnap(event) {
       const rect = this.$refs.canvas.getBoundingClientRect()
-      return {
-        col: Math.round((event.clientX - rect.left) / this.cellSize),
-        row: Math.round((event.clientY - rect.top) / this.cellSize),
+      const x = (event.clientX - rect.left) / this.cellSize
+      const y = (event.clientY - rect.top) / this.cellSize
+      if (this.zoneShape === 'square' && this.zoneSide % 2 === 1) {
+        return { col: Math.floor(x) + 0.5, row: Math.floor(y) + 0.5 }
       }
+      return { col: Math.round(x), row: Math.round(y) }
+    },
+
+    // Topmost zone under the pointer (right-click removal).
+    zoneAt(event) {
+      const rect = this.$refs.canvas.getBoundingClientRect()
+      const x = (event.clientX - rect.left) / this.cellSize
+      const y = (event.clientY - rect.top) / this.cellSize
+      for (let i = this.zones.length - 1; i >= 0; i--) {
+        const z = this.zones[i]
+        const hit =
+          z.shape === 'square'
+            ? Math.abs(x - z.col) <= z.side / 2 &&
+              Math.abs(y - z.row) <= z.side / 2
+            : Math.hypot(x - z.col, y - z.row) <= z.radius
+        if (hit) return z
+      }
+      return null
     },
 
     handleMouseDown(event) {
       if (!this.paintMode) return
       this.isPainting = true
+      this._lastPaintKey = null
       const { col, row } = this.gridCoords(event)
       this.paintCell(col, row)
     },
@@ -865,24 +1226,19 @@ export default {
     handleContextMenu(event) {
       if (!this.zoneMode) return
       event.preventDefault()
-      const { col, row } = this.snapCoords(event)
-      const existing = this.zones.findIndex(
-        (z) => z.col === col && z.row === row
-      )
-      if (existing >= 0) {
-        this.zones.splice(existing, 1)
-        this.draw()
-      }
+      const zone = this.zoneAt(event)
+      if (zone) this.removeZone(zone.id)
     },
 
     handleMouseUp() {
       this.isPainting = false
+      this._lastPaintKey = null
     },
 
     handleClick(event) {
       if (this.paintMode) return
       if (this.zoneMode) {
-        const { col, row } = this.snapCoords(event)
+        const { col, row } = this.zoneSnap(event)
         this.placeZone(col, row)
         return
       }
@@ -904,7 +1260,7 @@ export default {
 
     handleMouseMove(event) {
       if (this.zoneMode) {
-        const { col, row } = this.snapCoords(event)
+        const { col, row } = this.zoneSnap(event)
         if (col !== this.hoverCol || row !== this.hoverRow) {
           this.hoverCol = col
           this.hoverRow = row
@@ -936,6 +1292,7 @@ export default {
 
     handleMouseLeave() {
       this.isPainting = false
+      this._lastPaintKey = null
       this.hoverCol = null
       this.hoverRow = null
       if (this.$refs.canvas) this.$refs.canvas.title = ''
@@ -973,6 +1330,10 @@ export default {
       // Collect all occupied cells to find bounding box
       const allCells = []
       for (const key of Object.keys(this.terrain)) {
+        const [col, row] = key.split(',').map(Number)
+        allCells.push({ col, row })
+      }
+      for (const key of Object.keys(this.objects)) {
         const [col, row] = key.split(',').map(Number)
         allCells.push({ col, row })
       }
@@ -1016,15 +1377,21 @@ export default {
         for (let col = minCol; col <= maxCol; col++) {
           const key = `${col},${row}`
           if (tokenMap[key]) line += tokenMap[key]
+          else if (this.objects[key])
+            line += OBJECT_EXPORT_SYMS[this.objects[key]]
           else if (this.terrain[key] === 'x') line += 'X'
           else line += '.'
         }
         gridRows.push(line)
       }
 
+      const objectLegend = Object.entries(OBJECT_EXPORT_SYMS)
+        .filter(([k]) => Object.values(this.objects).includes(k))
+        .map(([k, sym]) => `${sym} = ${k}`)
       const legendBlock =
         (legend.length ? legend.join('\n') + '\n' : '') +
-        'X = obstacle  . = open'
+        'X = obstacle  . = open' +
+        (objectLegend.length ? '  ' + objectLegend.join('  ') : '')
       const text = gridRows.join('\n') + '\n\n' + legendBlock
 
       navigator.clipboard.writeText(text).then(() => {
@@ -1242,6 +1609,12 @@ button. */
   padding: 0;
   transition: border-color 0.1s;
   flex-shrink: 0;
+}
+
+.bm-swatch-obj {
+  width: 28px;
+  height: 28px;
+  border-color: var(--color-border);
 }
 
 .bm-swatch.active {
