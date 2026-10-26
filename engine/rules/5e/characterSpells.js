@@ -41,8 +41,12 @@
 // with distinct _source labels so the player can see which is always-prepared
 // vs. counted against their limit.
 //
-// Zero dependencies — browser code require()s this directly; see
-// src/utils/spellUtils.js.
+// An item-granted spell also carries `pair` (see pairedItems.js): the pairing
+// info when the item marks THIS spell as needing its partner nearby, else null.
+//
+// Dependencies: only the zero-dependency pairedItems.js — browser code
+// require()s this directly; see src/utils/spellUtils.js.
+const { pairRequirement } = require('./pairedItems')
 
 // Classes whose spell list lets them prepare ANY listed spell daily (not
 // just ones they've "learned"). Wizards prepare from their spellbook — a
@@ -324,6 +328,7 @@ function getCharacterSpells(
         itemGranted: true,
         _source: item.name,
         grant,
+        pair: pairRequirement(item, grant.name, partyItems),
       })
     }
   }

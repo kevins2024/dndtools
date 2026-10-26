@@ -97,6 +97,61 @@ app.post('/api/user_prefs', (req, res) => {
   }
 })
 
+// ── /api/battle_maps ─────────────────────────────────────
+// Saved battle-map setups (BattleMap.vue's Maps panel). Own file at the project
+// root, like user_prefs.json, so webpack never watches it. Each map is
+// { id, name, saved_at, levels, activeZ, gridStyle } (map only, no tokens); the server
+// upserts/deletes one map at a time so two tabs can't overwrite each other's list.
+const BATTLE_MAPS_FILE = path.resolve(__dirname, './battle_maps.json')
+const readBattleMaps = () =>
+  fs.existsSync(BATTLE_MAPS_FILE) ? readJSON(BATTLE_MAPS_FILE) : []
+
+app.get('/api/battle_maps', (req, res) => {
+  try {
+    res.json(readBattleMaps())
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to read battle_maps.json' })
+  }
+})
+
+app.post('/api/battle_maps', (req, res) => {
+  try {
+    const map = req.body
+    if (
+      !map ||
+      typeof map.name !== 'string' ||
+      !map.name.trim() ||
+      !Array.isArray(map.levels)
+    ) {
+      return res.status(400).json({ error: 'A map needs a name and levels' })
+    }
+    const maps = readBattleMaps()
+    const saved = {
+      ...map,
+      name: map.name.trim(),
+      id: map.id ?? Date.now(),
+      saved_at: new Date().toISOString(),
+    }
+    const i = maps.findIndex((m) => m.id === saved.id)
+    if (i >= 0) maps[i] = saved
+    else maps.push(saved)
+    writeJSON(BATTLE_MAPS_FILE, maps)
+    res.json(maps)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to write battle_maps.json' })
+  }
+})
+
+app.delete('/api/battle_maps/:id', (req, res) => {
+  try {
+    const maps = readBattleMaps().filter((m) => String(m.id) !== req.params.id)
+    writeJSON(BATTLE_MAPS_FILE, maps)
+    res.json(maps)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to write battle_maps.json' })
+  }
+})
+
 // ── GET /api/homebrew ─────────────────────────────────────
 // Combined read for lookupService's dev-mode freshness check — returns both
 // files in the shape the client already expects ({ spells, features }).

@@ -92,6 +92,37 @@ const dataService = {
     return res.json()
   },
 
+  // ── Saved battle maps ─────────────────────────────────
+  // Dev-only (needs the server); each call resolves to the full updated list.
+  async listBattleMaps() {
+    if (!isDev) return []
+    const res = await fetch(`${SERVER_URL}/api/battle_maps`)
+    if (!res.ok) throw new Error(`Server returned ${res.status}`)
+    return res.json()
+  },
+
+  // Upserts by `map.id`; a map with no id is added.
+  async saveBattleMap(map) {
+    const res = await fetch(`${SERVER_URL}/api/battle_maps`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(map),
+    })
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      throw new Error(err.error ?? `Server returned ${res.status}`)
+    }
+    return res.json()
+  },
+
+  async deleteBattleMap(id) {
+    const res = await fetch(`${SERVER_URL}/api/battle_maps/${id}`, {
+      method: 'DELETE',
+    })
+    if (!res.ok) throw new Error(`Server returned ${res.status}`)
+    return res.json()
+  },
+
   // ── User preferences ──────────────────────────────────
   // Served from project root (not src/) so webpack never watches it.
   // In dev: persists to disk via the Express server.

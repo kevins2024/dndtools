@@ -2195,8 +2195,18 @@
     "category": "item_feature",
     "action_type": "free",
     "recharge": "long_rest",
-    "description": "Once per long rest, gain a responsive bonus to an ability check or skill check.",
+    "description": "Once per long rest, you may add 1d6 to a failed ability check or skill check.",
     "note": "Granted by The Farreach (A) and (B) (party_items.json) — a paired-ring set worn by Siv and Pirra respectively; each ring grants its own bearer this once-per-day use.",
+    "homebrew": true,
+    "source": "Homebrew, unique to Siv/Pirra — tied to the paired Farreach rings."
+  },
+  {
+    "id": "hb_farreach_pairing",
+    "name": "Farreach Pairing",
+    "category": "item_feature",
+    "action_type": "passive",
+    "description": "While you are within 30 ft of the paired ring, the first attack you make each round has advantage and deals an extra 1d6 force damage.",
+    "note": "Granted by The Farreach (A) and (B). Needs the other ring: its bearer must be within 30 ft. Reworded into one sentence from the rings' item text; that text doesn't say whether the +1d6 also needs the pair, so it is treated as part of the same attack.",
     "homebrew": true,
     "source": "Homebrew, unique to Siv/Pirra — tied to the paired Farreach rings."
   },

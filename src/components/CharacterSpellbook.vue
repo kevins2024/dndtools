@@ -33,8 +33,7 @@
           ></div>
         </div>
         <span class="sb-prep-hint"
-          >hover for the math · domain spells free · click a dot to
-          toggle</span
+          >hover for the math · domain spells free · click a dot to toggle</span
         >
       </div>
     </div>
@@ -178,6 +177,14 @@
             :title="spell._source"
             >I</span
           >
+          <!-- Item spell that only works near the item's pair — marked per
+               spell, so the same item's solo spells carry no link. -->
+          <PairBadge
+            v-if="spell.pair"
+            :info="spell.pair"
+            :effect="spell.name"
+            @open="openSpell(spell)"
+          />
           <!-- Free-cast (doesn't consume a spell slot) — a real, separate
                fact from featureGranted's "F" badge above, which only ever
                meant "doesn't count against known-spell totals." Most
@@ -399,12 +406,14 @@ import {
 } from '@/utils/spellUtils.js'
 import { preparedSpellLimit } from '@/utils/preparedSpells.js'
 import DetailPopup from '@/components/DetailPopup.vue'
+import PairBadge from '@/components/PairBadge.vue'
 import WeavePhaseGrid from '@/components/WeavePhaseGrid.vue'
 import SpellSlotsTracker from '@/components/SpellSlotsTracker.vue'
+import { pairFields } from '@/utils/pairedItems.js'
 
 export default {
   name: 'CharacterSpellbook',
-  components: { DetailPopup, WeavePhaseGrid, SpellSlotsTracker },
+  components: { DetailPopup, PairBadge, WeavePhaseGrid, SpellSlotsTracker },
 
   props: {
     character: { type: Object, required: true },
@@ -499,7 +508,10 @@ export default {
         prepared,
         max,
         over: prepared > max,
-        tooltip: dnd._formatBreakdown({ value: max, breakdown: limit.breakdown }),
+        tooltip: dnd._formatBreakdown({
+          value: max,
+          breakdown: limit.breakdown,
+        }),
       }
     },
 
@@ -889,6 +901,7 @@ export default {
       if (data?.save) fields.push({ label: 'Save', value: data.save })
       if (data?.damage_type)
         fields.push({ label: 'Dmg', value: data.damage_type })
+      if (spell.pair) fields.push(...pairFields(spell.pair))
       const lvl = spell.level ?? this.resolvedLevels[spell.name]
       const levelStr =
         lvl === 0 ? 'Cantrip' : lvl != null ? `Level ${lvl}` : 'Spell'

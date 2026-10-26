@@ -6,6 +6,7 @@
 // the result up to whichever view owns the actual <DetailPopup> instance.
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
 import { dnd } from '@/utils/dnd_utils.js'
+import { pairFields, pairInfo, partnersText } from '@/utils/pairedItems.js'
 
 export async function buildSpellPopupData(spell) {
   const data = await lookupSpell(spell.name)
@@ -60,6 +61,8 @@ export async function buildSpellPopupData(spell) {
       })
     }
   }
+  // Only set for a spell its item marks as needing the paired item nearby.
+  if (spell.pair) fields.push(...pairFields(spell.pair))
 
   // spell.level is null for item/feature-granted spells (the grant doesn't
   // record a level) — fall back to the looked-up spell's own real level
@@ -147,6 +150,8 @@ export async function buildFeaturePopupData(feature, character = null) {
   if (feature.description && feature.type !== 'speciesTrait')
     fields.push({ label: 'Effect', value: feature.description })
   if (feature.note) fields.push({ label: 'Note', value: feature.note })
+  // Only set for a feature its item marks as needing the paired item nearby.
+  if (feature.pair) fields.push(...pairFields(feature.pair))
   // The SRD text just says "see the Sneak Attack column of the Rogue
   // table" — meaningless here since this app has no such table. Compute
   // the character's actual current dice instead of relying on a number
@@ -228,6 +233,14 @@ export function buildItemPopupData(item, character = null, partyItems = []) {
   }
 
   if (item.effect) fields.push({ label: 'Effect', value: item.effect })
+  // Paired gear: who has the other half, how far apart, and which of this
+  // item's granted effects are the ones that need it.
+  const pair = pairInfo(item, partyItems)
+  if (pair) {
+    fields.push({ label: 'Paired with', value: partnersText(pair) })
+    if (pair.effects.length)
+      fields.push({ label: 'Needs the pair', value: pair.effects.join(', ') })
+  }
   if (item.description)
     fields.push({ label: 'Description', value: item.description })
   if (item.notes) fields.push({ label: 'Notes', value: item.notes })

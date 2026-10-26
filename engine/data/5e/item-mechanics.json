@@ -119,9 +119,7 @@
     "slot": "none"
   },
   "bracer-of-pressing-momentum": {
-    "features_granted": [
-      "Press Momentum"
-    ],
+    "features_granted": ["Press Momentum"],
     "action_type": "reaction",
     "battle_effect": true,
     "slot": "wrists"
@@ -134,10 +132,7 @@
     "slot": "wrists"
   },
   "bracers-of-archery": {
-    "grants_weapon_proficiency": [
-      "longbow",
-      "shortbow"
-    ],
+    "grants_weapon_proficiency": ["longbow", "shortbow"],
     "stat_bonuses": {
       "ranged_damage": 2
     },
@@ -178,9 +173,7 @@
     "slot": "body"
   },
   "breastplate-of-the-broken-scale": {
-    "features_granted": [
-      "Stormbreak Reserve"
-    ],
+    "features_granted": ["Stormbreak Reserve"],
     "charges_max": 1,
     "charges_recharge": "none",
     "action_type": "bonus_action",
@@ -345,9 +338,7 @@
     "slot": "body"
   },
   "gauntlet-of-the-sundering-blow": {
-    "features_granted": [
-      "Sundering Strike"
-    ],
+    "features_granted": ["Sundering Strike"],
     "charges_max": 1,
     "charges_recharge": "short_rest",
     "action_type": "free",
@@ -376,9 +367,7 @@
     "slot": "hands"
   },
   "gloves-of-missile-snaring": {
-    "features_granted": [
-      "Missile Snaring"
-    ],
+    "features_granted": ["Missile Snaring"],
     "action_type": "reaction",
     "battle_effect": true,
     "slot": "hands"
@@ -513,9 +502,7 @@
     "slot": "head"
   },
   "helm-of-carix": {
-    "features_granted": [
-      "Seize the Opening"
-    ],
+    "features_granted": ["Seize the Opening"],
     "battle_effect": true,
     "slot": "head"
   },
@@ -530,9 +517,7 @@
     "slot": "head"
   },
   "helm-of-the-reaching-hand": {
-    "features_granted": [
-      "Reaching Hand"
-    ],
+    "features_granted": ["Reaching Hand"],
     "action_type": "reaction",
     "battle_effect": true,
     "slot": "head"
@@ -877,9 +862,7 @@
     "slot": "body"
   },
   "robe-of-the-tide": {
-    "features_granted": [
-      "Tidal Surge"
-    ],
+    "features_granted": ["Tidal Surge"],
     "action_type": "free",
     "battle_effect": true,
     "slot": "body"
@@ -891,9 +874,7 @@
     "armor_type": "shield",
     "slot": "shield",
     "grants_initiative_advantage": true,
-    "grants_skill_advantage": [
-      "Perception"
-    ]
+    "grants_skill_advantage": ["Perception"]
   },
   "shadowgrain-leather": {
     "armor_base_ac": 11,
@@ -910,9 +891,7 @@
     "slot": "shield"
   },
   "signet-ring": {
-    "features_granted": [
-      "Warding Press"
-    ],
+    "features_granted": ["Warding Press"],
     "charges_max": 1,
     "charges_recharge": "long_rest",
     "action_type": "action",
@@ -993,6 +972,11 @@
     "slot": "held"
   },
   "stone-of-the-broken-vein": {
+    "pair": {
+      "with": "stone-of-the-rootbound-ward",
+      "range_ft": 30,
+      "effects": ["The Stones Agree"]
+    },
     "spells_granted": [
       {
         "name": "Spike Growth",
@@ -1010,7 +994,7 @@
         "name": "The Stones Agree",
         "action_type": "action",
         "charge_cost": 1,
-        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
+        "cost_note": "Spent together with the Rootbound Ward bearer's own charge (see this item's pair) — each bearer spends their own stone's charge, not a merged pool."
       }
     ],
     "charges_max": 1,
@@ -1020,6 +1004,11 @@
     "slot": "held"
   },
   "stone-of-the-rootbound-ward": {
+    "pair": {
+      "with": "stone-of-the-broken-vein",
+      "range_ft": 30,
+      "effects": ["The Stones Agree"]
+    },
     "spells_granted": [
       {
         "name": "Mold Earth",
@@ -1037,7 +1026,7 @@
         "name": "The Stones Agree",
         "action_type": "action",
         "charge_cost": 1,
-        "cost_note": "Spent together with the Broken Vein bearer's own charge (see linked_item_id) — each bearer spends their own stone's charge, not a merged pool."
+        "cost_note": "Spent together with the Broken Vein bearer's own charge (see this item's pair) — each bearer spends their own stone's charge, not a merged pool."
       }
     ],
     "charges_max": 1,
@@ -1083,24 +1072,28 @@
       "psychic_blade_attack": 2,
       "psychic_blade_damage": 2
     },
-    "grants_skill_proficiency": [
-      "History"
-    ],
+    "grants_skill_proficiency": ["History"],
     "armor_type": "studded leather",
     "slot": "body"
   },
   "the-farreach-a": {
-    "features_granted": [
-      "Ring's Answer"
-    ],
+    "pair": {
+      "with": "the-farreach-b",
+      "range_ft": 30,
+      "effects": ["Farreach Pairing"]
+    },
+    "features_granted": ["Ring's Answer", "Farreach Pairing"],
     "action_type": "free",
     "battle_effect": true,
     "slot": "ring"
   },
   "the-farreach-b": {
-    "features_granted": [
-      "Ring's Answer"
-    ],
+    "pair": {
+      "with": "the-farreach-a",
+      "range_ft": 30,
+      "effects": ["Farreach Pairing"]
+    },
+    "features_granted": ["Ring's Answer", "Farreach Pairing"],
     "action_type": "free",
     "battle_effect": true,
     "slot": "ring"
@@ -1153,9 +1146,7 @@
     "slot": "melee2h"
   },
   "the-steadfast": {
-    "features_granted": [
-      "Steadfast Response"
-    ],
+    "features_granted": ["Steadfast Response"],
     "charges_max": 1,
     "charges_recharge": "short_rest",
     "action_type": "reaction",

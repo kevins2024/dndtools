@@ -976,7 +976,7 @@
     "category": "wondrous item",
     "rarity": null,
     "requires_attunement": true,
-    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per long rest, gain a responsive bonus to an ability or skill check.",
+    "desc": "While you are within 30 ft of the paired ring, the first attack you make each round has advantage and deals an extra 1d6 force damage. Ring's Answer: once per long rest, you may add 1d6 to a failed ability check or skill check.",
     "homebrew": true
   },
   {
@@ -986,7 +986,7 @@
     "category": "wondrous item",
     "rarity": null,
     "requires_attunement": true,
-    "desc": "Advantage on first attack each round when within 30ft of paired ring. +1d6 force damage. Ring's Answer: once per long rest, gain a responsive bonus.",
+    "desc": "While you are within 30 ft of the paired ring, the first attack you make each round has advantage and deals an extra 1d6 force damage. Ring's Answer: once per long rest, you may add 1d6 to a failed ability check or skill check.",
     "homebrew": true
   },
   {

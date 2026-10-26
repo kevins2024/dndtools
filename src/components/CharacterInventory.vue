@@ -796,6 +796,30 @@
               <span class="meta-label">Stored at</span>
               <span class="meta-value dim">{{ editDraft.stored_at }}</span>
             </div>
+            <!-- Paired gear: who has the other half, how close, and which of
+            this item's effects need it. Read-only; from the item library. -->
+            <div v-if="editPair" class="meta-row">
+              <span class="meta-label">Paired with</span>
+              <span class="meta-value">{{ partnersText(editPair) }}</span>
+            </div>
+            <div v-if="editPair && editPair.rangeFt != null" class="meta-row">
+              <span class="meta-label">Pair range</span>
+              <span class="meta-value"
+                >within {{ editPair.rangeFt }} ft (check the distance
+                yourself)</span
+              >
+            </div>
+            <div v-if="editPair && editPair.effects.length" class="meta-row">
+              <span class="meta-label">Needs the pair</span>
+              <span class="meta-value">
+                <span
+                  v-for="name in editPair.effects"
+                  :key="name"
+                  class="bonus-tag"
+                  >{{ name }}</span
+                >
+              </span>
+            </div>
             <div v-if="editDraft.stat_overrides" class="meta-row">
               <span class="meta-label">Sets</span>
               <span class="meta-value">
@@ -961,6 +985,7 @@ import {
   gripMode,
   isOneHandedWeapon,
 } from '@/utils/weaponHands.js'
+import { pairInfo, partnersText } from '@/utils/pairedItems.js'
 import { startItemDrag } from '@/utils/itemDrag.js'
 import { transferItemToCharacter } from '@/utils/itemTransfer.js'
 
@@ -976,6 +1001,12 @@ export default {
   computed: {
     allItems() {
       return this.$store.state.party_items
+    },
+    // Pairing info for the item being inspected (null if it isn't paired).
+    editPair() {
+      return this.editDraft
+        ? pairInfo(this.editDraft, this.allItems ?? [])
+        : null
     },
     mounts() {
       return this.$store.state.mounts ?? []
@@ -1249,6 +1280,7 @@ export default {
 
   methods: {
     startItemDrag,
+    partnersText,
     mountCatalogEntry(item) {
       return this.mounts.find((m) => m.id === item.mount_type) ?? null
     },

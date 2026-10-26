@@ -85,7 +85,10 @@
               <img :src="roll.image" class="die-bg-img dimmed" />
               <span
                 class="die-result"
-                :class="[critClass(roll), { 'has-tip': roll.math }]"
+                :class="[
+                  critClass(roll),
+                  { 'has-tip': roll.math, 'has-bonus': roll.bonus },
+                ]"
                 :title="roll.math"
                 >{{ roll.display }}</span
               >
@@ -113,7 +116,10 @@
               <div class="die-overlay">
                 <div class="die-result">
                   <span
-                    :class="[critClass(current), { 'has-tip': current.math }]"
+                    :class="[
+                      critClass(current),
+                      { 'has-tip': current.math, 'has-bonus': current.bonus },
+                    ]"
                     :title="current.math"
                     >{{ current.display }}</span
                   >
@@ -218,6 +224,9 @@ export default {
         display: `${test.value}`,
         natural: test.natural,
         math: test.breakdown.length > 1 ? dnd._formatBreakdown(test) : null,
+        // Handed-over rolls arrive with their modifier already added in
+        // (unlike dice picked by hand) — the thicker underline flags that.
+        bonus: mod !== 0,
         image: this.diceImages[20],
         advantage: test.mode !== 'normal',
       }
@@ -688,5 +697,10 @@ export default {
 .has-tip {
   border-bottom: 1px dotted currentColor;
   cursor: help;
+}
+/* A modifier was already added to this total (a skill or save rolled from
+   the sheet): same underline, just thicker so it's hard to miss. */
+.has-tip.has-bonus {
+  border-bottom-width: 3px;
 }
 </style>

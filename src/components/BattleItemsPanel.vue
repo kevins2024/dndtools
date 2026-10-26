@@ -46,6 +46,12 @@
             <span class="grant-label" @click="inspectGrant(g)">{{
               g.label
             }}</span>
+            <PairBadge
+              v-if="g.pair"
+              :info="g.pair"
+              :effect="g.name"
+              @open="inspectGrant(g)"
+            />
             <template v-if="g.kind === 'spell'">
               <span
                 v-if="g.grant.actionType"
@@ -124,12 +130,14 @@ import {
 } from '@/utils/detailPopupBuilders.js'
 import { dnd } from '@/utils/dnd_utils.js'
 import itemSpellCasting from '@/mixins/itemSpellCasting.js'
+import { pairRequirement } from '@/utils/pairedItems.js'
+import PairBadge from '@/components/PairBadge.vue'
 import { Search } from 'lucide-vue'
 
 export default {
   name: 'BattleItemsPanel',
 
-  components: { Search },
+  components: { Search, PairBadge },
 
   mixins: [itemSpellCasting],
 
@@ -169,6 +177,7 @@ export default {
           label: g.name,
           name: g.name,
           grant: g,
+          pair: pairRequirement(item, g.name, this.partyItems),
         })
       }
       for (const name of item.features_granted ?? []) {
@@ -177,6 +186,7 @@ export default {
           kind: 'feature',
           label: name,
           name,
+          pair: pairRequirement(item, name, this.partyItems),
         })
       }
       // Spell-storing items hold whatever was last cast into them — dynamic,
@@ -194,11 +204,15 @@ export default {
     async inspectGrant(grant) {
       const data =
         grant.kind === 'feature'
-          ? await buildFeaturePopupData({ name: grant.name })
+          ? await buildFeaturePopupData({
+              name: grant.name,
+              pair: grant.pair,
+            })
           : await buildSpellPopupData({
               name: grant.name,
               level: null,
               grant: grant.grant,
+              pair: grant.pair,
             })
       this.$emit('inspect', data)
     },
