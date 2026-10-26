@@ -21,12 +21,9 @@
       <div class="bm-toolbar">
         <div class="bm-toolbar-row">
           <span class="bm-title">Battle Map</span>
-          <template v-if="levels.length > 1">
-            <span class="bm-hint"
-              >Floor: <strong>{{ levelTitle(activeZ) }}</strong></span
-            >
-            <button class="bm-btn" @click="removeLevel">Remove floor</button>
-          </template>
+          <span v-if="levels.length > 1" class="bm-hint"
+            >Floor: <strong>{{ levelTitle(activeZ) }}</strong></span
+          >
           <span v-if="notice" class="bm-hint bm-notice">{{ notice }}</span>
           <template v-if="paintMode">
             <span class="bm-hint">
@@ -36,6 +33,10 @@
               <strong v-else>— {{ selectedPaintLabel }}</strong>
             </span>
           </template>
+          <span v-else-if="zoneMode" class="bm-hint"
+            >Click to place a shape — click the same spot again, or right-click
+            it, to remove</span
+          >
           <template v-else>
             <span class="bm-hint" v-if="selectedKey"
               >Moving: <strong>{{ selectedName }}</strong> — click a square to
@@ -68,62 +69,110 @@
           </div>
         </div>
 
-        <div class="bm-toolbar-row">
-          <button
-            class="bm-btn"
-            :class="{ 'bm-btn--active': paintMode }"
-            @click="togglePaintMode"
-          >
-            {{ paintMode ? 'Move Mode' : 'Paint Mode' }}
-          </button>
-          <button
-            class="bm-btn"
-            :class="{ 'bm-btn--active': zoneMode }"
-            @click="toggleZoneMode"
-          >
-            {{ zoneMode ? 'Move Mode' : 'Zones' }}
-          </button>
-
-          <div class="bm-size-row">
-            <span class="bm-hint">Grid:</span>
-            <select class="bm-size-select" v-model="gridStyle">
-              <option v-for="g in GRID_STYLES" :key="g.key" :value="g.key">
-                {{ g.label }}
-              </option>
-            </select>
+        <!-- Ribbon: every control is always visible, sorted into small
+        labelled groups (like Paint or PowerPoint), instead of a few buttons
+        that swap what they say depending on the current "mode". The tools are
+        one exclusive set; the rest are plain actions and settings. -->
+        <div class="bm-ribbon">
+          <div class="bm-group">
+            <div class="bm-group-body">
+              <button
+                class="bm-tool"
+                :class="{ active: !paintMode && !zoneMode }"
+                title="Move tokens: click a token, then click a square"
+                @click="setTool('move')"
+              >
+                <Hand class="bm-tool-icon" /><span>Move</span>
+              </button>
+              <button
+                class="bm-tool"
+                :class="{ active: paintMode }"
+                title="Paint terrain, walls, doors, trees and stairs"
+                @click="setTool('paint')"
+              >
+                <Paintbrush class="bm-tool-icon" /><span>Paint</span>
+              </button>
+              <button
+                class="bm-tool"
+                :class="{ active: zoneMode }"
+                title="Place spell areas, trees, water and other shapes"
+                @click="setTool('zones')"
+              >
+                <Shapes class="bm-tool-icon" /><span>Zones</span>
+              </button>
+            </div>
+            <div class="bm-group-label">Tool</div>
           </div>
 
-          <!-- Background texture — sits under all painted terrain/objects. -->
-          <div class="bm-size-row">
-            <span class="bm-hint">Background:</span>
-            <select
-              class="bm-size-select"
-              :value="bgImage || ''"
-              @change="setBackground($event.target.value)"
-            >
-              <option value="">None</option>
-              <option v-for="b in BACKGROUNDS" :key="b.key" :value="b.key">
-                {{ b.label }}
-              </option>
-            </select>
+          <div class="bm-group">
+            <div class="bm-group-body">
+              <label class="bm-field" title="Grid line colour">
+                <Grid2x2 class="bm-ico" />
+                <select class="bm-size-select" v-model="gridStyle">
+                  <option v-for="g in GRID_STYLES" :key="g.key" :value="g.key">
+                    {{ g.label }}
+                  </option>
+                </select>
+              </label>
+              <!-- Background texture — sits under all painted terrain/objects. -->
+              <label class="bm-field" title="Background texture">
+                <Image class="bm-ico" />
+                <select
+                  class="bm-size-select"
+                  :value="bgImage || ''"
+                  @change="setBackground($event.target.value)"
+                >
+                  <option value="">No BG</option>
+                  <option v-for="b in BACKGROUNDS" :key="b.key" :value="b.key">
+                    {{ b.label }}
+                  </option>
+                </select>
+              </label>
+              <div class="bm-zoom-row">
+                <button
+                  class="bm-icon-btn"
+                  title="Zoom out"
+                  @click="adjustZoom(-2)"
+                  :disabled="cellSize <= MIN_CELL"
+                >
+                  <ZoomOut class="bm-ico" />
+                </button>
+                <span class="bm-zoom-label">{{ cellSize }}px</span>
+                <button
+                  class="bm-icon-btn"
+                  title="Zoom in"
+                  @click="adjustZoom(2)"
+                  :disabled="cellSize >= MAX_CELL"
+                >
+                  <ZoomIn class="bm-ico" />
+                </button>
+              </div>
+            </div>
+            <div class="bm-group-label">View</div>
           </div>
 
-          <div class="bm-zoom-row">
-            <button
-              class="bm-btn"
-              @click="adjustZoom(-2)"
-              :disabled="cellSize <= MIN_CELL"
-            >
-              −
-            </button>
-            <span class="bm-zoom-label">{{ cellSize }}px</span>
-            <button
-              class="bm-btn"
-              @click="adjustZoom(2)"
-              :disabled="cellSize >= MAX_CELL"
-            >
-              +
-            </button>
+          <div class="bm-group">
+            <div class="bm-group-body">
+              <button
+                v-if="canSaveMaps"
+                class="bm-tool bm-tool--action"
+                :class="{ active: mapsOpen }"
+                title="Save this map setup, or load a saved one"
+                @click="toggleMapsPanel"
+              >
+                <Save class="bm-tool-icon" /><span>Save / Load</span>
+              </button>
+              <button
+                class="bm-tool bm-tool--action"
+                title="Copy a text version of this floor to the clipboard"
+                @click="exportMap"
+              >
+                <ClipboardCopy class="bm-tool-icon" /><span>{{
+                  copyFlash ? 'Copied' : 'Export'
+                }}</span>
+              </button>
+            </div>
+            <div class="bm-group-label">Map</div>
           </div>
 
           <!-- Manual token size override — real gap found 2026-09-18:
@@ -132,23 +181,65 @@
           but that's only ever auto-populated for a bestiary-added enemy;
           a manually-added one (or a homebrew size bump) had no way to set
           it. Only shown once a token is selected. -->
-          <div v-if="selectedKey" class="bm-size-row">
-            <span class="bm-hint">Size:</span>
-            <select
-              class="bm-size-select"
-              :value="selectedSize"
-              @change="setSelectedSize($event.target.value)"
-            >
-              <option v-for="s in sizeOptions" :key="s" :value="s">
-                {{ s }}
-              </option>
-            </select>
+          <div v-if="selectedKey" class="bm-group">
+            <div class="bm-group-body">
+              <label class="bm-field" title="Size of the selected token">
+                <Scaling class="bm-ico" />
+                <select
+                  class="bm-size-select"
+                  :value="selectedSize"
+                  @change="setSelectedSize($event.target.value)"
+                >
+                  <option v-for="s in sizeOptions" :key="s" :value="s">
+                    {{ s }}
+                  </option>
+                </select>
+              </label>
+            </div>
+            <div class="bm-group-label">{{ selectedName }}</div>
           </div>
-
-          <button class="bm-btn" @click="exportMap">
-            {{ copyFlash ? '✓ Copied' : 'Export' }}
-          </button>
         </div>
+      </div>
+
+      <!-- Saved maps -->
+      <div v-if="mapsOpen" class="bm-palette-bar bm-maps-bar">
+        <input
+          v-model="mapName"
+          class="bm-maps-name"
+          type="text"
+          placeholder="Map name"
+          maxlength="60"
+          @keydown.enter="saveCurrentMap"
+        />
+        <button
+          class="bm-btn"
+          :disabled="!mapName.trim()"
+          @click="saveCurrentMap"
+        >
+          Save
+        </button>
+
+        <span class="bm-maps-divider" />
+
+        <span v-if="!savedMaps.length" class="bm-hint">No saved maps yet</span>
+        <template v-else>
+          <span v-for="m in savedMaps" :key="m.id" class="zone-list-item">
+            <button
+              class="bm-map-load"
+              :title="mapTitle(m)"
+              @click="loadMap(m)"
+            >
+              {{ m.name }}
+            </button>
+            <button
+              class="zone-remove-btn"
+              title="Delete"
+              @click="deleteMap(m)"
+            >
+              ✕
+            </button>
+          </span>
+        </template>
       </div>
 
       <!-- Palette bar (paint mode only) -->
@@ -202,20 +293,46 @@
 
       <!-- Zone palette bar -->
       <div v-if="zoneMode" class="bm-palette-bar">
-        <span class="bm-hint" style="flex-shrink: 0">Zone color:</span>
-        <div class="bm-swatch-group">
+        <span class="bm-hint" style="flex-shrink: 0">Style:</span>
+        <div class="bm-zoom-row">
           <button
-            v-for="zc in ZONE_COLORS"
-            :key="zc.key"
-            class="bm-swatch"
-            :class="{ active: selectedZoneColor === zc.key }"
-            :style="{ background: zc.color }"
-            :title="zc.label"
-            @click="selectedZoneColor = zc.key"
-          />
+            class="bm-btn"
+            :class="{ 'bm-btn--active': zoneTexture === 'spell' }"
+            @click="zoneTexture = 'spell'"
+          >
+            ✦ Spell
+          </button>
+          <button
+            v-for="t in ZONE_TEXTURES"
+            :key="t.key"
+            class="bm-btn"
+            :class="{ 'bm-btn--active': zoneTexture === t.key }"
+            @click="zoneTexture = t.key"
+          >
+            {{ t.label }}
+          </button>
         </div>
 
-        <div class="bm-zoom-row" style="margin-left: 0.8rem">
+        <template v-if="!zoneTextureDef">
+          <span class="bm-hint" style="flex-shrink: 0">Color:</span>
+          <div class="bm-swatch-group">
+            <button
+              v-for="zc in ZONE_COLORS"
+              :key="zc.key"
+              class="bm-swatch"
+              :class="{ active: selectedZoneColor === zc.key }"
+              :style="{ background: zc.color }"
+              :title="zc.label"
+              @click="selectedZoneColor = zc.key"
+            />
+          </div>
+        </template>
+
+        <div
+          v-if="!zoneTextureDef || !zoneTextureDef.circleOnly"
+          class="bm-zoom-row"
+          style="margin-left: 0.8rem"
+        >
           <button
             class="bm-btn"
             :class="{ 'bm-btn--active': zoneShape === 'circle' }"
@@ -232,8 +349,10 @@
           </button>
         </div>
 
-        <template v-if="zoneShape === 'square'">
-          <span class="bm-hint" style="flex-shrink: 0">Side:</span>
+        <template v-if="!zoneSizeIsRadius">
+          <span class="bm-hint" style="flex-shrink: 0">{{
+            effectiveZoneShape === 'circle' ? 'Diameter:' : 'Side:'
+          }}</span>
           <div class="bm-zoom-row">
             <button
               class="bm-btn"
@@ -273,9 +392,9 @@
           </div>
         </template>
 
-        <div v-if="zones.length" class="zone-list">
+        <div v-if="spellZones.length" class="zone-list">
           <span
-            v-for="zone in zones"
+            v-for="zone in spellZones"
             :key="zone.id"
             class="zone-list-item"
             :title="zoneTitle(zone)"
@@ -352,6 +471,7 @@
           class="bm-canvas-wrap scrollable"
           ref="wrap"
           @wheel.prevent="handleWheel"
+          @scroll.passive="saveView"
           :class="{ 'bm-cursor-paint': paintMode, 'bm-cursor-zone': zoneMode }"
         >
           <canvas
@@ -371,6 +491,19 @@
 
 <script>
 import { combatTurn as combatTurnEngine } from '@/utils/combatTurn'
+import dataService from '@/utils/dataService'
+import {
+  ClipboardCopy,
+  Grid2x2,
+  Hand,
+  Image,
+  Paintbrush,
+  Save,
+  Scaling,
+  Shapes,
+  ZoomIn,
+  ZoomOut,
+} from 'lucide-vue'
 
 const GRID = 90
 const MAJOR = 5
@@ -397,6 +530,30 @@ const ZONE_COLORS = [
   { key: 'purple', color: '#aa44ff', label: 'Psychic / Necrotic' },
   { key: 'white', color: '#ffffff', label: 'Holy / Light' },
 ]
+
+// Textured zones: scenery placed with the zone tool, sized in whole 5ft steps
+// (the stepper is a diameter/side, not a radius, so a tree can be 5ft across).
+// A zone with no `texture` is a translucent spell zone. circleOnly textures
+// ignore the shape picker; `sym` marks covered cells in the text export.
+const ZONE_TEXTURES = [
+  { key: 'tree', label: 'Tree', circleOnly: true, sym: '*' },
+  { key: 'bush', label: 'Bush', circleOnly: true, sym: '"' },
+  { key: 'boulder', label: 'Boulder', circleOnly: true, sym: 'o' },
+  { key: 'water', label: 'Water', sym: '~' },
+  { key: 'lava', label: 'Lava', sym: '^' },
+]
+
+// Small seeded PRNG so a textured zone looks the same on every redraw.
+function seededRng(seed) {
+  let s = Math.trunc(seed) || 1
+  const next = () => {
+    s = (Math.imul(s, 1664525) + 1013904223) | 0
+    return (s >>> 0) / 4294967296
+  }
+  next()
+  next()
+  return next
+}
 
 const TERRAIN_GROUPS = [
   [
@@ -426,6 +583,7 @@ const TERRAIN_GROUPS = [
   [
     { key: 'wood', color: '#8b5e34', label: 'Wood (boards)', object: true },
     { key: 'stone', color: '#7d7a74', label: 'Stone (masonry)', object: true },
+    { key: 'door', color: '#a8743a', label: 'Door', object: true },
     { key: 'tree', color: '#2f6b2a', label: 'Tree', object: true },
   ],
   // Stairs are objects too, but painting one also paints the matching stair
@@ -471,6 +629,9 @@ const OBJECT_SWATCH_CSS = {
     'linear-gradient(to right, transparent 46%, #4a4742 46% 54%, transparent 54%) top / 100% 50% no-repeat, ' +
     'linear-gradient(to right, transparent 21%, #4a4742 21% 29%, transparent 29% 71%, #4a4742 71% 79%, transparent 79%) bottom / 100% 50% no-repeat, ' +
     '#8a867f',
+  door:
+    'radial-gradient(circle at 78% 50%, #e8c14a 0 9%, transparent 11%), ' +
+    'linear-gradient(to right, #2a180a 0 8%, #a8743a 8% 36%, #2a180a 36% 40%, #96672f 40% 64%, #2a180a 64% 68%, #a8743a 68% 92%, #2a180a 92%)',
   tree: 'radial-gradient(circle at 50% 50%, #4a9a40 0 22%, #2f6b2a 23% 62%, #1d4a1a 63% 68%, transparent 70%)',
   stairs_up:
     'repeating-linear-gradient(to bottom, #9d968a 0 4px, #3c382f 4px 5px)',
@@ -482,6 +643,7 @@ const OBJECT_SWATCH_CSS = {
 const OBJECT_EXPORT_SYMS = {
   wood: '=',
   stone: '#',
+  door: '+',
   tree: '*',
   stairs_up: '<',
   stairs_down: '>',
@@ -496,6 +658,11 @@ const STAIR_LINKS = {
 
 // Floors run from MAX_Z above ground to MAX_Z below: 11 in all.
 const MAX_Z = 5
+
+// Where the map was last looking ({ cellSize, left, top }). Module-level so it
+// outlives the component: leaving the battle phase destroys the map, and the
+// next fight shouldn't reset the zoom and scroll.
+let lastView = null
 
 function makeLevel(z) {
   return {
@@ -538,6 +705,19 @@ const BACKGROUNDS = [
 export default {
   name: 'BattleMap',
 
+  components: {
+    ClipboardCopy,
+    Grid2x2,
+    Hand,
+    Image,
+    Paintbrush,
+    Save,
+    Scaling,
+    Shapes,
+    ZoomIn,
+    ZoomOut,
+  },
+
   props: {
     order: { type: Array, default: () => [] },
     combatantStates: { type: Object, default: () => ({}) },
@@ -553,7 +733,7 @@ export default {
       selectedKey: null,
       hoverCol: null,
       hoverRow: null,
-      cellSize: 24,
+      cellSize: lastView?.cellSize ?? 24,
       MIN_CELL: 8,
       MAX_CELL: 40,
       // Per-floor paint lives in `levels` (kept sorted by z); terrain,
@@ -574,8 +754,15 @@ export default {
       zoneShape: 'circle',
       zoneSide: 4,
       selectedZoneColor: 'yellow',
+      zoneTexture: 'spell',
+      // Saved maps (dev server only — see dataService.listBattleMaps)
+      canSaveMaps: dataService.isDevMode(),
+      mapsOpen: false,
+      savedMaps: [],
+      mapName: '',
       TERRAIN_GROUPS,
       ZONE_COLORS,
+      ZONE_TEXTURES,
       copyFlash: false,
     }
   },
@@ -637,6 +824,25 @@ export default {
         this.level.zones = v
       },
     },
+    spellZones() {
+      return this.zones.filter((z) => !z.texture)
+    },
+    // The picked texture's definition, or null for a spell zone.
+    zoneTextureDef() {
+      return ZONE_TEXTURES.find((t) => t.key === this.zoneTexture) ?? null
+    },
+    effectiveZoneShape() {
+      return this.zoneTextureDef?.circleOnly ? 'circle' : this.zoneShape
+    },
+    // Spell circles are sized by radius; everything else by its full width.
+    zoneSizeIsRadius() {
+      return !this.zoneTextureDef && this.zoneShape === 'circle'
+    },
+    // Width of the zone being placed, in cells. Odd widths centre on a cell,
+    // even ones on a grid intersection (see zoneSnap).
+    zoneExtent() {
+      return this.zoneSizeIsRadius ? this.zoneRadius * 2 : this.zoneSide
+    },
     bgFill: {
       get() {
         return this.level.bgFill
@@ -665,6 +871,7 @@ export default {
       if (val) {
         this.$nextTick(() => {
           this.draw()
+          this.restoreView()
           this.$refs.overlay?.focus()
         })
       }
@@ -699,6 +906,7 @@ export default {
       this.$nextTick(() => {
         this.resizeCanvas()
         this.draw()
+        this.saveView()
       })
     },
     zoneRadius() {
@@ -708,6 +916,9 @@ export default {
       this.draw()
     },
     zoneShape() {
+      this.draw()
+    },
+    zoneTexture() {
       this.draw()
     },
     bgImage() {
@@ -731,13 +942,18 @@ export default {
 
     this.resizeCanvas()
     this.draw()
+    // Usually still hidden here (the overlay is v-show'd), in which case
+    // the `visible` watcher positions the view on first open instead.
     this.$nextTick(() => {
-      const wrap = this.$refs.wrap
-      const mid = (GRID / 2) * this.cellSize
-      wrap.scrollLeft = mid - wrap.clientWidth / 2
-      wrap.scrollTop = mid - wrap.clientHeight / 2
+      this.restoreView()
       this.$refs.overlay?.focus()
     })
+  },
+
+  // Switching to another tab and back detaches the DOM (keep-alive), and the
+  // browser forgets the scroll offset of anything detached or hidden.
+  activated() {
+    if (this.visible) this.$nextTick(() => this.restoreView())
   },
 
   beforeDestroy() {
@@ -746,6 +962,36 @@ export default {
   },
 
   methods: {
+    // ── View (zoom + scroll) ──────────────────────────────────
+
+    // Remember where the map was looking. Only while it's actually on screen:
+    // a hidden or detached scroller reports 0,0, which would overwrite it.
+    saveView() {
+      const wrap = this.$refs.wrap
+      if (!this.visible || !wrap || !wrap.clientWidth) return
+      lastView = {
+        cellSize: this.cellSize,
+        left: wrap.scrollLeft,
+        top: wrap.scrollTop,
+      }
+    },
+
+    // Scroll back to the remembered spot, or the middle of the grid on the
+    // very first open. No-op while hidden (nothing to scroll yet).
+    restoreView() {
+      const wrap = this.$refs.wrap
+      if (!wrap || !wrap.clientWidth) return
+      if (lastView) {
+        wrap.scrollLeft = lastView.left
+        wrap.scrollTop = lastView.top
+      } else {
+        const mid = (GRID / 2) * this.cellSize
+        wrap.scrollLeft = mid - wrap.clientWidth / 2
+        wrap.scrollTop = mid - wrap.clientHeight / 2
+      }
+      this.saveView()
+    },
+
     // ── Floors ────────────────────────────────────────────────
 
     levelTitle(z) {
@@ -793,52 +1039,6 @@ export default {
     stepLevel(dir) {
       const z = this.activeZ + dir
       if (this.ensureLevel(z)) this.setActiveLevel(z)
-    },
-
-    // Removes the floor being viewed. Floors beyond it close the gap
-    // (upper floors drop by one; for a basement, lower ones rise by one) so
-    // ground stays at 0. Tokens on it fall to the neighbouring floor.
-    removeLevel() {
-      if (this.levels.length <= 1) return
-      const z = this.activeZ
-      const lv = this.level
-      const here = this.order.filter((e) => this.positions[e.key]?.z === z)
-      const hasPaint =
-        Object.keys(lv.terrain).length ||
-        Object.keys(lv.objects).length ||
-        lv.zones.length
-      if (
-        (hasPaint || here.length) &&
-        !window.confirm(
-          `Remove ${this.levelTitle(z)}? Its painted map is lost` +
-            (here.length
-              ? ` and its ${here.length} token(s) move to the next floor.`
-              : '.')
-        )
-      ) {
-        return
-      }
-      const dir = z >= 0 ? 1 : -1
-      const shift = (old) => ((old - z) * dir > 0 ? old - dir : old)
-      const hasBeyond = this.levels.some((l) => (l.z - z) * dir > 0)
-      const fallback = hasBeyond ? z : z - dir
-
-      const next = {}
-      for (const [k, p] of Object.entries(this.positions)) {
-        next[k] = { ...p, z: p.z === z ? fallback : shift(p.z) }
-      }
-      this.positions = next
-      this.levels = this.levels
-        .filter((l) => l !== lv)
-        .map((l) => {
-          l.z = shift(l.z)
-          return l
-        })
-        .sort((a, b) => a.z - b.z)
-      this.activeZ = fallback
-      this.selectedKey = null
-      this.applyBackground()
-      this.draw()
     },
 
     // Nearest unoccupied cell to (col,row) on floor z, spiralling outward.
@@ -995,6 +1195,42 @@ export default {
             cs / 2 - seam
           )
         })
+      } else if (key === 'door') {
+        // Planks in a dark frame with iron straps and a brass knob. Symmetric
+        // on purpose: it reads as a door in a horizontal or vertical wall.
+        const f = Math.max(1, cs * 0.1)
+        const planks = 3
+        const pw = (cs - f * 2) / planks
+        ctx.fillStyle = '#2a180a'
+        ctx.fillRect(x, y, cs, cs)
+        for (let i = 0; i < planks; i++) {
+          const v = ((h >> (i * 4)) & 15) / 15
+          ctx.fillStyle = `hsl(32,48%,${38 + v * 9}%)`
+          ctx.fillRect(x + f + pw * i, y + f, pw, cs - f * 2)
+        }
+        ctx.strokeStyle = 'rgba(30,16,6,0.65)'
+        ctx.lineWidth = seam
+        for (let i = 1; i < planks; i++) {
+          ctx.beginPath()
+          ctx.moveTo(x + f + pw * i, y + f)
+          ctx.lineTo(x + f + pw * i, y + cs - f)
+          ctx.stroke()
+        }
+        if (cs >= 10) {
+          ctx.fillStyle = 'rgba(20,12,6,0.55)'
+          ctx.fillRect(x + f, y + cs * 0.24, cs - f * 2, cs * 0.07)
+          ctx.fillRect(x + f, y + cs * 0.69, cs - f * 2, cs * 0.07)
+          ctx.fillStyle = '#e8c14a'
+          ctx.beginPath()
+          ctx.arc(
+            x + cs * 0.78,
+            y + cs / 2,
+            Math.max(1.5, cs * 0.07),
+            0,
+            Math.PI * 2
+          )
+          ctx.fill()
+        }
       } else if (key === 'stairs_up' || key === 'stairs_down') {
         // Treads fade lighter toward the top of the cell; the arrow points
         // the way the stairs go (up the screen = climbing, down = descending).
@@ -1094,6 +1330,206 @@ export default {
       ctx.stroke()
       ctx.setLineDash([])
       ctx.globalAlpha = 1
+    },
+
+    // Leafy disc shared by trees and bushes. `r` is the outer radius in px.
+    drawCanopy(ctx, cs, cx, cy, r, rng, look) {
+      ctx.fillStyle = 'rgba(0,0,0,0.28)'
+      ctx.beginPath()
+      ctx.arc(cx + r * 0.12, cy + r * 0.16, r, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = `hsl(${look.hue},45%,${look.light - 8 + rng() * 5}%)`
+      ctx.beginPath()
+      ctx.arc(cx, cy, r, 0, Math.PI * 2)
+      ctx.fill()
+      if (cs >= 14) {
+        const cells = r / cs
+        const blobR = Math.min(r * 0.42, cs * 1.6)
+        const n = Math.min(120, Math.max(4, Math.round(cells * cells * 3)))
+        for (let i = 0; i < n; i++) {
+          const ang = rng() * Math.PI * 2
+          const dist = Math.sqrt(rng()) * Math.max(0, r - blobR)
+          ctx.fillStyle = `hsl(${look.hue - 5},42%,${
+            look.light - 1 + (i % 2) * 4
+          }%)`
+          ctx.beginPath()
+          ctx.arc(
+            cx + Math.cos(ang) * dist,
+            cy + Math.sin(ang) * dist,
+            blobR,
+            0,
+            Math.PI * 2
+          )
+          ctx.fill()
+        }
+        if (look.berries) {
+          ctx.fillStyle = look.berries
+          const dots = Math.round(cells * cells * 4) + 2
+          for (let i = 0; i < dots; i++) {
+            const ang = rng() * Math.PI * 2
+            const dist = Math.sqrt(rng()) * r * 0.85
+            ctx.beginPath()
+            ctx.arc(
+              cx + Math.cos(ang) * dist,
+              cy + Math.sin(ang) * dist,
+              Math.max(1, cs * 0.06),
+              0,
+              Math.PI * 2
+            )
+            ctx.fill()
+          }
+        }
+      }
+      ctx.strokeStyle = 'rgba(0,0,0,0.45)'
+      ctx.lineWidth = 0.8
+      ctx.beginPath()
+      ctx.arc(cx, cy, r, 0, Math.PI * 2)
+      ctx.stroke()
+    },
+
+    drawBoulder(ctx, cs, cx, cy, r, rng) {
+      ctx.fillStyle = 'rgba(0,0,0,0.3)'
+      ctx.beginPath()
+      ctx.arc(cx + r * 0.1, cy + r * 0.14, r, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = '#6f6b64'
+      ctx.beginPath()
+      ctx.arc(cx, cy, r, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = '#8c8880'
+      ctx.beginPath()
+      ctx.arc(cx - r * 0.18, cy - r * 0.2, r * 0.72, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = '#a6a29a'
+      ctx.beginPath()
+      ctx.arc(cx - r * 0.3, cy - r * 0.34, r * 0.38, 0, Math.PI * 2)
+      ctx.fill()
+      if (cs >= 14) {
+        ctx.strokeStyle = 'rgba(30,28,24,0.55)'
+        ctx.lineWidth = Math.max(1, cs * 0.04)
+        const cracks = 2 + Math.min(4, Math.floor(r / cs))
+        for (let i = 0; i < cracks; i++) {
+          let a = rng() * Math.PI * 2
+          let x = cx + Math.cos(a) * r * 0.15
+          let y = cy + Math.sin(a) * r * 0.15
+          ctx.beginPath()
+          ctx.moveTo(x, y)
+          for (let s = 0; s < 3; s++) {
+            a += (rng() - 0.5) * 1.2
+            x += Math.cos(a) * r * 0.25
+            y += Math.sin(a) * r * 0.25
+            ctx.lineTo(x, y)
+          }
+          ctx.stroke()
+        }
+      }
+      ctx.strokeStyle = 'rgba(0,0,0,0.55)'
+      ctx.lineWidth = 1
+      ctx.beginPath()
+      ctx.arc(cx, cy, r, 0, Math.PI * 2)
+      ctx.stroke()
+    },
+
+    // Water or lava: fill the zone shape, then scatter one mark per cell.
+    drawLiquid(ctx, cs, zone, lava, rng) {
+      const half = zone.shape === 'square' ? zone.side / 2 : zone.radius
+      ctx.save()
+      ctx.beginPath()
+      this.zonePath(ctx, cs, zone)
+      ctx.clip()
+      ctx.fillStyle = lava ? '#b53a0c' : 'rgba(46,106,150,0.85)'
+      ctx.fillRect(
+        (zone.col - half) * cs,
+        (zone.row - half) * cs,
+        half * 2 * cs,
+        half * 2 * cs
+      )
+      if (cs >= 10) {
+        const c0 = Math.floor(zone.col - half)
+        const c1 = Math.ceil(zone.col + half)
+        const r0 = Math.floor(zone.row - half)
+        const r1 = Math.ceil(zone.row + half)
+        for (let c = c0; c < c1; c++) {
+          for (let r = r0; r < r1; r++) {
+            const x = (c + rng()) * cs
+            const y = (r + rng()) * cs
+            if (lava) {
+              ctx.fillStyle = rng() > 0.5 ? '#f5821f' : '#ffd23f'
+              ctx.beginPath()
+              ctx.arc(x, y, cs * (0.12 + rng() * 0.18), 0, Math.PI * 2)
+              ctx.fill()
+            } else {
+              ctx.strokeStyle = 'rgba(255,255,255,0.35)'
+              ctx.lineWidth = Math.max(1, cs * 0.06)
+              ctx.beginPath()
+              ctx.moveTo(x - cs * 0.22, y)
+              ctx.quadraticCurveTo(x - cs * 0.11, y - cs * 0.12, x, y)
+              ctx.quadraticCurveTo(
+                x + cs * 0.11,
+                y + cs * 0.12,
+                x + cs * 0.22,
+                y
+              )
+              ctx.stroke()
+            }
+          }
+        }
+      }
+      ctx.restore()
+      ctx.strokeStyle = lava ? '#2a1208' : 'rgba(16,40,64,0.7)'
+      ctx.lineWidth = lava ? 2.5 : 1.5
+      ctx.beginPath()
+      this.zonePath(ctx, cs, zone)
+      ctx.stroke()
+    },
+
+    drawTextureZone(ctx, cs, zone) {
+      const rng = seededRng(zone.id ?? 1)
+      const cx = zone.col * cs
+      const cy = zone.row * cs
+      const r = zone.radius * cs * 0.96
+      switch (zone.texture) {
+        case 'tree':
+          this.drawCanopy(ctx, cs, cx, cy, r, rng, { hue: 115, light: 29 })
+          break
+        case 'bush':
+          this.drawCanopy(ctx, cs, cx, cy, r * 0.9, rng, {
+            hue: 95,
+            light: 34,
+            berries: 'rgba(200,50,60,0.9)',
+          })
+          break
+        case 'boulder':
+          this.drawBoulder(ctx, cs, cx, cy, r * 0.94, rng)
+          break
+        case 'water':
+          this.drawLiquid(ctx, cs, zone, false, rng)
+          break
+        case 'lava':
+          this.drawLiquid(ctx, cs, zone, true, rng)
+          break
+      }
+    },
+
+    // The zone the tool would place at (col, row) with the current settings.
+    newZone(col, row) {
+      const textured = !!this.zoneTextureDef
+      return {
+        shape: this.effectiveZoneShape,
+        texture: textured ? this.zoneTexture : null,
+        col,
+        row,
+        radius: textured ? this.zoneSide / 2 : this.zoneRadius,
+        side: this.zoneSide,
+        color: this.selectedZoneColor,
+      }
+    },
+
+    // Is the point (x, y), in cell units, inside the zone?
+    zoneContains(z, x, y) {
+      return z.shape === 'square'
+        ? Math.abs(x - z.col) <= z.side / 2 && Math.abs(y - z.row) <= z.side / 2
+        : Math.hypot(x - z.col, y - z.row) <= z.radius
     },
 
     draw() {
@@ -1244,8 +1680,13 @@ export default {
         this.drawObject(ctx, objKey, col, row, cs)
       }
 
-      // Spell zones
+      // Textured zones (trees, water, ...) sit over the grid, under spells
       for (const zone of this.zones) {
+        if (zone.texture) this.drawTextureZone(ctx, cs, zone)
+      }
+
+      // Spell zones
+      for (const zone of this.spellZones) {
         this.drawZone(ctx, cs, zone, this.zoneColorHex(zone.color), 0.25, 0.7)
       }
 
@@ -1258,20 +1699,21 @@ export default {
         this.hoverRow < GRID
       ) {
         if (this.zoneMode) {
-          this.drawZone(
-            ctx,
-            cs,
-            {
-              shape: this.zoneShape,
-              col: this.hoverCol,
-              row: this.hoverRow,
-              radius: this.zoneRadius,
-              side: this.zoneSide,
-            },
-            this.zoneColorHex(this.selectedZoneColor),
-            0.15,
-            0.5
-          )
+          const preview = this.newZone(this.hoverCol, this.hoverRow)
+          if (preview.texture) {
+            ctx.globalAlpha = 0.6
+            this.drawTextureZone(ctx, cs, preview)
+            ctx.globalAlpha = 1
+          } else {
+            this.drawZone(
+              ctx,
+              cs,
+              preview,
+              this.zoneColorHex(this.selectedZoneColor),
+              0.15,
+              0.5
+            )
+          }
         } else if (this.paintMode) {
           if (this.selectedPaint === null) {
             ctx.fillStyle = 'rgba(200,80,60,0.35)'
@@ -1418,6 +1860,17 @@ export default {
       this.draw()
     },
 
+    // The ribbon's tool buttons are one exclusive set; Move is "neither of
+    // the other two". (The toggles below also clear each other.)
+    setTool(tool) {
+      if (tool === 'paint' && !this.paintMode) this.togglePaintMode()
+      else if (tool === 'zones' && !this.zoneMode) this.toggleZoneMode()
+      else if (tool === 'move') {
+        if (this.paintMode) this.togglePaintMode()
+        if (this.zoneMode) this.toggleZoneMode()
+      }
+    },
+
     togglePaintMode() {
       this.paintMode = !this.paintMode
       if (this.paintMode) {
@@ -1446,20 +1899,13 @@ export default {
         (z) =>
           z.col === col &&
           z.row === row &&
-          (z.shape ?? 'circle') === this.zoneShape
+          (z.shape ?? 'circle') === this.effectiveZoneShape &&
+          (z.texture ?? null) === (this.zoneTextureDef?.key ?? null)
       )
       if (existing >= 0) {
         this.zones.splice(existing, 1)
       } else {
-        this.zones.push({
-          id: Date.now(),
-          shape: this.zoneShape,
-          col,
-          row,
-          radius: this.zoneRadius,
-          side: this.zoneSide,
-          color: this.selectedZoneColor,
-        })
+        this.zones.push({ id: Date.now(), ...this.newZone(col, row) })
       }
       this.draw()
     },
@@ -1528,34 +1974,27 @@ export default {
     },
 
     // Snaps a zone's centre to the grid so it lines up with the lines: the
-    // nearest intersection for circles and even-sided squares, the nearest
-    // cell centre for odd-sided squares (their edges would otherwise land
+    // nearest intersection for even widths (spell circles, 2-cell trees), the
+    // nearest cell centre for odd widths (their edges would otherwise land
     // mid-cell).
     zoneSnap(event) {
       const rect = this.$refs.canvas.getBoundingClientRect()
       const x = (event.clientX - rect.left) / this.cellSize
       const y = (event.clientY - rect.top) / this.cellSize
-      if (this.zoneShape === 'square' && this.zoneSide % 2 === 1) {
+      if (this.zoneExtent % 2 === 1) {
         return { col: Math.floor(x) + 0.5, row: Math.floor(y) + 0.5 }
       }
       return { col: Math.round(x), row: Math.round(y) }
     },
 
-    // Topmost zone under the pointer (right-click removal).
+    // Topmost zone under the pointer (right-click removal). Spell zones are
+    // drawn over textured ones, so they win a tie.
     zoneAt(event) {
       const rect = this.$refs.canvas.getBoundingClientRect()
       const x = (event.clientX - rect.left) / this.cellSize
       const y = (event.clientY - rect.top) / this.cellSize
-      for (let i = this.zones.length - 1; i >= 0; i--) {
-        const z = this.zones[i]
-        const hit =
-          z.shape === 'square'
-            ? Math.abs(x - z.col) <= z.side / 2 &&
-              Math.abs(y - z.row) <= z.side / 2
-            : Math.hypot(x - z.col, y - z.row) <= z.radius
-        if (hit) return z
-      }
-      return null
+      const hits = this.zones.filter((z) => this.zoneContains(z, x, y))
+      return hits.reverse().find((z) => !z.texture) ?? hits[0] ?? null
     },
 
     handleMouseDown(event) {
@@ -1661,6 +2100,8 @@ export default {
         this.$emit('close')
         return
       }
+      // Don't hijack letters typed into the Maps panel's name box etc.
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(event.target.tagName)) return
       const step = this.cellSize * 3
       const wrap = this.$refs.wrap
       if (key === 'w') wrap.scrollTop -= step
@@ -1682,6 +2123,116 @@ export default {
       )
     },
 
+    // ── Saved maps ────────────────────────────────────────────
+
+    levelHasPaint(lv) {
+      return !!(
+        Object.keys(lv.terrain).length ||
+        Object.keys(lv.objects).length ||
+        lv.zones.length ||
+        lv.bgFill ||
+        lv.bgImage
+      )
+    },
+
+    async toggleMapsPanel() {
+      this.mapsOpen = !this.mapsOpen
+      if (this.mapsOpen) await this.refreshMaps()
+    },
+
+    async refreshMaps() {
+      try {
+        this.savedMaps = await dataService.listBattleMaps()
+      } catch (err) {
+        this.flashNotice(`Couldn't load saved maps: ${err.message}`)
+      }
+    },
+
+    mapTitle(map) {
+      const floors = map.levels.length
+      const when = map.saved_at
+        ? new Date(map.saved_at).toLocaleDateString()
+        : ''
+      return (
+        `${floors} floor${floors === 1 ? '' : 's'}` +
+        (when ? ` · saved ${when}` : '')
+      )
+    },
+
+    async saveCurrentMap() {
+      const name = this.mapName.trim()
+      if (!name) return
+      const existing = this.savedMaps.find(
+        (m) => m.name.toLowerCase() === name.toLowerCase()
+      )
+      if (
+        existing &&
+        !window.confirm(`Replace the saved map "${existing.name}"?`)
+      )
+        return
+      const map = {
+        id: existing?.id,
+        name,
+        activeZ: this.activeZ,
+        gridStyle: this.gridStyle,
+        levels: JSON.parse(JSON.stringify(this.levels)),
+      }
+      try {
+        this.savedMaps = await dataService.saveBattleMap(map)
+        this.flashNotice(`Saved "${name}"`)
+      } catch (err) {
+        this.flashNotice(`Save failed: ${err.message}`)
+      }
+    },
+
+    loadMap(map) {
+      if (
+        this.levels.some(this.levelHasPaint) &&
+        !window.confirm(`Replace the current map with "${map.name}"?`)
+      )
+        return
+      const levels = map.levels
+        .filter((l) => Number.isInteger(l.z) && Math.abs(l.z) <= MAX_Z)
+        .map((l) => ({ ...makeLevel(l.z), ...JSON.parse(JSON.stringify(l)) }))
+        .sort((a, b) => a.z - b.z)
+      if (!levels.length) levels.push(makeLevel(0))
+      const has = (z) => levels.some((l) => l.z === z)
+      const z = has(map.activeZ) ? map.activeZ : has(0) ? 0 : levels[0].z
+
+      // Saves hold the map only, never tokens (enemies have no stable
+      // identity across fights). Tokens stay where they are, except any on a
+      // floor the loaded map doesn't have, which drop to the viewed floor.
+      const next = {}
+      for (const [key, p] of Object.entries(this.positions)) {
+        next[key] = has(p.z) ? p : this.findFreeCell(next, z, p.col, p.row)
+      }
+
+      this.levels = levels
+      this.activeZ = z
+      this.positions = next
+      if (GRID_STYLES.some((g) => g.key === map.gridStyle)) {
+        this.gridStyle = map.gridStyle
+      }
+      this.selectedKey = null
+      this.hoverCol = null
+      this.hoverRow = null
+      this.mapName = map.name
+      this.$nextTick(() => {
+        this.applyBackground()
+        this.draw()
+      })
+      this.flashNotice(`Loaded "${map.name}"`)
+    },
+
+    async deleteMap(map) {
+      if (!window.confirm(`Delete the saved map "${map.name}"?`)) return
+      try {
+        this.savedMaps = await dataService.deleteBattleMap(map.id)
+      } catch (err) {
+        this.flashNotice(`Delete failed: ${err.message}`)
+      }
+    },
+
     exportMap() {
       // Collect all occupied cells to find bounding box
       const allCells = []
@@ -1692,6 +2243,20 @@ export default {
       for (const key of Object.keys(this.objects)) {
         const [col, row] = key.split(',').map(Number)
         allCells.push({ col, row })
+      }
+      // Cells whose centre falls inside a textured zone, by symbol
+      const zoneSyms = {}
+      for (const zone of this.zones) {
+        if (!zone.texture) continue
+        const sym = ZONE_TEXTURES.find((t) => t.key === zone.texture)?.sym
+        const half = zone.shape === 'square' ? zone.side / 2 : zone.radius
+        for (let c = Math.floor(zone.col - half); c < zone.col + half; c++) {
+          for (let r = Math.floor(zone.row - half); r < zone.row + half; r++) {
+            if (!this.zoneContains(zone, c + 0.5, r + 0.5)) continue
+            zoneSyms[`${c},${r}`] = sym
+            allCells.push({ col: c, row: r })
+          }
+        }
       }
       for (const pos of Object.values(this.positions)) {
         if (pos.z === this.activeZ) allCells.push(pos)
@@ -1735,6 +2300,7 @@ export default {
           if (tokenMap[key]) line += tokenMap[key]
           else if (this.objects[key])
             line += OBJECT_EXPORT_SYMS[this.objects[key]]
+          else if (zoneSyms[key]) line += zoneSyms[key]
           else if (this.terrain[key] === 'x') line += 'X'
           else line += '.'
         }
@@ -1744,6 +2310,10 @@ export default {
       const objectLegend = Object.entries(OBJECT_EXPORT_SYMS)
         .filter(([k]) => Object.values(this.objects).includes(k))
         .map(([k, sym]) => `${sym} = ${k}`)
+      for (const t of ZONE_TEXTURES) {
+        if (Object.values(zoneSyms).includes(t.sym))
+          objectLegend.push(`${t.sym} = ${t.label.toLowerCase()}`)
+      }
       const legendBlock =
         (legend.length ? legend.join('\n') + '\n' : '') +
         'X = obstacle  . = open' +
@@ -1824,6 +2394,112 @@ button. */
   align-items: center;
   gap: 0.5rem 1rem;
   min-height: 1.8rem;
+}
+
+/* ── Ribbon: labelled groups of always-visible controls ── */
+.bm-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.4rem 0;
+}
+
+.bm-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.2rem;
+  padding: 0 0.8rem;
+  border-left: 1px solid var(--color-border);
+}
+.bm-group:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.bm-group-body {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
+  flex: 1;
+}
+
+.bm-group-label {
+  text-align: center;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 14rem;
+}
+
+/* Big icon-over-caption button for the tools and the map actions. */
+.bm-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 3.4rem;
+  padding: 0.3rem 0.5rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+}
+.bm-tool:hover {
+  border-color: var(--color-border);
+  color: var(--color-accent);
+}
+.bm-tool.active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgba(200, 169, 110, 0.1);
+}
+.bm-tool-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.bm-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+.bm-icon-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.bm-icon-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* An icon prefixing a select. */
+.bm-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text-low);
+}
+.bm-ico {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
 }
 
 .bm-title {
@@ -2029,6 +2705,44 @@ button. */
 }
 .bm-fill-bg-btn:hover {
   border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ── Saved maps ── */
+.bm-maps-bar {
+  flex-wrap: wrap;
+}
+.bm-maps-name {
+  width: 11rem;
+  padding: 0.15rem 0.4rem;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-family: var(--font-body);
+}
+.bm-maps-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+.bm-maps-divider {
+  align-self: stretch;
+  border-left: 1px solid var(--color-border);
+  margin: 0 0.3rem;
+}
+.bm-map-load {
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+.bm-map-load:hover {
   color: var(--color-accent);
 }
 
