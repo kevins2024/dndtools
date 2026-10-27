@@ -1,6 +1,12 @@
 const fs = require('fs')
 const path = require('path')
 const { featureName } = require('./featureCatalog')
+const {
+  normalizeRuleset,
+  dataFilePath,
+  isLegacyFallback,
+  loadRulesetJson,
+} = require('./ruleset')
 
 const SUBCLASSES_DIR = path.join(
   __dirname,
@@ -34,14 +40,45 @@ function resolveFeatureIds(data) {
 }
 
 const subclassCache = new Map()
+const SUBCLASSES_DIR_2024 = path.join(
+  __dirname,
+  '..',
+  '..',
+  'data',
+  '5e2024',
+  'subclasses'
+)
 
-function loadSubclass(className, subclassName) {
-  const key = slugify(className, subclassName)
+// `ruleset` defaults to '2014'. Under '2024' a subclass the 2024 rules
+// rewrote loads from data/5e2024/subclasses; any other is served from the
+// 2014 tree tagged `legacy: true` (usable, just not rewritten).
+// 2014 subclass name -> its 2024 rewrite's name (data/5e2024/subclass-aliases
+// .json), so a character saved as "Berserker" resolves under 2024. Only
+// consulted when that name has no file of its own in the 2024 tree.
+function aliasedName(className, subclassName) {
+  const aliases = loadRulesetJson('2024', 'subclass-aliases.json')
+  return aliases?.[className]?.[subclassName] ?? null
+}
+
+function loadSubclass(className, subclassName, ruleset) {
+  const rs = normalizeRuleset(ruleset)
+  if (rs === '2024') {
+    const own = path.join(
+      SUBCLASSES_DIR_2024,
+      `${slugify(className, subclassName)}.json`
+    )
+    const alias = !fs.existsSync(own) && aliasedName(className, subclassName)
+    if (alias) return loadSubclass(className, alias, rs)
+  }
+  const slug = slugify(className, subclassName)
+  const key = `${rs}:${slug}`
   if (subclassCache.has(key)) return subclassCache.get(key)
-  const file = path.join(SUBCLASSES_DIR, `${key}.json`)
+  const rel = path.join('subclasses', `${slug}.json`)
+  const file = dataFilePath(rs, rel)
   if (!fs.existsSync(file)) return null
   const raw = JSON.parse(fs.readFileSync(file, 'utf8'))
-  const data = resolveFeatureIds(raw)
+  let data = resolveFeatureIds(raw)
+  if (isLegacyFallback(rs, rel)) data = { ...data, legacy: true }
   subclassCache.set(key, data)
   return data
 }
@@ -52,14 +89,31 @@ function loadSubclass(className, subclassName) {
 // subclass data instead of a per-character copy that can drift out of sync.
 // Same directory-scanning portability caveat as classFeatures.js's
 // listClasses() — see the comment there and engine/CHECKLIST.md.
-function listSubclasses() {
-  return fs
-    .readdirSync(SUBCLASSES_DIR)
-    .filter((f) => f.endsWith('.json'))
-    .map((f) => {
-      const data = JSON.parse(
-        fs.readFileSync(path.join(SUBCLASSES_DIR, f), 'utf8')
-      )
+function listSubclasses(ruleset) {
+  const files = new Map(
+    fs
+      .readdirSync(SUBCLASSES_DIR)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => [f, path.join(SUBCLASSES_DIR, f)])
+  )
+  if (normalizeRuleset(ruleset) === '2024' && fs.existsSync(SUBCLASSES_DIR_2024)) {
+    for (const f of fs.readdirSync(SUBCLASSES_DIR_2024)) {
+      if (f.endsWith('.json')) files.set(f, path.join(SUBCLASSES_DIR_2024, f))
+    }
+    // A renamed rewrite replaces its 2014 namesake instead of sitting beside it.
+    const aliases = loadRulesetJson('2024', 'subclass-aliases.json') ?? {}
+    for (const [cls, map] of Object.entries(aliases)) {
+      if (cls.startsWith('_')) continue
+      for (const [oldName, newName] of Object.entries(map)) {
+        if (files.has(`${slugify(cls, newName)}.json`)) {
+          files.delete(`${slugify(cls, oldName)}.json`)
+        }
+      }
+    }
+  }
+  return [...files.values()]
+    .map((file) => {
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'))
       const entry = {
         class: data.class,
         name: data.name,
@@ -77,14 +131,19 @@ function listSubclasses() {
     })
 }
 
-function subclassFeaturesGainedAtLevel(className, subclassName, level) {
-  const sub = loadSubclass(className, subclassName)
+function subclassFeaturesGainedAtLevel(className, subclassName, level, ruleset) {
+  const sub = loadSubclass(className, subclassName, ruleset)
   if (!sub) return []
   return sub.features_by_level[String(level)] || []
 }
 
-function subclassFeatureIdsGainedAtLevel(className, subclassName, level) {
-  const sub = loadSubclass(className, subclassName)
+function subclassFeatureIdsGainedAtLevel(
+  className,
+  subclassName,
+  level,
+  ruleset
+) {
+  const sub = loadSubclass(className, subclassName, ruleset)
   if (!sub) return []
   return sub.features_by_level_ids[String(level)] || []
 }

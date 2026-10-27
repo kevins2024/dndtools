@@ -46,8 +46,9 @@ function describeLevelUp({
   hpMethod = 'roll',
   hpRolls = [],
   isCharactersFirstLevelEver = true,
+  ruleset,
 }) {
-  const cls = loadClass(className)
+  const cls = loadClass(className, ruleset)
   if (!cls) return { error: `No rules data for class "${className}"` }
 
   const result = {
@@ -92,13 +93,15 @@ function describeLevelUp({
       const subFeatures = subclassFeaturesGainedAtLevel(
         className,
         subclassName,
-        lvl
+        lvl,
+        ruleset
       )
       if (subFeatures.length) {
         const subFeatureIds = subclassFeatureIdsGainedAtLevel(
           className,
           subclassName,
-          lvl
+          lvl,
+          ruleset
         )
         result.subclassFeaturesGained.push({
           level: lvl,
@@ -113,7 +116,11 @@ function describeLevelUp({
   // subclass grants it instead (Eldritch Knight, Arcane Trickster) — see
   // spellcasting.js's resolveSpellcasting for the shared logic every
   // lookup below goes through via subclassName.
-  const effectiveSpellcasting = resolveSpellcasting(className, subclassName)
+  const effectiveSpellcasting = resolveSpellcasting(
+    className,
+    subclassName,
+    ruleset
+  )
   if (effectiveSpellcasting) {
     const type = effectiveSpellcasting.type
     const modBefore = abilityModifierAtLevel
@@ -134,7 +141,7 @@ function describeLevelUp({
               ...otherClasses,
               { name: className, level: fromLevel, subclass: subclassName },
             ])
-          : spellSlotsForClassAtLevel(className, fromLevel, subclassName),
+          : spellSlotsForClassAtLevel(className, fromLevel, subclassName, ruleset),
       slotsAfter:
         type === 'pact'
           ? null
@@ -143,23 +150,24 @@ function describeLevelUp({
               ...otherClasses,
               { name: className, level: toLevel, subclass: subclassName },
             ])
-          : spellSlotsForClassAtLevel(className, toLevel, subclassName),
+          : spellSlotsForClassAtLevel(className, toLevel, subclassName, ruleset),
       // Pact Magic is Warlock's own separate resource — it never joins the
       // normal-slot multiclass pool, so this is always just the Warlock
       // level's own table regardless of what else is on the sheet.
-      pactSlotsBefore: type === 'pact' ? pactMagicForLevel(fromLevel) : null,
-      pactSlotsAfter: type === 'pact' ? pactMagicForLevel(toLevel) : null,
-      cantripsBefore: cantripsKnownForClass(className, fromLevel, subclassName),
-      cantripsAfter: cantripsKnownForClass(className, toLevel, subclassName),
+      pactSlotsBefore: type === 'pact' ? pactMagicForLevel(fromLevel, ruleset) : null,
+      pactSlotsAfter: type === 'pact' ? pactMagicForLevel(toLevel, ruleset) : null,
+      cantripsBefore: cantripsKnownForClass(className, fromLevel, subclassName, ruleset),
+      cantripsAfter: cantripsKnownForClass(className, toLevel, subclassName, ruleset),
     }
 
-    const knownCapAfter = spellsKnownForClass(className, toLevel, subclassName)
+    const knownCapAfter = spellsKnownForClass(className, toLevel, subclassName, ruleset)
     if (knownCapAfter !== null) {
       result.spellcasting.style = 'known'
       result.spellcasting.knownBefore = spellsKnownForClass(
         className,
         fromLevel,
-        subclassName
+        subclassName,
+        ruleset
       )
       result.spellcasting.knownAfter = knownCapAfter
     } else {
@@ -168,13 +176,15 @@ function describeLevelUp({
         className,
         fromLevel,
         modBefore,
-        subclassName
+        subclassName,
+        ruleset
       )
       result.spellcasting.preparedAfter = preparedSpellCount(
         className,
         toLevel,
         modAfter,
-        subclassName
+        subclassName,
+        ruleset
       )
     }
   }

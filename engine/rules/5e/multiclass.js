@@ -1,6 +1,9 @@
-const tables = require('../../data/5e/spellcasting-tables.json')
-const multiclassProficiencies = require('../../data/5e/multiclass-proficiencies.json')
-const multiclassPrerequisites = require('../../data/5e/multiclass-prerequisites.json')
+const { loadRulesetJson } = require('./ruleset')
+const tablesFor = (ruleset) => loadRulesetJson(ruleset, 'spellcasting-tables.json')
+const multiclassProficienciesFor = (ruleset) =>
+  loadRulesetJson(ruleset, 'multiclass-proficiencies.json')
+const multiclassPrerequisitesFor = (ruleset) =>
+  loadRulesetJson(ruleset, 'multiclass-prerequisites.json')
 const {
   pactMagicForLevel,
   spellSlotsForClassAtLevel,
@@ -19,8 +22,8 @@ const { loadClass } = require('./classFeatures')
 // or 'all'. An unrecognized class name doesn't block — better to let an
 // unknown class through than silently deny a legitimate one over a lookup
 // gap.
-function meetsMulticlassPrerequisites(className, scores) {
-  const req = multiclassPrerequisites[className]
+function meetsMulticlassPrerequisites(className, scores, ruleset) {
+  const req = multiclassPrerequisitesFor(ruleset)[className]
   if (!req) return { met: true, required: [], mode: null }
   const meetsAbility = (ability) => (scores[ability] ?? 0) >= 13
   if (req.any_of) {
@@ -79,23 +82,25 @@ function multiclassCasterLevel(classes) {
 // running its level through the combined formula (half-casters in
 // particular have their own, more generous dedicated progression when
 // they're the only caster class in the mix).
-function multiclassSpellSlots(classes) {
+function multiclassSpellSlots(classes, ruleset) {
   const contributors = classes.filter((c) => casterLevelContribution(c) > 0)
   if (contributors.length === 0) return []
   if (contributors.length === 1) {
     return spellSlotsForClassAtLevel(
       contributors[0].name,
-      contributors[0].level
+      contributors[0].level,
+      contributors[0].subclass,
+      ruleset
     )
   }
   const level = multiclassCasterLevel(classes)
-  return tables.full_caster_slots[String(Math.min(level, 20))] || []
+  return tablesFor(ruleset).full_caster_slots[String(Math.min(level, 20))] || []
 }
 
-function multiclassPactSlots(classes) {
+function multiclassPactSlots(classes, ruleset) {
   const warlock = classes.find((c) => c.name === 'Warlock')
   if (!warlock) return null
-  return pactMagicForLevel(warlock.level)
+  return pactMagicForLevel(warlock.level, ruleset)
 }
 
 // The starting class grants its FULL normal proficiency list (armor/weapons
@@ -104,14 +109,14 @@ function multiclassPactSlots(classes) {
 // data/multiclass-proficiencies.json — saving throws are never granted at
 // all from a multiclassed-in class (handled separately in validateCharacter,
 // since that's a simple presence check, not a union-building one).
-function expectedProficienciesForCharacter(classes, startedClassName) {
-  const started = loadClass(startedClassName)
+function expectedProficienciesForCharacter(classes, startedClassName, ruleset) {
+  const started = loadClass(startedClassName, ruleset)
   const armor = new Set(started ? started.armor_proficiencies : [])
   const weapons = new Set(started ? started.weapon_proficiencies : [])
 
   for (const c of classes) {
     if (c.name === startedClassName) continue
-    const grant = multiclassProficiencies[c.name]
+    const grant = multiclassProficienciesFor(ruleset)[c.name]
     if (!grant) continue
     for (const a of grant.armor || []) armor.add(a)
     for (const w of grant.weapons || []) weapons.add(w)

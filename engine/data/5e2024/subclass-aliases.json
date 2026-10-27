@@ -1,0 +1,4 @@
+{
+  "_notes": "2014 subclass name -> 2024 subclass name, per class, for subclasses the 2024 PHB renamed or re-titled. loadSubclass(.., '2024') consults this when the requested name has no 2024 file of its own, so character records saved under the 2014 name keep resolving.",
+  "Barbarian": { "Berserker": "Path of the Berserker" }
+}

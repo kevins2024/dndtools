@@ -1,5 +1,6 @@
 const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
+const { rulesetOf, loadRulesetJson } = require('./ruleset')
 const { describeLevelUp } = require('./levelUp')
 const { proficiencyBonus } = require('./progression')
 const { abilityModifier } = require('./abilities')
@@ -28,7 +29,6 @@ const { loadSkill, listSkills } = require('./skills')
 const { featureMechanics } = require('./featureMechanics')
 const { resolveEffectiveScores } = require('./abilityScores')
 const { traitsFor, loadSpecies } = require('./species')
-const multiclassProficiencies = require('../../data/5e/multiclass-proficiencies.json')
 const favoredEnemies = require('../../data/5e/favored-enemies.json')
 const naturalExplorerTerrains = require('../../data/5e/natural-explorer-terrains.json')
 
@@ -105,7 +105,7 @@ function resolveUsesFormula(formula, character, equippedItems) {
   // entry ("unlimited" at 20th) has no pool to count, so no uses_max.
   if (formula.type === 'class_table') {
     const cls = (character.classes || []).find((c) => c.name === formula.class)
-    const table = loadClass(formula.class)?.[formula.table]
+    const table = loadClass(formula.class, rulesetOf(character))?.[formula.table]
     if (!cls || !table) return undefined
     let value
     let bestKey = -Infinity
@@ -459,6 +459,7 @@ function diffLevelUp(
     equippedItems = [],
   } = {}
 ) {
+  const ruleset = rulesetOf(character)
   const classIndex = (character.classes || []).findIndex(
     (c) => normalizeName(c.name) === normalizeName(className)
   )
@@ -473,7 +474,7 @@ function diffLevelUp(
   const existingEntry = classIndex !== -1 ? character.classes[classIndex] : null
   const isMulticlassPickup = !existingEntry || existingEntry.level === 0
 
-  if (isMulticlassPickup && !loadClass(className)) {
+  if (isMulticlassPickup && !loadClass(className, ruleset)) {
     return {
       patch: null,
       pendingChoices: [],
@@ -511,7 +512,7 @@ function diffLevelUp(
   // back to whatever the resolved class-or-subclass spellcasting says.
   const spellcastingAbility =
     character.spellcasting_ability ??
-    resolveSpellcasting(classEntry.name, classEntry.subclass)?.ability ??
+    resolveSpellcasting(classEntry.name, classEntry.subclass, ruleset)?.ability ??
     null
 
   // Reflects any supplied ASI/feat resolution for a level BEFORE `lvl`, so a
@@ -541,7 +542,8 @@ function diffLevelUp(
   if (isMulticlassPickup) {
     const prereq = meetsMulticlassPrerequisites(
       className,
-      extractScores(character)
+      extractScores(character),
+      ruleset
     )
     if (!prereq.met) {
       const need = prereq.required
@@ -554,6 +556,7 @@ function diffLevelUp(
   }
 
   const description = describeLevelUp({
+    ruleset,
     className: classEntry.name,
     subclassName: classEntry.subclass,
     fromLevel,
@@ -1560,7 +1563,7 @@ function diffLevelUp(
         (s._source || '').startsWith('Divine Magic (')
       )
       if (!alreadyChosen) {
-        const subclassData = loadSubclass('Sorcerer', classEntry.subclass)
+        const subclassData = loadSubclass('Sorcerer', classEntry.subclass, ruleset)
         const affinityTable = subclassData?.grants_spells?.affinity_bonus_spell
         if (divineMagicChoice) {
           const affinity = normalizeName(divineMagicChoice)
@@ -2135,7 +2138,7 @@ function diffLevelUp(
   }
 
   if (description.subclassChoiceNeeded) {
-    const cls = loadClass(classEntry.name)
+    const cls = loadClass(classEntry.name, ruleset)
     pendingChoices.push({
       type: 'subclassChoice',
       level: cls ? cls.subclass_choice_level : null,
@@ -2277,7 +2280,7 @@ function diffLevelUp(
   // starting-class list, and NEVER a new saving throw proficiency (that's
   // explicitly starting-class-only, RAW).
   if (isMulticlassPickup) {
-    const grant = multiclassProficiencies[className]
+    const grant = loadRulesetJson(ruleset, 'multiclass-proficiencies.json')[className]
     if (grant) {
       const armor = new Set(character.armor_proficiencies || [])
       for (const a of grant.armor || []) armor.add(a)
@@ -2297,7 +2300,7 @@ function diffLevelUp(
       if (grant.skills) {
         const existingSkillNames = new Set(character.skill_proficiencies || [])
         if (multiclassSkillChoice) {
-          const classData = loadClass(className)
+          const classData = loadClass(className, ruleset)
           const validOptions = classData?.skill_choices?.options
           const skill = loadSkill(multiclassSkillChoice)
           const isValidChoice =
@@ -2358,7 +2361,7 @@ function diffLevelUp(
     ]
 
     if (description.spellcasting.type === 'pact') {
-      const pact = multiclassPactSlots(combinedClasses)
+      const pact = multiclassPactSlots(combinedClasses, ruleset)
       patch.pact_magic = {
         slot_level: pact.slot_level,
         max: pact.slots,
@@ -2368,11 +2371,12 @@ function diffLevelUp(
     } else {
       const isMulticlassed = otherClasses.length > 0
       const slots = isMulticlassed
-        ? multiclassSpellSlots(combinedClasses)
+        ? multiclassSpellSlots(combinedClasses, ruleset)
         : spellSlotsForClassAtLevel(
             classEntry.name,
             finalToLevel,
-            classEntry.subclass
+            classEntry.subclass,
+            ruleset
           )
       const spellSlots = {}
       slots.forEach((max, i) => {

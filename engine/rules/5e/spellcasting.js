@@ -1,4 +1,8 @@
-const tables = require('../../data/5e/spellcasting-tables.json')
+const { loadRulesetJson } = require('./ruleset')
+
+// The 2024 file, once it exists, must be complete — it replaces the 2014 one
+// wholesale (known-spell classes became prepared casters, so the shapes differ).
+const tablesFor = (ruleset) => loadRulesetJson(ruleset, 'spellcasting-tables.json')
 const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 
@@ -25,13 +29,13 @@ function resolveBreakpoint(map, level) {
 // value (e.g. "does this class cast spells at all?"), so a mundane
 // subclass like Champion must resolve to exactly the same null a class
 // with no spellcasting field at all would, not a truthy no-op object.
-function resolveSpellcasting(className, subclassName) {
-  const cls = loadClass(className)
+function resolveSpellcasting(className, subclassName, ruleset) {
+  const cls = loadClass(className, ruleset)
   if (cls?.spellcasting && cls.spellcasting.type !== 'none') {
     return cls.spellcasting
   }
   if (subclassName) {
-    const sub = loadSubclass(className, subclassName)
+    const sub = loadSubclass(className, subclassName, ruleset)
     if (sub?.spellcasting && sub.spellcasting.type !== 'none') {
       return sub.spellcasting
     }
@@ -43,14 +47,15 @@ function resolveSpellcasting(className, subclassName) {
 // tables are keyed by SUBCLASS name, not class name, since "Fighter" and
 // "Rogue" have no spellcasting of their own to key a table under — every
 // other type keys by the class's own name.
-function tableKeyFor(className, subclassName, spellcasting) {
+function tableKeyFor(className, subclassName, spellcasting, ruleset) {
   return spellcasting?.type === 'third' && subclassName
     ? subclassName
-    : loadClass(className)?.name ?? className
+    : loadClass(className, ruleset)?.name ?? className
 }
 
-function spellSlotsForClassAtLevel(className, level, subclassName) {
-  const spellcasting = resolveSpellcasting(className, subclassName)
+function spellSlotsForClassAtLevel(className, level, subclassName, ruleset) {
+  const tables = tablesFor(ruleset)
+  const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   if (!spellcasting) return []
   const type = spellcasting.type
   if (type === 'full') return tables.full_caster_slots[String(level)] || []
@@ -61,28 +66,28 @@ function spellSlotsForClassAtLevel(className, level, subclassName) {
   return []
 }
 
-function pactMagicForLevel(level) {
-  return tables.pact_magic[String(level)] || { slots: 0, slot_level: 0 }
+function pactMagicForLevel(level, ruleset) {
+  return tablesFor(ruleset).pact_magic[String(level)] || { slots: 0, slot_level: 0 }
 }
 
-function mysticArcanumLevelsKnownAt(level) {
-  return Object.entries(tables.mystic_arcanum_levels)
+function mysticArcanumLevelsKnownAt(level, ruleset) {
+  return Object.entries(tablesFor(ruleset).mystic_arcanum_levels)
     .filter(([atLevel]) => Number(atLevel) <= level)
     .map(([, spellLevel]) => spellLevel)
 }
 
-function cantripsKnownForClass(className, level, subclassName) {
-  const spellcasting = resolveSpellcasting(className, subclassName)
-  const key = tableKeyFor(className, subclassName, spellcasting)
-  const map = tables.cantrips_known[key]
+function cantripsKnownForClass(className, level, subclassName, ruleset) {
+  const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
+  const key = tableKeyFor(className, subclassName, spellcasting, ruleset)
+  const map = tablesFor(ruleset).cantrips_known[key]
   if (!map) return 0
   return resolveBreakpoint(map, level)
 }
 
-function spellsKnownForClass(className, level, subclassName) {
-  const spellcasting = resolveSpellcasting(className, subclassName)
-  const key = tableKeyFor(className, subclassName, spellcasting)
-  const map = tables.spells_known[key]
+function spellsKnownForClass(className, level, subclassName, ruleset) {
+  const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
+  const key = tableKeyFor(className, subclassName, spellcasting, ruleset)
+  const map = tablesFor(ruleset).spells_known[key]
   if (!map) return null // this class prepares instead of "knowing" a fixed list
   return map[String(level)] ?? 0
 }
@@ -93,10 +98,17 @@ function spellsKnownForClass(className, level, subclassName) {
 // Arcane Trickster) don't prepare at all — slot-progression "type"
 // (full/half/pact/third) is a different axis from known-vs-prepared, so
 // that's checked separately via spellsKnownForClass, not `type`.
-function preparedSpellCount(className, level, abilityModifier, subclassName) {
-  const spellcasting = resolveSpellcasting(className, subclassName)
+function preparedSpellCount(
+  className,
+  level,
+  abilityModifier,
+  subclassName,
+  ruleset
+) {
+  const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   if (!spellcasting) return 0
-  if (spellsKnownForClass(className, level, subclassName) !== null) return null
+  if (spellsKnownForClass(className, level, subclassName, ruleset) !== null)
+    return null
   const type = spellcasting.type
   let base
   if (type === 'full') base = abilityModifier + level

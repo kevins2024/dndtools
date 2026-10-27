@@ -1,0 +1,173 @@
+{
+  "name": "Barbarian",
+  "ruleset": "2024",
+  "description": "Barbarians are mighty warriors who are powered by primal forces of the multiverse that manifest as a Rage. More than a mere emotion—and not limited to anger—this Rage is an incarnation of a predator’s ferocity, a storm's fury, and a sea's turmoil.",
+  "primary_ability": "Strength",
+  "saving_throw_proficiencies": [
+    "str",
+    "con"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple",
+    "martial"
+  ],
+  "weapon_proficiencies_text": "Simple and Martial weapons",
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "animal_handling",
+      "athletics",
+      "intimidation",
+      "nature",
+      "perception",
+      "survival"
+    ]
+  },
+  "subclass_name": "Barbarian Subclass",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [
+    3,
+    6,
+    10,
+    14
+  ],
+  "spellcasting": {
+    "type": "none"
+  },
+  "features_by_level": {
+    "1": [
+      "pub24_barbarian-rage",
+      "pub24_barbarian-unarmored-defense",
+      "pub24_barbarian-weapon-mastery"
+    ],
+    "2": [
+      "pub24_barbarian-danger-sense",
+      "pub24_barbarian-reckless-attack"
+    ],
+    "3": [
+      "pub24_barbarian-primal-knowledge"
+    ],
+    "5": [
+      "pub24_barbarian-extra-attack",
+      "pub24_barbarian-fast-movement"
+    ],
+    "7": [
+      "pub24_barbarian-feral-instinct",
+      "pub24_barbarian-instinctive-pounce"
+    ],
+    "9": [
+      "pub24_barbarian-brutal-strike"
+    ],
+    "11": [
+      "pub24_barbarian-relentless-rage"
+    ],
+    "13": [
+      "pub24_barbarian-improved-brutal-strike-l13"
+    ],
+    "15": [
+      "pub24_barbarian-persistent-rage"
+    ],
+    "17": [
+      "pub24_barbarian-improved-brutal-strike-l17"
+    ],
+    "18": [
+      "pub24_barbarian-indomitable-might"
+    ],
+    "20": [
+      "pub24_barbarian-primal-champion"
+    ]
+  },
+  "starting_equipment": {
+    "raw": "Choose A or B: (A) Greataxe, 4 Handaxes, Explorer’s Pack, and 15 GP; or (B) 75 GP",
+    "A": {
+      "items": [
+        {
+          "name": "Greataxe"
+        },
+        {
+          "name": "Handaxes",
+          "qty": 4
+        },
+        {
+          "name": "Explorer’s Pack"
+        }
+      ],
+      "gold": 15
+    },
+    "B": {
+      "items": [],
+      "gold": 75
+    }
+  },
+  "rages_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 3,
+    "4": 3,
+    "5": 3,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "rage_damage_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "weapon_mastery_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  }
+}
