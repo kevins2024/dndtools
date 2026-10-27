@@ -35,73 +35,18 @@
     ],
     "features": [
       {
-        "name": "Draconic Ancestry",
-        "type": "feature",
-        "id": "pub_draconic-ancestry"
-      },
-      {
-        "name": "Breath Weapon",
-        "type": "feature",
-        "id": "pub_dragonborn-breath-weapon",
-        "action_type": "action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Damage Resistance",
-        "type": "feature",
-        "id": "pub_dragonborn-damage-resistance"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "gen_fighter_base_extra-attack-1"
-      },
-      {
-        "name": "Action Surge",
-        "type": "feature",
-        "action_type": "free",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "action-surge-1-use",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Second Wind",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "second-wind"
-      },
-      {
-        "name": "Indomitable",
-        "type": "feature",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "indomitable-1-use"
-      },
-      {
-        "name": "Fighting Style: Two-Weapon Fighting",
-        "id": "fighter-fighting-style-two-weapon-fighting",
-        "type": "fightingStyle",
-        "level_gained": 1,
-        "note": "Added 2026-09-09 -- reconciled from the New Character Tool's own TestFighter build, which reproduced Vaz's real DEX/CHA numbers exactly via a legal ASI@4/feat@6/split-ASI@8 history. Two-Weapon Fighting is the obvious pick given Dual Wielder below."
+        "name": "Two Weapon Fighting",
+        "id": "pub24_feat-two-weapon-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Fighter",
+        "level_gained": 1
       },
       {
         "name": "Dual Wielder",
         "type": "feat",
         "id": "pub_dual-wielder",
         "level_gained": 6
-      },
-      {
-        "name": "Know Your Enemy",
-        "type": "feature",
-        "id": "pub_know-your-enemy"
       },
       {
         "name": "Disarming Attack",
@@ -129,6 +74,189 @@
         "type": "maneuver",
         "id": "pub_parry",
         "action_type": "reaction"
+      },
+      {
+        "name": "Draconic Ancestry",
+        "id": "pub24_species_dragonborn-draconic-ancestry",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dragonborn"
+      },
+      {
+        "name": "Breath Weapon",
+        "id": "pub24_species_dragonborn-breath-weapon",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dragonborn",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Damage Resistance",
+        "id": "pub24_species_dragonborn-damage-resistance",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dragonborn"
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_dragonborn-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dragonborn"
+      },
+      {
+        "name": "Draconic Flight",
+        "id": "pub24_species_dragonborn-draconic-flight",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dragonborn",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_fighter-fighting-style",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "pub24_fighter-second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_fighter-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Action Surge",
+        "id": "pub24_fighter-action-surge-one-use",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "per_turn_cap": true
+      },
+      {
+        "name": "Tactical Mind",
+        "id": "pub24_fighter-tactical-mind",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_fighter-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Tactical Shift",
+        "id": "pub24_fighter-tactical-shift",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Indomitable",
+        "id": "pub24_fighter-indomitable-one-use",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Fighter",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Tactical Master",
+        "id": "pub24_fighter-tactical-master",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Combat Superiority",
+        "id": "pub24_sub_fighter-battle-master-combat-superiority",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Student of War",
+        "id": "pub24_sub_fighter-battle-master-student-of-war",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Know Your Enemy",
+        "id": "pub24_sub_fighter-battle-master-know-your-enemy",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Lucky",
+        "id": "pub24_feat-lucky",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Merchant",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Rapier",
+        "type": "weaponMastery",
+        "weapon": "rapier",
+        "mastery": "vex",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Dagger",
+        "type": "weaponMastery",
+        "weapon": "dagger",
+        "mastery": "nick",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Hand Crossbow",
+        "type": "weaponMastery",
+        "weapon": "hand crossbow",
+        "mastery": "vex",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Longsword",
+        "type": "weaponMastery",
+        "weapon": "longsword",
+        "mastery": "sap",
+        "_source": "Fighter",
+        "level_gained": 9
       }
     ],
     "spells": [],
@@ -210,7 +338,11 @@
     ],
     "active_weapon_set": 1,
     "hp_temp": 0,
-    "conditions": []
+    "conditions": [],
+    "ruleset": "2024",
+    "background": "Merchant",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Rhuna",
@@ -239,7 +371,8 @@
       "Athletics",
       "Intimidation",
       "Perception",
-      "Survival"
+      "Survival",
+      "Nature"
     ],
     "languages": [
       "Common",
@@ -265,56 +398,6 @@
         "id": "pub_half-orc-menacing"
       },
       {
-        "name": "Rage (4 uses, +3 damage)",
-        "type": "feature",
-        "id": "rage",
-        "action_type": "bonus_action",
-        "recharge": "long_rest",
-        "uses_max": 4,
-        "uses_current": 4
-      },
-      {
-        "name": "Reckless Attack",
-        "type": "feature",
-        "id": "reckless-attack"
-      },
-      {
-        "name": "Danger Sense",
-        "type": "feature",
-        "id": "danger-sense"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "barbarian-extra-attack"
-      },
-      {
-        "name": "Frenzy",
-        "type": "feature",
-        "id": "frenzy",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Mindless Rage",
-        "type": "feature",
-        "id": "mindless-rage"
-      },
-      {
-        "name": "Feral Instinct",
-        "type": "feature",
-        "id": "feral-instinct"
-      },
-      {
-        "name": "Brutal Critical (1 die)",
-        "type": "feature",
-        "id": "brutal-critical-1-die"
-      },
-      {
-        "name": "Fast Movement",
-        "type": "feature",
-        "id": "fast-movement"
-      },
-      {
         "name": "Great Weapon Master",
         "type": "feat",
         "id": "pub_great-weapon-master",
@@ -326,6 +409,133 @@
         "type": "feature",
         "action_type": "action",
         "_source": "Homebrew"
+      },
+      {
+        "name": "Rage",
+        "id": "pub24_barbarian-rage",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Unarmored Defense",
+        "id": "pub24_barbarian-unarmored-defense",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_barbarian-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Danger Sense",
+        "id": "pub24_barbarian-danger-sense",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Reckless Attack",
+        "id": "pub24_barbarian-reckless-attack",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Primal Knowledge",
+        "id": "pub24_barbarian-primal-knowledge",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_barbarian-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Fast Movement",
+        "id": "pub24_barbarian-fast-movement",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Feral Instinct",
+        "id": "pub24_barbarian-feral-instinct",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Instinctive Pounce",
+        "id": "pub24_barbarian-instinctive-pounce",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Brutal Strike",
+        "id": "pub24_barbarian-brutal-strike",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Frenzy",
+        "id": "pub24_sub_barbarian-path-of-the-berserker-frenzy",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Mindless Rage",
+        "id": "pub24_sub_barbarian-path-of-the-berserker-mindless-rage",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Alert",
+        "id": "pub24_feat-alert",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Guard",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Greatsword",
+        "type": "weaponMastery",
+        "weapon": "greatsword",
+        "mastery": "graze",
+        "_source": "Barbarian",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Spear",
+        "type": "weaponMastery",
+        "weapon": "spear",
+        "mastery": "sap",
+        "_source": "Barbarian",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Handaxe",
+        "type": "weaponMastery",
+        "weapon": "handaxe",
+        "mastery": "vex",
+        "_source": "Barbarian",
+        "level_gained": 9
       }
     ],
     "spells": [],
@@ -351,7 +561,7 @@
     "classes": [
       {
         "name": "Barbarian",
-        "subclass": "Berserker",
+        "subclass": "Path of the Berserker",
         "level": 9
       }
     ],
@@ -366,7 +576,11 @@
       "light",
       "medium",
       "shields"
-    ]
+    ],
+    "ruleset": "2024",
+    "background": "Guard",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Denna",
@@ -397,7 +611,11 @@
       "Acrobatics",
       "SleightOfHand",
       "Deception",
-      "Investigation"
+      "Investigation",
+      "Insight",
+      "Athletics",
+      "Survival",
+      "Medicine"
     ],
     "languages": [
       "Common",
@@ -405,39 +623,6 @@
       "Dwarvish"
     ],
     "features": [
-      {
-        "name": "Sneak Attack",
-        "type": "feature",
-        "id": "sneak-attack",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Cunning Action",
-        "type": "feature",
-        "id": "cunning-action",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Uncanny Dodge",
-        "type": "feature",
-        "id": "uncanny-dodge",
-        "action_type": "reaction"
-      },
-      {
-        "name": "Evasion",
-        "type": "feature",
-        "id": "rogue-evasion"
-      },
-      {
-        "name": "Assassinate",
-        "type": "feature",
-        "id": "pub_assassinate"
-      },
-      {
-        "name": "Assassin — Infiltration Expertise",
-        "type": "feature",
-        "id": "pub_assassin-infiltration-expertise"
-      },
       {
         "name": "Shadow Touched",
         "type": "feat",
@@ -450,6 +635,183 @@
           "Invisibility",
           "Inflict Wounds"
         ]
+      },
+      {
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "pub24_rogue-sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue",
+        "per_turn_cap": true
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "pub24_rogue-thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_rogue-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "pub24_rogue-cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Steady Aim",
+        "id": "pub24_rogue-steady-aim",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Cunning Strike",
+        "id": "pub24_rogue-cunning-strike",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Uncanny Dodge",
+        "id": "pub24_rogue-uncanny-dodge",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue",
+        "action_type": "reaction"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise-l6",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Evasion",
+        "id": "pub24_rogue-evasion",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Reliable Talent",
+        "id": "pub24_rogue-reliable-talent",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Assassinate",
+        "id": "pub24_sub_rogue-assassin-assassinate",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Assassin's Tools",
+        "id": "pub24_sub_rogue-assassin-assassins-tools",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Infiltration Expertise",
+        "id": "pub24_sub_rogue-assassin-infiltration-expertise",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: Stealth, Perception",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: SleightOfHand, Investigation",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Skilled",
+        "id": "pub24_feat-skilled",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1,
+        "choices": {
+          "skills": [
+            "Athletics",
+            "Survival",
+            "Medicine"
+          ],
+          "tools": []
+        }
+      },
+      {
+        "name": "Alert",
+        "id": "pub24_feat-alert",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Criminal",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Dagger",
+        "type": "weaponMastery",
+        "weapon": "dagger",
+        "mastery": "nick",
+        "_source": "Rogue",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Hand Crossbow",
+        "type": "weaponMastery",
+        "weapon": "hand crossbow",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 9
       }
     ],
     "spells": [
@@ -515,7 +877,11 @@
     ],
     "armor_proficiencies": [
       "light"
-    ]
+    ],
+    "ruleset": "2024",
+    "tool_proficiencies": [],
+    "background": "Criminal",
+    "migrated_to_2024": true
   },
   {
     "name": "Lenn",
@@ -544,7 +910,8 @@
       "Arcana",
       "History",
       "Insight",
-      "Persuasion"
+      "Persuasion",
+      "Deception"
     ],
     "languages": [
       "Common",
@@ -552,29 +919,6 @@
       "Draconic"
     ],
     "features": [
-      {
-        "name": "Arcane Recovery",
-        "type": "feature",
-        "id": "arcane-recovery",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "long_rest"
-      },
-      {
-        "name": "Evocation Savant",
-        "type": "feature",
-        "id": "evocation-savant"
-      },
-      {
-        "name": "Sculpt Spells",
-        "type": "feature",
-        "id": "sculpt-spells"
-      },
-      {
-        "name": "Potent Cantrip",
-        "type": "feature",
-        "id": "potent-cantrip"
-      },
       {
         "name": "Metamagic Adept",
         "type": "feat",
@@ -609,6 +953,108 @@
           "Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_wizard-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Ritual Adept",
+        "id": "pub24_wizard-ritual-adept",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Arcane Recovery",
+        "id": "pub24_wizard-arcane-recovery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Scholar",
+        "id": "pub24_wizard-scholar",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Memorize Spell",
+        "id": "pub24_wizard-memorize-spell",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Evocation Savant",
+        "id": "pub24_sub_wizard-evoker-evocation-savant",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Potent Cantrip",
+        "id": "pub24_sub_wizard-evoker-potent-cantrip",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Sculpt Spells",
+        "id": "pub24_sub_wizard-evoker-sculpt-spells",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Lucky",
+        "id": "pub24_feat-lucky",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1
+      },
+      {
+        "name": "Alert",
+        "id": "pub24_feat-alert",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Criminal",
+        "level_gained": 1
+      },
+      {
+        "name": "Expertise: Arcana",
+        "type": "expertise",
+        "_source": "Wizard",
+        "level_gained": 2
       }
     ],
     "spellbook_id": "sb_1",
@@ -1086,7 +1532,9 @@
     "hit_die": "d6",
     "hit_dice_current": 9,
     "conditions": [],
-    "skill_expertise": [],
+    "skill_expertise": [
+      "Arcana"
+    ],
     "resources": [
       {
         "key": "sorcery_points",
@@ -1100,7 +1548,7 @@
     "classes": [
       {
         "name": "Wizard",
-        "subclass": "Evocation",
+        "subclass": "Evoker",
         "level": 9
       }
     ],
@@ -1114,7 +1562,11 @@
       "quarterstaff",
       "light crossbow"
     ],
-    "armor_proficiencies": []
+    "armor_proficiencies": [],
+    "ruleset": "2024",
+    "tool_proficiencies": [],
+    "background": "Criminal",
+    "migrated_to_2024": true
   },
   {
     "name": "Kessara",
@@ -1213,34 +1665,6 @@
     ],
     "features": [
       {
-        "name": "Arcane Recovery",
-        "type": "feature",
-        "id": "arcane-recovery",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "long_rest"
-      },
-      {
-        "name": "Bladesinger — Training in War and Song",
-        "type": "feature",
-        "id": "pub_bladesinger-training-in-war-and-song"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "pub_extra-attack-bladesinger"
-      },
-      {
-        "name": "Bladesong",
-        "type": "feature",
-        "id": "pub_bladesong",
-        "action_type": "bonus_action",
-        "recharge": "long_rest",
-        "uses_max": 4,
-        "uses_current": 4,
-        "note": "Corrected 2026-09-09 — was tracking the outdated SCAG version (flat 2 uses, short/long rest). Real current Tasha's Cauldron of Everything version: uses = proficiency bonus (4 at her level 9), long rest only. action_type added 2026-09-18 — activating it is a bonus action, previously missing its icon."
-      },
-      {
         "name": "Linked Spellbook",
         "type": "feature",
         "id": "pub_linked-spellbook",
@@ -1255,6 +1679,141 @@
           "Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_elf-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Elven Lineage",
+        "id": "pub24_species_elf-elven-lineage",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Fey Ancestry",
+        "id": "pub24_species_elf-fey-ancestry",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Keen Senses",
+        "id": "pub24_species_elf-keen-senses",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Trance",
+        "id": "pub24_species_elf-trance",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Elf Lineage: High Elf",
+        "id": null,
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf",
+        "description": "You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list."
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_wizard-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Ritual Adept",
+        "id": "pub24_wizard-ritual-adept",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Arcane Recovery",
+        "id": "pub24_wizard-arcane-recovery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Scholar",
+        "id": "pub24_wizard-scholar",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Memorize Spell",
+        "id": "pub24_wizard-memorize-spell",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Bladesong",
+        "id": "pub24_sub_wizard-bladesinger-bladesong",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Wizard",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Training in War and Song",
+        "id": "pub24_sub_wizard-bladesinger-training-in-war-and-song",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_sub_wizard-bladesinger-extra-attack",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Magic Initiate",
+        "id": "pub24_feat-magic-initiate",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Sage",
+        "level_gained": 1,
+        "choices": {
+          "list": "Wizard",
+          "cantrips": [
+            "Prestidigitation",
+            "Mending"
+          ],
+          "spell": "Magic Missile"
+        },
+        "ability_choice": "int",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Expertise: Arcana",
+        "type": "expertise",
+        "_source": "Wizard",
+        "level_gained": 2
       }
     ],
     "spellbook_id": "sb_1",
@@ -1695,6 +2254,32 @@
         "level": 5,
         "prepared": false,
         "type": "prepared"
+      },
+      {
+        "name": "Prestidigitation",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Mending",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Magic Missile",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Magic Initiate",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       }
     ],
     "spell_slots": {
@@ -1738,7 +2323,9 @@
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
-    "skill_expertise": [],
+    "skill_expertise": [
+      "Arcana"
+    ],
     "classes": [
       {
         "name": "Wizard",
@@ -1763,7 +2350,11 @@
     ],
     "armor_proficiencies": [
       "light"
-    ]
+    ],
+    "ruleset": "2024",
+    "background": "Sage",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Petra",
@@ -1792,7 +2383,8 @@
       "Medicine",
       "Insight",
       "Religion",
-      "History"
+      "History",
+      "Perception"
     ],
     "languages": [
       "Common",
@@ -1800,43 +2392,6 @@
       "Solvalean"
     ],
     "features": [
-      {
-        "name": "Disciple of Life",
-        "type": "feature",
-        "id": "disciple-of-life"
-      },
-      {
-        "name": "Channel Divinity (2/rest)",
-        "type": "feature",
-        "id": "channel-divinity-2-rest",
-        "action_type": "action",
-        "recharge": "short_rest",
-        "uses_max": 2,
-        "uses_current": 2
-      },
-      {
-        "name": "Channel Divinity: Preserve Life",
-        "type": "feature",
-        "id": "channel-divinity-preserve-life",
-        "note": "Shares the same 2/rest Channel Divinity pool above — not a separate use.",
-        "action_type": "action"
-      },
-      {
-        "name": "Blessed Healer",
-        "type": "feature",
-        "id": "blessed-healer"
-      },
-      {
-        "name": "Divine Strike",
-        "type": "feature",
-        "id": "divine-strike",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Destroy Undead (CR 1)",
-        "type": "feature",
-        "id": "pub_destroy-undead-cr-1"
-      },
       {
         "name": "Inspiring Leader",
         "type": "feat",
@@ -1857,6 +2412,128 @@
           "Divine Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_cleric-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Divine Order",
+        "id": "pub24_cleric-divine-order",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Channel Divinity",
+        "id": "pub24_cleric-channel-divinity",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Cleric",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Sear Undead",
+        "id": "pub24_cleric-sear-undead",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Blessed Strikes",
+        "id": "pub24_cleric-blessed-strikes",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Disciple of Life",
+        "id": "pub24_sub_cleric-life-domain-disciple-of-life",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Life Domain Spells",
+        "id": "pub24_sub_cleric-life-domain-life-domain-spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Preserve Life",
+        "id": "pub24_sub_cleric-life-domain-preserve-life",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Cleric",
+        "action_type": "action"
+      },
+      {
+        "name": "Blessed Healer",
+        "id": "pub24_sub_cleric-life-domain-blessed-healer",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Healer",
+        "id": "pub24_feat-healer",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1,
+        "action_type": "action"
+      },
+      {
+        "name": "Magic Initiate",
+        "id": "pub24_feat-magic-initiate",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Acolyte",
+        "level_gained": 1,
+        "choices": {
+          "list": "Cleric",
+          "cantrips": [
+            "Light",
+            "Mending"
+          ],
+          "spell": "Detect Magic"
+        },
+        "ability_choice": "wis",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Divine Order: Protector",
+        "type": "divineOrder",
+        "level_gained": 1
       }
     ],
     "spells": [
@@ -2009,6 +2686,32 @@
         "name": "Tongues",
         "level": 3,
         "prepared": true
+      },
+      {
+        "name": "Light",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Mending",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Detect Magic",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Magic Initiate",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       }
     ],
     "spell_slots": {
@@ -2061,7 +2764,8 @@
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
     "weapon_proficiencies": [
-      "simple"
+      "simple",
+      "martial"
     ],
     "armor_proficiencies": [
       "light",
@@ -2069,7 +2773,11 @@
       "shields",
       "heavy"
     ],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "tool_proficiencies": [],
+    "background": "Acolyte",
+    "migrated_to_2024": true
   },
   {
     "name": "Pirra",
@@ -2101,7 +2809,10 @@
       "Perception",
       "Acrobatics",
       "Deception",
-      "Insight"
+      "Insight",
+      "Investigation",
+      "Persuasion",
+      "Athletics"
     ],
     "languages": [
       "Common",
@@ -2109,35 +2820,12 @@
     ],
     "features": [
       {
-        "name": "Sneak Attack",
-        "type": "feature",
-        "id": "sneak-attack",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Cunning Action",
-        "type": "feature",
-        "id": "cunning-action",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Uncanny Dodge",
-        "type": "feature",
-        "id": "uncanny-dodge",
-        "action_type": "reaction"
-      },
-      {
-        "name": "Evasion",
-        "type": "feature",
-        "id": "rogue-evasion"
-      },
-      {
         "name": "Inquisitive — Ear for Deceit",
         "type": "feature",
         "id": "pub_ear-for-deceit"
       },
       {
-        "name": "Inquisitive — Eye for Detail",
+        "name": "Eye for Detail",
         "type": "feature",
         "id": "pub_eye-for-detail",
         "action_type": "bonus_action"
@@ -2161,6 +2849,161 @@
           "passive_perception": 5,
           "passive_investigation": 5
         }
+      },
+      {
+        "name": "Brave",
+        "id": "pub24_species_halfling-brave",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Halfling Nimbleness",
+        "id": "pub24_species_halfling-halfling-nimbleness",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Luck",
+        "id": "pub24_species_halfling-luck",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Naturally Stealthy",
+        "id": "pub24_species_halfling-naturally-stealthy",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "pub24_rogue-sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue",
+        "per_turn_cap": true
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "pub24_rogue-thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_rogue-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "pub24_rogue-cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Steady Aim",
+        "id": "pub24_rogue-steady-aim",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Cunning Strike",
+        "id": "pub24_rogue-cunning-strike",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Uncanny Dodge",
+        "id": "pub24_rogue-uncanny-dodge",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue",
+        "action_type": "reaction"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise-l6",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Evasion",
+        "id": "pub24_rogue-evasion",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Reliable Talent",
+        "id": "pub24_rogue-reliable-talent",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: Stealth, SleightOfHand",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: Insight, Perception",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Skilled",
+        "id": "pub24_feat-skilled",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Charlatan",
+        "level_gained": 1,
+        "choices": {
+          "skills": [
+            "Investigation",
+            "Persuasion",
+            "Athletics"
+          ],
+          "tools": []
+        }
+      },
+      {
+        "name": "Weapon Mastery: Shortsword",
+        "type": "weaponMastery",
+        "weapon": "shortsword",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Shortbow",
+        "type": "weaponMastery",
+        "weapon": "shortbow",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 9
       }
     ],
     "spells": [],
@@ -2238,7 +3081,11 @@
     ],
     "saving_throw_advantages": [
       "being_frightened"
-    ]
+    ],
+    "ruleset": "2024",
+    "background": "Charlatan",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Lyria",
@@ -2267,7 +3114,10 @@
       "Arcana",
       "History",
       "Investigation",
-      "Insight"
+      "Insight",
+      "Medicine",
+      "Nature",
+      "Religion"
     ],
     "languages": [
       "Common",
@@ -2275,30 +3125,6 @@
       "Draconic"
     ],
     "features": [
-      {
-        "name": "Arcane Recovery",
-        "type": "feature",
-        "id": "arcane-recovery",
-        "uses_max": 1,
-        "uses_current": 1,
-        "recharge": "long_rest"
-      },
-      {
-        "name": "Abjuration Savant",
-        "type": "feature",
-        "id": "pub_abjuration-savant"
-      },
-      {
-        "name": "Arcane Ward",
-        "type": "feature",
-        "id": "pub_arcane-ward"
-      },
-      {
-        "name": "Projected Ward",
-        "type": "feature",
-        "id": "pub_projected-ward",
-        "action_type": "reaction"
-      },
       {
         "name": "Linked Spellbook",
         "type": "feature",
@@ -2314,6 +3140,128 @@
           "Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_wizard-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Ritual Adept",
+        "id": "pub24_wizard-ritual-adept",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Arcane Recovery",
+        "id": "pub24_wizard-arcane-recovery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Scholar",
+        "id": "pub24_wizard-scholar",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Memorize Spell",
+        "id": "pub24_wizard-memorize-spell",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Abjuration Savant",
+        "id": "pub24_sub_wizard-abjurer-abjuration-savant",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Arcane ward",
+        "id": "pub24_sub_wizard-abjurer-arcane-ward",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Projected Ward",
+        "id": "pub24_sub_wizard-abjurer-projected-ward",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Wizard",
+        "action_type": "reaction"
+      },
+      {
+        "name": "Skilled",
+        "id": "pub24_feat-skilled",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1,
+        "choices": {
+          "skills": [
+            "Nature",
+            "Religion"
+          ],
+          "tools": [
+            "Alchemist's Supplies"
+          ]
+        }
+      },
+      {
+        "name": "Crafter",
+        "id": "pub24_feat-crafter",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Artisan",
+        "level_gained": 1,
+        "choices": {
+          "tools": [
+            "Tinker's Tools",
+            "Weaver's Tools",
+            "Leatherworker's Tools"
+          ]
+        }
+      },
+      {
+        "name": "Expertise: History",
+        "type": "expertise",
+        "_source": "Wizard",
+        "level_gained": 2
       }
     ],
     "spellbook_id": "sb_1",
@@ -2793,11 +3741,13 @@
     "darkvision": 0,
     "hit_die": "d6",
     "hit_dice_current": 9,
-    "skill_expertise": [],
+    "skill_expertise": [
+      "History"
+    ],
     "classes": [
       {
         "name": "Wizard",
-        "subclass": "Abjuration",
+        "subclass": "Abjurer",
         "level": 9
       }
     ],
@@ -2811,7 +3761,16 @@
       "quarterstaff",
       "light crossbow"
     ],
-    "armor_proficiencies": []
+    "armor_proficiencies": [],
+    "ruleset": "2024",
+    "tool_proficiencies": [
+      "Alchemist's Supplies",
+      "Tinker's Tools",
+      "Weaver's Tools",
+      "Leatherworker's Tools"
+    ],
+    "background": "Artisan",
+    "migrated_to_2024": true
   },
   {
     "name": "Corwin",
@@ -2840,7 +3799,8 @@
       "Athletics",
       "Intimidation",
       "Perception",
-      "Insight"
+      "Insight",
+      "Survival"
     ],
     "languages": [
       "Common",
@@ -2848,46 +3808,186 @@
     ],
     "features": [
       {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "gen_fighter_base_extra-attack-1"
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
       },
       {
-        "name": "Improved Critical (19-20)",
-        "type": "feature",
-        "id": "gen_fighter_champion_improved-critical-19-20"
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
       },
       {
-        "name": "Remarkable Athlete",
-        "type": "feature",
-        "id": "remarkable-athlete"
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
       },
       {
-        "name": "Indomitable",
+        "name": "Fighting Style",
+        "id": "pub24_fighter-fighting-style",
         "type": "feature",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "indomitable-1-use"
+        "level_gained": 1,
+        "_source": "Fighter"
       },
       {
         "name": "Second Wind",
+        "id": "pub24_fighter-second-wind",
         "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
         "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "second-wind"
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_fighter-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
       },
       {
         "name": "Action Surge",
+        "id": "pub24_fighter-action-surge-one-use",
         "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter",
         "action_type": "free",
         "recharge": "short_rest",
         "uses_max": 1,
         "uses_current": 1,
-        "id": "action-surge-1-use",
         "per_turn_cap": true
+      },
+      {
+        "name": "Tactical Mind",
+        "id": "pub24_fighter-tactical-mind",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_fighter-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Tactical Shift",
+        "id": "pub24_fighter-tactical-shift",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Indomitable",
+        "id": "pub24_fighter-indomitable-one-use",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Fighter",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Tactical Master",
+        "id": "pub24_fighter-tactical-master",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Improved Critical",
+        "id": "pub24_sub_fighter-champion-improved-critical",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Remarkable Athlete",
+        "id": "pub24_sub_fighter-champion-remarkable-athlete",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Additional Fighting Style",
+        "id": "pub24_sub_fighter-champion-additional-fighting-style",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Tough",
+        "id": "pub24_feat-tough",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1
+      },
+      {
+        "name": "Alert",
+        "id": "pub24_feat-alert",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Guard",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Halberd",
+        "type": "weaponMastery",
+        "weapon": "halberd",
+        "mastery": "cleave",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Longsword",
+        "type": "weaponMastery",
+        "weapon": "longsword",
+        "mastery": "sap",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Javelin",
+        "type": "weaponMastery",
+        "weapon": "javelin",
+        "mastery": "slow",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Light Crossbow",
+        "type": "weaponMastery",
+        "weapon": "light crossbow",
+        "mastery": "slow",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Great Weapon Fighting",
+        "id": "pub24_feat-great-weapon-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Fighter",
+        "level_gained": 9
+      },
+      {
+        "name": "Defense",
+        "id": "pub24_feat-defense",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Fighter",
+        "level_gained": 9
       }
     ],
     "spells": [],
@@ -2925,7 +4025,11 @@
       "medium",
       "heavy",
       "shields"
-    ]
+    ],
+    "ruleset": "2024",
+    "tool_proficiencies": [],
+    "background": "Guard",
+    "migrated_to_2024": true
   },
   {
     "name": "Chuknora",
@@ -2959,7 +4063,8 @@
       "Insight",
       "Religion",
       "Survival",
-      "Intimidation"
+      "Intimidation",
+      "Nature"
     ],
     "skill_expertise": [],
     "languages": [
@@ -2986,70 +4091,9 @@
     ],
     "features": [
       {
-        "name": "Natural Athlete",
-        "type": "feature",
-        "id": "pub_goliath-natural-athlete"
-      },
-      {
-        "name": "Stone's Endurance",
-        "type": "feature",
-        "id": "pub_goliath-stones-endurance",
-        "action_type": "reaction",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Powerful Build",
-        "type": "feature",
-        "id": "pub_goliath-powerful-build"
-      },
-      {
-        "name": "Mountain Born",
-        "type": "feature",
-        "id": "pub_goliath-mountain-born"
-      },
-      {
-        "name": "Unarmored Defense",
-        "type": "feature",
-        "id": "barbarian-unarmored-defense"
-      },
-      {
-        "name": "Rage",
-        "type": "feature",
-        "id": "rage",
-        "action_type": "bonus_action",
-        "recharge": "long_rest",
-        "uses_max": 4,
-        "uses_current": 4
-      },
-      {
-        "name": "Reckless Attack",
-        "type": "feature",
-        "id": "reckless-attack"
-      },
-      {
-        "name": "Danger Sense",
-        "type": "feature",
-        "id": "danger-sense"
-      },
-      {
         "name": "Giant's Havoc",
         "type": "feature",
         "id": "pub_giant-s-havoc"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "barbarian-extra-attack"
-      },
-      {
-        "name": "Fast Movement (+10ft)",
-        "type": "feature",
-        "id": "fast-movement",
-        "stat_bonuses": {
-          "speed": 10
-        }
       },
       {
         "name": "Elemental Cleaver",
@@ -3065,24 +4109,6 @@
         "note": "Added 2026-09-09 -- this feature was missing entirely, found during the Path of the Giant subclass audit. Cantrip choice (Thaumaturgy over Druidcraft) picked by the project owner to fit her Intimidation proficiency and barbarian presence."
       },
       {
-        "name": "Divine Sense",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "divine-sense"
-      },
-      {
-        "name": "Lay on Hands",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 15,
-        "uses_current": 15,
-        "id": "lay-on-hands"
-      },
-      {
         "name": "Fighting Style: Defense",
         "type": "feature",
         "id": "fighting-style-defense",
@@ -3091,35 +4117,218 @@
         }
       },
       {
-        "name": "Divine Smite",
+        "name": "Shelter of the Faithful",
         "type": "feature",
-        "id": "divine-smite"
+        "id": "pub_shelter-of-the-faithful"
       },
       {
-        "name": "Divine Health",
-        "type": "feature",
-        "id": "divine-health"
+        "name": "Giant Ancestry",
+        "id": "pub24_species_goliath-giant-ancestry",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Goliath",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
       },
       {
-        "name": "Channel Divinity: Nature's Wrath",
-        "id": "pub_channel-divinity-nature-s-wrath",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "short_rest",
+        "name": "Large Form",
+        "id": "pub24_species_goliath-large-form",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Goliath",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1
       },
       {
-        "name": "Channel Divinity: Turn the Faithless",
-        "id": "pub_channel-divinity-turn-the-faithless",
-        "type": "feature",
-        "action_type": "action",
-        "note": "Shares the same 1/short-rest Channel Divinity pool as Nature's Wrath above — not a separate use."
+        "name": "Powerful Build",
+        "id": "pub24_species_goliath-powerful-build",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Goliath"
       },
       {
-        "name": "Shelter of the Faithful",
+        "name": "Rage",
+        "id": "pub24_barbarian-rage",
         "type": "feature",
-        "id": "pub_shelter-of-the-faithful"
+        "level_gained": 1,
+        "_source": "Barbarian",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Unarmored Defense",
+        "id": "pub24_barbarian-unarmored-defense",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_barbarian-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Danger Sense",
+        "id": "pub24_barbarian-danger-sense",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Reckless Attack",
+        "id": "pub24_barbarian-reckless-attack",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Primal Knowledge",
+        "id": "pub24_barbarian-primal-knowledge",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_barbarian-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Fast Movement",
+        "id": "pub24_barbarian-fast-movement",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Lay On Hands",
+        "id": "pub24_paladin-lay-on-hands",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 15,
+        "uses_current": 15
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_paladin-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_paladin-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_paladin-fighting-style",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Paladin's Smite",
+        "id": "pub24_paladin-paladins-smite",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Channel Divinity",
+        "id": "pub24_paladin-channel-divinity",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Paladin",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Nature's Wrath",
+        "id": "pub24_sub_paladin-oath-of-the-ancients-natures-wrath",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Paladin",
+        "action_type": "action"
+      },
+      {
+        "name": "Oath of the Ancients Spells",
+        "id": "pub24_sub_paladin-oath-of-the-ancients-oath-of-the-ancients-spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Tavern Brawler",
+        "id": "pub24_feat-tavern-brawler",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Sailor",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Greataxe",
+        "type": "weaponMastery",
+        "weapon": "greataxe",
+        "mastery": "cleave",
+        "_source": "Barbarian",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Handaxe",
+        "type": "weaponMastery",
+        "weapon": "handaxe",
+        "mastery": "vex",
+        "_source": "Barbarian",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Spear",
+        "type": "weaponMastery",
+        "weapon": "spear",
+        "mastery": "sap",
+        "_source": "Barbarian",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Greatsword",
+        "type": "weaponMastery",
+        "weapon": "greatsword",
+        "mastery": "graze",
+        "_source": "Paladin",
+        "level_gained": 3
+      },
+      {
+        "name": "Weapon Mastery: Javelin",
+        "type": "weaponMastery",
+        "weapon": "javelin",
+        "mastery": "slow",
+        "_source": "Paladin",
+        "level_gained": 3
+      },
+      {
+        "name": "Great Weapon Fighting",
+        "id": "pub24_feat-great-weapon-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Paladin",
+        "level_gained": 3
       }
     ],
     "spell_slots": {
@@ -3189,7 +4398,11 @@
       "heavy",
       "shields"
     ],
-    "active_weapon_set": 2
+    "active_weapon_set": 2,
+    "ruleset": "2024",
+    "background": "Sailor",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Enauweyn",
@@ -3219,7 +4432,10 @@
       "Medicine",
       "Perception",
       "Religion",
-      "Athletics"
+      "Athletics",
+      "History",
+      "Persuasion",
+      "Investigation"
     ],
     "languages": [
       "Common",
@@ -3238,43 +4454,10 @@
         "id": "pub_elf-keen-senses"
       },
       {
-        "name": "Divine Sense",
-        "type": "feature",
-        "id": "divine-sense",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 5,
-        "uses_current": 5
-      },
-      {
         "name": "Fighting Style: Protection",
         "type": "feature",
         "id": "fighting-style-protection",
         "action_type": "reaction"
-      },
-      {
-        "name": "Divine Smite",
-        "type": "feature",
-        "id": "divine-smite"
-      },
-      {
-        "name": "Divine Health",
-        "type": "feature",
-        "id": "divine-health"
-      },
-      {
-        "name": "Lay on Hands",
-        "type": "feature",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 45,
-        "uses_current": 45,
-        "id": "lay-on-hands"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "paladin-extra-attack"
       },
       {
         "name": "Channel Divinity: Champion Challenge",
@@ -3294,11 +4477,6 @@
         "action_type": "bonus_action",
         "description": "As a bonus action, each creature of your choice that can hear you within 30 feet regains 1d6 + CHA modifier (min 1) hit points, if it has no more than half its hit points.",
         "note": "Corrected 2026-09-18 — shares the same 1/short-rest Channel Divinity pool as Champion Challenge above; both entries independently tracking uses_max:1 was double-counting her real single use, fixed by moving the tracked uses onto Champion Challenge only."
-      },
-      {
-        "name": "Aura of Protection",
-        "type": "feature",
-        "id": "aura-of-protection"
       },
       {
         "name": "Crown — Divine Allegiance",
@@ -3324,6 +4502,127 @@
         "name": "Darkvision",
         "type": "feature",
         "id": "pub_darkvision"
+      },
+      {
+        "name": "Lay On Hands",
+        "id": "pub24_paladin-lay-on-hands",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 45,
+        "uses_current": 45
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_paladin-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_paladin-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_paladin-fighting-style",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Paladin's Smite",
+        "id": "pub24_paladin-paladins-smite",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Channel Divinity",
+        "id": "pub24_paladin-channel-divinity",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Paladin",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_paladin-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Faithful Steed",
+        "id": "pub24_paladin-faithful-steed",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Paladin",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Aura of Protection",
+        "id": "pub24_paladin-aura-of-protection",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Abjure Foes",
+        "id": "pub24_paladin-abjure-foes",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Paladin",
+        "action_type": "action"
+      },
+      {
+        "name": "Skilled",
+        "id": "pub24_feat-skilled",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Noble",
+        "level_gained": 1,
+        "choices": {
+          "skills": [
+            "History",
+            "Persuasion",
+            "Investigation"
+          ],
+          "tools": []
+        }
+      },
+      {
+        "name": "Weapon Mastery: Longsword",
+        "type": "weaponMastery",
+        "weapon": "longsword",
+        "mastery": "sap",
+        "_source": "Paladin",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Rapier",
+        "type": "weaponMastery",
+        "weapon": "rapier",
+        "mastery": "vex",
+        "_source": "Paladin",
+        "level_gained": 9
+      },
+      {
+        "name": "Defense",
+        "id": "pub24_feat-defense",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Paladin",
+        "level_gained": 9
       }
     ],
     "spells": [
@@ -3452,7 +4751,11 @@
       "heavy",
       "shields"
     ],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "background": "Noble",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Tackett",
@@ -3497,29 +4800,6 @@
         "note": "Grants 3 cantrips beyond the normal Druid cap — homebrew, added 2026-09-08 to explain his 6 recorded cantrips."
       },
       {
-        "name": "Stars Druid — Starry Form",
-        "type": "feature",
-        "id": "pub_stars-druid-starry-form",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "modes": [
-          {
-            "name": "Archer",
-            "description": "Bonus action: constellation bow appears. When casting a spell, make a ranged spell attack — hit deals 1d8+WIS radiant damage."
-          },
-          {
-            "name": "Chalice",
-            "description": "When casting a healing spell, Tackett also regains 1d8+WIS HP."
-          },
-          {
-            "name": "Dragon",
-            "description": "Concentration checks automatically succeed on rolls of 9 or less."
-          }
-        ]
-      },
-      {
         "name": "Stars Druid — Unbroken (Legendary)",
         "type": "feature",
         "id": "pub_stars-druid-unbroken-legendary",
@@ -3527,33 +4807,6 @@
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1
-      },
-      {
-        "name": "Stars Druid — Star Map",
-        "type": "feature",
-        "id": "pub_stars-druid-star-map",
-        "spells_granted": [
-          "Guiding Bolt"
-        ],
-        "_source": "Stars Druid — Star Map"
-      },
-      {
-        "name": "Stars Druid — Cosmic Omen",
-        "type": "feature",
-        "id": "pub_stars-druid-cosmic-omen",
-        "action_type": "reaction",
-        "recharge": "long_rest",
-        "uses_max": 4,
-        "uses_current": 4
-      },
-      {
-        "name": "Wild Shape (CR 1 or below)",
-        "type": "feature",
-        "id": "gen_druid_base_wild-shape",
-        "action_type": "action",
-        "recharge": "short_rest",
-        "uses_max": 2,
-        "uses_current": 2
       },
       {
         "name": "Primal Companion",
@@ -3565,6 +4818,145 @@
         "type": "feat",
         "id": "pub_bountiful-luck",
         "action_type": "reaction"
+      },
+      {
+        "name": "Brave",
+        "id": "pub24_species_halfling-brave",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Halfling Nimbleness",
+        "id": "pub24_species_halfling-halfling-nimbleness",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Luck",
+        "id": "pub24_species_halfling-luck",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Naturally Stealthy",
+        "id": "pub24_species_halfling-naturally-stealthy",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Halfling"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_druid-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Druid"
+      },
+      {
+        "name": "Druidic",
+        "id": "pub24_druid-druidic",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Druid"
+      },
+      {
+        "name": "Primal Order",
+        "id": "pub24_druid-primal-order",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Druid"
+      },
+      {
+        "name": "Wild Shape",
+        "id": "pub24_druid-wild-shape",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Druid",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Wild Companion",
+        "id": "pub24_druid-wild-companion",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Druid",
+        "action_type": "action"
+      },
+      {
+        "name": "Wild Resurgence",
+        "id": "pub24_druid-wild-resurgence",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Druid",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Elemental Fury",
+        "id": "pub24_druid-elemental-fury",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Druid"
+      },
+      {
+        "name": "Star Map",
+        "id": "pub24_sub_druid-circle-of-the-stars-star-map",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Druid",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Starry Form",
+        "id": "pub24_sub_druid-circle-of-the-stars-starry-form",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Druid",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Cosmic Omen",
+        "id": "pub24_sub_druid-circle-of-the-stars-cosmic-omen",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Druid",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Magic Initiate",
+        "id": "pub24_feat-magic-initiate",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Guide",
+        "level_gained": 1,
+        "choices": {
+          "list": "Druid",
+          "cantrips": [
+            "Mending",
+            "Produce Flame"
+          ],
+          "spell": "Goodberry"
+        },
+        "ability_choice": "wis",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Primal Order: Warden",
+        "type": "primalOrder",
+        "level_gained": 1
       }
     ],
     "spells": [
@@ -3691,6 +5083,32 @@
         "name": "Pass Without Trace",
         "level": 2,
         "prepared": true
+      },
+      {
+        "name": "Mending",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Produce Flame",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Goodberry",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Magic Initiate",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       }
     ],
     "spell_slots": {
@@ -3734,7 +5152,7 @@
     "classes": [
       {
         "name": "Druid",
-        "subclass": "Circle of Stars",
+        "subclass": "Circle of the Stars",
         "level": 9
       }
     ],
@@ -3751,12 +5169,14 @@
       "scimitar",
       "sickle",
       "sling",
-      "spear"
+      "spear",
+      "martial"
     ],
     "armor_proficiencies": [
       "light",
       "medium (nonmetal)",
-      "shields (nonmetal)"
+      "shields (nonmetal)",
+      "medium"
     ],
     "species_traits": [
       {
@@ -3791,7 +5211,11 @@
     ],
     "saving_throw_advantages": [
       "being_frightened"
-    ]
+    ],
+    "ruleset": "2024",
+    "background": "Guide",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Revven",
@@ -3835,7 +5259,7 @@
         "id": "pub_half-elf-skill-versatility"
       },
       {
-        "name": "Tempest Cleric — Wrath of the Storm",
+        "name": "Wrath of the Storm",
         "type": "feature",
         "id": "pub_wrath-of-the-storm",
         "action_type": "reaction",
@@ -3857,21 +5281,6 @@
         "id": "pub_thunderous-strike",
         "description": "When you deal lightning damage to a creature, you can also push the creature up to 10 feet away from you if it's Large or smaller.",
         "note": "Corrected 2026-09-18 — was mis-recorded as \"Thunderbolt Strike\" (not a real feature name) and mis-tagged as an 8th-level ability; the real PHB feature is Thunderous Strike, gained at 6th level."
-      },
-      {
-        "name": "Channel Divinity: Turn Undead",
-        "type": "feature",
-        "id": "channel-divinity-turn-undead",
-        "action_type": "action",
-        "recharge": "short_rest",
-        "uses_max": 2,
-        "uses_current": 2,
-        "description": "As an action, present your holy symbol; each undead that can see or hear you within 30 feet must make a Wisdom saving throw or be turned for 1 minute or until it takes damage. 2 uses per short/long rest at Cleric 6+."
-      },
-      {
-        "name": "Destroy Undead (CR 1)",
-        "type": "feature",
-        "id": "pub_destroy-undead-cr-1"
       },
       {
         "name": "Divine Strike",
@@ -3904,6 +5313,58 @@
           "Divine Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_cleric-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Divine Order",
+        "id": "pub24_cleric-divine-order",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Channel Divinity",
+        "id": "pub24_cleric-channel-divinity",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Cleric",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Sear Undead",
+        "id": "pub24_cleric-sear-undead",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Blessed Strikes",
+        "id": "pub24_cleric-blessed-strikes",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Cleric"
+      },
+      {
+        "name": "Healer",
+        "id": "pub24_feat-healer",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Hermit",
+        "level_gained": 1,
+        "action_type": "action"
+      },
+      {
+        "name": "Divine Order: Protector",
+        "type": "divineOrder",
+        "level_gained": 1
       }
     ],
     "spells": [
@@ -4153,7 +5614,11 @@
       "medium",
       "shields",
       "heavy"
-    ]
+    ],
+    "ruleset": "2024",
+    "background": "Hermit",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Elucyne",
@@ -4203,72 +5668,6 @@
     ],
     "features": [
       {
-        "name": "Dread Ambusher",
-        "type": "feature",
-        "id": "pub_dread-ambusher"
-      },
-      {
-        "name": "Umbral Sight",
-        "type": "feature",
-        "id": "pub_umbral-sight"
-      },
-      {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "ranger-extra-attack"
-      },
-      {
-        "name": "Sneak Attack",
-        "type": "feature",
-        "id": "sneak-attack",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Cunning Action",
-        "type": "feature",
-        "id": "cunning-action",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Second Wind",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "second-wind"
-      },
-      {
-        "name": "Action Surge",
-        "type": "feature",
-        "action_type": "free",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "action-surge-1-use",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Favored Enemy",
-        "type": "feature",
-        "id": "gen_ranger_base_favored-enemy"
-      },
-      {
-        "name": "Natural Explorer",
-        "type": "feature",
-        "id": "gen_ranger_base_natural-explorer"
-      },
-      {
-        "name": "Hellish Resistance",
-        "type": "feature",
-        "id": "pub_hellish-resistance"
-      },
-      {
-        "name": "Infernal Legacy",
-        "type": "feature",
-        "id": "pub_infernal-legacy"
-      },
-      {
         "name": "Infernal Legacy: Hellish Rebuke",
         "id": "pub_infernal-legacy-hellish-rebuke",
         "type": "speciesTrait",
@@ -4295,6 +5694,289 @@
         "uses_current": 1,
         "recharge": "long_rest",
         "action_type": "action"
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_tiefling-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Tiefling"
+      },
+      {
+        "name": "Fiendish Legacy",
+        "id": "pub24_species_tiefling-fiendish-legacy",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Tiefling",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Otherworldly Presence",
+        "id": "pub24_species_tiefling-otherworldly-presence",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Tiefling"
+      },
+      {
+        "name": "Tiefling Lineage: Infernal",
+        "id": null,
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Tiefling",
+        "description": "You have Resistance to Fire damage. You also know the Fire Bolt cantrip."
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_ranger-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Favored Enemy",
+        "id": "pub24_ranger-favored-enemy",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Ranger",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_ranger-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Deft Explorer",
+        "id": "pub24_ranger-deft-explorer",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_ranger-fighting-style",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_ranger-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Dread Ambusher",
+        "id": "pub24_sub_ranger-gloom-stalker-dread-ambusher",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Ranger",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Gloom Stalker Spells",
+        "id": "pub24_sub_ranger-gloom-stalker-gloom-stalker-spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Umbral Sight",
+        "id": "pub24_sub_ranger-gloom-stalker-umbral-sight",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "pub24_rogue-sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue",
+        "per_turn_cap": true
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "pub24_rogue-thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_rogue-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "pub24_rogue-cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_fighter-fighting-style",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "pub24_fighter-second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_fighter-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Action Surge",
+        "id": "pub24_fighter-action-surge-one-use",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "per_turn_cap": true
+      },
+      {
+        "name": "Tactical Mind",
+        "id": "pub24_fighter-tactical-mind",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Expertise: Stealth",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 2,
+        "_source": "Ranger"
+      },
+      {
+        "name": "Expertise: Performance",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Musician",
+        "id": "pub24_feat-musician",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Entertainer",
+        "level_gained": 1,
+        "choices": {
+          "tools": [
+            "Flute",
+            "Drum",
+            "Viol"
+          ]
+        }
+      },
+      {
+        "name": "Weapon Mastery: Hand Crossbow",
+        "type": "weaponMastery",
+        "weapon": "hand crossbow",
+        "mastery": "vex",
+        "_source": "Ranger",
+        "level_gained": 5
+      },
+      {
+        "name": "Weapon Mastery: Shortsword",
+        "type": "weaponMastery",
+        "weapon": "shortsword",
+        "mastery": "vex",
+        "_source": "Ranger",
+        "level_gained": 5
+      },
+      {
+        "name": "Archery",
+        "id": "pub24_feat-archery",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Ranger",
+        "level_gained": 5
+      },
+      {
+        "name": "Weapon Mastery: Dagger",
+        "type": "weaponMastery",
+        "weapon": "dagger",
+        "mastery": "nick",
+        "_source": "Rogue",
+        "level_gained": 2
+      },
+      {
+        "name": "Weapon Mastery: Rapier",
+        "type": "weaponMastery",
+        "weapon": "rapier",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 2
+      },
+      {
+        "name": "Weapon Mastery: Longbow",
+        "type": "weaponMastery",
+        "weapon": "longbow",
+        "mastery": "slow",
+        "_source": "Fighter",
+        "level_gained": 2
+      },
+      {
+        "name": "Weapon Mastery: Longsword",
+        "type": "weaponMastery",
+        "weapon": "longsword",
+        "mastery": "sap",
+        "_source": "Fighter",
+        "level_gained": 2
+      },
+      {
+        "name": "Weapon Mastery: Scimitar",
+        "type": "weaponMastery",
+        "weapon": "scimitar",
+        "mastery": "nick",
+        "_source": "Fighter",
+        "level_gained": 2
+      },
+      {
+        "name": "Defense",
+        "id": "pub24_feat-defense",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Fighter",
+        "level_gained": 2
       }
     ],
     "spells": [
@@ -4341,6 +6023,16 @@
         "level": 1,
         "prepared": true,
         "type": "ranger"
+      },
+      {
+        "name": "Silence",
+        "level": 2,
+        "prepared": true
+      },
+      {
+        "name": "Spike Growth",
+        "level": 2,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -4393,7 +6085,15 @@
     ],
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "ruleset": "2024",
+    "background": "Entertainer",
+    "tool_proficiencies": [
+      "Flute",
+      "Drum",
+      "Viol"
+    ],
+    "migrated_to_2024": true
   },
   {
     "name": "Ferghus",
@@ -4421,7 +6121,8 @@
       "Athletics",
       "Persuasion",
       "Insight",
-      "Religion"
+      "Religion",
+      "Intimidation"
     ],
     "languages": [
       "Common",
@@ -4429,30 +6130,12 @@
     ],
     "features": [
       {
-        "name": "Divine Sense",
-        "type": "feature",
-        "id": "divine-sense",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 5,
-        "uses_current": 5
-      },
-      {
-        "name": "Fighting Style: Great Weapon Fighting",
-        "id": "fighting-style-great-weapon-fighting",
-        "type": "fightingStyle",
-        "level_gained": 2,
-        "_source": "Paladin"
-      },
-      {
-        "name": "Divine Smite",
-        "type": "feature",
-        "id": "divine-smite"
-      },
-      {
-        "name": "Divine Health",
-        "type": "feature",
-        "id": "divine-health"
+        "name": "Great Weapon Fighting",
+        "id": "pub24_feat-great-weapon-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Paladin",
+        "level_gained": 2
       },
       {
         "name": "Channel Divinity: Sacred Weapon",
@@ -4474,23 +6157,138 @@
         "note": "Shares the Channel Divinity pool tracked on Channel Divinity: Sacred Weapon — not a separate use."
       },
       {
-        "name": "Aura of Protection (+4 to ally saves within 10ft)",
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Lay On Hands",
+        "id": "pub24_paladin-lay-on-hands",
         "type": "feature",
-        "id": "aura-of-protection"
+        "level_gained": 1,
+        "_source": "Paladin",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 45,
+        "uses_current": 45
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_paladin-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_paladin-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_paladin-fighting-style",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Paladin's Smite",
+        "id": "pub24_paladin-paladins-smite",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Channel Divinity",
+        "id": "pub24_paladin-channel-divinity",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Paladin",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
       },
       {
         "name": "Extra Attack",
+        "id": "pub24_paladin-extra-attack",
         "type": "feature",
-        "id": "paladin-extra-attack"
+        "level_gained": 5,
+        "_source": "Paladin"
       },
       {
-        "name": "Lay on Hands",
+        "name": "Faithful Steed",
+        "id": "pub24_paladin-faithful-steed",
         "type": "feature",
-        "action_type": "action",
+        "level_gained": 5,
+        "_source": "Paladin",
         "recharge": "long_rest",
-        "uses_max": 45,
-        "uses_current": 45,
-        "id": "lay-on-hands"
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Aura of Protection",
+        "id": "pub24_paladin-aura-of-protection",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Paladin"
+      },
+      {
+        "name": "Abjure Foes",
+        "id": "pub24_paladin-abjure-foes",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Paladin",
+        "action_type": "action"
+      },
+      {
+        "name": "Tavern Brawler",
+        "id": "pub24_feat-tavern-brawler",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1
+      },
+      {
+        "name": "Savage Attacker",
+        "id": "pub24_feat-savage-attacker",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Soldier",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Maul",
+        "type": "weaponMastery",
+        "weapon": "maul",
+        "mastery": "topple",
+        "_source": "Paladin",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Warhammer",
+        "type": "weaponMastery",
+        "weapon": "warhammer",
+        "mastery": "push",
+        "_source": "Paladin",
+        "level_gained": 9
       }
     ],
     "spells": [
@@ -4630,7 +6428,11 @@
       "heavy",
       "shields"
     ],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "tool_proficiencies": [],
+    "background": "Soldier",
+    "migrated_to_2024": true
   },
   {
     "name": "Eldi",
@@ -4681,25 +6483,6 @@
         "id": "fighter-fighting-style-two-weapon-fighting"
       },
       {
-        "name": "Second Wind",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "second-wind"
-      },
-      {
-        "name": "Action Surge",
-        "type": "feature",
-        "action_type": "free",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "id": "action-surge-1-use",
-        "per_turn_cap": true
-      },
-      {
         "name": "Manifest Echo",
         "type": "feature",
         "id": "pub_manifest-echo",
@@ -4743,23 +6526,6 @@
         "description": "Table ruling: unlike Echo: Attack From, this genuinely treats Eldi as positioned at the echo for that one attack, full stop — not just range/targeting."
       },
       {
-        "name": "Extra Attack",
-        "type": "feature",
-        "id": "gen_fighter_base_extra-attack-1"
-      },
-      {
-        "name": "Sneak Attack",
-        "type": "feature",
-        "id": "sneak-attack",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Cunning Action",
-        "type": "feature",
-        "id": "cunning-action",
-        "action_type": "bonus_action"
-      },
-      {
         "name": "Fancy Footwork",
         "type": "feature",
         "id": "pub_fancy-footwork"
@@ -4797,6 +6563,181 @@
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_fighter-fighting-style",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "pub24_fighter-second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_fighter-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Action Surge",
+        "id": "pub24_fighter-action-surge-one-use",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "per_turn_cap": true
+      },
+      {
+        "name": "Tactical Mind",
+        "id": "pub24_fighter-tactical-mind",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_fighter-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Tactical Shift",
+        "id": "pub24_fighter-tactical-shift",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Fighter",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "pub24_rogue-sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue",
+        "per_turn_cap": true
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "pub24_rogue-thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_rogue-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "pub24_rogue-cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Steady Aim",
+        "id": "pub24_rogue-steady-aim",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Expertise: Stealth, Acrobatics",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Tavern Brawler",
+        "id": "pub24_feat-tavern-brawler",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Sailor",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Scimitar",
+        "type": "weaponMastery",
+        "weapon": "scimitar",
+        "mastery": "nick",
+        "_source": "Fighter",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Longsword",
+        "type": "weaponMastery",
+        "weapon": "longsword",
+        "mastery": "sap",
+        "_source": "Fighter",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Shortsword",
+        "type": "weaponMastery",
+        "weapon": "shortsword",
+        "mastery": "vex",
+        "_source": "Fighter",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Longbow",
+        "type": "weaponMastery",
+        "weapon": "longbow",
+        "mastery": "slow",
+        "_source": "Fighter",
+        "level_gained": 6
+      },
+      {
+        "name": "Two Weapon Fighting",
+        "id": "pub24_feat-two-weapon-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Fighter",
+        "level_gained": 6
+      },
+      {
+        "name": "Weapon Mastery: Dagger",
+        "type": "weaponMastery",
+        "weapon": "dagger",
+        "mastery": "nick",
+        "_source": "Rogue",
+        "level_gained": 3
+      },
+      {
+        "name": "Weapon Mastery: Rapier",
+        "type": "weaponMastery",
+        "weapon": "rapier",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 3
       }
     ],
     "spells": [],
@@ -4847,7 +6788,11 @@
       "heavy",
       "shields"
     ],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "background": "Sailor",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Rith",
@@ -4906,11 +6851,6 @@
         "uses_current": 1
       },
       {
-        "name": "Font of Magic",
-        "type": "feature",
-        "id": "font-of-magic"
-      },
-      {
         "name": "Metamagic: Twinned Spell",
         "type": "feature",
         "id": "metamagic-twinned-spell"
@@ -4965,6 +6905,79 @@
           "Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_sorcerer-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Sorcerer"
+      },
+      {
+        "name": "Innate Sorcery",
+        "id": "pub24_sorcerer-innate-sorcery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Sorcerer",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Font of Magic",
+        "id": "pub24_sorcerer-font-of-magic",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Sorcerer",
+        "recharge": "long_rest",
+        "uses_max": 9,
+        "uses_current": 9
+      },
+      {
+        "name": "Metamagic",
+        "id": "pub24_sorcerer-metamagic",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Sorcerer"
+      },
+      {
+        "name": "Sorcerous Restoration",
+        "id": "pub24_sorcerer-sorcerous-restoration",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Sorcerer",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Sorcery Incarnate",
+        "id": "pub24_sorcerer-sorcery-incarnate",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Sorcerer",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Lucky",
+        "id": "pub24_feat-lucky",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Wayfarer",
+        "level_gained": 1
+      },
+      {
+        "name": "Metamagic: Quickened Spell",
+        "type": "metamagic",
+        "_source": "Sorcerer",
+        "level_gained": 2
+      },
+      {
+        "name": "Metamagic: Careful Spell",
+        "type": "metamagic",
+        "_source": "Sorcerer",
+        "level_gained": 2
       }
     ],
     "resources": [
@@ -5094,6 +7107,26 @@
         "level": 5,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Fireball",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Fly",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Dimension Door",
+        "level": 4,
+        "prepared": true
+      },
+      {
+        "name": "Banishment",
+        "level": 4,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -5151,7 +7184,11 @@
       "light crossbow"
     ],
     "armor_proficiencies": [],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "background": "Wayfarer",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "id": "characters_20",
@@ -5161,7 +7198,7 @@
     "genus": "Aasimar",
     "level": 9,
     "appearance": "Very dark skin with faintly luminescent yellow geometric markings on face, chest, and arms — present from birth. The markings intensify and pulse outward like ripples in still water when she casts. One side of head fully shorn; top long; other side punk-cut. Hair black. Brass-colored metal jewelry — choker, layered necklaces, earrings — that never tarnishes. Black cloth and dark leather, revealing. Arms wrapped in fabric in a style nobody has seen before. Elaborate dark loincloth with two circular brass buckles. Lean muscle from hardship, skin unblemished in a way hardship cannot explain.",
-    "background": "Daughter of the Weave",
+    "background": "Sage",
     "background_feature": "Stella-Vision: You observed the material world from within the Weave for years and know many of its inhabitants personally — their mannerisms, abilities, and histories — before ever meeting them in person.",
     "notes": "Mother is Ne'auveothrin, ancient demigod of the Weave, historically revered especially among genasi and early spellcasters. Father was human — they met during one of Ne'auveothrin's rare days outside the Weave; he is past now, deceased. Iyani grew up in or adjacent to the Weave itself, where time moves differently. She has spent long enough there that she counts time in ways that do not translate cleanly to years.\n\nShe observed the material world for a long time via 'stella-vision' — watching people perform magic is entertainment, and she developed deep familiarity with people she had never met. She recently arrived in the material plane. The air was initially uncomfortable, improving. Eating and drinking are being rediscovered as genuine pleasures — especially garlic lemon spinniks (how she says spinach). Touching physical objects is novel and satisfying.\n\nNe'auveothrin has given specific instructions about what not to reveal. Iyani obeys genuinely, not resentfully, but visibly struggles when excited. Has mentioned holding 'one more gift' for the right moment — unprompted.\n\nAbilities established in play that are NOT on her character sheet are temporary — gifts from her mother, going away soon: instantaneous planar travel (blue flash, desire-based), creation of permanent teleportation circles (Stillwater and Orvath placed casually), permanent shared spellbook synchronization granted to Lenn, Kessara, and Lyria, a self-cast Tongues equivalent, real-time perception of active spellwork in the Weave, and the ability to manifest physical objects from nothing.",
     "proficiency_bonus": 4,
@@ -5203,20 +7240,6 @@
     ],
     "features": [
       {
-        "name": "Healing Hands",
-        "type": "feature",
-        "id": "pub_aasimar-healing-hands",
-        "action_type": "action",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Light Bearer",
-        "type": "feature",
-        "id": "pub_aasimar-light-bearer"
-      },
-      {
         "name": "Darkvision",
         "type": "feature",
         "id": "pub_darkvision"
@@ -5230,12 +7253,6 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Touch a creature to restore hit points equal to your proficiency bonus + CHA modifier (currently 9 HP)."
-      },
-      {
-        "name": "Celestial Resistance",
-        "type": "feature",
-        "id": "pub_aasimar-celestial-resistance",
-        "description": "Resistance to Radiant and Necrotic damage."
       },
       {
         "name": "Aasimar Transformation",
@@ -5261,12 +7278,6 @@
         "uses_max": 3,
         "uses_current": 3,
         "description": "Once per long rest, cast your CURRENT phase's L1 grid spell without expending a spell slot: Shield (Leno), Silvery Barbs (Twill), Color Spray (Satin). To access another phase's free cast, first switch into it with Mother's Whim (1 SP) — up to 3 free casts per long rest total (one per phase) if you pay to cycle through all three."
-      },
-      {
-        "name": "Font of Magic",
-        "type": "feature",
-        "id": "font-of-magic",
-        "description": "9 Sorcery Points, recovered on long rest. Convert 2 SP → 1st-level slot (up to 5th level); convert slots → SP (1 SP per slot level)."
       },
       {
         "name": "Metamagic: Twinned Spell",
@@ -5335,6 +7346,155 @@
           "Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Celestial Resistance",
+        "id": "pub24_species_aasimar-celestial-resistance",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_aasimar-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Healing Hands",
+        "id": "pub24_species_aasimar-healing-hands",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Light Bearer",
+        "id": "pub24_species_aasimar-light-bearer",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Celestial Revelation",
+        "id": "pub24_species_aasimar-celestial-revelation",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Heavenly Wings",
+        "id": "pub24_species_aasimar-heavenly-wings",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Inner Radiance",
+        "id": "pub24_species_aasimar-inner-radiance",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Necrotic Shroud",
+        "id": "pub24_species_aasimar-necrotic-shroud",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Aasimar"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_sorcerer-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Sorcerer"
+      },
+      {
+        "name": "Innate Sorcery",
+        "id": "pub24_sorcerer-innate-sorcery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Sorcerer",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Font of Magic",
+        "id": "pub24_sorcerer-font-of-magic",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Sorcerer",
+        "recharge": "long_rest",
+        "uses_max": 9,
+        "uses_current": 9
+      },
+      {
+        "name": "Metamagic",
+        "id": "pub24_sorcerer-metamagic",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Sorcerer"
+      },
+      {
+        "name": "Sorcerous Restoration",
+        "id": "pub24_sorcerer-sorcerous-restoration",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Sorcerer",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Sorcery Incarnate",
+        "id": "pub24_sorcerer-sorcery-incarnate",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Sorcerer",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Magic Initiate",
+        "id": "pub24_feat-magic-initiate",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Sage",
+        "level_gained": 1,
+        "choices": {
+          "list": "Wizard",
+          "cantrips": [
+            "Prestidigitation",
+            "Fire Bolt"
+          ],
+          "spell": "Shield"
+        },
+        "ability_choice": "cha",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Metamagic: Twinned Spell",
+        "type": "metamagic",
+        "_source": "Sorcerer",
+        "level_gained": 2
+      },
+      {
+        "name": "Metamagic: Quickened Spell",
+        "type": "metamagic",
+        "_source": "Sorcerer",
+        "level_gained": 2
       }
     ],
     "resources": [
@@ -5453,6 +7613,52 @@
         "level": 5,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Prestidigitation",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Fire Bolt",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Shield",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Magic Initiate",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
+      },
+      {
+        "name": "Fireball",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Haste",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Counterspell",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Dimension Door",
+        "level": 4,
+        "prepared": true
       }
     ],
     "spell_slots": {
@@ -5527,7 +7733,11 @@
       "light crossbow"
     ],
     "armor_proficiencies": [],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "background_flavor": "Daughter of the Weave",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "name": "Therynv'l",
@@ -5574,77 +7784,15 @@
     ],
     "features": [
       {
-        "name": "Trance",
-        "type": "feature",
-        "id": "pub_elf-trance"
-      },
-      {
-        "name": "Keen Senses",
-        "type": "feature",
-        "id": "pub_elf-keen-senses"
-      },
-      {
-        "name": "Elf Weapon Training",
-        "type": "feature",
-        "id": "pub_elf-weapon-training"
-      },
-      {
-        "name": "Fey Ancestry",
-        "type": "feature",
-        "id": "pub_fey-ancestry"
-      },
-      {
         "name": "Darkvision",
         "type": "feature",
         "id": "pub_darkvision"
-      },
-      {
-        "name": "Fleet of Foot",
-        "type": "feature",
-        "id": "pub_wood-elf-fleet-of-foot",
-        "description": "Base walking speed increases to 35 feet."
-      },
-      {
-        "name": "Mask of the Wild",
-        "type": "feature",
-        "id": "pub_wood-elf-mask-of-the-wild",
-        "description": "Can attempt to hide even when only lightly obscured by foliage, heavy rain, falling snow, mist, or other natural phenomena."
-      },
-      {
-        "name": "Combat Wild Shape",
-        "type": "feature",
-        "id": "pub_combat-wild-shape",
-        "description": "Lets Wild Shape be used as a bonus action instead of an action."
       },
       {
         "name": "Combat Wild Shape: Healing",
         "type": "feature",
         "action_type": "bonus_action",
         "id": "pub_combat-wild-shape-healing"
-      },
-      {
-        "name": "Wild Shape",
-        "type": "feature",
-        "id": "gen_druid_base_wild-shape",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 2,
-        "uses_current": 2,
-        "description": "Transform into a beast you've seen before with a challenge rating up to your Circle Forms cap (see Circle Forms improvement). Swimming-speed beasts allowed from 4th level; flying-speed beasts allowed from 8th level. Two uses; regain both on a short or long rest.",
-        "note": "Corrected 2026-09-09 -- description previously claimed the CR cap is fixed at 1 and 'doesn't increase further,' contradicting the real Circle Forms improvement feature (6th level) that raises it to druid level / 3, rounded down. Fixed alongside adding that missing feature below."
-      },
-      {
-        "name": "Circle Forms improvement",
-        "type": "feature",
-        "id": "pub_circle-forms-improvement",
-        "level_gained": 6,
-        "description": "Your Wild Shape's challenge rating cap increases to your druid level divided by 3, rounded down -- CR 3 at her current level 9."
-      },
-      {
-        "name": "Primal Strike",
-        "type": "feature",
-        "id": "pub_primal-strike",
-        "description": "Attacks made in beast form (via Wild Shape) count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage."
       },
       {
         "name": "Resilient (Constitution)",
@@ -5675,6 +7823,143 @@
           "Druidcraft"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_elf-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Elven Lineage",
+        "id": "pub24_species_elf-elven-lineage",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Fey Ancestry",
+        "id": "pub24_species_elf-fey-ancestry",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Keen Senses",
+        "id": "pub24_species_elf-keen-senses",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Trance",
+        "id": "pub24_species_elf-trance",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf"
+      },
+      {
+        "name": "Elf Lineage: Wood Elf",
+        "id": null,
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Elf",
+        "description": "Your Speed increases to 35 feet. You also know the Druidcraft cantrip."
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_druid-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Druid"
+      },
+      {
+        "name": "Druidic",
+        "id": "pub24_druid-druidic",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Druid"
+      },
+      {
+        "name": "Primal Order",
+        "id": "pub24_druid-primal-order",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Druid"
+      },
+      {
+        "name": "Wild Shape",
+        "id": "pub24_druid-wild-shape",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Druid",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Wild Companion",
+        "id": "pub24_druid-wild-companion",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Druid",
+        "action_type": "action"
+      },
+      {
+        "name": "Wild Resurgence",
+        "id": "pub24_druid-wild-resurgence",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Druid",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Elemental Fury",
+        "id": "pub24_druid-elemental-fury",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Druid"
+      },
+      {
+        "name": "Circle Forms",
+        "id": "pub24_sub_druid-circle-of-the-moon-circle-forms",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Druid"
+      },
+      {
+        "name": "Circle of the Moon Spells",
+        "id": "pub24_sub_druid-circle-of-the-moon-circle-of-the-moon-spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Druid"
+      },
+      {
+        "name": "Improved Circle Forms",
+        "id": "pub24_sub_druid-circle-of-the-moon-improved-circle-forms",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Druid"
+      },
+      {
+        "name": "Tough",
+        "id": "pub24_feat-tough",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Farmer",
+        "level_gained": 1
+      },
+      {
+        "name": "Primal Order: Warden",
+        "type": "primalOrder",
+        "level_gained": 1
       }
     ],
     "spells": [
@@ -5814,20 +8099,26 @@
       "scimitar",
       "sickle",
       "sling",
-      "spear"
+      "spear",
+      "martial"
     ],
     "armor_proficiencies": [
       "light",
       "medium (nonmetal)",
-      "shields (nonmetal)"
-    ]
+      "shields (nonmetal)",
+      "medium"
+    ],
+    "ruleset": "2024",
+    "background": "Farmer",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "id": "characters_23",
     "name": "Siv",
     "full_name": "Siv Ravencroft",
     "genus": "Human",
-    "background": "Mercenary Veteran",
+    "background": "Soldier",
     "appearance": "human woman, attractive, angular jaw, diamond-shaped face, Zoe Saldana type. Practical build, weathered from outdoor work. Longbow always across back.",
     "image": "./characters/siv.jpg",
     "notes": "",
@@ -5880,7 +8171,8 @@
       "Stealth",
       "Deception",
       "Insight",
-      "Perception"
+      "Perception",
+      "Animal Handling"
     ],
     "skill_expertise": [
       "Stealth",
@@ -5893,36 +8185,6 @@
       "Goblin"
     ],
     "features": [
-      {
-        "name": "Expertise",
-        "id": "rogue-expertise-1",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Sneak Attack",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Rogue",
-        "id": "sneak-attack",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Thieves' Cant",
-        "type": "feature",
-        "id": "thieves-cant",
-        "level_gained": 1,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Cunning Action",
-        "id": "cunning-action",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "level_gained": 2,
-        "_source": "Rogue"
-      },
       {
         "name": "Skirmisher",
         "id": "hb_rogue_scout_skirmisher",
@@ -5939,8 +8201,88 @@
         "_source": "Rogue"
       },
       {
+        "name": "Superior Mobility",
+        "id": "hb_rogue_scout_superior_mobility",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "pub24_rogue-sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue",
+        "per_turn_cap": true
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "pub24_rogue-thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_rogue-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "pub24_rogue-cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Steady Aim",
+        "id": "pub24_rogue-steady-aim",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Cunning Strike",
+        "id": "pub24_rogue-cunning-strike",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue"
+      },
+      {
         "name": "Uncanny Dodge",
-        "id": "uncanny-dodge",
+        "id": "pub24_rogue-uncanny-dodge",
         "type": "feature",
         "level_gained": 5,
         "_source": "Rogue",
@@ -5948,24 +8290,70 @@
       },
       {
         "name": "Expertise",
-        "id": "rogue-expertise-1",
+        "id": "pub24_rogue-expertise-l6",
         "type": "feature",
         "level_gained": 6,
         "_source": "Rogue"
       },
       {
         "name": "Evasion",
-        "id": "rogue-evasion",
+        "id": "pub24_rogue-evasion",
         "type": "feature",
         "level_gained": 7,
         "_source": "Rogue"
       },
       {
-        "name": "Superior Mobility",
-        "id": "hb_rogue_scout_superior_mobility",
+        "name": "Reliable Talent",
+        "id": "pub24_rogue-reliable-talent",
         "type": "feature",
-        "level_gained": 9,
+        "level_gained": 7,
         "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: Stealth, Athletics",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: Perception, Deception",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Alert",
+        "id": "pub24_feat-alert",
+        "type": "feat",
+        "_grant": "species",
+        "_source": "Human",
+        "level_gained": 1
+      },
+      {
+        "name": "Savage Attacker",
+        "id": "pub24_feat-savage-attacker",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Soldier",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Shortbow",
+        "type": "weaponMastery",
+        "weapon": "shortbow",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Rapier",
+        "type": "weaponMastery",
+        "weapon": "rapier",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 9
       }
     ],
     "spells": [],
@@ -5995,7 +8383,10 @@
     ],
     "armor_proficiencies": [
       "light"
-    ]
+    ],
+    "ruleset": "2024",
+    "tool_proficiencies": [],
+    "migrated_to_2024": true
   },
   {
     "id": "characters_24",
@@ -6106,21 +8497,6 @@
     ],
     "features": [
       {
-        "name": "Magical Tinkering",
-        "id": "pub_magical-tinkering",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Artificer",
-        "action_type": "action"
-      },
-      {
-        "name": "Spellcasting",
-        "id": "gen_artificer_base_spellcasting",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Artificer"
-      },
-      {
         "name": "Infuse Item",
         "id": "hb_artificer_infuse_item",
         "type": "feature",
@@ -6147,13 +8523,6 @@
         ],
         "new_infusion_learned": "Bag of Holding",
         "note": "3 of his 6 known infusions are unapplied (available to swap in on a long rest). The crossbow's own properties and the armor's Armor of Magical Strength are enchanter-made, not his own infusions, and don't count against this cap — see persona notes."
-      },
-      {
-        "name": "The Right Tool for the Job",
-        "id": "gen_artificer_base_the-right-tool-for-the-job",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Artificer"
       },
       {
         "name": "Arbalist Bonus Spells",
@@ -6185,24 +8554,6 @@
         "_source": "Artificer"
       },
       {
-        "name": "Tool Expertise",
-        "id": "pub_tool-expertise",
-        "type": "feature",
-        "level_gained": 6,
-        "_source": "Artificer"
-      },
-      {
-        "name": "Flash of Genius",
-        "id": "pub_flash-of-genius",
-        "type": "feature",
-        "level_gained": 7,
-        "_source": "Artificer",
-        "action_type": "reaction",
-        "uses_max": 5,
-        "uses_current": 5,
-        "recharge": "long_rest"
-      },
-      {
         "name": "Unstable Rounds",
         "id": "hb_infused_arbalist_unstable_rounds",
         "type": "feature",
@@ -6218,6 +8569,101 @@
         "_source": "Artificer",
         "action_type": "reaction",
         "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_gnome-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Gnomish Cunning",
+        "id": "pub24_species_gnome-gnomish-cunning",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Gnomish Lineage",
+        "id": "pub24_species_gnome-gnomish-lineage",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Rock Gnome",
+        "id": "pub24_species_gnome-rock-gnome",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_artificer-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Tinker's Magic",
+        "id": "pub24_artificer-tinkers-magic",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Artificer",
+        "action_type": "action",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Replicate Magic Item",
+        "id": "pub24_artificer-replicate-magic-item",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Artificer"
+      },
+      {
+        "name": "Magic Item Tinker",
+        "id": "pub24_artificer-magic-item-tinker",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Artificer",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Flash of Genius",
+        "id": "pub24_artificer-flash-of-genius",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Artificer",
+        "action_type": "reaction",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Magic Initiate",
+        "id": "pub24_feat-magic-initiate",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Sage",
+        "level_gained": 1,
+        "choices": {
+          "list": "Wizard",
+          "cantrips": [
+            "Prestidigitation",
+            "Light"
+          ],
+          "spell": "Magic Missile"
+        },
+        "ability_choice": "int",
+        "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1
       }
@@ -6327,6 +8773,32 @@
         "name": "Haste",
         "level": 3,
         "prepared": true
+      },
+      {
+        "name": "Prestidigitation",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Light",
+        "level": 0,
+        "prepared": true,
+        "type": "cantrip",
+        "featureGranted": true,
+        "_source": "Magic Initiate"
+      },
+      {
+        "name": "Magic Missile",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Magic Initiate",
+        "uses_max": 1,
+        "uses_current": 1,
+        "recharge": "long_rest"
       }
     ],
     "active_effects": [],
@@ -6365,7 +8837,9 @@
     },
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
-    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels."
+    "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_26",
@@ -6373,7 +8847,7 @@
     "full_name": "Kerra Flint",
     "genus": "Half-Orc",
     "subgenus": null,
-    "background": "Mercenary Veteran",
+    "background": "Soldier",
     "level": 9,
     "stat_str": 20,
     "stat_dex": 8,
@@ -6474,65 +8948,12 @@
     "saving_throw_advantages": [],
     "features": [
       {
-        "name": "Fighting Style: Dueling",
-        "id": "fighter-fighting-style-dueling",
-        "type": "fightingStyle",
-        "level_gained": 1,
+        "name": "Dueling",
+        "id": "pub24_feat-dueling",
+        "type": "feat",
+        "_grant": "fightingStyle",
         "_source": "Fighter",
-        "stat_bonuses": {
-          "melee_damage": 2
-        }
-      },
-      {
-        "name": "Second Wind",
-        "id": "second-wind",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Fighter",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Action Surge",
-        "id": "action-surge-1-use",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Fighter",
-        "action_type": "free",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1,
-        "per_turn_cap": true
-      },
-      {
-        "name": "Improved Critical (19-20)",
-        "id": "gen_fighter_champion_improved-critical-19-20",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Pact Magic",
-        "id": "pact-magic",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Warlock"
-      },
-      {
-        "name": "Awakened Mind",
-        "id": "pub_awakened-mind",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Warlock"
-      },
-      {
-        "name": "Eldritch Invocations",
-        "id": "eldritch-invocations",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Warlock"
+        "level_gained": 1
       },
       {
         "name": "Agonizing Blast",
@@ -6549,16 +8970,9 @@
         "_source": "Warlock"
       },
       {
-        "name": "Pact Boon",
-        "id": "pact-boon",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Warlock"
-      },
-      {
         "name": "Pact of the Tome",
-        "id": "pact-of-the-tome",
-        "type": "pactBoon",
+        "id": "pub24_invocation-pact-of-the-tome",
+        "type": "invocation",
         "level_gained": 3,
         "_source": "Warlock"
       },
@@ -6578,6 +8992,157 @@
           "Dark Prestidigitation"
         ],
         "_source": "Caster Prestidigitation (house rule)"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_fighter-fighting-style",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "pub24_fighter-second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 3,
+        "uses_current": 3
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_fighter-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Action Surge",
+        "id": "pub24_fighter-action-surge-one-use",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter",
+        "action_type": "free",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1,
+        "per_turn_cap": true
+      },
+      {
+        "name": "Tactical Mind",
+        "id": "pub24_fighter-tactical-mind",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Improved Critical",
+        "id": "pub24_sub_fighter-champion-improved-critical",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Remarkable Athlete",
+        "id": "pub24_sub_fighter-champion-remarkable-athlete",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Eldritch Invocations",
+        "id": "pub24_warlock-eldritch-invocations",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Pact Magic",
+        "id": "pub24_warlock-pact-magic",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Magical Cunning",
+        "id": "pub24_warlock-magical-cunning",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Warlock",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Awakened Mind",
+        "id": "pub24_sub_warlock-great-old-one-patron-awakened-mind",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Warlock",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Great Old One Spells",
+        "id": "pub24_sub_warlock-great-old-one-patron-great-old-one-spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Psychic Spells",
+        "id": "pub24_sub_warlock-great-old-one-patron-psychic-spells",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Warlock"
+      },
+      {
+        "name": "Savage Attacker",
+        "id": "pub24_feat-savage-attacker",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Soldier",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Longsword",
+        "type": "weaponMastery",
+        "weapon": "longsword",
+        "mastery": "sap",
+        "_source": "Fighter",
+        "level_gained": 4
+      },
+      {
+        "name": "Weapon Mastery: Greatsword",
+        "type": "weaponMastery",
+        "weapon": "greatsword",
+        "mastery": "graze",
+        "_source": "Fighter",
+        "level_gained": 4
+      },
+      {
+        "name": "Weapon Mastery: Handaxe",
+        "type": "weaponMastery",
+        "weapon": "handaxe",
+        "mastery": "vex",
+        "_source": "Fighter",
+        "level_gained": 4
+      },
+      {
+        "name": "Weapon Mastery: Javelin",
+        "type": "weaponMastery",
+        "weapon": "javelin",
+        "mastery": "slow",
+        "_source": "Fighter",
+        "level_gained": 4
+      },
+      {
+        "name": "Eldritch Mind",
+        "id": "pub24_invocation-eldritch-mind",
+        "type": "invocation",
+        "level_gained": 5,
+        "_source": "Warlock"
       }
     ],
     "spells": [
@@ -6684,7 +9249,7 @@
       {
         "name": "Warlock",
         "level": 5,
-        "subclass": "Great Old One"
+        "subclass": "Great Old One Patron"
       }
     ],
     "proficiency_bonus": 4,
@@ -6707,7 +9272,9 @@
       "Eyes of the Rune Keeper means she has been quietly reading things she shouldn't for years.",
       "Shadow of Moil + Devil's Sight darkness combo now fully online."
     ],
-    "notes": "Target build: 4 Fighter / 8 Warlock."
+    "notes": "Target build: 4 Fighter / 8 Warlock.",
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_27",
@@ -6734,7 +9301,7 @@
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
     "speed": 25,
-    "darkvision": 60,
+    "darkvision": 120,
     "saving_throws": [
       "dex",
       "int"
@@ -6865,86 +9432,12 @@
     ],
     "features": [
       {
-        "name": "Expertise",
-        "id": "rogue-expertise-1",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Sneak Attack",
-        "id": "sneak-attack",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Rogue",
-        "per_turn_cap": true
-      },
-      {
-        "name": "Thieves' Cant",
-        "id": "thieves-cant",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Cunning Action",
-        "id": "cunning-action",
-        "type": "feature",
-        "action_type": "bonus_action",
-        "level_gained": 2,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Soulknife — Psychic Blades",
-        "id": "pub_soulknife-psychic-blades",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Rogue"
-      },
-      {
         "name": "Soulknife — Psionic Energy",
         "id": "pub_soulknife-psionic-energy",
         "type": "feature",
         "level_gained": 3,
         "_source": "Rogue",
         "notes": "Tracked via the Psi resource pip (Psionic Energy Dice, d8) — see Class Resources. Regain 1 die as a bonus action, not again until the next short/long rest."
-      },
-      {
-        "name": "Soulknife — Psi-Bolstered Knack",
-        "id": "pub_soulknife-psi-bolstered-knack",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Soulknife — Psychic Whispers",
-        "id": "pub_soulknife-psychic-whispers",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Rogue",
-        "action_type": "action"
-      },
-      {
-        "name": "Uncanny Dodge",
-        "id": "uncanny-dodge",
-        "type": "feature",
-        "level_gained": 5,
-        "_source": "Rogue",
-        "action_type": "reaction"
-      },
-      {
-        "name": "Expertise",
-        "id": "rogue-expertise-1",
-        "type": "feature",
-        "level_gained": 6,
-        "_source": "Rogue"
-      },
-      {
-        "name": "Evasion",
-        "id": "rogue-evasion",
-        "type": "feature",
-        "level_gained": 7,
-        "_source": "Rogue"
       },
       {
         "name": "Homing Strikes",
@@ -6960,6 +9453,179 @@
         "action_type": "bonus_action",
         "level_gained": 9,
         "_source": "Rogue"
+      },
+      {
+        "name": "Darkvision",
+        "id": "pub24_species_dwarf-darkvision",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dwarf"
+      },
+      {
+        "name": "Dwarven Resilience",
+        "id": "pub24_species_dwarf-dwarven-resilience",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dwarf"
+      },
+      {
+        "name": "Dwarven Toughness",
+        "id": "pub24_species_dwarf-dwarven-toughness",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dwarf"
+      },
+      {
+        "name": "Stonecunning",
+        "id": "pub24_species_dwarf-stonecunning",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Dwarf",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Sneak Attack",
+        "id": "pub24_rogue-sneak-attack",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue",
+        "per_turn_cap": true
+      },
+      {
+        "name": "Thieves' Cant",
+        "id": "pub24_rogue-thieves-cant",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_rogue-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Cunning Action",
+        "id": "pub24_rogue-cunning-action",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Steady Aim",
+        "id": "pub24_rogue-steady-aim",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Cunning Strike",
+        "id": "pub24_rogue-cunning-strike",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Uncanny Dodge",
+        "id": "pub24_rogue-uncanny-dodge",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Rogue",
+        "action_type": "reaction"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_rogue-expertise-l6",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Evasion",
+        "id": "pub24_rogue-evasion",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Reliable Talent",
+        "id": "pub24_rogue-reliable-talent",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Psionic Power",
+        "id": "pub24_sub_rogue-soulknife-psionic-power",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Psychic Blades",
+        "id": "pub24_sub_rogue-soulknife-psychic-blades",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Soul Blades",
+        "id": "pub24_sub_rogue-soulknife-soul-blades",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Rogue",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Expertise: Stealth, Perception",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 1,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Expertise: Deception, Insight",
+        "id": null,
+        "type": "expertise",
+        "level_gained": 6,
+        "_source": "Rogue"
+      },
+      {
+        "name": "Alert",
+        "id": "pub24_feat-alert",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Criminal",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Hand Crossbow",
+        "type": "weaponMastery",
+        "weapon": "hand crossbow",
+        "mastery": "vex",
+        "_source": "Rogue",
+        "level_gained": 9
+      },
+      {
+        "name": "Weapon Mastery: Dagger",
+        "type": "weaponMastery",
+        "weapon": "dagger",
+        "mastery": "nick",
+        "_source": "Rogue",
+        "level_gained": 9
       }
     ],
     "spells": [],
@@ -6979,7 +9645,9 @@
     "persona_notes": [
       "Applies 156 years of tactical memory to leatherworking."
     ],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_28",
@@ -7067,7 +9735,9 @@
     ],
     "skill_expertise": [
       "Performance",
-      "History"
+      "History",
+      "Persuasion",
+      "Arcana"
     ],
     "languages": [
       "Common",
@@ -7086,7 +9756,11 @@
     "armor_proficiencies": [
       "light"
     ],
-    "tool_proficiencies": [],
+    "tool_proficiencies": [
+      "Lute",
+      "Lyre",
+      "Flute"
+    ],
     "resistances": [],
     "saving_throw_advantages": [
       "being_charmed"
@@ -7103,31 +9777,10 @@
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
-        "name": "Bardic Inspiration",
-        "id": "gen_bard_base_bardic-inspiration",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Bard"
-      },
-      {
-        "name": "Jack of All Trades",
-        "id": "jack-of-all-trades",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Bard"
-      },
-      {
-        "name": "Song of Rest",
-        "id": "gen_bard_base_song-of-rest",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Bard"
-      },
-      {
         "name": "Expertise: Performance, History",
         "id": "bard-expertise-1",
         "type": "expertise",
-        "level_gained": 3,
+        "level_gained": 2,
         "_source": "Bard"
       },
       {
@@ -7136,14 +9789,6 @@
         "type": "bonusProficiencies",
         "level_gained": 3,
         "_source": "Bard"
-      },
-      {
-        "name": "Cutting Words",
-        "id": "cutting-words",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Bard",
-        "action_type": "reaction"
       },
       {
         "name": "Fey Touched",
@@ -7159,26 +9804,108 @@
         ]
       },
       {
+        "name": "Additional Magical Secrets: Pulse Wave, Haste",
+        "id": "additional-magical-secrets",
+        "type": "additionalMagicalSecrets",
+        "level_gained": 6,
+        "_source": "College of Lore"
+      },
+      {
+        "name": "Bardic Inspiration",
+        "id": "pub24_bard-bardic-inspiration",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Bard",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_bard-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Bard"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_bard-expertise",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Bard"
+      },
+      {
+        "name": "Jack of all Trades",
+        "id": "pub24_bard-jack-of-all-trades",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Bard"
+      },
+      {
         "name": "Font of Inspiration",
-        "id": "font-of-inspiration",
+        "id": "pub24_bard-font-of-inspiration",
         "type": "feature",
         "level_gained": 5,
         "_source": "Bard"
       },
       {
         "name": "Countercharm",
-        "id": "countercharm",
+        "id": "pub24_bard-countercharm",
         "type": "feature",
-        "level_gained": 6,
+        "level_gained": 7,
         "_source": "Bard",
-        "action_type": "action"
+        "action_type": "reaction"
       },
       {
-        "name": "Additional Magical Secrets: Pulse Wave, Haste",
-        "id": "additional-magical-secrets",
-        "type": "additionalMagicalSecrets",
+        "name": "Expertise",
+        "id": "pub24_bard-expertise-l9",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Bard"
+      },
+      {
+        "name": "Bonus Proficiencies",
+        "id": "pub24_sub_bard-college-of-lore-bonus-proficiencies",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard"
+      },
+      {
+        "name": "Cutting Words",
+        "id": "pub24_sub_bard-college-of-lore-cutting-words",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard",
+        "action_type": "reaction"
+      },
+      {
+        "name": "Magical Discoveries",
+        "id": "pub24_sub_bard-college-of-lore-magical-discoveries",
+        "type": "feature",
         "level_gained": 6,
-        "_source": "College of Lore"
+        "_source": "Bard"
+      },
+      {
+        "name": "Musician",
+        "id": "pub24_feat-musician",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Entertainer",
+        "level_gained": 1,
+        "choices": {
+          "tools": [
+            "Lute",
+            "Lyre",
+            "Flute"
+          ]
+        }
+      },
+      {
+        "name": "Expertise: Persuasion, Arcana",
+        "type": "expertise",
+        "_source": "Bard",
+        "level_gained": 9
       }
     ],
     "spells": [
@@ -7305,6 +10032,16 @@
         "level": 5,
         "prepared": true,
         "type": "chosen"
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Major Image",
+        "level": 3,
+        "prepared": true
       }
     ],
     "active_effects": [],
@@ -7347,7 +10084,9 @@
       "Composing something without knowing it after experiences that matter.",
       "Joins things rather than leads them when the thing is already good enough without her."
     ],
-    "hp_temp": 0
+    "hp_temp": 0,
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_29",
@@ -7369,7 +10108,7 @@
     ],
     "genus": "Half-Elf",
     "subgenus": null,
-    "background": "Far Traveler",
+    "background": "Wayfarer",
     "level": 9,
     "stat_str": 7,
     "stat_dex": 16,
@@ -7444,7 +10183,9 @@
     ],
     "skill_expertise": [
       "Performance",
-      "Insight"
+      "Insight",
+      "Persuasion",
+      "Perception"
     ],
     "languages": [
       "Common",
@@ -7482,57 +10223,11 @@
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
-        "name": "Bardic Inspiration",
-        "id": "gen_bard_base_bardic-inspiration",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Bard"
-      },
-      {
-        "name": "Jack of All Trades",
-        "id": "jack-of-all-trades",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Bard"
-      },
-      {
-        "name": "Song of Rest",
-        "id": "gen_bard_base_song-of-rest",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Bard"
-      },
-      {
         "name": "Expertise: Performance, Insight",
         "id": "bard-expertise-1",
         "type": "expertise",
-        "level_gained": 3,
+        "level_gained": 2,
         "_source": "Bard"
-      },
-      {
-        "name": "Guiding Whispers",
-        "id": "pub_guiding-whispers",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Bard",
-        "spells_granted": [
-          "Guidance"
-        ]
-      },
-      {
-        "name": "Spiritual Focus",
-        "id": "pub_spiritual-focus",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Bard"
-      },
-      {
-        "name": "Tales from Beyond",
-        "id": "pub_tales-from-beyond",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Bard",
-        "action_type": "bonus_action"
       },
       {
         "name": "Shadow Touched",
@@ -7548,37 +10243,105 @@
         ]
       },
       {
-        "name": "Font of Inspiration",
-        "id": "font-of-inspiration",
-        "type": "feature",
-        "level_gained": 5,
-        "_source": "Bard"
-      },
-      {
-        "name": "Countercharm",
-        "id": "countercharm",
-        "type": "feature",
-        "level_gained": 6,
-        "_source": "Bard",
-        "action_type": "action"
-      },
-      {
-        "name": "Spirit Session",
-        "id": "pub_spirit-session",
-        "type": "feature",
-        "level_gained": 6,
-        "_source": "Bard",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
-      {
         "name": "War Caster",
         "id": "pub_war-caster",
         "type": "feat",
         "level_gained": 8,
         "ability_choice": null,
         "choices": null
+      },
+      {
+        "name": "Bardic Inspiration",
+        "id": "pub24_bard-bardic-inspiration",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Bard",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 5,
+        "uses_current": 5
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_bard-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Bard"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_bard-expertise",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Bard"
+      },
+      {
+        "name": "Jack of all Trades",
+        "id": "pub24_bard-jack-of-all-trades",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Bard"
+      },
+      {
+        "name": "Font of Inspiration",
+        "id": "pub24_bard-font-of-inspiration",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Bard"
+      },
+      {
+        "name": "Countercharm",
+        "id": "pub24_bard-countercharm",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Bard",
+        "action_type": "reaction"
+      },
+      {
+        "name": "Expertise",
+        "id": "pub24_bard-expertise-l9",
+        "type": "feature",
+        "level_gained": 9,
+        "_source": "Bard"
+      },
+      {
+        "name": "Channeler",
+        "id": "pub24_sub_bard-college-of-spirits-channeler",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard"
+      },
+      {
+        "name": "Spirits from Beyond",
+        "id": "pub24_sub_bard-college-of-spirits-spirits-from-beyond",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Bard",
+        "action_type": "bonus_action"
+      },
+      {
+        "name": "Empowered Channeling",
+        "id": "pub24_sub_bard-college-of-spirits-empowered-channeling",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Bard",
+        "recharge": "short_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Lucky",
+        "id": "pub24_feat-lucky",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Wayfarer",
+        "level_gained": 1
+      },
+      {
+        "name": "Expertise: Persuasion, Perception",
+        "type": "expertise",
+        "_source": "Bard",
+        "level_gained": 9
       }
     ],
     "spells": [
@@ -7691,6 +10454,16 @@
         "level": 5,
         "prepared": true,
         "type": "chosen"
+      },
+      {
+        "name": "Dispel Magic",
+        "level": 3,
+        "prepared": true
+      },
+      {
+        "name": "Fear",
+        "level": 3,
+        "prepared": true
       }
     ],
     "active_effects": [],
@@ -7726,7 +10499,9 @@
         "max": 1,
         "current": 1
       }
-    }
+    },
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_30",
@@ -7811,9 +10586,14 @@
       "Persuasion",
       "Intimidation",
       "Deception",
-      "Insight"
+      "Insight",
+      "Investigation",
+      "Medicine",
+      "Perception"
     ],
-    "skill_expertise": [],
+    "skill_expertise": [
+      "Arcana"
+    ],
     "languages": [
       "Common",
       "Elvish",
@@ -7835,23 +10615,6 @@
       "being_charmed"
     ],
     "features": [
-      {
-        "name": "Spellcasting",
-        "id": "gen_wizard_base_spellcasting",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Wizard"
-      },
-      {
-        "name": "Arcane Recovery",
-        "id": "arcane-recovery",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Wizard",
-        "recharge": "long_rest",
-        "uses_max": 1,
-        "uses_current": 1
-      },
       {
         "name": "Caster Prestidigitation",
         "id": "hb_caster_prestidigitation",
@@ -7913,6 +10676,66 @@
         "uses_current": 1,
         "recharge": "manual",
         "_source": "Homebrew"
+      },
+      {
+        "name": "Spellcasting",
+        "id": "pub24_wizard-spellcasting",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Ritual Adept",
+        "id": "pub24_wizard-ritual-adept",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Arcane Recovery",
+        "id": "pub24_wizard-arcane-recovery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Wizard",
+        "recharge": "long_rest",
+        "uses_max": 1,
+        "uses_current": 1
+      },
+      {
+        "name": "Scholar",
+        "id": "pub24_wizard-scholar",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Memorize Spell",
+        "id": "pub24_wizard-memorize-spell",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Wizard"
+      },
+      {
+        "name": "Skilled",
+        "id": "pub24_feat-skilled",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Noble",
+        "level_gained": 1,
+        "choices": {
+          "skills": [
+            "Investigation",
+            "Medicine",
+            "Perception"
+          ],
+          "tools": []
+        }
+      },
+      {
+        "name": "Expertise: Arcana",
+        "type": "expertise",
+        "_source": "Wizard",
+        "level_gained": 2
       }
     ],
     "active_effects": [],
@@ -7970,7 +10793,9 @@
       "Blur",
       "Dominate Person",
       "Cloudkill"
-    ]
+    ],
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_31",
@@ -8027,7 +10852,12 @@
       "Athletics",
       "Intimidation",
       "Animal Handling",
-      "Survival"
+      "Survival",
+      "Perception",
+      "Investigation",
+      "Insight",
+      "Medicine",
+      "Nature"
     ],
     "skill_expertise": [],
     "languages": [
@@ -8053,97 +10883,21 @@
     ],
     "features": [
       {
-        "name": "Rage",
-        "id": "rage",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Barbarian",
-        "action_type": "bonus_action",
-        "recharge": "long_rest",
-        "uses_max": 4,
-        "uses_current": 4
-      },
-      {
-        "name": "Unarmored Defense",
-        "id": "barbarian-unarmored-defense",
-        "type": "feature",
-        "level_gained": 1,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Reckless Attack",
-        "id": "reckless-attack",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Danger Sense",
-        "id": "danger-sense",
-        "type": "feature",
-        "level_gained": 2,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Frenzy",
-        "id": "frenzy",
-        "type": "feature",
-        "level_gained": 3,
-        "_source": "Barbarian",
-        "action_type": "bonus_action"
-      },
-      {
-        "name": "Extra Attack",
-        "id": "barbarian-extra-attack",
-        "type": "feature",
-        "level_gained": 5,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Fast Movement",
-        "id": "fast-movement",
-        "type": "feature",
-        "level_gained": 5,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Mindless Rage",
-        "id": "mindless-rage",
-        "type": "feature",
-        "level_gained": 6,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Feral Instinct",
-        "id": "feral-instinct",
-        "type": "feature",
-        "level_gained": 7,
-        "_source": "Barbarian"
-      },
-      {
-        "name": "Fighting Style: Thrown Weapon Fighting",
-        "id": "fighting-style-thrown-weapon-fighting",
-        "type": "fightingStyle",
-        "level_gained": 1,
-        "_source": "Fighter"
-      },
-      {
-        "name": "Second Wind",
-        "id": "second-wind",
-        "type": "feature",
-        "level_gained": 1,
+        "name": "Thrown Weapon Fighting",
+        "id": "pub24_feat-thrown-weapon-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
         "_source": "Fighter",
-        "action_type": "bonus_action",
-        "recharge": "short_rest",
-        "uses_max": 1,
-        "uses_current": 1
+        "level_gained": 1
       },
       {
         "name": "Tavern Brawler",
         "id": "tavern-brawler",
         "type": "feat",
         "level_gained": 1,
-        "ability_choice": "str"
+        "ability_choice": "str",
+        "_grant": "species",
+        "_source": "Human"
       },
       {
         "name": "Hulking Build",
@@ -8177,11 +10931,12 @@
         }
       },
       {
-        "name": "Fighting Style: Unarmed Fighting",
-        "id": "fighting-style-unarmed-fighting",
-        "type": "fightingStyle",
-        "level_gained": 8,
-        "_source": "Fighting Initiate"
+        "name": "Unarmed Fighting",
+        "id": "pub24_feat-unarmed-fighting",
+        "type": "feat",
+        "_grant": "fightingStyle",
+        "_source": "Fighting Initiate",
+        "level_gained": 8
       },
       {
         "name": "Hurl Something",
@@ -8196,6 +10951,204 @@
         "type": "feature",
         "action_type": "action",
         "_source": "Homebrew"
+      },
+      {
+        "name": "Resourceful",
+        "id": "pub24_species_human-resourceful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Skillful",
+        "id": "pub24_species_human-skillful",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Versatile",
+        "id": "pub24_species_human-versatile",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Human"
+      },
+      {
+        "name": "Rage",
+        "id": "pub24_barbarian-rage",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 4,
+        "uses_current": 4
+      },
+      {
+        "name": "Unarmored Defense",
+        "id": "pub24_barbarian-unarmored-defense",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_barbarian-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Danger Sense",
+        "id": "pub24_barbarian-danger-sense",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Reckless Attack",
+        "id": "pub24_barbarian-reckless-attack",
+        "type": "feature",
+        "level_gained": 2,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Primal Knowledge",
+        "id": "pub24_barbarian-primal-knowledge",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Extra Attack",
+        "id": "pub24_barbarian-extra-attack",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Fast Movement",
+        "id": "pub24_barbarian-fast-movement",
+        "type": "feature",
+        "level_gained": 5,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Feral Instinct",
+        "id": "pub24_barbarian-feral-instinct",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Instinctive Pounce",
+        "id": "pub24_barbarian-instinctive-pounce",
+        "type": "feature",
+        "level_gained": 7,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Frenzy",
+        "id": "pub24_sub_barbarian-path-of-the-berserker-frenzy",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Mindless Rage",
+        "id": "pub24_sub_barbarian-path-of-the-berserker-mindless-rage",
+        "type": "feature",
+        "level_gained": 6,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Fighting Style",
+        "id": "pub24_fighter-fighting-style",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Second Wind",
+        "id": "pub24_fighter-second-wind",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter",
+        "action_type": "bonus_action",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_fighter-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Fighter"
+      },
+      {
+        "name": "Skilled",
+        "id": "pub24_feat-skilled",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Noble",
+        "level_gained": 1,
+        "choices": {
+          "skills": [
+            "Investigation",
+            "Insight",
+            "Medicine"
+          ],
+          "tools": []
+        }
+      },
+      {
+        "name": "Weapon Mastery: Greataxe",
+        "type": "weaponMastery",
+        "weapon": "greataxe",
+        "mastery": "cleave",
+        "_source": "Barbarian",
+        "level_gained": 8
+      },
+      {
+        "name": "Weapon Mastery: Greatsword",
+        "type": "weaponMastery",
+        "weapon": "greatsword",
+        "mastery": "graze",
+        "_source": "Barbarian",
+        "level_gained": 8
+      },
+      {
+        "name": "Weapon Mastery: Warhammer",
+        "type": "weaponMastery",
+        "weapon": "warhammer",
+        "mastery": "push",
+        "_source": "Barbarian",
+        "level_gained": 8
+      },
+      {
+        "name": "Weapon Mastery: Handaxe",
+        "type": "weaponMastery",
+        "weapon": "handaxe",
+        "mastery": "vex",
+        "_source": "Fighter",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Javelin",
+        "type": "weaponMastery",
+        "weapon": "javelin",
+        "mastery": "slow",
+        "_source": "Fighter",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Spear",
+        "type": "weaponMastery",
+        "weapon": "spear",
+        "mastery": "sap",
+        "_source": "Fighter",
+        "level_gained": 1
       }
     ],
     "spells": [],
@@ -8206,7 +11159,7 @@
       {
         "name": "Barbarian",
         "level": 8,
-        "subclass": "Berserker",
+        "subclass": "Path of the Berserker",
         "started": true
       },
       {
@@ -8218,7 +11171,9 @@
     "notes": "Born to nobility, but no one knows — he's too lowbrow to understand it or convey it to anyone. Just a wall of muscle who doesn't even like weapons: he punches and he throws things. One day his lineage might come into the light. A genetic anomaly: unusually strong and tough, and not at all bright. Skills: Athletics, Intimidation, Animal Handling, Survival — nothing more; the Noble background's other skills (History, Persuasion) are deliberately left out, he has other things that make him good.",
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
-    "unarmed_strike_die": "1d4"
+    "unarmed_strike_die": "1d4",
+    "ruleset": "2024",
+    "migrated_to_2024": true
   },
   {
     "id": "characters_32",
@@ -8227,7 +11182,7 @@
     "image": "./characters/marnock.jpg",
     "genus": "Gnome",
     "subgenus": "Forest Gnome",
-    "background": "Laborer",
+    "background": "Farmer",
     "level": 1,
     "stat_str": 16,
     "stat_dex": 10,
@@ -8319,17 +11274,39 @@
     ],
     "features": [
       {
-        "name": "Natural Illusionist",
-        "id": null,
+        "name": "Darkvision",
+        "id": "pub24_species_gnome-darkvision",
         "type": "speciesTrait",
-        "spells_granted": [
-          "Minor Illusion"
-        ],
-        "_source": "Natural Illusionist"
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Gnomish Cunning",
+        "id": "pub24_species_gnome-gnomish-cunning",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Gnomish Lineage",
+        "id": "pub24_species_gnome-gnomish-lineage",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome"
+      },
+      {
+        "name": "Forest Gnome",
+        "id": "pub24_species_gnome-forest-gnome",
+        "type": "speciesTrait",
+        "level_gained": 1,
+        "_source": "Gnome",
+        "recharge": "long_rest",
+        "uses_max": 2,
+        "uses_current": 2
       },
       {
         "name": "Rage",
-        "id": "rage",
+        "id": "pub24_barbarian-rage",
         "type": "feature",
         "level_gained": 1,
         "_source": "Barbarian",
@@ -8340,10 +11317,41 @@
       },
       {
         "name": "Unarmored Defense",
-        "id": "barbarian-unarmored-defense",
+        "id": "pub24_barbarian-unarmored-defense",
         "type": "feature",
         "level_gained": 1,
         "_source": "Barbarian"
+      },
+      {
+        "name": "Weapon Mastery",
+        "id": "pub24_barbarian-weapon-mastery",
+        "type": "feature",
+        "level_gained": 1,
+        "_source": "Barbarian"
+      },
+      {
+        "name": "Tough",
+        "id": "pub24_feat-tough",
+        "type": "feat",
+        "_grant": "origin",
+        "_source": "Farmer",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Greataxe",
+        "type": "weaponMastery",
+        "weapon": "greataxe",
+        "mastery": "cleave",
+        "_source": "Barbarian",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery: Handaxe",
+        "type": "weaponMastery",
+        "weapon": "handaxe",
+        "mastery": "vex",
+        "_source": "Barbarian",
+        "level_gained": 1
       }
     ],
     "spells": [],
@@ -8368,6 +11376,8 @@
       "Counts every room's occupants on entry and reads structural soundness at a glance.",
       "Patient until forced to rage.",
       "Can't take thanks. Sleeps badly and is short-tempered when woken."
-    ]
+    ],
+    "ruleset": "2024",
+    "migrated_to_2024": true
   }
 ]
