@@ -434,5 +434,58 @@
     "detail": "How does a question-free banking haven come to exist in the middle of a high desert at all? This is the answer.\n\nLightning striking sand at altitude here doesn't behave like it does elsewhere — it fuses the ground into glass, the way it does in deserts everywhere, except the local weave's strangeness (permanent magical structures here require extra anchoring work, and the region's one attempted teleportation circle failed and vanished after four months) means the resulting glass — locally called duskglass — holds a latent anchoring property nowhere else naturally produces. It's the only substance that reliably stabilizes permanent magical structures under Orvath's warped-weave conditions. The Orvath Banking Institution's vaults are built on it.\n\nWhich means the nomadic clans aren't a marginal population living around the edges of a \"real\" city — they're the ones who find and race for duskglass after a storm, before shifting sand buries it or a rival clan beats them to it, and the entire settled economy of Orvath, including its precious banking secrecy, depends on what they bring back. That's the reason for one city and a large nomadic population besides: the city can't function without them, and everyone there knows it. It's also the load-bearing logic behind the region's elven-Mongolian cultural mix and its clan-based social structure persisting inside an otherwise very settled, very bureaucratic banking city — the clans hold real leverage, not just cultural presence.",
     "date": "Ongoing; no date set",
     "source_session": "DM design, not yet seen in play"
+  },
+  {
+    "id": "the-quarter-001",
+    "title": "The Quarter",
+    "type": "faction_history",
+    "location_tags": [
+      "aranwald",
+      "torwald",
+      "feldtazur",
+      "qalmarrow"
+    ],
+    "entity_tags": [
+      "the_quarter",
+      "couriers"
+    ],
+    "status": "known_to_party",
+    "summary": "The Quarter: a courier and logistics organization that hand-carries everything and binds its retired couriers as undead labor.",
+    "detail": "The Quarter runs courier posts marked with a point-down triangle with a horizontal line; a wyvern mark also appears on its packets. Couriers wear grey coats or cloaks and a numbered bone ring, a non-magical badge of seniority (ring 1 is the highest rank; a bound courier cannot raise a hand against anyone of higher rank). The Quarter avoids magical travel because it is traceable, and carries everything by hand. Retired couriers are put under poppy smoke, tagged T-xxx, and bound as dormant undead labor; a ledger records the originals (see the lore entry \"valdric-compact-001\"). Its central post is called the Hand (see the place Qalmarrow).",
+    "date": "Ongoing",
+    "source_session": "Days 97-101, Year 468"
+  },
+  {
+    "id": "valdric-compact-001",
+    "title": "The Valdric Compact",
+    "type": "faction_history",
+    "location_tags": [
+      "torwald",
+      "aranwald"
+    ],
+    "entity_tags": [
+      "valdric_compact",
+      "bound_dead"
+    ],
+    "status": "known_to_party",
+    "summary": "The Valdric Compact: the larger organization behind the bound dead.",
+    "detail": "The Compact binds corpses with black wax discs pressed on the palm and brow. It first surfaced through documents recovered at the Standing Stone Plateau (see that place), and the Quarter's dormant bound dead are its work.",
+    "date": "Ongoing",
+    "source_session": "Days 97-101, Year 468"
+  },
+  {
+    "id": "bargain-ties-001",
+    "title": "Bargain-ties",
+    "type": "magical_tradition",
+    "location_tags": [],
+    "entity_tags": [
+      "caelirune",
+      "paired_wards"
+    ],
+    "status": "known_to_party",
+    "summary": "Gate-marked paired wards sold in markets, one half for each party to a deal.",
+    "detail": "A bargain-tie is a pair of wards marked with Caelirune's arched gate (see the religion Caelirune), sold in markets. Each half is held by one party to a bargain.",
+    "date": "Ongoing",
+    "source_session": "Days 97-101, Year 468"
   }
 ]

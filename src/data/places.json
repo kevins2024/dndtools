@@ -1043,13 +1043,29 @@
       {
         "name": "Hammer Street",
         "description": "Hammer Street is a long, narrow lane in the oldest part of the city, with workshops on both sides and the smell of hot iron, sawdust and woodsmoke. Behind the Pelt Market, past a row of tanners with hides stretched on frames, it runs between coopers' and smiths' yards. Roofs along the street run together in a long, uneven line of tile."
+      },
+      {
+        "name": "Upper Ward",
+        "description": "The administrative heart of the city: clerks, the assay house, the weights hall, the Hall of Records, and the Keep gate with its public weights."
+      },
+      {
+        "name": "Pelt Market",
+        "description": "Tanners' lanes and a tannery vat yard."
+      },
+      {
+        "name": "Ledger Row",
+        "description": "The merchants' street. A tearoom under a kettle sign serves Hollin leaf tea."
+      },
+      {
+        "name": "Drovers' sheds",
+        "description": "Sheds for drovers and their stock, at the edge of the city."
       }
     ],
     "locations": [
       {
         "name": "Market Gate",
         "type": "checkpoint",
-        "description": "Wide open gate, the busiest and easiest to find, thick with carts and merchants at breakfast hour.",
+        "description": "Wide open gate, the busiest and easiest to find, thick with carts and merchants at breakfast hour. Carters and traffic heading east pass through it.",
         "notes": ""
       },
       {
@@ -1061,7 +1077,7 @@
       {
         "name": "The Tinker's Arcade",
         "type": "market",
-        "description": "Long covered gallery on the north side of the market, home to the smaller, odder trades.",
+        "description": "Long covered gallery on the north side of the market, home to the smaller, odder trades: small craft stalls selling lenses, herbs and clockwork.",
         "notes": ""
       },
       {
@@ -1087,6 +1103,44 @@
         "type": "inn_tavern",
         "description": "Big inn near the Market Gate whose landlord keeps a book for travelers who need to find each other.",
         "notes": "Established by suggestion; not yet visited."
+      },
+      {
+        "name": "Folkmote Hall",
+        "type": "administrative",
+        "description": "A long pale building with a clock tower, wide steps, notice boards and a small plaza with a dry fountain. Clerks leave at the fourth bell.",
+        "notes": "The assessors' office here keeps the toll and seal books."
+      },
+      {
+        "name": "The Ringfold",
+        "type": "venue",
+        "district": "Drovers' sheds",
+        "description": "A sunken ring walled with old sheepfold stones and a plank rail, among the drovers' sheds. Mornings are blunted practice bouts that anyone can watch; evenings are loud team bouts of four with padded staves and bare hands, won by putting the other side over the rail or forcing a yield. No metal armor or shields on the sand (a venue rule, not RAW).",
+        "notes": "Ring-warden Edda Marsk calls the bouts."
+      },
+      {
+        "name": "The Gilded Spur",
+        "type": "inn_tavern",
+        "district": "Upper Ward",
+        "description": "Pricey inn with an open song floor and a nightly singing contest; the winner's tab is free.",
+        "notes": "Landlord: Garmund Teasel."
+      },
+      {
+        "name": "The Smiling Anvil",
+        "type": "inn_tavern",
+        "description": "A bathhouse inn: forge waste heat is piped into stone tubs, and the rooms are small and warm.",
+        "notes": ""
+      },
+      {
+        "name": "The Honest Measure",
+        "type": "inn_tavern",
+        "description": "Huge, loud inn near the Market Gate. The city's standard ale pot is nailed over the bar.",
+        "notes": ""
+      },
+      {
+        "name": "The Fair Weight",
+        "type": "inn_tavern",
+        "description": "A modest, quiet inn.",
+        "notes": ""
       }
     ],
     "flair": "The capital of a culture that has decided it represents authentic tradition. Everything here is done the right way — which is also the old way. Impressive in the manner of things preserved with great care. Visitors often feel they are being judged against a standard they were never told about."
@@ -1167,6 +1221,12 @@
         "name": "Ferry Landing",
         "description": "Rope-ferry crossing with a stable for ferry traffic, barges tied along the bank, and mist off the river in the mornings.",
         "notes": ""
+      },
+      {
+        "name": "The upriver mill",
+        "type": "workshop",
+        "description": "A mill upriver of the old bandit camp.",
+        "notes": ""
       }
     ],
     "flair": "A town that exists because people have to wait for a boat. Everyone in it is either leaving, arriving, or selling something to someone who is."
@@ -1209,7 +1269,7 @@
     "name": "Hathstead",
     "type": "town",
     "region": "Torwald",
-    "description": "A grown-up market town southwest of Filian's Keep, on the main trade road to Argentveil. The name reads as 'Hath's stead': a founder's name plus the old word for a farmstead, worn smooth over generations. The oldest part is low stone cottages around a green with an inn. The prosperous part has ornate guild halls of fitted grey stone with carved lintels and iron-banded doors, and a clock tower over a square paved in a pattern of pale and dark flagstones. Streets are clean and shopfronts wide. Argentveil-cut merchants keep stalls with imported cloth and spices, and shops stay open late. A quieter older stretch has workshops tucked between cottages.",
+    "description": "A grown-up market town west-southwest of Filian's Keep, on the main trade road to Argentveil. The name reads as 'Hath's stead': a founder's name plus the old word for a farmstead, worn smooth over generations. The oldest part is low stone cottages around a green with an inn. The prosperous part has ornate guild halls of fitted grey stone with carved lintels and iron-banded doors, and a clock tower over a square paved in a pattern of pale and dark flagstones. Streets are clean and shopfronts wide. Argentveil-cut merchants keep stalls with imported cloth and spices, and shops stay open late. A quieter older stretch has workshops tucked between cottages.",
     "notes": "Harvest-eve gatherings are held on the green.",
     "districts": [],
     "locations": [
@@ -1266,11 +1326,177 @@
     "name": "Feldtazur",
     "type": "city",
     "region": "Aranwald",
-    "description": "Capital of Aranwald. The city visually layers 200 years of Solvaran architecture over the older Torwald-origin construction beneath — arched courtyards, geometric tilework, and repurposed minarets sit alongside the original Saxon-influenced stonework. The Solvaran additions are displayed as trophies, not erased as shame. Walking through Feldtazur is a study in the prince's founding philosophy: we didn't just conquer the land, we conquered everything. Name coined by the prince — Anglo 'feld' + Persian-derived 'tazur'.",
+    "description": "Capital of Aranwald. The city visually layers 200 years of Solvaran architecture over the older Torwald-origin construction beneath — arched courtyards, geometric tilework, and repurposed minarets sit alongside the original Saxon-influenced stonework. The Solvaran additions are displayed as trophies, not erased as shame. Walking through Feldtazur is a study in the prince's founding philosophy: we didn't just conquer the land, we conquered everything. Name coined by the prince — Anglo 'feld' + Persian-derived 'tazur'. The walls are a circuit of grey Saxon-style stone with Solvaran trophies (captured standards and bronze eagles) bolted onto the older arches. The east gate has a gate tower with a banner; behind a row of granaries lies a walled receiving yard.",
+    "faction_presence": [
+      "Feldtazur Guard",
+      "The Quarter"
+    ],
     "notes": "Feldtazur is surrounded by many smaller towns that grew up around old watchtowers rather than outside its walls, and is kept smaller than Argentveil. See the lore entry \"capitals-watchtower-towns-001\" (the watchtower towns around both capitals).",
-    "districts": [],
-    "locations": [],
+    "districts": [
+      {
+        "name": "Wirewrights' Lane",
+        "description": "Three genuine filigree shops, none of them marked."
+      },
+      {
+        "name": "Bridge Row",
+        "description": "Two filigree shops by the river."
+      },
+      {
+        "name": "Old-wall district",
+        "description": "The district along the old city wall, where newer buildings straddle the older stonework."
+      },
+      {
+        "name": "Dyers' Row",
+        "description": "A row behind the Caelirune gate. Mitra's laundry is here."
+      }
+    ],
+    "locations": [
+      {
+        "name": "Ganderveldt's stable",
+        "type": "service",
+        "description": "Stable by Gulwater Green. 2 sp per horse.",
+        "notes": ""
+      },
+      {
+        "name": "East gate livery",
+        "type": "service",
+        "description": "Livery at the east gate, kept by Parizad Wendel. 6 sp per horse.",
+        "notes": ""
+      },
+      {
+        "name": "Temple of Caelirune",
+        "type": "temple",
+        "description": "Caelirune's temple, a few yards past Ganderveldt's stable at Gulwater Green.",
+        "notes": ""
+      },
+      {
+        "name": "Gulwater Green",
+        "type": "landmark",
+        "description": "A large park where the city's stream drops down a short cliff ramp and runs on into the Freshwater Wheel.",
+        "notes": ""
+      },
+      {
+        "name": "The Freshwater Wheel",
+        "type": "inn_tavern",
+        "description": "Old mill inn on the stream, the wheel still turning behind glass. One of the few inns on the continent with en suite hot baths.",
+        "notes": ""
+      },
+      {
+        "name": "Whitlock's courier house",
+        "type": "business",
+        "district": "Bridge Row",
+        "description": "The Quarter's Feldtazur courier house, behind Whitlock's front shop on Bridge Row. Iron-banded door with a brass plate of the Quarter mark, a vault below holding a plinth, and a water-gate landing on the river.",
+        "notes": ""
+      },
+      {
+        "name": "The Gatehouse",
+        "type": "facility",
+        "district": "Old-wall district",
+        "description": "A newer building straddling the old city wall. Ground floor: a front hall (bell and rope) leads to a passage west through the thickness of the wall; stairs up and down come off the passage; a stone door at the stair's foot opens into the wall; a side door on the east side; a braziers' alcove, then the long room's iron door (bar on the passage side, vents high up). Basement: eight chalk squares where thralls wait, and a rack of leather aprons. Upper floor, on the old wall-top: Fenmoor's office.",
+        "notes": "The Quarter's receiving house for bound dead. The long room held the poppy smoke, tags and six crates of dormant bound dead."
+      },
+      {
+        "name": "The Dry Fountain",
+        "type": "tea_house",
+        "description": "A courtyard teahouse two streets up from Bridge Row.",
+        "notes": ""
+      },
+      {
+        "name": "Gulwater Green watch-house",
+        "type": "government_office",
+        "description": "A squat stone building with a bench at the door.",
+        "notes": ""
+      },
+      {
+        "name": "Feldtazur Guard barracks",
+        "type": "military",
+        "description": "Barracks by the east gate. The guard wear dark-blue tabards with a white eagle cut down to look like a heron. A night captain keeps his bell until two.",
+        "notes": "Since last winter a standing order (sealed in black wax, burned unread) says grey coats are not to be stopped, searched or questioned on the street."
+      }
+    ],
     "flair": "A capital built to prove a philosophical point: that to conquer something is to own everything about it, including its beauty. Persian-Anglo aesthetic fusion that is layered, intentional, and never subtle. The architecture alone tells the kingdom's entire founding story."
+  },
+  {
+    "name": "Hallamar",
+    "type": "town",
+    "region": "Aranwald",
+    "description": "A small river town due east of Feldtazur on the river road. Whitewashed houses with flat clay roofs under thatch, built close to a weir and ferry.",
+    "notes": "Local authority is split between the reeve and the river-wardens.",
+    "districts": [],
+    "locations": [
+      {
+        "name": "Hallamar weir",
+        "type": "infrastructure",
+        "description": "The town weir. A cracked oak beam on the centre sluice gate is being repaired under a joint order from the reeve and the river-warden.",
+        "notes": ""
+      },
+      {
+        "name": "The Sleeping Heron",
+        "type": "inn_tavern",
+        "description": "The town's inn.",
+        "notes": ""
+      },
+      {
+        "name": "Market row",
+        "type": "market",
+        "description": "Holds the reeve's office and the river-wardens' office, and Quillibret Noss's lean-to at its end.",
+        "notes": ""
+      },
+      {
+        "name": "Reeve's office",
+        "type": "government_office",
+        "description": "Three whitewashed cells in the cellar.",
+        "notes": ""
+      },
+      {
+        "name": "River-wardens' office",
+        "type": "government_office",
+        "description": "A green door with a brass fish.",
+        "notes": ""
+      },
+      {
+        "name": "Weir-keeper's lodge",
+        "type": "location",
+        "description": "A low stone building with a slate roof at the head of the weir. The wardens' seal on the door has been cut by common consent. Dry cellar with a lifting flagstone over a hollow. Beneath a rug in the main room is a dormant teleportation circle of eight runes, one nudged out of true.",
+        "notes": "Odo's notebook holds sigil sequences for two destinations (Wall, Mill); a third page is torn out. Private: a phylactery lies under the lifted flagstone in the cellar."
+      },
+      {
+        "name": "Mahsa's dye-yard",
+        "type": "workshop",
+        "description": "A dye-yard and barn by the weir.",
+        "notes": ""
+      },
+      {
+        "name": "Quillibret Noss's lean-to",
+        "type": "shop",
+        "description": "A lean-to at the end of the market row. Sells wards, remedies, slick-oil (Grease in a bottle), and hush-wards that dull casual scrying.",
+        "notes": ""
+      },
+      {
+        "name": "Gallows",
+        "type": "landmark",
+        "description": "On the green; unused in Hesterna's lifetime.",
+        "notes": ""
+      }
+    ]
+  },
+  {
+    "name": "Bethasan",
+    "type": "town",
+    "region": "Aranwald",
+    "description": "A town due north of Feldtazur. Unexplored.",
+    "notes": "",
+    "districts": [],
+    "locations": []
+  },
+  {
+    "name": "Qalmarrow",
+    "type": "town",
+    "region": "Aranwald",
+    "description": "A hilltop town southeast of Feldtazur, off the roads. A Solvaran signal tower stands on the hill, with a cistern beneath the east flank. Men in clean boots turn away the hay-cart, and a lantern burns at the back door in daylight.",
+    "notes": "Secret: this is the Quarter's \"Hand\" (see the lore entry \"the-quarter-001\"). The party knows it only as a tower on a hill.",
+    "districts": [],
+    "locations": []
   },
   {
     "name": "Yshavar",

@@ -1730,5 +1730,299 @@
     "personality_traits": "Neutral/busy, baseline. Terse, bargains hard, won't ask for help.",
     "personality_quirks": "Her first question is where the oxen stand.",
     "id": "npcs_130"
+  },
+  {
+    "name": "Hargrim Eskild",
+    "location": "Filian's Keep, The Tinker's Arcade",
+    "faction": "Independent",
+    "role": "Lens maker",
+    "appearance": "Dwarf, 60s.",
+    "notes": "Keeps a locked drawer of unusual lenses.",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "Proud. Does not haggle.",
+    "personality_quirks": "",
+    "id": "npcs_131"
+  },
+  {
+    "name": "Leofwin Thackray",
+    "location": "Filian's Keep, The Tinker's Arcade",
+    "faction": "Independent",
+    "role": "Herbalist",
+    "appearance": "Half-elf, 40.",
+    "notes": "Sells healing herbs, antitoxin and herbalism kits.",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_132"
+  },
+  {
+    "name": "Peddrek Lowfen",
+    "location": "Filian's Keep, The Tinker's Arcade",
+    "faction": "Independent",
+    "role": "Toy and clockwork seller",
+    "appearance": "",
+    "notes": "",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_133"
+  },
+  {
+    "name": "Garmund Teasel",
+    "location": "Filian's Keep, The Gilded Spur",
+    "faction": "Independent",
+    "role": "Landlord of the Gilded Spur",
+    "appearance": "Human man, 50s. Former court piper.",
+    "notes": "",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_134"
+  },
+  {
+    "name": "Cedd",
+    "location": "Filian's Keep, The Gilded Spur",
+    "faction": "Independent",
+    "role": "Boy with a singing talent",
+    "appearance": "Boy.",
+    "notes": "Lives with his grandmother, Gran Wulfrun.",
+    "status": [
+      "civilian"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_135"
+  },
+  {
+    "name": "Edda Marsk",
+    "location": "Filian's Keep, The Ringfold",
+    "faction": "Independent",
+    "role": "Ring-warden",
+    "appearance": "Human woman, 60s. Tall, with a limp and a voice like a gate hinge.",
+    "notes": "",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_136"
+  },
+  {
+    "name": "Dagnild Brackenmar",
+    "location": "Unknown",
+    "faction": "Independent",
+    "role": "Trader of surveying tools and pickled river fish; retired caravan guard",
+    "appearance": "Dwarf who looks 55 but is about 170. Salt-and-pepper braids tied with leather cord.",
+    "notes": "",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "Lawful neutral. Practical and dry.",
+    "personality_quirks": "Counts everything.",
+    "id": "npcs_137"
+  },
+  {
+    "name": "G",
+    "location": "Feldtazur / travelling",
+    "faction": "The Quarter",
+    "role": "Courier-collector, kept bound through its ring chain",
+    "appearance": "Undead woman in her forties. Dark hair pinned hard, slate-coloured travelling cloak, bare hands. No pulse, no fogging breath, cold touch. Low, unhurried river-country voice.",
+    "notes": "Identity lost. Cannot raise a hand to anyone of higher rank. Drives a closed carriage with a locked panel under the seat. Wants release, but only after seeing Ring 1's face.",
+    "status": [
+      "uncertain"
+    ],
+    "personality_traits": "Speaks plainly and quietly.",
+    "personality_quirks": "",
+    "id": "npcs_138"
+  },
+  {
+    "name": "Kamran Whitlock",
+    "location": "Hallamar",
+    "faction": "The Quarter (ring 3)",
+    "role": "Wire-worker; ran the Feldtazur courier house",
+    "appearance": "Man in his seventies, fussy and stooped. Left-hand bone ring 3.",
+    "notes": "Ran the Feldtazur courier house from behind a filigree shop on Bridge Row. Fled to his sister, Mahsa Tarrant, in Hallamar. Made the party's hat clasp (silver wirework, a single narrow leaf).",
+    "status": [
+      "cautious ally"
+    ],
+    "personality_traits": "Fussy.",
+    "personality_quirks": "",
+    "id": "npcs_139"
+  },
+  {
+    "name": "Mahsa Tarrant",
+    "location": "Hallamar, Mahsa's dye-yard",
+    "faction": "Independent",
+    "role": "Dyer; widow of a miller",
+    "appearance": "Grey-haired woman, blue arms to the elbow.",
+    "notes": "Kamran Whitlock's sister.",
+    "status": [
+      "civilian"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_140"
+  },
+  {
+    "name": "Hesterna Dobrek",
+    "location": "Hallamar, River-wardens' office",
+    "faction": "Hallamar river-wardens",
+    "role": "River-warden",
+    "appearance": "Dwarf woman, sixties, wiry. Wet boots.",
+    "notes": "Grieving her sister's husband Odo, the old weir-keeper, who drowned in the flood three years ago; keeps a weir lamp lit at dusk in his memory. Knows of the weir-keeper's lodge's dormant teleportation circle and has kept it secret. Holds the party's secret about the phylactery.",
+    "status": [
+      "friendly"
+    ],
+    "personality_traits": "Blunt.",
+    "personality_quirks": "",
+    "id": "npcs_141"
+  },
+  {
+    "name": "Brannock Pellam",
+    "location": "Hallamar, Reeve's office",
+    "faction": "Hallamar",
+    "role": "Reeve",
+    "appearance": "Halfling, fifties, stout. Ink-stained cuffs; sits on a raised stool.",
+    "notes": "Wants things signed and the deadlock gone. His daughter marries in about nine days (as of Day 100, Year 468).",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_142"
+  },
+  {
+    "name": "Quillibret Noss",
+    "location": "Hallamar, Quillibret Noss's lean-to",
+    "faction": "Independent",
+    "role": "Hedge-wizard; sells wards, remedies and slick-oil",
+    "appearance": "Gnome with a wild grey braid and a scorched apron.",
+    "notes": "Her father and grandfather rebuilt Qalmarrow's east cistern eighteen years ago.",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_143"
+  },
+  {
+    "name": "Zareen Ashdown",
+    "location": "Hallamar (prisoner)",
+    "faction": "The Quarter (ring 26)",
+    "role": "Tracker",
+    "appearance": "Half-elf, thirties.",
+    "notes": "Taken prisoner at Hallamar. Her sister Mitra runs a laundry on Dyers' Row, Feldtazur; the passphrase \"The pear tree is down\" will send Mitra running.",
+    "status": [
+      "in custody"
+    ],
+    "personality_traits": "Wavering; honest under the Zone of Truth.",
+    "personality_quirks": "",
+    "id": "npcs_144"
+  },
+  {
+    "name": "Rhodan",
+    "location": "Hallamar (prisoner)",
+    "faction": "The Quarter (ring 38)",
+    "role": "Tracker",
+    "appearance": "Thick-shouldered. Ring 38 worn on a cord.",
+    "notes": "Admits carrying six people to the Gatehouse. His thick-soled boots are unexamined.",
+    "status": [
+      "in custody"
+    ],
+    "personality_traits": "Unrepentant.",
+    "personality_quirks": "",
+    "id": "npcs_145"
+  },
+  {
+    "name": "Night sergeant of the Gulwater Green watch-house",
+    "location": "Feldtazur, Gulwater Green watch-house",
+    "faction": "Feldtazur Guard",
+    "role": "Night sergeant",
+    "appearance": "",
+    "notes": "Lost a nephew, a dispatch boy, to the Quarter last winter. Aids the party quietly.",
+    "status": [
+      "friendly"
+    ],
+    "personality_traits": "Honest, tired.",
+    "personality_quirks": "",
+    "id": "npcs_146"
+  },
+  {
+    "name": "Night keeper of Caelirune",
+    "location": "Feldtazur, Temple of Caelirune",
+    "faction": "Temple of Caelirune",
+    "role": "Night keeper; tends the temple",
+    "appearance": "Small, stooped figure in a plain grey robe.",
+    "notes": "Read the rite over the Gatehouse dead.",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_147"
+  },
+  {
+    "name": "The black-wax runner",
+    "location": "Southeast road into Feldtazur",
+    "faction": "The Quarter",
+    "role": "Carries Ring 1's sealed orders",
+    "appearance": "Woman on a pale mare.",
+    "notes": "Carries Ring 1's sealed orders from the southeast road into Feldtazur. G has seen her twice.",
+    "status": [
+      "unknown"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_148"
+  },
+  {
+    "name": "Hormazd Teague",
+    "location": "Feldtazur, The Freshwater Wheel",
+    "faction": "Independent",
+    "role": "Keeper of the Freshwater Wheel",
+    "appearance": "Sixties. Slow-talking.",
+    "notes": "Hears everything. Thelsen Teague, a legendary wizard, is said to be a relation (the legend is still to be defined).",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_149"
+  },
+  {
+    "name": "Shezravek \"Shez\" Dreskakh",
+    "location": "Feldtazur, The Freshwater Wheel",
+    "faction": "Independent",
+    "role": "Serving woman",
+    "appearance": "Green dragonborn, thirties.",
+    "notes": "",
+    "status": [
+      "neutral"
+    ],
+    "personality_traits": "Dry and quick.",
+    "personality_quirks": "",
+    "id": "npcs_150"
+  },
+  {
+    "name": "Ardeshir Fenmoor",
+    "location": "Feldtazur, The Gatehouse",
+    "faction": "The Quarter (ring 2)",
+    "role": "The Receiver",
+    "appearance": "",
+    "notes": "Ran the Gatehouse for the Quarter. Killed by the party.",
+    "status": [
+      "deceased"
+    ],
+    "personality_traits": "",
+    "personality_quirks": "",
+    "id": "npcs_151"
   }
 ]
