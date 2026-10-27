@@ -21,7 +21,7 @@
     "armor": ["light"],
     "weapons": [],
     "skills": { "choose": 1, "from": "class skill list" },
-    "tools": { "fixed": ["thieves' tools"] }
+    "tools": ["thieves' tools"]
   },
   "Sorcerer": { "armor": [], "weapons": [] },
   "Warlock": { "armor": ["light"], "weapons": [] },
@@ -30,6 +30,6 @@
     "armor": ["light", "medium", "shields"],
     "weapons": [],
     "skills": { "choose": 1, "from": "class skill list" },
-    "tools": { "fixed": ["tinker's tools"] }
+    "tools": ["tinker's tools"]
   }
 }
