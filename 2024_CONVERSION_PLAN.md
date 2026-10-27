@@ -59,15 +59,15 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
 - [~] **5. Feats and spells** — 75 PHB feats and 391 PHB spells (`src/data/spells_2024.json`) with 2024 class lists;
   lookups are ruleset-aware. Spells from other official 2024 books can be added with
   `scripts/ingest-2024-spells.js --source "<book>"`.
-- [~] **6. Roster migration** — `migrate2024.js` + `scripts/migrate-roster-2024.js` done; the review is in
-  `2024_MIGRATION_REPORT.md`, proposed backgrounds in `2024_MIGRATION_ANSWERS.json`. **Not applied** to
-  `characters.json` until the project owner signs off.
+- [x] **6. Roster migration** — `migrate2024.js` + `scripts/migrate-roster-2024.js`. All 28 characters were migrated on
+      2026-10-27 using the answers in `2024_MIGRATION_ANSWERS.json` (backgrounds, Human Versatile/Skillful, origin-feat picks,
+      Weapon Mastery, orders, Expertise, Metamagic, invocations, new prepared spells); the per-character review is
+      `2024_MIGRATION_REPORT.md`. The 2014 roster is frozen in `engine/test/fixtures/roster2014.json` (and in git history).
 - [~] **7. Server/UI + docs** — `server.js` engine routes take `?ruleset=` and there is `POST /api/engine/migrate-2024`.
   CLAUDE.md and the engine checklist are updated. Vue screens (ruleset badge, legacy badge, 2024 pick UIs, New
   Character flow, conditions) are still to do. `npm run build` passes.
 
 ## Open questions for the project owner
 
-- Which 2024 background each of the 19 characters without one should take (proposals in `2024_MIGRATION_ANSWERS.json`).
-- Iyani's homebrew background "Daughter of the Weave": keep as legacy with a chosen origin feat, or map to a 2024 one?
-- Weapon Mastery picks (about 20 of them) — suggestions come from equipped weapons; the rest need an answer.
+- None blocking. Every pick in the migration was a judgement call made by Claude under the owner's "keep playability, don't
+  give every caster cantrips" rule; adjust any of them in `2024_MIGRATION_ANSWERS.json` (re-run against the 2014 fixture) or on the sheet.

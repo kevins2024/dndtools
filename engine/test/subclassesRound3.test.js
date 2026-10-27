@@ -38,15 +38,8 @@ test('Bladesinger resolves under the name actually used on the roster ("Bladesin
 })
 
 test('Tackett\'s actual Circle of Stars features resolve under "Circle of Stars" (not "Circle of the Stars")', () => {
-  const path = require('path')
-  const characters = require(path.join(
-    __dirname,
-    '..',
-    '..',
-    'src',
-    'data',
-    'characters.json'
-  ))
+  // The roster as it was on the 2014 rules (the live file is on 2024 now).
+  const characters = require('./fixtures/roster2014.json')
   const tackett = characters.find((c) => c.name === 'Tackett')
   const sub = engine.loadSubclass('Druid', 'Circle of Stars')
   assert.ok(sub)

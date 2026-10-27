@@ -1,18 +1,12 @@
-// The 2014 -> 2024 character migration, run against the real roster in
-// src/data/characters.json (the same data the app uses).
+// The 2014 -> 2024 character migration, run against a frozen copy of the real roster
+// as it was on the 2014 rules (test/fixtures/roster2014.json; src/data/characters.json
+// itself is on 2024 now).
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const path = require('path')
 const { migrateCharacterTo2024 } = require('../rules/5e/migrate2024')
 
-const roster = require(path.join(
-  __dirname,
-  '..',
-  '..',
-  'src',
-  'data',
-  'characters.json'
-))
+const roster = require('./fixtures/roster2014.json')
 const catalog = require('../data/5e/feature-catalog.json')
 const byName = (n) => roster.find((c) => c.name === n)
 const migrate = (n, opts) => migrateCharacterTo2024(byName(n), opts)
@@ -352,4 +346,11 @@ test('picked invocations and prepared spells are applied; a duplicate is rejecte
     answers: { ...answers.Rith, 'Sorcerer:preparedSpells': ['Counterspell'] },
   })
   assert.ok(dup.warnings.some((w) => /already has Counterspell/.test(w)))
+})
+
+test('Iyani: a homebrew background is reskinned onto a 2024 one and keeps its own name', () => {
+  const c = migrateAnswered('Iyani').character
+  assert.equal(c.background, 'Sage')
+  assert.equal(c.background_flavor, 'Daughter of the Weave')
+  assert.ok(c.background_feature.startsWith('Stella-Vision'))
 })

@@ -658,6 +658,9 @@ function migrateCharacterTo2024(
   if (target) {
     const bg = loadBackground(target, '2024')
     if (bg && !bg.legacy) {
+      // A homebrew background reskinned onto a 2024 one keeps its own name.
+      if (oldBg && key(oldBg) !== key(bg.name) && !BACKGROUND_MAP[oldBg])
+        character.background_flavor = oldBg
       character.background = bg.name
       const featName = bg.feat
       const base = featName.replace(/\s*\(.*\)$/, '')
