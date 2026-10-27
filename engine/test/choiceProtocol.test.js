@@ -257,3 +257,33 @@ test('a feat prerequisite is shown as ineligible with its reason', () => {
   assert.equal(adept.eligible, false)
   assert.ok(adept.reason)
 })
+
+test('the hit point part of a level-up is described with its explanation', () => {
+  const { character } = buildCharacter({
+    className: 'Fighter',
+    subclass: 'Champion',
+    toLevel: 2,
+  })
+  const o = { className: 'Fighter', toLevel: 3 }
+  const rolled = previewLevelUp(character, {
+    ...o,
+    hpMethod: 'roll',
+    hpRolls: [7],
+  })
+  assert.equal(rolled.hp.die, 10)
+  assert.equal(rolled.hp.average, 6)
+  assert.equal(rolled.hp.forcedMax, false)
+  assert.equal(rolled.hp.method, 'roll')
+  assert.equal(rolled.hp.gain, 7 + 2)
+  assert.match(rolled.hp.tooltip, /Hit die \(\+7\)\nCON modifier \(\+2\)\n= 9/)
+  const avg = previewLevelUp(character, { ...o, hpMethod: 'average' })
+  assert.equal(avg.hp.gain, 6 + 2)
+  const first = previewLevelUp(blank('Fighter', 'Champion', '2024'), {
+    className: 'Fighter',
+    toLevel: 1,
+    hpMethod: 'roll',
+    hpRolls: [1],
+  })
+  assert.equal(first.hp.forcedMax, true)
+  assert.equal(first.hp.gain, 10 + 2)
+})

@@ -26,6 +26,7 @@ import WeeklyEvents from './WeeklyEvents.vue'
 import ItemGenerator from './ItemGenerator.vue'
 import DmExport from './DmExport.vue'
 import LevelUpTool from './LevelUpTool.vue'
+import LevelUp from './LevelUp.vue'
 import NewCharacterTool from './NewCharacterTool.vue'
 import JsonIntakeTool from './JsonIntakeTool.vue'
 import DmSettings from './DmSettings.vue'
@@ -41,6 +42,7 @@ export default {
     ItemGenerator,
     DmExport,
     LevelUpTool,
+    LevelUp,
     NewCharacterTool,
     JsonIntakeTool,
     DmSettings,
@@ -76,6 +78,11 @@ export default {
           id: 'level-up',
           label: 'Level Up',
           component: 'LevelUpTool',
+        },
+        {
+          id: 'level-up-engine',
+          label: 'Level Up (engine-driven)',
+          component: 'LevelUp',
         },
         {
           id: 'dm-settings',

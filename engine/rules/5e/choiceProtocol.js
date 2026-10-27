@@ -35,6 +35,7 @@ const {
 const { listSubclasses } = require('./subclasses')
 const { loadClass } = require('./classFeatures')
 const { loadSkill } = require('./skills')
+const { formatBreakdown } = require('./sheet')
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 const titleCase = (s) =>
@@ -647,9 +648,29 @@ function previewLevelUp(character, opts, answers = {}) {
   const { pendingChoices, ...rest } = result
   return {
     ...rest,
+    hp: describeHp(result, opts),
     choices,
     complete: choices.every((c) => c.answered),
     problems,
+  }
+}
+
+// The hit point part of a level-up: what the die is, whether the rules force the maximum (the
+// first level ever), the average, and the gain with the lines that explain it.
+function describeHp(result, opts) {
+  const die = result.description?.hitDie ?? null
+  const entry = (result.description?.hp || [])[0] ?? null
+  const breakdown = result.hpBreakdown || []
+  const gain = breakdown.reduce((n, l) => n + l.amount, 0)
+  return {
+    die,
+    forcedMax: entry?.method === 'max',
+    average: die ? Math.floor(die / 2) + 1 : null,
+    method: entry?.method ?? opts.hpMethod ?? null,
+    rolls: opts.hpRolls ?? [],
+    gain,
+    breakdown,
+    tooltip: formatBreakdown({ value: gain, breakdown }),
   }
 }
 
