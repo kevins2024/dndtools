@@ -1,10 +1,18 @@
 const maneuvers2014 = require('../../data/5e/maneuvers.json')
 const { normalizeRuleset, loadRulesetJson } = require('./ruleset')
+const { mergeLegacy } = require('./legacyMerge')
 
-const maneuversFile = (ruleset) =>
-  normalizeRuleset(ruleset) === '2024'
-    ? loadRulesetJson('2024', 'maneuvers.json') ?? maneuvers2014
-    : maneuvers2014
+const maneuversFile = (ruleset) => {
+  if (normalizeRuleset(ruleset) !== '2024') return maneuvers2014
+  const current = loadRulesetJson('2024', 'maneuvers.json')
+  if (!current) return maneuvers2014
+  // per class: the 2024 maneuvers, plus 2014 ones with no 2024 version (legacy)
+  const out = { ...current }
+  for (const [cls, list] of Object.entries(maneuvers2014))
+    if (!cls.startsWith('_') && list && typeof list === 'object')
+      out[cls] = mergeLegacy(current[cls] ?? {}, list)
+  return out
+}
 
 function normalizeName(name) {
   return (name || '').trim().toLowerCase()

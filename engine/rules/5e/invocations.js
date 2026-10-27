@@ -1,10 +1,14 @@
 const invocations2014 = require('../../data/5e/invocations.json')
+const { mergeLegacy } = require('./legacyMerge')
 const { normalizeRuleset, loadRulesetJson, rulesetOf } = require('./ruleset')
 
 // 2024 invocations are their own list (no Pact Boon — the Pacts are invocations).
 const invocationsFor = (ruleset) =>
   normalizeRuleset(ruleset) === '2024'
-    ? loadRulesetJson('2024', 'invocations.json') ?? invocations2014
+    ? mergeLegacy(
+        loadRulesetJson('2024', 'invocations.json') ?? {},
+        invocations2014
+      )
     : invocations2014
 const pactBoons = require('../../data/5e/pact-boons.json')
 const tables = require('../../data/5e/spellcasting-tables.json')

@@ -434,14 +434,15 @@ test('feat catalog: categories add up, prerequisites parsed or explicitly unknow
 })
 
 test('option lists are the right size and every option has text', () => {
-  assert.equal(listInvocations('2024').length, 28)
+  const current = (list) => list.filter((o) => !o.legacy)
+  assert.equal(current(listInvocations('2024')).length, 28)
   assert.equal(listMetamagicOptions('Sorcerer', '2024').length, 10)
-  assert.equal(listManeuvers('Fighter', '2024').length, 20)
-  for (const o of [
+  assert.equal(current(listManeuvers('Fighter', '2024')).length, 20)
+  for (const o of current([
     ...listInvocations('2024'),
     ...listMetamagicOptions('Sorcerer', '2024'),
     ...listManeuvers('Fighter', '2024'),
-  ]) {
+  ])) {
     assert.ok(o.description.length > 25, o.name)
   }
 })
@@ -600,4 +601,23 @@ test('feature mechanics: every entry points at a real 2024 feature, with a legal
   }
   assert.deepEqual(problems, [])
   assert.ok(featureMechanics('pub24_barbarian-rage'))
+})
+
+test('legacy fallback: nothing from the 2014 invocation and maneuver lists is lost, and a 2024 entry beats a same-named 2014 one', () => {
+  const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const inv24 = listInvocations('2024')
+  for (const i of listInvocations('2014'))
+    assert.ok(
+      inv24.some((x) => key(x.name) === key(i.name)),
+      `${i.name} missing from the 2024 view`
+    )
+  assert.ok(inv24.find((i) => i.name === 'Beast Speech').legacy)
+  assert.ok(!inv24.find((i) => i.name === 'Agonizing Blast').legacy)
+  const man24 = listManeuvers('Fighter', '2024')
+  for (const m of listManeuvers('Fighter', '2014'))
+    assert.ok(
+      man24.some((x) => key(x.name) === key(m.name)),
+      `${m.name} missing from the 2024 view`
+    )
+  assert.ok(man24.find((m) => m.name === 'Brace').legacy)
 })
