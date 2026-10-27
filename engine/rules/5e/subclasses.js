@@ -96,7 +96,10 @@ function listSubclasses(ruleset) {
       .filter((f) => f.endsWith('.json'))
       .map((f) => [f, path.join(SUBCLASSES_DIR, f)])
   )
-  if (normalizeRuleset(ruleset) === '2024' && fs.existsSync(SUBCLASSES_DIR_2024)) {
+  if (
+    normalizeRuleset(ruleset) === '2024' &&
+    fs.existsSync(SUBCLASSES_DIR_2024)
+  ) {
     for (const f of fs.readdirSync(SUBCLASSES_DIR_2024)) {
       if (f.endsWith('.json')) files.set(f, path.join(SUBCLASSES_DIR_2024, f))
     }
@@ -111,27 +114,38 @@ function listSubclasses(ruleset) {
       }
     }
   }
-  return [...files.values()]
-    .map((file) => {
-      const data = JSON.parse(fs.readFileSync(file, 'utf8'))
-      const entry = {
-        class: data.class,
-        name: data.name,
-        expanded_spell_list: data.expanded_spell_list ?? null,
-      }
-      // Every other always-prepared bonus-spell table (domain/oath/circle/
-      // psionic/clockwork/bonus_spells_by_level — see characterSpells.js's
-      // BONUS_SPELL_FIELDS). Before 2026-10-01 only expanded_spell_list made
-      // it into this list, so characterSpells' getBonusSpells silently found
-      // nothing for every one of those fields in the live app.
-      for (const key of Object.keys(data)) {
-        if (key.endsWith('_spells_by_level')) entry[key] = data[key]
-      }
-      return entry
-    })
+  return [...files.values()].map((file) => {
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const entry = {
+      class: data.class,
+      name: data.name,
+      expanded_spell_list: data.expanded_spell_list ?? null,
+      // Under 2024: which tree this came from (a 2014 subclass the 2024 rules
+      // did not rewrite is `legacy`).
+      ...(normalizeRuleset(ruleset) === '2024'
+        ? data.ruleset === '2024'
+          ? { ruleset: '2024' }
+          : { legacy: true }
+        : {}),
+    }
+    // Every other always-prepared bonus-spell table (domain/oath/circle/
+    // psionic/clockwork/bonus_spells_by_level — see characterSpells.js's
+    // BONUS_SPELL_FIELDS). Before 2026-10-01 only expanded_spell_list made
+    // it into this list, so characterSpells' getBonusSpells silently found
+    // nothing for every one of those fields in the live app.
+    for (const key of Object.keys(data)) {
+      if (key.endsWith('_spells_by_level')) entry[key] = data[key]
+    }
+    return entry
+  })
 }
 
-function subclassFeaturesGainedAtLevel(className, subclassName, level, ruleset) {
+function subclassFeaturesGainedAtLevel(
+  className,
+  subclassName,
+  level,
+  ruleset
+) {
   const sub = loadSubclass(className, subclassName, ruleset)
   if (!sub) return []
   return sub.features_by_level[String(level)] || []

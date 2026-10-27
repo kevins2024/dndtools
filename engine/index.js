@@ -30,7 +30,10 @@ const { validateCharacter } = require('./rules/validateCharacter')
 const { describeLevelUp } = require('./rules/5e/levelUp')
 const { diffLevelUp, applyFeatureMechanics } = require('./rules/5e/diffLevelUp')
 const { resolveEffectiveScores } = require('./rules/5e/abilityScores')
-const { loadFeat, isFeatGrantedSpell } = require('./rules/5e/grants')
+const { loadFeat, listFeats, isFeatGrantedSpell } = require('./rules/5e/grants')
+const { rulesetOf, normalizeRuleset } = require('./rules/5e/rulesetId')
+const { migrateCharacterTo2024 } = require('./rules/5e/migrate2024')
+const { resolveChoices2024 } = require('./rules/5e/choices2024')
 const { featureMechanics } = require('./rules/5e/featureMechanics')
 const { resolveFeatureText } = require('./rules/5e/featureText')
 const {
@@ -90,7 +93,11 @@ const {
   applySpeciesBonus,
   traitsFor,
 } = require('./rules/5e/species')
-const { listBackgrounds, loadBackground } = require('./rules/5e/backgrounds')
+const {
+  listBackgrounds,
+  loadBackground,
+  applyBackgroundBonus,
+} = require('./rules/5e/backgrounds')
 const { listSkills, loadSkill } = require('./rules/5e/skills')
 const { listLanguages, loadLanguage } = require('./rules/5e/languages')
 const {
@@ -138,6 +145,12 @@ module.exports = {
   resolveFeatureText,
   resolveEffectiveScores,
   loadFeat,
+  listFeats,
+  rulesetOf,
+  normalizeRuleset,
+  migrateCharacterTo2024,
+  resolveChoices2024,
+  applyBackgroundBonus,
   isFeatGrantedSpell,
   meetsFeatPrerequisites,
   evaluatePrerequisite,
