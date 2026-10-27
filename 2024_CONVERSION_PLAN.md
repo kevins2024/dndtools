@@ -45,22 +45,29 @@ migrate existing characters mostly by script/LLM, asking when a build choice is 
 Status: `[ ]` open, `[~]` in progress, `[x]` done.
 
 - [x] **0. Plumbing** — `ruleset.js`, branch, plan. `ruleset` threaded through `loadClass`/`loadSubclass`/
-  spellcasting/multiclass/`describeLevelUp`/`diffLevelUp`. (CLAUDE.md update still to do, phase 7.)
-- [ ] **1. Core rules** — exhaustion, conditions, actions, ASI-as-feat, unarmed strike/grapple.
-- [ ] **2. Origins** — 2024 species, backgrounds (ASI + origin feat), origin feats, New Character flow.
-- [~] **3. Classes** — all 13 class chassis ingested (`engine/data/5e2024/classes/`: features by id,
-  per-level tables, spell columns); 2024 spellcasting, multiclass rules, prerequisites and proficiencies are
-  wired and tested. Still to do: feature mechanics (action type/uses/recharge), Weapon Mastery choices,
-  fighting styles as feats, Divine/Primal Order, Expertise/Metamagic/Invocation option lists, and the
-  `diffLevelUp` pending choices that go with them.
-- [~] **4. Subclasses** — 69 official 2024 subclasses ingested (`engine/data/5e2024/subclasses/`) with the
-  2014->2024 name aliases in `subclass-aliases.json`. Still to do: feature mechanics; the legacy subclasses'
-  level shim (2014 Cleric/Sorcerer/Warlock pick at 1, Wizard/Druid at 2; 2024 is 3 for everyone). Sorrow
-  Knight deliberately not ingested (source "D&D Beyond Drops", status unclear).
-- [ ] **5. Feats and spells** — 2024 feat catalog; 2024 spell text + class lists (reworked spells get a 2024 entry).
-- [ ] **6. Roster migration** — script/LLM-assisted, one character at a time, preserving final ability totals and level.
-- [ ] **7. Docs and cleanup** — CLAUDE.md, CHARACTER_SCHEMA.md, engine/CHECKLIST.md entries.
+      spellcasting/multiclass/`describeLevelUp`/`diffLevelUp`. (CLAUDE.md update still to do, phase 7.)
+- [~] **1. Core rules** — exhaustion (2024: -2 per level to D20 Tests, -5 ft Speed per level) and the 2024 Long/Short
+  Rest rules are in the engine with tests. Still to do: conditions text/data for the UI (`src/data/conditions.js` is
+  2014), actions list, unarmed strike/grapple, wiring `exhaustionEffects` into the roller and conditions row.
+- [x] **2. Origins** — 2024 species, backgrounds (+ `applyBackgroundBonus`), origin feats; loaders ruleset-aware.
+      The New Character _UI_ flow is not changed yet.
+- [~] **3. Classes** — all 13 chassis, spellcasting/multiclass, feature mechanics (225 drafted + reviewed overrides) and
+  the level-up choices (`choices2024.js`: Weapon Mastery, Fighting Style feats, Orders, Expertise, Metamagic, Primal
+  Knowledge) are done and tested. The Level Up _UI_ has no screens for the new pick types yet.
+- [~] **4. Subclasses** — 69 official 2024 subclasses + aliases; legacy subclasses start at 3rd level under 2024
+  (`shiftEarlyLevels`). Sorrow Knight deliberately not ingested (source "D&D Beyond Drops", status unclear).
+- [~] **5. Feats and spells** — 75 PHB feats and 391 PHB spells (`src/data/spells_2024.json`) with 2024 class lists;
+  lookups are ruleset-aware. Spells from other official 2024 books can be added with
+  `scripts/ingest-2024-spells.js --source "<book>"`.
+- [~] **6. Roster migration** — `migrate2024.js` + `scripts/migrate-roster-2024.js` done; the review is in
+  `2024_MIGRATION_REPORT.md`, proposed backgrounds in `2024_MIGRATION_ANSWERS.json`. **Not applied** to
+  `characters.json` until the project owner signs off.
+- [~] **7. Server/UI + docs** — `server.js` engine routes take `?ruleset=` and there is `POST /api/engine/migrate-2024`.
+  CLAUDE.md and the engine checklist are updated. Vue screens (ruleset badge, legacy badge, 2024 pick UIs, New
+  Character flow, conditions) are still to do. `npm run build` passes.
 
 ## Open questions for the project owner
 
-(none yet — add here, ask in chat)
+- Which 2024 background each of the 19 characters without one should take (proposals in `2024_MIGRATION_ANSWERS.json`).
+- Iyani's homebrew background "Daughter of the Weave": keep as legacy with a chosen origin feat, or map to a 2024 one?
+- Weapon Mastery picks (about 20 of them) — suggestions come from equipped weapons; the rest need an answer.
