@@ -129,21 +129,21 @@
       "marching_order": [
         "Kerra",
         "Jaygar",
-        "Siv",
         "Therynv'l",
         "Pirra",
         "Lyria",
-        "Petra",
         "Lenn",
-        "Rhuna"
+        "Rhuna",
+        "Revven",
+        "Elucyne"
       ]
     },
     {
-      "game_day": 304,
+      "game_day": 305,
       "id": "party_1791382876351",
-      "name": "East B",
-      "members": ["Denna", "Kessara", "Lexica", "Ferghus", "Elowenne", "Brick"],
-      "active": false,
+      "name": "East Full",
+      "members": ["Denna", "Ferghus", "Elowenne", "Brick", "Vaz", "Sorra"],
+      "active": true,
       "marching_order": [
         "Denna",
         "Kessara",
@@ -156,21 +156,7 @@
         ["Denna", null],
         ["Kessara", null],
         ["Lexica", null],
-        ["Enauweyn", null]
-      ]
-    },
-    {
-      "game_day": 302,
-      "id": "party_1791412410652",
-      "name": "East A",
-      "members": ["Vaz", "Tackett", "Sorra", "Enauweyn"],
-      "active": true,
-      "marching_order": ["Vaz", "Tackett", "Ferghus", "Sorra"],
-      "watch_assignments": [
-        ["Vaz", null],
-        ["Tackett", null],
-        ["Ferghus", null],
-        ["Sorra", null]
+        ["Ferghus", null]
       ]
     }
   ],

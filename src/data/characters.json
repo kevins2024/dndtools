@@ -17,7 +17,7 @@
     "stat_wis": 10,
     "stat_cha": 14,
     "hp_max": 76,
-    "hp_current": 66,
+    "hp_current": 76,
     "unarmored_ac_formula": "default",
     "saving_throws": [
       "str",
@@ -3208,7 +3208,7 @@
     "stat_wis": 10,
     "stat_cha": 17,
     "hp_max": 69,
-    "hp_current": 64,
+    "hp_current": 69,
     "unarmored_ac_formula": "default",
     "saving_throws": [
       "wis",
@@ -3403,7 +3403,7 @@
     "spell_slots": {
       "level_1": {
         "max": 4,
-        "current": 3
+        "current": 4
       },
       "level_2": {
         "max": 3,
@@ -3700,7 +3700,7 @@
       },
       "level_2": {
         "max": 3,
-        "current": 2
+        "current": 3
       },
       "level_3": {
         "max": 3,

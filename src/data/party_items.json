@@ -108,11 +108,13 @@
     "catalog_id": "warden-dagger",
     "type": "weapon",
     "equipped_by": null,
-    "carried_by": "Vaz",
+    "carried_by": "party",
     "attuned": false,
     "enhancement_bonus": 1,
     "notes": "Boot dagger backup. Reliable against extraplanar threats.",
-    "id": "items_9"
+    "id": "items_9",
+    "stored_at": null,
+    "party_id": "party_1791382876351"
   },
   {
     "name": "Hand Crossbow +2 (Rooting)",
@@ -233,16 +235,18 @@
     "name": "Ioun Stone of Mastery",
     "catalog_id": "ioun-stone",
     "type": "wondrous",
-    "equipped_by": null,
-    "carried_by": "Vaz",
-    "attuned": false,
+    "equipped_by": "Sorra",
+    "carried_by": "Sorra",
+    "attuned": true,
     "stat_bonuses": {
       "proficiency_bonus": 1
     },
     "notes": "",
     "id": "items_20",
     "slot": "ioun",
-    "battle_effect": true
+    "battle_effect": true,
+    "stored_at": null,
+    "party_id": null
   },
   {
     "name": "Cloak of Unremarkability",
@@ -1466,9 +1470,9 @@
     "name": "The Steadfast",
     "catalog_id": "the-steadfast",
     "type": "wondrous",
-    "equipped_by": "Sorra",
-    "carried_by": null,
-    "attuned": true,
+    "equipped_by": null,
+    "carried_by": "Sorra",
+    "attuned": false,
     "notes": "",
     "id": "items_130"
   },
@@ -3215,5 +3219,29 @@
     "id": "items_267",
     "hand": "main",
     "weapon_set": 1
+  },
+  {
+    "name": "Oil of Slipperiness",
+    "catalog_id": "oil-of-slipperiness",
+    "type": "consumable",
+    "equipped_by": null,
+    "carried_by": "Sorra",
+    "attuned": false,
+    "id": "items_268",
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
+  },
+  {
+    "name": "Oil of Slipperiness",
+    "catalog_id": "oil-of-slipperiness",
+    "type": "consumable",
+    "equipped_by": null,
+    "carried_by": "Vaz",
+    "attuned": false,
+    "id": "items_269",
+    "slot": "none",
+    "stored_at": null,
+    "party_id": null
   }
 ]
