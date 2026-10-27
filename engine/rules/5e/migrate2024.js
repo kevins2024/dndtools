@@ -213,6 +213,20 @@ function addOriginFeat(character, featName, meta, picks, note) {
           character.tool_proficiencies.push(t)
     } else open.push(`originFeatChoices:${base}`)
   }
+  if (base === 'Magic Initiate' && feature.choices?.cantrips)
+    feature.spells_granted = [
+      ...feature.choices.cantrips,
+      feature.choices.spell,
+    ]
+  // Tough: +2 maximum Hit Points per level, retroactive.
+  if (base === 'Tough') {
+    const bonus = 2 * (character.level || 0)
+    character.hp_max = (character.hp_max || 0) + bonus
+    character.hp_current = (character.hp_current || 0) + bonus
+    note(
+      `${character.name}: Tough raises maximum Hit Points by ${bonus} (2 per level).`
+    )
+  }
   character.features.push(feature)
   return open
 }

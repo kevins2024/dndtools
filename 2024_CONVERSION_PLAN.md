@@ -67,6 +67,15 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
   CLAUDE.md and the engine checklist are updated. Vue screens (ruleset badge, legacy badge, 2024 pick UIs, New
   Character flow, conditions) are still to do. `npm run build` passes.
 
+- [~] **8. Rules conformance, then rebuild the roster** — decided 2026-10-27: do not patch sheets level by level (each
+  level-up has too many dependencies). Make the rules right first, then rebuild each character by replaying their
+  choices through the engine.
+  - [x] Engine audit + simulation harness + conformance test (both rulesets, all classes/subclasses, multiclass) — clean.
+  - [ ] Rebuild the 28 characters through the engine from their recorded choices (species, background, scores, then each
+        class level), reproducing `level_history`; compare with the current sheets and list every difference for review.
+  - [ ] Questions that need the owner (HP rolls were not recorded; ASI/feat choices missing on 17 sheets; six sheets whose
+        ability scores exceed a 27-point buy + ASIs; Kessara's 5th cantrip; Lyria's 15th prepared spell; Tackett's 4th paid cantrip).
+
 ## Open questions for the project owner
 
 - None blocking. Every pick in the migration was a judgement call made by Claude under the owner's "keep playability, don't

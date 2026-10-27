@@ -137,31 +137,75 @@ function describeLevelUp({
         type === 'pact'
           ? null
           : isMulticlassed
-          ? multiclassSpellSlots([
-              ...otherClasses,
-              { name: className, level: fromLevel, subclass: subclassName },
-            ])
-          : spellSlotsForClassAtLevel(className, fromLevel, subclassName, ruleset),
+          ? multiclassSpellSlots(
+              [
+                ...otherClasses,
+                { name: className, level: fromLevel, subclass: subclassName },
+              ],
+              ruleset
+            )
+          : spellSlotsForClassAtLevel(
+              className,
+              fromLevel,
+              subclassName,
+              ruleset
+            ),
       slotsAfter:
         type === 'pact'
           ? null
           : isMulticlassed
-          ? multiclassSpellSlots([
-              ...otherClasses,
-              { name: className, level: toLevel, subclass: subclassName },
-            ])
-          : spellSlotsForClassAtLevel(className, toLevel, subclassName, ruleset),
+          ? multiclassSpellSlots(
+              [
+                ...otherClasses,
+                { name: className, level: toLevel, subclass: subclassName },
+              ],
+              ruleset
+            )
+          : spellSlotsForClassAtLevel(
+              className,
+              toLevel,
+              subclassName,
+              ruleset
+            ),
       // Pact Magic is Warlock's own separate resource — it never joins the
       // normal-slot multiclass pool, so this is always just the Warlock
       // level's own table regardless of what else is on the sheet.
-      pactSlotsBefore: type === 'pact' ? pactMagicForLevel(fromLevel, ruleset) : null,
-      pactSlotsAfter: type === 'pact' ? pactMagicForLevel(toLevel, ruleset) : null,
-      cantripsBefore: cantripsKnownForClass(className, fromLevel, subclassName, ruleset),
-      cantripsAfter: cantripsKnownForClass(className, toLevel, subclassName, ruleset),
+      pactSlotsBefore:
+        type === 'pact' ? pactMagicForLevel(fromLevel, ruleset) : null,
+      pactSlotsAfter:
+        type === 'pact' ? pactMagicForLevel(toLevel, ruleset) : null,
+      cantripsBefore: cantripsKnownForClass(
+        className,
+        fromLevel,
+        subclassName,
+        ruleset
+      ),
+      cantripsAfter: cantripsKnownForClass(
+        className,
+        toLevel,
+        subclassName,
+        ruleset
+      ),
     }
 
-    const knownCapAfter = spellsKnownForClass(className, toLevel, subclassName, ruleset)
-    if (knownCapAfter !== null) {
+    // 2024: every caster has a fixed prepared-spell count per level, but Bards,
+    // Sorcerers, Warlocks and third-caster subclasses (Eldritch Knight, Arcane
+    // Trickster) can only change those spells when they gain a level, so they
+    // are picked at level-up like a "known" list. Clerics, Druids, Paladins,
+    // Rangers, Wizards and Artificers re-prepare after a Long Rest.
+    const fixedCount = (level) =>
+      preparedSpellCount(className, level, 0, subclassName, ruleset)
+    const known2024 =
+      ruleset === '2024' &&
+      (['Bard', 'Sorcerer', 'Warlock'].includes(className) || type === 'third')
+    const knownCapAfter = known2024
+      ? fixedCount(toLevel)
+      : spellsKnownForClass(className, toLevel, subclassName, ruleset)
+    if (known2024 && knownCapAfter !== null) {
+      result.spellcasting.style = 'known'
+      result.spellcasting.knownBefore = fixedCount(fromLevel) ?? 0
+      result.spellcasting.knownAfter = knownCapAfter
+    } else if (knownCapAfter !== null) {
       result.spellcasting.style = 'known'
       result.spellcasting.knownBefore = spellsKnownForClass(
         className,

@@ -270,5 +270,10 @@
     "18": 1,
     "19": 2,
     "20": 2
+  },
+  "always_prepared_spells": {
+    "1": [
+      "Hunter's Mark"
+    ]
   }
 }

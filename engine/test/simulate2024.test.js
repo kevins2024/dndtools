@@ -13,6 +13,7 @@ const {
 } = require('../rules/5e/classFeatures')
 const { listSubclasses, loadSubclass } = require('../rules/5e/subclasses')
 const { hitDieForClass, proficiencyBonus } = require('../rules/5e/progression')
+const { featureHpBonus } = require('../rules/5e/hpBonuses')
 
 const CON_MOD = 2
 const blank = (cls, sub) => ({
@@ -101,7 +102,11 @@ for (const [cls, sub] of builds) {
       )
 
       // HP: max die at 1st, average (die/2 + 1) after, plus Con each level.
-      const hp = die + CON_MOD + (l - 1) * (die / 2 + 1 + CON_MOD)
+      const hp =
+        die +
+        CON_MOD +
+        (l - 1) * (die / 2 + 1 + CON_MOD) +
+        featureHpBonus(ch.features, [{ name: cls, level: l }])
       assert.equal(ch.hp_max, hp, `${tag} hp_max`)
       assert.equal(ch.hit_dice_current, l, `${tag} hit dice`)
 

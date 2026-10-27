@@ -170,12 +170,18 @@ function parseFeatureTable(lines) {
   const extra = []
   for (let c = 0; c < main.cols.length; c++) {
     if (c === 0 || c === 1 || c === nameCol) continue
-    extra.push({ name: main.cols[c], values: Object.fromEntries(main.rows.map((r) => [r[0], r[c] ?? ''])) })
+    extra.push({
+      name: main.cols[c],
+      values: Object.fromEntries(main.rows.map((r) => [r[0], r[c] ?? ''])),
+    })
   }
   for (const t of tables) {
     if (t === main) continue
     for (let c = 1; c < t.cols.length; c++) {
-      extra.push({ name: t.cols[c], values: Object.fromEntries(t.rows.map((r) => [r[0], r[c] ?? ''])) })
+      extra.push({
+        name: t.cols[c],
+        values: Object.fromEntries(t.rows.map((r) => [r[0], r[c] ?? ''])),
+      })
     }
   }
   return { nameCol, rows: main.rows, extra }
@@ -198,11 +204,24 @@ function parseSections(lines) {
   return sections
 }
 
-const ORDINAL = { '1st': 1, '2nd': 2, '3rd': 3, '4th': 4, '5th': 5, '6th': 6, '7th': 7, '8th': 8, '9th': 9 }
+const ORDINAL = {
+  '1st': 1,
+  '2nd': 2,
+  '3rd': 3,
+  '4th': 4,
+  '5th': 5,
+  '6th': 6,
+  '7th': 7,
+  '8th': 8,
+  '9th': 9,
+}
 const columnKey = (name) =>
-  ORDINAL[name] ? `spell_slots_level_${ORDINAL[name]}_by_level` : snake(name) + '_by_level'
+  ORDINAL[name]
+    ? `spell_slots_level_${ORDINAL[name]}_by_level`
+    : snake(name) + '_by_level'
 
-const norm = (t) => t.toLowerCase().replace(/[’']/g, '').replace(/\s+/g, ' ').trim()
+const norm = (t) =>
+  t.toLowerCase().replace(/[’']/g, '').replace(/\s+/g, ' ').trim()
 
 function numeric(v) {
   const t = v.replace(/^\+/, '')
@@ -254,7 +273,10 @@ async function ingest(className, { write }) {
       const baseName = rawName.replace(/\s*\(.*\)\s*$/, '')
       const sameLevel = (nm) =>
         sections.find((x) => x.level === level && norm(x.name) === norm(nm))
-      const sec = sectionByKey.get(sectionKey(level, rawName)) ?? sameLevel(rawName) ?? sameLevel(baseName)
+      const sec =
+        sectionByKey.get(sectionKey(level, rawName)) ??
+        sameLevel(rawName) ??
+        sameLevel(baseName)
       let repeatOf = null
       if (!sec) {
         // The table lists a feature again at a later level (Metamagic 10th,
@@ -282,7 +304,9 @@ async function ingest(className, { write }) {
         description: sec
           ? sec.body.join('\n')
           : repeatOf
-          ? `You gain more from this feature at this level; see "${repeatOf.name}" (level ${repeatOf.level}).\n${repeatOf.body.join('\n')}`
+          ? `You gain more from this feature at this level; see "${
+              repeatOf.name
+            }" (level ${repeatOf.level}).\n${repeatOf.body.join('\n')}`
           : '',
         source: "Player's Handbook (2024)",
         ruleset: '2024',
@@ -318,7 +342,9 @@ async function ingest(className, { write }) {
           Object.entries(e.values).map(([l, v]) => [
             l,
             // "-" in a spell-slot column means no slots of that level.
-            /^[-—]$/.test(v) && /^spell_slots/.test(columnKey(e.name)) ? 0 : numeric(v),
+            /^[-—]$/.test(v) && /^spell_slots/.test(columnKey(e.name))
+              ? 0
+              : numeric(v),
           ])
         ),
       ])
@@ -326,10 +352,18 @@ async function ingest(className, { write }) {
   }
 
   console.log(
-    `\n${display}: ${rows.length} levels, ${published.length} features, ${extra.length} extra columns (${extra.map((e) => e.name).join(', ')})`
+    `\n${display}: ${rows.length} levels, ${published.length} features, ${
+      extra.length
+    } extra columns (${extra.map((e) => e.name).join(', ')})`
   )
   console.log(
-    `subclass levels: ${chassis.subclass_feature_levels.join(', ')}  saves: ${chassis.saving_throw_proficiencies.join(',')}  armor: ${chassis.armor_proficiencies.join(',')}  weapons: ${chassis.weapon_proficiencies.join(',')}`
+    `subclass levels: ${chassis.subclass_feature_levels.join(
+      ', '
+    )}  saves: ${chassis.saving_throw_proficiencies.join(
+      ','
+    )}  armor: ${chassis.armor_proficiencies.join(
+      ','
+    )}  weapons: ${chassis.weapon_proficiencies.join(',')}`
   )
   if (warnings.length) console.log('WARNINGS:\n  ' + warnings.join('\n  '))
   void levelWord
@@ -351,7 +385,8 @@ async function ingest(className, { write }) {
   if (fs.existsSync(outFile)) {
     // Keep a hand-written description on a re-run.
     const prev = JSON.parse(fs.readFileSync(outFile, 'utf8'))
-    for (const k of ['description_override'])
+    // Hand-written rules data the pages don't carry survives a re-run too.
+    for (const k of ['description_override', 'always_prepared_spells'])
       if (prev[k]) chassis[k] = prev[k]
   }
   fs.writeFileSync(outFile, JSON.stringify(chassis, null, 2) + '\n')

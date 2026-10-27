@@ -160,7 +160,8 @@
       {
         "name": "Dwarven Toughness",
         "description": "Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.",
-        "id": "pub24_species_dwarf-dwarven-toughness"
+        "id": "pub24_species_dwarf-dwarven-toughness",
+        "grants_hp_per_level": 1
       },
       {
         "name": "Stonecunning",

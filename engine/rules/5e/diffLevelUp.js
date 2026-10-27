@@ -1,6 +1,8 @@
 const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 const { rulesetOf, loadRulesetJson } = require('./ruleset')
+const { buildLevelEntry } = require('./levelHistory')
+const { featureHpBonus } = require('./hpBonuses')
 const { resolveChoices2024 } = require('./choices2024')
 const { describeLevelUp } = require('./levelUp')
 const { proficiencyBonus } = require('./progression')
@@ -493,6 +495,10 @@ function diffLevelUp(
   // a level-0 class entry.
   const existingEntry = classIndex !== -1 ? character.classes[classIndex] : null
   const isMulticlassPickup = !existingEntry || existingEntry.level === 0
+  // The very first class of a brand-new character (total level 0) is the
+  // STARTING class: it is not a multiclass pickup, so none of the multiclass-only
+  // rules apply (13+ prerequisite, the reduced proficiency list, the extra skill).
+  const isStartingClass = isMulticlassPickup && (character.level || 0) === 0
 
   if (isMulticlassPickup && !loadClass(className, ruleset)) {
     return {
@@ -521,7 +527,7 @@ function diffLevelUp(
   // character's TOTAL level across every class, not the one being leveled
   // here — a multiclassed Drow's Faerie Fire arrives at total character
   // level 3, whether that 3rd level came from her first class or her second.
-  const genusTraits = traitsFor(character.genus, character.subgenus)
+  const genusTraits = traitsFor(character.genus, character.subgenus, ruleset)
   const otherClassesLevelSum = otherClasses.reduce((sum, c) => sum + c.level, 0)
   const totalLevelBefore = otherClassesLevelSum + fromLevel
   const totalLevelAfter = otherClassesLevelSum + finalToLevel
@@ -560,7 +566,7 @@ function diffLevelUp(
   // warning, not a hard block — matches this project's general philosophy
   // (validateCharacter.js flags RAW deviations rather than preventing a
   // save; a DM may have a real reason to allow an exception).
-  if (isMulticlassPickup) {
+  if (isMulticlassPickup && !isStartingClass) {
     const prereq = meetsMulticlassPrerequisites(
       className,
       extractScores(character),
@@ -1360,6 +1366,9 @@ function diffLevelUp(
   // reuses the SAME generic id ("magical-secrets-1") at all 3 grant
   // levels, so dedup is scoped to level_gained, same as Favored Enemy/
   // Natural Explorer, not 3 distinct ids like Metamagic.
+  // Spells from Magical Secrets are part of the table's "Spells Known" number, so they
+  // replace that many of the picks the table would otherwise ask for at this level.
+  let magicalSecretsAgainstKnown = 0
   if (normalizeName(classEntry.name) === 'bard') {
     const genericIdx = newFeatures.findIndex(
       (f) => f.id === 'magical-secrets-1'
@@ -1401,6 +1410,9 @@ function diffLevelUp(
               )
             }
           })
+          magicalSecretsAgainstKnown = picks.filter(
+            (n) => (findSpellRecord(n, ruleset)?.level ?? 1) > 0
+          ).length
           newFeatures[genericIdx] = {
             name: `Magical Secrets: ${picks.join(', ')}`,
             id: null,
@@ -1416,6 +1428,7 @@ function diffLevelUp(
             source: 'Magical Secrets',
             countsAgainstKnown: true,
           })
+          magicalSecretsAgainstKnown = 2
         }
       }
     }
@@ -2212,10 +2225,22 @@ function diffLevelUp(
     (sum, t) => sum + (t.grants_hp_per_level || 0),
     0
   )
+  // Feats and class features that add HP per level (Tough, Draconic Resilience),
+  // counted retroactively: the gain is the bonus after this level-up minus before.
+  const featureHpGain =
+    featureHpBonus(
+      [...(character.features || []), ...newFeatures, ...featFeatures],
+      [...otherClasses, { name: classEntry.name, level: finalToLevel }]
+    ) -
+    featureHpBonus(character.features || [], [
+      ...otherClasses,
+      { name: classEntry.name, level: fromLevel },
+    ])
   const hpGained =
     description.totalHpGained +
     conMod * levelsGained +
-    hpPerLevelBonus * levelsGained
+    hpPerLevelBonus * levelsGained +
+    featureHpGain
 
   // The same total as a plain list of contributions, for a UI tooltip — the
   // standard { label, amount } shape (see breakdown.js), never a joined
@@ -2224,6 +2249,7 @@ function diffLevelUp(
     { label: 'Hit die', amount: description.totalHpGained },
     { label: 'CON modifier', amount: conMod * levelsGained },
     { label: 'Species bonus', amount: hpPerLevelBonus * levelsGained },
+    { label: 'Feats and features', amount: featureHpGain },
   ].filter((line) => line.amount !== 0)
 
   const patch = {
@@ -2239,6 +2265,7 @@ function diffLevelUp(
             name: className,
             level: finalToLevel,
             subclass: classEntry.subclass,
+            ...(isStartingClass ? { started: true } : {}),
           },
         ]
       : character.classes.map((c, i) =>
@@ -2333,7 +2360,7 @@ function diffLevelUp(
   // proficiency list (data/multiclass-proficiencies.json) — never the full
   // starting-class list, and NEVER a new saving throw proficiency (that's
   // explicitly starting-class-only, RAW).
-  if (isMulticlassPickup) {
+  if (isMulticlassPickup && !isStartingClass) {
     const grant = loadRulesetJson(ruleset, 'multiclass-proficiencies.json')[
       className
     ]
@@ -2488,9 +2515,12 @@ function diffLevelUp(
     }
 
     if (description.spellcasting.style === 'known') {
-      const gained =
+      const gained = Math.max(
+        0,
         description.spellcasting.knownAfter -
-        description.spellcasting.knownBefore
+          description.spellcasting.knownBefore -
+          magicalSecretsAgainstKnown
+      )
       if (gained > 0) {
         const existingKnown = new Set(
           (character.spells || [])
@@ -2625,6 +2655,31 @@ function diffLevelUp(
   // A resolved spell swap (spellSwapRemoval, set above) removes the given-up
   // spell from the base list BEFORE anything is added — otherwise the
   // replacement would just pile on top of the old spell still sitting there.
+  // 2024 class features that give a spell that is always prepared and costs no
+  // preparation (Paladin's Smite -> Divine Smite; Favored Enemy -> Hunter's Mark).
+  // Class data: always_prepared_spells { "<class level>": [names] }.
+  if (ruleset === '2024') {
+    const table = loadClass(className, '2024')?.always_prepared_spells
+    for (const [lvl, names] of Object.entries(table || {})) {
+      if (Number(lvl) <= fromLevel || Number(lvl) > finalToLevel) continue
+      for (const name of names) {
+        if (
+          (character.spells || []).some(
+            (x) => normalizeName(x.name) === normalizeName(name)
+          )
+        )
+          continue
+        extraGrantedSpells.push({
+          name,
+          level: findSpellRecord(name, '2024')?.level ?? null,
+          prepared: true,
+          featureGranted: true,
+          _source: className,
+        })
+      }
+    }
+  }
+
   const baseSpells = spellSwapRemoval
     ? (character.spells || []).filter(
         (s) => normalizeName(s.name) !== normalizeName(spellSwapRemoval)
@@ -2648,6 +2703,43 @@ function diffLevelUp(
   // newFeatures is the same array merged into patch.features, exposed on its
   // own so a caller (a UI) can display "here's what's new" without having to
   // diff patch.features against the character's original list itself.
+  // What this level-up did, kept on the sheet so a wrong level-up can be found later.
+  patch.level_history = [
+    ...(character.level_history || []),
+    buildLevelEntry({
+      className,
+      fromLevel,
+      toLevel: finalToLevel,
+      characterLevel: patch.level,
+      firstEverLevel: (character.level || 0) === 0,
+      hp: {
+        total: hpGained,
+        die: description.totalHpGained,
+        con: conMod * levelsGained,
+        bonus: hpPerLevelBonus * levelsGained + featureHpGain,
+      },
+      hpMethod,
+      hpRolls,
+      subclass:
+        classEntry.subclass &&
+        fromLevel <
+          (loadClass(className, ruleset)?.subclass_choice_level ?? 99) &&
+        finalToLevel >=
+          (loadClass(className, ruleset)?.subclass_choice_level ?? 99)
+          ? classEntry.subclass
+          : null,
+      newFeatures,
+      abilityScoreHistory,
+      chosenSpells: extraGrantedSpells
+        .filter((s) => s.type === 'chosen')
+        .map((s) => s.name),
+      spellbookAdditions: spellbookChoices,
+      spellSwap,
+      expertiseSkills: expertiseSkillsGained,
+      pendingChoices,
+    }),
+  ]
+
   return {
     patch,
     newFeatures,

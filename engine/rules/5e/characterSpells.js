@@ -150,6 +150,9 @@ const BONUS_SPELL_FIELDS = [
   { field: 'expanded_spell_list', classOnly: 'artificer', deriveLevel: true },
   { field: 'domain_spells_by_level', classOnly: 'cleric', deriveLevel: false },
   { field: 'oath_spells_by_level', classOnly: 'paladin', deriveLevel: false },
+  // 2024 patron subclasses: the listed spells are always prepared. (2014 patrons use
+  // expanded_spell_list, a pool to choose from, which is not in this table.)
+  { field: 'patron_spells_by_level', classOnly: 'warlock', deriveLevel: false },
   { field: 'circle_spells_by_level', classOnly: 'druid', deriveLevel: false },
   {
     field: 'psionic_spells_by_level',

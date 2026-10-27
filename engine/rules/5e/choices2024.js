@@ -98,7 +98,9 @@ function weaponMastery({ character, className, toLevel, choices, out }) {
     }
     if (owned.has(name)) {
       out.notes.push(
-        `${titleCase(name)} is already one of ${className}'s mastered weapons — pick a different kind.`
+        `${titleCase(
+          name
+        )} is already one of ${className}'s mastered weapons — pick a different kind.`
       )
       continue
     }
@@ -239,7 +241,9 @@ function orders({ character, crossed, toLevel, choices, out }) {
     const opt = def.options[picked]
     if (!opt) {
       throw new Error(
-        `${picked} isn't a valid ${featureName} — expected ${Object.keys(def.options).join(' or ')}.`
+        `${picked} isn't a valid ${featureName} — expected ${Object.keys(
+          def.options
+        ).join(' or ')}.`
       )
     }
     out.features.push({
@@ -323,18 +327,25 @@ function expertise({ character, className, crossed, choices, out }) {
 
 // ── Metamagic (Sorcerer) ──────────────────────────────────────────────
 
-function metamagic({ character, className, crossed, choices, out }) {
+function metamagic({ character, className, crossed, choices, out, fromLevel }) {
   if (className !== 'Sorcerer') return
   const all = listMetamagicOptions('Sorcerer', '2024').map((o) => o.name)
   const known = new Set(
     (character.features || [])
-      .filter((f) => f.type === 'metamagic')
+      .filter((f) => f.type === 'metamagic' || /^Metamagic: /.test(f.name))
       .map((f) => f.name.replace(/^Metamagic: /, ''))
   )
   let queue = [].concat(choices.metamagic ?? [])
+  // Migrating a character that already has options (picked under the 2014 rules)
+  // credits them against the grants, oldest first; a normal level-up only crosses
+  // the new grant, so its earlier picks are not credited again.
+  let credit = fromLevel === 0 ? known.size : 0
   for (const c of crossed) {
     if (c.name !== 'Metamagic') continue
     let need = 2
+    const used = Math.min(credit, need)
+    need -= used
+    credit -= used
     while (need > 0 && queue.length) {
       const raw = queue.shift()
       const name = all.find((n) => key(n) === key(raw))

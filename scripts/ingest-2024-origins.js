@@ -104,7 +104,9 @@ function parseSpecies(title, source, lines) {
     name: title,
     ruleset: '2024',
     source: `${source} (2024)`,
-    description: lines.slice(1, loreEnd.length ? Math.min(...loreEnd) : 3).join('\n'),
+    description: lines
+      .slice(1, loreEnd.length ? Math.min(...loreEnd) : 3)
+      .join('\n'),
     creature_type: null,
     size: null,
     speed: null,
@@ -123,7 +125,8 @@ function parseSpecies(title, source, lines) {
     else if ((m = /^Speed:\s*(\d+)/.exec(l))) out.speed = Number(m[1])
     else if (/^Source:/.test(l)) break
     else if (l.includes(' | ')) {
-      if (/lorwyn|shadowmoor|eberron|ravenloft|faerun/i.test(l.split(" | ")[0])) continue
+      if (/lorwyn|shadowmoor|eberron|ravenloft|faerun/i.test(l.split(' | ')[0]))
+        continue
       if (!table) {
         table = { title: tail[i - 1], rows: [] }
         out.tables.push(table)
@@ -151,6 +154,8 @@ async function ingestSpecies(source, write) {
     const sp = parseSpecies(p.title, source, p.lines)
     for (const t of sp.traits) {
       t.id = `pub24_species_${slug(sp.name)}-${slug(t.name)}`
+      // Rules the engine applies from the trait itself (not parsed from its prose).
+      if (t.name === 'Dwarven Toughness') t.grants_hp_per_level = 1
       catalog[t.id] = t.name
       published.push({
         id: t.id,
@@ -165,7 +170,9 @@ async function ingestSpecies(source, write) {
     }
     species.push(sp)
     console.log(
-      `${sp.name}: ${sp.traits.length} traits [${sp.traits.map((t) => t.name).join(', ')}] speed ${sp.speed} ${sp.size}`
+      `${sp.name}: ${sp.traits.length} traits [${sp.traits
+        .map((t) => t.name)
+        .join(', ')}] speed ${sp.speed} ${sp.size}`
     )
   }
   if (!write) return
@@ -246,7 +253,11 @@ async function ingestBackgrounds(source, write) {
     }
     out.push(bg)
     console.log(
-      `${bg.name}: ${bg.ability_scores.join('/')} | ${bg.feat} | ${bg.skill_proficiencies.join(', ')} | ${JSON.stringify(bg.tool_proficiency)}`
+      `${bg.name}: ${bg.ability_scores.join('/')} | ${
+        bg.feat
+      } | ${bg.skill_proficiencies.join(', ')} | ${JSON.stringify(
+        bg.tool_proficiency
+      )}`
     )
   }
   void published
@@ -318,7 +329,10 @@ function parsePrerequisite(text) {
     type: 'any_of',
     options: m[1]
       .split(/, or |, | or /)
-      .map((a) => ({ ability: ABILITY[a.trim().toLowerCase()], min: Number(m[2]) })),
+      .map((a) => ({
+        ability: ABILITY[a.trim().toLowerCase()],
+        min: Number(m[2]),
+      })),
   }))
   take(new RegExp(`(${AB}) (\\d+)\\+`), (m) => ({
     type: 'ability_score',
@@ -330,12 +344,21 @@ function parsePrerequisite(text) {
     type: 'proficiency',
     proficiency: `${m[1].toLowerCase()}_armor`,
   }))
-  take(/Shield Training/i, () => ({ type: 'proficiency', proficiency: 'shields' }))
-  take(/Martial Weapon Proficiency/i, () => ({ type: 'proficiency', proficiency: 'martial_weapon' }))
+  take(/Shield Training/i, () => ({
+    type: 'proficiency',
+    proficiency: 'shields',
+  }))
+  take(/Martial Weapon Proficiency/i, () => ({
+    type: 'proficiency',
+    proficiency: 'martial_weapon',
+  }))
   take(/Fighting Style feature/i, () => ({ type: 'fighting_style_feature' }))
   const leftover = rest.replace(/[,\s]+/g, ' ').trim()
   if (leftover) return { raw: text, parsed: { type: 'unknown', text } }
-  return { raw: text, parsed: all.length === 1 ? all[0] : { type: 'all_of', all } }
+  return {
+    raw: text,
+    parsed: all.length === 1 ? all[0] : { type: 'all_of', all },
+  }
 }
 
 async function ingestFeats(source, write) {
@@ -363,7 +386,11 @@ async function ingestFeats(source, write) {
       const amount = Number(/by (\d)/.exec(asiLine)?.[1] ?? 1)
       const named = /Increase (?:your )?(.+?)(?: score)? by/i.exec(asiLine)
       let options = null
-      if (/one ability (?:score )?of your choice|that ability by|one ability in which/i.test(asiLine)) {
+      if (
+        /one ability (?:score )?of your choice|that ability by|one ability in which/i.test(
+          asiLine
+        )
+      ) {
         options = Object.values(ABILITY)
       } else if (named) {
         options = named[1]
@@ -372,7 +399,11 @@ async function ingestFeats(source, write) {
           .filter(Boolean)
       }
       if (options?.length) {
-        abilityIncrease = { choice_of: options, amount, max_score: cap ? Number(cap[1]) : 20 }
+        abilityIncrease = {
+          choice_of: options,
+          amount,
+          max_score: cap ? Number(cap[1]) : 20,
+        }
       }
     }
     const id = `pub24_feat-${slug(p.title)}`

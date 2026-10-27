@@ -18,10 +18,19 @@ test('invariants hold for every character on the roster', () => {
     const { character: c, questions } = migrateCharacterTo2024(src)
     assert.equal(JSON.stringify(src), before, `${src.name}: input was mutated`)
     assert.equal(c.ruleset, '2024')
+    // The Tough feat (a Farmer background, say) raises maximum HP by 2 per level.
+    const toughAdded =
+      c.features.some((f) => f.type === 'feat' && f.name === 'Tough') &&
+      !src.features.some((f) => f.name === 'Tough')
+    const hpBonus = toughAdded ? 2 * src.level : 0
+    assert.equal(c.hp_max, src.hp_max + hpBonus, `${src.name}: hp_max`)
+    assert.equal(
+      c.hp_current,
+      src.hp_current + hpBonus,
+      `${src.name}: hp_current`
+    )
     for (const k of [
       'level',
-      'hp_max',
-      'hp_current',
       'hit_dice_current',
       'stat_str',
       'stat_dex',
@@ -256,9 +265,16 @@ test('with the signed-off answers every roster character migrates with no open q
       )
     )
     assert.deepEqual(bad, [], `${src.name}: a pick was rejected`)
+    const toughAdded2 =
+      c.features.some((f) => f.type === 'feat' && f.name === 'Tough') &&
+      !src.features.some((f) => f.name === 'Tough')
+    assert.equal(
+      c.hp_max,
+      src.hp_max + (toughAdded2 ? 2 * src.level : 0),
+      `${src.name}: hp_max`
+    )
     for (const k of [
       'level',
-      'hp_max',
       'stat_str',
       'stat_dex',
       'stat_con',
