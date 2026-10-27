@@ -27,6 +27,8 @@ const { loadInvocation, listInvocations } = require('./invocations')
 const { applyFeatureMechanics } = require('./diffLevelUp')
 const { resolveChoices2024, masteryPool } = require('./choices2024')
 const { loadRulesetJson } = require('./ruleset')
+const { findSpellRecord } = require('./spellLists')
+const { resolveSpellcasting } = require('./spellcasting')
 
 const key = (s) =>
   String(s || '')
@@ -86,7 +88,18 @@ function darkvisionOf(species) {
 // Roster `genus` strings are not always a species name: "Silver Dragonborn",
 // "Wood Elf", "Eladrin Elf", "Hill Dwarf". Returns { species, hint } where
 // species is a species name (2014 or 2024) and hint is the leftover qualifier.
-const BASE_SPECIES = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Dragonborn', 'Gnome', 'Goliath', 'Tiefling', 'Aasimar', 'Orc']
+const BASE_SPECIES = [
+  'Human',
+  'Elf',
+  'Dwarf',
+  'Halfling',
+  'Dragonborn',
+  'Gnome',
+  'Goliath',
+  'Tiefling',
+  'Aasimar',
+  'Orc',
+]
 function resolveSpeciesName(genus, subgenus) {
   if (!genus) return { species: null, hint: subgenus || '' }
   const exact = loadSpecies(genus, '2024')
@@ -152,8 +165,8 @@ function migrateCharacterTo2024(
       lineage = /forest/i.test(sub || '')
         ? 'Forest Gnome'
         : /rock/i.test(sub || '')
-          ? 'Rock Gnome'
-          : null
+        ? 'Rock Gnome'
+        : null
       if (!lineage) keepLegacy = true
     } else if (newSpecies.name === 'Tiefling') {
       lineage = TIEFLING_LEGACY[key(sub)] ?? null
@@ -226,8 +239,8 @@ function migrateCharacterTo2024(
               newSpecies.name === 'Elf'
                 ? ELF_LINEAGES
                 : newSpecies.name === 'Gnome'
-                  ? ['Forest Gnome', 'Rock Gnome']
-                  : ['Abyssal', 'Chthonic', 'Infernal'],
+                ? ['Forest Gnome', 'Rock Gnome']
+                : ['Abyssal', 'Chthonic', 'Infernal'],
           }
         )
       }
@@ -236,7 +249,13 @@ function migrateCharacterTo2024(
         character.darkvision = Math.max(dv, lineage === 'Drow' ? 120 : 0)
       change(
         'species',
-        `${speciesName}${sub ? ` (${sub})` : ''}: replaced ${removed} 2014 trait(s) with the 2024 ${newSpecies.name} traits${lineage ? ` + ${lineage}` : ''}. Ability bonuses are not re-applied — stat_* is unchanged.`
+        `${speciesName}${
+          sub ? ` (${sub})` : ''
+        }: replaced ${removed} 2014 trait(s) with the 2024 ${
+          newSpecies.name
+        } traits${
+          lineage ? ` + ${lineage}` : ''
+        }. Ability bonuses are not re-applied — stat_* is unchanged.`
       )
     }
   } else if (speciesName) {
@@ -294,7 +313,9 @@ function migrateCharacterTo2024(
         // A feature carrying the character's own state (Jaygar's infusions)
         // is data we can't regenerate — keep it and say so.
         if (f.infusions_known || f.current_infusions || f.infusions_active) {
-          warnings.push(`${f.name} has character-specific data (infusions) and has no 2024 equivalent — kept as is.`)
+          warnings.push(
+            `${f.name} has character-specific data (infusions) and has no 2024 equivalent — kept as is.`
+          )
           return true
         }
         dropped.push(f.name)
@@ -407,21 +428,57 @@ function migrateCharacterTo2024(
   // to the 2024 Expertise grants so they aren't asked for again.
   {
     const GRANTS = {
-      Rogue: [{ name: 'Expertise', level: 1, count: 2 }, { name: 'Expertise', level: 6, count: 2 }],
-      Bard: [{ name: 'Expertise', level: 2, count: 2 }, { name: 'Expertise', level: 9, count: 2 }],
+      Rogue: [
+        { name: 'Expertise', level: 1, count: 2 },
+        { name: 'Expertise', level: 6, count: 2 },
+      ],
+      Bard: [
+        { name: 'Expertise', level: 2, count: 2 },
+        { name: 'Expertise', level: 9, count: 2 },
+      ],
       Ranger: [{ name: 'Deft Explorer', level: 2, count: 1 }],
     }
     const attributed = new Set(
-      features.filter((f) => f.type === 'expertise').flatMap((f) => String(f.name).replace(/^Expertise:\s*/, '').split(/,\s*/)).map(key)
+      features
+        .filter((f) => f.type === 'expertise')
+        .flatMap((f) =>
+          String(f.name)
+            .replace(/^Expertise:\s*/, '')
+            .split(/,\s*/)
+        )
+        .map(key)
     )
-    const loose = (character.skill_expertise || []).filter((sk) => !attributed.has(key(sk)))
+    const loose = (character.skill_expertise || []).filter(
+      (sk) => !attributed.has(key(sk))
+    )
     for (const entry of classEntries) {
       for (const g of GRANTS[entry.name] || []) {
         if (g.level > entry.level || !loose.length) continue
-        if (features.some((f) => f.type === 'expertise' && f._source === entry.name && f.level_gained === g.level)) continue
+        if (
+          features.some(
+            (f) =>
+              f.type === 'expertise' &&
+              f._source === entry.name &&
+              f.level_gained === g.level
+          )
+        )
+          continue
         const take = loose.splice(0, g.count)
-        features.push({ name: `Expertise: ${take.join(', ')}`, id: null, type: 'expertise', level_gained: g.level, _source: entry.name })
-        change('expertise', `${entry.name} ${g.level}: recorded the existing Expertise (${take.join(', ')}) as that class's grant.`)
+        features.push({
+          name: `Expertise: ${take.join(', ')}`,
+          id: null,
+          type: 'expertise',
+          level_gained: g.level,
+          _source: entry.name,
+        })
+        change(
+          'expertise',
+          `${entry.name} ${
+            g.level
+          }: recorded the existing Expertise (${take.join(
+            ', '
+          )}) as that class's grant.`
+        )
       }
     }
   }
@@ -430,7 +487,7 @@ function migrateCharacterTo2024(
   // ── background & origin feat ───────────────────────────────────────────
   const bgAnswer = answers.background
   const oldBg = character.background
-  const target = bgAnswer ?? (oldBg ? (BACKGROUND_MAP[oldBg] ?? null) : null)
+  const target = bgAnswer ?? (oldBg ? BACKGROUND_MAP[oldBg] ?? null : null)
   if (target) {
     const bg = loadBackground(target, '2024')
     if (bg && !bg.legacy) {
@@ -462,7 +519,9 @@ function migrateCharacterTo2024(
         })
         change(
           'background',
-          `Background ${oldBg || '(none)'} -> ${bg.name}; origin feat ${featName} added.`
+          `Background ${oldBg || '(none)'} -> ${
+            bg.name
+          }; origin feat ${featName} added.`
         )
         if (/Magic Initiate|Skilled|Musician|Crafter/.test(base)) {
           ask(
@@ -575,7 +634,9 @@ function migrateCharacterTo2024(
     if (have < owed) {
       ask(
         'Warlock:invocationChoice',
-        `Warlock ${warlock.level} has ${owed} invocations under 2024; ${character.name} has ${have}. Pick ${owed - have} more.`,
+        `Warlock ${warlock.level} has ${owed} invocations under 2024; ${
+          character.name
+        } has ${have}. Pick ${owed - have} more.`,
         {
           options: listInvocations('2024').map((i) => i.name),
         }
@@ -609,6 +670,50 @@ function migrateCharacterTo2024(
         )
       }
     }
+  }
+
+  // ── spells vs. the 2024 lists ──────────────────────────────────────────
+  {
+    const listNames = classEntries
+      .map((e) =>
+        ['Eldritch Knight', 'Arcane Trickster'].includes(e.subclass)
+          ? 'Wizard'
+          : resolveSpellcasting(e.name, e.subclass, '2024')
+          ? e.name
+          : null
+      )
+      .filter(Boolean)
+    const legacy = []
+    const offList = []
+    for (const sp of character.spells || []) {
+      if (
+        sp.featureGranted ||
+        sp.type === 'oath' ||
+        sp.domain ||
+        sp.type === 'patron'
+      )
+        continue
+      const rec = findSpellRecord(sp.name, '2024')
+      if (!rec) legacy.push(`${sp.name} (not found)`)
+      else if (rec.legacy) legacy.push(sp.name)
+      else if (
+        listNames.length &&
+        !listNames.some((c) => rec.classes?.includes(c))
+      )
+        offList.push(sp.name)
+    }
+    if (legacy.length)
+      warnings.push(
+        `Legacy 2014 spells kept (not in the 2024 Player's Handbook): ${legacy.join(
+          ', '
+        )}.`
+      )
+    if (offList.length)
+      warnings.push(
+        `Spells no longer on ${[...new Set(listNames)].join(
+          '/'
+        )}'s 2024 list (kept; review): ${offList.join(', ')}.`
+      )
   }
 
   // ── mechanics stamp + bookkeeping ──────────────────────────────────────

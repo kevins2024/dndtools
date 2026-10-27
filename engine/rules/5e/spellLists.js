@@ -6,6 +6,7 @@ const {
   pactMagicForLevel,
 } = require('./spellcasting')
 const { multiclassSpellSlots } = require('./multiclass')
+const { normalizeRuleset } = require('./rulesetId')
 
 // This is the one place in engine/ that reaches OUTSIDE engine/data — spell
 // TEXT (as opposed to class progression rules) already lives in src/data and
@@ -14,6 +15,7 @@ const { multiclassSpellSlots } = require('./multiclass')
 const SRC_DATA = path.join(__dirname, '..', '..', '..', 'src', 'data')
 
 let cache = null
+let cache2024 = null
 
 function normalize(name) {
   return name.toLowerCase().trim()
@@ -43,15 +45,33 @@ function buildIndex() {
   return index
 }
 
-function findSpellRecord(spellName) {
-  return buildIndex().get(normalize(spellName)) || null
+// Under 2024: every spell the 2024 books rewrote (src/data/spells_2024.json, with
+// its 2024 class lists), over the 2014 spells that weren't, which stay usable and
+// come back tagged `legacy: true`.
+function buildIndex2024() {
+  if (cache2024) return cache2024
+  const index = new Map()
+  for (const [k, rec] of buildIndex()) index.set(k, { ...rec, legacy: true })
+  const spells = JSON.parse(
+    fs.readFileSync(path.join(SRC_DATA, 'spells_2024.json'), 'utf8')
+  )
+  for (const s of spells) index.set(normalize(s.name), s)
+  cache2024 = index
+  return index
+}
+
+const indexFor = (ruleset) =>
+  normalizeRuleset(ruleset) === '2024' ? buildIndex2024() : buildIndex()
+
+function findSpellRecord(spellName, ruleset) {
+  return indexFor(ruleset).get(normalize(spellName)) || null
 }
 
 // Returns true/false if we know, or null if the spell isn't found at all or
 // has no `classes` data yet (an "I don't know" that callers should treat as
 // non-blocking, not as a silent false).
-function isSpellOnClassList(className, spellName) {
-  const record = findSpellRecord(spellName)
+function isSpellOnClassList(className, spellName, ruleset) {
+  const record = findSpellRecord(spellName, ruleset)
   if (!record || !Array.isArray(record.classes)) return null
   return record.classes.includes(className)
 }
@@ -97,11 +117,12 @@ function listSpellsForClass(className, options = {}) {
     // listFeatSpellChoices below). Receives the RAW record (every field the
     // source JSON has, not just the 3 this function normally returns).
     extraFilter = null,
+    ruleset,
   } = options
   const exclude = new Set([...excludeNames].map(normalize))
   const results = []
   const seen = new Set()
-  for (const record of buildIndex().values()) {
+  for (const record of indexFor(ruleset).values()) {
     if (typeof record.level !== 'number') continue
     if (cantripsOnly) {
       if (record.level !== 0) continue
@@ -149,8 +170,10 @@ function listFeatSpellChoices({
   ritualOnly = false,
   attackRollOnly = false,
   excludeNames = [],
+  ruleset,
 }) {
   return listSpellsForClass(className ?? '', {
+    ruleset,
     maxLevel: cantripsOnly ? 0 : level ?? 9,
     cantripsOnly,
     pool: className ? 'class' : 'any',
@@ -182,17 +205,19 @@ function effectiveMaxSpellLevel({
   subclassName,
   level,
   otherClasses = [],
+  ruleset,
 }) {
-  const spellcasting = resolveSpellcasting(className, subclassName)
+  const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   if (!spellcasting) return 0
-  if (spellcasting.type === 'pact') return pactMagicForLevel(level).slot_level
+  if (spellcasting.type === 'pact')
+    return pactMagicForLevel(level, ruleset).slot_level
   const combined = [
     ...otherClasses,
     { name: className, level, subclass: subclassName },
   ]
   const slots = otherClasses.length
-    ? multiclassSpellSlots(combined)
-    : spellSlotsForClassAtLevel(className, level, subclassName)
+    ? multiclassSpellSlots(combined, ruleset)
+    : spellSlotsForClassAtLevel(className, level, subclassName, ruleset)
   for (let i = slots.length - 1; i >= 0; i--) {
     if (slots[i] > 0) return i + 1
   }

@@ -103,7 +103,10 @@ function resolveUsesFormula(formula, character, equippedItems) {
       (n, c) => n + (c.level ?? 0),
       0
     )
-    return proficiencyBonus(total || character.level || 1) * (formula.multiplier ?? 1)
+    return (
+      proficiencyBonus(total || character.level || 1) *
+      (formula.multiplier ?? 1)
+    )
   }
   if (formula.type === 'level_multiple') {
     const cls = (character.classes || []).find((c) => c.name === formula.class)
@@ -115,7 +118,9 @@ function resolveUsesFormula(formula, character, equippedItems) {
   // entry ("unlimited" at 20th) has no pool to count, so no uses_max.
   if (formula.type === 'class_table') {
     const cls = (character.classes || []).find((c) => c.name === formula.class)
-    const table = loadClass(formula.class, rulesetOf(character))?.[formula.table]
+    const table = loadClass(formula.class, rulesetOf(character))?.[
+      formula.table
+    ]
     if (!cls || !table) return undefined
     let value
     let bestKey = -Infinity
@@ -527,7 +532,8 @@ function diffLevelUp(
   // back to whatever the resolved class-or-subclass spellcasting says.
   const spellcastingAbility =
     character.spellcasting_ability ??
-    resolveSpellcasting(classEntry.name, classEntry.subclass, ruleset)?.ability ??
+    resolveSpellcasting(classEntry.name, classEntry.subclass, ruleset)
+      ?.ability ??
     null
 
   // Reflects any supplied ASI/feat resolution for a level BEFORE `lvl`, so a
@@ -1382,7 +1388,7 @@ function diffLevelUp(
                 `"${name}" is already known — Magical Secrets can't pick a duplicate, recorded anyway.`
               )
             }
-            const record = findSpellRecord(name)
+            const record = findSpellRecord(name, ruleset)
             extraGrantedSpells.push({
               name,
               level: record?.level ?? null,
@@ -1458,7 +1464,7 @@ function diffLevelUp(
                 `"${name}" is already known — Additional Magical Secrets can't pick a duplicate, recorded anyway.`
               )
             }
-            const record = findSpellRecord(name)
+            const record = findSpellRecord(name, ruleset)
             extraGrantedSpells.push({
               name,
               level: record?.level ?? null,
@@ -1605,7 +1611,11 @@ function diffLevelUp(
         (s._source || '').startsWith('Divine Magic (')
       )
       if (!alreadyChosen) {
-        const subclassData = loadSubclass('Sorcerer', classEntry.subclass, ruleset)
+        const subclassData = loadSubclass(
+          'Sorcerer',
+          classEntry.subclass,
+          ruleset
+        )
         const affinityTable = subclassData?.grants_spells?.affinity_bonus_spell
         if (divineMagicChoice) {
           const affinity = normalizeName(divineMagicChoice)
@@ -1615,7 +1625,7 @@ function diffLevelUp(
               `"${divineMagicChoice}" isn't one of Divine Magic's 5 cataloged affinities (good/evil/law/chaos/neutrality) — recorded as chosen anyway, no bonus spell applied.`
             )
           } else {
-            const record = findSpellRecord(spellName)
+            const record = findSpellRecord(spellName, ruleset)
             extraGrantedSpells.push({
               name: spellName,
               level: record?.level ?? null,
@@ -1716,13 +1726,14 @@ function diffLevelUp(
       )
       if (alreadyChosenAtThisLevel) continue
       const validOptions = listSpellsForClass('Warlock', {
+        ruleset,
         maxLevel: grant.spellLevel,
         pool: 'class',
       })
         .filter((s) => s.level === grant.spellLevel)
         .map((s) => s.name)
       if (mysticArcanumChoice) {
-        const record = findSpellRecord(mysticArcanumChoice)
+        const record = findSpellRecord(mysticArcanumChoice, ruleset)
         if (!record || record.level !== grant.spellLevel) {
           notes.push(
             `"${mysticArcanumChoice}" isn't a real ${grant.spellLevel}th-level spell — recorded as chosen anyway, no automatic effects applied.`
@@ -1771,8 +1782,8 @@ function diffLevelUp(
           const [first, second] = Array.isArray(spellMasteryChoice)
             ? spellMasteryChoice
             : [spellMasteryChoice]
-          const firstRecord = first ? findSpellRecord(first) : null
-          const secondRecord = second ? findSpellRecord(second) : null
+          const firstRecord = first ? findSpellRecord(first, ruleset) : null
+          const secondRecord = second ? findSpellRecord(second, ruleset) : null
           if (!first || !second) {
             notes.push(
               'Spell Mastery needs exactly 2 picks (a 1st-level spell and a 2nd-level spell) — recorded as given.'
@@ -1835,7 +1846,7 @@ function diffLevelUp(
             )
           }
           for (const name of picks) {
-            const record = findSpellRecord(name)
+            const record = findSpellRecord(name, ruleset)
             if (record?.level !== 3) {
               notes.push(
                 `"${name}" isn't a 3rd-level spell — recorded anyway, no automatic effects applied.`
@@ -2323,7 +2334,9 @@ function diffLevelUp(
   // starting-class list, and NEVER a new saving throw proficiency (that's
   // explicitly starting-class-only, RAW).
   if (isMulticlassPickup) {
-    const grant = loadRulesetJson(ruleset, 'multiclass-proficiencies.json')[className]
+    const grant = loadRulesetJson(ruleset, 'multiclass-proficiencies.json')[
+      className
+    ]
     if (grant) {
       // Start from what this call already added (Divine Order's heavy armor,
       // a Bladesinger grant...) so the multiclass grant doesn't overwrite it.
@@ -2489,7 +2502,7 @@ function diffLevelUp(
         )
         const applied = picked.slice(0, gained)
         for (const name of applied) {
-          const record = findSpellRecord(name)
+          const record = findSpellRecord(name, ruleset)
           extraGrantedSpells.push({
             name,
             level: record?.level ?? null,
@@ -2528,7 +2541,7 @@ function diffLevelUp(
             `Can't swap "${spellSwap.from}" for "${spellSwap.to}" — "${spellSwap.from}" isn't currently a known spell.`
           )
         } else {
-          const record = findSpellRecord(spellSwap.to)
+          const record = findSpellRecord(spellSwap.to, ruleset)
           extraGrantedSpells.push({
             name: spellSwap.to,
             level: record?.level ?? null,
@@ -2569,7 +2582,7 @@ function diffLevelUp(
       )
       const applied = picked.slice(0, spellbookGained)
       for (const name of applied) {
-        const record = findSpellRecord(name)
+        const record = findSpellRecord(name, ruleset)
         extraGrantedSpells.push({
           name,
           level: record?.level ?? null,

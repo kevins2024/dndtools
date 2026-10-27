@@ -681,6 +681,7 @@ app.post('/api/engine/spell-choices', (req, res) => {
       (c) => c.name?.toLowerCase() === className.toLowerCase()
     )
     const level = toLevel ?? (existingEntry?.level ?? 0) + 1
+    const rs = rulesetFrom(req, character)
     const maxLevel = cantripsOnly
       ? 0
       : engine.effectiveMaxSpellLevel({
@@ -688,8 +689,10 @@ app.post('/api/engine/spell-choices', (req, res) => {
           subclassName,
           level,
           otherClasses,
+          ruleset: rs,
         })
     const options = engine.listSpellsForClass(listClassName, {
+      ruleset: rs,
       maxLevel,
       cantripsOnly: Boolean(cantripsOnly),
       pool: pool === 'any' ? 'any' : 'class',
@@ -725,6 +728,7 @@ app.post('/api/engine/feat-spell-choices', (req, res) => {
   } = req.body
   try {
     const options = engine.listFeatSpellChoices({
+      ruleset: rulesetFrom(req),
       className: className || null,
       level: level ?? null,
       cantripsOnly: Boolean(cantripsOnly),
