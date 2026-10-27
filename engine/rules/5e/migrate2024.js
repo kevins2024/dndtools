@@ -123,6 +123,100 @@ function oldSpeciesTraitKeys(genus, subgenus) {
   }
 }
 
+const SKILL_NAMES = require('../../data/5e/skills.json').map((x) => x.name)
+const skillName = (raw) => SKILL_NAMES.find((n) => key(n) === key(raw)) ?? null
+
+// Adds an Origin feat to the sheet and applies the picks it asks for:
+// Magic Initiate (two cantrips + a level 1 spell + a casting ability), Skilled
+// (three skills/tools), Musician (three instruments), Crafter (three tools).
+// `picks` is { cantrips, spell, ability, skills, tools }. Returns the question ids
+// still open (empty when the feat needs nothing or every pick was given).
+function addOriginFeat(character, featName, meta, picks, note) {
+  const base = featName.replace(/\s*\(.*\)$/, '')
+  const list = /\(([^)]*)\)$/.exec(featName)?.[1] ?? null
+  const featData = loadFeat(base, '2024')
+  const feature = {
+    name: base,
+    id: featData?.id ?? null,
+    type: 'feat',
+    _grant: meta.grant,
+    _source: meta.source,
+    level_gained: 1,
+  }
+  const open = []
+  character.features = character.features || []
+  character.tool_proficiencies = character.tool_proficiencies || []
+  if (base === 'Magic Initiate') {
+    feature.choices = { list }
+    if (picks?.cantrips?.length === 2 && picks.spell && picks.ability) {
+      feature.ability_choice = picks.ability
+      feature.choices = { list, cantrips: picks.cantrips, spell: picks.spell }
+      const known = new Set((character.spells || []).map((x) => key(x.name)))
+      character.spells = character.spells || []
+      for (const [name, level] of [
+        ...picks.cantrips.map((n) => [n, 0]),
+        [picks.spell, 1],
+      ]) {
+        const rec = findSpellRecord(name, '2024')
+        if (!rec || rec.level !== level || !rec.classes?.includes(list))
+          note(
+            `${character.name}: ${name} is not a level ${level} ${list} spell — check the Magic Initiate pick.`
+          )
+        if (known.has(key(name))) {
+          note(
+            `${character.name} already knows ${name}; Magic Initiate pick is redundant.`
+          )
+          continue
+        }
+        character.spells.push({
+          name,
+          level,
+          prepared: true,
+          ...(level === 0 ? { type: 'cantrip' } : {}),
+          featureGranted: true,
+          _source: 'Magic Initiate',
+          ...(level === 1
+            ? { uses_max: 1, uses_current: 1, recharge: 'long_rest' }
+            : {}),
+        })
+      }
+    } else open.push(`originFeatChoices:${base}`)
+  } else if (base === 'Skilled') {
+    if (picks?.skills?.length || picks?.tools?.length) {
+      feature.choices = { skills: picks.skills ?? [], tools: picks.tools ?? [] }
+      if ((picks.skills?.length ?? 0) + (picks.tools?.length ?? 0) !== 3)
+        note(`${character.name}: Skilled grants three skills or tools.`)
+      for (const raw of picks.skills ?? []) {
+        const n = skillName(raw)
+        if (!n) note(`${character.name}: "${raw}" is not a skill.`)
+        else if (
+          (character.skill_proficiencies || []).some((x) => key(x) === key(n))
+        )
+          note(
+            `${character.name} is already proficient in ${n}; Skilled pick is wasted.`
+          )
+        else
+          character.skill_proficiencies = [
+            ...(character.skill_proficiencies || []),
+            n,
+          ]
+      }
+      for (const t of picks.tools ?? [])
+        if (!character.tool_proficiencies.includes(t))
+          character.tool_proficiencies.push(t)
+    } else open.push(`originFeatChoices:${base}`)
+  } else if (base === 'Musician' || base === 'Crafter') {
+    if (picks?.tools?.length === 3) {
+      feature.choices = { tools: picks.tools }
+      for (const t of picks.tools)
+        if (!character.tool_proficiencies.includes(t))
+          character.tool_proficiencies.push(t)
+    } else open.push(`originFeatChoices:${base}`)
+  }
+  character.features.push(feature)
+  return open
+}
+
 function migrateCharacterTo2024(
   source,
   { answers = {}, equippedWeapons = [] } = {}
@@ -148,6 +242,7 @@ function migrateCharacterTo2024(
   change('ruleset', 'Set to 2024.')
   let features = character.features || []
 
+  let humanVersatile = false
   // ── species ────────────────────────────────────────────────────────────
   const resolved = resolveSpeciesName(character.genus, character.subgenus)
   const speciesName = resolved.species
@@ -257,6 +352,33 @@ function migrateCharacterTo2024(
           lineage ? ` + ${lineage}` : ''
         }. Ability bonuses are not re-applied — stat_* is unchanged.`
       )
+      if (newSpecies.name === 'Human') {
+        // Skillful: one skill of your choice.
+        const sk = answers.humanSkillful
+          ? skillName(answers.humanSkillful)
+          : null
+        if (sk) {
+          if (
+            (character.skill_proficiencies || []).some(
+              (x) => key(x) === key(sk)
+            )
+          )
+            warnings.push(
+              `${character.name} is already proficient in ${sk}; Human Skillful pick is wasted.`
+            )
+          else
+            character.skill_proficiencies = [
+              ...(character.skill_proficiencies || []),
+              sk,
+            ]
+        } else
+          ask(
+            'human:skillful',
+            `${character.name}'s Human trait Skillful grants proficiency in one skill of your choice.`,
+            { options: SKILL_NAMES }
+          )
+        humanVersatile = true
+      }
     }
   } else if (speciesName) {
     warnings.push(
@@ -484,6 +606,51 @@ function migrateCharacterTo2024(
   }
   character.features = features
 
+  if (humanVersatile) {
+    // Versatile: an Origin feat of your choice. A 2014 Variant Human's level 1
+    // feat plays that part, so an origin feat taken at level 1 is kept as it.
+    const originFeats = listFeats('2024')
+      .filter((f) => f.category === 'origin')
+      .map((f) => f.name)
+    const taken = (character.features || []).find(
+      (f) =>
+        f.type === 'feat' &&
+        f.level_gained === 1 &&
+        !f._grant &&
+        originFeats.some((n) => key(n) === key(f.name))
+    )
+    if (taken) {
+      taken._grant = 'species'
+      taken._source = 'Human'
+      change(
+        'species',
+        `Human Versatile: the level 1 feat ${taken.name} is kept as the Origin feat.`
+      )
+    } else if (answers.versatileFeat) {
+      const open = addOriginFeat(
+        character,
+        answers.versatileFeat,
+        { grant: 'species', source: 'Human' },
+        answers.versatileChoices,
+        (m) => warnings.push(m)
+      )
+      change(
+        'species',
+        `Human Versatile: origin feat ${answers.versatileFeat} added.`
+      )
+      for (const id of open)
+        ask(
+          id,
+          `${character.name}'s Versatile feat ${answers.versatileFeat} needs choices.`
+        )
+    } else
+      ask(
+        'human:versatile',
+        `${character.name}'s Human trait Versatile grants an Origin feat of your choice (Skilled is the book's suggestion).`,
+        { options: originFeats }
+      )
+  }
+
   // ── background & origin feat ───────────────────────────────────────────
   const bgAnswer = answers.background
   const oldBg = character.background
@@ -508,27 +675,24 @@ function migrateCharacterTo2024(
           `Background ${bg.name}; ${base} already on the sheet.`
         )
       } else {
-        const featData = loadFeat(base, '2024')
-        character.features.push({
-          name: base,
-          id: featData?.id ?? null,
-          type: 'feat',
-          _grant: 'origin',
-          _source: bg.name,
-          level_gained: 1,
-        })
         change(
           'background',
           `Background ${oldBg || '(none)'} -> ${
             bg.name
           }; origin feat ${featName} added.`
         )
-        if (/Magic Initiate|Skilled|Musician|Crafter/.test(base)) {
+        const open = addOriginFeat(
+          character,
+          featName,
+          { grant: 'origin', source: bg.name },
+          answers.originFeatChoices?.[base],
+          (m) => warnings.push(m)
+        )
+        for (const id of open)
           ask(
-            `originFeatChoices:${base}`,
+            id,
             `${character.name}'s origin feat ${featName} needs choices (spells/skills/instruments).`
           )
-        }
       }
     }
   } else if (oldBg) {
@@ -628,9 +792,35 @@ function migrateCharacterTo2024(
         if (Number(k) <= warlock.level) v = n
       return v
     })()
-    const have = character.features.filter(
-      (f) => f.type === 'invocation'
-    ).length
+    let have = character.features.filter((f) => f.type === 'invocation').length
+    const picked = [].concat(answers['Warlock:invocationChoice'] ?? [])
+    for (const raw of picked) {
+      const inv = listInvocations('2024').find((i) => key(i.name) === key(raw))
+      if (!inv) {
+        warnings.push(
+          `"${raw}" isn't a 2024 Eldritch Invocation — not applied.`
+        )
+        continue
+      }
+      if (
+        character.features.some(
+          (f) => f.type === 'invocation' && key(f.name) === key(inv.name)
+        )
+      ) {
+        warnings.push(
+          `${inv.name} is already known — pick a different invocation.`
+        )
+        continue
+      }
+      character.features.push({
+        name: inv.name,
+        id: inv.id,
+        type: 'invocation',
+        level_gained: warlock.level,
+        _source: 'Warlock',
+      })
+      have++
+    }
     if (have < owed) {
       ask(
         'Warlock:invocationChoice',
@@ -651,6 +841,36 @@ function migrateCharacterTo2024(
       let want = 0
       for (const [k, n] of Object.entries(nc.prepared_spells_by_level))
         if (Number(k) <= entry.level) want = n
+      // Spells the owner picked to fill the 2024 prepared-spell count.
+      for (const raw of [].concat(
+        answers[`${entry.name}:preparedSpells`] ?? []
+      )) {
+        const rec = findSpellRecord(raw, '2024')
+        if (!rec || rec.legacy || !(rec.level > 0)) {
+          warnings.push(
+            `${raw} isn't a 2024 spell of level 1 or higher — not added.`
+          )
+          continue
+        }
+        if (!rec.classes?.includes(entry.name))
+          warnings.push(
+            `${rec.name} is not on the ${entry.name} 2024 list — added anyway.`
+          )
+        if (
+          (character.spells || []).some((x) => key(x.name) === key(rec.name))
+        ) {
+          warnings.push(
+            `${character.name} already has ${rec.name}; pick another.`
+          )
+          continue
+        }
+        character.spells = character.spells || []
+        character.spells.push({
+          name: rec.name,
+          level: rec.level,
+          prepared: true,
+        })
+      }
       const have = (character.spells || []).filter(
         (s) =>
           s.level > 0 &&

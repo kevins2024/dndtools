@@ -1,57 +1,357 @@
 {
-  "_readme": "Answers for scripts/migrate-roster-2024.js (--answers 2024_MIGRATION_ANSWERS.json). Keys per character are question ids from the report. 'background' is the 2024 background the character takes (it grants an origin feat). PROPOSED by Claude from each character's recorded skills and notes — edit freely, then re-run. Set \"originFeat\": \"none\" for a character to skip the origin feat.",
+  "_readme": "Answers for scripts/migrate-roster-2024.js (--answers 2024_MIGRATION_ANSWERS.json). Keys per character are question ids from the report. 'background' is the 2024 background the character takes (it grants an origin feat). PROPOSED by Claude from each character's recorded skills and notes \u2014 edit freely, then re-run. Set \"originFeat\": \"none\" for a character to skip the origin feat.",
   "Vaz": {
-    "background": "Soldier"
+    "background": "Merchant",
+    "choices2024": {
+      "Fighter": {
+        "weaponMastery": ["rapier", "dagger", "hand crossbow", "longsword"]
+      }
+    }
   },
   "Rhuna": {
-    "background": "Guard"
+    "background": "Guard",
+    "choices2024": {
+      "Barbarian": {
+        "weaponMastery": ["greatsword", "spear", "handaxe"],
+        "primalKnowledgeSkill": "Nature"
+      }
+    }
   },
   "Denna": {
-    "background": "Criminal"
+    "background": "Criminal",
+    "humanSkillful": "Insight",
+    "versatileFeat": "Skilled",
+    "versatileChoices": {
+      "skills": ["Athletics", "Survival", "Medicine"]
+    },
+    "choices2024": {
+      "Rogue": {
+        "weaponMastery": ["dagger", "hand crossbow"]
+      }
+    }
   },
   "Lenn": {
-    "background": "Sage"
+    "background": "Criminal",
+    "humanSkillful": "Deception",
+    "versatileFeat": "Lucky",
+    "choices2024": {
+      "Wizard": {
+        "expertise": {
+          "2": ["Arcana"]
+        }
+      }
+    }
   },
   "Kessara": {
-    "background": "Sage"
+    "background": "Sage",
+    "originFeatChoices": {
+      "Magic Initiate": {
+        "cantrips": ["Prestidigitation", "Mending"],
+        "spell": "Magic Missile",
+        "ability": "int"
+      }
+    },
+    "choices2024": {
+      "Wizard": {
+        "expertise": {
+          "2": ["Arcana"]
+        }
+      }
+    }
   },
   "Petra": {
-    "background": "Acolyte"
+    "background": "Acolyte",
+    "humanSkillful": "Perception",
+    "versatileFeat": "Healer",
+    "originFeatChoices": {
+      "Magic Initiate": {
+        "cantrips": ["Light", "Mending"],
+        "spell": "Detect Magic",
+        "ability": "wis"
+      }
+    },
+    "choices2024": {
+      "Cleric": {
+        "divineOrder": "Protector"
+      }
+    }
   },
   "Pirra": {
-    "background": "Charlatan"
+    "background": "Charlatan",
+    "originFeatChoices": {
+      "Skilled": {
+        "skills": ["Investigation", "Persuasion", "Athletics"]
+      }
+    },
+    "choices2024": {
+      "Rogue": {
+        "weaponMastery": ["shortsword", "shortbow"]
+      }
+    }
   },
   "Lyria": {
-    "background": "Sage"
+    "background": "Artisan",
+    "humanSkillful": "Medicine",
+    "versatileFeat": "Skilled",
+    "versatileChoices": {
+      "skills": ["Nature", "Religion"],
+      "tools": ["Alchemist's Supplies"]
+    },
+    "choices2024": {
+      "Wizard": {
+        "expertise": {
+          "2": ["History"]
+        }
+      }
+    },
+    "originFeatChoices": {
+      "Crafter": {
+        "tools": ["Tinker's Tools", "Weaver's Tools", "Leatherworker's Tools"]
+      }
+    }
   },
   "Corwin": {
-    "background": "Guard"
+    "background": "Guard",
+    "humanSkillful": "Survival",
+    "versatileFeat": "Tough",
+    "choices2024": {
+      "Fighter": {
+        "weaponMastery": ["halberd", "longsword", "javelin", "light crossbow"],
+        "fightingStyle": ["Great Weapon Fighting", "Defense"]
+      }
+    }
   },
   "Chuknora": {
-    "background": "Guide"
+    "background": "Sailor",
+    "choices2024": {
+      "Barbarian": {
+        "weaponMastery": ["greataxe", "handaxe", "spear"],
+        "primalKnowledgeSkill": "Nature"
+      },
+      "Paladin": {
+        "weaponMastery": ["greatsword", "javelin"],
+        "fightingStyle": ["Great Weapon Fighting"]
+      }
+    }
   },
   "Enauweyn": {
-    "background": "Acolyte"
+    "background": "Noble",
+    "choices2024": {
+      "Paladin": {
+        "weaponMastery": ["longsword", "rapier"],
+        "fightingStyle": ["Defense"]
+      }
+    },
+    "originFeatChoices": {
+      "Skilled": {
+        "skills": ["History", "Persuasion", "Investigation"]
+      }
+    }
   },
   "Tackett": {
-    "background": "Guide"
+    "background": "Guide",
+    "originFeatChoices": {
+      "Magic Initiate": {
+        "cantrips": ["Mending", "Produce Flame"],
+        "spell": "Goodberry",
+        "ability": "wis"
+      }
+    },
+    "choices2024": {
+      "Druid": {
+        "primalOrder": "Warden"
+      }
+    }
   },
   "Revven": {
-    "background": "Acolyte"
+    "background": "Hermit",
+    "choices2024": {
+      "Cleric": {
+        "divineOrder": "Protector"
+      }
+    }
   },
   "Elucyne": {
-    "background": "Entertainer"
+    "background": "Entertainer",
+    "originFeatChoices": {
+      "Musician": {
+        "tools": ["Flute", "Drum", "Viol"]
+      }
+    },
+    "choices2024": {
+      "Ranger": {
+        "weaponMastery": ["hand crossbow", "shortsword"],
+        "fightingStyle": ["Archery"]
+      },
+      "Rogue": {
+        "weaponMastery": ["dagger", "rapier"]
+      },
+      "Fighter": {
+        "weaponMastery": ["longbow", "longsword", "scimitar"],
+        "fightingStyle": ["Defense"]
+      }
+    },
+    "Ranger:preparedSpells": ["Silence", "Spike Growth"]
   },
   "Ferghus": {
-    "background": "Acolyte"
+    "background": "Soldier",
+    "humanSkillful": "Intimidation",
+    "versatileFeat": "Tavern Brawler",
+    "choices2024": {
+      "Paladin": {
+        "weaponMastery": ["maul", "warhammer"]
+      }
+    }
   },
   "Eldi": {
-    "background": "Sailor"
+    "background": "Sailor",
+    "choices2024": {
+      "Fighter": {
+        "weaponMastery": ["scimitar", "longsword", "shortsword", "longbow"],
+        "fightingStyle": ["Two Weapon Fighting"]
+      },
+      "Rogue": {
+        "weaponMastery": ["dagger", "rapier"]
+      }
+    }
   },
   "Rith": {
-    "background": "Sage"
+    "background": "Wayfarer",
+    "choices2024": {
+      "Sorcerer": {
+        "metamagic": ["Quickened Spell", "Careful Spell"]
+      }
+    },
+    "Sorcerer:preparedSpells": [
+      "Fireball",
+      "Fly",
+      "Dimension Door",
+      "Banishment"
+    ]
   },
   "Therynv'l": {
-    "background": "Farmer"
+    "background": "Farmer",
+    "choices2024": {
+      "Druid": {
+        "primalOrder": "Warden"
+      }
+    }
+  },
+  "Iyani": {
+    "background": "Sage",
+    "originFeatChoices": {
+      "Magic Initiate": {
+        "cantrips": ["Prestidigitation", "Fire Bolt"],
+        "spell": "Shield",
+        "ability": "cha"
+      }
+    },
+    "choices2024": {
+      "Sorcerer": {
+        "metamagic": ["Twinned Spell", "Quickened Spell"]
+      }
+    },
+    "Sorcerer:preparedSpells": [
+      "Fireball",
+      "Haste",
+      "Counterspell",
+      "Dimension Door"
+    ]
+  },
+  "Siv": {
+    "humanSkillful": "Animal Handling",
+    "versatileFeat": "Alert",
+    "choices2024": {
+      "Rogue": {
+        "weaponMastery": ["shortbow", "rapier"]
+      }
+    }
+  },
+  "Brick": {
+    "humanSkillful": "Perception",
+    "originFeatChoices": {
+      "Skilled": {
+        "skills": ["Investigation", "Insight", "Medicine"]
+      }
+    },
+    "choices2024": {
+      "Barbarian": {
+        "weaponMastery": ["greataxe", "greatsword", "warhammer"],
+        "primalKnowledgeSkill": "Nature"
+      },
+      "Fighter": {
+        "weaponMastery": ["handaxe", "javelin", "spear"]
+      }
+    }
+  },
+  "Jaygar": {
+    "originFeatChoices": {
+      "Magic Initiate": {
+        "cantrips": ["Prestidigitation", "Light"],
+        "spell": "Magic Missile",
+        "ability": "int"
+      }
+    }
+  },
+  "Elowenne": {
+    "originFeatChoices": {
+      "Skilled": {
+        "skills": ["Investigation", "Medicine", "Perception"]
+      }
+    },
+    "choices2024": {
+      "Wizard": {
+        "expertise": {
+          "2": ["Arcana"]
+        }
+      }
+    }
+  },
+  "Lexica": {
+    "originFeatChoices": {
+      "Musician": {
+        "tools": ["Lute", "Lyre", "Flute"]
+      }
+    },
+    "choices2024": {
+      "Bard": {
+        "expertise": {
+          "9": ["Persuasion", "Arcana"]
+        }
+      }
+    },
+    "Bard:preparedSpells": ["Hypnotic Pattern", "Major Image"]
+  },
+  "Kerra": {
+    "choices2024": {
+      "Fighter": {
+        "weaponMastery": ["longsword", "greatsword", "handaxe", "javelin"]
+      }
+    },
+    "Warlock:invocationChoice": ["Eldritch Mind"]
+  },
+  "Torrin": {
+    "choices2024": {
+      "Rogue": {
+        "weaponMastery": ["hand crossbow", "dagger"]
+      }
+    }
+  },
+  "Marnock": {
+    "choices2024": {
+      "Barbarian": {
+        "weaponMastery": ["greataxe", "handaxe"]
+      }
+    }
+  },
+  "Sorra": {
+    "choices2024": {
+      "Bard": {
+        "expertise": {
+          "9": ["Persuasion", "Perception"]
+        }
+      }
+    },
+    "Bard:preparedSpells": ["Dispel Magic", "Fear"]
   }
 }
