@@ -48,10 +48,15 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
   spellcasting/multiclass/`describeLevelUp`/`diffLevelUp`. (CLAUDE.md update still to do, phase 7.)
 - [ ] **1. Core rules** — exhaustion, conditions, actions, ASI-as-feat, unarmed strike/grapple.
 - [ ] **2. Origins** — 2024 species, backgrounds (ASI + origin feat), origin feats, New Character flow.
-- [ ] **3. Classes** — 12 PHB classes (Artificer stays legacy: no 2024 version exists). Barbarian first
-      (vertical slice), then the rest. Weapon Mastery, fighting styles as feats, prepared-spell tables.
-- [ ] **4. Subclasses** — the 2024 PHB subclasses; unrewritten ones stay legacy with a subclass-level
-      shim (2014 Cleric/Sorcerer/Warlock pick at 1, Wizard/Druid at 2; 2024 is 3 for everyone).
+- [~] **3. Classes** — all 13 class chassis ingested (`engine/data/5e2024/classes/`: features by id,
+  per-level tables, spell columns); 2024 spellcasting, multiclass rules, prerequisites and proficiencies are
+  wired and tested. Still to do: feature mechanics (action type/uses/recharge), Weapon Mastery choices,
+  fighting styles as feats, Divine/Primal Order, Expertise/Metamagic/Invocation option lists, and the
+  `diffLevelUp` pending choices that go with them.
+- [~] **4. Subclasses** — 69 official 2024 subclasses ingested (`engine/data/5e2024/subclasses/`) with the
+  2014->2024 name aliases in `subclass-aliases.json`. Still to do: feature mechanics; the legacy subclasses'
+  level shim (2014 Cleric/Sorcerer/Warlock pick at 1, Wizard/Druid at 2; 2024 is 3 for everyone). Sorrow
+  Knight deliberately not ingested (source "D&D Beyond Drops", status unclear).
 - [ ] **5. Feats and spells** — 2024 feat catalog; 2024 spell text + class lists (reworked spells get a 2024 entry).
 - [ ] **6. Roster migration** — script/LLM-assisted, one character at a time, preserving final ability totals and level.
 - [ ] **7. Docs and cleanup** — CLAUDE.md, CHARACTER_SCHEMA.md, engine/CHECKLIST.md entries.
