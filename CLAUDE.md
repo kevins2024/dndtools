@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A D&D 5e campaign-management app (character sheets, combat tracker, world/location browser, spell/feature/monster bestiary, level-up tooling) — fully built by AI with guidance and prompting from the project owner. Vue 2 frontend, a small Express dev server, and a standalone rules engine. The campaign runs **2014 rules only**.
+A D&D 5e campaign-management app (character sheets, combat tracker, world/location browser, spell/feature/monster bestiary, level-up tooling) — fully built by AI with guidance and prompting from the project owner. Vue 2 frontend, a small Express dev server, and a standalone rules engine. The campaign is **moving from the 2014 rules to the 2024 (5.5e) rules** — see `2024_CONVERSION_PLAN.md` for status and conventions. Both rulesets live in one engine: every character, class, subclass, species, background and feat is on `ruleset` `"2014"` (the default) or `"2024"`. Content the 2024 rules did not rewrite stays usable as **legacy**.
 
 ## Commits
 
@@ -37,7 +37,9 @@ Verify instead with `npm run build` (compiles clean — real proof for a Vue app
 
 `cd engine && node --test` is cheap — run it after any `engine/` change, always.
 
-## Verifying D&D rules text (RAW) — go straight to dnd5e.wikidot.com
+## Verifying D&D rules text (RAW) — 2024: dnd2024.wikidot.com; 2014 (legacy): dnd5e.wikidot.com
+
+**2024 content:** fetch it with `node scripts/fetch-2024-wikidot.js <slug>` (e.g. `barbarian:main`, `wizard:evoker`, `feat:alert`, `species:elf`). Every page's first line is `Source: <book>`; that site also hosts Unearthed Arcana, third-party ("Arcana Unleashed") and homebrew pages, which are **not** rules — the ingest scripts (`scripts/ingest-2024-*.js`) refuse them. The rules glossary (rests, exhaustion, conditions) is not on the wiki; use the SRD 5.2 text (e.g. dndbeyond.com/sources/dnd/free-rules/rules-glossary) or `dnd5eapi.co/api/2024`. The rest of this section is about the **2014** wiki:
 
 Applies any time a task checks a feature, feat, spell, or other rules text against the real game. Broad web search returns blended summaries that mix 2014 rules, the 2024 revision, Unearthed Arcana drafts and homebrew — wrong numbers slip through. 2024-rules and UA contamination are the two recurring failure modes.
 
@@ -50,6 +52,10 @@ When a result contains a surprising or mechanically significant number, cross-ch
 Do not install new npm packages, system utilities, or any other dependency (`npm install`, `pip install`, ad-hoc `npx` tools, etc.) without asking the project owner first, even if it's normally low-risk. If a task seems to need something not already available, say so and ask.
 
 ## Architecture
+
+### The ruleset dimension (2014 / 2024)
+
+`engine/data/5e/` is the 2014 tree and is never edited for the conversion; `engine/data/5e2024/` mirrors it and holds only what the 2024 rules rewrote. `engine/rules/5e/ruleset.js` resolves a data file for a ruleset and **falls back to the 2014 file** when there is no 2024 one — that fallback is what "legacy" means, and the loader tags such results `legacy: true`. Loaders (`loadClass`, `loadSubclass`, `loadSpecies`, `loadFeat`, `loadBackground`, spellcasting, multiclass, `weaponProps`...) take an optional trailing `ruleset` that defaults to `'2014'`, so nothing changes until a caller opts in; `diffLevelUp` reads `character.ruleset`. 2024 feature ids are prefixed `pub24_` (subclasses `pub24_sub_`), 2024 subclass names are the official ones with a 2014→2024 alias map in `data/5e2024/subclass-aliases.json`. **Browser-bundled modules import `rules/5e/rulesetId.js` (pure), never `ruleset.js` (uses `fs`)** — `engine/test/browserSafe.test.js` walks the require graph from `src/` and fails if `fs`/`path` becomes reachable. Existing characters move over with `engine/rules/5e/migrate2024.js` (dry-run report: `node scripts/migrate-roster-2024.js`).
 
 ### Three-layer split: rules → game-aide engine → UI
 
