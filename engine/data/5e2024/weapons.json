@@ -1,0 +1,602 @@
+{
+  "_schema": {
+    "note": "2024 Player's Handbook weapon table (dnd2024.wikidot.com equipment:weapon), same keys/fields as engine/data/5e/weapons.json plus `mastery` (the weapon's mastery property), `properties` (the printed list), and flags heavy/light/reach/loading/two_handed, `range` for Ammunition weapons."
+  },
+  "club": {
+    "weapon_type": "melee",
+    "damage_dice": "1d4",
+    "damage_type": "bludgeoning",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Light"
+    ],
+    "light": true
+  },
+  "dagger": {
+    "weapon_type": "melee",
+    "damage_dice": "1d4",
+    "damage_type": "piercing",
+    "category": "simple",
+    "finesse": true,
+    "versatile": false,
+    "mastery": "nick",
+    "properties": [
+      "Finesse",
+      "Light",
+      "Thrown (Range 20/60)"
+    ],
+    "thrown": {
+      "normal": 20,
+      "long": 60
+    },
+    "light": true
+  },
+  "greatclub": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "bludgeoning",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "push",
+    "properties": [
+      "Two-Handed"
+    ],
+    "two_handed": true
+  },
+  "handaxe": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "slashing",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Light",
+      "Thrown (Range 20/60)"
+    ],
+    "thrown": {
+      "normal": 20,
+      "long": 60
+    },
+    "light": true
+  },
+  "javelin": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "piercing",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Thrown (Range 30/120)"
+    ],
+    "thrown": {
+      "normal": 30,
+      "long": 120
+    }
+  },
+  "light hammer": {
+    "weapon_type": "melee",
+    "damage_dice": "1d4",
+    "damage_type": "bludgeoning",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "nick",
+    "properties": [
+      "Light",
+      "Thrown (Range 20/60)"
+    ],
+    "thrown": {
+      "normal": 20,
+      "long": 60
+    },
+    "light": true
+  },
+  "mace": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "bludgeoning",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "sap",
+    "properties": []
+  },
+  "quarterstaff": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "bludgeoning",
+    "category": "simple",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "topple",
+    "properties": [
+      "Versatile (1d8)"
+    ],
+    "damage_dice_2h": "1d8"
+  },
+  "sickle": {
+    "weapon_type": "melee",
+    "damage_dice": "1d4",
+    "damage_type": "slashing",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "nick",
+    "properties": [
+      "Light"
+    ],
+    "light": true
+  },
+  "spear": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "piercing",
+    "category": "simple",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "sap",
+    "properties": [
+      "Thrown (Range 20/60)",
+      "Versatile (1d8)"
+    ],
+    "damage_dice_2h": "1d8",
+    "thrown": {
+      "normal": 20,
+      "long": 60
+    }
+  },
+  "dart": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d4",
+    "damage_type": "piercing",
+    "category": "simple",
+    "finesse": true,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Finesse",
+      "Thrown (Range 20/60)"
+    ],
+    "thrown": {
+      "normal": 20,
+      "long": 60
+    }
+  },
+  "light crossbow": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d8",
+    "damage_type": "piercing",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Ammunition (Range 80/320; Bolt)",
+      "Loading",
+      "Two-Handed"
+    ],
+    "range": {
+      "normal": 80,
+      "long": 320
+    },
+    "loading": true,
+    "two_handed": true
+  },
+  "shortbow": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d6",
+    "damage_type": "piercing",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Ammunition (Range 80/320; Arrow)",
+      "Two-Handed"
+    ],
+    "range": {
+      "normal": 80,
+      "long": 320
+    },
+    "two_handed": true
+  },
+  "sling": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d4",
+    "damage_type": "bludgeoning",
+    "category": "simple",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Ammunition (Range 30/120; Bullet)"
+    ],
+    "range": {
+      "normal": 30,
+      "long": 120
+    }
+  },
+  "battleaxe": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "topple",
+    "properties": [
+      "Versatile (1d10)"
+    ],
+    "damage_dice_2h": "1d10"
+  },
+  "flail": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "bludgeoning",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "sap",
+    "properties": []
+  },
+  "glaive": {
+    "weapon_type": "melee",
+    "damage_dice": "1d10",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "graze",
+    "properties": [
+      "Heavy",
+      "Reach",
+      "Two-Handed"
+    ],
+    "heavy": true,
+    "reach": true,
+    "two_handed": true
+  },
+  "greataxe": {
+    "weapon_type": "melee",
+    "damage_dice": "1d12",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "cleave",
+    "properties": [
+      "Heavy",
+      "Two-Handed"
+    ],
+    "heavy": true,
+    "two_handed": true
+  },
+  "greatsword": {
+    "weapon_type": "melee",
+    "damage_dice": "2d6",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "graze",
+    "properties": [
+      "Heavy",
+      "Two-Handed"
+    ],
+    "heavy": true,
+    "two_handed": true
+  },
+  "halberd": {
+    "weapon_type": "melee",
+    "damage_dice": "1d10",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "cleave",
+    "properties": [
+      "Heavy",
+      "Reach",
+      "Two-Handed"
+    ],
+    "heavy": true,
+    "reach": true,
+    "two_handed": true
+  },
+  "lance": {
+    "weapon_type": "melee",
+    "damage_dice": "1d10",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "topple",
+    "properties": [
+      "Heavy",
+      "Reach",
+      "Two-Handed (unless mounted)"
+    ],
+    "heavy": true,
+    "reach": true,
+    "two_handed": true
+  },
+  "longsword": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "sap",
+    "properties": [
+      "Versatile (1d10)"
+    ],
+    "damage_dice_2h": "1d10"
+  },
+  "maul": {
+    "weapon_type": "melee",
+    "damage_dice": "2d6",
+    "damage_type": "bludgeoning",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "topple",
+    "properties": [
+      "Heavy",
+      "Two-Handed"
+    ],
+    "heavy": true,
+    "two_handed": true
+  },
+  "morningstar": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "sap",
+    "properties": []
+  },
+  "pike": {
+    "weapon_type": "melee",
+    "damage_dice": "1d10",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "push",
+    "properties": [
+      "Heavy",
+      "Reach",
+      "Two-Handed"
+    ],
+    "heavy": true,
+    "reach": true,
+    "two_handed": true
+  },
+  "rapier": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": true,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Finesse"
+    ]
+  },
+  "scimitar": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": true,
+    "versatile": false,
+    "mastery": "nick",
+    "properties": [
+      "Finesse",
+      "Light"
+    ],
+    "light": true
+  },
+  "shortsword": {
+    "weapon_type": "melee",
+    "damage_dice": "1d6",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": true,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Finesse",
+      "Light"
+    ],
+    "light": true
+  },
+  "trident": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "topple",
+    "properties": [
+      "Thrown (Range 20/60)",
+      "Versatile (1d10)"
+    ],
+    "damage_dice_2h": "1d10",
+    "thrown": {
+      "normal": 20,
+      "long": 60
+    }
+  },
+  "warhammer": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "bludgeoning",
+    "category": "martial",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "push",
+    "properties": [
+      "Versatile (1d10)"
+    ],
+    "damage_dice_2h": "1d10"
+  },
+  "war pick": {
+    "weapon_type": "melee",
+    "damage_dice": "1d8",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": true,
+    "mastery": "sap",
+    "properties": [
+      "Versatile (1d10)"
+    ],
+    "damage_dice_2h": "1d10"
+  },
+  "whip": {
+    "weapon_type": "melee",
+    "damage_dice": "1d4",
+    "damage_type": "slashing",
+    "category": "martial",
+    "finesse": true,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Finesse",
+      "Reach"
+    ],
+    "reach": true
+  },
+  "blowgun": {
+    "weapon_type": "ranged",
+    "damage_dice": "1",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Ammunition (Range 25/100; Needle)",
+      "Loading"
+    ],
+    "range": {
+      "normal": 25,
+      "long": 100
+    },
+    "loading": true
+  },
+  "hand crossbow": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d6",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Ammunition (Range 30/120; Bolt)",
+      "Light",
+      "Loading"
+    ],
+    "range": {
+      "normal": 30,
+      "long": 120
+    },
+    "light": true,
+    "loading": true
+  },
+  "heavy crossbow": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d10",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "push",
+    "properties": [
+      "Ammunition (Range 100/400; Bolt)",
+      "Heavy",
+      "Loading",
+      "Two-Handed"
+    ],
+    "range": {
+      "normal": 100,
+      "long": 400
+    },
+    "heavy": true,
+    "loading": true,
+    "two_handed": true
+  },
+  "longbow": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d8",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Ammunition (Range 150/600; Arrow)",
+      "Heavy",
+      "Two-Handed"
+    ],
+    "range": {
+      "normal": 150,
+      "long": 600
+    },
+    "heavy": true,
+    "two_handed": true
+  },
+  "musket": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d12",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "slow",
+    "properties": [
+      "Ammunition (Range 40/120; Bullet)",
+      "Loading",
+      "Two-Handed"
+    ],
+    "range": {
+      "normal": 40,
+      "long": 120
+    },
+    "loading": true,
+    "two_handed": true
+  },
+  "pistol": {
+    "weapon_type": "ranged",
+    "damage_dice": "1d10",
+    "damage_type": "piercing",
+    "category": "martial",
+    "finesse": false,
+    "versatile": false,
+    "mastery": "vex",
+    "properties": [
+      "Ammunition (Range 30/90; Bullet)",
+      "Loading"
+    ],
+    "range": {
+      "normal": 30,
+      "long": 90
+    },
+    "loading": true
+  }
+}

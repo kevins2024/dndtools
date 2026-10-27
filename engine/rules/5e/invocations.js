@@ -1,4 +1,11 @@
-const invocations = require('../../data/5e/invocations.json')
+const invocations2014 = require('../../data/5e/invocations.json')
+const { normalizeRuleset, loadRulesetJson, rulesetOf } = require('./ruleset')
+
+// 2024 invocations are their own list (no Pact Boon — the Pacts are invocations).
+const invocationsFor = (ruleset) =>
+  normalizeRuleset(ruleset) === '2024'
+    ? loadRulesetJson('2024', 'invocations.json') ?? invocations2014
+    : invocations2014
 const pactBoons = require('../../data/5e/pact-boons.json')
 const tables = require('../../data/5e/spellcasting-tables.json')
 const { resolveBreakpoint } = require('./spellcasting')
@@ -9,8 +16,8 @@ function normalizeName(name) {
   return (name || '').trim().toLowerCase()
 }
 
-function listInvocations() {
-  return Object.entries(invocations)
+function listInvocations(ruleset) {
+  return Object.entries(invocationsFor(ruleset))
     .filter(([name]) => !name.startsWith('_'))
     .map(([name, data]) => ({ name, ...data }))
 }
@@ -18,7 +25,8 @@ function listInvocations() {
 // Case-insensitive lookup — the UI passes back whatever exact string it was
 // given, but a hand-typed "Other" fallback (same escape hatch the feat
 // picker has) could differ in case.
-function loadInvocation(name) {
+function loadInvocation(name, ruleset) {
+  const invocations = invocationsFor(ruleset)
   if (invocations[name]) return invocations[name]
   const key = Object.keys(invocations).find(
     (k) => !k.startsWith('_') && normalizeName(k) === normalizeName(name)
@@ -30,7 +38,7 @@ function loadInvocation(name) {
 // reusing the SAME evaluator (see featPrerequisites.js's header comment for
 // why this file doesn't have its own parallel checker).
 function meetsInvocationPrerequisite(character, invocationName) {
-  const inv = loadInvocation(invocationName)
+  const inv = loadInvocation(invocationName, rulesetOf(character))
   if (!inv) return { met: true, reason: null, unknown: true }
   return evaluatePrerequisite(character, inv.prerequisite)
 }

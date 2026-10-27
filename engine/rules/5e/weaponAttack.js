@@ -14,7 +14,9 @@ const { abilityModifier } = require('./abilities')
 const { effectiveProficiencyBonus } = require('./proficiency')
 const { weaponProps, isProficientWithWeapon } = require('./weapons')
 const { bonusLines } = require('./breakdown')
-const barbarian = require('../../data/5e/classes/barbarian.json')
+const barbarian2014 = require('../../data/5e/classes/barbarian.json')
+const barbarian2024 = require('../../data/5e2024/classes/barbarian.json')
+const { rulesetOf } = require('./rulesetId')
 
 // Shared by both breakdown functions below — the stat-mod line's label
 // depends on the same finesse/ranged/melee routing weaponStatMod itself
@@ -32,7 +34,7 @@ function weaponStatMod(
   homebrewWeaponTypes = {}
 ) {
   const { scores } = resolveEffectiveStats(character, equippedItems)
-  const props = weaponProps(weapon, homebrewWeaponTypes)
+  const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
   if (props.finesse) {
     return Math.max(abilityModifier(scores.str), abilityModifier(scores.dex))
   }
@@ -81,7 +83,7 @@ function gripDie(
   equippedItems = [],
   homebrewWeaponTypes = {}
 ) {
-  const props = weaponProps(weapon, homebrewWeaponTypes)
+  const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
   if (!props.versatile) return props.damage_dice
   if (weapon.slot === 'melee2h')
     return props.damage_dice_2h ?? props.damage_dice
@@ -108,7 +110,7 @@ function thrownDie(
   equippedItems = [],
   homebrewWeaponTypes = {}
 ) {
-  const props = weaponProps(weapon, homebrewWeaponTypes)
+  const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
   if (!props.thrown) return null
   const current = gripDie(character, weapon, equippedItems, homebrewWeaponTypes)
   return props.damage_dice !== current ? props.damage_dice : null
@@ -121,7 +123,7 @@ function attackBonusBreakdown(
   homebrewWeaponTypes = {}
 ) {
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
-  const props = weaponProps(weapon, homebrewWeaponTypes)
+  const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
   const statMod = weaponStatMod(
     character,
     weapon,
@@ -195,6 +197,7 @@ function rageDamage(character) {
   // damage, the same way its uses already come from `rages_by_level`.
   let damage = 0
   let bestKey = -Infinity
+  const barbarian = rulesetOf(character) === '2024' ? barbarian2024 : barbarian2014
   for (const [key, value] of Object.entries(barbarian.rage_damage_by_level)) {
     const k = Number(key)
     if (k <= barbLevel && k > bestKey) {
@@ -207,7 +210,7 @@ function rageDamage(character) {
 
 function rageDamageBonus(character, weapon, homebrewWeaponTypes = {}) {
   if (!(character.conditions ?? []).includes('Raging')) return 0
-  const props = weaponProps(weapon, homebrewWeaponTypes)
+  const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
   if (props.weapon_type === 'ranged') return 0
   return rageDamage(character)
 }
@@ -219,7 +222,7 @@ function damageBonusBreakdown(
   homebrewWeaponTypes = {}
 ) {
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
-  const props = weaponProps(weapon, homebrewWeaponTypes)
+  const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
   const statMod = weaponStatMod(
     character,
     weapon,

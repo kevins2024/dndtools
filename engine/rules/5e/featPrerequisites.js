@@ -215,6 +215,15 @@ function evaluatePrerequisite(character, prerequisite) {
         unknown: false,
       }
     }
+    // 2024 Warlock invocations that modify a damaging cantrip (Agonizing Blast...):
+    // needs a damage-dealing Warlock cantrip, which depends on the spell's text —
+    // not decidable from the character's spell list alone, so not enforced here.
+    case 'warlock_damage_cantrip':
+      return {
+        met: true,
+        reason: 'Requires a Warlock cantrip that deals damage — not enforced.',
+        unknown: true,
+      }
     case 'all_of': {
       const results = prerequisite.all.map((p) =>
         evaluatePrerequisite(character, p)

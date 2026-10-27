@@ -11,14 +11,24 @@
 // map, same "caller supplies the input" pattern as equippedItems elsewhere
 // in this project's engine/ modules.
 
-const weaponTable = require('../../data/5e/weapons.json')
+const weaponTable2014 = require('../../data/5e/weapons.json')
+const weaponTable2024 = require('../../data/5e2024/weapons.json')
+const { normalizeRuleset } = require('./rulesetId')
+
+// 2024 weapons (with Mastery properties) override the 2014 entry of the same
+// name; anything only the 2014 table has (a homebrew-adjacent category) still
+// resolves. Browser-safe: static JSON only, no fs.
+const weaponTableFor = (ruleset) =>
+  normalizeRuleset(ruleset) === '2024'
+    ? { ...weaponTable2014, ...weaponTable2024 }
+    : weaponTable2014
 
 // homebrewWeaponTypes: { [category]: {weapon_type?, damage_dice?, ...} } —
 // same shape as a PHB weapons.json entry, keyed by the homebrew weapon's own
 // id/category string (matches weapon.weapon_category on the item).
-function weaponProps(weapon, homebrewWeaponTypes = {}) {
+function weaponProps(weapon, homebrewWeaponTypes = {}, ruleset) {
   const base =
-    weaponTable[weapon.weapon_category] ??
+    weaponTableFor(ruleset)[weapon.weapon_category] ??
     homebrewWeaponTypes[weapon.weapon_category] ??
     {}
   return {
@@ -40,6 +50,9 @@ function weaponProps(weapon, homebrewWeaponTypes = {}) {
     counts_as_proficiency:
       weapon.counts_as_proficiency ?? base.counts_as_proficiency ?? null,
     finesse: weapon.finesse ?? base.finesse ?? false,
+    // 2024 Mastery property (cleave, graze, nick, push, sap, slow, topple, vex);
+    // only meaningful to a character with a feature that unlocks it.
+    mastery: weapon.mastery ?? base.mastery ?? null,
     versatile: weapon.versatile ?? base.versatile ?? false,
     thrown: weapon.thrown ?? base.thrown ?? null,
     returning: weapon.returning ?? false,

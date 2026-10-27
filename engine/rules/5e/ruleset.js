@@ -11,30 +11,17 @@ const path = require('path')
 // structure and holds only content that the 2024 rules rewrote. A 2024 request
 // that finds no file in data/5e2024/ is served the 2014 file instead — that is
 // how unrewritten ("legacy") content stays usable without being copied.
-const RULESETS = ['2014', '2024']
-const DEFAULT_RULESET = '2014'
+const {
+  RULESETS,
+  DEFAULT_RULESET,
+  normalizeRuleset,
+  rulesetOf,
+} = require('./rulesetId')
 
 const DATA_ROOT = path.join(__dirname, '..', '..', 'data')
 const TREE = {
   2014: path.join(DATA_ROOT, '5e'),
   2024: path.join(DATA_ROOT, '5e2024'),
-}
-
-function normalizeRuleset(value) {
-  if (value === undefined || value === null || value === '')
-    return DEFAULT_RULESET
-  const s = String(value)
-  if (!RULESETS.includes(s)) {
-    throw new Error(
-      `Unknown ruleset "${value}" — expected one of ${RULESETS.join(', ')}.`
-    )
-  }
-  return s
-}
-
-// A character stays on 2014 until it is explicitly migrated.
-function rulesetOf(character) {
-  return normalizeRuleset(character?.ruleset)
 }
 
 // True when a 2024 lookup has no file of its own and is being served by the
