@@ -1,0 +1,50 @@
+{
+  "class": "Artificer",
+  "name": "Artillerist",
+  "ruleset": "2024",
+  "source": "Eberron - Forge of the Artificer (2024)",
+  "description": "An Artillerist specializes in using magic to hurl energy, projectiles, and explosions on a battlefield.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_artificer-artillerist-tools-of-the-trade",
+      "pub24_sub_artificer-artillerist-artillerist-spells",
+      "pub24_sub_artificer-artillerist-eldritch-cannon"
+    ],
+    "5": [
+      "pub24_sub_artificer-artillerist-arcane-firearm"
+    ],
+    "9": [
+      "pub24_sub_artificer-artillerist-explosive-cannon"
+    ],
+    "15": [
+      "pub24_sub_artificer-artillerist-fortified-position"
+    ]
+  },
+  "spell_tables_unmapped": [
+    {
+      "title": "Artillerist Spells",
+      "byLevel": {
+        "3": [
+          "Shield",
+          "Thunderwave"
+        ],
+        "5": [
+          "Scorching Ray",
+          "Shatter"
+        ],
+        "9": [
+          "Fireball",
+          "Wind Wall"
+        ],
+        "13": [
+          "Ice Storm",
+          "Wall of Fire"
+        ],
+        "17": [
+          "Cone of Cold",
+          "Wall of Force"
+        ]
+      }
+    }
+  ]
+}

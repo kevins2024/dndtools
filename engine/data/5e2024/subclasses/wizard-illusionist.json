@@ -1,0 +1,22 @@
+{
+  "class": "Wizard",
+  "name": "Illusionist",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "You specialize in magic that dazzles the senses and tricks the mind, and the illusions you craft make the impossible seem real.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_wizard-illusionist-illusion-savant",
+      "pub24_sub_wizard-illusionist-improved-illusions"
+    ],
+    "6": [
+      "pub24_sub_wizard-illusionist-phantasmal-creatures"
+    ],
+    "10": [
+      "pub24_sub_wizard-illusionist-illusory-self"
+    ],
+    "14": [
+      "pub24_sub_wizard-illusionist-illusory-reality"
+    ]
+  }
+}

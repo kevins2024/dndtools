@@ -1,0 +1,19 @@
+{
+  "class": "Bard",
+  "name": "College of Spirits",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "Bards of the College of Spirits conjure legendary spirits to change the world. But such entities are capricious, and what a Bard summons isn’t always entirely under their control.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_bard-college-of-spirits-channeler",
+      "pub24_sub_bard-college-of-spirits-spirits-from-beyond"
+    ],
+    "6": [
+      "pub24_sub_bard-college-of-spirits-empowered-channeling"
+    ],
+    "14": [
+      "pub24_sub_bard-college-of-spirits-mystical-connection"
+    ]
+  }
+}

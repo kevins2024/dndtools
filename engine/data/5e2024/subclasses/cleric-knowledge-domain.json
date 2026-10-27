@@ -1,0 +1,45 @@
+{
+  "class": "Cleric",
+  "name": "Knowledge Domain",
+  "ruleset": "2024",
+  "source": "Forgotten Realms - Heroes of Faerun (2024)",
+  "description": "The Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_cleric-knowledge-domain-blessings-of-knowledge",
+      "pub24_sub_cleric-knowledge-domain-knowledge-domain-spells",
+      "pub24_sub_cleric-knowledge-domain-mind-magic"
+    ],
+    "6": [
+      "pub24_sub_cleric-knowledge-domain-unfettered-mind"
+    ],
+    "17": [
+      "pub24_sub_cleric-knowledge-domain-divine-foreknowledge"
+    ]
+  },
+  "domain_spells_by_level": {
+    "3": [
+      "Command",
+      "Comprehend Languages*",
+      "Detect Magic*",
+      "Detect Thoughts*",
+      "Identify*",
+      "Mind Spike*"
+    ],
+    "5": [
+      "Dispel Magic",
+      "Nondetection",
+      "Tongues*"
+    ],
+    "7": [
+      "Arcane Eye*",
+      "Banishment",
+      "Confusion"
+    ],
+    "9": [
+      "Legend Lore*",
+      "Scrying*",
+      "Synaptic Static"
+    ]
+  }
+}

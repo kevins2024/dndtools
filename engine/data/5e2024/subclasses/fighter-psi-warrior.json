@@ -1,0 +1,24 @@
+{
+  "class": "Fighter",
+  "name": "Psi Warrior",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Augment Physical Might with Psionic Power",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_fighter-psi-warrior-psionic-power"
+    ],
+    "7": [
+      "pub24_sub_fighter-psi-warrior-telekinetic-adept"
+    ],
+    "10": [
+      "pub24_sub_fighter-psi-warrior-guarded-mind"
+    ],
+    "15": [
+      "pub24_sub_fighter-psi-warrior-bulwark-of-force"
+    ],
+    "18": [
+      "pub24_sub_fighter-psi-warrior-telekinetic-master"
+    ]
+  }
+}

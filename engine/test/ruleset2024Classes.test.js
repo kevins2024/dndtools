@@ -104,10 +104,13 @@ test('2024 Barbarian: chassis facts', () => {
   assert.equal(b.starting_equipment.B.gold, 75)
 })
 
-test('a class with no 2024 rewrite loads as legacy 2014 content when asked for 2024', () => {
-  const art = loadClass('Artificer', '2024')
-  assert.ok(art)
-  assert.equal(art.legacy, true)
+test('all 13 classes have a 2024 file (Artificer from Eberron: Forge of the Artificer)', () => {
+  for (const name of listClasses('2024')) {
+    const c = loadClass(name, '2024')
+    assert.equal(c.ruleset, '2024', name)
+    assert.equal(c.legacy, undefined, name)
+  }
+  assert.equal(listClasses('2024').length, 13)
   assert.equal(loadClass('Artificer').legacy, undefined)
 })
 

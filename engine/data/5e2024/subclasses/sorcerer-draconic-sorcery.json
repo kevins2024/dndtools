@@ -1,0 +1,42 @@
+{
+  "class": "Sorcerer",
+  "name": "Draconic Sorcery",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with dragons’ power. Or perhaps you handled a treasure taken from a dragon’s hoard that was steeped in draconic power. Or you might have a dragon for an ancestor.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_sorcerer-draconic-sorcery-draconic-resilience",
+      "pub24_sub_sorcerer-draconic-sorcery-draconic-spells"
+    ],
+    "6": [
+      "pub24_sub_sorcerer-draconic-sorcery-elemental-affinity"
+    ],
+    "14": [
+      "pub24_sub_sorcerer-draconic-sorcery-dragon-wings"
+    ],
+    "18": [
+      "pub24_sub_sorcerer-draconic-sorcery-dragon-companion"
+    ]
+  },
+  "bonus_spells_by_level": {
+    "3": [
+      "Alter Self",
+      "Chromatic Orb",
+      "Command",
+      "Dragon's Breath"
+    ],
+    "5": [
+      "Fear",
+      "Fly"
+    ],
+    "7": [
+      "Arcane Eye",
+      "Charm Monster"
+    ],
+    "9": [
+      "Legend Lore",
+      "Summon Dragon"
+    ]
+  }
+}

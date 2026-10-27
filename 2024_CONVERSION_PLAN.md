@@ -21,6 +21,16 @@ migrate existing characters mostly by script/LLM, asking when a build choice is 
   same-named 2014 feature (`rage`) is never overwritten. Names stay the real ones. Text goes in
   `src/data/published_features.json` with `ruleset: "2024"` and a `Player's Handbook (2024)`
   source; the id->name entry goes in `engine/data/5e/feature-catalog.json` (shared catalog).
+- **Official 2024 books beyond the PHB exist and are on the wikidot site** — Eberron: Forge of the
+  Artificer (a 2024 Artificer + 4 subclasses), Forgotten Realms: Heroes of Faerun, Ravenloft: The
+  Horrors Within, Lorwyn: First Light. The same site also hosts **Arcana Unleashed** (not WotC),
+  Unearthed Arcana (`ua:all`) and homebrew (`hb:all`). Every page's first line is `Source: <book>`;
+  the ingest scripts read it and refuse unofficial sources (`--allow-source` overrides). This corrects
+  the first audit, which said Artificer had no 2024 version and counted 44 PHB-matching subclasses:
+  **54 of the repo's 114 subclasses have an official 2024 page; 6 exist only in Arcana Unleashed
+  (kept as legacy); 54 have none (legacy).** 18 of the roster's 30 class/subclass entries have a 2024
+  version; 12 do not (Inquisitive, Path of the Giant, Oath of the Crown, Tempest, Oath of the Open
+  Road, Echo Knight, Swashbuckler, Divine Soul, Weave Attunement, Scout, Infused Arbalist, Chronurgy).
 - **Sources for 2024 rules text** (CLAUDE.md's RAW rule, updated): fetch
   `dnd2024.wikidot.com/<class>:main`, `<class>:<subclass>`, `species:<name>`, `feat:<name>`,
   `spell:<name>`; SRD 5.2 structured data is at `dnd5eapi.co/api/2024/`. Use
@@ -34,8 +44,8 @@ migrate existing characters mostly by script/LLM, asking when a build choice is 
 
 Status: `[ ]` open, `[~]` in progress, `[x]` done.
 
-- [~] **0. Plumbing** — `ruleset.js`, branch, plan, CLAUDE.md. Thread `ruleset` through
-  `loadClass`/`loadSubclass`/spellcasting/`describeLevelUp`/`diffLevelUp`.
+- [x] **0. Plumbing** — `ruleset.js`, branch, plan. `ruleset` threaded through `loadClass`/`loadSubclass`/
+  spellcasting/multiclass/`describeLevelUp`/`diffLevelUp`. (CLAUDE.md update still to do, phase 7.)
 - [ ] **1. Core rules** — exhaustion, conditions, actions, ASI-as-feat, unarmed strike/grapple.
 - [ ] **2. Origins** — 2024 species, backgrounds (ASI + origin feat), origin feats, New Character flow.
 - [ ] **3. Classes** — 12 PHB classes (Artificer stays legacy: no 2024 version exists). Barbarian first

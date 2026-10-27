@@ -1,0 +1,22 @@
+{
+  "class": "Rogue",
+  "name": "Scion of the Three",
+  "ruleset": "2024",
+  "source": "Forgotten Realms - Heroes of Faerun (2024)",
+  "description": "A Scion of the Three draws power from a group of malevolent gods known in Baldur’s Gate as the Dead Three: Bane, a god of tyranny; Bhaal, a god of violence and murder; and Myrkul, a god of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others are thrust on this path by a curse. Either way, a scion’s power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_rogue-scion-of-the-three-bloodthirst",
+      "pub24_sub_rogue-scion-of-the-three-dread-allegiance"
+    ],
+    "9": [
+      "pub24_sub_rogue-scion-of-the-three-strike-fear"
+    ],
+    "13": [
+      "pub24_sub_rogue-scion-of-the-three-aura-of-malevolence"
+    ],
+    "17": [
+      "pub24_sub_rogue-scion-of-the-three-dread-incarnate"
+    ]
+  }
+}

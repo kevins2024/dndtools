@@ -1,0 +1,40 @@
+{
+  "class": "Cleric",
+  "name": "Life Domain",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "The Life Domain focuses on the positive energy that helps sustain all life in the multiverse. Clerics who tap into this domain are masters of healing, using that life force to cure many hurts.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_cleric-life-domain-disciple-of-life",
+      "pub24_sub_cleric-life-domain-life-domain-spells",
+      "pub24_sub_cleric-life-domain-preserve-life"
+    ],
+    "6": [
+      "pub24_sub_cleric-life-domain-blessed-healer"
+    ],
+    "17": [
+      "pub24_sub_cleric-life-domain-supreme-healing"
+    ]
+  },
+  "domain_spells_by_level": {
+    "3": [
+      "Aid",
+      "Bless",
+      "Cure Wounds",
+      "Lesser Restoration"
+    ],
+    "5": [
+      "Mass Healing Word",
+      "Revivify"
+    ],
+    "7": [
+      "Aura of Life",
+      "Death Ward"
+    ],
+    "9": [
+      "Greater Restoration",
+      "Mass Cure Wounds"
+    ]
+  }
+}

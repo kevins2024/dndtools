@@ -1,0 +1,23 @@
+{
+  "class": "Monk",
+  "name": "Warrior of Mercy",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Warriors of Mercy manipulate the life force of others. These Monks are wandering physicians, but they bring a swift end to their enemies. They often wear masks, presenting themselves as faceless bringers of life and death.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_monk-warrior-of-mercy-hand-of-harm",
+      "pub24_sub_monk-warrior-of-mercy-hand-of-healing",
+      "pub24_sub_monk-warrior-of-mercy-implements-of-mercy"
+    ],
+    "6": [
+      "pub24_sub_monk-warrior-of-mercy-physicians-touch"
+    ],
+    "11": [
+      "pub24_sub_monk-warrior-of-mercy-flurry-of-healing-and-harm"
+    ],
+    "17": [
+      "pub24_sub_monk-warrior-of-mercy-hand-of-ultimate-mercy"
+    ]
+  }
+}

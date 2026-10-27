@@ -1,0 +1,51 @@
+{
+  "class": "Artificer",
+  "name": "Battle Smith",
+  "ruleset": "2024",
+  "source": "Eberron - Forge of the Artificer (2024)",
+  "description": "A Battle Smith is a combination of protector and medic, an expert at defending others and repairing both materiel and personnel. To aid in their work, Battle Smiths are accompanied by a Steel Defender, a protective companion of their own creation.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_artificer-battle-smith-tools-of-the-trade",
+      "pub24_sub_artificer-battle-smith-battle-smith-spells",
+      "pub24_sub_artificer-battle-smith-battle-ready",
+      "pub24_sub_artificer-battle-smith-steel-defender"
+    ],
+    "5": [
+      "pub24_sub_artificer-battle-smith-extra-attack"
+    ],
+    "9": [
+      "pub24_sub_artificer-battle-smith-arcane-jolt"
+    ],
+    "15": [
+      "pub24_sub_artificer-battle-smith-improved-defender"
+    ]
+  },
+  "spell_tables_unmapped": [
+    {
+      "title": "Battle Smith Spells",
+      "byLevel": {
+        "3": [
+          "Heroism",
+          "Shield"
+        ],
+        "5": [
+          "Shining Smite",
+          "Warding Bond"
+        ],
+        "9": [
+          "Aura of Vitality",
+          "Conjure Barrage"
+        ],
+        "13": [
+          "Aura of Purity",
+          "Fire Shield"
+        ],
+        "17": [
+          "Banishing Smite",
+          "Mass Cure Wounds"
+        ]
+      }
+    }
+  ]
+}

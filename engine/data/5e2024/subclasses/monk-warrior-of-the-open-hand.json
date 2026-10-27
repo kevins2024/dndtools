@@ -1,0 +1,21 @@
+{
+  "class": "Monk",
+  "name": "Warrior of the Open Hand",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Warriors of the Open Hand are masters of unarmed combat. They learn techniques to push and trip their opponents and manipulate their own energy to protect themselves from harm.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_monk-warrior-of-the-open-hand-open-hand-technique"
+    ],
+    "6": [
+      "pub24_sub_monk-warrior-of-the-open-hand-wholeness-of-body"
+    ],
+    "11": [
+      "pub24_sub_monk-warrior-of-the-open-hand-fleet-step"
+    ],
+    "17": [
+      "pub24_sub_monk-warrior-of-the-open-hand-quivering-palm"
+    ]
+  }
+}

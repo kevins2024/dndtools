@@ -1,0 +1,40 @@
+{
+  "class": "Ranger",
+  "name": "Winter Walker",
+  "ruleset": "2024",
+  "source": "Forgotten Realms - Heroes of Faerun (2024)",
+  "description": "Withstand the Horrors of Frigid Wastelands",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_ranger-winter-walker-frigid-explorer",
+      "pub24_sub_ranger-winter-walker-hunters-rime",
+      "pub24_sub_ranger-winter-walker-winter-walker-spells"
+    ],
+    "7": [
+      "pub24_sub_ranger-winter-walker-fortifying-soul"
+    ],
+    "11": [
+      "pub24_sub_ranger-winter-walker-chilling-retribution"
+    ],
+    "15": [
+      "pub24_sub_ranger-winter-walker-frozen-haunt"
+    ]
+  },
+  "bonus_spells_by_level": {
+    "3": [
+      "Ice Knife"
+    ],
+    "5": [
+      "Hold Person"
+    ],
+    "9": [
+      "Remove Curse"
+    ],
+    "13": [
+      "Ice Storm"
+    ],
+    "17": [
+      "Cone of Cold"
+    ]
+  }
+}

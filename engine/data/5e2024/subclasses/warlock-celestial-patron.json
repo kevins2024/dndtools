@@ -1,0 +1,44 @@
+{
+  "class": "Warlock",
+  "name": "Celestial Patron",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Your pact draws on the Upper Planes, the realms of everlasting bliss. You might enter an agreement with an empyrean, a couatl, a sphinx, a unicorn, or another heavenly entity. Or you might call on numerous such beings as you pursue goals aligned with theirs. Your pact allows you to experience a hint of the holy light that illuminates the multiverse.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_warlock-celestial-patron-celestial-spells",
+      "pub24_sub_warlock-celestial-patron-healing-light"
+    ],
+    "6": [
+      "pub24_sub_warlock-celestial-patron-radiant-soul"
+    ],
+    "10": [
+      "pub24_sub_warlock-celestial-patron-celestial-resilience"
+    ],
+    "14": [
+      "pub24_sub_warlock-celestial-patron-searing-vengeance"
+    ]
+  },
+  "patron_spells_by_level": {
+    "3": [
+      "Aid",
+      "Cure Wounds",
+      "Guiding Bolt",
+      "Lesser Restoration",
+      "Light",
+      "Sacred Flame"
+    ],
+    "5": [
+      "Daylight",
+      "Revivify"
+    ],
+    "7": [
+      "Guardian of Faith",
+      "Wall of Fire"
+    ],
+    "9": [
+      "Greater Restoration",
+      "Summon Celestial"
+    ]
+  }
+}

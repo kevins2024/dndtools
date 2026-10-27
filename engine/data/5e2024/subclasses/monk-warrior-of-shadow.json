@@ -1,0 +1,21 @@
+{
+  "class": "Monk",
+  "name": "Warrior of Shadow",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Harness Shadow Power for Stealth and Subterfuge",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_monk-warrior-of-shadow-shadow-arts"
+    ],
+    "6": [
+      "pub24_sub_monk-warrior-of-shadow-shadow-step"
+    ],
+    "11": [
+      "pub24_sub_monk-warrior-of-shadow-improved-shadow-step"
+    ],
+    "17": [
+      "pub24_sub_monk-warrior-of-shadow-cloak-of-shadows"
+    ]
+  }
+}

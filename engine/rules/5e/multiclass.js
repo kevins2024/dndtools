@@ -56,9 +56,17 @@ const FULL_CASTER_CLASSES = new Set([
 // level, per the PHB Multiclass Spellcasting table. Returns 0 for a class
 // that doesn't contribute at all (including a caster class below the
 // threshold level where its contribution starts, e.g. Ranger 1).
-function casterLevelContribution(c) {
+//
+// 2024 ("Multiclassing > Spell Slots"): half your Paladin and Ranger levels
+// ROUNDED UP — so they contribute from level 1 — and a third of Fighter/Rogue
+// levels rounded down for Eldritch Knight/Arcane Trickster. 2014 rounded the
+// halves down and started at level 2.
+function casterLevelContribution(c, ruleset) {
+  const is2024 = ruleset !== undefined && ruleset !== null && String(ruleset) === '2024'
   if (FULL_CASTER_CLASSES.has(c.name)) return c.level
   if (c.name === 'Artificer') return Math.ceil(c.level / 2)
+  if (is2024 && (c.name === 'Paladin' || c.name === 'Ranger'))
+    return Math.ceil(c.level / 2)
   if (c.name === 'Paladin' && c.level >= 2) return Math.floor(c.level / 2)
   if (c.name === 'Ranger' && c.level >= 2) return Math.floor(c.level / 2)
   if (c.name === 'Fighter' && c.subclass === 'Eldritch Knight' && c.level >= 3)
@@ -68,8 +76,11 @@ function casterLevelContribution(c) {
   return 0
 }
 
-function multiclassCasterLevel(classes) {
-  return classes.reduce((total, c) => total + casterLevelContribution(c), 0)
+function multiclassCasterLevel(classes, ruleset) {
+  return classes.reduce(
+    (total, c) => total + casterLevelContribution(c, ruleset),
+    0
+  )
 }
 
 // The PHB combined-table formula (round each class's contribution, sum them,
@@ -83,7 +94,9 @@ function multiclassCasterLevel(classes) {
 // particular have their own, more generous dedicated progression when
 // they're the only caster class in the mix).
 function multiclassSpellSlots(classes, ruleset) {
-  const contributors = classes.filter((c) => casterLevelContribution(c) > 0)
+  const contributors = classes.filter(
+    (c) => casterLevelContribution(c, ruleset) > 0
+  )
   if (contributors.length === 0) return []
   if (contributors.length === 1) {
     return spellSlotsForClassAtLevel(
@@ -93,7 +106,7 @@ function multiclassSpellSlots(classes, ruleset) {
       ruleset
     )
   }
-  const level = multiclassCasterLevel(classes)
+  const level = multiclassCasterLevel(classes, ruleset)
   const capped = Math.min(level, 20)
   // 2024 keeps no separate full-caster table; the Wizard's class table is it.
   if (ruleset && String(ruleset) === '2024') {

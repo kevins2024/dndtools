@@ -58,3 +58,59 @@ test('2024 multiclass spellcasting: full-caster levels add; Pact Magic stays sep
   assert.deepEqual(multiclassSpellSlots(classes, '2024'), [4, 3, 3, 2]) // caster level 8
   assert.deepEqual(multiclassPactSlots([{ name: 'Warlock', level: 5 }], '2024'), { slots: 2, slot_level: 3 })
 })
+
+// ── Third casters (Eldritch Knight / Arcane Trickster) ──────────────────
+
+test('2024 Eldritch Knight: cantrips 2 (3rd) -> 3 (10th); prepared spells and slots from its own table', () => {
+  assert.deepEqual([3, 9, 10, 20].map((l) => sc.cantripsKnownForClass('Fighter', l, 'Eldritch Knight', '2024')), [2, 2, 3, 3])
+  assert.deepEqual([3, 4, 7, 10, 13, 16, 19, 20].map((l) => sc.preparedSpellCount('Fighter', l, 3, 'Eldritch Knight', '2024')), [3, 4, 5, 7, 9, 11, 12, 13])
+  assert.deepEqual(sc.spellSlotsForClassAtLevel('Fighter', 3, 'Eldritch Knight', '2024'), [2])
+  assert.deepEqual(sc.spellSlotsForClassAtLevel('Fighter', 7, 'Eldritch Knight', '2024'), [4, 2])
+  assert.deepEqual(sc.spellSlotsForClassAtLevel('Fighter', 19, 'Eldritch Knight', '2024'), [4, 3, 3, 1])
+  assert.equal(sc.spellsKnownForClass('Fighter', 7, 'Eldritch Knight', '2024'), null)
+  // A plain Champion still casts nothing.
+  assert.equal(sc.resolveSpellcasting('Fighter', 'Champion', '2024'), null)
+})
+
+test('2024 Arcane Trickster: Mage Hand plus two cantrips (3), a fourth at 10', () => {
+  assert.deepEqual([3, 9, 10].map((l) => sc.cantripsKnownForClass('Rogue', l, 'Arcane Trickster', '2024')), [3, 3, 4])
+  assert.equal(sc.preparedSpellCount('Rogue', 3, 3, 'Arcane Trickster', '2024'), 3)
+})
+
+test('2014 third casters are untouched', () => {
+  assert.deepEqual(sc.spellSlotsForClassAtLevel('Fighter', 3, 'Eldritch Knight'), [2])
+  assert.equal(typeof sc.spellsKnownForClass('Fighter', 7, 'Eldritch Knight'), 'number')
+})
+
+// ── Multiclass spellcasting contributions (2024 PHB "Multiclassing") ────
+
+const { casterLevelContribution, multiclassCasterLevel, meetsMulticlassPrerequisites } = require('../rules/5e/multiclass')
+
+test('2024: Paladin/Ranger contribute HALF their levels rounded UP (so level 1 counts); third casters round down', () => {
+  assert.equal(casterLevelContribution({ name: 'Ranger', level: 1 }, '2024'), 1)
+  assert.equal(casterLevelContribution({ name: 'Paladin', level: 5 }, '2024'), 3)
+  assert.equal(casterLevelContribution({ name: 'Ranger', level: 4 }, '2024'), 2)
+  assert.equal(casterLevelContribution({ name: 'Fighter', level: 8, subclass: 'Eldritch Knight' }, '2024'), 2)
+  assert.equal(casterLevelContribution({ name: 'Fighter', level: 8, subclass: 'Champion' }, '2024'), 0)
+  assert.equal(casterLevelContribution({ name: 'Warlock', level: 8 }, '2024'), 0)
+  assert.equal(casterLevelContribution({ name: 'Bard', level: 4 }, '2024'), 4)
+  // 2014: floor, and nothing at level 1.
+  assert.equal(casterLevelContribution({ name: 'Ranger', level: 1 }), 0)
+  assert.equal(casterLevelContribution({ name: 'Paladin', level: 5 }), 2)
+})
+
+test("2024 rules example: level 4 Ranger / level 3 Sorcerer counts as level 5 -> four 1st, three 2nd, two 3rd slots", () => {
+  const classes = [
+    { name: 'Ranger', level: 4 },
+    { name: 'Sorcerer', level: 3 },
+  ]
+  assert.equal(multiclassCasterLevel(classes, '2024'), 5)
+  assert.deepEqual(multiclassSpellSlots(classes, '2024'), [4, 3, 2])
+})
+
+test('2024 multiclass prerequisite: Monk needs Dexterity AND Wisdom 13; Fighter needs Strength OR Dexterity', () => {
+  const scores = (o) => ({ str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10, ...o })
+  assert.equal(meetsMulticlassPrerequisites('Monk', scores({ dex: 14 }), '2024').met, false)
+  assert.equal(meetsMulticlassPrerequisites('Monk', scores({ dex: 14, wis: 13 }), '2024').met, true)
+  assert.equal(meetsMulticlassPrerequisites('Fighter', scores({ dex: 13 }), '2024').met, true)
+})

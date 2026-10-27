@@ -1,0 +1,40 @@
+{
+  "class": "Cleric",
+  "name": "Trickery Domain",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "The Trickery Domain offers magic of deception, illusion, and stealth. Clerics who wield this magic are a disruptive force in the world, puncturing pride, mocking tyrants, freeing captives, and flouting hollow traditions. They prefer subterfuge and pranks to direct confrontation.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_cleric-trickery-domain-blessing-of-the-trickster",
+      "pub24_sub_cleric-trickery-domain-trickery-domain-spells",
+      "pub24_sub_cleric-trickery-domain-invoke-duplicity"
+    ],
+    "6": [
+      "pub24_sub_cleric-trickery-domain-tricksters-transposition"
+    ],
+    "17": [
+      "pub24_sub_cleric-trickery-domain-improved-duplicity"
+    ]
+  },
+  "domain_spells_by_level": {
+    "3": [
+      "Charm Person",
+      "Disguise Self",
+      "Invisibility",
+      "Pass without Trace"
+    ],
+    "5": [
+      "Hypnotic Pattern",
+      "Nondetection"
+    ],
+    "7": [
+      "Confusion",
+      "Dimension Door"
+    ],
+    "9": [
+      "Dominate Person",
+      "Modify Memory"
+    ]
+  }
+}

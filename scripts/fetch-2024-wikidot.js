@@ -91,15 +91,29 @@ function htmlToLines(html) {
   return lines.map(decode).map(squash).filter(Boolean)
 }
 
-async function fetchPageLines(slug) {
+// { title, source, lines } — `source` is the book named on the page's first
+// line ("Source: Player's Handbook"); the site mixes official books with
+// Unearthed Arcana and third-party material, so callers check it.
+async function fetchPage(slug) {
   const res = await fetch(`https://dnd2024.wikidot.com/${slug}`, {
     redirect: 'follow',
   })
   if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${slug}`)
-  return htmlToLines(await res.text())
+  const html = await res.text()
+  const t = /<title>([\s\S]*?)<\/title>/i.exec(html)
+  const title = t
+    ? decode(squash(t[1])).replace(/\s*-\s*D&D 5e \(2024\)\s*$/i, '')
+    : null
+  const lines = htmlToLines(html)
+  const source = /^Source:\s*(.*)$/.exec(lines[0] ?? '')?.[1] ?? null
+  return { title, source, lines }
 }
 
-module.exports = { fetchPageLines, htmlToLines }
+async function fetchPageLines(slug) {
+  return (await fetchPage(slug)).lines
+}
+
+module.exports = { fetchPage, fetchPageLines, htmlToLines }
 
 if (require.main === module) {
   const slug = process.argv[2]

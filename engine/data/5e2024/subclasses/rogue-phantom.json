@@ -1,0 +1,23 @@
+{
+  "class": "Rogue",
+  "name": "Phantom",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "Some Rogues traverse the veil between life and death, shepherding opponents to the grave and slipping through the world as undetectable as a spirit. In these pursuits, a Rogue might discover a mystical connection to death itself. Such an individual becomes immersed in negative energy, infusing their strikes with deathly energy and stealing knowledge from souls who have passed on. Thieves’ guilds value Rogues of this persuasion as highly effective information gatherers and spies.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_rogue-phantom-wails-from-the-grave",
+      "pub24_sub_rogue-phantom-whispers-of-the-dead"
+    ],
+    "9": [
+      "pub24_sub_rogue-phantom-tokens-of-the-departed",
+      "pub24_sub_rogue-phantom-voice-of-death"
+    ],
+    "13": [
+      "pub24_sub_rogue-phantom-ghost-walk"
+    ],
+    "17": [
+      "pub24_sub_rogue-phantom-deaths-friend"
+    ]
+  }
+}

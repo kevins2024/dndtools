@@ -1,0 +1,40 @@
+{
+  "class": "Cleric",
+  "name": "Light Domain",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "The Light Domain emphasizes the divine power to bring about blazing fire and revelation. Clerics who wield this power are enlightened souls infused with radiance and the power of their deities’ discerning vision, charged with chasing away lies and burning away darkness.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_cleric-light-domain-light-domain-spells",
+      "pub24_sub_cleric-light-domain-radiance-of-the-dawn",
+      "pub24_sub_cleric-light-domain-warding-flare"
+    ],
+    "6": [
+      "pub24_sub_cleric-light-domain-improved-warding-flare"
+    ],
+    "17": [
+      "pub24_sub_cleric-light-domain-corona-of-light"
+    ]
+  },
+  "domain_spells_by_level": {
+    "3": [
+      "Burning Hands",
+      "Faerie Fire",
+      "Scorching Ray",
+      "See Invisibility"
+    ],
+    "5": [
+      "Daylight",
+      "Fireball"
+    ],
+    "7": [
+      "Arcane Eye",
+      "Wall of Fire"
+    ],
+    "9": [
+      "Flame Strike",
+      "Scrying"
+    ]
+  }
+}

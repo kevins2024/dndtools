@@ -1,0 +1,42 @@
+{
+  "class": "Sorcerer",
+  "name": "Shadow Sorcery",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "Your innate magic comes from the most nebulous and inscrutable forces of the Shadowfell or from other regions of supernatural darkness. You might trace your lineage to an entity from such a place, or perhaps you were exposed to the sinister energy of a shadow dragon and were transformed by it. Your shadowy magic allows you to command darkness, undeath, and woe.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_sorcerer-shadow-sorcery-shadow-spells",
+      "pub24_sub_sorcerer-shadow-sorcery-power-of-shadow"
+    ],
+    "6": [
+      "pub24_sub_sorcerer-shadow-sorcery-beasts-of-ill-omen"
+    ],
+    "14": [
+      "pub24_sub_sorcerer-shadow-sorcery-shadow-walk"
+    ],
+    "18": [
+      "pub24_sub_sorcerer-shadow-sorcery-umbral-form"
+    ]
+  },
+  "bonus_spells_by_level": {
+    "3": [
+      "Bane",
+      "Darkness",
+      "Inflict Wounds",
+      "Pass Without Trace"
+    ],
+    "5": [
+      "Hunger of Hadar",
+      "Nondetection"
+    ],
+    "7": [
+      "Greater Invisibility",
+      "Phantasmal Killer"
+    ],
+    "9": [
+      "Contagion",
+      "Creation"
+    ]
+  }
+}

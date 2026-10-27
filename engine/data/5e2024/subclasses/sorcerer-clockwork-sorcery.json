@@ -1,0 +1,42 @@
+{
+  "class": "Sorcerer",
+  "name": "Clockwork Sorcery",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "The cosmic force of order has suffused you with magic. That power arises from Mechanus or a realm like it—a plane of existence shaped entirely by clockwork efficiency. You or someone from your lineage might have become entangled in the machinations of modrons, the orderly beings who inhabit Mechanus. Perhaps your ancestor even took part in the Great Modron March. Whatever its origin within you, the power of order can seem strange to others, but for you, it’s part of a vast and glorious system.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_sorcerer-clockwork-sorcery-clockwork-spells",
+      "pub24_sub_sorcerer-clockwork-sorcery-restore-balance"
+    ],
+    "6": [
+      "pub24_sub_sorcerer-clockwork-sorcery-bastion-of-law"
+    ],
+    "14": [
+      "pub24_sub_sorcerer-clockwork-sorcery-trance-of-order"
+    ],
+    "18": [
+      "pub24_sub_sorcerer-clockwork-sorcery-clockwork-cavalcade"
+    ]
+  },
+  "bonus_spells_by_level": {
+    "3": [
+      "Aid",
+      "Alarm",
+      "Lesser Restoration",
+      "Protection from Evil and Good"
+    ],
+    "5": [
+      "Dispel Magic",
+      "Protection from Energy"
+    ],
+    "7": [
+      "Freedom of Movement",
+      "Summon Construct"
+    ],
+    "9": [
+      "Greater Restoration",
+      "Wall of Force"
+    ]
+  }
+}

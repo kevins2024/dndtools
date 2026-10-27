@@ -1,0 +1,51 @@
+{
+  "class": "Artificer",
+  "name": "Armorer",
+  "ruleset": "2024",
+  "source": "Eberron - Forge of the Artificer (2024)",
+  "description": "Craft Magic Armor to Enhance Your Abilities",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_artificer-armorer-tools-of-the-trade",
+      "pub24_sub_artificer-armorer-armorer-spells",
+      "pub24_sub_artificer-armorer-arcane-armor",
+      "pub24_sub_artificer-armorer-armor-model"
+    ],
+    "5": [
+      "pub24_sub_artificer-armorer-extra-attack"
+    ],
+    "9": [
+      "pub24_sub_artificer-armorer-improved-armorer"
+    ],
+    "15": [
+      "pub24_sub_artificer-armorer-perfected-armor"
+    ]
+  },
+  "spell_tables_unmapped": [
+    {
+      "title": "Armorer Spells",
+      "byLevel": {
+        "3": [
+          "Magic Missile",
+          "Thunderwave"
+        ],
+        "5": [
+          "Mirror Image",
+          "Shatter"
+        ],
+        "9": [
+          "Hypnotic Pattern",
+          "Lightning Bolt"
+        ],
+        "13": [
+          "Fire Shield",
+          "Greater Invisibility"
+        ],
+        "17": [
+          "Passwall",
+          "Wall of Force"
+        ]
+      }
+    }
+  ]
+}

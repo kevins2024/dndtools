@@ -1,0 +1,22 @@
+{
+  "class": "Monk",
+  "name": "Warrior of the Elements",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Wield Strikes and Bursts of Elemental Power",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_monk-warrior-of-the-elements-elemental-attunement",
+      "pub24_sub_monk-warrior-of-the-elements-manipulate-elements"
+    ],
+    "6": [
+      "pub24_sub_monk-warrior-of-the-elements-elemental-burst"
+    ],
+    "11": [
+      "pub24_sub_monk-warrior-of-the-elements-stride-of-the-elements"
+    ],
+    "17": [
+      "pub24_sub_monk-warrior-of-the-elements-elemental-epitome"
+    ]
+  }
+}

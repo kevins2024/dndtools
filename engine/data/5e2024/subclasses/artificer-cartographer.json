@@ -1,0 +1,52 @@
+{
+  "class": "Artificer",
+  "name": "Cartographer",
+  "ruleset": "2024",
+  "source": "Eberron - Forge of the Artificer (2024)",
+  "description": "Chart Advantageous Courses through Turmoil",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_artificer-cartographer-tools-of-the-trade",
+      "pub24_sub_artificer-cartographer-cartographer-spells",
+      "pub24_sub_artificer-cartographer-adventurers-atlas",
+      "pub24_sub_artificer-cartographer-mapping-magic"
+    ],
+    "5": [
+      "pub24_sub_artificer-cartographer-guided-precision"
+    ],
+    "9": [
+      "pub24_sub_artificer-cartographer-ingenious-movement"
+    ],
+    "15": [
+      "pub24_sub_artificer-cartographer-superior-atlas"
+    ]
+  },
+  "spell_tables_unmapped": [
+    {
+      "title": "Cartographer Spells",
+      "byLevel": {
+        "3": [
+          "Faerie Fire",
+          "Guiding Bolt",
+          "Healing Word"
+        ],
+        "5": [
+          "Locate Object",
+          "Mind Spike"
+        ],
+        "9": [
+          "Call Lightning",
+          "Clairvoyance"
+        ],
+        "13": [
+          "Banishment",
+          "Locate Creature"
+        ],
+        "17": [
+          "Scrying",
+          "Teleportation Circle"
+        ]
+      }
+    }
+  ]
+}

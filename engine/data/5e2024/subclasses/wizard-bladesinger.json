@@ -1,0 +1,22 @@
+{
+  "class": "Wizard",
+  "name": "Bladesinger",
+  "ruleset": "2024",
+  "source": "Forgotten Realms - Heroes of Faerun (2024)",
+  "description": "Wield Weapon and Wizardry in Elegant Tandem",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_wizard-bladesinger-bladesong",
+      "pub24_sub_wizard-bladesinger-training-in-war-and-song"
+    ],
+    "6": [
+      "pub24_sub_wizard-bladesinger-extra-attack"
+    ],
+    "10": [
+      "pub24_sub_wizard-bladesinger-song-of-defense"
+    ],
+    "14": [
+      "pub24_sub_wizard-bladesinger-song-of-victory"
+    ]
+  }
+}

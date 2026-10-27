@@ -1,0 +1,22 @@
+{
+  "class": "Wizard",
+  "name": "Evoker",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Your studies focus on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid. Some Evokers find employment in military forces, serving as artillery to blast armies from afar. Others use their power to protect others, while some seek their own gain.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_wizard-evoker-evocation-savant",
+      "pub24_sub_wizard-evoker-potent-cantrip"
+    ],
+    "6": [
+      "pub24_sub_wizard-evoker-sculpt-spells"
+    ],
+    "10": [
+      "pub24_sub_wizard-evoker-empowered-evocation"
+    ],
+    "14": [
+      "pub24_sub_wizard-evoker-overchannel"
+    ]
+  }
+}

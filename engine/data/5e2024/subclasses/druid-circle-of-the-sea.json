@@ -1,0 +1,42 @@
+{
+  "class": "Druid",
+  "name": "Circle of the Sea",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Druids of the Circle of the Sea draw on the tempestuous forces of oceans and storms. Some view themselves as embodiments of nature’s wrath, seeking vengeance against those who despoil nature. Others seek mystical unity with nature by attuning themselves to the ebb and flow of the tides, following the rush of currents and waves and listening to the inscrutable whispers and roars of the winds.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_druid-circle-of-the-sea-circle-of-the-sea-spells",
+      "pub24_sub_druid-circle-of-the-sea-wrath-of-the-sea"
+    ],
+    "6": [
+      "pub24_sub_druid-circle-of-the-sea-aquatic-affinity"
+    ],
+    "10": [
+      "pub24_sub_druid-circle-of-the-sea-stormborn"
+    ],
+    "14": [
+      "pub24_sub_druid-circle-of-the-sea-oceanic-gift"
+    ]
+  },
+  "circle_spells_by_level": {
+    "3": [
+      "Fog Cloud",
+      "Gust of Wind",
+      "Ray of Frost",
+      "Thunderwave"
+    ],
+    "5": [
+      "Lightning Bolt",
+      "Water Breathing"
+    ],
+    "7": [
+      "Control Water",
+      "Ice Storm"
+    ],
+    "9": [
+      "Conjure Elemental",
+      "Hold Monster"
+    ]
+  }
+}

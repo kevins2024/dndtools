@@ -1,0 +1,25 @@
+{
+  "class": "Fighter",
+  "name": "Banneret",
+  "ruleset": "2024",
+  "source": "Forgotten Realms - Heroes of Faerun (2024)",
+  "description": "Rally Fellow Heroes with Inspiring Leadership",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_fighter-banneret-knightly-envoy",
+      "pub24_sub_fighter-banneret-group-recovery"
+    ],
+    "7": [
+      "pub24_sub_fighter-banneret-team-tactics"
+    ],
+    "10": [
+      "pub24_sub_fighter-banneret-rallying-surge"
+    ],
+    "15": [
+      "pub24_sub_fighter-banneret-shared-resilience"
+    ],
+    "18": [
+      "pub24_sub_fighter-banneret-inspiring-commander"
+    ]
+  }
+}

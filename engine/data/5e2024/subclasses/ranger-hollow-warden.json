@@ -1,0 +1,39 @@
+{
+  "class": "Ranger",
+  "name": "Hollow Warden",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "Draw on the Might of Ancient Wild Terrors",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_ranger-hollow-warden-hollow-warden-spells",
+      "pub24_sub_ranger-hollow-warden-wrath-of-the-wild"
+    ],
+    "7": [
+      "pub24_sub_ranger-hollow-warden-hungering-might"
+    ],
+    "11": [
+      "pub24_sub_ranger-hollow-warden-rot-and-violence"
+    ],
+    "15": [
+      "pub24_sub_ranger-hollow-warden-ancient-might"
+    ]
+  },
+  "bonus_spells_by_level": {
+    "3": [
+      "Wrathful Smite"
+    ],
+    "5": [
+      "Alter Self"
+    ],
+    "9": [
+      "Phantom Steed"
+    ],
+    "13": [
+      "Dominate Beast"
+    ],
+    "17": [
+      "Steel Wind Strike"
+    ]
+  }
+}

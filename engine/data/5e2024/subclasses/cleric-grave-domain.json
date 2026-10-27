@@ -1,0 +1,41 @@
+{
+  "class": "Cleric",
+  "name": "Grave Domain",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "The Grave Domain concerns itself with the boundary between life and death. To those who tap into this domain’s power, death is a natural and inevitable part of the multiverse. Such Clerics seek to destroy undead and shepherd spirits.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_cleric-grave-domain-grave-domain-spells",
+      "pub24_sub_cleric-grave-domain-circle-of-mortality",
+      "pub24_sub_cleric-grave-domain-path-to-the-grave"
+    ],
+    "6": [
+      "pub24_sub_cleric-grave-domain-sentinel-at-deaths-door"
+    ],
+    "17": [
+      "pub24_sub_cleric-grave-domain-divine-reaper"
+    ]
+  },
+  "domain_spells_by_level": {
+    "3": [
+      "Detect Evil and Good",
+      "False Life",
+      "Gentle Repose",
+      "Ray of Enfeeblement",
+      "Spare the Dying"
+    ],
+    "5": [
+      "Revivify",
+      "Vampiric Touch"
+    ],
+    "7": [
+      "Blight",
+      "Death Ward"
+    ],
+    "9": [
+      "Dispel Evil and Good",
+      "Raise Dead"
+    ]
+  }
+}

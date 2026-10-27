@@ -1,0 +1,19 @@
+{
+  "class": "Bard",
+  "name": "College of Dance",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Bards of the College of Dance know that the Words of Creation can't be contained within speech or song; the words are uttered by the movements of celestial bodies and flow through the motions of the smallest creatures. These Bards practice a way of being in harmony with the whirling cosmos that emphasizes agility, speed, and grace.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_bard-college-of-dance-dazzling-footwork"
+    ],
+    "6": [
+      "pub24_sub_bard-college-of-dance-inspiring-movement",
+      "pub24_sub_bard-college-of-dance-tandem-footwork"
+    ],
+    "14": [
+      "pub24_sub_bard-college-of-dance-leading-evasion"
+    ]
+  }
+}

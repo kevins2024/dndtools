@@ -1,0 +1,38 @@
+{
+  "class": "Druid",
+  "name": "Circle of the Moon",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Druids of the Circle of the Moon draw on lunar magic to transform themselves. Their order gathers under the moon to share news and perform rituals.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_druid-circle-of-the-moon-circle-forms",
+      "pub24_sub_druid-circle-of-the-moon-circle-of-the-moon-spells"
+    ],
+    "6": [
+      "pub24_sub_druid-circle-of-the-moon-improved-circle-forms"
+    ],
+    "10": [
+      "pub24_sub_druid-circle-of-the-moon-moonlight-step"
+    ],
+    "14": [
+      "pub24_sub_druid-circle-of-the-moon-lunar-form"
+    ]
+  },
+  "circle_spells_by_level": {
+    "3": [
+      "Cure Wounds",
+      "Moonbeam",
+      "Starry Wisp"
+    ],
+    "5": [
+      "Conjure Animals"
+    ],
+    "7": [
+      "Fount of Moonlight"
+    ],
+    "9": [
+      "Mass Cure Wounds"
+    ]
+  }
+}

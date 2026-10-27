@@ -1,0 +1,22 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Zealot",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Barbarians who walk the Path of the Zealot receive boons from a god or pantheon. These Barbarians experience their Rage as an ecstatic episode of divine union that infuses them with power. They are often allies to the priests and other followers of their god or pantheon.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_barbarian-path-of-the-zealot-divine-fury",
+      "pub24_sub_barbarian-path-of-the-zealot-warrior-of-the-gods"
+    ],
+    "6": [
+      "pub24_sub_barbarian-path-of-the-zealot-fanatical-focus"
+    ],
+    "10": [
+      "pub24_sub_barbarian-path-of-the-zealot-zealous-presence"
+    ],
+    "14": [
+      "pub24_sub_barbarian-path-of-the-zealot-rage-of-the-gods"
+    ]
+  }
+}

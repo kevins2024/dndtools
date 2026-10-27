@@ -1,0 +1,22 @@
+{
+  "class": "Rogue",
+  "name": "Thief",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Hunt for Treasure as a Classic Adventurer",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_rogue-thief-fast-hands",
+      "pub24_sub_rogue-thief-second-story-work"
+    ],
+    "9": [
+      "pub24_sub_rogue-thief-supreme-sneak"
+    ],
+    "13": [
+      "pub24_sub_rogue-thief-use-magic-device"
+    ],
+    "17": [
+      "pub24_sub_rogue-thief-thiefs-reflexes"
+    ]
+  }
+}

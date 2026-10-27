@@ -1,0 +1,40 @@
+{
+  "class": "Cleric",
+  "name": "War Domain",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "War has many manifestations. It can make heroes of ordinary people. It can be desperate and horrific, with acts of cruelty and cowardice eclipsing instances of excellence and courage. Clerics who tap into the magic of the War Domain excel in battle, inspiring others to fight the good fight or offering acts of violence as prayers.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_cleric-war-domain-guided-strike",
+      "pub24_sub_cleric-war-domain-war-domain-spells",
+      "pub24_sub_cleric-war-domain-war-priest"
+    ],
+    "6": [
+      "pub24_sub_cleric-war-domain-war-gods-blessing"
+    ],
+    "17": [
+      "pub24_sub_cleric-war-domain-avatar-of-battle"
+    ]
+  },
+  "domain_spells_by_level": {
+    "3": [
+      "Guiding Bolt",
+      "Magic Weapon",
+      "Shield of Faith",
+      "Spiritual Weapon"
+    ],
+    "5": [
+      "Crusader's Mantle",
+      "Spirit Guardians"
+    ],
+    "7": [
+      "Fire Shield",
+      "Freedom of Movement"
+    ],
+    "9": [
+      "Hold Monster",
+      "Steel Wind Strike"
+    ]
+  }
+}

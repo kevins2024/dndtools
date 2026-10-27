@@ -1,0 +1,22 @@
+{
+  "class": "Ranger",
+  "name": "Hunter",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Protect Nature and People from Destruction",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_ranger-hunter-hunters-lore",
+      "pub24_sub_ranger-hunter-hunters-prey"
+    ],
+    "7": [
+      "pub24_sub_ranger-hunter-defensive-tactics"
+    ],
+    "11": [
+      "pub24_sub_ranger-hunter-superior-hunters-prey"
+    ],
+    "15": [
+      "pub24_sub_ranger-hunter-superior-hunters-defense"
+    ]
+  }
+}

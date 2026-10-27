@@ -1,0 +1,40 @@
+{
+  "class": "Ranger",
+  "name": "Gloom Stalker",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Gloom Stalkers are at home in the darkest places, wielding magic drawn from the Shadowfell to combat enemies that lurk in darkness.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_ranger-gloom-stalker-dread-ambusher",
+      "pub24_sub_ranger-gloom-stalker-gloom-stalker-spells",
+      "pub24_sub_ranger-gloom-stalker-umbral-sight"
+    ],
+    "7": [
+      "pub24_sub_ranger-gloom-stalker-iron-mind"
+    ],
+    "11": [
+      "pub24_sub_ranger-gloom-stalker-stalkers-flurry"
+    ],
+    "15": [
+      "pub24_sub_ranger-gloom-stalker-shadowy-dodge"
+    ]
+  },
+  "bonus_spells_by_level": {
+    "3": [
+      "Disguise Self"
+    ],
+    "5": [
+      "Rope Trick"
+    ],
+    "9": [
+      "Fear"
+    ],
+    "13": [
+      "Greater Invisibility"
+    ],
+    "17": [
+      "Seeming"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Glory",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Paladins who take the Oath of Glory believe they and their companions are destined to achieve glory through deeds of heroism. They train diligently and encourage their companions, so that they're all ready when destiny calls.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_paladin-oath-of-glory-inspiring-smite",
+      "pub24_sub_paladin-oath-of-glory-oath-of-glory-spells",
+      "pub24_sub_paladin-oath-of-glory-peerless-athlete"
+    ],
+    "7": [
+      "pub24_sub_paladin-oath-of-glory-aura-of-alacrity"
+    ],
+    "15": [
+      "pub24_sub_paladin-oath-of-glory-glorious-defense"
+    ],
+    "20": [
+      "pub24_sub_paladin-oath-of-glory-living-legend"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Guiding Bolt",
+      "Heroism"
+    ],
+    "5": [
+      "Enhance Ability",
+      "Magic Weapon"
+    ],
+    "9": [
+      "Haste",
+      "Protection from Energy"
+    ],
+    "13": [
+      "Compulsion",
+      "Freedom of Movement"
+    ],
+    "17": [
+      "Legend Lore",
+      "Yolande's Regal Presence"
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "class": "Druid",
+  "name": "Circle of the Land",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Celebrate Connection to the Natural World",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_druid-circle-of-the-land-circle-of-the-land-spells",
+      "pub24_sub_druid-circle-of-the-land-lands-aid"
+    ],
+    "6": [
+      "pub24_sub_druid-circle-of-the-land-natural-recovery"
+    ],
+    "10": [
+      "pub24_sub_druid-circle-of-the-land-natures-ward"
+    ],
+    "14": [
+      "pub24_sub_druid-circle-of-the-land-natures-sanctuary"
+    ]
+  },
+  "land_spells_by_type": {
+    "Arid": {
+      "3": [
+        "Blur",
+        "Burning Hands",
+        "Fire Bolt"
+      ],
+      "5": [
+        "Fireball"
+      ],
+      "7": [
+        "Blight"
+      ],
+      "9": [
+        "Wall of Stone"
+      ]
+    },
+    "Polar": {
+      "3": [
+        "Fog Cloud",
+        "Hold Person",
+        "Ray of Frost"
+      ],
+      "5": [
+        "Sleet Storm"
+      ],
+      "7": [
+        "Ice Storm"
+      ],
+      "9": [
+        "Cone of Cold"
+      ]
+    },
+    "Temperate": {
+      "3": [
+        "Misty Step",
+        "Shocking Grasp",
+        "Sleep"
+      ],
+      "5": [
+        "Lightning Bolt"
+      ],
+      "7": [
+        "Freedom of Movement"
+      ],
+      "9": [
+        "Tree Stride"
+      ]
+    },
+    "Tropical": {
+      "3": [
+        "Acid Splash",
+        "Ray of Sickness",
+        "Web"
+      ],
+      "5": [
+        "Stinking Cloud"
+      ],
+      "7": [
+        "Polymorph"
+      ],
+      "9": [
+        "Insect Plague"
+      ]
+    }
+  }
+}

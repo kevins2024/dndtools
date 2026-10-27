@@ -40,6 +40,7 @@ const CLASS_SPELLCASTING = {
   paladin: { type: 'half', ability: 'cha' },
   ranger: { type: 'half', ability: 'wis' },
   warlock: { type: 'pact', ability: 'cha' },
+  artificer: { type: 'artificer', ability: 'int' },
 }
 
 const ABILITY = {
@@ -184,7 +185,7 @@ function parseSections(lines) {
   const sections = []
   let cur = null
   for (const line of lines) {
-    const m = /^Level (\d+): (.+)$/.exec(line)
+    const m = /^Level (\d+): (.+)$/i.exec(line)
     if (m) {
       cur = { level: Number(m[1]), name: m[2].trim(), body: [] }
       sections.push(cur)
@@ -302,6 +303,7 @@ async function ingest(className, { write }) {
     armor_proficiencies: parseArmor(core['Armor Training'] ?? ''),
     weapon_proficiencies: parseWeapons(core['Weapon Proficiencies'] ?? ''),
     weapon_proficiencies_text: core['Weapon Proficiencies'] ?? null,
+    tool_proficiencies_text: core['Tool Proficiencies'] ?? null,
     skill_choices: parseSkills(core['Skill Proficiencies'] ?? ''),
     subclass_name: `${display} Subclass`,
     subclass_choice_level: Math.min(...subclassLevels.filter((l) => l)),

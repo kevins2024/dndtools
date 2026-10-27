@@ -1,0 +1,42 @@
+{
+  "class": "Warlock",
+  "name": "Undead Patron",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "You’ve made a pact with a creature that defies the cycle of life and death: a powerful lich, a vampire, or another entity of undeath. Having once been mortal, these ancient patrons know firsthand the paths of ambition and the routes past the doors of death. They eagerly share this profane knowledge and other secrets with those who work their will among the living.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_warlock-undead-patron-form-of-dread",
+      "pub24_sub_warlock-undead-patron-undead-spells"
+    ],
+    "6": [
+      "pub24_sub_warlock-undead-patron-grave-touched"
+    ],
+    "10": [
+      "pub24_sub_warlock-undead-patron-necrotic-husk"
+    ],
+    "14": [
+      "pub24_sub_warlock-undead-patron-superior-dread"
+    ]
+  },
+  "patron_spells_by_level": {
+    "3": [
+      "Bane",
+      "Blindness/Deafness",
+      "Phantasmal Force",
+      "Ray of Sickness"
+    ],
+    "5": [
+      "Speak with Dead",
+      "Summon Undead"
+    ],
+    "7": [
+      "Greater Invisibility",
+      "Phantasmal Killer"
+    ],
+    "9": [
+      "Antilife Shell",
+      "Cloudkill"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "class": "Paladin",
+  "name": "Oath of the Noble Genies",
+  "ruleset": "2024",
+  "source": "Forgotten Realms - Heroes of Faerun (2024)",
+  "description": "Brandish the Elemental Splendor of Genies",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_paladin-oath-of-the-noble-genies-elemental-smite",
+      "pub24_sub_paladin-oath-of-the-noble-genies-genie-spells",
+      "pub24_sub_paladin-oath-of-the-noble-genies-genies-splendor"
+    ],
+    "7": [
+      "pub24_sub_paladin-oath-of-the-noble-genies-aura-of-elemental-shielding"
+    ],
+    "15": [
+      "pub24_sub_paladin-oath-of-the-noble-genies-elemental-rebuke"
+    ],
+    "20": [
+      "pub24_sub_paladin-oath-of-the-noble-genies-noble-scion"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Chromatic Orb",
+      "Elementalism",
+      "Thunderous Smite"
+    ],
+    "5": [
+      "Mirror Image",
+      "Phantasmal Force"
+    ],
+    "9": [
+      "Fly",
+      "Gaseous Form"
+    ],
+    "13": [
+      "Conjure Minor Elementals",
+      "Summon Elemental"
+    ],
+    "17": [
+      "Banishing Smite",
+      "Contact Other Plane"
+    ]
+  }
+}

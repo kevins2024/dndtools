@@ -38,10 +38,12 @@ test('2014 data paths point at the original data/5e tree', () => {
 })
 
 test('a 2024 request with no 2024 file falls back to the legacy 2014 file', () => {
-  // Nothing in the 2024 tree has this name, so the 2014 file must be served.
-  const p = dataFilePath('2024', 'classes/artificer.json')
-  assert.ok(p.endsWith(path.join('data', '5e', 'classes', 'artificer.json')))
-  assert.equal(isLegacyFallback('2024', 'classes/artificer.json'), true)
+  // languages.json has no 2024 counterpart, so the 2014 file must be served.
+  const p = dataFilePath('2024', 'languages.json')
+  assert.ok(p.endsWith(path.join('data', '5e', 'languages.json')))
+  assert.equal(isLegacyFallback('2024', 'languages.json'), true)
+  assert.equal(isLegacyFallback('2024', 'classes/barbarian.json'), false)
+  assert.equal(isLegacyFallback('2014', 'classes/barbarian.json'), false)
 })
 
 test('loadRulesetJson returns null for a file that exists in neither tree', () => {
@@ -49,7 +51,7 @@ test('loadRulesetJson returns null for a file that exists in neither tree', () =
   assert.equal(loadRulesetJson('2014', 'classes/not-a-class.json'), null)
 })
 
-test('loadRulesetJson caches, and 2014/2024 do not share a cache slot', () => {
+test('loadRulesetJson caches per resolved file', () => {
   const a = loadRulesetJson('2014', 'classes/fighter.json')
   const b = loadRulesetJson('2014', 'classes/fighter.json')
   assert.equal(a, b)

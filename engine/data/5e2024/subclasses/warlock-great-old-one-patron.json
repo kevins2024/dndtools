@@ -1,0 +1,44 @@
+{
+  "class": "Warlock",
+  "name": "Great Old One Patron",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Unearth Forbidden Lore of Ineffable Beings",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_warlock-great-old-one-patron-awakened-mind",
+      "pub24_sub_warlock-great-old-one-patron-great-old-one-spells",
+      "pub24_sub_warlock-great-old-one-patron-psychic-spells"
+    ],
+    "6": [
+      "pub24_sub_warlock-great-old-one-patron-clairvoyant-combatant"
+    ],
+    "10": [
+      "pub24_sub_warlock-great-old-one-patron-eldritch-hex",
+      "pub24_sub_warlock-great-old-one-patron-thought-shield"
+    ],
+    "14": [
+      "pub24_sub_warlock-great-old-one-patron-create-thrall"
+    ]
+  },
+  "patron_spells_by_level": {
+    "3": [
+      "Detect Thoughts",
+      "Dissonant Whispers",
+      "Phantasmal Force",
+      "Tasha's Hideous Laughter"
+    ],
+    "5": [
+      "Clairvoyance",
+      "Hunger of Hadar"
+    ],
+    "7": [
+      "Confusion",
+      "Summon Aberration"
+    ],
+    "9": [
+      "Modify Memory",
+      "Telekinesis"
+    ]
+  }
+}

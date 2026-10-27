@@ -1,0 +1,22 @@
+{
+  "class": "Barbarian",
+  "name": "Path of the Wild Heart",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Barbarians who follow the Path of the Wild Heart view themselves as kin to animals. These Barbarians learn magical means to communicate with animals, and their Rage heightens their connection to animals as it fills them with supernatural might.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_barbarian-path-of-the-wild-heart-animal-speaker",
+      "pub24_sub_barbarian-path-of-the-wild-heart-rage-of-the-wilds"
+    ],
+    "6": [
+      "pub24_sub_barbarian-path-of-the-wild-heart-aspect-of-the-wilds"
+    ],
+    "10": [
+      "pub24_sub_barbarian-path-of-the-wild-heart-nature-speaker"
+    ],
+    "14": [
+      "pub24_sub_barbarian-path-of-the-wild-heart-power-of-the-wilds"
+    ]
+  }
+}

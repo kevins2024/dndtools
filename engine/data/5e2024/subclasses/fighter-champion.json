@@ -1,0 +1,25 @@
+{
+  "class": "Fighter",
+  "name": "Champion",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "A Champion focuses on the development of martial prowess in a relentless pursuit of victory. Champions combine rigorous training with physical excellence to deal devastating blows, withstand peril, and garner glory. Whether in athletic contests or bloody battle, Champions strive for the crown of the victor.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_fighter-champion-improved-critical",
+      "pub24_sub_fighter-champion-remarkable-athlete"
+    ],
+    "7": [
+      "pub24_sub_fighter-champion-additional-fighting-style"
+    ],
+    "10": [
+      "pub24_sub_fighter-champion-heroic-warrior"
+    ],
+    "15": [
+      "pub24_sub_fighter-champion-superior-critical"
+    ],
+    "18": [
+      "pub24_sub_fighter-champion-survivor"
+    ]
+  }
+}

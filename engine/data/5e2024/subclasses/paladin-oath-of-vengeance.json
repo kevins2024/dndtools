@@ -1,0 +1,44 @@
+{
+  "class": "Paladin",
+  "name": "Oath of Vengeance",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "The Oath of Vengeance is a solemn commitment to punish those who have committed grievously evil acts. When evil armies slaughter helpless villagers, when a tyrant defies the will of the gods, when a thieves' guild grows too violent, when a dragon rampages though the countryside - at times like these, Paladins arise and swear the Oath of Vengeance to set right what has gone wrong.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_paladin-oath-of-vengeance-oath-of-vengeance-spells",
+      "pub24_sub_paladin-oath-of-vengeance-vow-of-enmity"
+    ],
+    "7": [
+      "pub24_sub_paladin-oath-of-vengeance-relentless-avenger"
+    ],
+    "15": [
+      "pub24_sub_paladin-oath-of-vengeance-soul-of-vengeance"
+    ],
+    "20": [
+      "pub24_sub_paladin-oath-of-vengeance-avenging-angel"
+    ]
+  },
+  "oath_spells_by_level": {
+    "3": [
+      "Bane",
+      "Hunter's Mark"
+    ],
+    "5": [
+      "Hold Person",
+      "Misty Step"
+    ],
+    "9": [
+      "Haste",
+      "Protection from Energy"
+    ],
+    "13": [
+      "Banishment",
+      "Dimension Door"
+    ],
+    "17": [
+      "Hold Monster",
+      "Scrying"
+    ]
+  }
+}

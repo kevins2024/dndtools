@@ -1,0 +1,43 @@
+{
+  "class": "Warlock",
+  "name": "Archfey Patron",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Your pact draws on the power of the Feywild. When you choose this subclass, you might make a deal with an archfey, such as the Prince of Frost; the Queen of Air and Darkness, ruler of the Gloaming Court; Titania of the Summer Court; or an ancient hag. Or you might call on a spectrum of Fey, weaving a web of favors and debts. Whoever they are, your patron is often inscrutable and whimsical.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_warlock-archfey-patron-archfey-spells",
+      "pub24_sub_warlock-archfey-patron-steps-of-the-fey"
+    ],
+    "6": [
+      "pub24_sub_warlock-archfey-patron-misty-escape"
+    ],
+    "10": [
+      "pub24_sub_warlock-archfey-patron-beguiling-defenses"
+    ],
+    "14": [
+      "pub24_sub_warlock-archfey-patron-bewitching-magic"
+    ]
+  },
+  "patron_spells_by_level": {
+    "3": [
+      "Calm Emotions",
+      "Faerie Fire",
+      "Misty Step",
+      "Phantasmal Force",
+      "Sleep"
+    ],
+    "5": [
+      "Blink",
+      "Plant Growth"
+    ],
+    "7": [
+      "Dominate Beast",
+      "Greater Invisibility"
+    ],
+    "9": [
+      "Dominate Person",
+      "Seeming"
+    ]
+  }
+}

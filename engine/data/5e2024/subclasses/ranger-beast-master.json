@@ -1,0 +1,21 @@
+{
+  "class": "Ranger",
+  "name": "Beast Master",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "A Beast Master forms a mystical bond with a special animal, drawing on primal magic and a deep connection to the natural world.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_ranger-beast-master-primal-companion"
+    ],
+    "7": [
+      "pub24_sub_ranger-beast-master-exceptional-training"
+    ],
+    "11": [
+      "pub24_sub_ranger-beast-master-bestial-fury"
+    ],
+    "15": [
+      "pub24_sub_ranger-beast-master-share-spells"
+    ]
+  }
+}

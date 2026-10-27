@@ -1,0 +1,52 @@
+{
+  "class": "Artificer",
+  "name": "Reanimator",
+  "ruleset": "2024",
+  "source": "Ravenloft - The Horrors Within (2024)",
+  "description": "Reanimators defy the laws of nature in pursuit of gruesome experiments. These grim Artificers stitch together servants from disparate corpses, use foul magic to strengthen the living, and transform the art of necromancy into a terrifying science.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_artificer-reanimator-reanimator-spells",
+      "pub24_sub_artificer-reanimator-reanimators-skill-set",
+      "pub24_sub_artificer-reanimator-reanimated-companion"
+    ],
+    "5": [
+      "pub24_sub_artificer-reanimator-strange-modifications"
+    ],
+    "9": [
+      "pub24_sub_artificer-reanimator-improved-reanimation",
+      "pub24_sub_artificer-reanimator-macabre-modifications"
+    ],
+    "15": [
+      "pub24_sub_artificer-reanimator-refined-reanimation"
+    ]
+  },
+  "spell_tables_unmapped": [
+    {
+      "title": "Reanimator Spells",
+      "byLevel": {
+        "3": [
+          "False Life",
+          "Spare the Dying",
+          "Witch Bolt"
+        ],
+        "5": [
+          "Blindness/Deafness",
+          "Enhance Ability"
+        ],
+        "9": [
+          "Animate Dead",
+          "Lightning Bolt"
+        ],
+        "13": [
+          "Blight",
+          "Death Ward"
+        ],
+        "17": [
+          "Antilife Shell",
+          "Raise Dead"
+        ]
+      }
+    }
+  ]
+}

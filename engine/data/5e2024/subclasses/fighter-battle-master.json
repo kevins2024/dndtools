@@ -1,0 +1,25 @@
+{
+  "class": "Fighter",
+  "name": "Battle Master",
+  "ruleset": "2024",
+  "source": "Player's Handbook (2024)",
+  "description": "Battle Masters are students of the art of battle, learning martial techniques passed down through generations. The most accomplished Battle Masters are well-rounded figures who combine their carefully honed combat skills with academic study in the fields of history, theory, and the arts.",
+  "features_by_level": {
+    "3": [
+      "pub24_sub_fighter-battle-master-combat-superiority",
+      "pub24_sub_fighter-battle-master-student-of-war"
+    ],
+    "7": [
+      "pub24_sub_fighter-battle-master-know-your-enemy"
+    ],
+    "10": [
+      "pub24_sub_fighter-battle-master-improved-combat-superiority"
+    ],
+    "15": [
+      "pub24_sub_fighter-battle-master-relentless"
+    ],
+    "18": [
+      "pub24_sub_fighter-battle-master-ultimate-combat-superiority"
+    ]
+  }
+}

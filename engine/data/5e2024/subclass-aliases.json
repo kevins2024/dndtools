@@ -1,4 +1,38 @@
 {
-  "_notes": "2014 subclass name -> 2024 subclass name, per class, for subclasses the 2024 PHB renamed or re-titled. loadSubclass(.., '2024') consults this when the requested name has no 2024 file of its own, so character records saved under the 2014 name keep resolving.",
-  "Barbarian": { "Berserker": "Path of the Berserker" }
+  "_notes": "2014 subclass name -> 2024 subclass name, per class, for subclasses the 2024 rules renamed or re-titled. loadSubclass(.., '2024') consults this when the requested name has no 2024 file of its own, so character records saved under the 2014 name keep resolving. Only true equivalents are listed: a 2014 subclass with no 2024 rewrite (Path of Wild Magic, Echo Knight, ...) is not aliased; it loads as legacy.",
+  "Barbarian": {
+    "Berserker": "Path of the Berserker"
+  },
+  "Druid": {
+    "Circle of Stars": "Circle of the Stars"
+  },
+  "Monk": {
+    "Way of Mercy": "Warrior of Mercy",
+    "Way of Shadow": "Warrior of Shadow",
+    "Way of the Open Hand": "Warrior of the Open Hand",
+    "Way of the Four Elements": "Warrior of the Elements"
+  },
+  "Sorcerer": {
+    "Aberrant Mind": "Aberrant Sorcery",
+    "Clockwork Soul": "Clockwork Sorcery",
+    "Draconic Bloodline": "Draconic Sorcery",
+    "Shadow Magic": "Shadow Sorcery",
+    "Wild Magic": "Wild Magic Sorcery"
+  },
+  "Warlock": {
+    "Great Old One": "Great Old One Patron",
+    "The Archfey": "Archfey Patron",
+    "The Celestial": "Celestial Patron",
+    "The Fiend": "Fiend Patron",
+    "The Undead": "Undead Patron"
+  },
+  "Wizard": {
+    "Abjuration": "Abjurer",
+    "Evocation": "Evoker",
+    "School of Divination": "Diviner",
+    "School of Illusion": "Illusionist"
+  },
+  "Fighter": {
+    "Purple Dragon Knight (Banneret)": "Banneret"
+  }
 }
