@@ -14,7 +14,7 @@ const SCORE_CAP = 20 // standard 5e cap; Epic Boons pushing past this are out of
 // deltas are the ground truth for "how much did this specific bump really
 // contribute," not the requested amount, so history always sums correctly
 // to the final stat even when a bump gets partially or fully capped.
-function bumpAbilities(scores, increases) {
+function bumpAbilities(scores, increases, cap = SCORE_CAP) {
   const next = { ...scores }
   const notes = []
   const deltas = []
@@ -23,10 +23,11 @@ function bumpAbilities(scores, increases) {
       throw new Error(`Unknown ability "${ability}".`)
     }
     const before = next[ability] ?? 10
-    const after = Math.min(SCORE_CAP, before + amount)
+    // A score already above the cap (an item or boon put it there) is left alone.
+    const after = Math.max(before, Math.min(cap, before + amount))
     if (after < before + amount) {
       notes.push(
-        `${ability.toUpperCase()} capped at ${SCORE_CAP} (would have been ${
+        `${ability.toUpperCase()} capped at ${cap} (would have been ${
           before + amount
         }).`
       )
@@ -69,9 +70,10 @@ function applyFeatChoice(
   scores,
   featName,
   abilityChoice = null,
-  choices = null
+  choices = null,
+  ruleset
 ) {
-  const feat = loadFeat(featName)
+  const feat = loadFeat(featName, ruleset)
   if (!feat) {
     return {
       scores,
@@ -89,7 +91,8 @@ function applyFeatChoice(
   let deltas = [] // empty when the feat has no ability_score_increase at all (e.g. Alert, Skilled)
 
   if (feat.ability_score_increase) {
-    const { choice_of: choiceOf, amount } = feat.ability_score_increase
+    const { choice_of: choiceOf, amount, max_score: maxScore } =
+      feat.ability_score_increase
     if (choiceOf && choiceOf.length > 1) {
       if (!ability || !choiceOf.includes(ability)) {
         throw new Error(
@@ -103,7 +106,11 @@ function applyFeatChoice(
     }
     // Not routed through applyIncrease — a feat's own bump (usually +1, not
     // always) doesn't follow the "+2 total" ASI rule, just the shared cap logic.
-    const bumped = bumpAbilities(scores, { [ability]: amount })
+    const bumped = bumpAbilities(
+      scores,
+      { [ability]: amount },
+      maxScore ?? SCORE_CAP
+    )
     nextScores = bumped.scores
     notes = bumped.notes
     deltas = bumped.deltas
@@ -126,7 +133,7 @@ function applyFeatChoice(
 
 // resolution: { type: 'asi', increases: {str:1,dex:1} }
 //           | { type: 'feat', featName, abilityChoice?, choices? }
-function resolveAsiOrFeat(scores, resolution) {
+function resolveAsiOrFeat(scores, resolution, ruleset) {
   if (!resolution || !resolution.type) {
     throw new Error(
       'ASI/feat resolution required: { type: "asi", increases } or { type: "feat", featName }.'
@@ -140,7 +147,8 @@ function resolveAsiOrFeat(scores, resolution) {
       scores,
       resolution.featName,
       resolution.abilityChoice,
-      resolution.choices
+      resolution.choices,
+      ruleset
     )
   }
   throw new Error(

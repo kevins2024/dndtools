@@ -1,4 +1,5 @@
 const { loadFeat } = require('./grants')
+const { rulesetOf } = require('./ruleset')
 
 // Adapter, like diffLevelUp.js and validateCharacter.js — the one other place
 // besides those that knows the characters.json shape (genus, stat_*,
@@ -59,6 +60,7 @@ function hasProficiency(character, proficiency) {
     return weapons.includes('martial')
   }
   if (armor == null) return null
+  if (proficiency === 'shields') return armor.includes('shields')
   if (proficiency === 'light_armor') return armor.includes('light')
   if (proficiency === 'medium_armor') return armor.includes('medium')
   if (proficiency === 'heavy_armor') return armor.includes('heavy')
@@ -184,6 +186,35 @@ function evaluatePrerequisite(character, prerequisite) {
         unknown: false,
       }
     }
+    // 2024 feat prerequisites ("Level 4+"): TOTAL character level, not a class's.
+    case 'character_level': {
+      const total =
+        character.level ??
+        (character.classes || []).reduce((n, c) => n + (c.level ?? 0), 0)
+      const met = total >= prerequisite.min
+      return {
+        met,
+        reason: met ? null : `Requires character level ${prerequisite.min}+.`,
+        unknown: false,
+      }
+    }
+    // 2024 Fighting Style feats: "Fighting Style Feature" — Fighter 1, Paladin 2,
+    // Ranger 2, or a feature that grants one (Blessed/Druidic Warrior...).
+    case 'fighting_style_feature': {
+      const has =
+        (character.classes || []).some((c) => {
+          const at = { fighter: 1, paladin: 2, ranger: 2 }[normalizeName(c.name)]
+          return at != null && (c.level ?? 0) >= at
+        }) ||
+        (character.features || []).some((f) =>
+          /^(fighting style|blessed warrior|druidic warrior)/i.test(f.name || '')
+        )
+      return {
+        met: has,
+        reason: has ? null : 'Requires a class feature that grants a Fighting Style.',
+        unknown: false,
+      }
+    }
     case 'all_of': {
       const results = prerequisite.all.map((p) =>
         evaluatePrerequisite(character, p)
@@ -206,7 +237,7 @@ function evaluatePrerequisite(character, prerequisite) {
 }
 
 function meetsFeatPrerequisites(character, featName) {
-  const feat = loadFeat(featName)
+  const feat = loadFeat(featName, rulesetOf(character))
   if (!feat) return { met: true, reason: null, unknown: true }
   return evaluatePrerequisite(character, feat.prerequisite)
 }

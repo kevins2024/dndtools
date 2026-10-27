@@ -22,7 +22,9 @@ test('feats.json has the full 2014 PHB+XGE+TCE roster (72 feats)', () => {
 
 test('every feats.json entry has a matching published_features.json category:"feat" entry, and vice versa', () => {
   const pfFeatNames = new Set(
-    publishedFeatures.filter((e) => e.category === 'feat').map((e) => e.name)
+    publishedFeatures
+      .filter((e) => e.category === 'feat' && e.ruleset !== '2024')
+      .map((e) => e.name)
   )
   const missingInPf = FEAT_NAMES.filter((n) => !pfFeatNames.has(n))
   assert.deepEqual(
@@ -41,7 +43,7 @@ test('every feats.json entry has a matching published_features.json category:"fe
 
 test('every category:"feat" published_features.json entry has an id resolvable in feature-catalog.json', () => {
   const missing = publishedFeatures
-    .filter((e) => e.category === 'feat')
+    .filter((e) => e.category === 'feat' && e.ruleset !== '2024')
     .filter((e) => {
       const key = e.id?.startsWith('pub_') ? e.id.slice(4) : e.id
       return featureCatalog[key] !== e.name

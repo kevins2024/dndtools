@@ -1,16 +1,34 @@
-const species = require('../../data/5e/species.json')
+const species2014 = require('../../data/5e/species.json')
+const { normalizeRuleset, loadRulesetJson } = require('./ruleset')
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 
-function loadSpecies(name) {
+// Under 2024: every species the 2024 books rewrote, plus the 2014 species with
+// no rewrite (Half-Elf, Half-Orc, Eladrin...) tagged `legacy: true` — still
+// playable, just not rewritten. 2024 species carry no ability_score_bonus (that
+// moved to the background).
+function speciesFor(ruleset) {
+  if (normalizeRuleset(ruleset) !== '2024') return species2014
+  const rewritten = loadRulesetJson('2024', 'species.json') ?? []
+  const have = new Set(rewritten.map((s) => s.name.toLowerCase()))
+  return [
+    ...rewritten,
+    ...species2014
+      .filter((s) => !have.has(s.name.toLowerCase()))
+      .map((s) => ({ ...s, legacy: true })),
+  ]
+}
+
+function loadSpecies(name, ruleset) {
   return (
-    species.find((s) => s.name.toLowerCase() === String(name).toLowerCase()) ||
-    null
+    speciesFor(ruleset).find(
+      (s) => s.name.toLowerCase() === String(name).toLowerCase()
+    ) || null
   )
 }
 
-function listSpecies() {
-  return species.map((s) => ({ name: s.name }))
+function listSpecies(ruleset) {
+  return speciesFor(ruleset).map((s) => ({ name: s.name }))
 }
 
 // Every trait a character of this species/subrace actually has — species-
@@ -20,8 +38,8 @@ function listSpecies() {
 // character already built, not just at creation time). Returns [] for an
 // unknown species/subrace rather than throwing — callers treat "no traits"
 // and "no species" the same way (nothing to apply).
-function traitsFor(speciesName, subraceName) {
-  const sp = loadSpecies(speciesName)
+function traitsFor(speciesName, subraceName, ruleset) {
+  const sp = loadSpecies(speciesName, ruleset)
   if (!sp) return []
   const traits = [...(sp.traits || [])]
   if (subraceName) {
@@ -35,7 +53,16 @@ function traitsFor(speciesName, subraceName) {
 
 // scores: {str,dex,con,int,wis,cha}. `choice`: { abilities: [...] } — required only
 // when the species has a flexible bonus (e.g. Half-Elf's +1 to two of your choice).
-function applySpeciesBonus(scores, speciesName, choice = {}) {
+function applySpeciesBonus(scores, speciesName, choice = {}, ruleset) {
+  // 2024: species grant no ability scores — applyBackgroundBonus does it.
+  if (normalizeRuleset(ruleset) === '2024') {
+    return {
+      scores,
+      notes: [
+        `Under the 2024 rules ${speciesName} grants no ability score bonus; the background does.`,
+      ],
+    }
+  }
   const sp = loadSpecies(speciesName)
   if (!sp) {
     return {
