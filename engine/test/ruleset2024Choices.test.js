@@ -289,7 +289,7 @@ test('Barbarian Primal Knowledge (3rd): one more skill from the Barbarian list',
     'skills already known are not offered'
   )
   const r = run('Barbarian', 2, 3, { primalKnowledgeSkill: 'survival' })
-  assert.deepEqual(r.extraSkillProficiencies, ['survival'])
+  assert.deepEqual(r.extraSkillProficiencies, ['Survival'])
 })
 
 test('under the 2014 rules this module does nothing', () => {

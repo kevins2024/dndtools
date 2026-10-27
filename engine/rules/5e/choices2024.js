@@ -22,6 +22,7 @@ const { loadRulesetJson } = require('./ruleset')
 const { rulesetOf } = require('./rulesetId')
 const { listFeats } = require('./grants')
 const { listMetamagicOptions } = require('./metamagic')
+const { loadSkill } = require('./skills')
 
 const key = (s) =>
   String(s || '')
@@ -374,9 +375,9 @@ function primalKnowledge({ character, className, crossed, choices, out }) {
   ).filter((s) => !have.has(key(s)))
   const picked = choices.primalKnowledgeSkill
   if (picked && options.some((o) => key(o) === key(picked))) {
-    out.extraSkillProficiencies.push(
-      options.find((o) => key(o) === key(picked))
-    )
+    // Stored the way the roster stores skills: the display name ("Animal Handling").
+    const id = options.find((o) => key(o) === key(picked))
+    out.extraSkillProficiencies.push(loadSkill(id)?.name ?? id)
   } else {
     if (picked)
       out.notes.push(
