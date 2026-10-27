@@ -29,6 +29,7 @@ const {
 const { validateCharacter } = require('./rules/validateCharacter')
 const { describeLevelUp } = require('./rules/5e/levelUp')
 const { diffLevelUp, applyFeatureMechanics } = require('./rules/5e/diffLevelUp')
+const { previewLevelUp, autoLevelUp } = require('./rules/5e/choiceProtocol')
 const { resolveEffectiveScores } = require('./rules/5e/abilityScores')
 const { loadFeat, listFeats, isFeatGrantedSpell } = require('./rules/5e/grants')
 const { rulesetOf, normalizeRuleset } = require('./rules/5e/rulesetId')
@@ -160,6 +161,8 @@ module.exports = {
   validateCharacter,
   describeLevelUp,
   diffLevelUp,
+  previewLevelUp,
+  autoLevelUp,
   applyFeatureMechanics,
   featureMechanics,
   resolveFeatureText,

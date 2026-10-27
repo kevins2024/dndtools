@@ -8,7 +8,6 @@
 // `log[i]` = { level, result, unresolved } for each level; `unresolved` lists
 // pending choices the policy has no answer for (so a sweep can report them).
 
-const { diffLevelUp } = require('../../rules/5e/diffLevelUp')
 const { loadClass } = require('../../rules/5e/classFeatures')
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
@@ -49,9 +48,10 @@ const blank = (className, subclass, ruleset) => {
   }
 }
 
-const { answerChoice, takeFirst } = require('../../rules/5e/choiceAnswers')
-const answer = (p, inputs, ctx) => answerChoice(p, inputs, ctx)
+const { autoLevelUp } = require('../../rules/5e/choiceProtocol')
 
+// One level-up with every choice answered by policy, through the same choice descriptions a
+// UI would render (rules/5e/choiceProtocol.js).
 function levelOnce(
   character,
   className,
@@ -59,27 +59,11 @@ function levelOnce(
   ruleset,
   hpMethod = 'average'
 ) {
-  let inputs = {}
-  let result
-  let unresolved = []
-  for (let attempt = 0; attempt < 8; attempt++) {
-    result = diffLevelUp(character, { className, toLevel, hpMethod, ...inputs })
-    if (!result.patch)
-      throw new Error(`${className} ${toLevel}: ${result.warnings.join(' ')}`)
-    const before = JSON.stringify(inputs)
-    unresolved = []
-    for (const p of result.pendingChoices) {
-      if (!answer(p, inputs, { character, className, toLevel, ruleset }))
-        unresolved.push(p)
-    }
-    if (JSON.stringify(inputs) === before) break
-  }
-  // final pass with the settled inputs
-  result = diffLevelUp(character, { className, toLevel, hpMethod, ...inputs })
+  const r = autoLevelUp(character, { className, toLevel, hpMethod })
   return {
-    result,
-    unresolved: result.pendingChoices.filter(
-      (p) => p.type !== 'subclassChoice'
+    result: r,
+    unresolved: r.choices.filter(
+      (c) => !c.answered && c.type !== 'subclassChoice'
     ),
   }
 }

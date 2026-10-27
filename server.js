@@ -456,6 +456,46 @@ app.post('/api/engine/preview-level-up', (req, res) => {
   }
 })
 
+// ── POST /api/engine/level-up ─────────────────────────────
+// The level-up as the UI should use it: { character, className, toLevel, hpMethod?, hpRolls?,
+// spellSwap?, answers? } -> { patch, choices, complete, problems, warnings, description, ... }.
+// `choices` describes every question this level-up asks (id, kind, min/max, labelled options);
+// `answers` is { [choice.id]: answer } — see engine/rules/5e/choiceProtocol.js. Writes nothing.
+app.post('/api/engine/level-up', (req, res) => {
+  const {
+    character,
+    className,
+    toLevel,
+    hpMethod,
+    hpRolls,
+    spellSwap,
+    answers,
+  } = req.body
+  if (!character || !className || !toLevel) {
+    return res
+      .status(400)
+      .json({ error: '"character", "className" and "toLevel" are required' })
+  }
+  try {
+    const partyItems = hydratePartyItems(
+      readJSON(path.join(DATA_DIR, 'party_items.json'))
+    )
+    const equippedItems = partyItems.filter(
+      (i) => i.equipped_by === character.name
+    )
+    res.json(
+      engine.previewLevelUp(
+        character,
+        { className, toLevel, hpMethod, hpRolls, spellSwap, equippedItems },
+        answers ?? {}
+      )
+    )
+  } catch (err) {
+    console.error('Error computing level-up:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // ── POST /api/engine/migrate-2024 ────────────────────────
 // Dry-run migration of one 2014 character to the 2024 rules:
 // { character, answers? } -> { character, changes, questions, warnings }.

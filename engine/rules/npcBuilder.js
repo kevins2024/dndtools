@@ -12,15 +12,10 @@
 // species.js, which read engine/data/*.json off disk via fs/path, so it's
 // NOT eligible for direct browser require() — server.js is the only caller.
 
-const { diffLevelUp } = require('./5e/diffLevelUp')
-const { answerChoice } = require('./5e/choiceAnswers')
+const { autoLevelUp } = require('./5e/choiceProtocol')
 const { abilityModifier } = require('./5e/abilities')
 const { proficiencyBonus } = require('./5e/progression')
 const { loadClass } = require('./5e/classFeatures')
-
-function normalizeName(name) {
-  return String(name).trim().toLowerCase()
-}
 
 // One entry per supported role. `baseScores` is a priority-ordered point-buy
 // spread (highest first) assigned to primaryStat, then secondaryStat, then
@@ -270,69 +265,42 @@ function buildCombatant({ speciesName, role, targetLevel }) {
   let character = buildShell(speciesName, roleConfig)
   const warnings = []
 
+  // What this role prefers when a level-up asks it to choose (first match wins; anything the
+  // role has no opinion about is taken in the order the engine lists it).
+  const prefs = {
+    abilityOrder: roleConfig.statOrder,
+    subclassName: roleConfig.subclassName,
+    prefer: {
+      newCantrips: roleConfig.cantripPreferences,
+      newKnownSpells: roleConfig.spellPreferences,
+      spellbookAdditions: roleConfig.spellPreferences,
+      invocationChoice: roleConfig.invocationPreferences,
+      pactBoonChoice: roleConfig.pactBoon ? [roleConfig.pactBoon] : [],
+      fightingStyleChoice: roleConfig.fightingStyle
+        ? [roleConfig.fightingStyle]
+        : [],
+      expertiseChoice: roleConfig.expertiseSkills,
+      favoredEnemyChoice: roleConfig.favoredEnemy
+        ? [roleConfig.favoredEnemy]
+        : [],
+      naturalExplorerChoice: roleConfig.naturalExplorer
+        ? [roleConfig.naturalExplorer]
+        : [],
+    },
+  }
+
   for (let level = 1; level <= targetLevel; level++) {
-    const inputs = {}
-    let result = null
-    for (let attempt = 0; attempt < 8; attempt++) {
-      result = diffLevelUp(character, {
-        className: roleConfig.className,
-        toLevel: level,
-        hpMethod: 'average',
-        ...inputs,
-      })
-      if (!result.patch) {
-        throw new Error(
-          `Could not build level ${level} ${
-            roleConfig.className
-          }: ${result.warnings?.join(' ')}`
-        )
-      }
-      const pending = result.pendingChoices || []
-      if (pending.length === 0) break
-      // The build already names its subclass; the rest are answered by the shared policy.
-      const sub = pending.find((p) => p.type === 'subclassChoice')
-      if (sub)
-        character = {
-          ...character,
-          classes: character.classes.map((c) =>
-            normalizeName(c.name) === normalizeName(roleConfig.className) &&
-            !c.subclass
-              ? { ...c, subclass: roleConfig.subclassName }
-              : c
-          ),
-        }
-      const before = JSON.stringify(inputs)
-      const unresolved = pending.filter(
-        (p) =>
-          p.type !== 'subclassChoice' &&
-          !answerChoice(
-            p,
-            inputs,
-            {
-              character,
-              className: roleConfig.className,
-              toLevel: level,
-            },
-            { ...roleConfig, abilityOrder: roleConfig.statOrder }
-          )
+    const result = autoLevelUp(
+      character,
+      { className: roleConfig.className, toLevel: level, hpMethod: 'average' },
+      prefs
+    )
+    if (!result.patch)
+      throw new Error(
+        `Could not build level ${level} ${
+          roleConfig.className
+        }: ${result.warnings?.join(' ')}`
       )
-      if (unresolved.length)
-        throw new Error(
-          `${
-            roleConfig.className
-          } level ${level}: no answer for pendingChoices ${JSON.stringify(
-            unresolved.map((p) => p.type)
-          )}.`
-        )
-      if (!sub && JSON.stringify(inputs) === before && attempt === 7)
-        throw new Error(
-          `${
-            roleConfig.className
-          } level ${level}: could not resolve pendingChoices ${JSON.stringify(
-            pending
-          )} after 8 attempts.`
-        )
-    }
     if (result.warnings?.length) warnings.push(...result.warnings)
     character = { ...character, ...result.patch }
   }

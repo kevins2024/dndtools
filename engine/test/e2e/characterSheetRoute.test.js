@@ -124,3 +124,76 @@ test('an unknown character is a 404, and GET /api/characters returns calculated 
   assert.equal(vaz.stat_dex, derived.stat_dex)
   assert.equal(vaz.hp_max, derived.hp_max)
 })
+
+const post = (port, url, body) =>
+  new Promise((resolve, reject) => {
+    const data = JSON.stringify(body)
+    const req = http.request(
+      {
+        port,
+        host: '127.0.0.1',
+        path: url,
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'content-length': Buffer.byteLength(data),
+        },
+      },
+      (res) => {
+        let out = ''
+        res.on('data', (d) => (out += d))
+        res.on('end', () =>
+          resolve({
+            status: res.statusCode,
+            json: out ? JSON.parse(out) : null,
+          })
+        )
+      }
+    )
+    req.on('error', reject)
+    req.end(data)
+  })
+
+test('POST /api/engine/level-up describes the questions, then takes the answers back', async () => {
+  const { blank } = require('../helpers/autoLevel')
+  const character = blank('Wizard', 'Evoker', '2024')
+  const body = {
+    character,
+    className: 'Wizard',
+    toLevel: 1,
+    hpMethod: 'average',
+  }
+  const first = await post(port, '/api/engine/level-up', body)
+  assert.equal(first.status, 200)
+  assert.equal(first.json.complete, false)
+  const types = first.json.choices.map((c) => c.type)
+  assert.ok(
+    types.includes('newCantrips') && types.includes('spellbookAdditions')
+  )
+  // Answer every question from the options the server offered.
+  const answers = {}
+  for (const c of first.json.choices)
+    answers[c.id] = c.options
+      .filter((o) => !o.disabled)
+      .slice(0, c.max)
+      .map((o) => o.value)
+  const second = await post(port, '/api/engine/level-up', { ...body, answers })
+  assert.equal(second.json.complete, true)
+  assert.deepEqual(second.json.problems, [])
+  assert.equal(second.json.patch.classes[0].level, 1)
+  // The same call made directly in the engine gives the same patch.
+  const direct = engine.previewLevelUp(
+    character,
+    { className: 'Wizard', toLevel: 1, hpMethod: 'average', equippedItems: [] },
+    answers
+  )
+  assert.deepEqual(second.json.patch, JSON.parse(JSON.stringify(direct.patch)))
+})
+
+test('POST /api/engine/level-up rejects a request with no character', async () => {
+  const r = await post(port, '/api/engine/level-up', {
+    className: 'Wizard',
+    toLevel: 1,
+  })
+  assert.equal(r.status, 400)
+})
