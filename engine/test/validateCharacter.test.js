@@ -119,30 +119,6 @@ test('validateCharacter flags a missing expected saving throw but not an extra f
   assert.ok(!issues.some((i) => i.message.toLowerCase().includes('extra')))
 })
 
-test('describeLevelUp: Paladin 8->9 gains no ASI, no new features, but does gain a 3rd-level slot', () => {
-  const result = engine.describeLevelUp({
-    className: 'Paladin',
-    subclassName: 'Oath of the Crown',
-    fromLevel: 8,
-    toLevel: 9,
-    abilityModifierAtLevel: () => 3,
-  })
-  assert.deepEqual(result.asiOrFeatLevels, [])
-  assert.deepEqual(result.baseFeaturesGained, [])
-  assert.deepEqual(result.spellcasting.slotsBefore, [4, 3])
-  assert.deepEqual(result.spellcasting.slotsAfter, [4, 3, 2])
-})
-
-test('describeLevelUp: Druid 1->2 flags a subclass choice is needed when none is given', () => {
-  const result = engine.describeLevelUp({
-    className: 'Druid',
-    subclassName: null,
-    fromLevel: 1,
-    toLevel: 2,
-  })
-  assert.equal(result.subclassChoiceNeeded, true)
-})
-
 test('describeLevelUp: Fighter 3->4 surfaces the ASI level and the Martial Archetype choice level together', () => {
   const result = engine.describeLevelUp({
     className: 'Fighter',

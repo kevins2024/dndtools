@@ -11062,7 +11062,7 @@
         "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells below are always known and prepared regardless of which phase is active — cast any of them normally by spending a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment).",
         "spells_granted": [
           "Silvery Barbs",
-          "Blindness/Deafness",
+          "Hold Person",
           "Vampiric Touch",
           "Confusion",
           "Synaptic Static"

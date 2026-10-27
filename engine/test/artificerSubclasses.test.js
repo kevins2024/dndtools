@@ -53,36 +53,41 @@ test('Every Artificer subclass feature name has a matching published_features.js
   }
 })
 
-test("Every subclass's expanded_spell_list entry resolves to a real spell at the right spell level", () => {
+test("Every subclass's always-prepared spell list resolves to real spells of a level its slots can cast", () => {
   for (const name of SUBCLASS_NAMES) {
     const sub = engine.loadSubclass('Artificer', name)
     assert.ok(
-      sub.expanded_spell_list,
-      `${name} should have an expanded_spell_list`
+      sub.subclass_spells_by_level,
+      `${name} should have subclass_spells_by_level`
     )
     for (const [charLevel, spellNames] of Object.entries(
-      sub.expanded_spell_list
+      sub.subclass_spells_by_level
     )) {
-      const expectedSpellLevel = Math.ceil(Number(charLevel) / 4) // 3->1,5->2,9->3,13->4,17->5, matches half-caster-style bonus spell tables
+      const maxSpellLevel = Math.ceil(Number(charLevel) / 4) // 3->1, 5->2, 9->3, 13->4, 17->5
       for (const spellName of spellNames) {
         const record = engine.findSpellRecord(spellName)
         assert.ok(
           record,
           `${name} level ${charLevel} spell "${spellName}" should resolve to a real spell`
         )
-        assert.equal(
-          record.level,
-          expectedSpellLevel,
-          `${spellName} should be a level-${expectedSpellLevel} spell (granted to ${name} at character level ${charLevel})`
+        assert.ok(
+          record.level <= maxSpellLevel,
+          `${spellName} (level ${record.level}) is beyond what ${name} can cast at character level ${charLevel}`
         )
       }
     }
   }
 })
 
-test('Artillerist correctly includes its previously-missing Artillerist Bonus Spells feature at level 3', () => {
+test('Artillerist has its always-prepared spells at level 3 and they reach the character', () => {
   const sub = engine.loadSubclass('Artificer', 'Artillerist')
-  assert.ok(sub.features_by_level['3'].includes('Artillerist Bonus Spells'))
+  assert.ok(sub.features_by_level['3'].includes('Artillerist Spells'))
+  const { getBonusSpells } = require('../rules/5e/characterSpells')
+  const names = getBonusSpells(
+    { classes: [{ name: 'Artificer', subclass: 'Artillerist', level: 5 }] },
+    [{ ...sub, class: 'Artificer' }]
+  ).map((s) => s.name)
+  assert.deepEqual(names, ['Shield', 'Thunderwave', 'Scorching Ray', 'Shatter'])
 })
 
 test('Fortified Position is correctly a 15th-level feature (was mislabeled level 9 in the catalog before this fix)', () => {

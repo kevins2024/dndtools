@@ -363,14 +363,6 @@ app.get('/api/cache/:filename', (req, res) => {
 // applies `patch` to its own store once the DM confirms (APPLY_LEVEL_UP
 // mutation in store/index.js) — persisted through the normal characters.json
 // save path like any other character edit, not a separate write endpoint.
-// The ruleset a request is about: ?ruleset= / body.ruleset wins, then the
-// character's own, then the 2014 default. Throws on an unknown value (-> 500).
-function rulesetFrom(req, character) {
-  return engine.normalizeRuleset(
-    req.query?.ruleset ?? req.body?.ruleset ?? character?.ruleset
-  )
-}
-
 app.post('/api/engine/preview-level-up', (req, res) => {
   const {
     choices2024,
@@ -536,7 +528,7 @@ app.get('/api/engine/item-catalog', (req, res) => {
 // copy of that table living on each character record.
 app.get('/api/engine/subclasses', (req, res) => {
   try {
-    res.json(engine.listSubclasses(rulesetFrom(req)))
+    res.json(engine.listSubclasses())
   } catch (err) {
     console.error('Error listing all subclasses:', err.message)
     res.status(500).json({ error: err.message })
@@ -548,7 +540,7 @@ app.get('/api/engine/subclasses', (req, res) => {
 // real choices instead of free text when a subclass pick is needed.
 app.get('/api/engine/subclasses/:className', (req, res) => {
   try {
-    const all = engine.listSubclasses(rulesetFrom(req))
+    const all = engine.listSubclasses()
     res.json(
       all.filter(
         (s) => s.class.toLowerCase() === req.params.className.toLowerCase()
@@ -561,8 +553,8 @@ app.get('/api/engine/subclasses/:className', (req, res) => {
 })
 
 // ── GET /api/engine/feats ─────────────────────────────────
-// Full PHB/XGE/TCE 2014-ruleset feat catalog (engine/data/feats.json, 72
-// entries — see engine/CHECKLIST.md Phase 7b). The UI uses this to offer
+// The feat catalog: the 2024 feats, plus the 2014 feats the 2024 books did not
+// rewrite (tagged `legacy`). The UI uses this to offer
 // real choices for every cataloged feat (ability score bump, the generic
 // `choices` array, prerequisite), falling back to free text for anything
 // not in the catalog.
@@ -570,7 +562,7 @@ app.get('/api/engine/feats', (req, res) => {
   try {
     // 2024: the rewritten feats plus the 2014 ones that weren't (tagged legacy).
     const feats = engine
-      .listFeats(rulesetFrom(req))
+      .listFeats()
       .map(({ name, ...data }) => ({
         name,
         category: data.category ?? null,
@@ -614,12 +606,8 @@ app.post('/api/engine/feat-eligibility', (req, res) => {
   }
   try {
     const result = {}
-    const rs = rulesetFrom(req, character)
-    for (const { name } of engine.listFeats(rs)) {
-      result[name] = engine.meetsFeatPrerequisites(
-        { ...character, ruleset: rs },
-        name
-      )
+    for (const { name } of engine.listFeats()) {
+      result[name] = engine.meetsFeatPrerequisites(character, name)
     }
     res.json(result)
   } catch (err) {
@@ -633,7 +621,7 @@ app.post('/api/engine/feat-eligibility', (req, res) => {
 // — see engine/CHECKLIST.md). Mirrors GET /api/engine/feats.
 app.get('/api/engine/invocations', (req, res) => {
   try {
-    res.json(engine.listInvocations(rulesetFrom(req)))
+    res.json(engine.listInvocations())
   } catch (err) {
     console.error('Error listing invocations:', err.message)
     res.status(500).json({ error: err.message })
@@ -653,7 +641,7 @@ app.post('/api/engine/invocation-eligibility', (req, res) => {
   }
   try {
     const result = {}
-    for (const inv of engine.listInvocations(rulesetFrom(req, character))) {
+    for (const inv of engine.listInvocations()) {
       result[inv.name] = engine.meetsInvocationPrerequisite(character, inv.name)
     }
     res.json(result)
@@ -668,7 +656,7 @@ app.post('/api/engine/invocation-eligibility', (req, res) => {
 app.get('/api/engine/pact-boons', (req, res) => {
   try {
     // 2024 has no Pact Boon — the Pacts are Eldritch Invocations.
-    res.json(rulesetFrom(req) === '2024' ? [] : engine.listPactBoons())
+    res.json([])
   } catch (err) {
     console.error('Error listing pact boons:', err.message)
     res.status(500).json({ error: err.message })
@@ -714,7 +702,6 @@ app.post('/api/engine/spell-choices', (req, res) => {
       (c) => c.name?.toLowerCase() === className.toLowerCase()
     )
     const level = toLevel ?? (existingEntry?.level ?? 0) + 1
-    const rs = rulesetFrom(req, character)
     const maxLevel = cantripsOnly
       ? 0
       : engine.effectiveMaxSpellLevel({
@@ -722,10 +709,8 @@ app.post('/api/engine/spell-choices', (req, res) => {
           subclassName,
           level,
           otherClasses,
-          ruleset: rs,
         })
     const options = engine.listSpellsForClass(listClassName, {
-      ruleset: rs,
       maxLevel,
       cantripsOnly: Boolean(cantripsOnly),
       pool: pool === 'any' ? 'any' : 'class',
@@ -761,7 +746,6 @@ app.post('/api/engine/feat-spell-choices', (req, res) => {
   } = req.body
   try {
     const options = engine.listFeatSpellChoices({
-      ruleset: rulesetFrom(req),
       className: className || null,
       level: level ?? null,
       cantripsOnly: Boolean(cantripsOnly),
@@ -783,10 +767,9 @@ app.post('/api/engine/feat-spell-choices', (req, res) => {
 // call preview-level-up.
 app.get('/api/engine/classes', (req, res) => {
   try {
-    const rs = rulesetFrom(req)
-    const classes = engine.listClasses(rs).map((name) => ({
+    const classes = engine.listClasses().map((name) => ({
       name,
-      ...engine.loadClass(name, rs),
+      ...engine.loadClass(name),
       hitDie: engine.hitDieForClass(name),
     }))
     res.json(classes)
@@ -807,9 +790,8 @@ app.get('/api/engine/classes', (req, res) => {
 // excluded here rather than offered as a choice that silently does nothing.
 app.get('/api/engine/species', (req, res) => {
   try {
-    const rs = rulesetFrom(req)
-    const standard = engine.listSpecies(rs).map((s) => ({
-      ...engine.loadSpecies(s.name, rs),
+    const standard = engine.listSpecies().map((s) => ({
+      ...engine.loadSpecies(s.name),
       homebrew: false,
     }))
     const cache = readJSON(
@@ -894,7 +876,7 @@ app.get('/api/engine/roles', (req, res) => {
 // data at all) as the New Character tool's background picker.
 app.get('/api/engine/backgrounds', (req, res) => {
   try {
-    res.json(engine.listBackgrounds(rulesetFrom(req)))
+    res.json(engine.listBackgrounds())
   } catch (err) {
     console.error('Error listing backgrounds:', err.message)
     res.status(500).json({ error: err.message })

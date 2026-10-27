@@ -11,42 +11,15 @@
       "pub24_sub_artificer-cartographer-adventurers-atlas",
       "pub24_sub_artificer-cartographer-mapping-magic"
     ],
-    "5": [
-      "pub24_sub_artificer-cartographer-guided-precision"
-    ],
-    "9": [
-      "pub24_sub_artificer-cartographer-ingenious-movement"
-    ],
-    "15": [
-      "pub24_sub_artificer-cartographer-superior-atlas"
-    ]
+    "5": ["pub24_sub_artificer-cartographer-guided-precision"],
+    "9": ["pub24_sub_artificer-cartographer-ingenious-movement"],
+    "15": ["pub24_sub_artificer-cartographer-superior-atlas"]
   },
-  "spell_tables_unmapped": [
-    {
-      "title": "Cartographer Spells",
-      "byLevel": {
-        "3": [
-          "Faerie Fire",
-          "Guiding Bolt",
-          "Healing Word"
-        ],
-        "5": [
-          "Locate Object",
-          "Mind Spike"
-        ],
-        "9": [
-          "Call Lightning",
-          "Clairvoyance"
-        ],
-        "13": [
-          "Banishment",
-          "Locate Creature"
-        ],
-        "17": [
-          "Scrying",
-          "Teleportation Circle"
-        ]
-      }
-    }
-  ]
+  "subclass_spells_by_level": {
+    "3": ["Faerie Fire", "Guiding Bolt", "Healing Word"],
+    "5": ["Locate Object", "Mind Spike"],
+    "9": ["Call Lightning", "Clairvoyance"],
+    "13": ["Banishment", "Locate Creature"],
+    "17": ["Scrying", "Teleportation Circle"]
+  }
 }

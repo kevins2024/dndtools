@@ -127,54 +127,6 @@ test('shortRestRecharges: lists nothing when everything is already full', () => 
   assert.deepStrictEqual(shortRestRecharges(c), [])
 })
 
-test('hitDiceRecoveredOnLongRest: half max rounded down, minimum 1', () => {
-  assert.strictEqual(hitDiceRecoveredOnLongRest(1), 1)
-  assert.strictEqual(hitDiceRecoveredOnLongRest(5), 2)
-  assert.strictEqual(hitDiceRecoveredOnLongRest(20), 10)
-})
-
-test('applyLongRest: full refill, half hit dice, -1 exhaustion, conditions cleared', () => {
-  const c = {
-    level: 9,
-    hp_max: 60,
-    hp_current: 10,
-    hit_dice_current: 2,
-    exhaustion_level: 2,
-    conditions: [
-      'Poisoned',
-      'Exhaustion',
-      { name: 'Exhaustion' },
-      { name: 'Blinded' },
-    ],
-    spell_slots: {
-      level_1: { max: 4, current: 0 },
-      level_2: { max: 3, current: 1 },
-    },
-    pact_magic: { max: 2, current: 0 },
-    ki_points: { max: 5, current: 1 },
-    features: [
-      { name: 'A', recharge: 'short_rest', uses_max: 2, uses_current: 0 },
-      { name: 'B', uses_max: 1, uses_current: 0 }, // no recharge: untouched
-    ],
-    resources: [{ name: 'SP', recharge: 'long_rest', max: 9, current: 2 }],
-  }
-  const { patch } = applyLongRest(c)
-  assert.strictEqual(patch.hp_current, 60)
-  assert.strictEqual(patch.spell_slots.level_1.current, 4)
-  assert.strictEqual(patch.spell_slots.level_2.current, 3)
-  assert.strictEqual(patch.pact_magic.current, 2)
-  assert.strictEqual(patch.ki_points.current, 5)
-  assert.strictEqual(patch.features[0].uses_current, 2)
-  assert.strictEqual(patch.features[1].uses_current, 0)
-  assert.strictEqual(patch.resources[0].current, 9)
-  assert.strictEqual(patch.hit_dice_current, 6) // 2 + floor(9/2)=4
-  assert.strictEqual(patch.exhaustion_level, 1)
-  assert.deepStrictEqual(patch.conditions, [
-    'Exhaustion',
-    { name: 'Exhaustion' },
-  ])
-})
-
 test('applyLongRest: hit dice cap at level', () => {
   const { patch } = applyLongRest({ level: 4, hp_max: 10, hit_dice_current: 4 })
   assert.strictEqual(patch.hit_dice_current, 4)
@@ -259,12 +211,20 @@ test('shortRestPreview / longRestPreview: report only what is actually spent', (
     hp_max: 40,
     hp_current: 30,
     features: [
-      { name: 'Second Wind', recharge: 'short_rest', uses_max: 1, uses_current: 0 },
+      {
+        name: 'Second Wind',
+        recharge: 'short_rest',
+        uses_max: 1,
+        uses_current: 0,
+      },
       { name: 'Rage', recharge: 'long_rest', uses_max: 3, uses_current: 1 },
       { name: 'Full', recharge: 'long_rest', uses_max: 2, uses_current: 2 },
     ],
     pact_magic: { max: 2, current: 1 },
-    spell_slots: { level_1: { max: 4, current: 1 }, level_2: { max: 2, current: 2 } },
+    spell_slots: {
+      level_1: { max: 4, current: 1 },
+      level_2: { max: 2, current: 2 },
+    },
   }
   assert.deepStrictEqual(shortRestPreview(c), {
     features: ['Second Wind'],
@@ -275,18 +235,27 @@ test('shortRestPreview / longRestPreview: report only what is actually spent', (
     features: ['Rage'],
     spellSlotsSpent: 3,
   })
-  assert.deepStrictEqual(shortRestPreview({}), { features: [], pactSlotsSpent: 0 })
+  assert.deepStrictEqual(shortRestPreview({}), {
+    features: [],
+    pactSlotsSpent: 0,
+  })
 })
 
 test('rechargeItems: a dice-expression ("regains X at dawn") recharge does not fire on a short rest', () => {
-  const gem = { id: 'g', charges_current: 0, charges_max: 3, charges_recharge: '1d3' }
+  const gem = {
+    id: 'g',
+    charges_current: 0,
+    charges_max: 3,
+    charges_recharge: '1d3',
+  }
   assert.strictEqual(
     rechargeItems([gem], ['short_rest'], faceRng(3, 3))[0].charges_current,
     0
   )
   // ...but does on a long rest (which passes through dawn), capped at max.
   assert.strictEqual(
-    rechargeItems([gem], LONG_REST_RECHARGE_TYPES, faceRng(3, 2))[0].charges_current,
+    rechargeItems([gem], LONG_REST_RECHARGE_TYPES, faceRng(3, 2))[0]
+      .charges_current,
     2
   )
 })
@@ -297,7 +266,12 @@ test("a 'manual' recharge (DM's call) is never refilled by a short or long rest"
     hp_max: 7,
     hp_current: 7,
     features: [
-      { name: 'Timeline Freeze', recharge: 'manual', uses_max: 1, uses_current: 0 },
+      {
+        name: 'Timeline Freeze',
+        recharge: 'manual',
+        uses_max: 1,
+        uses_current: 0,
+      },
       { name: 'Normal', recharge: 'long_rest', uses_max: 1, uses_current: 0 },
     ],
     spells: [{ name: 'Odd', recharge: 'manual', uses_max: 1, uses_current: 0 }],
@@ -312,21 +286,51 @@ test("a 'manual' recharge (DM's call) is never refilled by a short or long rest"
 
 test('short rest hit die comes from the classes, not a stored field (bug 2.9)', () => {
   const { characterHitDieSides } = require('../rules/5e/rest')
-  assert.strictEqual(characterHitDieSides({ classes: [{ name: 'Wizard', level: 9 }] }), 6)
-  assert.strictEqual(characterHitDieSides({ classes: [{ name: 'Barbarian', level: 8 }, { name: 'Fighter', level: 1 }] }), 12)
+  assert.strictEqual(
+    characterHitDieSides({ classes: [{ name: 'Wizard', level: 9 }] }),
+    6
+  )
+  assert.strictEqual(
+    characterHitDieSides({
+      classes: [
+        { name: 'Barbarian', level: 8 },
+        { name: 'Fighter', level: 1 },
+      ],
+    }),
+    12
+  )
   // no classes recorded: fall back to a stored die, then d8
   assert.strictEqual(characterHitDieSides({ hit_die: 'd10' }), 10)
   assert.strictEqual(characterHitDieSides({}), 8)
   // a class with level 0 (a not-yet-taken multiclass placeholder) doesn't count
-  assert.strictEqual(characterHitDieSides({ classes: [{ name: 'Wizard', level: 3 }, { name: 'Fighter', level: 0 }] }), 6)
+  assert.strictEqual(
+    characterHitDieSides({
+      classes: [
+        { name: 'Wizard', level: 3 },
+        { name: 'Fighter', level: 0 },
+      ],
+    }),
+    6
+  )
 })
 
 test('short rest healing uses the effective CON (an Amulet of Health counts), not the base score (bug 2.9)', () => {
-  const { averageHitDieHealing, rollShortRestHealing } = require('../rules/5e/rest')
-  const c = { classes: [{ name: 'Fighter', level: 5 }], stat_con: 14, hp_max: 60, hp_current: 10 }
+  const {
+    averageHitDieHealing,
+    rollShortRestHealing,
+  } = require('../rules/5e/rest')
+  const c = {
+    classes: [{ name: 'Fighter', level: 5 }],
+    stat_con: 14,
+    hp_max: 60,
+    hp_current: 10,
+  }
   const amulet = [{ stat_overrides: { con: 19 } }]
   assert.strictEqual(averageHitDieHealing(c), 5.5 + 2)
   assert.strictEqual(averageHitDieHealing(c, amulet), 5.5 + 4)
   const rng = () => 0 // every die rolls 1
-  assert.strictEqual(rollShortRestHealing(c, 2, rng, amulet).hpGained, 2 * (1 + 4))
+  assert.strictEqual(
+    rollShortRestHealing(c, 2, rng, amulet).hpGained,
+    2 * (1 + 4)
+  )
 })

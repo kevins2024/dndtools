@@ -1,4 +1,5 @@
 const { loadClass } = require('./classFeatures')
+const { normalizeRuleset } = require('./rulesetId')
 const { isAsiLevel, hitDieForClass, hpGainForLevel } = require('./progression')
 const {
   resolveSpellcasting,
@@ -46,8 +47,9 @@ function describeLevelUp({
   hpMethod = 'roll',
   hpRolls = [],
   isCharactersFirstLevelEver = true,
-  ruleset,
+  ruleset: rulesetArg,
 }) {
+  const ruleset = normalizeRuleset(rulesetArg)
   const cls = loadClass(className, ruleset)
   if (!cls) return { error: `No rules data for class "${className}"` }
 

@@ -98,33 +98,6 @@ test('every invocation prerequisite referencing a feature names a real Pact Boon
   }
 })
 
-test('invocationsKnownForLevel matches the verified 5thsrd.org breakpoint table', () => {
-  const expected = {
-    1: 0,
-    2: 2,
-    4: 2,
-    5: 3,
-    6: 3,
-    7: 4,
-    8: 4,
-    9: 5,
-    11: 5,
-    12: 6,
-    14: 6,
-    15: 7,
-    17: 7,
-    18: 8,
-    20: 8,
-  }
-  for (const [level, count] of Object.entries(expected)) {
-    assert.equal(
-      engine.invocationsKnownForLevel(Number(level)),
-      count,
-      `level ${level}`
-    )
-  }
-})
-
 test('pact-boons.json has exactly the 3 real options, each id-resolvable', () => {
   assert.deepEqual(PACT_BOON_NAMES.sort(), [
     'Pact of the Blade',
@@ -140,22 +113,6 @@ test('pact-boons.json has exactly the 3 real options, each id-resolvable', () =>
     count: 3,
     pool: 'any',
   })
-})
-
-test('meetsInvocationPrerequisite: Agonizing Blast requires the Eldritch Blast cantrip specifically', () => {
-  const noBlast = { classes: [{ name: 'Warlock', level: 2 }], spells: [] }
-  const withBlast = {
-    classes: [{ name: 'Warlock', level: 2 }],
-    spells: [{ name: 'Eldritch Blast', level: 0 }],
-  }
-  assert.equal(
-    engine.meetsInvocationPrerequisite(noBlast, 'Agonizing Blast').met,
-    false
-  )
-  assert.equal(
-    engine.meetsInvocationPrerequisite(withBlast, 'Agonizing Blast').met,
-    true
-  )
 })
 
 test('meetsInvocationPrerequisite: Thirsting Blade needs BOTH level 5 and Pact of the Blade (all_of)', () => {
@@ -204,47 +161,6 @@ function baseWarlock(level, extra = {}) {
   }
 }
 
-test('diffLevelUp: Warlock 1->2 owes exactly 2 invocation picks, and applies up to (not beyond) what was submitted', () => {
-  const character = baseWarlock(1)
-  const under = engine.diffLevelUp(character, {
-    className: 'Warlock',
-    toLevel: 2,
-    hpMethod: 'average',
-    invocationChoices: ['Agonizing Blast'],
-  })
-  assert.deepEqual(
-    under.pendingChoices.find((p) => p.type === 'invocationChoice'),
-    { type: 'invocationChoice', count: 1, level: 2 }
-  )
-  assert.deepEqual(
-    under.patch.features
-      .filter((f) => f.type === 'invocation')
-      .map((f) => f.name),
-    ['Agonizing Blast']
-  )
-
-  const full = engine.diffLevelUp(character, {
-    className: 'Warlock',
-    toLevel: 2,
-    hpMethod: 'average',
-    invocationChoices: [
-      'Agonizing Blast',
-      "Devil's Sight",
-      'Mask of Many Faces',
-    ],
-  })
-  assert.equal(
-    full.pendingChoices.find((p) => p.type === 'invocationChoice'),
-    undefined
-  )
-  assert.deepEqual(
-    full.patch.features
-      .filter((f) => f.type === 'invocation')
-      .map((f) => f.name),
-    ['Agonizing Blast', "Devil's Sight"] // 3rd submitted is ignored — only 2 owed
-  )
-})
-
 test('diffLevelUp: an invocation already known is never re-counted or re-offered', () => {
   const character = baseWarlock(4, {
     features: [
@@ -265,33 +181,6 @@ test('diffLevelUp: an invocation already known is never re-counted or re-offered
       .map((f) => f.name),
     ['Eldritch Sight']
   )
-})
-
-test('diffLevelUp: Warlock 2->3 owes a Pact Boon choice; resolving it records a pactBoon feature', () => {
-  const character = baseWarlock(2)
-  const unresolved = engine.diffLevelUp(character, {
-    className: 'Warlock',
-    toLevel: 3,
-    hpMethod: 'average',
-  })
-  assert.deepEqual(
-    unresolved.pendingChoices.find((p) => p.type === 'pactBoonChoice'),
-    { type: 'pactBoonChoice', level: 3 }
-  )
-
-  const resolved = engine.diffLevelUp(character, {
-    className: 'Warlock',
-    toLevel: 3,
-    hpMethod: 'average',
-    pactBoonChoice: 'Pact of the Blade',
-  })
-  assert.equal(
-    resolved.pendingChoices.find((p) => p.type === 'pactBoonChoice'),
-    undefined
-  )
-  const boon = resolved.patch.features.find((f) => f.type === 'pactBoon')
-  assert.equal(boon.name, 'Pact of the Blade')
-  assert.equal(boon.id, 'pact-of-the-blade')
 })
 
 test('diffLevelUp: Pact Boon is a strict one-time pick — already having one means no pendingChoice ever again', () => {

@@ -327,12 +327,10 @@ function parsePrerequisite(text) {
   // "Strength or Dexterity 13+", "Intelligence, Wisdom, or Charisma 13+"
   take(new RegExp(`((?:${AB}(?:, | or |, or ))+${AB}) (\\d+)\\+`), (m) => ({
     type: 'any_of',
-    options: m[1]
-      .split(/, or |, | or /)
-      .map((a) => ({
-        ability: ABILITY[a.trim().toLowerCase()],
-        min: Number(m[2]),
-      })),
+    options: m[1].split(/, or |, | or /).map((a) => ({
+      ability: ABILITY[a.trim().toLowerCase()],
+      min: Number(m[2]),
+    })),
   }))
   take(new RegExp(`(${AB}) (\\d+)\\+`), (m) => ({
     type: 'ability_score',
@@ -394,7 +392,7 @@ async function ingestFeats(source, write) {
         options = Object.values(ABILITY)
       } else if (named) {
         options = named[1]
-          .split(/,\s*|\s+or\s+/i)
+          .split(/,\s*(?:or\s+)?|\s+or\s+/i)
           .map((a) => ABILITY[a.trim().toLowerCase()])
           .filter(Boolean)
       }

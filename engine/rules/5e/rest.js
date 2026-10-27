@@ -23,7 +23,7 @@ const { hitDieForClass } = require('./progression')
 const { resolveEffectiveStats } = require('./characterStats')
 
 const MAX_EXHAUSTION = 6
-const { rulesetOf } = require('./rulesetId')
+const { rulesetOf, normalizeRuleset } = require('./rulesetId')
 
 // 2024: Rage, Second Wind, Channel Divinity, Wild Shape... come back ONE use at a
 // time on a Short Rest and fully on a Long Rest. Such a feature carries
@@ -33,7 +33,9 @@ function spent(f) {
   return f.uses_max != null && (f.uses_current ?? f.uses_max) < f.uses_max
 }
 function regainsOnShortRest(f) {
-  return spent(f) && (f.recharge === 'short_rest' || f.short_rest_regain != null)
+  return (
+    spent(f) && (f.recharge === 'short_rest' || f.short_rest_regain != null)
+  )
 }
 function afterShortRest(f) {
   if (!regainsOnShortRest(f)) return f
@@ -42,7 +44,10 @@ function afterShortRest(f) {
   }
   return {
     ...f,
-    uses_current: Math.min(f.uses_max, (f.uses_current ?? 0) + f.short_rest_regain),
+    uses_current: Math.min(
+      f.uses_max,
+      (f.uses_current ?? 0) + f.short_rest_regain
+    ),
   }
 }
 
@@ -187,7 +192,11 @@ function longRestPreview(character) {
   for (const slot of Object.values(character.spell_slots ?? {})) {
     spellSlotsSpent += Math.max(0, slot.max - (slot.current ?? slot.max))
   }
-  return { hpMissing: Math.max(0, hpMissing(character)), features, spellSlotsSpent }
+  return {
+    hpMissing: Math.max(0, hpMissing(character)),
+    features,
+    spellSlotsSpent,
+  }
 }
 
 // { diceSpent, hpGained } is what the player chose/rolled. Returns
@@ -246,7 +255,7 @@ function applyShortRest(character, { diceSpent = 0, hpGained = 0 } = {}) {
 // down, minimum 1).
 function hitDiceRecoveredOnLongRest(maxHitDice, ruleset) {
   // 2024 (SRD 5.2): a Long Rest restores ALL spent Hit Point Dice.
-  if (String(ruleset) === '2024') return maxHitDice
+  if (normalizeRuleset(ruleset) === '2024') return maxHitDice
   return Math.max(1, Math.floor(maxHitDice / 2))
 }
 
@@ -341,7 +350,8 @@ function applyLongRest(character, { interrupted = false } = {}) {
 const DAWN_TYPES = ['dawn', 'daily', 'long_rest']
 function shouldGrantRecharge(recharge, rechargeTypes) {
   if (!recharge || recharge === 'none') return false
-  if (isDiceExpr(recharge)) return DAWN_TYPES.some((t) => rechargeTypes.includes(t))
+  if (isDiceExpr(recharge))
+    return DAWN_TYPES.some((t) => rechargeTypes.includes(t))
   return rechargeTypes.includes(recharge)
 }
 

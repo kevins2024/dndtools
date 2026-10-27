@@ -83,18 +83,25 @@ test('getBonusSpells: cleric domain spells unlock by CLASS level, gated to the c
   )
 })
 
-test('getBonusSpells: artificer expanded list derives spell level from the class level', () => {
+test('getBonusSpells: artificer subclass spells unlock by class level', () => {
   const c = {
     classes: [{ name: 'Artificer', subclass: 'Artillerist', level: 5 }],
   }
-  const bonus = getBonusSpells(c, subclasses)
-  assert.ok(bonus.length > 0)
-  for (const s of bonus) assert.ok(s.level >= 1)
+  assert.deepStrictEqual(names(getBonusSpells(c, subclasses)), [
+    'Shield',
+    'Thunderwave',
+    'Scorching Ray',
+    'Shatter',
+  ])
 })
 
 test('getBonusSpellsAtLevel: exact-level lookup, class-gated', () => {
   const tempest = subclasses.find((s) => s.name === 'Tempest Domain')
+  // A legacy domain that began before level 3 starts at 3 under the 2024 rules, so
+  // its first-level spells arrive together with its third-level ones.
   assert.deepStrictEqual(getBonusSpellsAtLevel(tempest, 'Cleric', 3), [
+    'Fog Cloud',
+    'Thunderwave',
     'Gust of Wind',
     'Shatter',
   ])
@@ -106,7 +113,7 @@ test('getBonusSpellsAtLevel: exact-level lookup, class-gated', () => {
 test('getCharacterSpells: class spells, then bonus, then feature grants — deduped by name, first wins', () => {
   const c = {
     name: 'Rev',
-    classes: [{ name: 'Cleric', subclass: 'Tempest Domain', level: 1 }],
+    classes: [{ name: 'Cleric', subclass: 'Tempest Domain', level: 3 }],
     spells: [
       { name: 'Bless', level: 1, prepared: true },
       { name: 'Fog Cloud', level: 1, prepared: false },
@@ -120,6 +127,8 @@ test('getCharacterSpells: class spells, then bonus, then feature grants — dedu
     'Bless',
     'Fog Cloud',
     'Thunderwave',
+    'Gust of Wind',
+    'Shatter',
     'Misty Step',
   ])
   // Fog Cloud was already a class spell, so the bonus-spell copy is dropped.
@@ -212,7 +221,7 @@ test('characterHasSpells: every source counts, nothing else does', () => {
   assert.ok(characterHasSpells({ features: [{ spells_granted: ['Light'] }] }))
   assert.ok(
     characterHasSpells(
-      { classes: [{ name: 'Cleric', subclass: 'Tempest Domain', level: 1 }] },
+      { classes: [{ name: 'Cleric', subclass: 'Tempest Domain', level: 3 }] },
       [],
       subclasses
     )

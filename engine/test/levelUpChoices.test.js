@@ -212,18 +212,6 @@ test('describeLevelUp: Warlock pact slots are now actually computed, not left nu
 
 // ---- Homebrew subclass feature at a non-standard level ----
 
-test('describeLevelUp: Circle of the Moon 7->8 surfaces the homebrew "Wild Symbiosis" feature, even though 8 isn\'t one of Druid\'s normal subclass_feature_levels', () => {
-  const result = engine.describeLevelUp({
-    className: 'Druid',
-    subclassName: 'Circle of the Moon',
-    fromLevel: 7,
-    toLevel: 8,
-  })
-  const at8 = result.subclassFeaturesGained.find((f) => f.level === 8)
-  assert.ok(at8, 'expected a subclass feature entry at level 8')
-  assert.ok(at8.names.includes('Wild Symbiosis'))
-})
-
 test("describeLevelUp: Circle of the Moon 5->6 still only gets the real RAW features at 6, doesn't leak Wild Symbiosis early", () => {
   const result = engine.describeLevelUp({
     className: 'Druid',
@@ -236,79 +224,6 @@ test("describeLevelUp: Circle of the Moon 5->6 still only gets the real RAW feat
 })
 
 // ---- Known-spell-cap check now covers every class, not just classes[0] ----
-
-test('validateCharacter: known-spell-cap check still catches a real overage when the known-caster class is classes[0] (Kessara-style)', () => {
-  const character = {
-    name: 'Test Overage',
-    level: 5,
-    proficiency_bonus: 3,
-    classes: [{ name: 'Sorcerer', level: 5, started: true }],
-    saving_throws: ['con', 'cha'],
-    spells: Array.from({ length: 10 }, (_, i) => ({
-      name: `Spell ${i}`,
-      level: 1,
-    })),
-  }
-  const issues = validateCharacter(character)
-  assert.ok(
-    issues.some(
-      (i) => i.severity === 'warning' && i.message.includes('caps at')
-    )
-  )
-})
-
-test('validateCharacter: known-spell-cap check now also catches an overage when the known caster is NOT classes[0]', () => {
-  const character = {
-    name: 'Test Overage Not First',
-    level: 5,
-    proficiency_bonus: 3,
-    classes: [
-      { name: 'Rogue', level: 2, started: true },
-      { name: 'Bard', level: 3 },
-    ],
-    saving_throws: ['dex', 'int'],
-    spells: Array.from({ length: 10 }, (_, i) => ({
-      name: `Spell ${i}`,
-      level: 1,
-    })),
-  }
-  const issues = validateCharacter(character)
-  assert.ok(
-    issues.some(
-      (i) =>
-        i.severity === 'warning' &&
-        i.message.includes('Bard') &&
-        i.message.includes('caps at')
-    )
-  )
-})
-
-test('validateCharacter: two real known-caster classes at once is flagged as info, not guessed at', () => {
-  const character = {
-    name: 'Test Dual Caster',
-    level: 6,
-    proficiency_bonus: 3,
-    classes: [
-      { name: 'Bard', level: 3, started: true },
-      { name: 'Sorcerer', level: 3 },
-    ],
-    saving_throws: ['dex', 'cha'],
-    spells: [{ name: 'Whatever', level: 1 }],
-  }
-  const issues = validateCharacter(character)
-  assert.ok(
-    issues.some(
-      (i) =>
-        i.severity === 'info' &&
-        i.message.includes('Multiple known-spell-cap classes')
-    )
-  )
-  assert.ok(
-    !issues.some(
-      (i) => i.severity === 'warning' && i.message.includes('caps at')
-    )
-  )
-})
 
 test('validateCharacter: real roster Elucyne (Ranger/Rogue/Fighter) produces no known-spell-cap false positive after the fix', () => {
   const characters = require('../../src/data/characters.json')

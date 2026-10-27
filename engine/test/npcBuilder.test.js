@@ -47,7 +47,16 @@ test('ASI heuristic caps the primary stat at 20 and never exceeds it, even with 
   })
   assert.equal(character.stat_str, 20)
   assert.ok(character.stat_str <= 20)
-  assert.ok(character.stat_con <= 20)
+  // Only an Epic Boon (level 19) may take a score past 20, up to 30.
+  assert.ok(character.stat_con <= 30)
+  for (const a of ['str', 'dex', 'con', 'int', 'wis', 'cha']) {
+    const withoutBoons = character.ability_score_history
+      .filter(
+        (h) => h.ability === a && h.source === 'Ability Score Improvement'
+      )
+      .reduce((n, h) => n + h.amount, character.ability_base[a])
+    assert.ok(withoutBoons <= 20, `${a} reached ${withoutBoons} by ASIs alone`)
+  }
 })
 
 test('each role has its real subclass and a non-empty features list by level 10', () => {

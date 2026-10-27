@@ -1,5 +1,6 @@
 const { loadRulesetJson } = require('./ruleset')
-const tablesFor = (ruleset) => loadRulesetJson(ruleset, 'spellcasting-tables.json')
+const tablesFor = (ruleset) =>
+  loadRulesetJson(ruleset, 'spellcasting-tables.json')
 const multiclassProficienciesFor = (ruleset) =>
   loadRulesetJson(ruleset, 'multiclass-proficiencies.json')
 const multiclassPrerequisitesFor = (ruleset) =>
@@ -9,6 +10,7 @@ const {
   spellSlotsForClassAtLevel,
 } = require('./spellcasting')
 const { loadClass } = require('./classFeatures')
+const { normalizeRuleset } = require('./rulesetId')
 
 // PHB p.163: to gain your first level in a class you don't already have,
 // you need the listed ability score(s) at 13+ in the class you're PICKING
@@ -62,7 +64,7 @@ const FULL_CASTER_CLASSES = new Set([
 // levels rounded down for Eldritch Knight/Arcane Trickster. 2014 rounded the
 // halves down and started at level 2.
 function casterLevelContribution(c, ruleset) {
-  const is2024 = ruleset !== undefined && ruleset !== null && String(ruleset) === '2024'
+  const is2024 = normalizeRuleset(ruleset) === '2024'
   if (FULL_CASTER_CLASSES.has(c.name)) return c.level
   if (c.name === 'Artificer') return Math.ceil(c.level / 2)
   if (is2024 && (c.name === 'Paladin' || c.name === 'Ranger'))
@@ -109,7 +111,7 @@ function multiclassSpellSlots(classes, ruleset) {
   const level = multiclassCasterLevel(classes, ruleset)
   const capped = Math.min(level, 20)
   // 2024 keeps no separate full-caster table; the Wizard's class table is it.
-  if (ruleset && String(ruleset) === '2024') {
+  if (normalizeRuleset(ruleset) === '2024') {
     return spellSlotsForClassAtLevel('Wizard', capped, null, ruleset)
   }
   return tablesFor(ruleset).full_caster_slots[String(capped)] || []

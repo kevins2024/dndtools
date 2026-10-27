@@ -10,8 +10,12 @@ migrate existing characters mostly by script/LLM, asking when a build choice is 
 
 ## Design
 
-- **`ruleset`** is `"2014"` or `"2024"`. Default `"2014"` everywhere, so nothing existing changes
-  until something opts in. A character carries `ruleset`; it stays `"2014"` until migrated.
+- **2024 replaces 2014.** (Corrected 2026-10-27: an earlier version of this plan made 2024 an opt-in
+  beside 2014, which was the wrong design.) Everything defaults to 2024; the engine asks for 2024 data and
+  falls back to 2014 data only where the 2024 books did not rewrite it. `ruleset` still exists as a
+  loader argument and a field on a sheet, but nothing passes it: it defaults to `"2024"` and `"2014"`
+  only reads the old tree directly. 2014 mechanics are retired and recoverable at tag
+  `ruleset-2014-final`. There is no `?ruleset=` on any route.
 - **Data layout.** `engine/data/5e/` is the 2014 tree and is never edited for this project.
   `engine/data/5e2024/` mirrors it and holds only content the 2024 rules rewrote. A 2024
   lookup with no file of its own is served the 2014 file — that is how legacy content works
@@ -37,8 +41,9 @@ migrate existing characters mostly by script/LLM, asking when a build choice is 
   `scripts/fetch-2024-wikidot.js <slug>` for readable text with tables kept as rows.
   The 2014 wikidot (`dnd5e.wikidot.com`) is the source for legacy content only.
 - **Testing.** TDD where the rule is a number or table (write the 2024 test from the fetched
-  rules text, then the data/code). The existing 2014 suite stays and is the regression suite
-  proving legacy still works.
+  rules text, then the data/code). Tests that asserted retired 2014 mechanics were deleted with that switch (they are in the tag); tests of legacy data pass `'2014'` explicitly.
+  The conformance suite (`rulesConformance.test.js`) builds every class and subclass to level 20 through the
+  real level-up engine and audits each level.
 
 ## Phases
 

@@ -46,10 +46,16 @@ const barb = (level, extra = {}) => ({
   features: [],
   spells: [],
   classes: [
-    { name: 'Barbarian', subclass: level >= 3 ? 'Berserker' : null, level },
+    {
+      name: 'Barbarian',
+      subclass: level >= 3 ? 'Path of the Berserker' : null,
+      level,
+    },
   ],
   ...extra,
 })
+
+const RAGE_ID = 'pub24_barbarian-rage'
 
 test('Rage is stamped with its use count from the Barbarian rages_by_level table, as a bonus-action long-rest pool', () => {
   const cases = [
@@ -62,7 +68,7 @@ test('Rage is stamped with its use count from the Barbarian rages_by_level table
   ]
   for (const [toLevel, uses] of cases) {
     const from = barb(toLevel - 1)
-    from.classes[0].subclass = toLevel - 1 >= 3 ? 'Berserker' : null
+    from.classes[0].subclass = toLevel - 1 >= 3 ? 'Path of the Berserker' : null
     // a character already holding Rage (so level-ups re-stamp it)
     const withRage =
       toLevel === 1
@@ -70,19 +76,30 @@ test('Rage is stamped with its use count from the Barbarian rages_by_level table
         : {
             ...from,
             features: [
-              { name: 'Rage', id: 'rage', type: 'feature', level_gained: 1 },
+              {
+                name: 'Rage',
+                id: RAGE_ID,
+                type: 'feature',
+                level_gained: 1,
+              },
             ],
           }
     const r = diffLevelUp(
       toLevel === 3
         ? {
             ...withRage,
-            classes: [{ name: 'Barbarian', subclass: 'Berserker', level: 2 }],
+            classes: [
+              {
+                name: 'Barbarian',
+                subclass: 'Path of the Berserker',
+                level: 2,
+              },
+            ],
           }
         : withRage,
       { className: 'Barbarian', toLevel, hpMethod: 'average' }
     )
-    const rage = r.patch.features.find((f) => f.id === 'rage')
+    const rage = r.patch.features.find((f) => f.id === RAGE_ID)
     assert.ok(rage, `Rage present at ${toLevel}`)
     assert.strictEqual(rage.uses_max, uses, `level ${toLevel}`)
     assert.strictEqual(rage.action_type, 'bonus_action')
@@ -90,12 +107,12 @@ test('Rage is stamped with its use count from the Barbarian rages_by_level table
   }
 })
 
-test('Rage at 20th level (unlimited) has no use counter', () => {
+test('Rage at 20th level is still 6 uses (2024 has no unlimited Rage)', () => {
   const c = barb(19, {
     features: [
       {
         name: 'Rage',
-        id: 'rage',
+        id: RAGE_ID,
         type: 'feature',
         level_gained: 1,
         uses_max: 6,
@@ -103,14 +120,14 @@ test('Rage at 20th level (unlimited) has no use counter', () => {
       },
     ],
   })
-  c.classes[0].subclass = 'Berserker'
+  c.classes[0].subclass = 'Path of the Berserker'
   const r = diffLevelUp(c, {
     className: 'Barbarian',
     toLevel: 20,
     hpMethod: 'average',
   })
-  const rage = r.patch.features.find((f) => f.id === 'rage')
-  assert.ok(rage.uses_max == null)
+  const rage = r.patch.features.find((f) => f.id === RAGE_ID)
+  assert.strictEqual(rage.uses_max, 6)
 })
 
 // ── Chronurgy Magic ─────────────────────────────────────────────────────
@@ -118,14 +135,14 @@ test('Rage at 20th level (unlimited) has no use counter', () => {
 test("Chronurgy Magic loads with its five Explorer's Guide to Wildemount features at the right wizard levels", () => {
   const sub = loadSubclass('Wizard', 'Chronurgy Magic')
   assert.deepStrictEqual(sub.features_by_level, {
-    2: ['Chronal Shift', 'Temporal Awareness'],
+    3: ['Chronal Shift', 'Temporal Awareness'],
     6: ['Momentary Stasis'],
     10: ['Arcane Abeyance'],
     14: ['Convergent Future'],
   })
 })
 
-test('a Wizard taking Chronurgy Magic gets Chronal Shift x2 and, at 6th, Momentary Stasis = INT modifier uses', () => {
+test('a Wizard taking Chronurgy Magic gets Chronal Shift x2 at 3rd and, at 6th, Momentary Stasis = INT modifier uses', () => {
   const base = {
     name: 'C',
     level: 1,
@@ -143,15 +160,20 @@ test('a Wizard taking Chronurgy Magic gets Chronal Shift x2 and, at 6th, Momenta
     spells: [],
     classes: [{ name: 'Wizard', subclass: 'Chronurgy Magic', level: 1 }],
   }
-  const lvl2 = diffLevelUp(base, {
+  const at2 = {
+    ...base,
+    level: 2,
+    classes: [{ name: 'Wizard', subclass: 'Chronurgy Magic', level: 2 }],
+  }
+  const lvl3 = diffLevelUp(at2, {
     className: 'Wizard',
-    toLevel: 2,
+    toLevel: 3,
     hpMethod: 'average',
   })
-  const shift = lvl2.patch.features.find((f) => f.name === 'Chronal Shift')
+  const shift = lvl3.patch.features.find((f) => f.name === 'Chronal Shift')
   assert.strictEqual(shift.uses_max, 2)
   assert.strictEqual(shift.action_type, 'reaction')
-  const awareness = lvl2.patch.features.find(
+  const awareness = lvl3.patch.features.find(
     (f) => f.name === 'Temporal Awareness'
   )
   assert.strictEqual(awareness.adds_ability_to_initiative, 'int')

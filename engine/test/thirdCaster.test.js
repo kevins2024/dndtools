@@ -28,25 +28,29 @@ test('Eldritch Knight and Arcane Trickster both resolve as third-casters with ma
       [4, 3, 3, 1],
       `${subclassName} should cap at 4th-level spells by 20`
     )
+    // 2024: the Arcane Trickster also has Mage Hand, which counts as one of its cantrips
+    const extra = className === 'Rogue' ? 1 : 0
     assert.equal(
       engine.cantripsKnownForClass(className, 3, subclassName),
-      2,
-      `${subclassName} should know 2 cantrips at level 3`
+      2 + extra,
+      `${subclassName} should know ${2 + extra} cantrips at level 3`
     )
     assert.equal(
       engine.cantripsKnownForClass(className, 10, subclassName),
+      3 + extra,
+      `${subclassName} should know ${3 + extra} cantrips at level 10`
+    )
+    // 2024 third casters prepare spells from a class-table number instead of knowing a list
+    assert.equal(engine.spellsKnownForClass(className, 3, subclassName), null)
+    assert.equal(
+      engine.preparedSpellCount(className, 3, 3, subclassName),
       3,
-      `${subclassName} should know 3 cantrips at level 10`
+      `${subclassName} should prepare 3 spells at level 3`
     )
     assert.equal(
-      engine.spellsKnownForClass(className, 3, subclassName),
-      3,
-      `${subclassName} should know 3 spells at level 3`
-    )
-    assert.equal(
-      engine.spellsKnownForClass(className, 20, subclassName),
+      engine.preparedSpellCount(className, 20, 3, subclassName),
       13,
-      `${subclassName} should know 13 spells at level 20`
+      `${subclassName} should prepare 13 spells at level 20`
     )
   }
 })

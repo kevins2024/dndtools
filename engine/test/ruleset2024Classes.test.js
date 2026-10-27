@@ -23,10 +23,10 @@ const atOrBelow = (table, level) => {
   return v
 }
 
-test('loadClass defaults to the 2014 rules — Brutal Critical is still there', () => {
+test('loadClass defaults to the 2024 rules; the 2014 file is only the legacy fallback', () => {
   const b = loadClass('Barbarian')
-  assert.equal(b.ruleset, undefined)
-  assert.deepEqual(b.features_by_level['9'], ['Brutal Critical (1 die)'])
+  assert.equal(b.ruleset, '2024')
+  assert.deepEqual(b.features_by_level['9'], ['Brutal Strike'])
   assert.equal(
     loadClass('Barbarian', '2014').features_by_level['9'][0],
     'Brutal Critical (1 die)'
@@ -122,12 +122,9 @@ test('listClasses(2024) still lists every class — rewritten ones plus legacy o
   assert.equal(listClasses().length, 13)
 })
 
-test('featuresGainedAtLevel is ruleset-aware', () => {
-  assert.deepEqual(featuresGainedAtLevel('Barbarian', 9, '2024').named, [
-    'Brutal Strike',
-  ])
+test('featuresGainedAtLevel uses the 2024 table without being asked', () => {
   assert.deepEqual(featuresGainedAtLevel('Barbarian', 9).named, [
-    'Brutal Critical (1 die)',
+    'Brutal Strike',
   ])
 })
 
@@ -174,7 +171,7 @@ test('the 2014 subclass name still resolves under 2024 via the alias table', () 
   assert.equal(s.name, 'Path of the Berserker')
   // ...and under 2014 it is still the old file, with Retaliation at 14.
   assert.deepEqual(
-    subclassFeaturesGainedAtLevel('Barbarian', 'Berserker', 14),
+    subclassFeaturesGainedAtLevel('Barbarian', 'Berserker', 14, '2014'),
     ['Retaliation']
   )
 })
@@ -184,7 +181,7 @@ test('a subclass the 2024 rules did not rewrite loads as legacy under 2024', () 
   assert.ok(s)
   assert.equal(s.legacy, true)
   assert.equal(
-    loadSubclass('Barbarian', 'Path of the Giant'),
+    loadSubclass('Barbarian', 'Path of the Giant', '2014'),
     loadSubclass('Barbarian', 'Path of the Giant', '2014')
   )
 })
@@ -201,7 +198,7 @@ test('listSubclasses(2024) has each rewritten subclass once and keeps the legacy
 // ── Legacy subclasses start at 3rd level under 2024 ─────────────────────
 
 test('a legacy subclass that began before 3rd level has its early features folded into 3rd (2024 picks every subclass at 3)', () => {
-  const t14 = loadSubclass('Cleric', 'Tempest Domain')
+  const t14 = loadSubclass('Cleric', 'Tempest Domain', '2014')
   assert.ok(
     Object.keys(t14.features_by_level).some((l) => Number(l) < 3),
     'sanity: the 2014 domain starts at 1'
@@ -244,10 +241,11 @@ test('describeLevelUp for a 2024 character who takes a legacy Cleric domain at 3
 
 test('legacy subclasses that already start at 3rd are untouched; 2014 loads are never shifted', () => {
   const g24 = loadSubclass('Barbarian', 'Path of the Giant', '2024')
-  const g14 = loadSubclass('Barbarian', 'Path of the Giant')
+  const g14 = loadSubclass('Barbarian', 'Path of the Giant', '2014')
   assert.deepEqual(g24.features_by_level, g14.features_by_level)
   assert.equal(
-    loadSubclass('Wizard', 'War Magic').features_by_level['2'].length > 0,
+    loadSubclass('Wizard', 'War Magic', '2014').features_by_level['2'].length >
+      0,
     true
   )
   assert.equal(

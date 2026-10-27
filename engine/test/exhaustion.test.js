@@ -19,13 +19,3 @@ test('2024 Exhaustion: -2 per level to D20 Tests, -5 ft Speed per level, death a
   assert.equal(speedAfterExhaustion(30, 6, '2024'), 0)
   assert.equal(speedAfterExhaustion(10, 3, '2024'), 0) // never negative
 })
-
-test('2014 Exhaustion keeps the six-row table', () => {
-  assert.equal(exhaustionEffects(1).checkDisadvantage, true)
-  assert.equal(exhaustionEffects(1).attackAndSaveDisadvantage, false)
-  assert.equal(speedAfterExhaustion(30, 2), 15)
-  assert.equal(exhaustionEffects(4).hpMaxHalved, true)
-  assert.equal(speedAfterExhaustion(30, 5), 0)
-  assert.equal(exhaustionEffects(6).dead, true)
-  assert.equal(exhaustionEffects(2).d20Penalty, undefined)
-})

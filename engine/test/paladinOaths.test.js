@@ -29,11 +29,10 @@ test("All 5 new Paladin oaths resolve with exactly Paladin's real subclass_featu
       .map(Number)
       .sort((a, b) => a - b)
     assert.deepEqual(levels, [3, 7, 15, 20], `${name} feature levels`)
-    // Every oath grants exactly 2 Channel Divinity options at 3rd level
-    assert.equal(
-      sub.features_by_level['3'].length,
-      2,
-      `${name} should grant exactly 2 Channel Divinity options at 3rd level`
+    // Every oath's spells are always prepared, starting at 3rd level
+    assert.ok(
+      sub.oath_spells_by_level?.['3']?.length > 0,
+      `${name} should grant its oath spells at 3rd level`
     )
   }
 })

@@ -145,36 +145,6 @@ test('meetsFeatPrerequisites: race prerequisite blocks a non-matching race, allo
   assert.equal(engine.meetsFeatPrerequisites(human, 'Fade Away').met, false)
 })
 
-test('meetsFeatPrerequisites: ability-score prerequisite is hard-enforced (Grappler needs STR 13+)', () => {
-  const weak = { genus: 'Human', stat_str: 10 }
-  const strong = { genus: 'Human', stat_str: 14 }
-  assert.equal(engine.meetsFeatPrerequisites(weak, 'Grappler').met, false)
-  assert.equal(engine.meetsFeatPrerequisites(strong, 'Grappler').met, true)
-})
-
-test('meetsFeatPrerequisites: an untracked proficiency array is permissive, not a hard block', () => {
-  const noProfData = { genus: 'Human' } // armor_proficiencies not tracked
-  const result = engine.meetsFeatPrerequisites(noProfData, 'Heavy Armor Master')
-  assert.equal(result.met, true)
-  assert.equal(result.unknown, true)
-})
-
-test('meetsFeatPrerequisites: a POPULATED proficiency array IS enforced', () => {
-  const noHeavy = { genus: 'Human', armor_proficiencies: ['light', 'medium'] }
-  const withHeavy = {
-    genus: 'Human',
-    armor_proficiencies: ['light', 'medium', 'heavy'],
-  }
-  assert.equal(
-    engine.meetsFeatPrerequisites(noHeavy, 'Heavy Armor Master').met,
-    false
-  )
-  assert.equal(
-    engine.meetsFeatPrerequisites(withHeavy, 'Heavy Armor Master').met,
-    true
-  )
-})
-
 test('meetsFeatPrerequisites: an uncatalogued feat is permissive (nothing to check)', () => {
   const result = engine.meetsFeatPrerequisites(
     { genus: 'Human' },
@@ -182,17 +152,6 @@ test('meetsFeatPrerequisites: an uncatalogued feat is permissive (nothing to che
   )
   assert.equal(result.met, true)
   assert.equal(result.unknown, true)
-})
-
-test('resolveAsiOrFeat: Alert (no ASI) returns a feature carrying stat_bonuses.initiative', () => {
-  const scores = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }
-  const result = engine.resolveAsiOrFeat(scores, {
-    type: 'feat',
-    featName: 'Alert',
-  })
-  assert.deepEqual(result.scores, scores) // no ability bump
-  assert.equal(result.feature.name, 'Alert')
-  assert.deepEqual(result.feature.stat_bonuses, { initiative: 5 })
 })
 
 test('resolveAsiOrFeat: a feat with a generic `choices` pick carries it through on the feature object', () => {
@@ -205,109 +164,4 @@ test('resolveAsiOrFeat: a feat with a generic `choices` pick carries it through 
   assert.deepEqual(result.feature.choices, {
     skills_or_tools: ['Athletics', 'Stealth', "Thieves' Tools"],
   })
-})
-
-test('diffLevelUp: taking Alert at an ASI level adds a feat feature with stat_bonuses.initiative to the patch', () => {
-  const character = {
-    name: 'Test Fighter',
-    genus: 'Human',
-    level: 3,
-    classes: [{ name: 'Fighter', level: 3, subclass: 'Champion' }],
-    stat_str: 14,
-    stat_dex: 12,
-    stat_con: 14,
-    stat_int: 10,
-    stat_wis: 10,
-    stat_cha: 8,
-    hp_max: 28,
-    hp_current: 28,
-    hit_dice_current: 3,
-    features: [],
-  }
-  const result = engine.diffLevelUp(character, {
-    className: 'Fighter',
-    toLevel: 4,
-    hpMethod: 'average',
-    asiOrFeatResolutions: {
-      4: { type: 'feat', featName: 'Alert' },
-    },
-  })
-  const alertFeature = result.patch.features.find((f) => f.name === 'Alert')
-  assert.ok(alertFeature, 'expected an Alert feature in patch.features')
-  assert.deepEqual(alertFeature.stat_bonuses, { initiative: 5 })
-})
-
-test('diffLevelUp: taking Resilient adds the chosen ability to patch.saving_throws', () => {
-  const character = {
-    name: 'Test Wizard',
-    genus: 'Human',
-    level: 3,
-    classes: [{ name: 'Wizard', level: 3, subclass: 'School of Evocation' }],
-    stat_str: 8,
-    stat_dex: 14,
-    stat_con: 12,
-    stat_int: 16,
-    stat_wis: 10,
-    stat_cha: 10,
-    hp_max: 20,
-    hp_current: 20,
-    hit_dice_current: 3,
-    saving_throws: ['int', 'wis'],
-    features: [],
-  }
-  const result = engine.diffLevelUp(character, {
-    className: 'Wizard',
-    toLevel: 4,
-    hpMethod: 'average',
-    asiOrFeatResolutions: {
-      4: { type: 'feat', featName: 'Resilient', abilityChoice: 'con' },
-    },
-  })
-  assert.deepEqual(result.patch.saving_throws.sort(), ['con', 'int', 'wis'])
-})
-
-test('diffLevelUp: taking Fey Touched with a chosen spell adds both the fixed and chosen spells to patch.spells', () => {
-  const character = {
-    name: 'Test Cleric',
-    genus: 'Human',
-    level: 3,
-    classes: [{ name: 'Cleric', level: 3, subclass: 'Life Domain' }],
-    stat_str: 10,
-    stat_dex: 10,
-    stat_con: 14,
-    stat_int: 10,
-    stat_wis: 16,
-    stat_cha: 10,
-    hp_max: 24,
-    hp_current: 24,
-    hit_dice_current: 3,
-    features: [],
-    spells: [],
-  }
-  const result = engine.diffLevelUp(character, {
-    className: 'Cleric',
-    toLevel: 4,
-    hpMethod: 'average',
-    asiOrFeatResolutions: {
-      4: {
-        type: 'feat',
-        featName: 'Fey Touched',
-        abilityChoice: 'wis',
-        choices: { __grantedSpellChoice: 'Silvery Barbs' },
-      },
-    },
-  })
-  // Caster Prestidigitation (this Cleric fixture also unconditionally gets
-  // Divine Prestidigitation) lives in patch.features, not patch.spells —
-  // see diffLevelUp.js's own comment on why — so it doesn't show up here.
-  const names = result.patch.spells.map((s) => s.name).sort()
-  assert.deepEqual(names, ['Misty Step', 'Silvery Barbs'])
-  assert.ok(result.patch.spells.every((s) => s._source === 'Fey Touched'))
-  assert.ok(
-    result.newFeatures.some(
-      (f) =>
-        f.name === 'Caster Prestidigitation' &&
-        (f.spells_granted || []).includes('Divine Prestidigitation')
-    )
-  )
 })

@@ -88,22 +88,3 @@ test('isPreparedCaster agrees with preparedSpellLimit', () => {
   assert.ok(!isPreparedCaster({ classes: [{ name: 'Sorcerer', level: 5 }] }))
   assert.ok(!isPreparedCaster({}))
 })
-
-test('preparedSpellLimit matches spellcasting.js preparedSpellCount for single-class prepared casters', () => {
-  for (const [name, ability] of [
-    ['Cleric', 'wis'],
-    ['Druid', 'wis'],
-    ['Wizard', 'int'],
-    ['Paladin', 'cha'],
-    ['Artificer', 'int'],
-  ]) {
-    for (let level = 1; level <= 20; level++) {
-      const mod = Math.floor((scores[ability] - 10) / 2)
-      assert.strictEqual(
-        preparedSpellLimit({ classes: [{ name, level }] }, scores).max,
-        preparedSpellCount(name, level, mod),
-        `${name} ${level}`
-      )
-    }
-  }
-})

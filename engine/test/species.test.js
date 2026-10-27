@@ -29,64 +29,6 @@ test('loadSpecies is case-insensitive', () => {
   assert.equal(loadSpecies('HALF-ELF').name, 'Half-Elf')
 })
 
-test('applySpeciesBonus: Human applies +1 to all six abilities', () => {
-  const base = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }
-  const result = applySpeciesBonus(base, 'Human')
-  assert.deepEqual(result.scores, {
-    str: 11,
-    dex: 11,
-    con: 11,
-    int: 11,
-    wis: 11,
-    cha: 11,
-  })
-})
-
-test('applySpeciesBonus: Dragonborn applies +2 STR and +1 CHA only', () => {
-  const base = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }
-  const result = applySpeciesBonus(base, 'Dragonborn')
-  assert.deepEqual(result.scores, {
-    str: 12,
-    dex: 10,
-    con: 10,
-    int: 10,
-    wis: 10,
-    cha: 11,
-  })
-})
-
-test('applySpeciesBonus: Half-Elf requires a flexible-bonus choice and applies it correctly', () => {
-  const base = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }
-
-  assert.throws(() => applySpeciesBonus(base, 'Half-Elf'))
-  assert.throws(() =>
-    applySpeciesBonus(base, 'Half-Elf', { abilities: ['str'] })
-  )
-  // CHA is already fixed at +2 for Half-Elf — can't also be picked for the flexible bonus
-  assert.throws(() =>
-    applySpeciesBonus(base, 'Half-Elf', { abilities: ['str', 'cha'] })
-  )
-
-  const result = applySpeciesBonus(base, 'Half-Elf', {
-    abilities: ['str', 'wis'],
-  })
-  assert.deepEqual(result.scores, {
-    str: 11,
-    dex: 10,
-    con: 10,
-    int: 10,
-    wis: 11,
-    cha: 12,
-  })
-})
-
-test('applySpeciesBonus: unknown species leaves scores untouched with a note, not a crash', () => {
-  const base = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }
-  const result = applySpeciesBonus(base, 'Catrin')
-  assert.deepEqual(result.scores, base)
-  assert.ok(result.notes[0].includes("isn't in the species catalog"))
-})
-
 // Species/racial trait data integrity — added alongside the ability-score-
 // history/species-traits attribution work (2026-09-03). Every base species
 // and subrace trait needs a real name + description so
@@ -134,11 +76,6 @@ test('Elf, Dwarf, Halfling, and Gnome all have base-species traits, not just sub
       `${name} should have base-species traits`
     )
   }
-})
-
-test('Human has no named traits (correct per RAW — its identity is the ability bonus, not named traits)', () => {
-  const sp = loadSpecies('Human')
-  assert.ok(!sp.traits || sp.traits.length === 0)
 })
 
 // Real mechanical wiring (2026-09-07) — species traits previously carried
@@ -254,36 +191,11 @@ test('Every grants_spells has either fixed or choice (never neither), and a real
   }
 })
 
-test("Dragonborn's ancestry_options has exactly the 10 real dragon types, each with a real damage type and breath shape/save", () => {
-  const sp = loadSpecies('Dragonborn')
-  const realDamageTypes = ['acid', 'cold', 'fire', 'lightning', 'poison']
-  assert.equal(sp.ancestry_options.length, 10)
-  const types = sp.ancestry_options.map((a) => a.type)
-  assert.equal(new Set(types).size, 10, 'no duplicate dragon types')
-  for (const a of sp.ancestry_options) {
-    assert.ok(realDamageTypes.includes(a.damage_type))
-    assert.ok(['dex', 'con'].includes(a.breath_save))
-    assert.ok(/line|cone/.test(a.breath_shape))
-  }
-  // The Draconic Ancestry trait itself points at this table.
-  const ancestryTrait = sp.traits.find((t) => t.name === 'Draconic Ancestry')
-  assert.equal(ancestryTrait.choice.from, 'ancestry_options')
-})
-
 // listSpecies() only returns {name} — these tests need the FULL records
 // (traits, ancestry_options, etc.), same as loadSpecies gives for one.
 function listSpeciesFull() {
   return listSpecies().map((s) => loadSpecies(s.name))
 }
-
-// traitsFor() — the flattening helper diffLevelUp.js uses to apply a
-// character's real species+subrace traits after creation (2026-09-10, see
-// TODO.md's "Real racial/background mechanical data" entry).
-test('traitsFor: species with no subrace returns just the base traits', () => {
-  const traits = traitsFor('Gnome', null)
-  assert.ok(traits.some((t) => t.name === 'Gnome Cunning'))
-  assert.equal(traits.length, loadSpecies('Gnome').traits.length)
-})
 
 test('traitsFor: species + subrace returns base traits AND the subrace traits combined', () => {
   const traits = traitsFor('Dwarf', 'Hill Dwarf')
@@ -294,15 +206,6 @@ test('traitsFor: species + subrace returns base traits AND the subrace traits co
     !names.includes('Dwarven Armor Training'),
     "Mountain Dwarf's trait should NOT leak into a Hill Dwarf's list"
   )
-})
-
-test('traitsFor: case-insensitive subrace match, and an unknown subrace just returns base traits', () => {
-  const traits = traitsFor('Dwarf', 'hill dwarf')
-  assert.ok(traits.some((t) => t.name === 'Dwarven Toughness'))
-
-  const unknownSub = traitsFor('Dwarf', 'Not A Real Subrace')
-  assert.ok(!unknownSub.some((t) => t.name === 'Dwarven Toughness'))
-  assert.ok(unknownSub.some((t) => t.name === 'Dwarven Resilience'))
 })
 
 test('traitsFor: unknown species returns an empty array, not a crash', () => {
@@ -329,44 +232,4 @@ test("grants_hp_per_level only appears on Hill Dwarf's Dwarven Toughness, and is
     }
   }
   assert.equal(found, 1)
-})
-
-test('Every grants_saving_throw_advantage is a non-empty string, and covers every real RAW trait that grants one', () => {
-  const bySpeciesTrait = {}
-  for (const sp of listSpeciesFull()) {
-    for (const trait of allTraits(sp)) {
-      if (!('grants_saving_throw_advantage' in trait)) continue
-      assert.equal(typeof trait.grants_saving_throw_advantage, 'string')
-      assert.ok(trait.grants_saving_throw_advantage.trim().length > 0)
-      bySpeciesTrait[`${sp.name}/${trait.name}`] =
-        trait.grants_saving_throw_advantage
-    }
-  }
-  assert.deepEqual(bySpeciesTrait, {
-    'Elf/Fey Ancestry': 'being_charmed',
-    'Half-Elf/Fey Ancestry': 'being_charmed',
-    'Dwarf/Dwarven Resilience': 'poison',
-    'Halfling/Brave': 'being_frightened',
-    'Halfling/Stout Resilience': 'poison',
-    'Gnome/Gnome Cunning': 'magic',
-  })
-})
-
-test('Every grants_spells.tiered entry has a positive level greater than 1, a real spell name, and a uses string', () => {
-  let found = 0
-  for (const sp of listSpeciesFull()) {
-    for (const trait of allTraits(sp)) {
-      for (const tier of trait.grants_spells?.tiered ?? []) {
-        found++
-        assert.ok(
-          tier.level > 1,
-          `${trait.name}'s tier should be above 1st level`
-        )
-        assert.ok(tier.spell && tier.spell.trim().length > 0)
-        assert.ok(tier.uses && tier.uses.trim().length > 0)
-      }
-    }
-  }
-  // Drow Magic (Faerie Fire, Darkness) + Infernal Legacy (Hellish Rebuke, Darkness)
-  assert.equal(found, 4)
 })

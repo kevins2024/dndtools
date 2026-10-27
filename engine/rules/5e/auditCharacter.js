@@ -791,6 +791,7 @@ function auditCharacter(character, ctx = {}) {
       'circle_spells_by_level',
       'bonus_spells_by_level',
       'patron_spells_by_level',
+      'subclass_spells_by_level',
     ]
     const granted = new Map() // normalised name -> subclass label
     for (const c of classes) {

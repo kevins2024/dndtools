@@ -1161,7 +1161,7 @@
   {
     "id": "pub_twill-phase-enchantment-necromancy",
     "name": "Twill Phase (Enchantment / Necromancy)",
-    "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Silvery Barbs (1st), Blindness/Deafness (2nd), Vampiric Touch (3rd), Confusion (4th), Synaptic Static (5th).",
+    "description": "Active phase: 1 SP discount on Metamagic for Enchantment and Necromancy spells (see Mother's Whim). All five grid spells for this phase are always known and prepared regardless of which phase is currently active — cast any of them normally with a spell slot of the appropriate level, exactly like any other prepared spell. Only the level-1 spell's free (no-slot) cast is phase-gated (see Weave Embodiment). Grid: Silvery Barbs (1st), Hold Person (2nd), Vampiric Touch (3rd), Confusion (4th), Synaptic Static (5th).",
     "type": "feature",
     "source": "Homebrew — Weave Attunement (Sorcerer subclass), a reskin of Lunar Sorcery.",
     "homebrew": true
@@ -9533,7 +9533,7 @@
   },
   {
     "id": "pub24_sub_artificer-alchemist-alchemist-spells",
-    "name": "Alchemist Spells.",
+    "name": "Alchemist Spells",
     "category": "subclass_feature",
     "class": "Artificer (Alchemist)",
     "level_gained": 3,
@@ -11502,7 +11502,7 @@
   },
   {
     "id": "pub24_sub_paladin-oath-of-glory-oath-of-glory-spells",
-    "name": "Oath of Glory Spells.",
+    "name": "Oath of Glory Spells",
     "category": "subclass_feature",
     "class": "Paladin (Oath of Glory)",
     "level_gained": 3,
@@ -11799,7 +11799,7 @@
   },
   {
     "id": "pub24_sub_ranger-fey-wanderer-otherworldly-glamour",
-    "name": "Otherworldly Glamour.",
+    "name": "Otherworldly Glamour",
     "category": "subclass_feature",
     "class": "Ranger (Fey Wanderer)",
     "level_gained": 3,

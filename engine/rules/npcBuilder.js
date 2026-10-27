@@ -13,15 +13,10 @@
 // NOT eligible for direct browser require() — server.js is the only caller.
 
 const { diffLevelUp } = require('./5e/diffLevelUp')
-const { applySpeciesBonus } = require('./5e/species')
+const { answerChoice } = require('./5e/choiceAnswers')
 const { abilityModifier } = require('./5e/abilities')
 const { proficiencyBonus } = require('./5e/progression')
 const { loadClass } = require('./5e/classFeatures')
-const {
-  listInvocations,
-  meetsInvocationPrerequisite,
-} = require('./5e/invocations')
-const { listSpellsForClass } = require('./5e/spellLists')
 
 function normalizeName(name) {
   return String(name).trim().toLowerCase()
@@ -36,7 +31,7 @@ const ROLE_TABLE = {
   melee_str: {
     label: 'Melee (Strength)',
     className: 'Barbarian',
-    subclassName: 'Berserker',
+    subclassName: 'Path of the Berserker',
     primaryStat: 'str',
     secondaryStat: 'con',
     baseScores: [15, 14, 13, 12, 10, 8],
@@ -64,7 +59,7 @@ const ROLE_TABLE = {
   caster_int: {
     label: 'Caster (Intelligence)',
     className: 'Wizard',
-    subclassName: 'Evocation',
+    subclassName: 'Evoker',
     primaryStat: 'int',
     secondaryStat: 'con',
     baseScores: [15, 14, 13, 12, 10, 8],
@@ -147,7 +142,7 @@ const ROLE_TABLE = {
   caster_cha: {
     label: 'Caster (Charisma)',
     className: 'Warlock',
-    subclassName: 'The Fiend',
+    subclassName: 'Fiend Patron',
     primaryStat: 'cha',
     secondaryStat: 'con',
     pactBoon: 'Pact of the Blade',
@@ -207,11 +202,20 @@ function assignBaseScores(roleConfig) {
   return scores
 }
 
+// A level-0 2024 character: the role's standard-array-style scores with a Background's
+// +2/+1 on the primary and secondary stat (the species grants none in 2024), recorded as
+// the base scores the level-ups are calculated from.
 function buildShell(speciesName, roleConfig) {
-  const baseline = assignBaseScores(roleConfig)
-  const { scores } = applySpeciesBonus(baseline, speciesName)
+  const base = assignBaseScores(roleConfig)
+  base[roleConfig.primaryStat] += 2
+  base[roleConfig.secondaryStat] += 1
+  const classData = loadClass(roleConfig.className)
+  const skills = (classData?.skill_choices?.options ?? [])
+    .slice(0, classData?.skill_choices?.count ?? 2)
+    .map((id) => id.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()))
   return {
     name: `${roleConfig.label} (${roleConfig.className})`,
+    ruleset: '2024',
     genus: speciesName,
     subgenus: null,
     level: 0,
@@ -219,52 +223,23 @@ function buildShell(speciesName, roleConfig) {
     hp_max: 0,
     hp_current: 0,
     hit_dice_current: 0,
-    stat_str: scores.str,
-    stat_dex: scores.dex,
-    stat_con: scores.con,
-    stat_int: scores.int,
-    stat_wis: scores.wis,
-    stat_cha: scores.cha,
+    ability_base: { ...base },
+    stat_str: base.str,
+    stat_dex: base.dex,
+    stat_con: base.con,
+    stat_int: base.int,
+    stat_wis: base.wis,
+    stat_cha: base.cha,
     spellcasting_ability: null,
-    saving_throws: [],
-    skill_proficiencies: [],
-    armor_proficiencies: [],
-    weapon_proficiencies: [],
+    saving_throws: classData?.saving_throw_proficiencies ?? [],
+    skill_proficiencies: skills,
+    skill_expertise: [],
+    armor_proficiencies: classData?.armor_proficiencies ?? [],
+    weapon_proficiencies: classData?.weapon_proficiencies ?? [],
     features: [],
     spells: [],
     ability_score_history: [],
   }
-}
-
-// Resolves the ability-score half of an ASI. asiFeat.js's applyIncrease
-// requires the total to be EXACTLY +2 across whatever abilities are named —
-// even a declared +0 is rejected — so this always spends both points
-// somewhere real, walking roleConfig.statOrder (primary first) and spilling
-// into the next ability in priority order once one hits the 20 cap. Only
-// six abilities exist and a full level-20 build has far fewer than six ASIs
-// worth of +2s to place, so running out of room entirely isn't reachable in
-// practice; if it ever were, throwing (rather than silently sending an
-// invalid resolution) is the right failure mode.
-function asiIncreases(currentScores, roleConfig) {
-  const order = roleConfig.statOrder
-  let remaining = 2
-  const increases = {}
-  for (const ability of order) {
-    if (remaining <= 0) break
-    const room = Math.max(0, 20 - (currentScores[ability] ?? 10))
-    if (room <= 0) continue
-    const spend = Math.min(room, remaining)
-    increases[ability] = spend
-    remaining -= spend
-  }
-  if (remaining > 0) {
-    throw new Error(
-      `No ability score has room left for an ASI (all of ${order.join(
-        ', '
-      )} at or near 20).`
-    )
-  }
-  return increases
 }
 
 function currentScores(character) {
@@ -276,229 +251,6 @@ function currentScores(character) {
     wis: character.stat_wis ?? 10,
     cha: character.stat_cha ?? 10,
   }
-}
-
-// Resolves one pendingChoice into either a diffLevelUp call parameter
-// ({ param, value }) or a direct character mutation ({ characterPatch }) —
-// subclassChoice is the one type diffLevelUp reads off the character record
-// itself (classes[].subclass) rather than accepting as a call param.
-function resolveChoice(choice, roleConfig, character) {
-  switch (choice.type) {
-    case 'asiOrFeat':
-      return {
-        param: 'asiOrFeatResolutions',
-        merge: (existing = {}) => ({
-          ...existing,
-          [choice.level]: {
-            type: 'asi',
-            increases: asiIncreases(currentScores(character), roleConfig),
-          },
-        }),
-      }
-    case 'subclassChoice': {
-      const idx = character.classes.findIndex(
-        (c) => normalizeName(c.name) === normalizeName(roleConfig.className)
-      )
-      if (idx === -1 || character.classes[idx].subclass) return null
-      return {
-        characterPatch: {
-          classes: character.classes.map((c, i) =>
-            i === idx ? { ...c, subclass: roleConfig.subclassName } : c
-          ),
-        },
-      }
-    }
-    case 'fightingStyleChoice':
-      return {
-        param: 'fightingStyleChoice',
-        merge: () => roleConfig.fightingStyle ?? choice.options?.[0] ?? null,
-      }
-    case 'expertiseChoice':
-      return {
-        param: 'expertiseChoice',
-        merge: () =>
-          roleConfig.expertiseSkills ?? (choice.options ?? []).slice(0, 2),
-      }
-    case 'favoredEnemyChoice':
-      return {
-        param: 'favoredEnemyChoice',
-        merge: () => roleConfig.favoredEnemy ?? choice.options?.[0] ?? null,
-      }
-    case 'naturalExplorerChoice':
-      return {
-        param: 'naturalExplorerChoice',
-        merge: () => roleConfig.naturalExplorer ?? choice.options?.[0] ?? null,
-      }
-    case 'pactBoonChoice':
-      return {
-        param: 'pactBoonChoice',
-        merge: () => roleConfig.pactBoon ?? 'Pact of the Blade',
-      }
-    case 'invocationChoice': {
-      const pool =
-        roleConfig.invocationPreferences ?? listInvocations().map((i) => i.name)
-      const eligible = pool.filter((name) =>
-        meetsInvocationPrerequisite(character, name)
-      )
-      return {
-        param: 'invocationChoices',
-        merge: () => eligible,
-      }
-    }
-    case 'bonusSpellChoice':
-      return {
-        param: 'pactBoonBonusSpells',
-        merge: (existing = []) => existing,
-      }
-    case 'newCantrips':
-      return {
-        param: 'spellChoices',
-        merge: (existing = {}) => ({
-          ...existing,
-          cantrips: roleConfig.cantripPreferences ?? [],
-        }),
-      }
-    case 'newKnownSpells':
-      return {
-        param: 'spellChoices',
-        merge: (existing = {}) => ({
-          ...existing,
-          spells: roleConfig.spellPreferences ?? [],
-        }),
-      }
-    case 'spellbookAdditions':
-      return {
-        param: 'spellbookChoices',
-        merge: (existing = []) => roleConfig.spellPreferences ?? [],
-      }
-    case 'multiclassSkillChoice': {
-      // Despite the name, this also fires for a genuine STARTING class (not
-      // just a real multiclass pickup) for the handful of classes whose
-      // starting skill grant diffLevelUp models this way (Bard/Ranger/
-      // Rogue) — confirmed by smoke-testing Rogue, which threw without this
-      // case handled. Picks the first legal option not already known.
-      const classData = loadClass(roleConfig.className)
-      const options = classData?.skill_choices?.options
-      const already = new Set(character.skill_proficiencies || [])
-      const pick = Array.isArray(options)
-        ? options.find((id) => !already.has(id))
-        : null
-      if (!pick) return null
-      return {
-        param: 'multiclassSkillChoice',
-        merge: () => pick,
-      }
-    }
-    // The 8 cases below all resolve pendingChoice types added 2026-09-18
-    // (the class/subclass feature audit's fixes) — none of ROLE_TABLE's
-    // current roles reach Sorcerer/Bard/Ranger-Gloom-Stalker/Wizard-
-    // Bladesinger, so these weren't exercised until Warlock's Mystic
-    // Arcanum (below) broke this test at level 11+ and surfaced the gap:
-    // every new pendingChoice type needs a case here or `buildCombatant`
-    // throws "could not resolve pendingChoices ... after 8 attempts" for
-    // ANY role that ever reaches it. Added defensively for all 8 at once
-    // rather than only the one that actually broke, so a future role using
-    // any of these classes doesn't silently hit the same wall.
-    case 'metamagicChoice':
-      return {
-        param: 'metamagicChoice',
-        merge: () => (choice.options ?? []).slice(0, choice.count ?? 1),
-      }
-    case 'maneuverChoice':
-      return {
-        param: 'maneuverChoices',
-        merge: (existing = {}) => ({
-          ...existing,
-          [choice.level]: (choice.options ?? []).slice(0, choice.count ?? 1),
-        }),
-      }
-    case 'magicalSecretsChoice': {
-      // No options array on this one by design (the eligible pool is any
-      // class's spell list — see diffLevelUp.js's comment) — fetched here
-      // instead of embedded, same as LevelUpTool.vue's own picker does.
-      const pool = listSpellsForClass('Bard', { pool: 'any', maxLevel: 9 })
-        .filter((s) => s.level > 0)
-        .map((s) => s.name)
-      return {
-        param: 'magicalSecretsChoice',
-        merge: () => pool.slice(0, choice.count ?? 2),
-      }
-    }
-    case 'ironMindChoice':
-      return {
-        param: 'ironMindChoice',
-        merge: () => choice.options?.[0] ?? 'Intelligence',
-      }
-    case 'bladesingerWeaponChoice':
-      return {
-        param: 'bladesingerWeaponChoice',
-        merge: () => choice.options?.[0] ?? null,
-      }
-    case 'divineMagicChoice':
-      return {
-        param: 'divineMagicChoice',
-        merge: () => choice.options?.[0] ?? 'good',
-      }
-    case 'dragonAncestorChoice':
-      return {
-        param: 'dragonAncestorChoice',
-        merge: () => choice.options?.[0] ?? null,
-      }
-    case 'mysticArcanumChoice':
-      return {
-        param: 'mysticArcanumChoice',
-        merge: () => choice.options?.[0] ?? null,
-      }
-    // Neither of these embeds an options array (same "level validated,
-    // spellbook-membership trusted" reasoning as diffLevelUp.js's own
-    // param comments) — picked here the same way magicalSecretsChoice
-    // fetches its own pool above, filtered to the exact required level.
-    case 'spellMasteryChoice': {
-      const first = listSpellsForClass('Wizard', { maxLevel: 1 }).find(
-        (s) => s.level === 1
-      )
-      const second = listSpellsForClass('Wizard', { maxLevel: 2 }).find(
-        (s) => s.level === 2
-      )
-      return {
-        param: 'spellMasteryChoice',
-        merge: () => [first?.name, second?.name].filter(Boolean),
-      }
-    }
-    case 'signatureSpellsChoice': {
-      const pool = listSpellsForClass('Wizard', { maxLevel: 3 })
-        .filter((s) => s.level === 3)
-        .map((s) => s.name)
-      return {
-        param: 'signatureSpellsChoice',
-        merge: () => pool.slice(0, 2),
-      }
-    }
-    case 'masterOfIntrigueGamingSetChoice':
-      return {
-        param: 'masterOfIntrigueGamingSetChoice',
-        merge: () => choice.options?.[0] ?? 'Dice Set',
-      }
-    case 'masterOfIntrigueLanguageChoice':
-      return {
-        param: 'masterOfIntrigueLanguageChoices',
-        merge: () => (choice.options ?? []).slice(0, choice.count ?? 2),
-      }
-    case 'bonusProficienciesChoice':
-      return {
-        param: 'bonusProficienciesChoice',
-        merge: () => (choice.options ?? []).slice(0, choice.count ?? 3),
-      }
-    default:
-      return null
-  }
-}
-
-function applyResolution(resolutions, resolved) {
-  if (!resolved || !resolved.param) return resolutions
-  const next = { ...resolutions }
-  next[resolved.param] = resolved.merge(resolutions[resolved.param])
-  return next
 }
 
 // Levels a single class from 0 to targetLevel, one level at a time, letting
@@ -519,14 +271,14 @@ function buildCombatant({ speciesName, role, targetLevel }) {
   const warnings = []
 
   for (let level = 1; level <= targetLevel; level++) {
-    let resolutions = {}
+    const inputs = {}
     let result = null
     for (let attempt = 0; attempt < 8; attempt++) {
       result = diffLevelUp(character, {
         className: roleConfig.className,
         toLevel: level,
         hpMethod: 'average',
-        ...resolutions,
+        ...inputs,
       })
       if (!result.patch) {
         throw new Error(
@@ -537,17 +289,42 @@ function buildCombatant({ speciesName, role, targetLevel }) {
       }
       const pending = result.pendingChoices || []
       if (pending.length === 0) break
-      let mutated = false
-      for (const choice of pending) {
-        const resolved = resolveChoice(choice, roleConfig, character)
-        if (resolved?.characterPatch) {
-          character = { ...character, ...resolved.characterPatch }
-          mutated = true
-        } else if (resolved) {
-          resolutions = applyResolution(resolutions, resolved)
+      // The build already names its subclass; the rest are answered by the shared policy.
+      const sub = pending.find((p) => p.type === 'subclassChoice')
+      if (sub)
+        character = {
+          ...character,
+          classes: character.classes.map((c) =>
+            normalizeName(c.name) === normalizeName(roleConfig.className) &&
+            !c.subclass
+              ? { ...c, subclass: roleConfig.subclassName }
+              : c
+          ),
         }
-      }
-      if (!mutated && attempt === 7) {
+      const before = JSON.stringify(inputs)
+      const unresolved = pending.filter(
+        (p) =>
+          p.type !== 'subclassChoice' &&
+          !answerChoice(
+            p,
+            inputs,
+            {
+              character,
+              className: roleConfig.className,
+              toLevel: level,
+            },
+            { ...roleConfig, abilityOrder: roleConfig.statOrder }
+          )
+      )
+      if (unresolved.length)
+        throw new Error(
+          `${
+            roleConfig.className
+          } level ${level}: no answer for pendingChoices ${JSON.stringify(
+            unresolved.map((p) => p.type)
+          )}.`
+        )
+      if (!sub && JSON.stringify(inputs) === before && attempt === 7)
         throw new Error(
           `${
             roleConfig.className
@@ -555,7 +332,6 @@ function buildCombatant({ speciesName, role, targetLevel }) {
             pending
           )} after 8 attempts.`
         )
-      }
     }
     if (result.warnings?.length) warnings.push(...result.warnings)
     character = { ...character, ...result.patch }

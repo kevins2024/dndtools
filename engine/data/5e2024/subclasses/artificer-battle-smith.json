@@ -11,41 +11,15 @@
       "pub24_sub_artificer-battle-smith-battle-ready",
       "pub24_sub_artificer-battle-smith-steel-defender"
     ],
-    "5": [
-      "pub24_sub_artificer-battle-smith-extra-attack"
-    ],
-    "9": [
-      "pub24_sub_artificer-battle-smith-arcane-jolt"
-    ],
-    "15": [
-      "pub24_sub_artificer-battle-smith-improved-defender"
-    ]
+    "5": ["pub24_sub_artificer-battle-smith-extra-attack"],
+    "9": ["pub24_sub_artificer-battle-smith-arcane-jolt"],
+    "15": ["pub24_sub_artificer-battle-smith-improved-defender"]
   },
-  "spell_tables_unmapped": [
-    {
-      "title": "Battle Smith Spells",
-      "byLevel": {
-        "3": [
-          "Heroism",
-          "Shield"
-        ],
-        "5": [
-          "Shining Smite",
-          "Warding Bond"
-        ],
-        "9": [
-          "Aura of Vitality",
-          "Conjure Barrage"
-        ],
-        "13": [
-          "Aura of Purity",
-          "Fire Shield"
-        ],
-        "17": [
-          "Banishing Smite",
-          "Mass Cure Wounds"
-        ]
-      }
-    }
-  ]
+  "subclass_spells_by_level": {
+    "3": ["Heroism", "Shield"],
+    "5": ["Shining Smite", "Warding Bond"],
+    "9": ["Aura of Vitality", "Conjure Barrage"],
+    "13": ["Aura of Purity", "Fire Shield"],
+    "17": ["Banishing Smite", "Mass Cure Wounds"]
+  }
 }

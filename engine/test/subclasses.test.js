@@ -60,13 +60,9 @@ test("Circle of the Moon feature levels line up with the Druid base class's own 
   }
 })
 
-test('Abjuration Wizard features resolve by class + subclass name regardless of spacing/case', () => {
-  const features = engine.subclassFeaturesGainedAtLevel(
-    'wizard',
-    'abjuration',
-    2
-  )
-  assert.deepEqual(features, ['Abjuration Savant', 'Arcane Ward'])
+test('Abjurer Wizard features resolve by class + subclass name regardless of spacing/case', () => {
+  const features = engine.subclassFeaturesGainedAtLevel('wizard', 'abjurer', 3)
+  assert.deepEqual(features, ['Abjuration Savant', 'Arcane ward'])
 })
 
 test('listSubclasses includes the original 4 built this session', () => {

@@ -153,6 +153,13 @@ const BONUS_SPELL_FIELDS = [
   // 2024 patron subclasses: the listed spells are always prepared. (2014 patrons use
   // expanded_spell_list, a pool to choose from, which is not in this table.)
   { field: 'patron_spells_by_level', classOnly: 'warlock', deriveLevel: false },
+  // 2024 Artificer subclasses: always-prepared, spell level left to the spell lookup (the
+  // lists include a cantrip, so the level is not simply derived from the class level).
+  {
+    field: 'subclass_spells_by_level',
+    classOnly: 'artificer',
+    deriveLevel: false,
+  },
   { field: 'circle_spells_by_level', classOnly: 'druid', deriveLevel: false },
   {
     field: 'psionic_spells_by_level',

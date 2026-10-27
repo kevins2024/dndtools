@@ -351,7 +351,8 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 30
@@ -664,7 +665,8 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
@@ -685,11 +687,38 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "grants_spells": {
+      "fixed": [
+        "Misty Step"
+      ],
+      "choice": {
+        "count": 1,
+        "level": 1,
+        "schools": [
+          "Divination",
+          "Enchantment"
+        ]
+      },
+      "free_cast": {
+        "Misty Step": {
+          "count": 1,
+          "recharge": "long_rest"
+        },
+        "__choice": {
+          "count": 1,
+          "recharge": "long_rest"
+        }
+      }
+    },
+    "casting_ability": "the ability increased by this feat",
+    "free_cast_note": "each of the two spells can be cast once without a slot per long rest; otherwise cast normally using slots of the appropriate level",
+    "counts_against_known_spells": false
   },
   "Grappler": {
     "id": "pub24_feat-grappler",
@@ -1081,7 +1110,8 @@
     "ability_score_increase": {
       "choice_of": [
         "str",
-        "dex"
+        "dex",
+        "wis"
       ],
       "amount": 1,
       "max_score": 20
@@ -1291,7 +1321,8 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
@@ -1361,11 +1392,38 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "grants_spells": {
+      "fixed": [
+        "Invisibility"
+      ],
+      "choice": {
+        "count": 1,
+        "level": 1,
+        "schools": [
+          "Illusion",
+          "Necromancy"
+        ]
+      },
+      "free_cast": {
+        "Invisibility": {
+          "count": 1,
+          "recharge": "long_rest"
+        },
+        "__choice": {
+          "count": 1,
+          "recharge": "long_rest"
+        }
+      }
+    },
+    "casting_ability": "the ability increased by this feat",
+    "free_cast_note": "each of the two spells can be cast once without a slot per long rest; otherwise cast normally using slots of the appropriate level",
+    "counts_against_known_spells": false
   },
   "Sharpshooter": {
     "id": "pub24_feat-sharpshooter",
@@ -1574,7 +1632,8 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
@@ -1605,11 +1664,24 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "grants_spells": {
+      "fixed": [
+        "Mage Hand"
+      ],
+      "casting_ability": "the ability increased by this feat",
+      "free_cast": {
+        "Mage Hand": {
+          "at_will": true
+        }
+      }
+    },
+    "free_cast_note": "Mage Hand is cast at will, without verbal or somatic components; the hand can be made invisible; if you already knew Mage Hand its range increases by 30 ft"
   },
   "Telepathic": {
     "id": "pub24_feat-telepathic",
@@ -1626,11 +1698,25 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "grants_spells": {
+      "fixed": [
+        "Detect Thoughts"
+      ],
+      "casting_ability": "the ability increased by this feat",
+      "free_cast": {
+        "Detect Thoughts": {
+          "count": 1,
+          "recharge": "long_rest"
+        }
+      }
+    },
+    "free_cast_note": "Detect Thoughts can be cast once per long rest without a slot or components; can also be cast with a 2nd-level-or-higher slot"
   },
   "Thrown Weapon Fighting": {
     "id": "pub24_feat-thrown-weapon-fighting",
@@ -1701,7 +1787,8 @@
     "ability_score_increase": {
       "choice_of": [
         "int",
-        "wis"
+        "wis",
+        "cha"
       ],
       "amount": 1,
       "max_score": 20

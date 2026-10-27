@@ -86,7 +86,7 @@ function darkvisionOf(species) {
 }
 
 function oldSpeciesTraitKeys(genus, subgenus) {
-  const sp = loadSpecies(genus)
+  const sp = loadSpecies(genus, '2014')
   if (!sp) return { ids: new Set(), names: new Set() }
   const traits = [...(sp.traits || [])]
   for (const sub of sp.subraces || []) traits.push(...(sub.traits || []))

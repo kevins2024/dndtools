@@ -12,23 +12,24 @@ const {
   isLegacyFallback,
 } = require('../rules/5e/ruleset')
 
-test('2014 stays the default so every existing caller keeps its behaviour', () => {
-  assert.equal(DEFAULT_RULESET, '2014')
+test('2024 is the default; the 2014 tree is only the fallback for what 2024 did not rewrite', () => {
+  assert.equal(DEFAULT_RULESET, '2024')
   assert.deepEqual([...RULESETS].sort(), ['2014', '2024'])
 })
 
-test('normalizeRuleset accepts numbers/strings and rejects unknown rulesets', () => {
-  assert.equal(normalizeRuleset(undefined), '2014')
-  assert.equal(normalizeRuleset(null), '2014')
+test('normalizeRuleset defaults to 2024, accepts numbers/strings and rejects unknown rulesets', () => {
+  assert.equal(normalizeRuleset(undefined), '2024')
+  assert.equal(normalizeRuleset(null), '2024')
+  assert.equal(normalizeRuleset(2014), '2014')
   assert.equal(normalizeRuleset(2024), '2024')
   assert.equal(normalizeRuleset('2024'), '2024')
   assert.throws(() => normalizeRuleset('3.5'), /ruleset/i)
 })
 
-test('rulesetOf reads a character, defaulting to 2014 until it is migrated', () => {
-  assert.equal(rulesetOf({ name: 'Vaz' }), '2014')
-  assert.equal(rulesetOf({ name: 'Vaz', ruleset: '2024' }), '2024')
-  assert.equal(rulesetOf(null), '2014')
+test('rulesetOf reads a character, defaulting to 2024', () => {
+  assert.equal(rulesetOf({ name: 'Vaz' }), '2024')
+  assert.equal(rulesetOf({ name: 'Vaz', ruleset: '2014' }), '2014')
+  assert.equal(rulesetOf(null), '2024')
 })
 
 test('2014 data paths point at the original data/5e tree', () => {

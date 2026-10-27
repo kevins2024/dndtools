@@ -31,6 +31,7 @@ const SPELL_FIELD = {
   ranger: 'bonus_spells_by_level',
   warlock: 'patron_spells_by_level',
   sorcerer: 'bonus_spells_by_level',
+  artificer: 'subclass_spells_by_level',
 }
 const ORDINAL = { '1st': 1, '2nd': 2, '3rd': 3, '4th': 4, '5th': 5 }
 // Cantrip counts are prose on the page ("You know two cantrips ... another at

@@ -58,13 +58,13 @@ test('class lists follow the 2024 pages: Bless is Cleric/Paladin, Detect Magic i
   assert.equal(isSpellOnClassList('Wizard', 'Bless', '2024'), false)
 })
 
-test('2014 lookups are unchanged and 2024 falls back to a 2014 spell the PHB did not carry, tagged legacy', () => {
-  assert.equal(findSpellRecord('Fireball').ruleset, undefined)
-  assert.match(findSpellRecord('Fireball').range, /150/)
-  const old = findSpellRecord("Abi-Dalzim's Horrid Wilting", '2024')
+test('lookups default to 2024 and fall back to a 2014 spell the PHB did not carry, tagged legacy', () => {
+  assert.equal(findSpellRecord('Fireball', '2014').ruleset, undefined)
+  assert.match(findSpellRecord('Fireball', '2014').range, /150/)
+  const old = findSpellRecord("Abi-Dalzim's Horrid Wilting")
   assert.ok(old)
   assert.equal(old.legacy, true)
-  assert.equal(findSpellRecord('Not A Spell', '2024'), null)
+  assert.equal(findSpellRecord('Not A Spell'), null)
 })
 
 test('spell pickers use the 2024 class lists', () => {
@@ -94,7 +94,6 @@ test('effectiveMaxSpellLevel under 2024: a level-1 Paladin already has 1st-level
     effectiveMaxSpellLevel({ className: 'Paladin', level: 1, ruleset: '2024' }),
     1
   )
-  assert.equal(effectiveMaxSpellLevel({ className: 'Paladin', level: 1 }), 0) // 2014
   assert.equal(
     effectiveMaxSpellLevel({ className: 'Warlock', level: 5, ruleset: '2024' }),
     3

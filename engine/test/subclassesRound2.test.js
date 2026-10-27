@@ -12,10 +12,7 @@ test('Oath of the Ancients matches Chuknora-relevant verified data', () => {
     'Oath of the Ancients',
     3
   )
-  assert.deepEqual(at3, [
-    "Channel Divinity: Nature's Wrath",
-    'Channel Divinity: Turn the Faithless',
-  ])
+  assert.deepEqual(at3, ["Nature's Wrath", 'Oath of the Ancients Spells'])
   const sub = engine.loadSubclass('Paladin', 'Oath of the Ancients')
   assert.deepEqual(sub.oath_spells_by_level['3'], [
     'Ensnaring Strike',
@@ -33,24 +30,27 @@ test('Path of the Giant now has all 4 feature-slot levels filled (previously onl
   )
 })
 
-test('Great Old One resolves under the name actually used on the roster ("Great Old One", not "The Great Old One")', () => {
+test('the old roster name "Great Old One" resolves to the 2024 Great Old One Patron', () => {
   const sub = engine.loadSubclass('Warlock', 'Great Old One')
   assert.ok(sub)
-  assert.deepEqual(sub.features_by_level['1'], ['Awakened Mind'])
+  assert.equal(sub.name, 'Great Old One Patron')
+  assert.ok(sub.features_by_level['3'].includes('Awakened Mind'))
 })
 
-test("Life Domain and Tempest Domain both line up with Cleric's own subclass_feature_levels [1,2,6,8,17]", () => {
+test("Life Domain lines up with Cleric's own subclass_feature_levels; the legacy Tempest Domain keeps its 8th-level Divine Strike", () => {
   const cleric = engine.loadClass('Cleric')
-  for (const name of ['Life Domain', 'Tempest Domain']) {
-    const sub = engine.loadSubclass('Cleric', name)
-    const levels = Object.keys(sub.features_by_level).map(Number)
-    for (const lvl of levels) {
-      assert.ok(
-        cleric.subclass_feature_levels.includes(lvl),
-        `${name} has a slot at ${lvl}`
-      )
-    }
-  }
+  const life = engine.loadSubclass('Cleric', 'Life Domain')
+  for (const lvl of Object.keys(life.features_by_level).map(Number))
+    assert.ok(
+      cleric.subclass_feature_levels.includes(lvl),
+      `Life Domain has a slot at ${lvl}`
+    )
+  const tempest = engine.loadSubclass('Cleric', 'Tempest Domain')
+  assert.equal(tempest.legacy, true)
+  assert.deepEqual(
+    Object.keys(tempest.features_by_level).map(Number),
+    [3, 6, 8, 17]
+  )
 })
 
 test("Revven's actual Tempest Domain spell list matches the verified domain_spells_by_level table exactly", () => {

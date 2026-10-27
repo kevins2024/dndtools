@@ -82,7 +82,8 @@ const assertSheet = (character, tag) => {
 const describe = (list) =>
   list.map((i) => `[${i.severity}] ${i.code}: ${i.message}`).join('\n')
 
-for (const ruleset of ['2014', '2024']) {
+{
+  const ruleset = '2024'
   const classes = listClasses(ruleset).map((c) =>
     typeof c === 'string' ? c : c.name
   )
@@ -149,7 +150,8 @@ const PLANS = [
     ['Rogue', 'Arcane Trickster', 4],
   ],
 ]
-for (const ruleset of ['2014', '2024']) {
+{
+  const ruleset = '2024'
   for (const plan of PLANS) {
     const label = plan.map(([c, , n]) => `${c} ${n}`).join(' / ')
     test(`${ruleset} multiclass ${label} passes the legality audit at every level`, () => {
@@ -209,7 +211,7 @@ test('Tough adds 2 HP per character level, retroactively, when taken at a level-
   assert.equal(t.patch.hp_max - before, withoutTough + 2 * 4)
 })
 
-test('Draconic Resilience adds 1 HP per Sorcerer level (2014 from level 1; 2024 from level 3)', () => {
+test('Draconic Resilience adds 1 HP per Sorcerer level from level 3', () => {
   const hp = (ruleset, subclass, lvl) =>
     buildCharacter({ className: 'Sorcerer', subclass, toLevel: lvl, ruleset })
       .character.hp_max
@@ -220,13 +222,11 @@ test('Draconic Resilience adds 1 HP per Sorcerer level (2014 from level 1; 2024 
       toLevel: lvl,
       ruleset,
     }).character.hp_max
-  assert.equal(hp('2014', 'Draconic Bloodline', 1) - plain('2014', 1), 1)
-  assert.equal(hp('2014', 'Draconic Bloodline', 5) - plain('2014', 5), 5)
   assert.equal(hp('2024', 'Draconic Sorcery', 3) - plain('2024', 3), 3)
   assert.equal(hp('2024', 'Draconic Sorcery', 5) - plain('2024', 5), 5)
 })
 
-test('2024 Dwarf: Dwarven Toughness gives +1 HP per level (species data, not the 2014 Hill Dwarf)', () => {
+test('2024 Dwarf: Dwarven Toughness gives +1 HP per level', () => {
   const { diffLevelUp } = require('../rules/5e/diffLevelUp')
   const base = { ...blank('Fighter', null, '2024') }
   const human = diffLevelUp(base, {
@@ -265,16 +265,6 @@ test("2024 Paladin always has Divine Smite prepared from level 2; Ranger always 
       (s) => s.name === "Hunter's Mark" && s.featureGranted
     )
   )
-  const old = buildCharacter({
-    className: 'Paladin',
-    subclass: 'Oath of Devotion',
-    toLevel: 2,
-    ruleset: '2014',
-  })
-  assert.ok(
-    !old.character.spells.some((s) => s.name === 'Divine Smite'),
-    '2014 Divine Smite is a feature, not a spell'
-  )
 })
 
 test('2024 Warlock patron spells are always prepared and derived from the subclass', () => {
@@ -296,19 +286,6 @@ test('2024 Warlock patron spells are always prepared and derived from the subcla
     'Phantasmal Force',
     "Tasha's Hideous Laughter",
   ])
-})
-
-test('Bard Magical Secrets picks are part of the Spells Known number, not on top of it (2014)', () => {
-  const { character } = buildCharacter({
-    className: 'Bard',
-    subclass: 'College of Lore',
-    toLevel: 10,
-    ruleset: '2014',
-  })
-  const leveled = character.spells.filter(
-    (s) => s.level > 0 && !s.featureGranted
-  )
-  assert.equal(leveled.length, 14)
 })
 
 test('2024 Bard, Sorcerer and Warlock pick their prepared spells at level-up from the class table', () => {

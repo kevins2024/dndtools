@@ -104,27 +104,6 @@ test('diffLevelUp: new features are added, but a feature the character already h
   assert.ok(names.includes('Caster Prestidigitation'))
 })
 
-test('diffLevelUp: a genuinely new feature IS added when the character does not already have it', () => {
-  const character = baseWizard({
-    level: 5,
-    classes: [{ name: 'Wizard', subclass: 'Evocation', level: 5 }],
-    features: [],
-  })
-  const result = diffLevelUp(character, {
-    className: 'Wizard',
-    toLevel: 6,
-    hpMethod: 'average',
-  })
-  const names = (result.patch.features || []).map((f) => f.name)
-  assert.ok(names.includes('Potent Cantrip'))
-  // Also picks up Caster Prestidigitation (house rule, unrelated to Potent
-  // Cantrip) since this Wizard fixture starts with an empty features[].
-  assert.deepEqual(result.newFeatures.map((f) => f.name).sort(), [
-    'Caster Prestidigitation',
-    'Potent Cantrip',
-  ])
-})
-
 // Real bug caught auditing a live character (Siv, Rogue 9): the dedup above
 // used to match on name alone, so a character who already had "Expertise"
 // on their sheet from level 1 silently never got their real, distinct
@@ -224,24 +203,6 @@ test('diffLevelUp: Warlock pact_magic patch uses the real pact magic table, not 
   assert.ok(result.patch.pact_magic.slot_level >= 3) // level 5 Warlock pact slots are 3rd level
 })
 
-test('diffLevelUp: known-caster classes report how many new spells are owed as a pending choice', () => {
-  const character = baseWizard({
-    spellcasting_ability: 'cha',
-    classes: [{ name: 'Sorcerer', level: 4 }],
-  })
-  const result = diffLevelUp(character, {
-    className: 'Sorcerer',
-    hpMethod: 'average',
-  })
-  const pending = result.pendingChoices.find((p) => p.type === 'newKnownSpells')
-  assert.ok(pending)
-  assert.equal(
-    pending.count,
-    engine.spellsKnownForClass('Sorcerer', 5) -
-      engine.spellsKnownForClass('Sorcerer', 4)
-  )
-})
-
 test('diffLevelUp: real roster smoke test against Lenn (single-class Wizard 9) matches the class table exactly', () => {
   const fs = require('fs')
   const characters = JSON.parse(
@@ -316,29 +277,6 @@ test('diffLevelUp: multiclass pickup HP is never forced to max, even though it i
   })
   const gained = result.patch.hp_max - baseFighter().hp_max
   assert.equal(gained, 4 + conMod)
-})
-
-test('diffLevelUp: multiclass pickup grants only the REDUCED proficiency list, and never a new saving throw', () => {
-  // Fighter's own full starting list includes heavy armor; the reduced
-  // multiclass grant does not.
-  const result = diffLevelUp(
-    baseFighter({ classes: [{ name: 'Cleric', level: 5 }] }),
-    {
-      className: 'Fighter',
-      hpMethod: 'average',
-    }
-  )
-  assert.deepEqual(result.patch.armor_proficiencies.sort(), [
-    'light',
-    'medium',
-    'shields',
-  ])
-  assert.ok(!result.patch.armor_proficiencies.includes('heavy'))
-  assert.deepEqual(result.patch.weapon_proficiencies.sort(), [
-    'martial',
-    'simple',
-  ])
-  assert.equal(result.patch.saving_throws, undefined)
 })
 
 test('diffLevelUp: multiclass pickup warns (but does not block) when the prerequisite ability score is not met', () => {

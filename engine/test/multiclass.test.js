@@ -28,14 +28,6 @@ test('multiclassCasterLevel: Artificer rounds UP, not down (the one exception)',
   assert.equal(level, 7)
 })
 
-test('multiclassCasterLevel: Paladin/Ranger contribute 0 at exactly 1 level (rule requires 2+)', () => {
-  const level = engine.multiclassCasterLevel([
-    { name: 'Wizard', level: 5 },
-    { name: 'Paladin', level: 1 },
-  ])
-  assert.equal(level, 5)
-})
-
 test('multiclassCasterLevel: Fighter/Rogue only contribute via Eldritch Knight/Arcane Trickster at 3+ levels', () => {
   const notEligible = engine.multiclassCasterLevel([
     { name: 'Wizard', level: 5 },

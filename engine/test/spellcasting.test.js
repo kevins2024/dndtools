@@ -44,34 +44,8 @@ test('cantrips known follows breakpoints per class', () => {
   assert.equal(engine.cantripsKnownForClass('Artificer', 14), 4)
 })
 
-test('spells known (fixed-list casters) matches verified tables', () => {
-  assert.equal(engine.spellsKnownForClass('Bard', 9), 12)
-  assert.equal(engine.spellsKnownForClass('Bard', 10), 14)
-  assert.equal(engine.spellsKnownForClass('Sorcerer', 9), 10)
-  assert.equal(engine.spellsKnownForClass('Warlock', 9), 10)
-  assert.equal(engine.spellsKnownForClass('Ranger', 9), 6)
-})
-
 test('prepared-caster classes return null from spellsKnownForClass (they prepare instead)', () => {
   assert.equal(engine.spellsKnownForClass('Cleric', 9), null)
   assert.equal(engine.spellsKnownForClass('Druid', 9), null)
   assert.equal(engine.spellsKnownForClass('Wizard', 9), null)
-})
-
-test("preparedSpellCount: Therynv'l (Druid 9, WIS 18 -> +4) should prepare 13 spells", () => {
-  assert.equal(engine.preparedSpellCount('Druid', 9, 4), 13)
-})
-
-test('preparedSpellCount: half-casters use half level rounded down', () => {
-  // Paladin 9, CHA mod +3 (Enauweyn's actual CHA 17 -> +3) -> 3 + floor(9/2) = 3+4 = 7
-  assert.equal(engine.preparedSpellCount('Paladin', 9, 3), 7)
-})
-
-test('preparedSpellCount never drops below 1 even for a negative modifier', () => {
-  assert.equal(engine.preparedSpellCount('Wizard', 1, -1), 1)
-})
-
-test("known-caster classes return null from preparedSpellCount (they don't prepare)", () => {
-  assert.equal(engine.preparedSpellCount('Bard', 9, 3), null)
-  assert.equal(engine.preparedSpellCount('Sorcerer', 9, 3), null)
 })

@@ -10,41 +10,15 @@
       "pub24_sub_artificer-alchemist-alchemist-spells",
       "pub24_sub_artificer-alchemist-experimental-elixir"
     ],
-    "5": [
-      "pub24_sub_artificer-alchemist-alchemical-savant"
-    ],
-    "9": [
-      "pub24_sub_artificer-alchemist-restorative-reagents"
-    ],
-    "15": [
-      "pub24_sub_artificer-alchemist-chemical-mastery"
-    ]
+    "5": ["pub24_sub_artificer-alchemist-alchemical-savant"],
+    "9": ["pub24_sub_artificer-alchemist-restorative-reagents"],
+    "15": ["pub24_sub_artificer-alchemist-chemical-mastery"]
   },
-  "spell_tables_unmapped": [
-    {
-      "title": "Alchemist Spells",
-      "byLevel": {
-        "3": [
-          "Healing Word",
-          "Ray of Sickness"
-        ],
-        "5": [
-          "Flaming Sphere",
-          "Melf's Acid Arrow"
-        ],
-        "9": [
-          "Gaseous Form",
-          "Mass Healing Word"
-        ],
-        "13": [
-          "Death Ward",
-          "Vitriolic Sphere"
-        ],
-        "17": [
-          "Cloudkill",
-          "Raise Dead"
-        ]
-      }
-    }
-  ]
+  "subclass_spells_by_level": {
+    "3": ["Healing Word", "Ray of Sickness"],
+    "5": ["Flaming Sphere", "Melf's Acid Arrow"],
+    "9": ["Gaseous Form", "Mass Healing Word"],
+    "13": ["Death Ward", "Vitriolic Sphere"],
+    "17": ["Cloudkill", "Raise Dead"]
+  }
 }

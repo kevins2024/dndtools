@@ -28,27 +28,18 @@ test('subclass file/name slug consistency: every file matches slugify(class, nam
   }
 })
 
-test('Bladesinger resolves under the name actually used on the roster ("Bladesinger", not "Bladesinging")', () => {
+test('Bladesinger resolves under the name actually used on the roster, with its 2024 third-level features', () => {
   const sub = engine.loadSubclass('Wizard', 'Bladesinger')
   assert.ok(sub)
-  assert.deepEqual(sub.features_by_level['2'], [
-    'Bladesinger — Training in War and Song',
+  assert.deepEqual(sub.features_by_level['3'], [
     'Bladesong',
+    'Training in War and Song',
   ])
 })
 
-test('Tackett\'s actual Circle of Stars features resolve under "Circle of Stars" (not "Circle of the Stars")', () => {
-  // The roster as it was on the 2014 rules (the live file is on 2024 now).
-  const characters = require('./fixtures/roster2014.json')
-  const tackett = characters.find((c) => c.name === 'Tackett')
+test('The roster name "Circle of Stars" resolves to the 2024 Circle of the Stars', () => {
   const sub = engine.loadSubclass('Druid', 'Circle of Stars')
   assert.ok(sub)
-  const allNames = Object.values(sub.features_by_level).flat()
-  const overlap = allNames.filter((n) =>
-    tackett.features.some((f) => f.name === n)
-  )
-  assert.ok(
-    overlap.length > 0,
-    "at least some Circle of Stars features should match Tackett's real data"
-  )
+  assert.equal(sub.name, 'Circle of the Stars')
+  assert.deepEqual(sub.features_by_level['3'], ['Star Map', 'Starry Form'])
 })

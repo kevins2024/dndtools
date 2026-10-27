@@ -193,7 +193,11 @@ function parseSections(lines) {
   for (const line of lines) {
     const m = /^Level (\d+): (.+)$/i.exec(line)
     if (m) {
-      cur = { level: Number(m[1]), name: m[2].trim(), body: [] }
+      cur = {
+        level: Number(m[1]),
+        name: m[2].trim().replace(/\.$/, ''),
+        body: [],
+      }
       sections.push(cur)
     } else if (cur && /^(Barbarian|[A-Z][a-z]+) Subclasses$/.test(line)) {
       cur = null

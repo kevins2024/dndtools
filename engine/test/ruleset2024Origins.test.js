@@ -40,7 +40,7 @@ test('2024 species have no ability score bonus — that moved to backgrounds', (
     assert.equal(sp.ability_score_bonus, undefined, n)
   }
   // 2014 is untouched: an Elf still gets +2 Dexterity.
-  assert.deepEqual(loadSpecies('Elf').ability_score_bonus, { dex: 2 })
+  assert.deepEqual(loadSpecies('Elf', '2014').ability_score_bonus, { dex: 2 })
 })
 
 test('2024 Elf: Humanoid, Medium, speed 30, five traits', () => {
@@ -102,7 +102,7 @@ test('a species the 2024 PHB dropped (Half-Elf, Half-Orc) loads as legacy under 
   const he = loadSpecies('Half-Elf', '2024')
   assert.ok(he)
   assert.equal(he.legacy, true)
-  assert.equal(loadSpecies('Half-Elf').legacy, undefined)
+  assert.equal(loadSpecies('Half-Elf', '2014').legacy, undefined)
 })
 
 test('listSpecies(2024): rewritten species once, legacy ones kept', () => {
@@ -113,17 +113,16 @@ test('listSpecies(2024): rewritten species once, legacy ones kept', () => {
       list.includes('Half-Orc')
   )
   assert.equal(list.filter((n) => n === 'Elf').length, 1)
-  assert.equal(listSpecies().length, 11) // 2014 list unchanged
+  assert.equal(listSpecies('2014').length, 11) // the 2014 file itself is unchanged
 })
 
-test('applySpeciesBonus is a no-op under 2024 (legacy species included)', () => {
+test('applySpeciesBonus is a no-op (legacy species included)', () => {
   const scores = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 }
   assert.deepEqual(applySpeciesBonus(scores, 'Elf', {}, '2024').scores, scores)
   assert.deepEqual(
     applySpeciesBonus(scores, 'Half-Orc', {}, '2024').scores,
     scores
   )
-  assert.equal(applySpeciesBonus(scores, 'Elf', {}).scores.dex, 12) // 2014 unchanged
 })
 
 // ── Backgrounds ─────────────────────────────────────────────────────────
@@ -198,13 +197,13 @@ test('2024 feat catalog: 10 origin, 43 general, 10 fighting style, 12 epic boon 
   )
 })
 
-test('feats default to the 2014 catalog; 2024 returns the rewrite, or the legacy 2014 feat if unrewritten', () => {
-  assert.equal(loadFeat('Alert').stat_bonuses.initiative, 5)
-  assert.equal(loadFeat('Alert', '2024').category, 'origin')
-  const legacy = loadFeat('Metamagic Adept', '2024')
+test('feats default to the 2024 rewrite, or the legacy 2014 feat if it was not rewritten', () => {
+  assert.equal(loadFeat('Alert').category, 'origin')
+  assert.equal(loadFeat('Alert', '2014').stat_bonuses.initiative, 5)
+  const legacy = loadFeat('Metamagic Adept')
   assert.ok(legacy)
   assert.equal(legacy.legacy, true)
-  assert.equal(loadFeat('No Such Feat', '2024'), null)
+  assert.equal(loadFeat('No Such Feat'), null)
 })
 
 test('2024 feat prerequisites: character level, ability scores, "or" lists, spellcasting', () => {
@@ -303,9 +302,14 @@ test('2024 feats raise an ability by 1 (cap 20; Epic Boons cap 30); the cap come
 })
 
 test('every 2024 feat has a published_features entry and a catalog name, and vice versa', () => {
-  const published = require(
-    path.join(__dirname, '..', '..', 'src', 'data', 'published_features.json')
-  )
+  const published = require(path.join(
+    __dirname,
+    '..',
+    '..',
+    'src',
+    'data',
+    'published_features.json'
+  ))
   const catalog = require('../data/5e/feature-catalog.json')
   const feats = listFeats('2024').filter((f) => f.ruleset === '2024')
   const pub = published.filter(
