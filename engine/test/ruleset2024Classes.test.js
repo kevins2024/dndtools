@@ -156,7 +156,13 @@ const {
 test('2024 Path of the Berserker: Frenzy 3, Mindless Rage 6, Retaliation 10, Intimidating Presence 14', () => {
   const s = loadSubclass('Barbarian', 'Path of the Berserker', '2024')
   assert.equal(s.ruleset, '2024')
-  const at = (l) => subclassFeaturesGainedAtLevel('Barbarian', 'Path of the Berserker', l, '2024')
+  const at = (l) =>
+    subclassFeaturesGainedAtLevel(
+      'Barbarian',
+      'Path of the Berserker',
+      l,
+      '2024'
+    )
   assert.deepEqual(at(3), ['Frenzy'])
   assert.deepEqual(at(6), ['Mindless Rage'])
   assert.deepEqual(at(10), ['Retaliation'])
@@ -167,14 +173,20 @@ test('the 2014 subclass name still resolves under 2024 via the alias table', () 
   const s = loadSubclass('Barbarian', 'Berserker', '2024')
   assert.equal(s.name, 'Path of the Berserker')
   // ...and under 2014 it is still the old file, with Retaliation at 14.
-  assert.deepEqual(subclassFeaturesGainedAtLevel('Barbarian', 'Berserker', 14), ['Retaliation'])
+  assert.deepEqual(
+    subclassFeaturesGainedAtLevel('Barbarian', 'Berserker', 14),
+    ['Retaliation']
+  )
 })
 
 test('a subclass the 2024 rules did not rewrite loads as legacy under 2024', () => {
   const s = loadSubclass('Barbarian', 'Path of the Giant', '2024')
   assert.ok(s)
   assert.equal(s.legacy, true)
-  assert.equal(loadSubclass('Barbarian', 'Path of the Giant'), loadSubclass('Barbarian', 'Path of the Giant', '2014'))
+  assert.equal(
+    loadSubclass('Barbarian', 'Path of the Giant'),
+    loadSubclass('Barbarian', 'Path of the Giant', '2014')
+  )
 })
 
 test('listSubclasses(2024) has each rewritten subclass once and keeps the legacy ones', () => {
@@ -184,4 +196,62 @@ test('listSubclasses(2024) has each rewritten subclass once and keeps the legacy
   assert.ok(names.includes('Path of the Giant'))
   // 2014 "Berserker" is replaced by its 2024 rewrite, not listed twice.
   assert.ok(!names.includes('Berserker'))
+})
+
+// ── Legacy subclasses start at 3rd level under 2024 ─────────────────────
+
+test('a legacy subclass that began before 3rd level has its early features folded into 3rd (2024 picks every subclass at 3)', () => {
+  const t14 = loadSubclass('Cleric', 'Tempest Domain')
+  assert.ok(
+    Object.keys(t14.features_by_level).some((l) => Number(l) < 3),
+    'sanity: the 2014 domain starts at 1'
+  )
+  const t24 = loadSubclass('Cleric', 'Tempest Domain', '2024')
+  assert.equal(t24.legacy, true)
+  assert.ok(Object.keys(t24.features_by_level).every((l) => Number(l) >= 3))
+  // everything the 2014 domain gave at 1st and 2nd is now at 3rd
+  const early14 = Object.entries(t14.features_by_level)
+    .filter(([l]) => Number(l) < 3)
+    .flatMap(([, n]) => n)
+  for (const name of early14)
+    assert.ok(t24.features_by_level['3'].includes(name), name)
+  assert.equal(
+    t24.features_by_level['3'].length,
+    t24.features_by_level_ids['3'].length
+  )
+  // domain spells too
+  assert.ok(
+    Object.keys(t24.domain_spells_by_level).every((l) => Number(l) >= 3)
+  )
+  assert.ok(
+    t24.domain_spells_by_level['3'].length >
+      t14.domain_spells_by_level['3'].length
+  )
+})
+
+test('describeLevelUp for a 2024 character who takes a legacy Cleric domain at 3rd gets the whole early package then', () => {
+  const r = describeLevelUp({
+    className: 'Cleric',
+    subclassName: 'Tempest Domain',
+    fromLevel: 2,
+    toLevel: 3,
+    ruleset: '2024',
+    hpMethod: 'average',
+  })
+  const names = r.subclassFeaturesGained.flatMap((g) => g.names)
+  assert.ok(names.includes('Wrath of the Storm'))
+})
+
+test('legacy subclasses that already start at 3rd are untouched; 2014 loads are never shifted', () => {
+  const g24 = loadSubclass('Barbarian', 'Path of the Giant', '2024')
+  const g14 = loadSubclass('Barbarian', 'Path of the Giant')
+  assert.deepEqual(g24.features_by_level, g14.features_by_level)
+  assert.equal(
+    loadSubclass('Wizard', 'War Magic').features_by_level['2'].length > 0,
+    true
+  )
+  assert.equal(
+    loadSubclass('Wizard', 'War Magic', '2024').features_by_level['2'],
+    undefined
+  )
 })

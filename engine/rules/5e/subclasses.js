@@ -40,6 +40,40 @@ function resolveFeatureIds(data) {
 }
 
 const subclassCache = new Map()
+
+// 2024 gives every class its subclass at 3rd level; 2014 Clerics, Sorcerers and
+// Warlocks chose at 1st and Wizards and Druids at 2nd. A legacy subclass played
+// under 2024 therefore receives everything it would have given before 3rd level
+// at 3rd instead — features, ids and its always-prepared spell tables alike.
+// Any `<something>_by_level` map keyed by character level is folded the same way.
+function shiftEarlyLevels(data, minLevel) {
+  const out = { ...data }
+  let shifted = false
+  for (const [field, value] of Object.entries(data)) {
+    if (!/_by_level(_ids)?$/.test(field) || !value || typeof value !== 'object')
+      continue
+    const early = Object.keys(value).filter(
+      (k) => /^\d+$/.test(k) && Number(k) < minLevel
+    )
+    if (!early.length) continue
+    shifted = true
+    const next = {}
+    const bucket = []
+    for (const k of Object.keys(value).sort((a, b) => Number(a) - Number(b))) {
+      if (/^\d+$/.test(k) && Number(k) < minLevel) {
+        if (Array.isArray(value[k])) bucket.push(...value[k])
+        else next[k] = value[k]
+      } else next[k] = value[k]
+    }
+    if (bucket.length) {
+      const own = Array.isArray(next[minLevel]) ? next[minLevel] : []
+      next[minLevel] = [...bucket, ...own]
+    }
+    out[field] = next
+  }
+  if (shifted) out.level_shifted_to = minLevel
+  return out
+}
 const SUBCLASSES_DIR_2024 = path.join(
   __dirname,
   '..',
@@ -78,7 +112,8 @@ function loadSubclass(className, subclassName, ruleset) {
   if (!fs.existsSync(file)) return null
   const raw = JSON.parse(fs.readFileSync(file, 'utf8'))
   let data = resolveFeatureIds(raw)
-  if (isLegacyFallback(rs, rel)) data = { ...data, legacy: true }
+  if (isLegacyFallback(rs, rel))
+    data = { ...shiftEarlyLevels(data, 3), legacy: true }
   subclassCache.set(key, data)
   return data
 }
@@ -115,7 +150,12 @@ function listSubclasses(ruleset) {
     }
   }
   return [...files.values()].map((file) => {
-    const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const raw = JSON.parse(fs.readFileSync(file, 'utf8'))
+    // Legacy subclasses start at 3rd level under 2024 (see shiftEarlyLevels).
+    const data =
+      normalizeRuleset(ruleset) === '2024' && raw.ruleset !== '2024'
+        ? shiftEarlyLevels(raw, 3)
+        : raw
     const entry = {
       class: data.class,
       name: data.name,
