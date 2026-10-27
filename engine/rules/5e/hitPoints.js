@@ -15,8 +15,26 @@
 // Zero dependencies (no fs/path, no other rule file) — browser code
 // require()s this directly; see src/utils/hitPoints.js.
 
-function effectiveMaxHp(character) {
-  return (character.hp_max ?? 0) + (character.hp_max_modifier ?? 0)
+// A magic item that changes Constitution while worn (Amulet of Health, Belt of
+// Constitution) changes the modifier, and so the maximum HP by 1 per level per point
+// of modifier. `effectiveCon` is the score with items applied (characterStats'
+// resolveEffectiveStats); omit it to ignore items.
+function conHpFromItems(character, effectiveCon) {
+  if (effectiveCon == null) return 0
+  const mod = (n) => Math.floor((n - 10) / 2)
+  const levels = (character.classes || []).reduce(
+    (n, c) => n + (c.level || 0),
+    0
+  )
+  return (mod(effectiveCon) - mod(character.stat_con ?? 10)) * levels
+}
+
+function effectiveMaxHp(character, effectiveCon) {
+  return (
+    (character.hp_max ?? 0) +
+    (character.hp_max_modifier ?? 0) +
+    conHpFromItems(character, effectiveCon)
+  )
 }
 
 // PHB p. 198: temp HP is lost first, any remainder carries to real HP. The
@@ -97,6 +115,7 @@ function concentrationDC(damage) {
 
 module.exports = {
   effectiveMaxHp,
+  conHpFromItems,
   absorbTempHp,
   applyDamage,
   applyHealing,

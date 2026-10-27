@@ -230,7 +230,8 @@ function reconstructLevelHistory(character) {
         const inc = (character.ability_score_history || []).filter(
           (h) =>
             /Ability Score Improvement/i.test(h.source || '') &&
-            Number(h.level_gained) === lvl
+            Number(h.level_gained) === lvl &&
+            (!h.class || h.class === c.name)
         )
         const feat = features.find(
           (f) =>
@@ -243,6 +244,7 @@ function reconstructLevelHistory(character) {
               .map((h) => `+${h.amount} ${String(h.ability).toUpperCase()}`)
               .join(', '),
             source: 'Ability Score Improvement',
+            ...(inc.some((h) => h.inferred) ? { inferred: true } : {}),
           })
         else if (feat) choices.push({ type: 'feat', detail: feat.name })
         else choices.push({ type: 'asi-or-feat', detail: 'unrecorded' })

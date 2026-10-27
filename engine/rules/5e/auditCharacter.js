@@ -865,12 +865,22 @@ function auditCharacter(character, ctx = {}) {
       ).length
     }
     const budget = 75 + 4 + 2 * slots
-    if (sum > budget)
-      add(
-        'warn',
-        'ability-budget',
-        `Ability scores total ${sum}; a 27-point buy (at most 75) + species/background bonuses (4) + ${slots} ASI slots (2 each) allows at most ${budget}. Magic items, story rewards or rolled scores would explain it — otherwise it is over.`
+    if (sum > budget) {
+      // Only a sheet that says it used a point buy can be over budget: random
+      // generation (4d6, drop the lowest) is legal in both rulesets and can reach any total.
+      const explicitPointBuy = /^point buy$/i.test(
+        character.ability_score_method || ''
       )
+      add(
+        explicitPointBuy ? 'warn' : 'info',
+        'ability-budget',
+        `Ability scores total ${sum}; a 27-point buy (at most 75) + species/background bonuses (4) + ${slots} ASI slots (2 each) allows at most ${budget}. ${
+          explicitPointBuy
+            ? 'The sheet says point buy, so something is unrecorded.'
+            : 'Legal if the scores were rolled or the DM awarded them; the method is not recorded.'
+        }`
+      )
+    }
   }
   return issues
 }

@@ -123,3 +123,16 @@ test('extra cantrips come from homebrew features and the High Elf cantrip', () =
   )
   assert.equal(extraCantrips({ genus: 'Human', features: [] }), 0)
 })
+
+test('an item that sets Constitution while worn raises maximum HP by the change in modifier per level', () => {
+  const { effectiveMaxHp } = require('../rules/5e/hitPoints')
+  const c = {
+    stat_con: 14,
+    hp_max: 67,
+    classes: [{ name: 'Artificer', level: 9 }],
+  }
+  assert.equal(effectiveMaxHp(c), 67)
+  assert.equal(effectiveMaxHp(c, 19), 67 + 2 * 9) // Amulet of Health: +2 -> +4
+  assert.equal(effectiveMaxHp(c, 12), 67 - 9)
+  assert.equal(effectiveMaxHp({ ...c, hp_max_modifier: 5 }, 14), 72)
+})
