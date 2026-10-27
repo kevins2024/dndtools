@@ -131,3 +131,14 @@ test('weapon mastery is suggested from the weapons the character wields', () => 
   const q = r.questions.find((x) => x.id.startsWith('Fighter:weaponMasteryChoice'))
   assert.deepEqual(q.pending.suggested, ['longsword', 'shortbow'])
 })
+
+test('every migrated roster character passes validateCharacter without errors', () => {
+  const { validateCharacter } = require('../rules/validateCharacter')
+  for (const src of roster) {
+    const { character } = migrateCharacterTo2024(src)
+    const issues = validateCharacter(character)
+    assert.deepEqual(issues.filter((i) => i.severity === 'error'), [], src.name)
+    // 2024 casters prepare, so the old fixed-known-spell cap no longer applies.
+    assert.ok(!issues.some((i) => /fixed-known caster/.test(i.message)), `${src.name}: 2014 known-spell cap fired on a 2024 sheet`)
+  }
+})

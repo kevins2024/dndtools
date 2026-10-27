@@ -1,6 +1,7 @@
 const { loadClass } = require('./5e/classFeatures')
 const { proficiencyBonus } = require('./5e/progression')
 const { spellsKnownForClass } = require('./5e/spellcasting')
+const { rulesetOf } = require('./5e/rulesetId')
 
 // characters.json has grown a few different conventions for "this is a free
 // bonus spell that doesn't count against the normal known-spell cap":
@@ -52,7 +53,8 @@ function validateCharacter(character) {
   const primary = character.classes[0]
   const className = primary.name
   const level = primary.level
-  const cls = loadClass(className)
+  const ruleset = rulesetOf(character)
+  const cls = loadClass(className, ruleset)
 
   if (!cls) {
     issues.push({
@@ -87,7 +89,7 @@ function validateCharacter(character) {
           "check skipped (can't determine which class's saves should be present).",
       })
     } else {
-      const startedCls = loadClass(startedEntry.name)
+      const startedCls = loadClass(startedEntry.name, ruleset)
       if (startedCls) {
         const actualSaves = new Set(character.saving_throws || [])
         for (const save of startedCls.saving_throw_proficiencies) {
@@ -124,18 +126,18 @@ function validateCharacter(character) {
   // them, so there's no way to split the list and check each pool — flagged
   // as info instead of guessed at.
   const knownCasterClasses = character.classes.filter((c) => {
-    const classData = loadClass(c.name)
+    const classData = loadClass(c.name, ruleset)
     return (
       classData &&
       classData.spellcasting &&
       classData.spellcasting.type !== 'none' &&
-      spellsKnownForClass(c.name, c.level) !== null
+      spellsKnownForClass(c.name, c.level, c.subclass, ruleset) !== null
     )
   })
 
   if (knownCasterClasses.length === 1) {
     const c = knownCasterClasses[0]
-    const knownCap = spellsKnownForClass(c.name, c.level)
+    const knownCap = spellsKnownForClass(c.name, c.level, c.subclass, ruleset)
     const spells = character.spells || []
     const countableSpells = spells.filter(
       (s) => !isCantrip(s) && !isBonusSpell(s)

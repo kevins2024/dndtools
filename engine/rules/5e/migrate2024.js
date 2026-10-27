@@ -402,6 +402,29 @@ function migrateCharacterTo2024(
     if (entry.name === 'Rogue') reseat('expertise', 'Rogue', [1, 6])
     if (entry.name === 'Sorcerer') reseat('metamagic', null, [2, 10, 17])
   }
+  // A sheet can list doubled skills in skill_expertise without a typed Expertise
+  // feature saying where they came from (Siv, Torrin...). Attribute them, in order,
+  // to the 2024 Expertise grants so they aren't asked for again.
+  {
+    const GRANTS = {
+      Rogue: [{ name: 'Expertise', level: 1, count: 2 }, { name: 'Expertise', level: 6, count: 2 }],
+      Bard: [{ name: 'Expertise', level: 2, count: 2 }, { name: 'Expertise', level: 9, count: 2 }],
+      Ranger: [{ name: 'Deft Explorer', level: 2, count: 1 }],
+    }
+    const attributed = new Set(
+      features.filter((f) => f.type === 'expertise').flatMap((f) => String(f.name).replace(/^Expertise:\s*/, '').split(/,\s*/)).map(key)
+    )
+    const loose = (character.skill_expertise || []).filter((sk) => !attributed.has(key(sk)))
+    for (const entry of classEntries) {
+      for (const g of GRANTS[entry.name] || []) {
+        if (g.level > entry.level || !loose.length) continue
+        if (features.some((f) => f.type === 'expertise' && f._source === entry.name && f.level_gained === g.level)) continue
+        const take = loose.splice(0, g.count)
+        features.push({ name: `Expertise: ${take.join(', ')}`, id: null, type: 'expertise', level_gained: g.level, _source: entry.name })
+        change('expertise', `${entry.name} ${g.level}: recorded the existing Expertise (${take.join(', ')}) as that class's grant.`)
+      }
+    }
+  }
   character.features = features
 
   // ── background & origin feat ───────────────────────────────────────────
