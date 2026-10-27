@@ -1997,5 +1997,1312 @@
     "name": "Old Scores",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "pub24_barbarian-rage": {
+    "name": "Rage",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "short_rest_regain": 1,
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Barbarian",
+      "table": "rages_by_level"
+    }
+  },
+  "pub24_barbarian-relentless-rage": {
+    "name": "Relentless Rage",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_barbarian-persistent-rage": {
+    "name": "Persistent Rage",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_bard-bardic-inspiration": {
+    "name": "Bardic Inspiration",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_bard-countercharm": {
+    "name": "Countercharm",
+    "action_type": "reaction"
+  },
+  "pub24_cleric-channel-divinity": {
+    "name": "Channel Divinity",
+    "recharge": "long_rest",
+    "short_rest_regain": 1,
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Cleric",
+      "table": "channel_divinity_by_level"
+    }
+  },
+  "pub24_cleric-divine-intervention": {
+    "name": "Divine Intervention",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_druid-wild-shape": {
+    "name": "Wild Shape",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "short_rest_regain": 1,
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Druid",
+      "table": "wild_shape_by_level"
+    }
+  },
+  "pub24_druid-wild-companion": {
+    "name": "Wild Companion",
+    "action_type": "action"
+  },
+  "pub24_druid-wild-resurgence": {
+    "name": "Wild Resurgence",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_druid-archdruid": {
+    "name": "Archdruid",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_fighter-second-wind": {
+    "name": "Second Wind",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "short_rest_regain": 1,
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Fighter",
+      "table": "second_wind_by_level"
+    }
+  },
+  "pub24_fighter-action-surge-one-use": {
+    "name": "Action Surge",
+    "action_type": "free",
+    "recharge": "short_rest",
+    "uses_max": 1,
+    "per_turn_cap": true,
+    "tier_family": "pub24-fighter-action-surge"
+  },
+  "pub24_fighter-tactical-shift": {
+    "name": "Tactical Shift",
+    "action_type": "bonus_action"
+  },
+  "pub24_fighter-indomitable-one-use": {
+    "name": "Indomitable",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "tier_family": "pub24-fighter-indomitable"
+  },
+  "pub24_fighter-indomitable-two-uses-l13": {
+    "name": "Indomitable",
+    "recharge": "long_rest",
+    "uses_max": 2,
+    "tier_family": "pub24-fighter-indomitable"
+  },
+  "pub24_fighter-action-surge-two-uses-l17": {
+    "name": "Action Surge",
+    "action_type": "free",
+    "recharge": "short_rest",
+    "uses_max": 2,
+    "per_turn_cap": true,
+    "tier_family": "pub24-fighter-action-surge"
+  },
+  "pub24_fighter-indomitable-three-uses-l17": {
+    "name": "Indomitable",
+    "recharge": "long_rest",
+    "uses_max": 3,
+    "tier_family": "pub24-fighter-indomitable"
+  },
+  "pub24_monk-monks-focus": {
+    "name": "Monk's Focus",
+    "recharge": "short_rest",
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Monk",
+      "table": "focus_points_by_level"
+    }
+  },
+  "pub24_monk-uncanny-metabolism": {
+    "name": "Uncanny Metabolism",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_monk-deflect-attacks": {
+    "name": "Deflect Attacks",
+    "action_type": "reaction"
+  },
+  "pub24_monk-slow-fall": {
+    "name": "Slow Fall",
+    "action_type": "reaction"
+  },
+  "pub24_paladin-lay-on-hands": {
+    "name": "Lay On Hands",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "level_multiple",
+      "class": "Paladin",
+      "multiplier": 5
+    }
+  },
+  "pub24_paladin-channel-divinity": {
+    "name": "Channel Divinity",
+    "recharge": "long_rest",
+    "short_rest_regain": 1,
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Paladin",
+      "table": "channel_divinity_by_level"
+    }
+  },
+  "pub24_paladin-faithful-steed": {
+    "name": "Faithful Steed",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_paladin-abjure-foes": {
+    "name": "Abjure Foes",
+    "action_type": "action"
+  },
+  "pub24_ranger-favored-enemy": {
+    "name": "Favored Enemy",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Ranger",
+      "table": "favored_enemy_by_level"
+    }
+  },
+  "pub24_ranger-tireless": {
+    "name": "Tireless",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_ranger-natures-veil": {
+    "name": "Nature's Veil",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_rogue-sneak-attack": {
+    "name": "Sneak Attack",
+    "per_turn_cap": true
+  },
+  "pub24_rogue-cunning-action": {
+    "name": "Cunning Action",
+    "action_type": "bonus_action"
+  },
+  "pub24_rogue-steady-aim": {
+    "name": "Steady Aim",
+    "action_type": "bonus_action"
+  },
+  "pub24_rogue-uncanny-dodge": {
+    "name": "Uncanny Dodge",
+    "action_type": "reaction"
+  },
+  "pub24_rogue-stroke-of-luck": {
+    "name": "Stroke of Luck",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sorcerer-innate-sorcery": {
+    "name": "Innate Sorcery",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub24_sorcerer-font-of-magic": {
+    "name": "Font of Magic",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "class_table",
+      "class": "Sorcerer",
+      "table": "sorcery_points_by_level"
+    }
+  },
+  "pub24_sorcerer-sorcerous-restoration": {
+    "name": "Sorcerous Restoration",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sorcerer-sorcery-incarnate": {
+    "name": "Sorcery Incarnate",
+    "action_type": "bonus_action"
+  },
+  "pub24_warlock-magical-cunning": {
+    "name": "Magical Cunning",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_warlock-contact-patron": {
+    "name": "Contact Patron",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_warlock-mystic-arcanum-level-6-spell": {
+    "name": "Mystic Arcanum (Level 6 Spell)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_warlock-mystic-arcanum-level-7-spell-l13": {
+    "name": "Mystic Arcanum (Level 7 Spell)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_warlock-mystic-arcanum-level-8-spell-l15": {
+    "name": "Mystic Arcanum (Level 8 Spell)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_warlock-mystic-arcanum-level-9-spell-l17": {
+    "name": "Mystic Arcanum (Level 9 Spell)",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_wizard-arcane-recovery": {
+    "name": "Arcane Recovery",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_wizard-signature-spells": {
+    "name": "Signature Spells",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_artificer-alchemist-experimental-elixir": {
+    "name": "Experimental Elixir",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_artificer-alchemist-restorative-reagents": {
+    "name": "Restorative Reagents",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_artificer-alchemist-chemical-mastery": {
+    "name": "Chemical Mastery",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_artificer-armorer-arcane-armor": {
+    "name": "Arcane Armor",
+    "action_type": "action"
+  },
+  "pub24_sub_artificer-artillerist-eldritch-cannon": {
+    "name": "Eldritch Cannon",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_artificer-artillerist-explosive-cannon": {
+    "name": "Explosive Cannon",
+    "action_type": "reaction"
+  },
+  "pub24_sub_artificer-artillerist-fortified-position": {
+    "name": "Fortified Position",
+    "action_type": "action"
+  },
+  "pub24_sub_artificer-battle-smith-steel-defender": {
+    "name": "Steel Defender",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_artificer-battle-smith-arcane-jolt": {
+    "name": "Arcane Jolt",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_artificer-cartographer-mapping-magic": {
+    "name": "Mapping Magic",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_artificer-cartographer-superior-atlas": {
+    "name": "Superior Atlas",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_artificer-reanimator-reanimated-companion": {
+    "name": "Reanimated Companion",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_artificer-reanimator-refined-reanimation": {
+    "name": "Refined Reanimation",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_barbarian-path-of-the-berserker-retaliation": {
+    "name": "Retaliation",
+    "action_type": "reaction"
+  },
+  "pub24_sub_barbarian-path-of-the-berserker-intimidating-presence": {
+    "name": "Intimidating Presence",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_barbarian-path-of-the-wild-heart-rage-of-the-wilds": {
+    "name": "Rage of the Wilds",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_barbarian-path-of-the-world-tree-branches-of-the-tree": {
+    "name": "Branches of the Tree",
+    "action_type": "reaction"
+  },
+  "pub24_sub_barbarian-path-of-the-world-tree-travel-along-the-tree": {
+    "name": "Travel along the Tree",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_barbarian-path-of-the-zealot-warrior-of-the-gods": {
+    "name": "Warrior of the Gods",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_barbarian-path-of-the-zealot-zealous-presence": {
+    "name": "Zealous Presence",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_barbarian-path-of-the-zealot-rage-of-the-gods": {
+    "name": "Rage of the Gods",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_bard-college-of-dance-inspiring-movement": {
+    "name": "Inspiring Movement",
+    "action_type": "reaction"
+  },
+  "pub24_sub_bard-college-of-glamour-beguiling-magic": {
+    "name": "Beguiling Magic",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_bard-college-of-glamour-mantle-of-inspiration": {
+    "name": "Mantle of Inspiration",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_bard-college-of-glamour-mantle-of-majesty": {
+    "name": "Mantle of Majesty",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_bard-college-of-glamour-unbreakable-majesty": {
+    "name": "Unbreakable Majesty",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_bard-college-of-lore-cutting-words": {
+    "name": "Cutting Words",
+    "action_type": "reaction"
+  },
+  "pub24_sub_bard-college-of-spirits-spirits-from-beyond": {
+    "name": "Spirits from Beyond",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_bard-college-of-spirits-empowered-channeling": {
+    "name": "Empowered Channeling",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_bard-college-of-the-moon-moons-inspiration": {
+    "name": "Moon's Inspiration",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_bard-college-of-the-moon-blessing-of-moonlight": {
+    "name": "Blessing of Moonlight",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_bard-college-of-the-moon-eventides-splendor": {
+    "name": "Eventide's Splendor",
+    "action_type": "reaction"
+  },
+  "pub24_sub_bard-college-of-valor-combat-inspiration": {
+    "name": "Combat Inspiration",
+    "action_type": "reaction"
+  },
+  "pub24_sub_bard-college-of-valor-battle-magic": {
+    "name": "Battle Magic",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_cleric-grave-domain-circle-of-mortality": {
+    "name": "Circle of Mortality",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_cleric-grave-domain-path-to-the-grave": {
+    "name": "Path to the Grave",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_cleric-grave-domain-sentinel-at-deaths-door": {
+    "name": "Sentinel at Death’s Door",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_cleric-grave-domain-divine-reaper": {
+    "name": "Divine Reaper",
+    "recharge": "short_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_cleric-knowledge-domain-mind-magic": {
+    "name": "Mind Magic",
+    "action_type": "action"
+  },
+  "pub24_sub_cleric-knowledge-domain-divine-foreknowledge": {
+    "name": "Divine Foreknowledge",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_cleric-life-domain-preserve-life": {
+    "name": "Preserve Life",
+    "action_type": "action"
+  },
+  "pub24_sub_cleric-light-domain-radiance-of-the-dawn": {
+    "name": "Radiance of the Dawn",
+    "action_type": "action"
+  },
+  "pub24_sub_cleric-light-domain-warding-flare": {
+    "name": "Warding Flare",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_cleric-light-domain-corona-of-light": {
+    "name": "Corona of Light",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_cleric-trickery-domain-blessing-of-the-trickster": {
+    "name": "Blessing of the Trickster",
+    "action_type": "action"
+  },
+  "pub24_sub_cleric-trickery-domain-invoke-duplicity": {
+    "name": "Invoke Duplicity",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_cleric-trickery-domain-tricksters-transposition": {
+    "name": "Trickster’s Transposition",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_cleric-war-domain-guided-strike": {
+    "name": "Guided Strike",
+    "action_type": "reaction"
+  },
+  "pub24_sub_cleric-war-domain-war-priest": {
+    "name": "War Priest",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_druid-circle-of-the-land-lands-aid": {
+    "name": "Land’s Aid",
+    "action_type": "action"
+  },
+  "pub24_sub_druid-circle-of-the-land-natural-recovery": {
+    "name": "Natural Recovery",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_druid-circle-of-the-land-natures-sanctuary": {
+    "name": "Nature’s Sanctuary",
+    "action_type": "action"
+  },
+  "pub24_sub_druid-circle-of-the-moon-moonlight-step": {
+    "name": "Moonlight Step",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_druid-circle-of-the-sea-wrath-of-the-sea": {
+    "name": "Wrath of the Sea",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_druid-circle-of-the-stars-star-map": {
+    "name": "Star Map",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_druid-circle-of-the-stars-starry-form": {
+    "name": "Starry Form",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_druid-circle-of-the-stars-cosmic-omen": {
+    "name": "Cosmic Omen",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_fighter-banneret-group-recovery": {
+    "name": "Group Recovery",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_fighter-banneret-rallying-surge": {
+    "name": "Rallying Surge",
+    "action_type": "reaction"
+  },
+  "pub24_sub_fighter-banneret-shared-resilience": {
+    "name": "Shared Resilience",
+    "action_type": "reaction"
+  },
+  "pub24_sub_fighter-battle-master-know-your-enemy": {
+    "name": "Know Your Enemy",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_fighter-psi-warrior-telekinetic-adept": {
+    "name": "Telekinetic Adept",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_fighter-psi-warrior-bulwark-of-force": {
+    "name": "Bulwark of Force",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_fighter-psi-warrior-telekinetic-master": {
+    "name": "Telekinetic Master",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_monk-warrior-of-mercy-hand-of-healing": {
+    "name": "Hand of Healing",
+    "action_type": "action"
+  },
+  "pub24_sub_monk-warrior-of-mercy-flurry-of-healing-and-harm": {
+    "name": "Flurry of Healing and Harm",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_monk-warrior-of-mercy-hand-of-ultimate-mercy": {
+    "name": "Hand of Ultimate Mercy",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_monk-warrior-of-shadow-shadow-step": {
+    "name": "Shadow Step",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_monk-warrior-of-shadow-improved-shadow-step": {
+    "name": "Improved Shadow Step",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_monk-warrior-of-shadow-cloak-of-shadows": {
+    "name": "Cloak of Shadows",
+    "action_type": "action"
+  },
+  "pub24_sub_monk-warrior-of-the-elements-elemental-burst": {
+    "name": "Elemental Burst",
+    "action_type": "action"
+  },
+  "pub24_sub_monk-warrior-of-the-open-hand-wholeness-of-body": {
+    "name": "Wholeness of Body",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_monk-warrior-of-the-open-hand-fleet-step": {
+    "name": "Fleet Step",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_monk-warrior-of-the-open-hand-quivering-palm": {
+    "name": "Quivering Palm",
+    "action_type": "action"
+  },
+  "pub24_sub_paladin-oath-of-devotion-holy-nimbus": {
+    "name": "Holy Nimbus",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_paladin-oath-of-glory-peerless-athlete": {
+    "name": "Peerless Athlete",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_paladin-oath-of-glory-glorious-defense": {
+    "name": "Glorious Defense",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_paladin-oath-of-glory-living-legend": {
+    "name": "Living Legend",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_paladin-oath-of-the-ancients-natures-wrath": {
+    "name": "Nature's Wrath",
+    "action_type": "action"
+  },
+  "pub24_sub_paladin-oath-of-the-ancients-undying-sentinel": {
+    "name": "Undying Sentinel",
+    "recharge": "long_rest",
+    "uses_max": 3
+  },
+  "pub24_sub_paladin-oath-of-the-ancients-elder-champion": {
+    "name": "Elder Champion",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_paladin-oath-of-the-noble-genies-elemental-rebuke": {
+    "name": "Elemental Rebuke",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_paladin-oath-of-the-noble-genies-noble-scion": {
+    "name": "Noble Scion",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_paladin-oath-of-vengeance-soul-of-vengeance": {
+    "name": "Soul of Vengeance",
+    "action_type": "reaction"
+  },
+  "pub24_sub_paladin-oath-of-vengeance-avenging-angel": {
+    "name": "Avenging Angel",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_ranger-beast-master-exceptional-training": {
+    "name": "Exceptional Training",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_ranger-fey-wanderer-beguiling-twist": {
+    "name": "Beguiling Twist",
+    "action_type": "reaction"
+  },
+  "pub24_sub_ranger-fey-wanderer-fey-reinforcements": {
+    "name": "Fey Reinforcements",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_ranger-fey-wanderer-misty-wanderer": {
+    "name": "Misty Wanderer",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_ranger-gloom-stalker-dread-ambusher": {
+    "name": "Dread Ambusher",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_ranger-gloom-stalker-shadowy-dodge": {
+    "name": "Shadowy Dodge",
+    "action_type": "reaction"
+  },
+  "pub24_sub_ranger-hollow-warden-wrath-of-the-wild": {
+    "name": "Wrath of the Wild",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_ranger-hollow-warden-ancient-might": {
+    "name": "Ancient Might",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_ranger-hunter-superior-hunters-defense": {
+    "name": "Superior Hunter's Defense",
+    "action_type": "reaction"
+  },
+  "pub24_sub_ranger-winter-walker-fortifying-soul": {
+    "name": "Fortifying Soul",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_ranger-winter-walker-chilling-retribution": {
+    "name": "Chilling Retribution",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "wis",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_ranger-winter-walker-frozen-haunt": {
+    "name": "Frozen Haunt",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_rogue-phantom-wails-from-the-grave": {
+    "name": "Wails from the Grave",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "dex",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_rogue-phantom-voice-of-death": {
+    "name": "Voice of Death",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_rogue-phantom-ghost-walk": {
+    "name": "Ghost Walk",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_rogue-scion-of-the-three-bloodthirst": {
+    "name": "Bloodthirst",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_rogue-soulknife-soul-blades": {
+    "name": "Soul Blades",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_rogue-soulknife-psychic-veil": {
+    "name": "Psychic Veil",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_rogue-soulknife-rend-mind": {
+    "name": "Rend Mind",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_rogue-thief-fast-hands": {
+    "name": "Fast Hands",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_sorcerer-aberrant-sorcery-telepathic-speech": {
+    "name": "Telepathic Speech",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_sorcerer-aberrant-sorcery-revelation-in-flesh": {
+    "name": "Revelation in Flesh",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_sorcerer-aberrant-sorcery-warping-implosion": {
+    "name": "Warping Implosion",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-clockwork-sorcery-restore-balance": {
+    "name": "Restore Balance",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_sorcerer-clockwork-sorcery-bastion-of-law": {
+    "name": "Bastion of Law",
+    "action_type": "action"
+  },
+  "pub24_sub_sorcerer-clockwork-sorcery-trance-of-order": {
+    "name": "Trance of Order",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-clockwork-sorcery-clockwork-cavalcade": {
+    "name": "Clockwork Cavalcade",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-draconic-sorcery-dragon-wings": {
+    "name": "Dragon Wings",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-draconic-sorcery-dragon-companion": {
+    "name": "Dragon Companion",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-shadow-sorcery-beasts-of-ill-omen": {
+    "name": "Beasts of Ill Omen",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_sorcerer-shadow-sorcery-shadow-walk": {
+    "name": "Shadow Walk",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_sorcerer-shadow-sorcery-umbral-form": {
+    "name": "Umbral Form",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-spellfire-sorcery-spellfire-burst": {
+    "name": "Spellfire Burst",
+    "action_type": "action"
+  },
+  "pub24_sub_sorcerer-spellfire-sorcery-crown-of-spellfire": {
+    "name": "Crown of Spellfire",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-wild-magic-sorcery-tides-of-chaos": {
+    "name": "Tides of Chaos",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_sorcerer-wild-magic-sorcery-bend-luck": {
+    "name": "Bend Luck",
+    "action_type": "reaction"
+  },
+  "pub24_sub_sorcerer-wild-magic-sorcery-tamed-surge": {
+    "name": "Tamed Surge",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_warlock-archfey-patron-steps-of-the-fey": {
+    "name": "Steps of the Fey",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_warlock-archfey-patron-misty-escape": {
+    "name": "Misty Escape",
+    "action_type": "reaction"
+  },
+  "pub24_sub_warlock-archfey-patron-beguiling-defenses": {
+    "name": "Beguiling Defenses",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_warlock-celestial-patron-healing-light": {
+    "name": "Healing Light",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_warlock-celestial-patron-searing-vengeance": {
+    "name": "Searing Vengeance",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_warlock-fiend-patron-dark-ones-own-luck": {
+    "name": "Dark One’s Own Luck",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_warlock-fiend-patron-hurl-through-hell": {
+    "name": "Hurl Through Hell",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_warlock-great-old-one-patron-awakened-mind": {
+    "name": "Awakened Mind",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_warlock-great-old-one-patron-clairvoyant-combatant": {
+    "name": "Clairvoyant Combatant",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_warlock-undead-patron-form-of-dread": {
+    "name": "Form of Dread",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "cha",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_warlock-undead-patron-necrotic-husk": {
+    "name": "Necrotic Husk",
+    "recharge": "short_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_wizard-abjurer-arcane-ward": {
+    "name": "Arcane ward",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_wizard-abjurer-projected-ward": {
+    "name": "Projected Ward",
+    "action_type": "reaction"
+  },
+  "pub24_sub_wizard-abjurer-spell-breaker": {
+    "name": "Spell Breaker",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_wizard-bladesinger-bladesong": {
+    "name": "Bladesong",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_sub_wizard-bladesinger-song-of-defense": {
+    "name": "Song of Defense",
+    "action_type": "reaction"
+  },
+  "pub24_sub_wizard-bladesinger-song-of-victory": {
+    "name": "Song of Victory",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_wizard-diviner-portent": {
+    "name": "Portent",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub24_sub_wizard-diviner-the-third-eye": {
+    "name": "The Third Eye",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_wizard-illusionist-improved-illusions": {
+    "name": "Improved Illusions",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_wizard-illusionist-phantasmal-creatures": {
+    "name": "Phantasmal Creatures",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_wizard-illusionist-illusory-self": {
+    "name": "Illusory Self",
+    "action_type": "reaction",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_wizard-illusionist-illusory-reality": {
+    "name": "Illusory Reality",
+    "action_type": "bonus_action"
+  },
+  "pub24_artificer-tinkers-magic": {
+    "name": "Tinker's Magic",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_artificer-magic-item-tinker": {
+    "name": "Magic Item Tinker",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_artificer-flash-of-genius": {
+    "name": "Flash of Genius",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "ability_mod",
+      "ability": "int",
+      "base": 0,
+      "min": 1
+    }
+  },
+  "pub24_artificer-spell-storing-item": {
+    "name": "Spell-Storing Item",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 2
+  },
+  "pub24_artificer-advanced-artifice": {
+    "name": "Advanced Artifice",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_sub_rogue-arcane-trickster-mage-hand-legerdemain": {
+    "name": "Mage Hand Legerdemain",
+    "action_type": "bonus_action"
+  },
+  "pub24_sub_rogue-arcane-trickster-spell-thief": {
+    "name": "Spell Thief",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-healer": {
+    "name": "Healer",
+    "action_type": "action"
+  },
+  "pub24_feat-magic-initiate": {
+    "name": "Magic Initiate",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-defensive-duelist": {
+    "name": "Defensive Duelist",
+    "action_type": "reaction"
+  },
+  "pub24_feat-dual-wielder": {
+    "name": "Dual Wielder",
+    "action_type": "bonus_action"
+  },
+  "pub24_feat-fey-touched": {
+    "name": "Fey Touched",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-mage-slayer": {
+    "name": "Mage Slayer",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-polearm-master": {
+    "name": "Polearm Master",
+    "action_type": "bonus_action"
+  },
+  "pub24_feat-shadow-touched": {
+    "name": "Shadow Touched",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-interception": {
+    "name": "Interception",
+    "action_type": "reaction"
+  },
+  "pub24_feat-protection": {
+    "name": "Protection",
+    "action_type": "reaction"
+  },
+  "pub24_feat-boon-of-dimensional-travel": {
+    "name": "Boon of Dimensional Travel",
+    "action_type": "action"
+  },
+  "pub24_feat-boon-of-fate": {
+    "name": "Boon of Fate",
+    "recharge": "short_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-boon-of-recovery": {
+    "name": "Boon of Recovery",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_feat-boon-of-speed": {
+    "name": "Boon of Speed",
+    "action_type": "bonus_action"
+  },
+  "pub24_feat-boon-of-the-night-spirit": {
+    "name": "Boon of the Night Spirit",
+    "action_type": "bonus_action"
+  },
+  "pub24_species_aasimar-healing-hands": {
+    "name": "Healing Hands",
+    "action_type": "action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_species_aasimar-celestial-revelation": {
+    "name": "Celestial Revelation",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_species_dragonborn-breath-weapon": {
+    "name": "Breath Weapon",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    }
+  },
+  "pub24_species_dragonborn-draconic-flight": {
+    "name": "Draconic Flight",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_species_dwarf-stonecunning": {
+    "name": "Stonecunning",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    }
+  },
+  "pub24_species_elf-elven-lineage": {
+    "name": "Elven Lineage",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_species_gnome-forest-gnome": {
+    "name": "Forest Gnome",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    }
+  },
+  "pub24_species_goliath-giant-ancestry": {
+    "name": "Giant Ancestry",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    }
+  },
+  "pub24_species_goliath-large-form": {
+    "name": "Large Form",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_species_orc-adrenaline-rush": {
+    "name": "Adrenaline Rush",
+    "action_type": "bonus_action",
+    "recharge": "short_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    }
+  },
+  "pub24_species_orc-relentless-endurance": {
+    "name": "Relentless Endurance",
+    "recharge": "long_rest",
+    "uses_max": 1
+  },
+  "pub24_species_tiefling-fiendish-legacy": {
+    "name": "Fiendish Legacy",
+    "recharge": "long_rest",
+    "uses_max": 1
   }
 }

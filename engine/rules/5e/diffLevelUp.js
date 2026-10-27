@@ -1,6 +1,7 @@
 const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 const { rulesetOf, loadRulesetJson } = require('./ruleset')
+const { resolveChoices2024 } = require('./choices2024')
 const { describeLevelUp } = require('./levelUp')
 const { proficiencyBonus } = require('./progression')
 const { abilityModifier } = require('./abilities')
@@ -94,6 +95,15 @@ function resolveUsesFormula(formula, character, equippedItems) {
     // the first feature that DOES have an explicit RAW floor ("a minimum of
     // once"), hence this stays a per-feature opt-in rather than a blanket rule.
     return formula.min != null ? Math.max(formula.min, raw) : raw
+  }
+  // 2024 uses "a number of times equal to your Proficiency Bonus" (Breath
+  // Weapon, Healing Hands, Lucky...) — total character level, not a class's.
+  if (formula.type === 'proficiency_bonus') {
+    const total = (character.classes || []).reduce(
+      (n, c) => n + (c.level ?? 0),
+      0
+    )
+    return proficiencyBonus(total || character.level || 1) * (formula.multiplier ?? 1)
   }
   if (formula.type === 'level_multiple') {
     const cls = (character.classes || []).find((c) => c.name === formula.class)
@@ -457,6 +467,11 @@ function diffLevelUp(
     // already supplies `character` itself. Safe to omit entirely; formulas
     // just resolve against base scores only, same as before this existed.
     equippedItems = [],
+    // 2024 only (see choices2024.js): { weaponMastery: [weapon...], fightingStyle:
+    // 'Archery', divineOrder, primalOrder, expertise: { [level]: [skill...] },
+    // metamagic: [option...], primalKnowledgeSkill }. Anything not supplied
+    // comes back as a pendingChoice, same as every other pick here.
+    choices2024 = {},
   } = {}
 ) {
   const ruleset = rulesetOf(character)
@@ -522,7 +537,7 @@ function diffLevelUp(
     let s = extractScores(character)
     for (let l = fromLevel + 1; l <= lvl; l++) {
       const res = asiOrFeatResolutions[l]
-      if (res) s = resolveAsiOrFeat(s, res).scores
+      if (res) s = resolveAsiOrFeat(s, res, ruleset).scores
     }
     return s
   }
@@ -611,10 +626,15 @@ function diffLevelUp(
   for (const lvl of description.asiOrFeatLevels) {
     const resolution = asiOrFeatResolutions[lvl]
     if (!resolution) {
-      pendingChoices.push({ type: 'asiOrFeat', level: lvl })
+      // 2024: the level-19 grant is an Epic Boon feat rather than an ASI.
+      pendingChoices.push({
+        type: 'asiOrFeat',
+        level: lvl,
+        ...(ruleset === '2024' && lvl === 19 ? { epicBoon: true } : {}),
+      })
       continue
     }
-    const result = resolveAsiOrFeat(scores, resolution)
+    const result = resolveAsiOrFeat(scores, resolution, ruleset)
     scores = result.scores
     notes.push(...result.notes.map((n) => `Level ${lvl}: ${n}`))
 
@@ -753,6 +773,28 @@ function diffLevelUp(
       })
       existingByLevel.add(`${n}@${group.level}`)
     })
+  }
+
+  // ── 2024 class choices (Weapon Mastery, Fighting Style feats, Orders, Expertise,
+  // Metamagic, Primal Knowledge) — see choices2024.js. A no-op under 2014.
+  let bonusCantripsFromChoices = 0
+  if (ruleset === '2024') {
+    const c24 = resolveChoices2024({
+      character,
+      className: classEntry.name,
+      subclassName: classEntry.subclass,
+      fromLevel,
+      toLevel: finalToLevel,
+      choices: choices2024,
+    })
+    newFeatures.push(...c24.features)
+    pendingChoices.push(...c24.pendingChoices)
+    notes.push(...c24.notes)
+    expertiseSkillsGained.push(...c24.expertiseSkills)
+    extraWeaponProficiencies.push(...c24.extraWeaponProficiencies)
+    extraArmorProficiencies.push(...c24.extraArmorProficiencies)
+    extraSkillProficiencies.push(...c24.extraSkillProficiencies)
+    bonusCantripsFromChoices = c24.extraCantrips
   }
 
   // ── Caster Prestidigitation (house rule, house_rules.json) ──────────────
@@ -1252,7 +1294,7 @@ function diffLevelUp(
         (f) => f.type === 'maneuver' && f.level_gained === lvl
       )
       if (alreadyChosenAtThisLevel) continue
-      const validOptions = listManeuvers(classEntry.name)
+      const validOptions = listManeuvers(classEntry.name, ruleset)
         .map((o) => o.name)
         .filter((name) => !knownManeuverNames.has(name))
       const picks = maneuverChoices[lvl]
@@ -1269,7 +1311,7 @@ function diffLevelUp(
           )
         }
         pickList.forEach((pick) => {
-          const maneuver = loadManeuver(classEntry.name, pick)
+          const maneuver = loadManeuver(classEntry.name, pick, ruleset)
           if (!maneuver) {
             notes.push(
               `"${pick}" isn't one of Battle Master's cataloged maneuvers — recorded as chosen anyway, no automatic effects applied.`
@@ -2031,7 +2073,7 @@ function diffLevelUp(
     ).length
     const invocationsNeeded = Math.max(
       0,
-      invocationsKnownForLevel(finalToLevel) - knownInvocationCount
+      invocationsKnownForLevel(finalToLevel, ruleset) - knownInvocationCount
     )
     if (invocationsNeeded > 0) {
       const known = new Set(
@@ -2044,7 +2086,7 @@ function diffLevelUp(
       )
       const applied = picked.slice(0, invocationsNeeded)
       for (const name of applied) {
-        const inv = loadInvocation(name)
+        const inv = loadInvocation(name, ruleset)
         newFeatures.push({
           name,
           id: inv?.id ?? null,
@@ -2066,7 +2108,8 @@ function diffLevelUp(
     const hasPactBoon = (character.features || []).some(
       (f) => f.type === 'pactBoon'
     )
-    if (!hasPactBoon && finalToLevel >= 3) {
+    // 2024 has no Pact Boon — the Pacts are Eldritch Invocations.
+    if (ruleset !== '2024' && !hasPactBoon && finalToLevel >= 3) {
       if (pactBoonChoice) {
         const boon = loadPactBoon(pactBoonChoice)
         // Unrecognized name (hand-typed/homebrew) still gets recorded, same
@@ -2282,9 +2325,15 @@ function diffLevelUp(
   if (isMulticlassPickup) {
     const grant = loadRulesetJson(ruleset, 'multiclass-proficiencies.json')[className]
     if (grant) {
-      const armor = new Set(character.armor_proficiencies || [])
+      // Start from what this call already added (Divine Order's heavy armor,
+      // a Bladesinger grant...) so the multiclass grant doesn't overwrite it.
+      const armor = new Set(
+        patch.armor_proficiencies ?? character.armor_proficiencies ?? []
+      )
       for (const a of grant.armor || []) armor.add(a)
-      const weapons = new Set(character.weapon_proficiencies || [])
+      const weapons = new Set(
+        patch.weapon_proficiencies ?? character.weapon_proficiencies ?? []
+      )
       for (const w of grant.weapons || []) weapons.add(w)
       patch.armor_proficiencies = [...armor]
       patch.weapon_proficiencies = [...weapons]
@@ -2395,7 +2444,8 @@ function diffLevelUp(
     // a positive delta into a pendingChoice or wrote a pick anywhere.
     const cantripsGained =
       description.spellcasting.cantripsAfter -
-      description.spellcasting.cantripsBefore
+      description.spellcasting.cantripsBefore +
+      bonusCantripsFromChoices
     if (cantripsGained > 0) {
       const existingCantrips = new Set(
         (character.spells || [])

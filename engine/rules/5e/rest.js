@@ -23,6 +23,28 @@ const { hitDieForClass } = require('./progression')
 const { resolveEffectiveStats } = require('./characterStats')
 
 const MAX_EXHAUSTION = 6
+const { rulesetOf } = require('./rulesetId')
+
+// 2024: Rage, Second Wind, Channel Divinity, Wild Shape... come back ONE use at a
+// time on a Short Rest and fully on a Long Rest. Such a feature carries
+// `recharge: 'long_rest'` plus `short_rest_regain: <n> | 'all'`. A plain
+// `recharge: 'short_rest'` feature still refills completely.
+function spent(f) {
+  return f.uses_max != null && (f.uses_current ?? f.uses_max) < f.uses_max
+}
+function regainsOnShortRest(f) {
+  return spent(f) && (f.recharge === 'short_rest' || f.short_rest_regain != null)
+}
+function afterShortRest(f) {
+  if (!regainsOnShortRest(f)) return f
+  if (f.recharge === 'short_rest' || f.short_rest_regain === 'all') {
+    return { ...f, uses_current: f.uses_max }
+  }
+  return {
+    ...f,
+    uses_current: Math.min(f.uses_max, (f.uses_current ?? 0) + f.short_rest_regain),
+  }
+}
 
 // recharge value for a limited-use feature/spell that only the DM refills.
 const MANUAL_RECHARGE = 'manual'
@@ -118,11 +140,7 @@ function shortFeatureName(name) {
 function shortRestRecharges(character) {
   const recharged = []
   for (const f of character.features ?? []) {
-    if (
-      f.recharge === 'short_rest' &&
-      f.uses_max &&
-      (f.uses_current ?? f.uses_max) < f.uses_max
-    ) {
+    if (regainsOnShortRest(f)) {
       recharged.push(shortFeatureName(f.name))
     }
   }
@@ -149,12 +167,7 @@ function shortRestRecharges(character) {
 // UI decides how to abbreviate/format it. Raw feature names (not shortened).
 function shortRestPreview(character) {
   const features = (character.features ?? [])
-    .filter(
-      (f) =>
-        f.recharge === 'short_rest' &&
-        f.uses_max &&
-        (f.uses_current ?? f.uses_max) < f.uses_max
-    )
+    .filter(regainsOnShortRest)
     .map((f) => f.name)
   const pm = character.pact_magic
   const pactSlotsSpent = pm ? Math.max(0, pm.max - (pm.current ?? pm.max)) : 0
@@ -195,11 +208,7 @@ function applyShortRest(character, { diceSpent = 0, hpGained = 0 } = {}) {
     )
   }
   if (character.features) {
-    patch.features = character.features.map((f) =>
-      f.uses_max != null && f.recharge === 'short_rest'
-        ? { ...f, uses_current: f.uses_max }
-        : f
-    )
+    patch.features = character.features.map(afterShortRest)
   }
   // Spell free-cast uses that recharge on a short rest (e.g. Fey
   // Teleportation's Misty Step) — the only spell-use case that isn't
@@ -235,7 +244,9 @@ function applyShortRest(character, { diceSpent = 0, hpGained = 0 } = {}) {
 
 // PHB: a long rest recovers spent hit dice up to half your total (round
 // down, minimum 1).
-function hitDiceRecoveredOnLongRest(maxHitDice) {
+function hitDiceRecoveredOnLongRest(maxHitDice, ruleset) {
+  // 2024 (SRD 5.2): a Long Rest restores ALL spent Hit Point Dice.
+  if (String(ruleset) === '2024') return maxHitDice
   return Math.max(1, Math.floor(maxHitDice / 2))
 }
 
@@ -311,7 +322,7 @@ function applyLongRest(character, { interrupted = false } = {}) {
   const hdCurrent = character.hit_dice_current ?? hdMax
   patch.hit_dice_current = Math.min(
     hdMax,
-    hdCurrent + hitDiceRecoveredOnLongRest(hdMax)
+    hdCurrent + hitDiceRecoveredOnLongRest(hdMax, rulesetOf(character))
   )
   if (character.exhaustion_level > 0) {
     patch.exhaustion_level = character.exhaustion_level - 1
