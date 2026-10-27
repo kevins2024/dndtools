@@ -21,7 +21,11 @@
 // Server/engine side only (reads the spell lists, feats and invocation tables).
 
 const { diffLevelUp } = require('./diffLevelUp')
-const { listSpellsForClass, effectiveMaxSpellLevel } = require('./spellLists')
+const {
+  listSpellsForClass,
+  effectiveMaxSpellLevel,
+  listFeatSpellChoices,
+} = require('./spellLists')
 const { listFeats } = require('./grants')
 const { meetsFeatPrerequisites } = require('./featPrerequisites')
 const {
@@ -370,6 +374,46 @@ function atNewLevel(ctx) {
   }
 }
 
+// A feat's own extra picks (Skilled's skills, Magic Initiate's class and spells, Elemental Adept's
+// damage type...) with their option lists filled in. A spell pick that depends on a sibling pick
+// (Magic Initiate: the spell comes from the class chosen above) carries `dependsOn` and
+// `optionsBy[<sibling value>]` instead of `options`.
+function expandFeatChoices(choices) {
+  if (!choices || !choices.length) return null
+  return choices.map((c) => {
+    const base = {
+      id: c.id,
+      label: c.label ?? c.id,
+      type: c.type,
+      count: c.count ?? 1,
+    }
+    if (c.type === 'spell_choice') {
+      const f = c.spell_filter || {}
+      const query = (className) =>
+        listFeatSpellChoices({
+          className,
+          level: f.level ?? null,
+          cantripsOnly: f.cantripsOnly === true,
+          schools: f.schools ?? null,
+          ritualOnly: f.ritualOnly === true,
+          attackRollOnly: f.attackRollOnly === true,
+        }).map((s) => spellOpt(s, new Set()))
+      if (f.classFromChoiceId) {
+        const sibling = choices.find((x) => x.id === f.classFromChoiceId)
+        const optionsBy = {}
+        for (const className of sibling?.options ?? [])
+          optionsBy[className] = query(className)
+        return { ...base, dependsOn: f.classFromChoiceId, optionsBy }
+      }
+      return {
+        ...base,
+        options: query(f.pool === 'any' ? null : f.fixedClass ?? null),
+      }
+    }
+    return { ...base, options: c.options ? plain(c.options) : null }
+  })
+}
+
 function featOptions(ctx) {
   const after = atNewLevel(ctx)
   return listFeats()
@@ -393,7 +437,7 @@ function featOptions(ctx) {
         abilityChoices: asi?.choice_of ?? null,
         abilityAmount: asi?.amount ?? null,
         abilityCap: asi?.max_score ?? null,
-        choices: f.choices ?? null,
+        choices: expandFeatChoices(f.choices),
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -475,11 +519,57 @@ function choiceIds(pending) {
 }
 
 // Is `answer` a well-formed answer to this description? Returns an error string or null.
+function checkAsiOrFeat(d, answer) {
+  if (answer.type === 'asi') {
+    if (!d.allowAsi)
+      return 'an Epic Boon level takes a feat, not an Ability Score Improvement'
+    const entries = Object.entries(answer.increases || {})
+    if (!entries.length || entries.length > 2)
+      return 'raise one score by 2 or two scores by 1'
+    let total = 0
+    for (const [a, n] of entries) {
+      if (!ABILITIES.includes(a)) return `"${a}" is not an ability`
+      if (!Number.isInteger(n) || n < 1)
+        return 'each increase must be a whole number of at least 1'
+      if (d.scores[a] + n > d.cap)
+        return `${a.toUpperCase()} cannot go above ${d.cap}`
+      total += n
+    }
+    if (total !== d.points)
+      return `spend exactly ${d.points} points, got ${total}`
+    if (entries.length === 2 && entries.some(([, n]) => n !== 1))
+      return 'two scores take +1 each'
+    return null
+  }
+  if (answer.type === 'feat') {
+    const feat = d.feats.find((f) => f.name === answer.featName)
+    if (!feat) return `"${answer.featName}" is not a feat on offer`
+    if (!feat.eligible)
+      return feat.reason || `${feat.name}: prerequisite not met`
+    const abilities = feat.abilityChoices
+    if (
+      abilities &&
+      abilities.length > 1 &&
+      !abilities.includes(answer.abilityChoice)
+    )
+      return `choose an ability: ${abilities.join(', ')}`
+    for (const c of feat.choices || []) {
+      const v = (answer.choices || {})[c.id]
+      const list =
+        v === undefined || v === null ? [] : Array.isArray(v) ? v : [v]
+      if (list.length !== c.count)
+        return `${feat.name}: choose ${c.count} for "${c.label}"`
+    }
+    return null
+  }
+  return 'answer { type: "asi" | "feat" } required'
+}
+
 function checkAnswer(d, answer) {
   if (d.kind === 'asiOrFeat') {
-    if (!answer || !answer.type)
+    if (!answer || typeof answer !== 'object')
       return 'answer { type: "asi" | "feat" } required'
-    return null
+    return checkAsiOrFeat(d, answer)
   }
   if (!Array.isArray(answer)) return 'answer must be an array of option values'
   if (answer.length < d.min || answer.length > d.max)

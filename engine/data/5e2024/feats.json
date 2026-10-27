@@ -670,7 +670,23 @@
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "choices": [
+      {
+        "id": "damage_type",
+        "label": "Damage type (spells of this type ignore resistance)",
+        "type": "damage_type",
+        "count": 1,
+        "options": [
+          "Acid",
+          "Cold",
+          "Fire",
+          "Lightning",
+          "Poison",
+          "Thunder"
+        ]
+      }
+    ]
   },
   "Fey Touched": {
     "id": "pub24_feat-fey-touched",
@@ -1012,7 +1028,50 @@
     "prerequisite": null,
     "prerequisite_text": null,
     "repeatable": true,
-    "description": "You gain the following benefits.\nTwo Cantrips. You learn two cantrips of your choice from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat).\nLevel 1 Spell. Choose a level 1 spell from the same list you selected for this feat's cantrips. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.\nSpell Change. Whenever you gain a new level, you can replace one of the spells you chose for this feat with a different spell of the same level from the chosen spell list.\nRepeatable. You can take this feat more than once, but you must choose a different spell list each time."
+    "description": "You gain the following benefits.\nTwo Cantrips. You learn two cantrips of your choice from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat).\nLevel 1 Spell. Choose a level 1 spell from the same list you selected for this feat's cantrips. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.\nSpell Change. Whenever you gain a new level, you can replace one of the spells you chose for this feat with a different spell of the same level from the chosen spell list.\nRepeatable. You can take this feat more than once, but you must choose a different spell list each time.",
+    "choices": [
+      {
+        "id": "class",
+        "label": "Spell list",
+        "type": "class_list",
+        "count": 1,
+        "options": [
+          "Cleric",
+          "Druid",
+          "Wizard"
+        ]
+      },
+      {
+        "id": "cantrip_1",
+        "label": "Cantrip 1",
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": {
+          "classFromChoiceId": "class",
+          "cantripsOnly": true
+        }
+      },
+      {
+        "id": "cantrip_2",
+        "label": "Cantrip 2",
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": {
+          "classFromChoiceId": "class",
+          "cantripsOnly": true
+        }
+      },
+      {
+        "id": "spell_1",
+        "label": "1st-level spell (once per long rest without a slot)",
+        "type": "spell_choice",
+        "count": 1,
+        "spell_filter": {
+          "classFromChoiceId": "class",
+          "level": 1
+        }
+      }
+    ]
   },
   "Martial Weapon Training": {
     "id": "pub24_feat-martial-weapon-training",
@@ -1507,7 +1566,61 @@
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "choices": [
+      {
+        "id": "new_skill",
+        "label": "New skill proficiency",
+        "type": "skill",
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival"
+        ]
+      },
+      {
+        "id": "expertise_skill",
+        "label": "Existing proficient skill to gain Expertise in",
+        "type": "skill",
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival"
+        ]
+      }
+    ]
   },
   "Skilled": {
     "id": "pub24_feat-skilled",
@@ -1517,7 +1630,62 @@
     "prerequisite": null,
     "prerequisite_text": null,
     "repeatable": true,
-    "description": "You gain proficiency in any combination of three skills or tools of your choice.\nRepeatable. You can take this feat more than once."
+    "description": "You gain proficiency in any combination of three skills or tools of your choice.\nRepeatable. You can take this feat more than once.",
+    "choices": [
+      {
+        "id": "skills_or_tools",
+        "label": "Skills or tools, any combination (3)",
+        "type": "skill_or_tool",
+        "count": 3,
+        "options": [
+          "Acrobatics",
+          "Animal Handling",
+          "Arcana",
+          "Athletics",
+          "Deception",
+          "History",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Medicine",
+          "Nature",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Religion",
+          "Sleight of Hand",
+          "Stealth",
+          "Survival",
+          "Alchemist's Supplies",
+          "Brewer's Supplies",
+          "Calligrapher's Supplies",
+          "Carpenter's Tools",
+          "Cartographer's Tools",
+          "Cobbler's Tools",
+          "Cook's Utensils",
+          "Glassblower's Tools",
+          "Jeweler's Tools",
+          "Leatherworker's Tools",
+          "Mason's Tools",
+          "Painter's Supplies",
+          "Potter's Tools",
+          "Smith's Tools",
+          "Tinker's Tools",
+          "Weaver's Tools",
+          "Woodcarver's Tools",
+          "Disguise Kit",
+          "Forgery Kit",
+          "Herbalism Kit",
+          "Navigator's Tools",
+          "Poisoner's Kit",
+          "Thieves' Tools",
+          "Gaming Set",
+          "Musical Instrument",
+          "Land Vehicles",
+          "Water Vehicles"
+        ]
+      }
+    ]
   },
   "Skulker": {
     "id": "pub24_feat-skulker",
@@ -1813,6 +1981,53 @@
       ],
       "amount": 1,
       "max_score": 20
-    }
+    },
+    "choices": [
+      {
+        "id": "weapons",
+        "label": "Weapon kind whose Mastery property you can use",
+        "type": "weapon",
+        "count": 1,
+        "options": [
+          "Club",
+          "Dagger",
+          "Greatclub",
+          "Handaxe",
+          "Javelin",
+          "Light Hammer",
+          "Mace",
+          "Quarterstaff",
+          "Sickle",
+          "Spear",
+          "Light Crossbow",
+          "Dart",
+          "Shortbow",
+          "Sling",
+          "Battleaxe",
+          "Flail",
+          "Glaive",
+          "Greataxe",
+          "Greatsword",
+          "Halberd",
+          "Lance",
+          "Longsword",
+          "Maul",
+          "Morningstar",
+          "Pike",
+          "Rapier",
+          "Scimitar",
+          "Shortsword",
+          "Trident",
+          "War Pick",
+          "Warhammer",
+          "Whip",
+          "Blowgun",
+          "Hand Crossbow",
+          "Heavy Crossbow",
+          "Longbow",
+          "Net"
+        ]
+      }
+    ]
   }
 }

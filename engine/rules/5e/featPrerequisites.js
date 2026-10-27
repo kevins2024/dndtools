@@ -1,5 +1,6 @@
 const { loadFeat } = require('./grants')
 const { rulesetOf } = require('./ruleset')
+const { resolveSpellcasting } = require('./spellcasting')
 
 // Adapter, like diffLevelUp.js and validateCharacter.js — the one other place
 // besides those that knows the characters.json shape (genus, stat_*,
@@ -46,7 +47,12 @@ function matchesGenus(character, genera) {
 
 function hasSpellcasting(character) {
   return (
-    Boolean(character.spellcasting_ability) || Boolean(character.pact_magic)
+    Boolean(character.spellcasting_ability) ||
+    Boolean(character.pact_magic) ||
+    // A class (or subclass) that casts counts even if the sheet never recorded an ability.
+    (character.classes || []).some(
+      (c) => (c.level ?? 0) > 0 && resolveSpellcasting(c.name, c.subclass)
+    )
   )
 }
 
@@ -203,15 +209,21 @@ function evaluatePrerequisite(character, prerequisite) {
     case 'fighting_style_feature': {
       const has =
         (character.classes || []).some((c) => {
-          const at = { fighter: 1, paladin: 2, ranger: 2 }[normalizeName(c.name)]
+          const at = { fighter: 1, paladin: 2, ranger: 2 }[
+            normalizeName(c.name)
+          ]
           return at != null && (c.level ?? 0) >= at
         }) ||
         (character.features || []).some((f) =>
-          /^(fighting style|blessed warrior|druidic warrior)/i.test(f.name || '')
+          /^(fighting style|blessed warrior|druidic warrior)/i.test(
+            f.name || ''
+          )
         )
       return {
         met: has,
-        reason: has ? null : 'Requires a class feature that grants a Fighting Style.',
+        reason: has
+          ? null
+          : 'Requires a class feature that grants a Fighting Style.',
         unknown: false,
       }
     }

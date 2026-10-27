@@ -160,3 +160,100 @@ test('preferences are taken first, then the engine’s own order', () => {
     'Fire Bolt',
   ])
 })
+
+test('an Ability Score Improvement answer is checked before it is applied', () => {
+  const { character } = buildCharacter({
+    className: 'Fighter',
+    subclass: 'Champion',
+    toLevel: 3,
+  })
+  const o = { className: 'Fighter', toLevel: 4, hpMethod: 'average' }
+  const id = 'asiOrFeat@4'
+  for (const [bad, why] of [
+    [{ type: 'asi', increases: { str: 3 } }, /exactly 2/],
+    [
+      { type: 'asi', increases: { str: 1, dex: 1, con: 1 } },
+      /one score by 2 or two/,
+    ],
+    [{ type: 'asi', increases: { str: 2, dex: 1 } }, /exactly 2/],
+    [{ type: 'asi', increases: { luck: 2 } }, /not an ability/],
+    [{ type: 'feat', featName: 'No Such Feat' }, /not a feat on offer/],
+  ]) {
+    const r = previewLevelUp(character, o, { [id]: bad })
+    assert.match(r.problems[0].error, why)
+    assert.equal(
+      r.patch.stat_str,
+      character.stat_str,
+      'a bad answer changes nothing'
+    )
+  }
+  const split = previewLevelUp(character, o, {
+    [id]: { type: 'asi', increases: { str: 1, dex: 1 } },
+  })
+  assert.deepEqual(split.problems, [])
+  assert.equal(split.patch.stat_dex, character.stat_dex + 1)
+  const capped = previewLevelUp(
+    {
+      ...character,
+      stat_str: 19,
+      ability_base: { ...character.ability_base, str: 19 },
+    },
+    o,
+    { [id]: { type: 'asi', increases: { str: 2 } } }
+  )
+  assert.match(capped.problems[0].error, /cannot go above 20/)
+})
+
+test('a feat with picks of its own describes them, and the answer must supply them', () => {
+  const { character } = buildCharacter({
+    className: 'Wizard',
+    subclass: 'Evoker',
+    toLevel: 3,
+  })
+  const o = { className: 'Wizard', toLevel: 4, hpMethod: 'average' }
+  const d = previewLevelUp(character, o).choices.find(
+    (c) => c.kind === 'asiOrFeat'
+  )
+  const adept = d.feats.find((f) => f.name === 'Elemental Adept')
+  assert.equal(adept.eligible, true)
+  assert.deepEqual(adept.abilityChoices.sort(), ['cha', 'int', 'wis'])
+  const pick = adept.choices.find((c) => c.id === 'damage_type')
+  assert.ok(pick.options.some((x) => x.value === 'Poison'))
+  const answers = (x) => ({
+    [d.id]: { type: 'feat', featName: 'Elemental Adept', ...x },
+  })
+  assert.match(
+    previewLevelUp(character, o, answers({ choices: { damage_type: 'Fire' } }))
+      .problems[0].error,
+    /choose an ability/
+  )
+  assert.match(
+    previewLevelUp(character, o, answers({ abilityChoice: 'int' })).problems[0]
+      .error,
+    /damage type/i
+  )
+  const ok = previewLevelUp(
+    character,
+    o,
+    answers({ abilityChoice: 'int', choices: { damage_type: 'Fire' } })
+  )
+  assert.deepEqual(ok.problems, [])
+  assert.equal(ok.patch.stat_int, character.stat_int + 1)
+  assert.ok(ok.patch.features.some((f) => f.name === 'Elemental Adept'))
+})
+
+test('a feat prerequisite is shown as ineligible with its reason', () => {
+  const { character } = buildCharacter({
+    className: 'Fighter',
+    subclass: 'Champion',
+    toLevel: 3,
+  })
+  const d = previewLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 4,
+    hpMethod: 'average',
+  }).choices.find((c) => c.kind === 'asiOrFeat')
+  const adept = d.feats.find((f) => f.name === 'Elemental Adept')
+  assert.equal(adept.eligible, false)
+  assert.ok(adept.reason)
+})
