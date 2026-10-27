@@ -788,14 +788,23 @@
     "tool_proficiencies": [],
     "migrated_to_2024": true,
     "ability_base": {
-      "str": 20,
+      "str": 18,
       "dex": 14,
       "con": 16,
       "int": 10,
       "wis": 10,
       "cha": 8
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Barbarian",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 77,
     "level_history": [
@@ -872,8 +881,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 STR",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -982,6 +993,14 @@
           "Barbarian 9: dropped 9 2014 feature(s), added 13 2024 feature(s).",
           "Background (none) -> Guard; origin feat Alert added.",
           "Half-Orc has no 2024 version — kept as legacy 2014 content (its traits are unchanged)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 STR (Barbarian 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, STR still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -1288,13 +1307,22 @@
     "migrated_to_2024": true,
     "ability_base": {
       "str": 10,
-      "dex": 20,
+      "dex": 18,
       "con": 12,
       "int": 12,
       "wis": 14,
       "cha": 10
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Rogue",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 44,
     "level_history": [
@@ -1378,8 +1406,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -1491,6 +1521,14 @@
           "Rogue 6: recorded the existing Expertise (SleightOfHand, Investigation) as that class's grant.",
           "Human Versatile: origin feat Skilled added.",
           "Background (none) -> Criminal; origin feat Alert added."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 DEX (Rogue 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, DEX still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -2183,11 +2221,20 @@
       "str": 10,
       "dex": 12,
       "con": 13,
-      "int": 20,
+      "int": 18,
       "wis": 12,
       "cha": 12
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Wizard",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 37,
     "level_history": [
@@ -2269,8 +2316,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -2362,6 +2411,14 @@
           "Human Versatile: origin feat Lucky added.",
           "Background (none) -> Criminal; origin feat Alert added.",
           "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Booming Blade, Absorb Elements, Silvery Barbs, Intellect Fortress, Shadow Blade, Pulse Wave, Undead Ward, Sickening Radiance, Danse Macabre, Negative Energy Flood, Summon Draconic Spirit."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 INT (Wizard 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, INT still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -3160,13 +3217,30 @@
     "migrated_to_2024": true,
     "ability_base": {
       "str": 10,
-      "dex": 20,
+      "dex": 18,
       "con": 13,
-      "int": 20,
+      "int": 18,
       "wis": 12,
       "cha": 12
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Wizard",
+        "inferred": true
+      },
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 8,
+        "class": "Wizard",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 44,
     "level_history": [
@@ -3247,8 +3321,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -3308,8 +3384,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -3338,6 +3416,14 @@
           "Wizard 9: dropped 4 2014 feature(s), added 8 2024 feature(s).",
           "Background (none) -> Sage; origin feat Magic Initiate (Wizard) added.",
           "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Booming Blade, Absorb Elements, Silvery Barbs, Intellect Fortress, Shadow Blade, Pulse Wave, Undead Ward, Sickening Radiance, Danse Macabre, Negative Energy Flood, Summon Draconic Spirit."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 INT (Wizard 4), +2 DEX (Wizard 8). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, DEX still has 1 point(s), INT still has 2 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -4263,13 +4349,22 @@
     "migrated_to_2024": true,
     "ability_base": {
       "str": 8,
-      "dex": 20,
+      "dex": 18,
       "con": 12,
       "int": 13,
       "wis": 15,
       "cha": 12
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Rogue",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 35,
     "level_history": [
@@ -4353,8 +4448,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -4466,6 +4563,14 @@
           "Rogue 6: recorded the existing Expertise (Insight, Perception) as that class's grant.",
           "Background (none) -> Charlatan; origin feat Skilled added.",
           "Rogue / Inquisitive has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 DEX (Rogue 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, DEX still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -5157,11 +5262,28 @@
       "str": 8,
       "dex": 14,
       "con": 12,
-      "int": 20,
+      "int": 16,
       "wis": 14,
       "cha": 10
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Wizard",
+        "inferred": true
+      },
+      {
+        "ability": "int",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 8,
+        "class": "Wizard",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 39,
     "level_history": [
@@ -5243,8 +5365,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -5304,8 +5428,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -5343,6 +5469,13 @@
         "date": "2026-10-27",
         "notes": [
           "Identify is no longer marked prepared: that was one more prepared spell than a Wizard with INT 20 at level 9 may have, and no feature or item explains it. Identify is a ritual, so she can still cast it from the spellbook without preparing it."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 INT (Wizard 4), +2 INT (Wizard 8). Correct them if you remember differently; the final scores are unchanged."
         ]
       }
     ]
@@ -5608,12 +5741,21 @@
     "ability_base": {
       "str": 16,
       "dex": 14,
-      "con": 18,
+      "con": 16,
       "int": 12,
       "wis": 14,
       "cha": 12
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "con",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Fighter",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 60,
     "level_history": [
@@ -5627,7 +5769,7 @@
           "Tough",
           "Alert"
         ],
-        "hp_note": "Max HP 96 differs from the all-average total 112; per-level HP gains were not recorded."
+        "hp_note": "Max HP 114 differs from the all-average total 112; per-level HP gains were not recorded."
       },
       {
         "kind": "level",
@@ -5691,8 +5833,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 CON",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -5816,6 +5960,14 @@
         "date": "2026-10-27",
         "notes": [
           "Maximum HP 96 -> 114: the Tough feat's +2 per level was not applied when the feat was added."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 CON (Fighter 4). Correct them if you remember differently; the final scores are unchanged.",
+          "2 more Ability Score Improvement slot(s) (Fighter 6, Fighter 8) show no trace in the final scores, so what was taken there cannot be worked out and is left unrecorded."
         ]
       }
     ]
@@ -6202,14 +6354,23 @@
     "tool_proficiencies": [],
     "migrated_to_2024": true,
     "ability_base": {
-      "str": 18,
+      "str": 16,
       "dex": 12,
       "con": 16,
       "int": 10,
       "wis": 12,
       "cha": 9
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Barbarian",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 65,
     "level_history": [
@@ -6348,8 +6509,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 STR",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -6419,6 +6582,13 @@
           "First-level spell slots corrected from 2 to 3 (Paladin 3 uses the Paladin table; this was also wrong under the 2014 rules).",
           "Marked Ensnaring Strike and Speak with Animals as Oath of the Ancients spells (always prepared).",
           "Added Divine Smite (2024 Paladin's Smite: always prepared)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 STR (Barbarian 4). Correct them if you remember differently; the final scores are unchanged."
         ]
       }
     ]
@@ -6981,6 +7151,14 @@
         "notes": [
           "Added Divine Smite (2024 Paladin's Smite: always prepared)."
         ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: . Correct them if you remember differently; the final scores are unchanged.",
+          "2 more Ability Score Improvement slot(s) (Paladin 4, Paladin 8) show no trace in the final scores, so what was taken there cannot be worked out and is left unrecorded."
+        ]
       }
     ]
   },
@@ -7453,10 +7631,19 @@
       "dex": 14,
       "con": 16,
       "int": 12,
-      "wis": 20,
+      "wis": 18,
       "cha": 12
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "wis",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Druid",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 53,
     "level_history": [
@@ -7533,8 +7720,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 WIS",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -7627,6 +7816,14 @@
           "Druid 9: dropped 4 2014 feature(s), added 10 2024 feature(s).",
           "Background (none) -> Guide; origin feat Magic Initiate (Druid) added.",
           "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Erupting Earth."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 WIS (Druid 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, WIS still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -8045,10 +8242,19 @@
       "dex": 12,
       "con": 16,
       "int": 13,
-      "wis": 20,
+      "wis": 18,
       "cha": 16
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "wis",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Cleric",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 38,
     "level_history": [
@@ -8124,8 +8330,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 WIS",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -8228,6 +8436,14 @@
         "date": "2026-10-27",
         "notes": [
           "Added the Tempest Domain Bonus Proficiencies entry (martial weapons and heavy armor were already on the sheet)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 WIS (Cleric 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, WIS still has 1 point(s), CHA still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -8709,13 +8925,22 @@
     "migrated_to_2024": true,
     "ability_base": {
       "str": 10,
-      "dex": 20,
+      "dex": 18,
       "con": 14,
       "int": 13,
       "wis": 12,
       "cha": 18
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Ranger",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 52,
     "level_history": [
@@ -8799,8 +9024,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -8944,6 +9171,14 @@
         "date": "2026-10-27",
         "notes": [
           "Hunter's Mark is always prepared for a 2024 Ranger (Favored Enemy), so it no longer counts against prepared spells."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 DEX (Ranger 4). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, DEX still has 1 point(s), CHA still has 2 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -9294,14 +9529,31 @@
     "background": "Soldier",
     "migrated_to_2024": true,
     "ability_base": {
-      "str": 18,
+      "str": 16,
       "dex": 12,
       "con": 16,
       "int": 11,
       "wis": 14,
-      "cha": 18
+      "cha": 16
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Paladin",
+        "inferred": true
+      },
+      {
+        "ability": "str",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 8,
+        "class": "Paladin",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 49,
     "level_history": [
@@ -9380,8 +9632,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 CHA",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -9442,8 +9696,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 STR",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -9492,6 +9748,14 @@
         "date": "2026-10-27",
         "notes": [
           "Added Divine Smite (2024 Paladin's Smite: always prepared)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 CHA (Paladin 4), +2 STR (Paladin 8). Correct them if you remember differently; the final scores are unchanged.",
+          "After that, CON still has 1 point(s) above a standard build. No feature, item or note on the sheet explains it; it is legal if the scores were rolled or awarded."
         ]
       }
     ]
@@ -9857,13 +10121,22 @@
     "migrated_to_2024": true,
     "ability_base": {
       "str": 10,
-      "dex": 19,
+      "dex": 17,
       "con": 16,
       "int": 8,
       "wis": 8,
       "cha": 14
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "dex",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Fighter",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 51,
     "level_history": [
@@ -9941,8 +10214,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -10076,6 +10351,13 @@
           "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
           "Fighter / Echo Knight has no 2024 version — kept as a legacy 2014 subclass (features unchanged).",
           "Rogue / Swashbuckler has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 DEX (Fighter 4). Correct them if you remember differently; the final scores are unchanged."
         ]
       }
     ]
@@ -11199,9 +11481,26 @@
       "con": 16,
       "int": 10,
       "wis": 11,
-      "cha": 20
+      "cha": 16
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Sorcerer",
+        "inferred": true
+      },
+      {
+        "ability": "cha",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 8,
+        "class": "Sorcerer",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 38,
     "level_history": [
@@ -11280,8 +11579,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 CHA",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -11343,8 +11644,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 CHA",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -11381,6 +11684,13 @@
         "date": "2026-10-27",
         "notes": [
           "Removed 2 Metamagic entries added by the first migration (Twinned Spell, Quickened Spell); the character already had its two options from before."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 CHA (Sorcerer 4), +2 CHA (Sorcerer 8). Correct them if you remember differently; the final scores are unchanged."
         ]
       }
     ]
@@ -11800,10 +12110,19 @@
       "dex": 14,
       "con": 16,
       "int": 8,
-      "wis": 18,
+      "wis": 16,
       "cha": 12
     },
-    "ability_score_history": [],
+    "ability_score_history": [
+      {
+        "ability": "wis",
+        "amount": 2,
+        "source": "Ability Score Improvement",
+        "level_gained": 4,
+        "class": "Druid",
+        "inferred": true
+      }
+    ],
     "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
     "hp_unrecorded_dice": 48,
     "level_history": [
@@ -11815,8 +12134,7 @@
         "ability_scores": "point buy or manual",
         "feats": [
           "Tough"
-        ],
-        "hp_note": "Max HP 75 differs from the all-average total 93; per-level HP gains were not recorded."
+        ]
       },
       {
         "kind": "level",
@@ -11880,8 +12198,10 @@
         "features": [],
         "choices": [
           {
-            "type": "asi-or-feat",
-            "detail": "unrecorded"
+            "type": "ability",
+            "detail": "+2 WIS",
+            "source": "Ability Score Improvement",
+            "inferred": true
           }
         ],
         "recorded": "reconstructed"
@@ -11981,6 +12301,13 @@
         "notes": [
           "Added the 2024 Circle of the Moon spells (always prepared): Cure Wounds, Moonbeam, Starry Wisp, Conjure Animals, Fount of Moonlight, Mass Cure Wounds.",
           "Maximum HP 75 -> 93: the Tough feat's +2 per level was not applied when the feat was added."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Ability Score Improvements with no recorded choice were inferred from the final scores: +2 WIS (Druid 4). Correct them if you remember differently; the final scores are unchanged."
         ]
       }
     ]
