@@ -187,7 +187,15 @@ app.get('/api/:table', (req, res) => {
 
   try {
     const data = readJSON(file)
-    res.json(table === 'party_items' ? hydratePartyItems(data) : data)
+    res.json(
+      table === 'party_items'
+        ? hydratePartyItems(data)
+        : table === 'characters' && Array.isArray(data)
+        ? // scores, max HP and proficiency bonus are calculated from the recorded base
+          // scores, history and hit dice (engine/rules/5e/derive.js), not trusted from the file
+          data.map(engine.hydrateCharacter)
+        : data
+    )
   } catch (err) {
     console.error(`Error reading ${table}.json:`, err.message)
     res.status(500).json({ error: `Failed to read ${table}.json` })
@@ -462,6 +470,31 @@ app.post('/api/engine/preview-level-up', (req, res) => {
 // Writes nothing — the client applies the returned character through the
 // normal save path (or review it first). Weapon Mastery suggestions come from
 // what the character has equipped in party_items.json.
+// Everything the character sheet shows that is calculated — value plus the lines that
+// explain it, ready for a tooltip — for one character, with their equipped items applied.
+app.get('/api/engine/character-sheet/:name', (req, res) => {
+  try {
+    const characters = readJSON(path.join(DATA_DIR, 'characters.json'))
+    const character = characters.find(
+      (c) => c.name.toLowerCase() === String(req.params.name).toLowerCase()
+    )
+    if (!character)
+      return res
+        .status(404)
+        .json({ error: `No character named ${req.params.name}` })
+    const partyItems = hydratePartyItems(
+      readJSON(path.join(DATA_DIR, 'party_items.json'))
+    )
+    const sheet = engine.characterSheet(engine.hydrateCharacter(character), {
+      equippedItems: engine.equippedItemsFor(character, partyItems),
+    })
+    res.json(sheet)
+  } catch (err) {
+    console.error('Error building character sheet:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 app.post('/api/engine/migrate-2024', (req, res) => {
   const { character, answers } = req.body
   if (!character) {

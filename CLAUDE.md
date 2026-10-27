@@ -23,6 +23,7 @@ npm run build           # production build (vue-cli-service build) — use this 
 ```bash
 cd engine && node --test                    # full engine test suite (seconds to run)
 cd engine && node --test test/foo.test.js   # a single test file
+cd engine && node --test test/e2e              # end to end: starts the real server on a free port and asks it over HTTP (read-only)
 ```
 
 There is no frontend test suite. **Engine correctness is verified by `node --test`; there is no automated test runner for `src/`.**

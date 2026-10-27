@@ -22,24 +22,13 @@
 // Server and scripts only (species lookup reads data files).
 
 const { abilityModifier } = require('./abilities')
-const { featureHpBonus } = require('./hpBonuses')
+const { deriveAbilityScores, hasRecordedBase } = require('./abilityDerive')
+const { featureHpBonus, featureHpLines } = require('./hpBonuses')
+const { resolveEffectiveStats } = require('./characterStats')
+const { exhaustionEffects } = require('./exhaustion')
 const { proficiencyBonus } = require('./progression')
 const { traitsFor } = require('./species')
 const { rulesetOf } = require('./rulesetId')
-
-const KEYS = ['str', 'dex', 'con', 'int', 'wis', 'cha']
-
-const hasRecordedBase = (c) =>
-  Boolean(c?.ability_base && typeof c.ability_base === 'object')
-
-function deriveAbilityScores(character) {
-  if (!hasRecordedBase(character)) return null
-  const scores = {}
-  for (const k of KEYS) scores[k] = character.ability_base[k] ?? 10
-  for (const h of character.ability_score_history || [])
-    if (h.ability in scores) scores[h.ability] += h.amount || 0
-  return scores
-}
 
 function totalLevel(character) {
   return (character.classes || []).reduce((n, c) => n + (c.level || 0), 0)
@@ -70,6 +59,105 @@ function deriveMaxHp(character, scores) {
     { label: 'Feats and features', amount: features },
   ].filter((p) => p.amount !== 0)
   return { total: parts.reduce((n, p) => n + p.amount, 0), parts }
+}
+
+const signed = (n) => (n >= 0 ? `+${n}` : `${n}`)
+
+// Maximum HP as the rules compute it, with the lines for a tooltip. RAW (2014 and
+// 2024): your maximum is the sum of your hit-die results plus your CURRENT
+// Constitution modifier for every level you have, "as though you had the new modifier
+// from 1st level". So an item that changes Constitution while it is worn changes
+// the maximum at once and retroactively, and taking it off takes that away again —
+// it is not tied to when the item was put on.
+//
+//   value          the maximum with items as worn now, before any temporary effect
+//   effectiveValue value with `hp_max_modifier` (Aid, drains) and exhaustion applied
+//   baseValue      the maximum with no item effects (what the stored hp_max copy holds)
+function maxHpBreakdown(character, equippedItems = []) {
+  const recordedScores = deriveAbilityScores(character)
+  const { scores: effective } = resolveEffectiveStats(character, equippedItems)
+  const baseScores =
+    recordedScores ??
+    Object.fromEntries(
+      ['str', 'dex', 'con', 'int', 'wis', 'cha'].map((k) => [
+        k,
+        character[`stat_${k}`] ?? 10,
+      ])
+    )
+  const levels = totalLevel(character)
+  const recorded = (character.level_history || [])
+    .filter((e) => e.kind === 'level' && typeof e.hp?.die === 'number')
+    .reduce((n, e) => n + e.hp.die, 0)
+  const unrecorded = character.hp_unrecorded_dice || 0
+  const baseMod = abilityModifier(baseScores.con)
+  const effMod = abilityModifier(effective.con)
+  const speciesPerLevel = traitsFor(
+    character.genus,
+    character.subgenus,
+    rulesetOf(character)
+  ).reduce((n, t) => n + (t.grants_hp_per_level || 0), 0)
+  const featureLines = featureHpLines(
+    character.features || [],
+    character.classes || []
+  )
+
+  const lines = []
+  if (recorded)
+    lines.push({ label: 'Hit dice rolled or averaged', amount: recorded })
+  if (unrecorded)
+    lines.push({ label: 'Hit dice (results not recorded)', amount: unrecorded })
+  lines.push({
+    label: `CON modifier ${signed(baseMod)} x ${levels} levels`,
+    amount: baseMod * levels,
+  })
+  if (speciesPerLevel)
+    lines.push({
+      label: `Species (+${speciesPerLevel} x ${levels} levels)`,
+      amount: speciesPerLevel * levels,
+    })
+  lines.push(...featureLines)
+  const baseValue = lines.reduce((n, l) => n + l.amount, 0)
+
+  const itemDelta = (effMod - baseMod) * levels
+  if (itemDelta) {
+    const names = equippedItems
+      .filter((i) => i.stat_overrides?.con || i.stat_bonuses?.con)
+      .map((i) => i.name)
+      .join(', ')
+    lines.push({
+      label: `${names || 'Items'}: CON ${baseScores.con} -> ${
+        effective.con
+      } (modifier ${signed(effMod - baseMod)} x ${levels} levels)`,
+      amount: itemDelta,
+    })
+  }
+  const value = baseValue + itemDelta
+
+  const extra = []
+  const ex = exhaustionEffects(character.exhaustion_level, rulesetOf(character))
+  let effectiveValue = value
+  if (character.hp_max_modifier) {
+    effectiveValue += character.hp_max_modifier
+    extra.push({
+      label: 'Temporary change to maximum',
+      amount: character.hp_max_modifier,
+    })
+  }
+  if (ex.hpMaxHalved) {
+    const half = Math.floor(effectiveValue / 2)
+    extra.push({
+      label: 'Exhaustion (maximum halved)',
+      amount: half - effectiveValue,
+    })
+    effectiveValue = half
+  }
+  return {
+    value,
+    baseValue,
+    effectiveValue,
+    breakdown: lines,
+    effectiveBreakdown: [...lines, ...extra],
+  }
 }
 
 // null when the record has not recorded its base scores.
@@ -107,6 +195,7 @@ function hydrateCharacter(character) {
 module.exports = {
   deriveAbilityScores,
   deriveMaxHp,
+  maxHpBreakdown,
   deriveCharacter,
   hydrateCharacter,
   hasRecordedBase,

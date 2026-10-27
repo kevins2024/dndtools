@@ -16,18 +16,30 @@ const RULES = [
 ]
 
 // features: the sheet's feature list; classes: [{ name, level }].
-function featureHpBonus(features, classes) {
+// Named lines for a tooltip: [{ label, amount }].
+function featureHpLines(features, classes) {
   const total = classes.reduce((n, c) => n + (c.level || 0), 0)
-  let sum = 0
+  const lines = []
   for (const rule of RULES) {
-    if (!(features || []).some((f) => rule.match.test(f.name))) continue
+    const feature = (features || []).find((f) => rule.match.test(f.name))
+    if (!feature) continue
     const levels =
       rule.scope === 'character'
         ? total
         : classes.find((c) => c.name === rule.scope)?.level ?? 0
-    sum += rule.perLevel * levels
+    if (!levels) continue
+    lines.push({
+      label: `${feature.name} (+${rule.perLevel} x ${levels} ${
+        rule.scope === 'character' ? 'levels' : `${rule.scope} levels`
+      })`,
+      amount: rule.perLevel * levels,
+    })
   }
-  return sum
+  return lines
 }
 
-module.exports = { featureHpBonus }
+function featureHpBonus(features, classes) {
+  return featureHpLines(features, classes).reduce((n, l) => n + l.amount, 0)
+}
+
+module.exports = { featureHpBonus, featureHpLines }

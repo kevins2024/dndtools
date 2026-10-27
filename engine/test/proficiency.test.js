@@ -10,9 +10,16 @@ test('effectiveProficiencyBonus: level-table base, no item bonus', () => {
   assert.equal(effectiveProficiencyBonus(character, {}), 4)
 })
 
-test('effectiveProficiencyBonus: a manual override on the character wins over the level table', () => {
-  const character = { level: 9, proficiency_bonus: 6 }
-  assert.equal(effectiveProficiencyBonus(character, {}), 6)
+test('effectiveProficiencyBonus: a recorded override wins over the level table; the stored copy does not', () => {
+  assert.equal(
+    effectiveProficiencyBonus({ level: 9, proficiency_bonus_override: 6 }, {}),
+    6
+  )
+  // `proficiency_bonus` is a convenience copy of the calculation, never trusted over the level
+  assert.equal(
+    effectiveProficiencyBonus({ level: 9, proficiency_bonus: 6 }, {}),
+    4
+  )
 })
 
 test('effectiveProficiencyBonusBreakdown: value matches effectiveProficiencyBonus, and an item bonus appears as a named line', () => {

@@ -102,4 +102,37 @@ function applySpeciesBonus(scores, speciesName, choice = {}, ruleset) {
   return { scores: next, notes: [] }
 }
 
-module.exports = { loadSpecies, listSpecies, applySpeciesBonus, traitsFor }
+// Roster `genus` strings are not always a species name: "Silver Dragonborn",
+// "Wood Elf", "Eladrin Elf", "Hill Dwarf". Returns { species, hint } where
+// species is a species name (2014 or 2024) and hint is the leftover qualifier.
+const BASE_SPECIES = [
+  'Human',
+  'Elf',
+  'Dwarf',
+  'Halfling',
+  'Dragonborn',
+  'Gnome',
+  'Goliath',
+  'Tiefling',
+  'Aasimar',
+  'Orc',
+]
+function resolveSpeciesName(genus, subgenus) {
+  if (!genus) return { species: null, hint: subgenus || '' }
+  const exact = loadSpecies(genus, '2024')
+  if (exact) return { species: exact.name, hint: subgenus || '' }
+  const base = BASE_SPECIES.find((b) => new RegExp(`\\b${b}$`, 'i').test(genus))
+  if (base) {
+    const lead = genus.replace(new RegExp(`\\s*${base}$`, 'i'), '').trim()
+    return { species: base, hint: [lead, subgenus].filter(Boolean).join(' ') }
+  }
+  return { species: genus, hint: subgenus || '' }
+}
+
+module.exports = {
+  loadSpecies,
+  listSpecies,
+  applySpeciesBonus,
+  traitsFor,
+  resolveSpeciesName,
+}

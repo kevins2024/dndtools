@@ -26,6 +26,7 @@
 
 const { resolveEffectiveStats } = require('./characterStats')
 const { abilityModifier } = require('./abilities')
+const { hasRecordedBase } = require('./abilityDerive')
 
 const SCORE_KEYS = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 
@@ -60,11 +61,15 @@ function abilityScoreBreakdown(character, equippedItems = []) {
       mod: abilityModifier(score),
       modified:
         itemContributions.length > 0 || override != null || history.length > 0,
-      base: (character[`stat_${key}`] ?? 10) - historySum,
+      base: hasRecordedBase(character)
+        ? character.ability_base[key] ?? 10
+        : (character[`stat_${key}`] ?? 10) - historySum,
       override,
       contributions: [
         ...history.map((h) => ({
-          label: `${h.source}, level ${h.level_gained}`,
+          label: `${h.source}${h.inferred ? ' (inferred)' : ''}${
+            h.level_gained != null ? `, level ${h.level_gained}` : ''
+          }`,
           amount: h.amount,
         })),
         ...itemContributions,

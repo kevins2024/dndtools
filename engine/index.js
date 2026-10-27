@@ -32,6 +32,18 @@ const { diffLevelUp, applyFeatureMechanics } = require('./rules/5e/diffLevelUp')
 const { resolveEffectiveScores } = require('./rules/5e/abilityScores')
 const { loadFeat, listFeats, isFeatGrantedSpell } = require('./rules/5e/grants')
 const { rulesetOf, normalizeRuleset } = require('./rules/5e/rulesetId')
+const {
+  characterSheet,
+  equippedItemsFor,
+  formatBreakdown,
+} = require('./rules/5e/sheet')
+const {
+  maxHpBreakdown,
+  deriveCharacter,
+  hydrateCharacter,
+} = require('./rules/5e/derive')
+const { speedBreakdown } = require('./rules/5e/speed')
+const { auditCharacter } = require('./rules/5e/auditCharacter')
 const { migrateCharacterTo2024 } = require('./rules/5e/migrate2024')
 const { resolveChoices2024 } = require('./rules/5e/choices2024')
 const { featureMechanics } = require('./rules/5e/featureMechanics')
@@ -118,6 +130,14 @@ const {
 
 module.exports = {
   data: { leveling },
+  characterSheet,
+  equippedItemsFor,
+  formatBreakdown,
+  maxHpBreakdown,
+  deriveCharacter,
+  hydrateCharacter,
+  speedBreakdown,
+  auditCharacter,
   abilityModifier,
   proficiencyBonus,
   asiLevelsForClass,

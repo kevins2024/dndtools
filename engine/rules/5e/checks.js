@@ -21,6 +21,7 @@ const { resolveEffectiveStats } = require('./characterStats')
 const { abilityModifier } = require('./abilities')
 const { effectiveProficiencyBonus } = require('./proficiency')
 const { bonusLines } = require('./breakdown')
+const { rulesetOf } = require('./rulesetId')
 
 // ── Saving throws ──────────────────────────────────────────────────────────
 
@@ -80,7 +81,10 @@ const SKILL_MAP = {
 // Character data spells the same skill several ways ("Animal Handling",
 // "AnimalHandling", "animal-handling"); compare on letters only so a
 // proficiency is never silently lost to spacing.
-const skillKey = (name) => String(name).toLowerCase().replace(/[^a-z]/g, '')
+const skillKey = (name) =>
+  String(name)
+    .toLowerCase()
+    .replace(/[^a-z]/g, '')
 const hasSkill = (list, skillName) =>
   (list ?? []).some((s) => skillKey(s) === skillKey(skillName))
 
@@ -92,7 +96,8 @@ function skillTraining(character, skillName, equippedItems = []) {
     hasSkill(i.grants_skill_proficiency, skillName)
   )
   return {
-    isProficient: itemGrants || hasSkill(character.skill_proficiencies, skillName),
+    isProficient:
+      itemGrants || hasSkill(character.skill_proficiencies, skillName),
     hasExpertise: hasSkill(character.skill_expertise, skillName),
   }
 }
@@ -205,18 +210,61 @@ function passivePerception(character, equippedItems = []) {
 // rolls") adds that ability's modifier on top of DEX. Counted once per
 // ability however many features name it, and read off the EFFECTIVE score so
 // items/features that change the ability are honored.
-function initiative(character, equippedItems = []) {
+function initiativeBreakdown(character, equippedItems = []) {
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
+  const features = character.features ?? []
+  const ruleset = rulesetOf(character)
+  const prof = effectiveProficiencyBonus(character, bonuses)
+  const hasFeature = (re) => features.some((f) => re.test(f.name))
+  const classLevel = (name) =>
+    (character.classes ?? []).find((c) => c.name === name)?.level ?? 0
+  const breakdown = [{ label: 'DEX mod', amount: abilityModifier(scores.dex) }]
   const extraAbilities = new Set(
-    (character.features ?? [])
-      .map((f) => f.adds_ability_to_initiative)
-      .filter(Boolean)
+    features.map((f) => f.adds_ability_to_initiative).filter(Boolean)
   )
-  let extra = 0
-  for (const ability of extraAbilities) {
-    extra += abilityModifier(scores[ability] ?? 10)
-  }
-  return abilityModifier(scores.dex) + extra + (bonuses.initiative ?? 0)
+  for (const ability of extraAbilities)
+    breakdown.push({
+      label: `${ability.toUpperCase()} mod`,
+      amount: abilityModifier(scores[ability] ?? 10),
+    })
+  // Rules that act on the Initiative roll but live in prose, not in stat_bonuses:
+  //   2024 Alert: add your Proficiency Bonus.   Jack of All Trades: half the bonus when
+  //   you are not proficient (Initiative is a Dexterity check).   Dread Ambusher
+  //   (Gloom Stalker): add your Wisdom modifier.   Rakish Audacity (Swashbuckler): add your Charisma modifier.
+  if (ruleset === '2024' && hasFeature(/^Alert$/i))
+    breakdown.push({ label: 'Alert (Initiative Proficiency)', amount: prof })
+  if (
+    hasFeature(/^Jack of All Trades$/i) &&
+    !(ruleset === '2024' && hasFeature(/^Alert$/i))
+  )
+    breakdown.push({
+      label: 'Jack of All Trades (half Proficiency)',
+      amount: Math.floor(prof / 2),
+    })
+  if (classLevel('Ranger') >= 3 && hasFeature(/Dread Ambusher/i))
+    breakdown.push({
+      label: 'Dread Ambusher (WIS mod)',
+      amount: abilityModifier(scores.wis ?? 10),
+    })
+  if (classLevel('Rogue') >= 3 && hasFeature(/Rakish Audacity/i))
+    breakdown.push({
+      label: 'Rakish Audacity (CHA mod)',
+      amount: abilityModifier(scores.cha ?? 10),
+    })
+  const named = [
+    ...bonusLines(equippedItems, 'initiative'),
+    ...bonusLines(features, 'initiative'),
+  ]
+  breakdown.push(...named)
+  // anything the lump-sum bonus holds that no named item or feature accounts for
+  const unnamed =
+    (bonuses.initiative ?? 0) - named.reduce((n, l) => n + l.amount, 0)
+  if (unnamed) breakdown.push({ label: 'Other bonuses', amount: unnamed })
+  return { value: breakdown.reduce((n, l) => n + l.amount, 0), breakdown }
+}
+
+function initiative(character, equippedItems = []) {
+  return initiativeBreakdown(character, equippedItems).value
 }
 
 // Advantage isn't a flat number like the rest of resolveEffectiveStats'
@@ -240,10 +288,13 @@ function hasInitiativeAdvantage(character, equippedItems = []) {
 
 // ── Spellcasting ──────────────────────────────────────────────────────────
 
-function spellAttackBonusBreakdown(character, equippedItems = []) {
-  if (!character.spellcasting_ability) return null
+function spellAttackBonusBreakdown(
+  character,
+  equippedItems = [],
+  ability = character.spellcasting_ability
+) {
+  if (!ability) return null
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
-  const ability = character.spellcasting_ability
   const mod = abilityModifier(scores[ability])
   const prof = effectiveProficiencyBonus(character, bonuses)
   const breakdown = [
@@ -259,10 +310,13 @@ function spellAttackBonus(character, equippedItems = []) {
   return spellAttackBonusBreakdown(character, equippedItems)?.value ?? null
 }
 
-function spellSaveDCBreakdown(character, equippedItems = []) {
-  if (!character.spellcasting_ability) return null
+function spellSaveDCBreakdown(
+  character,
+  equippedItems = [],
+  ability = character.spellcasting_ability
+) {
+  if (!ability) return null
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
-  const ability = character.spellcasting_ability
   const mod = abilityModifier(scores[ability])
   const prof = effectiveProficiencyBonus(character, bonuses)
   const breakdown = [
@@ -291,6 +345,7 @@ module.exports = {
   passivePerception,
   passivePerceptionBreakdown,
   initiative,
+  initiativeBreakdown,
   hasInitiativeAdvantage,
   skillAdvantage,
   spellAttackBonus,

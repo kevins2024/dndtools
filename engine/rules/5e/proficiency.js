@@ -20,13 +20,18 @@ function effectiveProficiencyBonusBreakdown(
   bonuses = {},
   equippedItems = []
 ) {
-  const base = character.proficiency_bonus ?? proficiencyBonus(character.level)
+  // Calculated from the level. A stored `proficiency_bonus` is only a convenience
+  // copy; a deliberate override must be recorded as `proficiency_bonus_override`.
+  const level =
+    (character.classes || []).reduce((n, c) => n + (c.level || 0), 0) ||
+    character.level
+  const base = character.proficiency_bonus_override ?? proficiencyBonus(level)
   const breakdown = [
     {
       label:
-        character.proficiency_bonus != null
+        character.proficiency_bonus_override != null
           ? 'Manual override'
-          : `Level ${character.level ?? 1}`,
+          : `Level ${level ?? 1}`,
       amount: base,
     },
   ]

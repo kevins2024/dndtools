@@ -18,6 +18,11 @@ const { listClasses } = require('../rules/5e/classFeatures')
 const { listSubclasses } = require('../rules/5e/subclasses')
 const { getBonusSpells } = require('../rules/5e/characterSpells')
 const { deriveCharacter } = require('../rules/5e/derive')
+const {
+  characterSheet,
+  eachLeaf,
+  formatBreakdown,
+} = require('../rules/5e/sheet')
 const { loadSubclass } = require('../rules/5e/subclasses')
 
 const FULL = Boolean(process.env.FULL_SWEEP)
@@ -43,6 +48,35 @@ const assertDerived = (character, tag) => {
       character[k],
       d[k],
       `${tag}: ${k} stored ${character[k]} vs calculated ${d[k]}`
+    )
+}
+// The sheet a UI would show: every explained number adds up to its value, the tooltip is
+// those lines, and the headline numbers equal the stored copies.
+const assertSheet = (character, tag) => {
+  const sheet = characterSheet(character)
+  eachLeaf(sheet, (leaf, path) => {
+    assert.equal(
+      leaf.breakdown.reduce((n, l) => n + l.amount, 0),
+      leaf.value,
+      `${tag}: ${path} breakdown does not add up`
+    )
+    assert.equal(leaf.tooltip, formatBreakdown(leaf), `${tag}: ${path} tooltip`)
+  })
+  assert.equal(
+    sheet.hp.max.value,
+    character.hp_max,
+    `${tag}: sheet max HP vs stored`
+  )
+  assert.equal(
+    sheet.proficiencyBonus.value,
+    character.proficiency_bonus,
+    `${tag}: proficiency`
+  )
+  for (const k of ['str', 'dex', 'con', 'int', 'wis', 'cha'])
+    assert.equal(
+      sheet.abilities[k].score.value,
+      character[`stat_${k}`],
+      `${tag}: ${k}`
     )
 }
 const describe = (list) =>

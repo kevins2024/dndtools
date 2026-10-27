@@ -25,13 +25,18 @@
 // Mirrors src/utils/dnd_utils.js's resolveStats() exactly (same 3 passes,
 // same key routing) — that function is now a thin call into this one.
 
+const { deriveAbilityScores } = require('./abilityDerive')
+
 const SCORE_KEYS = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 const SCORE_KEY_SET = new Set(SCORE_KEYS)
 
 function resolveEffectiveStats(character, equippedItems = []) {
+  // A record that keeps its base scores and history has its scores CALCULATED from
+  // them; the stored stat_* is only a convenience copy (checked equal by the audit).
+  const derived = deriveAbilityScores(character)
   const scores = {}
   for (const key of SCORE_KEYS) {
-    scores[key] = character[`stat_${key}`] ?? 10
+    scores[key] = derived ? derived[key] : character[`stat_${key}`] ?? 10
   }
   const bonuses = {}
   const unarmoredBonuses = {}
