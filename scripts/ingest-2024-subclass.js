@@ -6,7 +6,7 @@
 // args: <class> <wikidot page suffix (class:<suffix>)> <display name>
 //
 // Writes engine/data/5e2024/subclasses/<class>-<name-slug>.json, one
-// pub24_<class>-<subclass>-<feature> entry per feature in
+// pub24_sub_<class>-<subclass>-<feature> entry per feature in
 // src/data/published_features.json, and the id->name entries in
 // engine/data/5e/feature-catalog.json. See 2024_CONVERSION_PLAN.md.
 // Always-prepared spell tables ("<X> Spells" with Level | Spells rows) are
@@ -59,7 +59,7 @@ async function ingest(cls, page, displayName, { write }) {
     if (/ Spells$/.test(s.name) && parseSpellTables(s.body).length === 0 && /always have/.test(s.body.join(' '))) {
       // keep it: the always-prepared spells are a real feature line on the sheet
     }
-    const id = `pub24_${cls}-${sub}-${slug(s.name)}${nameCount[s.name] > 1 ? `-l${s.level}` : ''}`
+    const id = `pub24_sub_${cls}-${sub}-${slug(s.name)}${nameCount[s.name] > 1 ? `-l${s.level}` : ''}`
     ;(featuresByLevel[s.level] ??= []).push(id)
     catalog[id] = s.name
     published.push({
@@ -99,7 +99,7 @@ async function ingest(cls, page, displayName, { write }) {
 
   const pubFile = path.join(ROOT, 'src', 'data', 'published_features.json')
   const pub = JSON.parse(fs.readFileSync(pubFile, 'utf8'))
-  const mine = new RegExp(`^pub24_${cls}-${sub}-`)
+  const mine = new RegExp(`^pub24_sub_${cls}-${sub}-`)
   fs.writeFileSync(
     pubFile,
     JSON.stringify([...pub.filter((e) => !mine.test(e.id ?? '')), ...published], null, 2) + '\n'

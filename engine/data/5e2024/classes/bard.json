@@ -1,0 +1,349 @@
+{
+  "name": "Bard",
+  "ruleset": "2024",
+  "description": "Invoking magic through music, dance, and verse, Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions. Bards believe the multiverse was spoken into existence and that remnants of its Words of Creation still resound and glimmer on every plane of existence. Bardic magic attempts to harness those words, which transcend any language.",
+  "primary_ability": "Charisma",
+  "saving_throw_proficiencies": [
+    "dex",
+    "cha"
+  ],
+  "armor_proficiencies": [
+    "light"
+  ],
+  "weapon_proficiencies": [
+    "simple"
+  ],
+  "weapon_proficiencies_text": "Simple weapons",
+  "skill_choices": {
+    "count": 3,
+    "options": "any"
+  },
+  "subclass_name": "Bard Subclass",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [
+    3,
+    6,
+    14
+  ],
+  "spellcasting": {
+    "type": "full",
+    "ability": "cha"
+  },
+  "features_by_level": {
+    "1": [
+      "pub24_bard-bardic-inspiration",
+      "pub24_bard-spellcasting"
+    ],
+    "2": [
+      "pub24_bard-expertise",
+      "pub24_bard-jack-of-all-trades"
+    ],
+    "5": [
+      "pub24_bard-font-of-inspiration"
+    ],
+    "7": [
+      "pub24_bard-countercharm"
+    ],
+    "9": [
+      "pub24_bard-expertise-l9"
+    ],
+    "10": [
+      "pub24_bard-magical-secrets"
+    ],
+    "18": [
+      "pub24_bard-superior-inspiration"
+    ],
+    "20": [
+      "pub24_bard-words-of-creation"
+    ]
+  },
+  "starting_equipment": {
+    "raw": "Choose A or B: (A) Leather Armor, 2 Daggers, Musical Instrument of your choice, Entertainer's Pack, and 19 GP; or (B) 90 GP",
+    "A": {
+      "items": [
+        {
+          "name": "Leather Armor"
+        },
+        {
+          "name": "Daggers",
+          "qty": 2
+        },
+        {
+          "name": "Musical Instrument of your choice"
+        },
+        {
+          "name": "Entertainer's Pack"
+        }
+      ],
+      "gold": 19
+    },
+    "B": {
+      "items": [],
+      "gold": 90
+    }
+  },
+  "bardic_die_by_level": {
+    "1": "D6",
+    "2": "D6",
+    "3": "D6",
+    "4": "D6",
+    "5": "D8",
+    "6": "D8",
+    "7": "D8",
+    "8": "D8",
+    "9": "D8",
+    "10": "D10",
+    "11": "D10",
+    "12": "D10",
+    "13": "D10",
+    "14": "D10",
+    "15": "D12",
+    "16": "D12",
+    "17": "D12",
+    "18": "D12",
+    "19": "D12",
+    "20": "D12"
+  },
+  "cantrips_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "prepared_spells_by_level": {
+    "1": 4,
+    "2": 5,
+    "3": 6,
+    "4": 7,
+    "5": 9,
+    "6": 10,
+    "7": 11,
+    "8": 12,
+    "9": 14,
+    "10": 15,
+    "11": 16,
+    "12": 16,
+    "13": 17,
+    "14": 17,
+    "15": 18,
+    "16": 18,
+    "17": 19,
+    "18": 20,
+    "19": 21,
+    "20": 22
+  },
+  "spell_slots_level_1_by_level": {
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 4,
+    "5": 4,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "spell_slots_level_2_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 2,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_3_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 2,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_4_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 1,
+    "8": 2,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_5_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 1,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_6_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 2,
+    "20": 2
+  },
+  "spell_slots_level_7_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 2
+  },
+  "spell_slots_level_8_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1
+  },
+  "spell_slots_level_9_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1
+  }
+}

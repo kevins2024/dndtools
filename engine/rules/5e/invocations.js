@@ -2,6 +2,7 @@ const invocations = require('../../data/5e/invocations.json')
 const pactBoons = require('../../data/5e/pact-boons.json')
 const tables = require('../../data/5e/spellcasting-tables.json')
 const { resolveBreakpoint } = require('./spellcasting')
+const { loadClass } = require('./classFeatures')
 const { evaluatePrerequisite } = require('./featPrerequisites')
 
 function normalizeName(name) {
@@ -35,8 +36,10 @@ function meetsInvocationPrerequisite(character, invocationName) {
 }
 
 // Warlock only — no other class/subclass currently grants this mechanic.
-function invocationsKnownForLevel(level) {
-  const map = tables.invocations_known.Warlock
+function invocationsKnownForLevel(level, ruleset) {
+  const map =
+    loadClass('Warlock', ruleset)?.eldritch_invocations_by_level ??
+    tables.invocations_known.Warlock
   if (!map) return 0
   return resolveBreakpoint(map, level)
 }

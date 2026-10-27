@@ -1,0 +1,178 @@
+{
+  "name": "Monk",
+  "ruleset": "2024",
+  "description": "Monks use rigorous combat training and mental discipline to align themselves with the multiverse and focus their internal reservoirs of power. Different Monks conceptualize this power in various ways: as breath, energy, life force, essence, or self, for example. Whether channeled as a striking display of martial prowess or as a subtler manifestation of defense and speed, this power infuses all that a Monk does.",
+  "primary_ability": "Dexterity and Wisdom",
+  "saving_throw_proficiencies": [
+    "str",
+    "dex"
+  ],
+  "armor_proficiencies": [],
+  "weapon_proficiencies": [
+    "simple",
+    "martial:light"
+  ],
+  "weapon_proficiencies_text": "Simple weapons and Martial weapons that have the Light property",
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "acrobatics",
+      "athletics",
+      "history",
+      "insight",
+      "religion",
+      "stealth"
+    ]
+  },
+  "subclass_name": "Monk Subclass",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [
+    3,
+    6,
+    11,
+    17
+  ],
+  "spellcasting": {
+    "type": "none"
+  },
+  "features_by_level": {
+    "1": [
+      "pub24_monk-martial-arts",
+      "pub24_monk-unarmored-defense"
+    ],
+    "2": [
+      "pub24_monk-monks-focus",
+      "pub24_monk-unarmored-movement",
+      "pub24_monk-uncanny-metabolism"
+    ],
+    "3": [
+      "pub24_monk-deflect-attacks"
+    ],
+    "4": [
+      "pub24_monk-slow-fall"
+    ],
+    "5": [
+      "pub24_monk-extra-attack",
+      "pub24_monk-stunning-strike"
+    ],
+    "6": [
+      "pub24_monk-empowered-strikes"
+    ],
+    "7": [
+      "pub24_monk-evasion"
+    ],
+    "9": [
+      "pub24_monk-acrobatic-movement"
+    ],
+    "10": [
+      "pub24_monk-heightened-focus",
+      "pub24_monk-self-restoration"
+    ],
+    "13": [
+      "pub24_monk-deflect-energy"
+    ],
+    "14": [
+      "pub24_monk-disciplined-survivor"
+    ],
+    "15": [
+      "pub24_monk-perfect-focus"
+    ],
+    "18": [
+      "pub24_monk-superior-defense"
+    ],
+    "20": [
+      "pub24_monk-body-and-mind"
+    ]
+  },
+  "starting_equipment": {
+    "raw": "Choose A or B: (A) Spear, 5 Daggers, Artisan's Tools or Musical Instrument chosen for the tool proficiency above, Explorer's Pack and 11 GP; or (B) 50 GP",
+    "A": {
+      "items": [
+        {
+          "name": "Spear"
+        },
+        {
+          "name": "Daggers",
+          "qty": 5
+        },
+        {
+          "name": "Artisan's Tools or Musical Instrument chosen for the tool proficiency above"
+        },
+        {
+          "name": "Explorer's Pack"
+        }
+      ],
+      "gold": 11
+    },
+    "B": {
+      "items": [],
+      "gold": 50
+    }
+  },
+  "martial_arts_by_level": {
+    "1": "1d6",
+    "2": "1d6",
+    "3": "1d6",
+    "4": "1d6",
+    "5": "1d8",
+    "6": "1d8",
+    "7": "1d8",
+    "8": "1d8",
+    "9": "1d8",
+    "10": "1d8",
+    "11": "1d10",
+    "12": "1d10",
+    "13": "1d10",
+    "14": "1d10",
+    "15": "1d10",
+    "16": "1d10",
+    "17": "1d12",
+    "18": "1d12",
+    "19": "1d12",
+    "20": "1d12"
+  },
+  "focus_points_by_level": {
+    "1": "-",
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "11": 11,
+    "12": 12,
+    "13": 13,
+    "14": 14,
+    "15": 15,
+    "16": 16,
+    "17": 17,
+    "18": 18,
+    "19": 19,
+    "20": 20
+  },
+  "unarmored_movement_by_level": {
+    "1": "-",
+    "2": "+10 ft",
+    "3": "+10 ft",
+    "4": "+10 ft",
+    "5": "+10 ft",
+    "6": "+15 ft",
+    "7": "+15 ft",
+    "8": "+15 ft",
+    "9": "+15 ft",
+    "10": "+20 ft",
+    "11": "+20 ft",
+    "12": "+20 ft",
+    "13": "+20 ft",
+    "14": "+25 ft",
+    "15": "+25 ft",
+    "16": "+25 ft",
+    "17": "+25 ft",
+    "18": "+30 ft",
+    "19": "+30 ft",
+    "20": "+30 ft"
+  }
+}

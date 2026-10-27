@@ -1,0 +1,355 @@
+{
+  "name": "Cleric",
+  "ruleset": "2024",
+  "description": "Clerics draw power from the realms of the gods and harness it to work miracles. Blessed by a deity, a pantheon, or another immortal entity, a Cleric can reach out to the divine magic of the Outer Planes—where gods dwell—and channel it to bolster people and battle foes.",
+  "primary_ability": "Wisdom",
+  "saving_throw_proficiencies": [
+    "wis",
+    "cha"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple"
+  ],
+  "weapon_proficiencies_text": "Simple weapons",
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "history",
+      "insight",
+      "medicine",
+      "persuasion",
+      "religion"
+    ]
+  },
+  "subclass_name": "Cleric Subclass",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [
+    3,
+    6,
+    17
+  ],
+  "spellcasting": {
+    "type": "full",
+    "ability": "wis"
+  },
+  "features_by_level": {
+    "1": [
+      "pub24_cleric-spellcasting",
+      "pub24_cleric-divine-order"
+    ],
+    "2": [
+      "pub24_cleric-channel-divinity"
+    ],
+    "5": [
+      "pub24_cleric-sear-undead"
+    ],
+    "7": [
+      "pub24_cleric-blessed-strikes"
+    ],
+    "10": [
+      "pub24_cleric-divine-intervention"
+    ],
+    "14": [
+      "pub24_cleric-improved-blessed-strikes"
+    ],
+    "20": [
+      "pub24_cleric-greater-divine-intervention"
+    ]
+  },
+  "starting_equipment": {
+    "raw": "Choose A or B: (A) Chain Shirt, Shield, Mace, Holy Symbol, Priest's Pack, and 7 GP; or (B) 110 GP",
+    "A": {
+      "items": [
+        {
+          "name": "Chain Shirt"
+        },
+        {
+          "name": "Shield"
+        },
+        {
+          "name": "Mace"
+        },
+        {
+          "name": "Holy Symbol"
+        },
+        {
+          "name": "Priest's Pack"
+        }
+      ],
+      "gold": 7
+    },
+    "B": {
+      "items": [],
+      "gold": 110
+    }
+  },
+  "channel_divinity_by_level": {
+    "1": "-",
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "cantrips_by_level": {
+    "1": 3,
+    "2": 3,
+    "3": 3,
+    "4": 4,
+    "5": 4,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 5,
+    "11": 5,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 5,
+    "18": 5,
+    "19": 5,
+    "20": 5
+  },
+  "prepared_spells_by_level": {
+    "1": 4,
+    "2": 5,
+    "3": 6,
+    "4": 7,
+    "5": 9,
+    "6": 10,
+    "7": 11,
+    "8": 12,
+    "9": 14,
+    "10": 15,
+    "11": 16,
+    "12": 16,
+    "13": 17,
+    "14": 17,
+    "15": 18,
+    "16": 18,
+    "17": 19,
+    "18": 20,
+    "19": 21,
+    "20": 22
+  },
+  "spell_slots_level_1_by_level": {
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 4,
+    "5": 4,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "spell_slots_level_2_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 2,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_3_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 2,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_4_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 1,
+    "8": 2,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_5_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 1,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 3,
+    "19": 3,
+    "20": 3
+  },
+  "spell_slots_level_6_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 2,
+    "20": 2
+  },
+  "spell_slots_level_7_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 2
+  },
+  "spell_slots_level_8_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 1,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1
+  },
+  "spell_slots_level_9_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1
+  }
+}

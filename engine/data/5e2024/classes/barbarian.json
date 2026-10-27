@@ -83,7 +83,7 @@
     ]
   },
   "starting_equipment": {
-    "raw": "Choose A or B: (A) Greataxe, 4 Handaxes, Explorer’s Pack, and 15 GP; or (B) 75 GP",
+    "raw": "Choose A or B: (A) Greataxe, 4 Handaxes, Explorer's Pack, and 15 GP; or (B) 75 GP",
     "A": {
       "items": [
         {
@@ -94,7 +94,7 @@
           "qty": 4
         },
         {
-          "name": "Explorer’s Pack"
+          "name": "Explorer's Pack"
         }
       ],
       "gold": 15

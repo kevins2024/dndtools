@@ -29,6 +29,19 @@ const slug = (s) =>
     .replace(/^-+|-+$/g, '')
 const snake = (s) => slug(s).replace(/-/g, '_')
 
+// How each PHB class casts (the page only says it in prose). Subclass casters
+// (Eldritch Knight, Arcane Trickster) carry theirs on the subclass file.
+const CLASS_SPELLCASTING = {
+  bard: { type: 'full', ability: 'cha' },
+  cleric: { type: 'full', ability: 'wis' },
+  druid: { type: 'full', ability: 'wis' },
+  sorcerer: { type: 'full', ability: 'cha' },
+  wizard: { type: 'full', ability: 'int' },
+  paladin: { type: 'half', ability: 'cha' },
+  ranger: { type: 'half', ability: 'wis' },
+  warlock: { type: 'pact', ability: 'cha' },
+}
+
 const ABILITY = {
   strength: 'str',
   dexterity: 'dex',
@@ -72,16 +85,22 @@ function parseArmor(text) {
   return out
 }
 
+// Tokens: 'simple', 'martial', or a conditional grant for the classes that only
+// get some Martial weapons: 'martial:light' (Monk), 'martial:finesse_or_light' (Rogue).
 function parseWeapons(text) {
   const t = text.toLowerCase()
   const out = []
   if (/simple/.test(t)) out.push('simple')
-  if (/martial/.test(t)) out.push('martial')
+  if (/martial/.test(t)) {
+    if (/finesse or light/.test(t)) out.push('martial:finesse_or_light')
+    else if (/light property/.test(t)) out.push('martial:light')
+    else out.push('martial')
+  }
   return out
 }
 
 function parseSkills(text) {
-  const m = /Choose (?:any )?(\d+)(?::\s*(.*))?$/i.exec(text)
+  const m = /Choose (?:any )?(\d+)(?: skills)?(?::\s*(.*))?$/i.exec(text)
   if (!m) return null
   const options = m[2]
     ? m[2]
@@ -94,51 +113,71 @@ function parseSkills(text) {
   return { count: Number(m[1]), options }
 }
 
-// "(A) Greataxe, 4 Handaxes, Explorer’s Pack, and 15 GP; or (B) 75 GP"
+// "Choose A or B: (A) Greataxe, 4 Handaxes, Explorer's Pack, and 15 GP; or (B) 75 GP"
+// (Fighter has a third, "(C) 155 GP"). Returns { raw, A: {items, gold}, B, C }.
 function parseEquipment(text) {
-  const pick = (re) => {
-    const m = re.exec(text)
-    return m ? m[1].trim() : null
-  }
-  const a = pick(/\(A\)\s*(.*?)(?:;\s*or\s*\(B\)|$)/i)
-  const b = pick(/\(B\)\s*(.*)$/i)
-  const parsePkg = (s) => {
-    if (!s) return null
+  const clean = text.replace(/[’]/g, "'")
+  const parts = clean.split(/;?\s*(?:or\s*)?\(([A-C])\)\s*/).slice(1)
+  const out = { raw: clean }
+  for (let i = 0; i < parts.length; i += 2) {
+    const letter = parts[i]
     let gold = 0
     const items = []
-    for (const part of s
+    const pieces = parts[i + 1]
       .replace(/\band\b/g, ',')
       .split(',')
       .map((p) => p.trim())
-      .filter(Boolean)) {
-      const g = /^(\d[\d,]*)\s*GP$/i.exec(part)
+      .filter(Boolean)
+    for (const piece of pieces) {
+      const g = /^(\d[\d,]*)\s*GP$/i.exec(piece)
       if (g) {
         gold += Number(g[1].replace(/,/g, ''))
         continue
       }
-      const q = /^(\d+)\s+(.*)$/.exec(part)
-      items.push(q ? { name: q[2], qty: Number(q[1]) } : { name: part })
+      const q = /^(\d+)\s+(.*)$/.exec(piece)
+      items.push(q ? { name: q[2], qty: Number(q[1]) } : { name: piece })
     }
-    return { items, gold }
+    out[letter] = { items, gold }
   }
-  return { raw: text, A: parsePkg(a), B: parsePkg(b) }
+  return out
 }
 
-function parseFeatureTable(lines, className) {
-  const head = lines.findIndex(
-    (l) =>
-      /^Level \| Proficiency Bonus \| Features/.test(l) &&
-      !/Class Features$/.test(l)
-  )
-  if (head < 0) throw new Error('feature table not found')
-  const cols = splitRow(lines[head])
-  const rows = []
-  for (let i = head + 1; i < lines.length; i++) {
-    const cells = splitRow(lines[i])
-    if (!/^\d+$/.test(cells[0]) || cells.length < 3) break
-    rows.push(cells)
+// Every "Level | ..." table on the page. The main one carries Proficiency Bonus
+// and the feature names; classes with wide tables (Monk, Paladin, Ranger...)
+// split the per-level columns into a second table, which is merged in.
+function parseTables(lines) {
+  const tables = []
+  for (let i = 0; i < lines.length; i++) {
+    if (!/^Level \| /.test(lines[i])) continue
+    const cols = splitRow(lines[i])
+    const rows = []
+    for (let j = i + 1; j < lines.length; j++) {
+      const cells = splitRow(lines[j])
+      if (!/^\d+$/.test(cells[0]) || cells.length < 2) break
+      rows.push(cells)
+    }
+    if (rows.length >= 15) tables.push({ cols, rows })
   }
-  return { cols, rows }
+  return tables
+}
+
+function parseFeatureTable(lines) {
+  const tables = parseTables(lines)
+  const main = tables.find((t) => t.cols[1] === 'Proficiency Bonus')
+  if (!main) throw new Error('feature table not found')
+  const nameCol = main.cols.findIndex((c) => /Features$/.test(c))
+  const extra = []
+  for (let c = 0; c < main.cols.length; c++) {
+    if (c === 0 || c === 1 || c === nameCol) continue
+    extra.push({ name: main.cols[c], values: Object.fromEntries(main.rows.map((r) => [r[0], r[c] ?? ''])) })
+  }
+  for (const t of tables) {
+    if (t === main) continue
+    for (let c = 1; c < t.cols.length; c++) {
+      extra.push({ name: t.cols[c], values: Object.fromEntries(t.rows.map((r) => [r[0], r[c] ?? ''])) })
+    }
+  }
+  return { nameCol, rows: main.rows, extra }
 }
 
 function parseSections(lines) {
@@ -158,6 +197,12 @@ function parseSections(lines) {
   return sections
 }
 
+const ORDINAL = { '1st': 1, '2nd': 2, '3rd': 3, '4th': 4, '5th': 5, '6th': 6, '7th': 7, '8th': 8, '9th': 9 }
+const columnKey = (name) =>
+  ORDINAL[name] ? `spell_slots_level_${ORDINAL[name]}_by_level` : snake(name) + '_by_level'
+
+const norm = (t) => t.toLowerCase().replace(/[’']/g, '').replace(/\s+/g, ' ').trim()
+
 function numeric(v) {
   const t = v.replace(/^\+/, '')
   return /^-?\d+$/.test(t) ? Number(t) : v
@@ -168,7 +213,7 @@ async function ingest(className, { write }) {
   const display = className[0].toUpperCase() + className.slice(1)
 
   const core = parseCoreTraits(lines)
-  const { cols, rows } = parseFeatureTable(lines, display)
+  const { nameCol, rows, extra } = parseFeatureTable(lines)
   const sections = parseSections(lines)
 
   // ── features by level (by id) and the per-level extra columns ──────────
@@ -186,18 +231,14 @@ async function ingest(className, { write }) {
   const published = []
   const catalog = {}
   const warnings = []
-  const extraCols = cols.slice(3)
-  const extras = Object.fromEntries(extraCols.map((c) => [c, {}]))
   const subclassLevels = []
 
   for (const cells of rows) {
     const level = Number(cells[0])
-    for (const c of extraCols.keys())
-      extras[extraCols[c]][level] = numeric(cells[3 + c] ?? '')
-    for (const rawName of cells[2]
+    for (const rawName of (cells[nameCol] ?? '')
       .split(',')
       .map((s) => s.trim())
-      .filter(Boolean)) {
+      .filter((s) => s && s !== '-' && s !== '—')) {
       if (/^Subclass feature$/i.test(rawName)) {
         subclassLevels.push(level)
         continue
@@ -207,10 +248,28 @@ async function ingest(className, { write }) {
         continue
       }
       if (SKIP_FEATURE.test(rawName)) continue
-      const sec = sectionByKey.get(sectionKey(level, rawName))
-      if (!sec)
-        warnings.push(`no "Level ${level}: ${rawName}" section on the page`)
-      const id = idFor(rawName, level)
+      // Table names carry qualifiers the section headings drop ("Action Surge
+      // (One Use)", "Mystic Arcanum (Level 6 Spell)"), and the page mixes ’ and '.
+      const baseName = rawName.replace(/\s*\(.*\)\s*$/, '')
+      const sameLevel = (nm) =>
+        sections.find((x) => x.level === level && norm(x.name) === norm(nm))
+      const sec = sectionByKey.get(sectionKey(level, rawName)) ?? sameLevel(rawName) ?? sameLevel(baseName)
+      let repeatOf = null
+      if (!sec) {
+        // The table lists a feature again at a later level (Metamagic 10th,
+        // Expertise 9th...) to say you gain more of it; the page only has the
+        // original "Level N: Name" text.
+        repeatOf = sections.find(
+          (x) =>
+            x.level < level &&
+            (norm(x.name) === norm(rawName) || norm(x.name) === norm(baseName))
+        )
+        if (!repeatOf)
+          warnings.push(`no "Level ${level}: ${rawName}" section on the page`)
+      }
+      const id = repeatOf
+        ? `pub24_${className}-${slug(rawName)}-l${level}`
+        : idFor(rawName, level)
       ;(featuresByLevel[level] ??= []).push(id)
       catalog[id] = rawName
       published.push({
@@ -219,7 +278,11 @@ async function ingest(className, { write }) {
         category: 'class_feature',
         class: display,
         level_gained: level,
-        description: sec ? sec.body.join('\n') : '',
+        description: sec
+          ? sec.body.join('\n')
+          : repeatOf
+          ? `You gain more from this feature at this level; see "${repeatOf.name}" (level ${repeatOf.level}).\n${repeatOf.body.join('\n')}`
+          : '',
         source: "Player's Handbook (2024)",
         ruleset: '2024',
         homebrew: false,
@@ -243,14 +306,25 @@ async function ingest(className, { write }) {
     subclass_name: `${display} Subclass`,
     subclass_choice_level: Math.min(...subclassLevels.filter((l) => l)),
     subclass_feature_levels: [...new Set(subclassLevels)].sort((a, b) => a - b),
-    spellcasting: { type: 'none' },
+    spellcasting: CLASS_SPELLCASTING[className] ?? { type: 'none' },
     features_by_level: featuresByLevel,
     starting_equipment: parseEquipment(core['Starting Equipment'] ?? ''),
-    ...Object.fromEntries(extraCols.map((c) => [snake(c) + '_by_level', extras[c]])),
+    ...Object.fromEntries(
+      extra.map((e) => [
+        columnKey(e.name),
+        Object.fromEntries(
+          Object.entries(e.values).map(([l, v]) => [
+            l,
+            // "-" in a spell-slot column means no slots of that level.
+            /^[-—]$/.test(v) && /^spell_slots/.test(columnKey(e.name)) ? 0 : numeric(v),
+          ])
+        ),
+      ])
+    ),
   }
 
   console.log(
-    `\n${display}: ${rows.length} levels, ${published.length} features, ${Object.keys(extras).length} extra columns (${extraCols.join(', ')})`
+    `\n${display}: ${rows.length} levels, ${published.length} features, ${extra.length} extra columns (${extra.map((e) => e.name).join(', ')})`
   )
   console.log(
     `subclass levels: ${chassis.subclass_feature_levels.join(', ')}  saves: ${chassis.saving_throw_proficiencies.join(',')}  armor: ${chassis.armor_proficiencies.join(',')}  weapons: ${chassis.weapon_proficiencies.join(',')}`
@@ -273,9 +347,9 @@ async function ingest(className, { write }) {
   )
   fs.mkdirSync(path.dirname(outFile), { recursive: true })
   if (fs.existsSync(outFile)) {
-    // Keep hand-authored fields (spellcasting, mechanics tables) on a re-run.
+    // Keep a hand-written description on a re-run.
     const prev = JSON.parse(fs.readFileSync(outFile, 'utf8'))
-    for (const k of ['spellcasting', 'description_override'])
+    for (const k of ['description_override'])
       if (prev[k]) chassis[k] = prev[k]
   }
   fs.writeFileSync(outFile, JSON.stringify(chassis, null, 2) + '\n')

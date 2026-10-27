@@ -53,10 +53,32 @@ function tableKeyFor(className, subclassName, spellcasting, ruleset) {
     : loadClass(className, ruleset)?.name ?? className
 }
 
+// A 2024 class file carries its own spellcasting columns straight from the
+// PHB class table (cantrips_by_level, prepared_spells_by_level, and one
+// spell_slots_level_N_by_level per slot level). Classes the 2024 rules did not
+// rewrite (Artificer) and subclass casters have none, and use the shared
+// tables file instead — so a class-file column, when present, wins.
+function classColumn(className, ruleset, column) {
+  return loadClass(className, ruleset)?.[column] ?? null
+}
+
+function slotsFromClassTable(className, level, ruleset) {
+  if (!classColumn(className, ruleset, 'spell_slots_level_1_by_level')) return null
+  const out = []
+  for (let n = 1; n <= 9; n++) {
+    const col = classColumn(className, ruleset, `spell_slots_level_${n}_by_level`)
+    out.push(col ? resolveBreakpoint(col, level) : 0)
+  }
+  while (out.length && out[out.length - 1] === 0) out.pop()
+  return out
+}
+
 function spellSlotsForClassAtLevel(className, level, subclassName, ruleset) {
   const tables = tablesFor(ruleset)
   const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   if (!spellcasting) return []
+  const fromClass = slotsFromClassTable(className, level, ruleset)
+  if (fromClass) return fromClass
   const type = spellcasting.type
   if (type === 'full') return tables.full_caster_slots[String(level)] || []
   if (type === 'half') return tables.half_caster_slots[String(level)] || []
@@ -67,6 +89,14 @@ function spellSlotsForClassAtLevel(className, level, subclassName, ruleset) {
 }
 
 function pactMagicForLevel(level, ruleset) {
+  const slots = classColumn('Warlock', ruleset, 'spell_slots_by_level')
+  const slotLevel = classColumn('Warlock', ruleset, 'slot_level_by_level')
+  if (slots && slotLevel) {
+    return {
+      slots: resolveBreakpoint(slots, level),
+      slot_level: resolveBreakpoint(slotLevel, level),
+    }
+  }
   return tablesFor(ruleset).pact_magic[String(level)] || { slots: 0, slot_level: 0 }
 }
 
@@ -79,6 +109,8 @@ function mysticArcanumLevelsKnownAt(level, ruleset) {
 function cantripsKnownForClass(className, level, subclassName, ruleset) {
   const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   const key = tableKeyFor(className, subclassName, spellcasting, ruleset)
+  const fromClass = classColumn(className, ruleset, 'cantrips_by_level')
+  if (fromClass) return resolveBreakpoint(fromClass, level)
   const map = tablesFor(ruleset).cantrips_known[key]
   if (!map) return 0
   return resolveBreakpoint(map, level)
@@ -87,6 +119,8 @@ function cantripsKnownForClass(className, level, subclassName, ruleset) {
 function spellsKnownForClass(className, level, subclassName, ruleset) {
   const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   const key = tableKeyFor(className, subclassName, spellcasting, ruleset)
+  // 2024: every caster prepares from a fixed per-level count in its class table.
+  if (classColumn(className, ruleset, 'prepared_spells_by_level')) return null
   const map = tablesFor(ruleset).spells_known[key]
   if (!map) return null // this class prepares instead of "knowing" a fixed list
   return map[String(level)] ?? 0
@@ -107,6 +141,8 @@ function preparedSpellCount(
 ) {
   const spellcasting = resolveSpellcasting(className, subclassName, ruleset)
   if (!spellcasting) return 0
+  const fixed = classColumn(className, ruleset, 'prepared_spells_by_level')
+  if (fixed) return resolveBreakpoint(fixed, level)
   if (spellsKnownForClass(className, level, subclassName, ruleset) !== null)
     return null
   const type = spellcasting.type

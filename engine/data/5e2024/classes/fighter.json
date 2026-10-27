@@ -1,0 +1,179 @@
+{
+  "name": "Fighter",
+  "ruleset": "2024",
+  "description": "Fighters rule many battlefields. Questing knights, royal champions, elite soldiers, and hardened mercenaries - as Fighters, they all share an unparalleled prowess with weapons and armor. And they are well acquainted with death, both meting it out and defying it.",
+  "primary_ability": "Strength or Dexterity",
+  "saving_throw_proficiencies": [
+    "str",
+    "con"
+  ],
+  "armor_proficiencies": [
+    "light",
+    "medium",
+    "heavy",
+    "shields"
+  ],
+  "weapon_proficiencies": [
+    "simple",
+    "martial"
+  ],
+  "weapon_proficiencies_text": "Simple and Martial weapons",
+  "skill_choices": {
+    "count": 2,
+    "options": [
+      "acrobatics",
+      "animal_handling",
+      "athletics",
+      "history",
+      "insight",
+      "intimidation",
+      "persuasion",
+      "perception",
+      "survival"
+    ]
+  },
+  "subclass_name": "Fighter Subclass",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [
+    3,
+    7,
+    10,
+    15,
+    18
+  ],
+  "spellcasting": {
+    "type": "none"
+  },
+  "features_by_level": {
+    "1": [
+      "pub24_fighter-fighting-style",
+      "pub24_fighter-second-wind",
+      "pub24_fighter-weapon-mastery"
+    ],
+    "2": [
+      "pub24_fighter-action-surge-one-use",
+      "pub24_fighter-tactical-mind"
+    ],
+    "5": [
+      "pub24_fighter-extra-attack",
+      "pub24_fighter-tactical-shift"
+    ],
+    "9": [
+      "pub24_fighter-indomitable-one-use",
+      "pub24_fighter-tactical-master"
+    ],
+    "11": [
+      "pub24_fighter-two-extra-attacks"
+    ],
+    "13": [
+      "pub24_fighter-indomitable-two-uses-l13",
+      "pub24_fighter-studied-attacks"
+    ],
+    "17": [
+      "pub24_fighter-action-surge-two-uses-l17",
+      "pub24_fighter-indomitable-three-uses-l17"
+    ],
+    "20": [
+      "pub24_fighter-three-extra-attacks"
+    ]
+  },
+  "starting_equipment": {
+    "raw": "Choose A, B, or C: (A) Chain Mail, Greatsword, Flail, 8 Javelins, Dungeoneer's Pack, and 4 GP; (B) Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Dungeoneer's Pack and 11 GP; or (C) 155 GP",
+    "A": {
+      "items": [
+        {
+          "name": "Chain Mail"
+        },
+        {
+          "name": "Greatsword"
+        },
+        {
+          "name": "Flail"
+        },
+        {
+          "name": "Javelins",
+          "qty": 8
+        },
+        {
+          "name": "Dungeoneer's Pack"
+        }
+      ],
+      "gold": 4
+    },
+    "B": {
+      "items": [
+        {
+          "name": "Studded Leather Armor"
+        },
+        {
+          "name": "Scimitar"
+        },
+        {
+          "name": "Shortsword"
+        },
+        {
+          "name": "Longbow"
+        },
+        {
+          "name": "Arrows",
+          "qty": 20
+        },
+        {
+          "name": "Quiver"
+        },
+        {
+          "name": "Dungeoneer's Pack"
+        }
+      ],
+      "gold": 11
+    },
+    "C": {
+      "items": [],
+      "gold": 155
+    }
+  },
+  "second_wind_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "weapon_mastery_by_level": {
+    "1": 3,
+    "2": 3,
+    "3": 3,
+    "4": 4,
+    "5": 4,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 5,
+    "11": 5,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 6,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  }
+}

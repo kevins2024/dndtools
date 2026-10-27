@@ -1,0 +1,144 @@
+{
+  "name": "Rogue",
+  "ruleset": "2024",
+  "description": "Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem. A few even learn magical tricks to supplement their other abilities. Many Rogues focus on stealth and deception, while others refine skills that help them in a dungeon environment, such as climbing, finding and disarming traps and opening locks.",
+  "primary_ability": "Dexterity",
+  "saving_throw_proficiencies": [
+    "dex",
+    "int"
+  ],
+  "armor_proficiencies": [
+    "light"
+  ],
+  "weapon_proficiencies": [
+    "simple",
+    "martial:finesse_or_light"
+  ],
+  "weapon_proficiencies_text": "Simple weapons and Martial weapons that have the Finesse or Light property",
+  "skill_choices": {
+    "count": 4,
+    "options": [
+      "acrobatics",
+      "athletics",
+      "deception",
+      "insight",
+      "intimidation",
+      "investigation",
+      "perception",
+      "persuasion",
+      "sleight_of_hand",
+      "stealth"
+    ]
+  },
+  "subclass_name": "Rogue Subclass",
+  "subclass_choice_level": 3,
+  "subclass_feature_levels": [
+    3,
+    9,
+    13,
+    17
+  ],
+  "spellcasting": {
+    "type": "none"
+  },
+  "features_by_level": {
+    "1": [
+      "pub24_rogue-expertise",
+      "pub24_rogue-sneak-attack",
+      "pub24_rogue-thieves-cant",
+      "pub24_rogue-weapon-mastery"
+    ],
+    "2": [
+      "pub24_rogue-cunning-action"
+    ],
+    "3": [
+      "pub24_rogue-steady-aim"
+    ],
+    "5": [
+      "pub24_rogue-cunning-strike",
+      "pub24_rogue-uncanny-dodge"
+    ],
+    "6": [
+      "pub24_rogue-expertise-l6"
+    ],
+    "7": [
+      "pub24_rogue-evasion",
+      "pub24_rogue-reliable-talent"
+    ],
+    "11": [
+      "pub24_rogue-improved-cunning-strike"
+    ],
+    "14": [
+      "pub24_rogue-devious-strikes"
+    ],
+    "15": [
+      "pub24_rogue-slippery-mind"
+    ],
+    "18": [
+      "pub24_rogue-elusive"
+    ],
+    "20": [
+      "pub24_rogue-stroke-of-luck"
+    ]
+  },
+  "starting_equipment": {
+    "raw": "Choose A or B: (A) Leather Armor, 2 Daggers, Shortsword, Shortbow, 20 Arrows, Quiver, Thieves' Tools, Burglar's Pack and 8 GP; or (B) 100 GP",
+    "A": {
+      "items": [
+        {
+          "name": "Leather Armor"
+        },
+        {
+          "name": "Daggers",
+          "qty": 2
+        },
+        {
+          "name": "Shortsword"
+        },
+        {
+          "name": "Shortbow"
+        },
+        {
+          "name": "Arrows",
+          "qty": 20
+        },
+        {
+          "name": "Quiver"
+        },
+        {
+          "name": "Thieves' Tools"
+        },
+        {
+          "name": "Burglar's Pack"
+        }
+      ],
+      "gold": 8
+    },
+    "B": {
+      "items": [],
+      "gold": 100
+    }
+  },
+  "sneak_attack_by_level": {
+    "1": "1d6",
+    "2": "1d6",
+    "3": "2d6",
+    "4": "2d6",
+    "5": "3d6",
+    "6": "3d6",
+    "7": "4d6",
+    "8": "4d6",
+    "9": "5d6",
+    "10": "5d6",
+    "11": "6d6",
+    "12": "6d6",
+    "13": "7d6",
+    "14": "7d6",
+    "15": "8d6",
+    "16": "8d6",
+    "17": "9d6",
+    "18": "9d6",
+    "19": "10d6",
+    "20": "10d6"
+  }
+}

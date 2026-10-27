@@ -5,16 +5,16 @@
   "description": "Barbarians who walk the Path of the Berserker direct their Rage primarily toward violence. Their path is one of untrammeled fury, and they thrill in the chaos of battle as they allow their Rage to seize and empower them.",
   "features_by_level": {
     "3": [
-      "pub24_barbarian-path-of-the-berserker-frenzy"
+      "pub24_sub_barbarian-path-of-the-berserker-frenzy"
     ],
     "6": [
-      "pub24_barbarian-path-of-the-berserker-mindless-rage"
+      "pub24_sub_barbarian-path-of-the-berserker-mindless-rage"
     ],
     "10": [
-      "pub24_barbarian-path-of-the-berserker-retaliation"
+      "pub24_sub_barbarian-path-of-the-berserker-retaliation"
     ],
     "14": [
-      "pub24_barbarian-path-of-the-berserker-intimidating-presence"
+      "pub24_sub_barbarian-path-of-the-berserker-intimidating-presence"
     ]
   }
 }

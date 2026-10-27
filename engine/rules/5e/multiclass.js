@@ -94,7 +94,12 @@ function multiclassSpellSlots(classes, ruleset) {
     )
   }
   const level = multiclassCasterLevel(classes)
-  return tablesFor(ruleset).full_caster_slots[String(Math.min(level, 20))] || []
+  const capped = Math.min(level, 20)
+  // 2024 keeps no separate full-caster table; the Wizard's class table is it.
+  if (ruleset && String(ruleset) === '2024') {
+    return spellSlotsForClassAtLevel('Wizard', capped, null, ruleset)
+  }
+  return tablesFor(ruleset).full_caster_slots[String(capped)] || []
 }
 
 function multiclassPactSlots(classes, ruleset) {
