@@ -24,7 +24,7 @@ import {
   transferItemToCharacter,
   transferPoolToCharacter,
 } from '@/utils/itemTransfer'
-import { reactivationConflicts } from '@/utils/partyMembership'
+import { reactivationConflicts, reconcileRoster } from '@/utils/partyMembership'
 
 Vue.use(Vuex)
 
@@ -149,11 +149,15 @@ export default new Vuex.Store({
     LOAD_PARTIES(state, parties) {
       // Seed game_day on parties that don't have one yet
       const fallbackDay = state.game_day || 1
-      state.parties = parties.map((p) => ({
-        ...p,
-        game_day: p.game_day ?? fallbackDay,
-        marching_order: p.marching_order ?? [...(p.members ?? [])],
-      }))
+      // reconcileRoster drops anyone who has left the party from the saved
+      // marching order and watch slots (membership can change without them).
+      state.parties = parties.map((p) =>
+        reconcileRoster({
+          ...p,
+          game_day: p.game_day ?? fallbackDay,
+          marching_order: p.marching_order ?? [...(p.members ?? [])],
+        })
+      )
     },
     SET_PARTIES(state, parties) {
       state.parties = parties

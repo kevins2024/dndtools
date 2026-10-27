@@ -58,7 +58,30 @@ function reactivationBlockReason(parties, partyId) {
   } in a party that's in play. Remove them from it, or mark that party inactive, first.`
 }
 
+// A party's saved marching order and watch slots, brought back in line with
+// who is actually in it. Membership gets changed on its own (swapping Ferghus
+// and Enauweyn between two parties, say) while these two lists keep the old
+// names, so a long rest showed the departed member and left the new one out.
+// marching_order keeps its saved order minus non-members, with anyone missing
+// added at the end; a watch slot holding a non-member is emptied (the free
+// slot is the player's to fill). Idempotent; other fields pass through.
+function reconcileRoster(party) {
+  const members = party.members ?? []
+  const next = { ...party }
+  if (Array.isArray(party.marching_order)) {
+    const kept = party.marching_order.filter((n) => members.includes(n))
+    next.marching_order = [...kept, ...members.filter((n) => !kept.includes(n))]
+  }
+  if (Array.isArray(party.watch_assignments)) {
+    next.watch_assignments = party.watch_assignments.map((slot) =>
+      slot.map((n) => (n && members.includes(n) ? n : null))
+    )
+  }
+  return next
+}
+
 module.exports = {
+  reconcileRoster,
   livePartyOf,
   joinCheck,
   reactivationConflicts,
