@@ -2214,6 +2214,12 @@ function diffLevelUp(
 
   const levelsGained = finalToLevel - fromLevel
   const conMod = abilityModifier(scores.con)
+  // If this level's Ability Score Improvement (or a feat) raised or lowered the
+  // Constitution modifier, every level already taken is recalculated: +1 (or -1)
+  // maximum HP per level attained.
+  const conModRetro =
+    (conMod - abilityModifier(extractScores(character).con)) *
+    (character.level || 0)
   // Flat non-class HP source (Dwarven Toughness: "+1 at 1st, +1 every level
   // thereafter" — same gap noted for Sorcerer's Draconic Resilience, but
   // that's a subclass feature, out of scope for this species-only fix).
@@ -2239,6 +2245,7 @@ function diffLevelUp(
   const hpGained =
     description.totalHpGained +
     conMod * levelsGained +
+    conModRetro +
     hpPerLevelBonus * levelsGained +
     featureHpGain
 
@@ -2248,6 +2255,7 @@ function diffLevelUp(
   const hpBreakdown = [
     { label: 'Hit die', amount: description.totalHpGained },
     { label: 'CON modifier', amount: conMod * levelsGained },
+    { label: 'CON modifier change (earlier levels)', amount: conModRetro },
     { label: 'Species bonus', amount: hpPerLevelBonus * levelsGained },
     { label: 'Feats and features', amount: featureHpGain },
   ].filter((line) => line.amount !== 0)
@@ -2715,7 +2723,7 @@ function diffLevelUp(
       hp: {
         total: hpGained,
         die: description.totalHpGained,
-        con: conMod * levelsGained,
+        con: conMod * levelsGained + conModRetro,
         bonus: hpPerLevelBonus * levelsGained + featureHpGain,
       },
       hpMethod,

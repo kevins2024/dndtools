@@ -30,6 +30,8 @@ const {
 const { multiclassSpellSlots } = require('./multiclass')
 const { findSpellRecord } = require('./spellLists')
 const { rulesetOf } = require('./rulesetId')
+const { extraCantrips } = require('./cantripAllowance')
+const { deriveCharacter, hasRecordedBase } = require('./derive')
 
 const norm = (s) =>
   String(s || '')
@@ -104,6 +106,39 @@ function auditCharacter(character, ctx = {}) {
   if (!classes.length) {
     add('error', 'no-classes', 'No classes listed.')
     return issues
+  }
+
+  // ── stored numbers vs the ones calculated from the recorded facts ─────
+  if (hasRecordedBase(character)) {
+    const d = deriveCharacter(character)
+    for (const k of [
+      'stat_str',
+      'stat_dex',
+      'stat_con',
+      'stat_int',
+      'stat_wis',
+      'stat_cha',
+      'hp_max',
+      'proficiency_bonus',
+    ])
+      if (character[k] !== d[k])
+        add(
+          'error',
+          'derived-mismatch',
+          `${k} is ${character[k]} on the sheet but ${d[k]} when calculated from the recorded base scores, history and hit dice.`
+        )
+    if (character.hp_unrecorded_dice)
+      add(
+        'info',
+        'hp-dice-unrecorded',
+        `${character.hp_unrecorded_dice} HP of hit-die results were never recorded per level.`
+      )
+  } else {
+    add(
+      'info',
+      'base-not-recorded',
+      'Base ability scores are not recorded, so scores and HP cannot be calculated from their sources.'
+    )
   }
 
   // ── level, proficiency bonus, hit dice ─────────────────────────────────
@@ -387,11 +422,12 @@ function auditCharacter(character, ctx = {}) {
       (s) => isCantrip(s) && !isBonusSpell(s) && s.prepared !== false
     )
     const leveled = spells.filter((s) => !isCantrip(s) && !isBonusSpell(s))
-    const wantCantrips = casters.reduce(
-      (n, { c }) =>
-        n + cantripsKnownForClass(c.name, c.level, c.subclass, ruleset),
-      0
-    )
+    const wantCantrips =
+      casters.reduce(
+        (n, { c }) =>
+          n + cantripsKnownForClass(c.name, c.level, c.subclass, ruleset),
+        0
+      ) + extraCantrips(character)
     if (cantrips.length < wantCantrips)
       add(
         'warn',

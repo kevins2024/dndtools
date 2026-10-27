@@ -3304,5 +3304,9 @@
     "name": "Fiendish Legacy",
     "recharge": "long_rest",
     "uses_max": 1
+  },
+  "hb_tackett_legendary_cantrips": {
+    "extra_cantrips": 3,
+    "note": "Homebrew: 3 cantrips beyond the normal Druid cantrip count (from the character's Legendary Repertoire feature)."
   }
 }

@@ -17,6 +17,7 @@ const { auditCharacter } = require('../rules/5e/auditCharacter')
 const { listClasses } = require('../rules/5e/classFeatures')
 const { listSubclasses } = require('../rules/5e/subclasses')
 const { getBonusSpells } = require('../rules/5e/characterSpells')
+const { deriveCharacter } = require('../rules/5e/derive')
 const { loadSubclass } = require('../rules/5e/subclasses')
 
 const FULL = Boolean(process.env.FULL_SWEEP)
@@ -24,6 +25,26 @@ const problems = (character) =>
   auditCharacter(character, { spellbooks: [] }).filter(
     (i) => i.severity !== 'info'
   )
+// Scores, max HP and proficiency bonus calculated from the recorded facts must equal
+// what the level-up wrote on the sheet.
+const assertDerived = (character, tag) => {
+  const d = deriveCharacter(character)
+  for (const k of [
+    'stat_str',
+    'stat_dex',
+    'stat_con',
+    'stat_int',
+    'stat_wis',
+    'stat_cha',
+    'hp_max',
+    'proficiency_bonus',
+  ])
+    assert.equal(
+      character[k],
+      d[k],
+      `${tag}: ${k} stored ${character[k]} vs calculated ${d[k]}`
+    )
+}
 const describe = (list) =>
   list.map((i) => `[${i.severity}] ${i.code}: ${i.message}`).join('\n')
 

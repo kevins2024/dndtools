@@ -22,6 +22,8 @@ const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 const blank = (className, subclass, ruleset) => {
   const cls = loadClass(className, ruleset)
   return {
+    ability_base: { str: 15, dex: 14, con: 14, int: 14, wis: 14, cha: 8 },
+    ability_score_history: [],
     name: 'Sim',
     ruleset,
     genus: 'Human',
