@@ -54,7 +54,7 @@ Status: `[ ]` open, `[~]` in progress, `[x]` done.
 - [~] **3. Classes** — all 13 chassis, spellcasting/multiclass, feature mechanics (225 drafted + reviewed overrides) and
   the level-up choices (`choices2024.js`: Weapon Mastery, Fighting Style feats, Orders, Expertise, Metamagic, Primal
   Knowledge) are done and tested. The Level Up _UI_ has no screens for the new pick types yet.
-- [~] **4. Subclasses** — 69 official 2024 subclasses + aliases; legacy subclasses start at 3rd level under 2024
+- [~] **4. Subclasses** — 68 official 2024 subclasses + aliases; legacy subclasses start at 3rd level under 2024
   (`shiftEarlyLevels`). Sorrow Knight deliberately not ingested (source "D&D Beyond Drops", status unclear).
 - [~] **5. Feats and spells** — 75 PHB feats and 391 PHB spells (`src/data/spells_2024.json`) with 2024 class lists;
   lookups are ruleset-aware. Spells from other official 2024 books can be added with

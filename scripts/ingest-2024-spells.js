@@ -28,6 +28,27 @@ async function listSlugs() {
   ].filter((s) => !/-school$|^spell:all$/.test(s))
 }
 
+// The wiki title-cases page titles ("Cone Of Cold"); the book doesn't.
+const SMALL_WORDS = new Set([
+  'Of',
+  'And',
+  'With',
+  'The',
+  'To',
+  'In',
+  'From',
+  'For',
+  'On',
+  'At',
+  'By',
+  'Or',
+])
+const fixCase = (name) =>
+  name
+    .split(' ')
+    .map((w, i) => (i > 0 && SMALL_WORDS.has(w) ? w.toLowerCase() : w))
+    .join(' ')
+
 function parseSpell(title, source, lines) {
   const head = lines[1] ?? ''
   let m = /^Level (\d) ([A-Za-z]+) \(([^)]*)\)$/.exec(head)
@@ -43,13 +64,24 @@ function parseSpell(title, source, lines) {
     school = m[1]
     classes = m[2]
   } else return null
+  // A few pages say "Component:" for "Components:".
   const field = (label) => {
-    const l = lines.find((x) => x.startsWith(`${label}:`))
-    return l ? l.slice(label.length + 1).trim() : null
+    const l = lines.find((x) => new RegExp(`^${label}s?:`).test(x))
+    return l ? l.replace(/^[^:]+:\s*/, '').trim() : null
   }
-  const castingTime = field('Casting Time')
-  const comps = field('Components') ?? ''
-  const duration = field('Duration') ?? ''
+  // One page capitalises units ("1 Hour", "60 Feet", "10 Days"); the book doesn't.
+  const lowerUnits = (t) =>
+    t?.replace(
+      /\b(Hours?|Minutes?|Rounds?|Days?|Feet|Miles?|Mile|Foot)\b/g,
+      (m) => m.toLowerCase()
+    ) ?? t
+  // One page says "1 Action"; every other says "Action".
+  const castingTime = lowerUnits(
+    field('Casting Time')?.replace(/^1 (Action|Bonus Action)\b/, '$1') ?? null
+  )
+  // (Yolande's Regal Presence reads "Components: Component: V, S, M".)
+  const comps = (field('Component') ?? '').replace(/^Components?:\s*/, '')
+  const duration = lowerUnits(field('Duration') ?? '')
   const body = lines.slice(
     lines.findIndex((l) => l.startsWith('Duration:')) + 1
   )
@@ -60,11 +92,11 @@ function parseSpell(title, source, lines) {
   const material = /\(([^)]*)\)/.exec(comps)?.[1] ?? null
   const description = text.join('\n')
   return {
-    name: title,
+    name: fixCase(title),
     level,
     school,
     casting_time: castingTime,
-    range: field('Range'),
+    range: lowerUnits(field('Range')),
     components: comps
       .replace(/\s*\(.*\)$/, '')
       .split(',')

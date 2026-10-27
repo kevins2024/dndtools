@@ -36,8 +36,16 @@ const ORDINAL = { '1st': 1, '2nd': 2, '3rd': 3, '4th': 4, '5th': 5 }
 // Cantrip counts are prose on the page ("You know two cantrips ... another at
 // level 10"), so they are stated here and covered by a test.
 const THIRD_CASTER = {
-  'Eldritch Knight': { class: 'fighter', ability: 'int', cantrips: { 3: 2, 10: 3 } },
-  'Arcane Trickster': { class: 'rogue', ability: 'int', cantrips: { 3: 3, 10: 4 } },
+  'Eldritch Knight': {
+    class: 'fighter',
+    ability: 'int',
+    cantrips: { 3: 2, 10: 3 },
+  },
+  'Arcane Trickster': {
+    class: 'rogue',
+    ability: 'int',
+    cantrips: { 3: 3, 10: 4 },
+  },
 }
 
 // "<Class> Level | Spells" style tables -> { title, byLevel }
@@ -56,7 +64,7 @@ function parseSpellTables(lines) {
         if (!/^\d+$/.test(lvl ?? '') || !spells) break
         byLevel[lvl] = spells
           .split(',')
-          .map((s) => s.trim())
+          .map((s) => s.trim().replace(/\*$/, '')) // footnote marker (Knowledge Domain: "*Spell of the Divination School")
           .filter(Boolean)
       }
       tables.push({ title: lines[i - 1], byLevel })
@@ -156,9 +164,9 @@ async function ingest(pageSlug, { write, allowSource }) {
   } else if (spellTables.length) data.spell_tables_unmapped = spellTables
 
   console.log(
-    `${className} / ${displayName} [${source}]: ${published.length} features at ${Object.keys(
-      featuresByLevel
-    ).join(', ')}` +
+    `${className} / ${displayName} [${source}]: ${
+      published.length
+    } features at ${Object.keys(featuresByLevel).join(', ')}` +
       (casterTable ? '; third-caster table' : '') +
       (spellTables.length ? `; ${spellTables.length} spell table(s)` : '')
   )

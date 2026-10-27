@@ -886,7 +886,7 @@
       "M"
     ],
     "material": "a shard of blue glass",
-    "duration": "1 Hour",
+    "duration": "1 hour",
     "concentration": false,
     "ritual": false,
     "description": "Protective magical frost surrounds you. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll before the spell ends, the creature takes 5 Cold damage. The spell ends early if you have no Temporary Hit Points.",
@@ -2422,7 +2422,7 @@
       "M"
     ],
     "material": "a morsel of food",
-    "duration": "24 Hours",
+    "duration": "24 hours",
     "concentration": false,
     "ritual": true,
     "description": "A Tiny Beast of your choice that you can see within range must succeed on a Charisma saving throw, or it attempts to deliver a message for you (if the target’s Challenge Rating isn’t 0, it automatically succeeds). You specify a location you have visited and a recipient who matches a general description, such as “a person dressed in the uniform of the town guard” or “a red-haired dwarf wearing a pointed hat.” You also communicate a message of up to twenty-five words. The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly.\nWhen the Beast arrives, it delivers your message to the creature that you described, mimicking your communication. If the Beast doesn’t reach its destination before the spell ends, the message is lost, and the Beast returns to where you cast the spell.",
@@ -2466,7 +2466,10 @@
     "school": "Abjuration",
     "casting_time": "Bonus Action",
     "range": "Self",
-    "components": [],
+    "components": [
+      "V",
+      "S"
+    ],
     "duration": "Instantaneous",
     "concentration": false,
     "ritual": false,
@@ -2620,7 +2623,7 @@
     "homebrew": false
   },
   {
-    "name": "Cloud Of Daggers",
+    "name": "Cloud of Daggers",
     "level": 2,
     "school": "Conjuration",
     "casting_time": "Action",
@@ -2673,7 +2676,7 @@
     "homebrew": false
   },
   {
-    "name": "Cordon Of Arrows",
+    "name": "Cordon of Arrows",
     "level": 2,
     "school": "Transmutation",
     "casting_time": "Action",
@@ -2697,7 +2700,7 @@
     "homebrew": false
   },
   {
-    "name": "Crown Of Madness",
+    "name": "Crown of Madness",
     "level": 2,
     "school": "Enchantment",
     "casting_time": "Action",
@@ -3913,7 +3916,7 @@
     "level": 3,
     "school": "Necromancy",
     "casting_time": "1 minute",
-    "range": "10 Feet",
+    "range": "10 feet",
     "components": [
       "V",
       "S",
@@ -4006,7 +4009,9 @@
     "school": "Evocation",
     "casting_time": "Bonus Action, which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike",
     "range": "Self",
-    "components": [],
+    "components": [
+      "V"
+    ],
     "duration": "1 minute",
     "concentration": false,
     "ritual": false,
@@ -4160,7 +4165,7 @@
     "homebrew": false
   },
   {
-    "name": "Create Food And Water",
+    "name": "Create Food and Water",
     "level": 3,
     "school": "Conjuration",
     "casting_time": "Action",
@@ -6294,7 +6299,7 @@
     "homebrew": false
   },
   {
-    "name": "Circle Of Power",
+    "name": "Circle of Power",
     "level": 5,
     "school": "Abjuration",
     "casting_time": "Action",
@@ -6363,7 +6368,7 @@
     "homebrew": false
   },
   {
-    "name": "Commune With Nature",
+    "name": "Commune with Nature",
     "level": 5,
     "school": "Divination",
     "casting_time": "1 minute or Ritual",
@@ -6385,7 +6390,7 @@
     "homebrew": false
   },
   {
-    "name": "Cone Of Cold",
+    "name": "Cone of Cold",
     "level": 5,
     "school": "Evocation",
     "casting_time": "Action",
@@ -6483,7 +6488,10 @@
     "school": "Necromancy",
     "casting_time": "Action",
     "range": "Touch",
-    "components": [],
+    "components": [
+      "V",
+      "S"
+    ],
     "duration": "7 days",
     "concentration": false,
     "ritual": false,
@@ -7305,7 +7313,7 @@
     "casting_time": "Action",
     "range": "Self",
     "components": [
-      "Component: V",
+      "V",
       "S",
       "M"
     ],
@@ -7392,7 +7400,7 @@
     "homebrew": false
   },
   {
-    "name": "Circle Of Death",
+    "name": "Circle of Death",
     "level": 6,
     "school": "Necromancy",
     "casting_time": "Action",
@@ -8634,7 +8642,7 @@
     "level": 8,
     "school": "Transmutation",
     "casting_time": "Action",
-    "range": "30 Feet",
+    "range": "30 feet",
     "components": [
       "V",
       "S"
@@ -8678,15 +8686,15 @@
     "name": "Antipathy/Sympathy",
     "level": 8,
     "school": "Enchantment",
-    "casting_time": "1 Hour",
-    "range": "60 Feet",
+    "casting_time": "1 hour",
+    "range": "60 feet",
     "components": [
       "V",
       "S",
       "M"
     ],
     "material": "a mix of vinegar and honey",
-    "duration": "10 Days",
+    "duration": "10 days",
     "concentration": false,
     "ritual": false,
     "description": "As you cast the spell, choose whether it creates antipathy or sympathy, and target one creature or object that is Huge or smaller. Then specify a kind of creature, such as red dragons, goblins, or vampires. A creature of the chosen kind makes a Wisdom saving throw when it comes within 120 feet of the target. Your choice of antipathy or sympathy determines what happens to a creature when it fails that save:\nAntipathy. The creature has the Frightened condition. The Frightened creature must use its movement on its turns to get as far away as possible from the target, moving by the safest route.\nSympathy. The creature has the Charmed condition. The Charmed creature must use its movement on its turns to get as close as possible to the target, moving by the safest route. If the creature is within 5 feet of the target, the creature can’t willingly move away. If the target damages the Charmed creature, that creature can make a Wisdom saving throw to end the effect, as described below.\nEnding the Effect. If the Frightened or Charmed creature ends its turn more than 120 feet away from the target, the creature makes a Wisdom saving throw. On a successful save, the creature is no longer affected by the target. A creature that successfully saves against this effect is immune to it for 1 minute, after which it can be affected again.",
@@ -9153,7 +9161,7 @@
     "name": "Mass Heal",
     "level": 9,
     "school": "Abjuration",
-    "casting_time": "1 Action",
+    "casting_time": "Action",
     "range": "60 feet",
     "components": [
       "V",

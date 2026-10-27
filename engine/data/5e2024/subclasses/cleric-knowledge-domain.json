@@ -20,25 +20,25 @@
   "domain_spells_by_level": {
     "3": [
       "Command",
-      "Comprehend Languages*",
-      "Detect Magic*",
-      "Detect Thoughts*",
-      "Identify*",
-      "Mind Spike*"
+      "Comprehend Languages",
+      "Detect Magic",
+      "Detect Thoughts",
+      "Identify",
+      "Mind Spike"
     ],
     "5": [
       "Dispel Magic",
       "Nondetection",
-      "Tongues*"
+      "Tongues"
     ],
     "7": [
-      "Arcane Eye*",
+      "Arcane Eye",
       "Banishment",
       "Confusion"
     ],
     "9": [
-      "Legend Lore*",
-      "Scrying*",
+      "Legend Lore",
+      "Scrying",
       "Synaptic Static"
     ]
   }

@@ -88,7 +88,11 @@ function htmlToLines(html) {
     }
   }
   flush()
-  return lines.map(decode).map(squash).filter(Boolean)
+  const text = lines.map(decode).map(squash).filter(Boolean)
+  // Pages that run to the bottom of the body carry Wikidot's footer ("Help | Terms
+  // of Service | Privacy ...", "Powered by Wikidot.com", ...); nothing after it is content.
+  const footer = text.findIndex((l) => /^Help \| Terms of Service/.test(l))
+  return footer >= 0 ? text.slice(0, footer) : text
 }
 
 // { title, source, lines } — `source` is the book named on the page's first
