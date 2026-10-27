@@ -342,7 +342,213 @@
     "ruleset": "2024",
     "background": "Merchant",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 15,
+      "con": 15,
+      "int": 8,
+      "wis": 10,
+      "cha": 13
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 49,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Silver Dragonborn",
+        "background": "Merchant",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Lucky"
+        ],
+        "hp_note": "Max HP 76 differs from the all-average total 85; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Second Wind",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Action Surge (One Use)",
+          "Tactical Mind"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Battle Master",
+        "features": [
+          "Combat Superiority",
+          "Student of War"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Tactical Shift"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "feat",
+            "detail": "Dual Wielder"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Know Your Enemy"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+1 DEX, +1 CHA",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Indomitable (One Use)",
+          "Tactical Master"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Rapier"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Dagger"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Hand Crossbow"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longsword"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Dragonborn (Silver): replaced 3 2014 trait(s) with the 2024 Dragonborn traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Fighter 9: dropped 5 2014 feature(s), added 12 2024 feature(s).",
+          "Fighting Style: Two-Weapon Fighting -> the Two Weapon Fighting feat.",
+          "Background (none) -> Merchant; origin feat Lucky added."
+        ]
+      }
+    ]
   },
   {
     "name": "Rhuna",
@@ -580,7 +786,205 @@
     "ruleset": "2024",
     "background": "Guard",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 20,
+      "dex": 14,
+      "con": 16,
+      "int": 10,
+      "wis": 10,
+      "cha": 8
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 77,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Orc",
+        "background": "Guard",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Alert"
+        ],
+        "hp_note": "Max HP 104 differs from the all-average total 95; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Rage",
+          "Unarmored Defense",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Danger Sense",
+          "Reckless Attack"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Path of the Berserker",
+        "features": [
+          "Primal Knowledge",
+          "Frenzy"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Fast Movement"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Mindless Rage"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Feral Instinct",
+          "Instinctive Pounce"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Brutal Strike"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greatsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Spear"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Handaxe"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Barbarian: Berserker is now Path of the Berserker.",
+          "Barbarian 9: dropped 9 2014 feature(s), added 13 2024 feature(s).",
+          "Background (none) -> Guard; origin feat Alert added.",
+          "Half-Orc has no 2024 version — kept as legacy 2014 content (its traits are unchanged)."
+        ]
+      }
+    ]
   },
   {
     "name": "Denna",
@@ -881,7 +1285,215 @@
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Criminal",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 20,
+      "con": 12,
+      "int": 12,
+      "wis": 14,
+      "cha": 10
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 44,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Criminal",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Skilled",
+          "Alert"
+        ],
+        "hp_note": "Max HP 53 differs from the all-average total 57; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Sneak Attack",
+          "Thieves' Cant",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Stealth, Perception"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Action"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Assassin",
+        "features": [
+          "Steady Aim",
+          "Assassinate",
+          "Assassin's Tools"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Strike",
+          "Uncanny Dodge"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: SleightOfHand, Investigation"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Evasion",
+          "Reliable Talent"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Infiltration Expertise"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Dagger"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Hand Crossbow"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Rogue 9: dropped 6 2014 feature(s), added 14 2024 feature(s).",
+          "Rogue 1: recorded the existing Expertise (Stealth, Perception) as that class's grant.",
+          "Rogue 6: recorded the existing Expertise (SleightOfHand, Investigation) as that class's grant.",
+          "Human Versatile: origin feat Skilled added.",
+          "Background (none) -> Criminal; origin feat Alert added."
+        ]
+      }
+    ]
   },
   {
     "name": "Lenn",
@@ -1566,7 +2178,193 @@
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Criminal",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 12,
+      "con": 13,
+      "int": 20,
+      "wis": 12,
+      "cha": 12
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 37,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Criminal",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Lucky",
+          "Alert"
+        ],
+        "hp_note": "Max HP 46 differs from the all-average total 47; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Ritual Adept",
+          "Arcane Recovery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Scholar"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Arcana"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Evoker",
+        "features": [
+          "Evocation Savant",
+          "Potent Cantrip"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Memorize Spell"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sculpt Spells"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Wizard: Evocation is now Evoker.",
+          "Wizard 9: dropped 4 2014 feature(s), added 8 2024 feature(s).",
+          "Human Versatile: origin feat Lucky added.",
+          "Background (none) -> Criminal; origin feat Alert added.",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Booming Blade, Absorb Elements, Silvery Barbs, Intellect Fortress, Shadow Blade, Pulse Wave, Undead Ward, Sickening Radiance, Danse Macabre, Negative Energy Flood, Summon Draconic Spirit."
+        ]
+      }
+    ]
   },
   {
     "name": "Kessara",
@@ -1807,7 +2605,12 @@
         "ability_choice": "int",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "spells_granted": [
+          "Prestidigitation",
+          "Mending",
+          "Magic Missile"
+        ]
       },
       {
         "name": "Expertise: Arcana",
@@ -2354,7 +3157,190 @@
     "ruleset": "2024",
     "background": "Sage",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 20,
+      "con": 13,
+      "int": 20,
+      "wis": 12,
+      "cha": 12
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 44,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Elf (High Elf)",
+        "background": "Sage",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Magic Initiate"
+        ],
+        "hp_note": "Max HP 53 differs from the all-average total 47; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Ritual Adept",
+          "Arcane Recovery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Scholar"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Arcana"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Bladesinger",
+        "features": [
+          "Bladesong",
+          "Training in War and Song"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Memorize Spell"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Elf (High Elf): replaced 0 2014 trait(s) with the 2024 Elf traits + High Elf. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Wizard 9: dropped 4 2014 feature(s), added 8 2024 feature(s).",
+          "Background (none) -> Sage; origin feat Magic Initiate (Wizard) added.",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Booming Blade, Absorb Elements, Silvery Barbs, Intellect Fortress, Shadow Blade, Pulse Wave, Undead Ward, Sickening Radiance, Danse Macabre, Negative Energy Flood, Summon Draconic Spirit."
+        ]
+      }
+    ]
   },
   {
     "name": "Petra",
@@ -2528,7 +3514,12 @@
         "ability_choice": "wis",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "spells_granted": [
+          "Light",
+          "Mending",
+          "Detect Magic"
+        ]
       },
       {
         "name": "Divine Order: Protector",
@@ -2576,18 +3567,6 @@
         "domain": true
       },
       {
-        "name": "Spiritual Weapon",
-        "level": 2,
-        "prepared": true,
-        "domain": true
-      },
-      {
-        "name": "Beacon of Hope",
-        "level": 3,
-        "prepared": true,
-        "domain": true
-      },
-      {
         "name": "Revivify",
         "level": 3,
         "prepared": true,
@@ -2600,19 +3579,7 @@
         "domain": true
       },
       {
-        "name": "Guardian of Faith",
-        "level": 4,
-        "prepared": true,
-        "domain": true
-      },
-      {
         "name": "Mass Cure Wounds",
-        "level": 5,
-        "prepared": true,
-        "domain": true
-      },
-      {
-        "name": "Raise Dead",
         "level": 5,
         "prepared": true,
         "domain": true
@@ -2650,11 +3617,6 @@
       {
         "name": "Silence",
         "level": 2,
-        "prepared": true
-      },
-      {
-        "name": "Mass Healing Word",
-        "level": 3,
         "prepared": true
       },
       {
@@ -2712,6 +3674,30 @@
         "uses_max": 1,
         "uses_current": 1,
         "recharge": "long_rest"
+      },
+      {
+        "name": "Aid",
+        "level": 2,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Mass Healing Word",
+        "level": 3,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Aura of Life",
+        "level": 4,
+        "prepared": true,
+        "domain": true
+      },
+      {
+        "name": "Greater Restoration",
+        "level": 5,
+        "prepared": true,
+        "domain": true
       }
     ],
     "spell_slots": {
@@ -2777,7 +3763,196 @@
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Acolyte",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 10,
+      "con": 14,
+      "int": 12,
+      "wis": 20,
+      "cha": 16
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 50,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Acolyte",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Healer",
+          "Magic Initiate"
+        ],
+        "hp_note": "Max HP 68 differs from the all-average total 66; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Divine Order"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Channel Divinity"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Life Domain",
+        "features": [
+          "Disciple of Life",
+          "Life Domain Spells",
+          "Preserve Life"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sear Undead"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Blessed Healer"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Blessed Strikes"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Cleric 9: dropped 6 2014 feature(s), added 9 2024 feature(s).",
+          "Human Versatile: origin feat Healer added.",
+          "Background (none) -> Acolyte; origin feat Magic Initiate (Cleric) added."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Removed the 2014 Life Domain spells that are not on the 2024 Life Domain list: Spiritual Weapon, Beacon of Hope, Guardian of Faith, Raise Dead (they are still Cleric spells and can be prepared normally).",
+          "Added the 2024 Life Domain spells that were missing: Aid, Mass Healing Word, Aura of Life, Greater Restoration."
+        ]
+      }
+    ]
   },
   {
     "name": "Pirra",
@@ -3085,7 +4260,215 @@
     "ruleset": "2024",
     "background": "Charlatan",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 20,
+      "con": 12,
+      "int": 13,
+      "wis": 15,
+      "cha": 12
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 35,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Halfling (Lightfoot Halfling)",
+        "background": "Charlatan",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Skilled"
+        ],
+        "hp_note": "Max HP 44 differs from the all-average total 57; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Sneak Attack",
+          "Thieves' Cant",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Stealth, SleightOfHand"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Action"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Inquisitive",
+        "features": [
+          "Steady Aim",
+          "Ear for Deceit",
+          "Eye for Detail",
+          "Insightful Fighting"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Strike",
+          "Uncanny Dodge"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Insight, Perception"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Evasion",
+          "Reliable Talent"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Steady Eye"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Shortsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Shortbow"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Halfling (Lightfoot Halfling): replaced 0 2014 trait(s) with the 2024 Halfling traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Rogue 9: dropped 4 2014 feature(s), added 11 2024 feature(s).",
+          "Rogue 1: recorded the existing Expertise (Stealth, SleightOfHand) as that class's grant.",
+          "Rogue 6: recorded the existing Expertise (Insight, Perception) as that class's grant.",
+          "Background (none) -> Charlatan; origin feat Skilled added.",
+          "Rogue / Inquisitive has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      }
+    ]
   },
   {
     "name": "Lyria",
@@ -3270,7 +4653,6 @@
       "Mage Hand",
       "Mind Sliver",
       "Minor Illusion",
-      "Identify",
       "Mage Armor",
       "Silvery Barbs",
       "Blur",
@@ -3770,7 +5152,200 @@
       "Leatherworker's Tools"
     ],
     "background": "Artisan",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 14,
+      "con": 12,
+      "int": 20,
+      "wis": 14,
+      "cha": 10
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 39,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Artisan",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Skilled",
+          "Crafter"
+        ],
+        "hp_note": "Max HP 48 differs from the all-average total 47; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Ritual Adept",
+          "Arcane Recovery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Scholar"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: History"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Abjurer",
+        "features": [
+          "Abjuration Savant",
+          "Arcane ward"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Memorize Spell"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Projected Ward"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Wizard: Abjuration is now Abjurer.",
+          "Wizard 9: dropped 4 2014 feature(s), added 8 2024 feature(s).",
+          "Human Versatile: origin feat Skilled added.",
+          "Background (none) -> Artisan; origin feat Crafter added.",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Booming Blade, Absorb Elements, Silvery Barbs, Intellect Fortress, Shadow Blade, Pulse Wave, Undead Ward, Sickening Radiance, Danse Macabre, Negative Energy Flood, Summon Draconic Spirit."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Identify is no longer marked prepared: that was one more prepared spell than a Wizard with INT 20 at level 9 may have, and no feature or item explains it. Identify is a ritual, so she can still cast it from the spellbook without preparing it."
+        ]
+      }
+    ]
   },
   {
     "name": "Corwin",
@@ -3788,8 +5363,8 @@
     "stat_int": 12,
     "stat_wis": 14,
     "stat_cha": 12,
-    "hp_max": 96,
-    "hp_current": 96,
+    "hp_max": 114,
+    "hp_current": 114,
     "unarmored_ac_formula": "default",
     "saving_throws": [
       "str",
@@ -4029,7 +5604,221 @@
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Guard",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 16,
+      "dex": 14,
+      "con": 18,
+      "int": 12,
+      "wis": 14,
+      "cha": 12
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 60,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Guard",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Tough",
+          "Alert"
+        ],
+        "hp_note": "Max HP 96 differs from the all-average total 112; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Second Wind",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Action Surge (One Use)",
+          "Tactical Mind"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Champion",
+        "features": [
+          "Improved Critical",
+          "Remarkable Athlete"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Tactical Shift"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Additional Fighting Style"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Indomitable (One Use)",
+          "Tactical Master"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Halberd"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Javelin"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Light Crossbow"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Fighter 9: dropped 6 2014 feature(s), added 12 2024 feature(s).",
+          "Human Versatile: origin feat Tough added.",
+          "Background (none) -> Guard; origin feat Alert added.",
+          "Corwin: Tough raises maximum Hit Points by 18 (2 per level)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Maximum HP 96 -> 114: the Tough feat's +2 per level was not applied when the feat was added."
+        ]
+      }
+    ]
   },
   {
     "name": "Chuknora",
@@ -4333,8 +6122,8 @@
     ],
     "spell_slots": {
       "level_1": {
-        "max": 2,
-        "current": 2
+        "max": 3,
+        "current": 3
       }
     },
     "spells": [
@@ -4350,13 +6139,15 @@
         "name": "Ensnaring Strike",
         "level": 1,
         "prepared": true,
-        "domain": true
+        "domain": true,
+        "type": "oath"
       },
       {
         "name": "Speak with Animals",
         "level": 1,
         "prepared": true,
-        "domain": true
+        "domain": true,
+        "type": "oath"
       },
       {
         "name": "Bless",
@@ -4372,6 +6163,13 @@
         "name": "Shield of Faith",
         "level": 1,
         "prepared": true
+      },
+      {
+        "name": "Divine Smite",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Paladin"
       }
     ],
     "active_effects": [],
@@ -4402,7 +6200,228 @@
     "ruleset": "2024",
     "background": "Sailor",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 18,
+      "dex": 12,
+      "con": 16,
+      "int": 10,
+      "wis": 12,
+      "cha": 9
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 65,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Goliath",
+        "background": "Sailor",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Tavern Brawler"
+        ],
+        "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
+        "hp_note": "Max HP 92 differs from the all-average total 91; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Lay On Hands",
+          "Spellcasting",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Paladin's Smite"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Oath of the Ancients",
+        "features": [
+          "Channel Divinity",
+          "Nature's Wrath",
+          "Oath of the Ancients Spells"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greatsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Javelin"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Rage",
+          "Unarmored Defense",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Danger Sense",
+          "Reckless Attack"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Path of the Giant",
+        "features": [
+          "Primal Knowledge",
+          "Giant's Power",
+          "Giant's Havoc"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 4,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 5,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Fast Movement"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 6,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Elemental Cleaver"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greataxe"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Handaxe"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Spear"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Goliath: replaced 4 2014 trait(s) with the 2024 Goliath traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Barbarian 6: dropped 6 2014 feature(s), added 8 2024 feature(s).",
+          "Paladin 3: dropped 6 2014 feature(s), added 8 2024 feature(s).",
+          "Background (none) -> Sailor; origin feat Tavern Brawler added.",
+          "Barbarian / Path of the Giant has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "First-level spell slots corrected from 2 to 3 (Paladin 3 uses the Paladin table; this was also wrong under the 2014 rules).",
+          "Marked Ensnaring Strike and Speak with Animals as Oath of the Ancients spells (always prepared).",
+          "Added Divine Smite (2024 Paladin's Smite: always prepared)."
+        ]
+      }
+    ]
   },
   {
     "name": "Enauweyn",
@@ -4697,6 +6716,13 @@
         "level": 1,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Divine Smite",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Paladin"
       }
     ],
     "spell_slots": {
@@ -4755,7 +6781,208 @@
     "ruleset": "2024",
     "background": "Noble",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 16,
+      "dex": 14,
+      "con": 14,
+      "int": 8,
+      "wis": 10,
+      "cha": 17
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 51,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Eladrin Elf",
+        "background": "Noble",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Skilled"
+        ],
+        "hp_note": "Max HP 69 differs from the all-average total 76; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Lay On Hands",
+          "Spellcasting",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Paladin's Smite"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Oath of the Crown",
+        "features": [
+          "Channel Divinity",
+          "Channel Divinity: Champion Challenge",
+          "Channel Divinity: Turn the Tide"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Faithful Steed"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Aura of Protection"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Crown — Divine Allegiance"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Abjure Foes"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Rapier"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Paladin 9: dropped 6 2014 feature(s), added 10 2024 feature(s).",
+          "Background (none) -> Noble; origin feat Skilled added.",
+          "Elf (Eladrin) has no 2024 version of that lineage — kept as the 2014 Elf.",
+          "Paladin / Oath of the Crown has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Added Divine Smite (2024 Paladin's Smite: always prepared)."
+        ]
+      }
+    ]
   },
   {
     "name": "Tackett",
@@ -4951,7 +7178,12 @@
         "ability_choice": "wis",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "spells_granted": [
+          "Mending",
+          "Produce Flame",
+          "Goodberry"
+        ]
       },
       {
         "name": "Primal Order: Warden",
@@ -5215,7 +7447,189 @@
     "ruleset": "2024",
     "background": "Guide",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 14,
+      "con": 16,
+      "int": 12,
+      "wis": 20,
+      "cha": 12
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 53,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Halfling (Lightfoot Halfling)",
+        "background": "Guide",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Magic Initiate"
+        ],
+        "hp_note": "Max HP 80 differs from the all-average total 75; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Druidic",
+          "Primal Order"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Wild Shape",
+          "Wild Companion"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Circle of the Stars",
+        "features": [
+          "Star Map",
+          "Starry Form"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Wild Resurgence"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cosmic Omen"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Elemental Fury"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Halfling (Lightfoot Halfling): replaced 0 2014 trait(s) with the 2024 Halfling traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Druid: Circle of Stars is now Circle of the Stars.",
+          "Druid 9: dropped 4 2014 feature(s), added 10 2024 feature(s).",
+          "Background (none) -> Guide; origin feat Magic Initiate (Druid) added.",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Erupting Earth."
+        ]
+      }
+    ]
   },
   {
     "name": "Revven",
@@ -5365,6 +7779,13 @@
         "name": "Divine Order: Protector",
         "type": "divineOrder",
         "level_gained": 1
+      },
+      {
+        "name": "Bonus Proficiencies (Tempest Domain — Martial Weapons, Heavy Armor)",
+        "id": "pub_bonus-proficiencies-tempest-domain-martial-weapons-heavy-armor",
+        "type": "feature",
+        "level_gained": 3,
+        "_source": "Cleric"
       }
     ],
     "spells": [
@@ -5618,7 +8039,198 @@
     "ruleset": "2024",
     "background": "Hermit",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 12,
+      "con": 16,
+      "int": 13,
+      "wis": 20,
+      "cha": 16
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 38,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Elf",
+        "background": "Hermit",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Healer"
+        ],
+        "hp_note": "Max HP 65 differs from the all-average total 75; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Divine Order"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Channel Divinity"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Tempest Domain",
+        "features": [
+          "Bonus Proficiencies (Tempest Domain — Martial Weapons, Heavy Armor)",
+          "Wrath of the Storm",
+          "Channel Divinity: Destructive Wrath"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sear Undead"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Thunderous Strike"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Blessed Strikes"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Divine Strike"
+        ],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Cleric",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Cleric 9: dropped 2 2014 feature(s), added 5 2024 feature(s).",
+          "Background (none) -> Hermit; origin feat Healer added.",
+          "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Cleric / Tempest Domain has no 2024 version — kept as a legacy 2014 subclass (features unchanged).",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Stormward Vow.",
+          "Spells no longer on Cleric's 2024 list (kept; review): Thunderwave, Fog Cloud, Gust of Wind, Shatter, Call Lightning, Sleet Storm, Ice Storm, Destructive Wave."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Added the Tempest Domain Bonus Proficiencies entry (martial weapons and heavy armor were already on the sheet)."
+        ]
+      }
+    ]
   },
   {
     "name": "Elucyne",
@@ -6022,7 +8634,8 @@
         "name": "Hunter's Mark",
         "level": 1,
         "prepared": true,
-        "type": "ranger"
+        "featureGranted": true,
+        "_source": "Ranger"
       },
       {
         "name": "Silence",
@@ -6093,7 +8706,247 @@
       "Drum",
       "Viol"
     ],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 20,
+      "con": 14,
+      "int": 13,
+      "wis": 12,
+      "cha": 18
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 52,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Tiefling",
+        "background": "Entertainer",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Musician"
+        ],
+        "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
+        "hp_note": "Max HP 70 differs from the all-average total 74; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Ranger",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Favored Enemy",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Ranger",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Deft Explorer",
+          "Fighting Style"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Stealth"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Ranger",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Gloom Stalker",
+        "features": [
+          "Dread Ambusher",
+          "Gloom Stalker Spells",
+          "Umbral Sight"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Ranger",
+        "level": 4,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Ranger",
+        "level": 5,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Hand Crossbow"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Shortsword"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Sneak Attack",
+          "Thieves' Cant",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Performance"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Action"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Dagger"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Rapier"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Second Wind",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Action Surge (One Use)",
+          "Tactical Mind"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longbow"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Scimitar"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Tiefling: replaced 2 2014 trait(s) with the 2024 Tiefling traits + Infernal. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Ranger 5: dropped 5 2014 feature(s), added 9 2024 feature(s).",
+          "Rogue 2: dropped 2 2014 feature(s), added 5 2024 feature(s).",
+          "Fighter 2: dropped 2 2014 feature(s), added 5 2024 feature(s).",
+          "Ranger 2: recorded the existing Expertise (Stealth) as that class's grant.",
+          "Rogue 1: recorded the existing Expertise (Performance) as that class's grant.",
+          "Background (none) -> Entertainer; origin feat Musician added.",
+          "Spells no longer on Ranger's 2024 list (kept; review): Thaumaturgy."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Hunter's Mark is always prepared for a 2024 Ranger (Favored Enemy), so it no longer counts against prepared spells."
+        ]
+      }
+    ]
   },
   {
     "name": "Ferghus",
@@ -6372,6 +9225,13 @@
         "name": "Zone of Truth",
         "level": 2,
         "prepared": true
+      },
+      {
+        "name": "Divine Smite",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Paladin"
       }
     ],
     "spell_slots": {
@@ -6432,7 +9292,209 @@
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Soldier",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 18,
+      "dex": 12,
+      "con": 16,
+      "int": 11,
+      "wis": 14,
+      "cha": 18
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 49,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Soldier",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Tavern Brawler",
+          "Savage Attacker"
+        ],
+        "hp_note": "Max HP 76 differs from the all-average total 85; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Lay On Hands",
+          "Spellcasting",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Paladin's Smite"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Oath of the Open Road",
+        "features": [
+          "Channel Divinity",
+          "Channel Divinity: Sacred Weapon",
+          "Channel Divinity: Vow of the Open Road"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Faithful Steed"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Aura of Protection"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Paladin",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Abjure Foes"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Maul"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Warhammer"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Paladin 9: dropped 6 2014 feature(s), added 10 2024 feature(s).",
+          "Fighting Style: Great Weapon Fighting -> the Great Weapon Fighting feat.",
+          "Human Versatile: origin feat Tavern Brawler added.",
+          "Background (none) -> Soldier; origin feat Savage Attacker added.",
+          "Paladin / Oath of the Open Road has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Added Divine Smite (2024 Paladin's Smite: always prepared)."
+        ]
+      }
+    ]
   },
   {
     "name": "Eldi",
@@ -6792,7 +9854,231 @@
     "ruleset": "2024",
     "background": "Sailor",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 19,
+      "con": 16,
+      "int": 8,
+      "wis": 8,
+      "cha": 14
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 51,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Elf",
+        "background": "Sailor",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Tavern Brawler"
+        ],
+        "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
+        "hp_note": "Max HP 78 differs from the all-average total 82; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Second Wind",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Action Surge (One Use)",
+          "Tactical Mind"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Echo Knight",
+        "features": [
+          "Manifest Echo",
+          "Unleash Incarnation"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 4,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 5,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Tactical Shift"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 6,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Scimitar"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Shortsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longbow"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Sneak Attack",
+          "Thieves' Cant",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Stealth, Acrobatics"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Action"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Swashbuckler",
+        "features": [
+          "Steady Aim",
+          "Fancy Footwork",
+          "Rakish Audacity"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Dagger"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Rapier"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Fighter 6: dropped 3 2014 feature(s), added 7 2024 feature(s).",
+          "Rogue 3: dropped 2 2014 feature(s), added 6 2024 feature(s).",
+          "Rogue 1: recorded the existing Expertise (Stealth, Acrobatics) as that class's grant.",
+          "Background (none) -> Sailor; origin feat Tavern Brawler added.",
+          "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Fighter / Echo Knight has no 2024 version — kept as a legacy 2014 subclass (features unchanged).",
+          "Rogue / Swashbuckler has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      }
+    ]
   },
   {
     "name": "Rith",
@@ -6966,18 +10252,6 @@
         "_grant": "origin",
         "_source": "Wayfarer",
         "level_gained": 1
-      },
-      {
-        "name": "Metamagic: Quickened Spell",
-        "type": "metamagic",
-        "_source": "Sorcerer",
-        "level_gained": 2
-      },
-      {
-        "name": "Metamagic: Careful Spell",
-        "type": "metamagic",
-        "_source": "Sorcerer",
-        "level_gained": 2
       }
     ],
     "resources": [
@@ -7188,7 +10462,195 @@
     "ruleset": "2024",
     "background": "Wayfarer",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 11,
+      "con": 16,
+      "int": 12,
+      "wis": 10,
+      "cha": 17
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 23,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Elf",
+        "background": "Wayfarer",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Lucky"
+        ],
+        "hp_note": "Max HP 50 differs from the all-average total 65; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Innate Sorcery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Font of Magic",
+          "Metamagic"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Divine Soul",
+        "features": [
+          "Divine Magic",
+          "Favored by the Gods"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sorcerous Restoration"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Empowered Healing"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sorcery Incarnate"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Sorcerer 9: dropped 1 2014 feature(s), added 6 2024 feature(s).",
+          "Background (none) -> Wayfarer; origin feat Lucky added.",
+          "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Sorcerer / Divine Soul has no 2024 version — kept as a legacy 2014 subclass (features unchanged).",
+          "Spells no longer on Sorcerer's 2024 list (kept; review): Sacred Flame, Guidance, Resistance, Healing Word, Guiding Bolt, Mass Healing Word, Death Ward, Greater Restoration."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Removed 2 Metamagic entries added by the first migration (Quickened Spell, Careful Spell); the character already had its two options from before."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_20",
@@ -7482,19 +10944,12 @@
         "ability_choice": "cha",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
-      },
-      {
-        "name": "Metamagic: Twinned Spell",
-        "type": "metamagic",
-        "_source": "Sorcerer",
-        "level_gained": 2
-      },
-      {
-        "name": "Metamagic: Quickened Spell",
-        "type": "metamagic",
-        "_source": "Sorcerer",
-        "level_gained": 2
+        "uses_current": 1,
+        "spells_granted": [
+          "Prestidigitation",
+          "Fire Bolt",
+          "Shield"
+        ]
       }
     ],
     "resources": [
@@ -7737,7 +11192,198 @@
     "ruleset": "2024",
     "background_flavor": "Daughter of the Weave",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 14,
+      "con": 16,
+      "int": 10,
+      "wis": 11,
+      "cha": 20
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 38,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Aasimar",
+        "background": "Sage",
+        "background_flavor": "Daughter of the Weave",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Magic Initiate"
+        ]
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Innate Sorcery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Font of Magic",
+          "Metamagic"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Weave Attunement",
+        "features": [
+          "Leno Phase (Abjuration / Divination)",
+          "Twill Phase (Enchantment / Necromancy)",
+          "Satin Phase (Illusion / Transmutation)",
+          "Weave Embodiment",
+          "Healing Touch"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sorcerous Restoration"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Mother's Whim"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Sorcery Incarnate"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Sorcerer",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Aasimar: replaced 3 2014 trait(s) with the 2024 Aasimar traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Sorcerer 9: dropped 1 2014 feature(s), added 6 2024 feature(s).",
+          "Background Daughter of the Weave -> Sage; origin feat Magic Initiate (Wizard) added.",
+          "Sorcerer / Weave Attunement has no 2024 version — kept as a legacy 2014 subclass (features unchanged).",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Maximilian's Earthen Grasp, Vortex Warp, Thunder Step, Far Step."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Removed 2 Metamagic entries added by the first migration (Twinned Spell, Quickened Spell); the character already had its two options from before."
+        ]
+      }
+    ]
   },
   {
     "name": "Therynv'l",
@@ -7752,8 +11398,8 @@
     "stat_int": 8,
     "stat_wis": 18,
     "stat_cha": 12,
-    "hp_max": 75,
-    "hp_current": 75,
+    "hp_max": 93,
+    "hp_current": 93,
     "unarmored_ac_formula": "default",
     "saving_throws": [
       "con",
@@ -8051,13 +11697,50 @@
         "name": "Mass Cure Wounds",
         "level": 5,
         "prepared": true,
-        "type": "prepared"
+        "type": "prepared",
+        "featureGranted": true,
+        "_source": "Circle of the Moon"
       },
       {
         "name": "Greater Restoration",
         "level": 5,
         "prepared": true,
         "type": "prepared"
+      },
+      {
+        "name": "Cure Wounds",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Circle of the Moon"
+      },
+      {
+        "name": "Moonbeam",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Circle of the Moon"
+      },
+      {
+        "name": "Starry Wisp",
+        "level": 0,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Circle of the Moon"
+      },
+      {
+        "name": "Conjure Animals",
+        "level": 3,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Circle of the Moon"
+      },
+      {
+        "name": "Fount of Moonlight",
+        "level": 4,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Circle of the Moon"
       }
     ],
     "spell_slots": {
@@ -8111,7 +11794,196 @@
     "ruleset": "2024",
     "background": "Farmer",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 10,
+      "dex": 14,
+      "con": 16,
+      "int": 8,
+      "wis": 18,
+      "cha": 12
+    },
+    "ability_score_history": [],
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 48,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Wood Elf",
+        "background": "Farmer",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Tough"
+        ],
+        "hp_note": "Max HP 75 differs from the all-average total 93; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Druidic",
+          "Primal Order"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Wild Shape",
+          "Wild Companion"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Circle of the Moon",
+        "features": [
+          "Circle Forms",
+          "Circle of the Moon Spells"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Wild Resurgence"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Improved Circle Forms"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Elemental Fury"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "asi-or-feat",
+            "detail": "unrecorded"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Druid",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Elf (Wood): replaced 6 2014 trait(s) with the 2024 Elf traits + Wood Elf. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Druid 9: dropped 4 2014 feature(s), added 10 2024 feature(s).",
+          "Background (none) -> Farmer; origin feat Tough added.",
+          "Therynv'l: Tough raises maximum Hit Points by 18 (2 per level)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Added the 2024 Circle of the Moon spells (always prepared): Cure Wounds, Moonbeam, Starry Wisp, Conjure Animals, Fount of Moonlight, Mass Cure Wounds.",
+          "Maximum HP 75 -> 93: the Tough feat's +2 per level was not applied when the feat was added."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_23",
@@ -8386,7 +12258,217 @@
     ],
     "ruleset": "2024",
     "tool_proficiencies": [],
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 12,
+      "dex": 15,
+      "con": 15,
+      "int": 11,
+      "wis": 12,
+      "cha": 12
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 47,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human",
+        "background": "Soldier",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Alert",
+          "Savage Attacker"
+        ],
+        "hp_note": "Max HP 65 differs from the all-average total 66; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Sneak Attack",
+          "Thieves' Cant",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Stealth, Athletics"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Action"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Scout",
+        "features": [
+          "Steady Aim",
+          "Skirmisher",
+          "Survivalist"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Strike",
+          "Uncanny Dodge"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Perception, Deception"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Evasion",
+          "Reliable Talent"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Superior Mobility"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Shortbow"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Rapier"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human: replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Rogue 9: dropped 7 2014 feature(s), added 11 2024 feature(s).",
+          "Rogue 1: recorded the existing Expertise (Stealth, Athletics) as that class's grant.",
+          "Rogue 6: recorded the existing Expertise (Perception, Deception) as that class's grant.",
+          "Human Versatile: origin feat Alert added.",
+          "Background Mercenary Veteran -> Soldier; origin feat Savage Attacker added.",
+          "Rogue / Scout has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_24",
@@ -8665,7 +12747,12 @@
         "ability_choice": "int",
         "recharge": "long_rest",
         "uses_max": 1,
-        "uses_current": 1
+        "uses_current": 1,
+        "spells_granted": [
+          "Prestidigitation",
+          "Light",
+          "Magic Missile"
+        ]
       }
     ],
     "spells": [
@@ -8839,7 +12926,191 @@
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 12,
+      "con": 14,
+      "int": 15,
+      "wis": 10,
+      "cha": 14
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 49,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Gnome (Rock Gnome)",
+        "background": "Sage",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Magic Initiate"
+        ],
+        "hp_note": "Max HP 67 differs from the all-average total 66; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Tinker's Magic"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Replicate Magic Item"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Infused Arbalist",
+        "features": [
+          "Arbalist Bonus Spells",
+          "Calculating Arbalister",
+          "Infuse Weapon"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Arcane Payload"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Magic Item Tinker"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Flash of Genius"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "feat",
+            "detail": "Fade Away"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Artificer",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Unstable Rounds"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Gnome (Rock Gnome): replaced 0 2014 trait(s) with the 2024 Gnome traits + Rock Gnome. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Artificer 9: dropped 5 2014 feature(s), added 5 2024 feature(s).",
+          "Background Sage -> Sage; origin feat Magic Initiate (Wizard) added.",
+          "Infuse Item has character-specific data (infusions) and has no 2024 equivalent — kept as is.",
+          "Artificer / Infused Arbalist has no 2024 version — kept as a legacy 2014 subclass (features unchanged).",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Absorb elements."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_26",
@@ -9234,6 +13505,48 @@
         "prepared": true,
         "featureGranted": true,
         "_source": "Book of Ancient Secrets -- ritual casting only (can't be cast as a normal spell, no spell slot needed), doesn't count against known-spell cap"
+      },
+      {
+        "name": "Detect Thoughts",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Great Old One"
+      },
+      {
+        "name": "Dissonant Whispers",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Great Old One"
+      },
+      {
+        "name": "Phantasmal Force",
+        "level": 2,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Great Old One"
+      },
+      {
+        "name": "Tasha's Hideous Laughter",
+        "level": 1,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Great Old One"
+      },
+      {
+        "name": "Clairvoyance",
+        "level": 3,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Great Old One"
+      },
+      {
+        "name": "Hunger of Hadar",
+        "level": 3,
+        "prepared": true,
+        "featureGranted": true,
+        "_source": "Great Old One"
       }
     ],
     "active_effects": [],
@@ -9274,7 +13587,244 @@
     ],
     "notes": "Target build: 4 Fighter / 8 Warlock.",
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 15,
+      "dex": 8,
+      "con": 14,
+      "int": 10,
+      "wis": 8,
+      "cha": 15
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 52,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Orc",
+        "background": "Soldier",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Savage Attacker"
+        ],
+        "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
+        "hp_note": "Max HP 70 differs from the all-average total 71; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Second Wind",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Action Surge (One Use)",
+          "Tactical Mind"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Champion",
+        "features": [
+          "Improved Critical",
+          "Remarkable Athlete"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 4,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+1 STR, +1 CHA, +2 STR",
+            "source": "Ability Score Improvement"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Longsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greatsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Handaxe"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Javelin"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Warlock",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Eldritch Invocations",
+          "Pact Magic"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Warlock",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Magical Cunning"
+        ],
+        "choices": [
+          {
+            "type": "invocation",
+            "detail": "Agonizing Blast"
+          },
+          {
+            "type": "invocation",
+            "detail": "Eyes of the Rune Keeper"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Warlock",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Great Old One Patron",
+        "features": [
+          "Awakened Mind",
+          "Great Old One Spells",
+          "Psychic Spells"
+        ],
+        "choices": [
+          {
+            "type": "invocation",
+            "detail": "Pact of the Tome"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Warlock",
+        "level": 4,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+1 STR, +1 CHA, +2 STR",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Warlock",
+        "level": 5,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "invocation",
+            "detail": "Book of Ancient Secrets"
+          },
+          {
+            "type": "invocation",
+            "detail": "Eldritch Mind"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Fighter 4: dropped 3 2014 feature(s), added 7 2024 feature(s).",
+          "Warlock: Great Old One is now Great Old One Patron.",
+          "Warlock 5: dropped 4 2014 feature(s), added 6 2024 feature(s).",
+          "Fighting Style: Dueling -> the Dueling feat.",
+          "Pact of the Tome (Pact Boon) -> the Pact of the Tome invocation.",
+          "Background Mercenary Veteran -> Soldier; origin feat Savage Attacker added.",
+          "Half-Orc has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Green-Flame Blade, Thunder step."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Added the 2024 Great Old One patron spells (always prepared): Detect Thoughts, Dissonant Whispers, Phantasmal Force, Tasha's Hideous Laughter, Clairvoyance, Hunger of Hadar."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_27",
@@ -9647,7 +14197,214 @@
     ],
     "hp_temp": 0,
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 15,
+      "con": 14,
+      "int": 12,
+      "wis": 13,
+      "cha": 10
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 41,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Dwarf (Hill Dwarf)",
+        "background": "Criminal",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Alert"
+        ],
+        "hp_note": "Max HP 77 differs from the all-average total 75; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Sneak Attack",
+          "Thieves' Cant",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Stealth, Perception"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Action"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Soulknife",
+        "features": [
+          "Steady Aim",
+          "Psionic Power",
+          "Psychic Blades"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Cunning Strike",
+          "Uncanny Dodge"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Deception, Insight"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Evasion",
+          "Reliable Talent"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+1 DEX, +1 CON",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Rogue",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Soul Blades"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Hand Crossbow"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Dagger"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Dwarf (Hill Dwarf): replaced 0 2014 trait(s) with the 2024 Dwarf traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Rogue 9: dropped 10 2014 feature(s), added 14 2024 feature(s).",
+          "Rogue 1: recorded the existing Expertise (Stealth, Perception) as that class's grant.",
+          "Rogue 6: recorded the existing Expertise (Deception, Insight) as that class's grant.",
+          "Background Criminal -> Criminal; origin feat Alert added."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_28",
@@ -10086,7 +14843,204 @@
     ],
     "hp_temp": 0,
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 15,
+      "con": 13,
+      "int": 10,
+      "wis": 10,
+      "cha": 15
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 53,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Elf",
+        "background": "Entertainer",
+        "ability_scores": "point buy or manual",
+        "feats": [
+          "Musician"
+        ],
+        "hp_note": "Max HP 62 differs from the all-average total 57; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Bardic Inspiration",
+          "Spellcasting"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Jack of all Trades"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Performance, History"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "College of Lore",
+        "features": [
+          "Bonus Proficiencies",
+          "Cutting Words"
+        ],
+        "choices": [
+          {
+            "type": "bonusProficiencies",
+            "detail": "Bonus Proficiencies: Nature, Deception, Acrobatics"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "feat",
+            "detail": "Fey Touched"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Font of Inspiration"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Magical Discoveries"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Countercharm"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 DEX",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Persuasion, Arcana"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Bard 9: dropped 6 2014 feature(s), added 10 2024 feature(s).",
+          "Background Entertainer -> Entertainer; origin feat Musician added.",
+          "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Silvery Barbs, Raulothim's Psychic Lance."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_29",
@@ -10501,7 +15455,198 @@
       }
     },
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 7,
+      "dex": 15,
+      "con": 11,
+      "int": 13,
+      "wis": 14,
+      "cha": 17
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 55,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Elf",
+        "background": "Wayfarer",
+        "ability_scores": "rolled",
+        "feats": [
+          "Lucky"
+        ],
+        "hp_note": "Max HP 55 differs from the all-average total 48; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Bardic Inspiration",
+          "Spellcasting"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise",
+          "Jack of all Trades"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Performance, Insight"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "College of Spirits",
+        "features": [
+          "Channeler",
+          "Spirits from Beyond"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "feat",
+            "detail": "Shadow Touched"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Font of Inspiration"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Empowered Channeling"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Countercharm"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "feat",
+            "detail": "War Caster"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Bard",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Expertise"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Persuasion, Perception"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Bard 9: dropped 9 2014 feature(s), added 10 2024 feature(s).",
+          "Background Far Traveler -> Wayfarer; origin feat Lucky added.",
+          "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Silvery Barbs."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_30",
@@ -10795,7 +15940,190 @@
       "Cloudkill"
     ],
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 8,
+      "dex": 13,
+      "con": 14,
+      "int": 15,
+      "wis": 13,
+      "cha": 8
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 38,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Half-Elf",
+        "background": "Noble",
+        "ability_scores": "point buy",
+        "feats": [
+          "Skilled"
+        ]
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Spellcasting",
+          "Ritual Adept",
+          "Arcane Recovery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 2,
+        "character_level": 2,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Scholar"
+        ],
+        "choices": [
+          {
+            "type": "expertise",
+            "detail": "Expertise: Arcana"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 3,
+        "character_level": 3,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Chronurgy Magic",
+        "features": [
+          "Chronal Shift",
+          "Temporal Awareness"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 4,
+        "character_level": 4,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 5,
+        "character_level": 5,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Memorize Spell"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 6,
+        "character_level": 6,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Momentary Stasis"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 7,
+        "character_level": 7,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 8,
+        "character_level": 8,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 INT",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Wizard",
+        "level": 9,
+        "character_level": 9,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Wizard 9: dropped 2 2014 feature(s), added 5 2024 feature(s).",
+          "Background Noble -> Noble; origin feat Skilled added.",
+          "Half-Elf has no 2024 version — kept as legacy 2014 content (its traits are unchanged).",
+          "Wizard / Chronurgy Magic has no 2024 version — kept as a legacy 2014 subclass (features unchanged)."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_31",
@@ -11173,7 +16501,225 @@
     "hit_dice_current": 9,
     "unarmed_strike_die": "1d4",
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 16,
+      "dex": 12,
+      "con": 16,
+      "int": 8,
+      "wis": 10,
+      "cha": 8
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 76,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Human (Variant Human)",
+        "background": "Noble",
+        "ability_scores": "rolled",
+        "feats": [
+          "Tavern Brawler",
+          "Skilled"
+        ],
+        "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
+        "hp_note": "Max HP 103 differs from the all-average total 94; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Rage",
+          "Unarmored Defense",
+          "Weapon Mastery"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 2,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Danger Sense",
+          "Reckless Attack"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 3,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "subclass": "Path of the Berserker",
+        "features": [
+          "Primal Knowledge",
+          "Frenzy"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 4,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "ability",
+            "detail": "+2 STR",
+            "source": "Ability Score Improvement"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 5,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Extra Attack",
+          "Fast Movement"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 6,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Mindless Rage"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 7,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Feral Instinct",
+          "Instinctive Pounce"
+        ],
+        "choices": [],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 8,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [],
+        "choices": [
+          {
+            "type": "feat",
+            "detail": "Fighting Initiate"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greataxe"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greatsword"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Warhammer"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "level",
+        "class": "Fighter",
+        "level": 1,
+        "character_level": null,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Fighting Style",
+          "Second Wind",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Handaxe"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Javelin"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Spear"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Human (Variant Human): replaced 0 2014 trait(s) with the 2024 Human traits. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Barbarian: Berserker is now Path of the Berserker.",
+          "Barbarian 8: dropped 9 2014 feature(s), added 12 2024 feature(s).",
+          "Fighter 1: dropped 1 2014 feature(s), added 3 2024 feature(s).",
+          "Fighting Style: Thrown Weapon Fighting -> the Thrown Weapon Fighting feat.",
+          "Fighting Style: Unarmed Fighting -> the Unarmed Fighting feat.",
+          "Human Versatile: the level 1 feat Tavern Brawler is kept as the Origin feat.",
+          "Background Noble -> Noble; origin feat Skilled added."
+        ]
+      }
+    ]
   },
   {
     "id": "characters_32",
@@ -11237,8 +16783,8 @@
       }
     ],
     "spellcasting_ability": null,
-    "hp_max": 15,
-    "hp_current": 15,
+    "hp_max": 17,
+    "hp_current": 17,
     "saving_throws": [
       "str",
       "con"
@@ -11378,6 +16924,75 @@
       "Can't take thanks. Sleeps badly and is short-tempered when woken."
     ],
     "ruleset": "2024",
-    "migrated_to_2024": true
+    "migrated_to_2024": true,
+    "ability_base": {
+      "str": 14,
+      "dex": 10,
+      "con": 15,
+      "int": 10,
+      "wis": 10,
+      "cha": 13
+    },
+    "ability_base_note": "Implied by the sheet (stored score minus every recorded change). The real starting scores were not written down; replace these when they are known.",
+    "hp_unrecorded_dice": 12,
+    "level_history": [
+      {
+        "kind": "origin",
+        "recorded": "reconstructed",
+        "species": "Gnome (Forest Gnome)",
+        "background": "Farmer",
+        "ability_scores": "point buy",
+        "feats": [
+          "Tough"
+        ],
+        "hp_note": "Max HP 15 differs from the all-average total 17; per-level HP gains were not recorded."
+      },
+      {
+        "kind": "level",
+        "class": "Barbarian",
+        "level": 1,
+        "character_level": 1,
+        "hp": {
+          "gain": null,
+          "method": "unrecorded"
+        },
+        "features": [
+          "Rage",
+          "Unarmored Defense",
+          "Weapon Mastery"
+        ],
+        "choices": [
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Greataxe"
+          },
+          {
+            "type": "weaponMastery",
+            "detail": "Weapon Mastery: Handaxe"
+          }
+        ],
+        "recorded": "reconstructed"
+      },
+      {
+        "kind": "migration",
+        "from": "2014",
+        "to": "2024",
+        "date": "2026-10-27",
+        "notes": [
+          "Set to 2024.",
+          "Gnome (Forest Gnome): replaced 1 2014 trait(s) with the 2024 Gnome traits + Forest Gnome. Ability bonuses are not re-applied — stat_* is unchanged.",
+          "Barbarian 1: dropped 2 2014 feature(s), added 3 2024 feature(s).",
+          "Background Laborer -> Farmer; origin feat Tough added.",
+          "Marnock: Tough raises maximum Hit Points by 2 (2 per level)."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-10-27",
+        "notes": [
+          "Maximum HP 15 -> 17: the Tough feat's +2 per level was not applied when the feat was added."
+        ]
+      }
+    ]
   }
 ]
