@@ -7830,11 +7830,11 @@
   {
     "id": "hb_elegant_ward",
     "name": "Elegant Ward",
-    "subtitle": "Unique ability",
+    "subtitle": "Granted by Sorceress' Evening Gown",
     "description": "While you aren't wearing armor, your AC equals 10 + your Dexterity modifier + your Intelligence modifier. You can still use a shield.",
-    "note": "Homebrew, unique to Elowenne — her protection without clunky armor. Nobody else can do this. Carried as `unarmored_defense: { abilities: ['dex','int'] }` on the character's feature record (read by armorClass.js).",
+    "note": "Homebrew. Carried as `unarmored_defense: { name, abilities: ['dex','int'] }` on the item's mechanics (Sorceress' Evening Gown), read by armorClass.js; a feature record may also carry it.",
     "homebrew": true,
-    "source": "Homebrew, unique to Elowenne."
+    "source": "Homebrew, granted by Sorceress' Evening Gown."
   },
   {
     "id": "hb_hurl_something",

@@ -182,7 +182,10 @@ test('computeAC: an explicit unarmored_ac_formula always wins, including "defaul
 })
 
 test('computeAC: no Unarmored Defense feature means no special formula, whatever the class', () => {
-  assert.strictEqual(computeAC(unarmoredChar({ features: [] }), []).value, 10 + 2)
+  assert.strictEqual(
+    computeAC(unarmoredChar({ features: [] }), []).value,
+    10 + 2
+  )
 })
 
 test('computeAC: a feature with unarmored_defense gives 10 + the listed modifiers, and armor replaces it', () => {
@@ -211,4 +214,26 @@ test('computeAC: an explicit formula beats a feature-defined unarmored defense',
     features: [{ name: 'X', unarmored_defense: { abilities: ['int'] } }],
   })
   assert.equal(computeAC(c, []).value, 13)
+})
+
+test('computeAC: an equipped item with unarmored_defense gives the formula, using its own stat bonuses', () => {
+  const gown = {
+    name: "Sorceress' Evening Gown",
+    unarmored_defense: { name: 'Elegant Ward', abilities: ['dex', 'int'] },
+    stat_bonuses: { dex: 1 },
+  }
+  const c = baseChar({ stat_dex: 13, stat_int: 20 })
+  assert.equal(computeAC(c, []).value, 10 + 1) // without the gown: plain 10 + DEX
+  const worn = computeAC(c, [gown]) // DEX 14 (+2), INT +5
+  assert.equal(worn.value, 17)
+  assert.deepEqual(worn.breakdown, [
+    { label: 'Elegant Ward (10 + DEX + INT)', amount: 17 },
+  ])
+  const leather = {
+    type: 'armor',
+    slot: 'body',
+    armor_type: 'leather',
+    name: 'Leather Armor',
+  }
+  assert.equal(computeAC(c, [leather, gown]).value, 11 + 2) // armor replaces it
 })

@@ -1247,5 +1247,20 @@
     },
     "weapon_category": "warhammer",
     "slot": "melee1h"
+  },
+  "sorceress-evening-gown": {
+    "stat_bonuses": {
+      "dex": 1,
+      "skill_Deception": 4,
+      "skill_Intimidation": 4,
+      "skill_Performance": 4,
+      "skill_Persuasion": 4
+    },
+    "features_granted": ["Elegant Ward"],
+    "unarmored_defense": {
+      "name": "Elegant Ward",
+      "abilities": ["dex", "int"]
+    },
+    "slot": "body"
   }
 }

@@ -522,6 +522,14 @@ export const SCHEMAS = {
         description: 'e.g. Robe of the Archmagi — overrides the AC formula.',
       },
       {
+        key: 'unarmored_defense',
+        level: 'occasional',
+        type: 'object',
+        when: ['wondrous'],
+        description:
+          "e.g. Sorceress' Evening Gown — { name, abilities: ['dex','int'] } gives unarmored AC 10 + those modifiers.",
+      },
+      {
         key: 'unarmored_stat_bonuses',
         level: 'occasional',
         type: 'object',

@@ -20,6 +20,7 @@ const EFFECT_FIELDS = [
   'stat_overrides',
   'unarmored_stat_bonuses',
   'unarmored_armor_base_ac',
+  'unarmored_defense',
   'grants_initiative_advantage',
   'grants_skill_advantage',
   'grants_skill_proficiency',
