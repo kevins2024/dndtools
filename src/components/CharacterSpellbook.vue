@@ -897,7 +897,10 @@ export default {
         fields.push({ label: 'Duration', value: data.duration })
       if (data?.concentration) fields.push({ label: 'Conc', value: 'Yes' })
       if (data?.components)
-        fields.push({ label: 'Comp', value: data.components })
+        fields.push({
+          label: 'Comp',
+          value: data.components_label ?? data.components,
+        })
       if (data?.save) fields.push({ label: 'Save', value: data.save })
       if (data?.damage_type)
         fields.push({ label: 'Dmg', value: data.damage_type })
@@ -922,6 +925,7 @@ export default {
           duration: data?.duration ?? null,
           concentration: data?.concentration ?? false,
           components: data?.components ?? null,
+          material: data?.material ?? null,
           save: data?.save ?? null,
           damage_type: data?.damage_type ?? null,
           spell_list: data?.spell_list ?? null,

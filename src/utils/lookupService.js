@@ -17,10 +17,11 @@ import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
 import staticPublishedMonsters from '@/data/published_monsters.json'
 const { resolveFeatureText } = require('../../engine/rules/5e/featureText')
+const { componentsLabel } = require('../../engine/rules/5e/spellComponents')
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
-const CACHE_VERSION = 'v4'
+const CACHE_VERSION = 'v5'
 const CACHE_PREFIX = `dndtools_${CACHE_VERSION}_`
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -106,9 +107,18 @@ function normalizeSpell(data) {
       data.concentration ??
       data.duration?.toLowerCase().startsWith('concentration') ??
       false,
+    // `components` stays the plain "V, S, M" (it's what gets edited and saved
+    // back); `components_label` is what every screen displays — "V, S, f" etc.
     components: Array.isArray(data.components)
       ? data.components.join(', ')
       : data.components ?? null,
+    material: data.material ?? null,
+    components_label: data.components
+      ? componentsLabel({
+          components: data.components,
+          material: data.material,
+        })
+      : null,
     save:
       data.dc?.dc_type?.name ??
       (typeof data.save === 'object'

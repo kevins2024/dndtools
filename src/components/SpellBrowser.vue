@@ -260,7 +260,9 @@
           </div>
           <div class="sb-stat-line">
             <span class="sb-stat-key">Components</span>
-            <span class="sb-stat-val">{{ detail.components ?? '—' }}</span>
+            <span class="sb-stat-val">{{
+              detail.components_label ?? detail.components ?? '—'
+            }}</span>
           </div>
           <div
             class="sb-stat-line"
@@ -311,6 +313,7 @@
 import srdSpellsRaw from '@/data/api_data_cache/srd_spells_full.json'
 import publishedSpellsRaw from '@/data/published_spells.json'
 import { lookupSpell } from '@/utils/lookupService'
+import { componentsLabel } from '../../engine/rules/5e/spellComponents'
 import { dnd } from '@/utils/dnd_utils'
 import SchoolIcon from '@/components/SchoolIcon.vue'
 
@@ -501,6 +504,9 @@ export default {
             components: Array.isArray(s._raw.components)
               ? s._raw.components.join(', ')
               : s._raw.components ?? null,
+            components_label: s._raw.components
+              ? componentsLabel(s._raw)
+              : null,
             concentration: s._raw.concentration ?? false,
             description: s._raw.description,
             save: s._raw.save ?? null,
