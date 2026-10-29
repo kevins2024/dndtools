@@ -1953,6 +1953,29 @@
     "id": "items_158"
   },
   {
+    "spells_granted": [
+      {
+        "name": "Daylight",
+        "action_type": "action",
+        "uses_max": 6,
+        "uses_current": 6,
+        "recharge": "none"
+      },
+      {
+        "name": "Fireball",
+        "action_type": "action",
+        "uses_max": 9,
+        "uses_current": 9,
+        "recharge": "none"
+      },
+      {
+        "name": "Wall of Fire",
+        "action_type": "action",
+        "uses_max": 5,
+        "uses_current": 4,
+        "recharge": "none"
+      }
+    ],
     "name": "Helm of Brilliance",
     "catalog_id": "helm-of-brilliance",
     "type": "wondrous",
@@ -3241,6 +3264,56 @@
     "attuned": false,
     "id": "items_269",
     "slot": "none",
+    "stored_at": null,
+    "party_id": null
+  },
+  {
+    "name": "Ring of Three Wishes",
+    "catalog_id": "ring-of-three-wishes",
+    "type": "ring",
+    "equipped_by": null,
+    "carried_by": "Sorra",
+    "attuned": false,
+    "charges_current": 1,
+    "charges_max": 3,
+    "notes": "Two of three charges already spent. Becomes nonmagical when the last charge is used.",
+    "id": "items_270",
+    "stored_at": null,
+    "party_id": null
+  },
+  {
+    "name": "Serania",
+    "type": "mount",
+    "equipped_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "battle_effect": false,
+    "mount_type": "mount_riding_horse_rare",
+    "carried_by": "Elowenne",
+    "notes": "Prize-stock riding horse — a show-quality, well-bred mount fit for Elowenne.",
+    "id": "items_271"
+  },
+  {
+    "name": "Unnamed Horse",
+    "type": "mount",
+    "equipped_by": null,
+    "needs_attunement": false,
+    "attuned": false,
+    "battle_effect": false,
+    "mount_type": "mount_warhorse_uncommon",
+    "carried_by": "Brick",
+    "notes": "Heavy, powerful warhorse (STR 20) to carry Brick.",
+    "id": "items_272"
+  },
+  {
+    "name": "Sorceress' Evening Gown",
+    "catalog_id": "sorceress-evening-gown",
+    "type": "wondrous",
+    "equipped_by": "Elowenne",
+    "carried_by": "Elowenne",
+    "attuned": true,
+    "notes": "",
+    "id": "items_273",
     "stored_at": null,
     "party_id": null
   }

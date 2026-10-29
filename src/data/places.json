@@ -1327,10 +1327,7 @@
     "type": "city",
     "region": "Aranwald",
     "description": "Capital of Aranwald. The city visually layers 200 years of Solvaran architecture over the older Torwald-origin construction beneath — arched courtyards, geometric tilework, and repurposed minarets sit alongside the original Saxon-influenced stonework. The Solvaran additions are displayed as trophies, not erased as shame. Walking through Feldtazur is a study in the prince's founding philosophy: we didn't just conquer the land, we conquered everything. Name coined by the prince — Anglo 'feld' + Persian-derived 'tazur'. The walls are a circuit of grey Saxon-style stone with Solvaran trophies (captured standards and bronze eagles) bolted onto the older arches. The east gate has a gate tower with a banner; behind a row of granaries lies a walled receiving yard.",
-    "faction_presence": [
-      "Feldtazur Guard",
-      "The Quarter"
-    ],
+    "faction_presence": ["Feldtazur Guard", "The Quarter"],
     "notes": "Feldtazur is surrounded by many smaller towns that grew up around old watchtowers rather than outside its walls, and is kept smaller than Argentveil. See the lore entry \"capitals-watchtower-towns-001\" (the watchtower towns around both capitals).",
     "districts": [
       {
@@ -1620,5 +1617,24 @@
       }
     ],
     "flair": "A town defined by its dependency on the pass above it — cut off from westbound trade, market day delayed, families split by whichever side of the pass they happened to be on when it closed. Practical people, more annoyed by the disruption than frightened by it."
+  },
+  {
+    "name": "Dashtamar",
+    "type": "town",
+    "region": "Aranwald",
+    "description": "A town west of Feldtazur on the border with Torwald. The east side has no wall and opens toward the road. Flat-roofed houses of sand-coloured brick stand in terraces, with deep shaded doorways, carved wooden lattices over the upper windows and tall square open-sided chimneys that scoop the breeze down into the rooms. Dyed awnings in rust and saffron shade the lanes, and the air smells of cumin, hot clay and woodsmoke. The road ends at a gate with no gate in it: a great horseshoe arch of glazed deep-blue and white tile, three wagons wide and as high as a house, with a single snake worked into the mosaic. Nobody guards it; a tiny stone booth beside it holds a lamp, a ledger and one woman. On the west side an old wall humps along the ridge in dark stone, with a stubby bastion every few hundred paces.",
+    "notes": "Kelverdrum, across the border in Torwald, can be seen over the old west wall: steep, tall slate-grey roofs and one square tower.",
+    "districts": [],
+    "locations": [],
+    "flair": "The snake in the mosaic coils along the whole arch, and its tail runs off the tiles onto the plaster, where someone has kept painting it."
+  },
+  {
+    "name": "Kelverdrum",
+    "type": "city",
+    "region": "Torwald",
+    "description": "A city in Torwald east of Filian's Keep, on the border with Aranwald. Steep, tall slate-grey roofs and a square tower. Details to come.",
+    "notes": "",
+    "districts": [],
+    "locations": []
   }
 ]
