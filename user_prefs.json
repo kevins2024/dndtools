@@ -139,23 +139,23 @@
       ]
     },
     {
-      "game_day": 305,
+      "game_day": 308,
       "id": "party_1791382876351",
       "name": "East Full",
       "members": ["Denna", "Ferghus", "Elowenne", "Brick", "Vaz", "Sorra"],
       "active": true,
       "marching_order": [
         "Denna",
-        "Kessara",
-        "Lexica",
         "Ferghus",
         "Elowenne",
-        "Brick"
+        "Brick",
+        "Vaz",
+        "Sorra"
       ],
       "watch_assignments": [
         ["Denna", null],
-        ["Kessara", null],
-        ["Lexica", null],
+        ["Vaz", null],
+        ["Sorra", null],
         ["Ferghus", null]
       ]
     }
