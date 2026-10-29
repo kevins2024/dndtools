@@ -17,7 +17,7 @@
     ],
     "type": null,
     "notes": "Different backgrounds mean different ideas on relationships. Denna has warmed up to the idea of sexual connections being natural. Vaz and many others grew up that way, no restrictions, no expectations. Vaz trusts her implicitly.",
-    "strength": 4
+    "strength": 7
   },
   {
     "id": "rel_2",
@@ -948,7 +948,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 5
+    "strength": 8
   },
   {
     "id": "rel_95",
@@ -988,7 +988,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 6
+    "strength": 9
   },
   {
     "id": "rel_99",
@@ -1078,7 +1078,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 5
+    "strength": 8
   },
   {
     "id": "rel_108",
@@ -1088,7 +1088,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 3
+    "strength": 6
   },
   {
     "id": "rel_109",
@@ -1118,7 +1118,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 4
+    "strength": 7
   },
   {
     "id": "rel_112",
@@ -1128,7 +1128,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 2
+    "strength": 5
   },
   {
     "id": "rel_113",
@@ -1138,7 +1138,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 2
+    "strength": 5
   },
   {
     "id": "rel_114",
@@ -1188,7 +1188,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 2
+    "strength": 5
   },
   {
     "id": "rel_119",
@@ -1198,7 +1198,7 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 2
+    "strength": 5
   },
   {
     "id": "rel_120",
@@ -1208,6 +1208,46 @@
     ],
     "type": null,
     "notes": "",
-    "strength": 2
+    "strength": 5
+  },
+  {
+    "id": "rel_121",
+    "people": [
+      "elowenne",
+      "vaz"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_122",
+    "people": [
+      "elowenne",
+      "sorra"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_123",
+    "people": [
+      "brick",
+      "vaz"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
+  },
+  {
+    "id": "rel_124",
+    "people": [
+      "brick",
+      "sorra"
+    ],
+    "type": null,
+    "notes": "",
+    "strength": 3
   }
 ]
