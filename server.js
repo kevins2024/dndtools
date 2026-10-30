@@ -458,7 +458,7 @@ app.post('/api/engine/preview-level-up', (req, res) => {
 
 // ── POST /api/engine/level-up ─────────────────────────────
 // The level-up as the UI should use it: { character, className, toLevel, hpMethod?, hpRolls?,
-// spellSwap?, answers? } -> { patch, choices, complete, problems, warnings, description, ... }.
+// levelCap?, answers? } -> { patch, choices, complete, problems, warnings, description, ... }.
 // `choices` describes every question this level-up asks (id, kind, min/max, labelled options);
 // `answers` is { [choice.id]: answer } — see engine/rules/5e/choiceProtocol.js. Writes nothing.
 app.post('/api/engine/level-up', (req, res) => {
@@ -468,7 +468,7 @@ app.post('/api/engine/level-up', (req, res) => {
     toLevel,
     hpMethod,
     hpRolls,
-    spellSwap,
+    levelCap,
     answers,
   } = req.body
   if (!character || !className || !toLevel) {
@@ -486,7 +486,7 @@ app.post('/api/engine/level-up', (req, res) => {
     res.json(
       engine.previewLevelUp(
         character,
-        { className, toLevel, hpMethod, hpRolls, spellSwap, equippedItems },
+        { className, toLevel, hpMethod, hpRolls, levelCap, equippedItems },
         answers ?? {}
       )
     )

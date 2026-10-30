@@ -35,6 +35,10 @@ const {
 const { listSubclasses } = require('./subclasses')
 const { loadClass } = require('./classFeatures')
 const { loadSkill } = require('./skills')
+const { loadFeat } = require('./grants')
+const { loadMetamagicOption } = require('./metamagic')
+const { loadManeuver } = require('./maneuvers')
+const { loadRulesetJson } = require('./ruleset')
 const { formatBreakdown } = require('./sheet')
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
@@ -360,6 +364,37 @@ SPECS.signatureSpellsChoice = {
   apply: (i, p, v) => setIn(i, 'signatureSpellsChoice', v),
 }
 
+// Replace one known spell with another when a level is gained. Never required.
+const SWAPPERS = ['Bard', 'Sorcerer', 'Warlock']
+function canSwapSpells(character, className) {
+  const entry = (character.classes || []).find((c) => c.name === className)
+  return (
+    SWAPPERS.includes(className) ||
+    ['Eldritch Knight', 'Arcane Trickster'].includes(entry?.subclass)
+  )
+}
+SPECS.spellSwap = {
+  kind: 'pickEach',
+  optional: true,
+  title: 'Swap a spell',
+  prompt: () =>
+    'You may replace one spell you know with another from your class list.',
+  slots: (p, ctx) => {
+    const known = knownSpellNames(ctx.character)
+    const { listClass, maxLevel } = classSpellContext(ctx)
+    return [
+      {
+        label: 'Replace',
+        options: (ctx.character.spells || [])
+          .filter((x) => x.level > 0 && !x.featureGranted && !x.bonusSpell)
+          .map((x) => opt(x.name, x.name, { level: x.level })),
+      },
+      { label: 'With', options: spells(listClass, { maxLevel }, known) },
+    ]
+  },
+  apply: (i, p, v) => setIn(i, 'spellSwap', { from: v[0], to: v[1] }),
+}
+
 // ── the ability score improvement / feat choice ───────────────────────────
 
 // The character as they will be once this level is gained (a feat taken at level 19 asks for
@@ -438,6 +473,7 @@ function featOptions(ctx) {
         abilityChoices: asi?.choice_of ?? null,
         abilityAmount: asi?.amount ?? null,
         abilityCap: asi?.max_score ?? null,
+        description: f.description ?? null,
         choices: expandFeatChoices(f.choices),
       }
     })
@@ -460,6 +496,33 @@ function describeAsiOrFeat(p, ctx) {
     scores,
     feats: featOptions({ ...ctx, epicBoon: p.epicBoon }),
     allowAsi: !p.epicBoon,
+  }
+}
+
+// Text for an option, where the data has some (spells are described by the UI's own spell lookup:
+// their options carry level and school, which marks them as spells).
+const titleWords = (s) => String(s).replace(/\b\w/g, (c) => c.toUpperCase())
+function optionDescription(type, value, ctx) {
+  switch (type) {
+    case 'fightingStyleChoice':
+      return loadFeat(value)?.description ?? null
+    case 'metamagicChoice':
+      return loadMetamagicOption('Sorcerer', value)?.description ?? null
+    case 'maneuverChoice':
+      return (
+        loadManeuver(ctx.className, value)?.description ??
+        loadManeuver('Fighter', value)?.description ??
+        null
+      )
+    case 'weaponMasteryChoice': {
+      const w = loadRulesetJson('2024', 'weapons.json')?.[value]
+      if (!w) return null
+      return `${titleWords(w.category)} ${w.weapon_type} weapon, ${
+        w.damage_dice
+      } ${w.damage_type}. Mastery: ${titleWords(w.mastery)}.`
+    }
+    default:
+      return null
   }
 }
 
@@ -494,6 +557,7 @@ function describeChoice(p, ctx, id) {
     prompt: spec.prompt(p, ctx),
     kind: spec.kind ?? 'pick',
     source: p.source ?? null,
+    ...(spec.optional ? { optional: true } : {}),
   }
   if (spec.slots) {
     const slots = spec.slots(p, ctx)
@@ -507,7 +571,16 @@ function describeChoice(p, ctx, id) {
           : opt(o.value ?? o.name, o.label ?? o.name)
       )
   const count = spec.count ? spec.count(p) : p.count ?? 1
-  return { ...base, min: count, max: count, options }
+  return {
+    ...base,
+    min: count,
+    max: count,
+    options: options.map((o) => {
+      const description =
+        o.description ?? optionDescription(p.type, o.value, ctx)
+      return description ? { ...o, description } : o
+    }),
+  }
 }
 
 function choiceIds(pending) {
@@ -613,6 +686,13 @@ function applyAnswers(seen, answers, character, ctx) {
 // Level a class once, with whatever answers have been given so far. New questions can appear
 // once others are answered (a subclass unlocks its own picks), so this settles by repeating.
 // Every question seen along the way is reported, answered or not, as it was first asked.
+function levelAfter(character, className, toLevel) {
+  const others = (character.classes || [])
+    .filter((c) => c.name !== className)
+    .reduce((n, c) => n + (c.level || 0), 0)
+  return others + toLevel
+}
+
 function previewLevelUp(character, opts, answers = {}) {
   const { className, toLevel } = opts
   let current = character
@@ -628,6 +708,15 @@ function previewLevelUp(character, opts, answers = {}) {
       if (!seen.some((s) => s.d.id === ids[i]))
         seen.push({ d: describeChoice(p, ctx, ids[i]), p })
     })
+    // The optional spell swap is not something diffLevelUp asks for; offer it to casters that may.
+    if (
+      canSwapSpells(current, className) &&
+      !seen.some((s) => s.d.id === 'spellSwap')
+    ) {
+      const p = { type: 'spellSwap', level: toLevel }
+      const d = describeChoice(p, ctx, 'spellSwap')
+      if (d.slots[0].options.length) seen.push({ d, p })
+    }
     const applied = applyAnswers(seen, answers, current, ctx)
     const same =
       JSON.stringify(applied.inputs) === JSON.stringify(inputs) &&
@@ -650,7 +739,16 @@ function previewLevelUp(character, opts, answers = {}) {
     ...rest,
     hp: describeHp(result, opts),
     choices,
-    complete: choices.every((c) => c.answered),
+    // Nothing can be gained past character level 20.
+    blocked:
+      levelAfter(character, className, toLevel) > 20
+        ? 'A character cannot go above level 20.'
+        : null,
+    complete: choices.every((c) => c.answered || c.optional),
+    levelCap:
+      opts.levelCap == null
+        ? null
+        : { cap: opts.levelCap, exceeded: toLevel > opts.levelCap },
     problems,
   }
 }
@@ -738,7 +836,7 @@ function autoLevelUp(character, opts, prefs = {}) {
   let r = null
   for (let i = 0; i < 8; i++) {
     r = previewLevelUp(character, opts, answers)
-    const open = r.choices.filter((c) => !c.answered)
+    const open = r.choices.filter((c) => !c.answered && !c.optional)
     if (!open.length) break
     for (const c of open) {
       if (c.kind === 'unknown')

@@ -8,6 +8,7 @@
     >
       <header class="luc-head">
         <span class="luc-title">{{ c.title }}</span>
+        <span v-if="c.optional" class="luc-level">optional</span>
         <span v-if="c.level != null" class="luc-level"
           >level {{ c.level }}</span
         >
@@ -88,8 +89,22 @@
                   f.reason
                 }}</span>
               </button>
+              <button
+                v-if="f.description"
+                class="luc-info"
+                title="What does this do?"
+                @click="
+                  inspect(c, { label: f.name, description: f.description })
+                "
+              >
+                ⓘ
+              </button>
             </li>
           </ul>
+          <div v-if="inspected[c.id]" class="luc-desc">
+            <strong>{{ inspected[c.id].label }}</strong>
+            {{ inspected[c.id].description }}
+          </div>
           <template v-if="selectedFeat(c)">
             <div
               v-if="
@@ -145,6 +160,9 @@
 
       <!-- One pick per slot -->
       <template v-else-if="c.slots">
+        <div v-if="c.optional && answerOf(c)" class="luc-row">
+          <button class="luc-btn" @click="emit(c, null)">Don't do this</button>
+        </div>
         <div v-for="(slot, i) in c.slots" :key="i" class="luc-row">
           <label>{{ slot.label }}</label>
           <select
@@ -161,6 +179,17 @@
               {{ o.label }}
             </option>
           </select>
+          <button
+            v-if="
+              slot.options.length && slot.options.some((o) => o.level != null)
+            "
+            class="luc-info"
+            title="What does this spell do?"
+            :disabled="!(answerOf(c) || [])[i]"
+            @click="$emit('inspect-spell', { name: (answerOf(c) || [])[i] })"
+          >
+            ⓘ
+          </button>
         </div>
       </template>
 
@@ -189,8 +218,20 @@
               <span v-if="o.legacy" class="luc-tag">legacy</span>
               <span v-if="o.disabled" class="luc-reason">{{ o.reason }}</span>
             </button>
+            <button
+              v-if="hasInfo(o)"
+              class="luc-info"
+              title="What does this do?"
+              @click="inspect(c, o)"
+            >
+              ⓘ
+            </button>
           </li>
         </ul>
+        <div v-if="inspected[c.id]" class="luc-desc">
+          <strong>{{ inspected[c.id].label }}</strong>
+          {{ inspected[c.id].description }}
+        </div>
       </template>
     </section>
   </div>
@@ -211,7 +252,7 @@ export default {
   },
   model: { prop: 'value', event: 'input' },
   data() {
-    return { abilities: ABILITIES, search: {}, modes: {} }
+    return { abilities: ABILITIES, search: {}, modes: {}, inspected: {} }
   },
   methods: {
     answerOf(c) {
@@ -253,6 +294,15 @@ export default {
       const next = c.slots.map((_, k) => cur[k] || '')
       next[i] = v
       this.emit(c, next)
+    },
+    // The ⓘ next to an option: a spell opens the host's spell popup; anything else shows the
+    // engine's own text for it under the list.
+    hasInfo(o) {
+      return o.level != null || Boolean(o.description)
+    },
+    inspect(c, o) {
+      if (o.level != null) return this.$emit('inspect-spell', { name: o.value })
+      this.$set(this.inspected, c.id, o)
     },
     // An answer that is merely not finished yet is not an error worth showing.
     showError(c) {
@@ -426,6 +476,25 @@ export default {
   display: block;
   font-size: var(--font-size-xs);
   color: var(--color-text-low);
+}
+.luc-info {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0 0.2rem;
+}
+.luc-desc {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  white-space: pre-line;
+}
+.luc-list li {
+  display: inline-flex;
+  align-items: center;
 }
 .luc-search {
   margin-bottom: 0.4rem;

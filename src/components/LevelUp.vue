@@ -94,6 +94,16 @@
         </p>
       </section>
 
+      <div v-if="preview.blocked" class="lu-cap">{{ preview.blocked }}</div>
+      <div v-if="preview.levelCap && preview.levelCap.exceeded" class="lu-cap">
+        Party level cap is {{ preview.levelCap.cap }} — level {{ toLevel }} is
+        above it.
+        <label
+          ><input v-model="ignoreLevelCap" type="checkbox" /> Level up
+          anyway</label
+        >
+      </div>
+
       <section
         v-if="preview.newFeatures && preview.newFeatures.length"
         class="lu-section"
@@ -108,7 +118,11 @@
 
       <section v-if="preview.choices.length" class="lu-section">
         <h3>Choices</h3>
-        <LevelUpChoices v-model="answers" :choices="preview.choices" />
+        <LevelUpChoices
+          v-model="answers"
+          :choices="preview.choices"
+          @inspect-spell="inspectSpell"
+        />
       </section>
 
       <ul
@@ -121,7 +135,12 @@
       <div class="lu-confirm">
         <button
           class="lu-btn lu-btn--confirm"
-          :disabled="!preview.complete || loading"
+          :disabled="
+            !preview.complete ||
+            loading ||
+            blockedByCap ||
+            Boolean(preview.blocked)
+          "
           @click="confirm"
         >
           Confirm level {{ toLevel }}
@@ -132,6 +151,13 @@
         </span>
       </div>
     </template>
+    <DetailPopup
+      v-if="popupItem"
+      :open="popupOpen"
+      :readonly="true"
+      :item="popupItem"
+      @close="popupOpen = false"
+    />
   </div>
 </template>
 
@@ -143,11 +169,18 @@
 import PendingCharacterSaveBar from './PendingCharacterSaveBar.vue'
 import ScrollSelect from './ScrollSelect.vue'
 import LevelUpChoices from './LevelUpChoices.vue'
+import DetailPopup from './DetailPopup.vue'
 import pendingCharacterSaves from '@/mixins/pendingCharacterSaves'
+import { buildSpellPopupData } from '@/utils/detailPopupBuilders.js'
 
 export default {
   name: 'LevelUp',
-  components: { PendingCharacterSaveBar, ScrollSelect, LevelUpChoices },
+  components: {
+    PendingCharacterSaveBar,
+    ScrollSelect,
+    LevelUpChoices,
+    DetailPopup,
+  },
   mixins: [pendingCharacterSaves],
   data() {
     return {
@@ -162,6 +195,9 @@ export default {
       loading: false,
       error: null,
       requestId: 0,
+      popupOpen: false,
+      popupItem: null,
+      ignoreLevelCap: false,
     }
   },
   computed: {
@@ -189,6 +225,17 @@ export default {
     },
     toLevel() {
       return this.currentLevel + 1
+    },
+    // The party level cap (a campaign setting); a character may carry its own override.
+    levelCap() {
+      return (
+        this.selectedCharacter?.level_cap_override ??
+        this.$store.state.level_cap ??
+        null
+      )
+    },
+    blockedByCap() {
+      return Boolean(this.preview?.levelCap?.exceeded) && !this.ignoreLevelCap
     },
   },
   watch: {
@@ -221,7 +268,12 @@ export default {
     }
   },
   methods: {
+    async inspectSpell(spell) {
+      this.popupItem = await buildSpellPopupData(spell)
+      this.popupOpen = true
+    },
     restart() {
+      this.ignoreLevelCap = false
       this.answers = {}
       this.hpMethod = 'average'
       this.hpRoll = null
@@ -274,6 +326,7 @@ export default {
             hpMethod: this.hpMethod,
             hpRolls:
               this.hpMethod === 'roll' && this.hpRoll ? [this.hpRoll] : [],
+            levelCap: this.levelCap,
             answers: this.answers,
           }),
         })
@@ -392,6 +445,10 @@ export default {
 .lu-badge {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+}
+.lu-cap {
+  color: #c0392b;
+  margin-bottom: 0.8rem;
 }
 .lu-error {
   color: #c0392b;

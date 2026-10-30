@@ -63,7 +63,7 @@ function levelOnce(
   return {
     result: r,
     unresolved: r.choices.filter(
-      (c) => !c.answered && c.type !== 'subclassChoice'
+      (c) => !c.answered && !c.optional && c.type !== 'subclassChoice'
     ),
   }
 }

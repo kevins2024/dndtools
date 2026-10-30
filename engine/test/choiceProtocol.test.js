@@ -21,6 +21,7 @@ test('a pending choice is described: id, kind, how many, labelled options', () =
     {
       value: 'war pick',
       label: 'War Pick',
+      description: 'Martial melee weapon, 1d8 piercing. Mastery: Sap.',
     }
   )
   assert.equal(r.complete, false)
@@ -286,4 +287,92 @@ test('the hit point part of a level-up is described with its explanation', () =>
   })
   assert.equal(first.hp.forcedMax, true)
   assert.equal(first.hp.gain, 10 + 2)
+})
+
+test('a known-spell caster may swap a spell: optional, never blocks, applied when answered', () => {
+  const { character } = buildCharacter({
+    className: 'Bard',
+    subclass: 'College of Lore',
+    toLevel: 4,
+  })
+  const o = { className: 'Bard', toLevel: 5, hpMethod: 'average' }
+  const first = previewLevelUp(character, o)
+  const swap = first.choices.find((c) => c.id === 'spellSwap')
+  assert.equal(swap.optional, true)
+  assert.ok(
+    swap.slots[0].options.length > 0 && swap.slots[1].options.length > 0
+  )
+  // Unanswered, it does not hold up completion.
+  const auto = autoLevelUp(character, o)
+  assert.equal(auto.complete, true)
+  const from = swap.slots[0].options[0].value
+  const to = swap.slots[1].options.find((x) => !x.disabled).value
+  const done = previewLevelUp(character, o, {
+    ...auto.answers,
+    spellSwap: [from, to],
+  })
+  assert.deepEqual(done.problems, [])
+  const names = done.patch.spells.map((s) => s.name)
+  assert.ok(names.includes(to) && !names.includes(from))
+  // Swapping a spell for itself is refused.
+  assert.match(
+    previewLevelUp(character, o, { spellSwap: [from, from] }).problems[0].error,
+    /twice/
+  )
+  // A caster that prepares daily is not offered it.
+  const { character: wiz } = buildCharacter({
+    className: 'Wizard',
+    subclass: 'Evoker',
+    toLevel: 4,
+  })
+  assert.ok(
+    !previewLevelUp(wiz, {
+      className: 'Wizard',
+      toLevel: 5,
+      hpMethod: 'average',
+    }).choices.some((c) => c.id === 'spellSwap')
+  )
+})
+
+test('options carry their text where the data has it, and the level cap is reported', () => {
+  const r = previewLevelUp(blank('Barbarian', null, '2024'), {
+    className: 'Barbarian',
+    toLevel: 1,
+    hpMethod: 'average',
+    levelCap: 0,
+  })
+  assert.match(
+    r.choices[0].options.find((o) => o.value === 'greataxe').description,
+    /Mastery: Cleave/
+  )
+  assert.deepEqual(r.levelCap, { cap: 0, exceeded: true })
+  const f = previewLevelUp(blank('Fighter', null, '2024'), {
+    className: 'Fighter',
+    toLevel: 1,
+    hpMethod: 'average',
+  })
+  const style = f.choices.find((c) => c.type === 'fightingStyleChoice')
+  assert.ok(
+    style.options.find((o) => o.value === 'Defense').description.length > 20
+  )
+})
+
+test('nothing can be gained past character level 20', () => {
+  const { character } = buildCharacter({
+    className: 'Fighter',
+    subclass: 'Champion',
+    toLevel: 20,
+  })
+  const r = previewLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 21,
+    hpMethod: 'average',
+  })
+  assert.match(r.blocked, /level 20/)
+  const ok = previewLevelUp(character, {
+    className: 'Fighter',
+    toLevel: 20,
+    hpMethod: 'average',
+  })
+  assert.equal(ok.blocked, null)
 })
