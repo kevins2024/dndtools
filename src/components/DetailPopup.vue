@@ -177,6 +177,7 @@
 <script>
 import Dialog from '@/components/Dialog.vue'
 import { saveToHomebrew } from '@/utils/lookupService.js'
+import { componentsLabel } from '../../engine/rules/5e/spellComponents'
 
 const SPELL_CLASSES = Object.freeze([
   'Artificer',
@@ -248,7 +249,8 @@ export default {
         if (d.range) fields.push({ label: 'Range', value: d.range })
         if (d.duration) fields.push({ label: 'Duration', value: d.duration })
         if (d.concentration) fields.push({ label: 'Conc', value: 'Yes' })
-        if (d.components) fields.push({ label: 'Comp', value: d.components })
+        if (d.components)
+          fields.push({ label: 'Comp', value: componentsLabel(d) })
         if (d.save) fields.push({ label: 'Save', value: d.save })
         if (d.damage_type) fields.push({ label: 'Dmg', value: d.damage_type })
         return fields

@@ -10,7 +10,8 @@
     "description": "You draw the moisture from every creature in a 30-foot cube centered on a point you choose within range. Each creature in that area must make a Constitution saving throw. Constructs and undead aren’t affected, and plants and water elementals make this saving throw with disadvantage. A creature takes 12d8 necrotic damage on a failed save, or half as much damage on a successful one.\nNonmagical plants in the area that aren’t creatures, such as trees and shrubs, wither and die instantly.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Sorcerer", "Warlock", "Wizard"]
+    "classes": ["Sorcerer", "Warlock", "Wizard"],
+    "material": "A bit of sponge."
   },
   {
     "name": "Absorb Elements",
@@ -36,7 +37,8 @@
     "description": "A line of roaring flame 30 feet long and 5 feet wide emanates from you in a direction you choose. Each creature in the line must make a Dexterity saving throw. A creature takes 3d8 fire damage on a failed save, or half as much damage on a successful one.\nAt Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Sorcerer", "Wizard"]
+    "classes": ["Sorcerer", "Wizard"],
+    "material": "A red dragon's scale."
   },
   {
     "name": "Beast Bond",
@@ -49,7 +51,8 @@
     "description": "You establish a telepathic link with one beast you touch that is friendly to you or charmed by you. The spell fails if the beast’s Intelligence is 4 or higher. Until the spell ends, the link is active while you and the beast are within line of sight of each other. Through the link, the beast can understand your telepathic messages to it, and it can telepathically communicate simple emotions and concepts back to you. While the link is active, the beast gains advantage on attack rolls against any creature within 5 feet of you that you can see.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Druid", "Ranger"]
+    "classes": ["Druid", "Ranger"],
+    "material": "A bit of fur wrapped in cloth."
   },
   {
     "name": "Blade of Disaster",
@@ -101,7 +104,8 @@
     "description": "You make a calming gesture, and up to three willing creatures of your choice that you can see within range fall unconscious for the spell’s duration. The spell ends on a target early if it takes damage or someone uses an action to shake or slap it awake. If a target remains unconscious for the full duration, that target gains the benefit of a short rest, and it can’t be affected by this spell again until it finishes a long rest.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Artificer", "Bard", "Sorcerer", "Wizard"]
+    "classes": ["Artificer", "Bard", "Sorcerer", "Wizard"],
+    "material": "A pinch of sand."
   },
   {
     "name": "Cause Fear",
@@ -127,7 +131,8 @@
     "description": "You perform one of several religious ceremonies. When you cast the spell, choose one of the following ceremonies, the target of which must be within 10 feet of you throughout the casting.\nAtonement. You touch one willing creature whose alignment has changed, and you make a DC 20 Wisdom (Insight) check. On a successful check, you restore the target to its original alignment.\nBless Water. You touch one vial of water and cause it to become holy water.\nComing of Age. You touch one humanoid who is a young adult. For the next 24 hours, whenever the target makes an ability check, it can roll a d4 and add the number rolled to the ability check. A creature can benefit from this rite only once.\nDedication. You touch one humanoid who wishes to be dedicated to your god’s service. For the next 24 hours, whenever the target makes a saving throw, it can roll a d4 and add the number rolled to the save. A creature can benefit from this rite only once.\nFuneral Rite. You touch one corpse, and for the next 7 days, the target can’t become undead by any means short of a Wish spell.\nWedding. You touch adult humanoids willing to be bonded together in marriage. For the next 7 days, each target gains a +2 bonus to AC while they are within 30 feet of each other. A creature can benefit from this rite again only if widowed.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Cleric", "Paladin"]
+    "classes": ["Cleric", "Paladin"],
+    "material": "25 gp worth of powdered silver, which the spell consumes."
   },
   {
     "name": "Chaos Bolt",
@@ -205,7 +210,8 @@
     "description": "While speaking an intricate incantation, you cut yourself with a jewel-encrusted dagger, taking 2d4 piercing damage that can’t be reduced in any way. You then drip your blood on the spell’s other components and touch them, transforming them into a special construct called a homunculus. The statistics of the homunculus are in the Monster Manual. It is your faithful companion, and it dies if you die. Whenever you finish a long rest, you can spend up to half your Hit Dice if the homunculus is on the same plane of existence as you. When you do so, roll each die and add your Constitution modifier to it. Your hit point maximum is reduced by the total, and the homunculus’s hit point maximum and current hit points are both increased by it. This process can reduce you to no lower than 1 hit point. and the change to your and the homunculus’s hit points ends when you finish your next long rest. The reduction to your hit point maximum can’t be removed by any means before then, except by the homunculus‘s death. You can have only one homunculus at a time. If you cast this spell while your homunculus lives, the spell fails.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Wizard"]
+    "classes": ["Wizard"],
+    "material": "Clay, ash, and mandrake root, all of which the spell consumes, and a jewel-encrusted dagger worth at least 1,000 gp."
   },
   {
     "name": "Crown of Stars",
@@ -244,7 +250,8 @@
     "description": "The light of dawn shines down on a location you specify within range. Until the spell ends, a 30-foot-radius, 40-foot-high cylinder of bright light glimmers there. This light is sunlight. When the cylinder appears, each creature in it must make a Constitution saving throw, taking 4d10 radiant damage on a failed save, or half as much damage on a successful one. A creature must also make this saving throw whenever it ends its turn in the cylinder. If you’re within 60 feet of the cylinder, you can move it up to 60 feet as a bonus action on your turn.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Cleric", "Wizard"]
+    "classes": ["Cleric", "Wizard"],
+    "material": "A sunburst pendant worth at least 100 gp."
   },
   {
     "name": "Dragon's Breath",
@@ -257,7 +264,8 @@
     "description": "You touch one willing creature and imbue it with the power to spew magical energy from its mouth, provided it has one. Choose acid, cold, fire, lightning, or poison. Until the spell ends, the creature can use an action to exhale energy of the chosen type in a 15-foot cone. Each creature in that area must make a Dexterity saving throw, taking 3d6 damage of the chosen type on a failed save, or half as much damage on a successful one.\nAt Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Sorcerer", "Wizard"]
+    "classes": ["Sorcerer", "Wizard"],
+    "material": "A hot pepper."
   },
   {
     "name": "Dream of the Blue Veil",
@@ -270,7 +278,8 @@
     "description": "You and up to eight willing creatures within range fall unconscious for the spell's duration and experience visions of another world on the Material Plane, such as Oerth, Toril, Krynn, or Eberron. If the spell reaches its full duration, the visions conclude with each of you encountering and pulling back a mysterious blue curtain. The spell then ends with you mentally and physically transported to the world that was in the visions.\nTo cast this spell, you must have a magic item that originated on the world you wish to reach, and you must be aware of the world’s existence, even if you don’t know the world’s name. Your destination in the other world is a safe location within 1 mile of where the magic item was created. Alternatively, you can cast the spell if one of the affected creatures was born on the other world, which causes your destination to be a safe location within 1 mile of where that creature was born.\nThe spell ends early on a creature if that creature takes any damage, and the creature isn’t transported. If you take any damage, the spell ends for you and all other creatures, with none of you being transported.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": false,
-    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"]
+    "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"],
+    "material": "A magic item or a willing creature from the destination world."
   },
   {
     "name": "Druid Grove",
@@ -283,7 +292,8 @@
     "description": "You invoke the spirits of nature to protect an area outdoors or underground. The area can be as small as a 30-foot cube or as large as a 90-foot cube. Buildings and other structures are excluded from the affected area. If you cast this spell in the same area every day for a year, the spell lasts until dispelled. The spell creates the following effects within the area. When you cast this spell, you can specify creatures as friends who are immune to the effects. You can also specify a password that, when spoken aloud, makes the speaker immune to these effects. The entire warded area radiates magic. A dispel magic cast on the area, if successful, removes only one of the following effects, not the entire area. That spell’s caster chooses which effect to end. Only when all its effects are gone is this spell dispelled.\nSolid Fog. You can fill any number of 5-foot squares on the ground with thick fog, making them heavily obscured. The fog reaches 10 feet high. In addition, every foot of movement through the fog costs 2 extra feet. To a creature immune to this effect, the fog obscures nothing and looks like soft mist, with motes of green light floating in the air.\nGrasping Undergrowth. You can fill any number of 5-foot squares on the ground that aren’t filled with fog with grasping weeds and vines, as if they were affected by an entangle spell. To a creature immune to this effect, the weeds and vines feel soft and reshape themselves to serve as temporary seats or beds.\nGrove Guardians. You can animate up to four trees in the area, causing them to uproot themselves from the ground. These trees have the same statistics as an awakened tree, which appears in the Monster Manual, except they can’t speak, and their bark is covered with druidic symbols. If any creature not immune to this effect enters the warded area, the grove guardians fight until they have driven off or slain the intruders. The grove guardians also obey your spoken commands (no action required by you) that you issue while in the area. If you don't give them commands and no intruders are present, the grove guardians do nothing. The grove guardians can‘t leave the warded area. When the spell ends, the magic animating them disappears, and the trees take root again if possible.\nAdditional Spell Effect. You can place your choice of one of the following magical effects within the warded area:\nA constant gust of wind in two locations of your choice\nSpike growth in one location of your choice\nWind wall in two locations of your choice\nTo a creature immune to this effect, the winds are a fragrant, gentle breeze, and the area of spike growth is harmless.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Druid"]
+    "classes": ["Druid"],
+    "material": "Mistletoe, which the spell consumes, that was harvested with a golden sickle under the light of a full moon."
   },
   {
     "name": "Dust Devil",
@@ -296,7 +306,8 @@
     "description": "Choose an unoccupied 5-foot cube of air that you can see within range. An elemental force that resembles a dust devil appears in the cube and lasts for the spell’s duration.\nAny creature that ends its turn within 5 feet of the dust devil must make a Strength saving throw. On a failed save, the creature takes 1d8 bludgeoning damage and is pushed 10 feet away. On a successful save, the creature takes half as much damage and isn’t pushed.\nAs a bonus action, you can move the dust devil up to 30 feet in any direction. If the dust devil moves over sand, dust, loose dirt, or small gravel, it sucks up the material and forms a 10-foot-radius cloud of debris around itself that lasts until the start of your next turn. The cloud heavily obscures its area.\nAt Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "material": "A pinch of dust."
   },
   {
     "name": "Earth Tremor",
@@ -439,7 +450,8 @@
     "description": "You brandish the weapon used in the spell’s casting and make a melee attack with it against one creature within 5 feet of you. On a hit, the target suffers the weapon attack’s normal effects, and you can cause green fire to leap from the target to a different creature of your choice that you can see within 5 feet of it. The second creature takes fire damage equal to your spellcasting ability modifier.\nAt Higher Levels. At 5th level, the melee attack deals an extra 1d8 fire damage to the target on a hit, and the fire damage to the second creature increases to 1d8 + your spellcasting ability modifier. Both damage rolls increase by 1d8 at 11th level (2d8 and 2d8) and 17th level (3d8 and 3d8).",
     "source": "Tasha's Cauldron of Everything/Sword Coast Adventurer's Guide",
     "concentration": false,
-    "classes": ["Artificer", "Sorcerer", "Warlock", "Wizard"]
+    "classes": ["Artificer", "Sorcerer", "Warlock", "Wizard"],
+    "material": "A melee weapon worth at least 1 sp."
   },
   {
     "name": "Guardian of Nature",
@@ -504,7 +516,8 @@
     "description": "You create a shard of ice and fling it at one creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 piercing damage. Hit or miss, the shard then explodes. The target and each creature within 5 feet of the point where the ice exploded must succeed on a Dexterity saving throw or take 2d6 cold damage.\nAt Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the cold damage increases by 1d6 for each slot level above 1st.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "material": "A drop of water or piece of ice."
   },
   {
     "name": "Illusory Dragon",
@@ -543,7 +556,8 @@
     "description": "Uttering a dark incantation, you summon a devil from the Nine Hells. You choose the devil’s type, which must be one of challenge rating 6 or lower, such as a barbed devil or a bearded devil. The devil appears in an unoccupied space that you can see within range. The devil disappears when it drops to 0 hit points or when the spell ends.\nThe devil is unfriendly toward you and your companions. Roll initiative for the devil, which has its own turns. It is under the Dungeon Master’s control and acts according to its nature on each of its turns, which might result in its attacking you if it thinks it can prevail, or trying to tempt you to undertake an evil act in exchange for limited service. The DM has the creature’s statistics.\nOn each of your turns, you can try to issue a verbal command to the devil (no action required by you). It obeys the command if the likely outcome is in accordance with its desires, especially if the result would draw you toward evil. Otherwise, you must make a Charisma (Deception, Intimidation, or Persuasion) check contested by its Wisdom (Insight) check. You make the check with advantage if you say the devil’s true name. If your check fails, the devil becomes immune to your verbal commands for the duration of the spell, though it can still carry out your commands if it chooses. If your check succeeds, the devil carries out your command— such as “attack my enemies,” “explore the room ahead,&quot; or “bear this message to the queen&quot;—until it completes the activity, at which point it returns to you to report having done so.\nIf your concentration ends before the spell reaches its full duration, the devil doesn't disappear if it has become immune to your verbal commands. Instead, it acts in whatever manner it chooses for 3d6 minutes, and then it disappears.\nIf you possess an individual devil’s talisman, you can summon that devil if it is of the appropriate challenge rating plus 1, and it obeys all your commands, with no Charisma checks required.\nAt Higher Levels When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A ruby worth at least 999 gp."
   },
   {
     "name": "Infestation",
@@ -556,7 +570,8 @@
     "description": "You cause a cloud of mites, fleas, and other parasites to appear momentarily on one creature you can see within range. The target must succeed on a Constitution saving throw, or it takes 1d6 poison damage and moves 5 feet in a random direction if it can move and its speed is at least 5 feet. Roll a d4 for the direction: 1, north; 2, south; 3, east; or 4, west. This movement doesn’t provoke opportunity attacks, and if the direction rolled is blocked, the target doesn't move.\nAt Higher Levels. The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Warlock", "Wizard"],
+    "material": "A living flea."
   },
   {
     "name": "Intellect Fortress",
@@ -634,7 +649,8 @@
     "description": "You are immune to all damage until the spell ends.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Wizard"]
+    "classes": ["Wizard"],
+    "material": "A small piece of adamantine worth at least 500 gp, which the spell consumes."
   },
   {
     "name": "Life Transference",
@@ -673,7 +689,8 @@
     "description": "Magical darkness spreads from a point you choose within range to fill a 60-foot-radius sphere until the spell ends. The darkness spreads around corners. A creature with darkvision can’t see through this darkness. Nonmagical light, as well as light created by spells of 8th level or lower, can't illuminate the area. Shrieks, gibbering, and mad laughter can be heard within the sphere. Whenever a creature starts its turn in the sphere, it must make a Wisdom saving throw, taking 8d8 psychic damage on a failed save, or half as much damage on a successful one.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A drop of pitch mixed with a drop of mercury."
   },
   {
     "name": "Maelstrom",
@@ -686,7 +703,8 @@
     "description": "A mass of 5-foot-deep water appears and swirls in a 30-foot radius centered on a point you can see within range. The point must be on ground or in a body of water. Until the spell ends, that area is difficult terrain, and any creature that starts its turn there must succeed on a Strength saving throw or take 6d6 bludgeoning damage and be pulled 10 feet toward the center.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Druid"]
+    "classes": ["Druid"],
+    "material": "Paper or leaf in the shape of a funnel."
   },
   {
     "name": "Magic Stone",
@@ -712,7 +730,8 @@
     "description": "You transform up to ten creatures of your choice that you can see within range. An unwilling target must succeed on a Wisdom saving throw to resist the transformation. An unwilling shapechanger automatically succeeds on the save.\nEach target assumes a beast form of your choice, and you can choose the same form or different ones for each target. The new form can be any beast you have seen whose challenge rating is equal to or less than the target’s (or half the target’s level, if the target doesn’t have a challenge rating). The target’s game statistics, including mental ability scores, are replaced by the statistics of the chosen beast, but the target retains its hit points, alignment, and personality.\nEach target gains a number of temporary hit points equal to the hit points of its new form. These temporary hit points can’t be replaced by temporary hit points from another source. A target reverts to its normal form when it has no more temporary hit points or it dies. If the spell ends before then, the creature loses all its temporary hit points and reverts to its normal form.\nThe creature is limited in the actions it can perform by the nature of its new form. It can’t speak, cast spells, or do anything else that requires hands or speech. The target’s gear melds into the new form.\nThe target can’t activate, use, wield, or otherwise benefit from any of its equipment.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Bard", "Sorcerer", "Wizard"]
+    "classes": ["Bard", "Sorcerer", "Wizard"],
+    "material": "A caterpillar cocoon."
   },
   {
     "name": "Melf's Minute Meteors",
@@ -725,7 +744,8 @@
     "description": "You create six tiny meteors in your space. They float in the air and orbit you for the spell’s duration. When you cast the spell — and as a bonus action on each of your turns thereafter — you can expend one or two of the meteors, sending them streaking toward a point or points you choose within 120 feet of you. Once a meteor reaches its destination or impacts against a solid surface, the meteor explodes. Each creature within 5 feet of the point where the meteor explodes must make a Dexterity saving throw. A creature takes 2d6 fire damage on a failed save, or half as much damage on a successful one.\nAt Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the number of meteors created increases by two for each slot level above 3rd.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Sorcerer", "Wizard"]
+    "classes": ["Sorcerer", "Wizard"],
+    "material": "Niter, sulfur, and pine tar formed into a bead."
   },
   {
     "name": "Mental Prison",
@@ -751,7 +771,8 @@
     "description": "A fortress of stone erupts from a square area of ground of your choice that you can see within range. The area is 120 feet on each side, and it must not have any buildings or other structures on it. Any creatures in the area are harmlessly lifted up as the fortress rises.\nThe fortress has four turrets with square bases, each one 20 feet on a side and 30 feet tall, with one turret on each corner. The turrets are connected to each other by stone walls that are each 80 feet long, creating an enclosed area. Each wall is 1 foot thick and is composed of panels that are 10 feet wide and 20 feet tall. Each panel is contiguous with two other panels or one other panel and a turret. You can place up to four stone doors in the fortress’s outer wall.\nA small keep stands inside the enclosed area. The keep has a square base that is 50 feet on each side, and it has three floors with 10-foot-high ceilings. Each of the floors can be divided into as many rooms as you like, provided each room is at least 5 feet on each side. The floors of the keep are connected by stone staircases, its walls are 6 inches thick, and interior rooms can have stone doors or open archways as you choose. The keep is furnished and decorated however you like, and it contains sufficient food to serve a nine-course banquet for up to 100 people each day. Furnishings, food, and other objects created by this spell crumble to dust if removed from the fortress.\nA staff of one hundred invisible servants obeys any command given to them by creatures you designate when you cast the spell. Each servant functions as if created by the unseen servant spell.\nThe walls, turrets, and keep are all made of stone that can be damaged. Each 10-foot by 10-foot section of stone has AC 15 and 30 hit points per inch of thickness. It is immune to poison and psychic damage. Reducing a section of stone to 0 hit points destroys it and might cause connected sections to buckle and collapse at the DM’s discretion.\nAfter 7 days or when you cast this spell somewhere else, the fortress harmlessly crumbles and sinks back into the ground, leaving any creatures that were inside it safely on the ground.\nCasting this spell on the same spot once every 7 days for a year makes the fortress permanent.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Wizard"]
+    "classes": ["Wizard"],
+    "material": "A diamond worth at least 500 gp, which the spell consumes."
   },
   {
     "name": "Mind Sliver",
@@ -790,7 +811,8 @@
     "description": "You send ribbons of negative energy at one creature you can see within range. Unless the target is undead, it must make a Constitution saving throw, taking 5d12 necrotic damage on a failed save, or half as much damage on a successful one. A target killed by this damage rises up as a zombie at the start of your next turn. The zombie pursues whatever creature it can see that is closest to it. Statistics for the zombie are in the Monster Manual. If you target an undead with this spell, the target doesn’t make a saving throw. Instead, roll 5d12. The target gains half the total as temporary hit points.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A broken bone and a square of black silk."
   },
   {
     "name": "Power Word Pain",
@@ -894,7 +916,8 @@
     "description": "Flame-like shadows wreathe your body until the spell ends, causing you to become heavily obscured to others. The shadows turn dim light within 10 feet of you into darkness, and bright light in the same area to dim light.\nUntil the spell ends, you have resistance to radiant damage. In addition, whenever a creature within 10 feet of you hits you with an attack, the shadows lash out at that creature, dealing it 2d8 necrotic damage.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Warlock"]
+    "classes": ["Warlock"],
+    "material": "An undead eyeball encased in a gem worth at least 150 gp."
   },
   {
     "name": "Shape Water",
@@ -959,7 +982,8 @@
     "description": "As you cast this spell, you use the rope to create a circle with a 5-foot radius on the ground or the floor. When you finish casting, the rope disappears and the circle becomes a magic trap.\nThis trap is nearly invisible, requiring a successful Intelligence (Investigation) check against your spell save DC to be discerned.\nThe trap triggers when a Small, Medium, or Large creature moves onto the ground or the floor in the spell’s radius. That creature must succeed on a Dexterity saving throw or be magically hoisted into the air, leaving it hanging upside down 3 feet above the ground or the floor. The creature is restrained there until the spell ends.\nA restrained creature can make a Dexterity saving throw at the end of each of its turns, ending the effect on itself on a success. Alternatively, the creature or someone else who can reach it can use an action to make an Intelligence (Arcana) check against your spell save DC. On a success, the restrained effect ends.\nAfter the trap is triggered, the spell ends when no creature is restrained by it.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Artificer", "Druid", "Ranger", "Wizard"]
+    "classes": ["Artificer", "Druid", "Ranger", "Wizard"],
+    "material": "25 feet of rope, which the spell consumes."
   },
   {
     "name": "Snilloc's Snowball Swarm",
@@ -972,7 +996,8 @@
     "description": "A flurry of magic snowballs erupts from a point you choose within range. Each creature in a 5-foot-radius sphere centered on that point must make a Dexterity saving throw. A creature takes 3d6 cold damage on a failed save, or half as much damage on a successful one.\nAt Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Sorcerer", "Wizard"]
+    "classes": ["Sorcerer", "Wizard"],
+    "material": "A piece of ice or a small white rock chip."
   },
   {
     "name": "Soul Cage",
@@ -985,7 +1010,8 @@
     "description": "This spell snatches the soul of a humanoid as it dies and traps it inside the tiny cage you use for the material component. A stolen soul remains inside the cage until the spell ends or until you destroy the cage, which ends the spell. While you have a soul inside the cage, you can exploit it in any of the ways described below. You can use a trapped soul up to six times. Once you exploit a soul for the sixth time, it is released, and the spell ends. While a soul is trapped, the dead humanoid it came from can’t be revived.\nSteal Life. You can use a bonus action to drain vigor from the soul and regain 2d8 hit points.\nQuery Soul. You ask the soul a question (no action required) and receive a brief telepathic answer, which you can understand regardless of the language used. The soul knows only what it knew in life, but it must answer you truthfully and to the best of its ability. The answer is no more than a sentence or two and might be cryptic.\nBorrow Experience. You can use a bonus action to bolster yourself with the soul’s life experience, making your next attack roll, ability check, or saving throw with advantage. If you don’t use this benefit before the start of your next turn, it is lost.\nEyes of the Dead. You can use an action to name a place the humanoid saw in life, which creates an invisible sensor somewhere in that place if it is on the plane of existence you’re currently on. The sensor remains for as long as you concentrate, up to 10 minutes (as if you were concentrating on a spell). You receive visual and auditory information from the sensor as if you were in its space using your senses.\nA creature that can see the sensor (such as one using see invisibility or truesight) sees a translucent image of the tormented humanoid whose soul you caged.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A tiny silver cage worth 100 gp."
   },
   {
     "name": "Spirit Shroud",
@@ -1037,7 +1063,8 @@
     "description": "You call forth an aberrant spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Aberrant Spirit stat block. When you cast the spell, choose Beholderkin, Slaad, or Star Spawn. The creature resembles an aberration of that kind, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it take the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 5th level or higher, use the higher level wherever the spell's level appears on the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A pickled tentacle and an eyeball in a platinum-inlaid vial worth at least 400 gp."
   },
   {
     "name": "Summon Beast",
@@ -1050,7 +1077,8 @@
     "description": "You call forth a bestial spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Bestial Spirit stat block. When you cast the spell, choose an environment: Air, Land, or Water. The creature resembles an animal of your choice that is native to the chosen environment, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, use the higher level where the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Druid", "Ranger"]
+    "classes": ["Druid", "Ranger"],
+    "material": "A feather, tuft of fur, and fish tail inside a gilded acorn worth at least 200 gp."
   },
   {
     "name": "Summon Celestial",
@@ -1063,7 +1091,8 @@
     "description": "You call forth a celestial spirit. It manifests in an angelic form in an unoccupied space that you can see within range. This corporeal form uses the Celestial Spirit stat block. When you cast the spell, choose Avenger or Defender. Your choice determines the creature’s attack in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 6th level or higher, use the higher level whenever the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Cleric", "Paladin"]
+    "classes": ["Cleric", "Paladin"],
+    "material": "A golden reliquary worth at least 500 gp."
   },
   {
     "name": "Summon Construct",
@@ -1076,7 +1105,8 @@
     "description": "You call forth the spirit of a construct. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Construct Spirit stat block. When you cast the spell, choose a material: Clay, Metal, or Stone. The creature resembles a golem or a modron (your choice) made of the chosen material, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 4th level or higher, use the higher level wherever the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Artificer", "Wizard"]
+    "classes": ["Artificer", "Wizard"],
+    "material": "An ornate stone and metal lockbox worth at least 400 gp."
   },
   {
     "name": "Summon Elemental",
@@ -1089,7 +1119,8 @@
     "description": "You call forth an elemental spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Elemental Spirit stat block. When you cast the spell, choose an element: Air, Earth, Fire, or Water. The creature resembles a bipedal form wreathed in the chosen element, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 5th level or higher, use the higher level wherever the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Druid", "Ranger", "Wizard"]
+    "classes": ["Druid", "Ranger", "Wizard"],
+    "material": "Air, a pebble, ash, and water inside a gold-inlaid vial worth at least 400 gp."
   },
   {
     "name": "Summon Fey",
@@ -1102,7 +1133,8 @@
     "description": "You call forth a fey spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Fey Spirit stat block. When you cast the spell, choose a mood. Fuming, Mirthful, or Tricksy. The creature resembles a fey creature of your choice marked by the chosen mood, which determines one of the traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 4th level or higher, use the higher level wherever the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Druid", "Ranger", "Warlock", "Wizard"]
+    "classes": ["Druid", "Ranger", "Warlock", "Wizard"],
+    "material": "A gilded flower worth at least 300 gp."
   },
   {
     "name": "Summon Fiend",
@@ -1115,7 +1147,8 @@
     "description": "You call forth a fiendish spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Fiendish Spirit stat block. When you cast the spell, choose Demon, Devil, or Yugoloth. The creature resembles a fiend of the chosen type, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 7th level or higher, use the higher level wherever the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "Humanoid blood inside a ruby vial worth at least 600 gp."
   },
   {
     "name": "Summon Greater Demon",
@@ -1128,7 +1161,8 @@
     "description": "You utter foul words, summoning one demon from the chaos of the Abyss. You choose the demon’s type, which must be one of challenge rating 5 or lower, such as a shadow demon or a barlgura. The demon appears in an unoccupied space you can see within range, and the demon disappears when it drops to 0 hit points or when the spell ends.\nRoll initiative for the demon, which has its own turns. When you summon it and on each of your turns thereafter, you can issue a verbal command to it (requiring no action on your part), telling it what it must do on its next turn. If you issue no command, it spends its turn attacking any creature within reach that has attacked it.\nAt the end of each of the demon’s turns, it makes a Charisma saving throw. The demon has disadvantage on this saving throw if you say its true name. On a failed save, the demon continues to obey you. On a successful save, your control of the demon ends for the rest of the duration, and the demon spends its turns pursuing and attacking the nearest non-demons to the best of its ability. If you stop concentrating on the spell before it reaches its full duration, an uncontrolled demon doesn’t disappear for 1d6 rounds if it still has hit points.\nAs part of casting the spell, you can form a circle on the ground with the blood used as a material component. The circle is large enough to encompass your space. While the spell lasts, the summoned demon can’t cross the circle or harm it, and it can’t target anyone within it. Using the material component in this manner consumes it when the spell ends.\nAt Higher Levels. When you cast this spell using a spell slot of 5th level or higher, the challenge rating increases by 1 for each slot level above 4th.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A vial of blood from a humanoid killed within the past 24 hours."
   },
   {
     "name": "Summon Lesser Demons",
@@ -1141,7 +1175,8 @@
     "description": "You utter foul words, summoning demons from the chaos of the Abyss. Roll on the following table to determine what appears.\nd6\nDemons Summoned\n1-2\nTwo demons of challenge rating 1 or lower\n3-4\nFour demons of challenge rating 1/2 or lower\n5-6\nEight demons of challenge rating 1/4 or lower\nThe DM chooses the demons, such as manes or dretches, and you choose the unoccupied spaces you can see within range where they appear. A summoned demon disappears when it drops to 0 hit points or when the spell ends.\nThe demons are hostile to all creatures, including you. Roll initiative for the summoned demons as a group, which has its own turns. The demons pursue and attack the nearest non-demons to the best of their ability.\nAs part of casting the spell, you can form a circle on the ground with the blood used as a material component. The circle is large enough to encompass your space. While the spell lasts, the summoned demons can't cross the circle or harm it, and they can't target anyone within it. Using the material component in this manner consumes it when the spell ends.\nAt Higher Levels. When you cast this spell using a spell slot of 6th or 7th level, you summon twice as many demons. If you cast it using a spell slot of 8th or 9th level, you summon three times as many demons.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A vial of blood from a humanoid killed within the past 24 hours."
   },
   {
     "name": "Summon Shadowspawn",
@@ -1154,7 +1189,8 @@
     "description": "You call forth a shadowy spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Shadow Spirit stat block. When you cast the spell, choose an emotion: Fury, Despair, or Fear. The creature resembles a misshapen biped marked by the chosen emotion, which determines certain traits in its stat block. The creature disappears when it drop to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after your. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and it uses its move to avoid danger.\nAt Higher Levels. When you cast the spell using a spell slot of 4th level or higher, use the higher level wherever the spell’s level appears on the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "Tears inside a gem worth at least 300 gp."
   },
   {
     "name": "Summon Undead",
@@ -1167,7 +1203,8 @@
     "description": "You call forth an undead spirit. It manifests in an unoccupied space that you can see within range. This corporeal form uses the Undead Spirit stat block. When you cast the spell, choose the creature’s form: Ghostly, Putrid, or Skeletal. The spirit resembles an undead creature with the chosen form, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.\nThe creature is an ally to you and your companions. In combat, the creature shares your initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don’t issue any, it takes the Dodge action and uses its move to avoid danger.\nAt Higher Levels. When you cast this spell using a spell slot of 4th level or higher, use the higher level wherever the spell’s level appears in the stat block.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Warlock", "Wizard"]
+    "classes": ["Warlock", "Wizard"],
+    "material": "A gilded skull worth at least 300 gp."
   },
   {
     "name": "Sword Burst",
@@ -1209,7 +1246,8 @@
     "description": "A stream of acid emanates from you in a line 30 feet long and 5 feet wide in a direction you choose. Each creature in the line must succeed on a Dexterity saving throw or be covered in acid for the spell’s duration or until a creature uses its action to scrape or wash the acid off itself or another creature. A creature covered in the acid takes 2d4 acid damage at the start of each of its turns.\nAt Higher Levels. When you cast this spell using a spell slot 2nd level or higher, the damage increases by 2d4 for each slot level above 1st.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Artificer", "Sorcerer", "Wizard"]
+    "classes": ["Artificer", "Sorcerer", "Wizard"],
+    "material": "A bit of rotten food."
   },
   {
     "name": "Tasha's Mind Whip",
@@ -1235,7 +1273,8 @@
     "description": "Uttering an incantation, you draw on the magic of the Lower Planes or Upper Planes (your choice) to transform yourself. You gain the following benefits until the spell ends:\nYou are immune to fire and poison damage (Lower Planes) or radiant and necrotic damage (Upper Planes).\nYou are immune to the poisoned condition (Lower Planes) or the charmed condition (Upper Planes).\nSpectral wings appear on your back, giving you a flying speed of 40 feet.\nYou have a +2 bonus to AC.\nAll your weapon attacks are magical, and when you make a weapon attack, you can use your spell casting ability modifier instead of Strength or Dexterity for the attack and damage rolls.\nYou can attack twice, instead of once, when you take the Attack action on your turn. You ignore this benefit if you already have a feature, like Extra Attack, that lets you attack more than once when you take the Attack action on your turn.",
     "source": "Tasha's Cauldron of Everything",
     "concentration": true,
-    "classes": ["Sorcerer", "Warlock", "Wizard"]
+    "classes": ["Sorcerer", "Warlock", "Wizard"],
+    "material": "An object engraved with a symbol of the Outer Planes, worth at least 500 gp."
   },
   {
     "name": "Temple of the Gods",
@@ -1248,7 +1287,8 @@
     "description": "You cause a temple to shimmer into existence on ground you can see within range. The temple must fit within an unoccupied cube of space, up to 120 feet on each side. The temple remains until the spell ends. It is dedicated to whatever god, pantheon, or philosophy is represented by the holy symbol used in the casting.\nYou make all decisions about the temple’s appearance. The interior is enclosed by a floor, walls, and a roof, with one door granting access to the interior and as many windows as you wish. Only you and any creatures you designate when you cast the spell can open or close the door.\nThe temple’s interior is an open space with an idol or altar at one end. You decide whether the temple is illuminated and whether that illumination is bright light or dim light. The smell of burning incense fills the air within, and the temperature is mild.\nThe temple opposes types of creatures you choose when you cast this spell. Choose one or more of the following: celestials, elementals, fey, fiends, or undead. If a creature of the chosen type attempts to enter the temple, that creature must make a Charisma saving throw. On a failed save, it can’t enter the temple for 24 hours. Even if the creature can enter the temple, the magic there hinders it; whenever it makes an attack roll, an ability check, or a saving throw inside the temple, it must roll a d4 and subtract the number rolled from the d20 roll.\nIn addition, the sensors created by divination spells can’t appear inside the temple, and creatures within can’t be targeted by divination spells.\nFinally, whenever any creature in the temple regains hit points from a spell of 1st level or higher, the creature regains additional hit points equal to your Wisdom modifier (minimum 1 hit point).\nThe temple is made from opaque magical force that extends into the Ethereal Plane, thus blocking ethereal travel into the temple’s interior. Nothing can physically pass through the temple’s exterior. It can’t be dispelled by dispel magic, and antimagic field has no effect on it. A disintegrate spell destroys the temple instantly.\nCasting this spell on the same spot every day for a year makes this effect permanent.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Cleric"]
+    "classes": ["Cleric"],
+    "material": "A holy symbol worth at least 5 gp."
   },
   {
     "name": "Tenser's Transformation",
@@ -1261,7 +1301,8 @@
     "description": "You endow yourself with endurance and martial prowess fueled by magic. Until the spell ends, you can’t cast spells, and you gain the following benefits:\nYou gain 50 temporary hit points. If any of these remain when the spell ends, they are lost.\nYou have advantage on attack rolls that you make with simple and martial weapons.\nWhen you hit a target with a weapon attack, that target takes an extra 2d12 force damage.\nYou have proficiency with all armor, shields, simple weapons, and martial weapons.\nYou have proficiency in Strength and Constitution saving throws.\nYou can attack twice, instead of once, when you take the Attack action on your turn. You ignore this benefit if you already have a feature, like Extra Attack, that gives you extra attacks.\nImmediately after the spell ends, you must succeed on a DC 15 Constitution saving throw or suffer one level of exhaustion.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Artificer", "Wizard"]
+    "classes": ["Artificer", "Wizard"],
+    "material": "A few hairs from a bull."
   },
   {
     "name": "Thunder Step",
@@ -1300,7 +1341,8 @@
     "description": "You conjure up a wave of water that crashes down on an area within range. The area can be up to 30 feet long, up to 10 feet wide, and up to 10 feet tall. Each creature in that area must make a Dexterity saving throw. On a failure, a creature takes 4d8 bludgeoning damage and is knocked prone. On a success, a creature takes half as much damage and isn’t knocked prone. The water then spreads out across the ground in all directions, extinguishing unprotected flames in its area and within 30 feet of it.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "material": "A drop of water."
   },
   {
     "name": "Tiny Servant",
@@ -1339,7 +1381,8 @@
     "description": "You choose an area of stone or mud that you can see that fits within a 40-foot cube and that is within range, and choose one of the following effects.\nTransmute Rock to Mud.\nNonmagical rock of any sort in the area becomes an equal volume of thick and flowing mud that remains for the spell’s duration.\nIf you cast the spell on an area of ground, it becomes muddy enough that creatures can sink into it. Each foot that a creature moves through the mud costs 4 feet of movement, and any creature on the ground when you cast the spell must make a Strength saving throw. A creature must also make this save the first time it enters the area on a turn or ends its turn there. On a failed save, a creature sinks into the mud and is restrained, though it can use an action to end the restrained condition on itself by pulling itself free of the mud.\nIf you cast the spell on a ceiling, the mud falls. Any creature under the mud when it falls must make a Dexterity saving throw. A creature takes 4d8 bludgeoning damage on a failed save, or half as much damage on a successful one.\nTransmute Mud to Rock.\nNonmagical mud or quicksand in the area no more than 10 feet deep transforms into soft stone for the spell’s duration. Any creature in the mud when it transforms must make a Dexterity saving throw. On a failed save, a creature becomes restrained by the rock. The restrained creature can use an action to try to break free by succeeding on a Strength check (DC 20) or by dealing 25 damage to the rock around it. On a successful save, a creature is shunted safely to the surface to an unoccupied space.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Artificer", "Druid", "Wizard"]
+    "classes": ["Artificer", "Druid", "Wizard"],
+    "material": "Clay and water."
   },
   {
     "name": "Vitriolic Sphere",
@@ -1352,7 +1395,8 @@
     "description": "You point at a place within range, and a glowing 1-foot ball of emerald acid streaks there and explodes in a 20-foot radius. Each creature in that area must make a Dexterity saving throw. On a failed save, a creature takes 10d4 acid damage and 5d4 acid damage at the end of its next turn. On a successful save, a creature takes half the initial damage and no damage at the end of its next turn.\nAt Higher Levels. When you cast this spell using a spell slot of 5th level or higher, the initial damage increases by 2d4 for each slot level above 4th.",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Sorcerer", "Wizard"]
+    "classes": ["Sorcerer", "Wizard"],
+    "material": "A drop of giant slug bile."
   },
   {
     "name": "Wall of Light",
@@ -1365,7 +1409,8 @@
     "description": "A shimmering wall of bright light appears at a point you choose within range. The wall appears in any orientation you choose: horizontally, vertically, or diagonally. It can be free floating, or it can rest on a solid surface. The wall can be up to 60 feet long, 10 feet high, and 5 feet thick. The wall blocks line of sight, but creatures and objects can pass through it. It emits bright light out to 120 feet and dim light for an additional 120 feet.\nWhen the wall appears, each creature in its area must make a Constitution saving throw. On a failed save, a creature takes 4d8 radiant damage, and it is blinded for 1 minute. On a successful save, it takes half as much damage and isn’t blinded. A blinded creature can make a Constitution saving throw at the end of each of its turns, ending the effect on itself on a success.\nA creature that ends its turn in the wall’s area takes 4d8 radiant damage.\nUntil the spell ends, you can use an action to launch a beam of radiance from the wall at one creature you can see within 60 feet of it. Make a ranged spell attack. On a hit, the target takes 4d8 radiant damage. Whether you hit or miss, reduce the length of the wall by 10 feet. If the wall’s length drops to 0 feet, the spell ends.\nAt Higher Levels. When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Sorcerer", "Warlock", "Wizard"]
+    "classes": ["Sorcerer", "Warlock", "Wizard"],
+    "material": "A hand mirror."
   },
   {
     "name": "Wall of Sand",
@@ -1378,7 +1423,8 @@
     "description": "You conjure up a wall of swirling sand on the ground at a point you can see within range. You can make the wall up to 30 feet long, 10 feet high, and 10 feet thick, and it vanishes when the spell ends. It blocks line of sight but not movement. A creature is blinded while in the wall’s space and must spend 3 feet of movement for every 1 foot it moves there.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Wizard"]
+    "classes": ["Wizard"],
+    "material": "A handful of sand."
   },
   {
     "name": "Wall of Water",
@@ -1391,7 +1437,8 @@
     "description": "You conjure up a wall of water on the ground at a point you can see within range. You can make the wall up to 30 feet long, 10 feet high, and 1 foot thick, or you can make a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall vanishes when the spell ends. The wall’s space is difficult terrain.\nAny ranged weapon attack that enters the wall’s space has disadvantage on the attack roll, and fire damage is halved if the fire effect passes through the wall to reach its target. Spells that deal cold damage that pass through the wall cause the area of the wall they pass through to freeze solid (at least a 5-foot square section is frozen). Each 5-foot-square frozen section has AC 5 and 15 hit points. Reducing a frozen section to 0 hit points destroys it. When a section is destroyed, the wall’s water doesn’t fill it.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "material": "A drop of water."
   },
   {
     "name": "Warding Wind",
@@ -1417,7 +1464,8 @@
     "description": "You conjure up a sphere of water with a 5-foot radius on a point you can see within range. The sphere can hover in the air, but no more than 10 feet off the ground. The sphere remains for the spell’s duration.\nAny creature in the sphere’s space must make a Strength saving throw. On a successful save, a creature is ejected from that space to the nearest unoccupied space outside it. A Huge or larger creature succeeds on the saving throw automatically. On a failed save, a creature is restrained by the sphere and is engulfed by the water. At the end of each of its turns, a restrained target can repeat the saving throw.\nThe sphere can restrain a maximum of four Medium or smaller creatures or one Large creature. If the sphere restrains a creature in excess of these numbers, a random creature that was already restrained by the sphere falls out of it and lands prone in a space within 5 feet of it.\nAs an action, you can move the sphere up to 30 feet in a straight line. If it moves over a pit, cliff, or other drop, it safely descends until it is hovering 10 feet over ground. Any creature restrained by the sphere moves with it. You can ram the sphere into creatures, forcing them to make the saving throw, but no more than once per turn.\nWhen the spell ends, the sphere falls to the ground and extinguishes all normal flames within 30 feet of it. Any creature restrained by the sphere is knocked prone in the space where it falls.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "material": "A droplet of water."
   },
   {
     "name": "Whirlwind",
@@ -1430,7 +1478,8 @@
     "description": "A whirlwind howls down to a point on the ground you specify. The whirlwind is a 10-foot-radius, 30-foot-high cylinder centered on that point. Until the spell ends, you can use your action to move the whirlwind up to 30 feet in any direction along the ground. The whirlwind sucks up any Medium or smaller objects that aren’t secured to anything and that aren’t worn or carried by anyone.\nA creature must make a Dexterity saving throw the first time on a turn that it enters the whirlwind or that the whirlwind enters its space, including when the whirlwind first appears. A creature takes 10d6 bludgeoning damage on a failed save, or half as much damage on a successful one. In addition, a Large or smaller creature that fails the save must succeed on a Strength saving throw or become restrained in the whirlwind until the spell ends.\nWhen a creature starts its turn restrained by the whirlwind, the creature is pulled 5 feet higher inside it, unless the creature is at the top. A restrained creature moves with the whirlwind and falls when the spell ends, unless the creature has some means to stay aloft.\nA restrained creature can use an action to make a Strength or Dexterity check against your spell save DC. If successful, the creature is no longer restrained by the whirlwind and is hurled 3d6 × 10 feet away from it in a random direction.",
     "source": "Xanathar's Guide to Everything",
     "concentration": true,
-    "classes": ["Druid", "Sorcerer", "Wizard"]
+    "classes": ["Druid", "Sorcerer", "Wizard"],
+    "material": "A piece of straw."
   },
   {
     "name": "Word of Radiance",
@@ -1443,7 +1492,8 @@
     "description": "You utter a divine word, and burning radiance erupts from you. Each creature of your choice that you can see within range must succeed on a Constitution saving throw or take 1d6 radiant damage.\nAt Higher Levels. The spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
     "source": "Xanathar's Guide to Everything",
     "concentration": false,
-    "classes": ["Cleric"]
+    "classes": ["Cleric"],
+    "material": "A holy symbol."
   },
   {
     "name": "Wrath of Nature",
@@ -1485,7 +1535,8 @@
     "spell_list": ["Warlock"],
     "concentration": true,
     "classes": ["Warlock"],
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "material": "A pickled octopus tentacle."
   },
   {
     "name": "Tasha's Hideous Laughter",
@@ -1501,7 +1552,8 @@
     "spell_list": ["Wizard", "Bard", "Warlock"],
     "concentration": true,
     "classes": ["Bard", "Wizard"],
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "material": "Tiny tarts and a feather that is waved in the air."
   },
   {
     "name": "Phantasmal Force",
@@ -1517,7 +1569,8 @@
     "spell_list": ["Bard", "Sorcerer", "Wizard"],
     "concentration": true,
     "classes": ["Bard", "Sorcerer", "Wizard"],
-    "source": "Player's Handbook"
+    "source": "Player's Handbook",
+    "material": "A bit of fleece."
   },
   {
     "name": "Dissonant Whispers",
@@ -2580,5 +2633,20 @@
     "concentration": false,
     "classes": ["Bard", "Sorcerer", "Warlock", "Wizard"],
     "homebrew": false
+  },
+  {
+    "name": "Galder's Tower",
+    "level": 3,
+    "description": "You conjure a two-story tower made of stone, wood, or similar suitably sturdy materials. The tower can be round or square in shape. Each level of the tower is 10 feet tall and has an area of up to 100 square feet. Access between levels consists of a simple ladder and hatch. Each level takes one of the following forms, chosen by you when you cast the spell:\n\n    A bedroom with a bed, chairs, chest, and magical fireplace\n\n    A study with desks, books, bookshelves, parchments, ink, and ink pens\n\n    A dining space with a table, chairs, magical fireplace, containers, and cooking utensils\n\n    A lounge with couches, armchairs, side tables and footstools\n\n    A washroom with toilets, washtubs, a magical brazier, and sauna benches\n\n    An observatory with a telescope and maps of the night sky\n\n    An unfurnished, empty room\n\nThe interior of the tower is warm and dry, regardless of conditions outside. Any equipment or furnishings conjured with the tower dissipate into smoke if removed from it. At the end of the spell’s duration, all creatures and objects within the tower that were not created by the spell appear safely outside on the ground, and all traces of the tower and its furnishings disappear.\n\nYou can cast this spell again while it is active to maintain the tower’s existence for another 24 hours. You can create a permanent tower by casting this spell in the same location and with the same configuration every day for one year.\n\nAt Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the tower can have one additional story for each slot level beyond 3rd.",
+    "school": "Conjuration",
+    "casting_time": "10 minutes",
+    "range": "30 feet",
+    "duration": "24 hours",
+    "concentration": false,
+    "components": "V, S, M",
+    "save": null,
+    "damage_type": null,
+    "spell_list": ["Wizard"],
+    "material": "A fragment of stone, wood, or other building material."
   }
 ]

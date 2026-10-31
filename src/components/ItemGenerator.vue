@@ -16,69 +16,36 @@
         </div>
       </div>
 
-      <!-- D&D 5e filters -->
-      <template v-if="selectedSources.includes('dnd5e')">
-        <div class="ig-filter-group">
-          <label class="ig-label">Rarity</label>
-          <div class="ig-pills">
-            <span
-              v-for="r in rarities"
-              :key="r.key"
-              class="ig-pill"
-              :class="[`rarity-${r.key}`, { active: selectedRarity === r.key }]"
-              @click="toggleRarity(r.key)"
-              >{{ r.label }}</span
-            >
-          </div>
+      <!-- Shared filters (apply to every selected source) -->
+      <div
+        v-if="selectedSources.some((k) => k !== 'pathfinder')"
+        class="ig-filter-group"
+      >
+        <label class="ig-label">Rarity</label>
+        <div class="ig-pills">
+          <span
+            v-for="r in rarities"
+            :key="r.key"
+            class="ig-pill"
+            :class="[`rarity-${r.key}`, { active: selectedRarity === r.key }]"
+            @click="toggleRarity(r.key)"
+            >{{ r.label }}</span
+          >
         </div>
-        <div class="ig-filter-group">
-          <label class="ig-label">Category</label>
-          <div class="ig-pills">
-            <span
-              v-for="c in dnd5eCategories"
-              :key="c.key"
-              class="ig-pill"
-              :class="{ active: selectedCategory === c.key }"
-              @click="toggleCategory(c.key)"
-              >{{ c.label }}</span
-            >
-          </div>
+      </div>
+      <div class="ig-filter-group">
+        <label class="ig-label">Category</label>
+        <div class="ig-pills">
+          <span
+            v-for="c in categories"
+            :key="c.key"
+            class="ig-pill"
+            :class="{ active: selectedCategory === c.key }"
+            @click="toggleCategory(c.key)"
+            >{{ c.label }}</span
+          >
         </div>
-      </template>
-
-      <!-- Custom D&D 5e filters -->
-      <template v-if="selectedSources.includes('custom')">
-        <div class="ig-filter-group">
-          <label class="ig-label">Type</label>
-          <div class="ig-pills">
-            <span
-              v-for="t in customTypes"
-              :key="t.key"
-              class="ig-pill"
-              :class="{ active: selectedCustomType === t.key }"
-              @click="toggleCustomType(t.key)"
-              >{{ t.label }}</span
-            >
-          </div>
-        </div>
-      </template>
-
-      <!-- Pathfinder filters -->
-      <template v-if="selectedSources.includes('pathfinder')">
-        <div class="ig-filter-group">
-          <label class="ig-label">Group</label>
-          <div class="ig-pills">
-            <span
-              v-for="g in pfGroups"
-              :key="g.key"
-              class="ig-pill"
-              :class="{ active: selectedPfGroup === g.key }"
-              @click="togglePfGroup(g.key)"
-              >{{ g.label }}</span
-            >
-          </div>
-        </div>
-      </template>
+      </div>
 
       <!-- Actions row -->
       <div class="ig-actions">
@@ -147,26 +114,22 @@
         <div class="ig-result-header">
           <div class="ig-result-name">{{ item.name }}</div>
           <div class="ig-result-meta">
-            <span
-              class="ig-rarity-badge"
-              :class="`rarity-${item.rarity.key}`"
-              >{{ item.rarity.name }}</span
-            >
-            <span v-if="item.category" class="ig-meta-tag">{{
-              item.category.name
+            <span class="ig-rarity-badge" :class="`rarity-${item.rarityKey}`">{{
+              item.rarityLabel
             }}</span>
-            <span v-if="item.requires_attunement" class="ig-attunement"
-              >requires attunement<span v-if="item.attunement_detail">
-                ({{ item.attunement_detail }})</span
+            <span v-if="item.typeLabel" class="ig-meta-tag">{{
+              item.typeLabel
+            }}</span>
+            <span v-if="item.attunement" class="ig-attunement"
+              >requires attunement<span v-if="item.attunementNote">
+                ({{ item.attunementNote }})</span
               ></span
             >
           </div>
         </div>
         <div class="ig-result-desc" v-html="formatDesc(item.desc)"></div>
         <div class="ig-result-footer">
-          <span class="ig-source">{{
-            item.document.display_name || item.document.name
-          }}</span>
+          <span class="ig-source">{{ item.source }}</span>
           <button class="ig-reroll-btn" @click="rollItem">Roll Again</button>
         </div>
       </div>
@@ -347,12 +310,38 @@
 <script>
 import customItemsData from '@/data/custom_items.json'
 
-const OPEN5E_URL = 'https://api.open5e.com/v2/magicitems/'
+// The local item library (official items, built by scripts/build-item-cache.js).
+// Loaded lazily — it's ~1.3MB and only this tool needs it in the browser.
+let libraryPromise = null
+function loadLibrary() {
+  if (!libraryPromise)
+    libraryPromise = import('../../engine/data/5e/magic-items.json').then(
+      (m) => m.default || m
+    )
+  return libraryPromise
+}
+
+// Shared category key → the d20pfsrd sheet's "group" column. Categories with no
+// Pathfinder equivalent (wand, potion, scroll) simply match nothing there.
+const PF_GROUP_BY_CATEGORY = {
+  'wondrous item': 'Wondrous Item',
+  weapon: 'Weapon',
+  armor: 'Armor',
+  ring: 'Ring',
+  staff: 'Staff',
+  rod: 'Rod',
+}
+
 const PF_SHEET_ID = '1NQhHjDXhvFZkMiu09epBXsVwCI6YENg-AUQhF-v5ntU'
 const PF_BASE = `https://docs.google.com/spreadsheets/d/${PF_SHEET_ID}/gviz/tq?tqx=out:csv`
 
 function pfQuery(tq) {
   return `${PF_BASE}&tq=${encodeURIComponent(tq)}`
+}
+
+// Library rarities are lowercase with spaces ("very rare"); filter keys use "very_rare".
+function rarityKey(rarity) {
+  return (rarity || '').replace(/ /g, '_')
 }
 
 function parsePfCsv(text) {
@@ -388,7 +377,7 @@ export default {
   data() {
     return {
       sources: [
-        { key: 'dnd5e', label: 'D&D 5e (Open5e)' },
+        { key: 'dnd5e', label: 'D&D 5e (Library)' },
         { key: 'custom', label: 'D&D 5e (Custom)' },
         { key: 'pathfinder', label: 'Pathfinder (d20pfsrd)' },
       ],
@@ -400,18 +389,9 @@ export default {
         { key: 'legendary', label: 'Legendary' },
         { key: 'artifact', label: 'Artifact' },
       ],
-      dnd5eCategories: [
-        { key: 'wondrous-item', label: 'Wondrous' },
-        { key: 'weapon', label: 'Weapon' },
-        { key: 'armor', label: 'Armor' },
-        { key: 'ring', label: 'Ring' },
-        { key: 'wand', label: 'Wand' },
-        { key: 'staff', label: 'Staff' },
-        { key: 'rod', label: 'Rod' },
-        { key: 'potion', label: 'Potion' },
-        { key: 'scroll', label: 'Scroll' },
-      ],
-      customTypes: [
+      // One category list shared by every source (keys match the library's
+      // and custom_items.json's `category` / `type` values).
+      categories: [
         { key: 'wondrous item', label: 'Wondrous' },
         { key: 'weapon', label: 'Weapon' },
         { key: 'armor', label: 'Armor' },
@@ -422,23 +402,11 @@ export default {
         { key: 'potion', label: 'Potion' },
         { key: 'scroll', label: 'Scroll' },
       ],
-      pfGroups: [
-        { key: 'Wondrous Item', label: 'Wondrous' },
-        { key: 'Weapon', label: 'Weapon' },
-        { key: 'Artifact', label: 'Artifact' },
-        { key: 'Armor', label: 'Armor' },
-        { key: 'Rod', label: 'Rod' },
-        { key: 'Ring', label: 'Ring' },
-        { key: 'Staff', label: 'Staff' },
-        { key: 'Cursed', label: 'Cursed' },
-      ],
       // Filters
       selectedSources: ['dnd5e'],
       browseSource: 'dnd5e',
       selectedRarity: null,
       selectedCategory: null,
-      selectedCustomType: null,
-      selectedPfGroup: null,
       // Mode
       mode: 'roll',
       // Roll state
@@ -535,13 +503,42 @@ export default {
       this.selectedCategory = this.selectedCategory === key ? null : key
       this.onFilterChange()
     },
-    toggleCustomType(key) {
-      this.selectedCustomType = this.selectedCustomType === key ? null : key
-      this.onFilterChange()
+
+    // Local pools. The library and custom list are filtered in the browser, so
+    // a roll is just a random pick from the filtered array.
+    matchesFilters(rarity, category) {
+      if (this.selectedRarity && rarityKey(rarity) !== this.selectedRarity)
+        return false
+      const cat = this.selectedCategory
+      if (
+        cat &&
+        category !== cat &&
+        !(cat === 'armor' && category === 'shield')
+      )
+        return false
+      return true
     },
-    togglePfGroup(key) {
-      this.selectedPfGroup = this.selectedPfGroup === key ? null : key
-      this.onFilterChange()
+    async libraryPool() {
+      const library = await loadLibrary()
+      return library.filter((i) => this.matchesFilters(i.rarity, i.category))
+    },
+    customPool() {
+      return customItemsData.filter((i) =>
+        this.matchesFilters(i.rarity, i.type)
+      )
+    },
+    // Pathfinder items have no D&D rarity, so when a rarity is picked alongside
+    // a D&D source they drop out of the pool (alone, the rarity row is hidden).
+    pfExcludedByRarity() {
+      return (
+        !!this.selectedRarity &&
+        this.selectedSources.some((k) => k !== 'pathfinder')
+      )
+    },
+    pfGroupClause() {
+      if (!this.selectedCategory) return `J!='Ammunition'`
+      const group = PF_GROUP_BY_CATEGORY[this.selectedCategory]
+      return group ? `J='${group}'` : `J='(none)'`
     },
 
     // ── Roll mode ──────────────────────────────────────────
@@ -569,24 +566,11 @@ export default {
     },
 
     async getPoolSize(src) {
-      if (src === 'custom') {
-        let pool = customItemsData
-        if (this.selectedCustomType)
-          pool = pool.filter((i) => i.type === this.selectedCustomType)
-        return pool.length
-      }
-      if (src === 'dnd5e') {
-        const params = new URLSearchParams({ limit: 1 })
-        if (this.selectedRarity) params.set('rarity', this.selectedRarity)
-        if (this.selectedCategory) params.set('category', this.selectedCategory)
-        const res = await fetch(`${OPEN5E_URL}?${params}`)
-        if (!res.ok) return 0
-        return (await res.json()).count ?? 0
-      }
+      if (src === 'custom') return this.customPool().length
+      if (src === 'dnd5e') return (await this.libraryPool()).length
       if (src === 'pathfinder') {
-        const groupClause = this.selectedPfGroup
-          ? `J='${this.selectedPfGroup}'`
-          : `J!='Ammunition'`
+        if (this.pfExcludedByRarity()) return 0
+        const groupClause = this.pfGroupClause()
         const text = await fetch(
           pfQuery(`select count(A) where ${groupClause} label count(A) 'count'`)
         ).then((r) => r.text())
@@ -624,29 +608,20 @@ export default {
     },
 
     async rollDnd5e() {
-      const params = new URLSearchParams({ limit: 1 })
-      if (this.selectedRarity) params.set('rarity', this.selectedRarity)
-      if (this.selectedCategory) params.set('category', this.selectedCategory)
-      const countRes = await fetch(`${OPEN5E_URL}?${params}`)
-      if (!countRes.ok) throw new Error(`API error ${countRes.status}`)
-      const countData = await countRes.json()
-      const count = countData.count ?? 0
-      this.poolSize = count
-      if (count === 0) {
+      const pool = await this.libraryPool()
+      this.poolSize = pool.length
+      if (!pool.length) {
         this.item = null
         this.error = 'No items match those filters.'
         return
       }
-      params.set('offset', Math.floor(Math.random() * count))
-      const itemRes = await fetch(`${OPEN5E_URL}?${params}`)
-      if (!itemRes.ok) throw new Error(`API error ${itemRes.status}`)
-      this.item = (await itemRes.json()).results?.[0] ?? null
+      this.item = this.normalizeLibrary(
+        pool[Math.floor(Math.random() * pool.length)]
+      )
     },
 
     rollCustom() {
-      let pool = customItemsData
-      if (this.selectedCustomType)
-        pool = pool.filter((i) => i.type === this.selectedCustomType)
+      const pool = this.customPool()
       this.poolSize = pool.length
       if (!pool.length) {
         this.customItem = null
@@ -657,10 +632,7 @@ export default {
     },
 
     async rollPathfinder() {
-      const groupClause = this.selectedPfGroup
-        ? `J='${this.selectedPfGroup}'`
-        : `J!='Ammunition'`
-      const where = `where ${groupClause}`
+      const where = `where ${this.pfGroupClause()}`
       const countText = await fetch(
         pfQuery(`select count(A) ${where} label count(A) 'count'`)
       ).then((r) => r.text())
@@ -697,15 +669,23 @@ export default {
 
     // ── Browse mode ────────────────────────────────────────
 
-    normalizeDnd5e(item) {
+    normalizeLibrary(item) {
+      const cat = this.categories.find((c) => c.key === item.category)
       return {
         name: item.name,
-        rarityLabel: item.rarity?.name || '',
-        rarityKey: item.rarity?.key || '',
-        typeLabel: item.category?.name || '',
+        rarityLabel: item.rarity
+          ? item.rarity.replace(/\b\w/g, (c) => c.toUpperCase())
+          : '',
+        rarityKey: rarityKey(item.rarity),
+        typeLabel: item.subtype
+          ? `${cat ? cat.label : item.category} (${item.subtype})`
+          : cat
+          ? cat.label
+          : item.category || '',
         attunement: item.requires_attunement,
+        attunementNote: item.attunement_note,
         desc: item.desc || '',
-        source: item.document?.display_name || item.document?.name || 'Open5e',
+        source: item.source || 'D&D 5e',
       }
     },
 
@@ -713,7 +693,7 @@ export default {
       return {
         name: item.name,
         rarityLabel: item.rarity,
-        rarityKey: item.rarity,
+        rarityKey: rarityKey(item.rarity),
         typeLabel: item.type,
         attunement: item.attunement,
         desc: item.desc || '',
@@ -754,24 +734,20 @@ export default {
     },
 
     async browseDnd5e(page) {
-      const params = new URLSearchParams({
-        limit: this.browsePageSize,
-        offset: page * this.browsePageSize,
-      })
-      if (this.selectedRarity) params.set('rarity', this.selectedRarity)
-      if (this.selectedCategory) params.set('category', this.selectedCategory)
-      if (this.browseSearch) params.set('search', this.browseSearch)
-      const res = await fetch(`${OPEN5E_URL}?${params}`)
-      if (!res.ok) throw new Error(`API error ${res.status}`)
-      const data = await res.json()
-      this.browseTotalCount = data.count ?? 0
-      this.browseItems = (data.results ?? []).map(this.normalizeDnd5e)
+      let pool = await this.libraryPool()
+      if (this.browseSearch) {
+        const s = this.browseSearch.toLowerCase()
+        pool = pool.filter((i) => i.name.toLowerCase().includes(s))
+      }
+      this.browseTotalCount = pool.length
+      const start = page * this.browsePageSize
+      this.browseItems = pool
+        .slice(start, start + this.browsePageSize)
+        .map(this.normalizeLibrary)
     },
 
     browseCustom(page) {
-      let pool = customItemsData
-      if (this.selectedCustomType)
-        pool = pool.filter((i) => i.type === this.selectedCustomType)
+      let pool = this.customPool()
       if (this.browseSearch) {
         const s = this.browseSearch.toLowerCase()
         pool = pool.filter((i) => i.name.toLowerCase().includes(s))
@@ -784,11 +760,12 @@ export default {
     },
 
     async browsePf(page) {
-      const clauses = [
-        this.selectedPfGroup
-          ? `J='${this.selectedPfGroup}'`
-          : `J!='Ammunition'`,
-      ]
+      if (this.pfExcludedByRarity()) {
+        this.browseTotalCount = 0
+        this.browseItems = []
+        return
+      }
+      const clauses = [this.pfGroupClause()]
       if (this.browseSearch)
         clauses.push(
           `lower(A) like '%${this.browseSearch

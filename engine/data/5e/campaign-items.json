@@ -752,14 +752,8 @@
     "variant_of": "ring-of-spell-storing",
     "rarity": "uncommon",
     "desc_edits": [
-      [
-        "up to 5 levels worth",
-        "up to 3 levels worth"
-      ],
-      [
-        "1st through 5th level",
-        "1st through 3rd level"
-      ]
+      ["up to 5 levels worth", "up to 3 levels worth"],
+      ["1st through 5th level", "1st through 3rd level"]
     ]
   },
   {
@@ -768,14 +762,8 @@
     "variant_of": "ring-of-spell-storing",
     "rarity": "very rare",
     "desc_edits": [
-      [
-        "up to 5 levels worth",
-        "up to 7 levels worth"
-      ],
-      [
-        "1st through 5th level",
-        "1st through 7th level"
-      ]
+      ["up to 5 levels worth", "up to 7 levels worth"],
+      ["1st through 5th level", "1st through 7th level"]
     ]
   },
   {
@@ -1114,12 +1102,7 @@
     "name": "Figurine of Wondrous Power (Silver Raven, daily)",
     "variant_of": "figurine-of-wondrous-power-silver-raven",
     "rarity": "uncommon",
-    "desc_edits": [
-      [
-        "until 2 days have passed",
-        "until the next long rest"
-      ]
-    ]
+    "desc_edits": [["until 2 days have passed", "until the next long rest"]]
   },
   {
     "id": "canary-lamp",
@@ -1139,6 +1122,16 @@
     "rarity": null,
     "requires_attunement": true,
     "desc": "A short-hafted warhammer built for gnome reach, its dark quarry-steel head worn smooth on one striking face. It requires attunement and only works for Small creatures; it is a small weapon. While attuned, its enchantment bonus to attack and damage rolls is half the wielder's proficiency bonus, rounded down, plus 1 (+2 at levels 1-8, +3 at levels 9-16, +4 at levels 17-20).\n\nUnfinished. A master craftsperson can fit it with up to three upgrades. Each upgrade is recorded on the weapon as a granted feature.",
+    "homebrew": true
+  },
+  {
+    "id": "sorceress-evening-gown",
+    "name": "Sorceress' Evening Gown",
+    "source": "Campaign",
+    "category": "wondrous item",
+    "rarity": null,
+    "requires_attunement": true,
+    "desc": "A very elegant cocktail dress imbued with magic that ordinarily would have been a wizard's robe. Appearances vary greatly.\n\nRequires attunement. +1 Dexterity. +4 to Charisma-based skill checks (Deception, Intimidation, Performance, Persuasion). Grants Elegant Ward (while not wearing armor, AC = 10 + DEX + INT; a shield is still allowed). Drawback: casting any spell with a material component takes both your action and your reaction.",
     "homebrew": true
   }
 ]

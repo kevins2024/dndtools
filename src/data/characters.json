@@ -17,22 +17,16 @@
     "stat_wis": 10,
     "stat_cha": 14,
     "hp_max": 76,
-    "hp_current": 66,
+    "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
       "Perception",
       "SleightOfHand"
     ],
-    "languages": [
-      "Common",
-      "Draconic"
-    ],
+    "languages": ["Common", "Draconic"],
     "features": [
       {
         "name": "Two Weapon Fighting",
@@ -326,16 +320,8 @@
         "level_gained": 8
       }
     ],
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "active_weapon_set": 1,
     "hp_temp": 0,
     "conditions": [],
@@ -360,9 +346,7 @@
         "species": "Silver Dragonborn",
         "background": "Merchant",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Lucky"
-        ],
+        "feats": ["Lucky"],
         "hp_note": "Max HP 76 differs from the all-average total 85; per-level HP gains were not recorded."
       },
       {
@@ -374,11 +358,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Second Wind",
-          "Weapon Mastery"
-        ],
+        "features": ["Fighting Style", "Second Wind", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -391,10 +371,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Action Surge (One Use)",
-          "Tactical Mind"
-        ],
+        "features": ["Action Surge (One Use)", "Tactical Mind"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -408,10 +385,7 @@
           "method": "unrecorded"
         },
         "subclass": "Battle Master",
-        "features": [
-          "Combat Superiority",
-          "Student of War"
-        ],
+        "features": ["Combat Superiority", "Student of War"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -443,10 +417,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Tactical Shift"
-        ],
+        "features": ["Extra Attack", "Tactical Shift"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -477,9 +448,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Know Your Enemy"
-        ],
+        "features": ["Know Your Enemy"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -511,10 +480,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Indomitable (One Use)",
-          "Tactical Master"
-        ],
+        "features": ["Indomitable (One Use)", "Tactical Master"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -569,10 +535,7 @@
     "hp_max": 104,
     "hp_current": 104,
     "unarmored_ac_formula": "barbarian",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -580,10 +543,7 @@
       "Survival",
       "Nature"
     ],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "features": [
       {
         "name": "Relentless Endurance",
@@ -774,15 +734,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"],
     "ruleset": "2024",
     "background": "Guard",
     "tool_proficiencies": [],
@@ -814,9 +767,7 @@
         "species": "Half-Orc",
         "background": "Guard",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Alert"
-        ],
+        "feats": ["Alert"],
         "hp_note": "Max HP 104 differs from the all-average total 95; per-level HP gains were not recorded."
       },
       {
@@ -828,11 +779,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Rage",
-          "Unarmored Defense",
-          "Weapon Mastery"
-        ],
+        "features": ["Rage", "Unarmored Defense", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -845,10 +792,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Danger Sense",
-          "Reckless Attack"
-        ],
+        "features": ["Danger Sense", "Reckless Attack"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -862,10 +806,7 @@
           "method": "unrecorded"
         },
         "subclass": "Path of the Berserker",
-        "features": [
-          "Primal Knowledge",
-          "Frenzy"
-        ],
+        "features": ["Primal Knowledge", "Frenzy"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -898,10 +839,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Fast Movement"
-        ],
+        "features": ["Extra Attack", "Fast Movement"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -914,9 +852,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Mindless Rage"
-        ],
+        "features": ["Mindless Rage"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -929,10 +865,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Feral Instinct",
-          "Instinctive Pounce"
-        ],
+        "features": ["Feral Instinct", "Instinctive Pounce"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -963,9 +896,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Brutal Strike"
-        ],
+        "features": ["Brutal Strike"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -1024,10 +955,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -1040,11 +968,7 @@
       "Survival",
       "Medicine"
     ],
-    "languages": [
-      "Common",
-      "Thieves Cant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Thieves Cant", "Dwarvish"],
     "features": [
       {
         "name": "Shadow Touched",
@@ -1054,10 +978,7 @@
         "uses_max": 1,
         "uses_current": 1,
         "description": "Learn Invisibility and one 1st-level necromancy or illusion spell. Cast each once per long rest without a spell slot.",
-        "spells_granted": [
-          "Invisibility",
-          "Inflict Wounds"
-        ]
+        "spells_granted": ["Invisibility", "Inflict Wounds"]
       },
       {
         "name": "Resourceful",
@@ -1204,11 +1125,7 @@
         "_source": "Human",
         "level_gained": 1,
         "choices": {
-          "skills": [
-            "Athletics",
-            "Survival",
-            "Medicine"
-          ],
+          "skills": ["Athletics", "Survival", "Medicine"],
           "tools": []
         }
       },
@@ -1298,9 +1215,7 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Criminal",
@@ -1332,10 +1247,7 @@
         "species": "Human",
         "background": "Criminal",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Skilled",
-          "Alert"
-        ],
+        "feats": ["Skilled", "Alert"],
         "hp_note": "Max HP 53 differs from the all-average total 57; per-level HP gains were not recorded."
       },
       {
@@ -1370,9 +1282,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Action"
-        ],
+        "features": ["Cunning Action"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -1386,11 +1296,7 @@
           "method": "unrecorded"
         },
         "subclass": "Assassin",
-        "features": [
-          "Steady Aim",
-          "Assassinate",
-          "Assassin's Tools"
-        ],
+        "features": ["Steady Aim", "Assassinate", "Assassin's Tools"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -1423,10 +1329,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Strike",
-          "Uncanny Dodge"
-        ],
+        "features": ["Cunning Strike", "Uncanny Dodge"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -1439,9 +1342,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise"
-        ],
+        "features": ["Expertise"],
         "choices": [
           {
             "type": "expertise",
@@ -1459,10 +1360,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Evasion",
-          "Reliable Talent"
-        ],
+        "features": ["Evasion", "Reliable Talent"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -1493,9 +1391,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Infiltration Expertise"
-        ],
+        "features": ["Infiltration Expertise"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -1552,10 +1448,7 @@
     "hp_max": 46,
     "hp_current": 46,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -1563,11 +1456,7 @@
       "Persuasion",
       "Deception"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Metamagic Adept",
@@ -1599,9 +1488,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -2182,9 +2069,7 @@
     "hit_die": "d6",
     "hit_dice_current": 9,
     "conditions": [],
-    "skill_expertise": [
-      "Arcana"
-    ],
+    "skill_expertise": ["Arcana"],
     "resources": [
       {
         "key": "sorcery_points",
@@ -2244,10 +2129,7 @@
         "species": "Human",
         "background": "Criminal",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Lucky",
-          "Alert"
-        ],
+        "feats": ["Lucky", "Alert"],
         "hp_note": "Max HP 46 differs from the all-average total 47; per-level HP gains were not recorded."
       },
       {
@@ -2259,11 +2141,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Ritual Adept",
-          "Arcane Recovery"
-        ],
+        "features": ["Spellcasting", "Ritual Adept", "Arcane Recovery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -2276,9 +2154,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Scholar"
-        ],
+        "features": ["Scholar"],
         "choices": [
           {
             "type": "expertise",
@@ -2297,10 +2173,7 @@
           "method": "unrecorded"
         },
         "subclass": "Evoker",
-        "features": [
-          "Evocation Savant",
-          "Potent Cantrip"
-        ],
+        "features": ["Evocation Savant", "Potent Cantrip"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -2333,9 +2206,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Memorize Spell"
-        ],
+        "features": ["Memorize Spell"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -2348,9 +2219,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sculpt Spells"
-        ],
+        "features": ["Sculpt Spells"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -2443,10 +2312,7 @@
     "hp_max": 53,
     "hp_current": 53,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "Acrobatics",
@@ -2454,15 +2320,9 @@
       "Athletics",
       "History"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "speed": 30,
-    "saving_throw_advantages": [
-      "being_charmed"
-    ],
+    "saving_throw_advantages": ["being_charmed"],
     "species_traits": [
       {
         "name": "Fey Ancestry",
@@ -2504,9 +2364,7 @@
         "name": "Cantrip",
         "id": "pub_high-elf-cantrip",
         "description": "Know one wizard cantrip of your choice; Intelligence is its spellcasting ability.",
-        "spells_granted": [
-          "Minor Illusion"
-        ],
+        "spells_granted": ["Minor Illusion"],
         "type": "speciesTrait",
         "source": "subrace"
       },
@@ -2530,9 +2388,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -2653,21 +2509,14 @@
         "level_gained": 1,
         "choices": {
           "list": "Wizard",
-          "cantrips": [
-            "Prestidigitation",
-            "Mending"
-          ],
+          "cantrips": ["Prestidigitation", "Mending"],
           "spell": "Magic Missile"
         },
         "ability_choice": "int",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
-        "spells_granted": [
-          "Prestidigitation",
-          "Mending",
-          "Magic Missile"
-        ]
+        "spells_granted": ["Prestidigitation", "Mending", "Magic Missile"]
       },
       {
         "name": "Expertise: Arcana",
@@ -3183,9 +3032,7 @@
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Arcana"
-    ],
+    "skill_expertise": ["Arcana"],
     "classes": [
       {
         "name": "Wizard",
@@ -3208,9 +3055,7 @@
       "shortbow",
       "longbow"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "ruleset": "2024",
     "background": "Sage",
     "tool_proficiencies": [],
@@ -3250,9 +3095,7 @@
         "species": "Elf (High Elf)",
         "background": "Sage",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Magic Initiate"
-        ],
+        "feats": ["Magic Initiate"],
         "hp_note": "Max HP 53 differs from the all-average total 47; per-level HP gains were not recorded."
       },
       {
@@ -3264,11 +3107,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Ritual Adept",
-          "Arcane Recovery"
-        ],
+        "features": ["Spellcasting", "Ritual Adept", "Arcane Recovery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3281,9 +3120,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Scholar"
-        ],
+        "features": ["Scholar"],
         "choices": [
           {
             "type": "expertise",
@@ -3302,10 +3139,7 @@
           "method": "unrecorded"
         },
         "subclass": "Bladesinger",
-        "features": [
-          "Bladesong",
-          "Training in War and Song"
-        ],
+        "features": ["Bladesong", "Training in War and Song"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3338,9 +3172,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Memorize Spell"
-        ],
+        "features": ["Memorize Spell"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3353,9 +3185,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack"
-        ],
+        "features": ["Extra Attack"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3447,10 +3277,7 @@
     "hp_max": 68,
     "hp_current": 68,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Medicine",
       "Insight",
@@ -3458,11 +3285,7 @@
       "History",
       "Perception"
     ],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Solvalean"
-    ],
+    "languages": ["Common", "Celestial", "Solvalean"],
     "features": [
       {
         "name": "Inspiring Leader",
@@ -3480,9 +3303,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Divine Prestidigitation"
-        ],
+        "spells_granted": ["Divine Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -3591,21 +3412,14 @@
         "level_gained": 1,
         "choices": {
           "list": "Cleric",
-          "cantrips": [
-            "Light",
-            "Mending"
-          ],
+          "cantrips": ["Light", "Mending"],
           "spell": "Detect Magic"
         },
         "ability_choice": "wis",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
-        "spells_granted": [
-          "Light",
-          "Mending",
-          "Detect Magic"
-        ]
+        "spells_granted": ["Light", "Mending", "Detect Magic"]
       },
       {
         "name": "Divine Order: Protector",
@@ -3835,16 +3649,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields",
-      "heavy"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"],
     "hp_temp": 0,
     "ruleset": "2024",
     "tool_proficiencies": [],
@@ -3868,10 +3674,7 @@
         "species": "Human",
         "background": "Acolyte",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Healer",
-          "Magic Initiate"
-        ],
+        "feats": ["Healer", "Magic Initiate"],
         "hp_note": "Max HP 68 differs from the all-average total 66; per-level HP gains were not recorded."
       },
       {
@@ -3883,10 +3686,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Divine Order"
-        ],
+        "features": ["Spellcasting", "Divine Order"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3899,9 +3699,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Channel Divinity"
-        ],
+        "features": ["Channel Divinity"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3915,11 +3713,7 @@
           "method": "unrecorded"
         },
         "subclass": "Life Domain",
-        "features": [
-          "Disciple of Life",
-          "Life Domain Spells",
-          "Preserve Life"
-        ],
+        "features": ["Disciple of Life", "Life Domain Spells", "Preserve Life"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3950,9 +3744,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sear Undead"
-        ],
+        "features": ["Sear Undead"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3965,9 +3757,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Blessed Healer"
-        ],
+        "features": ["Blessed Healer"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -3980,9 +3770,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Blessed Strikes"
-        ],
+        "features": ["Blessed Strikes"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -4060,10 +3848,7 @@
     "hp_max": 44,
     "hp_current": 44,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Stealth",
       "SleightOfHand",
@@ -4075,10 +3860,7 @@
       "Persuasion",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Inquisitive — Ear for Deceit",
@@ -4242,11 +4024,7 @@
         "_source": "Charlatan",
         "level_gained": 1,
         "choices": {
-          "skills": [
-            "Investigation",
-            "Persuasion",
-            "Athletics"
-          ],
+          "skills": ["Investigation", "Persuasion", "Athletics"],
           "tools": []
         }
       },
@@ -4283,12 +4061,7 @@
     "speed": 25,
     "hit_die": "d8",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "SleightOfHand",
-      "Insight",
-      "Perception"
-    ],
+    "skill_expertise": ["Stealth", "SleightOfHand", "Insight", "Perception"],
     "classes": [
       {
         "name": "Rogue",
@@ -4306,9 +4079,7 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "species_traits": [
       {
         "name": "Lucky",
@@ -4340,9 +4111,7 @@
         "source": "subrace"
       }
     ],
-    "saving_throw_advantages": [
-      "being_frightened"
-    ],
+    "saving_throw_advantages": ["being_frightened"],
     "ruleset": "2024",
     "background": "Charlatan",
     "tool_proficiencies": [],
@@ -4374,9 +4143,7 @@
         "species": "Halfling (Lightfoot Halfling)",
         "background": "Charlatan",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Skilled"
-        ],
+        "feats": ["Skilled"],
         "hp_note": "Max HP 44 differs from the all-average total 57; per-level HP gains were not recorded."
       },
       {
@@ -4411,9 +4178,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Action"
-        ],
+        "features": ["Cunning Action"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -4465,10 +4230,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Strike",
-          "Uncanny Dodge"
-        ],
+        "features": ["Cunning Strike", "Uncanny Dodge"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -4481,9 +4243,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise"
-        ],
+        "features": ["Expertise"],
         "choices": [
           {
             "type": "expertise",
@@ -4501,10 +4261,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Evasion",
-          "Reliable Talent"
-        ],
+        "features": ["Evasion", "Reliable Talent"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -4535,9 +4292,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Steady Eye"
-        ],
+        "features": ["Steady Eye"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -4594,10 +4349,7 @@
     "hp_max": 48,
     "hp_current": 48,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -4607,11 +4359,7 @@
       "Nature",
       "Religion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Elvish", "Draconic"],
     "features": [
       {
         "name": "Linked Spellbook",
@@ -4624,9 +4372,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -4721,13 +4467,8 @@
         "_source": "Human",
         "level_gained": 1,
         "choices": {
-          "skills": [
-            "Nature",
-            "Religion"
-          ],
-          "tools": [
-            "Alchemist's Supplies"
-          ]
+          "skills": ["Nature", "Religion"],
+          "tools": ["Alchemist's Supplies"]
         }
       },
       {
@@ -4738,11 +4479,7 @@
         "_source": "Artisan",
         "level_gained": 1,
         "choices": {
-          "tools": [
-            "Tinker's Tools",
-            "Weaver's Tools",
-            "Leatherworker's Tools"
-          ]
+          "tools": ["Tinker's Tools", "Weaver's Tools", "Leatherworker's Tools"]
         }
       },
       {
@@ -5228,9 +4965,7 @@
     "darkvision": 0,
     "hit_die": "d6",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "History"
-    ],
+    "skill_expertise": ["History"],
     "classes": [
       {
         "name": "Wizard",
@@ -5293,10 +5028,7 @@
         "species": "Human",
         "background": "Artisan",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Skilled",
-          "Crafter"
-        ],
+        "feats": ["Skilled", "Crafter"],
         "hp_note": "Max HP 48 differs from the all-average total 47; per-level HP gains were not recorded."
       },
       {
@@ -5308,11 +5040,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Ritual Adept",
-          "Arcane Recovery"
-        ],
+        "features": ["Spellcasting", "Ritual Adept", "Arcane Recovery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5325,9 +5053,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Scholar"
-        ],
+        "features": ["Scholar"],
         "choices": [
           {
             "type": "expertise",
@@ -5346,10 +5072,7 @@
           "method": "unrecorded"
         },
         "subclass": "Abjurer",
-        "features": [
-          "Abjuration Savant",
-          "Arcane ward"
-        ],
+        "features": ["Abjuration Savant", "Arcane ward"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5382,9 +5105,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Memorize Spell"
-        ],
+        "features": ["Memorize Spell"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5397,9 +5118,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Projected Ward"
-        ],
+        "features": ["Projected Ward"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5499,10 +5218,7 @@
     "hp_max": 114,
     "hp_current": 114,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -5510,10 +5226,7 @@
       "Insight",
       "Survival"
     ],
-    "languages": [
-      "Common",
-      "Halfling"
-    ],
+    "languages": ["Common", "Halfling"],
     "features": [
       {
         "name": "Resourceful",
@@ -5724,16 +5437,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "ruleset": "2024",
     "tool_proficiencies": [],
     "background": "Guard",
@@ -5765,10 +5470,7 @@
         "species": "Human",
         "background": "Guard",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Tough",
-          "Alert"
-        ],
+        "feats": ["Tough", "Alert"],
         "hp_note": "Max HP 114 differs from the all-average total 112; per-level HP gains were not recorded."
       },
       {
@@ -5780,11 +5482,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Second Wind",
-          "Weapon Mastery"
-        ],
+        "features": ["Fighting Style", "Second Wind", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5797,10 +5495,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Action Surge (One Use)",
-          "Tactical Mind"
-        ],
+        "features": ["Action Surge (One Use)", "Tactical Mind"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5814,10 +5509,7 @@
           "method": "unrecorded"
         },
         "subclass": "Champion",
-        "features": [
-          "Improved Critical",
-          "Remarkable Athlete"
-        ],
+        "features": ["Improved Critical", "Remarkable Athlete"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5850,10 +5542,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Tactical Shift"
-        ],
+        "features": ["Extra Attack", "Tactical Shift"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5884,9 +5573,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Additional Fighting Style"
-        ],
+        "features": ["Additional Fighting Style"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -5917,10 +5604,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Indomitable (One Use)",
-          "Tactical Master"
-        ],
+        "features": ["Indomitable (One Use)", "Tactical Master"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -5993,12 +5677,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": [
-      "str",
-      "con",
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["str", "con", "wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -6008,12 +5687,7 @@
       "Nature"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Celestial",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Giant", "Celestial", "Sylvan"],
     "darkvision": 0,
     "hit_die": "d12",
     "hit_dice_current": 9,
@@ -6338,16 +6012,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "active_weapon_set": 2,
     "ruleset": "2024",
     "background": "Sailor",
@@ -6380,9 +6046,7 @@
         "species": "Goliath",
         "background": "Sailor",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Tavern Brawler"
-        ],
+        "feats": ["Tavern Brawler"],
         "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
         "hp_note": "Max HP 92 differs from the all-average total 91; per-level HP gains were not recorded."
       },
@@ -6395,11 +6059,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Lay On Hands",
-          "Spellcasting",
-          "Weapon Mastery"
-        ],
+        "features": ["Lay On Hands", "Spellcasting", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -6412,10 +6072,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Paladin's Smite"
-        ],
+        "features": ["Fighting Style", "Paladin's Smite"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -6455,11 +6112,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Rage",
-          "Unarmored Defense",
-          "Weapon Mastery"
-        ],
+        "features": ["Rage", "Unarmored Defense", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -6472,10 +6125,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Danger Sense",
-          "Reckless Attack"
-        ],
+        "features": ["Danger Sense", "Reckless Attack"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -6489,11 +6139,7 @@
           "method": "unrecorded"
         },
         "subclass": "Path of the Giant",
-        "features": [
-          "Primal Knowledge",
-          "Giant's Power",
-          "Giant's Havoc"
-        ],
+        "features": ["Primal Knowledge", "Giant's Power", "Giant's Havoc"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -6526,10 +6172,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Fast Movement"
-        ],
+        "features": ["Extra Attack", "Fast Movement"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -6542,9 +6185,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Elemental Cleaver"
-        ],
+        "features": ["Elemental Cleaver"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -6610,12 +6251,9 @@
     "stat_wis": 10,
     "stat_cha": 17,
     "hp_max": 69,
-    "hp_current": 64,
+    "hp_current": 69,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -6626,11 +6264,7 @@
       "Persuasion",
       "Investigation"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Sylvan"
-    ],
+    "languages": ["Common", "Elvish", "Sylvan"],
     "features": [
       {
         "name": "Trance",
@@ -6781,11 +6415,7 @@
         "_source": "Noble",
         "level_gained": 1,
         "choices": {
-          "skills": [
-            "History",
-            "Persuasion",
-            "Investigation"
-          ],
+          "skills": ["History", "Persuasion", "Investigation"],
           "tools": []
         }
       },
@@ -6898,7 +6528,7 @@
     "spell_slots": {
       "level_1": {
         "max": 4,
-        "current": 3
+        "current": 4
       },
       "level_2": {
         "max": 3,
@@ -6937,16 +6567,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "hp_temp": 0,
     "ruleset": "2024",
     "background": "Noble",
@@ -6970,9 +6592,7 @@
         "species": "Eladrin Elf",
         "background": "Noble",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Skilled"
-        ],
+        "feats": ["Skilled"],
         "hp_note": "Max HP 69 differs from the all-average total 76; per-level HP gains were not recorded."
       },
       {
@@ -6984,11 +6604,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Lay On Hands",
-          "Spellcasting",
-          "Weapon Mastery"
-        ],
+        "features": ["Lay On Hands", "Spellcasting", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7001,10 +6617,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Paladin's Smite"
-        ],
+        "features": ["Fighting Style", "Paladin's Smite"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7053,10 +6666,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Faithful Steed"
-        ],
+        "features": ["Extra Attack", "Faithful Steed"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7069,9 +6679,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Aura of Protection"
-        ],
+        "features": ["Aura of Protection"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7084,9 +6692,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Crown — Divine Allegiance"
-        ],
+        "features": ["Crown — Divine Allegiance"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7117,9 +6723,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Abjure Foes"
-        ],
+        "features": ["Abjure Foes"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -7148,9 +6752,7 @@
       {
         "kind": "audit",
         "date": "2026-10-27",
-        "notes": [
-          "Added Divine Smite (2024 Paladin's Smite: always prepared)."
-        ]
+        "notes": ["Added Divine Smite (2024 Paladin's Smite: always prepared)."]
       },
       {
         "kind": "audit",
@@ -7180,22 +6782,9 @@
     "hp_current": 80,
     "unarmored_ac_formula": "default",
     "proficiency_bonus": 4,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
-    "skill_proficiencies": [
-      "Nature",
-      "Perception",
-      "Survival",
-      "Medicine"
-    ],
-    "languages": [
-      "Common",
-      "Halfling",
-      "Druidic",
-      "Sylvan"
-    ],
+    "saving_throws": ["int", "wis"],
+    "skill_proficiencies": ["Nature", "Perception", "Survival", "Medicine"],
+    "languages": ["Common", "Halfling", "Druidic", "Sylvan"],
     "spellcasting_ability": "wis",
     "features": [
       {
@@ -7347,21 +6936,14 @@
         "level_gained": 1,
         "choices": {
           "list": "Druid",
-          "cantrips": [
-            "Mending",
-            "Produce Flame"
-          ],
+          "cantrips": ["Mending", "Produce Flame"],
           "spell": "Goodberry"
         },
         "ability_choice": "wis",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
-        "spells_granted": [
-          "Mending",
-          "Produce Flame",
-          "Goodberry"
-        ]
+        "spells_granted": ["Mending", "Produce Flame", "Goodberry"]
       },
       {
         "name": "Primal Order: Warden",
@@ -7528,7 +7110,7 @@
       },
       "level_2": {
         "max": 3,
-        "current": 2
+        "current": 3
       },
       "level_3": {
         "max": 3,
@@ -7619,9 +7201,7 @@
         "source": "subrace"
       }
     ],
-    "saving_throw_advantages": [
-      "being_frightened"
-    ],
+    "saving_throw_advantages": ["being_frightened"],
     "ruleset": "2024",
     "background": "Guide",
     "tool_proficiencies": [],
@@ -7653,9 +7233,7 @@
         "species": "Halfling (Lightfoot Halfling)",
         "background": "Guide",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Magic Initiate"
-        ],
+        "feats": ["Magic Initiate"],
         "hp_note": "Max HP 80 differs from the all-average total 75; per-level HP gains were not recorded."
       },
       {
@@ -7667,11 +7245,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Druidic",
-          "Primal Order"
-        ],
+        "features": ["Spellcasting", "Druidic", "Primal Order"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7684,10 +7258,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Wild Shape",
-          "Wild Companion"
-        ],
+        "features": ["Wild Shape", "Wild Companion"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7701,10 +7272,7 @@
           "method": "unrecorded"
         },
         "subclass": "Circle of the Stars",
-        "features": [
-          "Star Map",
-          "Starry Form"
-        ],
+        "features": ["Star Map", "Starry Form"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7737,9 +7305,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Wild Resurgence"
-        ],
+        "features": ["Wild Resurgence"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7752,9 +7318,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cosmic Omen"
-        ],
+        "features": ["Cosmic Omen"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7767,9 +7331,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Elemental Fury"
-        ],
+        "features": ["Elemental Fury"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -7846,10 +7408,7 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Medicine",
@@ -7858,11 +7417,7 @@
       "Perception",
       "Performance"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "languages": ["Common", "Elvish", "Celestial"],
     "features": [
       {
         "name": "Skill Versatility",
@@ -7911,18 +7466,14 @@
         "type": "feat",
         "id": "pub_fey-touched",
         "note": "1st-level spell: Comprehend Languages",
-        "spells_granted": [
-          "Misty Step"
-        ]
+        "spells_granted": ["Misty Step"]
       },
       {
         "name": "Caster Prestidigitation",
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Divine Prestidigitation"
-        ],
+        "spells_granted": ["Divine Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -8223,16 +7774,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields",
-      "heavy"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields", "heavy"],
     "ruleset": "2024",
     "background": "Hermit",
     "tool_proficiencies": [],
@@ -8264,9 +7807,7 @@
         "species": "Half-Elf",
         "background": "Hermit",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Healer"
-        ],
+        "feats": ["Healer"],
         "hp_note": "Max HP 65 differs from the all-average total 75; per-level HP gains were not recorded."
       },
       {
@@ -8278,10 +7819,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Divine Order"
-        ],
+        "features": ["Spellcasting", "Divine Order"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -8294,9 +7832,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Channel Divinity"
-        ],
+        "features": ["Channel Divinity"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -8347,9 +7883,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sear Undead"
-        ],
+        "features": ["Sear Undead"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -8362,9 +7896,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Thunderous Strike"
-        ],
+        "features": ["Thunderous Strike"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -8377,9 +7909,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Blessed Strikes"
-        ],
+        "features": ["Blessed Strikes"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -8392,9 +7922,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Divine Strike"
-        ],
+        "features": ["Divine Strike"],
         "choices": [
           {
             "type": "asi-or-feat",
@@ -8467,19 +7995,9 @@
     "hp_max": 70,
     "hp_current": 70,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "dex",
-      "str"
-    ],
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
+    "saving_throws": ["dex", "str"],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"],
     "skill_proficiencies": [
       "Stealth",
       "Perception",
@@ -8489,20 +8007,14 @@
       "Survival",
       "Athletics"
     ],
-    "languages": [
-      "Common",
-      "Infernal",
-      "Abyssal"
-    ],
+    "languages": ["Common", "Infernal", "Abyssal"],
     "features": [
       {
         "name": "Infernal Legacy: Hellish Rebuke",
         "id": "pub_infernal-legacy-hellish-rebuke",
         "type": "speciesTrait",
         "level_gained": 3,
-        "spells_granted": [
-          "Hellish Rebuke"
-        ],
+        "spells_granted": ["Hellish Rebuke"],
         "_source": "Infernal Legacy",
         "uses_max": 1,
         "uses_current": 1,
@@ -8514,9 +8026,7 @@
         "id": "pub_infernal-legacy-darkness",
         "type": "speciesTrait",
         "level_gained": 5,
-        "spells_granted": [
-          "Darkness"
-        ],
+        "spells_granted": ["Darkness"],
         "_source": "Infernal Legacy",
         "uses_max": 1,
         "uses_current": 1,
@@ -8727,11 +8237,7 @@
         "_source": "Entertainer",
         "level_gained": 1,
         "choices": {
-          "tools": [
-            "Flute",
-            "Drum",
-            "Viol"
-          ]
+          "tools": ["Flute", "Drum", "Viol"]
         }
       },
       {
@@ -8890,10 +8396,7 @@
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
-    "skill_expertise": [
-      "Stealth",
-      "Performance"
-    ],
+    "skill_expertise": ["Stealth", "Performance"],
     "classes": [
       {
         "name": "Ranger",
@@ -8917,11 +8420,7 @@
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
     "ruleset": "2024",
     "background": "Entertainer",
-    "tool_proficiencies": [
-      "Flute",
-      "Drum",
-      "Viol"
-    ],
+    "tool_proficiencies": ["Flute", "Drum", "Viol"],
     "migrated_to_2024": true,
     "ability_base": {
       "str": 10,
@@ -8950,9 +8449,7 @@
         "species": "Tiefling",
         "background": "Entertainer",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Musician"
-        ],
+        "feats": ["Musician"],
         "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
         "hp_note": "Max HP 70 differs from the all-average total 74; per-level HP gains were not recorded."
       },
@@ -8965,11 +8462,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Favored Enemy",
-          "Weapon Mastery"
-        ],
+        "features": ["Spellcasting", "Favored Enemy", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -8982,10 +8475,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Deft Explorer",
-          "Fighting Style"
-        ],
+        "features": ["Deft Explorer", "Fighting Style"],
         "choices": [
           {
             "type": "expertise",
@@ -9004,11 +8494,7 @@
           "method": "unrecorded"
         },
         "subclass": "Gloom Stalker",
-        "features": [
-          "Dread Ambusher",
-          "Gloom Stalker Spells",
-          "Umbral Sight"
-        ],
+        "features": ["Dread Ambusher", "Gloom Stalker Spells", "Umbral Sight"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -9041,9 +8527,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack"
-        ],
+        "features": ["Extra Attack"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -9088,9 +8572,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Action"
-        ],
+        "features": ["Cunning Action"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -9112,11 +8594,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Second Wind",
-          "Weapon Mastery"
-        ],
+        "features": ["Fighting Style", "Second Wind", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -9129,10 +8607,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Action Surge (One Use)",
-          "Tactical Mind"
-        ],
+        "features": ["Action Surge (One Use)", "Tactical Mind"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -9201,10 +8676,7 @@
     "hp_max": 76,
     "hp_current": 76,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "wis",
-      "cha"
-    ],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -9212,10 +8684,7 @@
       "Religion",
       "Intimidation"
     ],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "languages": ["Common", "Gnomish"],
     "features": [
       {
         "name": "Great Weapon Fighting",
@@ -9513,16 +8982,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "hp_temp": 0,
     "ruleset": "2024",
     "tool_proficiencies": [],
@@ -9563,10 +9024,7 @@
         "species": "Human",
         "background": "Soldier",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Tavern Brawler",
-          "Savage Attacker"
-        ],
+        "feats": ["Tavern Brawler", "Savage Attacker"],
         "hp_note": "Max HP 76 differs from the all-average total 85; per-level HP gains were not recorded."
       },
       {
@@ -9578,11 +9036,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Lay On Hands",
-          "Spellcasting",
-          "Weapon Mastery"
-        ],
+        "features": ["Lay On Hands", "Spellcasting", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -9595,10 +9049,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Paladin's Smite"
-        ],
+        "features": ["Fighting Style", "Paladin's Smite"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -9649,10 +9100,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Faithful Steed"
-        ],
+        "features": ["Extra Attack", "Faithful Steed"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -9665,9 +9113,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Aura of Protection"
-        ],
+        "features": ["Aura of Protection"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -9713,9 +9159,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Abjure Foes"
-        ],
+        "features": ["Abjure Foes"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -9746,9 +9190,7 @@
       {
         "kind": "audit",
         "date": "2026-10-27",
-        "notes": [
-          "Added Divine Smite (2024 Paladin's Smite: always prepared)."
-        ]
+        "notes": ["Added Divine Smite (2024 Paladin's Smite: always prepared)."]
       },
       {
         "kind": "audit",
@@ -9779,10 +9221,7 @@
     "hp_max": 78,
     "hp_current": 78,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Perception",
@@ -9792,11 +9231,7 @@
       "SleightOfHand",
       "Persuasion"
     ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Skill Versatility",
@@ -10081,10 +9516,7 @@
     "id": "characters_18",
     "spellcasting_level": null,
     "image": "./characters/eldi.jpg",
-    "skill_expertise": [
-      "Stealth",
-      "Acrobatics"
-    ],
+    "skill_expertise": ["Stealth", "Acrobatics"],
     "darkvision": 60,
     "hit_die": "d10",
     "hit_dice_current": 9,
@@ -10104,16 +9536,8 @@
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "ability_score_generation_note": "Backfilled 2026-09-09: flagged as custom (+2/+1 or +1/+1/+1 player choice), not the fixed species bonus, per project owner confirmation this table almost never used the species-fixed option. No per-level ability_score_history exists for this character (predates that tracking) -- this flag only records WHICH system was used, not the exact amounts/levels.",
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "hp_temp": 0,
     "ruleset": "2024",
     "background": "Sailor",
@@ -10146,9 +9570,7 @@
         "species": "Half-Elf",
         "background": "Sailor",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Tavern Brawler"
-        ],
+        "feats": ["Tavern Brawler"],
         "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
         "hp_note": "Max HP 78 differs from the all-average total 82; per-level HP gains were not recorded."
       },
@@ -10161,11 +9583,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Second Wind",
-          "Weapon Mastery"
-        ],
+        "features": ["Fighting Style", "Second Wind", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10178,10 +9596,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Action Surge (One Use)",
-          "Tactical Mind"
-        ],
+        "features": ["Action Surge (One Use)", "Tactical Mind"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10195,10 +9610,7 @@
           "method": "unrecorded"
         },
         "subclass": "Echo Knight",
-        "features": [
-          "Manifest Echo",
-          "Unleash Incarnation"
-        ],
+        "features": ["Manifest Echo", "Unleash Incarnation"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10231,10 +9643,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Tactical Shift"
-        ],
+        "features": ["Extra Attack", "Tactical Shift"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10304,9 +9713,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Action"
-        ],
+        "features": ["Cunning Action"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10320,11 +9727,7 @@
           "method": "unrecorded"
         },
         "subclass": "Swashbuckler",
-        "features": [
-          "Steady Aim",
-          "Fancy Footwork",
-          "Rakish Audacity"
-        ],
+        "features": ["Steady Aim", "Fancy Footwork", "Rakish Audacity"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -10381,10 +9784,7 @@
     "hp_max": 50,
     "hp_current": 50,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
+    "saving_throws": ["con", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Insight",
@@ -10394,11 +9794,7 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Elvish", "Dwarvish"],
     "features": [
       {
         "name": "Skill Versatility",
@@ -10445,9 +9841,7 @@
           "cha": 1
         },
         "note": "Free cast of Misty Step and Silvery Barbs once each per long rest (tracked via uses). +1 CHA applied via stat_bonuses.",
-        "spells_granted": [
-          "Misty Step"
-        ]
+        "spells_granted": ["Misty Step"]
       },
       {
         "name": "War Caster",
@@ -10469,9 +9863,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -10763,9 +10155,7 @@
         "species": "Half-Elf",
         "background": "Wayfarer",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Lucky"
-        ],
+        "feats": ["Lucky"],
         "hp_note": "Max HP 50 differs from the all-average total 65; per-level HP gains were not recorded."
       },
       {
@@ -10777,10 +10167,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Innate Sorcery"
-        ],
+        "features": ["Spellcasting", "Innate Sorcery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10793,10 +10180,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Font of Magic",
-          "Metamagic"
-        ],
+        "features": ["Font of Magic", "Metamagic"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10810,10 +10194,7 @@
           "method": "unrecorded"
         },
         "subclass": "Divine Soul",
-        "features": [
-          "Divine Magic",
-          "Favored by the Gods"
-        ],
+        "features": ["Divine Magic", "Favored by the Gods"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10844,9 +10225,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sorcerous Restoration"
-        ],
+        "features": ["Sorcerous Restoration"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10859,9 +10238,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Empowered Healing"
-        ],
+        "features": ["Empowered Healing"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10874,9 +10251,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sorcery Incarnate"
-        ],
+        "features": ["Sorcery Incarnate"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -10956,22 +10331,10 @@
     "hp_max": 65,
     "hp_current": 65,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "cha"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Insight",
-      "Religion"
-    ],
+    "saving_throws": ["con", "cha"],
+    "skill_proficiencies": ["Arcana", "History", "Insight", "Religion"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Celestial",
-      "Arcanis"
-    ],
+    "languages": ["Common", "Celestial", "Arcanis"],
     "darkvision": 60,
     "hit_die": "d6",
     "hit_dice_current": 9,
@@ -11086,9 +10449,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -11217,21 +10578,14 @@
         "level_gained": 1,
         "choices": {
           "list": "Wizard",
-          "cantrips": [
-            "Prestidigitation",
-            "Fire Bolt"
-          ],
+          "cantrips": ["Prestidigitation", "Fire Bolt"],
           "spell": "Shield"
         },
         "ability_choice": "cha",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
-        "spells_granted": [
-          "Prestidigitation",
-          "Fire Bolt",
-          "Shield"
-        ]
+        "spells_granted": ["Prestidigitation", "Fire Bolt", "Shield"]
       }
     ],
     "resources": [
@@ -11511,9 +10865,7 @@
         "background": "Sage",
         "background_flavor": "Daughter of the Weave",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Magic Initiate"
-        ]
+        "feats": ["Magic Initiate"]
       },
       {
         "kind": "level",
@@ -11524,10 +10876,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Innate Sorcery"
-        ],
+        "features": ["Spellcasting", "Innate Sorcery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -11540,10 +10889,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Font of Magic",
-          "Metamagic"
-        ],
+        "features": ["Font of Magic", "Metamagic"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -11596,9 +10942,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sorcerous Restoration"
-        ],
+        "features": ["Sorcerous Restoration"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -11611,9 +10955,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Mother's Whim"
-        ],
+        "features": ["Mother's Whim"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -11626,9 +10968,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Sorcery Incarnate"
-        ],
+        "features": ["Sorcery Incarnate"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -11711,11 +11051,7 @@
     "hp_max": 93,
     "hp_current": 93,
     "unarmored_ac_formula": "default",
-    "saving_throws": [
-      "con",
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["con", "int", "wis"],
     "skill_proficiencies": [
       "Animal Handling",
       "Athletics",
@@ -11724,10 +11060,7 @@
       "Survival"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Elvish"
-    ],
+    "languages": ["Common", "Elvish"],
     "darkvision": 60,
     "hit_die": "d8",
     "hit_dice_current": 9,
@@ -11775,9 +11108,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Druidcraft"
-        ],
+        "spells_granted": ["Druidcraft"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -12132,9 +11463,7 @@
         "species": "Wood Elf",
         "background": "Farmer",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Tough"
-        ]
+        "feats": ["Tough"]
       },
       {
         "kind": "level",
@@ -12145,11 +11474,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Druidic",
-          "Primal Order"
-        ],
+        "features": ["Spellcasting", "Druidic", "Primal Order"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12162,10 +11487,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Wild Shape",
-          "Wild Companion"
-        ],
+        "features": ["Wild Shape", "Wild Companion"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12179,10 +11501,7 @@
           "method": "unrecorded"
         },
         "subclass": "Circle of the Moon",
-        "features": [
-          "Circle Forms",
-          "Circle of the Moon Spells"
-        ],
+        "features": ["Circle Forms", "Circle of the Moon Spells"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12215,9 +11534,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Wild Resurgence"
-        ],
+        "features": ["Wild Resurgence"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12230,9 +11547,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Improved Circle Forms"
-        ],
+        "features": ["Improved Circle Forms"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12245,9 +11560,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Elemental Fury"
-        ],
+        "features": ["Elemental Fury"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12358,10 +11671,7 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
+    "saving_throws": ["dex", "int"],
     "skill_proficiencies": [
       "Athletics",
       "Persuasion",
@@ -12373,16 +11683,8 @@
       "Perception",
       "Animal Handling"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Athletics",
-      "Perception",
-      "Deception"
-    ],
-    "languages": [
-      "Common",
-      "Goblin"
-    ],
+    "skill_expertise": ["Stealth", "Athletics", "Perception", "Deception"],
+    "languages": ["Common", "Goblin"],
     "features": [
       {
         "name": "Skirmisher",
@@ -12580,9 +11882,7 @@
       "longbow",
       "shortbow"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "ruleset": "2024",
     "tool_proficiencies": [],
     "migrated_to_2024": true,
@@ -12603,10 +11903,7 @@
         "species": "Human",
         "background": "Soldier",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Alert",
-          "Savage Attacker"
-        ],
+        "feats": ["Alert", "Savage Attacker"],
         "hp_note": "Max HP 65 differs from the all-average total 66; per-level HP gains were not recorded."
       },
       {
@@ -12641,9 +11938,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Action"
-        ],
+        "features": ["Cunning Action"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12657,11 +11952,7 @@
           "method": "unrecorded"
         },
         "subclass": "Scout",
-        "features": [
-          "Steady Aim",
-          "Skirmisher",
-          "Survivalist"
-        ],
+        "features": ["Steady Aim", "Skirmisher", "Survivalist"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12693,10 +11984,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Strike",
-          "Uncanny Dodge"
-        ],
+        "features": ["Cunning Strike", "Uncanny Dodge"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12709,9 +11997,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise"
-        ],
+        "features": ["Expertise"],
         "choices": [
           {
             "type": "expertise",
@@ -12729,10 +12015,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Evasion",
-          "Reliable Talent"
-        ],
+        "features": ["Evasion", "Reliable Talent"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -12764,9 +12047,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Superior Mobility"
-        ],
+        "features": ["Superior Mobility"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -12839,30 +12120,13 @@
         "level_gained": 8
       }
     ],
-    "saving_throws": [
-      "con",
-      "int"
-    ],
-    "skill_proficiencies": [
-      "Arcana",
-      "History",
-      "Investigation",
-      "Perception"
-    ],
+    "saving_throws": ["con", "int"],
+    "skill_proficiencies": ["Arcana", "History", "Investigation", "Perception"],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish",
-      "Elvish",
-      "Draconic"
-    ],
+    "languages": ["Common", "Gnomish", "Elvish", "Draconic"],
     "speed": 25,
-    "saving_throw_advantages": [
-      "magic"
-    ],
-    "tool_proficiencies": [
-      "tinker's tools"
-    ],
+    "saving_throw_advantages": ["magic"],
+    "tool_proficiencies": ["tinker's tools"],
     "species_traits": [
       {
         "name": "Gnome Cunning",
@@ -12883,9 +12147,7 @@
         "name": "Tinker",
         "id": "pub_rock-gnome-tinker",
         "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box.",
-        "grants_tool_proficiency": [
-          "tinker's tools"
-        ],
+        "grants_tool_proficiency": ["tinker's tools"],
         "type": "speciesTrait",
         "source": "subrace"
       }
@@ -13065,21 +12327,14 @@
         "level_gained": 1,
         "choices": {
           "list": "Wizard",
-          "cantrips": [
-            "Prestidigitation",
-            "Light"
-          ],
+          "cantrips": ["Prestidigitation", "Light"],
           "spell": "Magic Missile"
         },
         "ability_choice": "int",
         "recharge": "long_rest",
         "uses_max": 1,
         "uses_current": 1,
-        "spells_granted": [
-          "Prestidigitation",
-          "Light",
-          "Magic Missile"
-        ]
+        "spells_granted": ["Prestidigitation", "Light", "Magic Missile"]
       }
     ],
     "spells": [
@@ -13227,14 +12482,8 @@
     ],
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
-    "weapon_proficiencies": [
-      "simple"
-    ],
+    "armor_proficiencies": ["light", "medium", "shields"],
+    "weapon_proficiencies": ["simple"],
     "spell_slots": {
       "level_1": {
         "max": 4,
@@ -13271,9 +12520,7 @@
         "species": "Gnome (Rock Gnome)",
         "background": "Sage",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Magic Initiate"
-        ],
+        "feats": ["Magic Initiate"],
         "hp_note": "Max HP 67 differs from the all-average total 66; per-level HP gains were not recorded."
       },
       {
@@ -13285,10 +12532,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Tinker's Magic"
-        ],
+        "features": ["Spellcasting", "Tinker's Magic"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13301,9 +12545,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Replicate Magic Item"
-        ],
+        "features": ["Replicate Magic Item"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13353,9 +12595,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Arcane Payload"
-        ],
+        "features": ["Arcane Payload"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13368,9 +12608,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Magic Item Tinker"
-        ],
+        "features": ["Magic Item Tinker"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13383,9 +12621,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Flash of Genius"
-        ],
+        "features": ["Flash of Genius"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13416,9 +12652,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Unstable Rounds"
-        ],
+        "features": ["Unstable Rounds"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13514,10 +12748,7 @@
     "spellcasting_ability": null,
     "hp_max": 70,
     "hp_current": 70,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Deception",
       "Persuasion",
@@ -13525,22 +12756,11 @@
       "Intimidation"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Orc"
-    ],
+    "languages": ["Common", "Orc"],
     "speed": 30,
     "darkvision": 60,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "heavy",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "tool_proficiencies": [],
     "resistances": [],
     "saving_throw_advantages": [],
@@ -13586,9 +12806,7 @@
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Dark Prestidigitation"
-        ],
+        "spells_granted": ["Dark Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -13932,9 +13150,7 @@
         "species": "Half-Orc",
         "background": "Soldier",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Savage Attacker"
-        ],
+        "feats": ["Savage Attacker"],
         "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
         "hp_note": "Max HP 70 differs from the all-average total 71; per-level HP gains were not recorded."
       },
@@ -13947,11 +13163,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Second Wind",
-          "Weapon Mastery"
-        ],
+        "features": ["Fighting Style", "Second Wind", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13964,10 +13176,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Action Surge (One Use)",
-          "Tactical Mind"
-        ],
+        "features": ["Action Surge (One Use)", "Tactical Mind"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -13981,10 +13190,7 @@
           "method": "unrecorded"
         },
         "subclass": "Champion",
-        "features": [
-          "Improved Critical",
-          "Remarkable Athlete"
-        ],
+        "features": ["Improved Critical", "Remarkable Athlete"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -14032,10 +13238,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Eldritch Invocations",
-          "Pact Magic"
-        ],
+        "features": ["Eldritch Invocations", "Pact Magic"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -14048,9 +13251,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Magical Cunning"
-        ],
+        "features": ["Magical Cunning"],
         "choices": [
           {
             "type": "invocation",
@@ -14073,11 +13274,7 @@
           "method": "unrecorded"
         },
         "subclass": "Great Old One Patron",
-        "features": [
-          "Awakened Mind",
-          "Great Old One Spells",
-          "Psychic Spells"
-        ],
+        "features": ["Awakened Mind", "Great Old One Spells", "Psychic Spells"],
         "choices": [
           {
             "type": "invocation",
@@ -14179,16 +13376,9 @@
     "proficiency_bonus": 4,
     "speed": 25,
     "darkvision": 120,
-    "saving_throws": [
-      "dex",
-      "int"
-    ],
-    "saving_throw_advantages": [
-      "poison"
-    ],
-    "resistances": [
-      "poison"
-    ],
+    "saving_throws": ["dex", "int"],
+    "saving_throw_advantages": ["poison"],
+    "resistances": ["poison"],
     "psychic_blades": true,
     "resources": [
       {
@@ -14208,16 +13398,8 @@
       "Insight",
       "Sleight of Hand"
     ],
-    "skill_expertise": [
-      "Stealth",
-      "Perception",
-      "Deception",
-      "Insight"
-    ],
-    "languages": [
-      "Common",
-      "Dwarvish"
-    ],
+    "skill_expertise": ["Stealth", "Perception", "Deception", "Insight"],
+    "languages": ["Common", "Dwarvish"],
     "weapon_proficiencies": [
       "simple",
       "hand crossbow",
@@ -14229,13 +13411,8 @@
       "light hammer",
       "warhammer"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
-    "tool_proficiencies": [
-      "Thieves' Tools",
-      "Smith's Tools"
-    ],
+    "armor_proficiencies": ["light"],
+    "tool_proficiencies": ["Thieves' Tools", "Smith's Tools"],
     "species_bonus_applied": false,
     "ability_score_method": "point buy or manual",
     "species_traits": [
@@ -14542,9 +13719,7 @@
         "species": "Dwarf (Hill Dwarf)",
         "background": "Criminal",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Alert"
-        ],
+        "feats": ["Alert"],
         "hp_note": "Max HP 77 differs from the all-average total 75; per-level HP gains were not recorded."
       },
       {
@@ -14579,9 +13754,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Action"
-        ],
+        "features": ["Cunning Action"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -14595,11 +13768,7 @@
           "method": "unrecorded"
         },
         "subclass": "Soulknife",
-        "features": [
-          "Steady Aim",
-          "Psionic Power",
-          "Psychic Blades"
-        ],
+        "features": ["Steady Aim", "Psionic Power", "Psychic Blades"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -14631,10 +13800,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Cunning Strike",
-          "Uncanny Dodge"
-        ],
+        "features": ["Cunning Strike", "Uncanny Dodge"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -14647,9 +13813,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise"
-        ],
+        "features": ["Expertise"],
         "choices": [
           {
             "type": "expertise",
@@ -14667,10 +13831,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Evasion",
-          "Reliable Talent"
-        ],
+        "features": ["Evasion", "Reliable Talent"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -14702,9 +13863,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Soul Blades"
-        ],
+        "features": ["Soul Blades"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -14801,10 +13960,7 @@
     "spellcasting_ability": "cha",
     "hp_max": 62,
     "hp_current": 62,
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Arcana",
       "Performance",
@@ -14817,17 +13973,8 @@
       "Deception",
       "Acrobatics"
     ],
-    "skill_expertise": [
-      "Performance",
-      "History",
-      "Persuasion",
-      "Arcana"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Celestial"
-    ],
+    "skill_expertise": ["Performance", "History", "Persuasion", "Arcana"],
+    "languages": ["Common", "Elvish", "Celestial"],
     "speed": 30,
     "darkvision": 60,
     "weapon_proficiencies": [
@@ -14837,27 +13984,17 @@
       "rapier",
       "shortsword"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
-    "tool_proficiencies": [
-      "Lute",
-      "Lyre",
-      "Flute"
-    ],
+    "armor_proficiencies": ["light"],
+    "tool_proficiencies": ["Lute", "Lyre", "Flute"],
     "resistances": [],
-    "saving_throw_advantages": [
-      "being_charmed"
-    ],
+    "saving_throw_advantages": ["being_charmed"],
     "features": [
       {
         "name": "Caster Prestidigitation",
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -14883,9 +14020,7 @@
         "choices": {
           "__grantedSpellChoice": "Bless"
         },
-        "spells_granted": [
-          "Misty Step"
-        ]
+        "spells_granted": ["Misty Step"]
       },
       {
         "name": "Additional Magical Secrets: Pulse Wave, Haste",
@@ -14978,11 +14113,7 @@
         "_source": "Entertainer",
         "level_gained": 1,
         "choices": {
-          "tools": [
-            "Lute",
-            "Lyre",
-            "Flute"
-          ]
+          "tools": ["Lute", "Lyre", "Flute"]
         }
       },
       {
@@ -15188,9 +14319,7 @@
         "species": "Half-Elf",
         "background": "Entertainer",
         "ability_scores": "point buy or manual",
-        "feats": [
-          "Musician"
-        ],
+        "feats": ["Musician"],
         "hp_note": "Max HP 62 differs from the all-average total 57; per-level HP gains were not recorded."
       },
       {
@@ -15202,10 +14331,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Bardic Inspiration",
-          "Spellcasting"
-        ],
+        "features": ["Bardic Inspiration", "Spellcasting"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15218,10 +14344,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise",
-          "Jack of all Trades"
-        ],
+        "features": ["Expertise", "Jack of all Trades"],
         "choices": [
           {
             "type": "expertise",
@@ -15240,10 +14363,7 @@
           "method": "unrecorded"
         },
         "subclass": "College of Lore",
-        "features": [
-          "Bonus Proficiencies",
-          "Cutting Words"
-        ],
+        "features": ["Bonus Proficiencies", "Cutting Words"],
         "choices": [
           {
             "type": "bonusProficiencies",
@@ -15279,9 +14399,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Font of Inspiration"
-        ],
+        "features": ["Font of Inspiration"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15294,9 +14412,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Magical Discoveries"
-        ],
+        "features": ["Magical Discoveries"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15309,9 +14425,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Countercharm"
-        ],
+        "features": ["Countercharm"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15343,9 +14457,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise"
-        ],
+        "features": ["Expertise"],
         "choices": [
           {
             "type": "expertise",
@@ -15449,10 +14561,7 @@
     "spellcasting_ability": "cha",
     "hp_max": 55,
     "hp_current": 55,
-    "saving_throws": [
-      "dex",
-      "cha"
-    ],
+    "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Insight",
       "Perception",
@@ -15462,18 +14571,8 @@
       "Acrobatics",
       "Athletics"
     ],
-    "skill_expertise": [
-      "Performance",
-      "Insight",
-      "Persuasion",
-      "Perception"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Solvalean",
-      "Sylvan"
-    ],
+    "skill_expertise": ["Performance", "Insight", "Persuasion", "Perception"],
+    "languages": ["Common", "Elvish", "Solvalean", "Sylvan"],
     "speed": 30,
     "darkvision": 60,
     "weapon_proficiencies": [
@@ -15484,23 +14583,17 @@
       "shortsword",
       "scimitar"
     ],
-    "armor_proficiencies": [
-      "light"
-    ],
+    "armor_proficiencies": ["light"],
     "tool_proficiencies": [],
     "resistances": [],
-    "saving_throw_advantages": [
-      "being_charmed"
-    ],
+    "saving_throw_advantages": ["being_charmed"],
     "features": [
       {
         "name": "Caster Prestidigitation",
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -15519,9 +14612,7 @@
         "choices": {
           "__grantedSpellChoice": "Disguise Self"
         },
-        "spells_granted": [
-          "Invisibility"
-        ]
+        "spells_granted": ["Invisibility"]
       },
       {
         "name": "War Caster",
@@ -15800,9 +14891,7 @@
         "species": "Half-Elf",
         "background": "Wayfarer",
         "ability_scores": "rolled",
-        "feats": [
-          "Lucky"
-        ],
+        "feats": ["Lucky"],
         "hp_note": "Max HP 55 differs from the all-average total 48; per-level HP gains were not recorded."
       },
       {
@@ -15814,10 +14903,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Bardic Inspiration",
-          "Spellcasting"
-        ],
+        "features": ["Bardic Inspiration", "Spellcasting"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15830,10 +14916,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise",
-          "Jack of all Trades"
-        ],
+        "features": ["Expertise", "Jack of all Trades"],
         "choices": [
           {
             "type": "expertise",
@@ -15852,10 +14935,7 @@
           "method": "unrecorded"
         },
         "subclass": "College of Spirits",
-        "features": [
-          "Channeler",
-          "Spirits from Beyond"
-        ],
+        "features": ["Channeler", "Spirits from Beyond"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15886,9 +14966,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Font of Inspiration"
-        ],
+        "features": ["Font of Inspiration"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15901,9 +14979,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Empowered Channeling"
-        ],
+        "features": ["Empowered Channeling"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15916,9 +14992,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Countercharm"
-        ],
+        "features": ["Countercharm"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -15949,9 +15023,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Expertise"
-        ],
+        "features": ["Expertise"],
         "choices": [
           {
             "type": "expertise",
@@ -16048,10 +15120,7 @@
     "spellcasting_ability": "int",
     "hp_max": 56,
     "hp_current": 56,
-    "saving_throws": [
-      "int",
-      "wis"
-    ],
+    "saving_throws": ["int", "wis"],
     "skill_proficiencies": [
       "Arcana",
       "History",
@@ -16063,14 +15132,8 @@
       "Medicine",
       "Perception"
     ],
-    "skill_expertise": [
-      "Arcana"
-    ],
-    "languages": [
-      "Common",
-      "Elvish",
-      "Undercommon"
-    ],
+    "skill_expertise": ["Arcana"],
+    "languages": ["Common", "Elvish", "Undercommon"],
     "speed": 30,
     "darkvision": 60,
     "weapon_proficiencies": [
@@ -16083,18 +15146,14 @@
     "armor_proficiencies": [],
     "tool_proficiencies": [],
     "resistances": [],
-    "saving_throw_advantages": [
-      "being_charmed"
-    ],
+    "saving_throw_advantages": ["being_charmed"],
     "features": [
       {
         "name": "Caster Prestidigitation",
         "id": "hb_caster_prestidigitation",
         "type": "feature",
         "level_gained": 1,
-        "spells_granted": [
-          "Prestidigitation"
-        ],
+        "spells_granted": ["Prestidigitation"],
         "_source": "Caster Prestidigitation (house rule)"
       },
       {
@@ -16126,18 +15185,6 @@
         "recharge": "long_rest",
         "uses_max": 5,
         "uses_current": 5
-      },
-      {
-        "name": "Elegant Ward",
-        "id": "hb_elegant_ward",
-        "type": "feature",
-        "unarmored_defense": {
-          "abilities": [
-            "dex",
-            "int"
-          ]
-        },
-        "_source": "Homebrew"
       },
       {
         "name": "Timeline Freeze",
@@ -16195,11 +15242,7 @@
         "_source": "Noble",
         "level_gained": 1,
         "choices": {
-          "skills": [
-            "Investigation",
-            "Medicine",
-            "Perception"
-          ],
+          "skills": ["Investigation", "Medicine", "Perception"],
           "tools": []
         }
       },
@@ -16220,7 +15263,7 @@
         "subclass": "Chronurgy Magic"
       }
     ],
-    "notes": "Her Timeline Freeze ability came from an artifact, a 'wide' ring. She had that ring implanted onto a bone in her left hand, and she guards that secret vehemently so no one cuts her hand off. No one but her knows — the enchanter/surgeon who did it had his memory erased... or was killed. The visible tell: she does evil things with her left hand. Almost no one would piece it all together from that small clue. She wears no armor: her Elegant Ward protects her instead. She'd like to pick up Far Step at her next level (Wizard 10).",
+    "notes": "Her Timeline Freeze ability came from an artifact, a 'wide' ring. She had that ring implanted onto a bone in her left hand, and she guards that secret vehemently so no one cuts her hand off. No one but her knows — the enchanter/surgeon who did it had his memory erased... or was killed. The visible tell: she does evil things with her left hand. Almost no one would piece it all together from that small clue. She wears no armor: the Elegant Ward from her Sorceress' Evening Gown protects her instead. She'd like to pick up Far Step at her next level (Wizard 10).",
     "proficiency_bonus": 4,
     "hit_dice_current": 9,
     "spell_slots": {
@@ -16285,9 +15328,7 @@
         "species": "Half-Elf",
         "background": "Noble",
         "ability_scores": "point buy",
-        "feats": [
-          "Skilled"
-        ]
+        "feats": ["Skilled"]
       },
       {
         "kind": "level",
@@ -16298,11 +15339,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Spellcasting",
-          "Ritual Adept",
-          "Arcane Recovery"
-        ],
+        "features": ["Spellcasting", "Ritual Adept", "Arcane Recovery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16315,9 +15352,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Scholar"
-        ],
+        "features": ["Scholar"],
         "choices": [
           {
             "type": "expertise",
@@ -16336,10 +15371,7 @@
           "method": "unrecorded"
         },
         "subclass": "Chronurgy Magic",
-        "features": [
-          "Chronal Shift",
-          "Temporal Awareness"
-        ],
+        "features": ["Chronal Shift", "Temporal Awareness"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16371,9 +15403,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Memorize Spell"
-        ],
+        "features": ["Memorize Spell"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16386,9 +15416,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Momentary Stasis"
-        ],
+        "features": ["Momentary Stasis"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16499,10 +15527,7 @@
     "spellcasting_ability": null,
     "hp_max": 103,
     "hp_current": 103,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
       "Intimidation",
@@ -16515,27 +15540,14 @@
       "Nature"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Giant",
-      "Dwarvish"
-    ],
+    "languages": ["Common", "Giant", "Dwarvish"],
     "speed": 30,
     "darkvision": 0,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"],
     "tool_proficiencies": [],
     "resistances": [],
-    "saving_throw_advantages": [
-      "being_frightened"
-    ],
+    "saving_throw_advantages": ["being_frightened"],
     "features": [
       {
         "name": "Thrown Weapon Fighting",
@@ -16749,11 +15761,7 @@
         "_source": "Noble",
         "level_gained": 1,
         "choices": {
-          "skills": [
-            "Investigation",
-            "Insight",
-            "Medicine"
-          ],
+          "skills": ["Investigation", "Insight", "Medicine"],
           "tools": []
         }
       },
@@ -16846,10 +15854,7 @@
         "species": "Human (Variant Human)",
         "background": "Noble",
         "ability_scores": "rolled",
-        "feats": [
-          "Tavern Brawler",
-          "Skilled"
-        ],
+        "feats": ["Tavern Brawler", "Skilled"],
         "note": "Multiclass: the order the levels were taken in was not recorded; levels are listed class by class, starting class first.",
         "hp_note": "Max HP 103 differs from the all-average total 94; per-level HP gains were not recorded."
       },
@@ -16862,11 +15867,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Rage",
-          "Unarmored Defense",
-          "Weapon Mastery"
-        ],
+        "features": ["Rage", "Unarmored Defense", "Weapon Mastery"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16879,10 +15880,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Danger Sense",
-          "Reckless Attack"
-        ],
+        "features": ["Danger Sense", "Reckless Attack"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16896,10 +15894,7 @@
           "method": "unrecorded"
         },
         "subclass": "Path of the Berserker",
-        "features": [
-          "Primal Knowledge",
-          "Frenzy"
-        ],
+        "features": ["Primal Knowledge", "Frenzy"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16931,10 +15926,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Extra Attack",
-          "Fast Movement"
-        ],
+        "features": ["Extra Attack", "Fast Movement"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16947,9 +15939,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Mindless Rage"
-        ],
+        "features": ["Mindless Rage"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -16962,10 +15952,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Feral Instinct",
-          "Instinctive Pounce"
-        ],
+        "features": ["Feral Instinct", "Instinctive Pounce"],
         "choices": [],
         "recorded": "reconstructed"
       },
@@ -17008,11 +15995,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Fighting Style",
-          "Second Wind",
-          "Weapon Mastery"
-        ],
+        "features": ["Fighting Style", "Second Wind", "Weapon Mastery"],
         "choices": [
           {
             "type": "weaponMastery",
@@ -17079,9 +16062,7 @@
         "id": "pub_forest-gnome-natural-illusionist",
         "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability.",
         "grants_spells": {
-          "fixed": [
-            "Minor Illusion"
-          ],
+          "fixed": ["Minor Illusion"],
           "ability": "int"
         },
         "type": "speciesTrait",
@@ -17112,10 +16093,7 @@
     "spellcasting_ability": null,
     "hp_max": 17,
     "hp_current": 17,
-    "saving_throws": [
-      "str",
-      "con"
-    ],
+    "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Survival",
       "Animal Handling",
@@ -17125,26 +16103,14 @@
       "History"
     ],
     "skill_expertise": [],
-    "languages": [
-      "Common",
-      "Gnomish"
-    ],
+    "languages": ["Common", "Gnomish"],
     "speed": 25,
     "darkvision": 60,
-    "weapon_proficiencies": [
-      "simple",
-      "martial"
-    ],
-    "armor_proficiencies": [
-      "light",
-      "medium",
-      "shields"
-    ],
+    "weapon_proficiencies": ["simple", "martial"],
+    "armor_proficiencies": ["light", "medium", "shields"],
     "tool_proficiencies": [],
     "resistances": [],
-    "saving_throw_advantages": [
-      "magic"
-    ],
+    "saving_throw_advantages": ["magic"],
     "features": [
       {
         "name": "Darkvision",
@@ -17269,9 +16235,7 @@
         "species": "Gnome (Forest Gnome)",
         "background": "Farmer",
         "ability_scores": "point buy",
-        "feats": [
-          "Tough"
-        ],
+        "feats": ["Tough"],
         "hp_note": "Max HP 15 differs from the all-average total 17; per-level HP gains were not recorded."
       },
       {
@@ -17283,11 +16247,7 @@
           "gain": null,
           "method": "unrecorded"
         },
-        "features": [
-          "Rage",
-          "Unarmored Defense",
-          "Weapon Mastery"
-        ],
+        "features": ["Rage", "Unarmored Defense", "Weapon Mastery"],
         "choices": [
           {
             "type": "weaponMastery",

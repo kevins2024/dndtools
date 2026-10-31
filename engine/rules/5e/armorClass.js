@@ -124,6 +124,21 @@ function computeAC(
         amount: unarmoredAcItem.unarmored_armor_base_ac,
       })
       breakdown.push({ label: 'DEX', amount: dexMod })
+    } else if (equippedItems.some((i) => i.unarmored_defense?.abilities)) {
+      // An item that grants an unarmored formula (Sorceress' Evening Gown ->
+      // Elegant Ward). Same shape as a feature's, and like
+      // `unarmored_armor_base_ac` above it ranks over the character's own
+      // formula — you're wearing the thing that provides it.
+      const item = equippedItems.find((i) => i.unarmored_defense?.abilities)
+      const { abilities, name } = item.unarmored_defense
+      base =
+        10 + abilities.reduce((sum, a) => sum + abilityModifier(scores[a]), 0)
+      breakdown.push({
+        label: `${name ?? item.name} (10 + ${abilities
+          .map((a) => a.toUpperCase())
+          .join(' + ')})`,
+        amount: base,
+      })
     } else if (unarmoredFormula(character) === 'feature') {
       const feature = unarmoredDefenseFeature(character)
       const mods = feature.unarmored_defense.abilities.map((a) =>
