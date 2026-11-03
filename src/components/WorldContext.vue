@@ -25,6 +25,7 @@ import TellondeCalendar from './TellondeCalendar.vue'
 import HomebrewBrowser from './HomebrewBrowser.vue'
 import SpellBrowser from './SpellBrowser.vue'
 import FeatBrowser from './FeatBrowser.vue'
+import ActionsReference from './ActionsReference.vue'
 import LocationBrowser from './LocationBrowser.vue'
 
 export default {
@@ -35,6 +36,7 @@ export default {
     HomebrewBrowser,
     SpellBrowser,
     FeatBrowser,
+    ActionsReference,
     LocationBrowser,
   },
 
@@ -45,6 +47,7 @@ export default {
         { id: 'monsters', label: 'Monsters', component: 'MonsterBrowser' },
         { id: 'spells', label: 'Spells', component: 'SpellBrowser' },
         { id: 'feats', label: 'Feats', component: 'FeatBrowser' },
+        { id: 'actions', label: 'Actions', component: 'ActionsReference' },
         { id: 'locations', label: 'Locations', component: 'LocationBrowser' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
         { id: 'homebrew', label: 'Homebrew', component: 'HomebrewBrowser' },

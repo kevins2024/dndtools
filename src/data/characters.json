@@ -5700,7 +5700,7 @@
     "hp_max": 92,
     "hp_current": 92,
     "unarmored_ac_formula": null,
-    "saving_throws": ["str", "con", "wis", "cha"],
+    "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
       "Athletics",
       "Insight",
@@ -5745,14 +5745,6 @@
         "id": "pub_giant-s-power",
         "description": "Learn the Thaumaturgy cantrip (Wisdom-based regardless of her own casting stat). Already knows Giant, so the feature's language grant is redundant for her.",
         "note": "Added 2026-09-09 -- this feature was missing entirely, found during the Path of the Giant subclass audit. Cantrip choice (Thaumaturgy over Druidcraft) picked by the project owner to fit her Intimidation proficiency and barbarian presence."
-      },
-      {
-        "name": "Fighting Style: Defense",
-        "type": "feature",
-        "id": "fighting-style-defense",
-        "stat_bonuses": {
-          "ac": 1
-        }
       },
       {
         "name": "Shelter of the Faithful",
@@ -6251,6 +6243,14 @@
         "date": "2026-11-03",
         "notes": [
           "Ability score choices recorded because the evidence leaves no other reading: +2 STR (Ability Score Improvement, level 4). Basis: STR 18 is above what a standard build reaches and no feat is on the sheet for the slot. The final scores are unchanged."
+        ]
+      },
+      {
+        "kind": "audit",
+        "date": "2026-11-03",
+        "notes": [
+          "Saving throw proficiencies set to WIS and CHA: under the 2024 rules they come only from the class the character started in (Paladin), not from Barbarian as a later class.",
+          "Removed the leftover 2014 \"Fighting Style: Defense\" feature (+1 AC). Her one Fighting Style is Great Weapon Fighting, taken at Paladin 2 (Barbarian has none)."
         ]
       }
     ]

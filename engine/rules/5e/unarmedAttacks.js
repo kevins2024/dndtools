@@ -19,6 +19,7 @@ const { effectiveProficiencyBonus } = require('./proficiency')
 const { bonusLines } = require('./breakdown')
 const { loadoutHands } = require('./weaponHands')
 const { rageDamage } = require('./weaponAttack')
+const { withExhaustion } = require('./exhaustion')
 const monk = require('../../data/5e/classes/monk.json')
 const rogue = require('../../data/5e/classes/rogue.json')
 
@@ -150,7 +151,7 @@ function unarmedStrike(character, equippedItems = []) {
   return {
     name: 'Unarmed Strike',
     die,
-    attack: {
+    attack: withExhaustion(character, {
       value: statMod + prof + atkBonus,
       breakdown: [
         { label: statLabel, amount: statMod },
@@ -158,7 +159,7 @@ function unarmedStrike(character, equippedItems = []) {
         ...bonusLines(equippedItems, 'unarmed_attack'),
         ...bonusLines(character.features, 'unarmed_attack'),
       ],
-    },
+    }),
     damage: {
       value: statMod + dmgBonus + rage,
       breakdown: [
@@ -206,7 +207,7 @@ function psychicBlades(character, equippedItems = []) {
   const atkBonus = bonuses.psychic_blade_attack ?? 0
   const dmgBonus = bonuses.psychic_blade_damage ?? 0
 
-  const attack = {
+  const attack = withExhaustion(character, {
     value: statMod + prof + atkBonus,
     breakdown: [
       { label: 'Finesse (best of STR/DEX)', amount: statMod },
@@ -214,7 +215,7 @@ function psychicBlades(character, equippedItems = []) {
       ...bonusLines(equippedItems, 'psychic_blade_attack'),
       ...bonusLines(character.features, 'psychic_blade_attack'),
     ],
-  }
+  })
   const damage = {
     value: statMod + dmgBonus,
     breakdown: [

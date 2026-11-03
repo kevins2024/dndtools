@@ -8,7 +8,7 @@
 // exhaustionEffects returns plain data; a UI decides how to show it, and a
 // roller adds `d20Penalty` to the modifier of an attack, save or check.
 
-const { normalizeRuleset } = require('./rulesetId')
+const { normalizeRuleset, rulesetOf } = require('./rulesetId')
 
 const MAX_EXHAUSTION = 6
 
@@ -45,4 +45,31 @@ function speedAfterExhaustion(baseSpeed, level, ruleset) {
   return e.speedZero ? 0 : e.speedHalved ? Math.floor(baseSpeed / 2) : baseSpeed
 }
 
-module.exports = { exhaustionEffects, speedAfterExhaustion, MAX_EXHAUSTION }
+// The breakdown line a character's D20 Tests (attack rolls, saving throws, ability checks,
+// initiative) carry while exhausted, or null. 2024 only: 2014's penalties are disadvantage and
+// halved Speed, not a number on the roll. Passive scores are not rolls, so they do not use it.
+function exhaustionD20Line(character) {
+  const level = character.exhaustion_level ?? 0
+  if (!level || rulesetOf(character) !== '2024') return null
+  const e = exhaustionEffects(level, '2024')
+  return { label: `Exhaustion (level ${e.level})`, amount: e.d20Penalty }
+}
+
+// A { value, breakdown } result with the exhaustion line added (unchanged when not exhausted).
+function withExhaustion(character, result) {
+  const line = exhaustionD20Line(character)
+  if (!line || !result) return result
+  return {
+    ...result,
+    value: result.value + line.amount,
+    breakdown: [...result.breakdown, line],
+  }
+}
+
+module.exports = {
+  exhaustionEffects,
+  speedAfterExhaustion,
+  exhaustionD20Line,
+  withExhaustion,
+  MAX_EXHAUSTION,
+}

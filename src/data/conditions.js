@@ -1,212 +1,211 @@
-// 5e SRD condition definitions. Each entry has a summary line and bullet rules.
+// 2024 condition definitions (the 2024 glossary; spell and feature text from the 2024 data).
+// Each entry has a summary line and bullet rules. Poisoned's level 2 is a house rule (see its entry).
 // Used for hover tooltips on condition chips throughout the app.
 
 export const CONDITIONS = {
   Blinded: {
     summary:
-      'Cannot see. Attacks against it have advantage; its attacks have disadvantage.',
+      "Can't see. Attacks against it have Advantage; its attacks have Disadvantage.",
     rules: [
-      'Automatically fails any ability check requiring sight.',
-      'Attack rolls against it have advantage.',
-      'Its own attack rolls have disadvantage.',
+      "Can't see, and automatically fails any ability check that requires sight.",
+      'Attack rolls against it have Advantage.',
+      'Its attack rolls have Disadvantage.',
     ],
   },
   Charmed: {
     summary:
-      'Cannot attack the charmer. Charmer has advantage on social checks against it.',
+      "Can't harm the charmer. The charmer has Advantage on social checks against it.",
     rules: [
-      'Cannot attack the charmer or target them with harmful abilities or spells.',
-      'The charmer has advantage on Charisma checks made against it.',
+      "Can't attack the charmer or target them with damaging abilities or magical effects.",
+      'The charmer has Advantage on any ability check to interact with it socially.',
     ],
   },
   Deafened: {
-    summary: 'Cannot hear. Automatically fails hearing-based checks.',
+    summary: "Can't hear.",
     rules: [
-      'Cannot hear.',
-      'Automatically fails any ability check requiring hearing.',
+      "Can't hear, and automatically fails any ability check that requires hearing.",
     ],
   },
   Exhaustion: {
-    summary: 'Stacking debuff (1–6). Level 6 = death.',
+    summary: 'Each level: -2 to D20 Tests and -5 ft. Speed. Death at level 6.',
     rules: [
-      'Level 1 — Disadvantage on ability checks.',
-      'Level 2 — Speed halved.',
-      'Level 3 — Disadvantage on attack rolls and saving throws.',
-      'Level 4 — Hit point maximum halved.',
-      'Level 5 — Speed reduced to 0.',
-      'Level 6 — Death.',
-      'Each level removed by a long rest (with food and water).',
+      'Levels stack. Reaching level 6 means death.',
+      'D20 Tests (attack rolls, saving throws, ability checks) are reduced by 2 x the exhaustion level.',
+      'Speed is reduced by 5 feet x the exhaustion level.',
+      'Finishing a Long Rest removes 1 level; the condition ends at level 0.',
     ],
   },
   Frightened: {
     summary:
-      'Disadvantage on checks and attacks while source of fear is in sight. Cannot move closer.',
+      'Disadvantage on checks and attacks while the source of fear is in sight. Cannot move closer.',
     rules: [
-      'Disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.',
-      'Cannot willingly move closer to the source of its fear.',
+      'Disadvantage on ability checks and attack rolls while the source of its fear is in line of sight.',
+      "Can't willingly move closer to the source of its fear.",
     ],
   },
   Grappled: {
     summary:
-      'Speed 0. Ends if grappler is incapacitated or creature is moved out of reach.',
+      'Speed 0. Disadvantage on attacks against anyone but the grappler.',
     rules: [
-      'Speed becomes 0 and cannot benefit from bonuses to speed.',
-      'Condition ends if the grappler is incapacitated.',
-      "Condition ends if an effect moves the grappled creature out of the grappler's reach.",
+      'Speed is 0 and cannot increase.',
+      'Disadvantage on attack rolls against any target other than the grappler.',
+      'The grappler can drag or carry it; each foot of that movement costs the grappler 1 extra foot (unless the target is Tiny or two or more sizes smaller).',
+      "Ends if the grappler is Incapacitated, or if an effect moves it out of the grappler's reach.",
     ],
   },
   Incapacitated: {
-    summary: 'Cannot take actions or reactions.',
-    rules: ['Cannot take actions.', 'Cannot take reactions.'],
+    summary:
+      "Can't take actions, Bonus Actions or Reactions; can't speak; loses Concentration.",
+    rules: [
+      "Can't take any action, Bonus Action, or Reaction.",
+      'Concentration is broken.',
+      "Can't speak.",
+      'If Incapacitated when it rolls Initiative, it has Disadvantage on that roll.',
+    ],
   },
   Invisible: {
     summary:
-      'Cannot be seen without special sense. Attacks against it have disadvantage; its attacks have advantage.',
+      'Unseen unless a sense reveals it. Attacks against it have Disadvantage; its attacks have Advantage. Advantage on Initiative.',
     rules: [
-      'Impossible to see without special sense (tremorsense, truesight, etc.).',
-      'For attack purposes it is heavily obscured.',
-      'Attack rolls against it have disadvantage.',
-      'Its own attack rolls have advantage.',
-      'It can still be detected by noise, tracks, or other means.',
+      "Isn't affected by any effect that needs its target to be seen, unless the effect's creator can see it. Worn and carried gear is hidden too.",
+      'Attack rolls against it have Disadvantage; its attack rolls have Advantage. This does not apply against a creature that can somehow see it.',
+      'Advantage on Initiative rolls.',
     ],
   },
   Paralyzed: {
     summary:
-      'Incapacitated, speed 0. Auto-fail STR/DEX saves. Attacks have advantage; hits within 5 ft are critical.',
+      'Incapacitated, Speed 0. Auto-fail STR/DEX saves. Attacks against it have Advantage; hits within 5 ft. are critical.',
     rules: [
-      'Is incapacitated and cannot move or speak.',
+      'Incapacitated.',
+      'Speed is 0 and cannot increase.',
       'Automatically fails Strength and Dexterity saving throws.',
-      'Attack rolls against it have advantage.',
-      'Any attack that hits it is a critical hit if the attacker is within 5 feet.',
+      'Attack rolls against it have Advantage.',
+      'Any attack that hits it is a Critical Hit if the attacker is within 5 feet.',
     ],
   },
   Petrified: {
     summary:
-      'Transformed to stone. Incapacitated, auto-fail STR/DEX saves, resistance to all damage, immune to poison/disease.',
+      'Turned to stone. Incapacitated, Speed 0, auto-fail STR/DEX saves, resists all damage, immune to Poisoned.',
     rules: [
-      'Is transformed into solid inanimate substance (along with nonmagical gear).',
-      'Weight increases by a factor of ten and ceases aging.',
-      'Is incapacitated, cannot move or speak, and is unaware of its surroundings.',
-      'Attack rolls against it have advantage.',
+      'Turned into a solid inanimate substance (with its worn and carried nonmagical gear); weight x10; stops aging.',
+      'Incapacitated, Speed 0 and cannot increase; unaware of its surroundings.',
+      'Attack rolls against it have Advantage.',
       'Automatically fails Strength and Dexterity saving throws.',
       'Resistance to all damage.',
-      'Immune to poison and disease; existing poison/disease are suspended.',
+      'Immune to the Poisoned condition.',
     ],
   },
   Poisoned: {
     summary:
-      'Leveled 1-2 (homebrew, tracked like Exhaustion). Level 1: disadvantage on attack rolls and ability checks. Level 2: also 1d4 poison damage at the start of each of your turns, and the first attack against you each round has advantage.',
+      'Disadvantage on attack rolls and ability checks. Homebrew: leveled 1-2, tracked like Exhaustion.',
     rules: [
-      'Level 1 — Disadvantage on attack rolls.',
-      'Level 1 — Disadvantage on ability checks.',
+      'Level 1 (the 2024 Poisoned condition) — Disadvantage on attack rolls and on ability checks.',
       'Level 2 (homebrew) — Reached by failing a saving throw against a poison effect with a natural 1 on the die.',
       'Level 2 (homebrew) — All Level 1 effects, plus: take 1d4 poison damage at the start of each of your turns.',
-      'Level 2 (homebrew) — The first attack roll made against you each round has advantage.',
+      'Level 2 (homebrew) — The first attack roll made against you each round has Advantage.',
     ],
   },
   Prone: {
     summary:
-      'Disadvantage on attacks. Attacks within 5 ft have advantage; ranged have disadvantage. Costs half speed to stand.',
+      'Disadvantage on attacks. Attacks within 5 ft. have Advantage; farther ones have Disadvantage. Standing costs half Speed.',
     rules: [
-      'Only movement option is crawling, unless it stands up.',
-      'Standing up costs half its speed.',
-      'Its attack rolls have disadvantage.',
-      'Melee attack rolls against it have advantage.',
-      'Ranged attack rolls against it have disadvantage.',
+      'Only movement options are crawling, or spending half its Speed (rounded down) to stand up.',
+      'Its attack rolls have Disadvantage.',
+      'An attack roll against it has Advantage if the attacker is within 5 feet; otherwise it has Disadvantage.',
     ],
   },
   Restrained: {
     summary:
-      'Speed 0. Its attacks have disadvantage; attacks against it have advantage. Disadvantage on DEX saves.',
+      'Speed 0. Its attacks have Disadvantage; attacks against it have Advantage. Disadvantage on DEX saves.',
     rules: [
-      'Speed becomes 0 and cannot benefit from bonuses to speed.',
-      'Attack rolls against it have advantage.',
-      'Its own attack rolls have disadvantage.',
+      'Speed is 0 and cannot increase.',
+      'Attack rolls against it have Advantage.',
+      'Its attack rolls have Disadvantage.',
       'Disadvantage on Dexterity saving throws.',
     ],
   },
   Stunned: {
     summary:
-      'Incapacitated, speed 0. Auto-fail STR/DEX saves. Attacks against it have advantage.',
+      'Incapacitated. Auto-fail STR/DEX saves. Attacks against it have Advantage.',
     rules: [
-      'Is incapacitated and cannot move.',
-      'Can speak only falteringly.',
+      'Incapacitated.',
       'Automatically fails Strength and Dexterity saving throws.',
-      'Attack rolls against it have advantage.',
+      'Attack rolls against it have Advantage.',
     ],
   },
   Unconscious: {
     summary:
-      'Incapacitated, prone, drops held items. Auto-fail STR/DEX saves. Attacks have advantage; hits within 5 ft are critical.',
+      'Incapacitated and Prone, drops what it holds. Auto-fail STR/DEX saves. Attacks have Advantage; hits within 5 ft. are critical.',
     rules: [
-      'Is incapacitated, cannot move or speak, and is unaware of its surroundings.',
-      'Drops anything held and falls prone.',
+      'Incapacitated and Prone; drops anything it is holding. Stays Prone after the condition ends.',
+      'Speed is 0 and cannot increase.',
+      'Attack rolls against it have Advantage.',
       'Automatically fails Strength and Dexterity saving throws.',
-      'Attack rolls against it have advantage.',
-      'Any attack that hits it is a critical hit if the attacker is within 5 feet.',
+      'Any attack that hits it is a Critical Hit if the attacker is within 5 feet.',
+      'Unaware of its surroundings.',
     ],
   },
   Muddled: {
     summary:
-      'Synaptic Static: subtract 1d6 from attack rolls, ability checks, and CON saves to maintain concentration.',
+      'Synaptic Static (muddled thoughts): subtract 1d6 from attack rolls, ability checks, and CON saves to maintain Concentration.',
     rules: [
-      'Roll a d6 at the start of each affected action and subtract the result from attack rolls and ability checks.',
-      'Also subtract the d6 from Constitution saving throws made to maintain concentration.',
-      'At the end of each of its turns, the target may make an Intelligence saving throw to end this effect.',
+      'Lasts 1 minute, after a failed Intelligence save against Synaptic Static.',
+      'Subtract 1d6 from all its attack rolls and ability checks.',
+      'Also subtract 1d6 from Constitution saving throws made to maintain Concentration.',
+      'At the end of each of its turns it makes an Intelligence saving throw, ending the effect on itself on a success.',
     ],
   },
   Concentrating: {
     summary:
-      'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half damage, whichever is higher) or spell drops.',
+      'Maintaining a concentration spell. Taking damage requires a CON save (DC 10 or half the damage, whichever is higher, max DC 30) or the spell ends.',
     rules: [
-      'Taking damage requires a Constitution saving throw (DC 10 or half the damage taken, whichever is higher).',
+      'Taking damage requires a Constitution saving throw: DC 10 or half the damage taken (rounded down), whichever is higher, up to a maximum DC of 30.',
       'On a failed save the concentration spell ends.',
-      'Only one concentration spell can be active at a time.',
-      'Being incapacitated or killed also ends concentration.',
+      'Only one concentration effect can be active at a time; casting another ends the first.',
+      'Being Incapacitated or killed also ends concentration.',
     ],
   },
   Blessed: {
-    summary: '+1d4 to attack rolls and saving throws.',
-    rules: ['Add 1d4 to attack rolls.', 'Add 1d4 to saving throws.'],
+    summary: '+1d4 to attack rolls and saving throws (Bless).',
+    rules: ['Add 1d4 to each attack roll.', 'Add 1d4 to each saving throw.'],
   },
   Bardic: {
     summary:
-      'Holding a Bardic Inspiration die. Add it to one attack roll, ability check, or saving throw.',
+      'Holding a Bardic Inspiration die: once within the hour, add it to a D20 Test the creature fails.',
     rules: [
-      'Add the inspiration die to one ability check, attack roll, or saving throw made within the next 10 minutes (or longer with Font of Inspiration).',
-      'Choose to add it after making the roll but before the result is announced.',
+      'Once within the next hour, when the creature fails a D20 Test (attack roll, saving throw, or ability check), it can roll the die and add the result to the d20, possibly turning the failure into a success.',
+      'The die is expended when rolled.',
       'A creature can hold only one Bardic Inspiration die at a time.',
     ],
   },
   Haste: {
     summary:
-      'Speed doubled, +2 AC, advantage on DEX saves, one extra action each turn.',
+      'Speed doubled, +2 AC, Advantage on DEX saves, one extra action each turn.',
     rules: [
       'Speed is doubled.',
       '+2 bonus to AC.',
       'Advantage on Dexterity saving throws.',
-      'Gains one additional action each turn: Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object.',
-      "Can't cast spells with the extra action.",
-      "When the effect ends, the target can't move or take actions or reactions until after its next turn (unless the haste was ended by the target being reduced to 0 HP or otherwise incapacitated).",
+      'One additional action each turn: Attack (one attack only), Dash, Disengage, Hide, or Utilize.',
+      'When the spell ends the target is Incapacitated and has Speed 0 until the end of its next turn.',
     ],
   },
   Hexed: {
     summary:
-      'Caster deals +1d6 necrotic to chosen target; disadvantage on chosen ability checks.',
+      'The caster deals +1d6 Necrotic on each hit; Disadvantage on checks with one chosen ability.',
     rules: [
-      'The caster deals an extra 1d6 necrotic damage to it on each hit.',
-      'Disadvantage on ability checks using the ability chosen by the caster.',
+      'The caster deals an extra 1d6 Necrotic damage to it whenever they hit it with an attack roll.',
+      'Disadvantage on ability checks made with the ability the caster chose.',
     ],
   },
   Raging: {
     summary:
-      'Advantage on STR checks/saves, bonus melee damage, resistance to bludgeoning/piercing/slashing. No spellcasting.',
+      'Advantage on STR checks/saves, bonus Strength damage, resistance to bludgeoning/piercing/slashing. No spells or Concentration.',
     rules: [
       'Advantage on Strength checks and Strength saving throws.',
-      "Bonus damage on melee weapon attacks using Strength (scales with the barbarian's level — see their Rage feature).",
-      'Resistance to bludgeoning, piercing, and slashing damage.',
-      "Can't cast spells or concentrate on them while raging.",
-      'Lasts 1 minute; ends early if you go a full turn without attacking a hostile creature or taking damage since your last turn, or if you fall unconscious.',
+      'Bonus damage on attacks made with Strength (weapon or Unarmed Strike); it grows with Barbarian level.',
+      'Resistance to Bludgeoning, Piercing, and Slashing damage.',
+      "Can't maintain Concentration and can't cast spells.",
+      "Lasts until the end of the barbarian's next turn; it can be extended each turn by attacking a creature, forcing a saving throw, or using a Bonus Action. It ends early in Heavy armor or when Incapacitated (maximum 10 minutes).",
     ],
   },
 }

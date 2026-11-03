@@ -22,10 +22,18 @@ const { abilityModifier } = require('./abilities')
 const { effectiveProficiencyBonus } = require('./proficiency')
 const { bonusLines } = require('./breakdown')
 const { rulesetOf } = require('./rulesetId')
+const { withExhaustion } = require('./exhaustion')
 
 // ── Saving throws ──────────────────────────────────────────────────────────
 
 function savingThrowBreakdown(character, statKey, equippedItems = []) {
+  return withExhaustion(
+    character,
+    savingThrowBase(character, statKey, equippedItems)
+  )
+}
+
+function savingThrowBase(character, statKey, equippedItems = []) {
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
   const base = abilityModifier(scores[statKey])
   const prof = effectiveProficiencyBonus(character, bonuses)
@@ -103,6 +111,23 @@ function skillTraining(character, skillName, equippedItems = []) {
 }
 
 function skillBreakdown(character, skillName, equippedItems = []) {
+  return withExhaustion(
+    character,
+    skillBase(character, skillName, equippedItems)
+  )
+}
+
+// A raw ability check on its own (no skill): the modifier, less Exhaustion.
+function abilityCheckBreakdown(character, statKey, equippedItems = []) {
+  const { scores } = resolveEffectiveStats(character, equippedItems)
+  const mod = abilityModifier(scores[statKey])
+  return withExhaustion(character, {
+    value: mod,
+    breakdown: [{ label: `${statKey.toUpperCase()} mod`, amount: mod }],
+  })
+}
+
+function skillBase(character, skillName, equippedItems = []) {
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
   const statKey = SKILL_MAP[skillName]
   if (!statKey) return { value: 0, breakdown: [] }
@@ -183,7 +208,8 @@ function skillAdvantage(character, skillName, equippedItems = []) {
 
 function passivePerceptionBreakdown(character, equippedItems = []) {
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
-  const perception = skillBreakdown(character, 'Perception', equippedItems)
+  // A passive score is not a roll, so Exhaustion's penalty to D20 Tests does not touch it.
+  const perception = skillBase(character, 'Perception', equippedItems)
   const advantage = skillAdvantage(character, 'Perception', equippedItems)
     ? 5
     : 0
@@ -211,6 +237,10 @@ function passivePerception(character, equippedItems = []) {
 // ability however many features name it, and read off the EFFECTIVE score so
 // items/features that change the ability are honored.
 function initiativeBreakdown(character, equippedItems = []) {
+  return withExhaustion(character, initiativeBase(character, equippedItems))
+}
+
+function initiativeBase(character, equippedItems = []) {
   const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
   const features = character.features ?? []
   const ruleset = rulesetOf(character)
@@ -303,7 +333,10 @@ function spellAttackBonusBreakdown(
     ...bonusLines(equippedItems, 'spell_attack'),
     ...bonusLines(character.features, 'spell_attack'),
   ]
-  return { value: mod + prof + (bonuses.spell_attack ?? 0), breakdown }
+  return withExhaustion(character, {
+    value: mod + prof + (bonuses.spell_attack ?? 0),
+    breakdown,
+  })
 }
 
 function spellAttackBonus(character, equippedItems = []) {
@@ -340,6 +373,7 @@ module.exports = {
   SKILL_MAP,
   skill,
   skillBreakdown,
+  abilityCheckBreakdown,
   skillTraining,
   allSkills,
   passivePerception,

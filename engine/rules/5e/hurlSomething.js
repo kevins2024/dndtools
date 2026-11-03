@@ -25,6 +25,7 @@ const { resolveEffectiveStats } = require('./characterStats')
 const { abilityModifier } = require('./abilities')
 const { effectiveProficiencyBonus } = require('./proficiency')
 const { rageDamage } = require('./weaponAttack')
+const { withExhaustion } = require('./exhaustion')
 
 const HURL_FEATURE_ID = 'hb_hurl_something'
 const MIN_STRENGTH = 21
@@ -78,13 +79,13 @@ function hurlStrike(character, equippedItems = [], { weight = null } = {}) {
     damageType: 'bludgeoning',
     range: RANGE,
     actionCost: HURL_ACTION_COST,
-    attack: {
+    attack: withExhaustion(character, {
       value: strMod + prof,
       breakdown: [
         { label: 'STR', amount: strMod },
         { label: 'Proficiency', amount: prof },
       ],
-    },
+    }),
     damage: {
       value: strMod + twf + rage,
       breakdown: [

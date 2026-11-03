@@ -110,7 +110,7 @@ export default {
     rollCheck(stat) {
       this.$store.commit('SET_PENDING_ROLL', {
         label: `${this.character.name} — ${stat.label} check`,
-        mod: stat.mod,
+        mod: dnd.abilityCheck(this.character, stat.key, this.partyItems),
       })
     },
     rollSave(stat) {

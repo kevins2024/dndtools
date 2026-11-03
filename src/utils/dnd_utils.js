@@ -35,6 +35,7 @@ import {
   SKILL_MAP as ENGINE_SKILL_MAP,
   skill as engineSkill,
   skillBreakdown as engineSkillBreakdown,
+  abilityCheckBreakdown as engineAbilityCheckBreakdown,
   skillTraining as engineSkillTraining,
   allSkills as engineAllSkills,
   passivePerception as enginePassivePerception,
@@ -489,6 +490,16 @@ export const dnd = {
       character,
       dnd._equippedOnly(character, partyItems)
     )
+  },
+
+  // The modifier a raw ability check (no skill) is rolled with: the ability
+  // modifier less Exhaustion. The score tile's own modifier is unchanged.
+  abilityCheck(character, statKey, partyItems = []) {
+    return engineAbilityCheckBreakdown(
+      character,
+      statKey,
+      dnd._equippedOnly(character, partyItems)
+    ).value
   },
 
   // ─────────────────────────────────────────────
