@@ -50,18 +50,14 @@ test('multiclassCasterLevel: Warlock never contributes to the combined table', (
   assert.equal(level, 5)
 })
 
-test('Kerra (Fighter Champion 4 / Warlock 5) has ZERO normal slots and pact magic only — matches real 5e multiclassing', () => {
-  const characters = require(path.join(
-    __dirname,
-    '..',
-    '..',
-    'src',
-    'data',
-    'characters.json'
-  ))
-  const kerra = characters.find((c) => c.name === 'Kerra')
-  assert.deepEqual(engine.multiclassSpellSlots(kerra.classes), [])
-  assert.deepEqual(engine.multiclassPactSlots(kerra.classes), {
+test('a Fighter 4 / Warlock 5 has ZERO normal slots and Pact Magic only — Pact Magic slots are kept apart from the Multiclass Spellcaster table', () => {
+  const classes = [
+    { name: 'Fighter', subclass: 'Champion', level: 4 },
+    { name: 'Warlock', subclass: 'Great Old One Patron', level: 5 },
+  ]
+  assert.deepEqual(engine.multiclassSpellSlots(classes), [])
+  // PHB 2024 Warlock at level 5: 2 slots, 3rd level.
+  assert.deepEqual(engine.multiclassPactSlots(classes), {
     slots: 2,
     slot_level: 3,
   })

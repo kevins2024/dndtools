@@ -225,12 +225,15 @@ test("describeLevelUp: Circle of the Moon 5->6 still only gets the real RAW feat
 
 // ---- Known-spell-cap check now covers every class, not just classes[0] ----
 
-test('validateCharacter: real roster Elucyne (Ranger/Rogue/Fighter) produces no known-spell-cap false positive after the fix', () => {
-  const characters = require('../../src/data/characters.json')
-  const list = Array.isArray(characters)
-    ? characters
-    : Object.values(characters)[0]
-  const elucyne = list.find((c) => c.name === 'Elucyne')
-  const issues = validateCharacter(elucyne)
+test('validateCharacter: a simulated Ranger/Rogue/Fighter produces no known-spell-cap false positive', () => {
+  const { buildMulticlass } = require('./helpers/autoLevel')
+  const { character } = buildMulticlass({
+    plan: [
+      ['Ranger', 'Gloom Stalker', 5],
+      ['Rogue', null, 2],
+      ['Fighter', 'Champion', 2],
+    ],
+  })
+  const issues = validateCharacter(character)
   assert.ok(!issues.some((i) => i.message.includes('caps at')))
 })

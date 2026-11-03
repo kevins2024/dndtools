@@ -32,7 +32,7 @@ const {
   listInvocations,
   meetsInvocationPrerequisite,
 } = require('./invocations')
-const { listSubclasses } = require('./subclasses')
+const { listSubclasses, spellListClasses } = require('./subclasses')
 const { loadClass } = require('./classFeatures')
 const { loadSkill } = require('./skills')
 const { loadFeat } = require('./grants')
@@ -63,16 +63,18 @@ const spellOpt = (s, known) =>
 
 // ── option sources the engine has to look up ──────────────────────────────
 
-function knownSpellNames(character) {
-  return new Set((character.spells || []).map((s) => norm(s.name)))
+// Spells already held, plus any a feat answered in this same level-up is about to grant
+// (`ctx.grantedNow`), so a class pick cannot land on the same spell twice.
+function knownSpellNames(from) {
+  const character = from.character || from
+  const names = new Set((character.spells || []).map((s) => norm(s.name)))
+  for (const n of from.grantedNow || []) names.add(n)
+  return names
 }
 function classSpellContext(ctx) {
   const { character, className, toLevel } = ctx
   const entry = (character.classes || []).find((c) => c.name === className)
   const subclassName = entry?.subclass
-  const thirdCaster = ['Eldritch Knight', 'Arcane Trickster'].includes(
-    subclassName
-  )
   const maxLevel =
     effectiveMaxSpellLevel({
       className,
@@ -82,12 +84,23 @@ function classSpellContext(ctx) {
         .filter((c) => c.name !== className)
         .map((c) => ({ name: c.name, level: c.level, subclass: c.subclass })),
     }) || 1
-  return { listClass: thirdCaster ? 'Wizard' : className, maxLevel }
+  // The lists this class draws from: its own, a subclass's replacement (Eldritch Knight, Arcane
+  // Trickster) or addition (Divine Soul), from the subclass data.
+  const listClasses = spellListClasses(className, subclassName, ctx.ruleset)
+  return { listClass: listClasses[0], listClasses, maxLevel }
 }
-const spells = (listClass, o, known) =>
-  listSpellsForClass(listClass, { extraFilter: (r) => !r.homebrew, ...o }).map(
-    (s) => spellOpt(s, known)
-  )
+// Spell options for one class list, or for several merged (each spell once, lowest level first).
+const spells = (listClass, o, known) => {
+  const lists = Array.isArray(listClass) ? listClass : [listClass]
+  const seen = new Set()
+  return lists
+    .flatMap((l) =>
+      listSpellsForClass(l, { extraFilter: (r) => !r.homebrew, ...o })
+    )
+    .filter((s) => !seen.has(norm(s.name)) && seen.add(norm(s.name)))
+    .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name))
+    .map((s) => spellOpt(s, known))
+}
 
 // ── what each kind of pending choice looks like and where its answer goes ──
 // `apply(inputs, p, values)` folds the answer into diffLevelUp's own parameters.
@@ -110,9 +123,9 @@ const SPECS = {
     prompt: (p) => `Choose ${p.count} cantrip${p.count === 1 ? '' : 's'}.`,
     options: (p, ctx) =>
       spells(
-        classSpellContext(ctx).listClass,
+        classSpellContext(ctx).listClasses,
         { cantripsOnly: true },
-        knownSpellNames(ctx.character)
+        knownSpellNames(ctx)
       ),
     apply: (i, p, v) =>
       ((i.spellChoices ||= {}).cantrips = [
@@ -124,8 +137,8 @@ const SPECS = {
     title: 'Spells',
     prompt: (p) => `Choose ${p.count} spell${p.count === 1 ? '' : 's'}.`,
     options: (p, ctx) => {
-      const { listClass, maxLevel } = classSpellContext(ctx)
-      return spells(listClass, { maxLevel }, knownSpellNames(ctx.character))
+      const { listClasses, maxLevel } = classSpellContext(ctx)
+      return spells(listClasses, { maxLevel }, knownSpellNames(ctx))
     },
     apply: (i, p, v) =>
       ((i.spellChoices ||= {}).spells = [
@@ -140,7 +153,7 @@ const SPECS = {
       spells(
         'Wizard',
         { maxLevel: classSpellContext(ctx).maxLevel },
-        knownSpellNames(ctx.character)
+        knownSpellNames(ctx)
       ),
     apply: (i, p, v) => concatIn(i, 'spellbookChoices', v),
   },
@@ -151,7 +164,7 @@ const SPECS = {
       spells(
         'Bard',
         { maxLevel: classSpellContext(ctx).maxLevel, pool: 'any' },
-        knownSpellNames(ctx.character)
+        knownSpellNames(ctx)
       ),
     apply: (i, p, v) => concatIn(i, 'magicalSecretsChoice', v),
   },
@@ -206,6 +219,12 @@ const SPECS = {
     title: 'Divine Order',
     prompt: () => 'Choose a Divine Order.',
     apply: (i, p, v) => (c24(i).divineOrder = v[0]),
+  },
+  blessedStrikesChoice: {
+    title: 'Blessed Strikes',
+    prompt: () =>
+      'Choose Divine Strike (extra 1d8 Necrotic or Radiant on a weapon hit) or Potent Spellcasting (add your Wisdom modifier to Cleric cantrip damage).',
+    apply: (i, p, v) => (c24(i).blessedStrikes = v[0]),
   },
   primalOrderChoice: {
     title: 'Primal Order',
@@ -292,11 +311,9 @@ const SPECS = {
     title: 'Multiclass skill',
     prompt: () => 'Choose a skill proficiency from your new class.',
     options: (p, ctx) => {
-      const owned = new Set(
-        (ctx.character.skill_proficiencies || []).map((s) =>
-          norm(s).replace(/ /g, '_')
-        )
-      )
+      // Sheets spell a skill several ways ("Sleight of Hand", "SleightOfHand", "sleight_of_hand").
+      const flat = (s) => norm(s).replace(/[^a-z0-9]/g, '')
+      const owned = new Set((ctx.character.skill_proficiencies || []).map(flat))
       const ids = p.options?.length
         ? p.options
         : loadClass(p.className || ctx.className)?.skill_choices?.options || []
@@ -306,7 +323,7 @@ const SPECS = {
           opt(
             id,
             loadSkill(id)?.name ?? titleCase(id),
-            owned.has(norm(id))
+            owned.has(flat(id))
               ? { disabled: true, reason: 'already proficient' }
               : {}
           )
@@ -339,7 +356,7 @@ SPECS.spellMasteryChoice = {
   prompt: () =>
     'Choose one 1st-level and one 2nd-level Wizard spell you can cast without a slot.',
   slots: (p, ctx) => {
-    const known = knownSpellNames(ctx.character)
+    const known = knownSpellNames(ctx)
     return [1, 2].map((lvl) => ({
       label: `${lvl === 1 ? '1st' : '2nd'}-level spell`,
       options: spells(
@@ -359,7 +376,7 @@ SPECS.signatureSpellsChoice = {
     spells(
       'Wizard',
       { maxLevel: 3, extraFilter: (r) => r.level === 3 && !r.homebrew },
-      knownSpellNames(ctx.character)
+      knownSpellNames(ctx)
     ),
   apply: (i, p, v) => setIn(i, 'signatureSpellsChoice', v),
 }
@@ -380,8 +397,8 @@ SPECS.spellSwap = {
   prompt: () =>
     'You may replace one spell you know with another from your class list.',
   slots: (p, ctx) => {
-    const known = knownSpellNames(ctx.character)
-    const { listClass, maxLevel } = classSpellContext(ctx)
+    const known = knownSpellNames(ctx)
+    const { listClasses, maxLevel } = classSpellContext(ctx)
     return [
       {
         label: 'Replace',
@@ -389,7 +406,7 @@ SPECS.spellSwap = {
           .filter((x) => x.level > 0 && !x.featureGranted && !x.bonusSpell)
           .map((x) => opt(x.name, x.name, { level: x.level })),
       },
-      { label: 'With', options: spells(listClass, { maxLevel }, known) },
+      { label: 'With', options: spells(listClasses, { maxLevel }, known) },
     ]
   },
   apply: (i, p, v) => setIn(i, 'spellSwap', { from: v[0], to: v[1] }),
@@ -657,6 +674,14 @@ function checkAnswer(d, answer) {
     const set = d.slots ? allowed[i] : allowed
     if (set.size && !set.has(answer[i]))
       return `"${answer[i]}" is not one of the options`
+    // An option that is listed but unavailable (already known, already granted, prerequisite) cannot be chosen.
+    const listed = (d.slots ? d.slots[i].options : d.options).find(
+      (o) => o.value === answer[i]
+    )
+    if (listed?.disabled)
+      return `"${answer[i]}" is not available: ${
+        listed.reason || 'not allowed'
+      }`
   }
   if (new Set(answer).size !== answer.length)
     return 'the same option was chosen twice'
@@ -693,6 +718,28 @@ function levelAfter(character, className, toLevel) {
   return others + toLevel
 }
 
+const SPELL_QUESTIONS = new Set([
+  'newCantrips',
+  'newKnownSpells',
+  'spellbookAdditions',
+  'magicalSecretsChoice',
+  'spellSwap',
+])
+
+// The spells that the feats answered so far grant outright (fixed grants and the spells picked for them).
+function featGrantedSpells(seen, answers) {
+  const names = new Set()
+  for (const { d } of seen) {
+    const a = answers[d.id]
+    if (d.kind !== 'asiOrFeat' || a?.type !== 'feat') continue
+    const feat = loadFeat(a.featName)
+    for (const n of feat?.grants_spells?.fixed ?? []) names.add(norm(n))
+    for (const v of Object.values(a.choices ?? {}))
+      for (const n of [].concat(v)) names.add(norm(n))
+  }
+  return names
+}
+
 function previewLevelUp(character, opts, answers = {}) {
   const { className, toLevel } = opts
   let current = character
@@ -704,6 +751,18 @@ function previewLevelUp(character, opts, answers = {}) {
     const pending = result.pendingChoices || []
     const ctx = { character: current, className, toLevel }
     const ids = choiceIds(pending)
+    // Spells a feat answered so far will grant at this level; the spell questions must not offer them.
+    ctx.grantedNow = featGrantedSpells(seen, answers)
+    // ...and so do the features the level gives or the sheet has (the house-rule Prestidigitation, Fey
+    // Touched, a species cantrip): a class pick must not land on a spell already granted.
+    for (const f of result.patch?.features || current.features || [])
+      for (const n of f.spells_granted || [])
+        ctx.grantedNow.add(norm(typeof n === 'string' ? n : n?.name))
+    if (ctx.grantedNow.size)
+      seen.forEach((s, i) => {
+        if (SPELL_QUESTIONS.has(s.d.type))
+          seen[i] = { d: describeChoice(s.p, ctx, s.d.id), p: s.p }
+      })
     pending.forEach((p, i) => {
       if (!seen.some((s) => s.d.id === ids[i]))
         seen.push({ d: describeChoice(p, ctx, ids[i]), p })

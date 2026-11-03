@@ -1,4 +1,5 @@
 const { loadClass } = require('./classFeatures')
+const featureMechanicsData = require('../../data/5e/feature-mechanics.json')
 const { loadSubclass } = require('./subclasses')
 const { rulesetOf, loadRulesetJson } = require('./ruleset')
 const { buildLevelEntry } = require('./levelHistory')
@@ -2490,10 +2491,18 @@ function diffLevelUp(
     // entirely-missing half of "known spell/cantrip picks": describeLevelUp
     // always computed cantripsBefore/cantripsAfter, but nothing ever turned
     // a positive delta into a pendingChoice or wrote a pick anywhere.
+    // Cantrips a feature grants on top of the class table (feature-mechanics `extra_cantrips`) are
+    // asked for once, when that feature joins the character — or, for one the character already has,
+    // at their very first level. The audit allows exactly these, so the level-up has to ask for them.
+    const featureExtraCantrips = [
+      ...newFeatures,
+      ...((character.level || 0) === 0 ? character.features || [] : []),
+    ].reduce((n, f) => n + (featureMechanicsData[f.id]?.extra_cantrips || 0), 0)
     const cantripsGained =
       description.spellcasting.cantripsAfter -
       description.spellcasting.cantripsBefore +
-      bonusCantripsFromChoices
+      bonusCantripsFromChoices +
+      featureExtraCantrips
     if (cantripsGained > 0) {
       const existingCantrips = new Set(
         (character.spells || [])

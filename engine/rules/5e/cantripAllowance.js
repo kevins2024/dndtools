@@ -13,7 +13,12 @@ function extraCantrips(character) {
     /high elf/i.test(character.subgenus || '') ||
     /high elf/i.test(character.genus || '') ||
     (character.features || []).some((f) => /high elf/i.test(f.name))
-  if (highElf) n += 1
+  // A lineage cantrip the sheet already holds as a species-granted spell is counted as that spell,
+  // not as one of the class's extra cantrips.
+  const grantedByLineage = (character.spells || []).some(
+    (s) => s.featureGranted && /high elf|elven lineage/i.test(s._source || '')
+  )
+  if (highElf && !grantedByLineage) n += 1
   return n
 }
 

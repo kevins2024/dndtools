@@ -1948,7 +1948,7 @@
     "type": "wondrous",
     "equipped_by": "Enauweyn",
     "carried_by": "Enauweyn",
-    "attuned": true,
+    "attuned": false,
     "notes": "Unassigned. Corwin already has a pair.",
     "id": "items_158"
   },

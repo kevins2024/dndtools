@@ -21,6 +21,7 @@ const { hitDieForClass, asiLevelsForClass } = require('./progression')
 const { loadClass, allFeaturesUpToLevel } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 const { rulesetOf } = require('./rulesetId')
+const { asiSlotStatus } = require('./asiSlots')
 
 const mod = (score) => Math.floor((score - 10) / 2)
 const norm = (s) =>
@@ -174,19 +175,23 @@ function reconstructLevelHistory(character) {
     }
   }
 
+  const asiLevelsOf = (className) => {
+    const fromData = Object.entries(
+      loadClass(className, ruleset)?.features_by_level || {}
+    )
+      .filter(([, names]) =>
+        names.some((n) => /^Ability Score Improvement|^Epic Boon/i.test(n))
+      )
+      .map(([l]) => Number(l))
+    return fromData.length ? fromData : asiLevelsForClass(className)
+  }
+  const asiSlots = asiSlotStatus(character, asiLevelsOf)
+
   let characterLevel = 0
   for (const c of ordered) {
     const data = loadClass(c.name, ruleset)
     const sub = c.subclass ? loadSubclass(c.name, c.subclass, ruleset) : null
-    const asiLevels = new Set(
-      Object.entries(data?.features_by_level || {})
-        .filter(([, names]) =>
-          names.some((n) => /^Ability Score Improvement|^Epic Boon/i.test(n))
-        )
-        .map(([l]) => Number(l))
-    )
-    if (!asiLevels.size)
-      asiLevelsForClass(c.name).forEach((l) => asiLevels.add(l))
+    const asiLevels = new Set(asiLevelsOf(c.name))
     const grantedAt = new Map()
     for (const f of allFeaturesUpToLevel(c.name, c.level, ruleset))
       if (!PLACEHOLDER.test(f.name) && onSheet(f.name))
@@ -227,26 +232,15 @@ function reconstructLevelHistory(character) {
       entry.features = grantedAt.get(lvl) || []
       const choices = []
       if (asiLevels.has(lvl)) {
-        const inc = (character.ability_score_history || []).filter(
-          (h) =>
-            /Ability Score Improvement/i.test(h.source || '') &&
-            Number(h.level_gained) === lvl &&
-            (!h.class || h.class === c.name)
-        )
-        const feat = features.find(
-          (f) =>
-            f.type === 'feat' && !f._grant && Number(f.level_gained) === lvl
-        )
-        if (inc.length)
+        const slot = asiSlots.find((s) => s.class === c.name && s.level === lvl)
+        if (slot?.state === 'ability')
           choices.push({
             type: 'ability',
-            detail: inc
-              .map((h) => `+${h.amount} ${String(h.ability).toUpperCase()}`)
-              .join(', '),
+            detail: slot.detail,
             source: 'Ability Score Improvement',
-            ...(inc.some((h) => h.inferred) ? { inferred: true } : {}),
           })
-        else if (feat) choices.push({ type: 'feat', detail: feat.name })
+        else if (slot?.state === 'feat')
+          choices.push({ type: 'feat', detail: slot.detail })
         else choices.push({ type: 'asi-or-feat', detail: 'unrecorded' })
       }
       for (const f of features)

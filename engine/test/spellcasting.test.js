@@ -2,24 +2,7 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const engine = require('../index')
 
-test("full-caster slots at level 9 match Rith/Therynv'l (Druid) in characters.json", () => {
-  assert.deepEqual(
-    engine.spellSlotsForClassAtLevel('Druid', 9),
-    [4, 3, 3, 3, 1]
-  )
-  assert.deepEqual(
-    engine.spellSlotsForClassAtLevel('Wizard', 9),
-    [4, 3, 3, 3, 1]
-  )
-})
-
-test('half-caster slots at level 9 match Enauweyn (Paladin) in characters.json exactly', () => {
-  assert.deepEqual(engine.spellSlotsForClassAtLevel('Paladin', 9), [4, 3, 2])
-})
-
-test('artificer slots at level 9 match Jaygar in characters.json exactly', () => {
-  assert.deepEqual(engine.spellSlotsForClassAtLevel('Artificer', 9), [4, 3, 2])
-})
+// The 2024 PHB's class slot, cantrip and prepared-spell tables are checked in bookTables2024.test.js.
 
 test('pact magic scales by slot level, not slot count, as Warlock levels up', () => {
   assert.deepEqual(engine.pactMagicForLevel(1), { slots: 1, slot_level: 1 })

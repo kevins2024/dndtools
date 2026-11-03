@@ -1236,6 +1236,7 @@
   "yetgrese-throwing-sword-2": {
     "battle_effect": true,
     "weapon_category": "yetgrese_shortsword",
+    "thrown": { "normal": 20, "long": 60 },
     "returning": true,
     "slot": "melee1h"
   },

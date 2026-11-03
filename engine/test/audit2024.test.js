@@ -73,7 +73,8 @@ test('2024 feature ids are unique, namespaced, and have a catalog name equal to 
   const ids = pub24.map((e) => e.id)
   assert.equal(new Set(ids).size, ids.length, 'duplicate published ids')
   for (const e of pub24) {
-    assert.match(e.id, /^pub24_/, e.id)
+    // pub24_ = Player's Handbook (2024); ddb26_ = D&D Beyond Drops, July 2026 (Pack Fighting).
+    assert.match(e.id, /^(pub24|ddb26)_/, e.id)
     assert.equal(catalog[e.id], e.name, `${e.id} catalog name`)
   }
 })
@@ -398,7 +399,17 @@ test('Cleric/Paladin/etc. get no spell above what their slots allow: no 6th-leve
 
 test('feat catalog: categories add up, prerequisites parsed or explicitly unknown, repeatables identified', () => {
   const feats = listFeats('2024').filter((f) => f.ruleset === '2024')
-  assert.equal(feats.length, 75)
+  // 75 Player's Handbook feats, plus Pack Fighting from the July 2026 D&D Beyond drop.
+  assert.equal(
+    feats.filter((f) => /^Player's Handbook/.test(f.source)).length,
+    75
+  )
+  assert.deepEqual(
+    feats
+      .filter((f) => !/^Player's Handbook/.test(f.source))
+      .map((f) => f.name),
+    ['Pack Fighting']
+  )
   const unknown = feats.filter((f) => f.prerequisite?.type === 'unknown')
   assert.deepEqual(
     unknown.map((f) => f.name),

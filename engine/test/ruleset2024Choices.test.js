@@ -4,6 +4,7 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const { resolveChoices2024, masteryPool } = require('../rules/5e/choices2024')
+const { listFeats } = require('../rules/5e/grants')
 
 const char = (o = {}) => ({
   name: 'T',
@@ -155,6 +156,29 @@ test('Fighting Style is a Fighting Style FEAT: Fighter at 1st, Paladin and Range
   assert.ok(pendingTypes(run('Ranger', 1, 2)).includes('fightingStyleChoice'))
 })
 
+// D&D Beyond Drops, July 2026 (not in the Player's Handbook): a Fighting Style feat, so a class's Fighting
+// Style offers it and the same prerequisite applies. Text from the drop: +1 melee damage with an ally
+// (not Incapacitated) within 5 feet of the target, +2 if that ally also has the feat.
+test('Pack Fighting (July 2026 drop) is a Fighting Style feat, offered like the others, with its +1 / +2 text', () => {
+  const pending = run('Fighter', 0, 1).pendingChoices.find(
+    (p) => p.type === 'fightingStyleChoice'
+  )
+  assert.ok(pending.options.includes('Pack Fighting'))
+  const chosen = run('Fighter', 0, 1, { fightingStyle: 'Pack Fighting' })
+  const feat = chosen.features.find((x) => x.name === 'Pack Fighting')
+  assert.deepEqual(
+    [feat.type, feat.id, feat._source, feat.level_gained],
+    ['feat', 'ddb26_feat-pack-fighting', 'Fighter', 1]
+  )
+  const text = listFeats('2024').find((f) => f.name === 'Pack Fighting')
+  assert.equal(text.category, 'fighting_style')
+  assert.equal(text.prerequisite.type, 'fighting_style_feature')
+  assert.match(text.description, /\+1 bonus to the damage roll/)
+  assert.match(text.description, /within 5 feet of the creature/)
+  assert.match(text.description, /Incapacitated/)
+  assert.match(text.description, /increases to \+2/)
+})
+
 test('a Fighting Style already taken is not offered again; a non-style feat is refused', () => {
   const owned = char({
     features: [{ name: 'Archery', type: 'feat', id: 'pub24_feat-archery' }],
@@ -220,11 +244,15 @@ test('Rogue Expertise: two proficient skills at 1st, two more at 6th (none alrea
   const r = run('Rogue', 0, 1, { expertise: { 1: ['Stealth', 'Perception'] } })
   assert.deepEqual(r.expertiseSkills, ['Stealth', 'Perception'])
   assert.equal(r.features[0].name, 'Expertise: Stealth, Perception')
-  const ask = run('Rogue', 0, 1).pendingChoices.find((p) => p.type === 'expertiseChoice')
+  const ask = run('Rogue', 0, 1).pendingChoices.find(
+    (p) => p.type === 'expertiseChoice'
+  )
   assert.equal(ask.count, 2)
 
   const have = char({ skill_expertise: ['Stealth', 'Perception'] })
-  const at6 = run('Rogue', 5, 6, {}, have).pendingChoices.find((p) => p.type === 'expertiseChoice')
+  const at6 = run('Rogue', 5, 6, {}, have).pendingChoices.find(
+    (p) => p.type === 'expertiseChoice'
+  )
   assert.ok(!at6.options.includes('Stealth'))
   assert.equal(at6.count, 2)
 })

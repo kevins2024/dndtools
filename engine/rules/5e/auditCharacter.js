@@ -14,7 +14,7 @@
 // human look (the sheet may be fine); 'info' = context.
 
 const { loadClass, allFeaturesUpToLevel } = require('./classFeatures')
-const { loadSubclass } = require('./subclasses')
+const { loadSubclass, spellListClasses } = require('./subclasses')
 const {
   proficiencyBonus,
   hitDieForClass,
@@ -30,7 +30,13 @@ const {
 const { multiclassSpellSlots } = require('./multiclass')
 const { findSpellRecord } = require('./spellLists')
 const { rulesetOf } = require('./rulesetId')
+const { staleSpeciesFeatureIds } = require('./species')
 const { extraCantrips } = require('./cantripAllowance')
+const {
+  grantedSpellKeys,
+  isGrantedSpell,
+  subclassSpells,
+} = require('./spellOrigins')
 const { deriveCharacter, hasRecordedBase } = require('./derive')
 
 const norm = (s) =>
@@ -47,7 +53,7 @@ const mod = (score) => Math.floor((score - 10) / 2)
 
 const PLACEHOLDER = /subclass$|^ability score improvement$|^epic boon$/i
 const SUBCLASS_SPELL_ACCESS =
-  /Magical Secrets|Divine Magic|Book of Ancient Secrets|Pact of the Tome|Mystic Arcanum|Spell Mastery|Signature Spells|Lunar|Weave|Wild Magic/i
+  /Magical Secrets|Book of Ancient Secrets|Pact of the Tome|Mystic Arcanum|Spell Mastery|Signature Spells|Lunar|Weave|Wild Magic/i
 // Classes that re-choose prepared spells after every Long Rest, so a short list is a choice, not a hole.
 const DAILY_PREPARERS = new Set([
   'Cleric',
@@ -62,15 +68,6 @@ const HALF_PREPARED = new Set(['Paladin', 'Artificer'])
 const SKILL_PICKS_ON_MULTICLASS = new Set(['Bard', 'Ranger', 'Rogue'])
 
 const isCantrip = (s) => s.level === 0 || s.type === 'cantrip'
-const isBonusSpell = (s) =>
-  Boolean(
-    s.featureGranted ||
-      s.domain ||
-      s.oath ||
-      s.racial ||
-      ['oath', 'domain', 'racial', 'patron'].includes(s.type)
-  )
-
 // Level at which `cls`'s table reaches `level` (greatest key <= level).
 const atLevel = (table, level) => {
   let best = -Infinity
@@ -96,16 +93,52 @@ function auditCharacter(character, ctx = {}) {
     (b) => b.id === character.spellbook_id
   )
   const preparedNames = new Set(character.prepared_spells || [])
+  // The book does not know which of its spells came from a species or feat; the sheet's own list does.
+  const grantedHere = new Map(
+    (character.spells || [])
+      .filter((s) => s.featureGranted)
+      .map((s) => [s.name, s])
+  )
   const spells = book
     ? (book.spells || []).map((sp) => ({
         ...sp,
         prepared: preparedNames.has(sp.name),
         ...(sp.level === 0 ? { type: 'cantrip' } : {}),
+        ...(grantedHere.has(sp.name)
+          ? {
+              featureGranted: true,
+              _source: grantedHere.get(sp.name)._source,
+            }
+          : {}),
       }))
     : character.spells || []
+  // Which spells are granted (by a feature, the class, the subclass or a flag) and so never count against
+  // the class: one rule for every check below (spellOrigins.js).
+  const grantedKeys = grantedSpellKeys(character, ruleset)
+  const isBonusSpell = (s) => isGrantedSpell(s, grantedKeys)
   if (!classes.length) {
     add('error', 'no-classes', 'No classes listed.')
     return issues
+  }
+
+  // ── a rewritten species is its 2024 self only ──────────────────────────
+  {
+    const stale = staleSpeciesFeatureIds(
+      character.genus,
+      character.subgenus,
+      features
+    )
+    const leaked = features.filter((f) => f.id && stale.has(f.id))
+    if (leaked.length)
+      add(
+        'warn',
+        'species-2014-leak',
+        `${[...new Set(leaked.map((f) => f.name))].join(
+          ', '
+        )}: 2014 species trait(s) kept beside the 2024 ${
+          character.genus
+        } traits.`
+      )
   }
 
   // ── stored numbers vs the ones calculated from the recorded facts ─────
@@ -416,7 +449,15 @@ function auditCharacter(character, ctx = {}) {
   const casters = classes
     .map((c) => ({ c, sc: resolveSpellcasting(c.name, c.subclass, ruleset) }))
     .filter((x) => x.sc)
-  if (casters.length) {
+  // A character linked to a spellbook has no spells of its own; judging its spell counts without the book would read 0.
+  const bookMissing = Boolean(character.spellbook_id) && !book
+  if (bookMissing && casters.length)
+    add(
+      'warn',
+      'spellbook-not-loaded',
+      'Linked to a spellbook that was not supplied, so spell counts were not checked.'
+    )
+  if (casters.length && !bookMissing) {
     // A shared spellbook lists every cantrip in the book; `prepared: false` marks ones this wizard does not have.
     const cantrips = spells.filter(
       (s) => isCantrip(s) && !isBonusSpell(s) && s.prepared !== false
@@ -435,10 +476,12 @@ function auditCharacter(character, ctx = {}) {
         `${cantrips.length} cantrips, class tables give ${wantCantrips}.`
       )
     if (cantrips.length > wantCantrips)
+      // A warning, not an error: extra cantrips can come from a boon, a reward or a DM award that no
+      // feature on the sheet records, and that is allowed. It stays visible so it is not unexplained.
       add(
-        'error',
+        'warn',
         'cantrips-many',
-        `${cantrips.length} cantrips, class tables give ${wantCantrips} (extras need a feature/feat source).`
+        `${cantrips.length} cantrips, class tables give ${wantCantrips} (the extras have no recorded source: a feature, feat, boon or award).`
       )
 
     // known / prepared counts
@@ -474,7 +517,13 @@ function auditCharacter(character, ctx = {}) {
           `${have} spells known, the class table gives ${want}.`
         )
     }
-    if (preparedCasters.length && ruleset === '2024') {
+    // How many spells a Cleric, Druid, Paladin or Wizard has prepared today is play, not build (it
+    // changes with a Long Rest), so it is not audited. Classes whose picks change only on a level-up
+    // (Bard, Sorcerer, Warlock, third casters) are part of the build and still are.
+    const fixedPickers = preparedCasters
+      .concat(knownCasters)
+      .filter(({ c }) => !DAILY_PREPARERS.has(c.name))
+    if (preparedCasters.length && fixedPickers.length && ruleset === '2024') {
       const want = preparedCasters
         .concat(knownCasters)
         .reduce(
@@ -582,6 +631,7 @@ function auditCharacter(character, ctx = {}) {
       add('warn', 'slots-missing', 'No spell_slots recorded.')
     if (
       pact &&
+      pact.slots > 0 &&
       (character.pact_magic?.max !== pact.slots ||
         character.pact_magic?.slot_level !== pact.slot_level)
     )
@@ -592,10 +642,8 @@ function auditCharacter(character, ctx = {}) {
       )
 
     // spells on the class list (or granted by a feature that widens it)
-    const listClasses = casters.map(({ c }) =>
-      ['Eldritch Knight', 'Arcane Trickster'].includes(c.subclass)
-        ? 'Wizard'
-        : c.name
+    const listClasses = casters.flatMap(({ c }) =>
+      spellListClasses(c.name, c.subclass, ruleset)
     )
     const widened =
       features.some((f) => SUBCLASS_SPELL_ACCESS.test(f.name)) ||
@@ -639,9 +687,12 @@ function auditCharacter(character, ctx = {}) {
           widened ? ' (a feature may widen it)' : ''
         }: ${off.join(', ')}.`
       )
+    // The same spell from two different sources (a class pick and a feat's free cast) is legal and is
+    // kept as two entries; only the same spell twice from one source is a duplicate.
     const dup = spells
-      .map((s) => key(s.name))
+      .map((s) => key(s.name) + (s.featureGranted ? `|${key(s._source)}` : ''))
       .filter((k, i, a) => a.indexOf(k) !== i)
+      .map((k) => k.split('|')[0])
     if (dup.length)
       add(
         'error',
@@ -785,29 +836,7 @@ function auditCharacter(character, ctx = {}) {
 
   // ── subclass-granted spells: stale copies and missing ones ─────────────
   {
-    const FIELDS = [
-      'domain_spells_by_level',
-      'oath_spells_by_level',
-      'circle_spells_by_level',
-      'bonus_spells_by_level',
-      'patron_spells_by_level',
-      'subclass_spells_by_level',
-    ]
-    const granted = new Map() // normalised name -> subclass label
-    for (const c of classes) {
-      const sub = c.subclass ? loadSubclass(c.name, c.subclass, ruleset) : null
-      if (!sub) continue
-      for (const f of FIELDS)
-        for (const [lvl, names] of Object.entries(sub[f] || {}))
-          if (Array.isArray(names) && Number(lvl) <= c.level)
-            for (const n of names)
-              granted.set(key(n), `${c.subclass} (L${lvl})`)
-      if (c.name === 'Artificer' && sub.expanded_spell_list)
-        for (const [lvl, names] of Object.entries(sub.expanded_spell_list))
-          if (Array.isArray(names) && Number(lvl) <= c.level)
-            for (const n of names)
-              granted.set(key(n), `${c.subclass} (L${lvl})`)
-    }
+    const granted = subclassSpells(character, ruleset) // normalised name -> subclass label
     const flagged = spells.filter(
       (sp) => sp.domain || sp.oath || ['oath', 'domain'].includes(sp.type)
     )

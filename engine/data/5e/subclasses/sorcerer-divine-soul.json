@@ -2,6 +2,18 @@
   "class": "Sorcerer",
   "name": "Divine Soul",
   "description": "A sorcerer whose innate magic stems from a divine or celestial source, blending sorcerous and divine spellcasting.",
+  "spell_list": {
+    "from": [
+      "Cleric"
+    ],
+    "replaces_class_list": false,
+    "applies_to": [
+      "cantrips",
+      "spells",
+      "swaps"
+    ],
+    "note": "Divine Magic: whenever you learn or replace a sorcerer cantrip or spell, you can choose it from the Cleric list or the Sorcerer list."
+  },
   "features_by_level": {
     "1": [
       "pub_divine-magic",
@@ -18,7 +30,7 @@
     ]
   },
   "grants_spells": {
-    "_notes": "Divine Magic (1st level, Xanathar's Guide to Everything) does two things: (a) any normal sorcerer known-spell pick can be taken from the Cleric list instead of the Sorcerer list \u2014 those still count against the normal known-spell total; (b) separately, choosing an affinity grants ONE additional fixed spell that does NOT count against spells known, chosen once at 1st level and fixed forever.",
+    "_notes": "Divine Magic (1st level, Xanathar's Guide to Everything) does two things: (a) any normal sorcerer known-spell pick can be taken from the Cleric list instead of the Sorcerer list — those still count against the normal known-spell total; (b) separately, choosing an affinity grants ONE additional fixed spell that does NOT count against spells known, chosen once at 1st level and fixed forever.",
     "affinity_bonus_spell": {
       "good": "Cure Wounds",
       "evil": "Inflict Wounds",

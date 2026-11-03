@@ -74,6 +74,38 @@ function shiftEarlyLevels(data, minLevel) {
   if (shifted) out.level_shifted_to = minLevel
   return out
 }
+// Features a 2014 subclass gave that a 2024 class feature now covers. The 2024 Cleric's Blessed
+// Strikes says "if you get either option from a Cleric subclass in an older book, use only the option
+// you choose for this feature", so a legacy domain's Divine Strike / Potent Spellcasting is not
+// granted on top of it.
+const SUPERSEDED_BY_2024 = {
+  Cleric: {
+    name: /^(Divine Strike|Potent Spellcasting)\b/i,
+    id: /^pub_(divine-strike|potent-spellcasting)\b/i,
+  },
+}
+
+function dropSuperseded(data) {
+  const rule = SUPERSEDED_BY_2024[data.class]
+  if (!rule) return data
+  const out = { ...data }
+  for (const [field, test] of [
+    ['features_by_level', rule.name],
+    ['features_by_level_ids', rule.id],
+  ]) {
+    if (!data[field]) continue
+    out[field] = Object.fromEntries(
+      Object.entries(data[field])
+        .map(([lvl, list]) => [
+          lvl,
+          Array.isArray(list) ? list.filter((x) => !test.test(x)) : list,
+        ])
+        .filter(([, list]) => !Array.isArray(list) || list.length)
+    )
+  }
+  return out
+}
+
 const SUBCLASSES_DIR_2024 = path.join(
   __dirname,
   '..',
@@ -113,7 +145,7 @@ function loadSubclass(className, subclassName, ruleset) {
   const raw = JSON.parse(fs.readFileSync(file, 'utf8'))
   let data = resolveFeatureIds(raw)
   if (isLegacyFallback(rs, rel))
-    data = { ...shiftEarlyLevels(data, 3), legacy: true }
+    data = { ...shiftEarlyLevels(dropSuperseded(data), 3), legacy: true }
   subclassCache.set(key, data)
   return data
 }
@@ -202,7 +234,21 @@ function subclassFeatureIdsGainedAtLevel(
   return sub.features_by_level_ids[String(level)] || []
 }
 
+// The class spell lists a caster draws from, from the subclass's own `spell_list` data: `from` is
+// the extra list(s); `replaces_class_list` says whether they stand in for the class's own list
+// (Eldritch Knight and Arcane Trickster use the Wizard list) or are added to it (Divine Soul adds
+// the Cleric list to the Sorcerer's). With no subclass data it is just the class's own list.
+function spellListClasses(className, subclassName, ruleset) {
+  const sub = subclassName
+    ? loadSubclass(className, subclassName, ruleset)
+    : null
+  const extra = sub?.spell_list?.from ?? []
+  if (!extra.length) return [className]
+  return sub.spell_list.replaces_class_list ? [...extra] : [className, ...extra]
+}
+
 module.exports = {
+  spellListClasses,
   slugify,
   loadSubclass,
   listSubclasses,

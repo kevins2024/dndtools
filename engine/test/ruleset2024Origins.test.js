@@ -184,7 +184,9 @@ test('background ability bonus: +2/+1 or +1/+1/+1 across its three listed abilit
 // ── Feats ───────────────────────────────────────────────────────────────
 
 test('2024 feat catalog: 10 origin, 43 general, 10 fighting style, 12 epic boon feats from the PHB', () => {
-  const all = listFeats('2024').filter((f) => f.ruleset === '2024')
+  const all = listFeats('2024').filter(
+    (f) => f.ruleset === '2024' && /^Player's Handbook/.test(f.source)
+  )
   const count = (c) => all.filter((f) => f.category === c).length
   assert.deepEqual(
     [

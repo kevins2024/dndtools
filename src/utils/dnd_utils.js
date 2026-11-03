@@ -954,11 +954,17 @@ export const dnd = {
       } else if (b.override) {
         tooltip = `${label}: set to ${b.override.value} by ${b.override.name} = ${modStr}`
       } else {
-        const parts = [`${label}: ${b.base} base`]
+        const parts = [
+          `${label}: ${b.base} ${b.unrecorded.length ? 'as recorded' : 'base'}`,
+        ]
         for (const c of b.contributions)
           parts.push(`${dnd.signed(c.amount)} (${c.label})`)
         parts.push(`= ${b.score} (${modStr})`)
         tooltip = parts.join(' · ')
+        if (b.unrecorded.length)
+          tooltip += `\nNot recorded: what ${b.unrecorded.join(
+            ', '
+          )} went into (improvement or feat). The score may already include it.`
       }
       return {
         key,

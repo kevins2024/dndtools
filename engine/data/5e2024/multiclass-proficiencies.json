@@ -1,5 +1,5 @@
 {
-  "_notes": "What a class grants when taken by MULTICLASSING into it (2024 PHB: 'As a Multiclass <Class>' under each class's Core Traits, plus Eberron: Forge of the Artificer for the Artificer). Never granted: the class's saving throws, its skill picks beyond the one listed, or its starting equipment. 'skills.from' is 'any' or 'class skill list' (the class's own skill_choices.options).",
+  "_notes": "What a class grants when taken by MULTICLASSING into it (2024 PHB: 'As a Multiclass <Class>' under each class's Core Traits, plus Eberron: Forge of the Artificer for the Artificer). Never granted: the class's saving throws, its skill picks beyond the one listed, or its starting equipment. 'skills.from' is 'any' or 'class skill list' (the class's own skill_choices.options). Every row except Artificer checked 2026-11-01 against the D&D Beyond 2024 Basic Rules (dndbeyond.com/sources/dnd/br-2024/character-classes, each class's 'As a Multiclass ...' entry); a Monk, Sorcerer or Wizard gets only the Hit Point Die (Sorcerer also its level 1 features).",
   "Barbarian": { "armor": ["shields"], "weapons": ["martial"] },
   "Bard": {
     "armor": ["light"],
@@ -9,9 +9,15 @@
   },
   "Cleric": { "armor": ["light", "medium", "shields"], "weapons": [] },
   "Druid": { "armor": ["light", "shields"], "weapons": [] },
-  "Fighter": { "armor": ["light", "medium", "shields"], "weapons": ["martial"] },
+  "Fighter": {
+    "armor": ["light", "medium", "shields"],
+    "weapons": ["martial"]
+  },
   "Monk": { "armor": [], "weapons": [] },
-  "Paladin": { "armor": ["light", "medium", "shields"], "weapons": ["martial"] },
+  "Paladin": {
+    "armor": ["light", "medium", "shields"],
+    "weapons": ["martial"]
+  },
   "Ranger": {
     "armor": ["light", "medium", "shields"],
     "weapons": ["martial"],

@@ -45,7 +45,6 @@ const {
 } = require('./rules/5e/derive')
 const { speedBreakdown } = require('./rules/5e/speed')
 const { auditCharacter } = require('./rules/5e/auditCharacter')
-const { migrateCharacterTo2024 } = require('./rules/5e/migrate2024')
 const { resolveChoices2024 } = require('./rules/5e/choices2024')
 const { featureMechanics } = require('./rules/5e/featureMechanics')
 const { resolveFeatureText } = require('./rules/5e/featureText')
@@ -171,7 +170,6 @@ module.exports = {
   listFeats,
   rulesetOf,
   normalizeRuleset,
-  migrateCharacterTo2024,
   resolveChoices2024,
   applyBackgroundBonus,
   isFeatGrantedSpell,

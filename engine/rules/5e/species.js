@@ -89,7 +89,38 @@ function resolveSpeciesName(genus, subgenus) {
   return { species: genus, hint: subgenus || '' }
 }
 
+// A species the 2024 books rewrote is its 2024 self entirely: none of its 2014 traits (nor any of its
+// 2014 subraces') carry over, whatever an older sheet still lists. Returns the 2014 feature ids that
+// are therefore stale for this genus/subgenus — empty for a species 2024 did not rewrite (Half-Elf,
+// Half-Orc ...), which keeps its 2014 traits. The generic 2014 "Darkvision" feature stands in for the
+// species' darkvision, so it is stale too once the 2024 species grants its own.
+function staleSpeciesFeatureIds(genus, subgenus, features = []) {
+  // Only a leak when the sheet already holds the 2024 version too; a lineage 2024 did not rewrite
+  // (Eladrin) is kept whole as its 2014 self, as the migration does.
+  if (!features.some((f) => /^pub24_species_/.test(f.id || '')))
+    return new Set()
+  const { species } = resolveSpeciesName(genus, subgenus)
+  if (!species) return new Set()
+  const rewritten = (loadRulesetJson('2024', 'species.json') ?? []).find(
+    (s) => s.name.toLowerCase() === species.toLowerCase()
+  )
+  const old = species2014.find(
+    (s) => s.name.toLowerCase() === species.toLowerCase()
+  )
+  if (!rewritten || !old) return new Set()
+  const ids = [
+    ...(old.traits || []),
+    ...(old.subraces || []).flatMap((sub) => sub.traits || []),
+  ]
+    .map((t) => t.id)
+    .filter(Boolean)
+  if ((rewritten.traits || []).some((t) => /darkvision/i.test(t.id || t.name)))
+    ids.push('pub_darkvision')
+  return new Set(ids)
+}
+
 module.exports = {
+  staleSpeciesFeatureIds,
   loadSpecies,
   listSpecies,
   applySpeciesBonus,

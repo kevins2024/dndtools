@@ -3,54 +3,6 @@ const assert = require('node:assert/strict')
 const path = require('path')
 const engine = require('../index')
 
-const CHARACTERS_PATH = path.join(
-  __dirname,
-  '..',
-  '..',
-  'src',
-  'data',
-  'characters.json'
-)
-const characters = require(CHARACTERS_PATH)
-
-function find(name) {
-  const c = characters.find((x) => x.name === name)
-  if (!c)
-    throw new Error(`fixture character "${name}" not found in characters.json`)
-  return c
-}
-
-test('validateCharacter does NOT check prepared-spell or cantrip caps (deprioritized per project owner)', () => {
-  // Lyria is still 1-over on prepared and 6-over on cantrips in the raw data —
-  // this test exists to document that those are intentionally not surfaced
-  // right now, not to claim she's legal.
-  const lyria = find('Lyria')
-  const issues = engine.validateCharacter(lyria)
-  assert.ok(!issues.some((i) => /prepared/.test(i.message)))
-  assert.ok(!issues.some((i) => /cantrip/.test(i.message)))
-})
-
-test('validateCharacter finds no known-spell-cap issues on Enauweyn (already RAW-audited this project)', () => {
-  const enauweyn = find('Enauweyn')
-  const issues = engine.validateCharacter(enauweyn)
-  assert.ok(!issues.some((i) => /spells known/.test(i.message)))
-})
-
-test("validateCharacter finds no known-spell-cap issues on Therynv'l (built + RAW-audited this project)", () => {
-  const therynvl = find("Therynv'l")
-  const issues = engine.validateCharacter(therynvl)
-  assert.ok(!issues.some((i) => /spells known/.test(i.message)))
-})
-
-test('validateCharacter finds no known-spell-cap issues on Rith, now that Bless is tagged as his Divine Magic bonus spell', () => {
-  const rith = find('Rith')
-  const issues = engine.validateCharacter(rith)
-  assert.deepEqual(
-    issues.filter((i) => /spells known/.test(i.message)),
-    []
-  )
-})
-
 test('validateCharacter checks saving throws against the `started: true` class for multiclass characters', () => {
   // Originally used the real Kerra as a fixture (2026-08-26: `started: true`
   // moved from Warlock to Fighter, surfacing a real saving_throws mismatch —

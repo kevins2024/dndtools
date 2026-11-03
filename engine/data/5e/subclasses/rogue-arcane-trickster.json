@@ -6,6 +6,13 @@
     "type": "third",
     "ability": "int"
   },
+  "spell_list": {
+    "from": [
+      "Wizard"
+    ],
+    "replaces_class_list": true,
+    "note": "Draws spells from the Wizard list instead of its own class list."
+  },
   "features_by_level": {
     "3": [
       "hb_rogue_at_spellcasting",

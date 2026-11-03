@@ -24,6 +24,7 @@ import MonsterBrowser from './MonsterBrowser.vue'
 import TellondeCalendar from './TellondeCalendar.vue'
 import HomebrewBrowser from './HomebrewBrowser.vue'
 import SpellBrowser from './SpellBrowser.vue'
+import FeatBrowser from './FeatBrowser.vue'
 import LocationBrowser from './LocationBrowser.vue'
 
 export default {
@@ -33,6 +34,7 @@ export default {
     TellondeCalendar,
     HomebrewBrowser,
     SpellBrowser,
+    FeatBrowser,
     LocationBrowser,
   },
 
@@ -42,6 +44,7 @@ export default {
       tabs: [
         { id: 'monsters', label: 'Monsters', component: 'MonsterBrowser' },
         { id: 'spells', label: 'Spells', component: 'SpellBrowser' },
+        { id: 'feats', label: 'Feats', component: 'FeatBrowser' },
         { id: 'locations', label: 'Locations', component: 'LocationBrowser' },
         { id: 'calendar', label: 'Calendar', component: 'TellondeCalendar' },
         { id: 'homebrew', label: 'Homebrew', component: 'HomebrewBrowser' },

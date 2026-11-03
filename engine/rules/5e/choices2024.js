@@ -145,12 +145,17 @@ function fightingStyle({
   const sub = subclassName
     ? loadSubclass(className, subclassName, '2024')
     : null
-  const grantsFrom = (data) =>
-    Object.entries(data?.features_by_level ?? {})
-      .filter(([lvl]) => Number(lvl) <= toLevel)
-      .flatMap(([, names]) => names)
-      .filter((n) => /Fighting Style$/.test(n)).length
-  const expected = grantsFrom(cls) + grantsFrom(sub)
+  // The levels at which the class and subclass each give a style (Fighter 1, Paladin 2, Champion 7).
+  const grantLevels = [cls, sub]
+    .flatMap((data) =>
+      Object.entries(data?.features_by_level ?? {})
+        .filter(([lvl]) => Number(lvl) <= toLevel)
+        .flatMap(([lvl, names]) =>
+          names.filter((n) => /Fighting Style$/.test(n)).map(() => Number(lvl))
+        )
+    )
+    .sort((a, b) => a - b)
+  const expected = grantLevels.length
   if (!expected) return
   const mine = (character.features || []).filter(
     (f) =>
@@ -183,7 +188,8 @@ function fightingStyle({
       type: 'feat',
       _grant: 'fightingStyle',
       _source: className,
-      level_gained: toLevel,
+      // The level the class gives this style at, not the level the sheet is being built to.
+      level_gained: grantLevels[expected - need] ?? toLevel,
     })
     need--
   }
@@ -214,6 +220,15 @@ const ORDERS = {
     options: {
       Warden: { weapons: ['martial'], armor: ['medium'], cantrips: 0 },
       Magician: { weapons: [], armor: [], cantrips: 1 },
+    },
+  },
+  // Not an "order", but the same shape: a class feature that is one of two options.
+  'Blessed Strikes': {
+    field: 'blessedStrikes',
+    pending: 'blessedStrikesChoice',
+    options: {
+      'Divine Strike': { weapons: [], armor: [], cantrips: 0 },
+      'Potent Spellcasting': { weapons: [], armor: [], cantrips: 0 },
     },
   },
 }

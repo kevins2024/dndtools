@@ -496,12 +496,7 @@ app.post('/api/engine/level-up', (req, res) => {
   }
 })
 
-// ── POST /api/engine/migrate-2024 ────────────────────────
-// Dry-run migration of one 2014 character to the 2024 rules:
-// { character, answers? } -> { character, changes, questions, warnings }.
-// Writes nothing — the client applies the returned character through the
-// normal save path (or review it first). Weapon Mastery suggestions come from
-// what the character has equipped in party_items.json.
+// ── GET /api/engine/character-sheet/:name ────────────────
 // Everything the character sheet shows that is calculated — value plus the lines that
 // explain it, ready for a tooltip — for one character, with their equipped items applied.
 app.get('/api/engine/character-sheet/:name', (req, res) => {
@@ -523,27 +518,6 @@ app.get('/api/engine/character-sheet/:name', (req, res) => {
     res.json(sheet)
   } catch (err) {
     console.error('Error building character sheet:', err.message)
-    res.status(500).json({ error: err.message })
-  }
-})
-
-app.post('/api/engine/migrate-2024', (req, res) => {
-  const { character, answers } = req.body
-  if (!character) {
-    return res.status(400).json({ error: '"character" is required' })
-  }
-  try {
-    const partyItems = hydratePartyItems(
-      readJSON(path.join(DATA_DIR, 'party_items.json'))
-    )
-    const equippedWeapons = partyItems
-      .filter((i) => i.equipped_by === character.name && i.weapon_category)
-      .map((i) => i.weapon_category)
-    res.json(
-      engine.migrateCharacterTo2024(character, { answers, equippedWeapons })
-    )
-  } catch (err) {
-    console.error('Error migrating character:', err.message)
     res.status(500).json({ error: err.message })
   }
 })
@@ -609,6 +583,9 @@ app.get('/api/engine/feats', (req, res) => {
         legacy: data.legacy === true,
         repeatable: data.repeatable === true,
         source: data.source ?? null,
+        ruleset: data.ruleset ?? null,
+        description: data.description ?? null,
+        prerequisite_text: data.prerequisite_text ?? null,
         prerequisite: data.prerequisite ?? null,
         ability_score_increase: data.ability_score_increase ?? null,
         grants_spells: data.grants_spells ?? null,

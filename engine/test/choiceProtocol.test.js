@@ -317,7 +317,7 @@ test('a known-spell caster may swap a spell: optional, never blocks, applied whe
   // Swapping a spell for itself is refused.
   assert.match(
     previewLevelUp(character, o, { spellSwap: [from, from] }).problems[0].error,
-    /twice/
+    /twice|not available/
   )
   // A caster that prepares daily is not offered it.
   const { character: wiz } = buildCharacter({

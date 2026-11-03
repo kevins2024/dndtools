@@ -203,26 +203,27 @@ test('diffLevelUp: Warlock pact_magic patch uses the real pact magic table, not 
   assert.ok(result.patch.pact_magic.slot_level >= 3) // level 5 Warlock pact slots are 3rd level
 })
 
-test('diffLevelUp: real roster smoke test against Lenn (single-class Wizard 9) matches the class table exactly', () => {
-  const fs = require('fs')
-  const characters = JSON.parse(
-    fs.readFileSync(`${__dirname}/../../src/data/characters.json`, 'utf8')
-  )
-  const list = Array.isArray(characters)
-    ? characters
-    : Object.values(characters)[0]
-  const lenn = list.find((c) => c.name === 'Lenn')
-
-  const result = diffLevelUp(lenn, { className: 'Wizard', hpMethod: 'average' })
-  const tables = require('../data/5e/spellcasting-tables.json')
-  const expectedSlots = tables.full_caster_slots['10']
+test('diffLevelUp: a simulated single-class Wizard 9 -> 10 gets the book slots, the new level and the average hit points', () => {
+  const { buildCharacter } = require('./helpers/autoLevel')
+  const { character } = buildCharacter({
+    className: 'Wizard',
+    subclass: 'Evoker',
+    toLevel: 9,
+  })
+  const result = diffLevelUp(character, {
+    className: 'Wizard',
+    hpMethod: 'average',
+  })
+  // Full-caster slots at level 10 (PHB 2024 Wizard table): 4 / 3 / 3 / 3 / 2.
+  const expectedSlots = [4, 3, 3, 3, 2]
   expectedSlots.forEach((max, i) => {
     assert.equal(result.patch.spell_slots[`level_${i + 1}`].max, max)
   })
   assert.equal(result.patch.classes[0].level, 10)
+  // d6 average (4) plus the Constitution modifier.
   assert.equal(
     result.patch.hp_max,
-    lenn.hp_max + 4 + engine.abilityModifier(lenn.stat_con)
+    character.hp_max + 4 + engine.abilityModifier(character.stat_con)
   )
 })
 
