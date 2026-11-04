@@ -7,7 +7,8 @@
 //
 // Spell data: published_spells.json (real non-SRD content and homebrew,
 // side by side — each entry's own `homebrew` flag tells them apart, see
-// engine/CHECKLIST.md) first, then public dnd5eapi.co REST API.
+// engine/CHECKLIST.md) first, then the 2024 spell data (utils/spells2024.js), then the
+// public dnd5eapi.co REST API (2014 SRD, only for a spell found nowhere else).
 // Feature data: local features.json (SRD) → published_features.json → traits API.
 // Monster data: published_monsters.json (homebrew, already in the shape the
 // API returns — see normalizeMonster) first, then public dnd5eapi.co REST API.
@@ -15,13 +16,15 @@
 import featuresData from '@/data/api_data_cache/features.json'
 import staticPublishedFeatures from '@/data/published_features.json'
 import staticPublishedSpells from '@/data/published_spells.json'
+import { findSpell2024 } from '@/utils/spells2024'
 import staticPublishedMonsters from '@/data/published_monsters.json'
 const { resolveFeatureText } = require('../../engine/rules/5e/featureText')
 const { componentsLabel } = require('../../engine/rules/5e/spellComponents')
 
 const API_BASE = 'https://www.dnd5eapi.co/api/2014'
 const DATA_SERVER = ''
-const CACHE_VERSION = 'v5'
+// v6: spells come from the 2024 data (utils/spells2024.js) first; older entries held 2014 text
+const CACHE_VERSION = 'v6'
 const CACHE_PREFIX = `dndtools_${CACHE_VERSION}_`
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -215,7 +218,17 @@ export async function lookupSpell(name) {
     return normalized
   }
 
-  // 5. API fetch — slug first, name search as fallback; retry with baseName if parenthetical stripped
+  // 5. The 2024 spell data (the 2024 books' text over the 2014 spells they did not rewrite, tagged legacy)
+  const core =
+    findSpell2024(name) ?? (baseName !== name ? findSpell2024(baseName) : null)
+  if (core) {
+    const normalized = normalizeSpell(core)
+    memCache.set(cacheKey, normalized)
+    localSet(cacheKey, normalized)
+    return normalized
+  }
+
+  // 6. API fetch (2014 SRD) — slug first, name search as fallback; retry with baseName if parenthetical stripped
   let result = null
   try {
     result = await fetchSpellBySlug(toSlug(name))
@@ -288,6 +301,25 @@ export async function lookupFeature(name, id) {
   //    gets swallowed by a fuzzy match against the SRD's "Metamagic" class
   //    feature (since "Metamagic Adept".startsWith("Metamagic")) before its
   //    own homebrew entry is ever checked.
+  // The 2024 text wins over the 2014 SRD text of the same name (a name alone cannot tell two classes'
+  // "Spellcasting" apart; an id, handled above, can).
+  const pub2024 = (await getHomebrew()).features?.find(
+    (f) => f.ruleset === '2024' && f.name.toLowerCase() === lower
+  )
+  if (pub2024) {
+    const all = (await getHomebrew()).features
+    return {
+      subtitle:
+        pub2024.category ||
+        pub2024.class ||
+        pub2024.source ||
+        "Player's Handbook (2024)",
+      description: resolveFeatureText(pub2024, (i) =>
+        all.find((f) => f.id === i)
+      ),
+    }
+  }
+
   const srdExact = featuresData.find((f) => f.name.toLowerCase() === lower)
   if (srdExact) {
     return {

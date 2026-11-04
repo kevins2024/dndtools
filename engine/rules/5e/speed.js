@@ -7,7 +7,11 @@
 //                   level while wearing no armor and no Shield
 //   Mobile          the feat, +10 ft.
 //   items           stat_bonuses.speed (Bracers of Swiftness, boots...)
+//   Large Form      a temporary state (Goliath): +10 ft. while it lasts, from active_effects
 //   Exhaustion      2024: -5 ft. per level. 2014: halved from level 2, zero from level 5.
+//
+// flySpeedBreakdown: the Fly Speed a temporary state gives, equal to the walking Speed (Heavenly Wings,
+// Draconic Flight), or null.
 //
 // Not modeled: armor Strength requirements (2014 Heavy armor), encumbrance, and
 // temporary effects such as Haste, Longstrider or Slow.
@@ -18,6 +22,8 @@ const { bonusLines } = require('./breakdown')
 const { resolveEffectiveStats } = require('./characterStats')
 const { exhaustionEffects, speedAfterExhaustion } = require('./exhaustion')
 const { rulesetOf } = require('./rulesetId')
+const { characterGrants, effectiveGrants } = require('./featureGrants')
+const { lineageRow } = require('./speciesLineage')
 
 const MONK_UNARMORED = [
   [18, 30],
@@ -43,6 +49,15 @@ function baseSpeed(character, ruleset) {
     new RegExp(s.name.replace(/ \(.*\)/, ''), 'i').test(text)
   )
   if (sub?.speed) feet = toFeet(sub.speed)
+  // a lineage that sets the Speed (Wood Elf: 35), from its feature or its table row
+  const featureSpeed = Math.max(
+    0,
+    ...(character.features ?? []).map(
+      (f) => effectiveGrants(f).grants_speed ?? 0
+    )
+  )
+  const lineageSpeed = featureSpeed || lineageRow(character)?.speed
+  if (ruleset === '2024' && lineageSpeed) feet = toFeet(lineageSpeed)
   if (ruleset === '2024' && /wood elf/i.test(text)) feet = 35
   return { feet, label: `${species || 'Base'} Speed` }
 }
@@ -77,6 +92,8 @@ function speedBreakdown(character, equippedItems = []) {
   )
     breakdown.push({ label: 'Mobile', amount: 10 })
 
+  breakdown.push(...characterGrants(character).speedLines)
+
   const named = [
     ...bonusLines(equippedItems, 'speed'),
     ...bonusLines(character.features, 'speed'),
@@ -102,4 +119,13 @@ function speedBreakdown(character, equippedItems = []) {
   return { value: breakdown.reduce((n, l) => n + l.amount, 0), breakdown }
 }
 
-module.exports = { speedBreakdown }
+function flySpeedBreakdown(character, equippedItems = []) {
+  if (!characterGrants(character).flySpeedEqualsSpeed) return null
+  const walking = speedBreakdown(character, equippedItems).value
+  return {
+    value: walking,
+    breakdown: [{ label: 'Fly Speed equal to your Speed', amount: walking }],
+  }
+}
+
+module.exports = { speedBreakdown, flySpeedBreakdown }

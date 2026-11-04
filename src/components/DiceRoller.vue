@@ -206,8 +206,9 @@ export default {
   },
 
   methods: {
-    rollPending({ mod = 0, advantage = false }) {
+    rollPending({ mod = 0, advantage = false, rerollOn = [] }) {
       const test = d20Test.rollD20Test({
+        rerollOn,
         // The roller's own toggle, or advantage the roll arrives with (an
         // item that grants it on this check).
         advantage: this.advantage || advantage,

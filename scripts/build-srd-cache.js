@@ -123,18 +123,21 @@ const HOMEBREW_SPECIES = [
     traits: [
       {
         name: 'Broad Build',
+        id: 'homebrew_species_catrin-broad-build',
         type: 'passive',
         description:
           'Counts as one size larger for the purposes of carrying capacity and grappling.',
       },
       {
         name: 'Settled Presence',
+        id: 'homebrew_species_catrin-settled-presence',
         type: 'passive',
         description:
           'Advantage on saving throws against being frightened or charmed.',
       },
       {
         name: 'Brace',
+        id: 'homebrew_species_catrin-brace',
         type: 'active',
         recharge: 'long_rest',
         description:
@@ -142,6 +145,7 @@ const HOMEBREW_SPECIES = [
       },
       {
         name: 'Long Memory',
+        id: 'homebrew_species_catrin-long-memory',
         type: 'passive',
         description: 'Proficiency in the History skill.',
       },
@@ -164,17 +168,20 @@ const HOMEBREW_SPECIES = [
     traits: [
       {
         name: 'Sharp Nose',
+        id: 'homebrew_species_drevani-sharp-nose',
         type: 'passive',
         description: 'Advantage on Perception checks that rely on smell.',
       },
       {
         name: 'Low Profile',
+        id: 'homebrew_species_drevani-low-profile',
         type: 'passive',
         description:
           'Can move through the space of Medium or larger creatures without squeezing.',
       },
       {
         name: 'Ferocious Bite',
+        id: 'homebrew_species_drevani-ferocious-bite',
         type: 'active',
         recharge: 'long_rest',
         description:
@@ -199,18 +206,21 @@ const HOMEBREW_SPECIES = [
     traits: [
       {
         name: 'Grey Resilience',
+        id: 'homebrew_species_heiugar-grey-resilience',
         type: 'passive',
         description:
           'Advantage on saving throws against illusions, charm, and paralysis.',
       },
       {
         name: 'Darkvision',
+        id: 'homebrew_species_heiugar-darkvision',
         type: 'passive',
         description:
           'Can see in dim light within 60ft as if it were bright light, and in darkness as if it were dim light. Cannot discern color in darkness.',
       },
       {
         name: 'Gust of Wind',
+        id: 'homebrew_species_heiugar-gust-of-wind',
         type: 'active',
         recharge: 'long_rest',
         description:
@@ -218,6 +228,7 @@ const HOMEBREW_SPECIES = [
       },
       {
         name: 'Far Sight',
+        id: 'homebrew_species_heiugar-far-sight',
         type: 'passive',
         description:
           'Advantage on Perception checks targeting creatures or objects 60ft or further away.',

@@ -13,6 +13,17 @@
     "martial:light"
   ],
   "weapon_proficiencies_text": "Simple weapons and Martial weapons that have the Light property",
+  "tool_proficiencies": {
+    "choose": [
+      {
+        "count": 1,
+        "from": [
+          "Artisan's Tools",
+          "Musical Instrument"
+        ]
+      }
+    ]
+  },
   "skill_choices": {
     "count": 2,
     "options": [

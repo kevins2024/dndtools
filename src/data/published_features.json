@@ -15338,5 +15338,311 @@
     "source": "Player's Handbook (2024)",
     "ruleset": "2024",
     "homebrew": false
+  },
+  {
+    "id": "pub24_species_goliath-giant-ancestry--clouds-jaunt",
+    "name": "Giant Ancestry: Cloud's Jaunt",
+    "category": "speciesTrait",
+    "species": "Goliath",
+    "description": "As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. (Giant Ancestry: Cloud's Jaunt, Cloud Giant.)",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_goliath-giant-ancestry--fires-burn",
+    "name": "Giant Ancestry: Fire's Burn",
+    "category": "speciesTrait",
+    "species": "Goliath",
+    "description": "When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target.\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. (Giant Ancestry: Fire's Burn, Fire Giant.)",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_goliath-giant-ancestry--frosts-chill",
+    "name": "Giant Ancestry: Frost's Chill",
+    "category": "speciesTrait",
+    "species": "Goliath",
+    "description": "When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. (Giant Ancestry: Frost's Chill, Frost Giant.)",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_goliath-giant-ancestry--hills-tumble",
+    "name": "Giant Ancestry: Hill's Tumble",
+    "category": "speciesTrait",
+    "species": "Goliath",
+    "description": "When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the Prone condition.\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. (Giant Ancestry: Hill's Tumble, Hill Giant.)",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_goliath-giant-ancestry--stones-endurance",
+    "name": "Giant Ancestry: Stone's Endurance",
+    "category": "speciesTrait",
+    "species": "Goliath",
+    "description": "When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total.\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. (Giant Ancestry: Stone's Endurance, Stone Giant.)",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_goliath-giant-ancestry--storms-thunder",
+    "name": "Giant Ancestry: Storm's Thunder",
+    "category": "speciesTrait",
+    "species": "Goliath",
+    "description": "When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature.\nYou can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. (Giant Ancestry: Storm's Thunder, Storm Giant.)",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_elf-elven-lineage--drow",
+    "name": "Elven Lineage: Drow",
+    "category": "speciesTrait",
+    "species": "Elf",
+    "description": "The range of your Darkvision increases to 120 feet. You also know the Dancing Lights cantrip.\nWhen you reach character level 3 you learn Faerie Fire, and at level 5 Darkness. You always have each prepared, can cast each once without a spell slot (you regain that ability when you finish a Long Rest), and can also cast it with spell slots.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_elf-elven-lineage--high-elf",
+    "name": "Elven Lineage: High Elf",
+    "category": "speciesTrait",
+    "species": "Elf",
+    "description": "You know the Prestidigitation cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Wizard spell list.\nWhen you reach character level 3 you learn Detect Magic, and at level 5 Misty Step. You always have each prepared, can cast each once without a spell slot (you regain that ability when you finish a Long Rest), and can also cast it with spell slots.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_elf-elven-lineage--wood-elf",
+    "name": "Elven Lineage: Wood Elf",
+    "category": "speciesTrait",
+    "species": "Elf",
+    "description": "Your Speed increases to 35 feet. You also know the Druidcraft cantrip.\nWhen you reach character level 3 you learn Longstrider, and at level 5 Pass without Trace. You always have each prepared, can cast each once without a spell slot (you regain that ability when you finish a Long Rest), and can also cast it with spell slots.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_tiefling-fiendish-legacy--abyssal",
+    "name": "Fiendish Legacy: Abyssal",
+    "category": "speciesTrait",
+    "species": "Tiefling",
+    "description": "You have Resistance to Poison damage. You also know the Poison Spray cantrip.\nWhen you reach character level 3 you learn Ray of Sickness, and at level 5 Hold Person. You always have each prepared, can cast each once without a spell slot (you regain that ability when you finish a Long Rest), and can also cast it with spell slots.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_tiefling-fiendish-legacy--chthonic",
+    "name": "Fiendish Legacy: Chthonic",
+    "category": "speciesTrait",
+    "species": "Tiefling",
+    "description": "You have Resistance to Necrotic damage. You also know the Chill Touch cantrip.\nWhen you reach character level 3 you learn False Life, and at level 5 Ray of Enfeeblement. You always have each prepared, can cast each once without a spell slot (you regain that ability when you finish a Long Rest), and can also cast it with spell slots.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_tiefling-fiendish-legacy--infernal",
+    "name": "Fiendish Legacy: Infernal",
+    "category": "speciesTrait",
+    "species": "Tiefling",
+    "description": "You have Resistance to Fire damage. You also know the Fire Bolt cantrip.\nWhen you reach character level 3 you learn Hellish Rebuke, and at level 5 Darkness. You always have each prepared, can cast each once without a spell slot (you regain that ability when you finish a Long Rest), and can also cast it with spell slots.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_gnome-gnomish-lineage--forest-gnome",
+    "name": "Gnomish Lineage: Forest Gnome",
+    "category": "speciesTrait",
+    "species": "Gnome",
+    "description": "You know the Minor Illusion cantrip.\nYou also always have the Speak with Animals spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can also use any spell slots you have to cast the spell.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_gnome-gnomish-lineage--rock-gnome",
+    "name": "Gnomish Lineage: Rock Gnome",
+    "category": "speciesTrait",
+    "species": "Gnome",
+    "description": "You know the Mending and Prestidigitation cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5,1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a Bonus Action to activate it with a touch. If the chosen effect has options within it, you choose one of those options for the device when you create it. For example, if you choose the spell's ignite-extinguish effect, you determine whether the device ignites or extinguishes fire; the device doesn't do both. You can have three such devices in existence at a time, and each falls apart 8 hours after its creation or when you dismantle it with a touch as a Utilize action.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--black",
+    "name": "Draconic Ancestry: Black",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a black dragon. Your Breath Weapon deals Acid damage, and you have Resistance to Acid damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--blue",
+    "name": "Draconic Ancestry: Blue",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a blue dragon. Your Breath Weapon deals Lightning damage, and you have Resistance to Lightning damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--brass",
+    "name": "Draconic Ancestry: Brass",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a brass dragon. Your Breath Weapon deals Fire damage, and you have Resistance to Fire damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--bronze",
+    "name": "Draconic Ancestry: Bronze",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a bronze dragon. Your Breath Weapon deals Lightning damage, and you have Resistance to Lightning damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--copper",
+    "name": "Draconic Ancestry: Copper",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a copper dragon. Your Breath Weapon deals Acid damage, and you have Resistance to Acid damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--gold",
+    "name": "Draconic Ancestry: Gold",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a gold dragon. Your Breath Weapon deals Fire damage, and you have Resistance to Fire damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--green",
+    "name": "Draconic Ancestry: Green",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a green dragon. Your Breath Weapon deals Poison damage, and you have Resistance to Poison damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--red",
+    "name": "Draconic Ancestry: Red",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a red dragon. Your Breath Weapon deals Fire damage, and you have Resistance to Fire damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--silver",
+    "name": "Draconic Ancestry: Silver",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a silver dragon. Your Breath Weapon deals Cold damage, and you have Resistance to Cold damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub24_species_dragonborn-draconic-ancestry--white",
+    "name": "Draconic Ancestry: White",
+    "category": "speciesTrait",
+    "species": "Dragonborn",
+    "description": "Your lineage stems from a white dragon. Your Breath Weapon deals Cold damage, and you have Resistance to Cold damage.",
+    "source": "Player's Handbook (2024)",
+    "ruleset": "2024",
+    "homebrew": false
+  },
+  {
+    "id": "pub_half-elf-darkvision",
+    "name": "Darkvision",
+    "category": "speciesTrait",
+    "species": "Half-Elf",
+    "description": "You have Darkvision with a range of 60 feet.",
+    "source": "Player's Handbook (2014)",
+    "ruleset": "2014",
+    "legacy": true,
+    "homebrew": false
+  },
+  {
+    "id": "pub_half-elf-skill-versatility",
+    "name": "Skill Versatility",
+    "category": "speciesTrait",
+    "species": "Half-Elf",
+    "description": "Proficiency in two skills of your choice.",
+    "source": "Player's Handbook (2014)",
+    "ruleset": "2014",
+    "legacy": true,
+    "homebrew": false
+  },
+  {
+    "id": "pub_half-orc-darkvision",
+    "name": "Darkvision",
+    "category": "speciesTrait",
+    "species": "Half-Orc",
+    "description": "You have Darkvision with a range of 60 feet.",
+    "source": "Player's Handbook (2014)",
+    "ruleset": "2014",
+    "legacy": true,
+    "homebrew": false
+  },
+  {
+    "id": "pub_relentless-endurance",
+    "name": "Relentless Endurance",
+    "category": "speciesTrait",
+    "species": "Half-Orc",
+    "description": "When reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Usable again only after a long rest.",
+    "source": "Player's Handbook (2014)",
+    "ruleset": "2014",
+    "legacy": true,
+    "homebrew": false
+  },
+  {
+    "id": "pub_savage-attacks",
+    "name": "Savage Attacks",
+    "category": "speciesTrait",
+    "species": "Half-Orc",
+    "description": "When you score a critical hit with a melee weapon attack, roll one additional weapon damage die and add it to the extra critical-hit damage.",
+    "source": "Player's Handbook (2014)",
+    "ruleset": "2014",
+    "legacy": true,
+    "homebrew": false
+  },
+  {
+    "id": "pub_half-orc-menacing",
+    "name": "Menacing",
+    "category": "speciesTrait",
+    "species": "Half-Orc",
+    "description": "Proficiency in the Intimidation skill.",
+    "source": "Player's Handbook (2014)",
+    "ruleset": "2014",
+    "legacy": true,
+    "homebrew": false
   }
 ]

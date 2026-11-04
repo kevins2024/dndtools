@@ -66,7 +66,9 @@ import {
   sneakAttackDice as engineSneakAttackDice,
   unarmedStrike as engineUnarmedStrike,
   psychicBlades as enginePsychicBlades,
+  featureBodyAttacks as engineFeatureBodyAttacks,
 } from './unarmedAttacks.js'
+import { characterGrants as engineCharacterGrants } from './featureGrants.js'
 
 import { applyAttunement } from './attunement.js'
 
@@ -916,7 +918,40 @@ export const dnd = {
       })
     }
 
+    // An attack a feature makes with the body (Drevani's Ferocious Bite): its rules are the feature's
+    // feature-mechanics entry, read by the engine; this only shapes the row.
+    for (const bite of engineFeatureBodyAttacks(character, equippedForEngine)) {
+      const spent = bite.uses.max != null && bite.uses.current <= 0
+      summaries.push({
+        id: bite.id,
+        name: bite.name,
+        attack: dnd.signed(bite.attack.value),
+        damage: `${bite.die}${dnd.signed(bite.damage.value)}`,
+        type: 'melee',
+        atkTooltip: dnd._formatBreakdown(bite.attack),
+        dmgTooltip: [
+          `${bite.die} ${bite.damageType}`,
+          dnd._formatBreakdown(bite.damage),
+          bite.actionType === 'bonus_action' ? 'Bonus action' : null,
+          bite.uses.max != null
+            ? `${bite.uses.current}/${bite.uses.max} uses (${String(
+                bite.uses.recharge
+              ).replace('_', ' ')})${spent ? ' — spent' : ''}`
+            : null,
+        ]
+          .filter(Boolean)
+          .join('\n'),
+        extras: [],
+      })
+    }
+
     return summaries
+  },
+
+  // What the character's features grant the sheet: resistances, save/skill/check advantage, darkvision
+  // (engine featureGrants.js; derived from the features, never stored).
+  characterGrants(character) {
+    return engineCharacterGrants(character)
   },
 
   // ─────────────────────────────────────────────

@@ -16,6 +16,20 @@
     "simple"
   ],
   "weapon_proficiencies_text": "Simple weapons",
+  "tool_proficiencies": {
+    "fixed": [
+      "Thieves' Tools",
+      "Tinker's Tools"
+    ],
+    "choose": [
+      {
+        "count": 1,
+        "from": [
+          "Artisan's Tools"
+        ]
+      }
+    ]
+  },
   "tool_proficiencies_text": "Thieves’ Tools, Tinker’s Tools, and one type of Artisan’s Tools of your choice",
   "skill_choices": {
     "count": 2,

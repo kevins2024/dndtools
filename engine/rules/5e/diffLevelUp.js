@@ -33,6 +33,11 @@ const { loadSkill, listSkills } = require('./skills')
 const { featureMechanics } = require('./featureMechanics')
 const { resolveEffectiveScores } = require('./abilityScores')
 const { traitsFor, loadSpecies } = require('./species')
+const { lineageSpellsDue } = require('./lineageSpells')
+const { resolveAmount } = require('./amounts')
+const { pickFeatureId } = require('./speciesLineage')
+const { proficiencyGrants } = require('./featureGrants')
+const { INSTRUMENTS, ARTISAN_TOOLS, toolName } = require('./toolLists')
 const favoredEnemies = require('../../data/5e/favored-enemies.json')
 const naturalExplorerTerrains = require('../../data/5e/natural-explorer-terrains.json')
 
@@ -187,7 +192,10 @@ function applyFeatureMechanics(features, character, equippedItems = []) {
   const familyIndex = new Map() // tier_family -> index into `result`
 
   for (const f of features) {
-    const mech = f.id ? featureMechanics(f.id) : null
+    // a species pick ("Giant Ancestry: Stone's Endurance") has no id on the sheet; its rules are
+    // keyed by the id derived from its name (speciesLineage.pickFeatureId)
+    const derivedId = f.id ? null : pickFeatureId(f)
+    const mech = f.id || derivedId ? featureMechanics(f.id ?? derivedId) : null
 
     if (mech?.tier_family) {
       const existingIdx = familyIndex.get(mech.tier_family)
@@ -219,6 +227,7 @@ function applyFeatureMechanics(features, character, equippedItems = []) {
       const usesMax = mechUsesMax(mech, character, equippedItems)
       result.push({
         ...f,
+        ...(derivedId ? { id: derivedId } : {}),
         name: mech.name ?? f.name,
         action_type: f.action_type ?? mech.action_type,
         recharge: f.recharge ?? mech.recharge,
@@ -464,6 +473,13 @@ function diffLevelUp(
     // with three skills of your choice." Plain proficiency, not Expertise —
     // a separate feature from base Bard's own Expertise picks.
     bonusProficienciesChoice = null,
+    // featureChoices: { [featureId]: [picks] } — the picks a feature's own feature-mechanics entry asks for
+    // (grants_skill_proficiency_choice: Bladesinger's Training in War and Song), and the replacement
+    // skill for a fixed grant the character already has, keyed "<featureId>#replace". See featureGrants.js.
+    featureChoices = {},
+    // multiclassToolChoice: an instrument name — the Bard's "one musical instrument of your choice" when
+    // multiclassing into Bard (2024 PHB, As a Multiclass Bard).
+    multiclassToolChoice = null,
     // equippedItems: items this character currently has equipped, ALREADY
     // filtered by the caller (equipped_by === character.name) — used only
     // to resolve an ability_mod-formula feature-mechanics entry (Divine
@@ -1606,6 +1622,157 @@ function diffLevelUp(
     }
   }
 
+  // ── Proficiencies a feature grants, from its feature-mechanics entry (featureGrants.js) ───────────
+  // The one place a feature's grants_*_proficiency fields become proficiencies. A proficiency the
+  // character already has is not granted twice: the player picks another (RAW for any duplicate).
+  {
+    const ABILITY_NAMES = {
+      str: 'Strength',
+      dex: 'Dexterity',
+      con: 'Constitution',
+      int: 'Intelligence',
+      wis: 'Wisdom',
+      cha: 'Charisma',
+    }
+    const lower = (list) => new Set((list || []).map(normalizeName))
+    const held = {
+      skills: lower([
+        ...(character.skill_proficiencies || []),
+        ...extraSkillProficiencies,
+      ]),
+      saves: lower([
+        ...(character.saving_throws || []),
+        ...extraSavingThrowProfs,
+      ]),
+      tools: lower(character.tool_proficiencies),
+      armor: lower(character.armor_proficiencies),
+      weapons: lower(character.weapon_proficiencies),
+    }
+    const sinks = {
+      skills: extraSkillProficiencies,
+      saves: extraSavingThrowProfs,
+      tools: extraToolProficiencies,
+      armor: extraArmorProficiencies,
+      weapons: extraWeaponProficiencies,
+    }
+    const noun = { skills: 'skill', saves: 'saving throw', tools: 'tool' }
+    const give = (kind, value) => {
+      sinks[kind].push(value)
+      held[kind].add(normalizeName(value))
+    }
+    // Takes the player's picks for this feature (featureChoices[key]) or asks for them.
+    const take = (
+      kind,
+      feature,
+      key,
+      count,
+      options,
+      why,
+      expertise = false
+    ) => {
+      const open = options.filter(
+        (o) => !held[kind].has(normalizeName(o.value ?? o))
+      )
+      const values = open.map((o) => o.value ?? o)
+      const picks = (featureChoices[key] || []).filter((n) =>
+        values.some((v) => normalizeName(v) === normalizeName(n))
+      )
+      if (picks.length === count)
+        for (const n of picks) {
+          const value = values.find(
+            (v) => normalizeName(v) === normalizeName(n)
+          )
+          give(kind, value)
+          // a feature that also gives Expertise in the skills it picks (Knowledge Domain)
+          if (expertise) expertiseSkillsGained.push(value)
+        }
+      else
+        pendingChoices.push({
+          type: 'featureGrantChoice',
+          source: feature.name,
+          key,
+          featureId: feature.id,
+          featureName: feature.name,
+          level: feature.level_gained,
+          count,
+          noun: noun[kind],
+          options: open,
+          why,
+        })
+    }
+    const allSkills = () => listSkills().map((k) => k.name)
+    const allSaves = () =>
+      Object.entries(ABILITY_NAMES).map(([value, label]) => ({ value, label }))
+    const artisan = () => ARTISAN_TOOLS
+    for (const f of newFeatures) {
+      if (!f.id) continue
+      const pg = proficiencyGrants(f)
+      for (const sk of pg.skills)
+        if (!held.skills.has(normalizeName(sk))) give('skills', sk)
+        else
+          take(
+            'skills',
+            f,
+            `${f.id}#replace-${sk}`,
+            1,
+            allSkills(),
+            `already proficient in ${sk}`
+          )
+      if (pg.skillChoice)
+        take(
+          'skills',
+          f,
+          f.id,
+          pg.skillChoice.count,
+          pg.skillChoice.options === 'any'
+            ? allSkills()
+            : pg.skillChoice.options,
+          undefined,
+          pg.skillChoice.expertise === true
+        )
+      for (const sv of pg.saves)
+        if (!held.saves.has(normalizeName(sv))) give('saves', sv)
+        else if (pg.saveReplaceOptions && !pg.saveReplaceOptions.length) {
+          // already held and the feature offers no other: nothing more to gain
+        } else
+          take(
+            'saves',
+            f,
+            `${f.id}#replace-${sv}`,
+            1,
+            (pg.saveReplaceOptions ?? Object.keys(ABILITY_NAMES)).map(
+              (value) => ({ value, label: ABILITY_NAMES[value] })
+            ),
+            `already proficient in ${ABILITY_NAMES[sv]} saving throws`
+          )
+      for (const t of pg.tools)
+        if (!held.tools.has(normalizeName(t))) give('tools', t)
+        else if (pg.toolReplaceFrom)
+          take(
+            'tools',
+            f,
+            `${f.id}#replace-${t}`,
+            1,
+            artisan(),
+            `already proficient with ${t}`
+          )
+      if (pg.toolChoice)
+        take(
+          'tools',
+          f,
+          `${f.id}#tool`,
+          pg.toolChoice.count,
+          pg.toolChoice.options === 'artisan'
+            ? artisan()
+            : pg.toolChoice.options
+        )
+      for (const x of pg.armor)
+        if (!held.armor.has(normalizeName(x))) give('armor', x)
+      for (const x of pg.weapons)
+        if (!held.weapons.has(normalizeName(x))) give('weapons', x)
+    }
+  }
+
   // ── Divine Magic — Sorcerer Divine Soul (1st) ───────────────────────────
   // Real RAW (XGE): choose one of good/evil/law/chaos/neutrality — fixes
   // one Cleric spell as a permanent bonus spell (doesn't count against
@@ -2081,6 +2248,13 @@ function diffLevelUp(
     }
   }
 
+  // ── 2024 lineage spells (Elven Lineage, Fiendish Legacy): a spell at total character levels 3 and 5,
+  // always prepared, one free cast per Long Rest. See lineageSpells.js.
+  if (ruleset === '2024')
+    extraGrantedSpells.push(
+      ...lineageSpellsDue(character, totalLevelBefore, totalLevelAfter)
+    )
+
   // ── Eldritch Invocations / Pact Boon — Warlock only ──────────────────
   // Both are "pick from a prerequisite-gated catalog" choices, structurally
   // similar to a feat pick, but genuinely different in shape: Pact Boon is a
@@ -2306,6 +2480,29 @@ function diffLevelUp(
     )
   }
 
+  // A spell cast "a number of times equal to your Proficiency Bonus" (Forest Gnome's Speak with
+  // Animals) carries that formula; the count follows the level. Gaining uses does not refill the
+  // spent ones.
+  {
+    const spells = patch.spells ?? character.spells ?? []
+    if (spells.some((s) => s.uses_formula)) {
+      const after = { ...character, ...patch }
+      patch.spells = spells.map((s) => {
+        if (!s.uses_formula) return s
+        const max = resolveAmount(s.uses_formula, after).value
+        const gained = Math.max(0, max - (s.uses_max ?? 0))
+        return {
+          ...s,
+          uses_max: max,
+          uses_current: Math.min(
+            max,
+            (s.uses_current ?? s.uses_max ?? 0) + gained
+          ),
+        }
+      })
+    }
+  }
+
   if (abilityScoreHistory.length) {
     patch.ability_score_history = [
       ...(character.ability_score_history || []),
@@ -2430,20 +2627,39 @@ function diffLevelUp(
           })
         }
       }
-      // Tool grant (Bard/Rogue/Artificer) — still surfaced as a warning
-      // only. Unlike skills, this app has no tool_proficiencies field
-      // anywhere on the character schema yet (not just for multiclassing —
-      // a starting class's OWN tool grants, e.g. Rogue's thieves' tools,
-      // aren't tracked either), so building a real picker here would mean
-      // inventing a new schema field used nowhere else in the app — a
-      // bigger, separate decision than this multiclass-specific gap.
+      // Tool grant (Rogue Thieves' Tools, Artificer Tinker's Tools, Bard one instrument of your choice):
+      // real tool proficiencies on the sheet. A tool the character already has is not granted twice.
       if (grant.tools) {
-        const toolText = Array.isArray(grant.tools)
-          ? grant.tools.join(', ')
-          : `${grant.tools.choose} of your choice from ${grant.tools.from}`
-        notes.push(
-          `Multiclassing into ${className} also grants proficiency with ${toolText} — tool proficiencies aren't tracked on the character sheet yet.`
-        )
+        // (the "extra proficiencies" merge above has already run, so write the patch directly)
+        const tools =
+          patch.tool_proficiencies ?? character.tool_proficiencies ?? []
+        const held = new Set(tools.map(normalizeName))
+        const addTool = (t) => {
+          patch.tool_proficiencies = [...(patch.tool_proficiencies ?? tools), t]
+        }
+        if (Array.isArray(grant.tools))
+          for (const t of grant.tools) {
+            if (!held.has(normalizeName(t))) {
+              addTool(toolName(t))
+              held.add(normalizeName(t))
+            }
+          }
+        else {
+          const options = INSTRUMENTS.filter((i) => !held.has(normalizeName(i)))
+          const pick = options.find(
+            (i) =>
+              multiclassToolChoice &&
+              normalizeName(i) === normalizeName(multiclassToolChoice)
+          )
+          if (pick) addTool(pick)
+          else
+            pendingChoices.push({
+              type: 'multiclassToolChoice',
+              count: grant.tools.choose,
+              className,
+              options,
+            })
+        }
       }
     }
   }

@@ -239,6 +239,15 @@ export default {
     },
   },
   watch: {
+    // The New Character tool hands over its level 0 sheet by name.
+    '$store.state.levelUpNavRequest': {
+      immediate: true,
+      handler(req) {
+        if (!req?.engine) return
+        this.selectedCharacterName = req.name
+        this.$store.commit('CLEAR_LEVEL_UP_NAV')
+      },
+    },
     selectedCharacterName() {
       this.selectedClassName = this.selectedCharacter?.classes[0]?.name ?? null
       this.restart()
@@ -357,6 +366,7 @@ export default {
     confirm() {
       if (!this.preview?.complete) return
       let patch = this.preview.patch
+      let granted = []
       // A Wizard with a shared spellbook: new spells go onto the spellbook, not the character.
       if (this.selectedCharacter?.spellbook_id && patch.spells) {
         const book = (this.$store.state.spellbooks ?? []).find(
@@ -364,7 +374,17 @@ export default {
         )
         if (book) {
           const known = new Set((book.spells ?? []).map((s) => s.name))
-          const added = patch.spells.filter((s) => !known.has(s.name))
+          // A granted spell (a lineage spell, a feat's spell) stays on the character with its own
+          // free-cast counter; only the Wizard's own picks go in the book.
+          const own = this.selectedCharacter.spells ?? []
+          granted = patch.spells.filter(
+            (s) =>
+              s.featureGranted &&
+              !own.some((o) => o.name === s.name && o._source === s._source)
+          )
+          const added = patch.spells.filter(
+            (s) => !known.has(s.name) && !s.featureGranted
+          )
           if (added.length)
             this.$store.commit('UPDATE_TABLE_ITEM', {
               table: 'spellbooks',
@@ -378,7 +398,12 @@ export default {
             })
         }
         const { spells, ...rest } = patch
-        patch = rest
+        patch = granted.length
+          ? {
+              ...rest,
+              spells: [...(this.selectedCharacter.spells ?? []), ...granted],
+            }
+          : rest
       }
       this.$store.commit('APPLY_LEVEL_UP', {
         characterName: this.selectedCharacterName,

@@ -15,6 +15,11 @@
     "martial:finesse_or_light"
   ],
   "weapon_proficiencies_text": "Simple weapons and Martial weapons that have the Finesse or Light property",
+  "tool_proficiencies": {
+    "fixed": [
+      "Thieves' Tools"
+    ]
+  },
   "skill_choices": {
     "count": 4,
     "options": [

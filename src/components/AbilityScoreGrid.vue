@@ -111,12 +111,14 @@ export default {
       this.$store.commit('SET_PENDING_ROLL', {
         label: `${this.character.name} — ${stat.label} check`,
         mod: dnd.abilityCheck(this.character, stat.key, this.partyItems),
+        rerollOn: dnd.characterGrants(this.character).d20RerollOn,
       })
     },
     rollSave(stat) {
       this.$store.commit('SET_PENDING_ROLL', {
         label: `${this.character.name} — ${stat.label} save`,
         mod: this.savingThrows[stat.key].total,
+        rerollOn: dnd.characterGrants(this.character).d20RerollOn,
       })
     },
   },

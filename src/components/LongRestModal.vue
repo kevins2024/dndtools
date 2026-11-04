@@ -87,7 +87,11 @@
                     </div>
                     <div class="picker-badges">
                       <span class="picker-perc">{{ signedPerc(char) }}</span>
-                      <span v-if="char.darkvision" class="picker-dv">DV</span>
+                      <span
+                        v-if="$dnd.characterGrants(char).darkvision"
+                        class="picker-dv"
+                        >DV</span
+                      >
                       <span
                         v-if="
                           wouldBeOverwatch(char.name, si, pi) &&

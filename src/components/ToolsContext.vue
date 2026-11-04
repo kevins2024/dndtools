@@ -28,6 +28,7 @@ import DmExport from './DmExport.vue'
 import LevelUpTool from './LevelUpTool.vue'
 import LevelUp from './LevelUp.vue'
 import NewCharacterTool from './NewCharacterTool.vue'
+import NewCharacter2024 from './NewCharacter2024.vue'
 import JsonIntakeTool from './JsonIntakeTool.vue'
 import DmSettings from './DmSettings.vue'
 import DifficultyCalculator from './DifficultyCalculator.vue'
@@ -44,6 +45,7 @@ export default {
     LevelUpTool,
     LevelUp,
     NewCharacterTool,
+    NewCharacter2024,
     JsonIntakeTool,
     DmSettings,
     DifficultyCalculator,
@@ -70,8 +72,13 @@ export default {
           component: 'NpcGenerator',
         },
         {
-          id: 'new-character',
+          id: 'new-character-2024',
           label: 'New Character',
+          component: 'NewCharacter2024',
+        },
+        {
+          id: 'new-character',
+          label: 'New Character (old, 2014 flow)',
           component: 'NewCharacterTool',
         },
         {
@@ -116,7 +123,7 @@ export default {
 
   watch: {
     '$store.state.levelUpNavRequest'(req) {
-      if (req) this.activeTool = 'level-up'
+      if (req) this.activeTool = req.engine ? 'level-up-engine' : 'level-up'
     },
     '$store.state.newCharacterNavRequest'(req) {
       if (req) this.activeTool = 'new-character'
@@ -124,7 +131,8 @@ export default {
   },
 
   created() {
-    if (this.$store.state.levelUpNavRequest) this.activeTool = 'level-up'
+    const nav = this.$store.state.levelUpNavRequest
+    if (nav) this.activeTool = nav.engine ? 'level-up-engine' : 'level-up'
     if (this.$store.state.newCharacterNavRequest)
       this.activeTool = 'new-character'
   },

@@ -107,8 +107,7 @@
 </template>
 
 <script>
-import srdSpells from '@/data/api_data_cache/srd_spells_full.json'
-import publishedSpells from '@/data/published_spells.json'
+import { allSpells2024 } from '@/utils/spells2024'
 
 const PHASE_DEFS = [
   {
@@ -133,12 +132,8 @@ const PHASE_DEFS = [
 
 const PHASE_CLASSES = ['Sorcerer', 'Warlock', 'Wizard']
 
-// Merge spell sources, deduplicate by name (published wins over SRD)
-const publishedNames = new Set(publishedSpells.map((s) => s.name.toLowerCase()))
-const ALL_SPELLS = [
-  ...publishedSpells,
-  ...srdSpells.filter((s) => !publishedNames.has(s.name.toLowerCase())),
-]
+// Every spell under the 2024 rules (utils/spells2024.js)
+const ALL_SPELLS = allSpells2024()
 
 export default {
   name: 'WeavePhaseGrid',

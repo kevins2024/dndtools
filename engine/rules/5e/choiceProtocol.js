@@ -34,7 +34,7 @@ const {
 } = require('./invocations')
 const { listSubclasses, spellListClasses } = require('./subclasses')
 const { loadClass } = require('./classFeatures')
-const { loadSkill } = require('./skills')
+const { loadSkill, listSkills } = require('./skills')
 const { loadFeat } = require('./grants')
 const { loadMetamagicOption } = require('./metamagic')
 const { loadManeuver } = require('./maneuvers')
@@ -276,6 +276,21 @@ const SPECS = {
     prompt: () => 'Choose a saving throw proficiency.',
     apply: (i, p, v) => setIn(i, 'ironMindChoice', v[0]),
   },
+  // a skill a feature's own feature-mechanics entry asks for (featureGrants.js), or the replacement for a
+  // skill it grants that the character already has
+  multiclassToolChoice: {
+    title: 'Multiclass tool',
+    prompt: () => 'Choose a musical instrument from your new class.',
+    apply: (i, p, v) => setIn(i, 'multiclassToolChoice', v[0]),
+  },
+  featureGrantChoice: {
+    title: (p) => p.featureName,
+    prompt: (p) =>
+      `${p.why ? `You are ${p.why}, so choose another. ` : ''}Choose ${
+        p.count
+      } ${p.noun ?? 'skill'}${p.count === 1 ? '' : 's'}.`,
+    apply: (i, p, v) => ((i.featureChoices ||= {})[p.key] = v),
+  },
   bladesingerWeaponChoice: {
     title: 'Bladesong weapon',
     prompt: () => 'Choose a one-handed melee weapon.',
@@ -314,9 +329,11 @@ const SPECS = {
       // Sheets spell a skill several ways ("Sleight of Hand", "SleightOfHand", "sleight_of_hand").
       const flat = (s) => norm(s).replace(/[^a-z0-9]/g, '')
       const owned = new Set((ctx.character.skill_proficiencies || []).map(flat))
-      const ids = p.options?.length
+      const listed = p.options?.length
         ? p.options
         : loadClass(p.className || ctx.className)?.skill_choices?.options || []
+      // 'any' (the Bard) is every skill
+      const ids = Array.isArray(listed) ? listed : listSkills().map((s) => s.id)
       return ids
         .map((o) => (typeof o === 'string' ? o : o.id || o.name))
         .map((id) =>

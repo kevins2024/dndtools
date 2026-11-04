@@ -12,6 +12,7 @@ import {
   SHORT_REST_RECHARGE_TYPES,
   LONG_REST_RECHARGE_TYPES,
 } from '@/utils/rest'
+import { applyAttunement } from '@/utils/attunement'
 import {
   spendUse,
   restoreUse,
@@ -51,6 +52,15 @@ function nextSequentialNum(rows, prefix) {
     .map(Number)
   return nums.length ? Math.max(...nums) + 1 : 0
 }
+
+// The items a character has equipped, as the engine counts them (an un-attuned item that needs attunement
+// loses its special effects): what a rest's maximum Hit Points are worked out with.
+const equippedBy = (char, partyItems = []) =>
+  applyAttunement(
+    [...(char.items ?? []), ...partyItems].filter(
+      (i) => i.equipped_by === char.name
+    )
+  )
 
 export default new Vuex.Store({
   state: {
@@ -234,6 +244,10 @@ export default new Vuex.Store({
     },
     NAV_TO_LEVEL_UP(state, name) {
       state.levelUpNavRequest = { name }
+    },
+    // Same, but to the engine-driven Level Up (the New Character tool hands over a level 0 sheet).
+    NAV_TO_LEVEL_UP_ENGINE(state, name) {
+      state.levelUpNavRequest = { name, engine: true }
     },
     CLEAR_LEVEL_UP_NAV(state) {
       state.levelUpNavRequest = null
@@ -582,8 +596,10 @@ export default new Vuex.Store({
       const skipChars = payload?.skipChars ?? []
       state.characters = state.characters.map((char) => ({
         ...char,
-        ...applyLongRest(char, { interrupted: skipChars.includes(char.name) })
-          .patch,
+        ...applyLongRest(char, {
+          interrupted: skipChars.includes(char.name),
+          equippedItems: equippedBy(char, state.party_items),
+        }).patch,
       }))
       if (!state.dirtyTables.includes('characters'))
         state.dirtyTables.push('characters')
@@ -615,7 +631,10 @@ export default new Vuex.Store({
       // spentMap: { [charName]: { diceSpent: number, hpGained: number } }
       state.characters = state.characters.map((char) => ({
         ...char,
-        ...applyShortRest(char, spentMap[char.name]).patch,
+        ...applyShortRest(char, {
+          ...spentMap[char.name],
+          equippedItems: equippedBy(char, state.party_items),
+        }).patch,
       }))
       if (!state.dirtyTables.includes('characters'))
         state.dirtyTables.push('characters')

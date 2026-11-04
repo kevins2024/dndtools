@@ -31,7 +31,7 @@ const {
   SKILL_MAP,
 } = require('./checks')
 const { maxHpBreakdown } = require('./derive')
-const { speedBreakdown } = require('./speed')
+const { speedBreakdown, flySpeedBreakdown } = require('./speed')
 const { exhaustionEffects } = require('./exhaustion')
 const {
   resolveSpellcasting,
@@ -46,6 +46,8 @@ const { hitDieForClass } = require('./progression')
 const { rulesetOf } = require('./rulesetId')
 
 const { applyAttunement } = require('./attunement')
+const { characterGrants } = require('./featureGrants')
+const { effectiveSize } = require('./speciesRules')
 
 const KEYS = ['str', 'dex', 'con', 'int', 'wis', 'cha']
 const signed = (n) => (n >= 0 ? `+${n}` : `${n}`)
@@ -236,6 +238,64 @@ function spellcastingBlock(character, equippedItems) {
   }
 }
 
+// Spellcasting a feature gives outside any class: "Intelligence, Wisdom, or Charisma is your spellcasting
+// ability for the spells you cast with this trait" (species lineages, Light Bearer, Magic Initiate). One
+// entry per feature that records the ability it casts with, with that ability's save DC and attack bonus.
+function featureSpellcasting(character, equippedItems) {
+  return (character.features || [])
+    .filter((f) => f.ability_choice)
+    .map((f) => ({
+      source: f.name,
+      ability: f.ability_choice,
+      saveDC: leaf(
+        spellSaveDCBreakdown(character, equippedItems, f.ability_choice)
+      ),
+      attackBonus: leaf(
+        spellAttackBonusBreakdown(character, equippedItems, f.ability_choice)
+      ),
+    }))
+}
+
+// Save DCs a class feature sets that are not spell DCs (2024 PHB): 8 + the ability modifier + Proficiency
+// Bonus. Battle Master's maneuvers use Strength or Dexterity (the better), the Monk's Focus uses Wisdom,
+// the Rogue's Cunning Strike uses Dexterity, the Psi Warrior's Psionic Power uses Intelligence.
+const CLASS_SAVE_DCS = [
+  {
+    cls: 'Fighter',
+    subclass: 'Battle Master',
+    label: 'Maneuver DC',
+    abilities: ['str', 'dex'],
+  },
+  {
+    cls: 'Fighter',
+    subclass: 'Psi Warrior',
+    label: 'Psionic DC',
+    abilities: ['int'],
+  },
+  { cls: 'Monk', label: 'Focus DC', abilities: ['wis'] },
+  { cls: 'Rogue', label: 'Cunning Strike DC', abilities: ['dex'], minLevel: 5 },
+]
+
+function classSaveDCs(character, equippedItems) {
+  const { scores } = resolveEffectiveStats(character, equippedItems)
+  const out = []
+  for (const rule of CLASS_SAVE_DCS) {
+    const c = (character.classes || []).find((x) => x.name === rule.cls)
+    if (!c || (rule.subclass && c.subclass !== rule.subclass)) continue
+    if ((c.level || 0) < (rule.minLevel ?? 1)) continue
+    const ability = rule.abilities.reduce((best, a) =>
+      (scores[a] ?? 10) > (scores[best] ?? 10) ? a : best
+    )
+    out.push({
+      label: rule.label,
+      class: c.name,
+      ability,
+      saveDC: leaf(spellSaveDCBreakdown(character, equippedItems, ability)),
+    })
+  }
+  return out
+}
+
 function characterSheet(character, { equippedItems = [] } = {}) {
   const ruleset = rulesetOf(character)
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
@@ -273,13 +333,25 @@ function characterSheet(character, { equippedItems = [] } = {}) {
       advantage: hasInitiativeAdvantage(character, equippedItems),
     },
     speed: leaf(speedBreakdown(character, equippedItems)),
+    flySpeed: flySpeedBreakdown(character, equippedItems)
+      ? leaf(flySpeedBreakdown(character, equippedItems))
+      : null,
     passivePerception: leaf(
       passivePerceptionBreakdown(character, equippedItems)
     ),
     savingThrows,
     skills,
     exhaustion: exhaustionEffects(character.exhaustion_level, ruleset),
+    // what the features grant: resistances, advantages, darkvision (featureGrants.js)
+    grants: characterGrants(character),
+    size: {
+      carrying: effectiveSize(character, 'carrying_capacity'),
+      grappling: effectiveSize(character, 'grappling'),
+      current: effectiveSize(character, 'current'),
+    },
     spellcasting: spellcastingBlock(character, equippedItems),
+    featureSpellcasting: featureSpellcasting(character, equippedItems),
+    saveDCs: classSaveDCs(character, equippedItems),
   }
 }
 

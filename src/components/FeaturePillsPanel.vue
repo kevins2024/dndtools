@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-if="useResult" class="use-result" @click="useResult = null">
+      {{ useResult }}
+    </div>
     <div v-for="group in featureGroups" :key="group.type" class="pill-group">
       <div class="pill-group-label">{{ group.label }}</div>
       <div class="pill-row">
@@ -48,6 +51,23 @@
           >
             +1</button
           ><button
+            v-if="actionFor(f)"
+            class="pill-use-btn"
+            :disabled="!usable(f)"
+            :title="useTitle(f)"
+            @click.stop="onUse(f)"
+          >
+            Use</button
+          ><span v-if="choosing === f.name" class="pill-options"
+            ><button
+              v-for="o in actionFor(f).options"
+              :key="o.id"
+              class="pill-use-btn"
+              @click.stop="doUse(f, o.id)"
+            >
+              {{ o.name }}
+            </button></span
+          ><button
             v-if="f.per_turn_cap && !f.uses_max"
             class="pill-turn-toggle-btn"
             :class="{ 'is-used': usedThisTurn(f) }"
@@ -70,6 +90,8 @@
 import { dnd } from '@/utils/dnd_utils.js'
 import { buildFeaturePopupData } from '@/utils/detailPopupBuilders.js'
 import ActionCostIcon from '@/components/ActionCostIcon.vue'
+import { useFeature, featureAction } from '@/utils/featureUse.js'
+import { describeUse } from '@/utils/featureUseText.js'
 import { Star, Fingerprint } from 'lucide-vue'
 
 const FEATURE_TYPE_ORDER = ['feature', 'maneuver']
@@ -104,7 +126,12 @@ export default {
   emits: ['inspect', 'feature-used', 'feature-turn-toggle'],
 
   data() {
-    return { dnd }
+    return {
+      dnd,
+      // the feature whose options (Celestial Revelation's forms) are being offered
+      choosing: null,
+      useResult: null,
+    }
   },
 
   computed: {
@@ -153,6 +180,45 @@ export default {
   },
 
   methods: {
+    // What using a feature does is the engine's (featureUse.js): a feature with an effect it resolves
+    // (Healing Hands, Breath Weapon, Large Form) gets a Use button that rolls, spends the use and shows
+    // the result; a plain counter keeps only its −1/+1.
+    actionFor(feature) {
+      return featureAction(this.character, feature)
+    },
+    usable(feature) {
+      return !feature.uses_max || (feature.uses_current ?? feature.uses_max) > 0
+    },
+    useTitle(feature) {
+      const a = this.actionFor(feature)
+      return a.minLevel
+        ? `Use ${feature.name} (character level ${a.minLevel}+)`
+        : `Use ${feature.name}`
+    },
+    onUse(feature) {
+      if (this.actionFor(feature).options) {
+        this.choosing = this.choosing === feature.name ? null : feature.name
+        return
+      }
+      this.doUse(feature, null)
+    },
+    doUse(feature, option) {
+      this.choosing = null
+      const equippedItems = (this.$store.state.party_items ?? []).filter(
+        (i) => i.equipped_by === this.character.name
+      )
+      const result = useFeature(this.character, feature.id ?? feature.name, {
+        option,
+        equippedItems,
+      })
+      this.useResult = describeUse(result)
+      if (!result.ok) return
+      this.$store.commit('UPDATE_TABLE_ITEM', {
+        table: this.table,
+        updatedItem: { ...this.character, ...result.patch },
+      })
+      this.$emit('feature-used', this.useResult)
+    },
     async inspect(feature) {
       this.$emit(
         'inspect',
@@ -322,6 +388,7 @@ export default {
   color: var(--color-text-low);
 }
 
+.pill-use-btn,
 .pill-spend-btn,
 .pill-restore-btn {
   margin-left: 0.35em;
@@ -335,12 +402,14 @@ export default {
   cursor: pointer;
 }
 
+.pill-use-btn:hover:not(:disabled),
 .pill-spend-btn:hover:not(:disabled),
 .pill-restore-btn:hover {
   background: var(--color-accent);
   color: var(--color-bg);
 }
 
+.pill-use-btn:disabled,
 .pill-spend-btn:disabled {
   border-color: var(--color-border);
   color: var(--color-text-low);
@@ -350,5 +419,18 @@ export default {
 .pill-restore-btn {
   border-color: var(--color-border);
   color: var(--color-text-low);
+}
+
+.pill-options {
+  margin-left: 0.25em;
+}
+
+.use-result {
+  margin-bottom: 0.6vh;
+  padding: 0.4em 0.6em;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  font-size: var(--font-size-md);
+  cursor: pointer;
 }
 </style>

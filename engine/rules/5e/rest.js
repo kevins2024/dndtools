@@ -21,6 +21,8 @@ const { rollDie, rollDiceExpr, isDiceExpr } = require('./dice')
 const { abilityModifier } = require('./abilities')
 const { hitDieForClass } = require('./progression')
 const { resolveEffectiveStats } = require('./characterStats')
+const { effectiveMaxHp } = require('./hitPoints')
+const { characterGrants, effectiveGrants } = require('./featureGrants')
 
 const MAX_EXHAUSTION = 6
 const { rulesetOf, normalizeRuleset } = require('./rulesetId')
@@ -87,8 +89,15 @@ function hitDiceAvailable(character) {
   return character.hit_dice_current ?? character.level ?? 1
 }
 
-function hpMissing(character) {
-  return (character.hp_max ?? 0) - (character.hp_current ?? 0)
+// The maximum Hit Points a rest heals up to: the stored maximum with its modifier, and with the items that
+// change Constitution applied when `equippedItems` is given (hitPoints.effectiveMaxHp).
+function maxHp(character, equippedItems = []) {
+  const { scores } = resolveEffectiveStats(character, equippedItems)
+  return effectiveMaxHp(character, scores.con)
+}
+
+function hpMissing(character, equippedItems = []) {
+  return maxHp(character, equippedItems) - (character.hp_current ?? 0)
 }
 
 // Average HP one hit die heals: the die's average roll plus CON mod.
@@ -105,7 +114,10 @@ function shortRestHealEstimate(character, dice, equippedItems = []) {
   const total = Math.round(
     dice * averageHitDieHealing(character, equippedItems)
   )
-  return Math.min(Math.max(0, total), Math.max(0, hpMissing(character)))
+  return Math.min(
+    Math.max(0, total),
+    Math.max(0, hpMissing(character, equippedItems))
+  )
 }
 
 // Actually roll `dice` hit dice. PHB: each die is rolled and CON mod added
@@ -125,7 +137,7 @@ function rollShortRestHealing(
   const rawTotal = rolls.reduce((sum, r) => sum + r + conMod, 0)
   const hpGained = Math.max(
     0,
-    Math.min(rawTotal, Math.max(0, hpMissing(character)))
+    Math.min(rawTotal, Math.max(0, hpMissing(character, equippedItems)))
   )
   return { rolls, hpGained }
 }
@@ -179,7 +191,7 @@ function shortRestPreview(character) {
   return { features, pactSlotsSpent }
 }
 
-function longRestPreview(character) {
+function longRestPreview(character, equippedItems = []) {
   const features = (character.features ?? [])
     .filter(
       (f) =>
@@ -193,20 +205,39 @@ function longRestPreview(character) {
     spellSlotsSpent += Math.max(0, slot.max - (slot.current ?? slot.max))
   }
   return {
-    hpMissing: Math.max(0, hpMissing(character)),
+    hpMissing: Math.max(0, hpMissing(character, equippedItems)),
     features,
     spellSlotsSpent,
+    // 8 hours; an Elf's Trance finishes a Long Rest in 4
+    hours: longRestHours(character),
+    // what the rest gives besides recovery (Human Resourceful: Heroic Inspiration)
+    heroicInspiration: gainsHeroicInspiration(character),
   }
+}
+
+function longRestHours(character) {
+  return characterGrants(character).longRestHours
+}
+
+function gainsHeroicInspiration(character) {
+  return (character.features ?? []).some(
+    (f) => effectiveGrants(f).on_long_rest?.heroic_inspiration
+  )
 }
 
 // { diceSpent, hpGained } is what the player chose/rolled. Returns
 // { patch, recharged }.
-function applyShortRest(character, { diceSpent = 0, hpGained = 0 } = {}) {
+function applyShortRest(
+  character,
+  { diceSpent = 0, hpGained = 0, equippedItems = [] } = {}
+) {
   const recharged = shortRestRecharges(character)
   const patch = {}
+  // a temporary state (Large Form, Draconic Flight: 10 minutes at most) is over by the end of a rest
+  if (character.active_effects?.length) patch.active_effects = []
   if (hpGained > 0) {
     patch.hp_current = Math.min(
-      character.hp_max,
+      maxHp(character, equippedItems),
       (character.hp_current ?? 0) + hpGained
     )
   }
@@ -278,10 +309,17 @@ function applyInterruptedRest(character) {
 // hit dice back, one exhaustion level removed, and non-Exhaustion
 // conditions cleared. Pass { interrupted: true } for a character who didn't
 // get the rest (see applyInterruptedRest).
-function applyLongRest(character, { interrupted = false } = {}) {
+function applyLongRest(
+  character,
+  { interrupted = false, equippedItems = [] } = {}
+) {
   if (interrupted) return applyInterruptedRest(character)
 
-  const patch = { hp_current: character.hp_max }
+  const patch = { hp_current: maxHp(character, equippedItems) }
+  if (character.active_effects?.length) patch.active_effects = []
+  // objects that last hours (a Rock Gnome's clockwork devices: 8 hours) are gone after the rest
+  if (character.created_objects?.length) patch.created_objects = []
+  if (gainsHeroicInspiration(character)) patch.heroic_inspiration = true
   if (character.spell_slots) {
     const slots = {}
     for (const [level, slot] of Object.entries(character.spell_slots)) {
@@ -409,6 +447,10 @@ const SHORT_REST_RECHARGE_TYPES = ['short_rest']
 const LONG_REST_RECHARGE_TYPES = ['daily', 'short_rest', 'long_rest', 'dawn']
 
 module.exports = {
+  maxHp,
+  conModifier,
+  longRestHours,
+  gainsHeroicInspiration,
   hitDieSides,
   characterHitDieSides,
   hitDiceAvailable,

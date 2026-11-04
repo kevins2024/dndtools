@@ -18,6 +18,7 @@ const barbarian2014 = require('../../data/5e/classes/barbarian.json')
 const barbarian2024 = require('../../data/5e2024/classes/barbarian.json')
 const { rulesetOf } = require('./rulesetId')
 const { withExhaustion } = require('./exhaustion')
+const { effectiveGrants } = require('./featureGrants')
 
 // Shared by both breakdown functions below — the stat-mod line's label
 // depends on the same finesse/ranged/melee routing weaponStatMod itself
@@ -266,7 +267,31 @@ function damageBonus(
   ).value
 }
 
+// A critical hit (2024 PHB): the attack's damage dice are rolled twice, and a feature can add more
+// (Half-Orc Savage Attacks: "roll one of the weapon's damage dice one additional time" on a melee weapon
+// attack). `dice` is the weapon's damage as "1d8"; returns the dice to roll with the lines that explain
+// the count: { dice: '3d8', count: 3, sides: 8, breakdown: [{ label, amount }] }. The flat bonus is not
+// doubled, so it is not part of this.
+function criticalDamageDice(character, dice, { melee = true } = {}) {
+  const m = /^(\d+)d(\d+)$/.exec(String(dice).trim())
+  if (!m) return null
+  const base = Number(m[1])
+  const sides = Number(m[2])
+  const breakdown = [
+    { label: 'Damage dice', amount: base },
+    { label: 'Critical hit (rolled twice)', amount: base },
+  ]
+  for (const f of character.features ?? []) {
+    const rule = effectiveGrants(f).crit_extra_dice
+    if (rule && melee && rule.attack === 'melee_weapon')
+      breakdown.push({ label: f.name, amount: rule.dice })
+  }
+  const count = breakdown.reduce((n, l) => n + l.amount, 0)
+  return { dice: `${count}d${sides}`, count, sides, breakdown }
+}
+
 module.exports = {
+  criticalDamageDice,
   weaponEnchantment,
   weaponStatMod,
   gripDie,

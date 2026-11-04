@@ -13,3 +13,4 @@ export const sneakAttackDice = unarmedEngine.sneakAttackDice
 export const martialArtsDie = unarmedEngine.martialArtsDie
 export const unarmedStrike = unarmedEngine.unarmedStrike
 export const psychicBlades = unarmedEngine.psychicBlades
+export const featureBodyAttacks = unarmedEngine.featureBodyAttacks

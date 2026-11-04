@@ -258,7 +258,7 @@ export default {
 
     charDarkvision(char) {
       const { bonuses } = dnd.resolveStats(char, this.party_items)
-      return (char.darkvision ?? 0) + (bonuses.darkvision ?? 0)
+      return dnd.characterGrants(char).darkvision + (bonuses.darkvision ?? 0)
     },
 
     topStat(char) {
@@ -322,10 +322,19 @@ export default {
       return items
     },
 
+    // the items the character has equipped, as the engine counts them (for the maximum Hit Points)
+    equippedFor(char) {
+      return dnd._equippedOnly(char, this.party_items)
+    },
+
     longGains(char) {
-      const { hpMissing, features, spellSlotsSpent } = longRestPreview(char)
+      const { hpMissing, features, spellSlotsSpent, hours, heroicInspiration } =
+        longRestPreview(char, this.equippedFor(char))
       const items = []
       if (hpMissing > 0) items.push(`HP +${hpMissing}`)
+      // what a rest gives besides recovery, and a rest shorter than 8 hours (an Elf's Trance: 4)
+      if (heroicInspiration) items.push('Heroic Inspiration')
+      if (hours !== 8) items.push(`${hours} hr rest`)
       for (const name of features) items.push(this.abbrevFeature(name))
       if (spellSlotsSpent > 0)
         items.push(`${spellSlotsSpent} slot${spellSlotsSpent > 1 ? 's' : ''}`)

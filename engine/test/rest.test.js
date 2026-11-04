@@ -234,6 +234,8 @@ test('shortRestPreview / longRestPreview: report only what is actually spent', (
     hpMissing: 10,
     features: ['Rage'],
     spellSlotsSpent: 3,
+    hours: 8,
+    heroicInspiration: false,
   })
   assert.deepStrictEqual(shortRestPreview({}), {
     features: [],

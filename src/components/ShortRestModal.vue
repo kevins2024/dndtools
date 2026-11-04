@@ -26,7 +26,7 @@
             <div class="hp-section">
               <div class="hp-numbers">
                 {{ char.hp_current }}<span class="hp-sep">/</span
-                >{{ char.hp_max }}
+                >{{ hpMax(char) }}
                 <span v-if="hpMissing(char) > 0" class="hp-missing"
                   >−{{ hpMissing(char) }}</span
                 >
@@ -124,7 +124,7 @@
                 </template>
                 <span class="result-hp-change">
                   ❤ {{ rollResults[char.name].hpBefore }} →
-                  {{ rollResults[char.name].hpAfter }}/{{ char.hp_max }}
+                  {{ rollResults[char.name].hpAfter }}/{{ hpMax(char) }}
                 </span>
               </div>
               <div class="result-roll muted" v-else>No hit dice spent.</div>
@@ -158,6 +158,8 @@ import { dnd } from '@/utils/dnd_utils'
 import {
   hitDiceAvailable,
   hpMissing,
+  maxHp,
+  conModifier,
   averageHitDieHealing,
   characterHitDieSides,
   shortRestHealEstimate,
@@ -198,8 +200,9 @@ export default {
   methods: {
     ...mapMutations(['SHORT_REST']),
 
+    // the Constitution modifier the hit dice actually use: the effective score, items counted
     conMod(char) {
-      return dnd.mod(char.stat_con)
+      return conModifier(char, this.equipped(char))
     },
 
     // Hit die and CON come from the engine: the die from the character's
@@ -221,12 +224,17 @@ export default {
     },
 
     hpMissing(char) {
-      return hpMissing(char)
+      return hpMissing(char, this.equipped(char))
+    },
+
+    hpMax(char) {
+      return maxHp(char, this.equipped(char))
     },
 
     hpPct(char) {
-      if (!char.hp_max) return 100
-      return Math.round((char.hp_current / char.hp_max) * 100)
+      const max = this.hpMax(char)
+      if (!max) return 100
+      return Math.round((char.hp_current / max) * 100)
     },
 
     hpColorClass(char) {
@@ -278,7 +286,7 @@ export default {
           rolls,
           hpGained,
           hpBefore: char.hp_current,
-          hpAfter: Math.min(char.hp_max, char.hp_current + hpGained),
+          hpAfter: Math.min(this.hpMax(char), char.hp_current + hpGained),
           recharged,
         }
         spentMap[char.name] = { diceSpent: n, hpGained }

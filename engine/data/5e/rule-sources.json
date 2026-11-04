@@ -1,0 +1,1566 @@
+{
+  "_readme": "Where a feature's text was checked against a second, independent source (the SRD 5.2 API), as \"ref@date\". Written by scripts/crosscheck-srd.js; read by scripts/rule-source.js and a test, never loaded by the engine or the app. A feature missing here has no recorded second source. Agreement means the numbers and dice in the two texts match, not that the engine rule is right (the rule tests cover that).",
+  "pub24_species_dragonborn-darkvision": [
+    "srd52:traits/darkvision-60@2026-11-04"
+  ],
+  "pub24_species_dragonborn-draconic-flight": [
+    "srd52:traits/draconic-flight@2026-11-04"
+  ],
+  "pub24_species_dwarf-darkvision": [
+    "srd52:traits/darkvision-120@2026-11-04"
+  ],
+  "pub24_species_dwarf-dwarven-resilience": [
+    "srd52:traits/dwarven-resilience@2026-11-04"
+  ],
+  "pub24_species_dwarf-dwarven-toughness": [
+    "srd52:traits/dwarven-toughness@2026-11-04"
+  ],
+  "pub24_species_dwarf-stonecunning": [
+    "srd52:traits/stonecunning@2026-11-04"
+  ],
+  "pub24_species_elf-darkvision": [
+    "srd52:traits/darkvision-60@2026-11-04"
+  ],
+  "pub24_species_elf-fey-ancestry": [
+    "srd52:traits/fey-ancestry@2026-11-04"
+  ],
+  "pub24_species_elf-keen-senses": [
+    "srd52:traits/keen-senses@2026-11-04"
+  ],
+  "pub24_species_elf-trance": [
+    "srd52:traits/trance@2026-11-04"
+  ],
+  "pub24_species_gnome-darkvision": [
+    "srd52:traits/darkvision-60@2026-11-04"
+  ],
+  "pub24_species_gnome-gnomish-cunning": [
+    "srd52:traits/gnomish-cunning@2026-11-04"
+  ],
+  "pub24_species_goliath-giant-ancestry": [
+    "srd52:traits/giant-ancestry@2026-11-04"
+  ],
+  "pub24_species_goliath-large-form": [
+    "srd52:traits/large-form@2026-11-04"
+  ],
+  "pub24_species_goliath-powerful-build": [
+    "srd52:traits/powerful-build@2026-11-04"
+  ],
+  "pub24_species_halfling-brave": [
+    "srd52:traits/brave@2026-11-04"
+  ],
+  "pub24_species_halfling-halfling-nimbleness": [
+    "srd52:traits/halfling-nimbleness@2026-11-04"
+  ],
+  "pub24_species_halfling-luck": [
+    "srd52:traits/luck@2026-11-04"
+  ],
+  "pub24_species_halfling-naturally-stealthy": [
+    "srd52:traits/naturally-stealthy@2026-11-04"
+  ],
+  "pub24_species_human-resourceful": [
+    "srd52:traits/resourceful@2026-11-04"
+  ],
+  "pub24_species_human-skillful": [
+    "srd52:traits/skillful@2026-11-04"
+  ],
+  "pub24_species_human-versatile": [
+    "srd52:traits/versatile@2026-11-04"
+  ],
+  "pub24_species_orc-adrenaline-rush": [
+    "srd52:traits/adrenaline-rush@2026-11-04"
+  ],
+  "pub24_species_orc-darkvision": [
+    "srd52:traits/darkvision-120@2026-11-04"
+  ],
+  "pub24_species_orc-relentless-endurance": [
+    "srd52:traits/relentless-endurance@2026-11-04"
+  ],
+  "pub24_species_tiefling-darkvision": [
+    "srd52:traits/darkvision-60@2026-11-04"
+  ],
+  "pub24_species_tiefling-otherworldly-presence": [
+    "srd52:traits/otherworldly-presence@2026-11-04"
+  ],
+  "pub24_barbarian-brutal-strike": [
+    "srd52:features/barbarian-brutal-strike@2026-11-04"
+  ],
+  "pub24_barbarian-danger-sense": [
+    "srd52:features/barbarian-danger-sense@2026-11-04"
+  ],
+  "pub24_barbarian-extra-attack": [
+    "srd52:features/barbarian-extra-attack@2026-11-04"
+  ],
+  "pub24_barbarian-fast-movement": [
+    "srd52:features/barbarian-fast-movement@2026-11-04"
+  ],
+  "pub24_barbarian-feral-instinct": [
+    "srd52:features/barbarian-feral-instinct@2026-11-04"
+  ],
+  "pub24_barbarian-indomitable-might": [
+    "srd52:features/barbarian-indomitable-might@2026-11-04"
+  ],
+  "pub24_barbarian-instinctive-pounce": [
+    "srd52:features/barbarian-instinctive-pounce@2026-11-04"
+  ],
+  "pub24_barbarian-persistent-rage": [
+    "srd52:features/barbarian-persistent-rage@2026-11-04"
+  ],
+  "pub24_barbarian-primal-champion": [
+    "srd52:features/barbarian-primal-champion@2026-11-04"
+  ],
+  "pub24_barbarian-primal-knowledge": [
+    "srd52:features/barbarian-primal-knowledge@2026-11-04"
+  ],
+  "pub24_barbarian-rage": [
+    "srd52:features/barbarian-rage@2026-11-04"
+  ],
+  "pub24_barbarian-reckless-attack": [
+    "srd52:features/barbarian-reckless-attack@2026-11-04"
+  ],
+  "pub24_barbarian-relentless-rage": [
+    "srd52:features/barbarian-relentless-rage@2026-11-04"
+  ],
+  "pub24_barbarian-unarmored-defense": [
+    "srd52:features/barbarian-unarmored-defense@2026-11-04"
+  ],
+  "pub24_barbarian-weapon-mastery": [
+    "srd52:features/barbarian-weapon-mastery@2026-11-04"
+  ],
+  "pub24_bard-bardic-inspiration": [
+    "srd52:features/bard-bardic-inspiration@2026-11-04"
+  ],
+  "pub24_bard-countercharm": [
+    "srd52:features/bard-countercharm@2026-11-04"
+  ],
+  "pub24_bard-expertise": [
+    "srd52:features/bard-expertise@2026-11-04"
+  ],
+  "pub24_bard-font-of-inspiration": [
+    "srd52:features/bard-font-of-inspiration@2026-11-04"
+  ],
+  "pub24_bard-jack-of-all-trades": [
+    "srd52:features/bard-jack-of-all-trades@2026-11-04"
+  ],
+  "pub24_bard-magical-secrets": [
+    "srd52:features/bard-magical-secrets@2026-11-04"
+  ],
+  "pub24_bard-superior-inspiration": [
+    "srd52:features/bard-superior-inspiration@2026-11-04"
+  ],
+  "pub24_bard-words-of-creation": [
+    "srd52:features/bard-words-of-creation@2026-11-04"
+  ],
+  "pub24_sub_barbarian-path-of-the-berserker-frenzy": [
+    "srd52:features/berserker-frenzy@2026-11-04"
+  ],
+  "pub24_sub_barbarian-path-of-the-berserker-intimidating-presence": [
+    "srd52:features/berserker-intimidating-presence@2026-11-04"
+  ],
+  "pub24_sub_barbarian-path-of-the-berserker-mindless-rage": [
+    "srd52:features/berserker-mindless-rage@2026-11-04"
+  ],
+  "pub24_sub_barbarian-path-of-the-berserker-retaliation": [
+    "srd52:features/berserker-retaliation@2026-11-04"
+  ],
+  "pub24_sub_fighter-champion-additional-fighting-style": [
+    "srd52:features/champion-additional-fighting-style@2026-11-04"
+  ],
+  "pub24_sub_fighter-champion-heroic-warrior": [
+    "srd52:features/champion-heroic-warrior@2026-11-04"
+  ],
+  "pub24_sub_fighter-champion-improved-critical": [
+    "srd52:features/champion-improved-critical@2026-11-04"
+  ],
+  "pub24_sub_fighter-champion-remarkable-athlete": [
+    "srd52:features/champion-remarkable-athlete@2026-11-04"
+  ],
+  "pub24_sub_fighter-champion-superior-critical": [
+    "srd52:features/champion-superior-critical@2026-11-04"
+  ],
+  "pub24_sub_fighter-champion-survivor": [
+    "srd52:features/champion-survivor@2026-11-04"
+  ],
+  "pub24_cleric-blessed-strikes": [
+    "srd52:features/cleric-blessed-strikes@2026-11-04"
+  ],
+  "pub24_cleric-channel-divinity": [
+    "srd52:features/cleric-channel-divinity@2026-11-04"
+  ],
+  "pub24_cleric-divine-intervention": [
+    "srd52:features/cleric-divine-intervention@2026-11-04"
+  ],
+  "pub24_cleric-divine-order": [
+    "srd52:features/cleric-divine-order@2026-11-04"
+  ],
+  "pub24_cleric-greater-divine-intervention": [
+    "srd52:features/cleric-greater-divine-intervention@2026-11-04"
+  ],
+  "pub24_cleric-improved-blessed-strikes": [
+    "srd52:features/cleric-improved-blessed-strikes@2026-11-04"
+  ],
+  "pub24_cleric-sear-undead": [
+    "srd52:features/cleric-sear-undead@2026-11-04"
+  ],
+  "pub24_sub_paladin-oath-of-devotion-aura-of-devotion": [
+    "srd52:features/devotion-aura-of-devotion@2026-11-04"
+  ],
+  "pub24_sub_paladin-oath-of-devotion-holy-nimbus": [
+    "srd52:features/devotion-holy-nimbus@2026-11-04"
+  ],
+  "pub24_sub_paladin-oath-of-devotion-oath-of-devotion-spells": [
+    "srd52:features/devotion-oath-of-devotion-spells@2026-11-04"
+  ],
+  "pub24_sub_paladin-oath-of-devotion-sacred-weapon": [
+    "srd52:features/devotion-sacred-weapon@2026-11-04"
+  ],
+  "pub24_sub_paladin-oath-of-devotion-smite-of-protection": [
+    "srd52:features/devotion-smite-of-protection@2026-11-04"
+  ],
+  "pub24_sub_sorcerer-draconic-sorcery-draconic-resilience": [
+    "srd52:features/draconic-sorcery-draconic-resilience@2026-11-04"
+  ],
+  "pub24_sub_sorcerer-draconic-sorcery-draconic-spells": [
+    "srd52:features/draconic-sorcery-draconic-spells@2026-11-04"
+  ],
+  "pub24_sub_sorcerer-draconic-sorcery-dragon-companion": [
+    "srd52:features/draconic-sorcery-dragon-companion@2026-11-04"
+  ],
+  "pub24_sub_sorcerer-draconic-sorcery-dragon-wings": [
+    "srd52:features/draconic-sorcery-dragon-wings@2026-11-04"
+  ],
+  "pub24_sub_sorcerer-draconic-sorcery-elemental-affinity": [
+    "srd52:features/draconic-sorcery-elemental-affinity@2026-11-04"
+  ],
+  "pub24_druid-archdruid": [
+    "srd52:features/druid-archdruid@2026-11-04"
+  ],
+  "pub24_druid-beast-spells": [
+    "srd52:features/druid-beast-spells@2026-11-04"
+  ],
+  "pub24_druid-druidic": [
+    "srd52:features/druid-druidic@2026-11-04"
+  ],
+  "pub24_druid-elemental-fury": [
+    "srd52:features/druid-elemental-fury@2026-11-04"
+  ],
+  "pub24_druid-improved-elemental-fury": [
+    "srd52:features/druid-improved-elemental-fury@2026-11-04"
+  ],
+  "pub24_druid-primal-order": [
+    "srd52:features/druid-primal-order@2026-11-04"
+  ],
+  "pub24_druid-wild-companion": [
+    "srd52:features/druid-wild-companion@2026-11-04"
+  ],
+  "pub24_druid-wild-resurgence": [
+    "srd52:features/druid-wild-resurgence@2026-11-04"
+  ],
+  "pub24_druid-wild-shape": [
+    "srd52:features/druid-wild-shape@2026-11-04"
+  ],
+  "pub24_sub_wizard-evoker-empowered-evocation": [
+    "srd52:features/evoker-empowered-evocation@2026-11-04"
+  ],
+  "pub24_sub_wizard-evoker-evocation-savant": [
+    "srd52:features/evoker-evocation-savant@2026-11-04"
+  ],
+  "pub24_sub_wizard-evoker-overchannel": [
+    "srd52:features/evoker-overchannel@2026-11-04"
+  ],
+  "pub24_sub_wizard-evoker-potent-cantrip": [
+    "srd52:features/evoker-potent-cantrip@2026-11-04"
+  ],
+  "pub24_sub_wizard-evoker-sculpt-spells": [
+    "srd52:features/evoker-sculpt-spells@2026-11-04"
+  ],
+  "pub24_sub_warlock-fiend-patron-dark-ones-blessing": [
+    "srd52:features/fiend-patron-dark-ones-blessing@2026-11-04"
+  ],
+  "pub24_sub_warlock-fiend-patron-dark-ones-own-luck": [
+    "srd52:features/fiend-patron-dark-ones-own-luck@2026-11-04"
+  ],
+  "pub24_sub_warlock-fiend-patron-fiend-spells": [
+    "srd52:features/fiend-patron-fiend-spells@2026-11-04"
+  ],
+  "pub24_sub_warlock-fiend-patron-fiendish-resilience": [
+    "srd52:features/fiend-patron-fiendish-resilience@2026-11-04"
+  ],
+  "pub24_sub_warlock-fiend-patron-hurl-through-hell": [
+    "srd52:features/fiend-patron-hurl-through-hell@2026-11-04"
+  ],
+  "pub24_fighter-extra-attack": [
+    "srd52:features/fighter-extra-attack@2026-11-04"
+  ],
+  "pub24_fighter-second-wind": [
+    "srd52:features/fighter-second-wind@2026-11-04"
+  ],
+  "pub24_fighter-studied-attacks": [
+    "srd52:features/fighter-studied-attacks@2026-11-04"
+  ],
+  "pub24_fighter-tactical-master": [
+    "srd52:features/fighter-tactical-master@2026-11-04"
+  ],
+  "pub24_fighter-tactical-mind": [
+    "srd52:features/fighter-tactical-mind@2026-11-04"
+  ],
+  "pub24_fighter-tactical-shift": [
+    "srd52:features/fighter-tactical-shift@2026-11-04"
+  ],
+  "pub24_fighter-three-extra-attacks": [
+    "srd52:features/fighter-three-extra-attacks@2026-11-04"
+  ],
+  "pub24_fighter-two-extra-attacks": [
+    "srd52:features/fighter-two-extra-attacks@2026-11-04"
+  ],
+  "pub24_fighter-weapon-mastery": [
+    "srd52:features/fighter-weapon-mastery@2026-11-04"
+  ],
+  "pub24_sub_ranger-hunter-defensive-tactics": [
+    "srd52:features/hunter-defensive-tactics@2026-11-04"
+  ],
+  "pub24_sub_ranger-hunter-hunters-lore": [
+    "srd52:features/hunter-hunters-lore@2026-11-04"
+  ],
+  "pub24_sub_ranger-hunter-hunters-prey": [
+    "srd52:features/hunter-hunters-prey@2026-11-04"
+  ],
+  "pub24_sub_ranger-hunter-superior-hunters-defense": [
+    "srd52:features/hunter-superior-hunters-defense@2026-11-04"
+  ],
+  "pub24_sub_ranger-hunter-superior-hunters-prey": [
+    "srd52:features/hunter-superior-hunters-prey@2026-11-04"
+  ],
+  "pub24_sub_druid-circle-of-the-land-circle-of-the-land-spells": [
+    "srd52:features/land-circle-of-the-land-spells@2026-11-04"
+  ],
+  "pub24_sub_druid-circle-of-the-land-lands-aid": [
+    "srd52:features/land-lands-aid@2026-11-04"
+  ],
+  "pub24_sub_druid-circle-of-the-land-natural-recovery": [
+    "srd52:features/land-natural-recovery@2026-11-04"
+  ],
+  "pub24_sub_druid-circle-of-the-land-natures-sanctuary": [
+    "srd52:features/land-natures-sanctuary@2026-11-04"
+  ],
+  "pub24_sub_druid-circle-of-the-land-natures-ward": [
+    "srd52:features/land-natures-ward@2026-11-04"
+  ],
+  "pub24_sub_cleric-life-domain-blessed-healer": [
+    "srd52:features/life-blessed-healer@2026-11-04"
+  ],
+  "pub24_sub_cleric-life-domain-disciple-of-life": [
+    "srd52:features/life-disciple-of-life@2026-11-04"
+  ],
+  "pub24_sub_cleric-life-domain-life-domain-spells": [
+    "srd52:features/life-domain-spells@2026-11-04"
+  ],
+  "pub24_sub_cleric-life-domain-preserve-life": [
+    "srd52:features/life-preserve-life@2026-11-04"
+  ],
+  "pub24_sub_cleric-life-domain-supreme-healing": [
+    "srd52:features/life-supreme-healing@2026-11-04"
+  ],
+  "pub24_sub_bard-college-of-lore-bonus-proficiencies": [
+    "srd52:features/lore-bonus-proficiencies@2026-11-04"
+  ],
+  "pub24_sub_bard-college-of-lore-cutting-words": [
+    "srd52:features/lore-cutting-words@2026-11-04"
+  ],
+  "pub24_sub_bard-college-of-lore-magical-discoveries": [
+    "srd52:features/lore-magical-discoveries@2026-11-04"
+  ],
+  "pub24_sub_bard-college-of-lore-peerless-skill": [
+    "srd52:features/lore-peerless-skill@2026-11-04"
+  ],
+  "pub24_monk-acrobatic-movement": [
+    "srd52:features/monk-acrobatic-movement@2026-11-04"
+  ],
+  "pub24_monk-body-and-mind": [
+    "srd52:features/monk-body-and-mind@2026-11-04"
+  ],
+  "pub24_monk-deflect-attacks": [
+    "srd52:features/monk-deflect-attacks@2026-11-04"
+  ],
+  "pub24_monk-deflect-energy": [
+    "srd52:features/monk-deflect-energy@2026-11-04"
+  ],
+  "pub24_monk-disciplined-survivor": [
+    "srd52:features/monk-disciplined-survivor@2026-11-04"
+  ],
+  "pub24_monk-empowered-strikes": [
+    "srd52:features/monk-empowered-strikes@2026-11-04"
+  ],
+  "pub24_monk-evasion": [
+    "srd52:features/monk-evasion@2026-11-04"
+  ],
+  "pub24_monk-extra-attack": [
+    "srd52:features/monk-extra-attack@2026-11-04"
+  ],
+  "pub24_monk-heightened-focus": [
+    "srd52:features/monk-heightened-focus@2026-11-04"
+  ],
+  "pub24_monk-martial-arts": [
+    "srd52:features/monk-martial-arts@2026-11-04"
+  ],
+  "pub24_monk-monks-focus": [
+    "srd52:features/monk-monks-focus@2026-11-04"
+  ],
+  "pub24_monk-perfect-focus": [
+    "srd52:features/monk-perfect-focus@2026-11-04"
+  ],
+  "pub24_monk-self-restoration": [
+    "srd52:features/monk-self-restoration@2026-11-04"
+  ],
+  "pub24_monk-slow-fall": [
+    "srd52:features/monk-slow-fall@2026-11-04"
+  ],
+  "pub24_monk-stunning-strike": [
+    "srd52:features/monk-stunning-strike@2026-11-04"
+  ],
+  "pub24_monk-superior-defense": [
+    "srd52:features/monk-superior-defense@2026-11-04"
+  ],
+  "pub24_monk-unarmored-defense": [
+    "srd52:features/monk-unarmored-defense@2026-11-04"
+  ],
+  "pub24_monk-unarmored-movement": [
+    "srd52:features/monk-unarmored-movement@2026-11-04"
+  ],
+  "pub24_monk-uncanny-metabolism": [
+    "srd52:features/monk-uncanny-metabolism@2026-11-04"
+  ],
+  "pub24_sub_monk-warrior-of-the-open-hand-fleet-step": [
+    "srd52:features/open-hand-fleet-step@2026-11-04"
+  ],
+  "pub24_sub_monk-warrior-of-the-open-hand-quivering-palm": [
+    "srd52:features/open-hand-quivering-palm@2026-11-04"
+  ],
+  "pub24_sub_monk-warrior-of-the-open-hand-open-hand-technique": [
+    "srd52:features/open-hand-technique@2026-11-04"
+  ],
+  "pub24_sub_monk-warrior-of-the-open-hand-wholeness-of-body": [
+    "srd52:features/open-hand-wholeness-of-body@2026-11-04"
+  ],
+  "pub24_paladin-abjure-foes": [
+    "srd52:features/paladin-abjure-foes@2026-11-04"
+  ],
+  "pub24_paladin-aura-expansion": [
+    "srd52:features/paladin-aura-expansion@2026-11-04"
+  ],
+  "pub24_paladin-aura-of-courage": [
+    "srd52:features/paladin-aura-of-courage@2026-11-04"
+  ],
+  "pub24_paladin-aura-of-protection": [
+    "srd52:features/paladin-aura-of-protection@2026-11-04"
+  ],
+  "pub24_paladin-channel-divinity": [
+    "srd52:features/paladin-channel-divinity@2026-11-04"
+  ],
+  "pub24_paladin-extra-attack": [
+    "srd52:features/paladin-extra-attack@2026-11-04"
+  ],
+  "pub24_paladin-faithful-steed": [
+    "srd52:features/paladin-faithful-steed@2026-11-04"
+  ],
+  "pub24_paladin-lay-on-hands": [
+    "srd52:features/paladin-lay-on-hands@2026-11-04"
+  ],
+  "pub24_paladin-paladins-smite": [
+    "srd52:features/paladin-paladins-smite@2026-11-04"
+  ],
+  "pub24_paladin-radiant-strikes": [
+    "srd52:features/paladin-radiant-strikes@2026-11-04"
+  ],
+  "pub24_paladin-restoring-touch": [
+    "srd52:features/paladin-restoring-touch@2026-11-04"
+  ],
+  "pub24_paladin-weapon-mastery": [
+    "srd52:features/paladin-weapon-mastery@2026-11-04"
+  ],
+  "pub24_ranger-expertise": [
+    "srd52:features/ranger-expertise@2026-11-04"
+  ],
+  "pub24_ranger-extra-attack": [
+    "srd52:features/ranger-extra-attack@2026-11-04"
+  ],
+  "pub24_ranger-favored-enemy": [
+    "srd52:features/ranger-favored-enemy@2026-11-04"
+  ],
+  "pub24_ranger-feral-senses": [
+    "srd52:features/ranger-feral-senses@2026-11-04"
+  ],
+  "pub24_ranger-foe-slayer": [
+    "srd52:features/ranger-foe-slayer@2026-11-04"
+  ],
+  "pub24_ranger-natures-veil": [
+    "srd52:features/ranger-natures-veil@2026-11-04"
+  ],
+  "pub24_ranger-precise-hunter": [
+    "srd52:features/ranger-precise-hunter@2026-11-04"
+  ],
+  "pub24_ranger-relentless-hunter": [
+    "srd52:features/ranger-relentless-hunter@2026-11-04"
+  ],
+  "pub24_ranger-roving": [
+    "srd52:features/ranger-roving@2026-11-04"
+  ],
+  "pub24_ranger-tireless": [
+    "srd52:features/ranger-tireless@2026-11-04"
+  ],
+  "pub24_ranger-weapon-mastery": [
+    "srd52:features/ranger-weapon-mastery@2026-11-04"
+  ],
+  "pub24_rogue-cunning-action": [
+    "srd52:features/rogue-cunning-action@2026-11-04"
+  ],
+  "pub24_rogue-cunning-strike": [
+    "srd52:features/rogue-cunning-strike@2026-11-04"
+  ],
+  "pub24_rogue-devious-strikes": [
+    "srd52:features/rogue-devious-strikes@2026-11-04"
+  ],
+  "pub24_rogue-elusive": [
+    "srd52:features/rogue-elusive@2026-11-04"
+  ],
+  "pub24_rogue-evasion": [
+    "srd52:features/rogue-evasion@2026-11-04"
+  ],
+  "pub24_rogue-expertise": [
+    "srd52:features/rogue-expertise@2026-11-04"
+  ],
+  "pub24_rogue-improved-cunning-strike": [
+    "srd52:features/rogue-improved-cunning-strike@2026-11-04"
+  ],
+  "pub24_rogue-reliable-talent": [
+    "srd52:features/rogue-reliable-talent@2026-11-04"
+  ],
+  "pub24_rogue-slippery-mind": [
+    "srd52:features/rogue-slippery-mind@2026-11-04"
+  ],
+  "pub24_rogue-sneak-attack": [
+    "srd52:features/rogue-sneak-attack@2026-11-04"
+  ],
+  "pub24_rogue-steady-aim": [
+    "srd52:features/rogue-steady-aim@2026-11-04"
+  ],
+  "pub24_rogue-stroke-of-luck": [
+    "srd52:features/rogue-stroke-of-luck@2026-11-04"
+  ],
+  "pub24_rogue-uncanny-dodge": [
+    "srd52:features/rogue-uncanny-dodge@2026-11-04"
+  ],
+  "pub24_rogue-weapon-mastery": [
+    "srd52:features/rogue-weapon-mastery@2026-11-04"
+  ],
+  "pub24_sorcerer-arcane-apotheosis": [
+    "srd52:features/sorcerer-arcane-apotheosis@2026-11-04"
+  ],
+  "pub24_sorcerer-font-of-magic": [
+    "srd52:features/sorcerer-font-of-magic@2026-11-04"
+  ],
+  "pub24_sorcerer-innate-sorcery": [
+    "srd52:features/sorcerer-innate-sorcery@2026-11-04"
+  ],
+  "pub24_sorcerer-metamagic": [
+    "srd52:features/sorcerer-metamagic@2026-11-04"
+  ],
+  "pub24_sorcerer-sorcerous-restoration": [
+    "srd52:features/sorcerer-sorcerous-restoration@2026-11-04"
+  ],
+  "pub24_sorcerer-sorcery-incarnate": [
+    "srd52:features/sorcerer-sorcery-incarnate@2026-11-04"
+  ],
+  "pub24_sub_rogue-thief-fast-hands": [
+    "srd52:features/thief-fast-hands@2026-11-04"
+  ],
+  "pub24_sub_rogue-thief-second-story-work": [
+    "srd52:features/thief-second-story-work@2026-11-04"
+  ],
+  "pub24_sub_rogue-thief-supreme-sneak": [
+    "srd52:features/thief-supreme-sneak@2026-11-04"
+  ],
+  "pub24_sub_rogue-thief-thiefs-reflexes": [
+    "srd52:features/thief-thiefs-reflexes@2026-11-04"
+  ],
+  "pub24_sub_rogue-thief-use-magic-device": [
+    "srd52:features/thief-use-magic-device@2026-11-04"
+  ],
+  "pub24_warlock-contact-patron": [
+    "srd52:features/warlock-contact-patron@2026-11-04"
+  ],
+  "pub24_warlock-eldritch-invocations": [
+    "srd52:features/warlock-eldritch-invocations@2026-11-04"
+  ],
+  "pub24_warlock-eldritch-master": [
+    "srd52:features/warlock-eldritch-master@2026-11-04"
+  ],
+  "pub24_warlock-magical-cunning": [
+    "srd52:features/warlock-magical-cunning@2026-11-04"
+  ],
+  "pub24_wizard-arcane-recovery": [
+    "srd52:features/wizard-arcane-recovery@2026-11-04"
+  ],
+  "pub24_wizard-memorize-spell": [
+    "srd52:features/wizard-memorize-spell@2026-11-04"
+  ],
+  "pub24_wizard-ritual-adept": [
+    "srd52:features/wizard-ritual-adept@2026-11-04"
+  ],
+  "pub24_wizard-scholar": [
+    "srd52:features/wizard-scholar@2026-11-04"
+  ],
+  "pub24_wizard-signature-spells": [
+    "srd52:features/wizard-signature-spells@2026-11-04"
+  ],
+  "pub24_wizard-spell-mastery": [
+    "srd52:features/wizard-spell-mastery@2026-11-04"
+  ],
+  "pub24_feat-ability-score-improvement": [
+    "srd52:feats/ability-score-improvement@2026-11-04"
+  ],
+  "pub24_feat-alert": [
+    "srd52:feats/alert@2026-11-04"
+  ],
+  "pub24_feat-archery": [
+    "srd52:feats/archery@2026-11-04"
+  ],
+  "pub24_feat-boon-of-combat-prowess": [
+    "srd52:feats/boon-of-combat-prowess@2026-11-04"
+  ],
+  "pub24_feat-boon-of-dimensional-travel": [
+    "srd52:feats/boon-of-dimensional-travel@2026-11-04"
+  ],
+  "pub24_feat-boon-of-fate": [
+    "srd52:feats/boon-of-fate@2026-11-04"
+  ],
+  "pub24_feat-boon-of-the-night-spirit": [
+    "srd52:feats/boon-of-the-night-spirit@2026-11-04"
+  ],
+  "pub24_feat-boon-of-truesight": [
+    "srd52:feats/boon-of-truesight@2026-11-04"
+  ],
+  "pub24_feat-defense": [
+    "srd52:feats/defense@2026-11-04"
+  ],
+  "pub24_feat-grappler": [
+    "srd52:feats/grappler@2026-11-04"
+  ],
+  "pub24_feat-great-weapon-fighting": [
+    "srd52:feats/great-weapon-fighting@2026-11-04"
+  ],
+  "pub24_feat-magic-initiate": [
+    "srd52:feats/magic-initiate@2026-11-04"
+  ],
+  "pub24_feat-savage-attacker": [
+    "srd52:feats/savage-attacker@2026-11-04"
+  ],
+  "pub24_feat-skilled": [
+    "srd52:feats/skilled@2026-11-04"
+  ],
+  "pub24_feat-two-weapon-fighting": [
+    "srd52:feats/two-weapon-fighting@2026-11-04"
+  ],
+  "spell:acid-splash": [
+    "srd52:spells/acid-splash@2026-11-04"
+  ],
+  "spell:chill-touch": [
+    "srd52:spells/chill-touch@2026-11-04"
+  ],
+  "spell:dancing-lights": [
+    "srd52:spells/dancing-lights@2026-11-04"
+  ],
+  "spell:druidcraft": [
+    "srd52:spells/druidcraft@2026-11-04"
+  ],
+  "spell:eldritch-blast": [
+    "srd52:spells/eldritch-blast@2026-11-04"
+  ],
+  "spell:elementalism": [
+    "srd52:spells/elementalism@2026-11-04"
+  ],
+  "spell:fire-bolt": [
+    "srd52:spells/fire-bolt@2026-11-04"
+  ],
+  "spell:guidance": [
+    "srd52:spells/guidance@2026-11-04"
+  ],
+  "spell:light": [
+    "srd52:spells/light@2026-11-04"
+  ],
+  "spell:mage-hand": [
+    "srd52:spells/mage-hand@2026-11-04"
+  ],
+  "spell:mending": [
+    "srd52:spells/mending@2026-11-04"
+  ],
+  "spell:message": [
+    "srd52:spells/message@2026-11-04"
+  ],
+  "spell:minor-illusion": [
+    "srd52:spells/minor-illusion@2026-11-04"
+  ],
+  "spell:poison-spray": [
+    "srd52:spells/poison-spray@2026-11-04"
+  ],
+  "spell:prestidigitation": [
+    "srd52:spells/prestidigitation@2026-11-04"
+  ],
+  "spell:produce-flame": [
+    "srd52:spells/produce-flame@2026-11-04"
+  ],
+  "spell:ray-of-frost": [
+    "srd52:spells/ray-of-frost@2026-11-04"
+  ],
+  "spell:resistance": [
+    "srd52:spells/resistance@2026-11-04"
+  ],
+  "spell:sacred-flame": [
+    "srd52:spells/sacred-flame@2026-11-04"
+  ],
+  "spell:shillelagh": [
+    "srd52:spells/shillelagh@2026-11-04"
+  ],
+  "spell:shocking-grasp": [
+    "srd52:spells/shocking-grasp@2026-11-04"
+  ],
+  "spell:sorcerous-burst": [
+    "srd52:spells/sorcerous-burst@2026-11-04"
+  ],
+  "spell:spare-the-dying": [
+    "srd52:spells/spare-the-dying@2026-11-04"
+  ],
+  "spell:starry-wisp": [
+    "srd52:spells/starry-wisp@2026-11-04"
+  ],
+  "spell:thaumaturgy": [
+    "srd52:spells/thaumaturgy@2026-11-04"
+  ],
+  "spell:true-strike": [
+    "srd52:spells/true-strike@2026-11-04"
+  ],
+  "spell:vicious-mockery": [
+    "srd52:spells/vicious-mockery@2026-11-04"
+  ],
+  "spell:alarm": [
+    "srd52:spells/alarm@2026-11-04"
+  ],
+  "spell:animal-friendship": [
+    "srd52:spells/animal-friendship@2026-11-04"
+  ],
+  "spell:bane": [
+    "srd52:spells/bane@2026-11-04"
+  ],
+  "spell:bless": [
+    "srd52:spells/bless@2026-11-04"
+  ],
+  "spell:burning-hands": [
+    "srd52:spells/burning-hands@2026-11-04"
+  ],
+  "spell:charm-person": [
+    "srd52:spells/charm-person@2026-11-04"
+  ],
+  "spell:chromatic-orb": [
+    "srd52:spells/chromatic-orb@2026-11-04"
+  ],
+  "spell:color-spray": [
+    "srd52:spells/color-spray@2026-11-04"
+  ],
+  "spell:command": [
+    "srd52:spells/command@2026-11-04"
+  ],
+  "spell:comprehend-languages": [
+    "srd52:spells/comprehend-languages@2026-11-04"
+  ],
+  "spell:create-or-destroy-water": [
+    "srd52:spells/create-or-destroy-water@2026-11-04"
+  ],
+  "spell:cure-wounds": [
+    "srd52:spells/cure-wounds@2026-11-04"
+  ],
+  "spell:detect-evil-and-good": [
+    "srd52:spells/detect-evil-and-good@2026-11-04"
+  ],
+  "spell:detect-magic": [
+    "srd52:spells/detect-magic@2026-11-04"
+  ],
+  "spell:detect-poison-and-disease": [
+    "srd52:spells/detect-poison-and-disease@2026-11-04"
+  ],
+  "spell:disguise-self": [
+    "srd52:spells/disguise-self@2026-11-04"
+  ],
+  "spell:dissonant-whispers": [
+    "srd52:spells/dissonant-whispers@2026-11-04"
+  ],
+  "spell:divine-favor": [
+    "srd52:spells/divine-favor@2026-11-04"
+  ],
+  "spell:divine-smite": [
+    "srd52:spells/divine-smite@2026-11-04"
+  ],
+  "spell:ensnaring-strike": [
+    "srd52:spells/ensnaring-strike@2026-11-04"
+  ],
+  "spell:entangle": [
+    "srd52:spells/entangle@2026-11-04"
+  ],
+  "spell:expeditious-retreat": [
+    "srd52:spells/expeditious-retreat@2026-11-04"
+  ],
+  "spell:faerie-fire": [
+    "srd52:spells/faerie-fire@2026-11-04"
+  ],
+  "spell:false-life": [
+    "srd52:spells/false-life@2026-11-04"
+  ],
+  "spell:feather-fall": [
+    "srd52:spells/feather-fall@2026-11-04"
+  ],
+  "spell:find-familiar": [
+    "srd52:spells/find-familiar@2026-11-04"
+  ],
+  "spell:fog-cloud": [
+    "srd52:spells/fog-cloud@2026-11-04"
+  ],
+  "spell:goodberry": [
+    "srd52:spells/goodberry@2026-11-04"
+  ],
+  "spell:grease": [
+    "srd52:spells/grease@2026-11-04"
+  ],
+  "spell:guiding-bolt": [
+    "srd52:spells/guiding-bolt@2026-11-04"
+  ],
+  "spell:healing-word": [
+    "srd52:spells/healing-word@2026-11-04"
+  ],
+  "spell:hellish-rebuke": [
+    "srd52:spells/hellish-rebuke@2026-11-04"
+  ],
+  "spell:heroism": [
+    "srd52:spells/heroism@2026-11-04"
+  ],
+  "spell:hex": [
+    "srd52:spells/hex@2026-11-04"
+  ],
+  "spell:hunters-mark": [
+    "srd52:spells/hunters-mark@2026-11-04"
+  ],
+  "spell:ice-knife": [
+    "srd52:spells/ice-knife@2026-11-04"
+  ],
+  "spell:identify": [
+    "srd52:spells/identify@2026-11-04"
+  ],
+  "spell:illusory-script": [
+    "srd52:spells/illusory-script@2026-11-04"
+  ],
+  "spell:inflict-wounds": [
+    "srd52:spells/inflict-wounds@2026-11-04"
+  ],
+  "spell:jump": [
+    "srd52:spells/jump@2026-11-04"
+  ],
+  "spell:longstrider": [
+    "srd52:spells/longstrider@2026-11-04"
+  ],
+  "spell:mage-armor": [
+    "srd52:spells/mage-armor@2026-11-04"
+  ],
+  "spell:magic-missile": [
+    "srd52:spells/magic-missile@2026-11-04"
+  ],
+  "spell:purify-food-and-drink": [
+    "srd52:spells/purify-food-and-drink@2026-11-04"
+  ],
+  "spell:ray-of-sickness": [
+    "srd52:spells/ray-of-sickness@2026-11-04"
+  ],
+  "spell:sanctuary": [
+    "srd52:spells/sanctuary@2026-11-04"
+  ],
+  "spell:searing-smite": [
+    "srd52:spells/searing-smite@2026-11-04"
+  ],
+  "spell:shield": [
+    "srd52:spells/shield@2026-11-04"
+  ],
+  "spell:shield-of-faith": [
+    "srd52:spells/shield-of-faith@2026-11-04"
+  ],
+  "spell:silent-image": [
+    "srd52:spells/silent-image@2026-11-04"
+  ],
+  "spell:sleep": [
+    "srd52:spells/sleep@2026-11-04"
+  ],
+  "spell:speak-with-animals": [
+    "srd52:spells/speak-with-animals@2026-11-04"
+  ],
+  "spell:thunderwave": [
+    "srd52:spells/thunderwave@2026-11-04"
+  ],
+  "spell:unseen-servant": [
+    "srd52:spells/unseen-servant@2026-11-04"
+  ],
+  "spell:aid": [
+    "srd52:spells/aid@2026-11-04"
+  ],
+  "spell:alter-self": [
+    "srd52:spells/alter-self@2026-11-04"
+  ],
+  "spell:animal-messenger": [
+    "srd52:spells/animal-messenger@2026-11-04"
+  ],
+  "spell:arcane-lock": [
+    "srd52:spells/arcane-lock@2026-11-04"
+  ],
+  "spell:barkskin": [
+    "srd52:spells/barkskin@2026-11-04"
+  ],
+  "spell:blindness-deafness": [
+    "srd52:spells/blindness-deafness@2026-11-04"
+  ],
+  "spell:blur": [
+    "srd52:spells/blur@2026-11-04"
+  ],
+  "spell:calm-emotions": [
+    "srd52:spells/calm-emotions@2026-11-04"
+  ],
+  "spell:continual-flame": [
+    "srd52:spells/continual-flame@2026-11-04"
+  ],
+  "spell:darkness": [
+    "srd52:spells/darkness@2026-11-04"
+  ],
+  "spell:darkvision": [
+    "srd52:spells/darkvision@2026-11-04"
+  ],
+  "spell:detect-thoughts": [
+    "srd52:spells/detect-thoughts@2026-11-04"
+  ],
+  "spell:dragons-breath": [
+    "srd52:spells/dragons-breath@2026-11-04"
+  ],
+  "spell:enhance-ability": [
+    "srd52:spells/enhance-ability@2026-11-04"
+  ],
+  "spell:enlarge-reduce": [
+    "srd52:spells/enlarge-reduce@2026-11-04"
+  ],
+  "spell:enthrall": [
+    "srd52:spells/enthrall@2026-11-04"
+  ],
+  "spell:find-traps": [
+    "srd52:spells/find-traps@2026-11-04"
+  ],
+  "spell:flame-blade": [
+    "srd52:spells/flame-blade@2026-11-04"
+  ],
+  "spell:flaming-sphere": [
+    "srd52:spells/flaming-sphere@2026-11-04"
+  ],
+  "spell:gentle-repose": [
+    "srd52:spells/gentle-repose@2026-11-04"
+  ],
+  "spell:gust-of-wind": [
+    "srd52:spells/gust-of-wind@2026-11-04"
+  ],
+  "spell:heat-metal": [
+    "srd52:spells/heat-metal@2026-11-04"
+  ],
+  "spell:hold-person": [
+    "srd52:spells/hold-person@2026-11-04"
+  ],
+  "spell:invisibility": [
+    "srd52:spells/invisibility@2026-11-04"
+  ],
+  "spell:knock": [
+    "srd52:spells/knock@2026-11-04"
+  ],
+  "spell:lesser-restoration": [
+    "srd52:spells/lesser-restoration@2026-11-04"
+  ],
+  "spell:levitate": [
+    "srd52:spells/levitate@2026-11-04"
+  ],
+  "spell:locate-animals-or-plants": [
+    "srd52:spells/locate-animals-or-plants@2026-11-04"
+  ],
+  "spell:locate-object": [
+    "srd52:spells/locate-object@2026-11-04"
+  ],
+  "spell:magic-mouth": [
+    "srd52:spells/magic-mouth@2026-11-04"
+  ],
+  "spell:magic-weapon": [
+    "srd52:spells/magic-weapon@2026-11-04"
+  ],
+  "spell:mind-spike": [
+    "srd52:spells/mind-spike@2026-11-04"
+  ],
+  "spell:mirror-image": [
+    "srd52:spells/mirror-image@2026-11-04"
+  ],
+  "spell:misty-step": [
+    "srd52:spells/misty-step@2026-11-04"
+  ],
+  "spell:moonbeam": [
+    "srd52:spells/moonbeam@2026-11-04"
+  ],
+  "spell:pass-without-trace": [
+    "srd52:spells/pass-without-trace@2026-11-04"
+  ],
+  "spell:phantasmal-force": [
+    "srd52:spells/phantasmal-force@2026-11-04"
+  ],
+  "spell:prayer-of-healing": [
+    "srd52:spells/prayer-of-healing@2026-11-04"
+  ],
+  "spell:protection-from-poison": [
+    "srd52:spells/protection-from-poison@2026-11-04"
+  ],
+  "spell:ray-of-enfeeblement": [
+    "srd52:spells/ray-of-enfeeblement@2026-11-04"
+  ],
+  "spell:rope-trick": [
+    "srd52:spells/rope-trick@2026-11-04"
+  ],
+  "spell:scorching-ray": [
+    "srd52:spells/scorching-ray@2026-11-04"
+  ],
+  "spell:see-invisibility": [
+    "srd52:spells/see-invisibility@2026-11-04"
+  ],
+  "spell:shatter": [
+    "srd52:spells/shatter@2026-11-04"
+  ],
+  "spell:shining-smite": [
+    "srd52:spells/shining-smite@2026-11-04"
+  ],
+  "spell:silence": [
+    "srd52:spells/silence@2026-11-04"
+  ],
+  "spell:spider-climb": [
+    "srd52:spells/spider-climb@2026-11-04"
+  ],
+  "spell:spike-growth": [
+    "srd52:spells/spike-growth@2026-11-04"
+  ],
+  "spell:spiritual-weapon": [
+    "srd52:spells/spiritual-weapon@2026-11-04"
+  ],
+  "spell:suggestion": [
+    "srd52:spells/suggestion@2026-11-04"
+  ],
+  "spell:warding-bond": [
+    "srd52:spells/warding-bond@2026-11-04"
+  ],
+  "spell:web": [
+    "srd52:spells/web@2026-11-04"
+  ],
+  "spell:zone-of-truth": [
+    "srd52:spells/zone-of-truth@2026-11-04"
+  ],
+  "spell:animate-dead": [
+    "srd52:spells/animate-dead@2026-11-04"
+  ],
+  "spell:beacon-of-hope": [
+    "srd52:spells/beacon-of-hope@2026-11-04"
+  ],
+  "spell:bestow-curse": [
+    "srd52:spells/bestow-curse@2026-11-04"
+  ],
+  "spell:blink": [
+    "srd52:spells/blink@2026-11-04"
+  ],
+  "spell:call-lightning": [
+    "srd52:spells/call-lightning@2026-11-04"
+  ],
+  "spell:clairvoyance": [
+    "srd52:spells/clairvoyance@2026-11-04"
+  ],
+  "spell:conjure-animals": [
+    "srd52:spells/conjure-animals@2026-11-04"
+  ],
+  "spell:counterspell": [
+    "srd52:spells/counterspell@2026-11-04"
+  ],
+  "spell:create-food-and-water": [
+    "srd52:spells/create-food-and-water@2026-11-04"
+  ],
+  "spell:daylight": [
+    "srd52:spells/daylight@2026-11-04"
+  ],
+  "spell:dispel-magic": [
+    "srd52:spells/dispel-magic@2026-11-04"
+  ],
+  "spell:fear": [
+    "srd52:spells/fear@2026-11-04"
+  ],
+  "spell:fireball": [
+    "srd52:spells/fireball@2026-11-04"
+  ],
+  "spell:fly": [
+    "srd52:spells/fly@2026-11-04"
+  ],
+  "spell:gaseous-form": [
+    "srd52:spells/gaseous-form@2026-11-04"
+  ],
+  "spell:glyph-of-warding": [
+    "srd52:spells/glyph-of-warding@2026-11-04"
+  ],
+  "spell:haste": [
+    "srd52:spells/haste@2026-11-04"
+  ],
+  "spell:hypnotic-pattern": [
+    "srd52:spells/hypnotic-pattern@2026-11-04"
+  ],
+  "spell:lightning-bolt": [
+    "srd52:spells/lightning-bolt@2026-11-04"
+  ],
+  "spell:magic-circle": [
+    "srd52:spells/magic-circle@2026-11-04"
+  ],
+  "spell:major-image": [
+    "srd52:spells/major-image@2026-11-04"
+  ],
+  "spell:mass-healing-word": [
+    "srd52:spells/mass-healing-word@2026-11-04"
+  ],
+  "spell:meld-into-stone": [
+    "srd52:spells/meld-into-stone@2026-11-04"
+  ],
+  "spell:nondetection": [
+    "srd52:spells/nondetection@2026-11-04"
+  ],
+  "spell:phantom-steed": [
+    "srd52:spells/phantom-steed@2026-11-04"
+  ],
+  "spell:plant-growth": [
+    "srd52:spells/plant-growth@2026-11-04"
+  ],
+  "spell:protection-from-energy": [
+    "srd52:spells/protection-from-energy@2026-11-04"
+  ],
+  "spell:remove-curse": [
+    "srd52:spells/remove-curse@2026-11-04"
+  ],
+  "spell:revivify": [
+    "srd52:spells/revivify@2026-11-04"
+  ],
+  "spell:sending": [
+    "srd52:spells/sending@2026-11-04"
+  ],
+  "spell:sleet-storm": [
+    "srd52:spells/sleet-storm@2026-11-04"
+  ],
+  "spell:slow": [
+    "srd52:spells/slow@2026-11-04"
+  ],
+  "spell:speak-with-dead": [
+    "srd52:spells/speak-with-dead@2026-11-04"
+  ],
+  "spell:speak-with-plants": [
+    "srd52:spells/speak-with-plants@2026-11-04"
+  ],
+  "spell:spirit-guardians": [
+    "srd52:spells/spirit-guardians@2026-11-04"
+  ],
+  "spell:stinking-cloud": [
+    "srd52:spells/stinking-cloud@2026-11-04"
+  ],
+  "spell:tongues": [
+    "srd52:spells/tongues@2026-11-04"
+  ],
+  "spell:vampiric-touch": [
+    "srd52:spells/vampiric-touch@2026-11-04"
+  ],
+  "spell:water-breathing": [
+    "srd52:spells/water-breathing@2026-11-04"
+  ],
+  "spell:water-walk": [
+    "srd52:spells/water-walk@2026-11-04"
+  ],
+  "spell:wind-wall": [
+    "srd52:spells/wind-wall@2026-11-04"
+  ],
+  "spell:arcane-eye": [
+    "srd52:spells/arcane-eye@2026-11-04"
+  ],
+  "spell:aura-of-life": [
+    "srd52:spells/aura-of-life@2026-11-04"
+  ],
+  "spell:banishment": [
+    "srd52:spells/banishment@2026-11-04"
+  ],
+  "spell:blight": [
+    "srd52:spells/blight@2026-11-04"
+  ],
+  "spell:charm-monster": [
+    "srd52:spells/charm-monster@2026-11-04"
+  ],
+  "spell:compulsion": [
+    "srd52:spells/compulsion@2026-11-04"
+  ],
+  "spell:conjure-minor-elementals": [
+    "srd52:spells/conjure-minor-elementals@2026-11-04"
+  ],
+  "spell:conjure-woodland-beings": [
+    "srd52:spells/conjure-woodland-beings@2026-11-04"
+  ],
+  "spell:death-ward": [
+    "srd52:spells/death-ward@2026-11-04"
+  ],
+  "spell:dimension-door": [
+    "srd52:spells/dimension-door@2026-11-04"
+  ],
+  "spell:divination": [
+    "srd52:spells/divination@2026-11-04"
+  ],
+  "spell:dominate-beast": [
+    "srd52:spells/dominate-beast@2026-11-04"
+  ],
+  "spell:fabricate": [
+    "srd52:spells/fabricate@2026-11-04"
+  ],
+  "spell:fire-shield": [
+    "srd52:spells/fire-shield@2026-11-04"
+  ],
+  "spell:freedom-of-movement": [
+    "srd52:spells/freedom-of-movement@2026-11-04"
+  ],
+  "spell:greater-invisibility": [
+    "srd52:spells/greater-invisibility@2026-11-04"
+  ],
+  "spell:guardian-of-faith": [
+    "srd52:spells/guardian-of-faith@2026-11-04"
+  ],
+  "spell:hallucinatory-terrain": [
+    "srd52:spells/hallucinatory-terrain@2026-11-04"
+  ],
+  "spell:ice-storm": [
+    "srd52:spells/ice-storm@2026-11-04"
+  ],
+  "spell:locate-creature": [
+    "srd52:spells/locate-creature@2026-11-04"
+  ],
+  "spell:phantasmal-killer": [
+    "srd52:spells/phantasmal-killer@2026-11-04"
+  ],
+  "spell:stone-shape": [
+    "srd52:spells/stone-shape@2026-11-04"
+  ],
+  "spell:stoneskin": [
+    "srd52:spells/stoneskin@2026-11-04"
+  ],
+  "spell:vitriolic-sphere": [
+    "srd52:spells/vitriolic-sphere@2026-11-04"
+  ],
+  "spell:wall-of-fire": [
+    "srd52:spells/wall-of-fire@2026-11-04"
+  ],
+  "spell:antilife-shell": [
+    "srd52:spells/antilife-shell@2026-11-04"
+  ],
+  "spell:cloudkill": [
+    "srd52:spells/cloudkill@2026-11-04"
+  ],
+  "spell:commune": [
+    "srd52:spells/commune@2026-11-04"
+  ],
+  "spell:commune-with-nature": [
+    "srd52:spells/commune-with-nature@2026-11-04"
+  ],
+  "spell:cone-of-cold": [
+    "srd52:spells/cone-of-cold@2026-11-04"
+  ],
+  "spell:conjure-elemental": [
+    "srd52:spells/conjure-elemental@2026-11-04"
+  ],
+  "spell:contact-other-plane": [
+    "srd52:spells/contact-other-plane@2026-11-04"
+  ],
+  "spell:contagion": [
+    "srd52:spells/contagion@2026-11-04"
+  ],
+  "spell:dispel-evil-and-good": [
+    "srd52:spells/dispel-evil-and-good@2026-11-04"
+  ],
+  "spell:dominate-person": [
+    "srd52:spells/dominate-person@2026-11-04"
+  ],
+  "spell:dream": [
+    "srd52:spells/dream@2026-11-04"
+  ],
+  "spell:flame-strike": [
+    "srd52:spells/flame-strike@2026-11-04"
+  ],
+  "spell:geas": [
+    "srd52:spells/geas@2026-11-04"
+  ],
+  "spell:greater-restoration": [
+    "srd52:spells/greater-restoration@2026-11-04"
+  ],
+  "spell:hallow": [
+    "srd52:spells/hallow@2026-11-04"
+  ],
+  "spell:hold-monster": [
+    "srd52:spells/hold-monster@2026-11-04"
+  ],
+  "spell:insect-plague": [
+    "srd52:spells/insect-plague@2026-11-04"
+  ],
+  "spell:legend-lore": [
+    "srd52:spells/legend-lore@2026-11-04"
+  ],
+  "spell:mass-cure-wounds": [
+    "srd52:spells/mass-cure-wounds@2026-11-04"
+  ],
+  "spell:mislead": [
+    "srd52:spells/mislead@2026-11-04"
+  ],
+  "spell:modify-memory": [
+    "srd52:spells/modify-memory@2026-11-04"
+  ],
+  "spell:passwall": [
+    "srd52:spells/passwall@2026-11-04"
+  ],
+  "spell:planar-binding": [
+    "srd52:spells/planar-binding@2026-11-04"
+  ],
+  "spell:raise-dead": [
+    "srd52:spells/raise-dead@2026-11-04"
+  ],
+  "spell:seeming": [
+    "srd52:spells/seeming@2026-11-04"
+  ],
+  "spell:teleportation-circle": [
+    "srd52:spells/teleportation-circle@2026-11-04"
+  ],
+  "spell:tree-stride": [
+    "srd52:spells/tree-stride@2026-11-04"
+  ],
+  "spell:wall-of-force": [
+    "srd52:spells/wall-of-force@2026-11-04"
+  ],
+  "spell:wall-of-stone": [
+    "srd52:spells/wall-of-stone@2026-11-04"
+  ],
+  "spell:blade-barrier": [
+    "srd52:spells/blade-barrier@2026-11-04"
+  ],
+  "spell:chain-lightning": [
+    "srd52:spells/chain-lightning@2026-11-04"
+  ],
+  "spell:circle-of-death": [
+    "srd52:spells/circle-of-death@2026-11-04"
+  ],
+  "spell:conjure-fey": [
+    "srd52:spells/conjure-fey@2026-11-04"
+  ],
+  "spell:contingency": [
+    "srd52:spells/contingency@2026-11-04"
+  ],
+  "spell:disintegrate": [
+    "srd52:spells/disintegrate@2026-11-04"
+  ],
+  "spell:eyebite": [
+    "srd52:spells/eyebite@2026-11-04"
+  ],
+  "spell:find-the-path": [
+    "srd52:spells/find-the-path@2026-11-04"
+  ],
+  "spell:flesh-to-stone": [
+    "srd52:spells/flesh-to-stone@2026-11-04"
+  ],
+  "spell:forbiddance": [
+    "srd52:spells/forbiddance@2026-11-04"
+  ],
+  "spell:globe-of-invulnerability": [
+    "srd52:spells/globe-of-invulnerability@2026-11-04"
+  ],
+  "spell:guards-and-wards": [
+    "srd52:spells/guards-and-wards@2026-11-04"
+  ],
+  "spell:harm": [
+    "srd52:spells/harm@2026-11-04"
+  ],
+  "spell:heal": [
+    "srd52:spells/heal@2026-11-04"
+  ],
+  "spell:heroes-feast": [
+    "srd52:spells/heroes-feast@2026-11-04"
+  ],
+  "spell:magic-jar": [
+    "srd52:spells/magic-jar@2026-11-04"
+  ],
+  "spell:mass-suggestion": [
+    "srd52:spells/mass-suggestion@2026-11-04"
+  ],
+  "spell:move-earth": [
+    "srd52:spells/move-earth@2026-11-04"
+  ],
+  "spell:planar-ally": [
+    "srd52:spells/planar-ally@2026-11-04"
+  ],
+  "spell:programmed-illusion": [
+    "srd52:spells/programmed-illusion@2026-11-04"
+  ],
+  "spell:sunbeam": [
+    "srd52:spells/sunbeam@2026-11-04"
+  ],
+  "spell:transport-via-plants": [
+    "srd52:spells/transport-via-plants@2026-11-04"
+  ],
+  "spell:true-seeing": [
+    "srd52:spells/true-seeing@2026-11-04"
+  ],
+  "spell:wall-of-ice": [
+    "srd52:spells/wall-of-ice@2026-11-04"
+  ],
+  "spell:wall-of-thorns": [
+    "srd52:spells/wall-of-thorns@2026-11-04"
+  ],
+  "spell:wind-walk": [
+    "srd52:spells/wind-walk@2026-11-04"
+  ],
+  "spell:word-of-recall": [
+    "srd52:spells/word-of-recall@2026-11-04"
+  ],
+  "spell:conjure-celestial": [
+    "srd52:spells/conjure-celestial@2026-11-04"
+  ],
+  "spell:delayed-blast-fireball": [
+    "srd52:spells/delayed-blast-fireball@2026-11-04"
+  ],
+  "spell:etherealness": [
+    "srd52:spells/etherealness@2026-11-04"
+  ],
+  "spell:finger-of-death": [
+    "srd52:spells/finger-of-death@2026-11-04"
+  ],
+  "spell:fire-storm": [
+    "srd52:spells/fire-storm@2026-11-04"
+  ],
+  "spell:forcecage": [
+    "srd52:spells/forcecage@2026-11-04"
+  ],
+  "spell:mirage-arcane": [
+    "srd52:spells/mirage-arcane@2026-11-04"
+  ],
+  "spell:project-image": [
+    "srd52:spells/project-image@2026-11-04"
+  ],
+  "spell:regenerate": [
+    "srd52:spells/regenerate@2026-11-04"
+  ],
+  "spell:resurrection": [
+    "srd52:spells/resurrection@2026-11-04"
+  ],
+  "spell:reverse-gravity": [
+    "srd52:spells/reverse-gravity@2026-11-04"
+  ],
+  "spell:sequester": [
+    "srd52:spells/sequester@2026-11-04"
+  ],
+  "spell:simulacrum": [
+    "srd52:spells/simulacrum@2026-11-04"
+  ],
+  "spell:symbol": [
+    "srd52:spells/symbol@2026-11-04"
+  ],
+  "spell:teleport": [
+    "srd52:spells/teleport@2026-11-04"
+  ],
+  "spell:animal-shapes": [
+    "srd52:spells/animal-shapes@2026-11-04"
+  ],
+  "spell:antimagic-field": [
+    "srd52:spells/antimagic-field@2026-11-04"
+  ],
+  "spell:antipathy-sympathy": [
+    "srd52:spells/antipathy-sympathy@2026-11-04"
+  ],
+  "spell:befuddlement": [
+    "srd52:spells/befuddlement@2026-11-04"
+  ],
+  "spell:clone": [
+    "srd52:spells/clone@2026-11-04"
+  ],
+  "spell:demiplane": [
+    "srd52:spells/demiplane@2026-11-04"
+  ],
+  "spell:dominate-monster": [
+    "srd52:spells/dominate-monster@2026-11-04"
+  ],
+  "spell:earthquake": [
+    "srd52:spells/earthquake@2026-11-04"
+  ],
+  "spell:glibness": [
+    "srd52:spells/glibness@2026-11-04"
+  ],
+  "spell:holy-aura": [
+    "srd52:spells/holy-aura@2026-11-04"
+  ],
+  "spell:incendiary-cloud": [
+    "srd52:spells/incendiary-cloud@2026-11-04"
+  ],
+  "spell:maze": [
+    "srd52:spells/maze@2026-11-04"
+  ],
+  "spell:mind-blank": [
+    "srd52:spells/mind-blank@2026-11-04"
+  ],
+  "spell:power-word-stun": [
+    "srd52:spells/power-word-stun@2026-11-04"
+  ],
+  "spell:sunburst": [
+    "srd52:spells/sunburst@2026-11-04"
+  ],
+  "spell:tsunami": [
+    "srd52:spells/tsunami@2026-11-04"
+  ],
+  "spell:astral-projection": [
+    "srd52:spells/astral-projection@2026-11-04"
+  ],
+  "spell:foresight": [
+    "srd52:spells/foresight@2026-11-04"
+  ],
+  "spell:gate": [
+    "srd52:spells/gate@2026-11-04"
+  ],
+  "spell:imprisonment": [
+    "srd52:spells/imprisonment@2026-11-04"
+  ],
+  "spell:mass-heal": [
+    "srd52:spells/mass-heal@2026-11-04"
+  ],
+  "spell:meteor-swarm": [
+    "srd52:spells/meteor-swarm@2026-11-04"
+  ],
+  "spell:power-word-heal": [
+    "srd52:spells/power-word-heal@2026-11-04"
+  ],
+  "spell:power-word-kill": [
+    "srd52:spells/power-word-kill@2026-11-04"
+  ],
+  "spell:shapechange": [
+    "srd52:spells/shapechange@2026-11-04"
+  ],
+  "spell:storm-of-vengeance": [
+    "srd52:spells/storm-of-vengeance@2026-11-04"
+  ],
+  "spell:time-stop": [
+    "srd52:spells/time-stop@2026-11-04"
+  ],
+  "spell:true-polymorph": [
+    "srd52:spells/true-polymorph@2026-11-04"
+  ],
+  "spell:true-resurrection": [
+    "srd52:spells/true-resurrection@2026-11-04"
+  ],
+  "spell:weird": [
+    "srd52:spells/weird@2026-11-04"
+  ]
+}

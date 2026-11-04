@@ -68,11 +68,14 @@ function applyDamage(character, amount) {
   }
 }
 
-// Healing never exceeds the effective max (hp_max + hp_max_modifier).
-function applyHealing(character, amount) {
+// Healing never exceeds the effective max (hp_max + hp_modifier). `opts.effectiveMax` is the maximum the
+// caller already worked out with items that change Constitution applied (the character sheet's
+// hp.effectiveMax); without it the stored maximum is used.
+function applyHealing(character, amount, opts = {}) {
   if (!(amount > 0)) return { patch: {}, healed: 0 }
   const hpBefore = character.hp_current ?? 0
-  const hpAfter = Math.min(effectiveMaxHp(character), hpBefore + amount)
+  const max = opts.effectiveMax ?? effectiveMaxHp(character)
+  const hpAfter = Math.min(max, hpBefore + amount)
   return { patch: { hp_current: hpAfter }, healed: hpAfter - hpBefore }
 }
 

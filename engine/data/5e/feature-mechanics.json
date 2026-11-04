@@ -9,7 +9,44 @@
       "per_turn_cap": "true if this feature can only be used/apply once per the character's own turn, REGARDLESS of how large its uses_max pool is (Action Surge 17th, Sneak Attack). This is a genuinely separate axis from uses_max/recharge -- see engine/CHECKLIST.md's 2026-09-24 entry for why. Tracked as ephemeral per-combat state (combatTurn.js), never on the persisted character record, since it only has meaning inside an active encounter.",
       "tier_family": "Present only on a feature that's granted at multiple levels as successive SRD-style tiered ids (action-surge-1-use -> action-surge-2-uses, indomitable-1-use -> -2-uses -> -3-uses). diffLevelUp.js uses this to MERGE a later tier into the character's existing single tile (bumping uses_max) instead of adding a second duplicate feature entry -- see diffLevelUp.js's own comment on this block. All ids sharing a tier_family MUST share the same display name.",
       "adds_ability_to_initiative": "An ability key ('int'), present on a feature that adds that ability's modifier to initiative on top of DEX (Chronurgy Magic's Temporal Awareness). Carried onto the character's feature record by applyFeatureMechanics (fill-only-if-missing, like the other fields) and read by checks.js's initiative(), which counts each ability once and uses the EFFECTIVE score. Added 2026-10-06.",
-      "grants_spells": "Present on a feature that teaches a specific spell as an always-prepared/always-known bonus that does NOT count against the character's normal known/prepared totals -- same semantics as feats.json's own grants_spells.fixed, added here 2026-09-26 for the class/subclass-feature side of that same gap (found on Circle of Stars' Star Map: 'you have the Guiding Bolt spell prepared at all times -- it doesn't count against your number of spells known', TODO.md 2026-09-22). Shape so far: {fixed: [spellName, ...]} -- only ever a flat list, no choice/tiered variant needed yet. Applied in diffLevelUp.js's applyFeatureMechanics with the SAME fill-only-if-missing rule as every other field here (job 4): writes feature.spells_granted only when the feature doesn't already have one, so a hand-fixed character record (Tackett's Star Map already carries a manually-set spells_granted) is never silently overwritten. Consumed by spellUtils.js exactly like any other features[].spells_granted entry -- see that file's step 3. Deliberately does NOT (yet) model a spell that's ALSO castable without expending a slot off some other resource formula -- Star Map's real RAW additionally lets you cast Guiding Bolt free a number of times equal to proficiency bonus per long rest, which this catalog doesn't capture: that would need a per-spell uses_max/recharge tracked and recomputed the same live way this file's uses_formula fields already are, and today nothing here does that for a SPELL entry (only for a FEATURE entry). Deferred until a second real feature needs the same shape, per this catalog's own deliberately-incremental philosophy -- see engine/CHECKLIST.md's 2026-09-26 entry."
+      "grants_spells": "Present on a feature that teaches a specific spell as an always-prepared/always-known bonus that does NOT count against the character's normal known/prepared totals -- same semantics as feats.json's own grants_spells.fixed, added here 2026-09-26 for the class/subclass-feature side of that same gap (found on Circle of Stars' Star Map: 'you have the Guiding Bolt spell prepared at all times -- it doesn't count against your number of spells known', TODO.md 2026-09-22). Shape so far: {fixed: [spellName, ...]} -- only ever a flat list, no choice/tiered variant needed yet. Applied in diffLevelUp.js's applyFeatureMechanics with the SAME fill-only-if-missing rule as every other field here (job 4): writes feature.spells_granted only when the feature doesn't already have one, so a hand-fixed character record (Tackett's Star Map already carries a manually-set spells_granted) is never silently overwritten. Consumed by spellUtils.js exactly like any other features[].spells_granted entry -- see that file's step 3. Deliberately does NOT (yet) model a spell that's ALSO castable without expending a slot off some other resource formula -- Star Map's real RAW additionally lets you cast Guiding Bolt free a number of times equal to proficiency bonus per long rest, which this catalog doesn't capture: that would need a per-spell uses_max/recharge tracked and recomputed the same live way this file's uses_formula fields already are, and today nothing here does that for a SPELL entry (only for a FEATURE entry). Deferred until a second real feature needs the same shape, per this catalog's own deliberately-incremental philosophy -- see engine/CHECKLIST.md's 2026-09-26 entry.",
+      "grants_resistance": "Damage types the feature gives Resistance to (['fire']). Read by featureGrants.js characterGrants, derived for the sheet every time, never stored. `grants_resistance_from_lineage: true` means the type comes from the species lineage table (Dragonborn ancestry). Added 2026-11-04 (the owner's rule: nothing functional lives only in text).",
+      "grants_saving_throw_advantage": "What a saving-throw advantage is against, as a token ('being_charmed', 'being_frightened', 'being_poisoned', 'illusions', 'paralysis', 'intelligence_saves'). Derived by characterGrants; the sheet shows it as a fact (advantage is rolled at the table). Added 2026-11-04.",
+      "grants_skill_advantage": "Skill advantage: a plain skill name is unconditional (it also counts toward passive checks, checks.js), an object { skill, when } is advantage only in the stated case (Sharp Nose: Perception, checks that rely on smell) and never changes a passive score. Added 2026-11-04.",
+      "grants_check_advantage": "Ability-check advantage that is not a skill: [{ when: 'to end the Grappled condition' }]. Added 2026-11-04.",
+      "grants_darkvision": "Darkvision range in feet. The sheet's darkvision is the largest of the character's own field, its features and its lineage. Added 2026-11-04.",
+      "grants_skill_proficiency": "Skills the feature gives outright, applied to skill_proficiencies once when the feature is gained (creation and level-up both do). A skill already held is replaced by a pick of the player's. Added 2026-11-04.",
+      "grants_skill_proficiency_choice": "{ count, options: [skill names] | 'any' }: skills the player picks when the feature is gained (Bladesinger's Training in War and Song). A choice in the choice protocol (type featureGrantChoice). Added 2026-11-04.",
+      "grants_weapon_proficiency": "Weapons the feature gives proficiency with: names ('rapier') or { filter: { category, kind, lacks: [property] } } expanded against the weapon table when the feature is gained (Bladesinger: martial melee without Two-Handed or Heavy). Added 2026-11-04.",
+      "grants_armor_proficiency": "Armor categories the feature gives training in, applied once when gained. Added 2026-11-04.",
+      "grants_tool_proficiency": "Tools the feature gives proficiency with, applied once when gained. Added 2026-11-04.",
+      "size_counts_as_larger": "What the character counts as one size larger for: 'carrying_capacity', 'grappling' (Powerful Build, Catrin's Broad Build). Read by speciesRules.js effectiveSize. Added 2026-11-04.",
+      "reaction_effect": "The effect of a reaction the engine can compute: { trigger, damage_fraction, push: { feet, max_size } } (Catrin's Brace). Read by speciesRules.js braceOutcome. Added 2026-11-04.",
+      "moves_through_creature_space": "{ min_size, squeezing } the character may move through a creature's space of that size or larger without squeezing (Drevani's Low Profile). Read by speciesRules.js. Added 2026-11-04.",
+      "unarmed_attack": "An attack the feature makes with the body: { damage_type, ability, dice_by_level } (Drevani's Ferocious Bite). Read by unarmedAttacks.js ferociousBite; its once-per-rest use is the entry's own uses/recharge. Added 2026-11-04.",
+      "on_use": "What using the feature DOES, as a list of effects the engine resolves (featureUse.js useFeature): heal {dice}, temp_hp {amount}, action {action}, damage {dice, type, trigger}, area_save {ability, dc, shapes|radius_feet, damage, on_success|on_failure}, reduce_damage {dice, plus_ability}, teleport {feet}, condition {condition}, speed_reduction {feet}. Amounts: a number, {type:\"proficiency_bonus\"}, {type:\"by_level\", table}, {type:\"ability_mod\", ability}; dice: {count: amount, sides}; a DC is {type:\"dc\", ability} = 8 + ability modifier + Proficiency Bonus. Added 2026-11-04.",
+      "min_level": "Total character level at which the feature can first be used (Celestial Revelation 3, Draconic Flight and Large Form 5). Added 2026-11-04.",
+      "active": "{ duration_minutes, choose_one_of: [feature ids], extra_damage, ends_on, requires }: using the feature starts a temporary state, recorded in the character's active_effects and ended by the player or by a rest. While it lasts the active_grants apply (featureGrants.js characterGrants). Added 2026-11-04.",
+      "active_grants": "{ fly_speed: \"speed\", tremorsense, light, size, speed_bonus, check_advantage }: what the character has while the feature's temporary state lasts. Read only while the feature is in active_effects. Added 2026-11-04.",
+      "option_of": "Marks a feature as one of the choices of another feature (Heavenly Wings is a form of Celestial Revelation). Added 2026-11-04.",
+      "extra_damage_type": "The damage type of the active state's extra damage (Celestial Revelation: radiant, or necrotic for Necrotic Shroud). Added 2026-11-04.",
+      "aura": "{ timing, radius_feet, damage: { amount, type } }: damage a temporary state deals to creatures nearby (Inner Radiance). Added 2026-11-04.",
+      "d20_reroll_on": "Natural d20 results the character may reroll on a D20 Test, keeping the new die (Halfling Luck: [1]). Read by characterGrants as d20RerollOn and by d20Test.rollD20Test. Added 2026-11-04.",
+      "hide_obscured_by": "{ size_delta }: the character can Hide when obscured only by a creature at least this many sizes larger (Naturally Stealthy: 1). Read by speciesRules.canHideBehind. Added 2026-11-04.",
+      "on_long_rest": "{ heroic_inspiration: true }: what finishing a Long Rest gives the character (Human Resourceful). Read by rest.applyLongRest. Added 2026-11-04.",
+      "survives_at_hp": "Hit points the character drops to instead of 0 when damage would not kill outright, once per use of the feature (Orc Relentless Endurance: 1). Read by speciesRules.applyDamageWithSurvival. Added 2026-11-04.",
+      "grants_hp_per_level": "Maximum hit points per character level the feature adds, retroactively (Dwarven Toughness: 1). The species data carries the same number for the level-up path; a test keeps them equal. Added 2026-11-04.",
+      "grants_condition_immunity": "Conditions or effects the character cannot suffer (\"magical_sleep\" for Elf Trance). Read by characterGrants as conditionImmunities. Added 2026-11-04.",
+      "needs_sleep": "false for a character that does not need to sleep (Elf Trance). Read by characterGrants. Added 2026-11-04.",
+      "long_rest_hours": "How many hours a Long Rest takes the character (Elf Trance: 4). Read by rest.longRestHours. Added 2026-11-04.",
+      "grants_speed": "A walking Speed the lineage sets (Wood Elf: 35). Mirrors the lineage table's speed. Added 2026-11-04.",
+      "creates_objects": "{ kind, max, ac, hp, via, activation, lasts_hours }: objects the character can have in existence at once (Rock Gnome's clockwork devices). Read by speciesRules.createObject. Added 2026-11-04.",
+      "cantrip_swap": "{ replaces, from_list, when }: the lineage cantrip may be replaced by another from a class list after a Long Rest (High Elf). Read by lineageSpells.swapLineageCantrip. Added 2026-11-04.",
+      "lineage_damage": "The damage type a lineage pick gives (a Dragonborn ancestry's Breath Weapon and resistance). Added 2026-11-04.",
+      "pick": "true: the feature is a choice made when the character is created (a lineage, an ancestry, a skill), recorded as a feature of its own and in species-choices.json; the effect of each option is on that option's entry. Added 2026-11-04.",
+      "narrative": "true plus a reason: the feature has nothing a rule can compute. Reviewed, not forgotten. Added 2026-11-04.",
+      "engine_rule": "For a feature whose rule is bespoke engine code rather than a structured field: \"rules/5e/<file>.js#<exportedFunction>\" (Sneak Attack dice, Rage damage...). engine/test/featureRulesRatchet.test.js checks the file exports that function. Added 2026-11-04.",
+      "crit_extra_dice": "{ attack: 'melee_weapon', dice }: extra weapon damage dice on a critical hit with that kind of attack (Half-Orc Savage Attacks: 1). Read by weaponAttack.criticalDamageDice. Added 2026-11-04."
     }
   },
   "action-surge-1-use": {
@@ -197,7 +234,8 @@
   "pub_relentless-endurance": {
     "name": "Relentless Endurance",
     "recharge": "long_rest",
-    "uses_max": 1
+    "uses_max": 1,
+    "survives_at_hp": 1
   },
   "frenzy": {
     "name": "Frenzy",
@@ -3232,26 +3270,102 @@
     "name": "Healing Hands",
     "action_type": "action",
     "recharge": "long_rest",
-    "uses_max": 1
+    "uses_max": 1,
+    "on_use": [
+      {
+        "kind": "heal",
+        "target": "a creature you touch",
+        "dice": {
+          "count": {
+            "type": "proficiency_bonus"
+          },
+          "sides": 4
+        }
+      }
+    ]
   },
   "pub24_species_aasimar-celestial-revelation": {
     "name": "Celestial Revelation",
     "action_type": "bonus_action",
     "recharge": "long_rest",
-    "uses_max": 1
+    "uses_max": 1,
+    "min_level": 3,
+    "active": {
+      "duration_minutes": 1,
+      "choose_one_of": [
+        "pub24_species_aasimar-heavenly-wings",
+        "pub24_species_aasimar-inner-radiance",
+        "pub24_species_aasimar-necrotic-shroud"
+      ],
+      "extra_damage": {
+        "amount": {
+          "type": "proficiency_bonus"
+        },
+        "once_per_turn": true,
+        "on": "attack or spell"
+      }
+    }
   },
   "pub24_species_dragonborn-breath-weapon": {
     "name": "Breath Weapon",
     "recharge": "long_rest",
     "uses_formula": {
       "type": "proficiency_bonus"
-    }
+    },
+    "on_use": [
+      {
+        "kind": "area_save",
+        "replaces": "one of your attacks when you take the Attack action",
+        "ability": "dex",
+        "dc": {
+          "type": "dc",
+          "ability": "con"
+        },
+        "shapes": [
+          {
+            "shape": "cone",
+            "feet": 15
+          },
+          {
+            "shape": "line",
+            "feet": 30,
+            "width_feet": 5
+          }
+        ],
+        "damage": {
+          "dice": {
+            "count": {
+              "type": "by_level",
+              "table": {
+                "1": 1,
+                "5": 2,
+                "11": 3,
+                "17": 4
+              }
+            },
+            "sides": 10
+          },
+          "type": "lineage"
+        },
+        "on_success": "half"
+      }
+    ]
   },
   "pub24_species_dragonborn-draconic-flight": {
     "name": "Draconic Flight",
     "action_type": "bonus_action",
     "recharge": "long_rest",
-    "uses_max": 1
+    "uses_max": 1,
+    "min_level": 5,
+    "active": {
+      "duration_minutes": 10,
+      "ends_on": [
+        "Incapacitated"
+      ]
+    },
+    "active_grants": {
+      "fly_speed": "speed"
+    }
   },
   "pub24_species_dwarf-stonecunning": {
     "name": "Stonecunning",
@@ -3259,33 +3373,47 @@
     "recharge": "long_rest",
     "uses_formula": {
       "type": "proficiency_bonus"
+    },
+    "active": {
+      "duration_minutes": 10,
+      "requires": "standing on or touching a stone surface"
+    },
+    "active_grants": {
+      "tremorsense": 60
     }
   },
   "pub24_species_elf-elven-lineage": {
     "name": "Elven Lineage",
-    "recharge": "long_rest",
-    "uses_max": 1
+    "pick": true
   },
   "pub24_species_gnome-forest-gnome": {
     "name": "Forest Gnome",
-    "recharge": "long_rest",
-    "uses_formula": {
-      "type": "proficiency_bonus"
-    }
+    "option_of": "pub24_species_gnome-gnomish-lineage"
   },
   "pub24_species_goliath-giant-ancestry": {
     "name": "Giant Ancestry",
-    "action_type": "bonus_action",
-    "recharge": "long_rest",
-    "uses_formula": {
-      "type": "proficiency_bonus"
-    }
+    "pick": true
   },
   "pub24_species_goliath-large-form": {
     "name": "Large Form",
     "action_type": "bonus_action",
     "recharge": "long_rest",
-    "uses_max": 1
+    "uses_max": 1,
+    "min_level": 5,
+    "active": {
+      "duration_minutes": 10,
+      "requires": "a big enough space"
+    },
+    "active_grants": {
+      "size": "Large",
+      "speed_bonus": 10,
+      "check_advantage": [
+        {
+          "ability": "str",
+          "when": "Strength checks (Large Form)"
+        }
+      ]
+    }
   },
   "pub24_species_orc-adrenaline-rush": {
     "name": "Adrenaline Rush",
@@ -3293,20 +3421,832 @@
     "recharge": "short_rest",
     "uses_formula": {
       "type": "proficiency_bonus"
-    }
+    },
+    "on_use": [
+      {
+        "kind": "action",
+        "action": "Dash"
+      },
+      {
+        "kind": "temp_hp",
+        "amount": {
+          "type": "proficiency_bonus"
+        }
+      }
+    ]
   },
   "pub24_species_orc-relentless-endurance": {
     "name": "Relentless Endurance",
     "recharge": "long_rest",
-    "uses_max": 1
+    "uses_max": 1,
+    "survives_at_hp": 1
   },
   "pub24_species_tiefling-fiendish-legacy": {
     "name": "Fiendish Legacy",
-    "recharge": "long_rest",
-    "uses_max": 1
+    "pick": true
   },
   "hb_tackett_legendary_cantrips": {
     "extra_cantrips": 3,
     "note": "Homebrew: 3 cantrips beyond the normal Druid cantrip count (from the character's Legendary Repertoire feature)."
+  },
+  "pub24_species_aasimar-celestial-resistance": {
+    "name": "Celestial Resistance",
+    "grants_resistance": [
+      "necrotic",
+      "radiant"
+    ]
+  },
+  "pub24_species_aasimar-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub24_species_dragonborn-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub24_species_dwarf-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 120
+  },
+  "pub24_species_elf-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub24_species_gnome-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub24_species_orc-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 120
+  },
+  "pub24_species_tiefling-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub24_species_dwarf-dwarven-resilience": {
+    "name": "Dwarven Resilience",
+    "grants_resistance": [
+      "poison"
+    ],
+    "grants_saving_throw_advantage": [
+      "being_poisoned"
+    ]
+  },
+  "pub24_species_elf-fey-ancestry": {
+    "name": "Fey Ancestry",
+    "grants_saving_throw_advantage": [
+      "being_charmed"
+    ]
+  },
+  "pub24_species_gnome-gnomish-cunning": {
+    "name": "Gnomish Cunning",
+    "grants_saving_throw_advantage": [
+      "intelligence_saves",
+      "wisdom_saves",
+      "charisma_saves"
+    ]
+  },
+  "pub24_species_halfling-brave": {
+    "name": "Brave",
+    "grants_saving_throw_advantage": [
+      "being_frightened"
+    ]
+  },
+  "pub24_species_goliath-powerful-build": {
+    "name": "Powerful Build",
+    "grants_check_advantage": [
+      {
+        "when": "to end the Grappled condition"
+      }
+    ],
+    "size_counts_as_larger": [
+      "carrying_capacity"
+    ]
+  },
+  "pub24_species_dragonborn-damage-resistance": {
+    "name": "Damage Resistance",
+    "grants_resistance_from_lineage": true
+  },
+  "homebrew_species_catrin-broad-build": {
+    "name": "Broad Build",
+    "size_counts_as_larger": [
+      "carrying_capacity",
+      "grappling"
+    ]
+  },
+  "homebrew_species_catrin-settled-presence": {
+    "name": "Settled Presence",
+    "grants_saving_throw_advantage": [
+      "being_frightened",
+      "being_charmed"
+    ]
+  },
+  "homebrew_species_catrin-brace": {
+    "name": "Brace",
+    "action_type": "reaction",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "reaction_effect": {
+      "trigger": "hit_by_melee_attack",
+      "damage_fraction": 0.5,
+      "push": {
+        "feet": 5,
+        "max_size": "Medium"
+      }
+    }
+  },
+  "homebrew_species_catrin-long-memory": {
+    "name": "Long Memory",
+    "grants_skill_proficiency": [
+      "History"
+    ]
+  },
+  "homebrew_species_drevani-sharp-nose": {
+    "name": "Sharp Nose",
+    "grants_skill_advantage": [
+      {
+        "skill": "Perception",
+        "when": "checks that rely on smell"
+      }
+    ]
+  },
+  "homebrew_species_drevani-low-profile": {
+    "name": "Low Profile",
+    "moves_through_creature_space": {
+      "min_size": "Medium",
+      "squeezing": false
+    }
+  },
+  "homebrew_species_drevani-ferocious-bite": {
+    "name": "Ferocious Bite",
+    "action_type": "bonus_action",
+    "recharge": "long_rest",
+    "uses_max": 1,
+    "unarmed_attack": {
+      "damage_type": "piercing",
+      "ability": "str",
+      "dice_by_level": {
+        "1": "1d6",
+        "3": "2d6",
+        "6": "3d6",
+        "9": "4d6",
+        "12": "5d6",
+        "15": "6d6",
+        "18": "7d6"
+      }
+    }
+  },
+  "homebrew_species_heiugar-grey-resilience": {
+    "name": "Grey Resilience",
+    "grants_saving_throw_advantage": [
+      "illusions",
+      "being_charmed",
+      "paralysis"
+    ]
+  },
+  "homebrew_species_heiugar-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "homebrew_species_heiugar-gust-of-wind": {
+    "name": "Gust of Wind",
+    "grants_spells": {
+      "fixed": [
+        "Gust of Wind"
+      ],
+      "free_cast": {
+        "Gust of Wind": {
+          "count": 1,
+          "recharge": "long_rest"
+        }
+      }
+    }
+  },
+  "homebrew_species_heiugar-far-sight": {
+    "name": "Far Sight",
+    "grants_skill_advantage": [
+      {
+        "skill": "Perception",
+        "when": "checks that target creatures or objects 60 feet or further away"
+      }
+    ]
+  },
+  "pub24_sub_wizard-bladesinger-training-in-war-and-song": {
+    "name": "Training in War and Song",
+    "grants_weapon_proficiency": [
+      {
+        "filter": {
+          "category": "martial",
+          "kind": "melee",
+          "lacks": [
+            "two-handed",
+            "heavy"
+          ]
+        }
+      }
+    ],
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Acrobatics",
+        "Athletics",
+        "Performance",
+        "Persuasion"
+      ]
+    }
+  },
+  "pub24_barbarian-primal-knowledge": {
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Animal Handling",
+        "Athletics",
+        "Intimidation",
+        "Nature",
+        "Perception",
+        "Survival"
+      ]
+    }
+  },
+  "pub24_monk-disciplined-survivor": {
+    "grants_saving_throw_proficiency": [
+      "str",
+      "dex",
+      "con",
+      "int",
+      "wis",
+      "cha"
+    ],
+    "grants_saving_throw_replace_options": []
+  },
+  "pub24_rogue-slippery-mind": {
+    "grants_saving_throw_proficiency": [
+      "wis",
+      "cha"
+    ],
+    "grants_saving_throw_replace_options": []
+  },
+  "pub24_sub_artificer-alchemist-tools-of-the-trade": {
+    "grants_tool_proficiency": [
+      "Alchemist's Supplies",
+      "Herbalism Kit"
+    ],
+    "grants_tool_replace_from": "Artisan's Tools"
+  },
+  "pub24_sub_artificer-armorer-tools-of-the-trade": {
+    "grants_armor_proficiency": [
+      "heavy"
+    ],
+    "grants_tool_proficiency": [
+      "Smith's Tools"
+    ],
+    "grants_tool_replace_from": "Artisan's Tools"
+  },
+  "pub24_sub_artificer-artillerist-tools-of-the-trade": {
+    "grants_weapon_proficiency": [
+      {
+        "filter": {
+          "category": "martial",
+          "kind": "ranged"
+        }
+      }
+    ],
+    "grants_tool_proficiency": [
+      "Woodcarver's Tools"
+    ],
+    "grants_tool_replace_from": "Artisan's Tools"
+  },
+  "pub24_sub_artificer-battle-smith-tools-of-the-trade": {
+    "grants_tool_proficiency": [
+      "Smith's Tools"
+    ],
+    "grants_tool_replace_from": "Artisan's Tools"
+  },
+  "pub24_sub_artificer-battle-smith-battle-ready": {
+    "grants_weapon_proficiency": [
+      "martial"
+    ]
+  },
+  "pub24_sub_artificer-cartographer-tools-of-the-trade": {
+    "grants_tool_proficiency": [
+      "Calligrapher's Supplies",
+      "Cartographer's Tools"
+    ],
+    "grants_tool_replace_from": "Artisan's Tools"
+  },
+  "pub24_sub_artificer-reanimator-reanimators-skill-set": {
+    "grants_tool_proficiency": [
+      "Alchemist's Supplies"
+    ],
+    "grants_tool_replace_from": "Artisan's Tools"
+  },
+  "pub24_sub_bard-college-of-lore-bonus-proficiencies": {
+    "grants_skill_proficiency_choice": {
+      "count": 3,
+      "options": "any"
+    }
+  },
+  "pub24_sub_bard-college-of-spirits-channeler": {
+    "grants_tool_proficiency": [
+      "Playing Card Set"
+    ]
+  },
+  "pub24_sub_bard-college-of-the-moon-primal-lore": {
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Animal Handling",
+        "Insight",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Survival"
+      ]
+    }
+  },
+  "pub24_sub_bard-college-of-valor-martial-training": {
+    "grants_weapon_proficiency": [
+      "martial"
+    ],
+    "grants_armor_proficiency": [
+      "medium",
+      "shields"
+    ]
+  },
+  "pub24_sub_cleric-knowledge-domain-blessings-of-knowledge": {
+    "grants_tool_proficiency_choice": {
+      "count": 1,
+      "options": "artisan"
+    },
+    "grants_skill_proficiency_choice": {
+      "count": 2,
+      "options": [
+        "Arcana",
+        "History",
+        "Nature",
+        "Religion"
+      ],
+      "expertise": true
+    }
+  },
+  "pub24_sub_cleric-knowledge-domain-unfettered-mind": {
+    "grants_saving_throw_proficiency": [
+      "int"
+    ]
+  },
+  "pub24_sub_fighter-banneret-knightly-envoy": {
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Insight",
+        "Intimidation",
+        "Persuasion",
+        "Performance"
+      ]
+    }
+  },
+  "pub24_sub_fighter-battle-master-student-of-war": {
+    "grants_tool_proficiency_choice": {
+      "count": 1,
+      "options": "artisan"
+    },
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Acrobatics",
+        "Animal Handling",
+        "Athletics",
+        "History",
+        "Insight",
+        "Intimidation",
+        "Persuasion",
+        "Perception",
+        "Survival"
+      ]
+    }
+  },
+  "pub24_sub_monk-warrior-of-mercy-implements-of-mercy": {
+    "grants_skill_proficiency": [
+      "Insight",
+      "Medicine"
+    ],
+    "grants_tool_proficiency": [
+      "Herbalism Kit"
+    ]
+  },
+  "pub24_sub_paladin-oath-of-the-noble-genies-genies-splendor": {
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Acrobatics",
+        "Intimidation",
+        "Performance",
+        "Persuasion"
+      ]
+    }
+  },
+  "pub24_sub_ranger-fey-wanderer-otherworldly-glamour": {
+    "grants_skill_proficiency_choice": {
+      "count": 1,
+      "options": [
+        "Deception",
+        "Performance",
+        "Persuasion"
+      ]
+    }
+  },
+  "pub24_sub_ranger-gloom-stalker-iron-mind": {
+    "grants_saving_throw_proficiency": [
+      "wis"
+    ],
+    "grants_saving_throw_replace_options": [
+      "int",
+      "cha"
+    ]
+  },
+  "pub24_sub_rogue-assassin-assassins-tools": {
+    "grants_tool_proficiency": [
+      "Disguise Kit",
+      "Poisoner's Kit"
+    ]
+  },
+  "pub24_species_aasimar-light-bearer": {
+    "name": "Light Bearer",
+    "grants_spells": {
+      "fixed": [
+        "Light"
+      ],
+      "ability": "cha"
+    }
+  },
+  "pub24_species_aasimar-heavenly-wings": {
+    "name": "Heavenly Wings",
+    "option_of": "pub24_species_aasimar-celestial-revelation",
+    "extra_damage_type": "radiant",
+    "active_grants": {
+      "fly_speed": "speed"
+    }
+  },
+  "pub24_species_aasimar-inner-radiance": {
+    "name": "Inner Radiance",
+    "option_of": "pub24_species_aasimar-celestial-revelation",
+    "extra_damage_type": "radiant",
+    "active_grants": {
+      "light": {
+        "bright_feet": 10,
+        "dim_feet": 10
+      }
+    },
+    "aura": {
+      "timing": "end of each of your turns",
+      "radius_feet": 10,
+      "damage": {
+        "amount": {
+          "type": "proficiency_bonus"
+        },
+        "type": "radiant"
+      }
+    }
+  },
+  "pub24_species_aasimar-necrotic-shroud": {
+    "name": "Necrotic Shroud",
+    "option_of": "pub24_species_aasimar-celestial-revelation",
+    "extra_damage_type": "necrotic",
+    "on_use": [
+      {
+        "kind": "area_save",
+        "ability": "cha",
+        "dc": {
+          "type": "dc",
+          "ability": "cha"
+        },
+        "radius_feet": 10,
+        "targets": "creatures other than your allies",
+        "on_failure": {
+          "condition": "Frightened",
+          "until": "the end of your next turn"
+        }
+      }
+    ]
+  },
+  "pub24_species_dragonborn-draconic-ancestry": {
+    "name": "Draconic Ancestry",
+    "pick": true
+  },
+  "pub24_species_dwarf-dwarven-toughness": {
+    "name": "Dwarven Toughness",
+    "grants_hp_per_level": 1
+  },
+  "pub24_species_elf-keen-senses": {
+    "name": "Keen Senses",
+    "pick": true
+  },
+  "pub24_species_elf-trance": {
+    "name": "Trance",
+    "needs_sleep": false,
+    "grants_condition_immunity": [
+      "magical_sleep"
+    ],
+    "long_rest_hours": 4
+  },
+  "pub24_species_gnome-gnomish-lineage": {
+    "name": "Gnomish Lineage",
+    "pick": true
+  },
+  "pub24_species_halfling-luck": {
+    "name": "Luck",
+    "d20_reroll_on": [
+      1
+    ]
+  },
+  "pub24_species_halfling-halfling-nimbleness": {
+    "name": "Halfling Nimbleness",
+    "moves_through_creature_space": {
+      "size_delta": 1,
+      "squeezing": false
+    }
+  },
+  "pub24_species_halfling-naturally-stealthy": {
+    "name": "Naturally Stealthy",
+    "hide_obscured_by": {
+      "size_delta": 1
+    }
+  },
+  "pub24_species_human-resourceful": {
+    "name": "Resourceful",
+    "on_long_rest": {
+      "heroic_inspiration": true
+    }
+  },
+  "pub24_species_human-skillful": {
+    "name": "Skillful",
+    "pick": true
+  },
+  "pub24_species_human-versatile": {
+    "name": "Versatile",
+    "pick": true
+  },
+  "pub24_species_tiefling-otherworldly-presence": {
+    "name": "Otherworldly Presence",
+    "grants_spells": {
+      "fixed": [
+        "Thaumaturgy"
+      ],
+      "ability_from": "lineage"
+    }
+  },
+  "pub24_species_goliath-giant-ancestry--clouds-jaunt": {
+    "name": "Giant Ancestry: Cloud's Jaunt",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    },
+    "action_type": "bonus_action",
+    "on_use": [
+      {
+        "kind": "teleport",
+        "feet": 30,
+        "to": "an unoccupied space you can see"
+      }
+    ]
+  },
+  "pub24_species_goliath-giant-ancestry--fires-burn": {
+    "name": "Giant Ancestry: Fire's Burn",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    },
+    "on_use": [
+      {
+        "kind": "damage",
+        "trigger": "when you hit with an attack roll and deal damage",
+        "dice": {
+          "count": 1,
+          "sides": 10
+        },
+        "type": "fire"
+      }
+    ]
+  },
+  "pub24_species_goliath-giant-ancestry--frosts-chill": {
+    "name": "Giant Ancestry: Frost's Chill",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    },
+    "on_use": [
+      {
+        "kind": "damage",
+        "trigger": "when you hit with an attack roll and deal damage",
+        "dice": {
+          "count": 1,
+          "sides": 6
+        },
+        "type": "cold"
+      },
+      {
+        "kind": "speed_reduction",
+        "feet": 10,
+        "until": "the start of your next turn"
+      }
+    ]
+  },
+  "pub24_species_goliath-giant-ancestry--hills-tumble": {
+    "name": "Giant Ancestry: Hill's Tumble",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    },
+    "on_use": [
+      {
+        "kind": "condition",
+        "trigger": "when you hit a Large or smaller creature and deal damage",
+        "condition": "Prone",
+        "max_target_size": "Large"
+      }
+    ]
+  },
+  "pub24_species_goliath-giant-ancestry--stones-endurance": {
+    "name": "Giant Ancestry: Stone's Endurance",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    },
+    "action_type": "reaction",
+    "on_use": [
+      {
+        "kind": "reduce_damage",
+        "trigger": "when you take damage",
+        "dice": {
+          "count": 1,
+          "sides": 12
+        },
+        "plus_ability": "con"
+      }
+    ]
+  },
+  "pub24_species_goliath-giant-ancestry--storms-thunder": {
+    "name": "Giant Ancestry: Storm's Thunder",
+    "recharge": "long_rest",
+    "uses_formula": {
+      "type": "proficiency_bonus"
+    },
+    "action_type": "reaction",
+    "on_use": [
+      {
+        "kind": "damage",
+        "trigger": "when a creature within 60 feet damages you",
+        "dice": {
+          "count": 1,
+          "sides": 8
+        },
+        "type": "thunder",
+        "target": "the creature that damaged you"
+      }
+    ]
+  },
+  "pub24_species_gnome-gnomish-lineage--forest-gnome": {
+    "name": "Gnomish Lineage: Forest Gnome",
+    "grants_spells": {
+      "fixed": [
+        "Speak with Animals"
+      ],
+      "free_cast": {
+        "Speak with Animals": {
+          "count": {
+            "type": "proficiency_bonus"
+          },
+          "recharge": "long_rest"
+        }
+      }
+    }
+  },
+  "pub24_species_gnome-gnomish-lineage--rock-gnome": {
+    "name": "Gnomish Lineage: Rock Gnome",
+    "creates_objects": {
+      "kind": "Clockwork device",
+      "via": "Prestidigitation, cast over 10 minutes",
+      "max": 3,
+      "ac": 5,
+      "hp": 1,
+      "activation": "a Bonus Action to activate with a touch",
+      "lasts_hours": 8
+    }
+  },
+  "pub24_species_elf-elven-lineage--drow": {
+    "name": "Elven Lineage: Drow",
+    "grants_darkvision": 120
+  },
+  "pub24_species_elf-elven-lineage--high-elf": {
+    "name": "Elven Lineage: High Elf",
+    "cantrip_swap": {
+      "replaces": "Prestidigitation",
+      "from_list": "Wizard",
+      "when": "you finish a Long Rest"
+    }
+  },
+  "pub24_species_elf-elven-lineage--wood-elf": {
+    "name": "Elven Lineage: Wood Elf",
+    "grants_speed": 35
+  },
+  "pub24_species_tiefling-fiendish-legacy--abyssal": {
+    "name": "Fiendish Legacy: Abyssal",
+    "grants_resistance": [
+      "poison"
+    ]
+  },
+  "pub24_species_tiefling-fiendish-legacy--chthonic": {
+    "name": "Fiendish Legacy: Chthonic",
+    "grants_resistance": [
+      "necrotic"
+    ]
+  },
+  "pub24_species_tiefling-fiendish-legacy--infernal": {
+    "name": "Fiendish Legacy: Infernal",
+    "grants_resistance": [
+      "fire"
+    ]
+  },
+  "pub24_species_dragonborn-draconic-ancestry--black": {
+    "name": "Draconic Ancestry: Black",
+    "lineage_damage": "acid"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--blue": {
+    "name": "Draconic Ancestry: Blue",
+    "lineage_damage": "lightning"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--brass": {
+    "name": "Draconic Ancestry: Brass",
+    "lineage_damage": "fire"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--bronze": {
+    "name": "Draconic Ancestry: Bronze",
+    "lineage_damage": "lightning"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--copper": {
+    "name": "Draconic Ancestry: Copper",
+    "lineage_damage": "acid"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--gold": {
+    "name": "Draconic Ancestry: Gold",
+    "lineage_damage": "fire"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--green": {
+    "name": "Draconic Ancestry: Green",
+    "lineage_damage": "poison"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--red": {
+    "name": "Draconic Ancestry: Red",
+    "lineage_damage": "fire"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--silver": {
+    "name": "Draconic Ancestry: Silver",
+    "lineage_damage": "cold"
+  },
+  "pub24_species_dragonborn-draconic-ancestry--white": {
+    "name": "Draconic Ancestry: White",
+    "lineage_damage": "cold"
+  },
+  "pub24_species_gnome-rock-gnome": {
+    "name": "Rock Gnome",
+    "option_of": "pub24_species_gnome-gnomish-lineage"
+  },
+  "pub_half-elf-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub_half-orc-darkvision": {
+    "name": "Darkvision",
+    "grants_darkvision": 60
+  },
+  "pub_fey-ancestry": {
+    "name": "Fey Ancestry",
+    "grants_saving_throw_advantage": [
+      "being_charmed"
+    ],
+    "grants_condition_immunity": [
+      "magical_sleep"
+    ]
+  },
+  "pub_half-elf-skill-versatility": {
+    "name": "Skill Versatility",
+    "grants_skill_proficiency_choice": {
+      "count": 2,
+      "options": "any"
+    }
+  },
+  "pub_half-orc-menacing": {
+    "name": "Menacing",
+    "grants_skill_proficiency": [
+      "Intimidation"
+    ]
+  },
+  "pub_savage-attacks": {
+    "name": "Savage Attacks",
+    "crit_extra_dice": {
+      "attack": "melee_weapon",
+      "dice": 1
+    }
   }
 }

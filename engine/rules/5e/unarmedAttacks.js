@@ -20,6 +20,7 @@ const { bonusLines } = require('./breakdown')
 const { loadoutHands } = require('./weaponHands')
 const { rageDamage } = require('./weaponAttack')
 const { withExhaustion } = require('./exhaustion')
+const { effectiveGrants } = require('./featureGrants')
 const monk = require('../../data/5e/classes/monk.json')
 const rogue = require('../../data/5e/classes/rogue.json')
 
@@ -244,7 +245,52 @@ function psychicBlades(character, equippedItems = []) {
   ]
 }
 
+// An attack a feature makes with the body, described in its feature-mechanics entry as
+// `unarmed_attack: { damage_type, ability, dice_by_level }` (Drevani's Ferocious Bite: a bonus action
+// unarmed strike dealing piercing damage plus STR, 1d6 at level 1 up to 7d6 at 18, once per long rest).
+// The die comes from TOTAL character level. Returns one entry per such feature the character has, each
+// with the feature's own uses so the caller can show whether it is spent.
+function featureBodyAttacks(character, equippedItems = []) {
+  const level =
+    (character.classes ?? []).reduce((n, c) => n + (c.level ?? 0), 0) ||
+    character.level ||
+    0
+  const out = []
+  for (const f of character.features ?? []) {
+    const spec = effectiveGrants(f).unarmed_attack
+    if (!spec) continue
+    const die = tableValueAtLevel(spec.dice_by_level, Math.max(level, 1))
+    const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
+    const statMod = abilityModifier(scores[spec.ability])
+    const label = spec.ability.toUpperCase()
+    const prof = effectiveProficiencyBonus(character, bonuses)
+    out.push({
+      id: f.id,
+      name: f.name,
+      die,
+      damageType: spec.damage_type,
+      actionType: effectiveGrants(f).action_type ?? f.action_type ?? null,
+      uses: {
+        max: f.uses_max ?? effectiveGrants(f).uses_max ?? null,
+        current:
+          f.uses_current ?? f.uses_max ?? effectiveGrants(f).uses_max ?? null,
+        recharge: f.recharge ?? effectiveGrants(f).recharge ?? null,
+      },
+      attack: withExhaustion(character, {
+        value: statMod + prof,
+        breakdown: [
+          { label, amount: statMod },
+          { label: 'Proficiency', amount: prof },
+        ],
+      }),
+      damage: { value: statMod, breakdown: [{ label, amount: statMod }] },
+    })
+  }
+  return out
+}
+
 module.exports = {
+  featureBodyAttacks,
   tableValueAtLevel,
   sneakAttackDice,
   martialArtsDie,

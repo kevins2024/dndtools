@@ -13,18 +13,27 @@
     "speed": 30,
     "darkvision": 0,
     "languages": {
-      "automatic": ["Common"],
-      "choice": { "count": 1 }
+      "automatic": [
+        "Common"
+      ],
+      "choice": {
+        "count": 1
+      }
     }
   },
   {
     "name": "Elf",
-    "ability_score_bonus": { "dex": 2 },
+    "ability_score_bonus": {
+      "dex": 2
+    },
     "choice": null,
     "speed": 30,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Elvish"],
+      "automatic": [
+        "Common",
+        "Elvish"
+      ],
       "choice": null
     },
     "traits": [
@@ -49,7 +58,9 @@
     "subraces": [
       {
         "name": "High Elf",
-        "ability_score_bonus": { "int": 1 },
+        "ability_score_bonus": {
+          "int": 1
+        },
         "traits": [
           {
             "name": "Elf Weapon Training",
@@ -82,12 +93,16 @@
           }
         ],
         "languages": {
-          "choice": { "count": 1 }
+          "choice": {
+            "count": 1
+          }
         }
       },
       {
         "name": "Wood Elf",
-        "ability_score_bonus": { "wis": 1 },
+        "ability_score_bonus": {
+          "wis": 1
+        },
         "speed": 35,
         "traits": [
           {
@@ -115,7 +130,9 @@
       },
       {
         "name": "Dark Elf (Drow)",
-        "ability_score_bonus": { "cha": 1 },
+        "ability_score_bonus": {
+          "cha": 1
+        },
         "darkvision": 120,
         "traits": [
           {
@@ -133,7 +150,9 @@
             "id": "pub_drow-magic",
             "description": "Know the Dancing Lights cantrip. At 3rd level, cast Faerie Fire once per long rest; at 5th level, also cast Darkness once per long rest. Charisma is the spellcasting ability.",
             "grants_spells": {
-              "fixed": ["Dancing Lights"],
+              "fixed": [
+                "Dancing Lights"
+              ],
               "ability": "cha",
               "tiered": [
                 {
@@ -163,7 +182,9 @@
       },
       {
         "name": "Eladrin",
-        "ability_score_bonus": { "cha": 1 },
+        "ability_score_bonus": {
+          "cha": 1
+        },
         "season_options": [
           {
             "season": "Autumn",
@@ -187,7 +208,10 @@
             "name": "Fey Step",
             "id": "pub_eladrin-fey-step",
             "description": "Bonus action: teleport up to 30 feet to an unoccupied space you can see. Usable again only after a short or long rest. At 3rd level, your Fey Step gains an additional effect based on your chosen season (save DC = 8 + proficiency bonus + Charisma modifier).",
-            "choice": { "count": 1, "from": "season_options" }
+            "choice": {
+              "count": 1,
+              "from": "season_options"
+            }
           }
         ]
       }
@@ -195,12 +219,17 @@
   },
   {
     "name": "Dwarf",
-    "ability_score_bonus": { "con": 2 },
+    "ability_score_bonus": {
+      "con": 2
+    },
     "choice": null,
     "speed": 25,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Dwarvish"],
+      "automatic": [
+        "Common",
+        "Dwarvish"
+      ],
       "choice": null
     },
     "traits": [
@@ -228,7 +257,11 @@
         "description": "Proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.",
         "grants_tool_proficiency_choice": {
           "count": 1,
-          "options": ["smith's tools", "brewer's supplies", "mason's tools"]
+          "options": [
+            "smith's tools",
+            "brewer's supplies",
+            "mason's tools"
+          ]
         }
       },
       {
@@ -240,7 +273,9 @@
     "subraces": [
       {
         "name": "Hill Dwarf",
-        "ability_score_bonus": { "wis": 1 },
+        "ability_score_bonus": {
+          "wis": 1
+        },
         "traits": [
           {
             "name": "Dwarven Toughness",
@@ -252,13 +287,18 @@
       },
       {
         "name": "Mountain Dwarf",
-        "ability_score_bonus": { "str": 2 },
+        "ability_score_bonus": {
+          "str": 2
+        },
         "traits": [
           {
             "name": "Dwarven Armor Training",
             "id": "pub_mountain-dwarf-armor-training",
             "description": "Proficiency with light and medium armor.",
-            "grants_armor_proficiency": ["light", "medium"]
+            "grants_armor_proficiency": [
+              "light",
+              "medium"
+            ]
           }
         ]
       }
@@ -266,12 +306,17 @@
   },
   {
     "name": "Halfling",
-    "ability_score_bonus": { "dex": 2 },
+    "ability_score_bonus": {
+      "dex": 2
+    },
     "choice": null,
     "speed": 25,
     "darkvision": 0,
     "languages": {
-      "automatic": ["Common", "Halfling"],
+      "automatic": [
+        "Common",
+        "Halfling"
+      ],
       "choice": null
     },
     "traits": [
@@ -295,7 +340,9 @@
     "subraces": [
       {
         "name": "Lightfoot Halfling",
-        "ability_score_bonus": { "cha": 1 },
+        "ability_score_bonus": {
+          "cha": 1
+        },
         "traits": [
           {
             "name": "Naturally Stealthy",
@@ -306,7 +353,9 @@
       },
       {
         "name": "Stout Halfling",
-        "ability_score_bonus": { "con": 1 },
+        "ability_score_bonus": {
+          "con": 1
+        },
         "traits": [
           {
             "name": "Stout Resilience",
@@ -321,12 +370,18 @@
   },
   {
     "name": "Dragonborn",
-    "ability_score_bonus": { "str": 2, "cha": 1 },
+    "ability_score_bonus": {
+      "str": 2,
+      "cha": 1
+    },
     "choice": null,
     "speed": 30,
     "darkvision": 0,
     "languages": {
-      "automatic": ["Common", "Draconic"],
+      "automatic": [
+        "Common",
+        "Draconic"
+      ],
       "choice": null
     },
     "ancestry_options": [
@@ -396,7 +451,10 @@
         "name": "Draconic Ancestry",
         "id": "pub_draconic-ancestry",
         "description": "Choose a dragon type (black, blue, brass, bronze, copper, gold, green, red, silver, or white) — determines your Breath Weapon's damage type/shape and your Damage Resistance.",
-        "choice": { "count": 1, "from": "ancestry_options" }
+        "choice": {
+          "count": 1,
+          "from": "ancestry_options"
+        }
       },
       {
         "name": "Breath Weapon",
@@ -413,12 +471,17 @@
   },
   {
     "name": "Gnome",
-    "ability_score_bonus": { "int": 2 },
+    "ability_score_bonus": {
+      "int": 2
+    },
     "choice": null,
     "speed": 25,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Gnomish"],
+      "automatic": [
+        "Common",
+        "Gnomish"
+      ],
       "choice": null
     },
     "traits": [
@@ -432,13 +495,20 @@
     "subraces": [
       {
         "name": "Forest Gnome",
-        "ability_score_bonus": { "dex": 1 },
+        "ability_score_bonus": {
+          "dex": 1
+        },
         "traits": [
           {
             "name": "Natural Illusionist",
             "id": "pub_forest-gnome-natural-illusionist",
             "description": "Know the Minor Illusion cantrip; Intelligence is its spellcasting ability.",
-            "grants_spells": { "fixed": ["Minor Illusion"], "ability": "int" }
+            "grants_spells": {
+              "fixed": [
+                "Minor Illusion"
+              ],
+              "ability": "int"
+            }
           },
           {
             "name": "Speak with Small Beasts",
@@ -449,7 +519,9 @@
       },
       {
         "name": "Rock Gnome",
-        "ability_score_bonus": { "con": 1 },
+        "ability_score_bonus": {
+          "con": 1
+        },
         "traits": [
           {
             "name": "Artificer's Lore",
@@ -460,7 +532,9 @@
             "name": "Tinker",
             "id": "pub_rock-gnome-tinker",
             "description": "Proficiency with tinker's tools. Can spend 1 hour and 10gp of materials to construct a Tiny clockwork device (AC 5, 1 HP): a clockwork toy, fire starter, or music box.",
-            "grants_tool_proficiency": ["tinker's tools"]
+            "grants_tool_proficiency": [
+              "tinker's tools"
+            ]
           }
         ]
       }
@@ -468,19 +542,33 @@
   },
   {
     "name": "Half-Elf",
-    "ability_score_bonus": { "cha": 2 },
+    "ability_score_bonus": {
+      "cha": 2
+    },
     "choice": {
       "count": 2,
       "amount": 1,
-      "exclude": ["cha"]
+      "exclude": [
+        "cha"
+      ]
     },
     "speed": 30,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Elvish"],
-      "choice": { "count": 1 }
+      "automatic": [
+        "Common",
+        "Elvish"
+      ],
+      "choice": {
+        "count": 1
+      }
     },
     "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You have Darkvision with a range of 60 feet.",
+        "id": "pub_half-elf-darkvision"
+      },
       {
         "name": "Fey Ancestry",
         "id": "pub_fey-ancestry",
@@ -491,21 +579,35 @@
         "name": "Skill Versatility",
         "id": "pub_half-elf-skill-versatility",
         "description": "Proficiency in two skills of your choice.",
-        "grants_skill_proficiency_choice": { "count": 2, "options": "any" }
+        "grants_skill_proficiency_choice": {
+          "count": 2,
+          "options": "any"
+        }
       }
     ]
   },
   {
     "name": "Half-Orc",
-    "ability_score_bonus": { "str": 2, "con": 1 },
+    "ability_score_bonus": {
+      "str": 2,
+      "con": 1
+    },
     "choice": null,
     "speed": 30,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Orc"],
+      "automatic": [
+        "Common",
+        "Orc"
+      ],
       "choice": null
     },
     "traits": [
+      {
+        "name": "Darkvision",
+        "description": "You have Darkvision with a range of 60 feet.",
+        "id": "pub_half-orc-darkvision"
+      },
       {
         "name": "Relentless Endurance",
         "id": "pub_relentless-endurance",
@@ -526,12 +628,18 @@
   },
   {
     "name": "Tiefling",
-    "ability_score_bonus": { "cha": 2, "int": 1 },
+    "ability_score_bonus": {
+      "cha": 2,
+      "int": 1
+    },
     "choice": null,
     "speed": 30,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Infernal"],
+      "automatic": [
+        "Common",
+        "Infernal"
+      ],
       "choice": null
     },
     "traits": [
@@ -546,7 +654,9 @@
         "id": "pub_infernal-legacy",
         "description": "Know the Thaumaturgy cantrip. At 3rd level, cast Hellish Rebuke once as a 2nd-level spell, regaining the ability on a long rest. At 5th level, also cast Darkness once, regaining the ability on a long rest. Charisma is your spellcasting ability for these.",
         "grants_spells": {
-          "fixed": ["Thaumaturgy"],
+          "fixed": [
+            "Thaumaturgy"
+          ],
           "ability": "cha",
           "tiered": [
             {
@@ -567,12 +677,18 @@
   },
   {
     "name": "Goliath",
-    "ability_score_bonus": { "str": 2, "con": 1 },
+    "ability_score_bonus": {
+      "str": 2,
+      "con": 1
+    },
     "choice": null,
     "speed": 30,
     "darkvision": 0,
     "languages": {
-      "automatic": ["Common", "Giant"],
+      "automatic": [
+        "Common",
+        "Giant"
+      ],
       "choice": null
     },
     "traits": [
@@ -603,12 +719,17 @@
   },
   {
     "name": "Aasimar",
-    "ability_score_bonus": { "cha": 2 },
+    "ability_score_bonus": {
+      "cha": 2
+    },
     "choice": null,
     "speed": 30,
     "darkvision": 60,
     "languages": {
-      "automatic": ["Common", "Celestial"],
+      "automatic": [
+        "Common",
+        "Celestial"
+      ],
       "choice": null
     },
     "traits": [
@@ -616,7 +737,10 @@
         "name": "Celestial Resistance",
         "id": "pub_aasimar-celestial-resistance",
         "description": "Resistance to necrotic damage and radiant damage.",
-        "grants_resistance": ["necrotic", "radiant"]
+        "grants_resistance": [
+          "necrotic",
+          "radiant"
+        ]
       },
       {
         "name": "Healing Hands",
@@ -627,13 +751,20 @@
         "name": "Light Bearer",
         "id": "pub_aasimar-light-bearer",
         "description": "Know the Light cantrip. Charisma is your spellcasting ability for it.",
-        "grants_spells": { "fixed": ["Light"], "ability": "cha" }
+        "grants_spells": {
+          "fixed": [
+            "Light"
+          ],
+          "ability": "cha"
+        }
       }
     ],
     "subraces": [
       {
         "name": "Protector Aasimar",
-        "ability_score_bonus": { "wis": 1 },
+        "ability_score_bonus": {
+          "wis": 1
+        },
         "traits": [
           {
             "name": "Radiant Soul",
@@ -644,7 +775,9 @@
       },
       {
         "name": "Scourge Aasimar",
-        "ability_score_bonus": { "con": 1 },
+        "ability_score_bonus": {
+          "con": 1
+        },
         "traits": [
           {
             "name": "Radiant Consumption",
@@ -655,7 +788,9 @@
       },
       {
         "name": "Fallen Aasimar",
-        "ability_score_bonus": { "str": 1 },
+        "ability_score_bonus": {
+          "str": 1
+        },
         "traits": [
           {
             "name": "Necrotic Shroud",

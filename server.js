@@ -456,6 +456,20 @@ app.post('/api/engine/preview-level-up', (req, res) => {
   }
 })
 
+// ── POST /api/engine/new-character ────────────────────────
+// A new 2024 character up to level 0: { answers } -> { character, equipment, choices, pending, warnings }.
+// `choices` is every pick the creation steps ask (answered or not, with its options and form
+// section); `pending` the ones still owed. Call again with more answers until `pending` is empty,
+// then take level 1 through /api/engine/level-up. See engine/rules/5e/newCharacter.js. Writes nothing.
+app.post('/api/engine/new-character', (req, res) => {
+  try {
+    res.json(engine.createCharacter2024(req.body?.answers ?? {}))
+  } catch (err) {
+    console.error('Error creating character:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // ── POST /api/engine/level-up ─────────────────────────────
 // The level-up as the UI should use it: { character, className, toLevel, hpMethod?, hpRolls?,
 // levelCap?, answers? } -> { patch, choices, complete, problems, warnings, description, ... }.
@@ -516,6 +530,29 @@ app.get('/api/engine/character-sheet/:name', (req, res) => {
       equippedItems: engine.equippedItemsFor(character, partyItems),
     })
     res.json(sheet)
+  } catch (err) {
+    console.error('Error building character sheet:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+// ── POST /api/engine/character-sheet ─────────────────────
+// The same sheet for a character exactly as the screen holds it (unsaved edits, a pending level-up
+// preview, a practice character), with the items it has equipped: body { character, partyItems }.
+// partyItems are the items the screen has (already hydrated); without them the saved ones are used.
+app.post('/api/engine/character-sheet', (req, res) => {
+  try {
+    const { character, partyItems } = req.body ?? {}
+    if (!character?.name)
+      return res.status(400).json({ error: 'body needs a character' })
+    const items = Array.isArray(partyItems)
+      ? partyItems
+      : hydratePartyItems(readJSON(path.join(DATA_DIR, 'party_items.json')))
+    res.json(
+      engine.characterSheet(engine.hydrateCharacter(character), {
+        equippedItems: engine.equippedItemsFor(character, items),
+      })
+    )
   } catch (err) {
     console.error('Error building character sheet:', err.message)
     res.status(500).json({ error: err.message })

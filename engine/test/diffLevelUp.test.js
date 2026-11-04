@@ -327,7 +327,7 @@ test("diffLevelUp: Fighter's multiclass prerequisite is STR 13 OR DEX 13 (any_of
   )
 })
 
-test('diffLevelUp: multiclass pickup surfaces a real pendingChoice for its skill grant, and a note for its tool grant (untracked on the character schema)', () => {
+test("diffLevelUp: multiclass pickup surfaces a real pendingChoice for its skill grant and grants its tool proficiency (Rogue: Thieves' Tools)", () => {
   // Rogue's multiclass grant includes a skill choice and thieves' tools.
   const character = baseFighter({ stat_dex: 14 }) // meets Rogue's DEX 13 prereq
   const result = diffLevelUp(character, {
@@ -340,7 +340,9 @@ test('diffLevelUp: multiclass pickup surfaces a real pendingChoice for its skill
     ),
     'the skill grant is a real, resolvable choice now — not just a warning'
   )
-  assert.ok(result.warnings.some((w) => w.includes("thieves' tools")))
+  // the tool grant is a real proficiency now, not a note that tools are untracked
+  assert.deepEqual(result.patch.tool_proficiencies, ["Thieves' Tools"])
+  assert.ok(!result.warnings.some((w) => /aren't tracked/.test(w)))
 })
 
 test('diffLevelUp: a level-0 placeholder class entry (UI subclass-draft mechanism) is still treated as a fresh pickup, and its drafted subclass carries into the patch', () => {

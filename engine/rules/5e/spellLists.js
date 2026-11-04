@@ -7,6 +7,7 @@ const {
 } = require('./spellcasting')
 const { multiclassSpellSlots } = require('./multiclass')
 const { normalizeRuleset } = require('./rulesetId')
+const { buildSpellIndexes, normalize } = require('./spellIndex')
 
 // This is the one place in engine/ that reaches OUTSIDE engine/data — spell
 // TEXT (as opposed to class progression rules) already lives in src/data and
@@ -17,48 +18,22 @@ const SRC_DATA = path.join(__dirname, '..', '..', '..', 'src', 'data')
 let cache = null
 let cache2024 = null
 
-function normalize(name) {
-  return name.toLowerCase().trim()
-}
-
-function buildIndex() {
-  if (cache) return cache
-  const index = new Map()
-
-  const srd = JSON.parse(
-    fs.readFileSync(
-      path.join(SRC_DATA, 'api_data_cache', 'srd_spells_full.json'),
-      'utf8'
-    )
+// The 2014 spells (SRD cache with the published/homebrew ones over it) and the 2024 index built over them
+// (spellIndex.js is the one implementation, shared with the browser).
+function buildIndexes() {
+  if (cache && cache2024) return
+  const read = (...p) =>
+    JSON.parse(fs.readFileSync(path.join(SRC_DATA, ...p), 'utf8'))
+  const { legacyIndex, index2024 } = buildSpellIndexes(
+    read('api_data_cache', 'srd_spells_full.json'),
+    read('published_spells.json'),
+    read('spells_2024.json')
   )
-  const published = JSON.parse(
-    fs.readFileSync(path.join(SRC_DATA, 'published_spells.json'), 'utf8')
-  )
-
-  // published_spells.json now holds real non-SRD content and homebrew spells
-  // side by side (each entry's own `homebrew` flag tells them apart) — so
-  // this is the only override tier needed on top of the SRD cache.
-  for (const s of srd) index.set(normalize(s.name), s)
-  for (const s of published) index.set(normalize(s.name), s)
-
-  cache = index
-  return index
+  cache = legacyIndex
+  cache2024 = index2024
 }
-
-// Under 2024: every spell the 2024 books rewrote (src/data/spells_2024.json, with
-// its 2024 class lists), over the 2014 spells that weren't, which stay usable and
-// come back tagged `legacy: true`.
-function buildIndex2024() {
-  if (cache2024) return cache2024
-  const index = new Map()
-  for (const [k, rec] of buildIndex()) index.set(k, { ...rec, legacy: true })
-  const spells = JSON.parse(
-    fs.readFileSync(path.join(SRC_DATA, 'spells_2024.json'), 'utf8')
-  )
-  for (const s of spells) index.set(normalize(s.name), s)
-  cache2024 = index
-  return index
-}
+const buildIndex = () => (buildIndexes(), cache)
+const buildIndex2024 = () => (buildIndexes(), cache2024)
 
 const indexFor = (ruleset) =>
   normalizeRuleset(ruleset) === '2024' ? buildIndex2024() : buildIndex()

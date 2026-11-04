@@ -1,7 +1,7 @@
 <template>
   <div class="hp-tracker">
     <div class="hp-chip">
-      <span class="hp-val">
+      <span class="hp-val has-tip" :title="maxTooltip">
         {{ character.hp_current }}/{{ effectiveMax
         }}<span v-if="tempHp > 0" class="hp-temp"> +{{ tempHp }}tmp</span>
         <span
@@ -68,6 +68,8 @@ import {
   applyHealing,
   applyTempHp,
 } from '@/utils/hitPoints'
+import { applyDamageWithSurvival } from '@/utils/speciesRules'
+import engineSheet from '@/mixins/engineSheet'
 
 // The one real, persisting way to change a character's HP — replaces
 // Battle.vue's old playerHpDelta/playerTempHp scratchpad, which looked like
@@ -79,6 +81,9 @@ import {
 // stacking independently of hp_temp.
 export default {
   name: 'HpTracker',
+
+  // `sheet`: the engine's maximum Hit Points, with the items that change Constitution applied
+  mixins: [engineSheet],
 
   props: {
     character: { type: Object, required: true },
@@ -118,7 +123,12 @@ export default {
       return this.character.hp_max_modifier ?? 0
     },
     effectiveMax() {
-      return effectiveMaxHp(this.character)
+      return this.sheet
+        ? this.sheet.hp.effectiveMax.value
+        : effectiveMaxHp(this.character)
+    },
+    maxTooltip() {
+      return this.sheet ? this.sheet.hp.effectiveMax.tooltip : ''
     },
     maxModifierTooltip() {
       return this.maxModifier > 0
@@ -138,7 +148,12 @@ export default {
     applyDamage() {
       const amount = Number(this.damageInput)
       if (!amount || amount <= 0) return
-      const { patch, absorbed } = applyDamage(this.character, amount)
+      // applyDamageWithSurvival is applyDamage plus the features that keep a character on their feet
+      // (an Orc's Relentless Endurance drops to 1 Hit Point instead of 0, once per Long Rest)
+      const { patch, absorbed, survivedWith } = applyDamageWithSurvival(
+        this.character,
+        amount
+      )
       this.commit(patch)
       this.damageInput = null
       // Mirrors EnemyHpTracker/Battle.vue's own applyDamage wording, so the
@@ -148,9 +163,10 @@ export default {
       // anything for its own damage/heal/temp actions.
       this.$emit(
         'hp-changed',
-        absorbed > 0
+        (absorbed > 0
           ? `${amount} damage (${absorbed} absorbed by temp HP)`
-          : `${amount} damage`
+          : `${amount} damage`) +
+          (survivedWith ? ` — ${survivedWith}: stays at 1 HP` : '')
       )
       // RAW: temp HP cushions HP loss but doesn't change how much damage
       // you TOOK — the concentration DC (10 or half damage, whichever is
@@ -167,7 +183,11 @@ export default {
     applyHeal() {
       const amount = Number(this.healInput)
       if (!amount || amount <= 0) return
-      this.commit(applyHealing(this.character, amount).patch)
+      this.commit(
+        applyHealing(this.character, amount, {
+          effectiveMax: this.effectiveMax,
+        }).patch
+      )
       this.healInput = null
       this.$emit('hp-changed', `healed ${amount}`)
     },

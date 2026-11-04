@@ -106,6 +106,8 @@ export default {
         label: `${this.character.name} — ${skill.displayName} check`,
         mod: skill.value,
         advantage: skill.advantage,
+        // Halfling Luck: the results this character may reroll
+        rerollOn: dnd.characterGrants(this.character).d20RerollOn,
       })
     },
   },

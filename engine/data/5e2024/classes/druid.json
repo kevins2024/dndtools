@@ -15,6 +15,11 @@
     "simple"
   ],
   "weapon_proficiencies_text": "Simple weapons",
+  "tool_proficiencies": {
+    "fixed": [
+      "Herbalism Kit"
+    ]
+  },
   "skill_choices": {
     "count": 2,
     "options": [

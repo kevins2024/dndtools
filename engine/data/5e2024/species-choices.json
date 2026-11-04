@@ -1,0 +1,305 @@
+{
+  "_readme": "The picks a 2024 species asks for at character creation, and what each pick grants. Option names and grants are transcribed from the species tables in species.json (2024 Player's Handbook). 'spellsAtLevel' are the lineage spells the character gets at those CHARACTER levels; createCharacter2024 does not add them at level 1, the level-up does (lineageSpells.js). The homebrew species (Catrin, Drevani, Hei'ugar) take their traits from api_data_cache/species.json, each trait with an id and its effect in feature-mechanics.json (grants_*, uses, spells); here only a pick a homebrew species needs is listed (Hei'ugar's spellcasting ability). kind: 'skill' (one skill from options), 'ability' (one ability from options), 'originFeat' (any Origin feat), 'option' (one of the named options).",
+  "Elf": {
+    "choices": [
+      {
+        "id": "lineage",
+        "title": "Elven Lineage",
+        "kind": "option",
+        "options": [
+          "Drow",
+          "High Elf",
+          "Wood Elf"
+        ]
+      },
+      {
+        "id": "keenSenses",
+        "title": "Keen Senses",
+        "kind": "skill",
+        "options": [
+          "Insight",
+          "Perception",
+          "Survival"
+        ]
+      },
+      {
+        "id": "spellAbility",
+        "title": "Lineage spellcasting ability",
+        "kind": "ability",
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    ],
+    "lineages": {
+      "Drow": {
+        "darkvision": 120,
+        "cantrips": [
+          "Dancing Lights"
+        ],
+        "spellsAtLevel": {
+          "3": [
+            "Faerie Fire"
+          ],
+          "5": [
+            "Darkness"
+          ]
+        }
+      },
+      "High Elf": {
+        "cantrips": [
+          "Prestidigitation"
+        ],
+        "spellsAtLevel": {
+          "3": [
+            "Detect Magic"
+          ],
+          "5": [
+            "Misty Step"
+          ]
+        }
+      },
+      "Wood Elf": {
+        "speed": 35,
+        "cantrips": [
+          "Druidcraft"
+        ],
+        "spellsAtLevel": {
+          "3": [
+            "Longstrider"
+          ],
+          "5": [
+            "Pass without Trace"
+          ]
+        }
+      }
+    },
+    "lineageChoice": "lineage",
+    "spellAbilityChoice": "spellAbility"
+  },
+  "Gnome": {
+    "choices": [
+      {
+        "id": "lineage",
+        "title": "Gnomish Lineage",
+        "kind": "option",
+        "options": [
+          "Forest Gnome",
+          "Rock Gnome"
+        ]
+      },
+      {
+        "id": "spellAbility",
+        "title": "Lineage spellcasting ability",
+        "kind": "ability",
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    ],
+    "lineages": {
+      "Forest Gnome": {
+        "cantrips": [
+          "Minor Illusion"
+        ]
+      },
+      "Rock Gnome": {
+        "cantrips": [
+          "Mending",
+          "Prestidigitation"
+        ]
+      }
+    },
+    "lineageChoice": "lineage",
+    "spellAbilityChoice": "spellAbility"
+  },
+  "Tiefling": {
+    "choices": [
+      {
+        "id": "legacy",
+        "title": "Fiendish Legacy",
+        "kind": "option",
+        "options": [
+          "Abyssal",
+          "Chthonic",
+          "Infernal"
+        ]
+      },
+      {
+        "id": "spellAbility",
+        "title": "Legacy spellcasting ability",
+        "kind": "ability",
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    ],
+    "lineages": {
+      "Abyssal": {
+        "resistance": "Poison",
+        "cantrips": [
+          "Poison Spray"
+        ],
+        "spellsAtLevel": {
+          "3": [
+            "Ray of Sickness"
+          ],
+          "5": [
+            "Hold Person"
+          ]
+        }
+      },
+      "Chthonic": {
+        "resistance": "Necrotic",
+        "cantrips": [
+          "Chill Touch"
+        ],
+        "spellsAtLevel": {
+          "3": [
+            "False Life"
+          ],
+          "5": [
+            "Ray of Enfeeblement"
+          ]
+        }
+      },
+      "Infernal": {
+        "resistance": "Fire",
+        "cantrips": [
+          "Fire Bolt"
+        ],
+        "spellsAtLevel": {
+          "3": [
+            "Hellish Rebuke"
+          ],
+          "5": [
+            "Darkness"
+          ]
+        }
+      }
+    },
+    "lineageChoice": "legacy",
+    "spellAbilityChoice": "spellAbility"
+  },
+  "Dragonborn": {
+    "choices": [
+      {
+        "id": "ancestry",
+        "title": "Draconic Ancestry",
+        "kind": "option",
+        "options": [
+          "Black",
+          "Blue",
+          "Brass",
+          "Bronze",
+          "Copper",
+          "Gold",
+          "Green",
+          "Red",
+          "Silver",
+          "White"
+        ]
+      }
+    ],
+    "lineages": {
+      "Black": {
+        "resistance": "Acid"
+      },
+      "Blue": {
+        "resistance": "Lightning"
+      },
+      "Brass": {
+        "resistance": "Fire"
+      },
+      "Bronze": {
+        "resistance": "Lightning"
+      },
+      "Copper": {
+        "resistance": "Acid"
+      },
+      "Gold": {
+        "resistance": "Fire"
+      },
+      "Green": {
+        "resistance": "Poison"
+      },
+      "Red": {
+        "resistance": "Fire"
+      },
+      "Silver": {
+        "resistance": "Cold"
+      },
+      "White": {
+        "resistance": "Cold"
+      }
+    },
+    "lineageChoice": "ancestry"
+  },
+  "Goliath": {
+    "choices": [
+      {
+        "id": "ancestry",
+        "title": "Giant Ancestry",
+        "kind": "option",
+        "options": [
+          "Cloud's Jaunt",
+          "Fire's Burn",
+          "Frost's Chill",
+          "Hill's Tumble",
+          "Stone's Endurance",
+          "Storm's Thunder"
+        ]
+      }
+    ],
+    "lineages": {},
+    "lineageChoice": "ancestry"
+  },
+  "Human": {
+    "choices": [
+      {
+        "id": "skillful",
+        "title": "Skillful",
+        "kind": "skill",
+        "options": "any"
+      },
+      {
+        "id": "versatile",
+        "title": "Versatile (Origin feat)",
+        "kind": "originFeat"
+      }
+    ],
+    "lineages": {}
+  },
+  "Hei'ugar": {
+    "choices": [
+      {
+        "id": "spellAbility",
+        "title": "Gust of Wind spellcasting ability",
+        "kind": "ability",
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    ],
+    "lineages": {},
+    "spellAbilityChoice": "spellAbility"
+  },
+  "Half-Elf": {
+    "legacyPlayable": true,
+    "choices": [],
+    "lineages": {}
+  },
+  "Half-Orc": {
+    "legacyPlayable": true,
+    "choices": [],
+    "lineages": {}
+  }
+}

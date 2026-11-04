@@ -293,11 +293,7 @@
         <div class="sb-detail-desc">{{ detail.description }}</div>
 
         <div class="sb-detail-source">
-          {{
-            selected.source === 'srd'
-              ? 'SRD'
-              : selected.source_book || 'Published'
-          }}
+          {{ selected.source_book || 'Published' }}
           <span v-if="selected.source === 'homebrew'"> — Homebrew</span>
         </div>
       </template>
@@ -310,8 +306,7 @@
 </template>
 
 <script>
-import srdSpellsRaw from '@/data/api_data_cache/srd_spells_full.json'
-import publishedSpellsRaw from '@/data/published_spells.json'
+import { allSpells2024, spellSource } from '@/utils/spells2024'
 import { lookupSpell } from '@/utils/lookupService'
 import { componentsLabel } from '../../engine/rules/5e/spellComponents'
 import { dnd } from '@/utils/dnd_utils'
@@ -339,7 +334,8 @@ const SCHOOLS = [
   'Transmutation',
 ]
 const SOURCES = [
-  { key: 'srd', label: 'SRD' },
+  { key: 'core', label: '2024 rules' },
+  { key: 'legacy', label: 'Legacy (2014)' },
   { key: 'published', label: 'Published' },
   { key: 'homebrew', label: 'Homebrew' },
 ]
@@ -357,59 +353,27 @@ const ORDINALS = [
 ]
 const PAGE_SIZE = 60
 
+// Every spell under the 2024 rules (utils/spells2024.js): the 2024 text and class lists, with the 2014 spells
+// the 2024 books did not rewrite kept as 'Legacy', and published and homebrew spells beside them.
 function buildAllSpells() {
-  // published_spells.json now holds real non-SRD content and homebrew spells
-  // side by side — each entry's own `homebrew` flag tells them apart, so the
-  // SRD/Published/Homebrew filter still splits into the same three buckets.
-  const published = publishedSpellsRaw
-    .filter((s) => !s.homebrew)
-    .map((s) => ({
-      name: s.name,
-      level: s.level,
-      school: s.school ?? null,
-      classes: Array.isArray(s.classes) ? s.classes : [],
-      concentration: s.concentration ?? false,
-      ritual: s.ritual ?? false,
-      source: 'published',
-      source_book: s.source ?? 'Published',
-      _raw: s,
-    }))
-
-  const homebrew = publishedSpellsRaw
-    .filter((s) => s.homebrew)
-    .map((s) => ({
-      name: s.name,
-      level: s.level,
-      school: s.school ?? null,
-      classes: Array.isArray(s.classes) ? s.classes : [],
-      concentration: s.concentration ?? false,
-      ritual: s.ritual ?? false,
-      source: 'homebrew',
-      source_book: 'Homebrew',
-      _raw: s,
-    }))
-
-  // SRD: full pre-fetched data, skip names already covered by published/homebrew
-  const localNames = new Set(
-    [...published, ...homebrew].map((s) => s.name.toLowerCase())
-  )
-  const srd = srdSpellsRaw
-    .filter((s) => !localNames.has(s.name.toLowerCase()))
-    .map((s) => ({
-      name: s.name,
-      level: s.level,
-      school: s.school ?? null,
-      classes: Array.isArray(s.classes) ? s.classes : [],
-      concentration: s.concentration ?? false,
-      ritual: s.ritual ?? false,
-      source: 'srd',
-      source_book: 'SRD',
-      _raw: s,
-    }))
-
-  return [...published, ...homebrew, ...srd].sort((a, b) =>
-    a.level !== b.level ? a.level - b.level : a.name.localeCompare(b.name)
-  )
+  return allSpells2024()
+    .map((s) => {
+      const source = spellSource(s)
+      return {
+        name: s.name,
+        level: s.level,
+        school: s.school?.name ?? s.school ?? null,
+        classes: Array.isArray(s.classes) ? s.classes : [],
+        concentration: s.concentration ?? false,
+        ritual: s.ritual ?? false,
+        source: source.key,
+        source_book: source.book,
+        _raw: s,
+      }
+    })
+    .sort((a, b) =>
+      a.level !== b.level ? a.level - b.level : a.name.localeCompare(b.name)
+    )
 }
 
 const ALL_SPELLS = buildAllSpells()
