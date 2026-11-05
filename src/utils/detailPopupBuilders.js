@@ -7,6 +7,7 @@
 import { lookupSpell, lookupFeature } from '@/utils/lookupService.js'
 import { dnd } from '@/utils/dnd_utils.js'
 import { pairFields, pairInfo, partnersText } from '@/utils/pairedItems.js'
+import { masteryInfo } from '@/utils/weaponMasteries.js'
 
 export async function buildSpellPopupData(spell) {
   const data = await lookupSpell(spell.name)
@@ -108,7 +109,15 @@ export async function buildFeaturePopupData(feature, character = null) {
   // class of bug lookupFeature has already hit once (see
   // engine/CHECKLIST.md's feat-catalog writeup).
   let data
-  if (feature.type === 'speciesTrait' && feature.description) {
+  const mastery =
+    feature.type === 'weaponMastery' ? masteryInfo(feature.mastery) : null
+  if (mastery) {
+    // "Weapon Mastery: Dagger" -> what its Mastery property (Nick) does
+    data = {
+      subtitle: `${mastery.name} mastery`,
+      description: mastery.description,
+    }
+  } else if (feature.type === 'speciesTrait' && feature.description) {
     data = { subtitle: null, description: feature.description }
   } else if (
     feature.type === 'speciesTrait' &&
@@ -169,6 +178,15 @@ export async function buildFeaturePopupData(feature, character = null) {
   ) {
     const dice = dnd.sneakAttackDice(character)
     if (dice) fields.push({ label: 'Current Damage', value: dice })
+  }
+  // Same for the Bardic Inspiration die: the text says "see the Bardic Die column".
+  if (
+    character &&
+    (feature.id === 'pub24_bard-bardic-inspiration' ||
+      feature.name?.toLowerCase() === 'bardic inspiration')
+  ) {
+    const die = dnd.bardicInspirationDie(character)
+    if (die) fields.push({ label: 'Current Die', value: die })
   }
   return {
     title: feature.name,

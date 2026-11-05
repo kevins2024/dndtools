@@ -4,9 +4,38 @@ const {
   tableValueAtLevel,
   sneakAttackDice,
   martialArtsDie,
+  bardicInspirationDie,
   unarmedStrike,
   psychicBlades,
 } = require('../rules/5e/unarmedAttacks')
+
+// 2024 PHB Bard: "The die becomes a d8 at level 5, a d10 at level 10, and a d12 at level 15."
+test('bardicInspirationDie: d6, d8 at Bard level 5, d10 at 10, d12 at 15; Bard levels only; null for a non-Bard', () => {
+  const bard = (level, extra = []) => ({
+    level: level + extra.reduce((n, c) => n + c.level, 0),
+    classes: [{ name: 'Bard', level }, ...extra],
+  })
+  const dieAt = (l) => bardicInspirationDie(bard(l))
+  assert.deepStrictEqual([1, 4, 5, 9, 10, 14, 15, 20].map(dieAt), [
+    'd6',
+    'd6',
+    'd8',
+    'd8',
+    'd10',
+    'd10',
+    'd12',
+    'd12',
+  ])
+  // a Bard 4 / Fighter 6 is character level 10 but still a d6
+  assert.strictEqual(
+    bardicInspirationDie(bard(4, [{ name: 'Fighter', level: 6 }])),
+    'd6'
+  )
+  assert.strictEqual(
+    bardicInspirationDie({ level: 5, classes: [{ name: 'Rogue', level: 5 }] }),
+    null
+  )
+})
 
 test('tableValueAtLevel: highest key at or below level', () => {
   const t = { 1: 4, 5: 6, 11: 8, 17: 10 }
@@ -269,6 +298,24 @@ test('unarmedStrike: Unarmed Fighting is a d8 with empty hands and beats Tavern 
   ])
 })
 
+test('unarmedStrike: the 2024 Unarmed Fighting feat (pub24_feat-unarmed-fighting) counts the same', () => {
+  const brick = {
+    ...unarmedFighter,
+    features: [
+      {
+        name: 'Unarmed Fighting',
+        id: 'pub24_feat-unarmed-fighting',
+        type: 'feat',
+        _grant: 'fightingStyle',
+      },
+    ],
+  }
+  const u = unarmedStrike(brick, [])
+  assert.strictEqual(u.die, '1d8')
+  assert.strictEqual(u.extras.length, 1)
+  assert.strictEqual(u.extras[0].source, 'Unarmed Fighting')
+})
+
 test('unarmedStrike: Unarmed Fighting drops to d6 while holding a weapon or shield', () => {
   const sword = {
     name: 'Shortsword',
@@ -292,7 +339,9 @@ test('unarmedStrike: Rage adds its damage to a STR-based unarmed strike, and sho
   const raging = { ...unarmedFighter, conditions: ['Raging'] }
   const u = unarmedStrike(raging, [])
   assert.strictEqual(u.damage.value, 5 + 3) // STR +5, Rage +3 at Barbarian 9
-  assert.ok(u.damage.breakdown.some((l) => l.label === 'Raging' && l.amount === 3))
+  assert.ok(
+    u.damage.breakdown.some((l) => l.label === 'Raging' && l.amount === 3)
+  )
   assert.strictEqual(unarmedStrike(unarmedFighter, []).damage.value, 5)
 })
 
@@ -314,6 +363,10 @@ test('unarmedStrike: a Monk striking with DEX gets no Rage damage; a non-Barbari
     stat_cha: 10,
   }
   assert.strictEqual(unarmedStrike(monkDex, []).damage.value, 3)
-  const notBarb = { ...unarmedFighter, classes: [{ name: 'Fighter', level: 9 }], conditions: ['Raging'] }
+  const notBarb = {
+    ...unarmedFighter,
+    classes: [{ name: 'Fighter', level: 9 }],
+    conditions: ['Raging'],
+  }
   assert.strictEqual(unarmedStrike(notBarb, []).damage.value, 5)
 })

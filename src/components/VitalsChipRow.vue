@@ -24,14 +24,15 @@
       <span class="chip-val">{{ tremorsense }} ft</span>
       <span class="chip-label">Tremorsense</span>
     </div>
-    <div v-if="character.heroic_inspiration" class="chip">
+    <div class="chip">
       <span
         class="chip-val has-tip chip-clickable"
-        title="Heroic Inspiration: reroll one die, then use the new roll. Click when spent."
-        @click="spendHeroicInspiration"
-        >★</span
+        :class="{ 'chip-off': !hasInspiration }"
+        :title="heroicInspirationTooltip"
+        @click="toggleHeroicInspiration"
+        >{{ hasInspiration ? '★' : '☆' }}</span
       >
-      <span class="chip-label">Inspired</span>
+      <span class="chip-label">Inspiration</span>
     </div>
     <div v-if="darkvision" class="chip">
       <span class="chip-val">{{ darkvision }} ft</span>
@@ -83,6 +84,12 @@ import { dnd } from '@/utils/dnd_utils.js'
 import { DEFAULT_SPEED_FT } from '@/utils/dnd_constants.js'
 import StatChip from '@/components/StatChip.vue'
 import engineSheet from '@/mixins/engineSheet'
+import {
+  HEROIC_INSPIRATION_RULE,
+  hasHeroicInspiration,
+  grantHeroicInspiration,
+  spendHeroicInspiration,
+} from '@/utils/heroicInspiration'
 
 export default {
   name: 'VitalsChipRow',
@@ -101,6 +108,16 @@ export default {
   },
 
   computed: {
+    hasInspiration() {
+      return hasHeroicInspiration(this.character)
+    },
+    heroicInspirationTooltip() {
+      return `Heroic Inspiration: ${HEROIC_INSPIRATION_RULE.summary}\n${
+        this.hasInspiration
+          ? 'You have it. Click when you spend it.'
+          : 'You do not have it. Click when the DM gives it to you.'
+      }`
+    },
     partyItems() {
       return this.$store.state.party_items ?? []
     },
@@ -289,10 +306,16 @@ export default {
   },
 
   methods: {
-    spendHeroicInspiration() {
+    // Click to spend Heroic Inspiration, or to give it (the DM awards it). The rules are in
+    // engine/rules/5e/heroicInspiration.js.
+    toggleHeroicInspiration() {
+      const result = this.hasInspiration
+        ? spendHeroicInspiration(this.character)
+        : grantHeroicInspiration(this.character)
+      if (!Object.keys(result.patch).length) return
       this.$store.commit('UPDATE_TABLE_ITEM', {
         table: 'characters',
-        updatedItem: { ...this.character, heroic_inspiration: false },
+        updatedItem: { ...this.character, ...result.patch },
       })
     },
     // The first source's breakdown, then one line per way of casting when there are several
@@ -315,6 +338,9 @@ export default {
 </script>
 
 <style scoped>
+.chip-off {
+  opacity: 0.45;
+}
 .chip-clickable {
   cursor: pointer;
 }

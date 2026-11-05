@@ -23,6 +23,7 @@ const { withExhaustion } = require('./exhaustion')
 const { effectiveGrants } = require('./featureGrants')
 const monk = require('../../data/5e/classes/monk.json')
 const rogue = require('../../data/5e/classes/rogue.json')
+const bard = require('../../data/5e2024/classes/bard.json')
 
 // Value of a { "1": a, "5": b, ... } by-level table at `level`: the entry
 // for the highest key at or below it. null below the first key.
@@ -53,6 +54,16 @@ function sneakAttackDice(character) {
   return dice ? `${dice}d6` : null
 }
 
+// A Bard's Bardic Inspiration die ("d8"): d6, then d8 at Bard level 5, d10 at 10 and d12 at 15 (the
+// Bardic Die column of the Bard table, bard.json's bardic_die_by_level). It scales with Bard levels,
+// not total character level. null for a non-Bard.
+function bardicInspirationDie(character) {
+  const bardLevel = classLevel(character, 'Bard')
+  if (!bardLevel) return null
+  const die = tableValueAtLevel(bard.bardic_die_by_level, bardLevel)
+  return die ? die.toLowerCase() : null
+}
+
 // A Monk's Martial Arts die ("1d6"). character.martial_arts_die is either
 // 'auto' (scale with character level via the Monk table) or a fixed die
 // string for a character who has the die from some other source. null if
@@ -81,7 +92,11 @@ function bestOfStrDex(character, equippedItems) {
 
 const dieSides = (die) => Number(String(die).split('d')[1])
 
-const UNARMED_FIGHTING_ID = 'fighting-style-unarmed-fighting'
+// 2024 (the Fighting Style feat) and the older Tasha's style record
+const UNARMED_FIGHTING_IDS = [
+  'pub24_feat-unarmed-fighting',
+  'fighting-style-unarmed-fighting',
+]
 
 // Tavern Brawler (PHB feat): "your unarmed strike deals 1d4". Read off the
 // feat itself, so no one has to hand-set `unarmed_strike_die` (which still
@@ -97,7 +112,8 @@ function hasTavernBrawler(character) {
 function hasUnarmedFighting(character) {
   return (character.features ?? []).some(
     (f) =>
-      f.id === UNARMED_FIGHTING_ID ||
+      UNARMED_FIGHTING_IDS.includes(f.id) ||
+      f.name === 'Unarmed Fighting' ||
       f.name === 'Fighting Style: Unarmed Fighting'
   )
 }
@@ -293,6 +309,7 @@ module.exports = {
   featureBodyAttacks,
   tableValueAtLevel,
   sneakAttackDice,
+  bardicInspirationDie,
   martialArtsDie,
   unarmedStrike,
   psychicBlades,

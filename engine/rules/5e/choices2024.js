@@ -20,6 +20,7 @@ const { loadClass } = require('./classFeatures')
 const { loadSubclass } = require('./subclasses')
 const { loadRulesetJson } = require('./ruleset')
 const { rulesetOf } = require('./rulesetId')
+const { masteryPool } = require('./weaponMasteries')
 const { listFeats } = require('./grants')
 const { listMetamagicOptions } = require('./metamagic')
 const { loadSkill } = require('./skills')
@@ -50,20 +51,7 @@ function weaponTable() {
   )
 }
 
-// Which weapons a class may master. Barbarian: Simple or Martial MELEE; Rogue:
-// the weapons it is proficient with (Simple, plus Martial that are Finesse or
-// Light); Fighter, Paladin, Ranger: Simple or Martial.
-function masteryPool(className) {
-  const cls = String(className).toLowerCase()
-  return Object.entries(weaponTable())
-    .filter(([, w]) => {
-      if (cls === 'barbarian') return w.weapon_type === 'melee'
-      if (cls === 'rogue')
-        return w.category === 'simple' || w.finesse || w.light
-      return true
-    })
-    .map(([name]) => name)
-}
+// Which weapons a class may master is weaponMasteries.js's masteryPool (the Long Rest change uses it too).
 
 function weaponMastery({ character, className, toLevel, choices, out }) {
   const cls = loadClass(className, '2024')

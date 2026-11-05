@@ -135,6 +135,11 @@
                     v-for="item in longGains(char)"
                     :key="item"
                     class="rest-chip rest-chip-long"
+                    :title="
+                      item === 'Heroic Inspiration'
+                        ? heroicInspirationRule.summary
+                        : null
+                    "
                     >{{ item }}</span
                   >
                 </div>
@@ -177,6 +182,7 @@ import { mapState, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
 import { characterForExport, partyItemBundle } from '@/utils/dmExport'
 import { shortRestPreview, longRestPreview } from '@/utils/rest'
+import { HEROIC_INSPIRATION_RULE } from '@/utils/heroicInspiration'
 import NetworksContext from './NetworksContext.vue'
 
 const STAT_NAMES = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA']
@@ -222,6 +228,9 @@ export default {
   },
 
   computed: {
+    heroicInspirationRule() {
+      return HEROIC_INSPIRATION_RULE
+    },
     ...mapState(['parties', 'characters', 'party_items']),
 
     inactiveParties() {

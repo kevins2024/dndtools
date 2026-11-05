@@ -274,7 +274,7 @@
         "name": "Superiority Dice (d8)",
         "label": "Sup",
         "max": 5,
-        "current": 5,
+        "current": 3,
         "recharge": "short_rest"
       }
     ],
@@ -324,7 +324,7 @@
     "armor_proficiencies": ["light", "medium", "heavy", "shields"],
     "active_weapon_set": 1,
     "hp_temp": 0,
-    "conditions": [],
+    "conditions": ["Bardic"],
     "ruleset": "2024",
     "background": "Merchant",
     "tool_proficiencies": [],
@@ -8715,7 +8715,7 @@
     "stat_wis": 14,
     "stat_cha": 18,
     "hp_max": 76,
-    "hp_current": 76,
+    "hp_current": 62,
     "unarmored_ac_formula": "default",
     "saving_throws": ["wis", "cha"],
     "skill_proficiencies": [
@@ -8982,11 +8982,11 @@
     "spell_slots": {
       "level_1": {
         "max": 4,
-        "current": 4
+        "current": 2
       },
       "level_2": {
         "max": 3,
-        "current": 3
+        "current": 2
       },
       "level_3": {
         "max": 2,
@@ -14593,7 +14593,7 @@
     ],
     "spellcasting_ability": "cha",
     "hp_max": 55,
-    "hp_current": 55,
+    "hp_current": 42,
     "saving_throws": ["dex", "cha"],
     "skill_proficiencies": [
       "Insight",
@@ -14664,7 +14664,7 @@
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 5,
-        "uses_current": 5
+        "uses_current": 3
       },
       {
         "name": "Spellcasting",
@@ -15078,7 +15078,8 @@
           "Legacy 2014 spells kept (not in the 2024 Player's Handbook): Silvery Barbs."
         ]
       }
-    ]
+    ],
+    "hp_temp": 0
   },
   {
     "id": "characters_30",
@@ -15310,7 +15311,7 @@
       },
       "level_3": {
         "max": 3,
-        "current": 3
+        "current": 1
       },
       "level_4": {
         "max": 3,
@@ -15559,7 +15560,7 @@
     ],
     "spellcasting_ability": null,
     "hp_max": 103,
-    "hp_current": 103,
+    "hp_current": 67,
     "saving_throws": ["str", "con"],
     "skill_proficiencies": [
       "Athletics",
@@ -15682,7 +15683,7 @@
         "action_type": "bonus_action",
         "recharge": "long_rest",
         "uses_max": 4,
-        "uses_current": 4
+        "uses_current": 3
       },
       {
         "name": "Unarmored Defense",
@@ -16062,7 +16063,8 @@
           "Background Noble -> Noble; origin feat Skilled added."
         ]
       }
-    ]
+    ],
+    "hp_temp": 0
   },
   {
     "id": "characters_32",

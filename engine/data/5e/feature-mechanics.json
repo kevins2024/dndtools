@@ -120,10 +120,7 @@
   "pub_stars-druid-star-map": {
     "name": "Stars Druid — Star Map",
     "grants_spells": {
-      "fixed": [
-        "Guidance",
-        "Guiding Bolt"
-      ]
+      "fixed": ["Guidance", "Guiding Bolt"]
     }
   },
   "gen_bard_base_bardic-inspiration": {
@@ -189,9 +186,7 @@
     "recharge": "long_rest",
     "uses_max": 1,
     "grants_spells": {
-      "fixed": [
-        "Hellish Rebuke"
-      ]
+      "fixed": ["Hellish Rebuke"]
     }
   },
   "pub_infernal-legacy-darkness": {
@@ -200,9 +195,7 @@
     "recharge": "long_rest",
     "uses_max": 1,
     "grants_spells": {
-      "fixed": [
-        "Darkness"
-      ]
+      "fixed": ["Darkness"]
     }
   },
   "pub_combat-wild-shape-healing": {
@@ -260,17 +253,13 @@
   "pub_shadow-touched": {
     "name": "Shadow Touched",
     "grants_spells": {
-      "fixed": [
-        "Invisibility"
-      ]
+      "fixed": ["Invisibility"]
     }
   },
   "pub_fey-touched": {
     "name": "Fey Touched",
     "grants_spells": {
-      "fixed": [
-        "Misty Step"
-      ]
+      "fixed": ["Misty Step"]
     }
   },
   "arcane-recovery": {
@@ -505,9 +494,7 @@
   "pub_guiding-whispers": {
     "name": "Guiding Whispers",
     "grants_spells": {
-      "fixed": [
-        "Guidance"
-      ]
+      "fixed": ["Guidance"]
     }
   },
   "pub_tales-from-beyond": {
@@ -2474,7 +2461,7 @@
   },
   "pub24_sub_bard-college-of-spirits-spirits-from-beyond": {
     "name": "Spirits from Beyond",
-    "action_type": "bonus_action"
+    "narrative": "The table of twelve spirits; each way to use it is its own feature (Channel a Spirit, Controlled Channeling, Unleash a Spirit)."
   },
   "pub24_sub_bard-college-of-spirits-empowered-channeling": {
     "name": "Empowered Channeling",
@@ -3359,9 +3346,7 @@
     "min_level": 5,
     "active": {
       "duration_minutes": 10,
-      "ends_on": [
-        "Incapacitated"
-      ]
+      "ends_on": ["Incapacitated"]
     },
     "active_grants": {
       "fly_speed": "speed"
@@ -3451,10 +3436,7 @@
   },
   "pub24_species_aasimar-celestial-resistance": {
     "name": "Celestial Resistance",
-    "grants_resistance": [
-      "necrotic",
-      "radiant"
-    ]
+    "grants_resistance": ["necrotic", "radiant"]
   },
   "pub24_species_aasimar-darkvision": {
     "name": "Darkvision",
@@ -3486,18 +3468,12 @@
   },
   "pub24_species_dwarf-dwarven-resilience": {
     "name": "Dwarven Resilience",
-    "grants_resistance": [
-      "poison"
-    ],
-    "grants_saving_throw_advantage": [
-      "being_poisoned"
-    ]
+    "grants_resistance": ["poison"],
+    "grants_saving_throw_advantage": ["being_poisoned"]
   },
   "pub24_species_elf-fey-ancestry": {
     "name": "Fey Ancestry",
-    "grants_saving_throw_advantage": [
-      "being_charmed"
-    ]
+    "grants_saving_throw_advantage": ["being_charmed"]
   },
   "pub24_species_gnome-gnomish-cunning": {
     "name": "Gnomish Cunning",
@@ -3509,9 +3485,7 @@
   },
   "pub24_species_halfling-brave": {
     "name": "Brave",
-    "grants_saving_throw_advantage": [
-      "being_frightened"
-    ]
+    "grants_saving_throw_advantage": ["being_frightened"]
   },
   "pub24_species_goliath-powerful-build": {
     "name": "Powerful Build",
@@ -3520,9 +3494,7 @@
         "when": "to end the Grappled condition"
       }
     ],
-    "size_counts_as_larger": [
-      "carrying_capacity"
-    ]
+    "size_counts_as_larger": ["carrying_capacity"]
   },
   "pub24_species_dragonborn-damage-resistance": {
     "name": "Damage Resistance",
@@ -3530,17 +3502,11 @@
   },
   "homebrew_species_catrin-broad-build": {
     "name": "Broad Build",
-    "size_counts_as_larger": [
-      "carrying_capacity",
-      "grappling"
-    ]
+    "size_counts_as_larger": ["carrying_capacity", "grappling"]
   },
   "homebrew_species_catrin-settled-presence": {
     "name": "Settled Presence",
-    "grants_saving_throw_advantage": [
-      "being_frightened",
-      "being_charmed"
-    ]
+    "grants_saving_throw_advantage": ["being_frightened", "being_charmed"]
   },
   "homebrew_species_catrin-brace": {
     "name": "Brace",
@@ -3558,9 +3524,7 @@
   },
   "homebrew_species_catrin-long-memory": {
     "name": "Long Memory",
-    "grants_skill_proficiency": [
-      "History"
-    ]
+    "grants_skill_proficiency": ["History"]
   },
   "homebrew_species_drevani-sharp-nose": {
     "name": "Sharp Nose",
@@ -3599,11 +3563,7 @@
   },
   "homebrew_species_heiugar-grey-resilience": {
     "name": "Grey Resilience",
-    "grants_saving_throw_advantage": [
-      "illusions",
-      "being_charmed",
-      "paralysis"
-    ]
+    "grants_saving_throw_advantage": ["illusions", "being_charmed", "paralysis"]
   },
   "homebrew_species_heiugar-darkvision": {
     "name": "Darkvision",
@@ -3612,9 +3572,7 @@
   "homebrew_species_heiugar-gust-of-wind": {
     "name": "Gust of Wind",
     "grants_spells": {
-      "fixed": [
-        "Gust of Wind"
-      ],
+      "fixed": ["Gust of Wind"],
       "free_cast": {
         "Gust of Wind": {
           "count": 1,
@@ -3639,21 +3597,13 @@
         "filter": {
           "category": "martial",
           "kind": "melee",
-          "lacks": [
-            "two-handed",
-            "heavy"
-          ]
+          "lacks": ["two-handed", "heavy"]
         }
       }
     ],
     "grants_skill_proficiency_choice": {
       "count": 1,
-      "options": [
-        "Acrobatics",
-        "Athletics",
-        "Performance",
-        "Persuasion"
-      ]
+      "options": ["Acrobatics", "Athletics", "Performance", "Persuasion"]
     }
   },
   "pub24_barbarian-primal-knowledge": {
@@ -3681,26 +3631,16 @@
     "grants_saving_throw_replace_options": []
   },
   "pub24_rogue-slippery-mind": {
-    "grants_saving_throw_proficiency": [
-      "wis",
-      "cha"
-    ],
+    "grants_saving_throw_proficiency": ["wis", "cha"],
     "grants_saving_throw_replace_options": []
   },
   "pub24_sub_artificer-alchemist-tools-of-the-trade": {
-    "grants_tool_proficiency": [
-      "Alchemist's Supplies",
-      "Herbalism Kit"
-    ],
+    "grants_tool_proficiency": ["Alchemist's Supplies", "Herbalism Kit"],
     "grants_tool_replace_from": "Artisan's Tools"
   },
   "pub24_sub_artificer-armorer-tools-of-the-trade": {
-    "grants_armor_proficiency": [
-      "heavy"
-    ],
-    "grants_tool_proficiency": [
-      "Smith's Tools"
-    ],
+    "grants_armor_proficiency": ["heavy"],
+    "grants_tool_proficiency": ["Smith's Tools"],
     "grants_tool_replace_from": "Artisan's Tools"
   },
   "pub24_sub_artificer-artillerist-tools-of-the-trade": {
@@ -3712,21 +3652,15 @@
         }
       }
     ],
-    "grants_tool_proficiency": [
-      "Woodcarver's Tools"
-    ],
+    "grants_tool_proficiency": ["Woodcarver's Tools"],
     "grants_tool_replace_from": "Artisan's Tools"
   },
   "pub24_sub_artificer-battle-smith-tools-of-the-trade": {
-    "grants_tool_proficiency": [
-      "Smith's Tools"
-    ],
+    "grants_tool_proficiency": ["Smith's Tools"],
     "grants_tool_replace_from": "Artisan's Tools"
   },
   "pub24_sub_artificer-battle-smith-battle-ready": {
-    "grants_weapon_proficiency": [
-      "martial"
-    ]
+    "grants_weapon_proficiency": ["martial"]
   },
   "pub24_sub_artificer-cartographer-tools-of-the-trade": {
     "grants_tool_proficiency": [
@@ -3736,9 +3670,7 @@
     "grants_tool_replace_from": "Artisan's Tools"
   },
   "pub24_sub_artificer-reanimator-reanimators-skill-set": {
-    "grants_tool_proficiency": [
-      "Alchemist's Supplies"
-    ],
+    "grants_tool_proficiency": ["Alchemist's Supplies"],
     "grants_tool_replace_from": "Artisan's Tools"
   },
   "pub24_sub_bard-college-of-lore-bonus-proficiencies": {
@@ -3748,9 +3680,7 @@
     }
   },
   "pub24_sub_bard-college-of-spirits-channeler": {
-    "grants_tool_proficiency": [
-      "Playing Card Set"
-    ]
+    "grants_tool_proficiency": ["Playing Card Set"]
   },
   "pub24_sub_bard-college-of-the-moon-primal-lore": {
     "grants_skill_proficiency_choice": {
@@ -3766,13 +3696,8 @@
     }
   },
   "pub24_sub_bard-college-of-valor-martial-training": {
-    "grants_weapon_proficiency": [
-      "martial"
-    ],
-    "grants_armor_proficiency": [
-      "medium",
-      "shields"
-    ]
+    "grants_weapon_proficiency": ["martial"],
+    "grants_armor_proficiency": ["medium", "shields"]
   },
   "pub24_sub_cleric-knowledge-domain-blessings-of-knowledge": {
     "grants_tool_proficiency_choice": {
@@ -3781,29 +3706,17 @@
     },
     "grants_skill_proficiency_choice": {
       "count": 2,
-      "options": [
-        "Arcana",
-        "History",
-        "Nature",
-        "Religion"
-      ],
+      "options": ["Arcana", "History", "Nature", "Religion"],
       "expertise": true
     }
   },
   "pub24_sub_cleric-knowledge-domain-unfettered-mind": {
-    "grants_saving_throw_proficiency": [
-      "int"
-    ]
+    "grants_saving_throw_proficiency": ["int"]
   },
   "pub24_sub_fighter-banneret-knightly-envoy": {
     "grants_skill_proficiency_choice": {
       "count": 1,
-      "options": [
-        "Insight",
-        "Intimidation",
-        "Persuasion",
-        "Performance"
-      ]
+      "options": ["Insight", "Intimidation", "Persuasion", "Performance"]
     }
   },
   "pub24_sub_fighter-battle-master-student-of-war": {
@@ -3827,56 +3740,32 @@
     }
   },
   "pub24_sub_monk-warrior-of-mercy-implements-of-mercy": {
-    "grants_skill_proficiency": [
-      "Insight",
-      "Medicine"
-    ],
-    "grants_tool_proficiency": [
-      "Herbalism Kit"
-    ]
+    "grants_skill_proficiency": ["Insight", "Medicine"],
+    "grants_tool_proficiency": ["Herbalism Kit"]
   },
   "pub24_sub_paladin-oath-of-the-noble-genies-genies-splendor": {
     "grants_skill_proficiency_choice": {
       "count": 1,
-      "options": [
-        "Acrobatics",
-        "Intimidation",
-        "Performance",
-        "Persuasion"
-      ]
+      "options": ["Acrobatics", "Intimidation", "Performance", "Persuasion"]
     }
   },
   "pub24_sub_ranger-fey-wanderer-otherworldly-glamour": {
     "grants_skill_proficiency_choice": {
       "count": 1,
-      "options": [
-        "Deception",
-        "Performance",
-        "Persuasion"
-      ]
+      "options": ["Deception", "Performance", "Persuasion"]
     }
   },
   "pub24_sub_ranger-gloom-stalker-iron-mind": {
-    "grants_saving_throw_proficiency": [
-      "wis"
-    ],
-    "grants_saving_throw_replace_options": [
-      "int",
-      "cha"
-    ]
+    "grants_saving_throw_proficiency": ["wis"],
+    "grants_saving_throw_replace_options": ["int", "cha"]
   },
   "pub24_sub_rogue-assassin-assassins-tools": {
-    "grants_tool_proficiency": [
-      "Disguise Kit",
-      "Poisoner's Kit"
-    ]
+    "grants_tool_proficiency": ["Disguise Kit", "Poisoner's Kit"]
   },
   "pub24_species_aasimar-light-bearer": {
     "name": "Light Bearer",
     "grants_spells": {
-      "fixed": [
-        "Light"
-      ],
+      "fixed": ["Light"],
       "ability": "cha"
     }
   },
@@ -3945,9 +3834,7 @@
   "pub24_species_elf-trance": {
     "name": "Trance",
     "needs_sleep": false,
-    "grants_condition_immunity": [
-      "magical_sleep"
-    ],
+    "grants_condition_immunity": ["magical_sleep"],
     "long_rest_hours": 4
   },
   "pub24_species_gnome-gnomish-lineage": {
@@ -3956,9 +3843,7 @@
   },
   "pub24_species_halfling-luck": {
     "name": "Luck",
-    "d20_reroll_on": [
-      1
-    ]
+    "d20_reroll_on": [1]
   },
   "pub24_species_halfling-halfling-nimbleness": {
     "name": "Halfling Nimbleness",
@@ -3990,9 +3875,7 @@
   "pub24_species_tiefling-otherworldly-presence": {
     "name": "Otherworldly Presence",
     "grants_spells": {
-      "fixed": [
-        "Thaumaturgy"
-      ],
+      "fixed": ["Thaumaturgy"],
       "ability_from": "lineage"
     }
   },
@@ -4109,9 +3992,7 @@
   "pub24_species_gnome-gnomish-lineage--forest-gnome": {
     "name": "Gnomish Lineage: Forest Gnome",
     "grants_spells": {
-      "fixed": [
-        "Speak with Animals"
-      ],
+      "fixed": ["Speak with Animals"],
       "free_cast": {
         "Speak with Animals": {
           "count": {
@@ -4152,21 +4033,15 @@
   },
   "pub24_species_tiefling-fiendish-legacy--abyssal": {
     "name": "Fiendish Legacy: Abyssal",
-    "grants_resistance": [
-      "poison"
-    ]
+    "grants_resistance": ["poison"]
   },
   "pub24_species_tiefling-fiendish-legacy--chthonic": {
     "name": "Fiendish Legacy: Chthonic",
-    "grants_resistance": [
-      "necrotic"
-    ]
+    "grants_resistance": ["necrotic"]
   },
   "pub24_species_tiefling-fiendish-legacy--infernal": {
     "name": "Fiendish Legacy: Infernal",
-    "grants_resistance": [
-      "fire"
-    ]
+    "grants_resistance": ["fire"]
   },
   "pub24_species_dragonborn-draconic-ancestry--black": {
     "name": "Draconic Ancestry: Black",
@@ -4222,12 +4097,8 @@
   },
   "pub_fey-ancestry": {
     "name": "Fey Ancestry",
-    "grants_saving_throw_advantage": [
-      "being_charmed"
-    ],
-    "grants_condition_immunity": [
-      "magical_sleep"
-    ]
+    "grants_saving_throw_advantage": ["being_charmed"],
+    "grants_condition_immunity": ["magical_sleep"]
   },
   "pub_half-elf-skill-versatility": {
     "name": "Skill Versatility",
@@ -4238,9 +4109,7 @@
   },
   "pub_half-orc-menacing": {
     "name": "Menacing",
-    "grants_skill_proficiency": [
-      "Intimidation"
-    ]
+    "grants_skill_proficiency": ["Intimidation"]
   },
   "pub_savage-attacks": {
     "name": "Savage Attacks",
@@ -4248,5 +4117,20 @@
       "attack": "melee_weapon",
       "dice": 1
     }
+  },
+  "pub24_sub_bard-college-of-spirits-spirits-from-beyond-channel": {
+    "name": "Spirits from Beyond: Channel a Spirit",
+    "action_type": "bonus_action",
+    "narrative": "Rides on giving a Bardic Inspiration die: roll that die and read the spirit off the table. The table result is resolved at the table."
+  },
+  "pub24_sub_bard-college-of-spirits-spirits-from-beyond-controlled-channeling": {
+    "name": "Spirits from Beyond: Controlled Channeling",
+    "action_type": "bonus_action",
+    "narrative": "Spends one use of Bardic Inspiration and picks a spirit up to the Bardic Inspiration die; the spirit effects are resolved at the table."
+  },
+  "pub24_sub_bard-college-of-spirits-spirits-from-beyond-unleash": {
+    "name": "Spirits from Beyond: Unleash a Spirit",
+    "action_type": "action",
+    "narrative": "A Magic action that applies one channeled spirit to a creature within 30 feet; the spirit effects are resolved at the table."
   }
 }

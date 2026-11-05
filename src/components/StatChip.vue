@@ -1,7 +1,13 @@
 <template>
-  <span class="stat-chip" :class="`stat-chip--${size}`">
+  <span
+    class="stat-chip"
+    :class="`stat-chip--${size}`"
+    @mouseenter="placeTooltip"
+  >
     <span :class="{ 'has-tip': explain }">{{ value }}</span>
-    <div v-if="explain" class="stat-chip-tooltip">{{ breakdown }}</div>
+    <div v-if="explain" ref="tip" class="stat-chip-tooltip" :style="tipStyle">
+      {{ breakdown }}
+    </div>
   </span>
 </template>
 
@@ -15,9 +21,39 @@ export default {
     size: { type: String, default: 'md' },
   },
 
+  data() {
+    return { tipStyle: {} }
+  },
+
   computed: {
     breakdown() {
       return this.explain ? this.explain() : null
+    },
+  },
+
+  methods: {
+    // The tooltip is position: fixed so a panel with overflow: hidden/auto
+    // (the battle sheet's turn panel) can't clip it; this puts it under the
+    // chip and keeps it inside the window.
+    placeTooltip() {
+      const tip = this.$refs.tip
+      if (!tip) return
+      const margin = 8
+      const chip = this.$el.getBoundingClientRect()
+      const { offsetWidth: w, offsetHeight: h } = tip
+      const left = Math.max(
+        margin,
+        Math.min(
+          chip.left + chip.width / 2 - w / 2,
+          window.innerWidth - w - margin
+        )
+      )
+      const below = chip.bottom + 6
+      const top =
+        below + h > window.innerHeight - margin
+          ? Math.max(margin, chip.top - h - 6)
+          : below
+      this.tipStyle = { left: `${left}px`, top: `${top}px` }
     },
   },
 }
@@ -36,10 +72,7 @@ export default {
 }
 
 .stat-chip-tooltip {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: 5px;

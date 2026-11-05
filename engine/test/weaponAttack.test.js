@@ -170,6 +170,47 @@ test('damageBonusBreakdown: value matches damageBonus, and Raging shows up as it
   assert.ok(breakdown.some((l) => l.label === 'Raging' && l.amount === 2))
 })
 
+// 2024 PHB, Light property: "You can't add your ability modifier to the extra attack's damage unless that
+// modifier is negative." The off-hand weapon is that extra attack; its +N and the Proficiency Bonus on the
+// attack roll are untouched.
+test('Light off-hand attack: no ability modifier on damage, but the +1 and the attack roll stay (2024 Light property)', () => {
+  const main = {
+    name: 'Dagger +1',
+    weapon_category: 'dagger',
+    enhancement_bonus: 1,
+    hand: 'main',
+  }
+  const off = { ...main, hand: 'off' }
+  const c = baseChar()
+  assert.equal(damageBonus(c, main, []), 4) // STR 3 (finesse) + 1
+  assert.equal(damageBonus(c, off, []), 1)
+  const lines = damageBonusBreakdown(c, off, []).breakdown
+  assert.equal(
+    lines.reduce((n, l) => n + l.amount, 0),
+    1
+  )
+  assert.ok(lines.some((l) => /no ability modifier/.test(l.label)))
+  assert.equal(attackBonus(c, off, []), attackBonus(c, main, []))
+})
+
+test('Light off-hand attack: Two-Weapon Fighting puts the ability modifier back; a negative modifier is kept; a non-Light weapon is unchanged', () => {
+  const off = { name: 'Dagger', weapon_category: 'dagger', hand: 'off' }
+  const twf = baseChar({
+    features: [
+      { name: 'Two-Weapon Fighting', id: 'pub24_feat-two-weapon-fighting' },
+    ],
+  })
+  assert.equal(damageBonus(twf, off, []), 3)
+  const weak = baseChar({ stat_str: 8, stat_dex: 8 }) // -1
+  assert.equal(damageBonus(weak, off, []), -1)
+  const longsword = {
+    name: 'Longsword',
+    weapon_category: 'longsword',
+    hand: 'off',
+  }
+  assert.equal(damageBonus(baseChar(), longsword, []), 3)
+})
+
 test('thrownDie: only surfaces when it differs from the current grip die', () => {
   const { thrownDie } = require('../rules/5e/weaponAttack')
   const spear2h = {

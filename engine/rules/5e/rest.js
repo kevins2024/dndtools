@@ -23,6 +23,7 @@ const { hitDieForClass } = require('./progression')
 const { resolveEffectiveStats } = require('./characterStats')
 const { effectiveMaxHp } = require('./hitPoints')
 const { characterGrants, effectiveGrants } = require('./featureGrants')
+const { hasHeroicInspiration } = require('./heroicInspiration')
 
 const MAX_EXHAUSTION = 6
 const { rulesetOf, normalizeRuleset } = require('./rulesetId')
@@ -219,9 +220,13 @@ function longRestHours(character) {
   return characterGrants(character).longRestHours
 }
 
+// A rest gives Heroic Inspiration unless the character already has it (never more than one)
 function gainsHeroicInspiration(character) {
-  return (character.features ?? []).some(
-    (f) => effectiveGrants(f).on_long_rest?.heroic_inspiration
+  return (
+    !hasHeroicInspiration(character) &&
+    (character.features ?? []).some(
+      (f) => effectiveGrants(f).on_long_rest?.heroic_inspiration
+    )
   )
 }
 

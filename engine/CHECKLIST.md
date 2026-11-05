@@ -567,3 +567,18 @@ Owner: the tool teaches the rules and the owner cannot always spot a wrong numbe
 - `test/spellData.test.js`: the lint, unique names with real schools, levels and classes, and **every spell name the engine's own data refers to** (subclass spell tables, class always-prepared spells, species lineages, `grants_spells`) is a real 2024 spell: all of them are.
 - Not verifiable this way: the 69 spells outside the SRD (the lint covers them, there is no second source), and the table rows the SRD omits. Both need the printed Player's Handbook.
 - Process note: scripted edits through heredocs turned `\b` into a backspace character in one regex (found and fixed); the changed files were scanned for stray control characters.
+
+## 2026-11-04 (first playthrough fixes)
+
+Found while the project owner used the app:
+
+- Ability check from the character sheet threw `abilityCheckBreakdown is not a function`: `src/utils/checks.js` (the browser shim over `rules/5e/checks.js`) never re-exported it.
+- Feature pills were keyed by name, so a Rogue's two Expertise features gave a duplicate Vue key; keyed by id + level + position now.
+- `StatChip` tooltips are `position: fixed`, placed under the chip and kept inside the window, so a scrolling/overflow-hidden panel (the battle sheet) no longer hides them.
+- Unarmed strike ignored the 2024 Unarmed Fighting feat (`pub24_feat-unarmed-fighting`; only the old Tasha's id was recognised): Brick is now d8 with empty hands plus the 1d4 grapple damage.
+- Light property (2024): a weapon in the off hand is the extra attack, which adds no ability modifier to damage unless it is negative; Two-Weapon Fighting puts it back; the +N and the Proficiency Bonus on the attack roll stay (`weaponAttack.js damageBonusBreakdown`, `weapons.js` now exposes `light`). Answer to "does her proficiency come off the off-hand attack": no, only the ability modifier on damage does.
+- Bardic Inspiration die by Bard level (d6/d8/d10/d12): `unarmedAttacks.js bardicInspirationDie` reads the class table; the feature popup shows "Current Die".
+- Spirits from Beyond split into Channel a Spirit (bonus action), Controlled Channeling (bonus action) and Unleash a Spirit (Magic action) plus the table; the three new ids are in the College of Spirits level 3 list, so `auditCharacter` flags Sorra as missing them (roster fix is for after the engine work).
+- Ioun Stone of Mastery has its own library entry (`campaign-items.json`) with only its own text; the alias to the all-stones entry is gone.
+- Heroic Inspiration (`rules/5e/heroicInspiration.js`, 2024 PHB "Playing the Game"): grant, spend, never more than one, who in the party could take a second one. A chip on the character sheet is always shown (click to spend or give); the Long Rest pill explains it and no longer appears for a Human who already has it.
+- Weapon Mastery (`rules/5e/weaponMasteries.js`, `data/5e2024/weapon-masteries.json`, text from the SRD 5.2): the eight Mastery properties with their text on weapon rows, on the "Weapon Mastery: X" feature popup and on the level-up choice options; the Long Rest flow has a Weapon Mastery step to swap one mastered kind for another eligible kind (`changeMastery`); `masteryPool` is shared with `choices2024.js`.

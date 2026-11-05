@@ -50,6 +50,8 @@ function weaponProps(weapon, homebrewWeaponTypes = {}, ruleset) {
     counts_as_proficiency:
       weapon.counts_as_proficiency ?? base.counts_as_proficiency ?? null,
     finesse: weapon.finesse ?? base.finesse ?? false,
+    // The Light property: the extra attack it allows adds no ability modifier to its damage
+    light: weapon.light ?? base.light ?? false,
     // 2024 Mastery property (cleave, graze, nick, push, sap, slow, topple, vex);
     // only meaningful to a character with a feature that unlocks it.
     mastery: weapon.mastery ?? base.mastery ?? null,
@@ -90,7 +92,8 @@ function isProficientWithWeapon(
   )
   if (props.category && profs.has(props.category)) return true
   // A magic "staff" (Staff of Power, Staff of Evocation) is a quarterstaff.
-  const specific = WEAPON_CATEGORY_ALIASES[weapon.weapon_category] ?? weapon.weapon_category
+  const specific =
+    WEAPON_CATEGORY_ALIASES[weapon.weapon_category] ?? weapon.weapon_category
   if (specific && profs.has(specific.toLowerCase())) return true
   if (
     props.counts_as_proficiency &&

@@ -221,6 +221,22 @@ function rageDamageBonus(character, weapon, homebrewWeaponTypes = {}) {
   return rageDamage(character)
 }
 
+// The Light property (2024 PHB): the extra attack it grants as a Bonus Action "can't add your ability
+// modifier to the extra attack's damage unless that modifier is negative". A weapon held in the off hand
+// is that extra attack, so its damage drops the ability modifier. Two-Weapon Fighting puts it back
+// ("you can add your ability modifier to the damage of that attack"). The Proficiency Bonus was never part
+// of damage and stays on the attack roll. A magic weapon's +N and Rage still apply (they are not the
+// ability modifier).
+function hasTwoWeaponFighting(character) {
+  return (character.features ?? []).some(
+    (f) =>
+      f.id === 'pub24_feat-two-weapon-fighting' ||
+      f.id === 'fighting-style-two-weapon-fighting' ||
+      f.name === 'Two-Weapon Fighting' ||
+      f.name === 'Fighting Style: Two-Weapon Fighting'
+  )
+}
+
 function damageBonusBreakdown(
   character,
   weapon,
@@ -229,12 +245,18 @@ function damageBonusBreakdown(
 ) {
   const { bonuses } = resolveEffectiveStats(character, equippedItems)
   const props = weaponProps(weapon, homebrewWeaponTypes, rulesetOf(character))
-  const statMod = weaponStatMod(
+  const abilityMod = weaponStatMod(
     character,
     weapon,
     equippedItems,
     homebrewWeaponTypes
   )
+  const dropsAbilityMod =
+    weapon.hand === 'off' &&
+    props.light &&
+    abilityMod > 0 &&
+    !hasTwoWeaponFighting(character)
+  const statMod = dropsAbilityMod ? 0 : abilityMod
   const enchantment = weaponEnchantment(character, weapon, bonuses)
   const magic = enchantment.amount
   const dmgBonusKey =
@@ -242,7 +264,12 @@ function damageBonusBreakdown(
   const typeBonus = bonuses[dmgBonusKey] ?? 0
   const rage = rageDamageBonus(character, weapon, homebrewWeaponTypes)
 
-  const breakdown = [{ label: statModLabel(props), amount: statMod }]
+  const breakdown = [{ label: statModLabel(props), amount: abilityMod }]
+  if (dropsAbilityMod)
+    breakdown.push({
+      label: 'Off-hand Light attack: no ability modifier',
+      amount: -abilityMod,
+    })
   if (magic) breakdown.push(enchantmentLine(weapon, enchantment))
   if (rage) breakdown.push({ label: 'Raging', amount: rage })
   breakdown.push(

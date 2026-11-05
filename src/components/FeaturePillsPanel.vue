@@ -7,8 +7,8 @@
       <div class="pill-group-label">{{ group.label }}</div>
       <div class="pill-row">
         <span
-          v-for="f in group.items"
-          :key="f.name"
+          v-for="(f, i) in group.items"
+          :key="`${f.id ?? f.name}-${f.level_gained ?? ''}-${i}`"
           class="feature-pill"
           @click="inspect(f)"
           ><Star

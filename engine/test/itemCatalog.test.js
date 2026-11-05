@@ -243,7 +243,11 @@ test('matchLibraryEntry: exact names, aliases, healing potions, scrolls and plai
     id({ name: "Heward's Handy Haversack" }),
     'hewards-handy-haversack'
   )
-  assert.strictEqual(id({ name: 'Ioun Stone of Mastery' }), 'ioun-stone')
+  // a single stone has its own entry so it shows only its own text, not all 20 stones'
+  assert.strictEqual(
+    id({ name: 'Ioun Stone of Mastery' }),
+    'ioun-stone-of-mastery'
+  )
   assert.strictEqual(
     id({ name: 'Potion of Superior Healing' }),
     'potion-of-healing'
@@ -326,16 +330,44 @@ const { applyDescEdits, resolveVariant } = require('../rules/5e/itemCatalog')
 
 test('applyDescEdits applies every edit, and fails loudly when the base text no longer has the text to edit', () => {
   assert.strictEqual(
-    applyDescEdits('holds 5 levels of 1st through 5th', [['5 levels', '3 levels'], ['5th', '3rd']], 'v'),
+    applyDescEdits(
+      'holds 5 levels of 1st through 5th',
+      [
+        ['5 levels', '3 levels'],
+        ['5th', '3rd'],
+      ],
+      'v'
+    ),
     'holds 3 levels of 1st through 3rd'
   )
-  assert.throws(() => applyDescEdits('no match here', [['5 levels', '3 levels']], 'v'), /text to edit not found/)
+  assert.throws(
+    () => applyDescEdits('no match here', [['5 levels', '3 levels']], 'v'),
+    /text to edit not found/
+  )
   assert.strictEqual(applyDescEdits('unchanged', undefined, 'v'), 'unchanged')
 })
 
 test('resolveVariant: inherits the base, overrides what the variant states, marks itself campaign', () => {
-  const base = { id: 'b', name: 'Base', source: 'DMG', rarity: 'rare', category: 'ring', requires_attunement: true, desc: 'holds 5', library: 'official' }
-  const v = resolveVariant({ id: 'v', name: 'Base (3)', variant_of: 'b', rarity: 'uncommon', desc_edits: [['5', '3']] }, base)
+  const base = {
+    id: 'b',
+    name: 'Base',
+    source: 'DMG',
+    rarity: 'rare',
+    category: 'ring',
+    requires_attunement: true,
+    desc: 'holds 5',
+    library: 'official',
+  }
+  const v = resolveVariant(
+    {
+      id: 'v',
+      name: 'Base (3)',
+      variant_of: 'b',
+      rarity: 'uncommon',
+      desc_edits: [['5', '3']],
+    },
+    base
+  )
   assert.strictEqual(v.name, 'Base (3)')
   assert.strictEqual(v.rarity, 'uncommon')
   assert.strictEqual(v.desc, 'holds 3')
@@ -359,7 +391,11 @@ test('every campaign variant resolves against an official base, with its edits a
     const baseMech = lookup.mechanics(v.variant_of)
     for (const key of Object.keys(baseMech)) {
       if (!(key in (itemMechanics[v.id] ?? {}))) {
-        assert.deepStrictEqual(lookup.mechanics(v.id)[key], baseMech[key], `${v.id} inherits ${key}`)
+        assert.deepStrictEqual(
+          lookup.mechanics(v.id)[key],
+          baseMech[key],
+          `${v.id} inherits ${key}`
+        )
       }
     }
   }
@@ -369,14 +405,30 @@ test('Ring of Spell Storing comes in 3, 5 and 7 level versions with scaled rarit
   const entry = (id) => lookup.entry(id)
   assert.strictEqual(entry('ring-of-spell-storing-3-levels').rarity, 'uncommon')
   assert.strictEqual(entry('ring-of-spell-storing').rarity, 'rare')
-  assert.strictEqual(entry('ring-of-spell-storing-7-levels').rarity, 'very rare')
-  assert.match(entry('ring-of-spell-storing-3-levels').desc, /up to 3 levels worth/)
-  assert.match(entry('ring-of-spell-storing-3-levels').desc, /1st through 3rd level/)
-  assert.match(entry('ring-of-spell-storing-7-levels').desc, /up to 7 levels worth/)
-  assert.match(entry('ring-of-spell-storing-7-levels').desc, /1st through 7th level/)
+  assert.strictEqual(
+    entry('ring-of-spell-storing-7-levels').rarity,
+    'very rare'
+  )
+  assert.match(
+    entry('ring-of-spell-storing-3-levels').desc,
+    /up to 3 levels worth/
+  )
+  assert.match(
+    entry('ring-of-spell-storing-3-levels').desc,
+    /1st through 3rd level/
+  )
+  assert.match(
+    entry('ring-of-spell-storing-7-levels').desc,
+    /up to 7 levels worth/
+  )
+  assert.match(
+    entry('ring-of-spell-storing-7-levels').desc,
+    /1st through 7th level/
+  )
   assert.deepStrictEqual(
     [3, 5, 7].map((n) => {
-      const id = n === 5 ? 'ring-of-spell-storing' : `ring-of-spell-storing-${n}-levels`
+      const id =
+        n === 5 ? 'ring-of-spell-storing' : `ring-of-spell-storing-${n}-levels`
       return lookup.mechanics(id).charges_max
     }),
     [3, 5, 7]

@@ -83,6 +83,12 @@
                         {{ gripLabel(row.grip) }}
                       </button>
                       <span
+                        v-if="row.mastery"
+                        class="weapon-tag-badge"
+                        :title="`${row.mastery.name} (Weapon Mastery): ${row.mastery.description}`"
+                        >{{ row.mastery.name }}</span
+                      >
+                      <span
                         v-if="row.thrown"
                         class="weapon-tag-badge"
                         :title="`Thrown weapon — range ${row.thrown.normal}/${row.thrown.long} ft.`"
@@ -309,6 +315,12 @@
                 >
                   {{ gripLabel(row.grip) }}
                 </button>
+                <span
+                  v-if="row.mastery"
+                  class="weapon-tag-badge"
+                  :title="`${row.mastery.name} (Weapon Mastery): ${row.mastery.description}`"
+                  >{{ row.mastery.name }}</span
+                >
                 <span
                   v-if="row.thrown"
                   class="weapon-tag-badge"

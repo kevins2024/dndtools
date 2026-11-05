@@ -64,11 +64,13 @@ import {
 
 import {
   sneakAttackDice as engineSneakAttackDice,
+  bardicInspirationDie as engineBardicInspirationDie,
   unarmedStrike as engineUnarmedStrike,
   psychicBlades as enginePsychicBlades,
   featureBodyAttacks as engineFeatureBodyAttacks,
 } from './unarmedAttacks.js'
 import { characterGrants as engineCharacterGrants } from './featureGrants.js'
+import { masteryOfWeapon as engineMasteryOfWeapon } from './weaponMasteries.js'
 
 import { applyAttunement } from './attunement.js'
 
@@ -746,6 +748,12 @@ export const dnd = {
     return engineSneakAttackDice(character)
   },
 
+  // Current Bardic Inspiration die ("d8") — rule lives in
+  // engine/rules/5e/unarmedAttacks.js. null for a non-Bard.
+  bardicInspirationDie(character) {
+    return engineBardicInspirationDie(character)
+  },
+
   // Rich weapon rows for the combat panel UI — includes atkTooltip, dmgTooltip, and extras.
   buildWeaponRows(character, partyItems = []) {
     const equippedItems = partyItems.filter(
@@ -802,9 +810,14 @@ export const dnd = {
           : null
 
         const oneHanded = isOneHandedWeapon(w)
+        const mastered = engineMasteryOfWeapon(character, w.weapon_category)
         return {
           id: w.id,
           name: w.name,
+          // its Mastery property, when this character has mastered this kind of weapon
+          mastery: mastered
+            ? { name: mastered.masteryName, description: mastered.description }
+            : null,
           hand: oneHanded ? w.hand ?? null : null,
           handAmbiguous: oneHanded && hands.ambiguous && !w.hand,
           attack: dnd.signed(atkTotal),

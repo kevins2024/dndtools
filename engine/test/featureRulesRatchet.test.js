@@ -35,7 +35,7 @@ const disposed = (id) => {
 }
 
 // Undisposed features per group on 2026-11-04. Lower these; never raise them.
-const BASELINE = { class: 151, subclass: 332, feat: 75, option: 62, species: 0 }
+const BASELINE = { class: 151, subclass: 331, feat: 75, option: 62, species: 0 }
 
 test('every engine_rule points at a function the engine exports', () => {
   const problems = []

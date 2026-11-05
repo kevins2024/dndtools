@@ -11,6 +11,7 @@ const unarmedEngine = require('../../engine/rules/5e/unarmedAttacks')
 
 export const sneakAttackDice = unarmedEngine.sneakAttackDice
 export const martialArtsDie = unarmedEngine.martialArtsDie
+export const bardicInspirationDie = unarmedEngine.bardicInspirationDie
 export const unarmedStrike = unarmedEngine.unarmedStrike
 export const psychicBlades = unarmedEngine.psychicBlades
 export const featureBodyAttacks = unarmedEngine.featureBodyAttacks

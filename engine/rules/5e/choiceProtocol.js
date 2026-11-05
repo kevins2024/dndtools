@@ -39,6 +39,7 @@ const { loadFeat } = require('./grants')
 const { loadMetamagicOption } = require('./metamagic')
 const { loadManeuver } = require('./maneuvers')
 const { loadRulesetJson } = require('./ruleset')
+const { masteryInfo } = require('./weaponMasteries')
 const { formatBreakdown } = require('./sheet')
 
 const ABILITIES = ['str', 'dex', 'con', 'int', 'wis', 'cha']
@@ -551,9 +552,12 @@ function optionDescription(type, value, ctx) {
     case 'weaponMasteryChoice': {
       const w = loadRulesetJson('2024', 'weapons.json')?.[value]
       if (!w) return null
+      const mastery = masteryInfo(w.mastery)
       return `${titleWords(w.category)} ${w.weapon_type} weapon, ${
         w.damage_dice
-      } ${w.damage_type}. Mastery: ${titleWords(w.mastery)}.`
+      } ${w.damage_type}. Mastery: ${titleWords(w.mastery)}.${
+        mastery ? ` ${mastery.description}` : ''
+      }`
     }
     default:
       return null

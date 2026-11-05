@@ -21,7 +21,8 @@ test('a pending choice is described: id, kind, how many, labelled options', () =
     {
       value: 'war pick',
       label: 'War Pick',
-      description: 'Martial melee weapon, 1d8 piercing. Mastery: Sap.',
+      description:
+        'Martial melee weapon, 1d8 piercing. Mastery: Sap. If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn.',
     }
   )
   assert.equal(r.complete, false)

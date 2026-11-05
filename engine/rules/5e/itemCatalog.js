@@ -28,7 +28,9 @@ function applyDescEdits(desc, edits, variantId) {
   for (const [find, replace] of edits ?? []) {
     if (!out.includes(find)) {
       throw new Error(
-        `item variant "${variantId}": text to edit not found in its base: ${JSON.stringify(find)}`
+        `item variant "${variantId}": text to edit not found in its base: ${JSON.stringify(
+          find
+        )}`
       )
     }
     out = out.split(find).join(replace)
@@ -126,7 +128,6 @@ for (const entry of entries.values()) {
 const ALIASES = {
   'amulet of proof against detection':
     'amulet-of-proof-against-detection-and-location',
-  'ioun stone of mastery': 'ioun-stone',
   'ring of lightning resistance': 'ring-of-resistance',
 }
 
@@ -181,7 +182,9 @@ function textDivergence(itemEffect, libraryDesc) {
   if (/house rule/i.test(itemEffect)) return 'says "house rule"'
   const known = numbersIn(libraryDesc)
   const extra = [...numbersIn(itemEffect)].filter((n) => !known.has(n))
-  return extra.length ? `numbers not in the library text: ${extra.join(', ')}` : null
+  return extra.length
+    ? `numbers not in the library text: ${extra.join(', ')}`
+    : null
 }
 
 // Returns the item linked to the library (a new object) or the very same
@@ -192,7 +195,8 @@ function autoLinkItem(item) {
   if (!id) return item
   const entry = entries.get(id)
   const linked = { ...item, catalog_id: id }
-  const isGeneric = id === 'weapon-1-2-or-3' || id === 'armor-1-2-or-3' || id === 'shield-1-2-3'
+  const isGeneric =
+    id === 'weapon-1-2-or-3' || id === 'armor-1-2-or-3' || id === 'shield-1-2-3'
   if (linked.effect && entry.library === 'official') {
     if (isGeneric || !textDivergence(linked.effect, entry.desc)) {
       delete linked.effect

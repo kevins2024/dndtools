@@ -233,7 +233,7 @@
   },
   {
     "name": "Ioun Stone of Mastery",
-    "catalog_id": "ioun-stone",
+    "catalog_id": "ioun-stone-of-mastery",
     "type": "wondrous",
     "equipped_by": "Sorra",
     "carried_by": "Sorra",

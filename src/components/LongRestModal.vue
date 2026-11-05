@@ -261,6 +261,49 @@
         </div>
       </template>
 
+      <!-- ══ STEP: Weapon Mastery changes ═══════════ -->
+      <template v-else-if="step === 'masteries'">
+        <div class="rel-step-intro">
+          After a Long Rest, a character can change one kind of weapon they
+          chose for Weapon Mastery to another kind eligible for it. Leave "No
+          change" to keep them as they are.
+        </div>
+        <div class="rel-step-body">
+          <div v-for="row in masteryRows" :key="row.key" class="mastery-row">
+            <div class="mastery-who">
+              {{ row.name }}
+              <span class="mastery-class">{{ row.className }}</span>
+            </div>
+            <div class="mastery-pick">
+              <select v-model="masteryEdits[row.key].from">
+                <option value="">No change</option>
+                <option v-for="w in row.current" :key="w" :value="w">
+                  {{ kindLabel(w) }}
+                </option>
+              </select>
+              <template v-if="masteryEdits[row.key].from">
+                →
+                <select v-model="masteryEdits[row.key].to">
+                  <option value="">Choose a weapon</option>
+                  <option v-for="w in row.options" :key="w" :value="w">
+                    {{ kindLabel(w) }}
+                  </option>
+                </select>
+              </template>
+            </div>
+            <div v-if="masteryText(row)" class="mastery-desc">
+              {{ masteryText(row) }}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="skip-btn" @click="enterRelationshipsStep">Skip</button>
+          <button class="rest-btn" @click="saveMasteries">
+            Save Weapon Masteries
+          </button>
+        </div>
+      </template>
+
       <!-- ══ STEP 3: Relationships ═══════════════════ -->
       <template v-else-if="step === 'relationships'">
         <div class="rel-step-intro">
@@ -327,6 +370,11 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 import { dnd } from '@/utils/dnd_utils'
 import { isPreparedCaster } from '@/utils/spellUtils.js'
 import { dayOfYear, noteMatchesDay } from '@/utils/calendar_utils.js'
+import {
+  masteryChangeOptions,
+  masteryOfKind,
+  changeMastery,
+} from '@/utils/weaponMasteries.js'
 
 export default {
   name: 'LongRestModal',
@@ -344,6 +392,7 @@ export default {
       pickerTarget: null, // { si, pi }
       marchOrder: [],
       relationshipDeltas: {}, // pair key → staged delta, set when entering the step
+      masteryEdits: {}, // row key → { from, to }, set when entering the masteries step
       interruptionResult: null,
     }
   },
@@ -361,7 +410,21 @@ export default {
     stepTitle() {
       if (this.step === 'watches') return 'Long Rest — Watch Assignment'
       if (this.step === 'marching') return 'Marching Order'
+      if (this.step === 'masteries') return 'Weapon Mastery'
       return 'Relationship Check-in'
+    },
+
+    // One row per class with mastered weapons, for each character who finished the rest
+    masteryRows() {
+      return this.members
+        .filter((c) => !this.overwatchChars.includes(c.name))
+        .flatMap((c) =>
+          masteryChangeOptions(c).map((o) => ({
+            key: `${c.name}|${o.className}`,
+            name: c.name,
+            ...o,
+          }))
+        )
     },
 
     // Every unique pair of current party members, with their current
@@ -615,7 +678,7 @@ export default {
     skipAndSave() {
       // Persist game_day increment from LONG_REST without changing marching order
       this.SET_PARTIES([...this.parties])
-      this.enterRelationshipsStep()
+      this.enterMasteriesStep()
     },
 
     saveMarchingOrder() {
@@ -623,6 +686,44 @@ export default {
         p.active ? { ...p, marching_order: [...this.marchOrder] } : p
       )
       this.SET_PARTIES(updated)
+      this.enterMasteriesStep()
+    },
+
+    // ── Weapon Mastery (a Long Rest lets a character swap one mastered kind of weapon) ──
+
+    enterMasteriesStep() {
+      if (!this.masteryRows.length) return this.enterRelationshipsStep()
+      const edits = {}
+      for (const row of this.masteryRows) edits[row.key] = { from: '', to: '' }
+      this.masteryEdits = edits
+      this.step = 'masteries'
+    },
+
+    kindLabel(weapon) {
+      const m = masteryOfKind(weapon)
+      return m ? `${m.weaponName} (${m.name})` : weapon
+    },
+
+    // what the new kind's Mastery property does, shown once a new kind is picked
+    masteryText(row) {
+      const to = this.masteryEdits[row.key]?.to
+      const m = to ? masteryOfKind(to) : null
+      return m ? `${m.name}: ${m.description}` : ''
+    },
+
+    saveMasteries() {
+      for (const row of this.masteryRows) {
+        const { from, to } = this.masteryEdits[row.key] ?? {}
+        if (!from || !to) continue
+        // read the character fresh: one character can have two rows (Barbarian and Fighter)
+        const character = this.characters.find((c) => c.name === row.name)
+        const result = changeMastery(character, row.className, from, to)
+        if (!result.changed) continue
+        this.UPDATE_TABLE_ITEM({
+          table: 'characters',
+          updatedItem: { ...character, ...result.patch },
+        })
+      }
       this.enterRelationshipsStep()
     },
 
@@ -1297,6 +1398,32 @@ export default {
   flex: 1;
   overflow-y: auto;
   padding: 0.5rem 1.1rem;
+}
+.mastery-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.mastery-who {
+  font-weight: 600;
+}
+.mastery-class {
+  margin-left: 0.4rem;
+  font-weight: 400;
+  font-size: 0.8em;
+  color: var(--color-text-low);
+}
+.mastery-pick {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.mastery-desc {
+  font-size: 0.82rem;
+  color: var(--color-text-low);
 }
 .rel-step-empty {
   color: var(--color-text-low);
