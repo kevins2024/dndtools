@@ -32,6 +32,7 @@ import NewCharacter2024 from './NewCharacter2024.vue'
 import JsonIntakeTool from './JsonIntakeTool.vue'
 import DmSettings from './DmSettings.vue'
 import DifficultyCalculator from './DifficultyCalculator.vue'
+import DungeonMap from './DungeonMap.vue'
 
 export default {
   name: 'ToolsContext',
@@ -49,6 +50,7 @@ export default {
     JsonIntakeTool,
     DmSettings,
     DifficultyCalculator,
+    DungeonMap,
   },
 
   data() {
@@ -90,6 +92,11 @@ export default {
           id: 'level-up-engine',
           label: 'Level Up (engine-driven)',
           component: 'LevelUp',
+        },
+        {
+          id: 'dungeon',
+          label: 'Dungeon Map',
+          component: 'DungeonMap',
         },
         {
           id: 'dm-settings',
