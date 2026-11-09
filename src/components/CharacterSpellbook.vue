@@ -484,11 +484,9 @@ export default {
     },
 
     preparationInfo() {
-      // The limit itself (per-class ability + level, summed across a
+      // The limit itself (each class's 2024 table column, summed across a
       // multiclass) is engine/rules/5e/preparedSpells.js.
-      const partyItems = this.$store.state.party_items ?? []
-      const { stats } = dnd.resolveStats(this.character, partyItems)
-      const limit = preparedSpellLimit(this.character, stats)
+      const limit = preparedSpellLimit(this.character)
       if (!limit) return null
       const max = limit.max
 
