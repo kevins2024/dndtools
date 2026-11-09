@@ -42,6 +42,12 @@
               class="char-img"
               :style="{ backgroundImage: `url(${char.image})` }"
             >
+              <span
+                v-if="unfinishedSpells(char)"
+                class="unfinished-badge"
+                :title="unfinishedSpells(char)"
+                >!</span
+              >
               <button
                 class="magnify-btn"
                 title="View full image"
@@ -104,6 +110,10 @@ import CharacterDetails from './CharacterDetails.vue'
 import ClassIcon from './ClassIcon.vue'
 import dataService from '../utils/dataService'
 import { ITEM_DRAG_TYPE } from '../utils/itemDrag'
+import {
+  preparedStatusRequest,
+  fetchPreparedStatus,
+} from '../utils/preparedStatus'
 
 // Edge auto-scroll while an item is being dragged: within EDGE_ZONE px of the
 // top/bottom of the character column it scrolls, faster the closer to the
@@ -132,6 +142,7 @@ export default {
       scrollSpeed: 0,
       lastDragOverAt: 0,
       scrollRaf: null,
+      preparedStatus: {}, // name -> the engine's { have, want, missing, state } prepared-spell count
     }
   },
 
@@ -164,6 +175,12 @@ export default {
         })
       return groups
     },
+    preparedStatusBody() {
+      return preparedStatusRequest(
+        this.characters,
+        this.$store.state.spellbooks ?? []
+      )
+    },
     selectedCharacter() {
       if (!this.selectedName) return null
       return this.characters.find((c) => c.name === this.selectedName) ?? null
@@ -178,6 +195,15 @@ export default {
   },
 
   watch: {
+    preparedStatusBody: {
+      immediate: true,
+      handler(body) {
+        fetchPreparedStatus(body).then((status) => {
+          // an answer for an older state of the roster is dropped
+          if (body === this.preparedStatusBody) this.preparedStatus = status
+        })
+      },
+    },
     characters: {
       immediate: true,
       handler(chars) {
@@ -216,6 +242,14 @@ export default {
   },
 
   methods: {
+    // The text for the portrait's "unfinished" mark, or '' when the character has picked every prepared
+    // spell the class tables give them (the count is the engine's, engine/rules/5e/preparedStatus.js).
+    unfinishedSpells(char) {
+      const s = this.preparedStatus[char.name]
+      if (!s || s.state !== 'short') return ''
+      return `Unfinished: ${s.have} of ${s.want} prepared spells chosen (${s.missing} to go)`
+    },
+
     // ── Item drag-and-drop ──
     isItemDrag(e) {
       return Array.from(e.dataTransfer?.types ?? []).includes(ITEM_DRAG_TYPE)
@@ -416,6 +450,25 @@ export default {
   background-position: 50% 0%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* The character has not picked all the prepared spells the class tables give them. */
+.unfinished-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid var(--color-warning);
+  border-radius: 50%;
+  color: var(--color-warning);
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 1;
 }
 
 .magnify-btn {

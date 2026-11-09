@@ -47,6 +47,7 @@ const { rulesetOf } = require('./rulesetId')
 
 const { applyAttunement } = require('./attunement')
 const { characterGrants } = require('./featureGrants')
+const { unarmedStrikeDCBreakdown } = require('./unarmedAttacks')
 const { effectiveSize } = require('./speciesRules')
 
 const KEYS = ['str', 'dex', 'con', 'int', 'wis', 'cha']
@@ -352,6 +353,8 @@ function characterSheet(character, { equippedItems = [] } = {}) {
     spellcasting: spellcastingBlock(character, equippedItems),
     featureSpellcasting: featureSpellcasting(character, equippedItems),
     saveDCs: classSaveDCs(character, equippedItems),
+    // the save DC of the Grapple and Shove options of an Unarmed Strike
+    grappleDC: leaf(unarmedStrikeDCBreakdown(character, equippedItems)),
   }
 }
 

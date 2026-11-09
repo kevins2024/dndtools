@@ -559,6 +559,27 @@ app.post('/api/engine/character-sheet', (req, res) => {
   }
 })
 
+// ── POST /api/engine/prepared-status ─────────────────────
+// Has each character picked all the prepared spells their class tables give them? Body
+// { characters, spellbooks } as the screen holds them; answers { [name]: { have, want, missing, state } | null }
+// (null: casts no spells, or its spellbook was not supplied). Backs the "unfinished" mark on a portrait.
+app.post('/api/engine/prepared-status', (req, res) => {
+  try {
+    const { characters, spellbooks } = req.body ?? {}
+    if (!Array.isArray(characters))
+      return res.status(400).json({ error: 'body needs characters' })
+    const out = {}
+    for (const c of characters)
+      out[c.name] = engine.preparedSpellStatus(c, {
+        spellbooks: Array.isArray(spellbooks) ? spellbooks : [],
+      })
+    res.json(out)
+  } catch (err) {
+    console.error('Error computing prepared-spell status:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // ── GET /api/engine/item-catalog ──────────────────────────
 // The merged item library (official + campaign entries), for UI that wants to
 // show an item's source/rarity or offer a picker. Party items themselves

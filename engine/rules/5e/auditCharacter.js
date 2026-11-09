@@ -38,6 +38,7 @@ const {
   subclassSpells,
 } = require('./spellOrigins')
 const { deriveCharacter, hasRecordedBase } = require('./derive')
+const { sheetSpells, preparedWanted } = require('./preparedStatus')
 
 const norm = (s) =>
   String(s || '')
@@ -92,26 +93,8 @@ function auditCharacter(character, ctx = {}) {
   const book = (ctx.spellbooks || []).find(
     (b) => b.id === character.spellbook_id
   )
-  const preparedNames = new Set(character.prepared_spells || [])
-  // The book does not know which of its spells came from a species or feat; the sheet's own list does.
-  const grantedHere = new Map(
-    (character.spells || [])
-      .filter((s) => s.featureGranted)
-      .map((s) => [s.name, s])
-  )
-  const spells = book
-    ? (book.spells || []).map((sp) => ({
-        ...sp,
-        prepared: preparedNames.has(sp.name),
-        ...(sp.level === 0 ? { type: 'cantrip' } : {}),
-        ...(grantedHere.has(sp.name)
-          ? {
-              featureGranted: true,
-              _source: grantedHere.get(sp.name)._source,
-            }
-          : {}),
-      }))
-    : character.spells || []
+  // (preparedStatus.js builds that one list, shared with the portrait's "unfinished" mark.)
+  const spells = sheetSpells(character, book)
   // Which spells are granted (by a feature, the class, the subclass or a flag) and so never count against
   // the class: one rule for every check below (spellOrigins.js).
   const grantedKeys = grantedSpellKeys(character, ruleset)
@@ -524,14 +507,7 @@ function auditCharacter(character, ctx = {}) {
       .concat(knownCasters)
       .filter(({ c }) => !DAILY_PREPARERS.has(c.name))
     if (preparedCasters.length && fixedPickers.length && ruleset === '2024') {
-      const want = preparedCasters
-        .concat(knownCasters)
-        .reduce(
-          (n, { c }) =>
-            n +
-            (preparedSpellCount(c.name, c.level, 0, c.subclass, ruleset) ?? 0),
-          0
-        )
+      const want = preparedWanted(character, ruleset)
       const have = leveled.filter((s) => s.prepared !== false).length
       // Picks that can only change on a level-up (Bard, Sorcerer, Warlock, third
       // casters) must be filled; the rest are re-prepared after a Long Rest.

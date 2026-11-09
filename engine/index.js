@@ -45,6 +45,7 @@ const {
 } = require('./rules/5e/derive')
 const { speedBreakdown } = require('./rules/5e/speed')
 const { auditCharacter } = require('./rules/5e/auditCharacter')
+const { preparedSpellStatus } = require('./rules/5e/preparedStatus')
 const { resolveChoices2024 } = require('./rules/5e/choices2024')
 const { createCharacter2024 } = require('./rules/5e/newCharacter')
 const { featureMechanics } = require('./rules/5e/featureMechanics')
@@ -139,6 +140,7 @@ module.exports = {
   hydrateCharacter,
   speedBreakdown,
   auditCharacter,
+  preparedSpellStatus,
   abilityModifier,
   proficiencyBonus,
   asiLevelsForClass,

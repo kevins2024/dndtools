@@ -2,6 +2,18 @@
 
 Dated log of engine work (what was found/built/fixed and why). **Grep it by topic; do not read it whole.** Entries from 2026-08-25 to 2026-09-09 (RAW audits, subclass buildouts, the original phase plan) are in `CHECKLIST_ARCHIVE.md` — code comments that cite "Phase 7b" and similar point there. Run `node --test` from `engine/` to confirm the suite is green.
 
+## "Unfinished" mark for prepared spells and the Grapple/Shove DC (2026-11-08)
+
+New `rules/5e/preparedStatus.js`: `preparedSpellStatus(character, { spellbooks })` returns `{ have, want, missing, state: 'complete' | 'short' | 'over' }` (null for a non-caster or a Wizard whose spellbook was not supplied). `want` is the 2024 class tables' Prepared Spells column summed over the classes; `have` is the leveled spells marked prepared, not counting granted ones (`spellOrigins.js`). `auditCharacter` now builds its spell list (`sheetSpells`) and its `want` (`preparedWanted`) from the same file, so the audit and the portrait mark cannot disagree. Route `POST /api/engine/prepared-status` (`{ characters, spellbooks }` -> `{ name: status }`); `CharacterContext.vue` draws a "!" on the portrait when the state is `short` (`src/utils/preparedStatus.js` only asks). On the saved roster it flags Petra, Chuknora, Enauweyn, Revven, Elucyne, Ferghus and Therynv'l.
+
+New `unarmedStrikeDCBreakdown` in `unarmedAttacks.js`: the Grapple/Shove save DC is 8 + STR + Proficiency (2024 PHB, Unarmed Strike); a Monk takes the better of STR and DEX (Dexterous Attacks). Spell-DC bonuses and exhaustion do not apply to it. It is `sheet.grappleDC` (value, breakdown, tooltip) and shows as a "Grapple DC" chip in `VitalsChipRow.vue` (the combat panel and the sheet). Tests: `test/preparedStatus.test.js`.
+
+Found while checking: the class save DCs in `sheet.js` (`classSaveDCs`: Maneuver DC, Focus DC...) go through `spellSaveDCBreakdown`, so an item or feature that raises a SPELL save DC would also raise them. Not fixed.
+
+## Spellbook prepared-spell limit still used the 2014 formula (2026-11-08)
+
+Found while triaging TODO.md. `rules/5e/preparedSpells.js` (what `CharacterSpellbook.vue` counts against) computed ability modifier + level (or half level) with a minimum of 1, and treated Rangers as non-preparers. In 2024 every prepared caster reads its class table's "Prepared Spells" column, so a Wizard 9 with INT +4 showed 13 instead of 14, a Paladin 9 with CHA +3 showed 7 instead of 9, and Rangers had no counter at all. It now reads `prepared_spells_by_level` from the 2024 class JSON (still `require`-only, so browser-safe), covers Cleric, Druid, Paladin, Ranger, Wizard and Artificer, and ignores ability scores. `test/preparedSpells.test.js` was rewritten against the printed table values and also checks the result equals `spellcasting.js`'s `preparedSpellCount` for levels 1-20. `isPreparedCaster` now includes Rangers, so the Long Rest reminder covers them.
+
 ## Bugs found by building the roster level by level, auditing every level (2026-10-31)
 
 The rebuild now runs `auditCharacter` after each level the tool produces and attributes only new findings to that level (`steps[].audit`, `summary.violations`). The rule: the tool's product must be legal at every level; anything else is a bug in the tool, in the audit, or in the sheet being replicated. Found and fixed:

@@ -76,6 +76,12 @@
       }}</span>
       <span class="chip-label">{{ saveLabel }}</span>
     </div>
+    <div v-if="grappleDC" class="chip">
+      <span class="chip-val has-tip" :title="grappleDC.tooltip">{{
+        grappleDC.value
+      }}</span>
+      <span class="chip-label">Grapple DC</span>
+    </div>
   </div>
 </template>
 
@@ -270,6 +276,11 @@ export default {
     // Master's maneuvers, the Monk's Focus...). null when the character has none.
     classDC() {
       return this.sheet?.saveDCs?.[0] ?? null
+    },
+    // The save DC of the Grapple and Shove options of an Unarmed Strike (the engine's, with its
+    // breakdown). null without the server.
+    grappleDC() {
+      return this.sheet?.grappleDC ?? null
     },
     spellSaveDC() {
       if (this.spellSources) {

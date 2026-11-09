@@ -305,7 +305,33 @@ function featureBodyAttacks(character, equippedItems = []) {
   return out
 }
 
+// The save DC of the Grapple and Shove options of an Unarmed Strike (2024 PHB, Unarmed Strike): 8 + your
+// Strength modifier + your Proficiency Bonus. A Monk's Martial Arts (Dexterous Attacks) may use Dexterity
+// instead of Strength, so a Monk takes the better of the two. Every character has an Unarmed Strike, so
+// this never returns null. Exhaustion does not touch it (it lowers the DC of spells only).
+function unarmedStrikeDCBreakdown(character, equippedItems = []) {
+  const { scores, bonuses } = resolveEffectiveStats(character, equippedItems)
+  const strMod = abilityModifier(scores.str)
+  const dexMod = abilityModifier(scores.dex)
+  const monk = Boolean(martialArtsDie(character))
+  const useDex = monk && dexMod > strMod
+  const mod = useDex ? dexMod : strMod
+  const prof = effectiveProficiencyBonus(character, bonuses)
+  return {
+    value: 8 + mod + prof,
+    breakdown: [
+      { label: 'Base', amount: 8 },
+      {
+        label: useDex ? 'DEX mod (Dexterous Attacks)' : 'STR mod',
+        amount: mod,
+      },
+      { label: 'Proficiency', amount: prof },
+    ],
+  }
+}
+
 module.exports = {
+  unarmedStrikeDCBreakdown,
   featureBodyAttacks,
   tableValueAtLevel,
   sneakAttackDice,
